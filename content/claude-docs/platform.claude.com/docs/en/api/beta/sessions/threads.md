@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 6cf0670d8417f05a6b9777221e6d9fd72d597968d201646bc0a77cf0695f5ab6
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 00211ec1f9ba19f9d7e855cbc6b2ccaab3825006fc03dc77ceb8424dc2bfacc6
 ---
 
 ---
@@ -1018,9 +1018,9 @@ List Session Threads
 
 ```bash
 curl https://api.anthropic.com/v1/sessions/$SESSION_ID/threads \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -2099,9 +2099,9 @@ Get Session Thread
 
 ```bash
 curl https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -3176,9 +3176,9 @@ Archive Session Thread
 ```bash
 curl https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/archive \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -10904,9 +10904,9 @@ List Session Thread Events
 
 ```bash
 curl https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/events \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -14067,9 +14067,9 @@ Stream Session Thread Events
 
 ```bash
 curl https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/stream \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/retrieve
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: ea81b480cb08cc0952039032ffa6dfb0f68fe86e72be1178adf885b9b26abdd3
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: bd7bf8ea0c4763af1d8a74b9e56b6b91d467ef8032e82775020e546ad26f9676
 ---
 
 ---
@@ -138,8 +138,8 @@ Retrieve a single external key config in the caller's organization by ID.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

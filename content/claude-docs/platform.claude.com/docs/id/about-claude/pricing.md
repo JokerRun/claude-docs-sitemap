@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: e95bc90b8a173e3697e95ead0c44a51af83d496dfb676fc375d70c7f2f2ffafd
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 46b4b595872be66041fe26fc1e4345c25657f64e0932b2ec20bb94f0d60e19ba
 ---
 
 ---
@@ -62,9 +62,9 @@ Claude 4.7 and later models and Claude Mythos Preview use a newer tokenizer that
 
 ## Harga platform cloud
 
-Bagian ini membahas platform cloud yang dioperasikan mitra, di mana penyedia cloud menagih Anda. Untuk platform cloud yang dioperasikan Anthropic dan ditagih melalui marketplace, lihat [Harga Claude Platform on AWS](https://platform.claude.com/docs/id/about-claude/pricing#claude-platform-on-aws-pricing) dan [Harga Claude in Microsoft Foundry](https://platform.claude.com/docs/id/about-claude/pricing#claude-in-microsoft-foundry-pricing).
+Bagian ini membahas platform cloud yang dioperasikan mitra, di mana penyedia cloud menagih Anda. Untuk platform cloud yang dioperasikan Anthropic dan ditagih melalui marketplace, lihat [Harga Claude Platform on AWS](https://platform.claude.com/docs/id/about-claude/pricing#claude-platform-on-aws-pricing), [Penagihan Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#billing), dan [Harga Claude in Microsoft Foundry](https://platform.claude.com/docs/id/about-claude/pricing#claude-in-microsoft-foundry-pricing).
 
-Model Claude tersedia di [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) dan [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai). Untuk harga resmi, kunjungi:
+Model Claude tersedia di [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed). Untuk harga resmi, kunjungi:
 
 * [Harga Amazon Bedrock](https://aws.amazon.com/bedrock/pricing/)
 * [Harga Google Cloud](https://cloud.google.com/vertex-ai/generative-ai/pricing#claude-models)
@@ -75,7 +75,7 @@ Model Claude tersedia di [Amazon Bedrock](https://platform.claude.com/docs/id/bu
   Mulai dari Claude Sonnet 4.5, Haiku 4.5, dan Opus 4.5:
 
   * **Bedrock** menawarkan dua jenis endpoint: endpoint global (perutean dinamis untuk ketersediaan maksimum) dan endpoint regional (perutean data yang dijamin melalui wilayah geografis tertentu).
-  * **Google Cloud** menawarkan endpoint global dan endpoint multi-region (perutean dinamis dalam suatu area geografis) untuk model-model ini, serta endpoint regional untuk Claude Sonnet 4.6 dan model sebelumnya.
+  * **Claude Models on Google Cloud (Google managed)** menawarkan endpoint global dan endpoint multi-region (perutean dinamis dalam suatu area geografis) untuk model-model ini, serta endpoint regional untuk Claude Sonnet 4.6 dan model sebelumnya.
 
   Endpoint regional dan multi-region dikenakan premi 10% di atas endpoint global. Claude API (pihak pertama) bersifat global secara default; untuk opsi residensi data pihak pertama dan harganya, lihat [Harga residensi data](https://platform.claude.com/docs/id/about-claude/pricing#data-residency-pricing).
 
@@ -84,7 +84,7 @@ Model Claude tersedia di [Amazon Bedrock](https://platform.claude.com/docs/id/bu
   Untuk detail implementasi dan contoh kode:
 
   * [Endpoint global vs regional Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#regions) untuk Opus 4.7, Haiku 4.5, dan model yang lebih baru, atau [integrasi lama](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#global-vs-regional-endpoints) untuk semua model lain di Bedrock
-  * [Endpoint global, multi-region, dan regional Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai#global-multi-region-and-regional-endpoints)
+  * [Endpoint global, multi-region, dan regional Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed#global-multi-region-and-regional-endpoints)
 </Note>
 
 ## Harga Claude Platform on AWS
@@ -166,13 +166,13 @@ Untuk detail implementasi, model yang didukung, dan contoh kode, lihat [Caching 
 
 Untuk model Claude 4.6 dan yang lebih baru, menentukan inferensi khusus AS melalui parameter `inference_geo` dikenakan pengali 1,1x pada semua kategori harga token, termasuk token input, token output, penulisan cache, dan pembacaan cache. Pada Claude Haiku 5.5, pengali ini juga berlaku untuk harga yang lebih tinggi bagi prompt di atas 100.000 token (lihat [Harga konteks panjang](https://platform.claude.com/docs/id/about-claude/pricing#long-context-pricing)). Perutean global (default) menggunakan harga standar.
 
-Ini berlaku untuk Claude API (pihak pertama) dan Claude Platform on AWS. Pada Claude in Microsoft Foundry, pengali 1,1x yang sama berlaku untuk deployment yang menggunakan jenis deployment US Data Zone Standard (lihat [Geografi inferensi](https://platform.claude.com/docs/id/about-claude/pricing#foundry-inference-geography)). Platform yang dioperasikan mitra (Bedrock dan Google Cloud) memiliki harga regional tersendiri. Lihat [Bedrock](https://aws.amazon.com/bedrock/pricing/) dan [Google Cloud](https://cloud.google.com/vertex-ai/generative-ai/pricing#claude-models) untuk detailnya. Model yang lebih lama tidak mendukung parameter `inference_geo` dan selalu menggunakan harga standar; permintaan yang menyertakan parameter tersebut pada model ini akan mengembalikan error 400.
+Ini berlaku untuk Claude API (pihak pertama), Claude Platform on AWS, dan Claude Models on Google Cloud (Anthropic managed). Pada Claude in Microsoft Foundry, pengali 1,1x yang sama berlaku untuk deployment yang menggunakan jenis deployment US Data Zone Standard (lihat [Geografi inferensi](https://platform.claude.com/docs/id/about-claude/pricing#foundry-inference-geography)). Platform yang dioperasikan mitra, yaitu Bedrock dan Claude Models on Google Cloud (Google managed), memiliki harga regional tersendiri. Lihat [Bedrock](https://aws.amazon.com/bedrock/pricing/) dan [Google Cloud](https://cloud.google.com/vertex-ai/generative-ai/pricing#claude-models) untuk detailnya. Model yang lebih lama tidak mendukung parameter `inference_geo` dan selalu menggunakan harga standar; permintaan yang menyertakan parameter tersebut pada model ini akan mengembalikan error 400.
 
 Untuk informasi lebih lanjut, lihat [Residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency).
 
 ### Harga fast mode
 
-[Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (mode cepat) menyediakan output yang jauh lebih cepat untuk Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8 dengan harga premium. Fast mode untuk Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset. Harga fast mode berlaku di seluruh "context window" (jendela konteks), termasuk permintaan dengan lebih dari 200k token input. Fast mode tersedia di Claude API (pihak pertama) dan, untuk Claude Opus 5.5, di [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Azure; fitur ini tidak tersedia di Claude Platform on AWS atau platform cloud yang dioperasikan mitra.
+[Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (mode cepat) menyediakan output yang jauh lebih cepat untuk Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8 dengan harga premium. Fast mode untuk Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset. Harga fast mode berlaku di seluruh "context window" (jendela konteks), termasuk permintaan dengan lebih dari 200k token input. Fast mode tersedia di Claude API (pihak pertama) dan, untuk Claude Opus 5.5, di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#billing) dan di [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Azure.
 
 | Model                           | Input          | Output         |
 | ------------------------------- | -------------- | -------------- |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/list
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 92e207446ee53d365dccdf4d3c7317619c8ba676fc1654301dfb4d7bfadb8f7c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: a5a885a1a5a7bbfb16e6b884246af012a684d38c32df3e479f6e5361d7cf1e71
 ---
 
 ---
@@ -300,9 +300,9 @@ List environments with pagination support.
 
 ```bash
 curl https://api.anthropic.com/v1/environments \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

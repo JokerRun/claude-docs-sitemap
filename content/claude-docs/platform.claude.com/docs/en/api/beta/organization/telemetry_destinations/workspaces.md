@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations/workspaces
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 0de87742c71aa8daa544a1718dbbf9fc74c2ee6c4ea3e072f3407767b2de8733
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: a03cfeaec680e8cbafea8d8656e9fe8cef471a697994302938066862d856a301
 ---
 
 ---
@@ -188,9 +188,9 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/telemetry_destinations/$DESTINATION_ID/workspaces \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: telemetry-destinations-2026-08-11' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -378,9 +378,9 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 ```bash
 curl https://api.anthropic.com/v1/organizations/telemetry_destinations/$DESTINATION_ID/workspaces/$WORKSPACE_ID \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: telemetry-destinations-2026-08-11' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -555,9 +555,9 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 ```bash
 curl https://api.anthropic.com/v1/organizations/telemetry_destinations/$DESTINATION_ID/workspaces/$WORKSPACE_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: telemetry-destinations-2026-08-11' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)

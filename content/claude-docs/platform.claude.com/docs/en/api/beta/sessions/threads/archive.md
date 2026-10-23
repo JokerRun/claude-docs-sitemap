@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/archive
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: b72a53fc34e0bdddc07d219fd2d6bca386ab6419cea53f114bab11f889432f2d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 0ed162e3576f8bac100c42e0dae52972e206684b57e83f52f67d45237c05870c
 ---
 
 ---
@@ -989,9 +989,9 @@ Archive Session Thread
 ```bash
 curl https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/archive \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 8ed13e5ebc9a93f748dde5a48709e3f0e0ee3d7b1596261ebf3eccf481246802
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 742d866453deef9e9441b3fd012ba6f0e40d7bf074877a6de81036db91de128c
 ---
 
 ---
@@ -391,7 +391,7 @@ Claude is capable of taking actions and retrieving information dynamically using
 For this example, start with one tool for calculating the quote.
 
 <Tip>
-  As a reminder, this tool does not perform the actual calculation; it just signals to the application that a tool should be used with whatever arguments specified.
+  As a reminder, this tool does not perform the actual calculation; it just signals to the application that a tool should be used with whatever arguments Claude specifies.
 </Tip>
 
 Add the model name, the tool definition, and a stub implementation to `config.py`:
@@ -740,7 +740,7 @@ The class should have two main methods: one that calls the API to generate a mes
   	"encoding/json"
   	"fmt"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   // ChatBot wraps the Anthropic client and the conversation history. The
@@ -855,12 +855,12 @@ The class should have two main methods: one that calls the API to generate a mes
 
       Message generateMessage(List<MessageParam> messages, long maxTokens) {
           return anthropic.messages().create(MessageCreateParams.builder()
-                  .model(MODEL)
-                  .system(IDENTITY)
-                  .maxTokens(maxTokens)
-                  .messages(messages)
-                  .tools(TOOLS)
-                  .build());
+              .model(MODEL)
+              .system(IDENTITY)
+              .maxTokens(maxTokens)
+              .messages(messages)
+              .tools(TOOLS)
+              .build());
       }
 
       String processUserInput(String userInput) {
@@ -873,31 +873,31 @@ The class should have two main methods: one that calls the API to generate a mes
           if (lastBlock.isToolUse()) {
               ToolUseBlock toolUse = lastBlock.asToolUse();
               Map<String, JsonValue> toolInput =
-                      (Map<String, JsonValue>) toolUse._input().asObject().orElseThrow();
+                  (Map<String, JsonValue>) toolUse._input().asObject().orElseThrow();
               String result = handleToolUse(toolUse.name(), toolInput);
 
               messages.add(MessageParam.ofAssistantOfContentBlockParams(
-                      content.stream().map(ContentBlock::toParam).toList()));
+                  content.stream().map(ContentBlock::toParam).toList()));
               messages.add(MessageParam.ofUserOfContentBlockParams(List.of(ContentBlockParam.ofToolResult(
-                      ToolResultBlockParam.builder()
-                              .toolUseId(toolUse.id())
-                              .content(result)
-                              .build()))));
+                  ToolResultBlockParam.builder()
+                      .toolUseId(toolUse.id())
+                      .content(result)
+                      .build()))));
 
               Message followUpResponse = generateMessage(messages, 2048);
 
               ContentBlock followUpBlock = followUpResponse.content().stream()
-                      .filter(ContentBlock::isText)
-                      .findFirst()
-                      .orElseThrow(() -> new IllegalStateException("An error occurred: Unexpected response type"));
+                  .filter(ContentBlock::isText)
+                  .findFirst()
+                  .orElseThrow(() -> new IllegalStateException("An error occurred: Unexpected response type"));
               String responseText = followUpBlock.asText().text();
               messages.add(MessageParam.ofAssistant(responseText));
               return responseText;
           } else {
               ContentBlock textBlock = content.stream()
-                      .filter(ContentBlock::isText)
-                      .findFirst()
-                      .orElseThrow(() -> new IllegalStateException("An error occurred: Unexpected response type"));
+                  .filter(ContentBlock::isText)
+                  .findFirst()
+                  .orElseThrow(() -> new IllegalStateException("An error occurred: Unexpected response type"));
               String responseText = textBlock.asText().text();
               messages.add(MessageParam.ofAssistant(responseText));
               return responseText;
@@ -908,11 +908,11 @@ The class should have two main methods: one that calls the API to generate a mes
           return switch (funcName) {
               case "get_quote" -> {
                   double premium = getQuote(
-                          funcParams.get("make").asStringOrThrow(),
-                          funcParams.get("model").asStringOrThrow(),
-                          ((Number) funcParams.get("year").asNumber().orElseThrow()).longValue(),
-                          ((Number) funcParams.get("mileage").asNumber().orElseThrow()).longValue(),
-                          ((Number) funcParams.get("driver_age").asNumber().orElseThrow()).longValue());
+                      funcParams.get("make").asStringOrThrow(),
+                      funcParams.get("model").asStringOrThrow(),
+                      ((Number) funcParams.get("year").asNumber().orElseThrow()).longValue(),
+                      ((Number) funcParams.get("mileage").asNumber().orElseThrow()).longValue(),
+                      ((Number) funcParams.get("driver_age").asNumber().orElseThrow()).longValue());
                   yield "Quote generated: $%.2f per month".formatted(premium);
               }
               default -> throw new IllegalArgumentException("An unexpected tool was used");

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/retrieve
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 645f0ca84373292349bf3f7d4b02d466ab800872744b6ee01f2ed57dfde0b856
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: d015f247ef818c8ae6acd42050aecc0492edb715ac0d4c8876ee4b5eed5491ab
 ---
 
 ---
@@ -184,9 +184,9 @@ Fetches a tunnel by ID.
 
 ```bash
 curl https://api.anthropic.com/v1/tunnels/$TUNNEL_ID \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: mcp-tunnels-2026-06-22' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

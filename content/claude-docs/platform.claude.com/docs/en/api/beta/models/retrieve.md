@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models/retrieve
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 44658b251a23d48ce1150287a22a5b7b307fdc1862a8eee0b4998fb49a4e5933
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 7905a143c738ed794f42d3b9a31a864dd3d5535d43e53b6e236769325487a9e7
 ---
 
 ---
@@ -368,8 +368,8 @@ The Models API response can be used to determine information about a specific mo
 
 ```bash
 curl https://api.anthropic.com/v1/models/$MODEL_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 24dc39ab81353268185cfad5b968edea6be02a5399650ff094e72b42bde3d8d3
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 6fa635f1a938fb96a93b89e579fda2d825615443007d143782f6fd83a6e4fff2
 ---
 
 ---
@@ -1559,7 +1559,7 @@ Worker batch juga membatasi `web_search` per organisasi sehingga pemrosesan batc
 Header beta `output-300k-2026-03-24` menaikkan batas `max_tokens` menjadi 300.000 untuk permintaan batch yang menggunakan Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, atau Claude Haiku 5.5. Sertakan header tersebut untuk menghasilkan output yang jauh lebih panjang daripada batas standar `max_tokens` 128k dalam satu giliran.
 
 <Note>
-  Output diperpanjang hanya tersedia di Message Batches API, bukan Messages API sinkron. Fitur ini didukung di Claude API dan Claude Platform on AWS, dan saat ini tidak tersedia di Amazon Bedrock, Google Cloud, atau Microsoft Foundry.
+  Output diperpanjang hanya tersedia di Message Batches API, bukan Messages API sinkron. Fitur ini didukung di Claude API dan Claude Platform on AWS, dan saat ini tidak tersedia di Amazon Bedrock, Claude Models on Google Cloud (Google managed), atau Microsoft Foundry.
 </Note>
 
 Gunakan output diperpanjang untuk pembuatan konten panjang seperti draf sepanjang buku dan dokumentasi teknis, ekstraksi data terstruktur yang menyeluruh, kerangka pembuatan kode berskala besar, dan rantai penalaran yang panjang.

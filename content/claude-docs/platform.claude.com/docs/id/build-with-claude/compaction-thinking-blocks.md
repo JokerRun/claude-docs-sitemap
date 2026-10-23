@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 52df0894f953fbf25a8da5455175fa7b45469b0c1a7975d61c7a5bd35e70b91c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 728a127b39824053e914c97a9f183fab86f12d3baaab72af9762a797fe67a6c6
 ---
 
 ---
@@ -30,7 +30,7 @@ featureMetadata:
   supportedPlatforms:
     Claude API: beta
     Claude Platform on AWS: beta
-    Google Cloud: beta
+    Claude Models on Google Cloud (Google managed): beta
     Microsoft Foundry: beta
 ---
 

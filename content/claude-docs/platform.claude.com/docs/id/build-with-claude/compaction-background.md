@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-background
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: cb76c00dd32959474c04fc0b03f0dae0583c498df4547225d832b63f34a6bf88
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 15d6dcad72777e7e0bc3ec93b99c21271db038080d91de0a102f31c9d5689865
 ---
 
 ---
@@ -30,7 +30,7 @@ featureMetadata:
   supportedPlatforms:
     Claude API: beta
     Claude Platform on AWS: beta
-    Google Cloud: beta
+    Claude Models on Google Cloud (Google managed): beta
     Microsoft Foundry: beta
 ---
 

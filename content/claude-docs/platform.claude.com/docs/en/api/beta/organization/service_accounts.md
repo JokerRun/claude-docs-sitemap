@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 7bfbeae6928b1b6923b2246ad4a902243093d503b076fdc3bb72501b1d55ecde
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: f3ecddbd668cf6de9e25d65a9d275953cd0597e67fa7923b727822407fc07b7d
 ---
 
 ---
@@ -236,8 +236,8 @@ accounts.
 ```bash
 curl https://api.anthropic.com/v1/organizations/service_accounts \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "name": "ci-deploy-bot"
         }'
@@ -475,8 +475,8 @@ archived service accounts.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/service_accounts \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -701,8 +701,8 @@ Retrieve a service account by its ID (`svac_...`).
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUNT_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -944,8 +944,8 @@ interactive credential (a user OAuth token or a Console session).
 ```bash
 curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUNT_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{}'
 ```
 
@@ -1172,8 +1172,8 @@ those rules first or change their target to another service account.
 ```bash
 curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUNT_ID/archive \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -1499,8 +1499,8 @@ rejected.
 ```bash
 curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUNT_ID/workspaces \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "workspace_id": "workspace_id",
           "workspace_role": "workspace_admin"
@@ -1724,8 +1724,8 @@ page to recover.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUNT_ID/workspaces \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -1909,8 +1909,8 @@ to the implicit `workspace_user` membership. Archived workspaces return
 ```bash
 curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUNT_ID/workspaces/$WORKSPACE_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)

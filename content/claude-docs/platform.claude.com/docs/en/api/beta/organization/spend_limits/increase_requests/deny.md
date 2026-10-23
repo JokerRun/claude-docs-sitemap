@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/deny
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 310c74206810178d701911dffc654e05034ecff58e02f22d83ca42765a3755b8
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 7d9ca4181cdf08f556607b5b595ae3d9fbf8f5000d27664243738c19e2aef530
 ---
 
 ---
@@ -264,8 +264,8 @@ Idempotent on `denied`; denying an already-`approved` request returns
 ```bash
 curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/$SPEND_LIMIT_INCREASE_REQUEST_ID/deny \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{}'
 ```
 

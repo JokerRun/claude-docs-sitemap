@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/update
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: cf8717678404d8b00e866f7aa26aff139a1e282b6cc773c0ebf07c35f55e8ab1
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 6d5186a561cbc1c708d3a0b9b83e609182e25b5a00adf4324fe2fba1f56bdcf2
 ---
 
 ---
@@ -1891,9 +1891,9 @@ Update Agent
 ```bash
 curl https://api.anthropic.com/v1/agents/$AGENT_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "description": "updated",
           "system": "You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user'\''s task end to end.",

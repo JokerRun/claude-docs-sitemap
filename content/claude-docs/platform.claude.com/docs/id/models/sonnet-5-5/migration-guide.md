@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 4d2dfc42c327de1687524691dcdd8106670cc1402bc7a426533c8296d8123ad0
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: eee71e3407bd30b17ba5e23549ab5c6a89af90b5f63af3b5aaad87b4b67e42a1
 ---
 
 ---
@@ -482,7 +482,7 @@ Kerjakan grup-grup berikut secara berurutan dan berhenti setelah grup yang menye
 * Agar tetap berjalan tanpa thinking di awal, kirim [pengaturan thinking terendah](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#turn-off-up-front-thinking) pada effort `high` atau lebih rendah.
 * Ganti [penggunaan alat paksa](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#forced-tool-use) dengan `auto` dan alat strict.
 * Pertahankan percakapan agar [hanya ditambahkan (append-only)](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#thinking-blocks).
-* Di Claude API dan Google Cloud, pindahkan computer use ke [toolset](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#computer-use-toolset), tanpa beta header `fine-grained-tool-streaming-2025-05-14`.
+* Di Claude API dan Claude Models on Google Cloud (Google managed), pindahkan computer use ke [toolset](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#computer-use-toolset), tanpa beta header `fine-grained-tool-streaming-2025-05-14`.
 * Pasangkan [alat advisor](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#advisor-tool) dengan advisor yang didukung, dan perkirakan saran yang terenkripsi.
 * Baca [teks di antara panggilan alat](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#text-between-tool-calls) dari blok `thinking`.
 * [Tangani penolakan](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#safety-classifiers-and-fallback), dan konfigurasikan fallback.
@@ -849,18 +849,18 @@ Contoh ini menandai setiap alat dalam daftar sebagai strict. Sebuah permintaan d
 
 ### Blok thinking terikat pada model dan percakapan
 
-Claude Sonnet 5.5 membaca blok thinking dari Claude Sonnet 5, Claude Opus 4.8, Claude Haiku 4.5, dan model sebelumnya, serta, di Claude API dan Google Cloud, dari Claude Haiku 5.5. Model ini tidak membaca blok dari Claude Opus 5, Claude Opus 5.5, atau model Claude Fable maupun Claude Mythos mana pun. API membuang blok yang tidak dapat dibaca model. Permintaan tetap mengembalikan 200, dan blok yang dibuang tidak ditagih. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
+Claude Sonnet 5.5 membaca blok thinking dari Claude Sonnet 5, Claude Opus 4.8, Claude Haiku 4.5, dan model sebelumnya, serta, di Claude API dan Claude Models on Google Cloud (Google managed), dari Claude Haiku 5.5. Model ini tidak membaca blok dari Claude Opus 5, Claude Opus 5.5, atau model Claude Fable maupun Claude Mythos mana pun. API membuang blok yang tidak dapat dibaca model. Permintaan tetap mengembalikan 200, dan blok yang dibuang tidak ditagih. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
 
-Setiap blok thinking Claude Sonnet 5.5 juga ditandatangani atas percakapan sebelumnya. Untuk akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC, API memberlakukan hal ini secara default, di Claude API, Amazon Bedrock, dan Google Cloud. Pada akun tersebut, permintaan yang memutar ulang blok setelah pengeditan riwayat sebelumnya mengembalikan error 400. Pertahankan percakapan agar hanya ditambahkan, dan ubah instruksi atau alat dengan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages). Blok thinking yang dihasilkan Claude Sonnet 5.5 hanya berfungsi di akun yang menghasilkannya, atau di akun yang terhubung dengannya. Lihat [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking).
+Setiap blok thinking Claude Sonnet 5.5 juga ditandatangani atas percakapan sebelumnya. Untuk akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC, API memberlakukan hal ini secara default, di Claude API, Amazon Bedrock, dan Claude Models on Google Cloud (Google managed). Pada akun tersebut, permintaan yang memutar ulang blok setelah pengeditan riwayat sebelumnya mengembalikan error 400. Pertahankan percakapan agar hanya ditambahkan, dan ubah instruksi atau alat dengan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages). Blok thinking yang dihasilkan Claude Sonnet 5.5 hanya berfungsi di akun yang menghasilkannya, atau di akun yang terhubung dengannya. Lihat [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking).
 
-### Computer use memerlukan toolset di Claude API dan Google Cloud
+### Computer use memerlukan toolset di Claude API dan Claude Models on Google Cloud (Google managed)
 
-Di Claude API dan Google Cloud, Claude Sonnet 5.5 mendukung computer use hanya melalui toolset `computer_toolset_20260801`. Di sana, `computer_20251124` mengembalikan error 400. Claude Sonnet 5.5 tidak menerima `computer_20250124` di platform mana pun. Temukan versi yang Anda kirimkan saat ini:
+Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Sonnet 5.5 mendukung computer use hanya melalui toolset `computer_toolset_20260801`. Di sana, `computer_20251124` mengembalikan error 400. Claude Sonnet 5.5 tidak menerima `computer_20250124` di platform mana pun. Temukan versi yang Anda kirimkan saat ini:
 
-| Versi yang Anda kirimkan saat ini | Model awal yang mengirimkannya                       | Kirimkan di Claude API dan Google Cloud | Kirimkan di Amazon Bedrock |
-| --------------------------------- | ---------------------------------------------------- | --------------------------------------- | -------------------------- |
-| `computer_20251124`               | Claude Sonnet 5, Claude Sonnet 4.6                   | `computer_toolset_20260801`             | `computer_20251124`        |
-| `computer_20250124`               | Claude Sonnet 4.5, Claude Haiku 4.5, Claude Sonnet 4 | `computer_toolset_20260801`             | `computer_20251124`        |
+| Versi yang Anda kirimkan saat ini | Model awal yang mengirimkannya                       | Kirimkan di Claude API dan Claude Models on Google Cloud (Google managed) | Kirimkan di Amazon Bedrock |
+| --------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------- | -------------------------- |
+| `computer_20251124`               | Claude Sonnet 5, Claude Sonnet 4.6                   | `computer_toolset_20260801`                                               | `computer_20251124`        |
+| `computer_20250124`               | Claude Sonnet 4.5, Claude Haiku 4.5, Claude Sonnet 4 | `computer_toolset_20260801`                                               | `computer_20251124`        |
 
 Jika Anda mengirimkan beta header `fine-grained-tool-streaming-2025-05-14`, hapus header tersebut saat Anda berpindah ke toolset. Bersama entri toolset, header ini mengembalikan error 400. Sebagai gantinya, tetapkan `eager_input_streaming: true` pada setiap alat yang memerlukannya.
 
@@ -886,7 +886,7 @@ Claude Sonnet 5.5 menolak dalam lebih banyak kategori dibandingkan Claude Sonnet
 * **`"reasoning_extraction"`:** Permintaan meminta model untuk mereproduksi penalaran internalnya dalam teks respons.
 * **`"general_harms"`:** Permintaan termasuk dalam area kebijakan penggunaan lainnya. Pekerjaan yang tidak berbahaya juga dapat memicu kategori ini.
 
-[Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) (`fallbacks: "default"`, beta, hanya Claude API) mencoba ulang penolakan `"cyber"` dan `"frontier_llm"` di Claude Sonnet 5. Fallback ini tidak mencoba ulang penolakan `"bio"`, `"reasoning_extraction"`, atau `"general_harms"`. Lihat [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) dan [Cara penolakan ditagih](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#how-refusals-are-billed).
+[Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) (`fallbacks: "default"`), dalam versi beta di Claude API dan di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), mencoba ulang penolakan `"cyber"` dan `"frontier_llm"` di Claude Sonnet 5. Fallback ini tidak mencoba ulang penolakan `"bio"`, `"reasoning_extraction"`, atau `"general_harms"`. Lihat [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) dan [Cara penolakan ditagih](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#how-refusals-are-billed).
 
 Perlindungan siber real-time merupakan hal baru bagi kode dari Claude Sonnet 4.6, Claude Sonnet 4.5, dan Claude Haiku 4.5. Untuk pekerjaan keamanan yang sah, ajukan permohonan ke [Cyber Verification Program](https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet).
 
@@ -1238,7 +1238,7 @@ Ganti setiap prefill sesuai dengan tujuannya:
 
 ### Migrasi dari Claude Sonnet 4 atau sebelumnya
 
-Claude Sonnet 4 telah dihentikan di Claude API dan masih tersedia di Amazon Bedrock dan Google Cloud. Claude 3.7 Sonnet telah dihentikan. Dari salah satu model tersebut, pertama terapkan setiap bagian sebelumnya, lalu perubahan berikut:
+Claude Sonnet 4 telah dihentikan di Claude API dan masih tersedia di Amazon Bedrock dan Claude Models on Google Cloud (Google managed). Claude 3.7 Sonnet telah dihentikan. Dari salah satu model tersebut, pertama terapkan setiap bagian sebelumnya, lalu perubahan berikut:
 
 * **Versi alat:** Gunakan `text_editor_20250728`, dengan nama alat `str_replace_based_edit_tool` dan tanpa perintah `undo_edit`. Gunakan `code_execution_20260521`. Lihat [alat text editor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool) dan [alat code execution](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upgrade-to-latest-tool-version).
 * **Stop reason:** Tangani `refusal`. Claude 4.5 dan model yang lebih baru juga berhenti dengan `model_context_window_exceeded` pada batas jendela konteks. Lihat [Menangani stop reason](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons).

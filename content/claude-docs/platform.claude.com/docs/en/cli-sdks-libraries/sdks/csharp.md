@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 35326ac804621dc3365cf33d1e853dcf00337da287bc3ac8333c19e4d0ee1752
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 3d039129ccc1aa2cc15fedc6d766f0d51ecc7902d403ffdd945e8fc720685812
 ---
 
 ---
@@ -69,7 +69,7 @@ Configure the client using environment variables:
 ```csharp
 using Anthropic;
 
-// Configured using the ANTHROPIC_API_KEY, ANTHROPIC_AUTH_TOKEN and ANTHROPIC_BASE_URL environment variables
+// Configured using the ANTHROPIC_API_KEY, ANTHROPIC_AUTH_TOKEN, and ANTHROPIC_BASE_URL environment variables
 AnthropicClient client = new();
 ```
 
@@ -310,7 +310,7 @@ using Anthropic;
 using Microsoft.Extensions.AI;
 using ModelContextProtocol.Client;
 
-// Configured using the ANTHROPIC_API_KEY, ANTHROPIC_AUTH_TOKEN and ANTHROPIC_BASE_URL environment variables
+// Configured using the ANTHROPIC_API_KEY, ANTHROPIC_AUTH_TOKEN, and ANTHROPIC_BASE_URL environment variables
 AnthropicClient client = new();
 
 IChatClient chatClient = client.AsIChatClient("claude-opus-5-5")
@@ -422,18 +422,22 @@ The SDK is typed for convenient usage of the documented API. However, it also su
   * [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock)
   * [Amazon Bedrock (Opus 4.6 and earlier)](https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy)
   * [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws)
-  * [Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai)
+  * [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed)
   * [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry)
+
+  See also [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed).
 </Note>
 
 The C# SDK supports the following platforms through separate NuGet packages:
 
-* **Agent Platform:** `Anthropic.Vertex`. See [Claude on Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai) for client setup.
+* **Agent Platform:** `Anthropic.Vertex`. See [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed) for client setup.
 * **Bedrock:** `Anthropic.Bedrock`. Use `AnthropicBedrockMantleClient` for the Messages-API Bedrock endpoint, or `AnthropicBedrockClient` (`bedrock-runtime` path). `AnthropicBedrockMantleClient` takes an optional `MantleAwsClientOptions` config object; `AnthropicBedrockClient` accepts `AnthropicBedrockCredentialsHelper.FromEnv()` or explicit credentials.
 * **Claude Platform on AWS:** `Anthropic.Aws`. Use `AnthropicAwsClient`; set `WorkspaceId` on the client or the `ANTHROPIC_AWS_WORKSPACE_ID` environment variable (see [Workspaces](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws#workspaces)). Available in beta.
 * **Foundry:** `Anthropic.Foundry`. Use `AnthropicFoundryClient` with `DefaultAnthropicFoundryCredentials.FromEnv()` or explicit credentials.
 
 Use `AnthropicBedrockMantleClient` for new projects; `AnthropicBedrockClient` remains for existing applications using the Bedrock `InvokeModel` API.
+
+The C# SDK also supports Claude Models on Google Cloud (Anthropic managed) through `AnthropicGoogleCloudClient`, from the `Anthropic.GoogleCloud` package. This client is in beta. Set `WorkspaceId` on an optional `GoogleCloudClientOptions` value, or set the `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID` environment variable. See [Project, location, and workspace resolution](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution).
 
 ## Semantic versioning
 

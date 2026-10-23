@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/list
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: b50675807b6cd9afeb44f50f83b7cd937ec00844befc7e69671fad04fb82dd14
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 3ed90c26da31fec0dc712dfa1099342a5dbda6e7bc04dbf23160d142ebd1bd1d
 ---
 
 ---
@@ -198,9 +198,9 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
 
 ```bash
 curl https://api.anthropic.com/v1/tunnels \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: mcp-tunnels-2026-06-22' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

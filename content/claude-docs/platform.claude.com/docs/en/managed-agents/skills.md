@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/skills
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 2a48c3034ee1172994b446f3eb7a6086bb939c8e8fc6e633ef25a865f12d9e37
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: b200748fa455cae6d6a83dcc7cccce70640d4f754afa5c5568d7da23280526be
 ---
 
 ---
@@ -120,7 +120,7 @@ These examples omit the optional `display_name` (java, php: `displayName`; cshar
   	"log"
   	"os"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   func main() {
@@ -327,11 +327,9 @@ Each entry in the `skills` (csharp, go: `Skills`) array uses the following field
   	Skills: []anthropic.BetaManagedAgentsSkillParamsUnion{
   		{OfAnthropic: &anthropic.BetaManagedAgentsAnthropicSkillParams{
   			SkillID: "xlsx",
-  			Type:    anthropic.BetaManagedAgentsAnthropicSkillParamsTypeAnthropic,
   		}},
   		{OfCustom: &anthropic.BetaManagedAgentsCustomSkillParams{
   			SkillID: "skill_01AbCdEfGhIjKlMnOpQrStUv",
-  			Type:    anthropic.BetaManagedAgentsCustomSkillParamsTypeCustom,
   			Version: anthropic.String("latest"),
   		}},
   	},
@@ -522,7 +520,6 @@ To load skills from a repository, create a session that mounts it. This is the s
   	Resources: []anthropic.BetaSessionNewParamsResourceUnion{
   		{
   			OfGitHubRepository: &anthropic.BetaManagedAgentsGitHubRepositoryResourceParams{
-  				Type:               anthropic.BetaManagedAgentsGitHubRepositoryResourceParamsTypeGitHubRepository,
   				URL:                "https://github.com/org/repo",
   				MountPath:          anthropic.String("/workspace/repo"),
   				AuthorizationToken: "ghp_your_github_token",

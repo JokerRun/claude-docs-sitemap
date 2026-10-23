@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 38f6bf9c6b351e069be1d0f6f59b7a0aab3c13f77a1be3cbe7c7139842bc4a22
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 0f78c3cbf82a24a31563837d7824d6e745791be34bd1ab7616ffe6716e2cb82c
 ---
 
 ---
@@ -1352,7 +1352,7 @@ Impor helper untuk bahasa Anda:
 
   ```go Go
   import (
-  	"github.com/anthropics/anthropic-sdk-go/mcp"
+  	"github.com/anthropics/anthropic-sdk-go/v2/mcp"
   )
   ```
 
@@ -1487,7 +1487,7 @@ Konversi alat MCP untuk digunakan dengan [tool runner](https://platform.claude.c
   // ...
 
   // ...
-  	"github.com/anthropics/anthropic-sdk-go/mcp"
+  	"github.com/anthropics/anthropic-sdk-go/v2/mcp"
   	mcpsdk "github.com/modelcontextprotocol/go-sdk/mcp"
   )
 
@@ -1495,7 +1495,7 @@ Konversi alat MCP untuk digunakan dengan [tool runner](https://platform.claude.c
   	client := anthropic.NewClient()
   	ctx := context.Background()
 
-  	// Hubungkan ke server MCP
+  	// Connect to an MCP server
   	mcpClient := mcpsdk.NewClient(&mcpsdk.Implementation{Name: "my-client", Version: "1.0.0"}, nil)
   	session, err := mcpClient.Connect(ctx, &mcpsdk.CommandTransport{Command: exec.Command("mcp-server")}, nil)
   	if err != nil {
@@ -1503,7 +1503,7 @@ Konversi alat MCP untuk digunakan dengan [tool runner](https://platform.claude.c
   	}
   	defer session.Close()
 
-  	// Daftar alat dan konversikan untuk Claude API
+  	// List tools and convert them for the Claude API
   	toolsResult, err := session.ListTools(ctx, nil)
   	if err != nil {
   		log.Fatal(err)
@@ -1551,7 +1551,7 @@ Konversi alat MCP untuk digunakan dengan [tool runner](https://platform.claude.c
 
       // Hubungkan ke server MCP
       StdioClientTransport transport = new StdioClientTransport(
-              ServerParameters.builder("mcp-server").build(), McpJsonDefaults.getMapper());
+          ServerParameters.builder("mcp-server").build(), McpJsonDefaults.getMapper());
 
       try (McpSyncClient mcpClient = McpClient.sync(transport)
               .clientInfo(new McpSchema.Implementation("my-client", "1.0.0"))
@@ -1563,13 +1563,13 @@ Konversi alat MCP untuk digunakan dengan [tool runner](https://platform.claude.c
           List<McpBetaTool> betaTools = BetaMcp.mcpTools(mcpClient.listTools().tools(), mcpClient);
 
           MessageCreateParams params = MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_5_5)
-                  .maxTokens(1024L)
-                  .addUserMessage("What tools do you have available?")
-                  .addTools(betaTools)
-                  .build();
+              .model(Model.CLAUDE_OPUS_5_5)
+              .maxTokens(1024L)
+              .addUserMessage("What tools do you have available?")
+              .addTools(betaTools)
+              .build();
 
-          // Runner menghasilkan satu pesan per giliran asisten; yang terakhir adalah respons final
+          // Runner menghasilkan satu pesan untuk setiap giliran asisten; yang terakhir adalah respons akhir
           BetaToolRunner runner = anthropic.beta().messages().toolRunner(params);
           BetaMessage finalMessage = null;
           for (BetaMessage message : runner) {
@@ -1699,13 +1699,13 @@ Konversi pesan prompt MCP ke format pesan Claude API:
 
   ```java Java
   McpSchema.GetPromptResult prompt = mcpClient.getPrompt(
-          new McpSchema.GetPromptRequest("my-prompt", Map.of()));
+      new McpSchema.GetPromptRequest("my-prompt", Map.of()));
 
   BetaMessage response = anthropic.beta().messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5_5)
-          .maxTokens(1024L)
-          .messages(BetaMcp.mcpMessages(prompt.messages()))
-          .build());
+      .model(Model.CLAUDE_OPUS_5_5)
+      .maxTokens(1024L)
+      .messages(BetaMcp.mcpMessages(prompt.messages()))
+      .build());
 
   IO.println(response);
   ```
@@ -1829,7 +1829,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   var (filename, data, mediaType) = BetaMcp.ResourceToFile(fileResource);
 
   // Bangun bagian file secara eksplisit agar nama file dan tipe MIME resource
-  // terbawa hingga ke unggahan.
+  // ikut terbawa ke unggahan.
   var file = new BinaryContent { Stream = new MemoryStream(data), FileName = filename };
   if (mediaType is not null)
   {
@@ -1841,7 +1841,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   ```
 
   ```go Go
-  // Sebagai blok konten dalam pesan
+  // As a content block in a message
   resource, err := session.ReadResource(ctx, &mcpsdk.ReadResourceParams{URI: "file:///path/to/doc.txt"})
   if err != nil {
   	log.Fatal(err)
@@ -1856,9 +1856,9 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   	MaxTokens: 1024,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(
-  			// ResourceToBlock mengembalikan union konten tool-result; konten
-  			// pesan adalah tipe union terpisah, jadi bungkus ulang varian bersama
-  			// (mcp.ToMessage melakukan hal yang sama secara internal).
+  			// ResourceToBlock returns the tool-result content union; message
+  			// content is a separate union type, so re-wrap the shared variants
+  			// (mcp.ToMessage does the same internally).
   			anthropic.BetaContentBlockParamUnion{
   				OfText:     block.OfText,
   				OfImage:    block.OfImage,
@@ -1873,7 +1873,7 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   }
   fmt.Println(response.RawJSON())
 
-  // Sebagai unggahan file
+  // As a file upload
   fileResult, err := session.ReadResource(ctx, &mcpsdk.ReadResourceParams{URI: "file:///path/to/data.json"})
   if err != nil {
   	log.Fatal(err)
@@ -1892,37 +1892,39 @@ Konversi resource MCP menjadi blok konten untuk disertakan dalam pesan, atau men
   ```java Java
   // Sebagai blok konten dalam sebuah pesan
   McpSchema.ReadResourceResult resource = mcpClient.readResource(
-          new McpSchema.ReadResourceRequest("file:///path/to/doc.txt"));
+      new McpSchema.ReadResourceRequest("file:///path/to/doc.txt"));
 
   List<BetaContentBlockParam> content =
-          new ArrayList<>(BetaMcp.mcpResourceContents(resource));
+      new ArrayList<>(BetaMcp.mcpResourceContents(resource));
   content.add(BetaContentBlockParam.ofText(
-          BetaTextBlockParam.builder().text("Summarize this document").build()));
+      BetaTextBlockParam.builder()
+          .text("Summarize this document")
+          .build()));
 
   BetaMessage response = anthropic.beta().messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5_5)
-          .maxTokens(1024L)
-          .addUserMessageOfContentBlockParams(content)
-          .build());
+      .model(Model.CLAUDE_OPUS_5_5)
+      .maxTokens(1024L)
+      .addUserMessageOfContentBlockParams(content)
+      .build());
 
   IO.println(response);
 
   // Sebagai unggahan file
   McpSchema.ReadResourceResult fileResource = mcpClient.readResource(
-          new McpSchema.ReadResourceRequest("file:///path/to/data.json"));
+      new McpSchema.ReadResourceRequest("file:///path/to/data.json"));
 
   McpResourceFile resourceFile = BetaMcp.mcpResourceFiles(fileResource).getFirst();
 
   // Bangun bagian file secara eksplisit agar nama file dan tipe MIME resource
-  // terbawa hingga ke unggahan.
+  // ikut terbawa ke unggahan.
   MultipartField.Builder<InputStream> fileField = MultipartField.<InputStream>builder()
-          .value(new ByteArrayInputStream(resourceFile.content()))
-          .filename(resourceFile.filename());
+      .value(new ByteArrayInputStream(resourceFile.content()))
+      .filename(resourceFile.filename());
   resourceFile.mimeType().ifPresent(fileField::contentType);
 
   var uploaded = anthropic.files().upload(FileUploadParams.builder()
-          .file(fileField.build())
-          .build());
+      .file(fileField.build())
+      .build());
 
   IO.println(uploaded.id());
   ```

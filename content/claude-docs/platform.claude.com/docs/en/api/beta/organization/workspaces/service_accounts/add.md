@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/add
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 355d68ce7e3464f7107a969ce8e31c700c4954360296d96aa5fa887f466a073b
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 247d9837828eec8a8631e59a437459e37eef91cf21effcfc1c2a6060ad384b48
 ---
 
 ---
@@ -212,8 +212,8 @@ accounts cannot be added and are rejected.
 ```bash
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/service_accounts \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "service_account_id": "service_account_id",
           "workspace_role": "workspace_admin"

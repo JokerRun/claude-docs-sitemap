@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 022961e3f41fd882b7b8b41d7b183f262b821d51b1635f91df4e781f7a0ad9a1
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 7e92efe219ebedd2b66eefbc52c4c4b21a240f66c9c9fc5fc43396fbf826e692
 ---
 
 ---
@@ -163,7 +163,7 @@ Teruskan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Membuat s
   	"os"
   	"time"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   const rubric = `# DCF Model Rubric
@@ -400,7 +400,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
       Title = "Financial analysis on Costco",
   });
 
-  // Definisikan hasil — agen mulai bekerja saat menerimanya
+  // Definisikan hasil. Agen mulai bekerja saat menerimanya.
   await client.Beta.Sessions.Events.Send(session.ID, new()
   {
       Events =
@@ -417,7 +417,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   ```
 
   ```go Go
-  // Buat sesi
+  // Create a session
   session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
   	Agent: anthropic.BetaSessionNewParamsAgentUnion{
   		OfString: anthropic.String(agent.ID),
@@ -429,20 +429,17 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   	panic(err)
   }
 
-  // Definisikan hasil — agen mulai bekerja saat diterima
+  // Define the outcome. The agent starts working on receipt.
   _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserDefineOutcome: &anthropic.BetaManagedAgentsUserDefineOutcomeEventParams{
-  			Type:        anthropic.BetaManagedAgentsUserDefineOutcomeEventParamsTypeUserDefineOutcome,
   			Description: "Build a DCF model for Costco in .xlsx",
   			Rubric: anthropic.BetaManagedAgentsUserDefineOutcomeEventParamsRubricUnion{
   				OfText: &anthropic.BetaManagedAgentsTextRubricParams{
-  					Type:    anthropic.BetaManagedAgentsTextRubricParamsTypeText,
   					Content: rubric,
   				},
   			},
-  			// atau: OfFile: &anthropic.BetaManagedAgentsFileRubricParams{
-  			//     Type: anthropic.BetaManagedAgentsFileRubricParamsTypeFile, FileID: uploaded.ID},
+  			// or: OfFile: &anthropic.BetaManagedAgentsFileRubricParams{FileID: uploaded.ID},
   			MaxIterations: anthropic.Int(5), // optional; default 3, max 20
   		},
   	}},
@@ -461,7 +458,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
           .title("Financial analysis on Costco")
           .build());
 
-  // Definisikan hasil — agen mulai bekerja saat menerimanya
+  // Definisikan hasil. Agen mulai bekerja saat menerimanya.
   client.beta().sessions().events().send(
       session.id(),
       EventSendParams.builder()
@@ -484,7 +481,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
       title: 'Financial analysis on Costco',
   );
 
-  // Definisikan hasil — agen mulai bekerja saat diterima
+  // Definisikan hasil. Agen mulai bekerja saat menerimanya.
   $client->beta->sessions->events->send(
       $session->id,
       events: [
@@ -780,8 +777,8 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
   ```
 
   ```go Go
-  // Daftar file yang dihasilkan oleh sesi ini
-  // (pemfilteran scope_id memerlukan beta managed-agents pada permintaan files)
+  // List files produced by this session
+  // (scope_id filtering requires the managed-agents beta on the files request)
   files, err := client.Beta.Files.List(ctx, anthropic.BetaFileListParams{
   	ScopeID: anthropic.String(session.ID),
   	Betas:   []anthropic.AnthropicBeta{anthropic.AnthropicBetaManagedAgents2026_04_01},
@@ -793,7 +790,7 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
   	fmt.Println(file.ID, file.Filename)
   }
 
-  // Unduh file
+  // Download a file
   if len(files.Data) > 0 {
   	resp, err := client.Files.Download(ctx, files.Data[0].ID, anthropic.FileDownloadParams{})
   	if err != nil {

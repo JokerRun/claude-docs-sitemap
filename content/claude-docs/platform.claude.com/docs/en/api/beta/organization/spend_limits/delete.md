@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/delete
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 5cb7a388d146fa5a6ceda8c1581943237f72b002f62368a92cde9f20143e7360
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 2eae10e872be6a2a4fc559cef9d2d2d00f05e2424329cd7012bc6df32a69fbfe
 ---
 
 ---
@@ -50,8 +50,8 @@ workspace limits through the API is in an early access preview.
 ```bash
 curl https://api.anthropic.com/v1/organizations/spend_limits/$SPEND_LIMIT_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

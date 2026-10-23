@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations/delete
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: a2400ea17b5f21032aeee871796bda772fd592f053f2d1e52e0dc8e6f3c30c6c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: b905e79c3b32bf10fd159f94af2f36a5975c7be4dd4654906d4f0b1755aff954
 ---
 
 ---
@@ -161,9 +161,9 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 ```bash
 curl https://api.anthropic.com/v1/organizations/telemetry_destinations/$DESTINATION_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: telemetry-destinations-2026-08-11' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

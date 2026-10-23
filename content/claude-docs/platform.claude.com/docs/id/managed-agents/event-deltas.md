@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/event-deltas
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: c0001e6ff0002b5204796cd2f00bfc863bca318c28b4d18596453c5a9887dd90
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: f77f40b8ccc28e407356ee9270ef5e1bec29ff802a4ff5d33cd6b27dd3d9d2e4
 ---
 
 ---
@@ -124,7 +124,7 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
   </CodeGroupItem>
 
   ```python Python
-  # Snapshot pratinjau, dikunci berdasarkan id event. accumulate_managed_agents_event melipat setiap
+  # Snapshot pratinjau, dengan kunci ID event. accumulate_managed_agents_event melipat setiap
   # event_start / event_delta ke dalam snapshot agent.message; agent.message yang
   # di-buffer menggantikannya.
   previews: dict[str, BetaManagedAgentsAgentMessageEvent] = {}
@@ -178,7 +178,7 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
   ```
 
   ```typescript TypeScript
-  // Snapshot pratinjau, dengan kunci id event. `accumulateManagedAgentsEvent`
+  // Snapshot pratinjau, dikunci berdasarkan ID event. `accumulateManagedAgentsEvent`
   // menggabungkan pratinjau event_start / event_delta ke dalam snapshot agent.message.
   const previews = new Map<string, BetaManagedAgentsAgentMessageEvent>();
 
@@ -198,8 +198,8 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
   deltas: for await (const event of stream) {
     switch (event.type) {
       case "event_start": {
-        // 1. Catat id yang diumumkan dan buka snapshot. Delta dan
-        //    event yang di-buffer membawa id yang sama.
+        // 1. Catat ID yang diumumkan dan buka snapshot. Delta dan
+        //    event yang di-buffer membawa ID yang sama.
         const preview = accumulateManagedAgentsEvent(undefined, event);
         if (preview) {
           previews.set(event.event.id, preview);
@@ -263,7 +263,7 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
       ],
   });
 
-  // Kumpulkan fragmen pratinjau per (id event, indeks konten). agent.message
+  // Kumpulkan fragmen pratinjau untuk tiap (ID event, indeks konten). agent.message
   // yang di-buffer berikutnya membawa konten lengkap, sehingga menggantikan
   // pratinjau yang terkumpul alih-alih ditambahkan ke dalamnya.
   Dictionary<string, SortedDictionary<long, string>> previews = [];
@@ -272,9 +272,9 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
   {
       if (streamEvent.TryPickStartEvent(out var start))
       {
-          // Pratinjau dibuka untuk event dengan id ini. Stream ini hanya mengaktifkan
+          // Pratinjau dibuka untuk event dengan ID ini. Stream ini hanya mengaktifkan
           // delta agent.message; TryPick* mengembalikan false alih-alih melempar error,
-          // sehingga tipe pratinjau lain (termasuk yang ditambahkan nanti) dilewati.
+          // sehingga jenis pratinjau lain (termasuk yang ditambahkan nanti) dilewati.
           if (start.Event.TryPickAgentMessage(out var preview))
           {
               Console.WriteLine($"event_start             {preview.Type.GetString()} {preview.ID}");
@@ -316,7 +316,7 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
   ```
 
   ```go Go
-  	// Aktifkan pratinjau inkremental untuk event agent.message
+  	// Opt in to incremental previews of agent.message events
   	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{
   		EventDeltas: []anthropic.BetaManagedAgentsDeltaType{
   			anthropic.BetaManagedAgentsDeltaTypeAgentMessage,
@@ -326,10 +326,8 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
   	if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   		Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   			OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
-  				Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
   				Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{{
   					OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-  						Type: anthropic.BetaManagedAgentsTextBlockTypeText,
   						Text: "Write a haiku about the ocean.",
   					},
   				}},
@@ -339,8 +337,8 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
   		panic(err)
   	}
 
-  	// Accumulator menggabungkan fragmen event_start / event_delta menjadi
-  	// snapshot agent.message per event-id. Nilai nol-nya siap dipakai.
+  	// The accumulator folds event_start / event_delta fragments into
+  	// agent.message snapshots, one for each event ID. The zero value is ready to use.
   	var previews anthropic.BetaManagedAgentsEventAccumulator
 
   deltas:
@@ -354,13 +352,13 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
   		case anthropic.BetaManagedAgentsDeltaEvent:
   			fmt.Printf("event_delta             preview: %q\n", previews.AgentMessageText(event.EventID))
   		case anthropic.BetaManagedAgentsAgentMessageEvent:
-  			// Event yang di-buffer membawa konten lengkap: accumulator
-  			// mengganti pratinjau dengannya
+  			// The buffered event carries the complete content: the accumulator
+  			// replaces the preview with it
   			fmt.Printf("agent.message           %s %q\n", event.ID, previews.AgentMessageText(event.ID))
   		case anthropic.BetaManagedAgentsSpanModelRequestEndEvent:
-  			// Tidak ada delta lagi untuk request ini. Accumulator
-  			// membuang snapshot-nya di sini, menutup pratinjau yang tidak pernah
-  			// direkonsiliasi oleh agent.message yang di-buffer.
+  			// No more deltas are coming for this request. The accumulator
+  			// drops its snapshots here, closing any preview that was never
+  			// reconciled by a buffered agent.message.
   			fmt.Println("span.model_request_end  no more deltas for this request")
   		case anthropic.BetaManagedAgentsSessionStatusIdleEvent:
   			break deltas
@@ -445,7 +443,7 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
   use Anthropic\Beta\Sessions\Events\ManagedAgentsTextBlock;
   use Anthropic\Lib\Sessions\EventAccumulator;
 
-  // Snapshot pratinjau, dengan kunci id event. EventAccumulator::accumulate() menambahkan setiap
+  // Snapshot pratinjau, dengan kunci ID event. EventAccumulator::accumulate() menambahkan setiap
   // event_start / event_delta ke snapshot agent.message; agent.message yang
   // di-buffer menggantikannya.
   $previews = [];
@@ -530,9 +528,9 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
     }]
   )
 
-  # Kumpulkan fragmen pratinjau per (event_id, index) ke dalam buffer yang eksplisit mutable
+  # Kumpulkan fragmen pratinjau berdasarkan (event_id, index) ke buffer yang eksplisit mutable
   # (`+""`) agar `<<` dapat menambahkan di tempat. agent.message yang di-buffer dengan
-  # id yang sama bersifat otoritatif dan menggantikan apa pun yang dibangun oleh delta.
+  # ID yang sama bersifat otoritatif dan menggantikan apa pun yang dibangun oleh delta.
   buffers = Hash.new do |by_event, event_id|
     by_event[event_id] = Hash.new { |fragments, index| fragments[index] = +"" }
   end
@@ -615,7 +613,7 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
               case "event_delta":
                   print(event.delta.content.text, end="")
               case "agent.message":
-                  # Event yang di-buffer adalah catatan otoritatif; render kontennya
+                  # Event yang di-buffer adalah catatan otoritatif; render kontennya.
                   print()
                   for block in event.content:
                       if block.type == "text":
@@ -702,8 +700,8 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
   ```
 
   ```go Go
-  	// Tampilkan thread sesi dan pilih child: child thread punya parent_thread_id
-  	// non-null, sedangkan parent_thread_id thread utama bernilai null.
+  	// List the session's threads and pick a child: child threads have a non-null
+  	// parent_thread_id, and the primary thread's parent_thread_id is null.
   	var childThreadID string
   	threads := client.Beta.Sessions.Threads.ListAutoPaging(ctx, session.ID, anthropic.BetaSessionThreadListParams{})
   	for threads.Next() {
@@ -716,8 +714,8 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
   		panic(err)
   	}
 
-  	// Stream child thread menerima parameter event_deltas yang sama dengan
-  	// stream sesi; jalankan satu loop baca per koneksi stream.
+  	// The child thread's stream takes the same event_deltas parameter as the
+  	// session stream; run one read loop for each stream connection.
   	stream := client.Beta.Sessions.Threads.Events.StreamEvents(ctx, childThreadID, anthropic.BetaSessionThreadEventStreamParams{
   		SessionID: session.ID,
   		EventDeltas: []anthropic.BetaManagedAgentsDeltaType{
@@ -731,9 +729,9 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
   		case anthropic.BetaManagedAgentsDeltaEvent:
   			fmt.Print(event.Delta.Content.Text)
   		case anthropic.BetaManagedAgentsAgentMessageEvent:
-  			// Event yang di-buffer adalah catatan otoritatif; render kontennya.
+  			// The buffered event is the authoritative record; render its content.
   			fmt.Println()
-  			// list bertipe konkret: BetaManagedAgentsTextBlock
+  			// concrete-typed list: BetaManagedAgentsTextBlock
   			for _, block := range event.Content {
   				fmt.Print(block.Text)
   			}
@@ -815,7 +813,7 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
               echo $event->delta->content->text;
               break;
           case $event instanceof ManagedAgentsAgentMessageEvent:
-              // Event yang di-buffer adalah catatan otoritatif; render kontennya
+              // Event yang di-buffer adalah catatan otoritatif; render kontennya.
               echo "\n";
               foreach ($event->content as $block) {
                   if ($block instanceof ManagedAgentsTextBlock) {

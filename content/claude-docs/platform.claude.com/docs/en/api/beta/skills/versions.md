@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 3909e5431932349525ca2cdbced891fa61b4665a1619b895249d5ef400fdf03a
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 178e5022a20ed3d65cffe7fb2453d56b614f8327d4c313d0409294f057dcd0a7
 ---
 
 ---
@@ -205,8 +205,8 @@ Create Skill Version
 ```bash
 curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions \
     -H 'Content-Type: multipart/form-data' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -F 'files[]=@/path/to/file'
 ```
 
@@ -429,8 +429,8 @@ List Skill Versions
 
 ```bash
 curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -599,8 +599,8 @@ Download a skill version's content as a zip archive.
 
 ```bash
 curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION/content \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ## Get Skill Version
@@ -793,8 +793,8 @@ Get Skill Version
 
 ```bash
 curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -976,8 +976,8 @@ Delete Skill Version
 ```bash
 curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)

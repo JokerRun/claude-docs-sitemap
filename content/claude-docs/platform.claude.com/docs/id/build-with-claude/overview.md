@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/overview
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: d3d350a28d2d57180dae134a0a61fba6f5df7dadda0e95f69dddade5a3d5b40e
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 58ef920c08f2f5765344c11e0c8b61ab922e3760a64e0034e50182f3b491d789
 ---
 
 ---
@@ -33,7 +33,7 @@ Kolom Ketersediaan di setiap tabel berikut mencantumkan platform yang menawarkan
 | **Deprecated** | Fitur masih berfungsi tetapi tidak lagi direkomendasikan. Jalur migrasi dan jadwal penghapusan disediakan.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | **Retired**    | Fitur tidak lagi tersedia.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
-**Label platform:** Claude API (pihak pertama Anthropic) · [Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) (dioperasikan AWS) · [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) (dioperasikan Anthropic di AWS) · [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai) (dioperasikan Google) · [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) (dioperasikan Anthropic di Azure)
+**Label platform:** Claude API (pihak pertama Anthropic) · [Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) (dioperasikan AWS) · [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) (dioperasikan Anthropic di AWS) · [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) (dioperasikan Google) · [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) (dioperasikan Anthropic di Azure)
 
 ## Kemampuan model
 

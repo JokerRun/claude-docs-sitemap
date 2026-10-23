@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: dc7d3425bcd9cf8c59c5b0b04dc805b6264b157984516079f58792a0db786591
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: c1da1fcbb151d2cf035f14b92a420fa96b69ca1627eca7e5031af50ebb798c7a
 ---
 
 ---
@@ -650,8 +650,10 @@ Untuk middleware permintaan (`option.WithMiddleware`) dan mengganti `http.Client
   * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
   * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
   * [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
-  * [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)
+  * [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)
   * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
+
+  Lihat juga [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed).
 </Note>
 
 Go SDK mendukung platform berikut:
@@ -662,6 +664,8 @@ Go SDK mendukung platform berikut:
 * **Foundry:** `import "github.com/anthropics/anthropic-sdk-go/foundry"`. Gunakan `foundry.NewClient(cfg)` dengan nilai `foundry.ClientConfig` untuk membuat client; atur `APIKey` (atau `AzureADTokenProvider` untuk Microsoft Entra ID) dan `Resource` pada config, atau variabel lingkungan `ANTHROPIC_FOUNDRY_API_KEY` dan `ANTHROPIC_FOUNDRY_RESOURCE`.
 
 Gunakan `bedrock.NewMantleClient` untuk proyek baru; `bedrock.WithLoadDefaultConfig`/`WithConfig` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API Bedrock `InvokeModel`.
+
+Go SDK juga mendukung Claude Models on Google Cloud (Anthropic managed) melalui paket `github.com/anthropics/anthropic-sdk-go/googlecloud`. Untuk membuat klien, panggil `googlecloud.NewClient(ctx, cfg)` dengan nilai `googlecloud.ClientConfig`. Klien ini masih dalam tahap beta. Atur `WorkspaceID` pada konfigurasi atau atur variabel lingkungan `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`. Lihat [Resolusi proyek, lokasi, dan workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution) untuk mengetahui cara klien menentukan ID workspace.
 
 ## Penggunaan lanjutan
 

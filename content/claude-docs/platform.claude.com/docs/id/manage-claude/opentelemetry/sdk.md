@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: bf6fc551218ec4333d209d3c8d771c162a6cc8cc38affc872879ea090d313068
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 752d9d7b01fa63ae3f171960814e82f0078aee4dd05060b8132a8053fb9faf00
 ---
 
 ---
@@ -18,7 +18,7 @@ featureMetadata:
     Claude API: beta
     Claude Platform on AWS: beta
     Amazon Bedrock: beta
-    Google Cloud: beta
+    Claude Models on Google Cloud (Google managed): beta
     Microsoft Foundry: beta
   rows:
     - label: Berfungsi dengan

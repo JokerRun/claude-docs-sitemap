@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/usage_report
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 0dbee8f44b6134bd0fbe8378519a1e753beaac3f14a3340370eece22a1f1df7d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 5e0ffc9ba1842316532435902c0af8ba41e56fe1cbc7ac018723806524668c0d
 ---
 
 ---
@@ -333,8 +333,8 @@ key with the `read:analytics` scope.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/analytics/usage_report \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)

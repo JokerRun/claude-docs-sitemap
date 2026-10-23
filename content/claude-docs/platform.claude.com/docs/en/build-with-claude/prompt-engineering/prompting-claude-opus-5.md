@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 43cd9ce21193be4595a8debe8a89063b871c270d6ebbff5a5b3c63cf207e6a3c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 33363d43003e73e7b928939e6421c4eb521544e60a4ef5ddcfecfd3976b38c6e
 ---
 
 ---
@@ -81,7 +81,7 @@ Claude Opus 5 delegates to subagents more readily than prior models. Delegation 
 Delegate to a subagent only for large tasks that are genuinely independent and parallelizable, such as a wide multi-file investigation. Do not delegate work you can finish yourself in a handful of tool calls, and do not use subagents to verify or double-check your own work. If one subagent can complete the task, use one rather than several, and keep spawn counts low.
 ```
 
-If your harness is Claude Code or the Claude Agent SDK, the deterministic caps are the `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` and `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS` environment variables and the SDK's `max_budget_usd` (typescript: `maxBudgetUsd`) option. Older versions of Claude Code don't have them, so use the latest version and update a pinned SDK before pointing it at Claude Opus 5. Claude Code adds a delegation instruction of its own on Claude Opus 5 only when you use its `claude_code` system prompt preset; with a custom or omitted system prompt, add a delegation instruction such as the example in this section yourself. See [Cap subagent depth, concurrency, and spend](https://code.claude.com/docs/en/agent-sdk/subagents#cap-subagent-depth-concurrency-and-spend) in the Agent SDK docs.
+If your harness is Claude Code or the Claude Agent SDK, the deterministic caps are the `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` and `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS` environment variables and the SDK's `max_budget_usd` (typescript: `maxBudgetUsd`) option. Older versions of Claude Code don't have them, so update Claude Code and any pinned SDK before pointing your harness at Claude Opus 5. Claude Code adds a delegation instruction of its own on Claude Opus 5 only when you use its `claude_code` system prompt preset; with a custom or omitted system prompt, add a delegation instruction such as the example in this section yourself. See [Cap subagent depth, concurrency, and spend](https://code.claude.com/docs/en/agent-sdk/subagents#cap-subagent-depth-concurrency-and-spend) in the Agent SDK docs.
 
 ## Self-correction
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/update
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 59b0fa320725a6b831fb30d4d9a5d77c2d0eac8ad66e58230c4b8861b7dc6796
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 545e098050facb5af6756584cb7b6c4ffe002b0f3600fe869f61ac44ae330203
 ---
 
 ---
@@ -185,8 +185,8 @@ Update Workspace
 ```bash
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "display_color": "#6C5BB9",
           "external_key_id": "ekey_01SDCCSbTxrXDpWc1phhtcfK",

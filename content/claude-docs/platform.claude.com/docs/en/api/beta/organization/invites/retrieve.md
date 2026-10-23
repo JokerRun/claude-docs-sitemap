@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/invites/retrieve
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: c06b07033c2d7cc4d820c62974de20fcb129521d925be6e2adddc3a952334b10
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 76162f04bced25d0044e9a1b4f508d07e8f7363b3ec9e5fcd8f3711bcd6da92f
 ---
 
 ---
@@ -110,8 +110,8 @@ Retrieve an invite by ID.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/invites/$INVITE_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

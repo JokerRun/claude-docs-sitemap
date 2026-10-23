@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/users/retrieve
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 3294f0410cf6a73a0f9303468c401878bc7979a76c78f0a53e7d057c1678afdc
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 503f27a56b1e0b08d47d737655d4fe7af41fd661d4bc7e490ef92adecb9d1101
 ---
 
 ---
@@ -86,8 +86,8 @@ Retrieve a member of the organization by user ID.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations/update
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 34e5428d63653ed0e0890ef8ab9ae64dd09c2ceb137691cd60cf70c40dac8c40
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 1c5f41a6ea7be36c855e37943ae1e6a9b728e8c842b691997a2171a4626ed92f
 ---
 
 ---
@@ -455,9 +455,9 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 ```bash
 curl https://api.anthropic.com/v1/organizations/telemetry_destinations/$DESTINATION_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: telemetry-destinations-2026-08-11' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{}'
 ```
 

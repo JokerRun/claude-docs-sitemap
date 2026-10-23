@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 1ed37f1aa4c56c425c4812d0465fa297f567e0a4daa9ffbe7cded70434314581
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: d3e285f004c683d07312163d3d5cfc7d9dcc0e7f409a79bd91204337c5f90e7d
 ---
 
 ---
@@ -1893,7 +1893,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
 </CodeGroup>
 
 <Tip>
-  Jika Anda sering menemukan alasan berhenti `refusal` saat menggunakan Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)) atau Claude Opus 4.1 (yang terakhir [telah dipensiunkan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Anda dapat mencoba memperbarui panggilan API Anda untuk menggunakan Haiku 4.5 (`claude-haiku-4-5-20251001`), yang memiliki batasan penggunaan berbeda. Pelajari lebih lanjut tentang [memahami filter keamanan API Sonnet 4.5](https://support.claude.com/en/articles/12449294-understanding-sonnet-4-5-s-api-safety-filters).
+  Jika Anda sering menemukan alasan berhenti `refusal` saat menggunakan Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)) atau Claude Opus 4.1 (yang terakhir [telah dipensiunkan, kecuali di Bedrock dan Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Anda dapat mencoba memperbarui panggilan API Anda untuk menggunakan Haiku 4.5 (`claude-haiku-4-5-20251001`), yang memiliki batasan penggunaan berbeda. Pelajari lebih lanjut tentang [memahami filter keamanan API Sonnet 4.5](https://support.claude.com/en/articles/12449294-understanding-sonnet-4-5-s-api-safety-filters).
 </Tip>
 
 Pada penolakan, objek `stop_details` mengidentifikasi kategori kebijakan yang memicunya. Kategori-kategori tersebut dan bentuk respons penolakan lengkap dibahas di [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response). `stop_details` bernilai `null` untuk semua alasan berhenti selain `refusal`.

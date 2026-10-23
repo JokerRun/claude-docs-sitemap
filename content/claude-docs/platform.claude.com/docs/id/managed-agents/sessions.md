@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 28b069d510653080bdefdff7eb1c9ca6698b2c1b3239976e7eac9baae69cb095
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 265f187e9df2a4da23b827bc5a287cbefe9f0106fc66730f82be23125e7b7535
 ---
 
 ---
@@ -151,7 +151,6 @@ Untuk menyematkan sesi ke versi agen tertentu, teruskan sebuah objek. Ini memung
   pinnedSession, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
   	Agent: anthropic.BetaSessionNewParamsAgentUnion{
   		OfBetaManagedAgentsAgents: &anthropic.BetaManagedAgentsAgentParams{
-  			Type:    anthropic.BetaManagedAgentsAgentParamsTypeAgent,
   			ID:      agent.ID,
   			Version: anthropic.Int(1),
   		},
@@ -317,10 +316,8 @@ Contoh berikut membuat sesi dengan satu `user.message` di `initial_events` (java
   	EnvironmentID: environment.ID,
   	InitialEvents: []anthropic.BetaSessionNewParamsInitialEventUnion{{
   		OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
-  			Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
   			Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{{
   				OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-  					Type: anthropic.BetaManagedAgentsTextBlockTypeText,
   					Text: "List the files in the working directory.",
   				},
   			}},
@@ -330,8 +327,8 @@ Contoh berikut membuat sesi dengan satu `user.message` di `initial_events` (java
   if err != nil {
   	panic(err)
   }
-  // initial_events tidak digaungkan pada respons create, jadi daftarkan
-  // event sesi untuk membaca kembali user.message yang di-seed.
+  // initial_events are not echoed on the create response, so list the
+  // session's events to read the seeded user.message back.
   seededEvents, err := client.Beta.Sessions.Events.List(ctx, seededSession.ID, anthropic.BetaSessionEventListParams{})
   if err != nil {
   	panic(err)
@@ -538,12 +535,11 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
   overrideSession, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
   	Agent: anthropic.BetaSessionNewParamsAgentUnion{
   		OfBetaManagedAgentsAgentWithOverridess: &anthropic.BetaManagedAgentsAgentWithOverridesParams{
-  			Type: anthropic.BetaManagedAgentsAgentWithOverridesParamsTypeAgentWithOverrides,
-  			ID:   agent.ID,
+  			ID: agent.ID,
   			Model: anthropic.BetaManagedAgentsModelConfigParams{
   				ID: anthropic.BetaManagedAgentsModelClaudeSonnet5_5,
   			},
-  			// Kosongkan prompt sistem agen untuk sesi ini.
+  			// Clear the agent's system prompt for this session.
   			System: param.Null[string](),
   		},
   	},
@@ -552,7 +548,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
   if err != nil {
   	panic(err)
   }
-  // Agen pada respons adalah snapshot yang telah diselesaikan dengan override diterapkan.
+  // The response's agent is the resolved snapshot with the overrides applied.
   fmt.Printf("Model: %s\n", overrideSession.Agent.Model.ID)
   fmt.Printf("System: %q\n", overrideSession.Agent.System)
   ```
@@ -578,8 +574,8 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
       id: $agent->id,
       model: ['id' => 'claude-sonnet-5-5'],
   );
-  // Kosongkan prompt sistem untuk sesi ini. Akses array penting di sini:
-  // create() membuang null dari array mentah dan ::with() memperlakukan argumen null sebagai dihilangkan.
+  // Kosongkan prompt sistem untuk sesi ini. Akses array diperlukan di sini:
+  // create() menghapus null dari array mentah dan ::with() menganggap arg null diabaikan.
   $overrides['system'] = null;
 
   $overrideSession = $client->beta->sessions->create(
@@ -694,9 +690,8 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan ge
   session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
   	Agent: anthropic.BetaSessionNewParamsAgentUnion{
   		OfBetaManagedAgentsAgentWithOverridess: &anthropic.BetaManagedAgentsAgentWithOverridesParams{
-  			Type: anthropic.BetaManagedAgentsAgentWithOverridesParamsTypeAgentWithOverrides,
-  			ID:   agent.ID,
-  			// Mengganti `model` agen sepenuhnya: nyatakan ulang `id`, tambahkan `inference_geo` untuk menyematkan.
+  			ID: agent.ID,
+  			// Replaces the agent's `model` in full: restate `id`, add `inference_geo` to pin.
   			Model: anthropic.BetaManagedAgentsModelConfigParams{
   				ID:           anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   				InferenceGeo: anthropic.String("us"),
@@ -834,7 +829,6 @@ Contoh berikut membuat sesi dengan anggaran $1,25:
   	},
   	EnvironmentID: environment.ID,
   	Budget: anthropic.BetaManagedAgentsBudgetLimitParam{
-  		Type: anthropic.BetaManagedAgentsBudgetLimitTypeLimit,
   		MaxListCost: anthropic.BetaMonetaryAmountParam{
   			Amount:   "125",
   			Currency: anthropic.BetaCurrencyUsd,
@@ -1057,10 +1051,8 @@ Membuat sesi tanpa `initial_events` (java, php: `initialEvents`; csharp, go: `In
   if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
-  			Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
   			Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{{
   				OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-  					Type: anthropic.BetaManagedAgentsTextBlockTypeText,
   					Text: "List the files in the working directory.",
   				},
   			}},

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/users/update
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 9ebd919880e3a6fa17276cbdb13ad17c7bdb9758508d338f64047b07e05601fe
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 0a2f7eb5d59283005ce9613c1e13182b561ce593da57dd17f5c8ad1c3f84cac3
 ---
 
 ---
@@ -105,8 +105,8 @@ Update a member's organization role.
 ```bash
 curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "role": "user"
         }'

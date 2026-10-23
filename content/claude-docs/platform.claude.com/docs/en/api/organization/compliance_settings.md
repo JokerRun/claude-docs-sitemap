@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/compliance_settings
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 6a9c26d2084deb9b699f21af883228a5f0ce0e8ec27ab367eca289b0a76b5e57
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 00a6fc0e6cdae8dbde492bac1ac905c5d3b42096bbc426430d8112896ddeda96
 ---
 
 ---
@@ -59,8 +59,8 @@ organization reads the state inherited from the parent's configuration.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/compliance_settings \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -144,8 +144,8 @@ compliance settings.
 ```bash
 curl https://api.anthropic.com/v1/organizations/compliance_settings \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "state": {
             "type": "enabled"

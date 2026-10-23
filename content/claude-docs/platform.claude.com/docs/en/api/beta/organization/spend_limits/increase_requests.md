@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: ba9574795d6f4fc3a90791ba948a8fd40bf079d3f2c874d40e4e9f7237cf8910
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: caa54f7d22dadfaaf59eb756d7f6baddcfee566cd5294689da958576986baa74
 ---
 
 ---
@@ -281,8 +281,8 @@ Requests whose requester is no longer a member are excluded.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -588,8 +588,8 @@ requester at the request's period.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/$SPEND_LIMIT_INCREASE_REQUEST_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -977,8 +977,8 @@ the member was blocked on. Anthropic emails the requester unless
 ```bash
 curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/$SPEND_LIMIT_INCREASE_REQUEST_ID/approve \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "amount": "50000",
           "period": "monthly"
@@ -1302,8 +1302,8 @@ Idempotent on `denied`; denying an already-`approved` request returns
 ```bash
 curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/$SPEND_LIMIT_INCREASE_REQUEST_ID/deny \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{}'
 ```
 

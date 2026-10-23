@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/delete
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: f3704bd29928c6a260dacc8d399e2c218e51337f3cf4d2a581195bb3d63858b3
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 6af432c434668f3baacecce3a6237d62d8342cc9be2c0d77c7ebe19cc03d6a5f
 ---
 
 ---
@@ -171,9 +171,9 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 ```bash
 curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: message-batches-2024-09-24' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

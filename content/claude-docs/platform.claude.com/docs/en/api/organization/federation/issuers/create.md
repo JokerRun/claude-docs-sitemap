@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/issuers/create
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 499f1a77b34f2625050643c31a16f58b42490e130b8b1439d631d6b680656009
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: f8d99de86877616333d0350f2a0df4c2232fee05bfa290eb3a715a4577d3a0f7
 ---
 
 ---
@@ -254,8 +254,8 @@ matched as the JWT's `iss` claim and is not fetched.
 ```bash
 curl https://api.anthropic.com/v1/organizations/federation_issuers \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "issuer_url": "x",
           "name": "x"

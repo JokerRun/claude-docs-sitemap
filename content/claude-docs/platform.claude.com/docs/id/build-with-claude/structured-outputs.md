@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: f49159a854ba8ce531cb9e9da0e1e08b534f9635d13c6aad7022cb53e701dcdb
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 7a18ece9404c385573bcee1e21fa75fda5e7274012f5d33dd362731e6c8aa122
 ---
 
 ---
@@ -36,7 +36,7 @@ featureMetadata:
     Claude API: ga
     Claude Platform on AWS: ga
     Amazon Bedrock: ga
-    Google Cloud: ga
+    Claude Models on Google Cloud (Google managed): ga
     Microsoft Foundry: ga
 ---
 

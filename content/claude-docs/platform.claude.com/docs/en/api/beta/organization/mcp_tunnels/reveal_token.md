@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/reveal_token
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 03e350beb1b828e1a580d77a90cce6d8f4b4b464c291fe40b1658c7125f145a6
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 26a06e4752b8a5e02bf1fa2b5bf819a66b852d992924ee2b51e030a6e0227c42
 ---
 
 ---
@@ -173,9 +173,9 @@ access logs.
 ```bash
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/reveal_token \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: mcp-tunnels-2026-05-19' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

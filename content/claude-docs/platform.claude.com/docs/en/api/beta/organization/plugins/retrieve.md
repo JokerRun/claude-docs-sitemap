@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/retrieve
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 0e1332a0c8caa928fb46ce9ed9d030b78b32451ee504e968e071138f7c97160c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 17fc366999a763aeb7bb60bb707dae1e1e79032e36fbc8074c08a399e2cc99df
 ---
 
 ---
@@ -192,7 +192,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
     - `assessment: "fail" or "pass" or "unknown" or "warn" or null`
 
-      The scan's verdict; set only when `status` is `completed`.
+      The scan's verdict; set only when `status` is `completed`. A `warn` can mean a `fail` that was allowed in claude.ai.
 
       - `"fail"`
 
@@ -208,7 +208,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
     - `status: "completed" or "errored" or "processing"`
 
-      `processing` while a scan runs, `completed` when it ran to completion, `errored` when it could not run or its outcome cannot be read.
+      `processing` while a scan runs, `completed` when it ran to completion, `errored` when it could not run. Once a scan of the version has completed, `content_scan` describes the newest completed scan, even while a later scan runs. While the scan outcome cannot be read, `status` is `errored` instead.
 
       - `"completed"`
 
@@ -338,11 +338,11 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `served_version_pinned: boolean`
 
-    False while the served version follows each new version; true once it has been pinned to one.
+    True once the served version has been pinned, through Update Plugin or in claude.ai. While false, a new version normally becomes the served version when it is stored. While the newest version is not the served version, as when a version saved in claude.ai is waiting for its content scan, `served_version_id` differs from `latest_version_id`.
 
   - `updated_at: string`
 
-    RFC 3339. Moves on a new version and on a served-version change; a change to the Plugin's installation settings or shares does not move it.
+    RFC 3339. Moves on a served-version change (including pinning an unpinned Plugin to the version it already serves) and, normally, on a new version. A version saved in claude.ai that waits for its content scan moves it when it becomes the served version, and not necessarily when it is stored. A change to the Plugin's installation settings or shares does not move it.
 
     format: date-time
 
@@ -350,9 +350,9 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/plugins/$PLUGIN_ID \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: ce-plugins-2026-09-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

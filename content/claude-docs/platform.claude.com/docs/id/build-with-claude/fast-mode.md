@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: e15f3fac9c6fae29c498f4cf1d34faae8760dbfa953265e35d15cb45668d3088
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 224b20692c6d780082aaa2d991edb0badc02f28154885be7b7ade7f6fd0c0c1f
 ---
 
 ---
@@ -206,6 +206,8 @@ Mode cepat tersedia di Claude API, termasuk [Claude Managed Agents](https://plat
 
 Mode cepat pada Claude Opus 5.5 juga tersedia di [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Azure. Mode ini tidak tersedia untuk deployment yang [di-hosting di Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#hosting-options).
 
+Mode cepat pada Claude Opus 5.5 juga tersedia di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed).
+
 ## Ketersediaan model
 
 Mode cepat hanya tersedia pada model-model berikut. Jika Anda menggunakan mode cepat pada model sebelumnya, [migrasikan ke model yang mendukung mode cepat](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide).
@@ -255,7 +257,7 @@ Untuk melihat batas laju mode cepat Anda, buka halaman [Batas laju](https://plat
 
 ## Memeriksa kecepatan mana yang digunakan
 
-Objek `usage` pada respons menyertakan field `speed` yang menunjukkan kecepatan mana yang digunakan, baik `"fast"` maupun `"standard"`. Meminta `speed: "fast"` pada [model yang tidak mendukung mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models) mengembalikan error, begitu pula jika melampaui batas laju atau kapasitas mode cepat (`429` atau `529`). Ketika permintaan dengan `speed: "fast"` berhasil, `usage.speed` bernilai `"fast"`. Claude Opus 4.6 merupakan pengecualian: alih-alih mengembalikan error, permintaan dengan `speed: "fast"` dan header beta `fast-mode-2026-02-01` berhasil, tetapi berjalan pada kecepatan standar. Perilaku ini tercermin dengan benar di `usage.speed`, yang menunjukkan `"standard"` dalam situasi ini.
+Objek `usage` pada respons menyertakan field `speed` yang menunjukkan kecepatan mana yang digunakan, baik `"fast"` maupun `"standard"`. Meminta `speed: "fast"` pada [model yang tidak mendukung mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models) mengembalikan error, begitu pula jika melampaui batas laju atau kapasitas mode cepat (`429` atau `529`). Ketika permintaan dengan `speed: "fast"` berhasil, `usage.speed` bernilai `"fast"`. Claude Opus 4.6 merupakan pengecualian: alih-alih mengembalikan error, permintaan dengan `speed: "fast"` dan header beta `fast-mode-2026-02-01` berhasil, tetapi berjalan pada kecepatan standar. Perilaku ini tercermin dengan benar di `usage.speed`, yang menunjukkan `"standard"` dalam situasi ini. Pada Claude Models on Google Cloud (Anthropic managed), permintaan Claude Opus 4.6 dengan `speed: "fast"` mengembalikan error `400` bahkan dengan header tersebut.
 
 <CodeGroup>
   ```bash cURL

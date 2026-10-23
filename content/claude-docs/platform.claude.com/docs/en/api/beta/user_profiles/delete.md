@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/delete
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 325a95737ebf251f775d67e55a613831ebf67197ad21096ef9ea318c1534bf31
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: c5b5ed88d962c3edd0968ceabbb53cd22dd817b2a9c19c690300fa8e58bf897a
 ---
 
 ---
@@ -163,9 +163,9 @@ Delete User Profile
 ```bash
 curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: user-profiles-2026-08-18' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

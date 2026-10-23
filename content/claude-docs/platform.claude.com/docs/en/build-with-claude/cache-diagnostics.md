@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 14b4e5156c8dbb7ca49c92f7e83f770a0f3fb2151ab1273c2f5bdb3f7ecab0db
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 6a6dee9af50dfc058ea308c6cc1a9359efd90daa4d4fae5797e063d4e93decfd
 ---
 
 ---
@@ -1033,7 +1033,7 @@ This matrix applies to turns where you passed a real `previous_message_id`. On t
 
 ## Limitations
 
-* **Claude API only:** Not available on Amazon Bedrock or Google Cloud.
+* **Claude API only:** Not available on Amazon Bedrock or Claude Models on Google Cloud (Google managed).
 * **Limited retention:** Fingerprints for `previous_message_id` lookup expire after a short period. Run diagnostic comparisons between closely spaced requests.
 * **Same workspace:** The previous request must have run in the same organization and workspace. To check, compare the `anthropic-workspace-id` [response header](https://platform.claude.com/docs/en/api/overview#response-headers) on the two responses.
 * **Comparison horizon:** For very long conversations where the only change is deep in the message list, the response might be `unavailable` rather than a precise location.

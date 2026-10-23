@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/files/retrieve_metadata
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 71b7a8059ded279ab44dfbf3c04da9847dbb24f1989fd48ae9f7085d69db6dd9
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: e25555ff2346dcbfc8aa8021ed9f1fe6261e1c0bca9eebaec5abff21b21b97aa
 ---
 
 ---
@@ -92,8 +92,8 @@ Get File Metadata
 
 ```bash
 curl https://api.anthropic.com/v1/files/$FILE_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

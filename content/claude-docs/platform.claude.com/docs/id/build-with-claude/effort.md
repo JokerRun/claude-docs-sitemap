@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/effort
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 97089b1343080e13527c4b636d9b7ee42bc5f4c0fb0d98fd3fe23982265c3234
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 019ad047d97856668c3ff04c5d2dba4a6fb65639057294867e2dea1637da8436
 ---
 
 ---
@@ -34,7 +34,7 @@ featureMetadata:
     Claude API: ga
     Claude Platform on AWS: ga
     Amazon Bedrock: ga
-    Google Cloud: ga
+    Claude Models on Google Cloud (Google managed): ga
     Microsoft Foundry: ga
 ---
 
@@ -345,7 +345,7 @@ Claude Haiku 5.5 mendukung kelima tingkat effort, dan `medium` adalah default-ny
 
 Untuk mendapatkan thinking yang lebih sedikit, turunkan tingkat effort. Anda juga dapat mengirim `thinking: {"type": "disabled"}` pada effort `high` atau di bawahnya. Pada `xhigh` atau `max`, ini mengembalikan error 400, jadi gunakan adaptive thinking di sana: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`.
 
-Di Claude API dan Google Cloud, Claude Haiku 5.5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) dengan `output_config` per pesan, yang mempertahankan cache prompt. Dengan `thinking: {"type": "disabled"}`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari tingkat yang berlaku mengembalikan error 400. Untuk memvariasikan effort per giliran, gunakan adaptive thinking.
+Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Haiku 5.5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) dengan `output_config` per pesan, yang mempertahankan cache prompt. Dengan `thinking: {"type": "disabled"}`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari tingkat yang berlaku mengembalikan error 400. Untuk memvariasikan effort per giliran, gunakan adaptive thinking.
 
 ## Effort dengan penggunaan alat
 
@@ -379,7 +379,7 @@ Anda dapat menjalankan giliran selanjutnya dari suatu percakapan pada tingkat ef
 
 ### Effort per pesan (beta)
 
-Effort per pesan masih dalam tahap beta. Di Claude API dan [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), fitur ini tersedia di Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5. Di [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), fitur ini tersedia di Claude Fable 5.1, Claude Mythos 5.1, dan Claude Opus 5.5. Fitur ini memerlukan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `mid-conversation-output-config-2026-07-01`. Dengan [InvokeModel API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) Amazon Bedrock, fitur ini tersedia di Claude Fable 5.1 dan Claude Opus 5.5, dan Anda mengirim nilai tersebut dalam array `anthropic_beta` pada body permintaan sebagai gantinya.
+Effort per pesan masih dalam tahap beta. Di Claude API dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), fitur ini tersedia di Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5. Di [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), fitur ini tersedia di Claude Fable 5.1, Claude Mythos 5.1, dan Claude Opus 5.5. Fitur ini memerlukan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `mid-conversation-output-config-2026-07-01`. Dengan [InvokeModel API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) Amazon Bedrock, fitur ini tersedia di Claude Fable 5.1 dan Claude Opus 5.5, dan Anda mengirim nilai tersebut dalam array `anthropic_beta` pada body permintaan sebagai gantinya.
 
 Tanpa nilai beta, `output_config` per pesan mengembalikan error 400: `messages.N.output_config: Extra inputs are not permitted`, di mana `N` adalah indeks pesan `system` dalam `messages`. Dengan nilai beta, model tanpa effort per pesan, termasuk Claude Fable 5, mengembalikan error 400: `output_config.effort requires a model that supports per-turn effort; this model does not`. Di Amazon Bedrock, model-model tersebut dan Claude Opus 5 mengembalikan error `Extra inputs are not permitted` sebagai gantinya. Pada Claude Sonnet 5.5 dengan `thinking: {"type": "between_tools"}` dan pada Claude Haiku 5.5 dengan `thinking: {"type": "disabled"}`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari tingkat yang berlaku mengembalikan error 400. Untuk memvariasikan effort per giliran, gunakan adaptive thinking.
 

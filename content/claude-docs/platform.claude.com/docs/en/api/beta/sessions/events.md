@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: f1b41515773ccc5e9545a35e83e81301a337db464060607a38a47be4ca89f887
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 0106f721ef7655893da4cb2bcf7a0069db892e7b3b6beb132cc885338ea3c4f5
 ---
 
 ---
@@ -3208,9 +3208,9 @@ List Events
 
 ```bash
 curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -4194,9 +4194,9 @@ Send Events
 ```bash
 curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "events": [
             {
@@ -7356,9 +7356,9 @@ Stream Events
 
 ```bash
 curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)

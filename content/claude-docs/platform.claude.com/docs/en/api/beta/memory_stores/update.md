@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/update
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 077efd00c9e3d3e227a78d290779e1148cf8c9c294cba1228d92af8493cdc03c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 6c1f2707f1599f9475d3a33fbf28a75c7c3763dde3230bb6b8429959debb0474
 ---
 
 ---
@@ -225,9 +225,9 @@ Update a Memory Store
 ```bash
 curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: agent-memory-2026-07-22' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{}'
 ```
 

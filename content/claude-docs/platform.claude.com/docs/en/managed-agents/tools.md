@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/tools
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 5f484b1b01a612dcac1c3db111bfd3e962b2df08049b5e1299dd1dd567acff13
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: d3a94792b766fb99c5811f4c56c50313bebdc790ef0f1310b0b94aa2179b7bec
 ---
 
 ---
@@ -143,7 +143,6 @@ The following example enables the toolset and disables `web_fetch`:
   	},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-  			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
   			Configs: []anthropic.BetaManagedAgentsAgentToolConfigParamsUnion{{
   				OfWebFetch: &anthropic.BetaManagedAgentsWebFetchToolConfigParams{
   					Enabled: anthropic.Bool(false),
@@ -394,12 +393,9 @@ The following example creates an agent with the built-in toolset and one custom 
   		ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   	},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
-  		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-  			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-  		},
+  		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{},
   	}, {
   		OfCustom: &anthropic.BetaManagedAgentsCustomToolParams{
-  			Type:        anthropic.BetaManagedAgentsCustomToolParamsTypeCustom,
   			Name:        "get_weather",
   			Description: "Get current weather for a location",
   			InputSchema: anthropic.BetaManagedAgentsCustomToolInputSchemaParam{

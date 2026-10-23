@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/scheduled-deployments
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: fa1d20d1cd49e0d6f50fbcdbcde504e2bbf120e5f1b92b534d5c89285a508192
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 45e18293da1288407acc54571ad4aa00ac0a0a3435698a4052ce38155c6cec64
 ---
 
 ---
@@ -149,17 +149,14 @@ When creating a deployment, you pass the [session configurations](https://platfo
   	EnvironmentID: environment.ID,
   	InitialEvents: []anthropic.BetaManagedAgentsDeploymentInitialEventParamsUnion{{
   		OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
-  			Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
   			Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{{
   				OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-  					Type: anthropic.BetaManagedAgentsTextBlockTypeText,
   					Text: "Run the weekly compliance scan.",
   				},
   			}},
   		},
   	}},
   	Schedule: anthropic.BetaManagedAgentsScheduleParams{
-  		Type:       anthropic.BetaManagedAgentsScheduleParamsTypeCron,
   		Expression: "0 20 * * 5",
   		Timezone:   "America/New_York",
   	},
@@ -351,7 +348,6 @@ The following example sets a budget on an existing deployment:
   ```go Go
   updatedDeployment, err := client.Beta.Deployments.Update(ctx, deployment.ID, anthropic.BetaDeploymentUpdateParams{
   	Budget: anthropic.BetaManagedAgentsBudgetLimitParam{
-  		Type: anthropic.BetaManagedAgentsBudgetLimitTypeLimit,
   		MaxListCost: anthropic.BetaMonetaryAmountParam{
   			Amount:   "2000",
   			Currency: anthropic.BetaCurrencyUsd,

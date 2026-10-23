@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: b37a418786c48db840e47a7340f2ee2d69800b4189878d368882edcf721eef4c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 02d225a63ebb5401847231a4e934b232a3aec039749e7dcd29d41aa1446efbdc
 ---
 
 ---
@@ -676,7 +676,7 @@ Permintaan yang menggunakan fitur-fitur ini terhadap deployment yang di-hosting 
 
 ## Respons API
 
-Respons API dari Claude di Microsoft Foundry mengikuti [format respons Claude API](https://platform.claude.com/docs/id/api/messages/create) standar. Ini mencakup objek `usage` dalam body respons, yang memberikan informasi konsumsi token terperinci untuk permintaan Anda. Objek `usage` konsisten di semua platform (Claude API, Amazon Bedrock, Claude Platform on AWS, Foundry, dan Google Cloud).
+Respons API dari Claude di Microsoft Foundry mengikuti [format respons Claude API](https://platform.claude.com/docs/id/api/messages/create) standar. Ini mencakup objek `usage` dalam body respons, yang memberikan informasi konsumsi token terperinci untuk permintaan Anda. Objek `usage` konsisten di semua platform, termasuk Claude API, Amazon Bedrock, Claude Platform on AWS, Foundry, dan Claude Models on Google Cloud (Google managed).
 
 Untuk detail tentang header respons khusus Foundry, lihat [ID permintaan korelasi](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#correlation-request-ids).
 

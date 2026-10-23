@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 454e000e7474b5b1e5f19ec70e0d15482aa530905bb4b7520676f671e870d43c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: c643bf004d7bc827f4cf8684581c8787bd9188a4a125400f4ef3257d94af7e06
 ---
 
 ---
@@ -479,9 +479,9 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 ```bash
 curl https://api.anthropic.com/v1/dreams \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: dreaming-2026-04-21' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "inputs": [
             {
@@ -963,9 +963,9 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
 ```bash
 curl https://api.anthropic.com/v1/dreams \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: dreaming-2026-04-21' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -1385,9 +1385,9 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
 ```bash
 curl https://api.anthropic.com/v1/dreams/$DREAM_ID \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: dreaming-2026-04-21' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -1803,9 +1803,9 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 ```bash
 curl https://api.anthropic.com/v1/dreams/$DREAM_ID/cancel \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: dreaming-2026-04-21' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -2221,9 +2221,9 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 ```bash
 curl https://api.anthropic.com/v1/dreams/$DREAM_ID/archive \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: dreaming-2026-04-21' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)

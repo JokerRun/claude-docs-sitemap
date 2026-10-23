@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 41082f4454d5c4bfa6c9973a7929ecc24575ff1546dedabddff2418f20ef7ad1
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 165598e20c94d87825c21a1b088bff3648bdfcf195b097e44a53af8e8cadcb66
 ---
 
 ---
@@ -30,7 +30,7 @@ featureMetadata:
   supportedPlatforms:
     Claude API: beta
     Claude Platform on AWS: beta
-    Google Cloud: beta
+    Claude Models on Google Cloud (Google managed): beta
     Microsoft Foundry: beta
 ---
 

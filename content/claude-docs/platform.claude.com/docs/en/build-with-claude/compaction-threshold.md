@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction-threshold
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 42d684954273d210352286d9efff58b41e53d415414c7f52458d8d2dd9d904f0
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 87463e2386b17d214e7e24da452ff22d0ff72255048d05e333ee272fc46be998
 ---
 
 ---
@@ -34,7 +34,7 @@ featureMetadata:
     Claude API: beta
     Claude Platform on AWS: beta
     Amazon Bedrock: beta
-    Google Cloud: beta
+    Claude Models on Google Cloud (Google managed): beta
     Microsoft Foundry: beta
 ---
 
@@ -246,7 +246,7 @@ Enable compaction by adding the `compact_20260112` strategy to `context_manageme
   $response = $client->beta->messages->create(
       maxTokens: 4096,
       messages: $messages,
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['compact-2026-01-12'],
       contextManagement: [
           'edits' => [
@@ -466,7 +466,7 @@ Configure when compaction triggers using the `trigger` parameter:
   $message = $client->beta->messages->create(
       maxTokens: 4096,
       messages: $messages,
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['compact-2026-01-12'],
       contextManagement: [
           'edits' => [
@@ -639,7 +639,7 @@ You can provide custom instructions through the `instructions` parameter. Custom
   	MaxTokens: 4096,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Help me build a Python web scraper")),
-  		{Role: anthropic.BetaMessageParamRoleAssistant, Content: []anthropic.BetaContentBlockParamUnion{anthropic.NewBetaTextBlock("I'll help you build a web scraper...")}},
+  		{OfAssistant: &anthropic.BetaAssistantMessageParam{Content: []anthropic.BetaContentBlockParamUnion{anthropic.NewBetaTextBlock("I'll help you build a web scraper...")}}},
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Add support for JavaScript-rendered pages")),
   	},
   	ContextManagement: anthropic.BetaContextManagementConfigParam{
@@ -691,7 +691,7 @@ You can provide custom instructions through the `instructions` parameter. Custom
           ['role' => 'assistant', 'content' => "I'll help you build a web scraper..."],
           ['role' => 'user', 'content' => 'Add support for JavaScript-rendered pages']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['compact-2026-01-12'],
       contextManagement: [
           'edits' => [
@@ -1077,7 +1077,7 @@ When enabled, the API returns a message with the `compaction` stop reason after 
 
 #### Enforcing a total token budget
 
-When a model works on long tasks with many tool-use iterations, total token consumption can grow significantly. You can combine `pause_after_compaction` with a compaction counter to estimate cumulative usage and gracefully end the task once a budget is reached.
+When a model works on long tasks with many tool-use iterations, total token consumption can grow significantly. You can combine `pause_after_compaction` with a compaction counter to estimate cumulative usage and gracefully conclude the task once a budget is reached.
 
 This example appears in the SDK languages only: its value is the budget-tracking logic around the request. The raw request combines the `trigger` from [Trigger configuration](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold#trigger-configuration) with `pause_after_compaction` from [Pausing after compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold#pausing-after-compaction).
 
@@ -1187,7 +1187,7 @@ This example appears in the SDK languages only: its value is the budget-tracking
       compactionCount += 1;
       messages.Add(new BetaAssistantMessageParam
       {
-          Content = response.Content.Select(b => new BetaContentBlockParam(b.Json)).ToList()
+          Content = response.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList()
       });
 
       // Estimate total tokens consumed; prompt wrap-up if over budget
@@ -1891,20 +1891,20 @@ The compaction block streams differently from text blocks. You receive a `conten
           try (var streamResponse = client.beta().messages().createStreaming(params)) {
               streamResponse.stream().forEach(event -> {
                   event.contentBlockStart().ifPresent(startEvent -> {
-                      startEvent.contentBlock().compaction().ifPresent(c ->
+                      startEvent.contentBlock().compaction().ifPresent(compactionBlock ->
                           System.out.println("Compaction started...")
                       );
-                      startEvent.contentBlock().text().ifPresent(t ->
+                      startEvent.contentBlock().text().ifPresent(textBlock ->
                           System.out.println("Text response started...")
                       );
                   });
 
                   event.contentBlockDelta().ifPresent(deltaEvent -> {
-                      deltaEvent.delta().compaction().ifPresent(cd ->
-                          System.out.println("Compaction complete: " + cd.content().map(String::length).orElse(0) + " chars")
+                      deltaEvent.delta().compaction().ifPresent(compactionDelta ->
+                          System.out.println("Compaction complete: " + compactionDelta.content().map(String::length).orElse(0) + " chars")
                       );
-                      deltaEvent.delta().text().ifPresent(td ->
-                          System.out.print(td.text())
+                      deltaEvent.delta().text().ifPresent(textDelta ->
+                          System.out.print(textDelta.text())
                       );
                   });
               });
@@ -1918,6 +1918,7 @@ The compaction block streams differently from text blocks. You receive a `conten
   use Anthropic\Beta\Messages\BetaRawContentBlockStartEvent;
   use Anthropic\Beta\Messages\BetaTextBlock;
   use Anthropic\Beta\Messages\BetaTextDelta;
+  use Anthropic\Messages\Model;
 
   $client = new Client();
   $messages = [['role' => 'user', 'content' => 'Hello, Claude']];
@@ -1925,7 +1926,7 @@ The compaction block streams differently from text blocks. You receive a `conten
   $stream = $client->beta->messages->createStream(
       maxTokens: 4096,
       messages: $messages,
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['compact-2026-01-12'],
       contextManagement: [
           'edits' => [
@@ -1949,7 +1950,7 @@ The compaction block streams differently from text blocks. You receive a `conten
           case $event instanceof BetaRawContentBlockDeltaEvent:
               switch (true) {
                   case $event->delta instanceof BetaCompactionContentBlockDelta:
-                      echo "Compaction complete: " . strlen($event->delta->content ?? '') . " chars\n";
+                      echo 'Compaction complete: ' . strlen($event->delta->content ?? '') . " chars\n";
                       break;
                   case $event->delta instanceof BetaTextDelta:
                       echo $event->delta->text;
@@ -2210,7 +2211,7 @@ To maximize cache hit rates, add a `cache_control` breakpoint at the end of your
   $response = $client->beta->messages->create(
       maxTokens: 4096,
       messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['compact-2026-01-12'],
       system: [
           [
@@ -2450,8 +2451,8 @@ The token counting endpoint (`/v1/messages/count_tokens`) applies existing `comp
       ]
   );
 
-  echo "Current tokens: " . $countResponse->inputTokens . "\n";
-  echo "Original tokens: " . $countResponse->contextManagement->originalInputTokens . "\n";
+  echo 'Current tokens: ' . $countResponse->inputTokens . "\n";
+  echo 'Original tokens: ' . $countResponse->contextManagement->originalInputTokens . "\n";
   ```
 
   ```ruby Ruby
@@ -2598,7 +2599,7 @@ Here's a complete example of a long-running conversation with compaction:
       return response.Content
           .Select(block => block.Value)
           .OfType<BetaTextBlock>()
-          .Select(tb => tb.Text)
+          .Select(textBlock => textBlock.Text)
           .FirstOrDefault() ?? "";
   }
   ```
@@ -2611,7 +2612,7 @@ Here's a complete example of a long-running conversation with compaction:
   	"fmt"
   	"log"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   var (
@@ -2704,7 +2705,8 @@ Here's a complete example of a long-running conversation with compaction:
   $client = new Client();
   $messages = [];
 
-  function chat($client, &$messages, $userMessage) {
+  function chat($client, &$messages, $userMessage)
+  {
       $messages[] = ['role' => 'user', 'content' => $userMessage];
 
       $response = $client->beta->messages->create(
@@ -2732,9 +2734,9 @@ Here's a complete example of a long-running conversation with compaction:
       return '';
   }
 
-  echo chat($client, $messages, "Help me build a Python web scraper") . "\n";
-  echo chat($client, $messages, "Add support for JavaScript-rendered pages") . "\n";
-  echo chat($client, $messages, "Now add rate limiting and error handling") . "\n";
+  echo chat($client, $messages, 'Help me build a Python web scraper') . "\n";
+  echo chat($client, $messages, 'Add support for JavaScript-rendered pages') . "\n";
+  echo chat($client, $messages, 'Now add rate limiting and error handling') . "\n";
   ```
 
   ```ruby Ruby
@@ -3034,7 +3036,7 @@ Here's an example that uses `pause_after_compaction` to preserve the prior excha
       return response.Content
           .Select(block => block.Value)
           .OfType<BetaTextBlock>()
-          .Select(tb => tb.Text)
+          .Select(textBlock => textBlock.Text)
           .FirstOrDefault() ?? "";
   }
   ```
@@ -3047,7 +3049,7 @@ Here's an example that uses `pause_after_compaction` to preserve the prior excha
   	"fmt"
   	"log"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   var (
@@ -3085,8 +3087,12 @@ Here's an example that uses `pause_after_compaction` to preserve the prior excha
   		// without thinking blocks; an assistant turn left empty is dropped
   		var preserved []anthropic.BetaMessageParam
   		for _, message := range messages[max(0, len(messages)-3):] {
+  			if message.OfAssistant == nil {
+  				preserved = append(preserved, message)
+  				continue
+  			}
   			var content []anthropic.BetaContentBlockParamUnion
-  			for _, block := range message.Content {
+  			for _, block := range message.OfAssistant.Content {
   				if block.OfThinking == nil && block.OfRedactedThinking == nil {
   					content = append(content, block)
   				}
@@ -3094,12 +3100,11 @@ Here's an example that uses `pause_after_compaction` to preserve the prior excha
   			if len(content) == 0 {
   				continue
   			}
-  			message.Content = content
-  			preserved = append(preserved, message)
+  			preserved = append(preserved, anthropic.BetaMessageParam{OfAssistant: &anthropic.BetaAssistantMessageParam{Content: content}})
   		}
 
   		messagesAfterCompaction := []anthropic.BetaMessageParam{
-  			{Role: anthropic.BetaMessageParamRoleAssistant, Content: []anthropic.BetaContentBlockParamUnion{compactionParam}},
+  			{OfAssistant: &anthropic.BetaAssistantMessageParam{Content: []anthropic.BetaContentBlockParamUnion{compactionParam}}},
   		}
   		messagesAfterCompaction = append(messagesAfterCompaction, preserved...)
 
@@ -3230,7 +3235,8 @@ Here's an example that uses `pause_after_compaction` to preserve the prior excha
   $client = new Client();
   $messages = [];
 
-  function chat($client, &$messages, $userMessage) {
+  function chat($client, &$messages, $userMessage)
+  {
       $messages[] = ['role' => 'user', 'content' => $userMessage];
 
       $response = $client->beta->messages->create(
@@ -3292,9 +3298,9 @@ Here's an example that uses `pause_after_compaction` to preserve the prior excha
       return '';
   }
 
-  echo chat($client, $messages, "Help me build a Python web scraper") . "\n";
-  echo chat($client, $messages, "Add support for JavaScript-rendered pages") . "\n";
-  echo chat($client, $messages, "Now add rate limiting and error handling") . "\n";
+  echo chat($client, $messages, 'Help me build a Python web scraper') . "\n";
+  echo chat($client, $messages, 'Add support for JavaScript-rendered pages') . "\n";
+  echo chat($client, $messages, 'Now add rate limiting and error handling') . "\n";
   ```
 
   ```ruby Ruby
@@ -3381,7 +3387,7 @@ Here's an example that uses `pause_after_compaction` to preserve the prior excha
     Learn about context window sizes and management strategies.
   </Card>
 
-  <Card title="Session memory compaction recipe" icon="book" href="https://platform.claude.com/cookbook/misc-session-memory-compaction">
+  <Card title="Session memory compaction recipe (Claude Cookbook)" icon="book" href="https://platform.claude.com/cookbook/misc-session-memory-compaction">
     Explore a practical implementation that manages long-running conversations with instant session memory compaction using background threading and prompt caching.
   </Card>
 </CardGroup>

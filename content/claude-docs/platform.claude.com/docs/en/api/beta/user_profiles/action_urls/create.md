@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/action_urls/create
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: d22bafa56a2cb00ef54e60828545ff0615ed44732be0feb9ad130f0cb6cffbeb
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 7c37e49b3ad94125cca8d1ccf0effc44bf24edc65b54a2a52e54461b8afa1eab
 ---
 
 ---
@@ -183,9 +183,9 @@ Create Action URL
 ```bash
 curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID/action_urls \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: user-profiles-2026-08-18' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "action": {
             "type": "enroll_end_user"

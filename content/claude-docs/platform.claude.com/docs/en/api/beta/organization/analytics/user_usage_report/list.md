@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/user_usage_report/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 3b7d5786fad119188404d84aaf4970cde09c61aee1c04c4b04c77284c6e0787d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 3e86e670c19712b6b813c575161db8c89692523911d92515bfdf92afb72b284b
 ---
 
 ---
@@ -250,12 +250,6 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
       Tagged user ID.
 
-    - `email: string or null`
-
-      **Deprecated**
-
-      Deprecated: use `email_address`, which carries the same value.
-
   - `cache_creation: BetaCacheCreation`
 
     The number of input tokens for cache creation.
@@ -392,8 +386,8 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/analytics/user_usage_report \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)
@@ -404,7 +398,6 @@ curl https://api.anthropic.com/v1/organizations/analytics/user_usage_report \
     {
       "actor": {
         "deleted": true,
-        "email": "jane@example.com",
         "email_address": "jane@example.com",
         "name": "Jane Smith",
         "type": "user_actor",

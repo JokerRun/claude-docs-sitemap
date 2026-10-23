@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/update
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 5de19bd5ba80765f5cc8372d0a5ae833ba0a604d04ddb32c06b0637c13d51878
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: a6de32dfe683db9f7acd47d6d7ae6f80b976a3d49ef872f1811e30b9f06ca5ee
 ---
 
 ---
@@ -231,8 +231,8 @@ interactive credential (a user OAuth token or a Console session).
 ```bash
 curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUNT_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{}'
 ```
 

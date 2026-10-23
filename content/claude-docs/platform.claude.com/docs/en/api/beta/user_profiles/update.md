@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/update
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 1555d57d14f8674158fc610d6d91ee78e8b4012bef4a9b41aeb53b5e740c1e77
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 22fd4856849b5b47acca1cdfc524576b8e41bca6615aaeb607f2d27083395f02
 ---
 
 ---
@@ -373,9 +373,9 @@ Update User Profile
 ```bash
 curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: user-profiles-2026-08-18' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "external_user_details": {
             "account_status": "suspended"

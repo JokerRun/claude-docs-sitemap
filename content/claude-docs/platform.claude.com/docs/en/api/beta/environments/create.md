@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/create
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: a37ed6e909cebfa6535c1967e7bf90c10575c0150cadaccc15e56dd434ca9269
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: ec538cae71f40ffadb85ce3501306d115f953969ad62b3ff3cffb83572091901
 ---
 
 ---
@@ -397,9 +397,9 @@ Create a new environment with the specified configuration.
 ```bash
 curl https://api.anthropic.com/v1/environments \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "name": "python-data-analysis",
           "config": {

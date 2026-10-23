@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/authentication
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: d00adcaa9c9c63ab8c624976bc1de8e9b6d949d3e5eb0f9ecb485793ad7e8c1d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 02d92937e4ae5e7408818b1907f3ee28d4bd33aaea36b136ccd66839a3159760
 ---
 
 ---
@@ -87,6 +87,14 @@ Store API keys in a secrets manager, rotate them periodically, and disable or de
   // const client = new Anthropic();
   ```
 
+  ```csharp C#
+  using Anthropic;
+
+  AnthropicClient client = new() { ApiKey = "my-anthropic-api-key" };
+  // Or, with ANTHROPIC_API_KEY set in the environment:
+  // AnthropicClient client = new();
+  ```
+
   ```go Go
   client := anthropic.NewClient(
   	option.WithAPIKey("sk-ant-api03-..."), // defaults to os.LookupEnv("ANTHROPIC_API_KEY")
@@ -99,19 +107,11 @@ Store API keys in a secrets manager, rotate them periodically, and disable or de
 
   // Explicit
   AnthropicClient client = AnthropicOkHttpClient.builder()
-    .apiKey("my-anthropic-api-key")
-    .build();
+      .apiKey("my-anthropic-api-key")
+      .build();
 
   // From ANTHROPIC_API_KEY (or anthropic.apiKey system property)
   AnthropicClient clientFromEnv = AnthropicOkHttpClient.fromEnv();
-  ```
-
-  ```csharp C#
-  using Anthropic;
-
-  AnthropicClient client = new() { ApiKey = "my-anthropic-api-key" };
-  // Or, with ANTHROPIC_API_KEY set in the environment:
-  // AnthropicClient client = new();
   ```
 
   ```php PHP
@@ -140,8 +140,8 @@ You can find a workspace's ID in the **ID** column on the [Workspaces](https://p
 
 <CodeGroup>
   ```bash cURL
-  # Required on every request for a multi-workspace key.
-  # Omit the anthropic-workspace-id header for a single-workspace key.
+  # Required on every request for a key that isn't scoped to a workspace.
+  # Omit the anthropic-workspace-id header for a key scoped to one workspace.
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -155,8 +155,8 @@ You can find a workspace's ID in the **ID** column on the [Workspaces](https://p
   ```
 
   ```bash CLI
-  # Required on every command for a multi-workspace key.
-  # Omit --workspace-id for a single-workspace key.
+  # Required on every command for a key that isn't scoped to a workspace.
+  # Omit --workspace-id for a key scoped to one workspace.
   ant messages create \
     --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ \
     --model claude-opus-5-5 \
@@ -167,8 +167,8 @@ You can find a workspace's ID in the **ID** column on the [Workspaces](https://p
   ```python Python
   client = Anthropic()  # reads ANTHROPIC_API_KEY
 
-  # Required on every request for a multi-workspace key.
-  # Omit extra_headers for a single-workspace key.
+  # Required on every request for a key that isn't scoped to a workspace.
+  # Omit extra_headers for a key scoped to one workspace.
   message = client.messages.create(
       model="claude-opus-5-5",
       max_tokens=1024,
@@ -186,8 +186,8 @@ You can find a workspace's ID in the **ID** column on the [Workspaces](https://p
   ```typescript TypeScript
   const client = new Anthropic(); // reads ANTHROPIC_API_KEY
 
-  // Required on every request for a multi-workspace key.
-  // Omit the second argument for a single-workspace key.
+  // Required on every request for a key that isn't scoped to a workspace.
+  // Omit the second argument for a key scoped to one workspace.
   const message = await client.messages.create(
     {
       model: "claude-opus-5-5",
@@ -214,8 +214,8 @@ You can find a workspace's ID in the **ID** column on the [Workspaces](https://p
       Messages = [new UserMessageParam { Content = "Hello, Claude" }],
   };
 
-  // Required on every request for a multi-workspace key.
-  // Call client.Messages.Create(parameters) directly for a single-workspace key.
+  // Required on every request for a key that isn't scoped to a workspace.
+  // Call client.Messages.Create(parameters) directly for a key scoped to one workspace.
   var message = await client
       .WithOptions(options =>
           options with
@@ -242,8 +242,8 @@ You can find a workspace's ID in the **ID** column on the [Workspaces](https://p
   ```go Go
   client := anthropic.NewClient() // reads ANTHROPIC_API_KEY
 
-  // Required on every request for a multi-workspace key.
-  // Omit the option for a single-workspace key.
+  // Required on every request for a key that isn't scoped to a workspace.
+  // Omit the option for a key scoped to one workspace.
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
   	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
@@ -265,8 +265,8 @@ You can find a workspace's ID in the **ID** column on the [Workspaces](https://p
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv(); // reads ANTHROPIC_API_KEY
 
-  // Required on every request for a multi-workspace key.
-  // Omit putAdditionalHeader for a single-workspace key.
+  // Required on every request for a key that isn't scoped to a workspace.
+  // Omit putAdditionalHeader for a key scoped to one workspace.
   Message message = client.messages().create(MessageCreateParams.builder()
       .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024)
@@ -286,8 +286,8 @@ You can find a workspace's ID in the **ID** column on the [Workspaces](https://p
   ```php PHP
   $client = new Client(); // reads ANTHROPIC_API_KEY
 
-  // Required on every request for a multi-workspace key.
-  // Omit requestOptions for a single-workspace key.
+  // Required on every request for a key that isn't scoped to a workspace.
+  // Omit requestOptions for a key scoped to one workspace.
   $message = $client->messages->create(
       model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 1024,
@@ -303,8 +303,8 @@ You can find a workspace's ID in the **ID** column on the [Workspaces](https://p
   ```ruby Ruby
   client = Anthropic::Client.new # reads ANTHROPIC_API_KEY
 
-  # Required on every request for a multi-workspace key.
-  # Omit request_options for a single-workspace key.
+  # Required on every request for a key that isn't scoped to a workspace.
+  # Omit request_options for a key scoped to one workspace.
   message = client.messages.create(
     model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,

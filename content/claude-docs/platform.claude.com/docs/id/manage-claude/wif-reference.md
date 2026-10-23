@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-reference
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 7bfa2128498a55487427d29181c2b47cf9fbb56bb33bc6a4faccaefeb13ead51
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 806f005cf632305101921f61af4a11e771de870436965342be21b5d11038da11
 ---
 
 ---
@@ -68,6 +68,8 @@ SDK menyelesaikan kredensial dalam urutan ini. Sumber pertama yang menghasilkan 
 | 3      | `ANTHROPIC_PROFILE`                                             | Memuat `<config_dir>/configs/<name>.json`. Profil bernama yang tidak ada merupakan error, bukan beralih ke sumber berikutnya.      |
 | 4      | Variabel lingkungan federasi                                    | `ANTHROPIC_FEDERATION_RULE_ID` + `ANTHROPIC_ORGANIZATION_ID` + `ANTHROPIC_SERVICE_ACCOUNT_ID` + `ANTHROPIC_IDENTITY_TOKEN[_FILE]`. |
 | 5      | Profil aktif                                                    | Diselesaikan dari `<config_dir>/active_config`, dengan fallback ke profil bernama `default`.                                       |
+
+Di CLI `ant`, pengaturan untuk [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#authentication) berada di urutan prioritas setelah variabel lingkungan federasi dan sebelum profil aktif. Pengaturan tersebut adalah proyek, ID workspace, dan lokasi. Anda mengaturnya dengan flag `--google-cloud-*` atau variabel `ANTHROPIC_GOOGLE_CLOUD_*`. CLI menggunakan pengaturan ini ketika salah satu di antaranya diatur. Dengan pengaturan ini, CLI mendapatkan kredensialnya dari Google Application Default Credentials.
 
 Ketika profil dimuat, variabel lingkungan mengisi field apa pun yang dihilangkan oleh profil tetapi tidak pernah mengesampingkan field yang diatur secara eksplisit oleh profil. Misalnya, `ANTHROPIC_WORKSPACE_ID` mengisi `workspace_id` hanya ketika profil aktif tidak mengaturnya.
 

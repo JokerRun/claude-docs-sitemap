@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/update
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 1282569ed801be6797c3b2dbd989d68f5e559db9a67cf79419f796060efb9d8e
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 39f504f72e7885b61336b059d07844ef6dfb5122bc6e55fc1a2045c540c0664e
 ---
 
 ---
@@ -263,9 +263,9 @@ Update Session Resource
 ```bash
 curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources/$RESOURCE_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "authorization_token": "ghp_exampletoken"
         }'

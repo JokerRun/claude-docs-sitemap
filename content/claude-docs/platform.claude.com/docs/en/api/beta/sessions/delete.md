@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/delete
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 4e398c3c33ce26877bb4325a4e6180540f2ad5989b477170e1689243b7396df9
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: bb5029dba4ab27c42316882ff229ae9bf1e6f81a6c2cb36047caa9b9eeab055b
 ---
 
 ---
@@ -159,9 +159,9 @@ Delete Session
 ```bash
 curl https://api.anthropic.com/v1/sessions/$SESSION_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 69b9b56123678f310becb2502d6be9dc21427ab0a4688eb22a9e9d97a109d0d8
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: a9cc14f16474a349f91722b08698e813c0b4c17af94c119a87af90c856bcabf6
 ---
 
 ---
@@ -18,7 +18,7 @@ featureMetadata:
     Claude API: ga
     Claude Platform on AWS: ga
     Amazon Bedrock: ga
-    Google Cloud: ga
+    Claude Models on Google Cloud (Google managed): ga
     Microsoft Foundry: ga
 ---
 
@@ -106,7 +106,7 @@ Mulailah dengan contoh sederhana menggunakan Messages API. Anda dapat memberikan
 3. Melalui `file_id` dari [Files API](https://platform.claude.com/docs/id/build-with-claude/files)
 
 <Note>
-  Di Amazon Bedrock dan Google Cloud, saat ini hanya sumber yang dienkode base64 yang tersedia. Di Microsoft Foundry, Files API tidak didukung untuk deployment yang dihosting di Azure.
+  Di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), saat ini hanya sumber yang dienkode base64 yang tersedia. Di Microsoft Foundry, Files API tidak didukung untuk deployment yang dihosting di Azure.
 </Note>
 
 #### Opsi 1: Dokumen PDF berbasis URL

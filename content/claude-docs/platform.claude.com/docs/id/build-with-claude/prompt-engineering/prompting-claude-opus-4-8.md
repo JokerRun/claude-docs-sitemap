@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-4-8
-fetched_at: 2026-09-24T02:21:35.920672Z
-sha256: 9c4c04279d483cf43cb6e90179360eef4284488ffab76bfa0dd568abd3640268
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 9d2da23431ffb396dc6e8773f420a0fce707ab1f53605db00d7fc8500b38dd93
 ---
 
 ---
@@ -164,6 +164,6 @@ Lakukan iterasi pada prompt terhadap subset evaluasi atau kasus uji Anda untuk m
 
 ## Computer use
 
-Claude Opus 4.8 mendukung toolset `computer_toolset_20260801` (di Claude API dan Google Cloud) serta versi alat sebelumnya, `computer_20251124`. Di Claude API dan Google Cloud, Claude Opus 4.8 juga mendukung [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`) untuk tugas di dalam halaman web. Kemampuan ["computer use" (penggunaan komputer)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) berfungsi di berbagai resolusi, hingga resolusi maksimum 2576px / 3,75MP. Pengujian computer use internal menunjukkan bahwa mengirim gambar pada resolusi 1080p memberikan keseimbangan yang baik antara kinerja dan biaya.
+Claude Opus 4.8 mendukung versi alat sebelumnya, `computer_20251124`, dan, di Claude API serta Claude Models on Google Cloud (Google managed), toolset `computer_toolset_20260801`. Di kedua platform tersebut, Claude Opus 4.8 juga mendukung [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`) untuk tugas di dalam halaman web. Kemampuan ["computer use" (penggunaan komputer)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) berfungsi di berbagai resolusi, hingga resolusi maksimum 2576px / 3,75MP. Pengujian computer use internal menunjukkan bahwa mengirim gambar pada resolusi 1080p memberikan keseimbangan yang baik antara kinerja dan biaya.
 
 Untuk beban kerja yang sangat sensitif terhadap biaya, 720p atau 1366×768 adalah opsi berbiaya lebih rendah dengan kinerja yang kuat. Lakukan pengujian Anda sendiri untuk menemukan pengaturan ideal untuk kasus penggunaan Anda; bereksperimen dengan pengaturan effort juga dapat membantu menyesuaikan perilaku model.

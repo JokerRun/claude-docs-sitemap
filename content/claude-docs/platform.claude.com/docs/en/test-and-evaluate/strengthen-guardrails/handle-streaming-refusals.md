@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: e812a84e2a3d400bfe0fb9ad293ca8414f731f48afe60b44fe3451c2c183a657
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: da14525b94093daa17d0738a4035e27ccf0754a05c116c5dbee4278676f9e413
 ---
 
 ---
@@ -243,7 +243,8 @@ Here's how to detect and handle streaming refusals in your application:
   $client = new Client();
   $messages = [];
 
-  function resetConversation(&$messages) {
+  function resetConversation(&$messages)
+  {
       $messages = [];
       echo "Conversation reset due to refusal\n";
   }
@@ -264,7 +265,7 @@ Here's how to detect and handle streaming refusals in your application:
           }
       }
   } catch (\Exception $e) {
-      echo "Error: " . $e->getMessage() . "\n";
+      echo 'Error: ' . $e->getMessage() . "\n";
   }
   ```
 

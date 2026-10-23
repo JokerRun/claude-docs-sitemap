@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/update
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 8ebbefd3df27ca69346db180567e3c084db0d1cf13dde7fcb53ae899b6baec97
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: b427ae5ca8813abdfca7728f068f9e7077701822d4288ab7302005d442cf3fb8
 ---
 
 ---
@@ -209,8 +209,8 @@ encrypted data requires the original key identity to decrypt.
 ```bash
 curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{}'
 ```
 

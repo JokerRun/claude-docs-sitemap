@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-memory
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: f297a5adcbee17ec12a6be94a445bf44e5694823b91b8a007eba3e52c3c9c057
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 1e47205214947c85452bf151884d29122ca273da30a5ce1b1d1927a0cb151fed
 ---
 
 ---
@@ -30,6 +30,8 @@ The difference is who materializes the store. On a self-hosted environment your 
 
 <Note>
   Memory stores cannot be attached to sessions on self-hosted environments on [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws).
+
+  On [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed), memory stores aren't supported for sessions on self-hosted environments.
 </Note>
 
 ## Prepare the host

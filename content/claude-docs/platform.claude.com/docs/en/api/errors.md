@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/errors
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: b43f0d872016245606c1a0dcad14c25c3f4edbfcba9c21931d887d02793bdc46
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 7976c7460a802d427fe9c0e377a21563e8e6cd47f510c59697792e91a00f8771
 ---
 
 ---
@@ -390,10 +390,10 @@ If you don't need to process events incrementally, the SDK can consume the strea
 
       Message message = accumulator.message();
       message.content().stream()
-              .filter(ContentBlock::isText)
-              .findFirst()
-              .flatMap(ContentBlock::text)
-              .ifPresent(textBlock -> IO.println(textBlock.text()));
+          .filter(ContentBlock::isText)
+          .findFirst()
+          .flatMap(ContentBlock::text)
+          .ifPresent(textBlock -> IO.println(textBlock.text()));
   }
   ```
 
@@ -537,7 +537,7 @@ tool_choice: type "tool" and "any" are not supported for this model.
 
 ### Computer use tool version not supported
 
-On the Claude API and Google Cloud, Claude Opus 5.5, Claude Sonnet 5.5, and Claude Haiku 5.5 support [computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) only as the `computer_toolset_20260801` toolset. On those platforms, sending any of these models a `tools` entry of the earlier `computer_20251124` or `computer_20250124` type, with that tool's beta header, returns a 400 `invalid_request_error`. The message names the rejected type, then lists the tool types the model does accept after `Did you mean one of`. For Claude Opus 5.5, it begins:
+On the Claude API and Claude Models on Google Cloud (Google managed), Claude Opus 5.5, Claude Sonnet 5.5, and Claude Haiku 5.5 support [computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) only as the `computer_toolset_20260801` toolset. On those platforms, sending any of these models a `tools` entry of the earlier `computer_20251124` or `computer_20250124` type, with that tool's beta header, returns a 400 `invalid_request_error`. The message names the rejected type, then lists the tool types the model does accept after `Did you mean one of`. For Claude Opus 5.5, it begins:
 
 ```text wrap
 'claude-opus-5-5' does not support tool types: computer_20251124.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/webhooks/delete
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 2f05a72c2e79025e7f1a6bad896049635425a7fc790a3ab40336100040351b14
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 27f519b8a93aac7f1d834c8a45e9a6395fb885b081b6ae9ab1ff88aa91be9539
 ---
 
 ---
@@ -165,9 +165,9 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 ```bash
 curl https://api.anthropic.com/v1/organizations/webhooks/$WEBHOOK_ENDPOINT_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: webhooks-2026-10-07' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

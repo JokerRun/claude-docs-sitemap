@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 5c301b9749c2b138ee6beacae40fbf7b29ea8d3feb3c2980438182aee57d4664
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: a5c238abe25be126a8ddb7d111724b8e26bdb752d6084adfa09cbcc30f4646d9
 ---
 
 ---
@@ -43,8 +43,8 @@ When triggered, the skill equips Claude with:
 * **Onboarding flow:** An interview-driven walkthrough for setting up a new Managed Agent, available through the `/claude-api managed-agents-onboard` subcommand
 * **Security guide check:** A read-only check of an agent's settings against [Secure your Managed Agents deployment](https://platform.claude.com/docs/en/managed-agents/secure-deployment), available through the `/claude-api managed-agents-secure` subcommand of the skill bundled with Claude Code
 * **Language-specific Managed Agents docs:** Creating persistent agents, starting sessions, streaming events, and handling tool confirmations for Python, TypeScript, C#, Go, Java, PHP, Ruby, and cURL
-* **Client patterns:** Lossless stream reconnect, `processed_at` queued/processed gate, interrupt handling, file-mount gotchas, and credential handling
-* **Deployment constraints:** Managed Agents is available on the Claude API and [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) only (not on Amazon Bedrock, Google Cloud, or Microsoft Foundry). The skill routes other deployments to the Messages API and tool use instead.
+* **Client patterns:** Lossless stream reconnect, `processed_at` queued/processed gate, interrupt handling, file-mount pitfalls, and credential handling
+* **Deployment constraints:** Which platforms support Managed Agents, and the Messages API with tool use as the alternative on platforms that don't
 
 ## When the skill activates
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/validate
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: cfd07ea16526eb76b8e9396fb2115aaeafaf01ad4474a3612dd2c55fb71fed26
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: e01b34596f2c88a1515f06b908352d9a2aaeb3e3bb57c000d9965102e27e2fbe
 ---
 
 ---
@@ -60,8 +60,8 @@ message if it failed or timed out.
 ```bash
 curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID/validate \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

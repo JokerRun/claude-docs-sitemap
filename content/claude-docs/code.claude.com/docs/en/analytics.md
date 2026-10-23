@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/analytics
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 00adc5a9e26df21a18d352c4d23aa9d9464652a822831e78547fda42786be758
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 0c6a963ff78c5053d15267f0647bcd3c751f90472dc050632f43b4dfc18db6a8
 ---
 
 > ## Documentation Index
@@ -20,7 +20,7 @@ Claude Code provides analytics dashboards to help organizations understand devel
 | Claude for Teams / Enterprise | [claude.ai/analytics/claude-code](https://claude.ai/analytics/claude-code) | Usage metrics, contribution metrics with GitHub integration, leaderboard, data export | [Details](#access-analytics-for-team-and-enterprise) |
 | API (Claude Console) | [platform.claude.com/claude-code](https://platform.claude.com/claude-code) | Usage metrics, spend tracking, team insights | [Details](#access-analytics-for-api-customers) |
 
-Code Review has its own dashboard. For review activity and spend, see [View usage](/docs/en/code-review-costs#view-usage).
+Code Review has its own dashboard. For review activity and spend, see [View usage](/docs/en/code-review-costs.md#view-usage).
 
 ## Access analytics for Team and Enterprise
 
@@ -33,7 +33,7 @@ The Team and Enterprise dashboard includes:
 * **Leaderboard**: top contributors ranked by Claude Code usage
 * **Data export**: download contribution data as CSV for custom reporting
 
-For per-user token counts and cost estimates, configure [OpenTelemetry export](/docs/en/monitoring-usage), or export the [spend report](https://support.claude.com/en/articles/12883420-view-usage-analytics-for-team-and-enterprise-plans) from your organization's analytics settings, which lists token usage and estimated usage-credit spend per user and per model.
+For per-user token counts and cost estimates, configure [OpenTelemetry export](/docs/en/monitoring-usage.md), or export the [spend report](https://support.claude.com/en/articles/12883420-view-usage-analytics-for-team-and-enterprise-plans) from your organization's analytics settings, which lists token usage and estimated usage-credit spend per user and per model.
 
 ### Enable contribution metrics
 
@@ -47,7 +47,7 @@ You need the Owner role to configure analytics settings. A GitHub admin must ins
 
 > [!WARNING]
 >
-> Contribution metrics are not available for organizations with [Zero Data Retention](/docs/en/zero-data-retention) enabled. The analytics dashboard will show usage metrics only.
+> Contribution metrics are not available for organizations with [Zero Data Retention](/docs/en/zero-data-retention.md) enabled. The analytics dashboard will show usage metrics only.
 
 **1. Install the GitHub app**
 
@@ -70,7 +70,7 @@ Data typically appears within 24 hours after enabling, with daily updates. If no
 * **"GitHub app required"**: install the GitHub app to view contribution metrics
 * **"Data processing in progress"**: check back in a few days and confirm the GitHub app is installed if data doesn't appear
 
-Contribution metrics cover repositories hosted on github.com. For repositories on [GitHub Enterprise Server](/docs/en/github-enterprise-server), the analytics dashboard shows usage metrics only.
+Contribution metrics cover repositories hosted on github.com. For repositories on [GitHub Enterprise Server](/docs/en/github-enterprise-server.md), the analytics dashboard shows usage metrics only.
 
 ### Review summary metrics
 
@@ -226,6 +226,6 @@ The team insights table shows per-user metrics:
 
 ## Related resources
 
-* [Monitoring with OpenTelemetry](/docs/en/monitoring-usage): export real-time metrics and events to your observability stack
-* [Manage costs effectively](/docs/en/costs): set spend limits and optimize token usage
-* [Permissions](/docs/en/permissions): configure roles and permissions
+* [Monitoring with OpenTelemetry](/docs/en/monitoring-usage.md): export real-time metrics and events to your observability stack
+* [Manage costs effectively](/docs/en/costs.md): set spend limits and optimize token usage
+* [Permissions](/docs/en/permissions.md): configure roles and permissions

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/list
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: ec8b5fde4d14b432a3b18f4f2ccf9fece1e2b4ddf7f7784b9c3dfd01127f1810
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 4fef0e1daab62b953052a18796587bfb2861aa4fc3b8e4d98340d269911899e6
 ---
 
 ---
@@ -3206,9 +3206,9 @@ List Events
 
 ```bash
 curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

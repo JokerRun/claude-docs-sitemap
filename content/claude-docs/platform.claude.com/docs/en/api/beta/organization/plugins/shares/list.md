@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/shares/list
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: ff51fec7e0d0e462bd0ed7cd72e41693ae9bcc34b8e6c2741800c185beb3d69d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: cae6d106d29479da505567d908b04a8945ed60bf61ac34354a2c70bc54761976
 ---
 
 ---
@@ -238,9 +238,9 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/plugins/$PLUGIN_ID/shares \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: ce-plugins-2026-09-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

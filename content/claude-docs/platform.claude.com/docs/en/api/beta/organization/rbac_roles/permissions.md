@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_roles/permissions
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 176474635aca5f3a2fa485a8c51445b5922216b14fd7a2e56b3655acd265fbb4
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 7077556b02c8ab8a429d21af199ef5b629984f0877439587f7d5973ebbe898a0
 ---
 
 ---
@@ -174,8 +174,8 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/rbac_roles/$RBAC_ROLE_ID/permissions \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)

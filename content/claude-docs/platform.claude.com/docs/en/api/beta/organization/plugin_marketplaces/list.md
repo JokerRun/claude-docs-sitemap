@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugin_marketplaces/list
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 756fef328f0b484258f5348ba9259dc2fea6f189a09cc71702ec7b452d746978
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 72c5809fab3674741770e69e7910d2a539e1d64770e69c081e1595d5fb28ca39
 ---
 
 ---
@@ -288,9 +288,9 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/plugin_marketplaces \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: ce-plugins-2026-09-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

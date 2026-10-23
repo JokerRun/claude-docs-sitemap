@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: e98ac13ccc7e2d0a4d4335d56cb7226f07c93fc825ab60e29293130e680f617b
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: a05bc9046d34015d96fe77c57317e041c7addb4d6636144c0c0b2a7f3f89d60e
 ---
 
 ---
@@ -912,7 +912,9 @@ Build the deployment structure. Start by defining the function signature for wra
       Message message = client.messages().create(MessageCreateParams.builder()
           .model(DEFAULT_MODEL)
           .maxTokens(2048L)
-          .outputConfig(OutputConfig.builder().effort(OutputConfig.Effort.LOW).build())
+          .outputConfig(OutputConfig.builder()
+              .effort(OutputConfig.Effort.LOW)
+              .build())
           .addUserMessage(classificationPrompt)
           .build());
       String reasoningAndIntent = message.content().stream()
@@ -1280,7 +1282,9 @@ To assess this, first modify the script so that it compares the predicted intent
       Message message = client.messages().create(MessageCreateParams.builder()
           .model(DEFAULT_MODEL)
           .maxTokens(2048L)
-          .outputConfig(OutputConfig.builder().effort(OutputConfig.Effort.LOW).build())
+          .outputConfig(OutputConfig.builder()
+              .effort(OutputConfig.Effort.LOW)
+              .build())
           .addUserMessage(classificationPrompt)
           .build());
       // Get the usage statistics for the API call for how many input and output tokens were used.

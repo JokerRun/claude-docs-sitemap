@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: f36f6bc092277187fd1b39eda4416cad98c940405749839cb517bef16fed9622
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 4b14ce47ad6a3e7316c45f2699f4ac86cc757f6a7aa8bd09d44be709a59eaf5c
 ---
 
 ---
@@ -44,7 +44,7 @@ Saat dipicu, skill ini membekali Claude dengan:
 * **Pemeriksaan panduan keamanan:** Pemeriksaan hanya-baca terhadap pengaturan agen berdasarkan [Amankan deployment Managed Agents Anda](https://platform.claude.com/docs/id/managed-agents/secure-deployment), tersedia melalui subperintah `/claude-api managed-agents-secure` dari skill yang disertakan bersama Claude Code
 * **Dokumentasi Managed Agents khusus bahasa:** Membuat agen persisten, memulai sesi, streaming event, dan menangani konfirmasi alat untuk Python, TypeScript, C#, Go, Java, PHP, Ruby, dan cURL
 * **Pola klien:** Reconnect stream tanpa kehilangan data, gate queued/processed `processed_at`, penanganan interupsi, jebakan file-mount, dan penanganan kredensial
-* **Batasan deployment:** Managed Agents hanya tersedia di Claude API dan [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) (tidak di Amazon Bedrock, Google Cloud, atau Microsoft Foundry). Skill ini mengarahkan deployment lain ke Messages API dan penggunaan alat sebagai gantinya.
+* **Batasan deployment:** Platform mana saja yang mendukung Managed Agents, serta Messages API dengan penggunaan alat sebagai alternatif pada platform yang tidak mendukungnya
 
 ## Kapan skill ini aktif
 

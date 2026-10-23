@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/list
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: cf06c1afd95661d46ca6374a3a7ea9f11c48fbdacfab613a289287d912c23156
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 099caad223a1f45e90e01ddba63bf9358b53d30036fa887ea39da2e223bbc1a7
 ---
 
 ---
@@ -247,8 +247,8 @@ List Skills
 
 ```bash
 curl https://api.anthropic.com/v1/skills \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

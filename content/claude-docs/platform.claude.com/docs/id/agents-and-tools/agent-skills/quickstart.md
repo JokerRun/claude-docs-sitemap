@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: c54f189df481eaa61fa876107e681761353c9036dd5ccc53b4a60b8b6be80e35
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 2e24a7657a3f786d3513b2d929aa67986c3edda7db62d47863d75d5ca6a03b95
 ---
 
 ---
@@ -77,7 +77,7 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk mendaft
   ```
 
   ```go Go
-  // Daftar Skill yang dikelola Anthropic
+  // List Anthropic-managed Skills
   skills, err := client.Skills.List(ctx, anthropic.SkillListParams{
   	Source: anthropic.String("anthropic"),
   })
@@ -93,7 +93,9 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk mendaft
   ```java Java
   // Daftar Skill yang dikelola Anthropic
   SkillListPage skills = client.skills().list(
-      SkillListParams.builder().source("anthropic").build()
+      SkillListParams.builder()
+          .source("anthropic")
+          .build()
   );
 
   for (Skill skill : skills.data()) {
@@ -242,7 +244,7 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
   ```
 
   ```go Go
-  // Buat pesan dengan Skill PowerPoint
+  // Create a message with the PowerPoint Skill
   response, err := client.Messages.New(ctx, anthropic.MessageNewParams{
   	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 16000,
@@ -481,9 +483,9 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. `r
   ```
 
   ```go Go
-  // Ekstrak ID file. Alat eksekusi kode menjalankan kode Skill melalui
-  // sub-alat Bash-nya, dan file yang dihasilkan muncul sebagai bash_code_execution_output
-  // di dalam blok bash_code_execution_tool_result.
+  // Extract the file ID. The code execution tool runs the Skill's code through
+  // its Bash sub-tool, and generated files appear as bash_code_execution_output
+  // items inside the bash_code_execution_tool_result block.
   var fileID string
   for _, block := range response.Content {
   	switch result := block.AsAny().(type) {
@@ -497,7 +499,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. `r
   }
 
   if fileID != "" {
-  	// Unduh file dan simpan
+  	// Download the file and save it
   	outputPath := filepath.Join(os.TempDir(), "renewable_energy.pptx")
   	fileContent, err := client.Files.Download(ctx, fileID, anthropic.FileDownloadParams{})
   	if err != nil {

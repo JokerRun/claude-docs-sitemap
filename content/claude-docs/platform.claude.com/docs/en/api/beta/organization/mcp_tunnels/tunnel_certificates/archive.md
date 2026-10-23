@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/archive
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: d6d57894ea0da3b36ad7091f88f2f441d3b49fa48418ce34192f969d5efb988d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: d2c06c1e0e19050bce30337fab3e73d546b4a1d966aa6bbabcd8939ac9b28977
 ---
 
 ---
@@ -199,9 +199,9 @@ certificate is added.
 ```bash
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/certificates/$CERTIFICATE_ID/archive \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: mcp-tunnels-2026-05-19' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

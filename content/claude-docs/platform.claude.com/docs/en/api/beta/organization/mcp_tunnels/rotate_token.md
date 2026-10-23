@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/rotate_token
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 426ae4a7539dc167e8d28ea82a83d9846b9687958b0b8a1b95a245b46416bc17
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 54afcf47f11b1fb8a41e70e1b8e0350bca85d411d6e804448f960afc892430de
 ---
 
 ---
@@ -180,9 +180,9 @@ restarted after rotation must use the new value. An optional
 ```bash
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/rotate_token \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: mcp-tunnels-2026-05-19' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 56af38fbd4182e0c2dfc5bac3c93f4babc2ca4ca2f621aba0dbe2abadb5e2adc
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 0c146c1c528f3730f7a4da79f0a9ff3cbc414e5b32a434d44195ba6fc759a0a2
 ---
 
 ---
@@ -75,7 +75,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
       }
   ]
 
-  # Kirim permintaan pengguna bersama definisi alat. Claude memutuskan
+  # Kirim permintaan pengguna beserta definisi alat. Claude menentukan
   # apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat.
   response = client.messages.create(
       model="claude-opus-5-5",
@@ -94,19 +94,19 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   # dan array content berisi blok tool_use di samping teks apa pun.
   print(f"stop_reason: {response.stop_reason}")
 
-  # Temukan blok tool_use. Respons mungkin berisi blok teks sebelum blok
-  # tool_use, jadi pindai array content alih-alih mengasumsikan posisinya.
+  # Cari blok tool_use. Respons mungkin berisi blok teks sebelum
+  # blok tool_use, jadi pindai array content alih-alih mengandalkan posisi.
   tool_use = next(block for block in response.content if block.type == "tool_use")
   print(f"Tool: {tool_use.name}")
   print(f"Input: {tool_use.input}")
 
-  # Eksekusi alat. Di sistem nyata, ini akan memanggil API kalender Anda.
-  # Di sini hasilnya di-hardcode agar contoh ini tetap mandiri.
+  # Jalankan alat. Dalam sistem nyata, ini akan memanggil API kalender Anda.
+  # Di sini hasilnya di-hardcode agar contoh tetap mandiri.
   result = {"event_id": "evt_123", "status": "created"}
 
-  # Kirim hasilnya kembali. Blok tool_result masuk ke pesan user dan
-  # tool_use_id-nya harus cocok dengan id dari blok tool_use di atas. Respons
-  # asisten sebelumnya disertakan agar Claude memiliki riwayat lengkap.
+  # Kirim hasilnya kembali. Blok tool_result dimasukkan ke pesan user dan
+  # tool_use_id-nya harus cocok dengan ID dari blok tool_use sebelumnya.
+  # Respons assistant sebelumnya disertakan agar Claude memiliki riwayat lengkap.
   followup = client.messages.create(
       model="claude-opus-5-5",
       max_tokens=1024,
@@ -131,8 +131,8 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
       ],
   )
 
-  # Dengan hasil alat di tangan, Claude menghasilkan jawaban akhir dalam
-  # bahasa alami dan stop_reason menjadi "end_turn".
+  # Dengan hasil alat, Claude menghasilkan jawaban akhir dalam bahasa alami
+  # dan stop_reason menjadi "end_turn".
   print(f"stop_reason: {followup.stop_reason}")
   final_text = next(block for block in followup.content if block.type == "text")
   print(final_text.text)
@@ -177,7 +177,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
     }
   ];
 
-  // Kirim permintaan pengguna bersama definisi alat. Claude memutuskan
+  // Kirim permintaan pengguna beserta definisi alat. Claude menentukan
   // apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat.
   const response = await client.messages.create({
     model: "claude-opus-5-5",
@@ -197,19 +197,19 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   // dan array content berisi blok tool_use di samping teks apa pun.
   console.log(`stop_reason: ${response.stop_reason}`);
 
-  // Temukan blok tool_use. Respons mungkin berisi blok teks sebelum blok
-  // tool_use, jadi pindai array content alih-alih mengasumsikan posisinya.
+  // Temukan blok tool_use. Respons mungkin berisi blok teks sebelum
+  // blok tool_use, jadi pindai array content alih-alih mengasumsikan posisi.
   const toolUse = response.content.find((block) => block.type === "tool_use")!;
   console.log(`Tool: ${toolUse.name}`);
   console.log(`Input: ${JSON.stringify(toolUse.input)}`);
 
-  // Eksekusi alat. Di sistem nyata, ini akan memanggil API kalender Anda.
-  // Di sini hasilnya di-hardcode agar contoh ini tetap mandiri.
+  // Jalankan alat. Di sistem nyata, ini akan memanggil API kalender Anda.
+  // Di sini hasilnya di-hardcode agar contoh tetap mandiri.
   const result = { event_id: "evt_123", status: "created" };
 
-  // Kirim hasilnya kembali. Blok tool_result masuk ke pesan user dan
-  // tool_use_id-nya harus cocok dengan id dari blok tool_use di atas. Respons
-  // assistant sebelumnya disertakan agar Claude memiliki riwayat lengkap.
+  // Kirim hasilnya kembali. Blok tool_result ditempatkan di pesan user dan
+  // tool_use_id-nya harus cocok dengan ID dari blok tool_use sebelumnya.
+  // Respons assistant sebelumnya disertakan agar Claude memiliki riwayat lengkap.
   const followup = await client.messages.create({
     model: "claude-opus-5-5",
     max_tokens: 1024,
@@ -235,8 +235,8 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
     ]
   });
 
-  // Dengan hasil alat di tangan, Claude menghasilkan jawaban akhir dalam
-  // bahasa alami dan stop_reason menjadi "end_turn".
+  // Dengan hasil alat, Claude menghasilkan jawaban akhir dalam bahasa alami
+  // dan stop_reason menjadi "end_turn".
   console.log(`stop_reason: ${followup.stop_reason}`);
   for (const block of followup.content) {
     if (block.type === "text") {
@@ -296,15 +296,15 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
       }),
   ];
 
-  // Minta paling banyak satu pemanggilan alat per giliran agar alur satu giliran di bawah
-  // tetap dapat diprediksi.
+  // Minta paling banyak satu pemanggilan alat per giliran agar alur satu giliran
+  // berikutnya tetap dapat diprediksi.
   var toolChoice = new ToolChoice(new ToolChoiceAuto { DisableParallelToolUse = true });
 
   const string userPrompt =
       "Schedule a 30-minute sync with alice@example.com and bob@example.com on Monday, March 30, 2026 at 10am.";
 
-  // Kirim permintaan pengguna bersama definisi alat. Claude memutuskan
-  // apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat tersebut.
+  // Kirim permintaan pengguna beserta definisi alat. Claude menentukan
+  // apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat.
   var response = await client.Messages.Create(new MessageCreateParams
   {
       Model = Model.ClaudeOpus5_5,
@@ -318,8 +318,8 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   // dan array content berisi blok tool_use di samping teks apa pun.
   Console.WriteLine($"stop_reason: {response.StopReason?.Raw()}");
 
-  // Temukan blok tool_use. Respons mungkin berisi blok teks sebelum blok
-  // tool_use, jadi pindai array content alih-alih mengasumsikan posisinya.
+  // Temukan blok tool_use. Respons mungkin berisi blok teks sebelum
+  // blok tool_use, jadi pindai array content alih-alih mengasumsikan posisi.
   ToolUseBlock? toolUse = null;
   foreach (var block in response.Content)
   {
@@ -333,12 +333,12 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   Console.WriteLine($"Input: {JsonSerializer.Serialize(toolUse.Input)}");
 
   // Jalankan alat. Di sistem nyata, ini akan memanggil API kalender Anda.
-  // Di sini hasilnya di-hardcode agar contoh ini tetap mandiri.
+  // Di sini hasilnya di-hardcode agar contoh tetap mandiri.
   var result = """{"event_id": "evt_123", "status": "created"}""";
 
-  // Kirim hasilnya kembali. Blok tool_result ditempatkan dalam pesan user dan
-  // tool_use_id-nya harus cocok dengan id dari blok tool_use di atas. Respons
-  // assistant sebelumnya disertakan agar Claude memiliki riwayat lengkap.
+  // Kirim hasilnya kembali. Blok tool_result ditempatkan di pesan user dan
+  // tool_use_id-nya harus cocok dengan ID dari blok tool_use sebelumnya.
+  // Respons assistant sebelumnya disertakan agar Claude memiliki riwayat lengkap.
   List<ContentBlockParam> toolResults =
   [
       new ContentBlockParam(new ToolResultBlockParam()
@@ -362,8 +362,8 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
       ],
   });
 
-  // Dengan hasil alat di tangan, Claude menghasilkan jawaban akhir dalam bahasa
-  // alami dan stop_reason menjadi "end_turn".
+  // Dengan hasil alat, Claude menghasilkan jawaban akhir dalam bahasa alami
+  // dan stop_reason menjadi "end_turn".
   Console.WriteLine($"stop_reason: {followup.StopReason?.Raw()}");
   foreach (var block in followup.Content)
   {
@@ -375,7 +375,7 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   ```
 
   ```go Go
-  // Ring 1: Satu alat, satu giliran.
+  // Ring 1: Single tool, single turn.
 
   package main
 
@@ -384,18 +384,18 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   	"fmt"
   	"log"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   func main() {
-  	// Buat klien. Klien ini membaca ANTHROPIC_API_KEY dari environment.
+  	// Create a client. It reads ANTHROPIC_API_KEY from the environment.
   	client := anthropic.NewClient()
   	ctx := context.Background()
 
-  	// Definisikan satu alat. Skema input adalah objek JSON Schema yang mendeskripsikan
-  	// argumen yang harus diteruskan Claude saat memanggil alat ini. Skema ini
-  	// mencakup objek bersarang (recurrence), array (attendees), dan field
-  	// opsional, yang lebih mendekati alat dunia nyata daripada argumen string datar.
+  	// Define one tool. The input schema is a JSON Schema object describing
+  	// the arguments Claude should pass when it calls this tool. This schema
+  	// includes nested objects (recurrence), arrays (attendees), and optional
+  	// fields, which is closer to real-world tools than a flat string argument.
   	tools := []anthropic.ToolUnionParam{
   		{OfTool: &anthropic.ToolParam{
   			Name:        "create_calendar_event",
@@ -422,8 +422,8 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   		}},
   	}
 
-  	// Minta paling banyak satu pemanggilan alat per giliran agar alur satu giliran di bawah
-  	// tetap dapat diprediksi.
+  	// Ask for at most one tool call in each turn so the single-turn flow
+  	// that follows stays predictable.
   	toolChoice := anthropic.ToolChoiceUnionParam{
   		OfAuto: &anthropic.ToolChoiceAutoParam{DisableParallelToolUse: anthropic.Bool(true)},
   	}
@@ -432,8 +432,8 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   		"Schedule a 30-minute sync with alice@example.com and bob@example.com on Monday, March 30, 2026 at 10am.",
   	))
 
-  	// Kirim permintaan pengguna bersama dengan definisi alat. Claude memutuskan
-  	// apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat tersebut.
+  	// Send the user's request along with the tool definition. Claude determines
+  	// whether to call the tool based on the request and the tool description.
   	response, err := client.Messages.New(ctx, anthropic.MessageNewParams{
   		Model:      anthropic.ModelClaudeOpus5_5,
   		MaxTokens:  1024,
@@ -445,12 +445,12 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   		log.Fatal(err)
   	}
 
-  	// Ketika Claude memanggil alat, respons memiliki stop_reason "tool_use"
-  	// dan array content berisi blok tool_use di samping teks apa pun.
+  	// When Claude calls a tool, the response has stop_reason "tool_use"
+  	// and the content array contains a tool_use block alongside any text.
   	fmt.Printf("stop_reason: %s\n", response.StopReason)
 
-  	// Temukan blok tool_use. Respons mungkin berisi blok teks sebelum blok
-  	// tool_use, jadi pindai array content alih-alih mengasumsikan posisinya.
+  	// Find the tool_use block. A response might contain text blocks before the
+  	// tool_use block, so scan the content array rather than assuming position.
   	var toolUse anthropic.ContentBlockUnion
   	for _, block := range response.Content {
   		if block.Type == "tool_use" {
@@ -461,13 +461,13 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   	fmt.Printf("Tool: %s\n", toolUse.Name)
   	fmt.Printf("Input: %s\n", string(toolUse.Input))
 
-  	// Jalankan alat. Dalam sistem nyata, ini akan memanggil API kalender Anda.
-  	// Di sini hasilnya di-hardcode agar contoh ini tetap mandiri.
+  	// Run the tool. In a real system this would call your calendar API.
+  	// Here the result is hardcoded to keep the example self-contained.
   	result := `{"event_id": "evt_123", "status": "created"}`
 
-  	// Kirim hasilnya kembali. Blok tool_result ditempatkan dalam pesan user dan
-  	// tool_use_id-nya harus cocok dengan id dari blok tool_use di atas. Respons
-  	// asisten sebelumnya disertakan agar Claude memiliki riwayat lengkap.
+  	// Send the result back. The tool_result block goes in a user message and
+  	// its tool_use_id must match the ID from the earlier tool_use block. The
+  	// assistant's previous response is included so Claude has the full history.
   	var assistantContent []anthropic.ContentBlockParamUnion
   	for _, block := range response.Content {
   		assistantContent = append(assistantContent, block.ToParam())
@@ -488,8 +488,8 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   		log.Fatal(err)
   	}
 
-  	// Dengan hasil alat di tangan, Claude menghasilkan jawaban akhir dalam bahasa
-  	// alami dan stop_reason menjadi "end_turn".
+  	// With the tool result, Claude produces a final natural-language
+  	// answer and stop_reason becomes "end_turn".
   	fmt.Printf("stop_reason: %s\n", followup.StopReason)
   	for _, block := range followup.Content {
   		if block.Type == "text" {
@@ -549,8 +549,8 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
               .build())
           .build();
 
-      // Minta paling banyak satu pemanggilan alat per giliran agar alur satu giliran di bawah
-      // tetap dapat diprediksi.
+      // Minta paling banyak satu pemanggilan alat per giliran agar alur satu giliran
+      // berikutnya tetap dapat diprediksi.
       ToolChoiceAuto toolChoice = ToolChoiceAuto.builder()
           .disableParallelToolUse(true)
           .build();
@@ -558,8 +558,8 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
       String userPrompt =
           "Schedule a 30-minute sync with alice@example.com and bob@example.com on Monday, March 30, 2026 at 10am.";
 
-      // Kirim permintaan pengguna bersama definisi alat. Claude memutuskan
-      // apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat tersebut.
+      // Kirim permintaan pengguna beserta definisi alat. Claude menentukan
+      // apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat.
       Message response = client.messages().create(MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
@@ -572,8 +572,8 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
       // dan array content berisi blok tool_use di samping teks apa pun.
       IO.println("stop_reason: " + response.stopReason().orElse(null));
 
-      // Temukan blok tool_use. Respons mungkin berisi blok teks sebelum blok
-      // tool_use, jadi pindai array content alih-alih mengasumsikan posisinya.
+      // Cari blok tool_use. Respons mungkin berisi blok teks sebelum
+      // blok tool_use, jadi pindai array content alih-alih mengasumsikan posisi.
       ToolUseBlock toolUse = response.content().stream()
           .flatMap(block -> block.toolUse().stream())
           .findFirst()
@@ -581,13 +581,13 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
       IO.println("Tool: " + toolUse.name());
       IO.println("Input: " + toolUse._input());
 
-      // Jalankan alat. Dalam sistem nyata, ini akan memanggil API kalender Anda.
-      // Di sini hasilnya di-hardcode agar contoh ini tetap mandiri.
+      // Jalankan alat. Di sistem nyata, ini akan memanggil API kalender Anda.
+      // Di sini hasilnya di-hardcode agar contoh tetap mandiri.
       String result = "{\"event_id\": \"evt_123\", \"status\": \"created\"}";
 
-      // Kirim hasilnya kembali. Blok tool_result ditempatkan dalam pesan user dan
-      // tool_use_id-nya harus cocok dengan id dari blok tool_use di atas. Respons
-      // asisten sebelumnya disertakan agar Claude memiliki riwayat lengkap.
+      // Kirim hasilnya kembali. Blok tool_result ditempatkan di pesan user dan
+      // tool_use_id-nya harus cocok dengan ID dari blok tool_use sebelumnya.
+      // Respons assistant sebelumnya disertakan agar Claude memiliki riwayat lengkap.
       Message followup = client.messages().create(MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
@@ -602,8 +602,8 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
                   .build())))
           .build());
 
-      // Dengan hasil alat di tangan, Claude menghasilkan jawaban akhir dalam bahasa
-      // alami dan stop_reason menjadi "end_turn".
+      // Dengan hasil alat, Claude menghasilkan jawaban akhir dalam bahasa alami
+      // dan stop_reason menjadi "end_turn".
       IO.println("stop_reason: " + followup.stopReason().orElse(null));
       followup.content().stream()
           .flatMap(block -> block.text().stream())
@@ -658,12 +658,12 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
       'content' => 'Schedule a 30-minute sync with alice@example.com and bob@example.com on Monday, March 30, 2026 at 10am.',
   ];
 
-  // Minta paling banyak satu pemanggilan alat per giliran agar alur satu giliran di bawah
-  // tetap dapat diprediksi.
+  // Minta paling banyak satu pemanggilan alat per giliran agar alur satu giliran
+  // berikutnya tetap dapat diprediksi.
   $toolChoice = ToolChoiceAuto::with(disableParallelToolUse: true);
 
-  // Kirim permintaan pengguna bersama definisi alat. Claude memutuskan
-  // apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat tersebut.
+  // Kirim permintaan pengguna beserta definisi alat. Claude menentukan
+  // apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat.
   $response = $client->messages->create(
       model: 'claude-opus-5-5',
       maxTokens: 1024,
@@ -676,8 +676,8 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   // dan array content berisi blok tool_use di samping teks apa pun.
   printf("stop_reason: %s\n", $response->stopReason);
 
-  // Temukan blok tool_use. Respons mungkin berisi blok teks sebelum blok
-  // tool_use, jadi pindai array content alih-alih mengasumsikan posisinya.
+  // Temukan blok tool_use. Respons mungkin berisi blok teks sebelum
+  // blok tool_use, jadi pindai array content alih-alih mengasumsikan posisi.
   $toolUse = null;
   foreach ($response->content as $block) {
       if ($block->type === 'tool_use') {
@@ -688,13 +688,13 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   printf("Tool: %s\n", $toolUse->name);
   printf("Input: %s\n", json_encode($toolUse->input));
 
-  // Jalankan alat. Dalam sistem nyata, ini akan memanggil API kalender Anda.
-  // Di sini hasilnya di-hardcode agar contoh ini tetap mandiri.
+  // Jalankan alat. Di sistem nyata, ini akan memanggil API kalender Anda.
+  // Di sini hasilnya di-hardcode agar contoh tetap mandiri.
   $result = ['event_id' => 'evt_123', 'status' => 'created'];
 
-  // Kirim hasilnya kembali. Blok tool_result ditempatkan dalam pesan user dan
-  // tool_use_id-nya harus cocok dengan id dari blok tool_use di atas. Respons
-  // assistant sebelumnya disertakan agar Claude memiliki riwayat lengkap.
+  // Kirim hasilnya kembali. Blok tool_result ditempatkan di pesan user dan
+  // tool_use_id-nya harus cocok dengan ID dari blok tool_use sebelumnya.
+  // Respons assistant sebelumnya disertakan agar Claude memiliki riwayat lengkap.
   $followup = $client->messages->create(
       model: 'claude-opus-5-5',
       maxTokens: 1024,
@@ -716,8 +716,8 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
       ],
   );
 
-  // Dengan hasil alat di tangan, Claude menghasilkan jawaban akhir dalam bahasa
-  // alami dan stop_reason menjadi "end_turn".
+  // Dengan hasil alat, Claude menghasilkan jawaban akhir dalam bahasa alami
+  // dan stop_reason menjadi "end_turn".
   printf("stop_reason: %s\n", $followup->stopReason);
   foreach ($followup->content as $block) {
       if ($block->type === 'text') {
@@ -770,12 +770,12 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
     content: "Schedule a 30-minute sync with alice@example.com and bob@example.com on Monday, March 30, 2026 at 10am."
   }
 
-  # Minta paling banyak satu pemanggilan alat per giliran agar alur satu giliran di bawah
-  # tetap dapat diprediksi.
+  # Minta paling banyak satu pemanggilan alat per giliran agar alur satu giliran
+  # berikutnya tetap dapat diprediksi.
   tool_choice = {type: "auto", disable_parallel_tool_use: true}
 
-  # Kirim permintaan pengguna bersama definisi alat. Claude memutuskan
-  # apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat tersebut.
+  # Kirim permintaan pengguna beserta definisi alat. Claude menentukan
+  # apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat.
   response = client.messages.create(
     model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
@@ -788,19 +788,19 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
   # dan array content berisi blok tool_use di samping teks apa pun.
   puts "stop_reason: #{response.stop_reason}"
 
-  # Temukan blok tool_use. Respons mungkin berisi blok teks sebelum blok
-  # tool_use, jadi pindai array content alih-alih mengasumsikan posisinya.
+  # Cari blok tool_use. Respons mungkin berisi blok teks sebelum
+  # blok tool_use, jadi pindai array content alih-alih mengandalkan posisi.
   tool_use = response.content.find { |block| block.type == :tool_use }
   puts "Tool: #{tool_use.name}"
   puts "Input: #{tool_use.input}"
 
-  # Eksekusi alat. Di sistem nyata, ini akan memanggil API kalender Anda.
-  # Di sini hasilnya di-hardcode agar contoh ini tetap mandiri.
+  # Jalankan alat. Dalam sistem nyata, ini akan memanggil API kalender Anda.
+  # Di sini hasilnya di-hardcode agar contoh tetap mandiri.
   result = {event_id: "evt_123", status: "created"}
 
-  # Kirim hasilnya kembali. Blok tool_result ditempatkan dalam pesan user dan
-  # tool_use_id-nya harus cocok dengan id dari blok tool_use di atas. Respons
-  # assistant sebelumnya disertakan agar Claude memiliki riwayat lengkap.
+  # Kirim hasilnya kembali. Blok tool_result dimasukkan ke pesan user dan
+  # tool_use_id-nya harus cocok dengan ID dari blok tool_use sebelumnya.
+  # Respons assistant sebelumnya disertakan agar Claude memiliki riwayat lengkap.
   followup = client.messages.create(
     model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
@@ -822,8 +822,8 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
     ]
   )
 
-  # Dengan hasil alat di tangan, Claude menghasilkan jawaban akhir dalam bahasa
-  # alami dan stop_reason menjadi "end_turn".
+  # Dengan hasil alat, Claude menghasilkan jawaban akhir dalam bahasa alami
+  # dan stop_reason menjadi "end_turn".
   puts "stop_reason: #{followup.stop_reason}"
   followup.content.each do |block|
     puts block.text if block.type == :text
@@ -1169,7 +1169,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   ```
 
   ```go Go
-  // Ring 2: Loop agentik.
+  // Ring 2: The agentic loop.
 
   package main
 
@@ -1179,7 +1179,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   	"fmt"
   	"log"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   func runTool(name string, input map[string]any) string {
@@ -1224,7 +1224,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   		OfAuto: &anthropic.ToolChoiceAutoParam{DisableParallelToolUse: anthropic.Bool(true)},
   	}
 
-  	// Simpan seluruh riwayat percakapan dalam slice agar setiap giliran melihat konteks sebelumnya.
+  	// Keep the full conversation history in a slice so each turn sees prior context.
   	messages := []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock(
   			"Schedule a weekly team standup every Monday at 9am for the next 4 weeks, starting Monday, March 30, 2026. Invite the whole team: alice@example.com, bob@example.com, carol@example.com.",
@@ -1242,8 +1242,8 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   		log.Fatal(err)
   	}
 
-  	// Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan alat yang diminta,
-  	// menambahkan hasilnya ke riwayat, lalu meminta Claude untuk melanjutkan.
+  	// Loop until Claude stops asking for tools. Each iteration runs the requested
+  	// tool, appends the result to history, and asks Claude to continue.
   	for response.StopReason == "tool_use" {
   		var toolUse anthropic.ContentBlockUnion
   		for _, block := range response.Content {
@@ -1962,7 +1962,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   ```
 
   ```go Go
-  // Ring 3: Beberapa alat, panggilan paralel.
+  // Ring 3: Multiple tools, parallel calls.
 
   package main
 
@@ -1972,7 +1972,7 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   	"fmt"
   	"log"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   func runTool(name string, input map[string]any) string {
@@ -2043,8 +2043,8 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
   	}
 
   	for response.StopReason == "tool_use" {
-  		// Satu respons dapat berisi beberapa blok tool_use. Proses semuanya
-  		// lalu kembalikan semua hasilnya sekaligus dalam satu pesan user.
+  		// A single response can contain multiple tool_use blocks. Process all of
+  		// them and return all results together in one user message.
   		var toolResults []anthropic.ContentBlockParamUnion
   		for _, block := range response.Content {
   			if block.Type == "tool_use" {
@@ -2809,7 +2809,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   ```
 
   ```go Go
-  // Ring 4: Penanganan error.
+  // Ring 4: Error handling.
 
   package main
 
@@ -2820,7 +2820,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   	"log"
   	"strings"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   func runTool(name string, input map[string]any) (string, error) {
@@ -2877,7 +2877,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   		}},
   	}
 
-  	// Buat request yang melebihi batas peserta alat agar jalur error dijalankan.
+  	// Build a request that exceeds the tool's attendee limit so the error path runs.
   	emails := make([]string, 15)
   	for i := range emails {
   		emails[i] = fmt.Sprintf("user%d@example.com", i)
@@ -2908,7 +2908,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   				}
   				result, toolErr := runTool(block.Name, input)
   				if toolErr != nil {
-  					// Tandai kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
+  					// Signal failure so Claude can retry or ask for clarification.
   					toolResults = append(toolResults, anthropic.NewToolResultBlock(block.ID, toolErr.Error(), true))
   				} else {
   					toolResults = append(toolResults, anthropic.NewToolResultBlock(block.ID, result, false))
@@ -3334,7 +3334,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   </CodeGroupItem>
 
   ```python Python
-  # Ring 5: Abstraksi SDK Tool Runner.
+  # Ring 5: Abstraksi SDK tool runner.
 
   import json
 
@@ -3396,7 +3396,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   ```
 
   ```typescript TypeScript
-  // Ring 5: Abstraksi SDK Tool Runner.
+  // Ring 5: Abstraksi SDK tool runner.
 
   import Anthropic from "@anthropic-ai/sdk";
   import { betaZodTool } from "@anthropic-ai/sdk/helpers/beta/zod";
@@ -3465,7 +3465,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   ```
 
   ```csharp C#
-  // Ring 5: Abstraksi SDK Tool Runner.
+  // Ring 5: Abstraksi SDK tool runner.
 
   using System;
   using System.Collections.Generic;
@@ -3584,7 +3584,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   ```
 
   ```go Go
-  // Ring 5: Abstraksi SDK Tool Runner.
+  // Ring 5: The tool runner SDK abstraction.
 
   package main
 
@@ -3593,12 +3593,12 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   	"fmt"
   	"log"
 
-  	"github.com/anthropics/anthropic-sdk-go"
-  	"github.com/anthropics/anthropic-sdk-go/toolrunner"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
+  	"github.com/anthropics/anthropic-sdk-go/v2/toolrunner"
   )
 
-  // Struct input mendefinisikan skema setiap alat. Tool runner menghasilkan
-  // JSON Schema dari field struct beserta tag jsonschema-nya.
+  // The input structs define each tool's schema. The tool runner generates the
+  // JSON Schema from the struct fields and their jsonschema tags.
   type RecurrenceInput struct {
   	Frequency string `json:"frequency,omitempty" jsonschema:"enum=daily,enum=weekly,enum=monthly,description=How often the event repeats"`
   	Count     int    `json:"count,omitempty" jsonschema:"description=Number of occurrences"`
@@ -3620,8 +3620,8 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   	client := anthropic.NewClient()
   	ctx := context.Background()
 
-  	// Definisikan setiap alat sebagai fungsi handler. Mengembalikan error akan mengirim
-  	// pesan kembali ke Claude sebagai hasil alat dengan is_error diatur.
+  	// Define each tool as a handler function. Returning an error sends the
+  	// message back to Claude as a tool result with is_error set.
   	createCalendarEvent, err := toolrunner.NewBetaToolFromJSONSchema(
   		"create_calendar_event",
   		"Create a calendar event with attendees and optional recurrence.",
@@ -3655,8 +3655,8 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   		log.Fatal(err)
   	}
 
-  	// Runner memanggil API, menjalankan alat yang diminta, dan mengirim hasilnya kembali
-  	// hingga Claude menghasilkan jawaban akhir.
+  	// The runner calls the API, runs requested tools, and feeds results back
+  	// until Claude produces a final answer.
   	runner := client.Beta.Messages.NewToolRunner(
   		[]anthropic.BetaTool{createCalendarEvent, listCalendarEvents},
   		anthropic.BetaToolRunnerParams{
@@ -3689,7 +3689,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   ```
 
   ```java Java
-  // Ring 5: Abstraksi SDK Tool Runner.
+  // Ring 5: Abstraksi SDK tool runner.
 
   import com.anthropic.client.AnthropicClient;
   import com.anthropic.client.okhttp.AnthropicOkHttpClient;
@@ -3745,15 +3745,15 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
       // Runner memanggil API, menjalankan alat yang diminta, dan mengirim hasilnya kembali
       // hingga Claude menghasilkan jawaban akhir.
       BetaToolRunner runner = client.beta()
-              .messages()
-              .toolRunner(MessageCreateParams.builder()
-                      .model(Model.CLAUDE_OPUS_5_5)
-                      .maxTokens(1024)
-                      .addBeta("structured-outputs-2025-11-13")
-                      .addUserMessage("Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.")
-                      .addTool(CreateCalendarEvent.class)
-                      .addTool(ListCalendarEvents.class)
-                      .build());
+          .messages()
+          .toolRunner(MessageCreateParams.builder()
+              .model(Model.CLAUDE_OPUS_5_5)
+              .maxTokens(1024)
+              .addBeta("structured-outputs-2025-11-13")
+              .addUserMessage("Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.")
+              .addTool(CreateCalendarEvent.class)
+              .addTool(ListCalendarEvents.class)
+              .build());
 
       BetaMessage finalMessage = null;
       for (BetaMessage message : runner) {
@@ -3769,7 +3769,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   ```php PHP
   <?php
 
-  // Ring 5: Abstraksi SDK Tool Runner.
+  // Ring 5: Abstraksi SDK tool runner.
 
   use Anthropic\Client;
   use Anthropic\Lib\Tools\BetaRunnableTool;
@@ -3863,7 +3863,7 @@ Setiap SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat
   ```
 
   ```ruby Ruby
-  # Ring 5: Abstraksi SDK Tool Runner.
+  # Ring 5: Abstraksi SDK tool runner.
 
   require "anthropic"
 

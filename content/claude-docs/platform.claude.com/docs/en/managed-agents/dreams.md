@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/dreams
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 821f1f9775c5236cb995c5134af79ea7d60f8f6b409361207ac46fcd1b4eba42
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: fc74b206ff8c33cf26b89bcfbfdf80f24260ff570754e90cc271b92c3c7dd254
 ---
 
 ---
@@ -380,7 +380,6 @@ When `status` (csharp, go: `Status`) reaches `completed`, the `memory_store` ent
   		EnvironmentID: environmentID,
   		Resources: []anthropic.BetaSessionNewParamsResourceUnion{{
   			OfMemoryStore: &anthropic.BetaManagedAgentsMemoryStoreResourceParam{
-  				Type:          anthropic.BetaManagedAgentsMemoryStoreResourceParamTypeMemoryStore,
   				MemoryStoreID: outputStoreID,
   			},
   		}},
@@ -596,7 +595,9 @@ Returns all non-archived dreams in the workspace, newest first. Use `limit` (csh
 
   ```java Java
   for (var listedDream : client.beta().dreams().list(
-      DreamListParams.builder().limit(20).build()
+      DreamListParams.builder()
+          .limit(20)
+          .build()
   ).autoPager()) {
       IO.println(listedDream.id() + " " + listedDream.status());
   }

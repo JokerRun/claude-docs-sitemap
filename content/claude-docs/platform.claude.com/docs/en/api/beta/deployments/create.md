@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/create
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: ac33efc1aa43c6f5cf8147a369e7407431f993009c0dd611cfed7f9675d6ee62
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 85f2d759320adb6e3aa03401d86916a3c6cafa1f7a3795b82c2a877ab4b9b8e0
 ---
 
 ---
@@ -1067,9 +1067,9 @@ Create Deployment
 ```bash
 curl https://api.anthropic.com/v1/deployments \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "agent": "string",
           "environment_id": "x",

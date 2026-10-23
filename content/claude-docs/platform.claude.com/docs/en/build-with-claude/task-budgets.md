@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/task-budgets
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 13bc50b2cf0b70e912aa11344455c20eaf0b1cf6d2f82e0750ea94a87f30dc4c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: cfe8d0ead86a8134c1498c9ec5b584f051924ca161b4f4b214d323ab5146db61
 ---
 
 ---
@@ -145,12 +145,9 @@ Add `task_budget` to `output_config` and include the beta header:
   	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 128000,
   	Betas:     []anthropic.AnthropicBeta{"task-budgets-2026-03-13"},
-  	Messages: []anthropic.BetaMessageParam{{
-  		Role: anthropic.BetaMessageParamRoleUser,
-  		Content: []anthropic.BetaContentBlockParamUnion{{
-  			OfText: &anthropic.BetaTextBlockParam{Text: "Review the codebase and propose a refactor plan."},
-  		}},
-  	}},
+  	Messages: []anthropic.BetaMessageParam{
+  		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Review the codebase and propose a refactor plan.")),
+  	},
   	OutputConfig: anthropic.BetaOutputConfigParam{
   		Effort: anthropic.BetaOutputConfigEffortHigh,
   		TaskBudget: anthropic.BetaTokenTaskBudgetParam{
@@ -182,7 +179,9 @@ Add `task_budget` to `output_config` and include the beta header:
       .addUserMessage("Review the codebase and propose a refactor plan.")
       .outputConfig(BetaOutputConfig.builder()
           .effort(BetaOutputConfig.Effort.HIGH)
-          .taskBudget(BetaTokenTaskBudget.builder().total(64000L).build())
+          .taskBudget(BetaTokenTaskBudget.builder()
+              .total(64000L)
+              .build())
           .build())
       .addBeta("task-budgets-2026-03-13")
       .build();
@@ -199,11 +198,12 @@ Add `task_budget` to `output_config` and include the beta header:
 
   ```php PHP
   use Anthropic\Beta\Messages\BetaRawMessageDeltaEvent;
+  use Anthropic\Messages\Model;
 
   $client = new Client();
 
   $stream = $client->beta->messages->createStream(
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 128000,
       messages: [
           ['role' => 'user', 'content' => 'Review the codebase and propose a refactor plan.'],
@@ -625,7 +625,7 @@ Run a representative sample of tasks **without** `task_budget` set and record th
   $client = new Client();
 
   $response = $client->messages->create(
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 4096,
       messages: [
           ['role' => 'user', 'content' => 'Review the codebase and propose a refactor plan.'],

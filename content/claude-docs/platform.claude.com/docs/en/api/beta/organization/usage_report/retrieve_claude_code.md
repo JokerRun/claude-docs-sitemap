@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_claude_code
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 12db5e5b6b29b113add24ed42c669b45089d2551dd5b30418c5e737df2d1dd86
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: a021668c35bd449c4e83d1703a43cdd5f2ac9308fcebf1c6a8ec6503cfb37288
 ---
 
 ---
@@ -203,8 +203,8 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

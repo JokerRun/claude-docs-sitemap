@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 48c7c91a6a34cbf5a50ac61a08892b35dc0d9a30f66c1602779d25b303f4c815
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 6430b3a3827852dde3933efac3c4b4f2608d0fc2b84b1ea33c6f043c6e947f0b
 ---
 
 ---
@@ -72,7 +72,9 @@ Pertama, unggah file menggunakan [Files API](https://platform.claude.com/docs/id
 
   ```java Java
   var file = client.files().upload(
-      FileUploadParams.builder().file(dataCsv).build()
+      FileUploadParams.builder()
+          .file(dataCsv)
+          .build()
   );
   IO.println("File ID: " + file.id());
   ```
@@ -181,7 +183,6 @@ Mount file yang telah diunggah ke dalam sandbox dengan menambahkannya ke array `
   	EnvironmentID: environment.ID,
   	Resources: []anthropic.BetaSessionNewParamsResourceUnion{{
   		OfFile: &anthropic.BetaManagedAgentsFileResourceParams{
-  			Type:      anthropic.BetaManagedAgentsFileResourceParamsTypeFile,
   			FileID:    file.ID,
   			MountPath: anthropic.String("/data.csv"),
   		},
@@ -413,7 +414,6 @@ Anda dapat menambahkan atau menghapus file dari sesi setelah dibuat menggunakan 
   ```go Go
   resource, err := client.Beta.Sessions.Resources.Add(ctx, session.ID, anthropic.BetaSessionResourceAddParams{
   	BetaManagedAgentsFileResourceParams: anthropic.BetaManagedAgentsFileResourceParams{
-  		Type:   anthropic.BetaManagedAgentsFileResourceParamsTypeFile,
   		FileID: file.ID,
   	},
   })
@@ -542,7 +542,9 @@ Tampilkan daftar semua resource pada sesi dengan `GET /v1/sessions/{session_id}/
 
   client.beta().sessions().resources().delete(
       resource.id(),
-      ResourceDeleteParams.builder().sessionId(session.id()).build()
+      ResourceDeleteParams.builder()
+          .sessionId(session.id())
+          .build()
   );
   ```
 

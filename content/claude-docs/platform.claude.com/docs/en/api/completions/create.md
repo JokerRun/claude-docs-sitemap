@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions/create
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 5c04871dee76b2341373ca217085aa3cb1b5eee9fb0a35440b5908d1073fac68
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 44dfc1c12de038384877af74c99703303c561adffe7083876b2b868d6e966fa6
 ---
 
 ---
@@ -458,8 +458,8 @@ Future models and features will not be compatible with Text Completions. See our
 ```bash
 curl https://api.anthropic.com/v1/complete \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     --max-time 600 \
     -d '{
           "max_tokens_to_sample": 256,

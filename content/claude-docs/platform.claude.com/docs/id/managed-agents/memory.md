@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 958a42a56951ac9f35bb55bd20b381164f347a6b36c2ecd2343d064fb81d25f3
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: cb4e08cdfe8afd00104a9be786031076e4a3a19a25926fefc82bf216467ce887
 ---
 
 ---
@@ -41,7 +41,10 @@ Berikan store sebuah `name` (csharp, go: `Name`) dan `description` (csharp, go: 
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
-    -d '{"name": "User Preferences", "description": "Per-user preferences and project context."}'
+    -d '{
+      "name": "User Preferences",
+      "description": "Per-user preferences and project context."
+    }'
   ```
 
   <CodeGroupItem>
@@ -142,7 +145,10 @@ Muat store terlebih dahulu dengan materi referensi sebelum agen apa pun berjalan
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
-    -d '{"path": "/formatting_standards.md", "content": "All reports use GAAP formatting. Dates are ISO-8601..."}'
+    -d '{
+      "path": "/formatting_standards.md",
+      "content": "All reports use GAAP formatting. Dates are ISO-8601..."
+    }'
   ```
 
   ```bash CLI
@@ -312,7 +318,6 @@ Anda juga dapat mengonfigurasi `access` (csharp, go: `Access`). Nilai default-ny
   	EnvironmentID: environment.ID,
   	Resources: []anthropic.BetaSessionNewParamsResourceUnion{{
   		OfMemoryStore: &anthropic.BetaManagedAgentsMemoryStoreResourceParam{
-  			Type:          anthropic.BetaManagedAgentsMemoryStoreResourceParamTypeMemoryStore,
   			MemoryStoreID: store.ID,
   			Access:        anthropic.BetaManagedAgentsMemoryStoreResourceParamAccessReadWrite,
   			Instructions:  anthropic.String("User preferences and project context. Check before starting any task."),
@@ -445,7 +450,9 @@ Daftar memori dalam sebuah store. Hasil dikembalikan dalam urutan yang stabil da
   });
   await foreach (var item in page.Paginate())
   {
-      var line = item.Match(m => $"memory  {m.Path}", p => $"memory_prefix  {p.Path}");
+      var line = item.Match(
+          memoryItem => $"memory  {memoryItem.Path}",
+          prefixItem => $"memory_prefix  {prefixItem.Path}");
       Console.WriteLine(line);
   }
   ```
@@ -470,8 +477,8 @@ Daftar memori dalam sebuah store. Hasil dikembalikan dalam urutan yang stabil da
           .build()
   );
   for (var item : page.data()) {
-      item.memory().ifPresent(m -> IO.println("memory  " + m.path()));
-      item.memoryPrefix().ifPresent(p -> IO.println("memory_prefix  " + p.path()));
+      item.memory().ifPresent(memoryItem -> IO.println("memory  " + memoryItem.path()));
+      item.memoryPrefix().ifPresent(prefixItem -> IO.println("memory_prefix  " + prefixItem.path()));
   }
   ```
 
@@ -552,7 +559,9 @@ Mengambil memori individual mengembalikan konten lengkapnya.
   ```java Java
   var retrieved = client.beta().memoryStores().memories().retrieve(
       mem.id(),
-      MemoryRetrieveParams.builder().memoryStoreId(store.id()).build()
+      MemoryRetrieveParams.builder()
+          .memoryStoreId(store.id())
+          .build()
   );
   IO.println(retrieved.content().orElseThrow());
   ```
@@ -584,7 +593,10 @@ Lihat [referensi Retrieve a memory](https://platform.claude.com/docs/id/api/beta
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
-    -d '{"path": "/preferences/formatting.md", "content": "Always use tabs, not spaces."}'
+    -d '{
+      "path": "/preferences/formatting.md",
+      "content": "Always use tabs, not spaces."
+    }'
   ```
 
   ```bash CLI
@@ -795,7 +807,6 @@ Untuk menghindari menimpa penulisan yang terjadi bersamaan, teruskan prakondisi 
   	MemoryStoreID: store.ID,
   	Content:       anthropic.String("CORRECTED: Always use 2-space indentation."),
   	Precondition: anthropic.BetaManagedAgentsPreconditionParam{
-  		Type:          anthropic.BetaManagedAgentsPreconditionTypeContentSha256,
   		ContentSha256: anthropic.String(mem.ContentSha256),
   	},
   })
@@ -886,7 +897,9 @@ Untuk menghindari menimpa penulisan yang terjadi bersamaan, teruskan prakondisi 
   ```java Java
   client.beta().memoryStores().memories().delete(
       mem.id(),
-      MemoryDeleteParams.builder().memoryStoreId(store.id()).build()
+      MemoryDeleteParams.builder()
+          .memoryStoreId(store.id())
+          .build()
   );
   ```
 
@@ -961,10 +974,10 @@ Daftar riwayat versi untuk sebuah store, yang terbaru lebih dulu. Contoh berikut
       MemoryID = mem.ID,
   });
   var versionIds = new List<string>();
-  await foreach (var v in versions.Paginate())
+  await foreach (var memoryVersion in versions.Paginate())
   {
-      Console.WriteLine($"{v.ID}: {v.Operation.Raw()}");
-      versionIds.Add(v.ID);
+      Console.WriteLine($"{memoryVersion.ID}: {memoryVersion.Operation.Raw()}");
+      versionIds.Add(memoryVersion.ID);
   }
 
   var versionId = versionIds[1];
@@ -975,8 +988,8 @@ Daftar riwayat versi untuk sebuah store, yang terbaru lebih dulu. Contoh berikut
   	MemoryID: anthropic.String(mem.ID),
   })
   for versions.Next() {
-  	v := versions.Current()
-  	fmt.Printf("%s: %s\n", v.ID, v.Operation)
+  	memoryVersion := versions.Current()
+  	fmt.Printf("%s: %s\n", memoryVersion.ID, memoryVersion.Operation)
   }
   if err := versions.Err(); err != nil {
   	panic(err)
@@ -994,10 +1007,12 @@ Daftar riwayat versi untuk sebuah store, yang terbaru lebih dulu. Contoh berikut
   ```java Java
   var versions = client.beta().memoryStores().memoryVersions().list(
       store.id(),
-      MemoryVersionListParams.builder().memoryId(mem.id()).build()
+      MemoryVersionListParams.builder()
+          .memoryId(mem.id())
+          .build()
   );
-  for (var v : versions.autoPager()) {
-      IO.println(v.id() + ": " + v.operation());
+  for (var memoryVersion : versions.autoPager()) {
+      IO.println(memoryVersion.id() + ": " + memoryVersion.operation());
   }
 
   var versionId = versions.data().get(1).id();
@@ -1008,8 +1023,8 @@ Daftar riwayat versi untuk sebuah store, yang terbaru lebih dulu. Contoh berikut
       $store->id,
       memoryID: $mem->id,
   );
-  foreach ($versions->pagingEachItem() as $v) {
-      echo "{$v->id}: {$v->operation}\n";
+  foreach ($versions->pagingEachItem() as $memoryVersion) {
+      echo "{$memoryVersion->id}: {$memoryVersion->operation}\n";
   }
 
   $versionId = $versions->data[1]->id;
@@ -1084,7 +1099,9 @@ Mengambil versi individual mengembalikan field yang sama dengan respons daftar d
   ```java Java
   var version = client.beta().memoryStores().memoryVersions().retrieve(
       versionId,
-      MemoryVersionRetrieveParams.builder().memoryStoreId(store.id()).build()
+      MemoryVersionRetrieveParams.builder()
+          .memoryStoreId(store.id())
+          .build()
   );
   IO.println(version.content().orElseThrow());
   ```
@@ -1162,7 +1179,9 @@ Versi yang merupakan head saat ini dari memori yang masih aktif tidak dapat dire
   ```java Java
   client.beta().memoryStores().memoryVersions().redact(
       versionId,
-      MemoryVersionRedactParams.builder().memoryStoreId(store.id()).build()
+      MemoryVersionRedactParams.builder()
+          .memoryStoreId(store.id())
+          .build()
   );
   ```
 
@@ -1216,9 +1235,9 @@ Daftar store di workspace. Store yang diarsipkan dikecualikan secara default; at
 
   ```csharp C#
   var stores = await client.Beta.MemoryStores.List(new() { IncludeArchived = true });
-  await foreach (var s in stores.Paginate())
+  await foreach (var memoryStore in stores.Paginate())
   {
-      Console.WriteLine($"{s.ID} {s.Name} {s.ArchivedAt}");
+      Console.WriteLine($"{memoryStore.ID} {memoryStore.Name} {memoryStore.ArchivedAt}");
   }
   ```
 
@@ -1227,8 +1246,8 @@ Daftar store di workspace. Store yang diarsipkan dikecualikan secara default; at
   	IncludeArchived: anthropic.Bool(true),
   })
   for stores.Next() {
-  	s := stores.Current()
-  	fmt.Println(s.ID, s.Name, s.ArchivedAt)
+  	memoryStore := stores.Current()
+  	fmt.Println(memoryStore.ID, memoryStore.Name, memoryStore.ArchivedAt)
   }
   if err := stores.Err(); err != nil {
   	panic(err)
@@ -1236,18 +1255,20 @@ Daftar store di workspace. Store yang diarsipkan dikecualikan secara default; at
   ```
 
   ```java Java
-  for (var s : client.beta().memoryStores().list(
-      MemoryStoreListParams.builder().includeArchived(true).build()
+  for (var memoryStore : client.beta().memoryStores().list(
+      MemoryStoreListParams.builder()
+          .includeArchived(true)
+          .build()
   ).autoPager()) {
-      IO.println(s.id() + " " + s.name() + " " + s.archivedAt());
+      IO.println(memoryStore.id() + " " + memoryStore.name() + " " + memoryStore.archivedAt());
   }
   ```
 
   ```php PHP
-  foreach ($client->beta->memoryStores->list(includeArchived: true)->pagingEachItem() as $s) {
+  foreach ($client->beta->memoryStores->list(includeArchived: true)->pagingEachItem() as $memoryStore) {
       // archivedAt hanya diatur pada penyimpanan yang diarsipkan.
-      $archivedAt = isset($s->archivedAt) ? $s->archivedAt->format(DATE_ATOM) : '';
-      echo "{$s->id} {$s->name} {$archivedAt}\n";
+      $archivedAt = isset($memoryStore->archivedAt) ? $memoryStore->archivedAt->format(DATE_ATOM) : '';
+      echo "{$memoryStore->id} {$memoryStore->name} {$archivedAt}\n";
   }
   ```
 

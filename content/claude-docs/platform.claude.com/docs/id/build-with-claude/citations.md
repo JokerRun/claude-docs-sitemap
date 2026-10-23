@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/citations
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: cecc8d96d8f25cbd64dec2b8be1ec863062edf7e0c973af537dde3ed142c8188
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 70ef8b3768994ba3e89c2df4c9de9c6d0e98bcc87bbe5d6c1db9ddd3ccc8ba93
 ---
 
 ---
@@ -18,7 +18,7 @@ featureMetadata:
     Claude API: ga
     Claude Platform on AWS: ga
     Amazon Bedrock: ga
-    Google Cloud: ga
+    Claude Models on Google Cloud (Google managed): ga
     Microsoft Foundry: ga
 ---
 
@@ -914,7 +914,9 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
                   .fileSource(fileId)
                   .title("Document Title")
                   .context("Context about the document that will not be cited from")
-                  .citations(CitationsConfigParam.builder().enabled(true).build())
+                  .citations(CitationsConfigParam.builder()
+                      .enabled(true)
+                      .build())
                   .build()),
               ContentBlockParam.ofText(TextBlockParam.builder()
                   .text("Summarize this document.")
@@ -1730,7 +1732,9 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
                   .fileSource(fileId)
                   .title("Document Title")
                   .context("Context about the document that will not be cited from")
-                  .citations(CitationsConfigParam.builder().enabled(true).build())
+                  .citations(CitationsConfigParam.builder()
+                      .enabled(true)
+                      .build())
                   .build()),
               ContentBlockParam.ofText(TextBlockParam.builder()
                   .text("Summarize this document.")

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/api-and-data-retention
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: c9d38ae7125f57d0a7769faff14bf8979379389a46acc7b602e51d0bf3df673d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 5fc373dc8138cfdb71f489bf21be2eae81239aa56d1dbc29d13de76ff90e740c
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/manage-claude/api-and-data-retention
 description: Pelajari tentang bagaimana API Anthropic dan fitur terkait menyimpan data, termasuk informasi tentang zero data retention (ZDR) dan akses API yang siap HIPAA.
 ---
 
-Halaman ini mencakup Claude API (`api.anthropic.com`), Claude Platform on AWS, dan [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), di mana Anthropic adalah pemroses data. Pada Amazon Bedrock dan Google Cloud's Agent Platform, penyedia cloud adalah pemroses data; lihat dokumentasi retensi data dan kepatuhan platform tersebut untuk kontrol setara mereka.
+Halaman ini mencakup Claude API (`api.anthropic.com`), Claude Platform on AWS, [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), dan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), di mana Anthropic adalah pemroses data. Di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), penyedia cloud adalah pemroses data; lihat dokumentasi retensi data dan kepatuhan dari platform tersebut untuk kontrol yang setara.
 
 Anthropic menawarkan dua pengaturan penanganan data untuk Claude API: [zero data retention (ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) dan [kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#hipaa-readiness). [Tabel kelayakan fitur](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility) mencantumkan fitur API mana yang dicakup oleh masing-masing pengaturan. Untuk kebijakan retensi standar Anthropic di luar pengaturan ini, lihat [kebijakan retensi data komersial](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data) dan [kebijakan retensi data konsumen](https://privacy.claude.com/en/articles/10023548-how-long-do-you-store-my-data).
 
@@ -34,6 +34,8 @@ Di bawah pengaturan ZDR, Anthropic tidak menyimpan prompt atau respons pelanggan
 * **Claude Messages API dan Token Counting API:** ZDR berlaku untuk endpoint ini bagi fitur yang memenuhi syarat yang tercantum dalam [tabel kelayakan fitur](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility). Fitur yang berjalan di atas `/v1/messages` tetapi ditandai "No" dalam tabel (seperti eksekusi kode) tidak dicakup.
 * **Claude Code dengan kunci API:** ZDR berlaku ketika Claude Code digunakan dengan kunci API dari organisasi Komersial (organisasi di bawah Ketentuan Layanan Komersial Anthropic, berbeda dengan akun Claude konsumen). Jika logging metrik diaktifkan di Claude Code, data produktivitas seperti statistik penggunaan dikecualikan dari ZDR dan dapat disimpan. Claude Code pada Claude Enterprise tidak dicakup oleh pengaturan ini dan memiliki penawaran ZDR terpisah; lihat [Apa yang tidak dicakup ZDR](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#what-zdr-does-not-cover).
 * **Claude Platform on AWS:** [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) mengikuti kebijakan retensi data yang sama dengan Claude API pihak pertama. ZDR tersedia berdasarkan permintaan; hubungi perwakilan akun Anthropic Anda untuk mengaktifkannya.
+
+- **Claude Models on Google Cloud (Anthropic managed):** [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) mengikuti kebijakan retensi data yang sama dengan Claude API pihak pertama. ZDR tersedia berdasarkan permintaan; hubungi perwakilan akun Anthropic Anda untuk mengaktifkannya.
 
 ### Apa yang tidak dicakup ZDR
 
@@ -256,7 +258,7 @@ Bahkan dengan pengaturan ZDR atau HIPAA yang berlaku, Anthropic dapat menyimpan 
   </Accordion>
 
   <Accordion title="Apakah ini berlaku untuk Amazon Bedrock atau Google Cloud?">
-    Tidak. Pengaturan ZDR dan HIPAA yang dijelaskan pada halaman ini berlaku untuk Claude API, di mana Anthropic adalah pemroses data. Pada Bedrock dan Google Cloud, penyedia cloud adalah pemroses data; lihat kebijakan retensi data dan kepatuhan platform tersebut untuk kontrol setara mereka.
+    [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) mengikuti kebijakan retensi data yang sama dengan Claude API pihak pertama, dan Anthropic adalah pemroses data. ZDR tersedia di sana berdasarkan permintaan. Di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), penyedia cloud adalah pemroses data; lihat kebijakan retensi data dan kepatuhan dari platform tersebut untuk kontrol yang setara.
   </Accordion>
 
   <Accordion title="Apakah Claude Platform on AWS memenuhi syarat untuk ZDR atau kesiapan HIPAA?">

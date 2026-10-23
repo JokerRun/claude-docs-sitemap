@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/invites/create
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: b86d3f2c16ef684b8a0abfa78c97da5138c21c17d0f419ffe6db91bbaab0dd6d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: fbbef6c82f3bfaf14d89c45be90e38c7943c596f501d9537616ee1b162bbf2a9
 ---
 
 ---
@@ -137,8 +137,8 @@ On plans that draw members from a finite pool of purchased seats, the invite aut
 ```bash
 curl https://api.anthropic.com/v1/organizations/invites \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "email": "user@emaildomain.com",
           "role": "user"

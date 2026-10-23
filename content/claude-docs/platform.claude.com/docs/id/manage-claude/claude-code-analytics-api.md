@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: e9265f918bed923bd24e18375bd122f6496e65fdf638109469ad46cf6267f79d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: dc4524ef178aeaa69d592eab2c76eb4268a3bd355035aef8c2082d7d6355b1ee
 ---
 
 ---
@@ -269,7 +269,7 @@ Data analitik Claude Code historis disimpan dan dapat diakses melalui API. Tidak
 
 ### Deployment Claude Code mana yang didukung?
 
-API ini hanya melacak penggunaan Claude Code pada Claude API. Penggunaan melalui [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), [Claude di Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), atau [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) tidak disertakan.
+API ini hanya melacak penggunaan Claude Code pada Claude API. Penggunaan melalui [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), [Claude Models on Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/overview), atau [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) tidak disertakan.
 
 ### Berapa biaya untuk menggunakan API ini?
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/authentication
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 407283da7075395c43f114611a67e7e0ef72401f296f82dda1bbd90a3bb399e7
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: a2a72b40a716ef2ae5300ca9d4ef6f4dd8e9609067a27ad77c071e4f515dc431
 ---
 
 ---
@@ -92,7 +92,7 @@ ant messages create \
 
 ## Check authentication status
 
-`ant auth status` prints the credential source the CLI selected (API key environment variable, OAuth login, federation, or profile), the active profile, the workspace the active token is bound to, and the configuration directory paths. Use it to diagnose why a workload picked the wrong credential or workspace.
+`ant auth status` prints the credential source the CLI selected (API key environment variable, OAuth login, federation, Google Cloud, or profile), the active profile, the workspace the active token is bound to, and the configuration directory paths. Use it to diagnose why a workload picked the wrong credential or workspace.
 
 ```bash CLI
 ant auth status

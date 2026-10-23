@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/spiffe
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 89d858fff457c6de08c45f40f6784df689697e1d2aff6b36e885dba9a9c9b2b9
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 8bb474a1bff0eb8e7c925111ab681c69500ff7196c3aaa1311e7468ce732d66b
 ---
 
 ---
@@ -305,10 +305,10 @@ The Claude SDK can read the JWT-SVID from the file that spiffe-helper maintains 
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       var message = client.messages().create(MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(1024)
-              .addUserMessage("Hello, Claude")
-              .build());
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(1024)
+          .addUserMessage("Hello, Claude")
+          .build());
 
       IO.println(message.content());
       ```
@@ -393,8 +393,8 @@ The Claude SDK can read the JWT-SVID from the file that spiffe-helper maintains 
       	"fmt"
       	"os"
 
-      	"github.com/anthropics/anthropic-sdk-go"
-      	"github.com/anthropics/anthropic-sdk-go/option"
+      	"github.com/anthropics/anthropic-sdk-go/v2"
+      	"github.com/anthropics/anthropic-sdk-go/v2/option"
       	"github.com/spiffe/go-spiffe/v2/svid/jwtsvid"
       	"github.com/spiffe/go-spiffe/v2/workloadapi"
       )
@@ -467,7 +467,7 @@ spire-agent api fetch jwt \
   | jq -rR 'split(".")[1] | gsub("-";"+") | gsub("_";"/") | @base64d | fromjson'
 ```
 
-The `-output json` flag returns the SVID response and bundle response as a two-element JSON array, so `jq -r '.[0].svids[0].svid'` extracts the bare token. On older SPIRE versions without `-output`, the command prints a labeled block instead. In that case, pipe the default output through `awk '/^[[:space:]]*eyJ/{print $1; exit}'` to extract the token line. Check that `iss` is the OIDC Discovery Provider URL you registered, `sub` is the workload's SPIFFE ID, and `aud` contains `https://api.anthropic.com`. Then run the cURL example from [Acquire and use the token](https://platform.claude.com/docs/en/manage-claude/wif-providers/spiffe#acquire-and-use-the-token). A successful exchange returns an `access_token` beginning with `sk-ant-oat01-`. If the exchange fails with the opaque `401` `authentication_error` response (message `Authentication failed`), check the [authentication history page](https://platform.claude.com/settings/workload-identity-federation?tab=history) in the Claude Console for the deny reason and see [Troubleshoot a failed exchange](https://platform.claude.com/docs/en/manage-claude/wif-reference#troubleshoot-a-failed-exchange). The most common SPIRE-side cause is a mismatch between SPIRE Server's `jwt_issuer` and the URL registered as the federation issuer.
+The `-output json` flag returns the SVID response and bundle response as a two-element JSON array, so `jq -r '.[0].svids[0].svid'` extracts the bare token. On older SPIRE versions without `-output`, the command prints a labeled block instead. In that case, pipe the default output through `awk '/^[[:space:]]*eyJ/{print $1; exit}'` to extract the token line. Check that `iss` is the OIDC Discovery Provider URL you registered, `sub` is the workload's SPIFFE ID, and `aud` contains `https://api.anthropic.com`. Then run the cURL example from [Acquire and use the token](https://platform.claude.com/docs/en/manage-claude/wif-providers/spiffe#acquire-and-use-the-token). A successful exchange returns an `access_token` starting with `sk-ant-oat01-`. If the exchange fails with the opaque `401` `authentication_error` response (message `Authentication failed`), check the [authentication history page](https://platform.claude.com/settings/workload-identity-federation?tab=history) in the Claude Console for the deny reason and see [Troubleshoot a failed exchange](https://platform.claude.com/docs/en/manage-claude/wif-reference#troubleshoot-a-failed-exchange). The most common SPIRE-side cause is a mismatch between SPIRE Server's `jwt_issuer` and the URL registered as the federation issuer.
 
 ## Scope your rule
 

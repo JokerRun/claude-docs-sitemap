@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/archive
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: f5a681f8f8752db786be2bffe0efbc15d3afd78b0be21438d8a7804972271231
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 84b0796feb3886f3a5b8154237bfae8c44e949ad45f60f92eaf39f192277f9ea
 ---
 
 ---
@@ -189,9 +189,9 @@ Archive a Vault
 ```bash
 curl https://api.anthropic.com/v1/vaults/$VAULT_ID/archive \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

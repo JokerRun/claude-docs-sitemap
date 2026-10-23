@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: f3b71934518857d9a1732a3bcbc1be69c7883e370757c951f50e44922c634766
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 578b2670416e87195167b5498f02cedd409c6d468a2cc90e51d7695c93daefbb
 ---
 
 ---
@@ -121,8 +121,8 @@ Create Skill
 ```bash
 curl https://api.anthropic.com/v1/skills \
     -H 'Content-Type: multipart/form-data' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -F 'files[]=@/path/to/file'
 ```
 
@@ -269,8 +269,8 @@ List Skills
 
 ```bash
 curl https://api.anthropic.com/v1/skills \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -396,8 +396,8 @@ Get Skill
 
 ```bash
 curl https://api.anthropic.com/v1/skills/$SKILL_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -467,8 +467,8 @@ Delete Skill
 ```bash
 curl https://api.anthropic.com/v1/skills/$SKILL_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -678,8 +678,8 @@ Create Skill Version
 ```bash
 curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions \
     -H 'Content-Type: multipart/form-data' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -F 'files[]=@/path/to/file'
 ```
 
@@ -792,8 +792,8 @@ List Skill Versions
 
 ```bash
 curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -894,8 +894,8 @@ Get Skill Version
 
 ```bash
 curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -967,8 +967,8 @@ Delete Skill Version
 ```bash
 curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 750e603dbacf2e1d508027960bcf8f9b448440e6f3e1d8fc8019b9cd7818fb15
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: b61885c698f4a7a189b2ff1fd3c09f9fbf9bced43dec07fbb9fe72aa9daa3c23
 ---
 
 ---
@@ -156,6 +156,6 @@ Iterate on prompts against a subset of your evals or test cases to validate reca
 
 ## Computer use
 
-Claude Sonnet 5 supports the `computer_toolset_20260801` toolset (on the Claude API and Google Cloud) and the earlier `computer_20251124` tool version. On the Claude API and Google Cloud, Claude Sonnet 5 also supports the [browser use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`) for tasks inside webpages. [Computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) capability works across resolutions, up to a maximum resolution of 2576px / 3.75MP. Internal computer use testing shows that sending images at 1080p provides a good balance of performance and cost.
+Claude Sonnet 5 supports the earlier `computer_20251124` tool version and, on the Claude API and Claude Models on Google Cloud (Google managed), the `computer_toolset_20260801` toolset. On those two platforms, Claude Sonnet 5 also supports the [browser use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`) for tasks inside webpages. [Computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) capability works across resolutions, up to a maximum resolution of 2576px / 3.75MP. Internal computer use testing shows that sending images at 1080p provides a good balance of performance and cost.
 
 For particularly cost-sensitive workloads, 720p or 1366×768 are lower-cost options with strong performance. Conduct your own testing to find the ideal settings for your use case; experimenting with effort settings can also help tune the model's behavior.

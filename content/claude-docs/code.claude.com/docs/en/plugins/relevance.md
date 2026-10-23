@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/relevance
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: bed8ccb839090c1ea1d9ca8654e280905276bd44c57f80b68fa4e4b75c02b93a
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 157d0059c72402e67f5adbb9bcac44f54c7cf97b09d5bde690e64f88a7801123
 ---
 
 > ## Documentation Index
@@ -21,7 +21,7 @@ A marketplace operator writes the `relevance` entries. An administrator then all
 >
 > These cases are covered on other pages:
 >
-> * **You want to install plugins**: see [Install and manage plugins](/docs/en/plugins/install)
+> * **You want to install plugins**: see [Install and manage plugins](/docs/en/plugins/install.md)
 > * **You want to turn suggestions off**: see [Understand how plugin relevance works](#understand-how-plugin-relevance-works)
 
 Start with the sections for your role:
@@ -165,7 +165,7 @@ Each finding prints with the path of the field it concerns, and the output ends 
 
 ## Enable suggestions in managed settings
 
-Users see no suggestions from a marketplace until an administrator allowlists it in [managed settings](/docs/en/plugins/org), even when its `marketplace.json` declares `relevance`.
+Users see no suggestions from a marketplace until an administrator allowlists it in [managed settings](/docs/en/plugins/org.md), even when its `marketplace.json` declares `relevance`.
 
 To allowlist a marketplace, edit your managed settings as follows:
 
@@ -224,7 +224,7 @@ Claude Code limits how often it suggests a given plugin:
 
 ## See also
 
-* [Host a marketplace](/docs/en/plugins/host-marketplace): run the marketplace that hosts your plugins
-* [Marketplace reference](/docs/en/plugins/marketplace-reference#plugin-entries): every field a plugin entry accepts
-* [Recommend your plugin from your CLI](/docs/en/plugins/cli-hints): prompt users from your own CLI instead of from Claude Code's session signals
-* [Manage plugins for your organization](/docs/en/plugins/org): `extraKnownMarketplaces`, `strictKnownMarketplaces`, and the rest of the plugin policy keys
+* [Host a marketplace](/docs/en/plugins/host-marketplace.md): run the marketplace that hosts your plugins
+* [Marketplace reference](/docs/en/plugins/marketplace-reference.md#plugin-entries): every field a plugin entry accepts
+* [Recommend your plugin from your CLI](/docs/en/plugins/cli-hints.md): prompt users from your own CLI instead of from Claude Code's session signals
+* [Manage plugins for your organization](/docs/en/plugins/org.md): `extraKnownMarketplaces`, `strictKnownMarketplaces`, and the rest of the plugin policy keys

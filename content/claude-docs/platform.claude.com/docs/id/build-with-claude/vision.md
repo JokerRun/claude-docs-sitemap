@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 2f2e072024dd88b9e572adbbfcec0e3e84f2beb2eb70b0fed71ca05308188c26
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 1e6de6d43636377beb97c47a4181d0983464e7dbc63a6ec4e93db0e9e9605670
 ---
 
 ---
@@ -30,7 +30,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
 3. `file_id` yang dikembalikan oleh [Files API](https://platform.claude.com/docs/id/build-with-claude/files) (unggah sekali, referensikan berkali-kali)
 
 <Note>
-  Di Amazon Bedrock dan Google Cloud, saat ini hanya sumber berenkode base64 yang tersedia.
+  Di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), saat ini hanya sumber berenkode base64 yang tersedia.
 </Note>
 
 <Tip>
@@ -1234,16 +1234,16 @@ Jumlah maksimum gambar per pesan atau permintaan adalah:
 
 Dimensi maksimum per gambar adalah 8000x8000 px.
 
-Jika satu permintaan API berisi lebih dari 20 gambar, batas dimensi per gambar yang lebih ketat berlaku untuk setiap gambar dalam permintaan tersebut. Semua blok `image` dalam permintaan dihitung terhadap ambang ini, termasuk gambar dari giliran percakapan sebelumnya yang Anda kirim ulang dan gambar yang bersarang di dalam konten `tool_result` (misalnya, tangkapan layar yang dikembalikan ke alat computer use). Di Amazon Bedrock dan Google Cloud, blok dokumen seperti PDF juga dihitung terhadap ambang ini. Gambar yang melebihi batas yang lebih ketat akan ditolak dengan `invalid_request_error` yang pesannya merujuk pada "many-image requests" dan menyatakan batas saat ini dalam piksel. Agar tetap di bawah batas di semua platform, ubah ukuran setiap gambar sehingga tidak ada dimensi yang melebihi 2000 px, atau batasi permintaan hingga 20 blok gambar dan dokumen atau kurang.
+Jika satu permintaan API berisi lebih dari 20 gambar, batas dimensi per gambar yang lebih ketat berlaku untuk setiap gambar dalam permintaan tersebut. Semua blok `image` dalam permintaan dihitung terhadap ambang ini, termasuk gambar dari giliran percakapan sebelumnya yang Anda kirim ulang dan gambar yang bersarang di dalam konten `tool_result` (misalnya, tangkapan layar yang dikembalikan ke alat computer use). Di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), blok dokumen seperti PDF juga dihitung terhadap ambang ini. Gambar yang melebihi batas yang lebih ketat akan ditolak dengan `invalid_request_error` yang pesannya merujuk pada "many-image requests" dan menyatakan batas saat ini dalam piksel. Agar tetap di bawah batas di semua platform, ubah ukuran setiap gambar sehingga tidak ada dimensi yang melebihi 2000 px, atau batasi permintaan hingga 20 blok gambar dan dokumen atau kurang.
 
 Ukuran maksimum per gambar adalah:
 
 * 10 MB (berenkode base64) saat menggunakan Claude API secara langsung.
-* 5 MB (berenkode base64) di Amazon Bedrock dan Google Cloud.
+* 5 MB (berenkode base64) di Amazon Bedrock dan Claude Models on Google Cloud (Google managed).
 * 10 MB di [claude.ai](https://claude.ai/).
 
 <Note>
-  Meskipun API mendukung hingga 600 gambar per permintaan, [batas ukuran permintaan](https://platform.claude.com/docs/id/api/overview#request-size-limits) (32 MB untuk endpoint standar; lebih rendah pada beberapa platform yang dioperasikan mitra, misalnya Amazon Bedrock dan Google Cloud) dapat tercapai lebih dulu. Untuk banyak gambar, pertimbangkan untuk mengunggah dengan [Files API](https://platform.claude.com/docs/id/build-with-claude/vision#files-api-image-example) dan mereferensikan dengan `file_id` agar payload permintaan tetap kecil.
+  Meskipun API mendukung hingga 600 gambar per permintaan, [batas ukuran permintaan](https://platform.claude.com/docs/id/api/overview#request-size-limits) dapat tercapai lebih dulu: 32 MB untuk endpoint standar, dan lebih rendah pada beberapa platform yang dioperasikan mitra, seperti Amazon Bedrock dan Claude Models on Google Cloud (Google managed). Untuk banyak gambar, pertimbangkan untuk mengunggah dengan [Files API](https://platform.claude.com/docs/id/build-with-claude/vision#files-api-image-example) dan mereferensikan dengan `file_id` agar payload permintaan tetap kecil.
 
   Bahkan saat menggunakan Files API, permintaan dengan banyak gambar besar dapat gagal sebelum mencapai jumlah 600 gambar. Kurangi dimensi gambar atau ukuran file (misalnya, dengan downsampling) sebelum mengunggah (lihat [Resolusi dan biaya token](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size)).
 </Note>
@@ -1327,7 +1327,7 @@ Selalu tinjau dan verifikasi interpretasi gambar Claude dengan cermat, terutama 
   </Accordion>
 
   <Accordion title="Apakah ada batas ukuran file gambar yang dapat saya unggah?">
-    Ya. Lihat [Batasan permintaan](https://platform.claude.com/docs/id/build-with-claude/vision#request-limits) untuk batas ukuran per gambar dan ukuran permintaan keseluruhan di Claude API, Amazon Bedrock, Google Cloud, dan claude.ai.
+    Ya. Lihat [Batasan permintaan](https://platform.claude.com/docs/id/build-with-claude/vision#request-limits) untuk batas ukuran per gambar dan ukuran permintaan keseluruhan di Claude API, Amazon Bedrock, Claude Models on Google Cloud (Google managed), dan claude.ai.
   </Accordion>
 
   <Accordion title="Berapa banyak gambar yang dapat saya sertakan dalam satu permintaan?">

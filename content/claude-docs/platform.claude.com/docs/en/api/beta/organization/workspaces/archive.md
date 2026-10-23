@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/archive
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 66c9f25dc557ec7bbf779074f097994a6c4b540102330f9911532678fda6d338
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: cbbb7df700ab199115862f63f302715969471747f20d09112488c3999bd35635
 ---
 
 ---
@@ -129,8 +129,8 @@ Archive Workspace
 ```bash
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/archive \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

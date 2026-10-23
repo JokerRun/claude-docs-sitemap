@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/service_accounts/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: a27a074364e7d4dd6853660bcd439a072d5334d3abad960e57933a827d940ce9
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: daf750a42666234ed5b4251fcc9ddb0ce9888c87defce325fcfe10f95207e9ff
 ---
 
 ---
@@ -97,8 +97,8 @@ omitted from the results.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/service_accounts \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

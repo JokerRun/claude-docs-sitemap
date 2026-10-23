@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/files/download
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 6c0cdd7c09582182b40b9d06dcdfe7886590d90d76f5dcdfd6933459b62b39d7
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: cf16bafcb0cb330c7152582eb502fd4b331c6d680a9f4f82f651a846b2fa7f21
 ---
 
 ---
@@ -40,6 +40,6 @@ Download File
 
 ```bash
 curl https://api.anthropic.com/v1/files/$FILE_ID/content \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```

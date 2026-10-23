@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 7acdc563717ac1ddec03617a89c4a07dd4ed6dbcf4713c3efd3a70e02e86008c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 9cb9bb9eefa987a2fac961097baeec0e359eb53fa2c9928ab933e083e23137ba
 ---
 
 ---
@@ -95,12 +95,12 @@ Misalnya, saat meringkas perjanjian sewa-ulang (sublease agreement), Anda mungki
 
   ```java Java
   List<String> detailsToExtract = List.of(
-          "Parties involved (sublessor, sublessee, and original lessor)",
-          "Property details (address, description, and permitted use)",
-          "Term and rent (start date, end date, monthly rent, and security deposit)",
-          "Responsibilities (utilities, maintenance, and repairs)",
-          "Consent and notices (landlord's consent, and notice requirements)",
-          "Special provisions (furniture, parking, and subletting restrictions)");
+      "Parties involved (sublessor, sublessee, and original lessor)",
+      "Property details (address, description, and permitted use)",
+      "Term and rent (start date, end date, monthly rent, and security deposit)",
+      "Responsibilities (utilities, maintenance, and repairs)",
+      "Consent and notices (landlord's consent, and notice requirements)",
+      "Special provisions (furniture, parking, and subletting restrictions)");
   ```
 
   ```php PHP
@@ -284,7 +284,7 @@ Berikut adalah demonstrasi proses ini pada sebuah PDF contoh:
     return text;
   }
 
-  // Unduh contoh perjanjian sewa ulang dari cookbook peringkasan
+  // Unduh contoh perjanjian sewa ulang dari resep ringkasan di Claude Cookbook
   const response = await fetch(
     "https://raw.githubusercontent.com/anthropics/claude-cookbooks/main/capabilities/summarization/data/Sample%20Sublease%20Agreement.pdf"
   );
@@ -313,7 +313,7 @@ Berikut adalah demonstrasi proses ini pada sebuah PDF contoh:
       return text;
   }
 
-  // Unduh contoh perjanjian sewa ulang dari cookbook peringkasan
+  // Unduh contoh perjanjian sewa ulang dari resep ringkasan di Claude Cookbook
   using var httpClient = new HttpClient();
   var pdfData = await httpClient.GetByteArrayAsync(
       "https://raw.githubusercontent.com/anthropics/claude-cookbooks/main/capabilities/summarization/data/Sample%20Sublease%20Agreement.pdf"
@@ -333,7 +333,7 @@ Berikut adalah demonstrasi proses ini pada sebuah PDF contoh:
   	"github.com/ledongthuc/pdf"
   )
 
-  // Teks contoh perjanjian sewa ulang (sublease)
+  // The text of the sample sublease agreement
   var documentText string
 
   func getLLMText(pdfData []byte) (string, error) {
@@ -352,18 +352,18 @@ Berikut adalah demonstrasi proses ini pada sebuah PDF contoh:
   	}
   	text := strings.Join(pages, "\n")
 
-  	// Hapus nomor halaman
+  	// Remove page numbers
   	text = regexp.MustCompile(`\n\s*\d+\s*\n`).ReplaceAllString(text, "\n")
 
-  	// Hapus spasi berlebih
+  	// Remove extra whitespace
   	text = regexp.MustCompile(`\s+`).ReplaceAllString(text, " ")
 
   	return text, nil
   }
 
-  // extractDocumentText mengunduh contoh perjanjian sewa ulang dan mengekstrak teksnya.
+  // extractDocumentText downloads the sample sublease agreement and extracts its text.
   func extractDocumentText() {
-  	// Unduh contoh perjanjian sewa ulang dari cookbook peringkasan
+  	// Download the sample sublease agreement from the Claude Cookbook's summarization recipe
   	response, err := http.Get("https://raw.githubusercontent.com/anthropics/claude-cookbooks/main/capabilities/summarization/data/Sample%20Sublease%20Agreement.pdf")
   	if err != nil {
   		log.Fatal(err)
@@ -409,10 +409,10 @@ Berikut adalah demonstrasi proses ini pada sebuah PDF contoh:
   }
 
   void extractDocumentText() throws IOException, InterruptedException {
-      // Unduh contoh perjanjian sewa ulang dari cookbook peringkasan
+      // Unduh contoh perjanjian sewa ulang dari resep ringkasan di Claude Cookbook
       HttpRequest request = HttpRequest.newBuilder(URI.create(
-                      "https://raw.githubusercontent.com/anthropics/claude-cookbooks/main/capabilities/summarization/data/Sample%20Sublease%20Agreement.pdf"))
-              .build();
+              "https://raw.githubusercontent.com/anthropics/claude-cookbooks/main/capabilities/summarization/data/Sample%20Sublease%20Agreement.pdf"))
+          .build();
       byte[] pdfData;
       try (HttpClient httpClient = HttpClient.newHttpClient()) {
           pdfData = httpClient.send(request, HttpResponse.BodyHandlers.ofByteArray()).body();
@@ -437,7 +437,7 @@ Berikut adalah demonstrasi proses ini pada sebuah PDF contoh:
       return preg_replace('/\s+/', ' ', $text);
   };
 
-  // Unduh contoh perjanjian sewa ulang dari cookbook peringkasan
+  // Unduh contoh perjanjian sewa ulang dari resep ringkasan di Claude Cookbook
   $pdfData = file_get_contents(
       'https://raw.githubusercontent.com/anthropics/claude-cookbooks/main/capabilities/summarization/data/Sample%20Sublease%20Agreement.pdf'
   );
@@ -462,7 +462,7 @@ Berikut adalah demonstrasi proses ini pada sebuah PDF contoh:
     text.gsub(/\s+/, " ")
   end
 
-  # Unduh contoh perjanjian sewa ulang dari cookbook peringkasan
+  # Unduh contoh perjanjian sewa ulang dari resep ringkasan di Claude Cookbook
   pdf_data = Net::HTTP.get(
     URI("https://raw.githubusercontent.com/anthropics/claude-cookbooks/main/capabilities/summarization/data/Sample%20Sublease%20Agreement.pdf")
   )
@@ -644,14 +644,14 @@ Berikut adalah contoh cara membuat prompt yang memastikan ringkasan yang dihasil
   ```
 
   ```go Go
-  // Inisialisasi klien Anthropic
+  // Initialize the Anthropic client
   var client = anthropic.NewClient()
 
   func summarizeDocument(text string, detailsToExtract []string, model anthropic.Model, maxTokens int64) string {
-  	// Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
+  	// Format the details to extract to be placed within the prompt's context
   	detailsToExtractStr := strings.Join(detailsToExtract, "\n")
 
-  	// Minta model meringkas perjanjian sewa ulang
+  	// Prompt the model to summarize the sublease agreement
   	prompt := fmt.Sprintf(`Summarize the following sublease agreement. Focus on these key aspects:
 
       %s
@@ -691,7 +691,7 @@ Berikut adalah contoh cara membuat prompt yang memastikan ringkasan yang dihasil
   	panic("expected a text block in the response")
   }
 
-  // printSubleaseSummary meringkas perjanjian sewa ulang dan mencetak ringkasannya.
+  // printSubleaseSummary summarizes the sublease agreement and prints the summary.
   func printSubleaseSummary() {
   	subleaseSummary := summarizeDocument(documentText, detailsToExtract, anthropic.ModelClaudeOpus5_5, 16000)
   	fmt.Println(subleaseSummary)
@@ -708,41 +708,41 @@ Berikut adalah contoh cara membuat prompt yang memastikan ringkasan yang dihasil
 
       // Minta model meringkas perjanjian sewa ulang
       String prompt = """
-              Summarize the following sublease agreement. Focus on these key aspects:
+          Summarize the following sublease agreement. Focus on these key aspects:
 
-                  %s
+              %s
 
-                  Provide the summary in bullet points nested within the XML header for each section. For example:
+              Provide the summary in bullet points nested within the XML header for each section. For example:
 
-                  <parties involved>
-                  - Sublessor: [Name]
-                  // Add more details as needed
-                  </parties involved>
+              <parties involved>
+              - Sublessor: [Name]
+              // Add more details as needed
+              </parties involved>
 
-                  If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
+              If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
 
-                  Sublease agreement text:
-                  %s
-              """
-              .formatted(detailsToExtractStr, text);
+              Sublease agreement text:
+              %s
+          """
+          .formatted(detailsToExtractStr, text);
 
       Message response = client.messages().create(MessageCreateParams.builder()
-              .model(model)
-              .maxTokens(maxTokens)
-              .system("You are a legal analyst specializing in real estate law, known for highly accurate and detailed summaries of sublease agreements.")
-              .addUserMessage(prompt)
-              .build());
+          .model(model)
+          .maxTokens(maxTokens)
+          .system("You are a legal analyst specializing in real estate law, known for highly accurate and detailed summaries of sublease agreements.")
+          .addUserMessage(prompt)
+          .build());
 
       return response.content().stream()
-              .flatMap(block -> block.text().stream())
-              .findFirst()
-              .orElseThrow()
-              .text();
+          .flatMap(block -> block.text().stream())
+          .findFirst()
+          .orElseThrow()
+          .text();
   }
 
   void printSubleaseSummary() {
       String subleaseSummary = summarizeDocument(
-              documentText, detailsToExtract, Model.CLAUDE_OPUS_5_5, 16000);
+          documentText, detailsToExtract, Model.CLAUDE_OPUS_5_5, 16000);
       IO.println(subleaseSummary);
   }
   ```
@@ -1101,10 +1101,10 @@ Berikut adalah contoh cara melakukan meta-peringkasan:
   }
 
   func summarizeLongDocument(text string, detailsToExtract []string, model anthropic.Model, maxTokens int64) string {
-  	// Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
+  	// Format the details to extract to be placed within the prompt's context
   	detailsToExtractStr := strings.Join(detailsToExtract, "\n")
 
-  	// Iterasi setiap chunk dan ringkas masing-masing
+  	// Iterate over chunks and summarize each one
   	var chunkSummaries []string
   	for _, chunk := range chunkText(text, 20000) {
   		chunkSummaries = append(chunkSummaries, summarizeDocument(chunk, detailsToExtract, model, maxTokens))
@@ -1154,7 +1154,7 @@ Berikut adalah contoh cara melakukan meta-peringkasan:
   	panic("expected a text block in the response")
   }
 
-  // printLongSummary meringkas perjanjian sewa ulang per chunk dan mencetak ringkasan gabungannya.
+  // printLongSummary summarizes the sublease agreement chunk by chunk and prints the combined summary.
   func printLongSummary() {
   	longSummary := summarizeLongDocument(documentText, detailsToExtract, anthropic.ModelClaudeOpus5_5, 16000)
   	fmt.Println(longSummary)
@@ -1164,8 +1164,8 @@ Berikut adalah contoh cara melakukan meta-peringkasan:
   ```java Java
   List<String> chunkText(String text, int chunkSize) {
       return IntStream.iterate(0, start -> start < text.length(), start -> start + chunkSize)
-              .mapToObj(start -> text.substring(start, Math.min(start + chunkSize, text.length())))
-              .toList();
+          .mapToObj(start -> text.substring(start, Math.min(start + chunkSize, text.length())))
+          .toList();
   }
 
   String summarizeLongDocument(String text, List<String> detailsToExtract, Model model, long maxTokens) {
@@ -1174,49 +1174,49 @@ Berikut adalah contoh cara melakukan meta-peringkasan:
 
       // Iterasi setiap chunk dan ringkas masing-masing
       String chunkSummaries = chunkText(text, 20000).stream()
-              .map(chunk -> summarizeDocument(chunk, detailsToExtract, model, maxTokens))
-              .collect(Collectors.joining());
+          .map(chunk -> summarizeDocument(chunk, detailsToExtract, model, maxTokens))
+          .collect(Collectors.joining());
 
       String finalSummaryPrompt = """
 
-                  You are looking at the chunked summaries of multiple documents that are all related.
-                  Combine the following summaries of the document from different truthful sources into a coherent overall summary:
+              You are looking at the chunked summaries of multiple documents that are all related.
+              Combine the following summaries of the document from different truthful sources into a coherent overall summary:
 
-                  <chunked_summaries>
-                  %s
-                  </chunked_summaries>
+              <chunked_summaries>
+              %s
+              </chunked_summaries>
 
-                  Focus on these key aspects:
-                  %s
+              Focus on these key aspects:
+              %s
 
-                  Provide the summary in bullet points nested within the XML header for each section. For example:
+              Provide the summary in bullet points nested within the XML header for each section. For example:
 
-                  <parties involved>
-                  - Sublessor: [Name]
-                  // Add more details as needed
-                  </parties involved>
+              <parties involved>
+              - Sublessor: [Name]
+              // Add more details as needed
+              </parties involved>
 
-                  If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
-              """
-              .formatted(chunkSummaries, detailsToExtractStr);
+              If any information is not explicitly stated in the document, note it as "Not specified". Do not preamble.
+          """
+          .formatted(chunkSummaries, detailsToExtractStr);
 
       Message response = client.messages().create(MessageCreateParams.builder()
-              .model(model)
-              .maxTokens(maxTokens)
-              .system("You are a legal expert that summarizes notes on one document.")
-              .addUserMessage(finalSummaryPrompt)
-              .build());
+          .model(model)
+          .maxTokens(maxTokens)
+          .system("You are a legal expert that summarizes notes on one document.")
+          .addUserMessage(finalSummaryPrompt)
+          .build());
 
       return response.content().stream()
-              .flatMap(block -> block.text().stream())
-              .findFirst()
-              .orElseThrow()
-              .text();
+          .flatMap(block -> block.text().stream())
+          .findFirst()
+          .orElseThrow()
+          .text();
   }
 
   void printLongSummary() {
       String longSummary = summarizeLongDocument(
-              documentText, detailsToExtract, Model.CLAUDE_OPUS_5_5, 16000);
+          documentText, detailsToExtract, Model.CLAUDE_OPUS_5_5, 16000);
       IO.println(longSummary);
   }
   ```

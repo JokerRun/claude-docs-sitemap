@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/delete
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: c8e79a8874a7be17db43c1e564fbff32e24eebf45e9f86c12f2cbf2a7547f2bb
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 47332d801b9b328e6a50248c102cfe979d3e792313df4f671257fdcf0a7c7de5
 ---
 
 ---
@@ -171,8 +171,8 @@ Delete Skill
 ```bash
 curl https://api.anthropic.com/v1/skills/$SKILL_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

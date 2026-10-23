@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fallback-credit
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 13932131fc7cb85d2130c6c38419f4b8b9237a507deb9937b888eb2275788d27
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 32b13d930f0ad91ee9b4f5f8d58bf0204c7287e1cb80b868094880a4b429a916
 ---
 
 ---
@@ -21,7 +21,7 @@ Anda memerlukan halaman ini hanya jika Anda membangun percobaan ulang sendiri: m
 
 <Steps>
   <Step title="Ikut serta dengan header beta">
-    Kirim permintaan yang mungkin ditolak dengan header `anthropic-beta: fallback-credit-2026-07-01`. Header `server-side-fallback-2026-07-01` juga memberikan field yang sama, kecuali di Amazon Bedrock dan Google Cloud, yang mengembalikan error 400 untuk header tersebut. Header `fallback-credit-2026-06-01` yang lebih lama tetap diterima dan memberikan field yang sama.
+    Kirim permintaan yang mungkin ditolak dengan header `anthropic-beta: fallback-credit-2026-07-01`. Header `server-side-fallback-2026-07-01` juga memberikan field yang sama, kecuali di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), yang mengembalikan error 400 untuk header tersebut. Header `fallback-credit-2026-06-01` yang lebih lama tetap diterima dan memberikan field yang sama.
   </Step>
 
   <Step title="Baca dua field dari penolakan">
@@ -511,12 +511,12 @@ Contoh berikut membuat permintaan yang mungkin ditolak dan menukarkan token kred
 
 ## Di mana fitur ini berfungsi
 
-Kredit fallback tersedia dalam versi beta di Claude API, Amazon Bedrock, Claude Platform on AWS, Google Cloud, dan Microsoft Foundry. Penolakan dalam [Message Batches](https://platform.claude.com/docs/id/build-with-claude/batch-processing) tidak menghasilkan token kredit, dan penukaran hanya berlaku untuk permintaan Messages API langsung: token yang diteruskan pada permintaan batch diterima tetapi diabaikan. Penolakan Claude Haiku 5.5 tidak membawa kredit fallback, sehingga percobaan ulang setelahnya membayar biaya penuh untuk menulis cache prompt model fallback.
+Kredit fallback tersedia dalam versi beta di Claude API, Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Google managed), dan Microsoft Foundry. Penolakan dalam [Message Batches](https://platform.claude.com/docs/id/build-with-claude/batch-processing) tidak menghasilkan token kredit, dan penukaran hanya berlaku untuk permintaan Messages API langsung: token yang diteruskan pada permintaan batch diterima tetapi diabaikan. Penolakan Claude Haiku 5.5 tidak membawa kredit fallback, sehingga percobaan ulang setelahnya membayar biaya penuh untuk menulis cache prompt model fallback.
 
 Model percobaan ulang harus merupakan salah satu target fallback yang diizinkan dari model yang menolak. Untuk Claude Fable 5.1, Claude Fable 5, dan Claude Opus 5.5, targetnya adalah Claude Opus 4.8 (`claude-opus-4-8`) dan Claude Opus 5 (`claude-opus-5`). Untuk Claude Opus 5, targetnya adalah Claude Opus 4.8. Untuk Claude Sonnet 5.5, targetnya adalah Claude Sonnet 5 (`claude-sonnet-5`).
 
 <Accordion title="Mencari target fallback yang diizinkan secara terprogram">
-  Di Claude API dan Claude Platform on AWS, daftar target dipublikasikan sebagai `allowed_fallback_models` pada entri setiap model di [Models API](https://platform.claude.com/docs/id/api/beta/models/list) ketika header beta `server-side-fallback-2026-07-01` diatur. Daftar ini belum terlihat hanya dengan header `fallback-credit-*` saja. Daftar ini tidak diekspos di Amazon Bedrock, Google Cloud, atau Microsoft Foundry.
+  Di Claude API dan Claude Platform on AWS, daftar target dipublikasikan sebagai `allowed_fallback_models` pada entri setiap model di [Models API](https://platform.claude.com/docs/id/api/beta/models/list) ketika header beta `server-side-fallback-2026-07-01` diatur. Daftar ini belum terlihat hanya dengan header `fallback-credit-*` saja. Daftar ini tidak diekspos di Amazon Bedrock, Claude Models on Google Cloud (Google managed), atau Microsoft Foundry.
 </Accordion>
 
 ## Memeriksa bahwa kredit telah diterapkan
@@ -576,7 +576,7 @@ Bagian-bagian berikut membahas kasus tepi dan aturan penukaran lengkap. Sebagian
 </Accordion>
 
 <Accordion title="Ketika fallback_has_prefill_claim tidak ada">
-  Field ini tidak memiliki nilai hanya ketika token juga tidak memiliki nilai, sehingga selama Anda memegang token, field ini memiliki nilai, kecuali di Amazon Bedrock, Google Cloud, dan Microsoft Foundry, di mana field ini masih bisa tidak ada selama dukungan mereka untuk field tersebut diluncurkan. Dalam kasus itu, perlakukan bentuk percobaan ulang sebagai tidak diketahui alih-alih sebagai `false` (python: `False`). Coba bentuk pesan-asisten-yang-ditambahkan terlebih dahulu, dan andalkan penanganan penolakan di [Ketika percobaan ulang ditolak](https://platform.claude.com/docs/id/build-with-claude/fallback-credit#when-a-retry-is-rejected), yang beralih ke body tanpa perubahan.
+  Field ini tidak memiliki nilai hanya ketika token juga tidak memiliki nilai, sehingga selama Anda memegang token, field ini memiliki nilai, kecuali di Amazon Bedrock, Claude Models on Google Cloud (Google managed), dan Microsoft Foundry, di mana field ini masih bisa tidak ada selama dukungan mereka untuk field tersebut diluncurkan. Dalam kasus itu, perlakukan bentuk percobaan ulang sebagai tidak diketahui alih-alih sebagai `false` (python: `False`). Coba bentuk pesan-asisten-yang-ditambahkan terlebih dahulu, dan andalkan penanganan penolakan di [Ketika percobaan ulang ditolak](https://platform.claude.com/docs/id/build-with-claude/fallback-credit#when-a-retry-is-rejected), yang beralih ke body tanpa perubahan.
 </Accordion>
 
 <Accordion title="Menyalin content dari respons yang ditolak">
@@ -591,7 +591,7 @@ Bagian-bagian berikut membahas kasus tepi dan aturan penukaran lengkap. Sebagian
 </Accordion>
 
 <Accordion title="Cakupan dan masa berlaku token">
-  Token hanya dapat ditukarkan dari organisasi dan workspace yang menerima penolakan, termasuk di Microsoft Foundry. Di Amazon Bedrock dan Google Cloud, yang tidak memiliki workspace, token terikat pada identitas pemanggil platform sebagai gantinya.
+  Token hanya dapat ditukarkan dari organisasi dan workspace yang menerima penolakan, termasuk di Microsoft Foundry. Di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), yang tidak memiliki workspace, token terikat pada identitas pemanggil platform sebagai gantinya.
 
   Token kedaluwarsa lima menit setelah penolakan. Setelah itu, kirim percobaan ulang tanpanya. Token juga bersifat stateless: server tidak menyimpan apa pun tentangnya, dan tidak ada endpoint untuk memeriksa atau mencabutnya.
 </Accordion>

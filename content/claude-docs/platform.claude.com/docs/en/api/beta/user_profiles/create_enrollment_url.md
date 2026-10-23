@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 8934a91235d4b6a2271e90fd456036005c6e53895629decca7faebbebd320d02
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: b151816192fb184e8862106cae037792589fd078280d59779b3b5fec399b3b24
 ---
 
 ---
@@ -171,9 +171,9 @@ Create Enrollment URL
 ```bash
 curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID/enrollment_url \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: user-profiles-2026-08-18' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

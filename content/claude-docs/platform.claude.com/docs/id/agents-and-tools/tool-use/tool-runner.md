@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 9487890e114a0ff9e8f591b5d14f5c0d61f07894a6b3288ab8a7eb9c825c56e6
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 6103b8349979fa0c12c438fbe965c87e78eb1f87a18b420c5269576c09484721
 ---
 
 ---
@@ -978,8 +978,8 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
     		break // conversation complete
     	}
 
-    	// Runner Go selalu menambahkan pesan asisten dan hasil alat.
-    	// Perubahan param di sini berlaku untuk iterasi berikutnya.
+    	// The Go runner always appends the assistant message and tool results.
+    	// Param changes here apply to the next iteration.
     	runner.Params.MaxTokens = 2048
     }
     ```
@@ -992,17 +992,17 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
 
     ```java
     BetaToolRunner runner = client.beta()
-            .messages()
-            .toolRunner(ToolRunnerCreateParams.builder()
-                    .initialMessageParams(MessageCreateParams.builder()
-                            .model(Model.CLAUDE_OPUS_5_5)
-                            .maxTokens(1024)
-                            .addBeta("structured-outputs-2025-11-13")
-                            .addUserMessage("Give me a detailed weather report for every major US city.")
-                            .addTool(getWeather)
-                            .build())
-                    .maxIterations(10L)
-                    .build());
+        .messages()
+        .toolRunner(ToolRunnerCreateParams.builder()
+            .initialMessageParams(MessageCreateParams.builder()
+                .model(Model.CLAUDE_OPUS_5_5)
+                .maxTokens(1024)
+                .addBeta("structured-outputs-2025-11-13")
+                .addUserMessage("Give me a detailed weather report for every major US city.")
+                .addTool(getWeather)
+                .build())
+            .maxIterations(10L)
+            .build());
 
     long ceiling = 8192;
 
@@ -1019,7 +1019,9 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
             // Memanggil setNextParams() menandai giliran ini sebagai dikelola-pengguna: runner
             // TIDAK otomatis menambahkan pesan yang terpotong, sehingga iterasi berikutnya
             // mengirim ulang prefiks percakapan yang sama dengan anggaran yang lebih besar.
-            runner.setNextParams(runner.params().toBuilder().maxTokens(doubled).build());
+            runner.setNextParams(runner.params().toBuilder()
+                .maxTokens(doubled)
+                .build());
         }
         // Tidak ada mutasi pada giliran normal: runner otomatis menambahkan dan melanjutkan.
     }

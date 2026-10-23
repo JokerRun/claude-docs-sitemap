@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/skills/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 93eba0e8cb9e9849a5b3de1d1fb3f92fd3f6af7ac29496a948c50fd904f6790d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 7594217ad7a9e061bbfd9db358c8eee8cb1ae24c10d9ccfc578989bdf7538f58
 ---
 
 ---
@@ -231,8 +231,8 @@ on a Claude Enterprise plan. Requires an API key with the
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/analytics/skills \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/workflow-runs
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 6e8222b2f0241de3831781432bb62189ae09f704302ba8f5b6623a954101f294
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 13ccac063692afc31922df47ddde25722bd7aeae935ea00b0d0ee47e4717dab4
 ---
 
 ---
@@ -444,17 +444,15 @@ Contoh ini mengikuti sesi dari pesan Anda hingga jawaban agen. Contoh ini membuk
   	openRuns := map[string]string{}      // workflow_run_id -> run name
   	phaseNames := map[[2]string]string{} // {run ID, phase ID} -> phase name
 
-  	// Buka stream terlebih dahulu, lalu kirim pesan pengguna
+  	// Open the stream first, then send the user message
   	stream := client.Beta.Sessions.Events.StreamEvents(ctx, sessionID, anthropic.BetaSessionEventStreamParams{})
   	defer stream.Close()
 
   	if _, err := client.Beta.Sessions.Events.Send(ctx, sessionID, anthropic.BetaSessionEventSendParams{
   		Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   			OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
-  				Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
   				Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{{
   					OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-  						Type: anthropic.BetaManagedAgentsTextBlockTypeText,
   						Text: "Which contracts in /contracts have a change-of-control clause?",
   					},
   				}},
@@ -487,25 +485,23 @@ Contoh ini mengikuti sesi dari pesan Anda hingga jawaban agen. Contoh ini membuk
   			delete(openRuns, event.WorkflowRunID)
   			fmt.Printf("Run ended: %s (%s)\n", name, event.Result.Type)
   		case anthropic.BetaManagedAgentsAgentCustomToolUseEvent:
-  			// Jawab saat event tiba. Thread sebuah eksekusi dapat menunggu
-  			// klien Anda selagi sesi tetap berjalan.
+  			// Answer when the event arrives. A run's thread can wait on your
+  			// client while the session stays running.
   			result := callTool(event.Name, event.Input)
   			if _, err := client.Beta.Sessions.Events.Send(ctx, sessionID, anthropic.BetaSessionEventSendParams{
   				Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   					OfUserCustomToolResult: &anthropic.BetaManagedAgentsUserCustomToolResultEventParams{
-  						Type:            anthropic.BetaManagedAgentsUserCustomToolResultEventParamsTypeUserCustomToolResult,
   						CustomToolUseID: event.ID,
   						Content: []anthropic.BetaManagedAgentsUserCustomToolResultEventParamsContentUnion{{
   							OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-  								Type: anthropic.BetaManagedAgentsTextBlockTypeText,
   								Text: result,
   							},
   						}},
   					},
   				}},
   			}); err != nil {
-  				// Server menolak hasil yang datang terlambat, setelah server
-  				// mengarsipkan thread panggilan tersebut. Terus ikuti eksekusinya.
+  				// The server refuses a result that comes too late, after it
+  				// archived the call's thread. Keep following the run.
   				var apiErr *anthropic.Error
   				if !errors.As(err, &apiErr) || apiErr.StatusCode != http.StatusBadRequest {
   					panic(err)
@@ -513,14 +509,14 @@ Contoh ini mengikuti sesi dari pesan Anda hingga jawaban agen. Contoh ini membuk
   				fmt.Printf("  Answer to %s refused: %v\n", event.Name, err)
   			}
   		case anthropic.BetaManagedAgentsSessionStatusIdleEvent:
-  			// Selesai saat setiap eksekusi telah berakhir dan agen telah menyelesaikan gilirannya
+  			// Done when every run has ended and the agent has finished its turn
   			switch event.StopReason.AsAny().(type) {
   			case anthropic.BetaManagedAgentsSessionEndTurn:
   				if len(openRuns) == 0 {
   					break events
   				}
-  			// Status idle dengan requires_action menunggu klien Anda, jadi terus baca.
-  			// Untuk stop reason lainnya, cetak lalu berhenti.
+  			// An idle with requires_action waits on your client, so keep reading.
+  			// On any other stop reason, print it and stop.
   			case anthropic.BetaManagedAgentsSessionRequiresAction:
   			default:
   				fmt.Printf("Session idle: %s\n", event.StopReason.Type)

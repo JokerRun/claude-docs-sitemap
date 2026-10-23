@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 4775d0b10164983fd8ce65f9b7a408b44c36ac42a5e26314e8dc64d688ce4fa3
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 6a14706b9e04f7e1c077182114a323c23d0e06da3b77dc20a402397f7393201b
 ---
 
 ---
@@ -166,8 +166,8 @@ List Workspaces
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/workspaces \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

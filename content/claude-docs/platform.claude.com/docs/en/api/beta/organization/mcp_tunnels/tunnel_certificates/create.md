@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/create
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: d208117152f73b2313a8ce20a65dd31f29d4b6ea2148f9b18e9c43e04bdc2895
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: fe097790a0db089e2efd9366013a99a9d5464ec52800b5b534584c1b906b2dc9
 ---
 
 ---
@@ -205,9 +205,9 @@ holds at most two non-archived certificates.
 ```bash
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/certificates \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: mcp-tunnels-2026-05-19' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "ca_certificate_pem": "-----BEGIN CERTIFICATE-----\nMIIBexampleEXAMPLEexampleEXAMPLEexampleEXAMPLEexampleEXAMPLEexa\n...illustrative placeholder, not a real certificate...\n-----END CERTIFICATE-----\n"
         }'

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/opus-4-8/overview
-fetched_at: 2026-10-11T02:30:48.003848Z
-sha256: 98460998b3f13e36e3b92297449981386fa68b7a35c5d443dcad7aea63b7376a
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 4ca1a177c0f9d64fb12c3f4ea9722e696b0d2a3f658da7547bf52c9fa0a50d3d
 ---
 
 ---
@@ -40,13 +40,14 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $5 / MTok
 
 ### Model IDs
 
-| Platform                                                                                               | Model ID                    |
-| :----------------------------------------------------------------------------------------------------- | :-------------------------- |
-| Claude API                                                                                             | `claude-opus-4-8`           |
-| [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock)       | `anthropic.claude-opus-4-8` |
-| [Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai)              | `claude-opus-4-8`           |
-| [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry) | `claude-opus-4-8`           |
-| [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) | `claude-opus-4-8`           |
+| Platform                                                                                                                                                   | Model ID                    |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------- |
+| Claude API                                                                                                                                                 | `claude-opus-4-8`           |
+| [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock)                                                           | `anthropic.claude-opus-4-8` |
+| [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed)       | `claude-opus-4-8`           |
+| [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry)                                                     | `claude-opus-4-8`           |
+| [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws)                                                     | `claude-opus-4-8`           |
+| [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | `claude-opus-4-8`           |
 
 ### Pricing
 
@@ -76,12 +77,12 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $5 / MTok
 
 ### Availability
 
-| Feature                                                                       | Value                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| :---------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Status](https://platform.claude.com/docs/en/about-claude/model-deprecations) | Active (legacy)                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Released                                                                      | May 28, 2026                                                                                                                                                                                                                                                                                                                                                                                                            |
-| Retirement                                                                    | Not sooner than May 28, 2027                                                                                                                                                                                                                                                                                                                                                                                            |
-| Platforms                                                                     | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock), [Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai), [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry), [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) |
+| Feature                                                                       | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| :---------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Status](https://platform.claude.com/docs/en/about-claude/model-deprecations) | Active (legacy)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Released                                                                      | May 28, 2026                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Retirement                                                                    | Not sooner than May 28, 2027                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Platforms                                                                     | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry), [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
 
 ## Resources
 

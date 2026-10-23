@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/users
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: 60b4b61c03ae07d391e9fcbcfc23a4e2865a53ade7e002c6e8b5795726c5cfad
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: e3de1af4c51b275096cb891d3e8c69076fac012db98f06ad26c5aa790f6a60d9
 ---
 
 ---
@@ -124,8 +124,8 @@ List the organization's members.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/users \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -224,8 +224,8 @@ Retrieve a member of the organization by user ID.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -336,8 +336,8 @@ Update a member's organization role.
 ```bash
 curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "role": "user"
         }'
@@ -395,8 +395,8 @@ Remove a member from the organization.
 ```bash
 curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 3573f1c9c76453c0f696b326f0224ad39ee7efc05e443544baf426bddc52c204
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: de106dc8a78e5109dd17075a163f383d6f52cba5866dbff19c5bf700db203f31
 ---
 
 ---
@@ -774,8 +774,10 @@ const response = await client.beta.messages.create({
   * [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock)
   * [Amazon Bedrock (Opus 4.6 and earlier)](https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy)
   * [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws)
-  * [Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai)
+  * [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed)
   * [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry)
+
+  See also [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed).
 </Note>
 
 The TypeScript SDK supports the following platforms:
@@ -786,6 +788,8 @@ The TypeScript SDK supports the following platforms:
 * **Foundry:** `npm install @anthropic-ai/foundry-sdk`: Provides `AnthropicFoundry` client
 
 Use `AnthropicBedrockMantle` for new projects; `AnthropicBedrock` remains for existing applications using the Bedrock `InvokeModel` API.
+
+The TypeScript SDK also supports Claude Models on Google Cloud (Anthropic managed) through the `AnthropicGoogleCloud` client. This client is in beta. To install it, run `npm install @anthropic-ai/google-cloud-sdk`. Pass `workspaceId` to the constructor or set the `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID` environment variable. See [Project, location, and workspace resolution](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution) for how the client resolves the workspace ID.
 
 ## Semantic versioning
 

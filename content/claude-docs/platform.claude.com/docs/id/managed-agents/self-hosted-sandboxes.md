@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: bc116c7d5c030b86752fc64ad743793e7dd3851e7b6267d6936fefe68318e33e
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 7f603abe750829363b6e8e58815945a4039c249305a2b2dde35268f34d47ec42
 ---
 
 ---
@@ -46,6 +46,8 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
 
 <Note>
   Di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), worker melakukan autentikasi dengan AWS IAM (SigV4) atau [kunci API yang dibuat di AWS Console](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#api-key-authentication), bukan kunci lingkungan. Lampirkan kebijakan terkelola [`AnthropicSelfHostedEnvironmentAccess`](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#managed-policies) ke principal IAM yang digunakan worker Anda. Kunci lingkungan yang dibuat di Claude Console tidak berfungsi dengan endpoint Claude Platform on AWS.
+
+  Di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), worker melakukan autentikasi dengan [kredensial Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#authentication), bukan dengan kunci lingkungan. Berikan identitas Google Cloud yang digunakan worker Anda peran `roles/claude.user` atau `roles/claude.admin` pada proyek. Kedua peran tersebut mencakup [`environments.processWork`](https://platform.claude.com/docs/id/api/claude-models-on-google-cloud-anthropic-managed-iam-permissions#environments), yang dibutuhkan worker untuk melakukan polling dan mengelola item pekerjaan, serta izin sesi dan skill yang dibutuhkannya untuk menjalankan sesi. Kunci lingkungan yang dibuat di Claude Console tidak berfungsi dengan endpoint Claude Models on Google Cloud (Anthropic managed). Worker bawaan di CLI `ant` dan di SDK Python, TypeScript, dan Go tidak mendukung Claude Models on Google Cloud (Anthropic managed), jadi implementasikan worker Anda sendiri yang memanggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work) secara langsung. Lihat [Fitur yang tidak didukung](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#features-not-supported).
 </Note>
 
 ### Jalankan sesi pertama Anda
@@ -437,10 +439,8 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
       _, err = client.Beta.Sessions.Events.Send(context.Background(), session.ID, anthropic.BetaSessionEventSendParams{
       	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
       		OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
-      			Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
       			Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{{
       				OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-      					Type: anthropic.BetaManagedAgentsTextBlockTypeText,
       					Text: "Write the output of \"uname -a\" to hello.txt in your working directory.",
       				},
       			}},

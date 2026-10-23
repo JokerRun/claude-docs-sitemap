@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 01d293342de1665284e1909d429d911de228135a14c70206fa9d12ae36162300
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: a95905bcba030708d1d1bd14241c85140cba8df0d646b5a79ea402079dddb481
 ---
 
 ---
@@ -262,7 +262,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
         	"context"
         	"fmt"
 
-        	"github.com/anthropics/anthropic-sdk-go"
+        	"github.com/anthropics/anthropic-sdk-go/v2"
         )
 
         func main() {
@@ -276,9 +276,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
         		},
         		System: anthropic.String("You are a helpful coding assistant. Write clean, well-documented code."),
         		Tools: []anthropic.BetaAgentNewParamsToolUnion{{
-        			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-        				Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-        			},
+        			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{},
         		}},
         	})
         	if err != nil {
@@ -323,13 +321,14 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
       <CodeGroupItem>
         ```php PHP
+        use Anthropic\Beta\Agents\BetaManagedAgentsModel;
         use Anthropic\Client;
 
         $client = new Client();
 
         $agent = $client->beta->agents->create(
             name: 'Coding Assistant',
-            model: 'claude-opus-5-5',
+            model: BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
             system: 'You are a helpful coding assistant. Write clean, well-documented code.',
             tools: [
                 ['type' => 'agent_toolset_20260401'],
@@ -745,9 +744,9 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       });
 
       // Proses event streaming
-      await foreach (var ev in stream)
+      await foreach (var streamEvent in stream)
       {
-          if (ev.Value is BetaManagedAgentsAgentMessageEvent message)
+          if (streamEvent.Value is BetaManagedAgentsAgentMessageEvent message)
           {
               foreach (var block in message.Content)
               {
@@ -757,11 +756,11 @@ export ANTHROPIC_API_KEY="your-api-key-here"
                   }
               }
           }
-          else if (ev.Value is BetaManagedAgentsAgentToolUseEvent toolUse)
+          else if (streamEvent.Value is BetaManagedAgentsAgentToolUseEvent toolUse)
           {
               Console.WriteLine($"\n[Using tool: {toolUse.Name}]");
           }
-          else if (ev.Value is BetaManagedAgentsSessionStatusIdleEvent)
+          else if (streamEvent.Value is BetaManagedAgentsSessionStatusIdleEvent)
           {
               Console.WriteLine("\n\nAgent finished.");
               break;
@@ -773,14 +772,12 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
       	defer stream.Close()
 
-      	// Kirim pesan pengguna setelah stream terbuka
+      	// Send the user message after the stream opens
       	_, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
       		Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
       			OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
-      				Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
       				Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{{
       					OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-      						Type: anthropic.BetaManagedAgentsTextBlockTypeText,
       						Text: "Create a Python script that generates the first 20 Fibonacci numbers and saves them to fibonacci.txt",
       					},
       				}},
@@ -791,7 +788,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       		panic(err)
       	}
 
-      	// Proses event streaming
+      	// Process streaming events
       loop:
       	for stream.Next() {
       		switch event := stream.Current().AsAny().(type) {

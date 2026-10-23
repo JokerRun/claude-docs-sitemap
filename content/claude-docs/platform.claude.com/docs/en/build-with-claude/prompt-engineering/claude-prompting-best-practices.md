@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 741fd447f6e3b9dcd00c3b95cdf572085a86fde7666f97dc55285663b36b7aee
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 68fa2aeb65250f259c1acd2c1d00fcb0024368e867f26f1614b1b09f4e69355f
 ---
 
 ---
@@ -220,7 +220,7 @@ Setting a role in the system prompt focuses Claude's behavior and tone for your 
       messages: [
           ['role' => 'user', 'content' => 'How do I sort a list of dictionaries by key?']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       system: 'You are a helpful coding assistant specializing in Python.',
   );
 
@@ -723,7 +723,9 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
   client.messages().create(MessageCreateParams.builder()
       .model(Model.CLAUDE_SONNET_4_5_20250929)
       .maxTokens(16000L)
-      .thinking(ThinkingConfigEnabled.builder().budgetTokens(10000L).build())
+      .thinking(ThinkingConfigEnabled.builder()
+          .budgetTokens(10000L)
+          .build())
       .addUserMessage("...")
       .build());
 

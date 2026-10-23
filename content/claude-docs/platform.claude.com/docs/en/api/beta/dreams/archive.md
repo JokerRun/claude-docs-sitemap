@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/archive
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: d95c2b957370d758764718fc04bdfcdf7c39c267f0eb2b6f5e5d1d9134a15e0c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 491f4f8781cf1ca342d0f47e24b15643ac499367f8b166b0c7f8fec57ea15299
 ---
 
 ---
@@ -379,9 +379,9 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 ```bash
 curl https://api.anthropic.com/v1/dreams/$DREAM_ID/archive \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: dreaming-2026-04-21' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

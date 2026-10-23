@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/overview
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: eb0c1e4d34616bb72b718bb5178fc67c80e708781eadf13dede024e8631d9b21
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: f10d6e2877c5b9f3d3f70e914df55f8d80f64030d0d1672438e7c23f628f7c36
 ---
 
 ---
@@ -33,7 +33,7 @@ The Availability column in each of the following tables lists the platforms that
 | **Deprecated** | Feature is still functional but no longer recommended. A migration path and removal timeline are provided.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | **Retired**    | Feature is no longer available.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-**Platform labels:** Claude API (Anthropic first-party) · [Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock) (AWS-operated) · [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) (Anthropic-operated on AWS) · [Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai) (Google-operated) · [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry) (Anthropic-operated on Azure)
+**Platform labels:** Claude API (Anthropic first-party) · [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock) (AWS-operated) · [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) (Anthropic-operated on AWS) · [Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed) (Google-operated) · [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry) (Anthropic-operated on Azure)
 
 ## Model capabilities
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/github-actions
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: ad2400e8ca0019092c77581c6e99bd555c9e24a99857822b0981e44f8ce7d1d6
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 3023bf132a9391de3c9ca68f6e8cb3d363c1e957f8b050f0e734e851730ec142
 ---
 
 ---
@@ -177,6 +177,16 @@ Set the federation environment variables on the job and call the SDK normally. `
     }'
   ```
 
+  ```bash CLI
+  # Reads ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
+  # ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, and ANTHROPIC_IDENTITY_TOKEN_FILE
+  # from the job environment.
+  ant messages create \
+    --model claude-opus-5-5 \
+    --max-tokens 1024 \
+    --message '{role: user, content: "Hello, Claude"}'
+  ```
+
   ```python Python
   import anthropic
 
@@ -213,6 +223,27 @@ Set the federation environment variables on the job and call the SDK normally. `
   }
   ```
 
+  ```csharp C#
+  // Reads ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
+  // ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, and ANTHROPIC_IDENTITY_TOKEN_FILE
+  // from the job environment.
+  using var client = new AnthropicClient();
+
+  var message = await client.Messages.Create(new()
+  {
+      Model = Model.ClaudeOpus5_5,
+      MaxTokens = 1024,
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
+  });
+  foreach (var block in message.Content)
+  {
+      if (block.Value is TextBlock textBlock)
+      {
+          Console.WriteLine(textBlock.Text);
+      }
+  }
+  ```
+
   ```go Go
   // Reads ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   // ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, and ANTHROPIC_IDENTITY_TOKEN_FILE
@@ -241,43 +272,12 @@ Set the federation environment variables on the job and call the SDK normally. `
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   var message = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5_5)
-          .maxTokens(1024)
-          .addUserMessage("Hello, Claude")
-          .build());
+      .model(Model.CLAUDE_OPUS_5_5)
+      .maxTokens(1024)
+      .addUserMessage("Hello, Claude")
+      .build());
 
   IO.println(message.content());
-  ```
-
-  ```csharp C#
-  // Reads ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
-  // ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, and ANTHROPIC_IDENTITY_TOKEN_FILE
-  // from the job environment.
-  using var client = new AnthropicClient();
-
-  var message = await client.Messages.Create(new()
-  {
-      Model = Model.ClaudeOpus5_5,
-      MaxTokens = 1024,
-      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
-  });
-  foreach (var block in message.Content)
-  {
-      if (block.Value is TextBlock textBlock)
-      {
-          Console.WriteLine(textBlock.Text);
-      }
-  }
-  ```
-
-  ```bash CLI
-  # Reads ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
-  # ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, and ANTHROPIC_IDENTITY_TOKEN_FILE
-  # from the job environment.
-  ant messages create \
-    --model claude-opus-5-5 \
-    --max-tokens 1024 \
-    --message '{role: user, content: "Hello, Claude"}'
   ```
 
   ```php PHP
@@ -318,7 +318,7 @@ Each GitHub-issued identity token expires roughly 5 minutes after issuance. The 
 
 ## Verify the setup
 
-A successful exchange returns an `access_token` beginning with `sk-ant-oat01-` and an `expires_in` value in seconds. A denied exchange returns an opaque `401` `authentication_error` with the fixed message `Authentication failed`, whichever check failed; in most cases the deny reason is recorded on the attempt's entry in the [authentication history page](https://platform.claude.com/settings/workload-identity-federation?tab=history) in the Claude Console, and [Troubleshoot a failed exchange](https://platform.claude.com/docs/en/manage-claude/wif-reference#troubleshoot-a-failed-exchange) walks the checks in order. The most common GitHub Actions-side cause is the `sub` claim format not matching (its trailing segment varies among `ref:...`, `environment:...`, and `pull_request` events); the history entry shows reason `match_subject_prefix`.
+A successful exchange returns an `access_token` starting with `sk-ant-oat01-` and an `expires_in` value in seconds. A denied exchange returns an opaque `401` `authentication_error` with the fixed message `Authentication failed`, whichever check failed; in most cases the deny reason is recorded on the attempt's entry in the [authentication history page](https://platform.claude.com/settings/workload-identity-federation?tab=history) in the Claude Console, and [Troubleshoot a failed exchange](https://platform.claude.com/docs/en/manage-claude/wif-reference#troubleshoot-a-failed-exchange) walks the checks in order. The most common GitHub Actions-side cause is the `sub` claim format not matching (its trailing segment varies among `ref:...`, `environment:...`, and `pull_request` events); the history entry shows reason `match_subject_prefix`.
 
 ## Restrict which workflows can authenticate
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/service_accounts/archive
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: e850d38124c23505800df87f6f66fd4cd7db1f57fba60bd0fc8dda880992e26d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 4dccc5a8083b2e04020399b05b90b49ceca483e7ffd44de41024fda0a05125eb
 ---
 
 ---
@@ -105,8 +105,8 @@ those rules first or change their target to another service account.
 ```bash
 curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUNT_ID/archive \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

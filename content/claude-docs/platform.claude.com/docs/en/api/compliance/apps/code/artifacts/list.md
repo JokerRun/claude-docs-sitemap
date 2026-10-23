@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/code/artifacts/list
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 60cd738b6cd8f90570d36011824d883b4e5b1d83433bb116e0fc0b722403485a
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 2dd6b8bc2e589cd5f003da633a3c6e97406eab687167bac5a56258a5a07d1858
 ---
 
 ---
@@ -97,9 +97,11 @@ returned.
 
     Artifact identifier (tagged ID)
 
-  - `artifact_type: "claude_design" or "claude_design_systems" or "claude_docs" or 4 more`
+  - `artifact_type: "claude_dashboards" or "claude_design" or "claude_design_systems" or 5 more`
 
-    Which kind of Artifact this is: `code` for a site published from Claude Code, or the built-in Artifact type it was made from — `claude_docs` (Claude Docs), `claude_slides` (Slides), `claude_design` (Design), `claude_design_systems` (a design system) or `claude_motion` (Motion). `other` is an Artifact made from a built-in type this list does not name yet.
+    Which kind of Artifact this is: `code` for a site published from Claude Code, or the built-in Artifact type it was made from — `claude_docs` (Claude Docs), `claude_slides` (Slides), `claude_design` (Design), `claude_design_systems` (a design system), `claude_motion` (Motion) or `claude_dashboards` (Dashboards). `other` is an Artifact made from a built-in type this list does not name yet.
+
+    - `"claude_dashboards"`
 
     - `"claude_design"`
 

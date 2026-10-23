@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/plugins
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: ba08c2397c458a6e4233cbcced01e98095a684057b4e395a98d0a9a0861a9d9d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: bd5623711a1f53dc22f221eca59300e46600468999989d42bf0e4f3018ab8573
 ---
 
 > ## Documentation Index
@@ -20,13 +20,13 @@ Plugins let you extend Claude Code with custom functionality that can be shared 
 * **Hooks**: event handlers that respond to tool use and other events
 * **MCP servers**: external tool integrations via Model Context Protocol
 
-For complete information on plugin structure and how to create plugins, see [Plugins](/docs/en/plugins/overview).
+For complete information on plugin structure and how to create plugins, see [Plugins](/docs/en/plugins/overview.md).
 
 ## Loading plugins
 
 Load plugins by providing their local file system paths in your options configuration. The `type` field must be `"local"`, the only value the SDK accepts. The SDK supports loading multiple plugins from different locations.
 
-To use a plugin distributed through a [marketplace](/docs/en/plugins/overview) or remote repository, download it first and provide the local directory path. For the directory layout a plugin needs, see the [Plugin structure reference](#plugin-structure-reference) below.
+To use a plugin distributed through a [marketplace](/docs/en/plugins/overview.md) or remote repository, download it first and provide the local directory path. For the directory layout a plugin needs, see the [Plugin structure reference](#plugin-structure-reference) below.
 
 ```typescript TypeScript theme={null}
 import { query } from "@anthropic-ai/claude-agent-sdk";
@@ -329,8 +329,8 @@ If plugin skills don't work:
 
 ## See also
 
-* [Plugins](/docs/en/plugins/overview) - Complete plugin development guide
-* [Plugins reference](/docs/en/plugins/manifest-reference) - Technical specifications
-* [Commands](/docs/en/agent-sdk/skills#dispatch-commands-by-name) - Dispatching commands in the SDK
-* [Subagents](/docs/en/agent-sdk/subagents) - Working with specialized agents
-* [Skills](/docs/en/agent-sdk/skills) - Using Agent Skills
+* [Plugins](/docs/en/plugins/overview.md) - Complete plugin development guide
+* [Plugins reference](/docs/en/plugins/manifest-reference.md) - Technical specifications
+* [Commands](/docs/en/agent-sdk/skills.md#dispatch-commands-by-name) - Dispatching commands in the SDK
+* [Subagents](/docs/en/agent-sdk/subagents.md) - Working with specialized agents
+* [Skills](/docs/en/agent-sdk/skills.md) - Using Agent Skills

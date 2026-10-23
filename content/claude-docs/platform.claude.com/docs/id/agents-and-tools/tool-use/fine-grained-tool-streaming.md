@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 41d95ac7702566e769baed2f750c734eb8cecb90b8243ec8a022ba9d876884f0
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 1e4c4e90a18b9b7dba7adb98adeb69b68c11002541aad45c12add7f77807fd95
 ---
 
 ---
@@ -23,7 +23,7 @@ description: Lakukan streaming input alat tanpa buffering JSON di sisi server un
 
 ## Cara menggunakan streaming alat fine-grained
 
-Semua model mendukung streaming alat fine-grained di Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Untuk menggunakannya, atur `eager_input_streaming` ke `true` pada alat buatan pengguna mana pun yang Anda inginkan streaming fine-grained-nya diaktifkan, dan aktifkan streaming pada permintaan Anda.
+Semua model mendukung streaming alat fine-grained di Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Untuk menggunakannya, atur `eager_input_streaming` ke `true` pada alat buatan pengguna mana pun yang Anda inginkan streaming fine-grained-nya diaktifkan, dan aktifkan streaming pada permintaan Anda.
 
 Field `eager_input_streaming` bersifat opsional. Mengaturnya ke `true` mengaktifkan streaming fine-grained untuk alat tersebut, dan menghilangkannya memberi Anda streaming ter-buffer standar, di mana API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali. Pengecualiannya adalah permintaan yang masih mengirim header beta lama `fine-grained-tool-streaming-2025-05-14`, yang mengaktifkan streaming fine-grained untuk alat yang membiarkan field tersebut tidak diatur. Field per-alat menggantikan header tersebut, dan nilai `false` eksplisit mempertahankan streaming ter-buffer untuk suatu alat bahkan ketika permintaan masih mengirim header itu. Header lama tidak dapat digabungkan dengan entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) atau [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool): API menolak permintaan yang mengirim keduanya, jadi hapus header tersebut dan atur `eager_input_streaming` pada alat buatan pengguna yang membutuhkannya. Lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference) untuk definisi field tersebut.
 

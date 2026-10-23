@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 6a1ebc3d85aeac4ed1b3d1d3e4770639c1d30f570371b2d71d07be9445dafaa1
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: a1f7fa539cd55b9840ced064a82ac3f94595e70de33c2de2850bbbc2d27e0ad9
 ---
 
 ---
@@ -153,23 +153,23 @@ Fast mode works only on supported models. See [Model availability](https://platf
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   Message response = client.messages().create(
-          MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_5_5)
-                  .maxTokens(4096L)
-                  .speed(MessageCreateParams.Speed.FAST)
-                  .addUserMessage("Refactor this module to use dependency injection")
-                  .build());
+      MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(4096L)
+          .speed(MessageCreateParams.Speed.FAST)
+          .addUserMessage("Refactor this module to use dependency injection")
+          .build());
 
   response.content().stream()
-          .flatMap(block -> block.text().stream())
-          .forEach(textBlock -> IO.println(textBlock.text()));
+      .flatMap(block -> block.text().stream())
+      .forEach(textBlock -> IO.println(textBlock.text()));
   ```
 
   ```php PHP
   $client = new Client();
 
   $response = $client->messages->create(
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 4096,
       speed: 'fast',
       messages: [
@@ -205,6 +205,8 @@ Fast mode works only on supported models. See [Model availability](https://platf
 Fast mode is available on the Claude API, including [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview).
 
 Fast mode on Claude Opus 5.5 is also available on [Claude in Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry) for deployments hosted on Azure. It is not available for deployments [hosted on Anthropic](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry#hosting-options).
+
+Fast mode on Claude Opus 5.5 is also available on [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed).
 
 ## Model availability
 
@@ -255,7 +257,7 @@ To see your fast mode rate limits, go to the [Rate limits](https://platform.clau
 
 ## Checking which speed was used
 
-The response `usage` object includes a `speed` field that indicates which speed was used, either `"fast"` or `"standard"`. Requesting `speed: "fast"` on a [model that doesn't support fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode#supported-models) returns an error, and so does exceeding fast mode's rate limits or capacity (a `429` or `529`). When a request with `speed: "fast"` succeeds, `usage.speed` is `"fast"`. Claude Opus 4.6 is an exception: instead of returning an error, a request with `speed: "fast"` and the `fast-mode-2026-02-01` beta header succeeds, but runs at standard speed. This behavior is correctly reflected in `usage.speed`, which shows `"standard"` in this situation.
+The response `usage` object includes a `speed` field that indicates which speed was used, either `"fast"` or `"standard"`. Requesting `speed: "fast"` on a [model that doesn't support fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode#supported-models) returns an error, and so does exceeding fast mode's rate limits or capacity (a `429` or `529`). When a request with `speed: "fast"` succeeds, `usage.speed` is `"fast"`. Claude Opus 4.6 is an exception: instead of returning an error, a request with `speed: "fast"` and the `fast-mode-2026-02-01` beta header succeeds, but runs at standard speed. This behavior is correctly reflected in `usage.speed`, which shows `"standard"` in this situation. On Claude Models on Google Cloud (Anthropic managed), a Claude Opus 4.6 request with `speed: "fast"` returns a `400` error even with the header.
 
 <CodeGroup>
   ```bash cURL
@@ -343,11 +345,11 @@ The response `usage` object includes a `speed` field that indicates which speed 
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5_5)
-          .maxTokens(1024L)
-          .speed(MessageCreateParams.Speed.FAST)
-          .addUserMessage("Hello")
-          .build();
+      .model(Model.CLAUDE_OPUS_5_5)
+      .maxTokens(1024L)
+      .speed(MessageCreateParams.Speed.FAST)
+      .addUserMessage("Hello")
+      .build();
 
   Message response = client.messages().create(params);
   IO.println(response.usage().speed().orElseThrow());  // "fast" or "standard"
@@ -357,7 +359,7 @@ The response `usage` object includes a `speed` field that indicates which speed 
   $client = new Client();
 
   $response = $client->messages->create(
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 1024,
       speed: 'fast',
       messages: [['role' => 'user', 'content' => 'Hello']],
@@ -583,9 +585,12 @@ Because setting `max_retries` (typescript, java, php: `maxRetries`; csharp: `Max
   import com.anthropic.errors.InternalServerException;
   import com.anthropic.errors.RateLimitException;
   // ...
-  // Disable SDK auto-retry so the fallback logic below handles it
+  // Disable SDK auto-retry so the fallback logic that follows handles it
   AnthropicClient client =
-          AnthropicOkHttpClient.builder().fromEnv().maxRetries(0).build();
+      AnthropicOkHttpClient.builder()
+          .fromEnv()
+          .maxRetries(0)
+          .build();
 
   Message createMessageWithFastFallback(
           MessageCreateParams params, int maxAttempts) {
@@ -594,8 +599,8 @@ Because setting `max_retries` (typescript, java, php: `maxRetries`; csharp: `Max
       } catch (RateLimitException e) {
           if (params.speed().isPresent()) {
               MessageCreateParams retryParams = params.toBuilder()
-                      .speed(Optional.empty())
-                      .build();
+                  .speed(Optional.empty())
+                  .build();
               return createMessageWithFastFallback(retryParams, maxAttempts);
           }
           throw e;
@@ -609,16 +614,16 @@ Because setting `max_retries` (typescript, java, php: `maxRetries`; csharp: `Max
 
   void main() {
       Message message = createMessageWithFastFallback(
-              MessageCreateParams.builder()
-                      .model(Model.CLAUDE_OPUS_5_5)
-                      .maxTokens(1024L)
-                      .addUserMessage("Hello")
-                      .speed(MessageCreateParams.Speed.FAST)
-                      .build(),
-              3);
+          MessageCreateParams.builder()
+              .model(Model.CLAUDE_OPUS_5_5)
+              .maxTokens(1024L)
+              .addUserMessage("Hello")
+              .speed(MessageCreateParams.Speed.FAST)
+              .build(),
+          3);
       message.content().stream()
-              .flatMap(block -> block.text().stream())
-              .forEach(textBlock -> IO.println(textBlock.text()));
+          .flatMap(block -> block.text().stream())
+          .forEach(textBlock -> IO.println(textBlock.text()));
   }
   ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/create
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 47c21c95b839661cd7d6a915bb5185d6dcc2f08e4346881b9121553686fe3077
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: cc74d6da02baf23a7e7550d8a6ff2b49db0e5d238e62b0cbf37a77038547943b
 ---
 
 ---
@@ -187,9 +187,9 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
 ```bash
 curl https://api.anthropic.com/v1/tunnels \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: mcp-tunnels-2026-06-22' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{}'
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/usage-cost-api
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 742ae24fde2ad4ebdcd8432674e519af9af2c0405e6799ec4b876a1da572a003
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 8beed39347bcbef465f7e5ba9282fc458bcac24ca9fdf88b5c6afcb4ccbe2e2b
 ---
 
 ---
@@ -33,6 +33,10 @@ Organisasi Claude Enterprise menggunakan kunci API Analytics dengan API yang ber
 
 <Note>
   **Claude Platform on AWS:** Endpoint API Penggunaan dan Biaya terprogram saat ini belum tersedia. Sebagai gantinya, lihat data penggunaan dan biaya di halaman **Usage** dan **Cost** pada Claude Console.
+</Note>
+
+<Note>
+  **Claude Models on Google Cloud (Anthropic managed):** Dari endpoint Usage and Cost API, hanya [endpoint penggunaan](https://platform.claude.com/docs/id/manage-claude/usage-cost-api#usage-api) yang tersedia. Panggil endpoint tersebut melalui [base URL tingkat organisasi](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#making-requests) dengan kredensial Google Cloud, bukan dengan kunci Admin API. Satu-satunya [peran IAM](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#iam-roles) bawaan yang mengizinkan panggilan ini adalah `roles/claude.admin`. Lihat data biaya di halaman **Cost** di [Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console).
 </Note>
 
 ## API mana yang Anda butuhkan?

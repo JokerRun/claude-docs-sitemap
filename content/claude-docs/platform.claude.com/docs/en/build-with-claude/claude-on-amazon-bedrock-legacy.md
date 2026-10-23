@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 7a8c1ad9abc0af35a24f55846f63d84c037fd33128a0e369faa2d9b73923f217
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: aa17bedf44cd802099ffab9a1a323c66a3cbc68a8ca23b69af0582de21bd7832
 ---
 
 ---
@@ -318,7 +318,7 @@ The following examples show how to generate text from Claude on Bedrock:
 <Tabs>
   <Tab title="cURL">
     <Note>
-      Calling the `InvokeModel` API with AWS credentials requires SigV4 request signing, which the SDK handles automatically. For a Bedrock endpoint you can call with a self-contained cURL command, see [Making your first request with Claude in Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock#making-your-first-request).
+      Calling the `InvokeModel` API with AWS credentials requires SigV4 request signing, which the SDK examples in the other tabs handle automatically. For a Bedrock endpoint you can call with a self-contained cURL command, see [Making your first request with Claude in Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock#making-your-first-request).
     </Note>
   </Tab>
 
@@ -451,24 +451,24 @@ The following examples show how to generate text from Claude on Bedrock:
 
     public class BedrockExample {
 
-      public static void main(String[] args) {
-        // Uses default AWS credential provider chain
-        AnthropicClient client = AnthropicOkHttpClient.builder()
-          .backend(BedrockBackend.fromEnv())
-          .build();
+        public static void main(String[] args) {
+            // Uses default AWS credential provider chain
+            AnthropicClient client = AnthropicOkHttpClient.builder()
+                .backend(BedrockBackend.fromEnv())
+                .build();
 
-        Message message = client
-          .messages()
-          .create(
-            MessageCreateParams.builder()
-              .model("global.anthropic.claude-opus-4-6-v1")
-              .maxTokens(256)
-              .addUserMessage("Hello, world")
-              .build()
-          );
+            Message message = client
+                .messages()
+                .create(
+                    MessageCreateParams.builder()
+                        .model("global.anthropic.claude-opus-4-6-v1")
+                        .maxTokens(256)
+                        .addUserMessage("Hello, world")
+                        .build()
+                );
 
-        System.out.println(message.content());
-      }
+            System.out.println(message.content());
+        }
     }
     ```
   </Tab>
@@ -480,10 +480,10 @@ The following examples show how to generate text from Claude on Bedrock:
     use Anthropic\Bedrock;
 
     $client = Bedrock\Client::withCredentials(
-        accessKeyId: getenv("AWS_ACCESS_KEY_ID"),
-        secretAccessKey: getenv("AWS_SECRET_ACCESS_KEY"),
+        accessKeyId: getenv('AWS_ACCESS_KEY_ID'),
+        secretAccessKey: getenv('AWS_SECRET_ACCESS_KEY'),
         region: 'us-west-2',
-        securityToken: getenv("AWS_SESSION_TOKEN"),
+        securityToken: getenv('AWS_SESSION_TOKEN'),
     );
 
     $message = $client->messages->create(
@@ -660,25 +660,25 @@ To provide a token programmatically:
 
     // Option 1: Set AWS_BEARER_TOKEN_BEDROCK environment variable and use fromEnv()
     AnthropicClient client = AnthropicOkHttpClient.builder()
-      .backend(BedrockBackend.fromEnv())
-      .build();
+        .backend(BedrockBackend.fromEnv())
+        .build();
 
     // Option 2: Provide the token programmatically
     client = AnthropicOkHttpClient.builder()
-      .backend(BedrockBackend.builder()
-        .apiKey("your-bearer-token")
-        .build())
-      .build();
+        .backend(BedrockBackend.builder()
+            .apiKey("your-bearer-token")
+            .build())
+        .build();
 
     MessageCreateParams params = MessageCreateParams.builder()
-      .model("us.anthropic.claude-sonnet-4-5-20250929-v1:0")
-      .maxTokens(1024)
-      .addUserMessage("Hello!")
-      .build();
+        .model("us.anthropic.claude-sonnet-4-5-20250929-v1:0")
+        .maxTokens(1024)
+        .addUserMessage("Hello!")
+        .build();
 
     client.messages().create(params).content().stream()
-      .flatMap(block -> block.text().stream())
-      .forEach(textBlock -> System.out.println(textBlock.text()));
+        .flatMap(block -> block.text().stream())
+        .forEach(textBlock -> System.out.println(textBlock.text()));
     ```
   </Tab>
 
@@ -816,7 +816,7 @@ The model IDs for Claude Opus 4.6, Sonnet 4.6, and Sonnet 4.5 (deprecated) alrea
 <Tabs>
   <Tab title="cURL">
     <Note>
-      Calling the `InvokeModel` API with AWS credentials requires SigV4 request signing, which the SDK handles automatically. For a Bedrock endpoint you can call with a self-contained cURL command, see [Making your first request with Claude in Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock#making-your-first-request).
+      Calling the `InvokeModel` API with AWS credentials requires SigV4 request signing, which the SDK examples in the other tabs handle automatically. For a Bedrock endpoint you can call with a self-contained cURL command, see [Making your first request with Claude in Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock#making-your-first-request).
     </Note>
   </Tab>
 
@@ -910,18 +910,18 @@ The model IDs for Claude Opus 4.6, Sonnet 4.6, and Sonnet 4.5 (deprecated) alrea
 
     // Uses default AWS credential provider chain
     AnthropicClient client = AnthropicOkHttpClient.builder()
-      .backend(BedrockBackend.fromEnv())
-      .build();
+        .backend(BedrockBackend.fromEnv())
+        .build();
 
     var message = client
-      .messages()
-      .create(
-        MessageCreateParams.builder()
-          .model("global.anthropic.claude-opus-4-6-v1")
-          .maxTokens(256)
-          .addUserMessage("Hello, world")
-          .build()
-      );
+        .messages()
+        .create(
+            MessageCreateParams.builder()
+                .model("global.anthropic.claude-opus-4-6-v1")
+                .maxTokens(256)
+                .addUserMessage("Hello, world")
+                .build()
+        );
     ```
   </Tab>
 
@@ -967,7 +967,7 @@ To use regional endpoints, replace the `global.` prefix with a regional prefix s
 <Tabs>
   <Tab title="cURL">
     <Note>
-      Calling the `InvokeModel` API with AWS credentials requires SigV4 request signing, which the SDK handles automatically. For a Bedrock endpoint you can call with a self-contained cURL command, see [Making your first request with Claude in Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock#making-your-first-request).
+      Calling the `InvokeModel` API with AWS credentials requires SigV4 request signing, which the SDK examples in the other tabs handle automatically. For a Bedrock endpoint you can call with a self-contained cURL command, see [Making your first request with Claude in Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock#making-your-first-request).
     </Note>
   </Tab>
 
@@ -1062,19 +1062,19 @@ To use regional endpoints, replace the `global.` prefix with a regional prefix s
 
     // Uses default AWS credential provider chain
     AnthropicClient client = AnthropicOkHttpClient.builder()
-      .backend(BedrockBackend.fromEnv())
-      .build();
+        .backend(BedrockBackend.fromEnv())
+        .build();
 
     // Using US regional endpoint (CRIS)
     var message = client
-      .messages()
-      .create(
-        MessageCreateParams.builder()
-          .model("us.anthropic.claude-opus-4-6-v1") // Regional prefix
-          .maxTokens(256)
-          .addUserMessage("Hello, world")
-          .build()
-      );
+        .messages()
+        .create(
+            MessageCreateParams.builder()
+                .model("us.anthropic.claude-opus-4-6-v1") // Regional prefix
+                .maxTokens(256)
+                .addUserMessage("Hello, world")
+                .build()
+        );
     ```
   </Tab>
 

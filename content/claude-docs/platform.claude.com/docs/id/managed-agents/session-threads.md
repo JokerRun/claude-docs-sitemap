@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-threads
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: af72de815f26462c7478d879eceecc155128e31538a125be88efe2052960d73a
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 087cac6e286bd958931398cde20d342d74034334ed8fd35f61d41d5052a13c69
 ---
 
 ---
@@ -161,7 +161,6 @@ Kirim `user.interrupt` dengan `session_thread_id` (java: `sessionThreadId`; php:
   if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserInterrupt: &anthropic.BetaManagedAgentsUserInterruptEventParams{
-  			Type:            anthropic.BetaManagedAgentsUserInterruptEventParamsTypeUserInterrupt,
   			SessionThreadID: anthropic.String(thread.ID),
   		},
   	}},
@@ -328,7 +327,6 @@ Pengarsipan hanya berhasil jika thread berstatus `idle`. Thread yang tertahan pa
   if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserInterrupt: &anthropic.BetaManagedAgentsUserInterruptEventParams{
-  			Type:            anthropic.BetaManagedAgentsUserInterruptEventParamsTypeUserInterrupt,
   			SessionThreadID: anthropic.String(thread.ID),
   		},
   	}},
@@ -512,7 +510,9 @@ Aliran sebuah thread tidak memutar ulang event sebelumnya. Tepat setelah `sessio
       ```java Java
       try (var streamResponse = client.beta().sessions().threads().events().streamStreaming(
           thread.id(),
-          EventStreamParams.builder().sessionId(session.id()).build()
+          EventStreamParams.builder()
+              .sessionId(session.id())
+              .build()
       )) {
           loop:
           for (var event : (Iterable<BetaManagedAgentsStreamSessionThreadEvents>) streamResponse.stream()::iterator) {
@@ -623,8 +623,10 @@ Aliran sebuah thread tidak memutar ulang event sebelumnya. Tepat setelah `sessio
       ```java Java
       for (var event : client.beta().sessions().threads().events().list(
               thread.id(),
-              EventListParams.builder().sessionId(session.id()).build()
-          ).autoPager()) {
+              EventListParams.builder()
+                  .sessionId(session.id())
+                  .build()
+      ).autoPager()) {
           var type = event._json().orElseThrow() instanceof JsonObject json
               ? json.values().get("type").asStringOrThrow()
               : "unknown";
@@ -738,7 +740,6 @@ Contoh berikut ditempatkan di dalam loop event dari [handler konfirmasi alat](ht
   ```go Go
   for _, eventID := range stopReason.EventIDs {
   	params := anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
-  		Type:      anthropic.BetaManagedAgentsUserToolConfirmationEventParamsTypeUserToolConfirmation,
   		ToolUseID: eventID,
   		Result:    anthropic.BetaManagedAgentsUserToolConfirmationEventParamsResultAllow,
   	}

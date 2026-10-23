@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/overview
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 938945afed4270e4593c88622a1fd083ba525bb8866ae252ac6572953ac4d68c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 329b2ef769de29cc526a6b147bd2a63419da30431c050289a7c5cae99a613df9
 ---
 
 ---
@@ -94,18 +94,19 @@ Claude tersedia melalui Claude API langsung dan melalui platform cloud. Pilih be
 Akses Claude melalui AWS, Google Cloud, atau Microsoft Azure:
 
 * **Terintegrasi** dengan penagihan dan IAM penyedia cloud
-* **Ketersediaan fitur bervariasi menurut platform:** Platform yang dioperasikan Anthropic mencakup [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry); platform yang dioperasikan mitra mencakup Amazon Bedrock dan Google Cloud. Lihat halaman setiap platform untuk ketersediaan dan waktu fitur.
+* **Ketersediaan fitur bervariasi menurut platform:** Platform yang dioperasikan Anthropic mencakup [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry); platform yang dioperasikan mitra mencakup Amazon Bedrock dan Claude Models on Google Cloud (Google managed). Lihat halaman setiap platform untuk ketersediaan dan waktu fitur.
 * **Terbaik untuk:** Komitmen cloud yang sudah ada, persyaratan kepatuhan tertentu, penagihan cloud terkonsolidasi
 
-| Platform               | Penyedia                                 | Dokumentasi                                                                                                      |
-| ---------------------- | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Agent Platform         | Google Cloud                             | [Claude di Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)              |
-| Amazon Bedrock         | AWS                                      | [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)       |
-| Claude Platform on AWS | AWS (dioperasikan Anthropic)             | [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)           |
-| Microsoft Foundry      | Microsoft Azure (dioperasikan Anthropic) | [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Platform                                          | Penyedia                                 | Dokumentasi                                                                                                                                                |
+| ------------------------------------------------- | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Agent Platform                                    | Google Cloud                             | [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)       |
+| Amazon Bedrock                                    | AWS                                      | [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)                                                 |
+| Claude Platform on AWS                            | AWS (dioperasikan Anthropic)             | [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)                                                     |
+| Claude Models on Google Cloud (Anthropic managed) | Google Cloud (dioperasikan Anthropic)    | [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
+| Microsoft Foundry                                 | Microsoft Azure (dioperasikan Anthropic) | [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                                           |
 
 <Note>
-  Claude Managed Agents tersedia melalui Claude API langsung dan [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws). Untuk ketersediaan fitur di seluruh platform, lihat [Ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview).
+  Claude Managed Agents tersedia melalui Claude API langsung, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed). Untuk ketersediaan fitur di seluruh platform, lihat [Ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview).
 </Note>
 
 ## Format permintaan dan respons
@@ -122,7 +123,7 @@ Akses Claude melalui AWS, Google Cloud, atau Microsoft Azure:
 Jika Anda melampaui batas ini, Anda akan menerima kesalahan 413 `request_too_large`.
 
 <Note>
-  Platform yang dioperasikan mitra memiliki batas ukuran permintaan mereka sendiri: Bedrock membatasi permintaan hingga 20 MB, dan Google Cloud membatasi permintaan hingga 30 MB. Claude Platform on AWS menggunakan batas yang sama dengan Claude API langsung. Konsultasikan dokumentasi platform Anda untuk nilai saat ini.
+  Platform yang dioperasikan mitra memiliki batas ukuran permintaan mereka sendiri: Bedrock membatasi permintaan hingga 20 MB, dan Claude Models on Google Cloud (Google managed) membatasi permintaan hingga 30 MB. Claude Platform on AWS menggunakan batas yang sama dengan Claude API langsung. Konsultasikan dokumentasi platform Anda untuk nilai saat ini.
 </Note>
 
 ### Header respons

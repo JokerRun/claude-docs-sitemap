@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: ab97757fd19a03ae02bf5fdd6038cc9bf312627fbca9de549038439a99a8a7aa
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 732f1f2ef2a2f2eb518e615813cb08eea78949dc981056e78a1527e486f9bcd0
 ---
 
 ---
@@ -380,7 +380,6 @@ Ketika `status` (csharp, go: `Status`) mencapai `completed`, entri `memory_store
   		EnvironmentID: environmentID,
   		Resources: []anthropic.BetaSessionNewParamsResourceUnion{{
   			OfMemoryStore: &anthropic.BetaManagedAgentsMemoryStoreResourceParam{
-  				Type:          anthropic.BetaManagedAgentsMemoryStoreResourceParamTypeMemoryStore,
   				MemoryStoreID: outputStoreID,
   			},
   		}},
@@ -596,7 +595,9 @@ Mengembalikan semua dream yang tidak diarsipkan di workspace, dari yang terbaru.
 
   ```java Java
   for (var listedDream : client.beta().dreams().list(
-      DreamListParams.builder().limit(20).build()
+      DreamListParams.builder()
+          .limit(20)
+          .build()
   ).autoPager()) {
       IO.println(listedDream.id() + " " + listedDream.status());
   }

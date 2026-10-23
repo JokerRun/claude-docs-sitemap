@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision-coordinates
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: cf909a8646bc80c755d94958b006e969fa8462af10c16e06e9ffe2e2e34c6cb4
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: b3a85d2a80904504622a3bcb100895c6b4f3d06bb369bec572e7f9ad3d4a9b82
 ---
 
 ---
@@ -64,7 +64,7 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
 
 
   def count_image_tokens(width: int, height: int) -> int:
-      """Visual tokens consumed by an image: one token per 28x28 pixel patch."""
+      """Visual tokens consumed by an image: one token for each 28x28 pixel patch."""
       return math.ceil(width / 28) * math.ceil(height / 28)
 
 
@@ -115,7 +115,7 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
   ```
 
   ```typescript TypeScript
-  /** Visual tokens consumed by an image: one token per 28x28 pixel patch. */
+  /** Visual tokens consumed by an image: one token for each 28x28 pixel patch. */
   function countImageTokens(width: number, height: number): number {
     return Math.ceil(width / 28) * Math.ceil(height / 28);
   }
@@ -183,7 +183,7 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
   ```
 
   ```csharp C#
-  // Token visual yang dikonsumsi oleh gambar: satu token per patch 28x28 piksel.
+  // Token visual yang dipakai sebuah gambar: satu token untuk setiap patch 28x28 piksel.
   static int CountImageTokens(int width, int height)
   {
       return (width + 27) / 28 * ((height + 27) / 28); // ceil(w/28) * ceil(h/28)
@@ -240,8 +240,8 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
   ```
 
   ```go Go
-  // countImageTokens adalah token visual yang dikonsumsi sebuah gambar: satu token per
-  // patch piksel 28x28.
+  // countImageTokens adalah token visual yang dipakai sebuah gambar: satu token untuk setiap
+  // patch 28x28 piksel.
   func countImageTokens(width, height int) int {
   	return ((width + 27) / 28) * ((height + 27) / 28) // ceil(w/28) * ceil(h/28)
   }
@@ -289,7 +289,7 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
   /** A resized image size, as returned by resizedSize. */
   record Size(int width, int height) {}
 
-  /** Visual tokens consumed by an image: one token per 28x28 pixel patch. */
+  /** Visual tokens consumed by an image: one token for each 28x28 pixel patch. */
   static int countImageTokens(int width, int height) {
       return Math.ceilDiv(width, 28) * Math.ceilDiv(height, 28);
   }
@@ -332,8 +332,8 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
 
   private static boolean fits(int width, int height, int maxEdge, int maxTokens) {
       return Math.ceilDiv(width, 28) * 28 <= maxEdge
-              && Math.ceilDiv(height, 28) * 28 <= maxEdge
-              && countImageTokens(width, height) <= maxTokens;
+          && Math.ceilDiv(height, 28) * 28 <= maxEdge
+          && countImageTokens(width, height) <= maxTokens;
   }
 
   private static int shortEdge(int longEdge, double aspectRatio) {
@@ -342,7 +342,7 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
   ```
 
   ```php PHP
-  // Token visual yang dikonsumsi sebuah gambar: satu token per patch 28x28 piksel.
+  // Token visual yang dipakai sebuah gambar: satu token untuk setiap patch 28x28 piksel.
   function countImageTokens(int $width, int $height): int
   {
       return intdiv($width + 27, 28) * intdiv($height + 27, 28);
@@ -395,7 +395,7 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
   ```
 
   ```ruby Ruby
-  # Token visual yang dikonsumsi sebuah gambar: satu token per patch 28x28 piksel.
+  # Token visual yang dipakai sebuah gambar: satu token untuk setiap patch 28x28 piksel.
   def count_image_tokens(width, height)
     width.ceildiv(28) * height.ceildiv(28)
   end

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/service_accounts/retrieve
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 825aa2f520b1193b4512f4c0196aa08ef01148b529ef4c4eb27769b8aa4e737d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 7db8b26ef256bb1f7a947e622ebeb163c1f23c2c08199297980f18c085963622
 ---
 
 ---
@@ -85,8 +85,8 @@ account returns 404.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/service_accounts/$SERVICE_ACCOUNT_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

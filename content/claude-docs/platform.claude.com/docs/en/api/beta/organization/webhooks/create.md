@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/webhooks/create
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 68c48d32003bfa36c299c39c05151d3771a50448c20dc769f81d61ff7be0f5a3
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: d266e618e1e856e20515a3337ec661f108d997a3c02c3fb8d49c44d652683d20
 ---
 
 ---
@@ -229,9 +229,9 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 ```bash
 curl https://api.anthropic.com/v1/organizations/webhooks \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: webhooks-2026-10-07' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "enabled_events": [
             "user_profile.enforcement_action_opened"

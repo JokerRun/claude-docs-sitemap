@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-1/overview
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 86e563e40c8257209304c7f29eecdebc5ad6f14d9b9282dab61e3c41bcb3d903
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: d0849694a654463c9a6a61c92320fef8c0c36aebb19bbef63ddb610c61cf3a90
 ---
 
 ---
@@ -54,13 +54,14 @@ Jika Anda sudah memanggil Claude Fable 5, ada tiga perubahan yang merusak kompat
 
 ### Model IDs
 
-| Platform                                                                                               | Model ID                     |
-| :----------------------------------------------------------------------------------------------------- | :--------------------------- |
-| Claude API                                                                                             | `claude-fable-5-1`           |
-| [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)       | `anthropic.claude-fable-5-1` |
-| [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)              | `claude-fable-5-1`           |
-| [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | `claude-fable-5-1`           |
-| [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) | `claude-fable-5-1`           |
+| Platform                                                                                                                                                   | Model ID                     |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------- |
+| Claude API                                                                                                                                                 | `claude-fable-5-1`           |
+| [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)                                                           | `anthropic.claude-fable-5-1` |
+| [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)       | `claude-fable-5-1`           |
+| [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                                                     | `claude-fable-5-1`           |
+| [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)                                                     | `claude-fable-5-1`           |
+| [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | `claude-fable-5-1`           |
 
 ### Pricing
 
@@ -90,12 +91,12 @@ Jika Anda sudah memanggil Claude Fable 5, ada tiga perubahan yang merusak kompat
 
 ### Availability
 
-| Feature                                                                       | Value                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| :---------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Status](https://platform.claude.com/docs/id/about-claude/model-deprecations) | Active (latest)                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Released                                                                      | September 1, 2026                                                                                                                                                                                                                                                                                                                                                                                                       |
-| Retirement                                                                    | Not sooner than September 1, 2027                                                                                                                                                                                                                                                                                                                                                                                       |
-| Platforms                                                                     | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+| Feature                                                                       | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| :---------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Status](https://platform.claude.com/docs/id/about-claude/model-deprecations) | Active (latest)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Released                                                                      | September 1, 2026                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Retirement                                                                    | Not sooner than September 1, 2027                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Platforms                                                                     | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
 
 ## Sumber daya
 

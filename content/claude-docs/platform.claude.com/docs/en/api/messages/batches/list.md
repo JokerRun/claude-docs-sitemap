@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 4b3dd44a6d1d7e1a42ab8203557dbbbcdbdee000f14e4a27c10a1f86bccbc766
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 3836ee3e90f6f9d3c5401a34a5c541c293384ff2286cea719e33db10a2695db8
 ---
 
 ---
@@ -176,8 +176,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
 ```bash
 curl https://api.anthropic.com/v1/messages/batches \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

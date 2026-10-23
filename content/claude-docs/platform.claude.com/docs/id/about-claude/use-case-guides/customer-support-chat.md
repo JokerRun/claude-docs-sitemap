@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: c953f3bf2605769657f28aacb90a081f04cf1f44d75016e54223f5912b76169c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 93618949d43807a77e63ff3c6841fba896fd1b0b9019fd51f81901e4364d376b
 ---
 
 ---
@@ -740,12 +740,12 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
   	"encoding/json"
   	"fmt"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
-  // ChatBot membungkus klien Anthropic dan riwayat percakapan. Nilai
-  // identity, model, tools, dan getQuote yang digunakannya mencerminkan definisi
-  // config.py sebelumnya dalam panduan ini (ditampilkan dalam Python).
+  // ChatBot wraps the Anthropic client and the conversation history. The
+  // identity, model, tools, and getQuote values it uses mirror the config.py
+  // definitions earlier in this guide (shown in Python).
   type ChatBot struct {
   	client   anthropic.Client
   	messages []anthropic.MessageParam
@@ -855,12 +855,12 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
 
       Message generateMessage(List<MessageParam> messages, long maxTokens) {
           return anthropic.messages().create(MessageCreateParams.builder()
-                  .model(MODEL)
-                  .system(IDENTITY)
-                  .maxTokens(maxTokens)
-                  .messages(messages)
-                  .tools(TOOLS)
-                  .build());
+              .model(MODEL)
+              .system(IDENTITY)
+              .maxTokens(maxTokens)
+              .messages(messages)
+              .tools(TOOLS)
+              .build());
       }
 
       String processUserInput(String userInput) {
@@ -873,31 +873,31 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
           if (lastBlock.isToolUse()) {
               ToolUseBlock toolUse = lastBlock.asToolUse();
               Map<String, JsonValue> toolInput =
-                      (Map<String, JsonValue>) toolUse._input().asObject().orElseThrow();
+                  (Map<String, JsonValue>) toolUse._input().asObject().orElseThrow();
               String result = handleToolUse(toolUse.name(), toolInput);
 
               messages.add(MessageParam.ofAssistantOfContentBlockParams(
-                      content.stream().map(ContentBlock::toParam).toList()));
+                  content.stream().map(ContentBlock::toParam).toList()));
               messages.add(MessageParam.ofUserOfContentBlockParams(List.of(ContentBlockParam.ofToolResult(
-                      ToolResultBlockParam.builder()
-                              .toolUseId(toolUse.id())
-                              .content(result)
-                              .build()))));
+                  ToolResultBlockParam.builder()
+                      .toolUseId(toolUse.id())
+                      .content(result)
+                      .build()))));
 
               Message followUpResponse = generateMessage(messages, 2048);
 
               ContentBlock followUpBlock = followUpResponse.content().stream()
-                      .filter(ContentBlock::isText)
-                      .findFirst()
-                      .orElseThrow(() -> new IllegalStateException("An error occurred: Unexpected response type"));
+                  .filter(ContentBlock::isText)
+                  .findFirst()
+                  .orElseThrow(() -> new IllegalStateException("An error occurred: Unexpected response type"));
               String responseText = followUpBlock.asText().text();
               messages.add(MessageParam.ofAssistant(responseText));
               return responseText;
           } else {
               ContentBlock textBlock = content.stream()
-                      .filter(ContentBlock::isText)
-                      .findFirst()
-                      .orElseThrow(() -> new IllegalStateException("An error occurred: Unexpected response type"));
+                  .filter(ContentBlock::isText)
+                  .findFirst()
+                  .orElseThrow(() -> new IllegalStateException("An error occurred: Unexpected response type"));
               String responseText = textBlock.asText().text();
               messages.add(MessageParam.ofAssistant(responseText));
               return responseText;
@@ -908,11 +908,11 @@ Kelas ini harus memiliki dua metode utama: satu yang memanggil API untuk menghas
           return switch (funcName) {
               case "get_quote" -> {
                   double premium = getQuote(
-                          funcParams.get("make").asStringOrThrow(),
-                          funcParams.get("model").asStringOrThrow(),
-                          ((Number) funcParams.get("year").asNumber().orElseThrow()).longValue(),
-                          ((Number) funcParams.get("mileage").asNumber().orElseThrow()).longValue(),
-                          ((Number) funcParams.get("driver_age").asNumber().orElseThrow()).longValue());
+                      funcParams.get("make").asStringOrThrow(),
+                      funcParams.get("model").asStringOrThrow(),
+                      ((Number) funcParams.get("year").asNumber().orElseThrow()).longValue(),
+                      ((Number) funcParams.get("mileage").asNumber().orElseThrow()).longValue(),
+                      ((Number) funcParams.get("driver_age").asNumber().orElseThrow()).longValue());
                   yield "Quote generated: $%.2f per month".formatted(premium);
               }
               default -> throw new IllegalArgumentException("An unexpected tool was used");

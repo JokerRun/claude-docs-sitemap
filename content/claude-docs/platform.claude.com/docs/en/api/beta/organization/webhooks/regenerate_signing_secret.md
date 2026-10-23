@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/webhooks/regenerate_signing_secret
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 08359debe7de5894b09129a44e82dd5615bf3a1f141409a9d297f8bb6bdce764
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: df331cd2b78e92d70ee4449bff51f2fed71b69648f7b81ff4f8f5991e95d3e24
 ---
 
 ---
@@ -160,9 +160,9 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 ```bash
 curl https://api.anthropic.com/v1/organizations/webhooks/$WEBHOOK_ENDPOINT_ID/regenerate_signing_secret \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: webhooks-2026-10-07' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

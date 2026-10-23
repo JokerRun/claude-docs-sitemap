@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/create
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: f7f2460a253fa6af8d01ec592dc59908270c628f1059f55b5474d6421b9e3e9c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: b6fe32747d888e4efdd1900c5ea0ac883ff6b50ce2dd889b9e9555c60b8435c9
 ---
 
 ---
@@ -1879,9 +1879,9 @@ Create Agent
 ```bash
 curl https://api.anthropic.com/v1/agents \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "model": "claude-opus-5-5",
           "name": "My First Agent",

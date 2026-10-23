@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: a0b2e7aa5c1bb38655f208ae0502f748d8679377456053d26f2d27016272d933
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 777c7b0d568989fc83de802155d98910a4595055180888288a33da9f3aa93b4f
 ---
 
 ---
@@ -844,12 +844,6 @@ url: https://platform.claude.com/docs/en/api/beta/organization/analytics
     - `user_id: string`
 
       Tagged user ID.
-
-    - `email: string or null`
-
-      **Deprecated**
-
-      Deprecated: use `email_address`, which carries the same value.
 
   - `amount: string`
 
@@ -2039,12 +2033,6 @@ url: https://platform.claude.com/docs/en/api/beta/organization/analytics
 
       Tagged user ID.
 
-    - `email: string or null`
-
-      **Deprecated**
-
-      Deprecated: use `email_address`, which carries the same value.
-
   - `cache_creation: BetaCacheCreation`
 
     The number of input tokens for cache creation.
@@ -2655,12 +2643,6 @@ url: https://platform.claude.com/docs/en/api/beta/organization/analytics
 
     Tagged user ID.
 
-  - `email: string or null`
-
-    **Deprecated**
-
-    Deprecated: use `email_address`, which carries the same value.
-
 ## Analytics › Summaries
 
 ### Get Activity Summaries
@@ -2860,150 +2842,12 @@ Enterprise plan. Requires an API key with the `read:analytics` scope.
 
   Opaque cursor for the next page, or null if no more results. Currently always null: the day series is returned in full.
 
-- `summaries: array of BetaAnalyticsSingleDayActivitySummary`
-
-  **Deprecated**
-
-  Deprecated: use `data`, which carries the same entries.
-
-  - `assigned_seat_count: number or null`
-
-    Number of seats currently assigned to members. Null when the response is scoped to an RBAC group — seat assignment is org-wide and has no per-group analogue.
-
-  - `cowork_daily_active_user_count: number`
-
-    Number of users with Cowork activity on the requested day
-
-  - `cowork_monthly_active_user_count: number`
-
-    Number of users with Cowork activity in the 30-day rolling window
-
-  - `cowork_weekly_active_user_count: number`
-
-    Number of users with Cowork activity in the 7-day rolling window
-
-  - `daily_active_user_count: number`
-
-    Number of users with token consumption on the requested day
-
-  - `daily_adoption_rate: number or null`
-
-    Percentage of assigned seats with activity on the requested day (`DAU / assigned_seat_count * 100`). Null when the response is scoped to an RBAC group.
-
-  - `ending_at: string`
-
-    End of the aggregation period (exclusive), UTC midnight in RFC 3339 format (e.g. `2026-01-16T00:00:00Z`).
-
-    format: date-time
-
-  - `monthly_active_user_count: number`
-
-    Number of users with token consumption in the 30-day rolling window
-
-  - `monthly_adoption_rate: number or null`
-
-    Percentage of assigned seats with activity in the 30-day rolling window (`MAU / assigned_seat_count * 100`). Null when the response is scoped to an RBAC group.
-
-  - `pending_invite_count: number or null`
-
-    Number of pending invitations to join the organization. Null when the response is scoped to an RBAC group.
-
-  - `starting_at: string`
-
-    Start of the aggregation period (inclusive), UTC midnight in RFC 3339 format (e.g. `2026-01-15T00:00:00Z`).
-
-    format: date-time
-
-  - `weekly_active_user_count: number`
-
-    Number of users with token consumption in the 7-day rolling window
-
-  - `weekly_adoption_rate: number or null`
-
-    Percentage of assigned seats with activity in the 7-day rolling window (`WAU / assigned_seat_count * 100`). Null when the response is scoped to an RBAC group.
-
-  - `chat_cowork_unified_daily_active_user_count: optional number or null`
-
-    Number of users with activity in Chat and Cowork unified on the requested day. Omitted from the response on deployments that do not offer Chat and Cowork unified.
-
-  - `chat_cowork_unified_monthly_active_user_count: optional number or null`
-
-    Number of users with activity in Chat and Cowork unified in the 28-day rolling window (30 days when the request filters by `rbac_group_id`). Omitted from the response on deployments that do not offer Chat and Cowork unified.
-
-  - `chat_cowork_unified_weekly_active_user_count: optional number or null`
-
-    Number of users with activity in Chat and Cowork unified in the 7-day rolling window. Omitted from the response on deployments that do not offer Chat and Cowork unified.
-
-  - `chat_daily_active_user_count: optional number or null`
-
-    Number of users with claude.ai (chat) activity on the requested day. Omitted from the response while the per-product breakdown is not enabled for this organization.
-
-  - `chat_monthly_active_user_count: optional number or null`
-
-    Number of users with claude.ai (chat) activity in the 30-day rolling window. Omitted from the response while the per-product breakdown is not enabled for this organization.
-
-  - `chat_weekly_active_user_count: optional number or null`
-
-    Number of users with claude.ai (chat) activity in the 7-day rolling window. Omitted from the response while the per-product breakdown is not enabled for this organization.
-
-  - `claude_code_daily_active_user_count: optional number or null`
-
-    Number of users with Claude Code activity on the requested day. Omitted from the response while the per-product breakdown is not enabled for this organization.
-
-  - `claude_code_monthly_active_user_count: optional number or null`
-
-    Number of users with Claude Code activity in the 30-day rolling window. Omitted from the response while the per-product breakdown is not enabled for this organization.
-
-  - `claude_code_weekly_active_user_count: optional number or null`
-
-    Number of users with Claude Code activity in the 7-day rolling window. Omitted from the response while the per-product breakdown is not enabled for this organization.
-
-  - `claude_design_daily_active_user_count: optional number or null`
-
-    Number of users with Claude Design activity on the requested day. Omitted from the response while the per-product breakdown is not enabled for this organization.
-
-  - `claude_design_monthly_active_user_count: optional number or null`
-
-    Number of users with Claude Design activity in the 30-day rolling window. Omitted from the response while the per-product breakdown is not enabled for this organization.
-
-  - `claude_design_weekly_active_user_count: optional number or null`
-
-    Number of users with Claude Design activity in the 7-day rolling window. Omitted from the response while the per-product breakdown is not enabled for this organization.
-
-  - `office_agent_daily_active_user_count: optional number or null`
-
-    Number of users with Claude in Office activity on the requested day. Omitted from the response while the per-product breakdown is not enabled for this organization.
-
-  - `office_agent_monthly_active_user_count: optional number or null`
-
-    Number of users with Claude in Office activity in the 30-day rolling window. Omitted from the response while the per-product breakdown is not enabled for this organization.
-
-  - `office_agent_weekly_active_user_count: optional number or null`
-
-    Number of users with Claude in Office activity in the 7-day rolling window. Omitted from the response while the per-product breakdown is not enabled for this organization.
-
-  - `science_daily_active_user_count: optional number or null`
-
-    Number of users with Claude Science activity on the requested day. Omitted from the response while the per-product breakdown is not enabled for this organization.
-
-  - `science_entitled_user_count: optional number or null`
-
-    Number of users with a Claude Science seat entitlement (per-seat RBAC) at the time of the daily snapshot. The funnel top; independent of the org-level Claude Science toggle. Null when the response is scoped to an RBAC group — entitlement is org-wide and has no per-group analogue. Omitted from the response while the per-product breakdown is not enabled for this organization.
-
-  - `science_monthly_active_user_count: optional number or null`
-
-    Number of users with Claude Science activity in the 30-day rolling window. Omitted from the response while the per-product breakdown is not enabled for this organization.
-
-  - `science_weekly_active_user_count: optional number or null`
-
-    Number of users with Claude Science activity in the 7-day rolling window. Omitted from the response while the per-product breakdown is not enabled for this organization.
-
 #### Example
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/analytics/summaries \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -3046,43 +2890,7 @@ curl https://api.anthropic.com/v1/organizations/analytics/summaries \
       "science_weekly_active_user_count": 0
     }
   ],
-  "next_page": "next_page",
-  "summaries": [
-    {
-      "assigned_seat_count": 0,
-      "cowork_daily_active_user_count": 0,
-      "cowork_monthly_active_user_count": 0,
-      "cowork_weekly_active_user_count": 0,
-      "daily_active_user_count": 0,
-      "daily_adoption_rate": 0,
-      "ending_at": "2019-12-27T18:11:19.117Z",
-      "monthly_active_user_count": 0,
-      "monthly_adoption_rate": 0,
-      "pending_invite_count": 0,
-      "starting_at": "2019-12-27T18:11:19.117Z",
-      "weekly_active_user_count": 0,
-      "weekly_adoption_rate": 0,
-      "chat_cowork_unified_daily_active_user_count": 0,
-      "chat_cowork_unified_monthly_active_user_count": 0,
-      "chat_cowork_unified_weekly_active_user_count": 0,
-      "chat_daily_active_user_count": 0,
-      "chat_monthly_active_user_count": 0,
-      "chat_weekly_active_user_count": 0,
-      "claude_code_daily_active_user_count": 0,
-      "claude_code_monthly_active_user_count": 0,
-      "claude_code_weekly_active_user_count": 0,
-      "claude_design_daily_active_user_count": 0,
-      "claude_design_monthly_active_user_count": 0,
-      "claude_design_weekly_active_user_count": 0,
-      "office_agent_daily_active_user_count": 0,
-      "office_agent_monthly_active_user_count": 0,
-      "office_agent_weekly_active_user_count": 0,
-      "science_daily_active_user_count": 0,
-      "science_entitled_user_count": 0,
-      "science_monthly_active_user_count": 0,
-      "science_weekly_active_user_count": 0
-    }
-  ]
+  "next_page": "next_page"
 }
 ```
 
@@ -3620,8 +3428,8 @@ the `read:analytics` scope.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/analytics/users \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -3943,8 +3751,8 @@ plan. Requires an API key with the `read:analytics` scope.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/analytics/apps/chat/projects \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -4189,8 +3997,8 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/analytics/connectors \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -4408,8 +4216,8 @@ range-rollup mode like `/skills`.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/analytics/plugins \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -4665,8 +4473,8 @@ on a Claude Enterprise plan. Requires an API key with the
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/analytics/skills \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -4831,8 +4639,8 @@ can be broken out per product, per member, or per RBAC group via
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/analytics/artifacts \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -5179,8 +4987,8 @@ key with the `read:analytics` scope.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/analytics/usage_report \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -5466,12 +5274,6 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
       Tagged user ID.
 
-    - `email: string or null`
-
-      **Deprecated**
-
-      Deprecated: use `email_address`, which carries the same value.
-
   - `cache_creation: BetaCacheCreation`
 
     The number of input tokens for cache creation.
@@ -5608,8 +5410,8 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/analytics/user_usage_report \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -5620,7 +5422,6 @@ curl https://api.anthropic.com/v1/organizations/analytics/user_usage_report \
     {
       "actor": {
         "deleted": true,
-        "email": "jane@example.com",
         "email_address": "jane@example.com",
         "name": "Jane Smith",
         "type": "user_actor",
@@ -5987,8 +5788,8 @@ Requires an API key with the `read:analytics` scope.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/analytics/cost_report \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -6269,12 +6070,6 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
       Tagged user ID.
 
-    - `email: string or null`
-
-      **Deprecated**
-
-      Deprecated: use `email_address`, which carries the same value.
-
   - `amount: string`
 
     Amount (post-discount, pre-credit) in fractional cents (minor units).
@@ -6409,8 +6204,8 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/analytics/user_cost_report \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -6421,7 +6216,6 @@ curl https://api.anthropic.com/v1/organizations/analytics/user_cost_report \
     {
       "actor": {
         "deleted": true,
-        "email": "jane@example.com",
         "email_address": "jane@example.com",
         "name": "Jane Smith",
         "type": "user_actor",

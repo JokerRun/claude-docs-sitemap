@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/rate_limits/update
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: ade1e5d97d83228f50a0e1a1e162443796bb0d988996fb76a8aef5ca922cc4af
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: bb9325cd0f9637b05002f549ed4a7855f6175a0bbcf34d98409eadb492996aa0
 ---
 
 ---
@@ -92,7 +92,7 @@ Changes take effect within about an hour.
 
   - `group: BetaOrganizationRateLimitModelGroup or BetaOrganizationRateLimitBatchGroup or BetaOrganizationRateLimitTokenCountGroup or 3 more`
 
-    The rate-limit group this entry's limits apply to. Its `type` equals `group_type`.
+    The rate-limit group this entry's limits apply to.
 
     - `BetaOrganizationRateLimitModelGroup object`
 
@@ -208,7 +208,7 @@ Changes take effect within about an hour.
 
   - `models: array of string or null`
 
-    Model names this entry's limits apply to, including aliases. `null` when `group_type` is not `"model_group"`.
+    Model names this entry's limits apply to, including aliases. `null` when `group.type` is not `"model_group"`. The list covers the models this workspace has access to, so it can differ between workspaces.
 
   - `rate_limit_id: string`
 
@@ -218,31 +218,13 @@ Changes take effect within about an hour.
 
     ID of the Workspace this entry applies to.
 
-  - `group_type: "batch" or "files" or "model_group" or 3 more`
-
-    **Deprecated**: Use `group.type` instead. `group_type` is still returned and always equals `group.type`.
-
-    Deprecated: use `group.type` instead. The kind of rate-limit group this entry represents. `model_group` entries apply to a family of models (listed in `models`); other values apply to an API-surface category and have `models` set to `null`. Always equal to `group.type`.
-
-    - `"batch"`
-
-    - `"files"`
-
-    - `"model_group"`
-
-    - `"skills"`
-
-    - `"token_count"`
-
-    - `"web_search"`
-
 ## Example
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_limits/$RATE_LIMIT_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "limits": [
             {
@@ -262,7 +244,6 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_li
     "display_name": "display_name",
     "type": "model_group"
   },
-  "group_type": "batch",
   "limits": [
     {
       "org_limit": 0,

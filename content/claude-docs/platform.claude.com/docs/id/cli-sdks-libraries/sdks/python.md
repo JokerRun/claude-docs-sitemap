@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: b937268d6ffbca8c595cdfd3c74da9caa6734b94afd315b6d9a2c109ce5f57b1
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: f55f79227c7fc15cc93e9c210f198da25df80f84fc8fb00c92bd072dde526a07
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
 description: Instal dan konfigurasikan Anthropic Python SDK dengan dukungan klien sinkron dan asinkron
 ---
 
-Anthropic Python SDK menyediakan akses yang mudah ke Claude API dari aplikasi Python. SDK ini mendukung operasi sinkron maupun asinkron, "streaming" (streaming), serta integrasi dengan Amazon Bedrock, Claude Platform on AWS, Google Cloud, dan Microsoft Foundry.
+Anthropic Python SDK menyediakan akses yang mudah ke Claude API dari aplikasi Python. SDK ini mendukung operasi sinkron maupun asinkron, "streaming" (streaming), serta integrasi dengan Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), Claude Models on Google Cloud (Google managed), dan Microsoft Foundry.
 
 <Info>
   Untuk dokumentasi fitur API beserta contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang khusus untuk Python.
@@ -40,6 +40,8 @@ pip install "anthropic[aws]"
 # Untuk performa async yang lebih baik dengan aiohttp
 pip install "anthropic[aiohttp]"
 ```
+
+Untuk menggunakan Claude Models on Google Cloud (Anthropic managed), jalankan `pip install "anthropic[google_cloud]"`.
 
 ## Persyaratan
 
@@ -746,21 +748,24 @@ response = client.beta.messages.create(
   * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
   * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
   * [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
-  * [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)
+  * [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)
   * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
+
+  Lihat juga [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed).
 </Note>
 
-Kelima kelas klien disertakan dalam paket dasar `anthropic`:
+Keenam kelas klien disertakan dalam paket dasar `anthropic`:
 
-| Penyedia                          | Klien                                          | Dependensi tambahan                |
-| --------------------------------- | ---------------------------------------------- | ---------------------------------- |
-| Agent Platform                    | `from anthropic import AnthropicVertex`        | `pip install "anthropic[vertex]"`  |
-| Bedrock                           | `from anthropic import AnthropicBedrockMantle` | `pip install "anthropic[bedrock]"` |
-| Bedrock (jalur `bedrock-runtime`) | `from anthropic import AnthropicBedrock`       | `pip install "anthropic[bedrock]"` |
-| Claude Platform on AWS            | `from anthropic import AnthropicAWS`           | `pip install "anthropic[aws]"`     |
-| Foundry                           | `from anthropic import AnthropicFoundry`       | Tidak ada                          |
+| Penyedia                                          | Klien                                          | Dependensi tambahan                     |
+| ------------------------------------------------- | ---------------------------------------------- | --------------------------------------- |
+| Agent Platform                                    | `from anthropic import AnthropicVertex`        | `pip install "anthropic[vertex]"`       |
+| Bedrock                                           | `from anthropic import AnthropicBedrockMantle` | `pip install "anthropic[bedrock]"`      |
+| Bedrock (jalur `bedrock-runtime`)                 | `from anthropic import AnthropicBedrock`       | `pip install "anthropic[bedrock]"`      |
+| Claude Platform on AWS                            | `from anthropic import AnthropicAWS`           | `pip install "anthropic[aws]"`          |
+| Claude Models on Google Cloud (Anthropic managed) | `from anthropic import AnthropicGoogleCloud`   | `pip install "anthropic[google_cloud]"` |
+| Foundry                                           | `from anthropic import AnthropicFoundry`       | Tidak ada                               |
 
-Klien `AnthropicAWS` masih dalam tahap beta. Berikan `workspace_id` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID`.
+Klien `AnthropicAWS` masih dalam tahap beta. Berikan `workspace_id` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID`. Klien `AnthropicGoogleCloud` juga masih dalam tahap beta. Berikan `workspace_id` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`. Lihat [Resolusi proyek, lokasi, dan workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution) untuk mengetahui cara klien menentukan ID workspace.
 
 Gunakan `AnthropicBedrockMantle` untuk proyek baru; `AnthropicBedrock` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
 

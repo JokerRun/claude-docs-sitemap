@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 7c8da97d2bf57d5824186fb4f474546b3d06d0db3b2ec007299fe2592f972077
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 54ef3a679fd43de2c0d065cdf1679d672ee62089f344edb221eccc4b1116990d
 ---
 
 ---
@@ -372,7 +372,7 @@ The following script sends a request that should trigger parallel tool calls, ve
   };
 
   var finalResponse = await client.Messages.Create(finalParameters);
-  var text = finalResponse.Content.Select(b => b.Value).OfType<TextBlock>().FirstOrDefault();
+  var text = finalResponse.Content.Select(block => block.Value).OfType<TextBlock>().FirstOrDefault();
   Console.WriteLine($"\nClaude's response:\n{text?.Text}");
 
   Console.WriteLine("\n--- Verification ---");
@@ -704,7 +704,7 @@ The following script sends a request that should trigger parallel tool calls, ve
   echo "\nClaude's response:\n{$textBlock->text}\n";
 
   echo "\n--- Verification ---\n";
-  echo "✓ Tool results sent in single user message: " . count($toolResults) . " results\n";
+  echo '✓ Tool results sent in single user message: ' . count($toolResults) . " results\n";
   echo "✓ No text before tool results in content array\n";
   echo "✓ Conversation formatted correctly for future parallel tool use\n";
   ```
@@ -1063,7 +1063,9 @@ When the `tool_choice` type is `auto` (the default), setting `disable_parallel_t
               .inputSchema(schema)
               .build()
       )
-      .toolChoice(ToolChoiceAuto.builder().disableParallelToolUse(true).build())
+      .toolChoice(ToolChoiceAuto.builder()
+          .disableParallelToolUse(true)
+          .build())
       .addUserMessage("What is the weather in San Francisco and New York?")
       .build();
 
@@ -1079,7 +1081,7 @@ When the `tool_choice` type is `auto` (the default), setting `disable_parallel_t
       messages: [
           ['role' => 'user', 'content' => 'What is the weather in San Francisco and New York?']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       toolChoice: ['type' => 'auto', 'disableParallelToolUse' => true],
       tools: [
           [
@@ -1344,7 +1346,9 @@ When `tool_choice` type is `any` or `tool`, setting `disable_parallel_tool_use: 
               .inputSchema(schema)
               .build()
       )
-      .toolChoice(ToolChoiceAny.builder().disableParallelToolUse(true).build())
+      .toolChoice(ToolChoiceAny.builder()
+          .disableParallelToolUse(true)
+          .build())
       .addUserMessage("What is the weather in San Francisco and New York?")
       .build();
 
@@ -1360,7 +1364,7 @@ When `tool_choice` type is `any` or `tool`, setting `disable_parallel_tool_use: 
       messages: [
           ['role' => 'user', 'content' => 'What is the weather in San Francisco and New York?']
       ],
-      model: 'claude-opus-5',
+      model: Model::CLAUDE_OPUS_5,
       toolChoice: ['type' => 'any', 'disableParallelToolUse' => true],
       tools: [
           [

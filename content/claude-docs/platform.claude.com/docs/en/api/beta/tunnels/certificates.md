@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 143825d0016bc34c513379d37d0783851acbb9e36c7b298db7cf9574ddae7dcb
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 5a9df8afc8d30e1ade8fbe3c8b6875d3fc34bd3ee5f93ffc9b15c34f1cc50afe
 ---
 
 ---
@@ -201,9 +201,9 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
 ```bash
 curl https://api.anthropic.com/v1/tunnels/$TUNNEL_ID/certificates \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: mcp-tunnels-2026-06-22' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "ca_certificate_pem": "ca_certificate_pem"
         }'
@@ -407,9 +407,9 @@ Fetches a tunnel certificate by ID.
 
 ```bash
 curl https://api.anthropic.com/v1/tunnels/$TUNNEL_ID/certificates/$CERTIFICATE_ID \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: mcp-tunnels-2026-06-22' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -626,9 +626,9 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
 ```bash
 curl https://api.anthropic.com/v1/tunnels/$TUNNEL_ID/certificates \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: mcp-tunnels-2026-06-22' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -835,9 +835,9 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
 ```bash
 curl https://api.anthropic.com/v1/tunnels/$TUNNEL_ID/certificates/$CERTIFICATE_ID/archive \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: mcp-tunnels-2026-06-22' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)

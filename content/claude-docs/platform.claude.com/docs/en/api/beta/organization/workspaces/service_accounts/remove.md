@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/remove
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 10da84216484c0a4ca59a1dfc8ef03d4bebd21eda20af759cc5953f9fe7e8797
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: c2bfb3bf49ad1a6a54d5a15d4ee79315d5962d102ba2e3981cd78428cc602188
 ---
 
 ---
@@ -171,8 +171,8 @@ membership. Archived workspaces return 400.
 ```bash
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/service_accounts/$SERVICE_ACCOUNT_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

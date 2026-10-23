@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/service_accounts/retrieve
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 4eae8054b5bb344a1e5c2c0dbf386acb853d83e5ae4dc7a36726fa61a28cde0e
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 8e717a1c3e693eec3d5430b70cc35d95caef5c183089892a22087bc47f734a44
 ---
 
 ---
@@ -99,8 +99,8 @@ Retrieve a service account by its ID (`svac_...`).
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUNT_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

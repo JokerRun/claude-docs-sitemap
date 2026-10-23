@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/mcp-connector
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 9f041be6b8d33c6f73f913b35f2e582cef03ce225c2c6e1997336e50595b68db
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 236996f5a0dea2ccfa5a6c7a4766e22c2707ea7278799c9ac2356233070789dd
 ---
 
 ---
@@ -139,19 +139,15 @@ Each declared server also needs a matching `mcp_toolset` entry in the `tools` (c
   		ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   	},
   	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{{
-  		Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,
   		Name: "github",
   		URL:  "https://api.githubcopilot.com/mcp/",
   	}},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{
   		{
-  			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-  				Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-  			},
+  			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{},
   		},
   		{
   			OfMCPToolset: &anthropic.BetaManagedAgentsMCPToolsetParams{
-  				Type:          anthropic.BetaManagedAgentsMCPToolsetParamsTypeMCPToolset,
   				MCPServerName: "github",
   			},
   		},
@@ -186,7 +182,7 @@ Each declared server also needs a matching `mcp_toolset` entry in the `tools` (c
   ```php PHP
   $agent = $client->beta->agents->create(
       name: 'GitHub Assistant',
-      model: 'claude-opus-5-5',
+      model: BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
       mcpServers: [
           BetaManagedAgentsURLMCPServerParams::with(
               name: 'github',

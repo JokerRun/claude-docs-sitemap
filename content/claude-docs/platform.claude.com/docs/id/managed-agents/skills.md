@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/skills
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: f5912615b2e14378e545433cb967574e8d447f6d6c08ebfcc6c3d4692495e885
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 3a9b9cc2c52f8b72ecb12f65228be219ce977218568de74e9b0816a4c7f38d84
 ---
 
 ---
@@ -522,7 +522,6 @@ Untuk memuat skill dari repositori, buat sesi yang me-mount repositori tersebut.
   	Resources: []anthropic.BetaSessionNewParamsResourceUnion{
   		{
   			OfGitHubRepository: &anthropic.BetaManagedAgentsGitHubRepositoryResourceParams{
-  				Type:               anthropic.BetaManagedAgentsGitHubRepositoryResourceParamsTypeGitHubRepository,
   				URL:                "https://github.com/org/repo",
   				MountPath:          anthropic.String("/workspace/repo"),
   				AuthorizationToken: "ghp_your_github_token",

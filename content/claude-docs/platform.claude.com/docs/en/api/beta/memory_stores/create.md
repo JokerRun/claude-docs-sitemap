@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/create
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 2315248a4f6fb909d1d4b350ecbf49cb5c82d38055214f9c25630d3c8031637b
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 40d5435726451a97d68a1fecbf7e936acdf054863b2072936f8f02dc1d12727f
 ---
 
 ---
@@ -219,9 +219,9 @@ Create a Memory Store
 ```bash
 curl https://api.anthropic.com/v1/memory_stores \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: agent-memory-2026-07-22' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "name": "x"
         }'

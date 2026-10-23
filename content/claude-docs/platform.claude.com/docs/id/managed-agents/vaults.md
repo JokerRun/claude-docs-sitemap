@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 6555e20438f2139b4be181b3938b71c9bf776e78770ab483980c13e6b6f96413
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 86dc2d8a714b33083b1a108c66501032bb5a6fcfb0e937755d61859fc4154976
 ---
 
 ---
@@ -280,7 +280,6 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
       	DisplayName: anthropic.String("Alice's Slack"),
       	Auth: anthropic.BetaVaultCredentialNewParamsAuthUnion{
       		OfMCPOAuth: &anthropic.BetaManagedAgentsMCPOAuthCreateParams{
-      			Type:         anthropic.BetaManagedAgentsMCPOAuthCreateParamsTypeMCPOAuth,
       			MCPServerURL: "https://mcp.slack.com/mcp",
       			AccessToken:  "xoxp-...",
       			ExpiresAt:    anthropic.Time(time.Date(2099, time.December, 31, 23, 59, 59, 0, time.UTC)),
@@ -291,7 +290,6 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
       				RefreshToken:  "xoxe-1-...",
       				TokenEndpointAuth: anthropic.BetaManagedAgentsMCPOAuthRefreshParamsTokenEndpointAuthUnion{
       					OfClientSecretPost: &anthropic.BetaManagedAgentsTokenEndpointAuthPostParam{
-      						Type:         anthropic.BetaManagedAgentsTokenEndpointAuthPostParamTypeClientSecretPost,
       						ClientSecret: "abc123...",
       					},
       				},
@@ -443,7 +441,6 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
       	DisplayName: anthropic.String("Linear API key"),
       	Auth: anthropic.BetaVaultCredentialNewParamsAuthUnion{
       		OfStaticBearer: &anthropic.BetaManagedAgentsStaticBearerCreateParams{
-      			Type:         anthropic.BetaManagedAgentsStaticBearerCreateParamsTypeStaticBearer,
       			MCPServerURL: "https://mcp.linear.app/mcp",
       			Token:        "lin_api_your_linear_key",
       		},
@@ -611,12 +608,10 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
       	DisplayName: anthropic.String("Notion API key for sandbox"),
       	Auth: anthropic.BetaVaultCredentialNewParamsAuthUnion{
       		OfEnvironmentVariable: &anthropic.BetaManagedAgentsEnvironmentVariableCreateParams{
-      			Type:        anthropic.BetaManagedAgentsEnvironmentVariableCreateParamsTypeEnvironmentVariable,
       			SecretName:  "NOTION_API_KEY",
       			SecretValue: "ntn_your-secret-here",
       			Networking: anthropic.BetaManagedAgentsCredentialNetworkingParamsUnion{
       				OfLimited: &anthropic.BetaManagedAgentsLimitedCredentialNetworkingParams{
-      					Type:         anthropic.BetaManagedAgentsLimitedCredentialNetworkingParamsTypeLimited,
       					AllowedHosts: []string{"api.notion.com"},
       				},
       			},
@@ -918,7 +913,6 @@ Nilai rahasia, `display_name` (java, php: `displayName`; csharp, go: `DisplayNam
   	VaultID: vault.ID,
   	Auth: anthropic.BetaVaultCredentialUpdateParamsAuthUnion{
   		OfMCPOAuth: &anthropic.BetaManagedAgentsMCPOAuthUpdateParams{
-  			Type:        anthropic.BetaManagedAgentsMCPOAuthUpdateParamsTypeMCPOAuth,
   			AccessToken: anthropic.String("xoxp-new-..."),
   			ExpiresAt:   anthropic.Time(time.Date(2099, time.December, 31, 23, 59, 59, 0, time.UTC)),
   			Refresh: anthropic.BetaManagedAgentsMCPOAuthRefreshUpdateParams{

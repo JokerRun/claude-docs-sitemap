@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 69b3caede8c0e465c8941067ff5e1dc7a6b362ee80fe0975b748531ebdf9fa89
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: bb48dc019854babe395b6cf7b0eaf9a53410d41c81d8a787146ce6e8261ca6ae
 ---
 
 ---
@@ -193,10 +193,10 @@ Sebelum mengembangkan solusi moderasi konten, pertama-tama buatlah contoh konten
   	"Congratulations! You have won a $1,000 gift card. Click here to claim your prize!",
   }
 
-  // Contoh komentar pengguna untuk menguji moderasi konten
+  // Sample user comments to test the content moderation
   var userComments = slices.Concat(allowedUserComments, disallowedUserComments)
 
-  // Kategori yang dianggap tidak aman untuk moderasi konten
+  // Categories considered unsafe for content moderation
   var unsafeCategories = []string{
   	"Child Exploitation",
   	"Conspiracy Theories",
@@ -217,33 +217,33 @@ Sebelum mengembangkan solusi moderasi konten, pertama-tama buatlah contoh konten
   final AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   final List<String> allowedUserComments = List.of(
-          "This movie was great, I really enjoyed it. The main actor really killed it!",
-          "I hate Mondays.",
-          "It is a great time to invest in gold!");
+      "This movie was great, I really enjoyed it. The main actor really killed it!",
+      "I hate Mondays.",
+      "It is a great time to invest in gold!");
 
   final List<String> disallowedUserComments = List.of(
-          "Delete this post now or you better hide. I am coming after you and your family.",
-          "Stay away from the 5G cellphones!! They are using 5G to control you.",
-          "Congratulations! You have won a $1,000 gift card. Click here to claim your prize!");
+      "Delete this post now or you better hide. I am coming after you and your family.",
+      "Stay away from the 5G cellphones!! They are using 5G to control you.",
+      "Congratulations! You have won a $1,000 gift card. Click here to claim your prize!");
 
   // Contoh komentar pengguna untuk menguji moderasi konten
   final List<String> userComments =
-          Stream.concat(allowedUserComments.stream(), disallowedUserComments.stream()).toList();
+      Stream.concat(allowedUserComments.stream(), disallowedUserComments.stream()).toList();
 
   // Kategori yang dianggap tidak aman untuk moderasi konten
   final List<String> unsafeCategories = List.of(
-          "Child Exploitation",
-          "Conspiracy Theories",
-          "Hate",
-          "Indiscriminate Weapons",
-          "Intellectual Property",
-          "Non-Violent Crimes",
-          "Privacy",
-          "Self-Harm",
-          "Sex Crimes",
-          "Sexual Content",
-          "Specialized Advice",
-          "Violent Crimes");
+      "Child Exploitation",
+      "Conspiracy Theories",
+      "Hate",
+      "Indiscriminate Weapons",
+      "Intellectual Property",
+      "Non-Violent Crimes",
+      "Privacy",
+      "Self-Harm",
+      "Sex Crimes",
+      "Sexual Content",
+      "Specialized Advice",
+      "Violent Crimes");
   ```
 
   ```php PHP
@@ -596,10 +596,10 @@ Untuk menggunakan Claude dalam moderasi konten, Claude harus memahami persyarata
 
   ```go Go
   func moderateMessage(message string, unsafeCategories []string) (bool, []string, string) {
-  	// Mengonversi kategori tidak aman menjadi string, dengan setiap kategori pada baris baru
+  	// Convert the unsafe categories into a string, with each category on a new line
   	unsafeCategoryStr := strings.Join(unsafeCategories, "\n")
 
-  	// Menyusun prompt untuk Claude, termasuk pesan dan kategori tidak aman
+  	// Construct the prompt for Claude, including the message and unsafe categories
   	assessmentPrompt := fmt.Sprintf(`
       Determine whether the following message warrants moderation,
       based on the unsafe categories outlined below.
@@ -620,7 +620,7 @@ Untuk menggunakan Claude dalam moderasi konten, Claude harus memahami persyarata
       }
   Do not include markdown formatting or code fences in your response.`, message, unsafeCategoryStr)
 
-  	// Mengirim permintaan ke Claude untuk moderasi konten
+  	// Send the request to Claude for content moderation
   	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
   		Model:     anthropic.ModelClaudeHaiku4_5_20251001, // Using the Haiku model for lower costs
   		MaxTokens: 200,
@@ -632,13 +632,13 @@ Untuk menggunakan Claude dalam moderasi konten, Claude harus memahami persyarata
   		log.Fatal(err)
   	}
 
-  	// Mempersempit blok konten pertama menjadi blok teks sebelum membaca teksnya
+  	// Narrow the first content block to a text block before reading its text
   	textBlock, ok := response.Content[0].AsAny().(anthropic.TextBlock)
   	if !ok {
   		log.Fatalf("expected a text block, got %q", response.Content[0].Type)
   	}
 
-  	// Mem-parsing respons JSON dari Claude
+  	// Parse the JSON response from Claude
   	var assessment struct {
   		Violation   bool     `json:"violation"`
   		Categories  []string `json:"categories"`
@@ -648,14 +648,14 @@ Untuk menggunakan Claude dalam moderasi konten, Claude harus memahami persyarata
   		log.Fatal(err)
   	}
 
-  	// Jika ada pelanggaran, kembalikan kategori dan penjelasannya; jika tidak, gunakan nilai default kosong
+  	// If there's a violation, return the categories and explanation; otherwise, use empty defaults
   	if !assessment.Violation {
   		return false, nil, ""
   	}
   	return true, assessment.Categories, assessment.Explanation
   }
 
-  // moderateAllComments memproses setiap komentar dan mencetak hasilnya.
+  // moderateAllComments processes each comment and prints the results.
   func moderateAllComments() {
   	for _, comment := range userComments {
   		fmt.Printf("\nComment: %s\n", comment)
@@ -700,21 +700,21 @@ Untuk menggunakan Claude dalam moderasi konten, Claude harus memahami persyarata
               "explanation": [Optional. Only include if there is a violation.]
               }
           Do not include markdown formatting or code fences in your response."""
-              .formatted(message, unsafeCategoryStr);
+          .formatted(message, unsafeCategoryStr);
 
       // Kirim permintaan ke Claude untuk moderasi konten
       Message response = client.messages().create(MessageCreateParams.builder()
-              .model(Model.CLAUDE_HAIKU_4_5_20251001) // Using the Haiku model for lower costs
-              .maxTokens(200)
-              .addUserMessage(assessmentPrompt)
-              .build());
+          .model(Model.CLAUDE_HAIKU_4_5_20251001) // Using the Haiku model for lower costs
+          .maxTokens(200)
+          .addUserMessage(assessmentPrompt)
+          .build());
 
       // Parse respons JSON dari Claude
       String assessmentJson = response.content().stream()
-              .flatMap(contentBlock -> contentBlock.text().stream())
-              .findFirst()
-              .orElseThrow()
-              .text();
+          .flatMap(contentBlock -> contentBlock.text().stream())
+          .findFirst()
+          .orElseThrow()
+          .text();
       ObjectMapper mapper = new ObjectMapper();
       JsonNode assessment = mapper.readTree(assessmentJson);
 
@@ -723,11 +723,11 @@ Untuk menggunakan Claude dalam moderasi konten, Claude harus memahami persyarata
 
       // Jika ada pelanggaran, ambil kategori dan penjelasannya; jika tidak, gunakan nilai default kosong
       List<String> violatedCategories = containsViolation && assessment.has("categories")
-              ? mapper.convertValue(assessment.get("categories"), new TypeReference<List<String>>() {})
-              : List.of();
+          ? mapper.convertValue(assessment.get("categories"), new TypeReference<List<String>>() {})
+          : List.of();
       String explanation = containsViolation && assessment.hasNonNull("explanation")
-              ? assessment.get("explanation").asText()
-              : null;
+          ? assessment.get("explanation").asText()
+          : null;
 
       return new ModerationResult(containsViolation, violatedCategories, explanation);
   }
@@ -1126,10 +1126,10 @@ Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten 
 
   ```go Go
   func assessRiskLevel(message string, unsafeCategories []string) (int, []string, string) {
-  	// Mengonversi kategori tidak aman menjadi string, dengan setiap kategori pada baris baru
+  	// Convert the unsafe categories into a string, with each category on a new line
   	unsafeCategoryStr := strings.Join(unsafeCategories, "\n")
 
-  	// Menyusun prompt untuk Claude, termasuk pesan, kategori tidak aman, dan definisi tingkat risiko
+  	// Construct the prompt for Claude, including the message, unsafe categories, and risk level definitions
   	assessmentPrompt := fmt.Sprintf(`
       Assess the risk level of the following message,
       based on the unsafe categories listed below.
@@ -1158,7 +1158,7 @@ Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten 
   }
   Do not include markdown formatting or code fences in your response.`, message, unsafeCategoryStr)
 
-  	// Mengirim permintaan ke Claude untuk penilaian risiko
+  	// Send the request to Claude for risk assessment
   	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
   		Model:     anthropic.ModelClaudeHaiku4_5_20251001, // Using the Haiku model for lower costs
   		MaxTokens: 200,
@@ -1170,13 +1170,13 @@ Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten 
   		log.Fatal(err)
   	}
 
-  	// Mempersempit blok konten pertama menjadi blok teks sebelum membaca teksnya
+  	// Narrow the first content block to a text block before reading its text
   	textBlock, ok := response.Content[0].AsAny().(anthropic.TextBlock)
   	if !ok {
   		log.Fatalf("expected a text block, got %q", response.Content[0].Type)
   	}
 
-  	// Mem-parsing respons JSON dari Claude
+  	// Parse the JSON response from Claude
   	var assessment struct {
   		RiskLevel   int      `json:"risk_level"`
   		Categories  []string `json:"categories"`
@@ -1186,11 +1186,11 @@ Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten 
   		log.Fatal(err)
   	}
 
-  	// Mengembalikan tingkat risiko, kategori yang dilanggar, dan penjelasan dari penilaian
+  	// Return the risk level, violated categories, and explanation from the assessment
   	return assessment.RiskLevel, assessment.Categories, assessment.Explanation
   }
 
-  // assessAllRiskLevels memproses setiap komentar dan mencetak hasilnya.
+  // assessAllRiskLevels processes each comment and prints the results.
   func assessAllRiskLevels() {
   	for _, comment := range userComments {
   		fmt.Printf("\nComment: %s\n", comment)
@@ -1244,21 +1244,21 @@ Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten 
             "explanation": <Optional. Only include if risk level is greater than 0>
           }
           Do not include markdown formatting or code fences in your response."""
-              .formatted(message, unsafeCategoryStr);
+          .formatted(message, unsafeCategoryStr);
 
       // Kirim permintaan ke Claude untuk penilaian risiko
       Message response = client.messages().create(MessageCreateParams.builder()
-              .model(Model.CLAUDE_HAIKU_4_5_20251001) // Using the Haiku model for lower costs
-              .maxTokens(200)
-              .addUserMessage(assessmentPrompt)
-              .build());
+          .model(Model.CLAUDE_HAIKU_4_5_20251001) // Using the Haiku model for lower costs
+          .maxTokens(200)
+          .addUserMessage(assessmentPrompt)
+          .build());
 
       // Parse respons JSON dari Claude
       String assessmentJson = response.content().stream()
-              .flatMap(contentBlock -> contentBlock.text().stream())
-              .findFirst()
-              .orElseThrow()
-              .text();
+          .flatMap(contentBlock -> contentBlock.text().stream())
+          .findFirst()
+          .orElseThrow()
+          .text();
       ObjectMapper mapper = new ObjectMapper();
       JsonNode assessment = mapper.readTree(assessmentJson);
 
@@ -1266,11 +1266,11 @@ Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten 
       int riskLevel = assessment.required("risk_level").asInt();
       JsonNode categoriesNode = assessment.required("categories");
       List<String> violatedCategories = categoriesNode.isNull()
-              ? List.of()
-              : mapper.convertValue(categoriesNode, new TypeReference<List<String>>() {});
+          ? List.of()
+          : mapper.convertValue(categoriesNode, new TypeReference<List<String>>() {});
       String explanation = assessment.hasNonNull("explanation")
-              ? assessment.get("explanation").asText()
-              : null;
+          ? assessment.get("explanation").asText()
+          : null;
 
       return new RiskAssessment(riskLevel, violatedCategories, explanation);
   }
@@ -1778,9 +1778,9 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
   ```
 
   ```go Go
-  // Kategori yang dianggap tidak aman untuk moderasi konten, beserta definisinya.
-  // Slice berisi pasangan kategori/definisi (bukan map) menjaga urutan render
-  // tetap stabil; map di Go melakukan iterasi dalam urutan acak.
+  // Categories considered unsafe for content moderation, with their definitions.
+  // A slice of category/definition pairs (rather than a map) keeps the rendered
+  // order stable; Go maps iterate in random order.
   type categoryDefinition struct {
   	category   string
   	definition string
@@ -1806,14 +1806,14 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
   }
 
   func moderateMessageWithDefinitions(message string, unsafeCategoryDefinitions []categoryDefinition) (bool, []string, string) {
-  	// Memformat string kategori tidak aman, dengan setiap kategori dan definisinya pada baris baru
+  	// Format unsafe categories string, with each category and its definition on a new line
   	categoryLines := make([]string, len(unsafeCategoryDefinitions))
   	for i, entry := range unsafeCategoryDefinitions {
   		categoryLines[i] = fmt.Sprintf("%s: %s", entry.category, entry.definition)
   	}
   	unsafeCategoryStr := strings.Join(categoryLines, "\n")
 
-  	// Menyusun prompt untuk Claude, termasuk pesan dan kategori tidak aman
+  	// Construct the prompt for Claude, including the message and unsafe categories
   	assessmentPrompt := fmt.Sprintf(`Determine whether the following message warrants moderation, based on the unsafe categories outlined below.
 
   Message:
@@ -1834,7 +1834,7 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
   }
   Do not include markdown formatting or code fences in your response.`, message, unsafeCategoryStr)
 
-  	// Mengirim permintaan ke Claude untuk moderasi konten
+  	// Send the request to Claude for content moderation
   	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
   		Model:     anthropic.ModelClaudeHaiku4_5_20251001, // Using the Haiku model for lower costs
   		MaxTokens: 200,
@@ -1846,13 +1846,13 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
   		log.Fatal(err)
   	}
 
-  	// Mempersempit blok konten pertama menjadi blok teks sebelum membaca teksnya
+  	// Narrow the first content block to a text block before reading its text
   	textBlock, ok := response.Content[0].AsAny().(anthropic.TextBlock)
   	if !ok {
   		log.Fatalf("expected a text block, got %q", response.Content[0].Type)
   	}
 
-  	// Mem-parsing respons JSON dari Claude
+  	// Parse the JSON response from Claude
   	var assessment struct {
   		Violation   bool     `json:"violation"`
   		Categories  []string `json:"categories"`
@@ -1862,14 +1862,14 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
   		log.Fatal(err)
   	}
 
-  	// Jika ada pelanggaran, kembalikan kategori dan penjelasannya; jika tidak, gunakan nilai default kosong
+  	// If there's a violation, return the categories and explanation; otherwise, use empty defaults
   	if !assessment.Violation {
   		return false, nil, ""
   	}
   	return true, assessment.Categories, assessment.Explanation
   }
 
-  // moderateAllCommentsWithDefinitions memproses setiap komentar dan mencetak hasilnya.
+  // moderateAllCommentsWithDefinitions processes each comment and prints the results.
   func moderateAllCommentsWithDefinitions() {
   	for _, comment := range userComments {
   		fmt.Printf("\nComment: %s\n", comment)
@@ -1890,49 +1890,49 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
   record CategoryDefinition(String category, String definition) {}
 
   final List<CategoryDefinition> unsafeCategoryDefinitions = List.of(
-          new CategoryDefinition(
-                  "Child Exploitation",
-                  "Content that depicts child nudity or that enables, encourages, excuses, or depicts the sexual abuse of children."),
-          new CategoryDefinition(
-                  "Conspiracy Theories",
-                  """
-                  Content that promotes or endorses unfounded, false, or misleading theories about events, situations, or individuals,
-                          which can incite harm or undermine public trust in institutions or facts."""),
-          new CategoryDefinition(
-                  "Hate",
-                  """
-                  Content that is hateful toward people on the basis of their protected characteristics
-                          (race, color, ethnicity, national origin, disability, religious affiliation, caste, sexual orientation, sex, gender identity and serious disease),
-                          or content that perpetuates negative stereotypes."""),
-          new CategoryDefinition(
-                  "Indiscriminate Weapons",
-                  "Content that enables the creation of weapons of mass destruction."),
-          new CategoryDefinition(
-                  "Intellectual Property",
-                  "Content that violates the intellectual property rights of third parties."),
-          new CategoryDefinition(
-                  "Non-Violent Crimes",
-                  "Content that enables, encourages, or excuses the commission of non-violent crimes."),
-          new CategoryDefinition(
-                  "Privacy",
-                  "Content that contains sensitive, personal information about private individuals."),
-          new CategoryDefinition(
-                  "Self-Harm",
-                  "Content that enables, encourages, or excuses acts of intentional self-harm."),
-          new CategoryDefinition(
-                  "Sex Crimes",
-                  "Content that enables, encourages, or excuses the commission of sex crimes."),
-          new CategoryDefinition(
-                  "Sexual Content",
-                  "Content that contains erotic descriptions or explicit depictions of sex acts."),
-          new CategoryDefinition(
-                  "Specialized Advice",
-                  """
-                  Content that contains financial, medical, or legal advice.
-                          Financial advice includes guidance on investments, stocks, bonds, or any financial planning."""),
-          new CategoryDefinition(
-                  "Violent Crimes",
-                  "Content that enables, encourages, or excuses the commission of violent crimes."));
+      new CategoryDefinition(
+          "Child Exploitation",
+          "Content that depicts child nudity or that enables, encourages, excuses, or depicts the sexual abuse of children."),
+      new CategoryDefinition(
+          "Conspiracy Theories",
+          """
+          Content that promotes or endorses unfounded, false, or misleading theories about events, situations, or individuals,
+                  which can incite harm or undermine public trust in institutions or facts."""),
+      new CategoryDefinition(
+          "Hate",
+          """
+          Content that is hateful toward people on the basis of their protected characteristics
+                  (race, color, ethnicity, national origin, disability, religious affiliation, caste, sexual orientation, sex, gender identity and serious disease),
+                  or content that perpetuates negative stereotypes."""),
+      new CategoryDefinition(
+          "Indiscriminate Weapons",
+          "Content that enables the creation of weapons of mass destruction."),
+      new CategoryDefinition(
+          "Intellectual Property",
+          "Content that violates the intellectual property rights of third parties."),
+      new CategoryDefinition(
+          "Non-Violent Crimes",
+          "Content that enables, encourages, or excuses the commission of non-violent crimes."),
+      new CategoryDefinition(
+          "Privacy",
+          "Content that contains sensitive, personal information about private individuals."),
+      new CategoryDefinition(
+          "Self-Harm",
+          "Content that enables, encourages, or excuses acts of intentional self-harm."),
+      new CategoryDefinition(
+          "Sex Crimes",
+          "Content that enables, encourages, or excuses the commission of sex crimes."),
+      new CategoryDefinition(
+          "Sexual Content",
+          "Content that contains erotic descriptions or explicit depictions of sex acts."),
+      new CategoryDefinition(
+          "Specialized Advice",
+          """
+          Content that contains financial, medical, or legal advice.
+                  Financial advice includes guidance on investments, stocks, bonds, or any financial planning."""),
+      new CategoryDefinition(
+          "Violent Crimes",
+          "Content that enables, encourages, or excuses the commission of violent crimes."));
 
   record ModerationDecision(boolean violation, List<String> violatedCategories, String explanation) {}
 
@@ -1941,9 +1941,9 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
           throws JsonProcessingException {
       // Format string kategori tidak aman, dengan setiap kategori dan definisinya pada baris baru
       String unsafeCategoryStr = unsafeCategoryDefinitions.stream()
-              .map(categoryDefinition ->
-                      categoryDefinition.category() + ": " + categoryDefinition.definition())
-              .collect(Collectors.joining("\n"));
+          .map(categoryDefinition ->
+              categoryDefinition.category() + ": " + categoryDefinition.definition())
+          .collect(Collectors.joining("\n"));
 
       // Susun prompt untuk Claude, termasuk pesan dan kategori tidak aman
       String assessmentPrompt = """
@@ -1966,21 +1966,21 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
             "explanation": [Optional. Only include if there is a violation.]
           }
           Do not include markdown formatting or code fences in your response."""
-              .formatted(message, unsafeCategoryStr);
+          .formatted(message, unsafeCategoryStr);
 
       // Kirim permintaan ke Claude untuk moderasi konten
       Message response = client.messages().create(MessageCreateParams.builder()
-              .model(Model.CLAUDE_HAIKU_4_5_20251001) // Using the Haiku model for lower costs
-              .maxTokens(200)
-              .addUserMessage(assessmentPrompt)
-              .build());
+          .model(Model.CLAUDE_HAIKU_4_5_20251001) // Using the Haiku model for lower costs
+          .maxTokens(200)
+          .addUserMessage(assessmentPrompt)
+          .build());
 
       // Parse respons JSON dari Claude
       String assessmentJson = response.content().stream()
-              .flatMap(contentBlock -> contentBlock.text().stream())
-              .findFirst()
-              .orElseThrow()
-              .text();
+          .flatMap(contentBlock -> contentBlock.text().stream())
+          .findFirst()
+          .orElseThrow()
+          .text();
       ObjectMapper mapper = new ObjectMapper();
       JsonNode assessment = mapper.readTree(assessmentJson);
 
@@ -1989,11 +1989,11 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
 
       // Jika ada pelanggaran, ambil kategori dan penjelasannya; jika tidak, gunakan nilai default kosong
       List<String> violatedCategories = containsViolation && assessment.has("categories")
-              ? mapper.convertValue(assessment.get("categories"), new TypeReference<List<String>>() {})
-              : List.of();
+          ? mapper.convertValue(assessment.get("categories"), new TypeReference<List<String>>() {})
+          : List.of();
       String explanation = containsViolation && assessment.hasNonNull("explanation")
-              ? assessment.get("explanation").asText()
-              : null;
+          ? assessment.get("explanation").asText()
+          : null;
 
       return new ModerationDecision(containsViolation, violatedCategories, explanation);
   }
@@ -2242,7 +2242,7 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
       # Kirim permintaan ke Claude untuk moderasi konten
       response = client.messages.create(
           model="claude-haiku-4-5-20251001",  # Using the Haiku model for lower costs
-          max_tokens=2048,  # Increased max token count to handle batches
+          max_tokens=2048,  # Increased token limit to handle batches
           messages=[{"role": "user", "content": assessment_prompt}],
       )
 
@@ -2317,7 +2317,7 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
     // Kirim permintaan ke Claude untuk moderasi konten
     const response = await client.messages.create({
       model: "claude-haiku-4-5-20251001", // Using the Haiku model for lower costs
-      max_tokens: 2048, // Increased max token count to handle batches
+      max_tokens: 2048, // Increased token limit to handle batches
       messages: [{ role: "user", content: assessmentPrompt }]
     });
 
@@ -2390,7 +2390,7 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
           new()
           {
               Model = Model.ClaudeHaiku4_5_20251001, // Using the Haiku model for lower costs
-              MaxTokens = 2048, // Increased max token count to handle batches
+              MaxTokens = 2048, // Increased token limit to handle batches
               Messages = [new UserMessageParam { Content = assessmentPrompt }],
           }
       );
@@ -2426,8 +2426,8 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
   ```
 
   ```go Go
-  // batchViolation adalah satu entri dalam array "violations" dari Claude: indeks
-  // pesan yang melanggar beserta kategori yang dilanggar dan alasannya.
+  // batchViolation is one entry in Claude's "violations" array: the index of the
+  // offending message plus the categories it violated and why.
   type batchViolation struct {
   	ID          int      `json:"id"`
   	Categories  []string `json:"categories"`
@@ -2435,17 +2435,17 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
   }
 
   func batchModerateMessages(messages []string, unsafeCategories []string) []batchViolation {
-  	// Mengonversi kategori tidak aman menjadi string, dengan setiap kategori pada baris baru
+  	// Convert the unsafe categories into a string, with each category on a new line
   	unsafeCategoryStr := strings.Join(unsafeCategories, "\n")
 
-  	// Memformat string pesan, dengan setiap pesan dibungkus tag mirip XML dan diberi ID
+  	// Format messages string, with each message wrapped in XML-like tags and given an ID
   	messageLines := make([]string, len(messages))
   	for i, message := range messages {
   		messageLines[i] = fmt.Sprintf("<message id=%d>%s</message>", i, message)
   	}
   	messagesStr := strings.Join(messageLines, "\n")
 
-  	// Menyusun prompt untuk Claude, termasuk pesan-pesan dan kategori tidak aman
+  	// Construct the prompt for Claude, including the messages and unsafe categories
   	assessmentPrompt := fmt.Sprintf(`Determine the messages to moderate, based on the unsafe categories outlined below.
 
   Messages:
@@ -2474,10 +2474,10 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
   - Select any number of violations that reasonably apply.
   - Do not include markdown formatting or code fences in your response.`, messagesStr, unsafeCategoryStr)
 
-  	// Mengirim permintaan ke Claude untuk moderasi konten
+  	// Send the request to Claude for content moderation
   	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
   		Model:     anthropic.ModelClaudeHaiku4_5_20251001, // Using the Haiku model for lower costs
-  		MaxTokens: 2048,                                   // Increased max token count to handle batches
+  		MaxTokens: 2048,                                   // Increased token limit to handle batches
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock(assessmentPrompt)),
   		},
@@ -2486,13 +2486,13 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
   		log.Fatal(err)
   	}
 
-  	// Mempersempit blok konten pertama menjadi blok teks sebelum membaca teksnya
+  	// Narrow the first content block to a text block before reading its text
   	textBlock, ok := response.Content[0].AsAny().(anthropic.TextBlock)
   	if !ok {
   		log.Fatalf("expected a text block, got %q", response.Content[0].Type)
   	}
 
-  	// Mem-parsing respons JSON dari Claude
+  	// Parse the JSON response from Claude
   	var assessment struct {
   		Violations []batchViolation `json:"violations"`
   	}
@@ -2502,13 +2502,13 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
   	return assessment.Violations
   }
 
-  // moderateAllCommentsAsBatch memoderasi seluruh batch komentar dalam satu
-  // permintaan dan mencetak hasil untuk setiap pelanggaran yang terdeteksi.
+  // moderateAllCommentsAsBatch moderates the whole batch of comments in a single
+  // request and prints the results for each detected violation.
   func moderateAllCommentsAsBatch() {
-  	// Memproses batch komentar dan mendapatkan respons
+  	// Process the batch of comments and get the response
   	violations := batchModerateMessages(userComments, unsafeCategories)
 
-  	// Mencetak hasil untuk setiap pelanggaran yang terdeteksi
+  	// Print the results for each detected violation
   	for _, violation := range violations {
   		fmt.Printf(`Comment: %s
   Violated Categories: %s
@@ -2527,8 +2527,8 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
 
       // Format string pesan, dengan setiap pesan dibungkus tag mirip XML dan diberi ID
       String messagesStr = IntStream.range(0, messages.size())
-              .mapToObj(idx -> "<message id=%d>%s</message>".formatted(idx, messages.get(idx)))
-              .collect(Collectors.joining("\n"));
+          .mapToObj(idx -> "<message id=%d>%s</message>".formatted(idx, messages.get(idx)))
+          .collect(Collectors.joining("\n"));
 
       // Susun prompt untuk Claude, termasuk pesan-pesan dan kategori tidak aman
       String assessmentPrompt = """
@@ -2559,21 +2559,21 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
           - Remember to analyze every message for a violation.
           - Select any number of violations that reasonably apply.
           - Do not include markdown formatting or code fences in your response."""
-              .formatted(messagesStr, unsafeCategoryStr);
+          .formatted(messagesStr, unsafeCategoryStr);
 
       // Kirim permintaan ke Claude untuk moderasi konten
       Message response = client.messages().create(MessageCreateParams.builder()
-              .model(Model.CLAUDE_HAIKU_4_5_20251001) // Using the Haiku model for lower costs
-              .maxTokens(2048) // Increased max token count to handle batches
-              .addUserMessage(assessmentPrompt)
-              .build());
+          .model(Model.CLAUDE_HAIKU_4_5_20251001) // Using the Haiku model for lower costs
+          .maxTokens(2048) // Increased token limit to handle batches
+          .addUserMessage(assessmentPrompt)
+          .build());
 
       // Parse respons JSON dari Claude
       String assessmentJson = response.content().stream()
-              .flatMap(contentBlock -> contentBlock.text().stream())
-              .findFirst()
-              .orElseThrow()
-              .text();
+          .flatMap(contentBlock -> contentBlock.text().stream())
+          .findFirst()
+          .orElseThrow()
+          .text();
       return new ObjectMapper().readTree(assessmentJson);
   }
 
@@ -2584,15 +2584,15 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
       ObjectMapper mapper = new ObjectMapper();
       for (JsonNode violation : response.required("violations")) {
           List<String> violatedCategories =
-                  mapper.convertValue(violation.required("categories"), new TypeReference<List<String>>() {});
+              mapper.convertValue(violation.required("categories"), new TypeReference<List<String>>() {});
           IO.println("""
-                  Comment: %s
-                  Violated Categories: %s
-                  Explanation: %s
-                  """.formatted(
-                          userComments.get(violation.required("id").asInt()),
-                          String.join(", ", violatedCategories),
-                          violation.required("explanation").asText()));
+              Comment: %s
+              Violated Categories: %s
+              Explanation: %s
+              """.formatted(
+                  userComments.get(violation.required("id").asInt()),
+                  String.join(", ", violatedCategories),
+                  violation.required("explanation").asText()));
       }
   }
   ```
@@ -2643,7 +2643,7 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
       // Kirim permintaan ke Claude untuk moderasi konten
       $response = $client->messages->create(
           model: 'claude-haiku-4-5-20251001', // Using the Haiku model for lower costs
-          maxTokens: 2048, // Increased max token count to handle batches
+          maxTokens: 2048, // Increased token limit to handle batches
           messages: [['role' => 'user', 'content' => $assessmentPrompt]],
       );
 
@@ -2710,7 +2710,7 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
     # Kirim permintaan ke Claude untuk moderasi konten
     response = CLIENT.messages.create(
       model: Anthropic::Model::CLAUDE_HAIKU_4_5_20251001, # Using the Haiku model for lower costs
-      max_tokens: 2048, # Increased max token count to handle batches
+      max_tokens: 2048, # Increased token limit to handle batches
       messages: [{role: :user, content: assessment_prompt}]
     )
 

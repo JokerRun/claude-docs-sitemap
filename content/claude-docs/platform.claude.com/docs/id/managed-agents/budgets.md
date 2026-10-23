@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/budgets
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 5c7169abdf968bda07e86ac8c2417fd4e02551e10cbb3638088f350fdf352c5b
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 2b4e2339b50bb85c60697fd1a14ef2c4aa1e5b695f7abd7b447706da3bd0027c
 ---
 
 ---
@@ -92,7 +92,6 @@ Berikan field opsional `budget` (csharp, go: `Budget`) saat Anda membuat sesi:
   	},
   	EnvironmentID: environment.ID,
   	Budget: anthropic.BetaManagedAgentsBudgetLimitParam{
-  		Type: anthropic.BetaManagedAgentsBudgetLimitTypeLimit,
   		MaxListCost: anthropic.BetaMonetaryAmountParam{
   			Amount:   "125",
   			Currency: anthropic.BetaCurrencyUsd,
@@ -258,7 +257,6 @@ Perbarui sesi dengan `max_list_cost` (java, php: `maxListCost`; csharp, go: `Max
   ```go Go
   updatedSession, err := client.Beta.Sessions.Update(ctx, session.ID, anthropic.BetaSessionUpdateParams{
   	Budget: anthropic.BetaManagedAgentsBudgetLimitParam{
-  		Type: anthropic.BetaManagedAgentsBudgetLimitTypeLimit,
   		MaxListCost: anthropic.BetaMonetaryAmountParam{
   			Amount:   "500",
   			Currency: anthropic.BetaCurrencyUsd,
@@ -341,8 +339,8 @@ Berikan `"budget": null` (python: `budget=None`; typescript: `budget: null`; rub
   ```
 
   ```go Go
-  // Budget bernilai nol dihilangkan dari permintaan; param.NullStruct (dari
-  // github.com/anthropics/anthropic-sdk-go/packages/param) mengirim null eksplisit.
+  // A zero-value Budget is omitted from the request; param.NullStruct (from
+  // github.com/anthropics/anthropic-sdk-go/v2/packages/param) sends an explicit null.
   unbudgetedSession, err := client.Beta.Sessions.Update(ctx, session.ID, anthropic.BetaSessionUpdateParams{
   	Budget: param.NullStruct[anthropic.BetaManagedAgentsBudgetLimitParam](),
   })

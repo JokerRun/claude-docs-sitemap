@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 7418527a6f0ab90a955f651ede171d108387ed7d7e5845e740b85c8acb15fc50
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: b4d37f39e8b8ed3e57e49a95aa18c95a47390019402dd2b8ef035747d18f9cde
 ---
 
 ---
@@ -149,17 +149,14 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.cla
   	EnvironmentID: environment.ID,
   	InitialEvents: []anthropic.BetaManagedAgentsDeploymentInitialEventParamsUnion{{
   		OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
-  			Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
   			Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{{
   				OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-  					Type: anthropic.BetaManagedAgentsTextBlockTypeText,
   					Text: "Run the weekly compliance scan.",
   				},
   			}},
   		},
   	}},
   	Schedule: anthropic.BetaManagedAgentsScheduleParams{
-  		Type:       anthropic.BetaManagedAgentsScheduleParamsTypeCron,
   		Expression: "0 20 * * 5",
   		Timezone:   "America/New_York",
   	},
@@ -351,7 +348,6 @@ Contoh berikut menetapkan anggaran pada deployment yang sudah ada:
   ```go Go
   updatedDeployment, err := client.Beta.Deployments.Update(ctx, deployment.ID, anthropic.BetaDeploymentUpdateParams{
   	Budget: anthropic.BetaManagedAgentsBudgetLimitParam{
-  		Type: anthropic.BetaManagedAgentsBudgetLimitTypeLimit,
   		MaxListCost: anthropic.BetaMonetaryAmountParam{
   			Amount:   "2000",
   			Currency: anthropic.BetaCurrencyUsd,

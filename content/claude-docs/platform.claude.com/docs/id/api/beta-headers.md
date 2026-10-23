@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/beta-headers
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 900ba533aa3dad39fae98570fccee83f5fffe128a9a36b3eb730eaed91739b5d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: b8afdc3c34294269a17d338d8993cd5ce180c1e16721b8df2f336b8660db1ee1
 ---
 
 ---
@@ -187,7 +187,7 @@ Dengan SDK, cantumkan setiap fitur (misalnya, `betas=["feature1", "feature2"]` (
 
 ### Fitur beta di platform lain
 
-Nama beta sama di setiap platform yang menerimanya, tetapi tidak setiap platform menerima setiap beta. [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), dan [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai) menerima nama beta di header `anthropic-beta`, seperti halnya Claude API. Untuk mengirim beberapa beta, letakkan nama-namanya dalam satu header, dipisahkan dengan koma: Google Cloud hanya membaca satu header `anthropic-beta` dan mengabaikan sisanya, sehingga beta di header lainnya tidak berlaku.
+Nama beta sama di setiap platform yang menerimanya, tetapi tidak setiap platform menerima setiap beta. [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) menerima nama beta di header `anthropic-beta`, seperti halnya Claude API. Untuk mengirim beberapa beta, letakkan nama-namanya dalam satu header, dipisahkan dengan koma: Claude Models on Google Cloud (Google managed) hanya membaca satu header `anthropic-beta` dan mengabaikan sisanya, sehingga beta di header lainnya tidak berlaku.
 
 Di Amazon Bedrock, lokasi nama beta bergantung pada API yang Anda panggil:
 

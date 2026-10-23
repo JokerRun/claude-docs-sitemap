@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: ef60fbf1e0aafd6c656f0bf43720f3d0a3e960400f4ffdd64f72d1de57168daf
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: cf3ada88eee5fa51034293afc9aae4335a8b6bd976f4734ff049824051e7b799
 ---
 
 ---
@@ -41,7 +41,7 @@ Telusuri grup-grup berikut dari atas ke bawah dan berhenti setelah grup yang men
 4. Jika kode Anda membaca blok konten pertama sebagai jawaban, pilih blok berdasarkan `type` sebagai gantinya. Lihat [Konfigurasikan thinking](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#configure-thinking).
 5. Hapus `temperature`, `top_p`, dan `top_k` dari permintaan Anda. Lihat [Hapus parameter sampling](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#remove-sampling-parameters).
 6. Jika permintaan Anda mengakhiri `messages` dengan giliran asisten agar dilanjutkan oleh model, akhiri dengan giliran pengguna sebagai gantinya. Lihat [Ganti prefill asisten](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#replace-assistant-prefill).
-7. Jika Anda menggunakan computer use, ganti `computer_20250124`: di Claude API dan Google Cloud, dengan toolset `computer_toolset_20260801`; di Amazon Bedrock, dengan `computer_20251124` dan beta header `computer-use-2025-11-24`. Lihat [Pindahkan computer use ke toolset](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset).
+7. Jika Anda menggunakan computer use, ganti `computer_20250124`: di Claude API dan Claude Models on Google Cloud (Google managed), dengan toolset `computer_toolset_20260801`; di Amazon Bedrock, dengan `computer_20251124` dan beta header `computer-use-2025-11-24`. Lihat [Pindahkan computer use ke toolset](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset).
 8. Jika Anda memutar ulang percakapan yang tersimpan melalui akun yang berbeda, putar ulang setiap percakapan melalui akun yang menghasilkannya. Lihat [Putar ulang blok thinking melalui akun yang menghasilkannya](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#replay-thinking-blocks-through-the-producing-account).
 9. Jika kode Anda mengubah `system`, `tools`, atau `messages` sebelumnya di antara permintaan dalam satu percakapan dan mengirim kembali blok thinking, pertahankan percakapan bersifat append-only (hanya ditambahkan). Lihat [Pertahankan giliran sebelumnya tidak berubah](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#keep-earlier-turns-unchanged).
 10. Tangani `stop_reason: "refusal"`. Claude Haiku 5.5 menjalankan pengklasifikasi keamanan yang dapat menolak permintaan, dan tidak memiliki fallback di sisi server. Lihat [Penolakan safeguard](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#safeguard-refusals).
@@ -61,13 +61,13 @@ Jika organisasi Anda memiliki komitmen [Priority Tier](https://platform.claude.c
 
 Ganti ID model Claude Haiku 4.5 dengan ID Claude Haiku 5.5 untuk platform Anda.
 
-| Platform               | Claude Haiku 4.5                                    | Claude Haiku 5.5             |
-| ---------------------- | --------------------------------------------------- | ---------------------------- |
-| Claude API             | `claude-haiku-4-5-20251001` atau `claude-haiku-4-5` | `claude-haiku-5-5`           |
-| Amazon Bedrock         | `anthropic.claude-haiku-4-5`                        | `anthropic.claude-haiku-5-5` |
-| Claude Platform on AWS | `claude-haiku-4-5`                                  | `claude-haiku-5-5`           |
-| Google Cloud           | `claude-haiku-4-5@20251001`                         | `claude-haiku-5-5`           |
-| Microsoft Foundry      | `claude-haiku-4-5`                                  | `claude-haiku-5-5`           |
+| Platform                                       | Claude Haiku 4.5                                    | Claude Haiku 5.5             |
+| ---------------------------------------------- | --------------------------------------------------- | ---------------------------- |
+| Claude API                                     | `claude-haiku-4-5-20251001` atau `claude-haiku-4-5` | `claude-haiku-5-5`           |
+| Amazon Bedrock                                 | `anthropic.claude-haiku-4-5`                        | `anthropic.claude-haiku-5-5` |
+| Claude Platform on AWS                         | `claude-haiku-4-5`                                  | `claude-haiku-5-5`           |
+| Claude Models on Google Cloud (Google managed) | `claude-haiku-4-5@20251001`                         | `claude-haiku-5-5`           |
+| Microsoft Foundry                              | `claude-haiku-4-5`                                  | `claude-haiku-5-5`           |
 
 `claude-haiku-5-5` adalah ID model tetap tanpa akhiran tanggal dan tanpa alias terpisah.
 
@@ -121,7 +121,7 @@ Secara default, Claude Haiku 5.5 mengembalikan setiap blok `thinking` dengan fie
 
 Claude Haiku 5.5 menerima `tool_choice` yang dipaksakan (`any` atau alat bernama), tetapi respons dimulai dengan pemanggilan alat dan tidak memiliki blok `thinking`. Agar model dapat berpikir sebelum memanggil alat, gunakan `tool_choice: {"type": "auto"}` dan sebutkan dalam prompt kapan harus menggunakan alat tersebut.
 
-Claude Haiku 5.5 membaca blok thinking dari Claude Sonnet 5, Claude Opus 4.8, Claude Haiku 4.5, dan model sebelumnya, sehingga percakapan yang Anda alihkan dari Claude Haiku 4.5 ke Claude Haiku 5.5 tetap mempertahankan penalarannya. Model ini tidak membaca blok dari Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5, atau model Claude Fable maupun Claude Mythos mana pun; API membuang blok tersebut tanpa error. Di Claude API dan Google Cloud, Claude Opus 5.5 dan Claude Sonnet 5.5 membaca blok dari Claude Haiku 5.5. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
+Claude Haiku 5.5 membaca blok thinking dari Claude Sonnet 5, Claude Opus 4.8, Claude Haiku 4.5, dan model sebelumnya, sehingga percakapan yang Anda alihkan dari Claude Haiku 4.5 ke Claude Haiku 5.5 tetap mempertahankan penalarannya. Model ini tidak membaca blok dari Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5, atau model Claude Fable maupun Claude Mythos mana pun; API membuang blok tersebut tanpa error. Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Opus 5.5 dan Claude Sonnet 5.5 membaca blok dari Claude Haiku 5.5. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
 
 ## Hapus parameter sampling
 
@@ -138,11 +138,11 @@ Pada Claude Haiku 5.5, hilangkan `temperature`, `top_p`, dan `top_k` dan gunakan
 
 ## Pindahkan computer use ke toolset
 
-Claude Haiku 4.5 mendukung [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) melalui alat `computer_20250124`, dengan beta header `computer-use-2025-01-24`. Di Claude API dan Google Cloud, Claude Haiku 5.5 mendukung computer use hanya melalui toolset `computer_toolset_20260801`, dan permintaan yang mendeklarasikan `computer_20250124` mengembalikan error 400. Di Amazon Bedrock, Claude Haiku 5.5 juga tidak menerima `computer_20250124`; gunakan versi alat `computer_20251124` dengan beta header `computer-use-2025-11-24`.
+Claude Haiku 4.5 mendukung [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) melalui alat `computer_20250124`, dengan beta header `computer-use-2025-01-24`. Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Haiku 5.5 mendukung computer use hanya melalui toolset `computer_toolset_20260801`, dan permintaan yang mendeklarasikan `computer_20250124` mengembalikan error 400. Di Amazon Bedrock, Claude Haiku 5.5 juga tidak menerima `computer_20250124`; gunakan versi alat `computer_20251124` dengan beta header `computer-use-2025-11-24`.
 
 Untuk memindahkan integrasi ke toolset, hapus beta header `computer-use-2025-01-24` dan ganti entri `tools` dengan `{"type": "computer_toolset_20260801"}`. Kemudian lakukan perubahan permintaan dan agent loop lainnya di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124): lakukan dispatch berdasarkan `name` dan `toolset_name` dari setiap blok `tool_use` anggota, bukan berdasarkan `input.action`, tangani setiap blok tersebut dalam satu giliran, dan sertakan kembali `toolset_name` pada hasil. Zoom aktif secara default di toolset; jika lingkungan Anda tidak mengimplementasikannya, tambahkan `"configs": {"zoom": {"enabled": false}}`. Jika Anda mengirim beta header `fine-grained-tool-streaming-2025-05-14`, hapus header tersebut. Jika digunakan bersama entri toolset, header itu mengembalikan error 400. Untuk platform lain, lihat bagian [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#compatibility) pada alat computer use.
 
-Di Claude API dan Google Cloud, Claude Haiku 5.5 juga mendukung [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`) untuk tugas di dalam halaman web. Claude Haiku 4.5 tidak mendukungnya.
+Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Haiku 5.5 juga mendukung [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`) untuk tugas di dalam halaman web. Claude Haiku 4.5 tidak mendukungnya.
 
 ## Putar ulang blok thinking melalui akun yang menghasilkannya
 
@@ -154,11 +154,11 @@ Blok thinking Claude Haiku 5.5 tetap valid hanya selama semua yang dikirim sebel
 
 ## Migrasi ke Claude Haiku 5.5 dari Claude Haiku 3.5 dan model Haiku sebelumnya
 
-Claude Haiku 3.5 telah dipensiunkan di Claude API dan Amazon Bedrock, dan Claude Haiku 3 telah dipensiunkan di Claude API dan Google Cloud. Permintaan ke model yang telah dipensiunkan akan gagal. Google Cloud mencantumkan Claude Haiku 3.5 sebagai model yang dihentikan (deprecated) dan hanya tersedia untuk pelanggan yang sudah ada. Lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations).
+Claude Haiku 3.5 telah dipensiunkan di Claude API dan Amazon Bedrock, dan Claude Haiku 3 telah dipensiunkan di Claude API dan Claude Models on Google Cloud (Google managed). Permintaan ke model yang telah dipensiunkan akan gagal. Claude Models on Google Cloud (Google managed) mencantumkan Claude Haiku 3.5 sebagai model yang dihentikan (deprecated) dan hanya tersedia untuk pelanggan yang sudah ada. Lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations).
 
 Dari model mana pun di antara keduanya, terapkan terlebih dahulu setiap bagian sebelumnya, lalu perubahan berikut:
 
-* **ID model:** Ganti `claude-3-5-haiku-20241022`, aliasnya `claude-3-5-haiku-latest`, atau `claude-3-haiku-20240307` dengan `claude-haiku-5-5`. Di Google Cloud, ganti `claude-3-5-haiku@20241022` dengan `claude-haiku-5-5`. Di Amazon Bedrock, gunakan ID Claude Haiku 5.5 dari [Gunakan ID model Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#use-the-claude-haiku-5-5-model-id).
+* **ID model:** Ganti `claude-3-5-haiku-20241022`, aliasnya `claude-3-5-haiku-latest`, atau `claude-3-haiku-20240307` dengan `claude-haiku-5-5`. Di Claude Models on Google Cloud (Google managed), ganti `claude-3-5-haiku@20241022` dengan `claude-haiku-5-5`. Di Amazon Bedrock, gunakan ID Claude Haiku 5.5 dari [Gunakan ID model Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#use-the-claude-haiku-5-5-model-id).
 * **Eksekusi kode:** Claude Haiku 5.5 menerima `code_execution_20250825` dan versi yang lebih baru. Jika Anda menggunakan `code_execution_20250522` lama yang hanya mendukung Python, pindahkan ke salah satunya. Lihat [Upgrade ke versi alat terbaru](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upgrade-to-latest-tool-version).
 * **Text editor:** Jika Anda menggunakan alat text editor, pindahkan ke `text_editor_20250728` (nama alat `str_replace_based_edit_tool`), yang tidak memiliki perintah `undo_edit`. Lihat [Alat text editor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool).
 * **Alasan berhenti:** Tangani `refusal` dan `model_context_window_exceeded`. Lihat [Menangani alasan berhenti](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons).

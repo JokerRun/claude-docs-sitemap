@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: b1f80a29a37fc30fe0e883e6e0c05cb0afc2805f883e22362eefcb7a420db72a
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 44b7a7388828f518aa6d1d952ad5759a938ad9da27ec4f3a8e6e243d22730a51
 ---
 
 ---
@@ -122,9 +122,9 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
   	"os/signal"
   	"syscall"
 
-  	"github.com/anthropics/anthropic-sdk-go"
-  	"github.com/anthropics/anthropic-sdk-go/lib/environments"
-  	"github.com/anthropics/anthropic-sdk-go/option"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
+  	"github.com/anthropics/anthropic-sdk-go/v2/lib/environments"
+  	"github.com/anthropics/anthropic-sdk-go/v2/option"
   )
 
   func main() {
@@ -319,10 +319,10 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
       	"os/signal"
       	"syscall"
 
-      	"github.com/anthropics/anthropic-sdk-go"
-      	"github.com/anthropics/anthropic-sdk-go/lib/environments"
-      	"github.com/anthropics/anthropic-sdk-go/option"
-      	"github.com/anthropics/anthropic-sdk-go/packages/param"
+      	"github.com/anthropics/anthropic-sdk-go/v2"
+      	"github.com/anthropics/anthropic-sdk-go/v2/lib/environments"
+      	"github.com/anthropics/anthropic-sdk-go/v2/option"
+      	"github.com/anthropics/anthropic-sdk-go/v2/packages/param"
       )
 
       var (
@@ -335,8 +335,8 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
       	worker = environments.NewEnvironmentWorker(client, environments.EnvironmentWorkerOptions{
       		Workdir: "/workspace",
       	})
-      	// Dibatalkan pada SIGINT atau SIGTERM (diatur di main) agar work item yang sedang berjalan dapat
-      	// mengunggah file memori yang berubah dan menghapus direktori store-nya sebelum keluar.
+      	// Cancelled on SIGINT or SIGTERM (set in main) so an in-flight work item can
+      	// upload changed memory files and remove its store directories before exit.
       	shutdown context.Context
       )
 
@@ -356,10 +356,10 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
       		return
       	}
 
-      	// Go SDK tidak menyediakan kemudahan RunOne: kuras item yang tertunda
-      	// dengan WorkPoller dan jalankan masing-masing dengan HandleItem.
-      	// Lepaskan dari r.Context(): sesi dapat bertahan lebih lama dari batas waktu pengiriman webhook.
-      	// Konteks shutdown tingkat proses tetap mengakhiri item dengan bersih pada SIGTERM.
+      	// The Go SDK does not provide a RunOne convenience: drain pending items
+      	// with WorkPoller and run each one with HandleItem.
+      	// Detach from r.Context(): the session can outlive the webhook delivery timeout.
+      	// The process-wide shutdown context still ends the item cleanly on SIGTERM.
       	ctx := shutdown
       	poller := environments.NewWorkPoller(ctx, client, environments.WorkPollerOptions{
       		EnvironmentID:      environmentID,
@@ -377,7 +377,7 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
       			EnvironmentID:  item.EnvironmentID,
       			SessionID:      item.Data.ID,
       			EnvironmentKey: environmentKey,
-      			// Secret per sesi inilah yang memungkinkan worker memasang memory store milik sesi.
+      			// The per-session secret is what lets the worker mount the session's memory stores.
       			WorkSecret: item.Secret,
       		}); err != nil {
       			slog.Error("handle work item", "work_id", item.ID, "err", err)
@@ -406,8 +406,8 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
       			os.Exit(1)
       		}
       	}()
-      	// Saat ada sinyal, berhenti menerima pengiriman dan kembali hanya setelah handler yang sedang berjalan,
-      	// dan karenanya teardown memori work item mereka, telah selesai.
+      	// On a signal, stop accepting deliveries and return only after in-flight
+      	// handlers, and therefore their work items' memory teardown, have finished.
       	<-ctx.Done()
       	if err := server.Shutdown(context.Background()); err != nil {
       		slog.Error("http shutdown", "err", err)
@@ -766,14 +766,14 @@ Ganti entrypoint `ant beta:worker run` dengan entrypoint SDK ketika sandbox haru
   	"os/signal"
   	"syscall"
 
-  	"github.com/anthropics/anthropic-sdk-go"
-  	"github.com/anthropics/anthropic-sdk-go/lib/environments"
-  	"github.com/anthropics/anthropic-sdk-go/option"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
+  	"github.com/anthropics/anthropic-sdk-go/v2/lib/environments"
+  	"github.com/anthropics/anthropic-sdk-go/v2/option"
   )
 
   func main() {
-  	// Membatalkan context saat container dihentikan memungkinkan worker mengunggah
-  	// file memori yang berubah dan menghapus direktori store sebelum keluar.
+  	// Cancelling the context when the container is stopped lets the worker upload
+  	// changed memory files and remove the store directories before it exits.
   	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
   	defer stop()
 
@@ -781,8 +781,8 @@ Ganti entrypoint `ant beta:worker run` dengan entrypoint SDK ketika sandbox haru
   	worker := environments.NewEnvironmentWorker(client, environments.EnvironmentWorkerOptions{
   		Workdir: "/workspace",
   	})
-  	// Dengan opsi bernilai nol, HandleItem membaca variabel ANTHROPIC_* yang diteruskan
-  	// oleh skrip spawn, termasuk ANTHROPIC_WORK_SECRET.
+  	// With zero-value options, HandleItem reads the ANTHROPIC_* variables the spawn
+  	// script forwarded, including ANTHROPIC_WORK_SECRET.
   	if err := worker.HandleItem(ctx, environments.HandleItemOptions{}); err != nil {
   		log.Fatalf("worker: %v", err)
   	}

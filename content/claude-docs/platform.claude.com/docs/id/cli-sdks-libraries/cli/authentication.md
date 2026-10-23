@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 3ced242c31288e9b96f4c82ba8aeb60659a66e28f5311b4de11dd6cafaf0b8d6
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: fefaab09ab2629aa18cbdf827c4b6dd4a32abdfc002dc7647fecafc95b255c9e
 ---
 
 ---
@@ -92,7 +92,7 @@ ant messages create \
 
 ## Periksa status autentikasi
 
-`ant auth status` mencetak sumber kredensial yang dipilih CLI (variabel lingkungan kunci API, login OAuth, federasi, atau profil), profil aktif, workspace tempat token aktif terikat, dan jalur direktori konfigurasi. Gunakan untuk mendiagnosis mengapa beban kerja memilih kredensial atau workspace yang salah.
+`ant auth status` mencetak sumber kredensial yang dipilih CLI (variabel lingkungan kunci API, login OAuth, federasi, Google Cloud, atau profil), profil aktif, workspace tempat token aktif terikat, dan jalur direktori konfigurasi. Gunakan untuk mendiagnosis mengapa beban kerja memilih kredensial atau workspace yang salah.
 
 ```bash CLI
 ant auth status

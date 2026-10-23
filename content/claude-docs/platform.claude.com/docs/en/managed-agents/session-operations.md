@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-operations
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 3be1da34cbad0237a72538931d67e3fde680337f1453c94ce8a6b69972e265c7
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 7644fc9ebfc8ca05112016312ed8e15dcdec3a285ee2bcd59c81237ce33de89a
 ---
 
 ---
@@ -128,20 +128,16 @@ The session must be `idle` to update the agent. To update the agent while the se
   	Agent: anthropic.BetaManagedAgentsSessionAgentUpdateParam{
   		Tools: []anthropic.BetaManagedAgentsSessionAgentUpdateToolUnionParam{
   			{
-  				OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-  					Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-  				},
+  				OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{},
   			},
   			{
   				OfMCPToolset: &anthropic.BetaManagedAgentsMCPToolsetParams{
-  					Type:          anthropic.BetaManagedAgentsMCPToolsetParamsTypeMCPToolset,
   					MCPServerName: "linear",
   				},
   			},
   		},
   		MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{
   			{
-  				Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,
   				Name: "linear",
   				URL:  "https://mcp.linear.app/sse",
   			},
@@ -427,11 +423,15 @@ A `page` cursor is opaque and encodes the `order` of the request that produced i
 
   // Advance by passing next_page as the page cursor.
   var nextCursor = firstPage.response().nextPage().orElseThrow();
-  var secondPage = client.beta().sessions().list(params.toBuilder().page(nextCursor).build());
+  var secondPage = client.beta().sessions().list(params.toBuilder()
+      .page(nextCursor)
+      .build());
 
   // Go back by passing prev_page as the same page cursor.
   var prevCursor = secondPage.response().prevPage().orElseThrow();
-  var previousPage = client.beta().sessions().list(params.toBuilder().page(prevCursor).build());
+  var previousPage = client.beta().sessions().list(params.toBuilder()
+      .page(prevCursor)
+      .build());
   // Back on the first page, so prev_page is empty again.
   IO.println("prev_page: " + previousPage.response().prevPage());
   // For forward-only iteration, page.autoPager() returns an Iterable that auto-follows next_page.

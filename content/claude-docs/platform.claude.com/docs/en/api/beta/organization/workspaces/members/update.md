@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/update
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 5b15b7fe3102ff74d4e69fa4514cf2ee9ea717dd71c59d9fde8912b525ad4e1b
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: aeeafeb0c960a0112e60bc0e249a54c95dc9347d901d57e48d6c4799e5606419
 ---
 
 ---
@@ -89,8 +89,8 @@ Update Workspace Member
 ```bash
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members/$USER_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "workspace_role": "workspace_admin"
         }'

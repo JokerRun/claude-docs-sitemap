@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-library
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: eaa70e6de18a9f9c78aea5671778ac25e86d5b5f3efb9fb7b19eaee254645bca
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: cc03a0e56d417fe4957691a56cdca3451caf90c97df8ee74994a6ee38c87747f
 ---
 
 > ## Documentation Index
@@ -15,7 +15,7 @@ sha256: eaa70e6de18a9f9c78aea5671778ac25e86d5b5f3efb9fb7b19eaee254645bca
 
 This is a library of prompts to copy into Claude Code. Use it to explore ways of working you haven't tried, or when you're not sure where to start.
 
-The prompts are collected from various Anthropic guides, including [Common workflows](/docs/en/common-workflows), [Best practices](/docs/en/best-practices), and [How Anthropic teams use Claude Code](https://claude.com/blog/how-anthropic-teams-use-claude-code). They're starting points rather than scripts. Open **Why this works** under any prompt to see the pattern behind it so you can write your own.
+The prompts are collected from various Anthropic guides, including [Common workflows](/docs/en/common-workflows.md), [Best practices](/docs/en/best-practices.md), and [How Anthropic teams use Claude Code](https://claude.com/blog/how-anthropic-teams-use-claude-code). They're starting points rather than scripts. Open **Why this works** under any prompt to see the pattern behind it so you can write your own.
 
 ## What makes these prompts work
 
@@ -51,20 +51,20 @@ get the bundle size under 200KB and show me what you removed
 why is the build failing? @build.log
 ```
 
-**Say how you want the answer.** Name the format, length, or audience so the explanation fits how you'll use it. To make a format the default for every response, set an [output style](/docs/en/output-styles).
+**Say how you want the answer.** Name the format, length, or audience so the explanation fits how you'll use it. To make a format the default for every response, set an [output style](/docs/en/output-styles.md).
 
 ```text wrap theme={null}
 explain how the payment retry logic works as an HTML page with a diagram, then open it in my browser
 ```
 
-For more on each pattern, see [best practices](/docs/en/best-practices).
+For more on each pattern, see [best practices](/docs/en/best-practices.md).
 
 ## Where these come from
 
 These prompts are based on patterns from published Anthropic resources. Each card links to its source:
 
-* [Common workflows](/docs/en/common-workflows): step-by-step guides for the core tasks
-* [Best practices](/docs/en/best-practices): prompting patterns and project setup
+* [Common workflows](/docs/en/common-workflows.md): step-by-step guides for the core tasks
+* [Best practices](/docs/en/best-practices.md): prompting patterns and project setup
 * [How Anthropic teams use Claude Code](https://claude.com/blog/how-anthropic-teams-use-claude-code): real workflows from engineering, product, design, and data teams, with deep dives on [legal](https://claude.com/blog/how-anthropic-uses-claude-legal), [marketing](https://claude.com/blog/how-anthropic-uses-claude-marketing), and [cybersecurity](https://claude.com/blog/how-anthropic-uses-claude-cybersecurity)
 * [Scaling agentic coding guide](https://resources.anthropic.com/hubfs/Scaling%20agentic%20coding%20across%20your%20organization.pdf): the enterprise adoption guide
 
@@ -72,6 +72,6 @@ For video walkthroughs of these patterns, see the free [Claude Code in Action](h
 
 ## Related resources
 
-The prompts on this page are starting points. Once one works for your project, the next step is making it repeatable: save it as a [skill](/docs/en/skills) so anyone on your team can run it as a `/command`, and record the conventions Claude learned in [CLAUDE.md](/docs/en/memory) so every session starts with that context instead of Claude relearning it. For larger or riskier changes, [plan mode](/docs/en/permission-modes#analyze-before-you-edit-with-plan-mode) shows you the file list before any edits happen.
+The prompts on this page are starting points. Once one works for your project, the next step is making it repeatable: save it as a [skill](/docs/en/skills.md) so anyone on your team can run it as a `/command`, and record the conventions Claude learned in [CLAUDE.md](/docs/en/memory.md) so every session starts with that context instead of Claude relearning it. For larger or riskier changes, [plan mode](/docs/en/permission-modes.md#analyze-before-you-edit-with-plan-mode) shows you the file list before any edits happen.
 
-If you're introducing Claude Code across a team, see [administration](/docs/en/admin-setup) for managed settings and policy, and [costs and usage](/docs/en/costs) for how this work is billed on your plan.
+If you're introducing Claude Code across a team, see [administration](/docs/en/admin-setup.md) for managed settings and policy, and [costs and usage](/docs/en/costs.md) for how this work is billed on your plan.

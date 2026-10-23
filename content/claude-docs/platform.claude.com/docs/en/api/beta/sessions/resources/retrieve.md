@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/retrieve
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 60c924f419da51bd5d6b433eb80fe68e28ef8a3e27e5138052b5cab10ae098ec
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: a853f442d2fc625e932297d3402b41facdd92e968ea25fb94aed067fa2a347a7
 ---
 
 ---
@@ -254,9 +254,9 @@ Get Session Resource
 
 ```bash
 curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources/$RESOURCE_ID \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/versions/download
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 7c046a6c4b099294976f45fac3f23402de0436e5b4adb45208fc6c182bfd579e
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 9897ac9e09eced3022672ebb73ca26838040110e1077f17ddd50b63ab67d49f4
 ---
 
 ---
@@ -168,7 +168,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/plugins/$PLUGIN_ID/versions/$VERSION/content \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: ce-plugins-2026-09-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/events/stream
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 0499baf017b949cb07800a176c7f53aa6647d5a53badbf83e13c767a2f30f77e
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 2479d5f8d97a90b67f380a3994d760d112d59801d49a9848291ee7c5f3047402
 ---
 
 ---
@@ -3136,9 +3136,9 @@ Stream Session Thread Events
 
 ```bash
 curl https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/stream \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: 03441781efd6266316a87824d56c807fb32fc4938eaa61fdce9603d91be125cb
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 481ec54659624b29e734500854dfe18be5d05eaaa48e99ecd8c5ad378f2194f6
 ---
 
 ---
@@ -87,6 +87,14 @@ Kirim trace ke platform observabilitas apa pun yang menerima OTLP, termasuk mitr
     Observabilitas dan keamanan bertenaga AI.
   </Card>
 
+  <Card title="Dynatrace" image="https://platform.claude.com/docs/images/partner-logos/dynatrace.svg" imageDark="https://platform.claude.com/docs/images/partner-logos/dynatrace-dark.svg" imageHeight={22} href="https://docs.dynatrace.com/docs/observe/dynatrace-for-ai-observability/integrations/claude-platform">
+    Observabilitas yang dibangun untuk era AI.
+  </Card>
+
+  <Card title="Elastic" image="https://platform.claude.com/docs/images/partner-logos/elastic.svg" imageDark="https://platform.claude.com/docs/images/partner-logos/elastic-dark.svg" imageHeight={32} href="https://www.elastic.co/docs/reference/opentelemetry/motlp">
+    Observabilitas berbasis sumber terbuka.
+  </Card>
+
   <Card title="Grafana Cloud" image="https://platform.claude.com/docs/images/partner-logos/grafana.svg" imageDark="https://platform.claude.com/docs/images/partner-logos/grafana-dark.svg" imageHeight={34} imageOffsetLeft={2} href="https://grafana.com/docs/grafana-cloud/observe-and-act/agent-observability/guides/send-claude-platform-traces/">
     Platform observabilitas terbuka yang dikelola sepenuhnya.
   </Card>
@@ -111,8 +119,16 @@ Kirim trace ke platform observabilitas apa pun yang menerima OTLP, termasuk mitr
     Platform lengkap untuk membangun produk yang sukses.
   </Card>
 
+  <Card title="Pydantic Logfire" image="https://platform.claude.com/docs/images/partner-logos/pydantic.svg" imageDark="https://platform.claude.com/docs/images/partner-logos/pydantic-dark.svg" imageHeight={24} href="https://pydantic.dev/docs/logfire/integrations/llms/claude-platform/">
+    Observabilitas AI dan umum siap produksi.
+  </Card>
+
   <Card title="Sentry" image="https://platform.claude.com/docs/images/partner-logos/sentry.svg" imageDark="https://platform.claude.com/docs/images/partner-logos/sentry-dark.svg" imageHeight={25} href="https://sentry.io/cookbook/trace-claude-platform-with-opentelemetry/">
     Debug kode Anda yang rusak dan agen yang berperilaku tidak semestinya.
+  </Card>
+
+  <Card title="Snowflake" image="https://platform.claude.com/docs/images/partner-logos/snowflake.svg" imageHeight={30} imageOffsetLeft={2} href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-ai-gateway/observability#trace-claude-requests">
+    AI Data Cloud.
   </Card>
 
   <Card title="Splunk" image="https://platform.claude.com/docs/images/partner-logos/splunk.svg" imageDark="https://platform.claude.com/docs/images/partner-logos/splunk-dark.svg" imageHeight={27} imageOffsetLeft={1} href="https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/claude">

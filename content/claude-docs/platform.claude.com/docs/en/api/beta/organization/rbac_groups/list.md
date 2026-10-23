@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 1a5cb5d69499d267175df8fccde2e7bbb9eaaca96105907063c7f08fb876a74e
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: f2a8f9272cb34f0e975587c972cd86ff8ad1a96da2597d38a21ec1f7c1ba970f
 ---
 
 ---
@@ -84,12 +84,6 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
     format: date-time
 
-  - `roles: array of string or null`
-
-    **Deprecated**: Use `role_ids` instead; `roles` always has the same value.
-
-    Deprecated: use `role_ids` instead. IDs of the RBAC Roles attached to this RBAC Group; always the same value as `role_ids`, `null` included.
-
 - `has_more: boolean`
 
   Indicates if there are more results in the requested page direction.
@@ -102,8 +96,8 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/rbac_groups \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)
@@ -116,9 +110,6 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups \
       "created_at": "2024-10-30T23:58:27.427722Z",
       "name": "Engineering",
       "role_ids": [
-        "rbac_role_016J8xVtKpDq3Wy9ZmN2hR4s"
-      ],
-      "roles": [
         "rbac_role_016J8xVtKpDq3Wy9ZmN2hR4s"
       ],
       "source_type": "direct",

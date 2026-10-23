@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations/workspaces/list
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 4bd94ecd6d4c448e3e6081d3a35a55aca325fbe7865481f1e354390777c04404
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 4e7e6df8703c3d410d000ae5b98023defce6b3359532a4bdf252203cbfe8799a
 ---
 
 ---
@@ -186,9 +186,9 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/telemetry_destinations/$DESTINATION_ID/workspaces \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: telemetry-destinations-2026-08-11' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

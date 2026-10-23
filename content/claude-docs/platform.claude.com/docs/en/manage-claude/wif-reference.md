@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-reference
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: cb08d80ff7849f70e1f6a09de2a865428b7ff7c253601fd31738afc11ee6886b
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 342093ba54d7e522f8b05e4236a4814cb565ad103140f303c41dc62b7e826902
 ---
 
 ---
@@ -68,6 +68,8 @@ The SDK resolves credentials in this order. The first source that yields a crede
 | 3     | `ANTHROPIC_PROFILE`                                              | Loads `<config_dir>/configs/<name>.json`. A missing named profile is an error, not a fall-through.                                 |
 | 4     | Federation environment variables                                 | `ANTHROPIC_FEDERATION_RULE_ID` + `ANTHROPIC_ORGANIZATION_ID` + `ANTHROPIC_SERVICE_ACCOUNT_ID` + `ANTHROPIC_IDENTITY_TOKEN[_FILE]`. |
 | 5     | Active profile                                                   | Resolved from `<config_dir>/active_config`, falling back to a profile named `default`.                                             |
+
+In the `ant` CLI, the settings for [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#authentication) rank after the federation environment variables and before the active profile. The settings are the project, the workspace ID, and the location. You set them with the `--google-cloud-*` flags or the `ANTHROPIC_GOOGLE_CLOUD_*` variables. The CLI uses these settings when any one of them is set. With these settings, the CLI gets its credential from Google Application Default Credentials.
 
 When a profile is loaded, environment variables fill any fields the profile omits but never override fields the profile sets explicitly. For example, `ANTHROPIC_WORKSPACE_ID` fills `workspace_id` only when the active profile does not set it.
 
@@ -135,7 +137,7 @@ The `oauth_scope` you set on a federation rule determines which Claude API endpo
 | `workspace:manage_tunnels` | The [MCP tunnels API](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/reference#tunnels-api): create, list, and get tunnels, register and archive CA certificates, reveal and rotate the tunnel token, and archive tunnels. The Console's create-tunnel modal window locks this scope when you create a rule from it.                                                                                                                                                                                                                                      |
 | `org:admin`                | Full access to the [Admin API](https://platform.claude.com/docs/en/manage-claude/admin-api) (organization members, invites, workspaces, API keys, and the rest). An OAuth `org:admin` token can only create or modify rules scoped to `workspace:developer` or `workspace:inference`, and cannot update an issuer that backs a rule with any other scope; see [Permissions and constraints](https://platform.claude.com/docs/en/manage-claude/wif-admin-api#permissions-and-constraints).                                                                                   |
 
-A request to an endpoint outside the token's scope returns HTTP 403. Finer-grained scopes (per resource, or read versus write) are not currently available.
+A request to an endpoint outside the token's scope returns HTTP 403. Finer-grained scopes (by resource, or read versus write) are not available.
 
 ### Permission boundaries
 

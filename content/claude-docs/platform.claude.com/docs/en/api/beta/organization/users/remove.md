@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/users/remove
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: f7ca5d459e6cc7309cae4597ddeeee958faf2c94c9be59ed1bbde17947794935
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: fc6818d3cc6bfc7f6c3f9323ffb84e7f687c9f6422e51eb62c7241cc33340125
 ---
 
 ---
@@ -49,8 +49,8 @@ Remove a member from the organization.
 ```bash
 curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 0df69160771c41ffb1f99d8a3ea7fd6f852a73515acbd47a943dccafef57f059
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: f53095ae87c91fc6d722004106187f164a9c95dd54765d967442e56aa2ca71ba
 ---
 
 ---
@@ -27,7 +27,7 @@ featureMetadata:
     - claude-haiku-5-5
   supportedPlatforms:
     Claude API: ga
-    Google Cloud: ga
+    Claude Models on Google Cloud (Google managed): ga
 ---
 
 <Note>
@@ -44,7 +44,7 @@ Dengan penggunaan browser, Claude membaca dan bertindak pada halaman web langsun
 
 ## Mulai cepat
 
-Alat penggunaan browser tersedia di Claude API dan [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai): tambahkan satu entri bertipe `browser_toolset_20260801`, tanpa `name`, ke array `tools` dari permintaan [Messages API](https://platform.claude.com/docs/id/api/messages/create).
+Alat penggunaan browser tersedia di Claude API dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed): tambahkan satu entri bertipe `browser_toolset_20260801`, tanpa `name`, ke array `tools` dari permintaan [Messages API](https://platform.claude.com/docs/id/api/messages/create).
 
 <CodeGroup>
   ```bash cURL
@@ -484,11 +484,11 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
   ```
 
   ```go Go
-  // placeholderPNG menggantikan tangkapan layar asli: executor mengembalikan
-  // viewport sebagai data PNG yang dienkode base64.
+  // placeholderPNG stands in for a real capture: an executor returns the
+  // viewport as base64-encoded PNG data.
   const placeholderPNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
 
-  // textContent membungkus teks sebagai konten tool_result.
+  // textContent wraps text as tool_result content.
   func textContent(text string) []anthropic.ToolResultBlockParamContentUnion {
   	return []anthropic.ToolResultBlockParamContentUnion{
   		{OfText: &anthropic.TextBlockParam{Text: text}},
@@ -515,7 +515,7 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
   	return fmt.Sprintf("typed: %s", text)
   }
 
-  // captureScreenshot mengembalikan blok gambar, bukan teks.
+  // captureScreenshot returns an image block rather than text.
   func captureScreenshot() []anthropic.ToolResultBlockParamContentUnion {
   	return []anthropic.ToolResultBlockParamContentUnion{{
   		OfImage: &anthropic.ImageBlockParam{
@@ -538,7 +538,7 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
   	case "read_page":
   		return textContent(readPage()), nil
   	case "left_click":
-  		// target berupa referensi elemen dari read_page atau koordinat viewport
+  		// target is either an element reference from read_page or a viewport coordinate
   		target, _ := params["target"].(map[string]any)
   		if ref, ok := target["ref"].(string); ok && target["type"] == "ref" {
   			return textContent(clickRef(ref)), nil
@@ -554,11 +554,11 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
   		}
   	case "screenshot":
   		return captureScreenshot(), nil
-  	// Tangani aksi lain sesuai kebutuhan
+  	// Handle other actions as needed
   	default:
   		return nil, fmt.Errorf("unknown or unimplemented member: %s", action)
   	}
-  	// Tercapai saat input anggota kehilangan field atau field bertipe salah
+  	// Reached when a member's input is missing a field or a field has the wrong type
   	return nil, fmt.Errorf("invalid input for %s", action)
   }
   ```
@@ -569,13 +569,13 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
 
   ToolResultBlockParam.Content captureScreenshot() {
       ImageBlockParam image = ImageBlockParam.builder()
-              .source(Base64ImageSource.builder()
-                      .mediaType(Base64ImageSource.MediaType.IMAGE_PNG)
-                      .data(PLACEHOLDER_PNG)
-                      .build())
-              .build();
+          .source(Base64ImageSource.builder()
+              .mediaType(Base64ImageSource.MediaType.IMAGE_PNG)
+              .data(PLACEHOLDER_PNG)
+              .build())
+          .build();
       return ToolResultBlockParam.Content.ofBlocks(
-              List.of(ToolResultBlockParam.Content.Block.ofImage(image)));
+          List.of(ToolResultBlockParam.Content.Block.ofImage(image)));
   }
 
   String navigate(String url) {
@@ -584,8 +584,8 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
 
   String readPage() {
       return """
-              link "Docs" [ref_1]
-              button "Search" [ref_2]""";
+          link "Docs" [ref_1]
+          button "Search" [ref_2]""";
   }
 
   String clickRef(String ref) {
@@ -611,7 +611,7 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
           case "left_click" -> {
               // target berupa {"type": "ref", "ref": "ref_1"} atau {"type": "coordinate", "x": 640, "y": 380}
               Map<String, JsonValue> target =
-                      (Map<String, JsonValue>) input.get("target").asObject().get();
+                  (Map<String, JsonValue>) input.get("target").asObject().get();
               if (target.get("type").asStringOrThrow().equals("ref")) {
                   yield clickRef(target.get("ref").asStringOrThrow());
               }
@@ -892,9 +892,9 @@ Bagian kedua menjalankan batch secara berurutan, mengirim setiap blok ke handler
   ```go Go
   const notExecuted = "Not executed: an earlier action in this turn failed."
 
-  // browserToolResult membangun hasil untuk satu aksi browser. Berbeda dengan
-  // hasil alat biasa, ia harus menyertakan kembali nama toolset. Executor asli juga
-  // menambahkan blok browser_state ke hasil navigasi dan pengelolaan tab.
+  // browserToolResult builds the result for one browser action. Unlike an
+  // ordinary tool result, it must echo the toolset name. A real executor also
+  // adds a browser_state block to navigation and tab-management results.
   func browserToolResult(toolUseID string, content []anthropic.ToolResultBlockParamContentUnion, isError bool) anthropic.ContentBlockParamUnion {
   	result := anthropic.ToolResultBlockParam{
   		ToolUseID:   toolUseID,
@@ -907,16 +907,16 @@ Bagian kedua menjalankan batch secara berurutan, mengirim setiap blok ke handler
   	return anthropic.ContentBlockParamUnion{OfToolResult: &result}
   }
 
-  // processToolCalls menjalankan aksi browser dalam respons Claude secara berurutan dan
-  // membangun satu tool_result per blok tool_use. Setelah kegagalan pertama, sisanya
-  // dilewati: Claude merencanakannya dengan asumsi aksi sebelumnya berhasil.
+  // processToolCalls runs the browser actions in Claude's response in order and
+  // builds one tool_result for each tool_use block. After the first failure it skips
+  // the rest: Claude planned them assuming the earlier actions succeeded.
   func processToolCalls(response *anthropic.Message) []anthropic.ContentBlockParamUnion {
   	var toolResults []anthropic.ContentBlockParamUnion
   	failed := false
   	for _, block := range response.Content {
   		switch variant := block.AsAny().(type) {
   		case anthropic.ToolUseBlock:
-  			// Contoh ini hanya mendeklarasikan toolset browser; arahkan alat lain ke sini jika Anda menambahkannya.
+  			// This example declares only the browser toolset; route other tools here if you add them.
   			if variant.ToolsetName != "browser" {
   				continue
   			}
@@ -948,13 +948,13 @@ Bagian kedua menjalankan batch secara berurutan, mengirim setiap blok ke handler
   /** Every result answering a browser toolset member echoes toolset_name. */
   ToolResultBlockParam.Builder browserResult(ToolUseBlock toolUse) {
       return ToolResultBlockParam.builder()
-              .toolUseId(toolUse.id())
-              .toolsetName("browser");
+          .toolUseId(toolUse.id())
+          .toolsetName("browser");
   }
 
   /**
    * Run the browser actions in Claude's response in order and build one
-   * tool_result per tool_use block. After the first failure, skip the rest:
+   * tool_result for each tool_use block. After the first failure, skip the rest:
    * Claude planned them assuming the earlier actions succeeded.
    */
   List<ContentBlockParam> processToolCalls(Message response) {
@@ -968,18 +968,26 @@ Bagian kedua menjalankan batch secara berurutan, mengirim setiap blok ke handler
           ToolUseBlock toolUse = block.asToolUse();
           ToolResultBlockParam result;
           if (failed) {
-              result = browserResult(toolUse).content(HALT_TEXT).isError(true).build();
+              result = browserResult(toolUse)
+                  .content(HALT_TEXT)
+                  .isError(true)
+                  .build();
           } else {
               try {
                   Map<String, JsonValue> input =
-                          (Map<String, JsonValue>) toolUse._input().asObject().get();
+                      (Map<String, JsonValue>) toolUse._input().asObject().get();
                   ToolResultBlockParam.Content output = handleBrowserAction(toolUse.name(), input);
                   // Executor sungguhan juga menambahkan blok browser_state ke hasil navigasi dan
                   // manajemen tab; lihat "Lacak tab dengan browser_state" di halaman ini.
-                  result = browserResult(toolUse).content(output).build();
+                  result = browserResult(toolUse)
+                      .content(output)
+                      .build();
               } catch (RuntimeException e) {
                   failed = true;
-                  result = browserResult(toolUse).content("Error: " + e.getMessage()).isError(true).build();
+                  result = browserResult(toolUse)
+                      .content("Error: " + e.getMessage())
+                      .isError(true)
+                      .build();
               }
           }
           toolResults.add(ContentBlockParam.ofToolResult(result));
@@ -1023,7 +1031,7 @@ Bagian kedua menjalankan batch secara berurutan, mengirim setiap blok ke handler
   NOT_EXECUTED = "Not executed: an earlier action in this turn failed."
 
   # Jalankan aksi browser dalam respons Claude secara berurutan dan buat satu
-  # tool_result per blok tool_use. Setelah kegagalan pertama, lewati sisanya:
+  # tool_result untuk setiap blok tool_use. Setelah kegagalan pertama, lewati sisanya:
   # Claude merencanakannya dengan asumsi aksi sebelumnya berhasil.
   def process_tool_calls(response)
     tool_results = []
@@ -1560,7 +1568,7 @@ API memvalidasi entri toolset dan setiap blok `tool_use` dan `tool_result` anggo
 
 ## Keterbatasan
 
-* **Ketersediaan platform:** Browser use tersedia di Claude API dan [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai).
+* **Ketersediaan platform:** Browser use tersedia di Claude API dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed).
 * **Hanya streaming input utuh:** Ketika Anda melakukan streaming, `input` setiap anggota tiba sebagai satu `input_json_delta` lengkap ([Toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets)).
 * **Referensi elemen bersifat best-effort:** Halaman yang sangat dinamis (daftar tervirtualisasi, antarmuka yang dirender dengan canvas, halaman yang merender ulang saat digulir) mungkin tidak mengekspos referensi yang stabil, dan Claude beralih ke screenshot dan klik koordinat di sana.
 * **`read_console` dan `read_network` bergantung pada otomasi browser Anda:** Keduanya hanya melaporkan apa yang dapat ditangkapnya, dan hanya sejak saat otomasi tersebut terhubung ke sebuah tab.

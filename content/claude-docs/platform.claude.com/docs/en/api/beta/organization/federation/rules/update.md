@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/update
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 00127f018874e65a75b3123e56e8124a934069c72073b866e2fb4896a69e77aa
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: bbc4e8fa6fb56811adfb2cf953db0d0a578621013ca8a97f3ba43f6af8613b15
 ---
 
 ---
@@ -374,8 +374,8 @@ Console session.
 ```bash
 curl https://api.anthropic.com/v1/organizations/federation_rules/$FEDERATION_RULE_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{}'
 ```
 

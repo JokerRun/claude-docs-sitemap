@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/archive
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: e5274d9e5a9c5ee0d1694be70f9c14daa194c46ce6addfdc40d0a8c98d1d9851
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 46c30850d9c18cd52cfefd235f206c292b8c5a8ac5df5f610f395c75901c2b51
 ---
 
 ---
@@ -195,9 +195,9 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
 ```bash
 curl https://api.anthropic.com/v1/tunnels/$TUNNEL_ID/certificates/$CERTIFICATE_ID/archive \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: mcp-tunnels-2026-06-22' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

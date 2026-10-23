@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/archive
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 3f9d93418d024de8306ccf90d0b65ba788750dc5f8f756f32c471b554cb68344
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 11966e2a6af3158f75f5622a0cd90181e12c96d4262c918b071aa00dc346fea2
 ---
 
 ---
@@ -283,9 +283,9 @@ Archive an environment by ID. Archived environments cannot be used to create new
 ```bash
 curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/archive \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

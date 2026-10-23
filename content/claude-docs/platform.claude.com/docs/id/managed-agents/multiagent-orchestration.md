@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 1f7342b13f97d522400e4bde870cefffbb571c26f142d9fe00d01cc2040fff61
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 5d8c0097353b8928d9d175fbbe218d1f4831d46462add171747c158406cf0091
 ---
 
 ---
@@ -258,9 +258,7 @@ Saat [mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agen
   	Model:  anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5},
   	System: anthropic.String("You coordinate engineering work. Delegate code review to the reviewer agent and test writing to the test agent."),
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
-  		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-  			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-  		},
+  		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{},
   	}},
   	Multiagent: anthropic.BetaManagedAgentsMultiagentParamsUnion{
   		OfMultiagent20261001: &anthropic.BetaManagedAgentsMultiagent20261001Params{
@@ -464,7 +462,7 @@ Buat researcher, yang mendeklarasikan server MCP GitHub, dan agen yang mendelega
       "tools": [{"type": "mcp_toolset", "mcp_server_name": "github"}]
     }'
 
-  # Buat agen yang mendelegasikan ke sana: research_agent_id adalah ID dari respons pertama
+  # Buat agen yang mendelegasikan ke peneliti: research_agent_id adalah ID dari respons pertama
   curl --fail-with-body -sS https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -605,13 +603,11 @@ Buat researcher, yang mendeklarasikan server MCP GitHub, dan agen yang mendelega
   	Name:  "researcher",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeHaiku5_5},
   	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{{
-  		Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,
   		Name: "github",
   		URL:  "https://api.githubcopilot.com/mcp/",
   	}},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfMCPToolset: &anthropic.BetaManagedAgentsMCPToolsetParams{
-  			Type:          anthropic.BetaManagedAgentsMCPToolsetParamsTypeMCPToolset,
   			MCPServerName: "github",
   		},
   	}},
@@ -624,9 +620,7 @@ Buat researcher, yang mendeklarasikan server MCP GitHub, dan agen yang mendelega
   	Name:  "lead",
   	Model: anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
-  		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-  			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-  		},
+  		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{},
   	}},
   	Multiagent: anthropic.BetaManagedAgentsMultiagentParamsUnion{
   		OfMultiagent20261001: &anthropic.BetaManagedAgentsMultiagent20261001Params{
@@ -634,8 +628,7 @@ Buat researcher, yang mendeklarasikan server MCP GitHub, dan agen yang mendelega
   				OfEnabled: &anthropic.BetaManagedAgentsMultiagentSubagentsEnabledParams{
   					PredefinedAgents: []anthropic.BetaManagedAgentsMultiagentPredefinedAgentParamsUnion{{
   						OfBetaManagedAgentsAgents: &anthropic.BetaManagedAgentsAgentParams{
-  							Type: anthropic.BetaManagedAgentsAgentParamsTypeAgent,
-  							ID:   researcher.ID,
+  							ID: researcher.ID,
   						},
   					}},
   				},
@@ -937,9 +930,7 @@ Sebelum Anda mengubah `multiagent.type` milik agen yang sudah ada, lihat [cara m
   	Model:  anthropic.BetaManagedAgentsModelConfigParams{ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5},
   	System: anthropic.String("You review contracts. When you're asked to review more than a few contracts, start a workflow run that reads them in parallel and combines the findings. Review one or two contracts yourself, without a run."),
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
-  		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-  			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-  		},
+  		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{},
   	}},
   	Multiagent: anthropic.BetaManagedAgentsMultiagentParamsUnion{
   		OfMultiagent20261001: &anthropic.BetaManagedAgentsMultiagent20261001Params{
@@ -971,7 +962,7 @@ Sebelum Anda mengubah `multiagent.type` milik agen yang sudah ada, lihat [cara m
   ```php PHP
   $agent = $client->beta->agents->create(
       name: 'Contract Reviewer',
-      model: 'claude-opus-5-5',
+      model: BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
       system: "You review contracts. When you're asked to review more than a few contracts, start a workflow run that reads them in parallel and combines the findings. Review one or two contracts yourself, without a run.",
       tools: [
           ['type' => 'agent_toolset_20260401'],
@@ -1191,7 +1182,7 @@ Pengaturan `advisor` yang aktif di blok `multiagent` (csharp, go: `Multiagent`) 
   ```php PHP
   $agent = $client->beta->agents->create(
       name: 'Backend engineer',
-      model: 'claude-sonnet-5',
+      model: BetaManagedAgentsModel::CLAUDE_SONNET_5,
       system: 'You implement backend features end to end. Consult the advisor before major backend design decisions.',
       multiagent: [
           'type' => 'multiagent_20261001',

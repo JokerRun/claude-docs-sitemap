@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/retrieve
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: c8ec3b45f65348c8a1930c2ff1511b101ab1030a55c639db372af42e881bcc95
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 7ccfd390eca4f3ddb8ab3cd79bfe0975abed2e875ffd170a1ced4706a5cb9cf0
 ---
 
 ---
@@ -50,8 +50,8 @@ Retrieve information about the organization associated with the authenticated AP
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/me \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

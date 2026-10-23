@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/home
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 8ed072f9cde22ad5258ebff6e67cd4cc66f725e2172562fb1ce8175b01a13c15
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 569a6602200e89ddcbc743869a86e51d655d6102e870086365eadada66feaf1a
 ---
 
 ---
@@ -236,7 +236,7 @@ dengan Claude"
         Amazon Bedrock
       </HomeCloudPartnerLink>
 
-      <HomeCloudPartnerLink icon="cloud" href="https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai">
+      <HomeCloudPartnerLink icon="cloud" href="https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/overview">
         Google Cloud
       </HomeCloudPartnerLink>
 

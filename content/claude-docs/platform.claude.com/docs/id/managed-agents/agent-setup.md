@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 4825d63db3e27e108bb6ae6bc78d524b520de009e938b8c48075ea6edfce3ebb
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: e70c94719b23cc2bf622ae1ced859ab92563295d49c2d6523979fc6e4df8d955
 ---
 
 ---
@@ -117,9 +117,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau salah satu SDK. Jika Anda be
   	},
   	System: anthropic.String("You are a helpful coding agent."),
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
-  		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-  			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-  		},
+  		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{},
   	}},
   })
   if err != nil {
@@ -632,7 +630,7 @@ Pembaruan berikut menghapus deskripsi, menghapus kunci `team` dari `metadata` (c
   ```
 
   ```go Go
-  // Metadata adalah map[string]string, jadi kirim null untuk team sebagai opsi request.
+  // Metadata is a map[string]string, so send the null for team as a request option.
   clearedAgent, err := client.Beta.Agents.Update(ctx, agent.ID, anthropic.BetaAgentUpdateParams{
   	Description: param.Null[string](),
   	Multiagent: anthropic.BetaManagedAgentsMultiagentParamsUnion{

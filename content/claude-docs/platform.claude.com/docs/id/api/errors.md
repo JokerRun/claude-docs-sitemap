@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 7154fdff4448ed54b88282b03cf5a5b367c534a298a1fc8f37f7d59539def837
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 673dd11fd8e72141f50f3f28fd1facf0184338ab3a5c57532df2b15872ceef48
 ---
 
 ---
@@ -537,7 +537,7 @@ tool_choice: type "tool" and "any" are not supported for this model.
 
 ### Versi alat computer use tidak didukung
 
-Di Claude API dan Google Cloud, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 mendukung [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) hanya sebagai toolset `computer_toolset_20260801`. Di platform tersebut, mengirim entri `tools` bertipe `computer_20251124` atau `computer_20250124` yang lebih lama, dengan header beta alat tersebut, ke salah satu model ini akan mengembalikan error 400 `invalid_request_error`. Pesannya menyebutkan tipe yang ditolak, lalu mencantumkan tipe alat yang diterima model setelah `Did you mean one of`. Untuk Claude Opus 5.5, pesannya diawali dengan:
+Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 mendukung [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) hanya sebagai toolset `computer_toolset_20260801`. Di platform tersebut, mengirim entri `tools` bertipe `computer_20251124` atau `computer_20250124` yang lebih lama, dengan header beta alat tersebut, ke salah satu model ini akan mengembalikan error 400 `invalid_request_error`. Pesannya menyebutkan tipe yang ditolak, lalu mencantumkan tipe alat yang diterima model setelah `Did you mean one of`. Untuk Claude Opus 5.5, pesannya diawali dengan:
 
 ```text wrap
 'claude-opus-5-5' does not support tool types: computer_20251124.

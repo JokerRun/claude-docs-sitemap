@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/delete
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 6e3b15029c7a477b46c8a16fc3da3e3003c40d43096d3ceedbd83ddd6c3dfa5b
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 9103df86c65a30808ac91a919ef762ca19f6c33ff6a26de724e319d52007caba
 ---
 
 ---
@@ -179,9 +179,9 @@ Delete a Memory
 ```bash
 curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMORY_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: agent-memory-2026-07-22' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

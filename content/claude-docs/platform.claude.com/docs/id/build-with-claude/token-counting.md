@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 72b7ff91819156c657ce54a38a3d66d5620673d25fea57db7c01d302f2ff6508
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: b3b4d947e132a49c38d278fd5cf1a4c680db57b693364e7b03887b7f759aadfd
 ---
 
 ---
@@ -18,7 +18,7 @@ featureMetadata:
     Claude API: ga
     Claude Platform on AWS: ga
     Amazon Bedrock: ga
-    Google Cloud: ga
+    Claude Models on Google Cloud (Google managed): ga
     Microsoft Foundry: ga
 ---
 

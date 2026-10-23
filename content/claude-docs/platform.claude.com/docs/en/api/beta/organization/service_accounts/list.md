@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/list
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 91a68f1b1bf7d6b20a7e5269cbfd37359ca6a10a1e3ba5d7485b7dd0e13e22bb
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 077829814278dd6a1107fa23d637ed2e93decdaf6bc57a696c7298e83bde4855
 ---
 
 ---
@@ -224,8 +224,8 @@ archived service accounts.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/service_accounts \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

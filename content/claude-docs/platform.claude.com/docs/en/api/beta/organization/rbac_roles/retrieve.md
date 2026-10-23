@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_roles/retrieve
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 25f7878b7a8c5791e9ef09a739f925829d39cde2fa3d7a1a79141e78559ddbce
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: b5fae9415b67e76f4433512ca7712edf79a95138937d6e73c24346246ef17e22
 ---
 
 ---
@@ -64,18 +64,12 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 
     format: date-time
 
-  - `name: string`
-
-    **Deprecated**: Use `display_name` instead; `name` always has the same value.
-
-    Deprecated: use `display_name` instead. Name of the RBAC Role; always the same value as `display_name`.
-
 ## Example
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/rbac_roles/$RBAC_ROLE_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)
@@ -85,7 +79,6 @@ curl https://api.anthropic.com/v1/organizations/rbac_roles/$RBAC_ROLE_ID \
   "id": "rbac_role_016J8xVtKpDq3Wy9ZmN2hR4s",
   "created_at": "2024-10-30T23:58:27.427722Z",
   "display_name": "Project Editor",
-  "name": "Project Editor",
   "type": "rbac_role",
   "updated_at": "2024-10-30T23:58:27.427722Z"
 }

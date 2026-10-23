@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/list
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 4cbd7426212038555b7a25ff75b7b99cc3b6888c5221e0b63d6eb7058783b7ea
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 8d99cc61aa924b1b9441c542ebfbeed0805f78c1c55c7a56a3e24127044aa9a6
 ---
 
 ---
@@ -279,8 +279,8 @@ Requests whose requester is no longer a member are excluded.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

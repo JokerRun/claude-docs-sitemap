@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/streaming-output
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 30d879b4f43d3fd4c4d10ff035bb3e5abdc499c15e70eee1a93262bd765f7c2b
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: ccd1a1cd9377817d99e700c5f059ac051f20e995267f9c9635eeba98da34e5d5
 ---
 
 > ## Documentation Index
@@ -17,7 +17,7 @@ By default, the Agent SDK yields a complete `AssistantMessage` for each non-empt
 
 > [!TIP]
 >
-> This page covers output streaming (receiving tokens in real-time). For input modes (how you send messages), see [Send messages to agents](/docs/en/agent-sdk/streaming-vs-single-mode). You can also [stream responses using the Agent SDK via the CLI](/docs/en/headless).
+> This page covers output streaming (receiving tokens in real-time). For input modes (how you send messages), see [Send messages to agents](/docs/en/agent-sdk/streaming-vs-single-mode.md). You can also [stream responses using the Agent SDK via the CLI](/docs/en/headless.md).
 
 ## Enable streaming output
 
@@ -85,7 +85,7 @@ When partial messages are enabled, you receive raw Claude API streaming events w
 
 Both contain raw Claude API events, not accumulated text. You need to extract and accumulate text deltas yourself.
 
-The `parent_tool_use_id` field is always `None` in Python and `null` in TypeScript. Stream events are emitted for the main session only; token-level deltas from subagents aren't forwarded. To attribute output to a subagent, use complete messages, which carry `parent_tool_use_id`. See [Detect subagent invocation](/docs/en/agent-sdk/subagents#detect-subagent-invocation).
+The `parent_tool_use_id` field is always `None` in Python and `null` in TypeScript. Stream events are emitted for the main session only; token-level deltas from subagents aren't forwarded. To attribute output to a subagent, use complete messages, which carry `parent_tool_use_id`. See [Detect subagent invocation](/docs/en/agent-sdk/subagents.md#detect-subagent-invocation).
 
 Claude Code sets `user_message_uuid` on the turn's first non-ping stream event, and again when the message the turn is answering changes, under the conditions in [`user_message_uuid`](/docs/en/agent-sdk/typescript#user_message_uuid). The Python `StreamEvent` doesn't expose this field.
 
@@ -325,12 +325,12 @@ for await (const message of query({
 
 ## Known limitations
 
-* **Structured output**: with partial messages enabled, the JSON streams as a tool call's unvalidated `input_json_delta` chunks, and only the validated result reaches the final `ResultMessage.structured_output`. [Recognize the StructuredOutput tool call](/docs/en/agent-sdk/structured-outputs#recognize-the-structuredoutput-tool-call) covers how that call appears in your stream.
+* **Structured output**: with partial messages enabled, the JSON streams as a tool call's unvalidated `input_json_delta` chunks, and only the validated result reaches the final `ResultMessage.structured_output`. [Recognize the StructuredOutput tool call](/docs/en/agent-sdk/structured-outputs.md#recognize-the-structuredoutput-tool-call) covers how that call appears in your stream.
 
 ## Next steps
 
 Now that you can stream text and tool calls in real-time, explore these related topics:
 
-* [Interactive vs one-shot queries](/docs/en/agent-sdk/streaming-vs-single-mode): choose between input modes for your use case
-* [Structured outputs](/docs/en/agent-sdk/structured-outputs): get typed JSON responses from the agent
-* [Permissions](/docs/en/agent-sdk/permissions): control which tools the agent can use
+* [Interactive vs one-shot queries](/docs/en/agent-sdk/streaming-vs-single-mode.md): choose between input modes for your use case
+* [Structured outputs](/docs/en/agent-sdk/structured-outputs.md): get typed JSON responses from the agent
+* [Permissions](/docs/en/agent-sdk/permissions.md): control which tools the agent can use

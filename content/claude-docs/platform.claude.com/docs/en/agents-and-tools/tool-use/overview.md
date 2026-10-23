@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 7c45cf69e78c4ee3c69523fbb122e6b15825969b93fce7c06d1605220fb80d06
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 194f7d36d3e056151b85b2cb957e3f69a3aef8656ad59baf246c0257f51e84ed
 ---
 
 ---
@@ -184,7 +184,7 @@ Here's that round trip in full for a client tool. The first request defines a `g
       model="claude-opus-5-5",
       max_tokens=1024,
       tools=tools,
-      # Ask for at most one tool call per turn.
+      # Ask for at most one tool call in each turn.
       tool_choice={"type": "auto", "disable_parallel_tool_use": True},
       messages=messages,
   )
@@ -240,7 +240,7 @@ Here's that round trip in full for a client tool. The first request defines a `g
     model: "claude-opus-5-5",
     max_tokens: 1024,
     tools,
-    // Ask for at most one tool call per turn.
+    // Ask for at most one tool call in each turn.
     tool_choice: { type: "auto", disable_parallel_tool_use: true },
     messages
   });
@@ -293,7 +293,7 @@ Here's that round trip in full for a client tool. The first request defines a `g
       }),
   ];
 
-  // Ask for at most one tool call per turn.
+  // Ask for at most one tool call in each turn.
   var toolChoice = new ToolChoice(new ToolChoiceAuto { DisableParallelToolUse = true });
 
   const string userPrompt = "What's the weather in San Francisco?";
@@ -371,7 +371,7 @@ Here's that round trip in full for a client tool. The first request defines a `g
   		},
   	}},
   }
-  // Ask for at most one tool call per turn.
+  // Ask for at most one tool call in each turn.
   toolChoice := anthropic.ToolChoiceUnionParam{
   	OfAuto: &anthropic.ToolChoiceAutoParam{DisableParallelToolUse: anthropic.Bool(true)},
   }
@@ -456,7 +456,7 @@ Here's that round trip in full for a client tool. The first request defines a `g
               .build())
           .build();
 
-      // Ask for at most one tool call per turn.
+      // Ask for at most one tool call in each turn.
       ToolChoiceAuto toolChoice = ToolChoiceAuto.builder()
           .disableParallelToolUse(true)
           .build();
@@ -523,7 +523,7 @@ Here's that round trip in full for a client tool. The first request defines a `g
   ];
   $userMessage = ['role' => 'user', 'content' => "What's the weather in San Francisco?"];
 
-  // Ask for at most one tool call per turn.
+  // Ask for at most one tool call in each turn.
   $toolChoice = ToolChoiceAuto::with(disableParallelToolUse: true);
 
   // Claude replies with a tool_use block naming the tool and its arguments.
@@ -597,7 +597,7 @@ Here's that round trip in full for a client tool. The first request defines a `g
     model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: tools,
-    # Ask for at most one tool call per turn.
+    # Ask for at most one tool call in each turn.
     tool_choice: {type: "auto", disable_parallel_tool_use: true},
     messages: messages
   )

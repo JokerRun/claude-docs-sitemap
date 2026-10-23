@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-profiles-verification-portal
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 356231c6db1d2dbdd98004b27ffadce027f294afd46a4bb211ef9fb23fd17920
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: b5de1ba373b681adb90e489a492e914b827ff345fa8e16f18d085b5b8a87bcd1
 ---
 
 ---
@@ -199,7 +199,7 @@ Untuk melihat program mana yang berlaku untuk sebuah profil, [ambil profil terse
 
 Pelanggan akhir dapat melihat profil yang ditautkan di bawah **Linked accounts** di portal.
 
-Jika inferensi Anda berjalan di Claude di Amazon Bedrock atau Google Cloud, Anda juga harus menautkan akun Anda sendiri. Program berlaku untuk permintaan dari akun AWS atau proyek Google Cloud hanya setelah Anda menautkannya ke organisasi Anthropic yang membuat profil Anda. Lihat [Atribusikan permintaan di Amazon Bedrock dan Google Cloud](https://platform.claude.com/docs/id/manage-claude/user-profiles#attribute-requests-on-amazon-bedrock-and-google-cloud).
+Jika inferensi Anda berjalan di Claude di Amazon Bedrock atau Claude Models on Google Cloud (Google managed), Anda juga harus menautkan akun Anda sendiri. Program berlaku untuk permintaan dari akun AWS atau proyek Google Cloud hanya setelah Anda menautkannya ke organisasi Anthropic yang membuat profil Anda. Lihat [Atribusikan permintaan di Amazon Bedrock dan Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/manage-claude/user-profiles#attribute-requests-on-amazon-bedrock-and-google-cloud).
 
 ## Langkah selanjutnya
 

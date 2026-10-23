@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/issuers/retrieve
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: b8ed9569ac0288ea001a04aa5c2709ec4077f1a2b453d02fe0f87a86a506cb52
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 741def06a418abd693ef936054987ec3a2dd5116914996a17020c99214160e31
 ---
 
 ---
@@ -175,8 +175,8 @@ Retrieve a federation issuer by its ID (`fdis_...`).
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/federation_issuers/$FEDERATION_ISSUER_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/access-transparency
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 85012dc7f0e0e92b49e6c63d6369882dc770a334cb6fa3ed2c6bd8cbc9a6cd6c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: a102c933e2a5603ff3c916bc77ae821c771af11efff4b3dda44c9520bb47f549
 ---
 
 ---
@@ -43,7 +43,7 @@ Personel Anthropic mengakses konten pelanggan hanya dalam kondisi yang telah dit
 * **Aktivitas organisasi Anda sendiri:** Panggilan API, tindakan admin, dan pembacaan Compliance API Anda dicakup oleh tipe event [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) standar.
 * **Claude for Enterprise dan Claude Apps:** Seat claude.ai Enterprise, Claude for Work, Cowork, dan Claude in Chrome tidak dicakup.
 * **Produk konsumen Claude:** paket Claude Free, Pro, atau Max.
-* **Platform yang dioperasikan mitra:** Amazon Bedrock dan Google Cloud; lihat kontrol transparansi platform tersebut.
+* **Platform yang dioperasikan mitra:** Amazon Bedrock dan Claude Models on Google Cloud (Google managed); lihat kontrol transparansi platform tersebut.
 * **Apa pun yang tidak dicakup ZDR:** Produk yang tidak dicakup oleh ZDR (misalnya, Files API, aplikasi stateful yang di-host Anthropic, dan Batch API) tidak dicakup oleh Access Transparency. Lihat [dokumentasi ZDR](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) untuk detail tambahan.
 
 ## Memulai
@@ -172,18 +172,18 @@ Kumpulan kode alasan bersifat tertutup. Anthropic akan memperbarui halaman ini j
 
 Tabel berikut mencantumkan surface mana yang dicakup oleh Access Transparency. Cakupan berarti akses manusia terhadap konten dari surface tersebut menghasilkan event `anthropic_access`.
 
-| Surface                                         | Dicakup | Detail                                                                                                       |
-| ----------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------ |
-| Claude API (`api.anthropic.com`)                | Ya      | Prompt, completion, dan data yang disematkan langsung dalam input API                                        |
-| Claude Code (menggunakan kunci API)             | Ya      | Lalu lintas API dari Claude Code dicakup sebagai lalu lintas Claude API                                      |
-| Claude Platform on AWS                          | Ya      | Claude Platform on AWS menghasilkan event Access Transparency di dalam Compliance API (bukan AWS CloudTrail) |
-| Claude API (`api.anthropic.com`) (Batch, Files) | Tidak   | Batch API dan Files API pada Claude API tidak dicakup, sama seperti keduanya tidak dicakup oleh ZDR          |
-| Claude for Enterprise (seat claude.ai)          | Tidak   | Tidak dicakup                                                                                                |
-| Claude for Work                                 | Tidak   | Tidak dicakup                                                                                                |
-| Claude Free, Pro, Max                           | Tidak   | Paket konsumen tidak memenuhi syarat                                                                         |
-| Playground (Claude Console)                     | Tidak   | Tidak dicakup                                                                                                |
-| Microsoft Foundry                               | Tidak   | Tidak tersedia                                                                                               |
-| Amazon Bedrock, Google Cloud                    | Tidak   | Platform yang dioperasikan mitra; lihat kontrol transparansi platform tersebut                               |
+| Surface                                                        | Dicakup | Detail                                                                                                       |
+| -------------------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------ |
+| Claude API (`api.anthropic.com`)                               | Ya      | Prompt, completion, dan data yang disematkan langsung dalam input API                                        |
+| Claude Code (menggunakan kunci API)                            | Ya      | Lalu lintas API dari Claude Code dicakup sebagai lalu lintas Claude API                                      |
+| Claude Platform on AWS                                         | Ya      | Claude Platform on AWS menghasilkan event Access Transparency di dalam Compliance API (bukan AWS CloudTrail) |
+| Claude API (`api.anthropic.com`) (Batch, Files)                | Tidak   | Batch API dan Files API pada Claude API tidak dicakup, sama seperti keduanya tidak dicakup oleh ZDR          |
+| Claude for Enterprise (seat claude.ai)                         | Tidak   | Tidak dicakup                                                                                                |
+| Claude for Work                                                | Tidak   | Tidak dicakup                                                                                                |
+| Claude Free, Pro, Max                                          | Tidak   | Paket konsumen tidak memenuhi syarat                                                                         |
+| Playground (Claude Console)                                    | Tidak   | Tidak dicakup                                                                                                |
+| Microsoft Foundry                                              | Tidak   | Tidak tersedia                                                                                               |
+| Amazon Bedrock, Claude Models on Google Cloud (Google managed) | Tidak   | Platform yang dioperasikan mitra; lihat kontrol transparansi platform tersebut                               |
 
 ## Batasan dan pengecualian
 

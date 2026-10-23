@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/create
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: ec62777de81769dbb2b19e9b15e00018444697c6b468b2a7cb6fd18574d4f361
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: d26dea2809aabc94918eac1e632d00c9534396e7cfc228ff4cb469068a098afb
 ---
 
 ---
@@ -234,8 +234,8 @@ accounts.
 ```bash
 curl https://api.anthropic.com/v1/organizations/service_accounts \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "name": "ci-deploy-bot"
         }'

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 9dbbde38a07f6c7ebf53b3d755f749e0c3c3e2e16fce9e1a6fde2dee101e70f8
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: b9a2f4d7be92cfe4f7ea097ba494788f002ed42dd8200ab496f557b30625d27b
 ---
 
 ---
@@ -346,7 +346,7 @@ description: Make your first API call to Claude and build a simple web search as
         ```bash
         mkdir claude-quickstart && cd claude-quickstart
         go mod init claude-quickstart
-        go get github.com/anthropics/anthropic-sdk-go
+        go get github.com/anthropics/anthropic-sdk-go/v2
         ```
       </Step>
 
@@ -361,7 +361,7 @@ description: Make your first API call to Claude and build a simple web search as
         	"fmt"
         	"log"
 
-        	"github.com/anthropics/anthropic-sdk-go"
+        	"github.com/anthropics/anthropic-sdk-go/v2"
         )
 
         func main() {

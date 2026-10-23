@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/set
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 3cf9385a74db5656e17b8f3218c752e92d26b6ac1fa96b3e26fa5b42062bfd27
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: c371935066a9031dcfda8d3fef92809a12a3ff84233c04c0a75465a6568414e3
 ---
 
 ---
@@ -325,8 +325,8 @@ Anthropic account team.
 ```bash
 curl https://api.anthropic.com/v1/organizations/spend_limits \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "amount": "50000",
           "scope": {

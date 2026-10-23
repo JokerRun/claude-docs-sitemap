@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: c01ecf97188ca70497bc11d6d3d83d2fb5453c78af83a4363884894ca4e35b53
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 097748921d71213db3f1ad7d7f5936358488f79ac037348f6497d258938ce8be
 ---
 
 ---
@@ -128,20 +128,16 @@ Sesi harus berstatus `idle` untuk memperbarui agen. Untuk memperbarui agen saat 
   	Agent: anthropic.BetaManagedAgentsSessionAgentUpdateParam{
   		Tools: []anthropic.BetaManagedAgentsSessionAgentUpdateToolUnionParam{
   			{
-  				OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-  					Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-  				},
+  				OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{},
   			},
   			{
   				OfMCPToolset: &anthropic.BetaManagedAgentsMCPToolsetParams{
-  					Type:          anthropic.BetaManagedAgentsMCPToolsetParamsTypeMCPToolset,
   					MCPServerName: "linear",
   				},
   			},
   		},
   		MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{
   			{
-  				Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,
   				Name: "linear",
   				URL:  "https://mcp.linear.app/sse",
   			},
@@ -373,7 +369,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
   ```
 
   ```go Go
-  // Halaman 1: prev_page kosong karena tidak ada yang mendahului halaman pertama.
+  // Page 1: prev_page is empty because nothing precedes the first page.
   firstPage, err := client.Beta.Sessions.List(ctx, anthropic.BetaSessionListParams{
   	AgentID: anthropic.String(agent.ID),
   	Limit:   anthropic.Int(1),
@@ -384,7 +380,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
   fmt.Printf("Page 1 prev_page: %q\n", firstPage.PrevPage)
   fmt.Printf("Page 1 next_page: %q\n", firstPage.NextPage)
 
-  // Maju: berikan next_page sebagai kursor Page untuk mengambil halaman 2.
+  // Advance: pass next_page as the Page cursor to fetch page 2.
   secondPage, err := client.Beta.Sessions.List(ctx, anthropic.BetaSessionListParams{
   	AgentID: anthropic.String(agent.ID),
   	Limit:   anthropic.Int(1),
@@ -397,7 +393,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
   	fmt.Printf("Page 2: %s: %s\n", listedSession.ID, listedSession.Status)
   }
 
-  // Kembali: prev_page halaman 2 adalah kursor untuk halaman sebelumnya.
+  // Go back: page 2's prev_page is the cursor for the page before it.
   previousPage, err := client.Beta.Sessions.List(ctx, anthropic.BetaSessionListParams{
   	AgentID: anthropic.String(agent.ID),
   	Limit:   anthropic.Int(1),
@@ -409,7 +405,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
   for _, listedSession := range previousPage.Data {
   	fmt.Printf("Back to page 1: %s: %s\n", listedSession.ID, listedSession.Status)
   }
-  // Untuk iterasi maju saja, gunakan ListAutoPaging agar next_page diikuti otomatis.
+  // For forward-only iteration, use ListAutoPaging to auto-follow next_page.
   ```
 
   ```java Java
@@ -427,11 +423,15 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
 
   // Maju dengan meneruskan next_page sebagai kursor halaman.
   var nextCursor = firstPage.response().nextPage().orElseThrow();
-  var secondPage = client.beta().sessions().list(params.toBuilder().page(nextCursor).build());
+  var secondPage = client.beta().sessions().list(params.toBuilder()
+      .page(nextCursor)
+      .build());
 
   // Kembali dengan meneruskan prev_page sebagai kursor halaman yang sama.
   var prevCursor = secondPage.response().prevPage().orElseThrow();
-  var previousPage = client.beta().sessions().list(params.toBuilder().page(prevCursor).build());
+  var previousPage = client.beta().sessions().list(params.toBuilder()
+      .page(prevCursor)
+      .build());
   // Kembali ke halaman pertama, jadi prev_page kosong lagi.
   IO.println("prev_page: " + previousPage.response().prevPage());
   // Untuk iterasi maju saja, page.autoPager() mengembalikan Iterable yang otomatis mengikuti next_page.

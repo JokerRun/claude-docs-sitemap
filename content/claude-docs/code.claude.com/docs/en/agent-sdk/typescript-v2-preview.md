@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 6fbbb8d4101c8a33a046eb9fb6c0749d1618429f6563ca8a7fcf0bb56c72666c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: c14e08ac255e2e060d8e04f7d15faaa896b8663366f0b9bcfd47dbb585c4c589
 ---
 
 > ## Documentation Index
@@ -17,7 +17,7 @@ sha256: 6fbbb8d4101c8a33a046eb9fb6c0749d1618429f6563ca8a7fcf0bb56c72666c
 >
 > The V2 session API is no longer supported. TypeScript Agent SDK 0.3.142 removes `unstable_v2_createSession`, `unstable_v2_resumeSession`, `unstable_v2_prompt`, and the `SDKSession` and `SDKSessionOptions` types.
 >
-> To migrate, use the [`query()` API](/docs/en/agent-sdk/typescript) and the [session options](/docs/en/agent-sdk/sessions) it accepts. Pass an `AsyncIterable<SDKUserMessage>` for multi-turn conversations, or `options.resume` to continue a saved session. This page is kept for reference if you maintain code on Agent SDK 0.2.x or earlier.
+> To migrate, use the [`query()` API](/docs/en/agent-sdk/typescript) and the [session options](/docs/en/agent-sdk/sessions.md) it accepts. Pass an `AsyncIterable<SDKUserMessage>` for multi-turn conversations, or `options.resume` to continue a saved session. This page is kept for reference if you maintain code on Agent SDK 0.2.x or earlier.
 
 V2 was an experimental session API that removed the need for async generators and yield coordination. Instead of managing generator state across turns, each turn was a separate `send()`/`stream()` cycle. The API surface reduced to creating a session, sending a message, and streaming the response:
 
@@ -35,7 +35,7 @@ npm install @anthropic-ai/claude-agent-sdk@0.2
 
 > [!NOTE]
 >
-> The SDK bundles a native Claude Code binary for your platform as an optional dependency, so most installs need no separate Claude Code install. See the [quickstart's install note](/docs/en/agent-sdk/quickstart) for the installs that need one.
+> The SDK bundles a native Claude Code binary for your platform as an optional dependency, so most installs need no separate Claude Code install. See the [quickstart's install note](/docs/en/agent-sdk/quickstart.md) for the installs that need one.
 
 ## Quick start
 
@@ -391,13 +391,13 @@ interface SDKSession {
 
 ## Feature availability
 
-The V2 session API does not support every V1 feature. The following require the [V1 SDK](/docs/en/agent-sdk/typescript):
+The V2 session API does not support every V1 feature. The following require the [V1 SDK](/docs/en/agent-sdk/typescript.md):
 
 * Session forking (`forkSession` option)
 * Some advanced streaming input patterns
 
 ## See also
 
-* [TypeScript SDK reference (V1)](/docs/en/agent-sdk/typescript) - Full V1 SDK documentation
-* [SDK overview](/docs/en/agent-sdk/overview) - General SDK concepts
+* [TypeScript SDK reference (V1)](/docs/en/agent-sdk/typescript.md) - Full V1 SDK documentation
+* [SDK overview](/docs/en/agent-sdk/overview.md) - General SDK concepts
 * [V2 examples on GitHub](https://github.com/anthropics/claude-agent-sdk-demos/tree/main/hello-world-v2) - Working code examples

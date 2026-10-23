@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 9c8ae15b0bde5eaeb8d682ddf439970a3b5879464fbe72821edb80e6ffee8fec
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 41223e95f5dac130e629f0391283feabb1229cb4ba943680bcd6c251e43940d2
 ---
 
 ---
@@ -878,7 +878,7 @@ Use thinking block clearing to manage context and prompt caching in conversation
       messages: [
           ['role' => 'user', 'content' => 'Hello']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['context-management-2025-06-27'],
       contextManagement: [
           'edits' => [
@@ -1100,7 +1100,7 @@ Keep thinking blocks from the last 3 assistant turns:
       messages: [
           ['role' => 'user', 'content' => 'Hello']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['context-management-2025-06-27'],
       contextManagement: [
           'edits' => [
@@ -1300,7 +1300,7 @@ Keep all thinking blocks (maximizes cache hits):
       messages: [
           ['role' => 'user', 'content' => 'Hello']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['context-management-2025-06-27'],
       contextManagement: [
           'edits' => [
@@ -2039,9 +2039,9 @@ The [token counting](https://platform.claude.com/docs/en/build-with-claude/token
       ],
   );
 
-  echo "Original tokens: " . $response->contextManagement->originalInputTokens . "\n";
-  echo "After clearing: " . $response->inputTokens . "\n";
-  echo "Savings: " . ($response->contextManagement->originalInputTokens - $response->inputTokens) . " tokens\n";
+  echo 'Original tokens: ' . $response->contextManagement->originalInputTokens . "\n";
+  echo 'After clearing: ' . $response->inputTokens . "\n";
+  echo 'Savings: ' . ($response->contextManagement->originalInputTokens - $response->inputTokens) . " tokens\n";
   ```
 
   ```ruby Ruby
@@ -2265,7 +2265,7 @@ To use both features together, enable them in your API request:
       messages: [
           ['role' => 'user', 'content' => 'Hello']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['context-management-2025-06-27'],
       tools: [
           [

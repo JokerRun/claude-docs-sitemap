@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 960981ba7845229464af29c2f0b7b9fe3410a96c54e7724effcb28e66dc878a6
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 36b9293ecb81a5433eca28b8f5cbd6f77e2c7e5323e98ba94a93a26f53a0c91d
 ---
 
 ---
@@ -392,13 +392,13 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
   	"fmt"
   	"log"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   const batchNudge = "First privately list what you need next; then request every item " +
   	"that doesn't depend on another's result in this one response."
 
-  // File dalam memori menggantikan direktori kerja agar contoh ini dapat dijalankan di mana saja.
+  // In-memory files stand in for a working directory so the sample runs anywhere.
   var files = map[string]string{
   	"pyproject.toml": `[project]
   name = "demo"
@@ -444,7 +444,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
   		if err != nil {
   			log.Fatal(err)
   		}
-  		// Tambahkan giliran asisten persis seperti yang dikembalikan, termasuk blok thinking.
+  		// Append the assistant turn exactly as returned, thinking blocks included.
   		messages = append(messages, response.ToParam())
   		if response.StopReason != anthropic.BetaStopReasonToolUse {
   			break
@@ -458,7 +458,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
   			var input struct {
   				Path string `json:"path"`
   			}
-  			// Path yang tidak ada atau bukan string membuat input.Path kosong, sehingga masuk ke cabang hasil error.
+  			// A missing or non-string path leaves input.Path empty, which takes the error-result branch.
   			if err := json.Unmarshal([]byte(toolUse.JSON.Input.Raw()), &input); err != nil {
   				input.Path = ""
   			}
@@ -468,15 +468,14 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
   			}
   			toolResults = append(toolResults, anthropic.NewBetaToolResultBlock(toolUse.ID, text, !found))
   		}
-  		// Kirim hasil alat sebagai giliran pengguna, lalu salinan baru dorongan sebagai
-  		// pesan sistem cakupan giliran. Biarkan salinan sebelumnya tetap ada: API menghapusnya,
-  		// sehingga model hanya melihat salinan yang terbaru.
+  		// Send the tool results as the user turn, then a fresh copy of the nudge as a
+  		// turn-scoped system message. Leave earlier copies in place: the API clears them,
+  		// so the model sees only the newest one.
   		messages = append(messages, anthropic.NewBetaUserMessage(toolResults...))
-  		messages = append(messages, anthropic.BetaMessageParam{
-  			Role:    anthropic.BetaMessageParamRoleSystem,
-  			Content: []anthropic.BetaContentBlockParamUnion{anthropic.NewBetaTextBlock(batchNudge)},
-  			ClearAt: anthropic.BetaMessageParamClearAtNextUserMessage,
-  		})
+  		messages = append(messages, anthropic.BetaMessageParam{OfSystem: &anthropic.BetaSystemMessageParam{
+  			Content: []anthropic.BetaSystemMessageParamContentUnion{{OfText: &anthropic.BetaTextBlockParam{Text: batchNudge}}},
+  			ClearAt: anthropic.BetaSystemMessageParamClearAtNextUserMessage,
+  		}})
   	}
 
   	for _, block := range response.Content {

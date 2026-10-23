@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 6fcc6c8412efc86b33b002adc89fe5e8661fbc46f8c14a5b88358f9f849fa7b2
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 38b7bda6a9a31696b86587bb55bd5fd20a0f4057f1ab8e9c3675bc2fff64135c
 ---
 
 ---
@@ -310,9 +310,9 @@ Retrieve a Credential
 
 ```bash
 curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

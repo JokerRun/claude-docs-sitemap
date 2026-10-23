@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/create
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 75ff5168937edf047de0b828827ec7c2754d7341f394f79aa7cb578aae362c5d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: f8079ded0eddacb88664ed47e65881e39e8b78c4d31bbf5f4efa9b51c7538c64
 ---
 
 ---
@@ -485,9 +485,9 @@ Create a Credential
 ```bash
 curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "auth": {
             "token": "bearer_exampletoken",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: f8c595958bf39257694a574ddbf7d4fd961cf096e928b5030f0cd4bb403fd68a
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 491fa84b9f302e5982a1a69d5cfd167351dbf907e496614006f1e49990e1fdd7
 ---
 
 ---
@@ -28,7 +28,7 @@ Tersedia tiga versi alat pencarian web:
 Contoh-contoh di halaman ini menggunakan `web_search_20250305` untuk pencarian dasar dan `web_search_20260318` untuk pemfilteran dinamis.
 
 <Note>
-  Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), pencarian web didukung di Claude API, Google Cloud, dan Microsoft Foundry. Pencarian web tidak tersedia untuk Mythos Preview di Amazon Bedrock atau [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
+  Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), pencarian web didukung di Claude API, Claude Models on Google Cloud (Google managed), dan Microsoft Foundry.
 </Note>
 
 Untuk kelayakan Zero Data Retention pencarian web dan konfigurasi `allowed_callers` terkait, lihat [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#zdr-and-allowed-callers).
@@ -72,7 +72,7 @@ Pemfilteran dinamis menjalankan pencarian web dari dalam [eksekusi kode](https:/
 Untuk memanggil pencarian web secara langsung, tanpa pemfilteran dinamis, atur `allowed_callers: ["direct"]`. Model yang tidak mendukung pemanggilan alat secara programatik memerlukan pengaturan ini. Tanpanya, API mengembalikan error 400 yang memberi tahu Anda untuk mengaturnya.
 
 <Note>
-  Alat pencarian web (dengan dan tanpa pemfilteran dinamis) tersedia di Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Microsoft Foundry, deployment yang [di-hosting di Azure](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure) hanya mendukung alat pencarian web dasar (`web_search_20250305`, tanpa pemfilteran dinamis). Deployment yang di-hosting di Anthropic mendukung semua versi. Di Google Cloud, hanya alat pencarian web dasar (tanpa pemfilteran dinamis) yang tersedia. Pencarian web tidak tersedia di Amazon Bedrock.
+  Alat pencarian web (dengan dan tanpa pemfilteran dinamis) tersedia di Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Microsoft Foundry, deployment yang [di-hosting di Azure](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure) hanya mendukung alat pencarian web dasar (`web_search_20250305`, tanpa pemfilteran dinamis). Deployment yang di-hosting di Anthropic mendukung semua versi. Di Claude Models on Google Cloud (Google managed), hanya alat pencarian web dasar (tanpa pemfilteran dinamis) yang tersedia.
 </Note>
 
 Contoh-contoh berikut menggunakan `web_search_20260318`:

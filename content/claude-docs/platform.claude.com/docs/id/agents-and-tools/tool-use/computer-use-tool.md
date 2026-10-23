@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 905e9bab74aa8f7294bdcbc5324a48ecbf6f2e77f7473e91564cbf9c84ad8ef3
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: fb99cd706999ffca2a5df17bf5386a68b0d844081c82c6e0bb25f0ebf3fcbe7c
 ---
 
 ---
@@ -29,13 +29,13 @@ featureMetadata:
     Claude API: ga
     Claude Platform on AWS: beta
     Amazon Bedrock: beta
-    Google Cloud: ga
+    Claude Models on Google Cloud (Google managed): ga
     Microsoft Foundry: beta
   details:
-    - Di Claude API dan Google Cloud, model Claude 5.5 dan yang lebih baru mendukung penggunaan komputer hanya melalui toolset `computer_toolset_20260801` dan mengembalikan error untuk versi alat sebelumnya `computer_20251124` dan `computer_20250124`. Untuk memindahkan integrasi yang sudah ada, lihat [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Untuk berpindah dari `computer_20250124`, lihat [Pindahkan computer use ke toolset](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset) dalam panduan migrasi Claude Haiku 5.5.
+    - Di Claude API dan Claude Models on Google Cloud (Google managed), model Claude 5.5 dan yang lebih baru mendukung computer use hanya melalui toolset `computer_toolset_20260801` dan mengembalikan error untuk versi alat sebelumnya `computer_20251124` dan `computer_20250124`. Untuk memindahkan integrasi yang sudah ada, lihat [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Untuk berpindah dari `computer_20250124`, lihat [Memindahkan computer use ke toolset](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset) dalam panduan migrasi Claude Haiku 5.5.
     - Di Amazon Bedrock, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 menerima versi alat sebelumnya `computer_20251124` sebagaimana Claude Opus 5 dan Claude Sonnet 5.
-    - Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5 mendukung penggunaan komputer hanya melalui versi alat sebelumnya `computer_20251124`, yang memerlukan header beta; lihat [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
-    - Platform selain Claude API dan Google Cloud saat ini hanya menawarkan [versi alat beta sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
+    - Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5 mendukung computer use hanya melalui versi alat sebelumnya `computer_20251124`, yang memerlukan header beta; lihat [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
+    - Di Claude Platform on AWS, Amazon Bedrock, dan Microsoft Foundry, computer use hanya tersedia melalui [versi alat beta sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
 ---
 
 <Note>
@@ -49,7 +49,7 @@ Alat penggunaan komputer adalah sebuah [client toolset](https://platform.claude.
 Untuk tugas yang tetap berada di dalam halaman web, [alat penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) lebih cocok: alat anggotanya membaca dan bertindak pada halaman itu sendiri, dan tidak memerlukan lingkungan desktop penuh.
 
 <Note>
-  Penggunaan komputer tersedia di Claude API dan [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai) sebagai toolset `computer_toolset_20260801`; lihat [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#compatibility) untuk model yang didukung.
+  Penggunaan komputer tersedia di Claude API dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) sebagai toolset `computer_toolset_20260801`; lihat [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#compatibility) untuk model yang didukung.
 
   Integrasi `computer_20251124` yang sudah ada tetap berfungsi pada model yang tercantum untuknya di bagian [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions), dan versi alat sebelumnya tetap tersedia dalam beta untuk model dan platform yang tidak mendukung toolset ini. Lihat [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124) untuk meningkatkan versi, atau [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) untuk header beta.
 </Note>
@@ -586,8 +586,8 @@ Inti dari penggunaan komputer adalah "loop agen": sebuah siklus di mana Claude m
   ```
 
   ```go Go
-  // samplingLoop menjalankan loop agen computer-use hingga Claude berhenti
-  // meminta alat atau batas iterasi tercapai.
+  // samplingLoop runs the computer-use agent loop until Claude stops
+  // requesting tools or the iteration limit is reached.
   func samplingLoop(ctx context.Context, model anthropic.Model, messages []anthropic.MessageParam, maxIterations int) ([]anthropic.MessageParam, error) {
   	for range maxIterations {
   		response, err := client.Messages.New(ctx, anthropic.MessageNewParams{
@@ -600,16 +600,16 @@ Inti dari penggunaan komputer adalah "loop agen": sebuah siklus di mana Claude m
   			return nil, err
   		}
 
-  		// Tambahkan respons Claude ke riwayat percakapan
+  		// Add Claude's response to the conversation history
   		messages = append(messages, response.ToParam())
 
-  		// Jalankan aksi yang diminta Claude secara berurutan, dan kumpulkan hasilnya
+  		// Run the actions Claude requested, in order, and collect the results
   		toolResults := processToolCalls(response)
   		if len(toolResults) == 0 {
   			return messages, nil // No more tool use; task complete
   		}
 
-  		// Kirim semua hasil kembali ke Claude dalam satu pesan pengguna
+  		// Send every result back to Claude in a single user message
   		messages = append(messages, anthropic.NewUserMessage(toolResults...))
   	}
   	return messages, nil
@@ -624,11 +624,11 @@ Inti dari penggunaan komputer adalah "loop agen": sebuah siklus di mana Claude m
   List<MessageParam> samplingLoop(Model model, List<MessageParam> messages, int maxIterations) {
       for (int i = 0; i < maxIterations; i++) {
           Message response = client.messages().create(MessageCreateParams.builder()
-                  .model(model)
-                  .maxTokens(4096)
-                  .messages(messages)
-                  .addTool(COMPUTER_TOOLSET)
-                  .build());
+              .model(model)
+              .maxTokens(4096)
+              .messages(messages)
+              .addTool(COMPUTER_TOOLSET)
+              .build());
 
           // Tambahkan respons Claude ke riwayat percakapan
           messages.add(response.toParam());
@@ -1056,11 +1056,11 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       ```
 
       ```go Go
-      // placeholderPNG menggantikan tangkapan layar nyata: executor mengembalikan
-      // layar sebagai data PNG yang dienkode base64.
+      // placeholderPNG stands in for a real capture: an executor returns the
+      // screen as base64-encoded PNG data.
       const placeholderPNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
 
-      // captureScreenshot mengembalikan blok gambar, bukan teks.
+      // captureScreenshot returns an image block rather than text.
       func captureScreenshot() []anthropic.ToolResultBlockParamContentUnion {
       	return []anthropic.ToolResultBlockParamContentUnion{{
       		OfImage: &anthropic.ImageBlockParam{
@@ -1074,7 +1074,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       	}}
       }
 
-      // textContent membungkus teks sebagai konten tool_result.
+      // textContent wraps text as tool_result content.
       func textContent(text string) []anthropic.ToolResultBlockParamContentUnion {
       	return []anthropic.ToolResultBlockParamContentUnion{
       		{OfText: &anthropic.TextBlockParam{Text: text}},
@@ -1098,7 +1098,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       	case "screenshot":
       		return captureScreenshot(), nil
       	case "left_click":
-      		// coordinate bersifat opsional; tanpanya, klik di posisi kursor saat ini
+      		// coordinate is optional; without it, click where the cursor already is
       		coord, ok := params["coordinate"].([]any)
       		if !ok {
       			return textContent(clickAtCursor()), nil
@@ -1114,11 +1114,11 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       		if text, ok := params["text"].(string); ok {
       			return textContent(typeText(text)), nil
       		}
-      	// Tangani aksi lain sesuai kebutuhan
+      	// Handle other actions as needed
       	default:
       		return nil, fmt.Errorf("unknown or unimplemented member: %s", action)
       	}
-      	// Tercapai saat input anggota tidak memiliki field atau field bertipe salah
+      	// Reached when a member's input is missing a field or a field has the wrong type
       	return nil, fmt.Errorf("invalid input for %s", action)
       }
       ```
@@ -1129,13 +1129,13 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
 
       ToolResultBlockParam.Content captureScreenshot() {
           ImageBlockParam image = ImageBlockParam.builder()
-                  .source(Base64ImageSource.builder()
-                          .mediaType(Base64ImageSource.MediaType.IMAGE_PNG)
-                          .data(PLACEHOLDER_PNG)
-                          .build())
-                  .build();
+              .source(Base64ImageSource.builder()
+                  .mediaType(Base64ImageSource.MediaType.IMAGE_PNG)
+                  .data(PLACEHOLDER_PNG)
+                  .build())
+              .build();
           return ToolResultBlockParam.Content.ofBlocks(
-                  List.of(ToolResultBlockParam.Content.Block.ofImage(image)));
+              List.of(ToolResultBlockParam.Content.Block.ofImage(image)));
       }
 
       String clickAt(long x, long y) {
@@ -1411,8 +1411,8 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       ```go Go
       const notExecuted = "Not executed: an earlier computer action in this turn failed."
 
-      // computerToolResult membangun hasil untuk satu aksi komputer. Berbeda dengan
-      // hasil alat biasa, ia harus menyertakan kembali nama toolset.
+      // computerToolResult builds the result for one computer action. Unlike an
+      // ordinary tool result, it must echo the toolset name.
       func computerToolResult(toolUseID string, content []anthropic.ToolResultBlockParamContentUnion, isError bool) anthropic.ContentBlockParamUnion {
       	result := anthropic.ToolResultBlockParam{
       		ToolUseID:   toolUseID,
@@ -1425,16 +1425,16 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       	return anthropic.ContentBlockParamUnion{OfToolResult: &result}
       }
 
-      // processToolCalls menjalankan aksi komputer dalam respons Claude secara berurutan dan
-      // membangun satu tool_result per blok tool_use. Setelah kegagalan pertama, sisanya
-      // dilewati: Claude merencanakannya dengan asumsi aksi sebelumnya berhasil.
+      // processToolCalls runs the computer actions in Claude's response in order and
+      // builds one tool_result for each tool_use block. After the first failure it skips
+      // the rest: Claude planned them assuming the earlier actions succeeded.
       func processToolCalls(response *anthropic.Message) []anthropic.ContentBlockParamUnion {
       	var toolResults []anthropic.ContentBlockParamUnion
       	failed := false
       	for _, block := range response.Content {
       		switch variant := block.AsAny().(type) {
       		case anthropic.ToolUseBlock:
-      			// Contoh ini hanya mendeklarasikan toolset komputer; arahkan alat lain ke sini jika Anda menambahkannya.
+      			// This example declares only the computer toolset; route other tools here if you add them.
       			if variant.ToolsetName != "computer" {
       				continue
       			}
@@ -1446,7 +1446,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       			var content []anthropic.ToolResultBlockParamContentUnion
       			err := json.Unmarshal(variant.Input, &input)
       			if err == nil {
-      				// Teks, atau blok gambar yang dikembalikan screenshot
+      				// Text, or the image block that screenshot returns
       				content, err = handleComputerAction(variant.Name, input)
       			}
       			if err != nil {
@@ -1467,13 +1467,13 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       /** Every result answering a computer toolset member echoes toolset_name. */
       ToolResultBlockParam.Builder computerResult(ToolUseBlock toolUse) {
           return ToolResultBlockParam.builder()
-                  .toolUseId(toolUse.id())
-                  .toolsetName("computer");
+              .toolUseId(toolUse.id())
+              .toolsetName("computer");
       }
 
       /**
        * Run the computer actions in Claude's response in order and build one
-       * tool_result per tool_use block. After the first failure, skip the rest:
+       * tool_result for each tool_use block. After the first failure, skip the rest:
        * Claude planned them assuming the earlier actions succeeded.
        */
       List<ContentBlockParam> processToolCalls(Message response) {
@@ -1487,17 +1487,25 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
               ToolUseBlock toolUse = block.asToolUse();
               ToolResultBlockParam result;
               if (failed) {
-                  result = computerResult(toolUse).content(HALT_TEXT).isError(true).build();
+                  result = computerResult(toolUse)
+                      .content(HALT_TEXT)
+                      .isError(true)
+                      .build();
               } else {
                   try {
                       Map<String, JsonValue> input =
-                              (Map<String, JsonValue>) toolUse._input().asObject().get();
+                          (Map<String, JsonValue>) toolUse._input().asObject().get();
                       // Sebuah string, atau blok gambar yang dikembalikan oleh screenshot
                       ToolResultBlockParam.Content output = handleComputerAction(toolUse.name(), input);
-                      result = computerResult(toolUse).content(output).build();
+                      result = computerResult(toolUse)
+                          .content(output)
+                          .build();
                   } catch (RuntimeException e) {
                       failed = true;
-                      result = computerResult(toolUse).content("Error: " + e.getMessage()).isError(true).build();
+                      result = computerResult(toolUse)
+                          .content("Error: " + e.getMessage())
+                          .isError(true)
+                          .build();
                   }
               }
               toolResults.add(ContentBlockParam.ofToolResult(result));
@@ -1541,7 +1549,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       NOT_EXECUTED = "Not executed: an earlier computer action in this turn failed."
 
       # Jalankan aksi komputer dalam respons Claude secara berurutan dan buat satu
-      # tool_result per blok tool_use. Setelah kegagalan pertama, lewati sisanya:
+      # tool_result untuk setiap blok tool_use. Setelah kegagalan pertama, lewati sisanya:
       # Claude merencanakannya dengan asumsi aksi sebelumnya berhasil.
       def process_tool_calls(response)
         tool_results = []
@@ -2112,7 +2120,7 @@ Jika klik meleset dari targetnya, penyebabnya biasanya salah satu dari berikut i
 
 ## Migrasi dari `computer_20251124`
 
-Peningkatan dari `computer_20251124` ke toolset bersifat opsional: model yang tercantum untuk `computer_20251124` di bawah [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) tetap menerimanya dengan header beta-nya, sehingga integrasi yang ada tetap berfungsi hingga Anda mengubahnya. Claude 5.5 dan model yang lebih baru merupakan pengecualian di Claude API dan Google Cloud: di sana model-model tersebut hanya menerima toolset. Tingkatkan integrasi sebelum Anda memindahkannya ke salah satu model tersebut. Di Amazon Bedrock, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 menerima `computer_20251124`. Untuk meningkatkan, lakukan perubahan berikut secara bersamaan:
+Peningkatan dari `computer_20251124` ke toolset bersifat opsional: model yang tercantum untuk `computer_20251124` di bawah [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) tetap menerimanya dengan header beta-nya, sehingga integrasi yang ada tetap berfungsi hingga Anda mengubahnya. Claude 5.5 dan model yang lebih baru merupakan pengecualian di Claude API dan Claude Models on Google Cloud (Google managed): di sana model-model tersebut hanya menerima toolset. Tingkatkan integrasi sebelum Anda memindahkannya ke salah satu model tersebut. Di Amazon Bedrock, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 menerima `computer_20251124`. Untuk meningkatkan, lakukan perubahan berikut secara bersamaan:
 
 1. **Hapus header beta.** Hilangkan `anthropic-beta: computer-use-2025-11-24` dari permintaan Anda. Dengan SDK, hapus `betas` (csharp, go: `Betas`; java: `.addBeta()`) dan panggil Messages API melalui klien standar, bukan namespace beta.
 2. **Ubah entri `tools`.** Atur `type` ke `computer_toolset_20260801` dan hapus `name`, `display_width_px`, `display_height_px`, `display_number`, dan `enable_zoom`. Toolset menolak masing-masing field ini.
@@ -2172,10 +2180,10 @@ Pasangan berikut menunjukkan blok `tool_use` sebelum dan sesudah perubahan. Nama
 
 Dua versi sebelumnya dari alat computer use tetap tersedia dalam beta untuk integrasi yang sudah ada, untuk model yang tidak mendukung toolset, dan pada platform tempat toolset saat ini belum tersedia. Masing-masing memerlukan [header beta](https://platform.claude.com/docs/id/api/beta-headers)-nya pada setiap permintaan, dan parameternya didokumentasikan di [referensi beta Messages API](https://platform.claude.com/docs/id/api/beta/messages/create). Dengan SDK, teruskan header melalui `betas` (csharp, go: `Betas`; java: `.addBeta()`) dan gunakan namespace beta; hanya alat computer use yang memerlukan header tersebut, bukan alat bash atau text editor dalam permintaan yang sama.
 
-| Versi alat          | Beta header               | Digunakan dengan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Parameter                                                                     |
-| ------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `computer_20251124` | `computer-use-2025-11-24` | Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5; di Amazon Bedrock, juga Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5                                                                                                                                                                                                                                                                     | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
-| `computer_20250124` | `computer-use-2025-01-24` | Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Haiku 4.5, Claude Opus 4.1 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), dan Claude Opus 4 ([dihentikan, kecuali di Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
+| Versi alat          | Beta header               | Digunakan dengan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Parameter                                                                     |
+| ------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `computer_20251124` | `computer-use-2025-11-24` | Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5; di Amazon Bedrock, juga Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5                                                                                                                                                                                                                                                                                                                                                                           | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
+| `computer_20250124` | `computer-use-2025-01-24` | Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Haiku 4.5, Claude Opus 4.1 ([dihentikan, kecuali di Bedrock dan Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)), dan Claude Opus 4 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
 
 ***
 

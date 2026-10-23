@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks-endpoint
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: c22fac1c99104e46efaf8ca3da8bc3a4a3d568a89723f4eca0c6a537295f3b7d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 839fc0872b3f8d714e8c9db65a7c2ad484f89fa0dc9fc8e66767adcfad8e30a5
 ---
 
 ---
@@ -716,7 +716,7 @@ The following samples are server implementations, so there is no shell tab: an A
           byte[] key;
           try {
               key = Base64.getDecoder().decode(
-                      secret.startsWith("whsec_") ? secret.substring("whsec_".length()) : secret);
+                  secret.startsWith("whsec_") ? secret.substring("whsec_".length()) : secret);
           } catch (IllegalArgumentException _) {
               return false; // misconfigured secret: reject rather than crash
           }
@@ -727,7 +727,7 @@ The following samples are server implementations, so there is no shell tab: an A
               mac.init(new SecretKeySpec(key, "HmacSHA256"));
               mac.update((messageId + "." + timestamp + ".").getBytes(StandardCharsets.UTF_8));
               expected = ("v1," + Base64.getEncoder().encodeToString(mac.doFinal(body)))
-                      .getBytes(StandardCharsets.UTF_8);
+                  .getBytes(StandardCharsets.UTF_8);
           } catch (GeneralSecurityException impossible) {
               // Every JVM ships HmacSHA256, so this never fires at runtime.
               throw new IllegalStateException(impossible);

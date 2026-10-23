@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 27f907732940f1299415b305021a9c2767043c356d8f1fc4e20f39f8f9f9f9b3
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: b4c03611ab35b357ee0482466119e6691040c2746c4b4b3ba8ec679e4f0b41e2
 ---
 
 ---
@@ -93,7 +93,9 @@ First, check what Skills are available. Use the Skills API to list all Anthropic
   ```java Java
   // List Anthropic-managed Skills
   SkillListPage skills = client.skills().list(
-      SkillListParams.builder().source("anthropic").build()
+      SkillListParams.builder()
+          .source("anthropic")
+          .build()
   );
 
   for (Skill skill : skills.data()) {

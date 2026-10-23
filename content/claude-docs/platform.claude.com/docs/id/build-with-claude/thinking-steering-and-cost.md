@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: c4068ae7dbeeb14c3506cdfe8a1192a92e6bdffdc4318426430f8d5844843409
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 564b393d3e8e3b0215208176a2b1af5381914453a6865886e4c829b63d15e5d9
 ---
 
 ---
@@ -103,7 +103,7 @@ Anda juga dapat mengarahkan pemikiran per pesan dari giliran pengguna, terlepas 
 
 Pengarahan per pesan berguna ketika hanya sebagian permintaan dalam percakapan yang memerlukan penalaran yang diperpanjang. Harness agen, misalnya, dapat menambahkan frasa pendorong pada langkah perencanaan dan frasa pencegah pada konfirmasi rutin, tanpa menyentuh prompt sistem atau mengubah parameter permintaan apa pun di antara giliran.
 
-Pada Claude Haiku 5.5, frasa pencegah tidak secara andal mengurangi pemikiran. Di Claude API dan Google Cloud, jalankan giliran rutin pada model tersebut dengan lebih sedikit pemikiran menggunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) sebagai gantinya, yang juga mempertahankan cache prompt.
+Pada Claude Haiku 5.5, frasa pencegah tidak secara andal mengurangi pemikiran. Di Claude API dan Claude Models on Google Cloud (Google managed), jalankan giliran rutin pada model tersebut dengan lebih sedikit pemikiran menggunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) sebagai gantinya, yang juga mempertahankan cache prompt.
 
 ### Verifikasi pengarahan pada beban kerja Anda
 

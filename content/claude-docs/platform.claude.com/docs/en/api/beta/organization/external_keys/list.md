@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: e624f263165c92521b6f566b8e2d269fb042a18d1146896a99016cf36bf17107
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 68da6321141db2a20508f390ca0ca8c115436d654f1a15a158ccc0b1a60cfc4c
 ---
 
 ---
@@ -143,8 +143,8 @@ Results are ordered by creation time (newest first). Use the
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/external_keys \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

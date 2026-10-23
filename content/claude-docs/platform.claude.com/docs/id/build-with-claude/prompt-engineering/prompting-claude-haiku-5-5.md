@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 15d5129206acb559cd3dd6be48391ee5ce084f5ae9c71b5151155ec86fbaa5a4
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 816c7fa1c925bf465617e1016656a9636f64b2465c5b471d3bb3d46924bf4ef9
 ---
 
 ---
@@ -28,7 +28,7 @@ Prompt Claude Haiku 4.5 yang sudah ada seharusnya berkinerja baik tanpa perubaha
 <Note>
   Untuk perubahan API yang bersifat breaking saat bermigrasi dari Claude Haiku 4.5, lihat [panduan migrasi](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide).
 
-  Beberapa bagian di halaman ini menyarankan teks untuk ditambahkan ke prompt sistem Anda. Tambahkan hanya ke percakapan baru. Permintaan yang mengirim kembali blok thinking setelah `system` berubah dapat mengembalikan error 400, sehingga percakapan tersimpan yang dilanjutkan dengan prompt sistem baru dapat gagal. Untuk mengubah instruksi di tengah percakapan, [letakkan instruksi tersebut di giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#changing-context). Di Claude API, Amazon Bedrock, dan Google Cloud, sebagai gantinya Anda dapat [menambahkan pesan sistem ke percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#new-instructions).
+  Beberapa bagian di halaman ini menyarankan teks untuk ditambahkan ke prompt sistem Anda. Tambahkan hanya ke percakapan baru. Permintaan yang mengirim kembali blok thinking setelah `system` berubah dapat mengembalikan error 400, sehingga percakapan tersimpan yang dilanjutkan dengan prompt sistem baru dapat gagal. Untuk mengubah instruksi di tengah percakapan, [letakkan instruksi tersebut di giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#changing-context). Di Claude API, Amazon Bedrock, dan Claude Models on Google Cloud (Google managed), sebagai gantinya Anda dapat [menambahkan pesan sistem ke percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#new-instructions).
 </Note>
 
 ## Gunakan effort untuk mengontrol thinking
@@ -45,7 +45,7 @@ Claude Haiku 5.5 adalah model Haiku pertama dengan tingkat effort. Thinking beke
 * Thinking aktif secara default dan dihitung terhadap `max_tokens`, yang dapat mencapai 128.000. Nilai `max_tokens` yang disesuaikan untuk permintaan Claude Haiku 4.5 yang berjalan tanpa thinking dapat memotong balasan, jadi sisakan ruang untuk thinking.
 * Untuk mendapatkan thinking yang lebih sedikit, turunkan tingkat effort. Dalam pengujian Anthropic, meminta model di dalam prompt untuk menjawab secara langsung tidak menghentikannya dari berpikir. Anda juga dapat mematikan thinking dengan `thinking: {"type": "disabled"}`. Ini hanya berfungsi pada `low`, `medium`, dan `high`. Pada `xhigh` dan `max`, permintaan mengembalikan error 400.
 * Pada effort `xhigh` dalam chat multi-giliran, model terkadang menulis seluruh jawabannya di dalam thinking dan mengakhiri giliran tanpa teks yang terlihat. Jika Anda melihat perilaku ini, periksa setiap respons untuk balasan yang kosong.
-* Mengubah nilai `effort` tingkat atas di antara permintaan akan membatalkan cache prompt untuk pesan-pesan percakapan. Di Claude API dan Google Cloud, Anda dapat mengubah tingkat di tengah percakapan dengan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta), yang mempertahankan cache. Perubahan berlaku untuk setiap giliran berikutnya hingga digantikan oleh perubahan lain. Fitur ini memerlukan header beta `mid-conversation-output-config-2026-07-01` dan adaptive thinking, yang merupakan default. Dengan thinking dimatikan, perubahan effort per pesan mengembalikan error 400.
+* Mengubah nilai `effort` tingkat atas di antara permintaan akan membatalkan cache prompt untuk pesan-pesan percakapan. Di Claude API dan Claude Models on Google Cloud (Google managed), Anda dapat mengubah tingkat di tengah percakapan dengan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta), yang mempertahankan cache. Perubahan berlaku untuk setiap giliran berikutnya hingga digantikan oleh perubahan lain. Fitur ini memerlukan header beta `mid-conversation-output-config-2026-07-01` dan adaptive thinking, yang merupakan default. Dengan thinking dimatikan, perubahan effort per pesan mengembalikan error 400.
 
 ## Hasil pencarian yang akurat
 

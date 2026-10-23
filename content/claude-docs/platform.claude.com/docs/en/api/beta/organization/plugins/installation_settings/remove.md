@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/installation_settings/remove
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 55730e735bc9b906bf5560d46bc72887b3194944e74335b9f5d006b4b45a7e67
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: e24e41b2ea9c23e036289ad6be5fb8957d4119e64ff5bf316e8400967e98ff65
 ---
 
 ---
@@ -216,9 +216,9 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 ```bash
 curl https://api.anthropic.com/v1/organizations/plugins/$PLUGIN_ID/installation_settings/$TARGET \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: ce-plugins-2026-09-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

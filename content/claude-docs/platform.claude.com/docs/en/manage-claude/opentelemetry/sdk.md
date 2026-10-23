@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: ae1607fa72359ecf1f5216c5e881e3656c420abcd933c148c5849c94991f915c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 3a2b5afea795a792a14cf7e247c0af92468ec088a85d90f6d4ef555806f46cf5
 ---
 
 ---
@@ -18,7 +18,7 @@ featureMetadata:
     Claude API: beta
     Claude Platform on AWS: beta
     Amazon Bedrock: beta
-    Google Cloud: beta
+    Claude Models on Google Cloud (Google managed): beta
     Microsoft Foundry: beta
   rows:
     - label: Works with
@@ -76,7 +76,7 @@ Install or upgrade to the latest version of the Claude SDK:
 
   <Tab title="Go">
     ```bash
-    go get github.com/anthropics/anthropic-sdk-go@latest
+    go get github.com/anthropics/anthropic-sdk-go/v2@latest
     ```
 
     If your application doesn't use the OpenTelemetry SDK yet, install it with a console exporter, which you use in the next step to print spans:
@@ -222,7 +222,7 @@ The following example registers a tracer provider that prints each span to the c
   	"context"
   	"fmt"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   	"go.opentelemetry.io/otel"
   	"go.opentelemetry.io/otel/exporters/stdout/stdouttrace"
   	"go.opentelemetry.io/otel/propagation"
@@ -488,7 +488,10 @@ The following example shows how to use each option:
       .build();
 
   // Turn spans off for one client.
-  var quietClient = AnthropicOkHttpClient.builder().fromEnv().openTelemetry(false).build();
+  var quietClient = AnthropicOkHttpClient.builder()
+      .fromEnv()
+      .openTelemetry(false)
+      .build();
 
   // Set a conversation ID in the request options of one call.
   var params = MessageCreateParams.builder()
@@ -497,7 +500,9 @@ The following example shows how to use each option:
       .addUserMessage("Hello, Claude")
       .build();
   var message = client.messages().create(params, RequestOptions.builder()
-      .openTelemetry(OpenTelemetryRequestOptions.builder().conversationId("conv_42").build())
+      .openTelemetry(OpenTelemetryRequestOptions.builder()
+          .conversationId("conv_42")
+          .build())
       .build());
   ```
 
@@ -632,7 +637,9 @@ To stop the SDK from sending these headers, for example when your HTTP client in
   var envOptions = OpenTelemetryOptions.fromEnv();
   var client = AnthropicOkHttpClient.builder()
       .fromEnv()
-      .openTelemetry(envOptions.toBuilder().propagation(false).build())
+      .openTelemetry(envOptions.toBuilder()
+          .propagation(false)
+          .build())
       .build();
   ```
 

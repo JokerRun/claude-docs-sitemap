@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/versioning
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 1df0082e0331eedad966cc7b6523c6ca79145d358ac93b9c1e00163ce5cc576a
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 9213ad36fb13b12297ab1d234ebd303a5b8eb46e98b53e656aaac6e0ad9b1fa0
 ---
 
 ---
@@ -33,7 +33,7 @@ Anthropic merekomendasikan penggunaan versi API terbaru bila memungkinkan.
 
   * [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21) menunjukkan cara melakukan upgrade.
 
-  * Tersedia di Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), dan [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai). Di [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), versi ini tersedia untuk model Claude 4.7 dan yang lebih baru. Untuk model lain di Bedrock, lihat [panduan migrasi](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade).
+  * Tersedia di Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai). Di [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), versi ini tersedia untuk model Claude 4.7 dan yang lebih baru. Untuk model lain di Bedrock, lihat [panduan migrasi](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade).
 
   * Messages API:
 

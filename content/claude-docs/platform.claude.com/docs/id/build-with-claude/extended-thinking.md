@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 6ae7886d899627de51195ce540c480bd50d1a852cacd28b08fa2ebf657b4a6e4
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: c86b00f3107f4dc3072d511c1193e13891eace46c067c35654f3661032b8a255
 ---
 
 ---
@@ -173,7 +173,7 @@ Berikut adalah contoh penggunaan pemikiran diperpanjang di Messages API:
   	log.Fatal(err)
   }
 
-  // Respons berisi blok pemikiran yang diringkas dan blok teks
+  // The response contains summarized thinking blocks and text blocks
   for _, block := range response.Content {
   	switch block := block.AsAny().(type) {
   	case anthropic.ThinkingBlock:
@@ -313,7 +313,7 @@ Dua pertimbangan lain untuk pemikiran berselang-seling dalam mode manual:
 
 Cara platform memperlakukan header beta berbeda-beda. Claude API dan [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) menerima `interleaved-thinking-2025-05-14` pada model apa pun dan mengabaikannya jika tidak didukung. Diterima tidak sama dengan berpengaruh: pada model yang menolak `type: "enabled"` (4.7 dan yang lebih baru) atau tidak memiliki pemikiran berselang-seling dalam mode manual (Claude Opus 4.6), header tersebut tidak berpengaruh dalam mode manual; pemikiran adaptif berselang-seling secara otomatis di sana.
 
-Platform yang dioperasikan mitra ([Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) dan [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)) juga menerima header tersebut pada model apa pun tanpa mengembalikan error, dan mengabaikannya pada model yang tidak mendukung pemikiran berselang-seling.
+Platform yang dioperasikan mitra, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), juga menerima header tersebut pada model apa pun tanpa mengembalikan error, dan mengabaikannya pada model yang tidak mendukung "interleaved thinking" (pemikiran berselang).
 
 ## Struktur giliran dalam mode manual
 

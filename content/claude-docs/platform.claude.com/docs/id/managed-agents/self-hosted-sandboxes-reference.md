@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-reference
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 87deb45f922648d88b391b767c77bf4985fea06e9e3ec71a825c3db2c5a77827
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 993c969dae53d390e4e879e8829597239849a12e6079b935101b33b890715f7e
 ---
 
 ---
@@ -184,7 +184,7 @@ Untuk contoh lengkap, lihat [Meluncurkan sandbox dari poller SDK](https://platfo
   if err := env.SetupSkills(ctx, client, work.Data.ID); err != nil {
   	panic(err)
   }
-  // skills diunduh ke /workspace/skills/<name>/
+  // skills downloaded to /workspace/skills/<name>/
   tools := agenttoolset.BetaAgentToolset20260401(env)
   ```
 

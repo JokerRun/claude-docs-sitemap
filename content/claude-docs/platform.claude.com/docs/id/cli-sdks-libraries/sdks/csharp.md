@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: e59c8754c9660d2864ff0dba8a1cf14509a10940b658da26826058b93d84f90d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 851c2fb6a68da478de15201161b2ca06e97f9b7fdbc8dbe5b84effc6399ee35b
 ---
 
 ---
@@ -422,18 +422,22 @@ SDK diberi tipe untuk kemudahan penggunaan API yang terdokumentasi. Namun, SDK j
   * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
   * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
   * [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
-  * [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)
+  * [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)
   * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
+
+  Lihat juga [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed).
 </Note>
 
 C# SDK mendukung platform berikut melalui paket NuGet terpisah:
 
-* **Agent Platform:** `Anthropic.Vertex`. Lihat [Claude di Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai) untuk penyiapan klien.
+* **Agent Platform:** `Anthropic.Vertex`. Lihat [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) untuk penyiapan klien.
 * **Bedrock:** `Anthropic.Bedrock`. Gunakan `AnthropicBedrockMantleClient` untuk endpoint Bedrock Messages-API, atau `AnthropicBedrockClient` (jalur `bedrock-runtime`). `AnthropicBedrockMantleClient` menerima objek konfigurasi `MantleAwsClientOptions` opsional; `AnthropicBedrockClient` menerima `AnthropicBedrockCredentialsHelper.FromEnv()` atau kredensial eksplisit.
 * **Claude Platform di AWS:** `Anthropic.Aws`. Gunakan `AnthropicAwsClient`; atur `WorkspaceId` pada klien atau variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID` (lihat [Workspaces](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#workspaces)). Tersedia dalam beta.
 * **Foundry:** `Anthropic.Foundry`. Gunakan `AnthropicFoundryClient` dengan `DefaultAnthropicFoundryCredentials.FromEnv()` atau kredensial eksplisit.
 
 Gunakan `AnthropicBedrockMantleClient` untuk proyek baru; `AnthropicBedrockClient` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API Bedrock `InvokeModel`.
+
+C# SDK juga mendukung Claude Models on Google Cloud (Anthropic managed) melalui `AnthropicGoogleCloudClient`, dari paket `Anthropic.GoogleCloud`. Klien ini masih dalam beta. Atur `WorkspaceId` pada nilai `GoogleCloudClientOptions` opsional, atau atur variabel lingkungan `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`. Lihat [Resolusi proyek, lokasi, dan workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution).
 
 ## Semantic versioning
 

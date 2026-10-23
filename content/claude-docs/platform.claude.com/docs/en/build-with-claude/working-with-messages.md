@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/working-with-messages
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 7caf5d7aa1de75f3a8e485e8bc94c2ede69c3ca10bace57960c9d73b36feb7ae
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 3188eab5ed69cce1a81291def99e054102e953d50e41eb9ef1090a27db1705da
 ---
 
 ---
@@ -121,7 +121,7 @@ This guide covers common patterns for working with the Messages API, including b
   $message = $client->messages->create(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
   echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
   ```
@@ -285,7 +285,7 @@ The Messages API is stateless, which means that you always send the full convers
           ['role' => 'assistant', 'content' => 'Hello!'],
           ['role' => 'user', 'content' => 'Can you describe LLMs to me?'],
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
@@ -514,7 +514,7 @@ Claude can read both text and images in requests. You can supply images using th
   ```bash cURL
   #!/bin/sh
 
-  # Option 1: Base64-encoded image
+  # Option 1: base64-encoded image
   IMAGE_BASE64=$(curl "https://platform.claude.com/docs/images/vision-example.jpg" | base64 | tr -d '\n')
 
   curl https://api.anthropic.com/v1/messages \
@@ -559,7 +559,7 @@ Claude can read both text and images in requests. You can supply images using th
   ```
 
   ```bash CLI
-  # Option 1: Base64-encoded image (CLI auto-encodes binary @file refs)
+  # Option 1: base64-encoded image (CLI auto-encodes binary @file refs)
   curl -s "https://platform.claude.com/docs/images/vision-example.jpg" \
     -o ./vision-example.jpg
 
@@ -598,7 +598,7 @@ Claude can read both text and images in requests. You can supply images using th
   import base64
   import httpx2
 
-  # Option 1: Base64-encoded image
+  # Option 1: base64-encoded image
   image_url = "https://platform.claude.com/docs/images/vision-example.jpg"
   image_media_type = "image/jpeg"
   image_data = base64.standard_b64encode(httpx2.get(image_url).content).decode("utf-8")
@@ -651,7 +651,7 @@ Claude can read both text and images in requests. You can supply images using th
   ```typescript TypeScript
   const anthropic = new Anthropic();
 
-  // Option 1: Base64-encoded image
+  // Option 1: base64-encoded image
   const imageUrl = "https://platform.claude.com/docs/images/vision-example.jpg";
   const imageMediaType = "image/jpeg";
   const imageArrayBuffer = await (await fetch(imageUrl)).arrayBuffer();
@@ -716,7 +716,7 @@ Claude can read both text and images in requests. You can supply images using th
 
   AnthropicClient client = new();
 
-  // Option 1: Base64-encoded image
+  // Option 1: base64-encoded image
   string imageUrl = "https://platform.claude.com/docs/images/vision-example.jpg";
 
   using HttpClient httpClient = new();
@@ -779,7 +779,7 @@ Claude can read both text and images in requests. You can supply images using th
   ```go Go
   client := anthropic.NewClient()
 
-  // Option 1: Base64-encoded image
+  // Option 1: base64-encoded image
   imageURL := "https://platform.claude.com/docs/images/vision-example.jpg"
 
   req, err := http.NewRequest("GET", imageURL, nil)
@@ -837,11 +837,13 @@ Claude can read both text and images in requests. You can supply images using th
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  // Option 1: Base64-encoded image
+  // Option 1: base64-encoded image
   String imageUrl = "https://platform.claude.com/docs/images/vision-example.jpg";
 
   HttpClient httpClient = HttpClient.newHttpClient();
-  HttpRequest request = HttpRequest.newBuilder().uri(URI.create(imageUrl)).build();
+  HttpRequest request = HttpRequest.newBuilder()
+      .uri(URI.create(imageUrl))
+      .build();
   HttpResponse<byte[]> response = httpClient.send(request, HttpResponse.BodyHandlers.ofByteArray());
   String imageData = Base64.getEncoder().encodeToString(response.body());
 
@@ -893,9 +895,9 @@ Claude can read both text and images in requests. You can supply images using th
   ```php PHP
   $client = new Client();
 
-  // Option 1: Base64-encoded image
+  // Option 1: base64-encoded image
   $image_url = 'https://platform.claude.com/docs/images/vision-example.jpg';
-  $image_media_type = "image/jpeg";
+  $image_media_type = 'image/jpeg';
   $image_data = base64_encode(file_get_contents($image_url));
 
   $message = $client->messages->create(
@@ -955,7 +957,7 @@ Claude can read both text and images in requests. You can supply images using th
 
   client = Anthropic::Client.new
 
-  # Option 1: Base64-encoded image
+  # Option 1: base64-encoded image
   image_url = "https://platform.claude.com/docs/images/vision-example.jpg"
   image_media_type = "image/jpeg"
   image_data = Base64.strict_encode64(Net::HTTP.get(URI(image_url)))

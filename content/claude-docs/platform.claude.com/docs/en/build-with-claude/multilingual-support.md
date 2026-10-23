@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/multilingual-support
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 6fdb01a16f9bfac1db0fd3744bd3439c9947cd7a82e7bb3d1630dc12cbd6ab5a
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: c3ceb27bc705813dbacad9e40d9c1dab0a245029ed92385c226a0c455c269428
 ---
 
 ---
@@ -157,7 +157,7 @@ Claude infers the response language from the conversation, but for production ap
       messages: [
           ['role' => 'user', 'content' => 'How do I reset my password?']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       system: 'Always respond in French, regardless of the language the user writes in.',
   );
 

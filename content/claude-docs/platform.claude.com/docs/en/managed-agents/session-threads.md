@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-threads
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: a86ae94ff6dc6f6c94f47a5f3030dd1bbef18d045b4339b2732ca64e76ba0f2d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 3b373934c4da94fe97bdf6a48fdbc6368f338042662ab822a16289f191424a32
 ---
 
 ---
@@ -161,7 +161,6 @@ Send `user.interrupt` with `session_thread_id` (java: `sessionThreadId`; php: `s
   if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserInterrupt: &anthropic.BetaManagedAgentsUserInterruptEventParams{
-  			Type:            anthropic.BetaManagedAgentsUserInterruptEventParamsTypeUserInterrupt,
   			SessionThreadID: anthropic.String(thread.ID),
   		},
   	}},
@@ -328,7 +327,6 @@ Archive only succeeds if the thread is `idle`. A thread parked on `requires_acti
   if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserInterrupt: &anthropic.BetaManagedAgentsUserInterruptEventParams{
-  			Type:            anthropic.BetaManagedAgentsUserInterruptEventParamsTypeUserInterrupt,
   			SessionThreadID: anthropic.String(thread.ID),
   		},
   	}},
@@ -512,7 +510,9 @@ A thread's stream doesn't replay earlier events. Right after `session.thread_cre
       ```java Java
       try (var streamResponse = client.beta().sessions().threads().events().streamStreaming(
           thread.id(),
-          EventStreamParams.builder().sessionId(session.id()).build()
+          EventStreamParams.builder()
+              .sessionId(session.id())
+              .build()
       )) {
           loop:
           for (var event : (Iterable<BetaManagedAgentsStreamSessionThreadEvents>) streamResponse.stream()::iterator) {
@@ -623,8 +623,10 @@ A thread's stream doesn't replay earlier events. Right after `session.thread_cre
       ```java Java
       for (var event : client.beta().sessions().threads().events().list(
               thread.id(),
-              EventListParams.builder().sessionId(session.id()).build()
-          ).autoPager()) {
+              EventListParams.builder()
+                  .sessionId(session.id())
+                  .build()
+      ).autoPager()) {
           var type = event._json().orElseThrow() instanceof JsonObject json
               ? json.values().get("type").asStringOrThrow()
               : "unknown";
@@ -738,7 +740,6 @@ The following example goes inside the event loop of the [tool confirmation handl
   ```go Go
   for _, eventID := range stopReason.EventIDs {
   	params := anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
-  		Type:      anthropic.BetaManagedAgentsUserToolConfirmationEventParamsTypeUserToolConfirmation,
   		ToolUseID: eventID,
   		Result:    anthropic.BetaManagedAgentsUserToolConfirmationEventParamsResultAllow,
   	}

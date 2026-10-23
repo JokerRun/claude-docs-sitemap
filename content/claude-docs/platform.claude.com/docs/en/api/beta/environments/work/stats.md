@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stats
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 40d7299e2e399abbcc6d8309d875a6b8c09d5d2957e3d740035f8589ce264ba9
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 52d43f9f9c711643735aee266f4b4cd8f88794354d74f35f6b6a1191f16b7056
 ---
 
 ---
@@ -180,9 +180,9 @@ Get statistics about the work queue for an environment.
 
 ```bash
 curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/stats \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

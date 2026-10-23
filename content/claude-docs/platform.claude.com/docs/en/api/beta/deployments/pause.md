@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/pause
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: c3f25c4f07d2e0b3f22a22510880eb5ac8cccd794d78c730d4d101f7fde0653c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 64dd9c3326c7af563a706d06c032373d63d466a7364a7caadd11ebd619375f64
 ---
 
 ---
@@ -671,9 +671,9 @@ Pause Deployment
 ```bash
 curl https://api.anthropic.com/v1/deployments/$DEPLOYMENT_ID/pause \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

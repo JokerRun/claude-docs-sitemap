@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/issuers/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 164b281e72989ef7573bf8da98ff93d56adf7441757cb8fd2562876e88609828
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 78c44da376ff126cd383f79f179af440bf3bb04e0f9ad98815e884d32af01a3a
 ---
 
 ---
@@ -188,8 +188,8 @@ Archived issuers are excluded unless `include_archived=true`.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/federation_issuers \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

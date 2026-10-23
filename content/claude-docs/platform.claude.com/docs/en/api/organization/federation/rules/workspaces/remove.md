@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/rules/workspaces/remove
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: c32196b83f4d55a68d7614b9dd6d1d9fbce3ccb9524b52ef2f9d9b28857e6dca
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 32be071d6e01a9baba38191e7140302ca95ed39a0ef1c5cd6951c78ae362d590
 ---
 
 ---
@@ -60,8 +60,8 @@ Console session.
 ```bash
 curl https://api.anthropic.com/v1/organizations/federation_rules/$FEDERATION_RULE_ID/workspaces/$WORKSPACE_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

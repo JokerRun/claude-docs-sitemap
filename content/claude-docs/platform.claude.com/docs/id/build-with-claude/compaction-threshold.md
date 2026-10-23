@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-threshold
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 0d3c9c61293c440fd502fa6fe002d3a3f2e37f3add4151c909032d135611b56c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 9dad807f5aabae465dfe0c1e8155d79bbec52cca5ec2b25012178f85d0c3cf92
 ---
 
 ---
@@ -34,7 +34,7 @@ featureMetadata:
     Claude API: beta
     Claude Platform on AWS: beta
     Amazon Bedrock: beta
-    Google Cloud: beta
+    Claude Models on Google Cloud (Google managed): beta
     Microsoft Foundry: beta
 ---
 

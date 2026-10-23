@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: b0e3df88ca570ec8a6a14b16f800b0bf3f65bb1d36ee070b4062cd2c60022932
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: c8e6e12c56fd69d146c7ed0b3651fa8fdcbaeb269ee1eb0c29bd28c6500eb7cc
 ---
 
 ---
@@ -399,9 +399,9 @@ Create a new environment with the specified configuration.
 ```bash
 curl https://api.anthropic.com/v1/environments \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "name": "python-data-analysis",
           "config": {
@@ -763,9 +763,9 @@ List environments with pagination support.
 
 ```bash
 curl https://api.anthropic.com/v1/environments \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -1094,9 +1094,9 @@ Retrieve a specific environment by ID.
 
 ```bash
 curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -1539,9 +1539,9 @@ Update an existing environment's configuration.
 ```bash
 curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "description": "Python environment with data-analysis packages."
         }'
@@ -1751,9 +1751,9 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 ```bash
 curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -2038,9 +2038,9 @@ Archive an environment by ID. Archived environments cannot be used to create new
 ```bash
 curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/archive \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -2781,9 +2781,9 @@ Retrieve detailed information about a specific work item.
 
 ```bash
 curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/$WORK_ID \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -3045,9 +3045,9 @@ Long poll for work items in the queue.
 
 ```bash
 curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/poll \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -3294,9 +3294,9 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 ```bash
 curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/$WORK_ID/ack \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -3509,9 +3509,9 @@ Record a heartbeat for a work item to maintain the lease.
 ```bash
 curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/$WORK_ID/heartbeat \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -3759,9 +3759,9 @@ Stop a work item, initiating graceful or forced shutdown.
 ```bash
 curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/$WORK_ID/stop \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{}'
 ```
 
@@ -4022,9 +4022,9 @@ List work items in an environment.
 
 ```bash
 curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)
@@ -4288,9 +4288,9 @@ Update work item metadata with merge semantics.
 ```bash
 curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/$WORK_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "metadata": {
             "foo": "string"
@@ -4493,9 +4493,9 @@ Get statistics about the work queue for an environment.
 
 ```bash
 curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/stats \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)

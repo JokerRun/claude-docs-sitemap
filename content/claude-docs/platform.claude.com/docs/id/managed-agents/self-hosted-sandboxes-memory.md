@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: ff403186fd7cf0e70d299d3b02977b2d3dc82b3c1545227bac1bfeafc70384a9
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: b9337393b72810c289d430a7429284069646185dfd76e934dec43207165ed7ef
 ---
 
 ---
@@ -30,6 +30,8 @@ Perbedaannya terletak pada siapa yang mewujudkan store tersebut. Pada environmen
 
 <Note>
   Memory store tidak dapat dilampirkan ke sesi pada environment self-hosted di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
+
+  Di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), memory store tidak didukung untuk sesi pada environment self-hosted.
 </Note>
 
 ## Menyiapkan host

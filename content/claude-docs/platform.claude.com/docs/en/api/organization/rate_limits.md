@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/rate_limits
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 134e2c1c0ce0a853306de5ea2a0e58a1e1fbef9f0ede72e876d2474cf66a85c6
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: b578d255240df95daf7693f0ae65701466c086b37961d423390fe54bb7396be0
 ---
 
 ---
@@ -86,7 +86,7 @@ the remaining entries.
 
   - `group: OrganizationRateLimitModelGroup or OrganizationRateLimitBatchGroup or OrganizationRateLimitTokenCountGroup or 3 more`
 
-    The rate-limit group this entry's limits apply to. Its `type` equals `group_type`.
+    The rate-limit group this entry's limits apply to.
 
     - `OrganizationRateLimitModelGroup object`
 
@@ -178,25 +178,7 @@ the remaining entries.
 
   - `models: array of string or null`
 
-    Model names this entry's limits apply to, including aliases. `null` when `group_type` is not `"model_group"`.
-
-  - `group_type: "batch" or "files" or "model_group" or 3 more`
-
-    **Deprecated**: Use `group.type` instead. `group_type` is still returned and always equals `group.type`.
-
-    Deprecated: use `group.type` instead. The kind of rate-limit group this entry represents. `model_group` entries apply to a family of models (listed in `models`); other values apply to an API-surface category and have `models` set to `null`. Always equal to `group.type`.
-
-    - `"batch"`
-
-    - `"files"`
-
-    - `"model_group"`
-
-    - `"skills"`
-
-    - `"token_count"`
-
-    - `"web_search"`
+    Model names this entry's limits apply to, including aliases. `null` when `group.type` is not `"model_group"`. The list covers the models your organization has access to, so it can differ between organizations.
 
 - `next_page: string or null`
 
@@ -206,8 +188,8 @@ the remaining entries.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/rate_limits \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -222,7 +204,6 @@ curl https://api.anthropic.com/v1/organizations/rate_limits \
         "display_name": "display_name",
         "type": "model_group"
       },
-      "group_type": "batch",
       "limits": [
         {
           "type": "type",
@@ -257,7 +238,7 @@ curl https://api.anthropic.com/v1/organizations/rate_limits \
 
   - `group: OrganizationRateLimitModelGroup or OrganizationRateLimitBatchGroup or OrganizationRateLimitTokenCountGroup or 3 more`
 
-    The rate-limit group this entry's limits apply to. Its `type` equals `group_type`.
+    The rate-limit group this entry's limits apply to.
 
     - `OrganizationRateLimitModelGroup object`
 
@@ -349,25 +330,7 @@ curl https://api.anthropic.com/v1/organizations/rate_limits \
 
   - `models: array of string or null`
 
-    Model names this entry's limits apply to, including aliases. `null` when `group_type` is not `"model_group"`.
-
-  - `group_type: "batch" or "files" or "model_group" or 3 more`
-
-    **Deprecated**: Use `group.type` instead. `group_type` is still returned and always equals `group.type`.
-
-    Deprecated: use `group.type` instead. The kind of rate-limit group this entry represents. `model_group` entries apply to a family of models (listed in `models`); other values apply to an API-surface category and have `models` set to `null`. Always equal to `group.type`.
-
-    - `"batch"`
-
-    - `"files"`
-
-    - `"model_group"`
-
-    - `"skills"`
-
-    - `"token_count"`
-
-    - `"web_search"`
+    Model names this entry's limits apply to, including aliases. `null` when `group.type` is not `"model_group"`. The list covers the models your organization has access to, so it can differ between organizations.
 
 ### Organization Rate Limit Batch Group
 

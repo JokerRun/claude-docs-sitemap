@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 0f1107bfa2b9d2eee96c7a71bfa39f549dfd533dffe0975c107bdb550e417373
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 9956dd1f66b8134e555cfa093e1bede4a1cb1681dddbfe9c133e800f4afa81fa
 ---
 
 ---
@@ -18,6 +18,12 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
   Untuk pembaruan Claude Code, lihat [CHANGELOG.md lengkap](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) di repositori `claude-code`.
 </Tip>
+
+### 22 Oktober 2026
+
+* Kami telah meluncurkan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), yaitu Claude API yang dioperasikan oleh Anthropic dan diakses melalui proyek Google Cloud Anda. Google Cloud IAM mengontrol akses. Google Cloud Marketplace menangani penagihan.
+
+- [Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) tersedia untuk Claude Opus 5.5 di Claude Models on Google Cloud (Anthropic managed).
 
 ### 21 Oktober 2026
 

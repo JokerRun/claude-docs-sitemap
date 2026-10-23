@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/list
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: eb55e9bff574ef129d9fb32a42064268cf578bbbecf13d137563d38520229abf
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 533b02bd0fced840e1a4fffcae7f2b60c60d54d84bd02e53eb944991524b44f1
 ---
 
 ---
@@ -226,9 +226,9 @@ List Memory Stores
 
 ```bash
 curl https://api.anthropic.com/v1/memory_stores \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: agent-memory-2026-07-22' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugin_marketplaces/validate_archive
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 2ee50bce3c48981145fa96f0ace26015781fb7de85e6b3254241cf85a5a18aae
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 8b996c9fe0efcd361009c73e9c2e9a04d2ebd844b6be590df5c2c0c7a624d40c
 ---
 
 ---
@@ -22,9 +22,9 @@ To check a public GitHub repository instead, use Validate Plugin Marketplace Rep
 The report says whether `marketplace.json` is well-formed, which plugins a
 synchronization would skip and why, and which plugins would synchronize only in
 part, with some files left out. An archive that cannot be read as a marketplace is reported, not refused: the response is a report with `valid: false`. Plugin sources outside the marketplace
-are fetched anonymously from GitHub, so a private one is reported as not found; a
-source on any other host is not fetched here, and the report notes that it will be
-checked when the marketplace actually synchronizes.
+are fetched anonymously from GitHub, so a private one is reported as not found or as
+needing a GitHub sign-in; a source on any other host is not fetched here, and the
+report notes that it will be checked when the marketplace actually synchronizes.
 
 Nothing is recorded on the Compliance API activity feed.
 
@@ -233,9 +233,9 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 ```bash
 curl https://api.anthropic.com/v1/organizations/plugin_marketplaces/validate_archive \
     -H 'Content-Type: multipart/form-data' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: ce-plugins-2026-09-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -F 'archive=@/path/to/archive'
 ```
 

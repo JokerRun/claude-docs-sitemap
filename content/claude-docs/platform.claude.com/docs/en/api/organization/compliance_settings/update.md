@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/compliance_settings/update
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: a6a61fc9b9146aef1300c704409fe547644ee5b6a2cd4a63b021744c280c557a
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: c06966d747c5470ee8d24c48e74ffa8899c75bb331b06a44bc6dd9155a36eab4
 ---
 
 ---
@@ -80,8 +80,8 @@ compliance settings.
 ```bash
 curl https://api.anthropic.com/v1/organizations/compliance_settings \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "state": {
             "type": "enabled"

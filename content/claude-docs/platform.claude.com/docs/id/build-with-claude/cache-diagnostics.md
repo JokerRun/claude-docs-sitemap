@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: e65a524158a534ffac9502a9a9605ffc559fd1ef8c62920fd86f27ffa0557d4d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 8f61ab878bf955def9ea2cee16f95e94e0da88152c6953914a49e89ef52e9f25
 ---
 
 ---
@@ -1033,7 +1033,7 @@ Matriks ini berlaku untuk giliran di mana Anda meneruskan `previous_message_id` 
 
 ## Keterbatasan
 
-* **Hanya Claude API:** Tidak tersedia di Amazon Bedrock atau Google Cloud.
+* **Hanya Claude API:** Tidak tersedia di Amazon Bedrock atau Claude Models on Google Cloud (Google managed).
 * **Retensi terbatas:** Fingerprint untuk pencarian `previous_message_id` kedaluwarsa setelah periode singkat. Jalankan perbandingan diagnostik antara permintaan yang berdekatan waktunya.
 * **Workspace yang sama:** Permintaan sebelumnya harus dijalankan dalam organisasi dan workspace yang sama. Untuk memeriksanya, bandingkan [header respons](https://platform.claude.com/docs/id/api/overview#response-headers) `anthropic-workspace-id` pada kedua respons.
 * **Horizon perbandingan:** Untuk percakapan yang sangat panjang di mana satu-satunya perubahan berada jauh di dalam daftar pesan, responsnya mungkin `unavailable` alih-alih lokasi yang tepat.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: f811505a81cbad1a5532009e0d07665bc0097b3f44933f4c8a7a0289fa06db2d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 52fdd6364ddd4747e75a731c025e3c5f3657c7ad19531b737a9861cb966e3b2e
 ---
 
 ---
@@ -19,10 +19,10 @@ Alat web fetch memungkinkan Claude mengambil konten lengkap dari halaman web dan
 
 Versi terbaru alat web fetch (`web_fetch_20260318`) mendukung **dynamic filtering** (pemfilteran dinamis): Claude dapat menulis dan mengeksekusi kode untuk memfilter konten yang diambil sebelum konten tersebut mencapai "context window" (jendela konteks). Dengan begitu, hanya informasi yang relevan yang disimpan dan sisanya dibuang. Hal ini mengurangi konsumsi token sambil tetap menjaga kualitas respons. Pemfilteran dinamis tersedia untuk model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). `web_fetch_20260318` juga menambahkan kontrol [penyertaan respons](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#response-inclusion) untuk alur kerja agentik. Versi-versi sebelumnya tetap tersedia: `web_fetch_20260309` untuk pemfilteran dinamis dan [bypass cache](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#cache-bypass), `web_fetch_20260209` khusus untuk pemfilteran dinamis, dan `web_fetch_20250910` untuk fetch dasar.
 
-Web fetch (dengan maupun tanpa pemfilteran dinamis) tersedia di Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Microsoft Foundry, deployment yang [di-hosting di Azure](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure) hanya mendukung alat web fetch dasar (`web_fetch_20250910`, tanpa pemfilteran dinamis). Deployment yang di-hosting di Anthropic mendukung semua versi. Web fetch saat ini belum tersedia di Amazon Bedrock atau Google Cloud.
+Web fetch (dengan maupun tanpa pemfilteran dinamis) tersedia di Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Microsoft Foundry, deployment yang [di-hosting di Azure](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure) hanya mendukung alat web fetch dasar (`web_fetch_20250910`, tanpa pemfilteran dinamis). Deployment yang di-hosting di Anthropic mendukung semua versi.
 
 <Note>
-  Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), web fetch tersedia di Claude API dan Microsoft Foundry. Fitur ini saat ini belum tersedia untuk Mythos Preview di Amazon Bedrock atau Google Cloud.
+  Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), web fetch tersedia di Claude API dan Microsoft Foundry.
 </Note>
 
 <Note>

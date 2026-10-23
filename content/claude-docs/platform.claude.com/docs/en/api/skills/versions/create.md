@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills/versions/create
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 5870b45a7adae0b8591c33838d1fba5cd8cd421664193cc341481395621ea3f2
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 2b2290e501ad53919c1dfce0d7769e330ca9fce556525fe2e2b569237b396330
 ---
 
 ---
@@ -93,8 +93,8 @@ Create Skill Version
 ```bash
 curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions \
     -H 'Content-Type: multipart/form-data' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -F 'files[]=@/path/to/file'
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: a0ff9ea74e81e89f20898ca7f9e045b5efb7ea22983e8acd7a722e737deb45db
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 01c0664d738e18c6c193fe72b7ac27a5a63c21f61dc736f3c4a354d1b116e880
 ---
 
 ---
@@ -139,7 +139,7 @@ Contoh ini terdiri dari satu file. Konstanta-konstantanya mengatur tingkat effor
   	"sync"
   	"time"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   var client = anthropic.NewClient()
@@ -206,15 +206,17 @@ Contoh ini terdiri dari satu file. Konstanta-konstantanya mengatur tingkat effor
 
   static final Model MODEL = Model.CLAUDE_OPUS_5_5;
   static final boolean DOC_TEST_MODE =
-          !Objects.requireNonNullElse(System.getenv("DOC_TEST_MODE"), "").isEmpty();
+      !Objects.requireNonNullElse(System.getenv("DOC_TEST_MODE"), "").isEmpty();
   static final OutputConfig.Effort EFFORT = OutputConfig.Effort.XHIGH;
 
   static final String SYSTEM_PROMPT =
-          "You are a helpful general-purpose agent. Answer the user's request directly.";
+      "You are a helpful general-purpose agent. Answer the user's request directly.";
 
   static final int REQUEST_TIMEOUT_SECONDS = 600;
   static final RequestOptions REQUEST_OPTIONS =
-          RequestOptions.builder().timeout(Duration.ofSeconds(REQUEST_TIMEOUT_SECONDS)).build();
+      RequestOptions.builder()
+          .timeout(Duration.ofSeconds(REQUEST_TIMEOUT_SECONDS))
+          .build();
   static final int BASH_TIMEOUT_SECONDS = 60;
   static final int TOOL_RESULT_MAX_CHARS = 8000;
   static final int MAX_CONCURRENT = 10;
@@ -223,8 +225,8 @@ Contoh ini terdiri dari satu file. Konstanta-konstantanya mengatur tingkat effor
   static final int MAX_MAIN_TURNS = DOC_TEST_MODE ? 1 : 30;
   static final int TURNS_BETWEEN_REFRESHERS = 10;
   static final Path JOURNAL_PATH = Path.of(Optional.ofNullable(System.getenv("ORCH_JOURNAL"))
-          .filter(path -> !path.isEmpty())
-          .orElse("orchestration_journal.json"));
+      .filter(path -> !path.isEmpty())
+      .orElse("orchestration_journal.json"));
   ```
 
   ```php PHP
@@ -337,15 +339,15 @@ Pengingat-pengingat ini sengaja dibuat singkat. Pengingat tersebut mengubah stat
 
   ```java Java
   static final String MODE_ENTER = """
-          Orchestration mode is on: optimize for the most exhaustive, correct answer rather than \
-          the fastest one. Use the Workflow tool on every substantive task, sized to the problem's \
-          natural decomposition rather than the maximum the tool allows. See the Workflow tool's \
-          description for standing consent, granularity guidance, and quality patterns. Work solo \
-          only on conversational or trivial turns.""";
+      Orchestration mode is on: optimize for the most exhaustive, correct answer rather than \
+      the fastest one. Use the Workflow tool on every substantive task, sized to the problem's \
+      natural decomposition rather than the maximum the tool allows. See the Workflow tool's \
+      description for standing consent, granularity guidance, and quality patterns. Work solo \
+      only on conversational or trivial turns.""";
   static final String MODE_REFRESH =
-          "Orchestration mode is still on. Use the Workflow tool; see its standing consent section.";
+      "Orchestration mode is still on. Use the Workflow tool; see its standing consent section.";
   static final String MODE_EXIT =
-          "Orchestration mode is off. The Workflow tool's standard opt-in rule applies again.";
+      "Orchestration mode is off. The Workflow tool's standard opt-in rule applies again.";
   ```
 
   ```php PHP
@@ -669,72 +671,72 @@ Alat Workflow memuat kontrak perilaku yang sebenarnya: aturan opt-in, persetujua
 
   ```java Java
   static final Tool WORKFLOW_TOOL = Tool.builder()
-          .name("Workflow")
-          .description("""
-                  Orchestrate a multiagent workflow: split a large task into independent subtasks \
-                  and run them as parallel agents, then collect their results.
+      .name("Workflow")
+      .description("""
+          Orchestrate a multiagent workflow: split a large task into independent subtasks \
+          and run them as parallel agents, then collect their results.
 
-                  Opt-in: only use this tool when the user explicitly asks for a workflow, or when a \
-                  system message confirms that orchestration mode is on.
+          Opt-in: only use this tool when the user explicitly asks for a workflow, or when a \
+          system message confirms that orchestration mode is on.
 
-                  Quality patterns: adversarial verification (a second wave of agents checks the first \
-                  wave's findings against the source), a completeness critic (one agent hunts for what \
-                  the others missed), and multiphase sequencing (understand, design, implement, and \
-                  review as separate workflow calls, reading results between phases). A useful default \
-                  is hybrid: scout inline first to discover the work-list, then fan out over it.
+          Quality patterns: adversarial verification (a second wave of agents checks the first \
+          wave's findings against the source), a completeness critic (one agent hunts for what \
+          the others missed), and multiphase sequencing (understand, design, implement, and \
+          review as separate workflow calls, reading results between phases). A useful default \
+          is hybrid: scout inline first to discover the work-list, then fan out over it.
 
-                  Granularity: scope each subtask to a distinct concern, component, or question rather \
-                  than per line or per file section. Scale the count to what the user asked for: a \
-                  focused review of a module of a few hundred lines rarely needs more than about ten \
-                  subtasks; a broad audit of a large codebase can justify more.
+          Granularity: scope each subtask to a distinct concern, component, or question rather \
+          than per line or per file section. Scale the count to what the user asked for: a \
+          focused review of a module of a few hundred lines rarely needs more than about ten \
+          subtasks; a broad audit of a large codebase can justify more.
 
-                  Standing consent: while a system message confirms orchestration mode is on, that \
-                  opt-in is standing. Author and run a workflow for every substantive task by default, \
-                  and lean toward verifying findings adversarially. Work solo only on conversational \
-                  turns or trivial mechanical edits. When a system message says the mode is off, \
-                  revert to the opt-in rule above.""")
-          .inputSchema(Tool.InputSchema.builder()
-                  .properties(Tool.InputSchema.Properties.builder()
-                          .putAdditionalProperty("subtasks", JsonValue.from(Map.of(
-                                  "type", "array",
-                                  "items", Map.of("type", "string"),
-                                  "description", "Independent subtask prompts to run as parallel agents")))
-                          .build())
-                  .putAdditionalProperty("required", JsonValue.from(List.of("subtasks")))
-                  .build())
-          .build();
+          Standing consent: while a system message confirms orchestration mode is on, that \
+          opt-in is standing. Author and run a workflow for every substantive task by default, \
+          and lean toward verifying findings adversarially. Work solo only on conversational \
+          turns or trivial mechanical edits. When a system message says the mode is off, \
+          revert to the opt-in rule above.""")
+      .inputSchema(Tool.InputSchema.builder()
+          .properties(Tool.InputSchema.Properties.builder()
+              .putAdditionalProperty("subtasks", JsonValue.from(Map.of(
+                  "type", "array",
+                  "items", Map.of("type", "string"),
+                  "description", "Independent subtask prompts to run as parallel agents")))
+              .build())
+          .putAdditionalProperty("required", JsonValue.from(List.of("subtasks")))
+          .build())
+      .build();
 
   static final ToolBash20250124 BASH_TOOL = ToolBash20250124.builder().build();
 
   static final Tool REPORT_TOOL = Tool.builder()
-          .name("report_findings")
-          .description("""
-                  Report the final findings for your subtask. Call this exactly once, when you are \
-                  done investigating; it ends your task.""")
-          .inputSchema(Tool.InputSchema.builder()
-                  .properties(Tool.InputSchema.Properties.builder()
-                          .putAdditionalProperty("summary", JsonValue.from(Map.of(
-                                  "type", "string",
-                                  "description", "Two or three sentences of synthesis")))
-                          .putAdditionalProperty("findings", JsonValue.from(Map.of(
-                                  "type", "array",
-                                  "items", Map.of(
-                                          "type", "object",
-                                          "properties", Map.of(
-                                                  "claim", Map.of(
-                                                          "type", "string",
-                                                          "description", "The finding, one sentence"),
-                                                  "evidence", Map.of(
-                                                          "type", "string",
-                                                          "description", "How it was verified (file, line, or command output)"),
-                                                  "severity", Map.of(
-                                                          "type", "string",
-                                                          "enum", List.of("high", "medium", "low", "info"))),
-                                          "required", List.of("claim", "evidence", "severity")))))
-                          .build())
-                  .putAdditionalProperty("required", JsonValue.from(List.of("summary", "findings")))
-                  .build())
-          .build();
+      .name("report_findings")
+      .description("""
+          Report the final findings for your subtask. Call this exactly once, when you are \
+          done investigating; it ends your task.""")
+      .inputSchema(Tool.InputSchema.builder()
+          .properties(Tool.InputSchema.Properties.builder()
+              .putAdditionalProperty("summary", JsonValue.from(Map.of(
+                  "type", "string",
+                  "description", "Two or three sentences of synthesis")))
+              .putAdditionalProperty("findings", JsonValue.from(Map.of(
+                  "type", "array",
+                  "items", Map.of(
+                      "type", "object",
+                      "properties", Map.of(
+                          "claim", Map.of(
+                              "type", "string",
+                              "description", "The finding, one sentence"),
+                          "evidence", Map.of(
+                              "type", "string",
+                              "description", "How it was verified (file, line, or command output)"),
+                          "severity", Map.of(
+                              "type", "string",
+                              "enum", List.of("high", "medium", "low", "info"))),
+                      "required", List.of("claim", "evidence", "severity")))))
+              .build())
+          .putAdditionalProperty("required", JsonValue.from(List.of("summary", "findings")))
+          .build())
+      .build();
   ```
 
   ```php PHP
@@ -1063,7 +1065,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
       return (output, process.ExitCode != 0);
   }
 
-  // Eksekusi satu panggilan alat bash yang diminta oleh model.
+  // Jalankan satu panggilan alat bash yang diminta oleh model.
   async Task<(string Output, bool IsError)> HandleBashBlock(ToolUseBlock block)
   {
       if (block.Input.GetValueOrDefault("restart").ValueKind is JsonValueKind.True)
@@ -1078,8 +1080,8 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   ```
 
   ```go Go
-  // Jalankan bash di tempat contoh ini diluncurkan. Dalam DOC_TEST_MODE, harness dokumentasi
-  // mengarahkannya ke direktori fixture sekali pakai, yang dihapus saat keluar.
+  // Run bash where the example was launched. In DOC_TEST_MODE the docs harness
+  // points it at a throwaway fixture directory instead, removed on exit.
   var workDir = func() string {
   	if !docTestMode {
   		dir, err := os.Getwd()
@@ -1103,8 +1105,8 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   	return dir
   }()
 
-  // runBash menjalankan perintah shell dan mengembalikan output-nya beserta flag error.
-  // Tanpa sandbox: hanya kode contoh.
+  // runBash runs a shell command and returns its output plus an error flag.
+  // No sandbox: example code only.
   func runBash(ctx context.Context, command string) (string, bool) {
   	fmt.Fprintf(os.Stderr, "[bash] %s\n", command)
   	ctx, cancel := context.WithTimeout(ctx, bashTimeoutSeconds*time.Second)
@@ -1131,7 +1133,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   	return fmt.Sprintf("(%s)\n%s", err, output), true
   }
 
-  // handleBashBlock mengeksekusi satu panggilan alat bash yang diminta oleh model.
+  // handleBashBlock runs one bash tool call requested by the model.
   func handleBashBlock(ctx context.Context, block anthropic.ToolUseBlock) (string, bool) {
   	var input struct {
   		Command string `json:"command"`
@@ -1164,11 +1166,11 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
       try {
           var dir = Files.createTempDirectory("orchestration-");
           Files.writeString(dir.resolve("sample.py"), """
-                  def fib(n):
-                      return n if n < 2 else fib(n - 1) + fib(n - 2)
+              def fib(n):
+                  return n if n < 2 else fib(n - 1) + fib(n - 2)
 
-                  print(fib(10))
-                  """);
+              print(fib(10))
+              """);
           Runtime.getRuntime().addShutdownHook(new Thread(() -> {
               // Pembersihan sebisanya; pembersih tmp OS menangani sisanya.
               try (var paths = Files.walk(dir)) {
@@ -1189,13 +1191,13 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
       Process process;
       try {
           process = new ProcessBuilder("bash", "-c", command)
-                  .directory(WORK_DIR.toFile())
-                  .redirectErrorStream(true)
-                  .start();
+              .directory(WORK_DIR.toFile())
+              .redirectErrorStream(true)
+              .start();
       } catch (IOException error) {
           return new ToolOutput("(" + error + ")", true);
       }
-      // Kuras stdout di thread lain agar pipe yang penuh tidak menghambat penantian timeout di bawah.
+      // Kuras stdout di thread lain agar pipe yang penuh tidak menghambat penantian timeout berikutnya.
       CompletableFuture<String> outputReader = CompletableFuture.supplyAsync(() -> {
           try (var stdout = process.getInputStream()) {
               return new String(stdout.readAllBytes(), StandardCharsets.UTF_8);
@@ -1213,12 +1215,12 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
           output = "(no output)";
       } else if (output.length() > TOOL_RESULT_MAX_CHARS) {
           output = output.substring(0, TOOL_RESULT_MAX_CHARS)
-                  + "\n(truncated at " + TOOL_RESULT_MAX_CHARS + " chars)";
+              + "\n(truncated at " + TOOL_RESULT_MAX_CHARS + " chars)";
       }
       int exitCode = process.exitValue();
       return exitCode == 0
-              ? new ToolOutput(output, false)
-              : new ToolOutput("(exit code " + exitCode + ")\n" + output, true);
+          ? new ToolOutput(output, false)
+          : new ToolOutput("(exit code " + exitCode + ")\n" + output, true);
   }
 
   // Field input pemanggilan alat, atau map kosong jika model mengirim sesuatu selain objek.
@@ -1226,7 +1228,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
       return toolUse._input() instanceof JsonObject object ? object.values() : Map.of();
   }
 
-  // Eksekusi satu panggilan alat bash yang diminta oleh model.
+  // Jalankan satu panggilan alat bash yang diminta oleh model.
   ToolOutput handleBashBlock(ToolUseBlock toolUse) throws InterruptedException {
       Map<String, JsonValue> input = toolInput(toolUse);
       if (input.get("restart") instanceof JsonBoolean restart && restart.value()) {
@@ -1296,7 +1298,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
       return [$output, $exitCode !== 0];
   }
 
-  /** Execute one bash tool call requested by the model. */
+  /** Run one bash tool call requested by the model. */
   function handleBashBlock(ToolUseBlock $block): array
   {
       if (($block->input['restart'] ?? null) === true) {
@@ -1343,7 +1345,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
       stdin, stdout_and_stderr, wait_thr = Open3.popen2e("bash", "-c", command, pgroup: true, chdir: WORK_DIR)
       stdin.close
       reader = Thread.new { stdout_and_stderr.read.scrub }
-      # Terapkan batas waktu dengan tenggat jam monotonik agar perintah yang timeout
+      # Terapkan batas waktu dengan tenggat jam monotonik agar perintah yang habis waktu
       # dihentikan, bukan dibiarkan berjalan di latar belakang.
       deadline = Process.clock_gettime(Process::CLOCK_MONOTONIC) + BASH_TIMEOUT_SECONDS
       until wait_thr.join(0.1)
@@ -1617,8 +1619,8 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
   ```
 
   ```go Go
-  // streamMessage mengirim satu permintaan dan mengakumulasi event yang di-stream menjadi
-  // pesan akhir.
+  // streamMessage sends one request and accumulates the streamed events into the
+  // final message.
   func streamMessage(ctx context.Context, params anthropic.MessageNewParams) (anthropic.Message, error) {
   	ctx, cancel := context.WithTimeout(ctx, requestTimeoutSeconds*time.Second)
   	defer cancel()
@@ -1633,7 +1635,7 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
   	return message, stream.Err()
   }
 
-  // textOf menggabungkan blok teks dari sebuah respons.
+  // textOf joins the text blocks of a response.
   func textOf(message anthropic.Message) string {
   	var text strings.Builder
   	for _, block := range message.Content {
@@ -1644,8 +1646,8 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
   	return text.String()
   }
 
-  // runSubagent menjalankan satu subagen: loop agen bersarang kecil dengan alat bash plus
-  // report_findings. Subagen mewarisi tingkat upaya dari loop utama.
+  // runSubagent runs one subagent: a small nested agent loop with the bash tool plus
+  // report_findings. Subagents inherit the main loop's effort level.
   func runSubagent(ctx context.Context, model string, prompt string) (string, error) {
   	const subagentSystem = "You are one agent in a larger parallel fan-out, assigned a single subtask. " +
   		"Investigate it directly, using bash to check facts rather than guessing, and finish " +
@@ -1712,9 +1714,9 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
 
   ```java Java
   static final String SUBAGENT_SYSTEM = """
-          You are one agent in a larger parallel fan-out, assigned a single subtask. \
-          Investigate it directly, using bash to check facts rather than guessing, and finish \
-          by calling report_findings exactly once. Return findings, not narration.""";
+      You are one agent in a larger parallel fan-out, assigned a single subtask. \
+      Investigate it directly, using bash to check facts rather than guessing, and finish \
+      by calling report_findings exactly once. Return findings, not narration.""";
 
   // Satu subagen: loop agen bersarang kecil dengan alat bash plus report_findings.
   // Subagen mewarisi tingkat upaya dari loop utama.
@@ -1723,14 +1725,16 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
       messages.add(MessageParam.ofUser(prompt));
       for (int turn = 0; turn < MAX_SUBAGENT_TURNS; turn++) {
           MessageCreateParams params = MessageCreateParams.builder()
-                  .model(model)
-                  .maxTokens(64000L)
-                  .system(SUBAGENT_SYSTEM)
-                  .outputConfig(OutputConfig.builder().effort(EFFORT).build())
-                  .addTool(BASH_TOOL)
-                  .addTool(REPORT_TOOL)
-                  .messages(messages)
-                  .build();
+              .model(model)
+              .maxTokens(64000L)
+              .system(SUBAGENT_SYSTEM)
+              .outputConfig(OutputConfig.builder()
+                  .effort(EFFORT)
+                  .build())
+              .addTool(BASH_TOOL)
+              .addTool(REPORT_TOOL)
+              .messages(messages)
+              .build();
           MessageAccumulator accumulator = MessageAccumulator.create();
           try (var stream = client.messages().createStreaming(params, REQUEST_OPTIONS)) {
               stream.stream().forEach(accumulator::accumulate);
@@ -1743,17 +1747,17 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
           }
           if (!StopReason.TOOL_USE.equals(stopReason)) {
               String text = response.content().stream()
-                      .flatMap(block -> block.text().stream())
-                      .map(TextBlock::text)
-                      .collect(Collectors.joining());
+                  .flatMap(block -> block.text().stream())
+                  .map(TextBlock::text)
+                  .collect(Collectors.joining());
               if (StopReason.MAX_TOKENS.equals(stopReason)) {
                   text += "\n\n(warning: subagent response was truncated at max_tokens)";
               }
               return text;
           }
           List<ToolUseBlock> toolUses = response.content().stream()
-                  .flatMap(block -> block.toolUse().stream())
-                  .toList();
+              .flatMap(block -> block.toolUse().stream())
+              .toList();
           List<ContentBlockParam> toolResults = new ArrayList<>();
           String report = null;
           for (ToolUseBlock toolUse : toolUses) {
@@ -1766,10 +1770,10 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
                   default -> new ToolOutput("unknown tool: " + toolUse.name(), true);
               };
               toolResults.add(ContentBlockParam.ofToolResult(ToolResultBlockParam.builder()
-                      .toolUseId(toolUse.id())
-                      .content(result.output())
-                      .isError(result.isError())
-                      .build()));
+                  .toolUseId(toolUse.id())
+                  .content(result.output())
+                  .isError(result.isError())
+                  .build()));
           }
           if (report != null) {
               return report;
@@ -2098,9 +2102,9 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
   	return journal
   }
 
-  // journaled mengembalikan hasil yang di-cache untuk prompt persis ini, atau menghitung dan
-  // menyimpannya. Ini membuat fan-out dapat dilanjutkan: interupsi, jalankan ulang, dan hanya
-  // subtugas yang belum selesai yang dihitung ulang. Hapus file jurnal untuk memulai dari awal.
+  // journaled returns a cached result for this exact prompt, or computes and persists
+  // it. This makes the fan-out resumable: interrupt the run, rerun it, and only the
+  // subtasks that never finished are recomputed. Delete the journal file to start fresh.
   func journaled(prompt string, compute func() (string, error)) (string, error) {
   	sum := sha256.Sum256([]byte(prompt))
   	key := hex.EncodeToString(sum[:])
@@ -2135,8 +2139,8 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
   Map<String, String> loadJournal() {
       try {
           return Objects.requireNonNullElseGet(
-                  JOURNAL_MAPPER.readValue(Files.readString(JOURNAL_PATH), new TypeReference<HashMap<String, String>>() {}),
-                  HashMap::new);
+              JOURNAL_MAPPER.readValue(Files.readString(JOURNAL_PATH), new TypeReference<HashMap<String, String>>() {}),
+              HashMap::new);
       } catch (IOException _) {
           return new HashMap<>();
       }
@@ -2515,8 +2519,8 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   ```
 
   ```go Go
-  // normalizeSubtasks menerima input subtugas dalam bentuk apa pun yang dihasilkan model:
-  // array, array yang di-encode JSON sebagai satu string, atau daftar yang dipisahkan baris baru.
+  // normalizeSubtasks accepts the subtasks input in whatever shape the model emits: an
+  // array, the array JSON-encoded as a single string, or a newline-separated list.
   func normalizeSubtasks(raw json.RawMessage) []string {
   	var tasks []string
   	if err := json.Unmarshal(raw, &tasks); err != nil {
@@ -2549,7 +2553,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   %s`, subtask, result)
   }
 
-  // mapWithLimit menjalankan task pada items dengan paling banyak limit goroutine berjalan.
+  // mapWithLimit runs task over items with at most limit goroutines in flight.
   func mapWithLimit(items []string, limit int, task func(string) string) []string {
   	results := make([]string, len(items))
   	semaphore := make(chan struct{}, limit)
@@ -2565,9 +2569,9 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   	return results
   }
 
-  // runWorkflow menjalankan subtugas sebagai subagen paralel, lalu menjalankan gelombang verifikasi
-  // kedua atas hasilnya, dan mengembalikan keduanya. maxTotalSubtasks membatasi jumlah yang dapat
-  // diantrekan model; maxConcurrent membatasi jumlah yang berjalan sekaligus.
+  // runWorkflow runs subtasks as parallel subagents, then runs a second verification wave
+  // over the results, and returns both. maxTotalSubtasks bounds how many the model can
+  // queue; maxConcurrent bounds how many run at once.
   func runWorkflow(ctx context.Context, model string, rawSubtasks json.RawMessage) (string, bool) {
   	allSubtasks := normalizeSubtasks(rawSubtasks)
   	subtasks := allSubtasks[:min(len(allSubtasks), maxTotalSubtasks)]
@@ -2580,7 +2584,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   	runOne := func(prompt string) string {
   		report, err := journaled(prompt, func() (string, error) { return runSubagent(ctx, model, prompt) })
   		if err != nil {
-  			// Batas isolasi: satu subagen yang gagal tidak boleh menghentikan keseluruhan proses.
+  			// Isolation boundary: one bad subagent should not end the run.
   			return fmt.Sprintf("(subagent failed: %s)", err)
   		}
   		return report
@@ -2618,16 +2622,16 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   List<String> normalizeSubtasks(JsonValue rawSubtasks) {
       List<String> tasks = switch (rawSubtasks) {
           case JsonArray array -> array.values().stream()
-                  .map(item -> item instanceof JsonString text ? text.value() : item.toString())
-                  .toList();
+              .map(item -> item instanceof JsonString text ? text.value() : item.toString())
+              .toList();
           case JsonString string -> parseSubtaskString(string.value());
           default -> List.of();
       };
       return tasks.stream()
-              .filter(Objects::nonNull)
-              .map(String::strip)
-              .filter(task -> !task.isEmpty())
-              .toList();
+          .filter(Objects::nonNull)
+          .map(String::strip)
+          .filter(task -> !task.isEmpty())
+          .toList();
   }
 
   List<String> parseSubtaskString(String encoded) {
@@ -2641,31 +2645,31 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
 
   String verifyPromptFor(String subtask, String result) {
       return """
-              Adversarially verify the subagent result below: try to REFUTE it. Re-derive the \
-              claims yourself with bash rather than trusting the result, and look for evidence \
-              that contradicts them. Default to refuted if uncertain. Call report_findings with \
-              summary 'refuted: <why>' or 'confirmed: <why>', citing the file:line or command \
-              output that decided it.
+          Adversarially verify the subagent result below: try to REFUTE it. Re-derive the \
+          claims yourself with bash rather than trusting the result, and look for evidence \
+          that contradicts them. Default to refuted if uncertain. Call report_findings with \
+          summary 'refuted: <why>' or 'confirmed: <why>', citing the file:line or command \
+          output that decided it.
 
-              Subtask: %s
+          Subtask: %s
 
-              Result to verify:
-              %s""".formatted(subtask, result);
+          Result to verify:
+          %s""".formatted(subtask, result);
   }
 
   // invokeAll menunggu setiap job, jadi setiap future sudah selesai saat dibaca di sini.
   List<String> runAll(ExecutorService pool, List<String> prompts, Model model) throws InterruptedException {
       List<Callable<String>> jobs = prompts.stream()
-              .<Callable<String>>map(prompt -> () -> journaled(prompt, () -> runSubagent(model, prompt)))
-              .toList();
+          .<Callable<String>>map(prompt -> () -> journaled(prompt, () -> runSubagent(model, prompt)))
+          .toList();
       return pool.invokeAll(jobs).stream()
-              .map(future -> switch (future.state()) {
-                  case SUCCESS -> future.resultNow();
-                  // Batas isolasi: satu subagen yang gagal tidak boleh mengakhiri run.
-                  case FAILED -> "(subagent failed: " + future.exceptionNow() + ")";
-                  case CANCELLED, RUNNING -> "(subagent failed: cancelled)";
-              })
-              .toList();
+          .map(future -> switch (future.state()) {
+              case SUCCESS -> future.resultNow();
+              // Batas isolasi: satu subagen yang gagal tidak boleh mengakhiri run.
+              case FAILED -> "(subagent failed: " + future.exceptionNow() + ")";
+              case CANCELLED, RUNNING -> "(subagent failed: cancelled)";
+          })
+          .toList();
   }
 
   // Jalankan subtugas sebagai subagen paralel, lalu jalankan gelombang verifikasi kedua atas
@@ -2686,23 +2690,23 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
           results = runAll(pool, subtasks, model);
           System.err.println("[workflow] verifying " + results.size() + " results");
           List<String> verifyPrompts = IntStream.range(0, subtasks.size())
-                  .mapToObj(index -> verifyPromptFor(subtasks.get(index), results.get(index)))
-                  .toList();
+              .mapToObj(index -> verifyPromptFor(subtasks.get(index), results.get(index)))
+              .toList();
           verdicts = runAll(pool, verifyPrompts, model);
       }
       String joined = IntStream.range(0, subtasks.size())
-              .mapToObj(index -> """
-                      [agent %d: %s]
-                      %s
+          .mapToObj(index -> """
+              [agent %d: %s]
+              %s
 
-                      [verify %d]
-                      %s""".formatted(index + 1, subtasks.get(index), results.get(index), index + 1, verdicts.get(index)))
-              .collect(Collectors.joining("\n\n"));
+              [verify %d]
+              %s""".formatted(index + 1, subtasks.get(index), results.get(index), index + 1, verdicts.get(index)))
+          .collect(Collectors.joining("\n\n"));
       if (dropped > 0) {
           joined = """
-                  (note: %d subtasks beyond MAX_TOTAL_SUBTASKS=%d were not run; rerun them in a follow-up Workflow call)
+              (note: %d subtasks beyond MAX_TOTAL_SUBTASKS=%d were not run; rerun them in a follow-up Workflow call)
 
-                  %s""".formatted(dropped, MAX_TOTAL_SUBTASKS, joined);
+              %s""".formatted(dropped, MAX_TOTAL_SUBTASKS, joined);
       }
       return new ToolOutput(joined, false);
   }
@@ -3238,7 +3242,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
       return due;
   }
 
-  // Kirim satu giliran pengguna melalui loop, mengeksekusi panggilan alat hingga model berhenti.
+  // Kirim satu giliran pengguna melalui loop, menjalankan panggilan alat hingga model berhenti.
   async Task<string> Turn(string userInput)
   {
       // Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
@@ -3303,8 +3307,8 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   ```
 
   ```go Go
-  // modeAgent adalah loop agen yang mode orkestrasinya diaktifkan/dinonaktifkan dengan pesan
-  // sistem di tengah percakapan.
+  // modeAgent is an agent loop whose orchestration mode is toggled with mid-conversation
+  // system messages.
   type modeAgent struct {
   	model              string
   	modeOn             bool
@@ -3318,7 +3322,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   	return &modeAgent{model: model, modeOn: true}
   }
 
-  // setMode mengaktifkan atau menonaktifkan mode. Pemberitahuan dikirim bersama giliran pengguna berikutnya.
+  // setMode turns the mode on or off. The notice is delivered with the next user turn.
   func (agent *modeAgent) setMode(modeOn bool) {
   	if modeOn == agent.modeOn {
   		return
@@ -3333,14 +3337,13 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   	agent.modeOn = modeOn
   }
 
-  // dueSystemMessages mengembalikan pesan sistem yang jatuh tempo pada giliran ini: pemberitahuan keluar,
-  // teks mode lengkap saat masuk, atau pengingat satu baris setiap turnsBetweenRefreshers giliran pengguna.
+  // dueSystemMessages returns the system messages owed on this turn: an exit notice, the
+  // full mode text on entry, or a one-line refresher every turnsBetweenRefreshers user turns.
   func (agent *modeAgent) dueSystemMessages() []anthropic.MessageParam {
   	systemMessage := func(content string) anthropic.MessageParam {
-  		return anthropic.MessageParam{
-  			Role:    anthropic.MessageParamRoleSystem,
-  			Content: []anthropic.ContentBlockParamUnion{anthropic.NewTextBlock(content)},
-  		}
+  		return anthropic.MessageParam{OfSystem: &anthropic.SystemMessageParam{
+  			Content: []anthropic.TextBlockParam{{Text: content}},
+  		}}
   	}
   	var due []anthropic.MessageParam
   	if agent.exitPending {
@@ -3361,10 +3364,10 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   	return due
   }
 
-  // turn mengirim satu giliran pengguna melalui loop, mengeksekusi panggilan alat hingga model berhenti.
+  // turn sends one user turn through the loop, running tool calls until the model stops.
   func (agent *modeAgent) turn(ctx context.Context, userInput string) (string, error) {
-  	// Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
-  	// prefiks yang di-cache sebelum pesan tersebut tetap tidak tersentuh.
+  	// Mid-conversation system messages follow the user turn they apply to, which keeps
+  	// the cached prefix ahead of them untouched.
   	agent.messages = append(agent.messages, anthropic.NewUserMessage(anthropic.NewTextBlock(userInput)))
   	agent.messages = append(agent.messages, agent.dueSystemMessages()...)
   	agent.turnsSinceReminder++
@@ -3387,7 +3390,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   		case anthropic.StopReasonPauseTurn:
   			continue
   		case anthropic.StopReasonMaxTokens:
-  			// Buang pesan asisten yang terpotong agar giliran berikutnya tidak dibangun di atasnya.
+  			// Drop the truncated assistant message so later turns do not build on it.
   			agent.messages = agent.messages[:len(agent.messages)-1]
   			return textOf(response) + "\n\n(warning: response was truncated at max_tokens)", nil
   		case anthropic.StopReasonToolUse:
@@ -3481,7 +3484,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
           return MessageParam.ofSystem(content);
       }
 
-      // Kirim satu giliran pengguna melalui loop, mengeksekusi panggilan alat hingga model berhenti.
+      // Kirim satu giliran pengguna melalui loop, menjalankan pemanggilan alat hingga model berhenti.
       String turn(String userInput) throws InterruptedException {
           // Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
           // prefiks yang di-cache sebelum pesan tersebut tetap tidak tersentuh.
@@ -3491,14 +3494,16 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
 
           for (int turn = 0; turn < MAX_MAIN_TURNS; turn++) {
               MessageCreateParams params = MessageCreateParams.builder()
-                      .model(model)
-                      .maxTokens(64000L)
-                      .system(SYSTEM_PROMPT) // static for the whole session
-                      .outputConfig(OutputConfig.builder().effort(EFFORT).build())
-                      .addTool(WORKFLOW_TOOL)
-                      .addTool(BASH_TOOL)
-                      .messages(messages)
-                      .build();
+                  .model(model)
+                  .maxTokens(64000L)
+                  .system(SYSTEM_PROMPT) // static for the whole session
+                  .outputConfig(OutputConfig.builder()
+                      .effort(EFFORT)
+                      .build())
+                  .addTool(WORKFLOW_TOOL)
+                  .addTool(BASH_TOOL)
+                  .messages(messages)
+                  .build();
               MessageAccumulator accumulator = MessageAccumulator.create();
               try (var stream = client.messages().createStreaming(params, REQUEST_OPTIONS)) {
                   stream.stream().forEach(accumulator::accumulate);
@@ -3512,9 +3517,9 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
               }
               if (!StopReason.TOOL_USE.equals(stopReason)) {
                   String text = response.content().stream()
-                          .flatMap(block -> block.text().stream())
-                          .map(TextBlock::text)
-                          .collect(Collectors.joining());
+                      .flatMap(block -> block.text().stream())
+                      .map(TextBlock::text)
+                      .collect(Collectors.joining());
                   if (StopReason.MAX_TOKENS.equals(stopReason)) {
                       // Buang pesan asisten yang terpotong agar giliran berikutnya tidak dibangun di atasnya.
                       messages.removeLast();
@@ -3524,21 +3529,21 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
               }
 
               List<ToolUseBlock> toolUses = response.content().stream()
-                      .flatMap(block -> block.toolUse().stream())
-                      .toList();
+                  .flatMap(block -> block.toolUse().stream())
+                  .toList();
               List<ContentBlockParam> toolResults = new ArrayList<>();
               for (ToolUseBlock toolUse : toolUses) {
                   ToolOutput result = switch (toolUse.name()) {
                       case "Workflow" -> runWorkflow(model,
-                              toolInput(toolUse).getOrDefault("subtasks", JsonValue.from(List.of())));
+                          toolInput(toolUse).getOrDefault("subtasks", JsonValue.from(List.of())));
                       case "bash" -> handleBashBlock(toolUse);
                       default -> new ToolOutput("unknown tool: " + toolUse.name(), true);
                   };
                   toolResults.add(ContentBlockParam.ofToolResult(ToolResultBlockParam.builder()
-                          .toolUseId(toolUse.id())
-                          .content(result.output())
-                          .isError(result.isError())
-                          .build()));
+                      .toolUseId(toolUse.id())
+                      .content(result.output())
+                      .isError(result.isError())
+                      .build()));
               }
               messages.add(MessageParam.ofUserOfContentBlockParams(toolResults));
           }
@@ -3855,8 +3860,8 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   ```java Java
   void main(String[] args) throws InterruptedException {
       String task = args.length > 0 ? args[0] : """
-              Explore the current directory, then give a thorough review: what it does, \
-              code-quality issues, and concrete improvements.""";
+          Explore the current directory, then give a thorough review: what it does, \
+          code-quality issues, and concrete improvements.""";
       ModeAgent agent = new ModeAgent(MODEL);
       IO.println(agent.turn(task));
       agent.setMode(false);

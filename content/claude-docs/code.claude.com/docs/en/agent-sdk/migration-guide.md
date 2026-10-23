@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/migration-guide
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 3895d4faf2fd8ef4b437b5e88b0c905376fd332961e0f220f4490d3cbe8ce02e
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 6736b88f7b5eb07cd3874937891405c4bc4989a2f587e2c52b5f05f35ac9f2cb
 ---
 
 > ## Documentation Index
@@ -25,7 +25,7 @@ Migrating from the OpenAI Agents SDK instead? The [OpenAI Agents SDK migration r
 | :- | :- | :- |
 | **Package Name (TS/JS)** | `@anthropic-ai/claude-code` | `@anthropic-ai/claude-agent-sdk` |
 | **Python Package** | `claude-code-sdk` | `claude-agent-sdk` |
-| **Documentation Location** | Claude Code docs | Claude Code docs → dedicated [Agent SDK](/docs/en/agent-sdk/overview) section |
+| **Documentation Location** | Claude Code docs | Claude Code docs → dedicated [Agent SDK](/docs/en/agent-sdk/overview.md) section |
 
 ## Migration Steps
 
@@ -188,17 +188,17 @@ This default was briefly changed in v0.1.0 to load no filesystem settings and th
 
 **Current behavior:** Omitting `settingSources` on `query()` loads user, project, and local filesystem settings, matching the CLI. This includes `~/.claude/settings.json`, `.claude/settings.json`, `.claude/settings.local.json`, CLAUDE.md files, and custom commands.
 
-To run isolated from filesystem settings, pass `settingSources: []`, or `setting_sources=[]` in Python. See [Control filesystem settings with settingSources](/docs/en/agent-sdk/claude-code-features#control-filesystem-settings-with-settingsources) for what each source loads.
+To run isolated from filesystem settings, pass `settingSources: []`, or `setting_sources=[]` in Python. See [Control filesystem settings with settingSources](/docs/en/agent-sdk/claude-code-features.md#control-filesystem-settings-with-settingsources) for what each source loads.
 
 Isolation is especially important for CI/CD pipelines, deployed applications, test environments, and multi-tenant systems where local customizations should not leak in.
 
 > [!NOTE]
 >
-> Python SDK 0.1.59 and earlier treated an empty list the same as omitting the option, so upgrade before relying on `setting_sources=[]`. See [What settingSources does not control](/docs/en/agent-sdk/claude-code-features#what-settingsources-does-not-control) for inputs that are read even when `settingSources` is `[]`.
+> Python SDK 0.1.59 and earlier treated an empty list the same as omitting the option, so upgrade before relying on `setting_sources=[]`. See [What settingSources does not control](/docs/en/agent-sdk/claude-code-features.md#what-settingsources-does-not-control) for inputs that are read even when `settingSources` is `[]`.
 
 ## Next Steps
 
-* Explore the [Agent SDK Overview](/docs/en/agent-sdk/overview) to learn about available features
-* Check out the [TypeScript SDK Reference](/docs/en/agent-sdk/typescript) for detailed API documentation
-* Review the [Python SDK Reference](/docs/en/agent-sdk/python) for Python-specific documentation
-* Learn about [Custom Tools](/docs/en/agent-sdk/custom-tools) and [MCP Integration](/docs/en/agent-sdk/mcp)
+* Explore the [Agent SDK Overview](/docs/en/agent-sdk/overview.md) to learn about available features
+* Check out the [TypeScript SDK Reference](/docs/en/agent-sdk/typescript.md) for detailed API documentation
+* Review the [Python SDK Reference](/docs/en/agent-sdk/python.md) for Python-specific documentation
+* Learn about [Custom Tools](/docs/en/agent-sdk/custom-tools.md) and [MCP Integration](/docs/en/agent-sdk/mcp.md)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/user_cost_report
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 299e2a28e8a18f07a6eab0a8dfeaa73a61ae601f4c76d9befb33b2122142b93f
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: f9668b987d89585796f22fdd4a3d5bb631d15d8cc49d5d90a5c1fb31ced311a0
 ---
 
 ---
@@ -252,12 +252,6 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
       Tagged user ID.
 
-    - `email: string or null`
-
-      **Deprecated**
-
-      Deprecated: use `email_address`, which carries the same value.
-
   - `amount: string`
 
     Amount (post-discount, pre-credit) in fractional cents (minor units).
@@ -392,8 +386,8 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/analytics/user_cost_report \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -404,7 +398,6 @@ curl https://api.anthropic.com/v1/organizations/analytics/user_cost_report \
     {
       "actor": {
         "deleted": true,
-        "email": "jane@example.com",
         "email_address": "jane@example.com",
         "name": "Jane Smith",
         "type": "user_actor",

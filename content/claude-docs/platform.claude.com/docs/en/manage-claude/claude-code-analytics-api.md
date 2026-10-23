@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/claude-code-analytics-api
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 4bd6632170bc635365fac0dca2371877b6e7ef2b23ab827ec9f4afb82933c1f3
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 41452f13e1221c7430e93561ed2c9d7188733d0071f059d8fedf572043a81883
 ---
 
 ---
@@ -269,7 +269,7 @@ Historical Claude Code analytics data is retained and accessible through the API
 
 ### Which Claude Code deployments are supported?
 
-This API only tracks Claude Code usage on the Claude API. Usage through [Claude in Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock), [Claude in Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry), [Claude on Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai), or [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) is not included.
+This API only tracks Claude Code usage on the Claude API. Usage through [Claude in Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock), [Claude in Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry), [Claude Models on Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/overview), or [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) is not included.
 
 ### What does it cost to use this API?
 

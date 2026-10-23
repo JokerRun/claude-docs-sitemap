@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations/workspaces/remove
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 6dcdf25eaa08e3b0a490404da0dbfcb8945f26c7a2678d6f23ebe3a8319f5b3e
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 0848fc2b6666a4e62095585fd6d7da655569229fe0666a6c7da3317dba4921ff
 ---
 
 ---
@@ -171,9 +171,9 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 ```bash
 curl https://api.anthropic.com/v1/organizations/telemetry_destinations/$DESTINATION_ID/workspaces/$WORKSPACE_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: telemetry-destinations-2026-08-11' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

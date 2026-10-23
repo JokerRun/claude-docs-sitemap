@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 9009923af60c15f4418f5a5d134ce6768d4edc3ff9ca6a36284aaa85d76af58c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: a97fa89c496fdf7eaaca7dc1b42e336e4706c1da33036e8acf2f426fac5d985a
 ---
 
 ---
@@ -614,7 +614,7 @@ The following examples read a text file and send its contents as plain text:
   $client = new Client();
 
   // Read the text file
-  $textContent = file_get_contents("document.txt");
+  $textContent = file_get_contents('document.txt');
 
   $message = $client->messages->create(
       maxTokens: 1024,
@@ -675,7 +675,7 @@ The following examples read a text file and send its contents as plain text:
 
 #### List files
 
-Retrieve a list of your uploaded files. The endpoint is paginated: each request returns up to `limit` files (20 by default, and at most 1,000), and the response's `next_page` cursor fetches the next page when passed back as the `page` parameter. Files are ordered newest first. See the [List Files API reference](https://platform.claude.com/docs/en/api/files/list). The SDK returns the first page and provides [auto-pagination](https://platform.claude.com/docs/en/api/overview#pagination) helpers. The CLI example bounds the total with `--max-items`:
+Retrieve a list of your uploaded files. The endpoint is paginated: each request returns up to `limit` files (20 by default, and at most 1,000), and the response's `next_page` cursor fetches the next page when passed back as the `page` parameter. Files are ordered newest first. See the [List Files API reference](https://platform.claude.com/docs/en/api/files/list). The SDK returns the first page and provides [auto-pagination](https://platform.claude.com/docs/en/api/overview#pagination) helpers.
 
 <CodeGroup>
   ```bash cURL
@@ -685,6 +685,7 @@ Retrieve a list of your uploaded files. The endpoint is paginated: each request 
   ```
 
   ```bash CLI
+  # List commands auto-paginate, so --max-items limits the total
   ant files list --max-items 10
   ```
 

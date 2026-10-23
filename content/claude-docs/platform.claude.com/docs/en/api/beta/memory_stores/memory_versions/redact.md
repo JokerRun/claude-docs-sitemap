@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: c22939b985965d6aca22f80bf8a5ca55847a6b7beda0e9efb80fa137074a26d9
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 3fb41f6a108d7d12c53c670b428207c297c7c99308a1d8f9849a6517705543bf
 ---
 
 ---
@@ -293,9 +293,9 @@ Redact a Memory Version
 ```bash
 curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memory_versions/$MEMORY_VERSION_ID/redact \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: agent-memory-2026-07-22' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

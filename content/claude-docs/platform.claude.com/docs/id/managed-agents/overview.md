@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/overview
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 166cf6ec9fb1478e32f4d8cf3de474213e743b50f87181c403cba9645727c5f6
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: aa680eed7f9dc31dea8a0f47da5de2769ecec9cfc50184ce88b392d8bef6d662
 ---
 
 ---
@@ -27,7 +27,7 @@ Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok
 Claude Managed Agents menyediakan harness dan infrastruktur untuk menjalankan Claude sebagai agen otonom. Alih-alih membangun agent loop, eksekusi alat, dan runtime Anda sendiri, Anda mendapatkan lingkungan yang sepenuhnya terkelola tempat Claude dapat membaca file, menjalankan perintah, menjelajahi web, dan menjalankan kode dengan aman. Harness ini mendukung "prompt caching" (caching prompt) bawaan, compaction (pemadatan), dan optimasi performa lainnya untuk output agen yang berkualitas tinggi dan efisien. Untuk membangun agent loop Anda sendiri dengan akses model langsung, lihat [Menggunakan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages).
 
 <Note>
-  Claude Managed Agents juga tersedia di Claude Platform on AWS, dengan beberapa perbedaan dalam ketersediaan fitur dan perilaku sesi. Lihat [Claude Managed Agents](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#claude-managed-agents) dalam panduan Claude Platform on AWS.
+  Claude Managed Agents juga tersedia di Claude Platform on AWS dan Claude Models on Google Cloud (Anthropic managed), dengan beberapa perbedaan dalam ketersediaan fitur dan perilaku sesi. Lihat [Claude Managed Agents](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#claude-managed-agents) dalam panduan Claude Platform on AWS atau panduan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#claude-managed-agents).
 </Note>
 
 <CardGroup cols={3}>

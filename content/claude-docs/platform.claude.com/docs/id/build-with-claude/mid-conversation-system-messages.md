@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: a8fb28ddb220d6f0633fe49a7501bcdf7dc96f3fce725c31f24abbb982f13c44
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: c34160745af1b756056382df320170a74d7a0f63a68477724de05af10a8e99b3
 ---
 
 ---
@@ -20,11 +20,11 @@ Instruksi sistem biasanya berada di field `system` tingkat atas, sebelum setiap 
 Pesan sistem di tengah percakapan menutup celah tersebut. Anda menambahkan pesan `{"role": "system"}` pada titik dalam percakapan ketika instruksi baru menjadi relevan, alih-alih mengedit field `system` tingkat atas. Prefiks yang di-cache tetap sama, sehingga permintaan berikutnya tetap membacanya dari cache, dan instruksi baru tetap diterapkan sebagai instruksi sistem, bukan sebagai teks pengguna biasa.
 
 <Note>
-  Pesan sistem di tengah percakapan tersedia di Claude API, [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), dan [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai).
+  Pesan sistem di tengah percakapan tersedia di Claude API, [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed).
 
   Fitur ini tersedia di Claude Fable 5.1, [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), Claude Fable 5, [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Opus 5.5, Claude Opus 4.8, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5. Tidak diperlukan header beta untuk pesan sistem di tengah percakapan. Fitur ini tidak tersedia di Claude Sonnet 5. Gunakan field `system` tingkat atas di sana sebagai gantinya.
 
-  [Perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes) berstatus beta pada model yang sama. Di Claude API, kirim header beta `inline-tools-2026-09-15`, yang juga mencakup [mendefinisikan alat di dalam blok `tool_addition`](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta). [Menambahkan server MCP dengan cara tersebut](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#add-an-mcp-server-mid-conversation-beta) memerlukan header beta kedua, `mcp-client-2026-09-15`, yang tersedia di Claude API. Header `mid-conversation-tool-changes-2026-07-01` berfungsi untuk perubahan yang menyebut alat berdasarkan referensi, di Claude API, Amazon Bedrock, dan Google Cloud.
+  [Perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes) berstatus beta pada model yang sama. Di Claude API, kirim header beta `inline-tools-2026-09-15`, yang juga mencakup [mendefinisikan alat di dalam blok `tool_addition`](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta). [Menambahkan server MCP dengan cara tersebut](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#add-an-mcp-server-mid-conversation-beta) memerlukan header beta kedua, `mcp-client-2026-09-15`, yang tersedia di Claude API. Header `mid-conversation-tool-changes-2026-07-01` berfungsi untuk perubahan yang menyebut alat berdasarkan referensi, di Claude API, Amazon Bedrock, dan Claude Models on Google Cloud (Google managed).
 
   [Pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (`clear_at`) berstatus beta dan memerlukan header beta `mid-conversation-system-clear-at-2026-08-21`, pada model dan platform yang sama dengan pesan sistem di tengah percakapan.
 </Note>
@@ -1641,7 +1641,7 @@ Tambahkan pesan dengan `"role": "system"` ke array `messages`. Gunakan string bi
 
 Anda tetap dapat mengatur field `system` tingkat atas untuk instruksi yang harus berlaku di seluruh percakapan. Gunakan pesan sistem di tengah percakapan khusus untuk instruksi yang baru menjadi relevan kemudian, atau yang ingin Anda tambahkan tanpa membatalkan prefiks yang di-cache.
 
-Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) di tengah percakapan. Fitur ini berstatus beta di Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5 di Claude API dan Google Cloud, dan memerlukan header beta `mid-conversation-output-config-2026-07-01`. Di Amazon Bedrock, fitur ini berstatus beta di Claude Fable 5.1, Claude Mythos 5.1, dan Claude Opus 5.5, dengan nilai beta yang sama. Claude Opus 5 tidak mendukungnya di Amazon Bedrock. Lihat [Effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta).
+Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) di tengah percakapan. Fitur ini berstatus beta di Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5 di Claude API dan Claude Models on Google Cloud (Google managed), dan memerlukan header beta `mid-conversation-output-config-2026-07-01`. Di Amazon Bedrock, fitur ini berstatus beta di Claude Fable 5.1, Claude Mythos 5.1, dan Claude Opus 5.5, dengan nilai beta yang sama. Claude Opus 5 tidak mendukungnya di Amazon Bedrock. Lihat [Effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta).
 
 <CodeGroup>
   ```bash cURL
@@ -2099,7 +2099,7 @@ messages.3: output_config is not permitted on a turn-scoped system message (clea
 messages.3.content.0: cache_control is not permitted on a turn-scoped system message (clear_at: 'next_user_message')
 ```
 
-Yang pertama adalah error yang dikembalikan tanpa header beta. Di Google Cloud dan [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), kirim nilai beta di header `anthropic-beta`, seperti di Claude API (lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers)). Dengan [InvokeModel API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) Amazon Bedrock, tempatkan di array `anthropic_beta` pada body permintaan sebagai gantinya.
+Yang pertama adalah error yang dikembalikan tanpa header beta. Di Claude Models on Google Cloud (Google managed) dan [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), kirim nilai beta di header `anthropic-beta`, seperti di Claude API (lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers)). Dengan [InvokeModel API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) Amazon Bedrock, tempatkan di array `anthropic_beta` pada body permintaan sebagai gantinya.
 
 Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `clearAt`) pada entri `role: "system"` di `messages` dan kirim header beta. Contoh berikut menambahkan pengingat berlingkup giliran setelah giliran pengguna; pada permintaan berikutnya, begitu ada pesan pengguna yang lebih baru, pengingat tetap berada di array tetapi tidak lagi dirender:
 

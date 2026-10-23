@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workspaces
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 09d8ce27030df723204b6459f81452d6e9ca789d4a018fd704d45201fe360f8a
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 97daf53f84141e612dd2acb809c2b9d7c3ec465fc264fd5475018cd025e06b56
 ---
 
 ---
@@ -848,7 +848,7 @@ Beberapa sumber daya dikelola secara berbeda:
 Untuk mencari ID workspace organisasi Anda, panggil endpoint [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list) (teruskan `include_default=true` untuk menyertakan Default Workspace) atau temukan di [Claude Console](https://platform.claude.com/settings/workspaces).
 
 <Note>
-  [Prompt caches](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) juga diisolasi per workspace pada Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Pada Amazon Bedrock dan Google Cloud, prompt caches diisolasi per organisasi.
+  [Prompt caches](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) juga diisolasi per workspace pada Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Pada Amazon Bedrock dan Claude Models on Google Cloud (Google managed), prompt caches diisolasi per organisasi.
 </Note>
 
 ## Mengidentifikasi workspace di balik respons API

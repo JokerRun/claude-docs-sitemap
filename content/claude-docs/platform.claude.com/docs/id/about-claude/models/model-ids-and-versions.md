@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 109edd8d9a9f8d3b7d32de557382590decfadbda650401f9546fcc77d949715d
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 6929117a3d5f6b0a0403796926b5c0a115b55c99248f3eaf34c753e93752f81f
 ---
 
 ---
@@ -39,7 +39,7 @@ Contohnya: `anthropic.claude-sonnet-4-6`, `anthropic.claude-sonnet-5`, `anthropi
 
 Claude Opus 4.6 adalah ID model Bedrock terakhir yang menyertakan sufiks `-v1` (`anthropic.claude-opus-4-6-v1`). Anthropic menghapus sufiks tersebut mulai dari Claude Sonnet 4.6.
 
-Di Google Cloud, formatnya sama dengan Claude API.
+Di Claude Models on Google Cloud (Google managed), formatnya sama dengan Claude API.
 
 ### Sebelum generasi 4.6
 
@@ -59,7 +59,7 @@ anthropic.claude-{name}-{major}-{minor}-{YYYYMMDD}-v1:0
 
 Contohnya: `anthropic.claude-sonnet-4-5-20250929-v1:0`
 
-Di Google Cloud, tanggal dipisahkan dengan `@`:
+Di Claude Models on Google Cloud (Google managed), tanggal dipisahkan dengan `@`:
 
 ```text wrap
 claude-{name}-{major}-{minor}@{YYYYMMDD}
@@ -87,4 +87,4 @@ Sesekali, pembaruan infrastruktur menghasilkan perbedaan kecil dalam perilaku ya
 
 ## ID model saat ini
 
-Untuk daftar lengkap ID model saat ini beserta padanannya di Amazon Bedrock dan Google Cloud, lihat [Ikhtisar model](https://platform.claude.com/docs/id/models/overview).
+Untuk daftar lengkap ID model saat ini beserta padanannya di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), lihat [Ikhtisar model](https://platform.claude.com/docs/id/models/overview).

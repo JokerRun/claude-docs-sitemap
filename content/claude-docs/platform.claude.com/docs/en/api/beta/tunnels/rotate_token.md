@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/rotate_token
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 39be49a22ece2302ad5eec373805dbabc60ffedca2ae3f56fc5ea1382f510068
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 19eed7aebb6197bd8233689aafdbe56fb41e2cdb617646ae493ba72e2d52d40e
 ---
 
 ---
@@ -177,9 +177,9 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
 ```bash
 curl https://api.anthropic.com/v1/tunnels/$TUNNEL_ID/rotate_token \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: mcp-tunnels-2026-06-22' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{}'
 ```
 

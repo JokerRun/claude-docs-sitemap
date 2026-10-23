@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/files/upload
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: f4dad52e0e53710fdf092e42914b9cd003cee4033168dd8db69510db83995324
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 7ea38a5bac3e46edb4ba975bbcbf972c9f567283979d49223d822f4c631757b6
 ---
 
 ---
@@ -101,8 +101,8 @@ Upload File
 ```bash
 curl https://api.anthropic.com/v1/files \
     -H 'Content-Type: multipart/form-data' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -F 'file=@/path/to/file'
 ```
 

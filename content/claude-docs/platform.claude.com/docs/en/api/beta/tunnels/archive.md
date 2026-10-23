@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/archive
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: da1e1a6001fc170ebabbee7ca33f5e0b2f5a97cf5b4966e3b0ba90cb6968a307
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: a3add20b03df9824a95b0b7353c405b3bb64f2a1cde28c94e62a8686289f1291
 ---
 
 ---
@@ -185,9 +185,9 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
 ```bash
 curl https://api.anthropic.com/v1/tunnels/$TUNNEL_ID/archive \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: mcp-tunnels-2026-06-22' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

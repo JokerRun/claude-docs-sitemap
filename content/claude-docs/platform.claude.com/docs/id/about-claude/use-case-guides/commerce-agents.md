@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/commerce-agents
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 1b32a06d11a95203786eff10f88c0c09ca461eff03d71d7c3bfe2f0afac539d6
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 19052013ca163c5aba85532e2e2889032904ae5a4302eaebf19f0a0924cadd69
 ---
 
 ---
@@ -61,7 +61,7 @@ Setiap contoh mencakup etalase pelanggan dan portal merchant dengan data fiktif.
 
 ## Tempat menjalankannya
 
-Runtime Messages API dan Agent SDK berjalan pada Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Google Cloud's Agent Platform](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), atau [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), atau melalui gateway Anda sendiri. Jalur Claude Managed Agents berjalan pada Claude API. Panduan deployment di repositori menunjukkan di mana setiap jalur memilih platformnya dan format ID model yang diharapkan oleh masing-masing jalur.
+Runtime Messages API dan Agent SDK berjalan pada Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), atau [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), atau melalui gateway Anda sendiri. Jalur Claude Managed Agents berjalan pada Claude API. Panduan deployment di repositori menunjukkan di mana setiap jalur memilih platformnya dan format ID model yang diharapkan oleh masing-masing jalur.
 
 ## Bangun milik Anda sendiri dengan plugin Claude Code
 

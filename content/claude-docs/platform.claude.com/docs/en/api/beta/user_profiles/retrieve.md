@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/retrieve
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: e0d9bd520c2534e4ff07cebc82440434adc930efe74e20f3e393d5c47739d185
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 5cc2fd6f14958487e5ab1f85f4f45d53c3588661f8198d8a2624d68ed39f85ba
 ---
 
 ---
@@ -276,9 +276,9 @@ Get User Profile
 
 ```bash
 curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: user-profiles-2026-08-18' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

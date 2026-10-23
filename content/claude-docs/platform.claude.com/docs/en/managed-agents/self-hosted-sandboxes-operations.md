@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-operations
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 34d412632cdee0717a159759bbc7b361c6b5bb108db21f4249cd6bec7245bd80
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: c88b1739e976b9eb1a0f6821ff2aa44151aa9947f719a355964c8d4c597c8d73
 ---
 
 ---
@@ -87,7 +87,7 @@ The monitoring calls on this page run from your monitoring or operations tooling
   	"fmt"
   	"os"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   func main() {
@@ -233,7 +233,7 @@ Because these calls run from your operations tooling rather than the worker host
   	"fmt"
   	"os"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   func main() {

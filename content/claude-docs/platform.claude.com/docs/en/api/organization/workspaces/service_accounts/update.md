@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/service_accounts/update
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 7f3c2535ab808f2c01cf866048dd29012753586e95b0ecd3a7f45376e99b12fe
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 383d6c2822f5e2818f5e194705d27855f6bf1d2ebdd4c965f2c585a3861a3cbb
 ---
 
 ---
@@ -100,8 +100,8 @@ rejected.
 ```bash
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/service_accounts/$SERVICE_ACCOUNT_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "workspace_role": "workspace_admin"
         }'

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/list
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 1c522c4c3cf65b53e9d87850261f18580d7e61e8b9f711a5c395810a4243cb0b
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 3a08ac9ed2a9aac89287bebaa5914e932f74bbeb80062f585e2fffa5ad49e148
 ---
 
 ---
@@ -216,9 +216,9 @@ Archived certificates are excluded unless `include_archived` is set.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/certificates \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: mcp-tunnels-2026-05-19' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 34d50dd3893c5dedebfa667e6b56d8250cdd4ee23b45d543518bc824d7a46ab5
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: f32b1f726251bdfb5d25c6ba65752159292b0479dd442ef07f846f206b3bc68e
 ---
 
 ---
@@ -741,19 +741,19 @@ Gunakan `unrestricted` hanya ketika agen harus menjangkau situs yang tidak dapat
   ```
 
   ```go Go
-  // Daftar environment
+  // List environments
   environments, err := client.Beta.Environments.List(ctx, anthropic.BetaEnvironmentListParams{})
   // ...
 
-  // Ambil environment tertentu
+  // Retrieve a specific environment
   env, err := client.Beta.Environments.Get(ctx, environment.ID, anthropic.BetaEnvironmentGetParams{})
   // ...
 
-  // Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
+  // Archive an environment (read-only, existing sessions continue)
   _, err = client.Beta.Environments.Archive(ctx, environment.ID, anthropic.BetaEnvironmentArchiveParams{})
   // ...
 
-  // Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
+  // Delete an environment (only if no sessions reference it)
   _, err = client.Beta.Environments.Delete(ctx, environment.ID, anthropic.BetaEnvironmentDeleteParams{})
   ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: fa3df97d52586d0880108de1d9aaa1f5ede42dd94c4c6f2bbf3c33dde55d27a2
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 2d37a5a68e7604d9e650ac8ff76c5329caab9404f07a84eb5aace107b1d150a4
 ---
 
 ---
@@ -438,7 +438,7 @@ The following example includes the tool search tool and two deferred tools:
       messages: [
           ['role' => 'user', 'content' => 'What is the weather in San Francisco?'],
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       tools: [
           [
               'type' => 'tool_search_tool_regex_20251119',

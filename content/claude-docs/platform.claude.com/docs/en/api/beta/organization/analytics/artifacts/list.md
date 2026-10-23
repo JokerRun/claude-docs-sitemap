@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/artifacts/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: d8c029d4259a8ce9a15c32550b15c3eb6755babff0d8b35972d6535ce75bd5af
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: db99e0cf6a0b598f7b2514f241c5af3dcf637a42dbc9eab738ecdf9b1599cf30
 ---
 
 ---
@@ -114,8 +114,8 @@ can be broken out per product, per member, or per RBAC group via
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/analytics/artifacts \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

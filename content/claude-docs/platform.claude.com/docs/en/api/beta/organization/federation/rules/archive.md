@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/archive
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 9fae21c17301cefeb6609f540b65883513499dc3094e17eb7f1819e4f36b41b2
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 1926fd336fe8614549abd71156df30bca2075bf77a75089c2e81d39393498b5d
 ---
 
 ---
@@ -288,8 +288,8 @@ other scopes require a Console session.
 ```bash
 curl https://api.anthropic.com/v1/organizations/federation_rules/$FEDERATION_RULE_ID/archive \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 8d68f29720ac9ab5e186d0c2b829836ab0788831e8479513816411248cb945f0
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: d0d92f23212e374efd03c41407cbd4ffe0acf93e0561d0c31cf968af4b826a1a
 ---
 
 ---
@@ -366,8 +366,8 @@ matched as the JWT's `iss` claim and is not fetched.
 ```bash
 curl https://api.anthropic.com/v1/organizations/federation_issuers \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "issuer_url": "x",
           "name": "x"
@@ -692,8 +692,8 @@ Archived issuers are excluded unless `include_archived=true`.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/federation_issuers \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -1006,8 +1006,8 @@ Retrieve a federation issuer by its ID (`fdis_...`).
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/federation_issuers/$FEDERATION_ISSUER_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -1401,8 +1401,8 @@ session.
 ```bash
 curl https://api.anthropic.com/v1/organizations/federation_issuers/$FEDERATION_ISSUER_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{}'
 ```
 
@@ -1717,8 +1717,8 @@ issuer cannot be changed), or recreate them against another issuer.
 ```bash
 curl https://api.anthropic.com/v1/organizations/federation_issuers/$FEDERATION_ISSUER_ID/archive \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)

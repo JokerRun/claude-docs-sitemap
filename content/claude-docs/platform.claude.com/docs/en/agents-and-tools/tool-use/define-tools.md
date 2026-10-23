@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: a8f8fe06aaad3d324e1b9caa0bb6d2a890d7af37b5cac85e555b067f81f3ec46
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 667fab5d70bdf0240239a2a8a465197d91295f37215440c14f9504898635360e
 ---
 
 ---
@@ -459,7 +459,7 @@ Add an optional `input_examples` field to your tool definition with an array of 
       messages: [
           ['role' => 'user', 'content' => "What's the weather like in San Francisco?"]
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       tools: [
           [
               'name' => 'get_weather',
@@ -789,7 +789,7 @@ On models that support it, the highlighted lines are the only difference from a 
       messages: [
           ['role' => 'user', 'content' => "What's the weather like in San Francisco?"]
       ],
-      model: 'claude-opus-5',
+      model: Model::CLAUDE_OPUS_5,
       toolChoice: ['type' => 'tool', 'name' => 'get_weather'],
       tools: [
           [

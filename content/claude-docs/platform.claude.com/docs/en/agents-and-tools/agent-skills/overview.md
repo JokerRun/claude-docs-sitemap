@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 7913d4556c014c6bf7f23e186efded1b36da63d7b29d73898267ebe8d2f6258f
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 3bfadf3faa9855e57a39b355200bb3c837df6c7a0048a1d3dbbef810c2c542ae
 ---
 
 ---
@@ -309,7 +309,7 @@ claude.ai does not support centralized admin management or org-wide distribution
 The exact runtime environment available to your Skill depends on the product surface where you use it.
 
 * **claude.ai:**
-  * **Varying network access:** Depending on user/admin settings, Skills might have full, partial, or no network access. For more details, see the [Create and Edit Files](https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude#h_6b7e833898) support article.
+  * **Varying network access:** Depending on user/admin settings, Skills might have full, partial, or no network access. For more details, see the [Create and edit files with Claude](https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude#h_6b7e833898) support article.
 
 * **Claude API:**
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/remove
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: aef7671cd03ae02fad90fec40563f9eb804f1f2626240b54783b3ad335e19d67
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: d561a607b37a7788d56fbfc6db5b14b2b1856c131e8483dcea84be22699099f8
 ---
 
 ---
@@ -173,8 +173,8 @@ to the implicit `workspace_user` membership. Archived workspaces return
 ```bash
 curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUNT_ID/workspaces/$WORKSPACE_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

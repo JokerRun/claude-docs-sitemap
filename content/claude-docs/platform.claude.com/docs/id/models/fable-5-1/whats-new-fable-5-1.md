@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: f1d19a59a0d87159cab46414b535512146bcfd70e4f4fb67810682760c4e3d6c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 413ff7c252224247018e4851a56c7185c297355b232b7aab1da65e6f6673c00b
 ---
 
 ---
@@ -72,7 +72,7 @@ Untuk menjaga thinking tetap valid sepanjang sesi yang panjang, perlakukan perca
 
 ### Mengubah effort di tengah percakapan (beta)
 
-Di Claude Fable 5.1 Anda dapat mengubah tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) di tengah percakapan tanpa membuat cache prompt tidak valid. Naikkan untuk langkah yang sulit dan turunkan untuk langkah rutin. Effort per pesan masih dalam beta: sertakan header beta `mid-conversation-output-config-2026-07-01`. Claude Fable 5.1 dan Claude Mythos 5.1 mendukungnya di Claude API, Google Cloud, dan Amazon Bedrock. Untuk menggunakannya dengan Claude Fable 5.1 melalui [InvokeModel API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) Amazon Bedrock, kirim nilai tersebut dalam array `anthropic_beta` di body permintaan. Untuk model lain yang mendukungnya dan platform untuk masing-masing, lihat [Mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#changing-effort-mid-conversation).
+Di Claude Fable 5.1 Anda dapat mengubah tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) di tengah percakapan tanpa membuat cache prompt tidak valid. Naikkan untuk langkah yang sulit dan turunkan untuk langkah rutin. Effort per pesan masih dalam beta: sertakan header beta `mid-conversation-output-config-2026-07-01`. Claude Fable 5.1 dan Claude Mythos 5.1 mendukungnya di Claude API, Claude Models on Google Cloud (Google managed), dan Amazon Bedrock. Untuk menggunakannya dengan Claude Fable 5.1 melalui [InvokeModel API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) Amazon Bedrock, kirim nilai tersebut dalam array `anthropic_beta` di body permintaan. Untuk model lain yang mendukungnya dan platform untuk masing-masing, lihat [Mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#changing-effort-mid-conversation).
 
 <CodeGroup>
   ```bash cURL
@@ -429,7 +429,7 @@ Claude Fable 5.1 tersedia di:
 
 * **Claude API:** semua pelanggan, sebagai `claude-fable-5-1`.
 * **AWS:** [Claude in Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), sebagai `anthropic.claude-fable-5-1`, dan [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), sebagai `claude-fable-5-1`.
-* **Google Cloud:** [Claude on Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), sebagai `claude-fable-5-1`.
+* **Google Cloud:** [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), sebagai `claude-fable-5-1`, dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), sebagai `claude-fable-5-1`.
 * **Microsoft Foundry:** [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), di infrastruktur Anthropic.
 
 Claude Mythos 5.1 hanya tersedia untuk organisasi yang terverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842). Untuk meminta akses, daftarlah ke program yang mencakup kasus penggunaan Anda, atau hubungi tim akun Anthropic, AWS, atau Google Cloud Anda.

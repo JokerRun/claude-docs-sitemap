@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 27c6be9c6fa18400ddd05913d9aee83459636cccdcc4b69bcacbf61ea6f9c17c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 7a3cb2051ae68bf156bb0b19ea9b30beafc11205a38520044caf63635a3062bc
 ---
 
 ---
@@ -75,7 +75,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
       }
   ]
 
-  # Send the user's request along with the tool definition. Claude decides
+  # Send the user's request along with the tool definition. Claude determines
   # whether to call the tool based on the request and the tool description.
   response = client.messages.create(
       model="claude-opus-5-5",
@@ -94,18 +94,18 @@ The request sends a `tools` array alongside the user message. When Claude determ
   # and the content array contains a tool_use block alongside any text.
   print(f"stop_reason: {response.stop_reason}")
 
-  # Find the tool_use block. A response may contain text blocks before the
+  # Find the tool_use block. A response might contain text blocks before the
   # tool_use block, so scan the content array rather than assuming position.
   tool_use = next(block for block in response.content if block.type == "tool_use")
   print(f"Tool: {tool_use.name}")
   print(f"Input: {tool_use.input}")
 
-  # Execute the tool. In a real system this would call your calendar API.
+  # Run the tool. In a real system this would call your calendar API.
   # Here the result is hardcoded to keep the example self-contained.
   result = {"event_id": "evt_123", "status": "created"}
 
   # Send the result back. The tool_result block goes in a user message and
-  # its tool_use_id must match the id from the tool_use block above. The
+  # its tool_use_id must match the ID from the earlier tool_use block. The
   # assistant's previous response is included so Claude has the full history.
   followup = client.messages.create(
       model="claude-opus-5-5",
@@ -131,7 +131,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
       ],
   )
 
-  # With the tool result in hand, Claude produces a final natural-language
+  # With the tool result, Claude produces a final natural-language
   # answer and stop_reason becomes "end_turn".
   print(f"stop_reason: {followup.stop_reason}")
   final_text = next(block for block in followup.content if block.type == "text")
@@ -177,7 +177,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
     }
   ];
 
-  // Send the user's request along with the tool definition. Claude decides
+  // Send the user's request along with the tool definition. Claude determines
   // whether to call the tool based on the request and the tool description.
   const response = await client.messages.create({
     model: "claude-opus-5-5",
@@ -197,18 +197,18 @@ The request sends a `tools` array alongside the user message. When Claude determ
   // and the content array contains a tool_use block alongside any text.
   console.log(`stop_reason: ${response.stop_reason}`);
 
-  // Find the tool_use block. A response may contain text blocks before the
+  // Find the tool_use block. A response might contain text blocks before the
   // tool_use block, so scan the content array rather than assuming position.
   const toolUse = response.content.find((block) => block.type === "tool_use")!;
   console.log(`Tool: ${toolUse.name}`);
   console.log(`Input: ${JSON.stringify(toolUse.input)}`);
 
-  // Execute the tool. In a real system this would call your calendar API.
+  // Run the tool. In a real system this would call your calendar API.
   // Here the result is hardcoded to keep the example self-contained.
   const result = { event_id: "evt_123", status: "created" };
 
   // Send the result back. The tool_result block goes in a user message and
-  // its tool_use_id must match the id from the tool_use block above. The
+  // its tool_use_id must match the ID from the earlier tool_use block. The
   // assistant's previous response is included so Claude has the full history.
   const followup = await client.messages.create({
     model: "claude-opus-5-5",
@@ -235,7 +235,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
     ]
   });
 
-  // With the tool result in hand, Claude produces a final natural-language
+  // With the tool result, Claude produces a final natural-language
   // answer and stop_reason becomes "end_turn".
   console.log(`stop_reason: ${followup.stop_reason}`);
   for (const block of followup.content) {
@@ -296,14 +296,14 @@ The request sends a `tools` array alongside the user message. When Claude determ
       }),
   ];
 
-  // Ask for at most one tool call per turn so the single-turn flow below
-  // stays predictable.
+  // Ask for at most one tool call in each turn so the single-turn flow
+  // that follows stays predictable.
   var toolChoice = new ToolChoice(new ToolChoiceAuto { DisableParallelToolUse = true });
 
   const string userPrompt =
       "Schedule a 30-minute sync with alice@example.com and bob@example.com on Monday, March 30, 2026 at 10am.";
 
-  // Send the user's request along with the tool definition. Claude decides
+  // Send the user's request along with the tool definition. Claude determines
   // whether to call the tool based on the request and the tool description.
   var response = await client.Messages.Create(new MessageCreateParams
   {
@@ -318,7 +318,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
   // and the content array contains a tool_use block alongside any text.
   Console.WriteLine($"stop_reason: {response.StopReason?.Raw()}");
 
-  // Find the tool_use block. A response may contain text blocks before the
+  // Find the tool_use block. A response might contain text blocks before the
   // tool_use block, so scan the content array rather than assuming position.
   ToolUseBlock? toolUse = null;
   foreach (var block in response.Content)
@@ -332,12 +332,12 @@ The request sends a `tools` array alongside the user message. When Claude determ
   Console.WriteLine($"Tool: {toolUse!.Name}");
   Console.WriteLine($"Input: {JsonSerializer.Serialize(toolUse.Input)}");
 
-  // Execute the tool. In a real system this would call your calendar API.
+  // Run the tool. In a real system this would call your calendar API.
   // Here the result is hardcoded to keep the example self-contained.
   var result = """{"event_id": "evt_123", "status": "created"}""";
 
   // Send the result back. The tool_result block goes in a user message and
-  // its tool_use_id must match the id from the tool_use block above. The
+  // its tool_use_id must match the ID from the earlier tool_use block. The
   // assistant's previous response is included so Claude has the full history.
   List<ContentBlockParam> toolResults =
   [
@@ -362,7 +362,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
       ],
   });
 
-  // With the tool result in hand, Claude produces a final natural-language
+  // With the tool result, Claude produces a final natural-language
   // answer and stop_reason becomes "end_turn".
   Console.WriteLine($"stop_reason: {followup.StopReason?.Raw()}");
   foreach (var block in followup.Content)
@@ -384,7 +384,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
   	"fmt"
   	"log"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   func main() {
@@ -422,8 +422,8 @@ The request sends a `tools` array alongside the user message. When Claude determ
   		}},
   	}
 
-  	// Ask for at most one tool call per turn so the single-turn flow below
-  	// stays predictable.
+  	// Ask for at most one tool call in each turn so the single-turn flow
+  	// that follows stays predictable.
   	toolChoice := anthropic.ToolChoiceUnionParam{
   		OfAuto: &anthropic.ToolChoiceAutoParam{DisableParallelToolUse: anthropic.Bool(true)},
   	}
@@ -432,7 +432,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
   		"Schedule a 30-minute sync with alice@example.com and bob@example.com on Monday, March 30, 2026 at 10am.",
   	))
 
-  	// Send the user's request along with the tool definition. Claude decides
+  	// Send the user's request along with the tool definition. Claude determines
   	// whether to call the tool based on the request and the tool description.
   	response, err := client.Messages.New(ctx, anthropic.MessageNewParams{
   		Model:      anthropic.ModelClaudeOpus5_5,
@@ -449,7 +449,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
   	// and the content array contains a tool_use block alongside any text.
   	fmt.Printf("stop_reason: %s\n", response.StopReason)
 
-  	// Find the tool_use block. A response may contain text blocks before the
+  	// Find the tool_use block. A response might contain text blocks before the
   	// tool_use block, so scan the content array rather than assuming position.
   	var toolUse anthropic.ContentBlockUnion
   	for _, block := range response.Content {
@@ -461,12 +461,12 @@ The request sends a `tools` array alongside the user message. When Claude determ
   	fmt.Printf("Tool: %s\n", toolUse.Name)
   	fmt.Printf("Input: %s\n", string(toolUse.Input))
 
-  	// Execute the tool. In a real system this would call your calendar API.
+  	// Run the tool. In a real system this would call your calendar API.
   	// Here the result is hardcoded to keep the example self-contained.
   	result := `{"event_id": "evt_123", "status": "created"}`
 
   	// Send the result back. The tool_result block goes in a user message and
-  	// its tool_use_id must match the id from the tool_use block above. The
+  	// its tool_use_id must match the ID from the earlier tool_use block. The
   	// assistant's previous response is included so Claude has the full history.
   	var assistantContent []anthropic.ContentBlockParamUnion
   	for _, block := range response.Content {
@@ -488,7 +488,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
   		log.Fatal(err)
   	}
 
-  	// With the tool result in hand, Claude produces a final natural-language
+  	// With the tool result, Claude produces a final natural-language
   	// answer and stop_reason becomes "end_turn".
   	fmt.Printf("stop_reason: %s\n", followup.StopReason)
   	for _, block := range followup.Content {
@@ -549,8 +549,8 @@ The request sends a `tools` array alongside the user message. When Claude determ
               .build())
           .build();
 
-      // Ask for at most one tool call per turn so the single-turn flow below
-      // stays predictable.
+      // Ask for at most one tool call in each turn so the single-turn flow
+      // that follows stays predictable.
       ToolChoiceAuto toolChoice = ToolChoiceAuto.builder()
           .disableParallelToolUse(true)
           .build();
@@ -558,7 +558,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
       String userPrompt =
           "Schedule a 30-minute sync with alice@example.com and bob@example.com on Monday, March 30, 2026 at 10am.";
 
-      // Send the user's request along with the tool definition. Claude decides
+      // Send the user's request along with the tool definition. Claude determines
       // whether to call the tool based on the request and the tool description.
       Message response = client.messages().create(MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
@@ -572,7 +572,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
       // and the content array contains a tool_use block alongside any text.
       IO.println("stop_reason: " + response.stopReason().orElse(null));
 
-      // Find the tool_use block. A response may contain text blocks before the
+      // Find the tool_use block. A response might contain text blocks before the
       // tool_use block, so scan the content array rather than assuming position.
       ToolUseBlock toolUse = response.content().stream()
           .flatMap(block -> block.toolUse().stream())
@@ -581,12 +581,12 @@ The request sends a `tools` array alongside the user message. When Claude determ
       IO.println("Tool: " + toolUse.name());
       IO.println("Input: " + toolUse._input());
 
-      // Execute the tool. In a real system this would call your calendar API.
+      // Run the tool. In a real system this would call your calendar API.
       // Here the result is hardcoded to keep the example self-contained.
       String result = "{\"event_id\": \"evt_123\", \"status\": \"created\"}";
 
       // Send the result back. The tool_result block goes in a user message and
-      // its tool_use_id must match the id from the tool_use block above. The
+      // its tool_use_id must match the ID from the earlier tool_use block. The
       // assistant's previous response is included so Claude has the full history.
       Message followup = client.messages().create(MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
@@ -602,7 +602,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
                   .build())))
           .build());
 
-      // With the tool result in hand, Claude produces a final natural-language
+      // With the tool result, Claude produces a final natural-language
       // answer and stop_reason becomes "end_turn".
       IO.println("stop_reason: " + followup.stopReason().orElse(null));
       followup.content().stream()
@@ -658,11 +658,11 @@ The request sends a `tools` array alongside the user message. When Claude determ
       'content' => 'Schedule a 30-minute sync with alice@example.com and bob@example.com on Monday, March 30, 2026 at 10am.',
   ];
 
-  // Ask for at most one tool call per turn so the single-turn flow below
-  // stays predictable.
+  // Ask for at most one tool call in each turn so the single-turn flow
+  // that follows stays predictable.
   $toolChoice = ToolChoiceAuto::with(disableParallelToolUse: true);
 
-  // Send the user's request along with the tool definition. Claude decides
+  // Send the user's request along with the tool definition. Claude determines
   // whether to call the tool based on the request and the tool description.
   $response = $client->messages->create(
       model: 'claude-opus-5-5',
@@ -676,7 +676,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
   // and the content array contains a tool_use block alongside any text.
   printf("stop_reason: %s\n", $response->stopReason);
 
-  // Find the tool_use block. A response may contain text blocks before the
+  // Find the tool_use block. A response might contain text blocks before the
   // tool_use block, so scan the content array rather than assuming position.
   $toolUse = null;
   foreach ($response->content as $block) {
@@ -688,12 +688,12 @@ The request sends a `tools` array alongside the user message. When Claude determ
   printf("Tool: %s\n", $toolUse->name);
   printf("Input: %s\n", json_encode($toolUse->input));
 
-  // Execute the tool. In a real system this would call your calendar API.
+  // Run the tool. In a real system this would call your calendar API.
   // Here the result is hardcoded to keep the example self-contained.
   $result = ['event_id' => 'evt_123', 'status' => 'created'];
 
   // Send the result back. The tool_result block goes in a user message and
-  // its tool_use_id must match the id from the tool_use block above. The
+  // its tool_use_id must match the ID from the earlier tool_use block. The
   // assistant's previous response is included so Claude has the full history.
   $followup = $client->messages->create(
       model: 'claude-opus-5-5',
@@ -716,7 +716,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
       ],
   );
 
-  // With the tool result in hand, Claude produces a final natural-language
+  // With the tool result, Claude produces a final natural-language
   // answer and stop_reason becomes "end_turn".
   printf("stop_reason: %s\n", $followup->stopReason);
   foreach ($followup->content as $block) {
@@ -770,11 +770,11 @@ The request sends a `tools` array alongside the user message. When Claude determ
     content: "Schedule a 30-minute sync with alice@example.com and bob@example.com on Monday, March 30, 2026 at 10am."
   }
 
-  # Ask for at most one tool call per turn so the single-turn flow below
-  # stays predictable.
+  # Ask for at most one tool call in each turn so the single-turn flow
+  # that follows stays predictable.
   tool_choice = {type: "auto", disable_parallel_tool_use: true}
 
-  # Send the user's request along with the tool definition. Claude decides
+  # Send the user's request along with the tool definition. Claude determines
   # whether to call the tool based on the request and the tool description.
   response = client.messages.create(
     model: Anthropic::Model::CLAUDE_OPUS_5_5,
@@ -788,18 +788,18 @@ The request sends a `tools` array alongside the user message. When Claude determ
   # and the content array contains a tool_use block alongside any text.
   puts "stop_reason: #{response.stop_reason}"
 
-  # Find the tool_use block. A response may contain text blocks before the
+  # Find the tool_use block. A response might contain text blocks before the
   # tool_use block, so scan the content array rather than assuming position.
   tool_use = response.content.find { |block| block.type == :tool_use }
   puts "Tool: #{tool_use.name}"
   puts "Input: #{tool_use.input}"
 
-  # Execute the tool. In a real system this would call your calendar API.
+  # Run the tool. In a real system this would call your calendar API.
   # Here the result is hardcoded to keep the example self-contained.
   result = {event_id: "evt_123", status: "created"}
 
   # Send the result back. The tool_result block goes in a user message and
-  # its tool_use_id must match the id from the tool_use block above. The
+  # its tool_use_id must match the ID from the earlier tool_use block. The
   # assistant's previous response is included so Claude has the full history.
   followup = client.messages.create(
     model: Anthropic::Model::CLAUDE_OPUS_5_5,
@@ -822,7 +822,7 @@ The request sends a `tools` array alongside the user message. When Claude determ
     ]
   )
 
-  # With the tool result in hand, Claude produces a final natural-language
+  # With the tool result, Claude produces a final natural-language
   # answer and stop_reason becomes "end_turn".
   puts "stop_reason: #{followup.stop_reason}"
   followup.content.each do |block|
@@ -1179,7 +1179,7 @@ The other change is conversation history. Instead of rebuilding the `messages` a
   	"fmt"
   	"log"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   func runTool(name string, input map[string]any) string {
@@ -1972,7 +1972,7 @@ When Claude has multiple independent tool calls to make, it might return several
   	"fmt"
   	"log"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   func runTool(name string, input map[string]any) string {
@@ -2820,7 +2820,7 @@ Tools fail. A calendar API might reject an event with too many attendees, or a d
   	"log"
   	"strings"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   func runTool(name string, input map[string]any) (string, error) {
@@ -3334,7 +3334,7 @@ The SDK provides a helper that turns an ordinary function into a runnable tool a
   </CodeGroupItem>
 
   ```python Python
-  # Ring 5: The Tool Runner SDK abstraction.
+  # Ring 5: The tool runner SDK abstraction.
 
   import json
 
@@ -3396,7 +3396,7 @@ The SDK provides a helper that turns an ordinary function into a runnable tool a
   ```
 
   ```typescript TypeScript
-  // Ring 5: The Tool Runner SDK abstraction.
+  // Ring 5: The tool runner SDK abstraction.
 
   import Anthropic from "@anthropic-ai/sdk";
   import { betaZodTool } from "@anthropic-ai/sdk/helpers/beta/zod";
@@ -3465,7 +3465,7 @@ The SDK provides a helper that turns an ordinary function into a runnable tool a
   ```
 
   ```csharp C#
-  // Ring 5: The Tool Runner SDK abstraction.
+  // Ring 5: The tool runner SDK abstraction.
 
   using System;
   using System.Collections.Generic;
@@ -3584,7 +3584,7 @@ The SDK provides a helper that turns an ordinary function into a runnable tool a
   ```
 
   ```go Go
-  // Ring 5: The Tool Runner SDK abstraction.
+  // Ring 5: The tool runner SDK abstraction.
 
   package main
 
@@ -3593,8 +3593,8 @@ The SDK provides a helper that turns an ordinary function into a runnable tool a
   	"fmt"
   	"log"
 
-  	"github.com/anthropics/anthropic-sdk-go"
-  	"github.com/anthropics/anthropic-sdk-go/toolrunner"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
+  	"github.com/anthropics/anthropic-sdk-go/v2/toolrunner"
   )
 
   // The input structs define each tool's schema. The tool runner generates the
@@ -3689,7 +3689,7 @@ The SDK provides a helper that turns an ordinary function into a runnable tool a
   ```
 
   ```java Java
-  // Ring 5: The Tool Runner SDK abstraction.
+  // Ring 5: The tool runner SDK abstraction.
 
   import com.anthropic.client.AnthropicClient;
   import com.anthropic.client.okhttp.AnthropicOkHttpClient;
@@ -3745,15 +3745,15 @@ The SDK provides a helper that turns an ordinary function into a runnable tool a
       // The runner calls the API, runs requested tools, and feeds results back
       // until Claude produces a final answer.
       BetaToolRunner runner = client.beta()
-              .messages()
-              .toolRunner(MessageCreateParams.builder()
-                      .model(Model.CLAUDE_OPUS_5_5)
-                      .maxTokens(1024)
-                      .addBeta("structured-outputs-2025-11-13")
-                      .addUserMessage("Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.")
-                      .addTool(CreateCalendarEvent.class)
-                      .addTool(ListCalendarEvents.class)
-                      .build());
+          .messages()
+          .toolRunner(MessageCreateParams.builder()
+              .model(Model.CLAUDE_OPUS_5_5)
+              .maxTokens(1024)
+              .addBeta("structured-outputs-2025-11-13")
+              .addUserMessage("Check what I have on Monday, March 30, 2026, then schedule a one-hour planning session that day that avoids any conflicts.")
+              .addTool(CreateCalendarEvent.class)
+              .addTool(ListCalendarEvents.class)
+              .build());
 
       BetaMessage finalMessage = null;
       for (BetaMessage message : runner) {
@@ -3769,7 +3769,7 @@ The SDK provides a helper that turns an ordinary function into a runnable tool a
   ```php PHP
   <?php
 
-  // Ring 5: The Tool Runner SDK abstraction.
+  // Ring 5: The tool runner SDK abstraction.
 
   use Anthropic\Client;
   use Anthropic\Lib\Tools\BetaRunnableTool;
@@ -3863,7 +3863,7 @@ The SDK provides a helper that turns an ordinary function into a runnable tool a
   ```
 
   ```ruby Ruby
-  # Ring 5: The Tool Runner SDK abstraction.
+  # Ring 5: The tool runner SDK abstraction.
 
   require "anthropic"
 

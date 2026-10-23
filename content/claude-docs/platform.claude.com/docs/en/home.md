@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/home
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: c808832f76ace8ff354a54b54d0dee1ab551eb6d8e86bc62816bc3b404bcedcb
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 57ef5c3d0f5777a6338ee982cb6e0e704fb9286dc11bc5de871132f17307b791
 ---
 
 ---
@@ -73,7 +73,7 @@ with Claude"
     ```
 
     ```go Go
-    import "github.com/anthropics/anthropic-sdk-go"
+    import "github.com/anthropics/anthropic-sdk-go/v2"
 
     client := anthropic.NewClient()
     msg, _ := client.Messages.New(
@@ -236,7 +236,7 @@ with Claude"
         Amazon Bedrock
       </HomeCloudPartnerLink>
 
-      <HomeCloudPartnerLink icon="cloud" href="https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai">
+      <HomeCloudPartnerLink icon="cloud" href="https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/overview">
         Google Cloud
       </HomeCloudPartnerLink>
 

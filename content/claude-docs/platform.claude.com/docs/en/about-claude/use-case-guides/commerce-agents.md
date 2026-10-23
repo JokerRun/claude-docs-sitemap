@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/commerce-agents
-fetched_at: 2026-09-10T02:21:33.922749Z
-sha256: d5d5b0712542aba34d4cc59eaa8875d1c2898b157e09ba60b31094a1f362bb88
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: cfb63cb0db823c9a24e010e3ef204c3d5bbbec859bfc2482b1c5bbc9df1500c8
 ---
 
 ---
@@ -61,7 +61,7 @@ Each example includes a customer storefront and a merchant portal over fictional
 
 ## Where it runs
 
-The Messages API and Agent SDK runtimes run against the Claude API, [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock), [Google Cloud's Agent Platform](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai), or [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry), or through your own gateway. The Claude Managed Agents path runs on the Claude API. The repository's deployment guide shows where each path selects its platform and which model ID format each expects.
+The Messages API and Agent SDK runtimes run against the Claude API, [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed), or [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry), or through your own gateway. The Claude Managed Agents path runs on the Claude API. The repository's deployment guide shows where each path selects its platform and which model ID format each expects.
 
 ## Build your own with the Claude Code plugin
 

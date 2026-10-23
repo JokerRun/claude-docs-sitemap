@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 3fd928e38c96f5e9b3164145392f8affa030f7badc56983ffbf51dace2956392
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 3e90a8a07222e154fd903c27ae368fad6f8b51115208f03937429040e8e8fbc2
 ---
 
 ---
@@ -1819,7 +1819,7 @@ Jika Anda meminta pasangan yang tidak valid, API mengembalikan `400 invalid_requ
 
 ### Ketersediaan platform
 
-Alat advisor tersedia dalam versi beta di Claude API dan di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws). Saat ini alat ini belum tersedia di Amazon Bedrock, Google Cloud, atau Microsoft Foundry.
+Alat advisor tersedia dalam versi beta di Claude API, di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed). Saat ini alat ini belum tersedia di Amazon Bedrock, Claude Models on Google Cloud (Google managed), atau Microsoft Foundry.
 
 ## Advisor di Claude Managed Agents
 

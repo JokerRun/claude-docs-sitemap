@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 870effe9ea8a58e3cff7031bb3b124fd0f9fea2e3565560adaa9093d2008f777
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: d404a8011ef144b70e8316126bd234d2c3c6a2bb4604c801e32bdee5954dad08
 ---
 
 ---
@@ -225,8 +225,8 @@ Upload File
 ```bash
 curl https://api.anthropic.com/v1/files \
     -H 'Content-Type: multipart/form-data' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -F 'file=@/path/to/file'
 ```
 
@@ -475,8 +475,8 @@ List Files
 
 ```bash
 curl https://api.anthropic.com/v1/files \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -643,8 +643,8 @@ Download File
 
 ```bash
 curl https://api.anthropic.com/v1/files/$FILE_ID/content \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ## Get File Metadata
@@ -851,8 +851,8 @@ Get File Metadata
 
 ```bash
 curl https://api.anthropic.com/v1/files/$FILE_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -1031,8 +1031,8 @@ Delete File
 ```bash
 curl https://api.anthropic.com/v1/files/$FILE_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)

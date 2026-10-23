@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/rules/workspaces/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: dc43b9cab8fa3b23812a918f7b3595af3cf312ba0cb1f51b30e047617a98fb9b
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: ae81edb2e83c57786ba956847fd11f6c06ee1f75c22065465d5fc182152c8f8d
 ---
 
 ---
@@ -88,8 +88,8 @@ rules with `applies_to_all_workspaces` or a legacy single
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/federation_rules/$FEDERATION_RULE_ID/workspaces \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

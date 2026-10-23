@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-profiles
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 03423070bf815d2e8d2adb92ad44abcdb21cacd3d41129e1c91698db25171ab8
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: d0ad692d3a534313d7c8c5485710d1359739c8acfdba7cce0ca4c34d78bbd43c
 ---
 
 ---
@@ -44,7 +44,7 @@ Anda membuat dan mengelola profil di salah satu dari berikut ini:
 * Organisasi di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws). Principal yang memanggil memerlukan [tindakan IAM profil pengguna](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#user-profiles).
 * Deployment [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) yang [di-hosting di Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#hosting-options), bukan yang di-hosting di Azure. Anda tidak memerlukan organisasi di Claude API atau Claude Platform on AWS. Gunakan endpoint Foundry Anda, dengan base URL dan autentikasi yang sama dengan yang Anda gunakan untuk inferensi.
 
-Amazon Bedrock dan Google Cloud tidak memiliki endpoint `/v1/user_profiles`. Jika inferensi Anda berjalan di sana, buat profil Anda di organisasi di Claude API atau Claude Platform on AWS. Di Amazon Bedrock, profil hanya berfungsi dengan [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). Lihat [Atribusikan permintaan di Amazon Bedrock dan Google Cloud](https://platform.claude.com/docs/id/manage-claude/user-profiles#attribute-requests-on-amazon-bedrock-and-google-cloud).
+Amazon Bedrock dan Claude Models on Google Cloud (Google managed) tidak memiliki endpoint `/v1/user_profiles`. Jika inferensi Anda berjalan di sana, buat profil Anda di organisasi di Claude API atau Claude Platform on AWS. Di Amazon Bedrock, profil hanya berfungsi dengan [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). Lihat [Atribusikan permintaan di Amazon Bedrock dan Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/manage-claude/user-profiles#attribute-requests-on-amazon-bedrock-and-google-cloud).
 
 Tempatkan lalu lintas yang Anda kirim untuk pelanggan akhir Anda di satu organisasi dan penggunaan internal Anda sendiri di organisasi lain. Profil dimiliki oleh organisasi, bukan workspace, sehingga workspace terpisah dalam satu organisasi tidak cukup. Hanya organisasi untuk lalu lintas pelanggan akhir yang memerlukan profil pengguna. Untuk membuat organisasi lain di Claude API, lihat bagian "How to create a new organization" dari [Creating and managing Workspaces in the Claude Console](https://support.claude.com/en/articles/9796807) di Claude Help Center.
 
@@ -369,17 +369,17 @@ Claude API, Claude Platform on AWS, dan deployment Microsoft Foundry yang di-hos
 
 Message Batches adalah pengecualian: pembuatan batch hanya memeriksa format ID. Jika ID yang formatnya valid bukan milik organisasi yang mengirim batch, batch tetap dibuat, dan setiap permintaan di dalamnya kemudian gagal dengan hasil `errored` yang berisi `invalid_request_error` yang sama.
 
-### Atribusikan permintaan di Amazon Bedrock dan Google Cloud
+### Atribusikan permintaan di Amazon Bedrock dan Claude Models on Google Cloud (Google managed)
 
-ID profil dari kedua jenis akses juga berfungsi di [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) dan di Google Cloud. ID ini tidak berfungsi dengan [integrasi Amazon Bedrock sebelumnya](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) yang Anda panggil dengan `InvokeModel` atau `Converse`. Anda menggunakan kredensial organisasi Anthropic Anda hanya untuk membuat dan mengelola profil. Inferensi tetap menggunakan kredensial AWS atau Google Cloud Anda yang sudah ada.
+ID profil dari kedua jenis akses juga berfungsi di [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) dan di Claude Models on Google Cloud (Google managed). ID ini tidak berfungsi dengan [integrasi Amazon Bedrock sebelumnya](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) yang Anda panggil dengan `InvokeModel` atau `Converse`. Anda menggunakan kredensial organisasi Anthropic Anda hanya untuk membuat dan mengelola profil. Inferensi tetap menggunakan kredensial AWS atau Google Cloud Anda yang sudah ada.
 
-| Platform                                                                                                                                        | Membuat profil                                         | Kirim ID profil di                         |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------ |
-| Claude API                                                                                                                                      | Ya                                                     | Header `anthropic-user-profile-id`         |
-| [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)                                          | Ya                                                     | Header `anthropic-user-profile-id`         |
-| [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), deployment yang di-hosting di Anthropic | Ya                                                     | Header `anthropic-user-profile-id`         |
-| [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)                                                       | Tidak. Buat di Claude API atau Claude Platform on AWS. | Header `anthropic-user-profile-id`         |
-| [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)                                      | Tidak. Buat di Claude API atau Claude Platform on AWS. | Field `user_profile_id` di body permintaan |
+| Platform                                                                                                                                             | Membuat profil                                         | Kirim ID profil di                         |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------ |
+| Claude API                                                                                                                                           | Ya                                                     | Header `anthropic-user-profile-id`         |
+| [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)                                               | Ya                                                     | Header `anthropic-user-profile-id`         |
+| [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), deployment yang di-hosting di Anthropic      | Ya                                                     | Header `anthropic-user-profile-id`         |
+| [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) | Tidak. Buat di Claude API atau Claude Platform on AWS. | Header `anthropic-user-profile-id`         |
+| [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)                                           | Tidak. Buat di Claude API atau Claude Platform on AWS. | Field `user_profile_id` di body permintaan |
 
 Di Claude di Amazon Bedrock, letakkan ID di tingkat teratas body permintaan:
 
@@ -392,7 +392,7 @@ Di Claude di Amazon Bedrock, letakkan ID di tingkat teratas body permintaan:
 }
 ```
 
-Tautkan setiap akun AWS yang mengirim permintaan ke Claude di Amazon Bedrock, dan setiap proyek Google Cloud yang mengirim permintaan di Google Cloud, ke organisasi Anthropic yang membuat profil Anda:
+Tautkan setiap akun AWS yang mengirim permintaan ke Claude di Amazon Bedrock, dan setiap proyek Google Cloud yang mengirim permintaan ke Claude Models on Google Cloud (Google managed), ke organisasi Anthropic yang membuat profil Anda:
 
 1. Admin atau pemilik organisasi tersebut memulai penautan di Verification Portal di `portal.anthropic.com`, di bawah **Linked accounts**.
 2. Seseorang yang dapat mengelola IAM di akun AWS atau proyek Google Cloud menjalankan perintah yang disediakan portal.
@@ -400,7 +400,7 @@ Tautkan setiap akun AWS yang mengirim permintaan ke Claude di Amazon Bedrock, da
 
 Program yang berlaku untuk sebuah profil hanya berlaku untuk permintaan sebuah akun setelah akun tersebut ditautkan dan portal menampilkannya sebagai **Linked**. Program-program tersebut mencakup program yang disetujui untuk organisasi pelanggan akhir setelah pelanggan akhir [menautkan profil ke organisasi tersebut](https://platform.claude.com/docs/id/manage-claude/user-profiles-verification-portal) dan, untuk tingkat akses Cyber Verification Program, mengaktifkannya untuk profil tersebut di portal.
 
-Claude di Amazon Bedrock dan Google Cloud memeriksa format ID tetapi tidak mencari profilnya. Keduanya menolak ID yang formatnya tidak valid dengan `400`. Keduanya menerima ID apa pun yang formatnya valid, sehingga respons yang berhasil tidak mengonfirmasi bahwa ID tersebut cocok dengan sebuah profil. Permintaan tanpa ID diproses tanpa atribusi, dan jika memicu tindakan penegakan, tindakan tersebut berlaku untuk seluruh organisasi Anda.
+Claude di Amazon Bedrock dan Claude Models on Google Cloud (Google managed) memeriksa format ID tetapi tidak mencari profilnya. Keduanya menolak ID yang formatnya tidak valid dengan `400`. Keduanya menerima ID apa pun yang formatnya valid, sehingga respons yang berhasil tidak mengonfirmasi bahwa ID tersebut cocok dengan sebuah profil. Permintaan tanpa ID diproses tanpa atribusi, dan jika memicu tindakan penegakan, tindakan tersebut berlaku untuk seluruh organisasi Anda.
 
 ### Identifikasi pengguna individual dalam sebuah perusahaan
 
@@ -678,7 +678,7 @@ Hapus profil ketika pelanggan akhir menutup akunnya atau meminta Anda menghapus 
 
 Respons mengulang ID dengan `"type": "user_profile_deleted"`. Jika penghapusan mengembalikan error server, coba lagi. `404` pada percobaan ulang berarti penghapusan pertama telah berhasil.
 
-Setelah penghapusan, endpoint profil mengembalikan `404` untuk ID tersebut. Hingga sekitar 10 menit, permintaan inferensi yang membawa ID yang telah dihapus masih dapat berhasil. Setelah itu, platform yang memeriksa ID pada setiap permintaan menolak permintaan tersebut dengan `400`. Claude di Amazon Bedrock dan Google Cloud tidak mencari profil, sehingga keduanya tetap menerimanya.
+Setelah penghapusan, endpoint profil mengembalikan `404` untuk ID tersebut. Hingga sekitar 10 menit, permintaan inferensi yang membawa ID yang telah dihapus masih dapat berhasil. Setelah itu, platform yang memeriksa ID pada setiap permintaan menolak permintaan tersebut dengan `400`. Claude di Amazon Bedrock dan Claude Models on Google Cloud (Google managed) tidak mencari profil, sehingga keduanya tetap menerimanya.
 
 ## Langkah selanjutnya
 

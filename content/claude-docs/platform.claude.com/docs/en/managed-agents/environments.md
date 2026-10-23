@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/environments
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 9529ca3add6b0f3be8dccc2601845bbc61ec40e63d3d61b5b23941cc26ab9c8b
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: f51a82d0e011926435d11d4108c196bb7b6951ec0317d5c882dd4ed7d50fefee
 ---
 
 ---
@@ -620,7 +620,7 @@ When `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `A
 | Containers   | `registry-1.docker.io`, `auth.docker.io`, `production.cloudflare.docker.com`, `download.docker.com`, `ghcr.io`                                                                             |
 
 <Warning>
-  Network access is granted per host, not per operation. The sandbox can send any request to an allowed host, including uploads such as `git push` and package publishing, with any credential the command supplies. If the agent processes untrusted input (repository files, fetched web content, or third-party tool output), a successful prompt injection could use an allowed host to copy files out of the sandbox. To reduce this risk, set the `bash` tool's [permission policy](https://platform.claude.com/docs/en/managed-agents/permission-policies) to `always_ask` or `auto`. If the environment does not specify `packages` (csharp, go: `Packages`), you can instead leave `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) set to `false` and list only the hosts your agent needs in `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`).
+  Network access is granted for each host, not for each operation. The sandbox can send any request to an allowed host, including uploads such as `git push` and package publishing, with any credential the command supplies. If the agent processes untrusted input (repository files, fetched web content, or third-party tool output), a successful prompt injection could use an allowed host to copy files out of the sandbox. To reduce this risk, set the `bash` tool's [permission policy](https://platform.claude.com/docs/en/managed-agents/permission-policies) to `always_ask` or `auto`. If the environment does not specify `packages` (csharp, go: `Packages`), you can instead leave `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) set to `false` and list only the hosts your agent needs in `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`).
 </Warning>
 
 #### Risks of unrestricted networking

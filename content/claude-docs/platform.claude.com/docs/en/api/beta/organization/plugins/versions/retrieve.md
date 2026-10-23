@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/versions/retrieve
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 20c050eba972e65c0caa1329da6dfb9bb406c4e5f7c7e232c8ec788aa2d46977
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 61e296598f48df3e6f70328d0cb11afc4dcbd6caaea6571293f47ae5008b278f
 ---
 
 ---
@@ -196,7 +196,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
     - `assessment: "fail" or "pass" or "unknown" or "warn" or null`
 
-      The scan's verdict; set only when `status` is `completed`.
+      The scan's verdict; set only when `status` is `completed`. A `warn` can mean a `fail` that was allowed in claude.ai.
 
       - `"fail"`
 
@@ -212,7 +212,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
     - `status: "completed" or "errored" or "processing"`
 
-      `processing` while a scan runs, `completed` when it ran to completion, `errored` when it could not run or its outcome cannot be read.
+      `processing` while a scan runs, `completed` when it ran to completion, `errored` when it could not run. Once a scan of the version has completed, `content_scan` describes the newest completed scan, even while a later scan runs. While the scan outcome cannot be read, `status` is `errored` instead.
 
       - `"completed"`
 
@@ -292,9 +292,9 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/plugins/$PLUGIN_ID/versions/$VERSION \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: ce-plugins-2026-09-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

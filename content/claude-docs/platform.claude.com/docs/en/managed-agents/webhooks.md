@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/webhooks
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: c05952920e1da73bb2cb76952e09b2b79d269ed38a5fde64ae48af9614641ba2
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 552cafb322e345204b0b28a4cb6c2b79543ea199dea6c00113e442d68eb7a63d
 ---
 
 ---
@@ -220,7 +220,7 @@ Set `ANTHROPIC_WEBHOOK_SIGNING_KEY` to the `whsec_`-prefixed secret shown at end
   	"io"
   	"net/http"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   var client = anthropic.NewClient() // reads ANTHROPIC_WEBHOOK_SIGNING_KEY from env

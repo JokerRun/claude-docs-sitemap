@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/api_keys/update
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: cfa245b93c3daa2da2fe45e8ab9681f3cf388b4affa6b821cb1b9b3a78efffba
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 3647828026f02a1f5125a8fce2140436147546205f1b58fba1e4fd9470e9bb40
 ---
 
 ---
@@ -152,7 +152,7 @@ Update API Key
 
       - `workspace_id: string`
 
-        ID of the Workspace the API key belongs to. Unlike the deprecated top-level `workspace_id`, this is the Workspace's real ID even for the organization's default Workspace.
+        ID of the Workspace the API key belongs to, including when it is the organization's default Workspace.
 
   - `status: "active" or "archived" or "expired" or "inactive"`
 
@@ -166,19 +166,13 @@ Update API Key
 
     - `"inactive"`
 
-  - `workspace_id: string or null`
-
-    **Deprecated**: Use `scope` instead. `workspace_id` is `null` both for an API key in the default Workspace and for a principal-bound API key that has no Workspace.
-
-    Deprecated: use `scope` instead. ID of the Workspace associated with the API key, or `null` if the API key belongs to the default Workspace. Also `null` for a principal-bound API key that has no Workspace; `scope` tells the two apart.
-
 ## Example
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{}'
 ```
 
@@ -204,7 +198,6 @@ curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
     "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   },
   "status": "active",
-  "type": "api_key",
-  "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
+  "type": "api_key"
 }
 ```

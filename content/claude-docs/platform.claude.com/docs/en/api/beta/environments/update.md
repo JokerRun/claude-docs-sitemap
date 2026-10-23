@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/update
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: f54f50ddb6b5297daa9c1e5a9c461169167c12c867196a3a1137e1b85f6042c8
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: b285cec3d1d99d0d734b95b880c56a1db8332f453bb3682dc9ae0bb3e2ca596b
 ---
 
 ---
@@ -401,9 +401,9 @@ Update an existing environment's configuration.
 ```bash
 curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "description": "Python environment with data-analysis packages."
         }'

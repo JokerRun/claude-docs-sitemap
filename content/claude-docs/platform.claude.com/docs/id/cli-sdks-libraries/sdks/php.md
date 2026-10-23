@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 909aafb5583092e6cbd2397e0584278f27c8dbfc5745253ac084aaa5f09ccbb4
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 2174382619895e75f55eb0165624ddfe49297c6ced474632ca07d23f55f98c39
 ---
 
 ---
@@ -225,8 +225,10 @@ $response = $client->request(
   * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
   * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
   * [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
-  * [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)
+  * [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)
   * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
+
+  Lihat juga [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed).
 </Note>
 
 PHP SDK mendukung platform berikut:
@@ -238,6 +240,8 @@ PHP SDK mendukung platform berikut:
 * **Foundry:** `Anthropic\Foundry\Client`. Gunakan `::withCredentials()`.
 
 Gunakan `MantleClient` untuk proyek baru; `Anthropic\Bedrock\Client` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
+
+PHP SDK juga mendukung Claude Models on Google Cloud (Anthropic managed) melalui `Anthropic\GoogleCloud\Client`. Klien ini masih dalam tahap beta. `Anthropic\GoogleCloud\Client` memerlukan `google/auth` sebagai "soft dependency" (dependensi opsional). Gunakan `new Anthropic\GoogleCloud\Client(workspaceId: ...)` atau atur variabel lingkungan `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`. Lihat [Resolusi proyek, lokasi, dan workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution).
 
 ## Semantic versioning
 

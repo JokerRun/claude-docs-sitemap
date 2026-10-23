@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/apps
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 5074adc55e377faddc14bae9f1e20b92fc964cf46f4aa40b2611158c7166ee30
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: c5b9351b0c884cd5c9004976ca16c6b736d395b5be431329b834858032a631ed
 ---
 
 ---
@@ -164,8 +164,8 @@ plan. Requires an API key with the `read:analytics` scope.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/analytics/apps/chat/projects \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ##### Response (200)

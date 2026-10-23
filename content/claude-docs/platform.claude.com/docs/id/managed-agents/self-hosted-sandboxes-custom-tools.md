@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: ceebc9eb2d57a623ee8ad7c2d0bdd4b5cc6124886b8ba84f2a2a0a84903adc7f
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: f3085801a810e542241dfd6921c512c58269cff8cdccdca99ca782f35512a51d
 ---
 
 ---
@@ -130,11 +130,11 @@ Environment key mengotorisasi pengiriman hasil alat kustom, sehingga kunci API C
       	"os/signal"
       	"syscall"
 
-      	"github.com/anthropics/anthropic-sdk-go"
-      	"github.com/anthropics/anthropic-sdk-go/lib/environments"
-      	"github.com/anthropics/anthropic-sdk-go/option"
-      	"github.com/anthropics/anthropic-sdk-go/toolrunner"
-      	"github.com/anthropics/anthropic-sdk-go/tools/agenttoolset"
+      	"github.com/anthropics/anthropic-sdk-go/v2"
+      	"github.com/anthropics/anthropic-sdk-go/v2/lib/environments"
+      	"github.com/anthropics/anthropic-sdk-go/v2/option"
+      	"github.com/anthropics/anthropic-sdk-go/v2/toolrunner"
+      	"github.com/anthropics/anthropic-sdk-go/v2/tools/agenttoolset"
       )
 
       type orderStatusInput struct {
@@ -157,7 +157,7 @@ Environment key mengotorisasi pengiriman hasil alat kustom, sehingga kunci API C
       			},
       			Required: []string{"order_id"},
       		},
-      		// Berjalan di host worker: dapat memanggil apa pun yang bisa dijangkau sandbox.
+      		// Runs on the worker host: call anything the sandbox can reach.
       		func(ctx context.Context, input orderStatusInput) (anthropic.BetaToolResultBlockParamContentUnion, error) {
       			return anthropic.BetaToolResultBlockParamContentUnion{
       				OfText: &anthropic.BetaTextBlockParam{Text: "Order " + input.OrderID + ": shipped"},
@@ -363,16 +363,16 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
       	"fmt"
       	"log"
 
-      	"github.com/anthropics/anthropic-sdk-go"
+      	"github.com/anthropics/anthropic-sdk-go/v2"
       	mcpsdk "github.com/modelcontextprotocol/go-sdk/mcp"
       )
 
       const mcpServerURL = "http://mcp.internal.example.com:8000/mcp"
 
-      // toCustomTool memetakan satu definisi alat MCP ke deklarasi alat kustom.
-      // Field-nya dipetakan satu ke satu: parameter bertipe membawa `properties` dan
-      // `required`, dan setiap kata kunci JSON Schema lain yang dikeluarkan server disalurkan di
-      // ExtraFields sehingga skema yang dideklarasikan cocok dengan skema server.
+      // toCustomTool maps one MCP tool definition onto a custom tool declaration.
+      // The fields map one to one: the typed parameter carries `properties` and
+      // `required`, and every other JSON Schema keyword the server emits travels in
+      // ExtraFields so the declared schema matches the server's schema.
       func toCustomTool(tool *mcpsdk.Tool) (anthropic.BetaAgentNewParamsToolUnion, error) {
       	raw, err := json.Marshal(tool.InputSchema)
       	if err != nil {
@@ -387,7 +387,7 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
       	for keyword, value := range schema {
       		switch keyword {
       		case "type":
-      			// Tipe parameter selalu di-marshal sebagai "type": "object".
+      			// The parameter type always marshals "type": "object".
       		case "properties":
       			properties, _ := value.(map[string]any)
       			inputSchema.Properties = properties
@@ -409,7 +409,6 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
       	}
       	return anthropic.BetaAgentNewParamsToolUnion{
       		OfCustom: &anthropic.BetaManagedAgentsCustomToolParams{
-      			Type:        anthropic.BetaManagedAgentsCustomToolParamsTypeCustom,
       			Name:        tool.Name,
       			Description: description,
       			InputSchema: inputSchema,
@@ -420,8 +419,8 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
       func main() {
       	ctx := context.Background()
 
-      	// Jalankan ini di mana pun Anda membuat agen, bukan di host worker: ini
-      	// mengautentikasi dengan kunci API Claude Anda (ANTHROPIC_API_KEY).
+      	// Run this wherever you create agents, not on the worker host: it
+      	// authenticates with your Claude API key (ANTHROPIC_API_KEY).
       	client := anthropic.NewClient()
 
       	mcpClient := mcpsdk.NewClient(&mcpsdk.Implementation{Name: "declare-agent-tools", Version: "1.0.0"}, nil)
@@ -437,9 +436,7 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
       	}
 
       	tools := []anthropic.BetaAgentNewParamsToolUnion{
-      		{OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-      			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-      		}},
+      		{OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{}},
       	}
       	for _, tool := range listed.Tools {
       		custom, err := toCustomTool(tool)
@@ -473,8 +470,8 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
       import io.modelcontextprotocol.client.transport.HttpClientStreamableHttpTransport;
       import io.modelcontextprotocol.spec.McpSchema;
 
-      // Field MCP dipetakan satu-satu ke deklarasi alat kustom. SDK Java MCP
-      // hanya mempertahankan kata kunci tingkat atas berikut dari skema input alat: type,
+      // Field MCP dipetakan satu per satu ke deklarasi alat kustom. SDK Java MCP
+      // hanya menyimpan kata kunci tingkat atas berikut dari skema input alat: type,
       // properties, required, additionalProperties, $defs, dan definitions.
       BetaManagedAgentsCustomToolParams toCustomTool(McpSchema.Tool tool) {
           var description = tool.description();
@@ -699,11 +696,11 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
       	"os/signal"
       	"syscall"
 
-      	"github.com/anthropics/anthropic-sdk-go"
-      	"github.com/anthropics/anthropic-sdk-go/lib/environments"
-      	"github.com/anthropics/anthropic-sdk-go/mcp"
-      	"github.com/anthropics/anthropic-sdk-go/option"
-      	"github.com/anthropics/anthropic-sdk-go/tools/agenttoolset"
+      	"github.com/anthropics/anthropic-sdk-go/v2"
+      	"github.com/anthropics/anthropic-sdk-go/v2/lib/environments"
+      	"github.com/anthropics/anthropic-sdk-go/v2/mcp"
+      	"github.com/anthropics/anthropic-sdk-go/v2/option"
+      	"github.com/anthropics/anthropic-sdk-go/v2/tools/agenttoolset"
       	mcpsdk "github.com/modelcontextprotocol/go-sdk/mcp"
       )
 
@@ -718,8 +715,8 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
 
       	client := anthropic.NewClient(option.WithAuthToken(environmentKey))
 
-      	// Hubungkan ke server MCP sekali saat startup dan biarkan sesi tetap terbuka selama
-      	// worker berjalan.
+      	// Connect to the MCP server once at startup and keep the session open for
+      	// the life of the worker.
       	mcpClient := mcpsdk.NewClient(&mcpsdk.Implementation{Name: "sandbox-worker", Version: "1.0.0"}, nil)
       	session, err := mcpClient.Connect(ctx, &mcpsdk.StreamableClientTransport{Endpoint: mcpServerURL}, nil)
       	if err != nil {

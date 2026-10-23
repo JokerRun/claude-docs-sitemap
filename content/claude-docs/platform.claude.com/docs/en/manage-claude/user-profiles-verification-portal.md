@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/user-profiles-verification-portal
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 46bf27c897e31c6d397c9da5514eb00862904ee696bc05624d6dab75554a0fb3
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: f5a47d8d1ec45c1bc041fca4767607da715388c803d6aba901a1542d8e19b279
 ---
 
 ---
@@ -199,7 +199,7 @@ To see which programs apply to a profile, [retrieve the profile](https://platfor
 
 The end customer can see the linked profile under **Linked accounts** in the portal.
 
-If your inference runs on Claude in Amazon Bedrock or Google Cloud, you have to link your own accounts too. Programs apply to requests from an AWS account or Google Cloud project only after you link it to the Anthropic organization that creates your profiles. See [Attribute requests on Amazon Bedrock and Google Cloud](https://platform.claude.com/docs/en/manage-claude/user-profiles#attribute-requests-on-amazon-bedrock-and-google-cloud).
+If your inference runs on Claude in Amazon Bedrock or Claude Models on Google Cloud (Google managed), you have to link your own accounts too. Programs apply to requests from an AWS account or Google Cloud project only after you link it to the Anthropic organization that creates your profiles. See [Attribute requests on Amazon Bedrock and Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/manage-claude/user-profiles#attribute-requests-on-amazon-bedrock-and-google-cloud).
 
 ## Next steps
 

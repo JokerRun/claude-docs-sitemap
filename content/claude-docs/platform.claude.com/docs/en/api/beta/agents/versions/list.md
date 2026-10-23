@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/versions/list
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 2036a4a51a154355ac2c8ee8f6550576115d62e4daa6ea3c28ac871dc526a873
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 25b0b70ac8de8d764208f17d718115f3fa3a3ba9ca7df3a359d951c6b3c85e70
 ---
 
 ---
@@ -954,9 +954,9 @@ List Agent Versions
 
 ```bash
 curl https://api.anthropic.com/v1/agents/$AGENT_ID/versions \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

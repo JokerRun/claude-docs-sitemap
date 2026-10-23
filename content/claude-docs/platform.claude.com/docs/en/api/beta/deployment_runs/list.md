@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployment_runs/list
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 7a10d0399e6e2d71c8ea61858a445ac31778d6b07e8996d99938b79dfb0cd5ce
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 4f5e716d7fd8da519f3062241d06df0ffd27a7ed874ec8e7ba95fdcae8c01ff9
 ---
 
 ---
@@ -428,9 +428,9 @@ List Deployment Runs
 
 ```bash
 curl https://api.anthropic.com/v1/deployment_runs \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

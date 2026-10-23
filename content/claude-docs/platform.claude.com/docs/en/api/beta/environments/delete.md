@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/delete
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 7d8953e7b3ce5f7100ea6c11cfcc8a94604075361ab57f7cc7487360a0ff5d53
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 2bb9e3376bbbce9878c2a631c2e835b1265232d30aa06b50206c403d5b252ef3
 ---
 
 ---
@@ -165,9 +165,9 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 ```bash
 curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

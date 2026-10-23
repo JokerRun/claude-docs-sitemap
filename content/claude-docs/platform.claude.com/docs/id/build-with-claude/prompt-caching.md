@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 08c0ef180ed49a8e2bb6ae87f992c9dc3fdf3a1ea5c21310656f16f17b3f93dd
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: c3b7dcecb4860d7621d3d08aba5defa4b62b664cc4450127f32dbbaae552ce95
 ---
 
 ---
@@ -597,14 +597,14 @@ Menambahkan lebih banyak breakpoint `cache_control` tidak meningkatkan biaya And
 
 ### Batasan cache
 
-Pada Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), panjang prompt minimum yang dapat di-cache adalah:
+Pada Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), panjang prompt minimum yang dapat di-cache adalah:
 
 * 512 token untuk Claude Fable 5.1, [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Fable 5, [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), dan Claude Haiku 5.5
 * 2.048 token untuk [Claude Mythos Preview](https://anthropic.com/glasswing) dan Claude Opus 4.7
 * 4.096 token untuk Claude Opus 4.6 dan Claude Opus 4.5
-* 1.024 token untuk Claude Opus 4.8, Claude Sonnet 5, Claude Sonnet 4.6, Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Opus 4.1 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Opus 4 ([dihentikan, kecuali di Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)), dan Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))
+* 1.024 token untuk Claude Opus 4.8, Claude Sonnet 5, Claude Sonnet 4.6, Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Opus 4.1 ([dihentikan, kecuali di Bedrock dan Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Opus 4 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)), dan Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations))
 * 4.096 token untuk Claude Haiku 4.5
-* 2.048 token untuk Claude Haiku 3.5 ([dihentikan, kecuali di Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))
+* 2.048 token untuk Claude Haiku 3.5 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations))
 
 Batas minimum ini berlaku di setiap platform tempat masing-masing model tersedia.
 
@@ -753,10 +753,10 @@ Untuk informasi lebih rinci, lihat [Thinking dan caching prompt](https://platfor
 ### Penyimpanan dan berbagi cache
 
 <Warning>
-  Caching prompt menggunakan isolasi tingkat [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces). Cache diisolasi per workspace, memastikan pemisahan data antar workspace dalam organisasi yang sama. Ini berlaku untuk Claude API, Claude Platform on AWS, dan Microsoft Foundry; Bedrock dan Google Cloud mempertahankan isolasi cache tingkat organisasi. Jika Anda menggunakan beberapa workspace, tinjau strategi caching Anda untuk memperhitungkan perbedaan ini.
+  Caching prompt menggunakan isolasi tingkat [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces). Cache diisolasi per workspace, memastikan pemisahan data antar workspace dalam organisasi yang sama. Ini berlaku untuk Claude API, Claude Platform on AWS, dan Microsoft Foundry; Bedrock dan Claude Models on Google Cloud (Google managed) mempertahankan isolasi cache tingkat organisasi. Jika Anda menggunakan beberapa workspace, tinjau strategi caching Anda untuk memperhitungkan perbedaan ini.
 </Warning>
 
-* **Isolasi organisasi dan workspace:** Cache diisolasi antar organisasi. Organisasi yang berbeda tidak pernah berbagi cache, bahkan jika mereka menggunakan prompt yang identik. Cache juga diisolasi per workspace dalam satu organisasi pada Claude API, Claude Platform on AWS, dan Microsoft Foundry; Bedrock dan Google Cloud hanya menggunakan isolasi tingkat organisasi.
+* **Isolasi organisasi dan workspace:** Cache diisolasi antar organisasi. Organisasi yang berbeda tidak pernah berbagi cache, bahkan jika mereka menggunakan prompt yang identik. Cache juga diisolasi per workspace dalam satu organisasi pada Claude API, Claude Platform on AWS, dan Microsoft Foundry; Bedrock dan Claude Models on Google Cloud (Google managed) hanya menggunakan isolasi tingkat organisasi.
 
 * **Pencocokan persis:** Cache hit memerlukan segmen prompt yang 100% identik, termasuk semua teks dan gambar hingga dan termasuk blok yang ditandai dengan cache control.
 
@@ -812,7 +812,7 @@ Jika mengalami perilaku yang tidak terduga:
 Jika Anda merasa 5 menit terlalu singkat, Anthropic juga menawarkan durasi cache 1 jam [dengan biaya tambahan](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing).
 
 <Note>
-  Durasi cache 1 jam tersedia di Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry).
+  Durasi cache 1 jam tersedia di Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry).
 </Note>
 
 Untuk menggunakan cache yang diperpanjang, sertakan `ttl` dalam definisi `cache_control` seperti ini:
@@ -3284,7 +3284,7 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platfor
 
     1. Kunci cache dibuat menggunakan hash kriptografis dari prompt hingga titik kontrol cache. Ini berarti hanya permintaan dengan prompt yang identik yang dapat mengakses cache tertentu.
 
-    2. Pada Claude API, Claude Platform on AWS, dan Microsoft Foundry, cache diisolasi per workspace dalam satu organisasi. Pada Bedrock dan Google Cloud, cache diisolasi per organisasi. Dalam setiap kasus, cache tidak pernah dibagikan antar organisasi, bahkan untuk prompt yang identik. Lihat [Penyimpanan dan berbagi cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-storage-and-sharing) untuk detailnya.
+    2. Pada Claude API, Claude Platform on AWS, dan Microsoft Foundry, cache diisolasi per workspace dalam satu organisasi. Pada Bedrock dan Claude Models on Google Cloud (Google managed), cache diisolasi per organisasi. Dalam setiap kasus, cache tidak pernah dibagikan antar organisasi, bahkan untuk prompt yang identik. Lihat [Penyimpanan dan berbagi cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-storage-and-sharing) untuk detailnya.
 
     3. Mekanisme caching dirancang untuk menjaga integritas dan privasi setiap percakapan atau konteks yang unik.
 

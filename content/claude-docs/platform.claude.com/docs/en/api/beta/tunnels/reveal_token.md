@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/reveal_token
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: c03907b113fa6b64b4c20ea6ad3850d2d70032c4e90f110f8c9ac97eda604d99
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: f655904c3e7164577c69c4bad196cad613b3da7b69a77713cc43c9fde72a4821
 ---
 
 ---
@@ -169,9 +169,9 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
 ```bash
 curl https://api.anthropic.com/v1/tunnels/$TUNNEL_ID/reveal_token \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: mcp-tunnels-2026-06-22' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

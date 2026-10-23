@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations/test
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 19798dcf023ac05e5fadc2aa748e5ca23e60c4a4f38fcc983dc3200fb244fb70
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: cba556fc86f6272148e00600e0e192f8767c9dbc55a1bf0d1f717e42e2cdef5f
 ---
 
 ---
@@ -173,9 +173,9 @@ Send one test span, named `anthropic.test`, to the destination with its register
 ```bash
 curl https://api.anthropic.com/v1/organizations/telemetry_destinations/$DESTINATION_ID/test \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: telemetry-destinations-2026-08-11' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/retrieve
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 5e38f4dc10d648a30516577e59077c322bee88aa012ae5ba98aafea42d871f3f
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: e4b49e43ad4895e842f5a8d163ac1e182f7334bd5588844a691bfe7c36c6b802
 ---
 
 ---
@@ -200,8 +200,8 @@ Get Skill Version
 
 ```bash
 curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

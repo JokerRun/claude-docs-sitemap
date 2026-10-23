@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/create
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: eb2030c3f212ae0d5104248971e130fb741ecffb0e2f60cb8238eb96b909cdb0
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 801466c764e64aaef8662ae0fcc3737250aef602b4693f18c750c24ae9db2204
 ---
 
 ---
@@ -370,8 +370,8 @@ manage rules whose `oauth_scope` is `workspace:developer` or
 ```bash
 curl https://api.anthropic.com/v1/organizations/federation_rules \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "issuer_id": "issuer_id",
           "match": {},

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/add
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: e12dd53777353e0b9befaf5b25fc1b4f8efbb2a3d2114c1dae776f09c76ca52e
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 0370e85393a72467b631e10e90bff376fb971e473ec34240b9c98ea233aa0b7b
 ---
 
 ---
@@ -87,8 +87,8 @@ Create Workspace Member
 ```bash
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
           "workspace_role": "workspace_admin"

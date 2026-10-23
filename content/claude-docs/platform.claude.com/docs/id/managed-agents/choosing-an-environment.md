@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/choosing-an-environment
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 80a2a7710eb4734532153a6fb4894d104fe20716eafc92c9a409003ad6b3d72a
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 23dbe36241c5752340edcdaaa984593927bd05a8662c7d146ec97b6f12059c05
 ---
 
 ---
@@ -70,12 +70,18 @@ Anda juga melepaskan fitur-fitur lingkungan cloud berikut:
 
 Jika Anda menggunakan Claude Managed Agents melalui Claude Platform on AWS, Anthropic tetap mengoperasikan layanannya. Di sana, sandbox yang di-host sendiri tidak dapat menggunakan memory store, worker tidak menggunakan kunci lingkungan, dan tunnel MCP tidak tersedia. Lihat [Claude Managed Agents di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#claude-managed-agents) dan [Fitur yang tidak didukung](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#features-not-supported).
 
+## Perbedaan pada Claude Models on Google Cloud (Anthropic managed)
+
+Jika Anda menggunakan Claude Managed Agents melalui Claude Models on Google Cloud (Anthropic managed), Anthropic tetap mengoperasikan layanannya. Di sana, memory store tidak didukung di sandbox yang di-host sendiri, dan tunnel MCP tidak tersedia. Worker melakukan autentikasi dengan kredensial Google Cloud, bukan kunci lingkungan, dan Anda menulis worker Anda sendiri, karena worker bawaan di CLI `ant` serta SDK Python, TypeScript, dan Go tidak berfungsi di sana. Lihat [Dukungan fitur](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#feature-support) dalam panduan Claude Models on Google Cloud (Anthropic managed).
+
 ## Beralih dari lingkungan cloud ke sandbox yang di-host sendiri
 
 Untuk beralih ke sandbox yang di-host sendiri, Anda mempertahankan agen, membuat lingkungan `self_hosted`, dan mereferensikan ID-nya di sesi dan deployment baru.
 
-* **Apa yang tetap terbawa:** Definisi agen, kunci API atau kredensial AWS yang digunakan aplikasi Anda, skill Anda, server MCP Anda, dan [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory) Anda.
+* **Apa yang tetap terbawa:** Definisi agen, kunci API, kredensial Google Cloud, atau kredensial AWS yang digunakan aplikasi Anda, skill Anda, server MCP Anda, dan [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory) Anda.
 * **Apa yang baru:** Lingkungan `self_hosted`, kunci lingkungan yang Anda buat di Claude Console, dan worker yang Anda jalankan. [Panduan memulai cepat sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#quickstart) mencakup ketiganya.
 * **Apa yang berhenti berfungsi:** Fitur-fitur yang tercantum di [Apa yang Anda tanggung dan lepaskan dengan sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/choosing-an-environment#what-you-take-on-and-give-up-with-a-self-hosted-sandbox).
 
 Di Claude Platform on AWS, memory store tidak terbawa ke sandbox yang di-host sendiri, dan worker tidak menggunakan kunci lingkungan. Lihat [Perbedaan pada Claude Platform on AWS](https://platform.claude.com/docs/id/managed-agents/choosing-an-environment#differences-on-claude-platform-on-aws).
+
+Di Claude Models on Google Cloud (Anthropic managed), memory store tidak didukung di sandbox yang di-host sendiri, dan Anda menulis worker Anda sendiri, yang tidak menggunakan kunci lingkungan. Lihat [Perbedaan pada Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/managed-agents/choosing-an-environment#differences-on-claude-models-on-google-cloud-anthropic-managed).

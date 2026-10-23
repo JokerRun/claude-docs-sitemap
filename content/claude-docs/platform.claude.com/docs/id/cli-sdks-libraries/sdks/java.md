@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 2d826fdab512428aab66704afbf83a1f4d9c5fd9fe8852e563d6ef831593dd31
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 78eb6633d974575609c936b0c5fcf280af6f69546c53656403944698db89db49
 ---
 
 ---
@@ -1078,8 +1078,10 @@ Untuk menggunakan klien HTTP yang sepenuhnya kustom:
   * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
   * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
   * [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
-  * [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)
+  * [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)
   * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
+
+  Lihat juga [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed).
 </Note>
 
 Java SDK mendukung platform berikut melalui dependensi terpisah yang menyediakan implementasi `Backend` khusus platform:
@@ -1090,6 +1092,8 @@ Java SDK mendukung platform berikut melalui dependensi terpisah yang menyediakan
 * **Foundry:** `com.anthropic:anthropic-java-foundry`: Gunakan `FoundryBackend.fromEnv()` atau `FoundryBackend.builder()`.
 
 Gunakan `BedrockMantleBackend` untuk proyek baru; `BedrockBackend` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
+
+Java SDK juga mendukung Claude Models on Google Cloud (Anthropic managed) melalui `GoogleCloudBackend`, dari dependensi `com.anthropic:anthropic-java-google-cloud`. Backend ini masih dalam tahap beta. Buat backend ini dengan `GoogleCloudBackend.builder()` atau `GoogleCloudBackend.fromEnv()`. `fromEnv()` membaca `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`, `ANTHROPIC_GOOGLE_CLOUD_PROJECT`, dan Google Application Default Credentials. Lihat [Resolusi proyek, lokasi, dan workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution).
 
 Artefak platform merupakan add-on untuk dependensi dasar `com.anthropic:anthropic-java`, yang menyediakan `AnthropicOkHttpClient`, jadi instal keduanya. Setiap implementasi `Backend` diteruskan ke klien dengan `.backend()` pada `AnthropicOkHttpClient.builder()`. Setiap backend cloud menarik kelas SDK platform cloud masing-masing sebagai dependensi transitif.
 

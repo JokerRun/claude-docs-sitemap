@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 05bd3e888136d656ef6f384af645ab5bba75ca91e2474dbd4efd1377116a47ea
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 43ae7e1c93f9a9344756be30a5562c77bd4fbf42b5b148f0d4fd4a791a62b1c3
 ---
 
 ---
@@ -146,17 +146,15 @@ Lakukan "streaming" (streaming) event dari sesi untuk menerima pembaruan real-ti
   ```
 
   ```go Go
-  	// Buka stream terlebih dahulu, lalu kirim pesan pengguna
+  	// Open the stream first, then send the user message
   	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
   	defer stream.Close()
 
   	if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   		Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   			OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
-  				Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
   				Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{{
   					OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-  						Type: anthropic.BetaManagedAgentsTextBlockTypeText,
   						Text: "Summarize the repo README",
   					},
   				}},
@@ -170,7 +168,7 @@ Lakukan "streaming" (streaming) event dari sesi untuk menerima pembaruan real-ti
   	for stream.Next() {
   		switch event := stream.Current().AsAny().(type) {
   		case anthropic.BetaManagedAgentsAgentMessageEvent:
-  			// list bertipe konkret: BetaManagedAgentsTextBlock
+  			// concrete-typed list: BetaManagedAgentsTextBlock
   			for _, block := range event.Content {
   				fmt.Print(block.Text)
   			}
@@ -336,7 +334,7 @@ Untuk menyambung ulang ke sesi yang sudah ada tanpa kehilangan event, gabungkan 
 
   // Ikuti event live, lewati apa pun yang sudah terlihat
   tail: for await (const event of stream) {
-    // Event pratinjau (event_start/event_delta) tidak memiliki id tingkat atas
+    // Event pratinjau (event_start/event_delta) tidak memiliki `id` tingkat atas
     if (event.type === "event_start" || event.type === "event_delta") {
       continue;
     }
@@ -397,7 +395,7 @@ Untuk menyambung ulang ke sesi yang sudah ada tanpa kehilangan event, gabungkan 
   	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
   	defer stream.Close()
 
-  	// Stream terbuka dan sedang buffering. Tampilkan riwayat sebelum mengikuti event live.
+  	// Stream is open and buffering. List history before tailing live.
   	seenEventIDs := map[string]struct{}{}
   	history := client.Beta.Sessions.Events.ListAutoPaging(ctx, session.ID, anthropic.BetaSessionEventListParams{})
   	for history.Next() {
@@ -407,7 +405,7 @@ Untuk menyambung ulang ke sesi yang sudah ada tanpa kehilangan event, gabungkan 
   		panic(err)
   	}
 
-  	// Ikuti event live, lewati apa pun yang sudah terlihat
+  	// Tail live events, skipping anything already seen
   tail:
   	for stream.Next() {
   		event := stream.Current()
@@ -417,7 +415,7 @@ Untuk menyambung ulang ke sesi yang sudah ada tanpa kehilangan event, gabungkan 
   		seenEventIDs[event.ID] = struct{}{}
   		switch event := event.AsAny().(type) {
   		case anthropic.BetaManagedAgentsAgentMessageEvent:
-  			// list bertipe konkret: BetaManagedAgentsTextBlock
+  			// concrete-typed list: BetaManagedAgentsTextBlock
   			for _, block := range event.Content {
   				fmt.Print(block.Text)
   			}
@@ -595,10 +593,8 @@ Kirim event `user.message` untuk memulai atau melanjutkan pekerjaan agen:
   if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
-  			Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
   			Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{{
   				OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-  					Type: anthropic.BetaManagedAgentsTextBlockTypeText,
   					Text: "Analyze the performance of the sort function in utils.py",
   				},
   			}},
@@ -789,17 +785,15 @@ Contoh berikut menjawab setiap panggilan saat panggilan tersebut tiba:
   	for stream.Next() {
   		switch event := stream.Current().AsAny().(type) {
   		case anthropic.BetaManagedAgentsAgentCustomToolUseEvent:
-  			// Jalankan alat
+  			// Run the tool
   			result := callTool(event.Name, event.Input)
-  			// Kirim hasilnya kembali
+  			// Send the result back
   			if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   				Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   					OfUserCustomToolResult: &anthropic.BetaManagedAgentsUserCustomToolResultEventParams{
-  						Type:            anthropic.BetaManagedAgentsUserCustomToolResultEventParamsTypeUserCustomToolResult,
   						CustomToolUseID: event.ID,
   						Content: []anthropic.BetaManagedAgentsUserCustomToolResultEventParamsContentUnion{{
   							OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-  								Type: anthropic.BetaManagedAgentsTextBlockTypeText,
   								Text: result,
   							},
   						}},
@@ -1014,11 +1008,10 @@ Contoh berikut menyetujui setiap panggilan yang tertunda:
   		switch stopReason := event.StopReason.AsAny().(type) {
   		case anthropic.BetaManagedAgentsSessionRequiresAction:
   			for _, eventID := range stopReason.EventIDs {
-  				// Setujui panggilan alat yang tertunda
+  				// Approve the pending tool call
   				if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   					Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   						OfUserToolConfirmation: &anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
-  							Type:      anthropic.BetaManagedAgentsUserToolConfirmationEventParamsTypeUserToolConfirmation,
   							ToolUseID: eventID,
   							Result:    anthropic.BetaManagedAgentsUserToolConfirmationEventParamsResultAllow,
   						},
@@ -1204,15 +1197,13 @@ Sesi tetap ada di antara interaksi. Untuk melanjutkan sesi, kirim event `user.me
   ```
 
   ```go Go
-  // Lanjutkan sesi yang dibuat sebelumnya dengan mengirimkan event user.message
-  // baru. Di produksi, berikan ID tersimpan dari sesi yang akan dilanjutkan.
+  // Resume a previously created session by sending it a new user.message
+  // event. In production, pass the stored ID of the session to resume.
   if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
-  			Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
   			Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{{
   				OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-  					Type: anthropic.BetaManagedAgentsTextBlockTypeText,
   					Text: "Now run the tests against the changes you made earlier.",
   				},
   			}},
@@ -1378,21 +1369,17 @@ Kirim event `user.interrupt` untuk menghentikan agen di tengah eksekusi, lalu la
   ```
 
   ```go Go
-  // Agen sedang menganalisis sebuah file...
-  // Interupsi dengan arahan baru:
+  // Agent is currently analyzing a file...
+  // Interrupt with a new direction:
   if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{
   		{
-  			OfUserInterrupt: &anthropic.BetaManagedAgentsUserInterruptEventParams{
-  				Type: anthropic.BetaManagedAgentsUserInterruptEventParamsTypeUserInterrupt,
-  			},
+  			OfUserInterrupt: &anthropic.BetaManagedAgentsUserInterruptEventParams{},
   		},
   		{
   			OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
-  				Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
   				Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{{
   					OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-  						Type: anthropic.BetaManagedAgentsTextBlockTypeText,
   						Text: "Instead, focus on fixing the bug in line 42.",
   					},
   				}},
@@ -1721,9 +1708,7 @@ Pada [model yang didukung](https://platform.claude.com/docs/id/managed-agents/ev
   if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfSystemMessage: &anthropic.BetaManagedAgentsSystemMessageEventParams{
-  			Type: anthropic.BetaManagedAgentsSystemMessageEventParamsTypeSystemMessage,
   			Content: []anthropic.BetaManagedAgentsSystemContentBlockParam{{
-  				Type: anthropic.BetaManagedAgentsSystemContentBlockTypeText,
   				Text: "The user's current timezone is America/New_York.",
   			}},
   		},

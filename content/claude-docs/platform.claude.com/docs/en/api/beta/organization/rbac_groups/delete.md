@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/delete
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 5dc17216a15bcf167cb553b441e7c8940d89c4a207eac3f09a293b405fc5e0f7
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 47bb613a3cbe1713c40501f329cf1e33f9b90461ba318e17249a5e0abeac69cb
 ---
 
 ---
@@ -51,8 +51,8 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 ```bash
 curl https://api.anthropic.com/v1/organizations/rbac_groups/$RBAC_GROUP_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

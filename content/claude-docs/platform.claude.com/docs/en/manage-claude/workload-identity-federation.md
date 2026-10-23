@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/workload-identity-federation
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: d6c36977b9ed8da84e2fc76d4b20d18f96d016b5805ba93ba9bb8d67b4faf1d0
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 036e0180e11e08797167aa053486451ae05c30c6a3eb28fae1804f1af89ef6ea
 ---
 
 ---
@@ -195,6 +195,35 @@ You can construct the client with explicit credentials or with no arguments. Wit
   }
   ```
 
+  ```csharp C#
+  using Anthropic.Credentials;
+  // ...
+
+  var credentials = new WorkloadIdentityCredentials(new WorkloadIdentityOptions
+  {
+      FederationRuleId = "fdrl_...",
+      OrganizationId = "00000000-0000-0000-0000-000000000000",
+      ServiceAccountId = "svac_...",
+      WorkspaceId = "wrkspc_...",
+      IdentityTokenProvider = new FileIdentityTokenProvider("/var/run/secrets/anthropic.com/token"),
+  });
+  using var client = new AnthropicClient(new ClientOptions { Credentials = credentials });
+
+  var message = await client.Messages.Create(new()
+  {
+      Model = Model.ClaudeOpus5_5,
+      MaxTokens = 1024,
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
+  });
+  foreach (var block in message.Content)
+  {
+      if (block.Value is TextBlock textBlock)
+      {
+          Console.WriteLine(textBlock.Text);
+      }
+  }
+  ```
+
   ```go Go
   client := anthropic.NewClient(
   	option.WithFederationTokenProvider(
@@ -239,58 +268,29 @@ You can construct the client with explicit credentials or with no arguments. Wit
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.builder()
-              .fromEnv()
-              .configurationProvider(InMemoryProfileConfigProvider.of(ProfileConfig.builder()
-                      .organizationId("00000000-0000-0000-0000-000000000000")
-                      .workspaceId("wrkspc_...")
-                      .authentication(AuthenticationConfig.builder()
-                              .type(AuthenticationType.OIDC_FEDERATION)
-                              .federationRuleId("fdrl_...")
-                              .serviceAccountId("svac_...")
-                              .identityToken(IdentityTokenConfig.builder()
-                                      .source("file")
-                                      .path("/var/run/secrets/anthropic.com/token")
-                                      .build())
-                              .build())
-                      .build()))
-              .build();
+          .fromEnv()
+          .configurationProvider(InMemoryProfileConfigProvider.of(ProfileConfig.builder()
+              .organizationId("00000000-0000-0000-0000-000000000000")
+              .workspaceId("wrkspc_...")
+              .authentication(AuthenticationConfig.builder()
+                  .type(AuthenticationType.OIDC_FEDERATION)
+                  .federationRuleId("fdrl_...")
+                  .serviceAccountId("svac_...")
+                  .identityToken(IdentityTokenConfig.builder()
+                      .source("file")
+                      .path("/var/run/secrets/anthropic.com/token")
+                      .build())
+                  .build())
+              .build()))
+          .build();
 
       var message = client.messages().create(MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(1024)
-              .addUserMessage("Hello, Claude")
-              .build());
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(1024)
+          .addUserMessage("Hello, Claude")
+          .build());
 
       IO.println(message.content());
-  }
-  ```
-
-  ```csharp C#
-  using Anthropic.Credentials;
-  // ...
-
-  var credentials = new WorkloadIdentityCredentials(new WorkloadIdentityOptions
-  {
-      FederationRuleId = "fdrl_...",
-      OrganizationId = "00000000-0000-0000-0000-000000000000",
-      ServiceAccountId = "svac_...",
-      WorkspaceId = "wrkspc_...",
-      IdentityTokenProvider = new FileIdentityTokenProvider("/var/run/secrets/anthropic.com/token"),
-  });
-  using var client = new AnthropicClient(new ClientOptions { Credentials = credentials });
-
-  var message = await client.Messages.Create(new()
-  {
-      Model = Model.ClaudeOpus5_5,
-      MaxTokens = 1024,
-      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
-  });
-  foreach (var block in message.Content)
-  {
-      if (block.Value is TextBlock textBlock)
-      {
-          Console.WriteLine(textBlock.Text);
-      }
   }
   ```
 

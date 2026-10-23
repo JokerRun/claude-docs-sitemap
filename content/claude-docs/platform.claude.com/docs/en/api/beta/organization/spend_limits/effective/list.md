@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/effective/list
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 617ab89055dde5076d10963730e7abfbff384e09f62a76e1761e7207619b761c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 4aa527cb49f4e2469068b718ee5a6924a755b47de3283edd120fe64d967533e9
 ---
 
 ---
@@ -236,8 +236,8 @@ organizations.
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/spend_limits/effective \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

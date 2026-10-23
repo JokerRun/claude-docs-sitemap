@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/create
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 555a8704af0eb0eada39049a446c8e36a91aa85a7e833f4bbebe18fafe5e8087
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 83582b5db59da12f8a63269b888f8245f2ad9619dd8a0d14695dc798b584a6b4
 ---
 
 ---
@@ -199,9 +199,9 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
 ```bash
 curl https://api.anthropic.com/v1/tunnels/$TUNNEL_ID/certificates \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: mcp-tunnels-2026-06-22' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "ca_certificate_pem": "ca_certificate_pem"
         }'

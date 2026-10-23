@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/archive
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: eb306248866486287c1ec258ee2b2c6dd7af69daef44315dd755b14b899746b9
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 64f1624eb190138ca22ff78c3d80e73d8b4d4414ca7b487b5e437bf61dfad460
 ---
 
 ---
@@ -203,9 +203,9 @@ Archive a Memory Store
 ```bash
 curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/archive \
     -X POST \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: agent-memory-2026-07-22' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

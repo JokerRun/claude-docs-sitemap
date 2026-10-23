@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/quickstart
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: f57bc1f5969c8e8ece82919c45133922378c7eaa476593865a9fbe208924e769
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: b07a7fe4ce426094e1c04f5c9a6e8f47334dce384816f43ba00049f92f8bbdb9
 ---
 
 ---
@@ -15,7 +15,7 @@ description: Connect Claude to a private MCP server using a local Docker Compose
   MCP tunnels are in research preview. [Request access](https://claude.com/form/mcp-tunnels) to try them.
 </Note>
 
-This quickstart shows you how to set up a tunnel so that Claude can call a private MCP server through it. It uses Docker Compose with [manual](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#credential-provisioning) credential provisioning, which is the shortest path for local testing. For production deployments, see [Deploy with Helm](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-helm) or [Deploy with Docker Compose](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-compose).
+This quickstart takes you from creating a tunnel to Claude calling a private MCP server through it. It uses Docker Compose with [manual](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#credential-provisioning) credential provisioning, which is the shortest path for local testing. For production deployments, see [Deploy with Helm](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-helm) or [Deploy with Docker Compose](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-compose).
 
 ## What you'll build
 

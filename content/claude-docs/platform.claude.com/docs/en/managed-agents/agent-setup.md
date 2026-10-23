@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 0e172256f97442bc6f61adf94a5d0ba7ce80d89cc61a704fe3b923b04877be2e
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: c25342a609d90305b3074a2709757156fccbb9bf00918f330cbcd3639297304c
 ---
 
 ---
@@ -117,9 +117,7 @@ The examples use curl, the `ant` CLI, or the SDK. If you haven't set one up, the
   	},
   	System: anthropic.String("You are a helpful coding agent."),
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
-  		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-  			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-  		},
+  		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{},
   	}},
   })
   if err != nil {

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/overview
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 515b8b8d2fe7dbe8d0e61da22f1705312fd1973c0c08d7bf8c03b0e5894ed140
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 3a223309136fa707734ee8908d6c6edd8a429c362b68e28725af39103a65ce0f
 ---
 
 ---
@@ -28,7 +28,7 @@ Claude Sonnet 5.5 menawarkan kombinasi terbaik antara kecepatan dan kecerdasan. 
 * [Matikan pemikiran di awal dengan `between_tools`](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#turn-off-up-front-thinking).
 * [Penggunaan alat paksa mengembalikan error](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#forced-tool-use-is-not-supported).
 * [Blok pemikiran terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them).
-* [Di Claude API dan Google Cloud, alat computer use `computer_20251124` yang lebih lama tidak diterima](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#computer-20251124-is-not-supported).
+* [Di Claude API dan Claude Models on Google Cloud (Google managed), alat computer use `computer_20251124` yang lebih lama tidak diterima](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#computer-20251124-is-not-supported).
 * [Alat advisor menolak Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, dan Claude Haiku 5.5 sebagai advisor](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#advisor-tool-pairings).
 
 Satu perubahan lagi mengubah bentuk respons tanpa menggagalkan permintaan apa pun: [teks di antara pemanggilan alat dikembalikan dalam blok `thinking`](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#text-between-tool-calls). Aplikasi yang melakukan streaming teks tersebut kepada penggunanya akan menjadi senyap di antara pemanggilan alat hingga aplikasi tersebut menetapkan nilai `display` yang mengembalikan teks, atau mematikan pemikiran di awal dengan `between_tools`.
@@ -56,13 +56,14 @@ Satu perubahan lagi mengubah bentuk respons tanpa menggagalkan permintaan apa pu
 
 ### Model IDs
 
-| Platform                                                                                               | Model ID                      |
-| :----------------------------------------------------------------------------------------------------- | :---------------------------- |
-| Claude API                                                                                             | `claude-sonnet-5-5`           |
-| [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)       | `anthropic.claude-sonnet-5-5` |
-| [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai)              | `claude-sonnet-5-5`           |
-| [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | `claude-sonnet-5-5`           |
-| [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) | `claude-sonnet-5-5`           |
+| Platform                                                                                                                                                   | Model ID                      |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------- |
+| Claude API                                                                                                                                                 | `claude-sonnet-5-5`           |
+| [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)                                                           | `anthropic.claude-sonnet-5-5` |
+| [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)       | `claude-sonnet-5-5`           |
+| [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                                                     | `claude-sonnet-5-5`           |
+| [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)                                                     | `claude-sonnet-5-5`           |
+| [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | `claude-sonnet-5-5`           |
 
 ### Pricing
 
@@ -93,12 +94,12 @@ Satu perubahan lagi mengubah bentuk respons tanpa menggagalkan permintaan apa pu
 
 ### Availability
 
-| Feature                                                                       | Value                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| :---------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Status](https://platform.claude.com/docs/id/about-claude/model-deprecations) | Active (latest)                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Released                                                                      | September 28, 2026                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Retirement                                                                    | Not sooner than September 28, 2027                                                                                                                                                                                                                                                                                                                                                                                      |
-| Platforms                                                                     | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+| Feature                                                                       | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| :---------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Status](https://platform.claude.com/docs/id/about-claude/model-deprecations) | Active (latest)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Released                                                                      | September 28, 2026                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Retirement                                                                    | Not sooner than September 28, 2027                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Platforms                                                                     | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
 
 ## Hal yang perlu diketahui
 

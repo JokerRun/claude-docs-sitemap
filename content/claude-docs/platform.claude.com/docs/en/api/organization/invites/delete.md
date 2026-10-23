@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/invites/delete
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 53eda4a96df14ed8057a77e5e17c40e3445a7b5e80e513011dc7768b3299eccd
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: c3285860c3e3353e652c0b4cc2bdab891d580c6b8c5e186f5ae5a05f8e48d703
 ---
 
 ---
@@ -49,8 +49,8 @@ Delete a pending invite.
 ```bash
 curl https://api.anthropic.com/v1/organizations/invites/$INVITE_ID \
     -X DELETE \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)

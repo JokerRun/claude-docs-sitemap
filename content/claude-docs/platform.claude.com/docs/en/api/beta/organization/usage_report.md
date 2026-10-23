@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 7c9510220543b240a2675541e717bad1420d5bc852a64d54664a0218b159b3c7
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: b8b12bbdc51d293418d279df68c7d592c02391d1bf624479d8664d3efa5ab647
 ---
 
 ---
@@ -395,8 +395,8 @@ Get Messages Usage Report
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/usage_report/messages \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)
@@ -630,8 +630,8 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 #### Response (200)

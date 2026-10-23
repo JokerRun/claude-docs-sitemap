@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/download
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: deb6efc58ea805762089d6d82e76acfa1d6853e88458d0562f00a377be84033c
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: ba53cbc7a2fa8a55f7282a8a8690b25ca7918ede3589614b7287d083aefe18db
 ---
 
 ---
@@ -158,6 +158,6 @@ Download a skill version's content as a zip archive.
 
 ```bash
 curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION/content \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```

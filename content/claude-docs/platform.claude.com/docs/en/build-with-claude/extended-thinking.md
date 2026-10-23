@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: e90628b1050066826eed1d861bef2f361c2c9a27ea47df9b3ed8e9920e2cd6b8
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 020d6658b87bb084b74d580763e0b3521c1e39af480cde64a01571b4898676ab
 ---
 
 ---
@@ -313,7 +313,7 @@ Two more considerations for interleaved thinking in manual mode:
 
 How platforms treat the beta header differs. The Claude API and [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) accept `interleaved-thinking-2025-05-14` on any model and ignore it where unsupported. Acceptance is not the same as effect: on models that reject `type: "enabled"` (4.7 and later) or lack manual-mode interleaving (Claude Opus 4.6), the header has no manual-mode effect; adaptive thinking interleaves automatically there.
 
-Partner-operated platforms ([Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock) and [Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai)) likewise accept the header on any model without returning an error, and ignore it on models that don't support interleaved thinking.
+Partner-operated platforms, [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock) and [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed), likewise accept the header on any model without returning an error, and ignore it on models that don't support interleaved thinking.
 
 ## Turn structure in manual mode
 

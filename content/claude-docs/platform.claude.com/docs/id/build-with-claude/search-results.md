@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/search-results
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 62810f99c292fdb74566a044cd8c879a3864dea42547a87df952dd3dbfc77343
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 22d79d1ed58cb66c3556a5a13845d80b63c33de2d2aed1905829849c3bf1cc6a
 ---
 
 ---
@@ -2123,7 +2123,7 @@ Ketika `citations.enabled` diatur ke `true`, Claude melampirkan referensi sitasi
 
 ## Keterbatasan
 
-* Blok konten hasil pencarian tersedia di Claude API, Amazon Bedrock, dan Google Cloud.
+* Blok konten hasil pencarian tersedia di Claude API, Amazon Bedrock, dan Claude Models on Google Cloud (Google managed).
 * Hanya konten teks yang didukung di dalam hasil pencarian (tanpa gambar atau media lain).
 * Blok `search_result` hanya dapat muncul dalam pesan pengguna (termasuk di dalam hasil alat). Pesan asisten dengan hasil pencarian akan ditolak.
 * Ketika [alat pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) diaktifkan dalam permintaan yang sama, sitasi harus diaktifkan pada semua blok `search_result`.

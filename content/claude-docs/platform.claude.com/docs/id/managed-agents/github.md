@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 49dfd3f53dfffb0063528efafc8ef17bdb86e59bda686952fe981976d173ef60
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 5fda36e443f3d2cea652b352af71adc6424a57d02be9e25a7843484ac7cc8666
 ---
 
 ---
@@ -149,20 +149,16 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   	System: anthropic.String("You are a code review assistant with access to GitHub."),
   	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{
   		{
-  			Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,
   			Name: "github",
   			URL:  "https://api.githubcopilot.com/mcp/",
   		},
   	},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{
   		{
-  			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-  				Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-  			},
+  			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{},
   		},
   		{
   			OfMCPToolset: &anthropic.BetaManagedAgentsMCPToolsetParams{
-  				Type:          anthropic.BetaManagedAgentsMCPToolsetParamsTypeMCPToolset,
   				MCPServerName: "github",
   			},
   		},
@@ -325,7 +321,6 @@ Kemudian buat sesi yang memasang repositori GitHub. Dengan [environment](https:/
   	Resources: []anthropic.BetaSessionNewParamsResourceUnion{
   		{
   			OfGitHubRepository: &anthropic.BetaManagedAgentsGitHubRepositoryResourceParams{
-  				Type:               anthropic.BetaManagedAgentsGitHubRepositoryResourceParamsTypeGitHubRepository,
   				URL:                "https://github.com/org/repo",
   				MountPath:          anthropic.String("/workspace/repo"),
   				AuthorizationToken: "ghp_your_github_token",
@@ -513,7 +508,6 @@ Pasang beberapa repositori dengan menambahkan entri ke array `resources` (csharp
   resources := []anthropic.BetaSessionNewParamsResourceUnion{
   	{
   		OfGitHubRepository: &anthropic.BetaManagedAgentsGitHubRepositoryResourceParams{
-  			Type:               anthropic.BetaManagedAgentsGitHubRepositoryResourceParamsTypeGitHubRepository,
   			URL:                "https://github.com/org/frontend",
   			MountPath:          anthropic.String("/workspace/frontend"),
   			AuthorizationToken: "ghp_your_github_token",
@@ -521,7 +515,6 @@ Pasang beberapa repositori dengan menambahkan entri ke array `resources` (csharp
   	},
   	{
   		OfGitHubRepository: &anthropic.BetaManagedAgentsGitHubRepositoryResourceParams{
-  			Type:               anthropic.BetaManagedAgentsGitHubRepositoryResourceParamsTypeGitHubRepository,
   			URL:                "https://github.com/org/backend",
   			MountPath:          anthropic.String("/workspace/backend"),
   			AuthorizationToken: "ghp_your_github_token",
@@ -660,7 +653,7 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
   ```
 
   ```go Go
-  // Daftar resource pada session
+  // List resources on the session
   listed, err := client.Beta.Sessions.Resources.List(ctx, session.ID, anthropic.BetaSessionResourceListParams{})
   if err != nil {
   	panic(err)
@@ -668,7 +661,7 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
   repoResourceID := listed.Data[0].ID
   fmt.Println(repoResourceID) // "sesrsc_01ABC..."
 
-  // Rotasi token otorisasi
+  // Rotate the authorization token
   _, err = client.Beta.Sessions.Resources.Update(ctx, repoResourceID, anthropic.BetaSessionResourceUpdateParams{
   	SessionID:          session.ID,
   	AuthorizationToken: "ghp_your_new_github_token",
@@ -813,11 +806,9 @@ Dengan server GitHub MCP, agen dapat membuat branch, melakukan commit perubahan,
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{
   		{
   			OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
-  				Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
   				Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{
   					{
   						OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-  							Type: anthropic.BetaManagedAgentsTextBlockTypeText,
   							Text: "Fix the type error in src/utils.ts, commit it to a new branch, and push it.",
   						},
   					},

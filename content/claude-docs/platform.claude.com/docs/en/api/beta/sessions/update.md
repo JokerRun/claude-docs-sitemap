@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/update
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: f869ab894ebeded13ba0c1ed014a2499c13f017513693d4ba7566d4ec41f5fcc
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: a2d31fef87929230e46e282053a0310a2f7a06b815738800a84a7d92a0bee30d
 ---
 
 ---
@@ -1873,9 +1873,9 @@ Update Session
 ```bash
 curl https://api.anthropic.com/v1/sessions/$SESSION_ID \
     -H 'Content-Type: application/json' \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "title": "Order #1234 inquiry"
         }'

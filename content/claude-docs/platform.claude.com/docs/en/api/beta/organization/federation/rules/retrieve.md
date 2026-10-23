@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/retrieve
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 1646b230d9a99ae477e62cbadadaf0d48b8670be858148b75c9bbeed1f5dd0ba
+fetched_at: 2026-10-23T02:21:28.653315Z
+sha256: 47302ac2b6c4295905a397317937c29662d7c83f10e398d099f1b2b30b2b862c
 ---
 
 ---
@@ -279,8 +279,8 @@ Retrieve a federation rule by its ID (`fdrl_...`).
 
 ```bash
 curl https://api.anthropic.com/v1/organizations/federation_rules/$FEDERATION_RULE_ID \
-    -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H 'anthropic-version: 2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY"
 ```
 
 ### Response (200)
