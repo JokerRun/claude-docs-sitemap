@@ -46,7 +46,7 @@
   lastmod: '2026-10-14T21:42:55.601Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/observability
-  lastmod: '2026-10-15T01:28:56.078Z'
+  lastmod: '2026-10-23T02:37:59.312Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/overview
   lastmod: '2026-09-21T22:47:12.347Z'
@@ -97,7 +97,7 @@
   lastmod: '2026-10-20T18:25:51.864Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/typescript
-  lastmod: '2026-10-21T20:15:18.784Z'
+  lastmod: '2026-10-23T02:28:30.804Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview
   lastmod: '2026-09-15T21:21:29.917Z'
@@ -139,7 +139,7 @@
   lastmod: '2026-10-03T01:14:45.816Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-10-22T22:30:05.531Z'
+  lastmod: '2026-10-23T23:49:35.352Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-10-20T02:25:04.226Z'
@@ -160,7 +160,7 @@
   lastmod: '2026-10-21T23:58:06.567Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-apps-gateway-deploy
-  lastmod: '2026-10-21T23:58:06.558Z'
+  lastmod: '2026-10-23T02:37:12.104Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-apps-gateway-on-aws
   lastmod: '2026-10-21T23:58:06.555Z'
@@ -175,7 +175,7 @@
   lastmod: '2026-10-23T00:32:32.146Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-directory
-  lastmod: '2026-10-22T00:33:56.033Z'
+  lastmod: '2026-10-23T16:44:14.075Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-platform-on-aws
   lastmod: '2026-10-14T02:36:06.919Z'
@@ -190,7 +190,7 @@
   lastmod: '2026-10-19T19:45:23.789Z'
 - source: code
   loc: https://code.claude.com/docs/en/cloud-environments
-  lastmod: '2026-10-22T00:03:18.184Z'
+  lastmod: '2026-10-23T13:43:53.180Z'
 - source: code
   loc: https://code.claude.com/docs/en/code-review
   lastmod: '2026-10-22T18:35:48.037Z'
@@ -202,7 +202,7 @@
   lastmod: '2026-10-21T02:12:05.805Z'
 - source: code
   loc: https://code.claude.com/docs/en/code-review-local
-  lastmod: '2026-10-20T02:25:04.222Z'
+  lastmod: '2026-10-23T16:44:14.055Z'
 - source: code
   loc: https://code.claude.com/docs/en/code-review-pull-requests
   lastmod: '2026-10-22T18:35:48.040Z'
@@ -232,7 +232,7 @@
   lastmod: '2026-10-19T17:33:27.600Z'
 - source: code
   loc: https://code.claude.com/docs/en/costs
-  lastmod: '2026-10-22T00:08:22.824Z'
+  lastmod: '2026-10-23T02:30:48.313Z'
 - source: code
   loc: https://code.claude.com/docs/en/cross-session-messaging
   lastmod: '2026-10-21T02:07:38.190Z'
@@ -247,7 +247,7 @@
   lastmod: '2026-10-07T20:25:12.983Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop
-  lastmod: '2026-10-23T01:14:24.839Z'
+  lastmod: '2026-10-23T19:43:28.350Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop-ios-simulator
   lastmod: '2026-10-19T19:44:55.663Z'
@@ -268,10 +268,10 @@
   lastmod: '2026-10-22T00:33:55.988Z'
 - source: code
   loc: https://code.claude.com/docs/en/env-vars
-  lastmod: '2026-10-23T00:36:20.179Z'
+  lastmod: '2026-10-23T16:44:14.089Z'
 - source: code
   loc: https://code.claude.com/docs/en/errors
-  lastmod: '2026-10-23T00:36:20.184Z'
+  lastmod: '2026-10-23T02:37:12.124Z'
 - source: code
   loc: https://code.claude.com/docs/en/fast-mode
   lastmod: '2026-10-19T18:23:11.707Z'
@@ -310,7 +310,7 @@
   lastmod: '2026-10-14T02:36:06.912Z'
 - source: code
   loc: https://code.claude.com/docs/en/headless
-  lastmod: '2026-10-20T18:25:51.862Z'
+  lastmod: '2026-10-23T16:44:14.062Z'
 - source: code
   loc: https://code.claude.com/docs/en/hipaa-setup
   lastmod: '2026-10-20T21:32:00.852Z'
@@ -325,7 +325,7 @@
   lastmod: '2026-10-07T07:30:34.339Z'
 - source: code
   loc: https://code.claude.com/docs/en/interactive-mode
-  lastmod: '2026-10-21T20:15:50.567Z'
+  lastmod: '2026-10-23T16:44:14.064Z'
 - source: code
   loc: https://code.claude.com/docs/en/jetbrains
   lastmod: '2026-10-09T20:45:36.627Z'
@@ -358,7 +358,7 @@
   lastmod: '2026-10-22T18:06:57.965Z'
 - source: code
   loc: https://code.claude.com/docs/en/mcp
-  lastmod: '2026-10-22T18:06:57.965Z'
+  lastmod: '2026-10-23T16:44:14.078Z'
 - source: code
   loc: https://code.claude.com/docs/en/mcp-quickstart
   lastmod: '2026-10-22T00:03:18.176Z'
@@ -376,10 +376,10 @@
   lastmod: '2026-10-22T18:08:57.630Z'
 - source: code
   loc: https://code.claude.com/docs/en/monitoring-usage
-  lastmod: '2026-10-22T19:18:40.536Z'
+  lastmod: '2026-10-23T02:37:59.329Z'
 - source: code
   loc: https://code.claude.com/docs/en/network-config
-  lastmod: '2026-10-21T23:58:06.541Z'
+  lastmod: '2026-10-23T02:37:12.089Z'
 - source: code
   loc: https://code.claude.com/docs/en/output-styles
   lastmod: '2026-10-08T03:42:36.486Z'
@@ -487,10 +487,10 @@
   lastmod: '2026-10-20T18:25:51.853Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugins/troubleshooting
-  lastmod: '2026-10-21T16:44:59.935Z'
+  lastmod: '2026-10-23T02:28:30.790Z'
 - source: code
   loc: https://code.claude.com/docs/en/prompt-caching
-  lastmod: '2026-10-21T23:58:06.540Z'
+  lastmod: '2026-10-23T02:28:30.792Z'
 - source: code
   loc: https://code.claude.com/docs/en/prompt-library
   lastmod: '2026-10-07T17:14:22.817Z'
@@ -517,13 +517,13 @@
   lastmod: '2026-10-16T20:11:39.043Z'
 - source: code
   loc: https://code.claude.com/docs/en/security-guidance
-  lastmod: '2026-10-19T19:44:55.671Z'
+  lastmod: '2026-10-23T13:44:40.129Z'
 - source: code
   loc: https://code.claude.com/docs/en/self-hosted-environments
   lastmod: '2026-10-20T02:25:04.209Z'
 - source: code
   loc: https://code.claude.com/docs/en/self-hosted-environments-configuration
-  lastmod: '2026-10-22T17:52:10.802Z'
+  lastmod: '2026-10-23T13:50:45.402Z'
 - source: code
   loc: https://code.claude.com/docs/en/self-hosted-environments-deploy
   lastmod: '2026-10-22T19:29:34.995Z'
@@ -553,13 +553,13 @@
   lastmod: '2026-10-22T00:03:18.172Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings-reference
-  lastmod: '2026-10-23T00:36:20.186Z'
+  lastmod: '2026-10-23T19:03:35.772Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
   lastmod: '2026-10-21T06:28:20.251Z'
 - source: code
   loc: https://code.claude.com/docs/en/skills
-  lastmod: '2026-10-23T00:36:20.172Z'
+  lastmod: '2026-10-23T16:44:14.080Z'
 - source: code
   loc: https://code.claude.com/docs/en/slack
   lastmod: '2026-10-06T01:49:06.013Z'
@@ -568,7 +568,7 @@
   lastmod: '2026-10-19T18:23:11.734Z'
 - source: code
   loc: https://code.claude.com/docs/en/sub-agents
-  lastmod: '2026-10-23T00:24:00.872Z'
+  lastmod: '2026-10-23T16:44:14.076Z'
 - source: code
   loc: https://code.claude.com/docs/en/terminal-config
   lastmod: '2026-10-19T18:23:11.688Z'
@@ -577,7 +577,7 @@
   lastmod: '2026-10-06T03:21:56.638Z'
 - source: code
   loc: https://code.claude.com/docs/en/tools-reference
-  lastmod: '2026-10-22T22:51:05.359Z'
+  lastmod: '2026-10-23T16:44:14.085Z'
 - source: code
   loc: https://code.claude.com/docs/en/troubleshoot-install
   lastmod: '2026-10-20T18:57:47.078Z'
@@ -592,7 +592,7 @@
   lastmod: '2026-10-22T17:41:17.138Z'
 - source: code
   loc: https://code.claude.com/docs/en/vs-code
-  lastmod: '2026-10-23T00:36:20.181Z'
+  lastmod: '2026-10-23T02:30:48.316Z'
 - source: code
   loc: https://code.claude.com/docs/en/web-quickstart
   lastmod: '2026-10-22T17:46:04.115Z'
@@ -1889,8 +1889,6 @@
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy
 - source: platform
-  loc: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-- source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
 - source: platform
   loc: https://platform.claude.com/docs/en/build-with-claude/compaction
@@ -2047,15 +2045,33 @@
 - source: platform
   loc: https://platform.claude.com/docs/en/manage-claude/claude-code-analytics-api
 - source: platform
+  loc: https://platform.claude.com/docs/en/manage-claude/claude-tag-api
+- source: platform
   loc: https://platform.claude.com/docs/en/manage-claude/cmek
 - source: platform
+  loc: https://platform.claude.com/docs/en/manage-claude/cmek-admin-api
+- source: platform
   loc: https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms
+- source: platform
+  loc: https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms-workspaces
 - source: platform
   loc: https://platform.claude.com/docs/en/manage-claude/cmek-azure-key-vault
 - source: platform
   loc: https://platform.claude.com/docs/en/manage-claude/cmek-claude-platform-on-aws
 - source: platform
+  loc: https://platform.claude.com/docs/en/manage-claude/cmek-coverage-claude-enterprise
+- source: platform
+  loc: https://platform.claude.com/docs/en/manage-claude/cmek-coverage-claude-platform
+- source: platform
+  loc: https://platform.claude.com/docs/en/manage-claude/cmek-data-retention
+- source: platform
   loc: https://platform.claude.com/docs/en/manage-claude/cmek-google-cloud-kms
+- source: platform
+  loc: https://platform.claude.com/docs/en/manage-claude/cmek-how-it-works
+- source: platform
+  loc: https://platform.claude.com/docs/en/manage-claude/cmek-key-lifecycle
+- source: platform
+  loc: https://platform.claude.com/docs/en/manage-claude/cmek-troubleshooting
 - source: platform
   loc: https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed
 - source: platform
@@ -2483,8 +2499,6 @@
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy
 - source: platform
-  loc: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
-- source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/compaction
@@ -2641,15 +2655,33 @@
 - source: platform
   loc: https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api
 - source: platform
+  loc: https://platform.claude.com/docs/id/manage-claude/claude-tag-api
+- source: platform
   loc: https://platform.claude.com/docs/id/manage-claude/cmek
 - source: platform
+  loc: https://platform.claude.com/docs/id/manage-claude/cmek-admin-api
+- source: platform
   loc: https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms
+- source: platform
+  loc: https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms-workspaces
 - source: platform
   loc: https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault
 - source: platform
   loc: https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws
 - source: platform
+  loc: https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise
+- source: platform
+  loc: https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-platform
+- source: platform
+  loc: https://platform.claude.com/docs/id/manage-claude/cmek-data-retention
+- source: platform
   loc: https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms
+- source: platform
+  loc: https://platform.claude.com/docs/id/manage-claude/cmek-how-it-works
+- source: platform
+  loc: https://platform.claude.com/docs/id/manage-claude/cmek-key-lifecycle
+- source: platform
+  loc: https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting
 - source: platform
   loc: https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed
 - source: platform

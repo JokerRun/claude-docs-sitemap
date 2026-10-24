@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-faq
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 7e4525b3a87ef4a0dd7c826ba384ed03c7ad50e70e3bd4055f9fd07dfac8cdf0
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: c6bfb36e21b9aae6b455788dc760719884716b479490b9f7cf49f41dbb1f5df5
 ---
 
 ---
@@ -85,7 +85,7 @@ description: Jawaban atas pertanyaan umum tentang akses, cakupan (scope), retens
   </Accordion>
 
   <Accordion title="Apa saja yang termasuk dalam transkrip sesi?">
-    Transkrip sesi lokal dan jarak jauh sama-sama memuat prompt pengguna, respons asisten, serta pemanggilan alat dan hasilnya. Untuk sesi lokal (di mesin pengguna), itu berarti apa yang diminta kepada Claude dan apa yang dikembalikannya, bukan apa yang terjadi di perangkat.
+    Transkrip sesi lokal dan jarak jauh sama-sama memuat prompt pengguna, respons asisten, serta panggilan alat dan hasilnya. Untuk sesi lokal (di mesin pengguna), itu adalah apa yang diminta kepada Claude dan apa yang dikembalikannya, bukan apa yang terjadi di perangkat.
 
     | Data                                 | Sesi lokal (di mesin pengguna)                                                                                                                                                                                                                               | Sesi jarak jauh (di cloud)                                                                                                                                                                               |
     | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -130,7 +130,7 @@ description: Jawaban atas pertanyaan umum tentang akses, cakupan (scope), retens
   </Accordion>
 
   <Accordion title="Dapatkah satu pelanggan memiliki beberapa organisasi di bawah satu induk?">
-    Ya. Organisasi induk Claude Enterprise dapat memiliki banyak organisasi tertaut, termasuk campuran organisasi claude.ai dan organisasi Claude Console (misalnya, organisasi Claude Console produksi dan staging yang terpisah). Identitas, SSO, dan SCIM dibagikan di seluruh induk; penagihan, anggota, proyek, dan kunci API tetap terpisah untuk setiap organisasi. Pengaktifan Compliance API terjadi di tingkat organisasi induk dan diteruskan ke semua organisasi tertaut, dan Compliance Access Key yang mencakup organisasi induk serta membawa `read:compliance_org_data` dapat mencantumkan setiap organisasi di bawah induk melalui `GET /v1/compliance/organizations`.
+    Ya. Organisasi induk Claude Enterprise dapat memiliki banyak organisasi yang ditautkan, termasuk campuran organisasi claude.ai dan organisasi Claude Console (misalnya, organisasi Claude Console produksi dan staging yang terpisah). Identitas, SSO, dan SCIM dibagikan di seluruh induk; penagihan, anggota, proyek, dan kunci API tetap terpisah untuk setiap organisasi. Pengaktifan Compliance API terjadi di tingkat organisasi induk dan diturunkan ke semua organisasi yang ditautkan, dan Compliance Access Key yang mencakup organisasi induk dan memiliki `read:compliance_org_data` dapat menampilkan setiap organisasi di bawah induk melalui `GET /v1/compliance/organizations`.
   </Accordion>
 
   <Accordion title="Apakah aktivitas dikembalikan secara berurutan, dan bagaimana cara mendeteksi bahwa saya sudah mengejar waktu nyata?">

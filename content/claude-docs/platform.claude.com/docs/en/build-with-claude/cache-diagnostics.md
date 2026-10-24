@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 6a6dee9af50dfc058ea308c6cc1a9359efd90daa4d4fae5797e063d4e93decfd
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 447862277d94b24085ce5c7bc2959074bfaa31dab8bd99a69be77ad595fc0de2
 ---
 
 ---
@@ -980,7 +980,7 @@ The `diagnostics` field on the response `Message` has three possible values:
 
 When `cache_miss_reason` is non-null, it looks like this:
 
-```text wrap
+```json
 {
   "id": "msg_01Xyz...",
   "type": "message",

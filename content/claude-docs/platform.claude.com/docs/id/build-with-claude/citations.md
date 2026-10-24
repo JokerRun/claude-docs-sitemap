@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/citations
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 70ef8b3768994ba3e89c2df4c9de9c6d0e98bcc87bbe5d6c1db9ddd3ccc8ba93
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 793eb391d36dd9c8d423da0e9f7eefc9e64f1772721044a7b1685a876c2afdbb
 ---
 
 ---
@@ -224,7 +224,9 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
       .source(source)
       .title("My Document")
       .context("This is a trustworthy document.")
-      .citations(CitationsConfigParam.builder().enabled(true).build())
+      .citations(CitationsConfigParam.builder()
+          .enabled(true)
+          .build())
       .build();
 
   TextBlockParam textBlockParam = TextBlockParam.builder()
@@ -273,7 +275,7 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
               ],
           ],
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   echo json_encode($response, JSON_PRETTY_PRINT);
@@ -283,7 +285,7 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       {
@@ -318,7 +320,7 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
 
   Dibandingkan dengan meminta Claude untuk mengutip sumber, fitur kutipan menawarkan keuntungan berikut:
 
-  * **Penghematan biaya:** Jika pendekatan berbasis prompt Anda meminta Claude untuk menghasilkan kutipan langsung, Anda mungkin melihat penghematan biaya karena `cited_text` tidak dihitung terhadap token output Anda.
+  * **Penghematan biaya:** Jika pendekatan berbasis prompt Anda meminta Claude untuk menghasilkan kutipan langsung, Anda mungkin melihat penghematan biaya karena `cited_text` tidak dihitung sebagai token output Anda.
   * **Keandalan kutipan yang lebih baik:** Karena API mengurai kutipan ke dalam format respons yang dijelaskan di bagian berikut dan mengekstrak `cited_text` secara langsung, kutipan dijamin berisi penunjuk yang valid ke dokumen yang disediakan.
   * **Kualitas kutipan yang ditingkatkan:** Dalam evaluasi Anthropic, fitur kutipan secara signifikan lebih mungkin mengutip kutipan yang paling relevan dari dokumen dibandingkan pendekatan yang murni berbasis prompt.
 </Tip>
@@ -345,7 +347,7 @@ Integrasikan kutipan dengan Claude dalam langkah-langkah berikut:
   </Step>
 
   <Step title="Claude memberikan respons yang dikutip">
-    * Respons sekarang dapat mencakup beberapa blok teks di mana setiap blok teks dapat berisi klaim yang dibuat Claude dan daftar kutipan yang mendukung klaim tersebut.
+    * Respons kini dapat menyertakan beberapa blok teks di mana setiap blok teks dapat berisi klaim yang dibuat Claude dan daftar sitasi yang mendukung klaim tersebut.
 
     * Kutipan merujuk ke lokasi tertentu dalam dokumen sumber. Format kutipan ini bergantung pada jenis dokumen yang dikutip.
 
@@ -381,7 +383,7 @@ Integrasikan kutipan dengan Claude dalam langkah-langkah berikut:
 ### Biaya token
 
 * Mengaktifkan kutipan menyebabkan sedikit peningkatan token input karena penambahan prompt sistem dan pemotongan dokumen.
-* Namun, fitur kutipan sangat efisien dengan token output. Secara internal, model menghasilkan kutipan dalam format standar yang kemudian diurai menjadi teks yang dikutip dan indeks lokasi dokumen. Bidang `cited_text` disediakan untuk kenyamanan dan tidak dihitung terhadap token output.
+* Namun, fitur sitasi sangat efisien dalam hal token output. Secara internal, model menghasilkan sitasi dalam format standar, dan sitasi tersebut kemudian diurai menjadi teks yang disitasi dan indeks lokasi dokumen. Field `cited_text` disediakan untuk kemudahan dan tidak dihitung sebagai token output.
 * Ketika diteruskan kembali dalam giliran percakapan berikutnya, `cited_text` juga tidak dihitung terhadap token input.
 
 ### Kompatibilitas fitur
@@ -603,8 +605,12 @@ Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung,
           + " ... ".repeat(1000); // Minimum cacheable length
 
   DocumentBlockParam documentParam = DocumentBlockParam.builder()
-      .source(PlainTextSource.builder().data(longDocument).build())
-      .citations(CitationsConfigParam.builder().enabled(true).build())
+      .source(PlainTextSource.builder()
+          .data(longDocument)
+          .build())
+      .citations(CitationsConfigParam.builder()
+          .enabled(true)
+          .build())
       .cacheControl(CacheControlEphemeral.builder().build()) // Cache the document content
       .build();
 
@@ -658,7 +664,7 @@ Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung,
               ],
           ],
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   echo json_encode($response, JSON_PRETTY_PRINT);
@@ -673,7 +679,7 @@ Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung,
     " ... " * 1000 # Minimum cacheable length
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       {
@@ -997,7 +1003,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
 
 ### Dokumen PDF
 
-Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau dengan `file_id`. Teks PDF diekstrak dan dipotong menjadi kalimat. Karena kutipan gambar belum didukung, PDF yang merupakan hasil pindaian dokumen dan tidak mengandung teks yang dapat diekstrak tidak dapat dikutip.
+Dokumen PDF dapat diberikan sebagai data yang dienkode base64, sebagai URL, atau dengan `file_id`. Teks PDF diekstrak dan di-chunk menjadi kalimat. Karena sitasi gambar belum didukung, PDF yang merupakan hasil pindaian dokumen dan tidak berisi teks yang dapat diekstrak tidak dapat disitasi.
 
 <Tabs>
   <Tab title="Base64">
@@ -1202,10 +1208,14 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       String pdfBase64 = Base64.getEncoder().encodeToString(pdfBytes);
 
       DocumentBlockParam documentParam = DocumentBlockParam.builder()
-          .source(Base64PdfSource.builder().data(pdfBase64).build())
+          .source(Base64PdfSource.builder()
+              .data(pdfBase64)
+              .build())
           .title("Document Title")
           .context("Context about the document that will not be cited from")
-          .citations(CitationsConfigParam.builder().enabled(true).build())
+          .citations(CitationsConfigParam.builder()
+              .enabled(true)
+              .build())
           .build();
 
       MessageCreateParams params = MessageCreateParams.builder()
@@ -1214,7 +1224,9 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
           .addUserMessageOfContentBlockParams(
               List.of(
                   ContentBlockParam.ofDocument(documentParam),
-                  ContentBlockParam.ofText(TextBlockParam.builder().text("Summarize this document.").build())
+                  ContentBlockParam.ofText(TextBlockParam.builder()
+                      .text("Summarize this document.")
+                      .build())
               )
           )
           .build();
@@ -1264,7 +1276,7 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
       pdf_base64 = Base64.strict_encode64(File.binread("/path/to/document.pdf"))
 
       response = client.messages.create(
-        model: "claude-opus-5-5",
+        model: Anthropic::Model::CLAUDE_OPUS_5_5,
         max_tokens: 1024,
         messages: [
           {
@@ -1482,7 +1494,9 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
               .build())
           .title("Document Title")
           .context("Context about the document that will not be cited from")
-          .citations(CitationsConfigParam.builder().enabled(true).build())
+          .citations(CitationsConfigParam.builder()
+              .enabled(true)
+              .build())
           .build();
 
       MessageCreateParams params = MessageCreateParams.builder()
@@ -1491,7 +1505,9 @@ Dokumen PDF dapat disediakan sebagai data yang dikodekan base64, URL, atau denga
           .addUserMessageOfContentBlockParams(
               List.of(
                   ContentBlockParam.ofDocument(documentParam),
-                  ContentBlockParam.ofText(TextBlockParam.builder().text("Summarize this document.").build())
+                  ContentBlockParam.ofText(TextBlockParam.builder()
+                      .text("Summarize this document.")
+                      .build())
               )
           )
           .build();
@@ -2023,14 +2039,20 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada 
       .source(ContentBlockSource.builder()
           .contentOfBlockSource(
               List.of(
-                  ContentBlockSourceContent.ofText(TextBlockParam.builder().text("First chunk").build()),
-                  ContentBlockSourceContent.ofText(TextBlockParam.builder().text("Second chunk").build())
+                  ContentBlockSourceContent.ofText(TextBlockParam.builder()
+                      .text("First chunk")
+                      .build()),
+                  ContentBlockSourceContent.ofText(TextBlockParam.builder()
+                      .text("Second chunk")
+                      .build())
               )
           )
           .build())
       .title("Document Title")
       .context("Context about the document that will not be cited from")
-      .citations(CitationsConfigParam.builder().enabled(true).build())
+      .citations(CitationsConfigParam.builder()
+          .enabled(true)
+          .build())
       .build();
 
   MessageCreateParams params = MessageCreateParams.builder()
@@ -2039,7 +2061,9 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada 
       .addUserMessageOfContentBlockParams(
           List.of(
               ContentBlockParam.ofDocument(documentParam),
-              ContentBlockParam.ofText(TextBlockParam.builder().text("Summarize this document.").build())
+              ContentBlockParam.ofText(TextBlockParam.builder()
+                  .text("Summarize this document.")
+                  .build())
           )
       )
       .build();
@@ -2077,7 +2101,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada 
               ],
           ],
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   echo json_encode($response, JSON_PRETTY_PRINT);
@@ -2087,7 +2111,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada 
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       {

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: d3e285f004c683d07312163d3d5cfc7d9dcc0e7f409a79bd91204337c5f90e7d
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: a9261e454806dcae780e8482e61e32c23a44ec4cf7792eba6e76009992f8a466
 ---
 
 ---
@@ -19,7 +19,7 @@ Untuk skema respons lengkap, lihat [referensi Messages API](https://platform.cla
 
 | Nilai                                                                                                                                        | Kapan terjadi                                         | Apa yang harus dilakukan                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`end_turn`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#end-turn)                                           | Claude menyelesaikan responsnya secara alami.         | Gunakan respons tersebut.                                                                                                                               |
+| [`end_turn`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#end-turn)                                           | Claude menyelesaikan responsnya secara alami.         | Gunakan responsnya.                                                                                                                                     |
 | [`max_tokens`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#max-tokens)                                       | Respons mencapai batas `max_tokens` Anda.             | Naikkan `max_tokens` atau [lanjutkan respons](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#ensuring-complete-responses). |
 | [`stop_sequence`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#stop-sequence)                                 | Claude mengeluarkan salah satu `stop_sequences` Anda. | Baca `stop_sequence` untuk melihat mana yang terpicu.                                                                                                   |
 | [`tool_use`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use)                                           | Claude sedang memanggil alat.                         | Jalankan alat dan kembalikan hasilnya. Panggilan alat server yang masih belum memiliki blok hasilnya akan selesai dalam respons berikutnya.             |
@@ -198,7 +198,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello!" }]
   )
@@ -213,11 +213,11 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
 </CodeGroup>
 
 <Accordion title="Respons kosong dengan end_turn">
-  Terkadang Claude mengembalikan respons kosong (tepat 2–3 token tanpa konten) dengan `stop_reason: "end_turn"`. Ini biasanya terjadi ketika Claude menafsirkan bahwa giliran asisten telah selesai, terutama setelah hasil alat.
+  Terkadang Claude mengembalikan respons kosong (tepat 2–3 token tanpa konten) dengan `stop_reason: "end_turn"`. Hal ini biasanya terjadi ketika Claude menentukan bahwa giliran assistant sudah selesai, terutama setelah hasil alat.
 
   **Penyebab umum:**
 
-  * Menambahkan blok teks tepat setelah hasil alat (Claude belajar untuk mengharapkan pengguna selalu menyisipkan teks setelah hasil alat, sehingga ia mengakhiri gilirannya untuk mengikuti pola tersebut)
+  * Menambahkan blok teks tepat setelah hasil alat (riwayat kemudian menunjukkan teks pengguna setelah setiap hasil alat, sehingga Claude mengakhiri gilirannya untuk mengikuti pola tersebut)
   * Mengirim kembali respons Claude yang sudah selesai tanpa menambahkan apa pun (Claude sudah menentukan bahwa ia selesai, jadi ia akan tetap selesai)
 
   **Cara mencegah respons kosong:**
@@ -269,7 +269,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
             "content": [
                 {"type": "tool_result", "tool_use_id": "toolu_123", "content": "6912"}
             ],
-        },  # Just the tool_result, no additional text
+        },  # Only the tool_result, no additional text
     ]
     ```
 
@@ -415,9 +415,14 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
         MessageParam.ofAssistantOfContentBlockParams(List.of(ContentBlockParam.ofToolUse(toolUse))),
         MessageParam.ofUserOfContentBlockParams(List.of(
             ContentBlockParam.ofToolResult(
-                ToolResultBlockParam.builder().toolUseId("toolu_123").content("6912").build()),
+                ToolResultBlockParam.builder()
+                    .toolUseId("toolu_123")
+                    .content("6912")
+                    .build()),
             // Jangan tambahkan teks setelah tool_result
-            ContentBlockParam.ofText(TextBlockParam.builder().text("Here's the result").build())
+            ContentBlockParam.ofText(TextBlockParam.builder()
+                .text("Here's the result")
+                .build())
         ))
     );
 
@@ -428,7 +433,10 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
         // Hanya tool_result, tanpa teks tambahan
         MessageParam.ofUserOfContentBlockParams(List.of(
             ContentBlockParam.ofToolResult(
-                ToolResultBlockParam.builder().toolUseId("toolu_123").content("6912").build())
+                ToolResultBlockParam.builder()
+                    .toolUseId("toolu_123")
+                    .content("6912")
+                    .build())
         ))
     );
     ```
@@ -726,7 +734,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
 
   **Praktik terbaik:**
 
-  1. **Jangan pernah menambahkan blok teks tepat setelah hasil alat:** Ini mengajarkan Claude untuk mengharapkan input pengguna setelah setiap penggunaan alat.
+  1. **Jangan pernah menambahkan blok teks tepat setelah hasil alat:** Hal ini membentuk pola input pengguna setelah setiap penggunaan alat, dan Claude mengikuti pola tersebut dengan mengakhiri gilirannya.
   2. **Jangan mencoba ulang respons kosong tanpa modifikasi:** Mengirim kembali respons kosong tidak akan membantu.
   3. **Gunakan prompt lanjutan sebagai upaya terakhir:** Hanya jika perbaikan ini tidak menyelesaikan masalah.
 </Accordion>
@@ -854,7 +862,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
   $response = $client->messages->create(
       maxTokens: 10,
       messages: [['role' => 'user', 'content' => 'Explain quantum physics']],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   if ($response->stopReason === 'max_tokens') {
@@ -869,7 +877,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
 
   # Permintaan dengan jumlah token terbatas
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 10,
     messages: [{ role: "user", content: "Explain quantum physics" }]
   )
@@ -1022,7 +1030,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
 
     ```ruby Ruby
     response = client.messages.create(
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 1024,
       messages: messages,
       tools: tools
@@ -1032,7 +1040,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
       last_block = response.content.last
       if last_block.type == :tool_use
         response = client.messages.create(
-          model: "claude-opus-5-5",
+          model: Anthropic::Model::CLAUDE_OPUS_5_5,
           max_tokens: 4096,
           messages: messages,
           tools: tools
@@ -1158,7 +1166,7 @@ Claude menemukan salah satu stop sequence kustom Anda.
   $response = $client->messages->create(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Generate text until you say END']],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       stopSequences: ['END', 'STOP'],
   );
 
@@ -1171,7 +1179,7 @@ Claude menemukan salah satu stop sequence kustom Anda.
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     stop_sequences: ["END", "STOP"],
     messages: [{ role: "user", content: "Generate text until you say END" }]
@@ -1185,7 +1193,7 @@ Claude menemukan salah satu stop sequence kustom Anda.
 
 ### tool\_use
 
-Claude sedang memanggil alat dan mengharapkan Anda menjalankannya.
+Claude sedang memanggil alat yang perlu Anda jalankan.
 
 <Note>
   Untuk sebagian besar implementasi "tool use" (penggunaan alat), gunakan [tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner), yang secara otomatis menangani eksekusi alat, pemformatan hasil, dan pengelolaan percakapan.
@@ -1247,7 +1255,7 @@ Claude sedang memanggil alat dan mengharapkan Anda menjalankannya.
 
 
   def execute_tool(name, tool_input):
-      """Execute a tool and return the result."""
+      """Run a tool and return the result."""
       return f"Weather in {tool_input.get('location', 'unknown')}: 72°F"
 
 
@@ -1439,7 +1447,7 @@ Claude sedang memanggil alat dan mengharapkan Anda menjalankannya.
       // Ekstrak dan jalankan alat
       foreach ($response->content as $block) {
           if ($block->type === 'tool_use') {
-              // Jalankan $block->name dengan $block->input dan kembalikan hasilnya ke Claude
+              // Jalankan $block->name dengan $block->input lalu kembalikan hasilnya ke Claude
           }
       }
   }
@@ -1477,10 +1485,10 @@ Claude sedang memanggil alat dan mengharapkan Anda menjalankannya.
   ```
 </CodeGroup>
 
-Respons `tool_use` juga dapat berisi blok `server_tool_use` yang `id`-nya tidak memiliki blok hasil yang cocok. Panggilan alat server tersebut belum selesai, dan respons ini tidak membawa hasilnya. Dalam kasus umum, Claude memanggil [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) dan salah satu alat klien Anda dalam kelompok panggilan alat paralel yang sama: API kembali tanpa menjalankan alat server sehingga Anda dapat menjalankan alat klien terlebih dahulu. Tidak ada penanda lain untuk status ini; deteksi dengan memeriksa `id` setiap blok `server_tool_use` atau `mcp_tool_use` untuk mencari blok hasil yang cocok.
+Respons `tool_use` juga dapat berisi blok `server_tool_use` yang `id`-nya tidak memiliki blok hasil yang cocok. Panggilan server tool tersebut belum selesai, dan respons ini tidak membawa hasilnya. Dalam kasus umum, Claude memanggil sebuah [server tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) dan salah satu client tool Anda dalam kelompok panggilan alat paralel yang sama: API mengembalikan respons tanpa menjalankan server tool agar Anda dapat menjalankan client tool terlebih dahulu. Tidak ada penanda lain untuk keadaan ini; deteksi dengan memeriksa `id` setiap blok `server_tool_use` atau `mcp_tool_use` apakah memiliki blok hasil yang cocok.
 
 <Note>
-  Dengan [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), bentuk respons yang sama memiliki arti yang berbeda. Blok `tool_use` klien berasal dari kode yang sedang berjalan di alat `code_execution`, bukan dari Claude secara langsung, dan field `caller`-nya menyebutkan blok `code_execution` yang memanggilnya. Kode tersebut sudah mulai berjalan: ia dijeda menunggu blok `tool_result` Anda, dan mengirimkannya akan melanjutkan eksekusi alih-alih memulai alat yang ditangguhkan. Blok hasil milik blok `code_execution` itu sendiri tiba setelah kode selesai, yang dapat memerlukan lebih dari satu putaran hasil alat. Pesan pengguna lanjutannya sendiri sama dalam kedua kasus; dengan pemanggilan alat terprogram, kirimkan juga kembali `id` dari field `container` respons, seperti yang ditunjukkan halaman tersebut.
+  Dengan [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), bentuk respons yang sama memiliki arti yang berbeda. Blok client `tool_use` berasal dari kode yang sedang berjalan di alat `code_execution` alih-alih langsung dari Claude, dan field `caller`-nya menyebutkan blok `code_execution` yang memanggilnya. Kode tersebut sudah dimulai: kode itu dijeda sambil menunggu blok `tool_result` Anda, dan mengirimkannya akan melanjutkan eksekusi alih-alih memulai alat yang ditunda. Blok hasil milik blok `code_execution` itu sendiri tiba setelah kode selesai, yang dapat memerlukan lebih dari satu putaran hasil alat. Pesan pengguna lanjutan itu sendiri sama dalam kedua kasus; dengan pemanggilan alat terprogram, kirimkan juga kembali `id` dari field `container` respons, seperti yang ditunjukkan di halaman tersebut.
 </Note>
 
 ```json A mixed tool_use response
@@ -1528,9 +1536,9 @@ Menghilangkan `tool_result`, atau menempatkannya setelah konten lain, akan gagal
 
 ### pause\_turn
 
-Dikembalikan ketika loop sampling sisi server mencapai batas iterasinya saat mengeksekusi [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) seperti pencarian web. Batas default adalah 10 iterasi per permintaan.
+Dikembalikan ketika loop sampling sisi server mencapai batas iterasinya saat menjalankan [server tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) seperti pencarian web. Batas default adalah 10 iterasi untuk setiap permintaan.
 
-Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok hasil yang sesuai. Agar Claude dapat menyelesaikan pemrosesan, lanjutkan percakapan dengan mengirim kembali respons apa adanya. Respons yang membiarkan blok `tool_use` klien menunggu Anda tidak pernah memiliki `stop_reason` berupa `pause_turn`: ketika Claude berhenti untuk memanggil alat Anda, `stop_reason`-nya adalah [`tool_use`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use), dan Anda melanjutkannya dengan mengirim blok `tool_result` klien alih-alih respons itu sendiri.
+Ketika hal ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok hasil yang sesuai. Agar Claude dapat menyelesaikan pemrosesan, lanjutkan percakapan dengan mengirimkan kembali respons apa adanya. Respons yang menyisakan blok client `tool_use` yang menunggu Anda tidak pernah memiliki `stop_reason` bernilai `pause_turn`: ketika Claude berhenti untuk memanggil alat Anda, `stop_reason` bernilai [`tool_use`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use), dan Anda melanjutkannya dengan mengirimkan blok client `tool_result` alih-alih respons itu sendiri.
 
 <CodeGroup>
   ```bash cURL
@@ -1865,7 +1873,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
   $response = $client->messages->create(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => '[Unsafe request]']],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   if ($response->stopReason === 'refusal') {
@@ -1879,7 +1887,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [{ role: "user", content: "[Unsafe request]" }]
   )
@@ -1896,7 +1904,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
   Jika Anda sering menemukan alasan berhenti `refusal` saat menggunakan Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)) atau Claude Opus 4.1 (yang terakhir [telah dipensiunkan, kecuali di Bedrock dan Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Anda dapat mencoba memperbarui panggilan API Anda untuk menggunakan Haiku 4.5 (`claude-haiku-4-5-20251001`), yang memiliki batasan penggunaan berbeda. Pelajari lebih lanjut tentang [memahami filter keamanan API Sonnet 4.5](https://support.claude.com/en/articles/12449294-understanding-sonnet-4-5-s-api-safety-filters).
 </Tip>
 
-Pada penolakan, objek `stop_details` mengidentifikasi kategori kebijakan yang memicunya. Kategori-kategori tersebut dan bentuk respons penolakan lengkap dibahas di [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response). `stop_details` bernilai `null` untuk semua alasan berhenti selain `refusal`.
+Pada penolakan, objek `stop_details` mengidentifikasi kategori kebijakan yang memicunya. Kategori-kategori tersebut dan bentuk lengkap respons penolakan dibahas dalam [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response). `stop_details` bernilai `null` untuk semua alasan berhenti selain `refusal`.
 
 Permintaan yang ditolak pada Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, atau Claude Haiku 5.5 biasanya dapat dilayani dengan mencoba ulang pada model Claude lain. [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) menunjukkan cara menyiapkan percobaan ulang tersebut, di sisi server atau di klien Anda. Claude Haiku 5.5 tidak memiliki fallback sisi server, jadi siapkan percobaan ulangnya [di klien Anda](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback). Jika Anda membangun sendiri percobaan ulang dari Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, atau Claude Sonnet 5.5, [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) menjelaskan cara menghindari membayar biaya cache prompt dua kali.
 
@@ -2325,15 +2333,15 @@ Ketika respons terpotong karena batas token atau jendela konteks, tambahkan pemb
 
 ### Implementasikan logika percobaan ulang untuk pause\_turn
 
-Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools), API dapat mengembalikan `pause_turn` jika loop sampling sisi server mencapai batas iterasinya (default 10). Tangani ini dengan melanjutkan percakapan:
+Ketika Anda menggunakan [server tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools), API mungkin mengembalikan `pause_turn` jika loop sampling sisi server mencapai batas iterasinya (default 10). Tangani hal ini dengan melanjutkan percakapan:
 
 <CodeGroup exclude="shell">
   ```python Python
   def handle_server_tool_conversation(client, user_query, tools, max_continuations=5):
       """
-      Handle server tool conversations that may require multiple continuations.
+      Handle server tool conversations that might require multiple continuations.
 
-      The server runs a sampling loop when executing server tools. If the loop
+      The server uses a sampling loop to run server tools. If the loop
       reaches its iteration limit, the API returns pause_turn. Continue the
       conversation by sending the response back to let Claude finish.
       """
@@ -2348,7 +2356,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
           )
 
           if response.stop_reason != "pause_turn":
-              # Claude selesai memproses - kembalikan respons akhir
+              # Claude selesai memproses: kembalikan respons akhir
               return response
 
           # pause_turn: ganti seluruh daftar pesan agar peran tetap bergantian
@@ -2357,7 +2365,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
               {"role": "assistant", "content": response.content},
           ]
 
-      # Batas maksimum kelanjutan tercapai - kembalikan respons terakhir
+      # Batas maksimum kelanjutan tercapai: kembalikan respons terakhir
       return response
   ```
 
@@ -2380,7 +2388,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
       });
 
       if (response.stop_reason !== "pause_turn") {
-        // Claude selesai memproses - kembalikan respons akhir
+        // Claude selesai memproses: kembalikan respons akhir
         return response;
       }
 
@@ -2391,7 +2399,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
       ];
     }
 
-    // Batas maksimum kelanjutan tercapai - kembalikan respons terakhir
+    // Batas maksimum kelanjutan tercapai: kembalikan respons terakhir
     return response!;
   }
   ```
@@ -2418,7 +2426,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
 
           if (response.StopReason != "pause_turn")
           {
-              // Claude selesai memproses - kembalikan respons akhir
+              // Claude selesai memproses: kembalikan respons akhir
               return response;
           }
 
@@ -2433,7 +2441,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
           ];
       }
 
-      // Batas maksimum kelanjutan tercapai - kembalikan respons terakhir
+      // Batas maksimum kelanjutan tercapai: kembalikan respons terakhir
       return response;
   }
   ```
@@ -2461,7 +2469,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
   		}
 
   		if response.StopReason != "pause_turn" {
-  			// Claude selesai memproses - kembalikan respons akhir
+  			// Claude selesai memproses: kembalikan respons akhir
   			return response, nil
   		}
 
@@ -2476,7 +2484,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
   		}
   	}
 
-  	// Batas maksimum kelanjutan tercapai - kembalikan respons terakhir
+  	// Batas maksimum kelanjutan tercapai: kembalikan respons terakhir
   	return response, nil
   }
   ```
@@ -2504,13 +2512,13 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
           response = client.messages().create(params.build());
 
           if (!response.stopReason().map(StopReason.PAUSE_TURN::equals).orElse(false)) {
-              // Claude selesai memproses - kembalikan respons akhir
+              // Claude selesai memproses: kembalikan respons akhir
               return response;
           }
           // pause_turn: ulangi loop dan kirim kembali responsnya
       }
 
-      // Batas maksimum kelanjutan tercapai - kembalikan respons terakhir
+      // Batas maksimum lanjutan tercapai: kembalikan respons terakhir
       return response;
   }
   ```
@@ -2534,7 +2542,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
           );
 
           if ($response->stopReason !== 'pause_turn') {
-              // Claude selesai memproses - kembalikan respons akhir
+              // Claude selesai memproses: kembalikan respons akhir
               return $response;
           }
 
@@ -2545,7 +2553,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
           ];
       }
 
-      // Batas maksimum kelanjutan tercapai - kembalikan respons terakhir
+      // Batas maksimum kelanjutan tercapai: kembalikan respons terakhir
       return $response;
   }
   ```
@@ -2563,7 +2571,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
         tools: tools
       )
 
-      # Claude selesai memproses - kembalikan respons akhir
+      # Claude selesai memproses: kembalikan respons akhir
       return response unless response.stop_reason == :pause_turn
 
       # pause_turn: ganti seluruh daftar pesan agar peran tetap bergantian
@@ -2573,7 +2581,7 @@ Saat menggunakan [alat server](https://platform.claude.com/docs/id/agents-and-to
       ]
     end
 
-    # Batas maksimum kelanjutan tercapai - kembalikan respons terakhir
+    # Batas maksimum kelanjutan tercapai: kembalikan respons terakhir
     response
   end
   ```
@@ -2764,7 +2772,7 @@ Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
       $response = $client->messages->create(
           maxTokens: 1024,
           messages: [['role' => 'user', 'content' => 'Hello!']],
-          model: 'claude-opus-5-5',
+          model: Model::CLAUDE_OPUS_5_5,
       );
 
       // Tangani respons yang berhasil dengan stop_reason
@@ -2784,7 +2792,7 @@ Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
 
   begin
     response = client.messages.create(
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 1024,
       messages: [{ role: "user", content: "Hello!" }]
     )
@@ -2813,7 +2821,7 @@ Saat menggunakan streaming, `stop_reason`:
 <CodeGroup>
   ```bash cURL
   # Event message_delta dalam stream SSE membawa stop_reason.
-  curl --no-buffer https://api.anthropic.com/v1/messages \
+  curl -N https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
@@ -2939,7 +2947,7 @@ Saat menggunakan streaming, `stop_reason`:
   $stream = $client->messages->createStream(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello!']],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   foreach ($stream as $event) {
@@ -2953,7 +2961,7 @@ Saat menggunakan streaming, `stop_reason`:
   client = Anthropic::Client.new
 
   stream = client.messages.stream(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello!" }]
   )
@@ -3648,7 +3656,7 @@ Dengan alasan berhenti `model_context_window_exceeded`, Anda dapat meminta token
     Coba ulang permintaan yang ditolak pada model fallback, di sisi server atau di klien Anda.
   </Card>
 
-  <Card title="Tool Runner (SDK)" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner">
+  <Card title="Tool runner (SDK)" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner">
     Biarkan SDK mengelola loop `tool_use`, pemformatan hasil, dan percobaan ulang untuk Anda.
   </Card>
 

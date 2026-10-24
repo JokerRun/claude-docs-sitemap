@@ -1,163 +1,86 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 8e4007967ff0402eb4150924fb77840544659b7b025958f6933cd1ab7ccb4f88
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 4f092ffd3690ac5ad2f54e37253a1ce34556d673462ee1bbdd78fad208e23186
 ---
 
 ---
 title: Kunci enkripsi yang dikelola pelanggan
 url: https://platform.claude.com/docs/id/manage-claude/cmek
-description: Enkripsi data workspace Claude saat istirahat dengan kunci yang Anda kendalikan.
+description: Gunakan kunci yang Anda pegang di cloud Anda sendiri untuk mengenkripsi data yang disimpan oleh Claude.
 ---
 
-Tanyakan kepada Claude Code tentang fitur ini
+Tanyakan Claude Code tentang fitur ini
 
 ```text
-/claude-api ceritakan kepada saya tentang kunci enkripsi yang dikelola pelanggan
+/claude-api ceritakan tentang kunci enkripsi yang dikelola pelanggan
 ```
 
-Kunci enkripsi yang dikelola pelanggan (customer-managed encryption key, atau CMEK) memungkinkan Anda menyediakan kunci enkripsi di [AWS KMS](https://aws.amazon.com/kms/), [Google Cloud KMS](https://cloud.google.com/security/products/security-key-management), atau [Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault) Anda sendiri dan meminta Anthropic menggunakannya untuk mengenkripsi data workspace tertentu saat istirahat. Anda mempertahankan kendali penuh atas kunci tersebut, termasuk rotasi, audit, dan pencabutan, dan operasi kunci yang dilakukan Anthropic terhadap kunci Anda dicatat dalam log audit penyedia cloud Anda.
+Dengan "customer-managed encryption keys" (kunci enkripsi yang dikelola pelanggan), atau CMEK, Anda membuat kunci di AWS KMS, Google Cloud KMS, atau Azure Key Vault milik Anda sendiri. Anthropic menggunakannya untuk mengenkripsi data tertentu saat diam (at rest). Kunci tersebut tetap berada di bawah kendali Anda, sehingga Anda dapat merotasinya, mengaudit penggunaannya, dan mencabut akses Anthropic.
 
-Penggunaan CMEK bersifat opsional. Organisasi yang memenuhi syarat dapat **memilih untuk ikut serta** menggunakan kunci enkripsi yang dikelola pelanggan alih-alih enkripsi default yang disediakan Anthropic. Untuk mengaktifkan CMEK, hubungi tim akun Anthropic Anda.
+## Pilih halaman penyiapan Anda
 
-<Warning>
-  **Mengaktifkan CMEK bersifat permanen dan dapat menyebabkan kehilangan data yang tidak dapat dipulihkan**
+Pilih layanan yang menyimpan kunci Anda. Claude Platform on AWS, yang juga menggunakan AWS KMS, memiliki halamannya sendiri.
 
-  Mengaktifkan CMEK bersifat permanen. Anthropic tidak menyimpan salinan kunci Anda, sehingga kesalahan konfigurasi atau kehilangan kunci dapat menghancurkan data yang dilindungi CMEK Anda secara permanen. Jika Anda tidak yakin tentang langkah apa pun, hubungi perwakilan Anthropic Anda sebelum menerapkan perubahan.
-
-  * **Kehilangan data permanen:** Jika kunci enkripsi Anda dihapus, dijadwalkan untuk dihapus, atau material kuncinya dihancurkan, Anthropic tidak dapat memulihkan data Anda.
-  * **Verifikasi identifier bersifat wajib:** Memberikan akses kunci kepada principal yang salah atau dipalsukan dapat mengekspos data Anda kepada pihak yang tidak berwenang. Selalu verifikasi identifier Anthropic terhadap identitas produksi yang dipublikasikan di setiap panduan konfigurasi. Pada Claude Platform on AWS, identitas tersebut adalah AWS service principal yang dipublikasikan dalam [Menyiapkan CMEK di Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws). Jangan pernah mempercayai identifier yang diberikan melalui email, chat, atau saluran onboarding apa pun.
-</Warning>
-
-## Cara kerjanya
-
-Hanya Organization Admin (pada Claude Platform; peran Admin pada Claude Platform on AWS) atau Owner dan Primary Owner (pada Claude Enterprise) yang dapat mengonfigurasi CMEK. Pada Claude Platform, CMEK dicakup per workspace dan dikonfigurasi di Claude Console atau dengan Admin API (pada Claude Platform on AWS, di Claude Console atau melalui endpoint kunci eksternal dan workspace yang diotorisasi IAM). Pada Claude Enterprise, CMEK dicakup per organisasi dan dikonfigurasi di [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls). Pada kedua produk, CMEK melindungi data yang ditulis setelah kunci Anda berlaku. Data yang sudah ada (chat, file, dan sesi sebelumnya) tetap dienkripsi dengan kunci yang dikelola Anthropic dan tidak dienkripsi ulang dengan kunci Anda.
-
-Pada Claude Platform, Anthropic merekomendasikan untuk melampirkan kunci Anda ke workspace baru sebelum Anda mengirim permintaan apa pun ke workspace tersebut. Jika Anda melampirkan kunci ke workspace yang sudah menerima permintaan, kunci Anda dapat memerlukan waktu hingga satu hari untuk berlaku. Data yang ditulis sebelum itu, seperti data yang sudah ada, dienkripsi dengan kunci yang dikelola Anthropic dan tidak dienkripsi ulang.
-
-Peristiwa konfigurasi CMEK muncul di [Compliance API Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed). Operasi kunci yang dilakukan Anthropic terhadap kunci Anda (seperti membungkus dan membuka bungkus kunci data) tidak muncul di Compliance API; mereka muncul di log audit penyedia cloud Anda.
-
-Anthropic memanggil layanan manajemen kunci Anda dari rentang IP publik standarnya. Jika Anda membatasi akses ke layanan manajemen kunci Anda berdasarkan IP, izinkan alamat yang tercantum di [Alamat IP](https://platform.claude.com/docs/id/api/ip-addresses). Pada Claude Platform on AWS, jangan mengandalkan pembatasan berbasis IP untuk kunci Anda; cakup akses dengan kebijakan kunci yang dijelaskan dalam [Menyiapkan CMEK di Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws) sebagai gantinya.
-
-## Prasyarat
-
-* Izin untuk membuat kunci enkripsi dan mengelola akses kunci di akun, proyek, atau langganan yang akan menampung kunci enkripsi.
-* Peran Organization Admin di Claude Console pada Claude Platform (peran Admin pada Claude Platform on AWS), atau peran Owner atau Primary Owner pada Claude Enterprise.
-* Konfigurasi retensi data: CMEK diizinkan dengan [Zero data retention (ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention) untuk Claude Platform dan Claude Enterprise.
-
-## Ketersediaan dan wilayah
-
-Kecuali pada Claude Platform on AWS (dibahas di akhir bagian ini), CMEK saat ini hanya tersedia di wilayah AS, dan semua operasi enkripsi diproses di wilayah AS. Untuk latensi minimal, pilih wilayah yang dekat dengan infrastruktur AS Anthropic:
-
-| Penyedia     | Wilayah yang direkomendasikan |
-| ------------ | ----------------------------- |
-| AWS          | `us-east-2`                   |
-| Google Cloud | `us-central1`, `us-east5`     |
-| Azure        | `northcentralus`, `eastus2`   |
-
-Pada [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), CMEK hanya tersedia dengan kunci AWS KMS; kunci Google Cloud KMS dan Azure Key Vault tidak dapat didaftarkan. Rekomendasi wilayah ini tidak berlaku di sana: kunci harus berupa kunci KMS wilayah tunggal di akun dan wilayah AWS yang sama dengan workspace tempat kunci tersebut dilampirkan, dan kebijakan kuncinya harus memberikan akses ke AWS service principal alih-alih peran IAM Anthropic; lihat [Menyiapkan CMEK di Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws). Daftarkan dan lampirkan kunci di Claude Console; endpoint kunci eksternal juga tersedia pada Claude Platform on AWS, diotorisasi melalui [tindakan IAM](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#encryption-keys). Tidak ada langkah validasi terpisah: kunci divalidasi secara implisit saat Anda melampirkannya ke workspace (panggilan lampiran melakukan putaran enkripsi/dekripsi), sehingga masalah kebijakan kunci muncul pada saat pelampiran alih-alih pada saat pendaftaran.
-
-## Apa yang dilindungi CMEK
-
-Apa yang dicakup CMEK bergantung pada produk mana yang Anda gunakan.
-
-### Dienkripsi dengan kunci CMEK
-
-**Claude Platform**
-
-* Konten pesan, file dan lampiran (baik lampiran inline yang dikirim bersama permintaan maupun unggahan Files API), serta konfigurasi MCP dan alat.
-* Data [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) (beta), termasuk konfigurasi agent, environment, webhook, sesi beserta event-nya, [memory stores](https://platform.claude.com/docs/id/managed-agents/memory) (beta) beserta memori dan versi memorinya, serta [dreams](https://platform.claude.com/docs/id/managed-agents/dreams) (research preview).
-* Data yang disimpan saat diam (at rest) oleh Batch API dan Skills API, serta oleh alat-alat berikut: web search, web fetch, code execution, bash, text editor, MCP connector (beta), structured outputs, advisor tool (beta), computer use, browser use, dan context management.
-
-**Claude Enterprise**
-
-* Konten chat, termasuk skill dan plugin.
-* Lampiran chat dan lampiran proyek.
-* Claude Code di CLI, termasuk konten pesan.
-* Cowork di Claude Desktop.
-* [Transkrip sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions) Compliance API yang diambil dari sesi di mesin pengguna. Jika kunci Anda tidak dapat digunakan, endpoint messages mengembalikan [503 Service Unavailable](https://platform.claude.com/docs/id/manage-claude/compliance-errors#local-sessions-temporarily-unavailable) alih-alih konten transkrip. Metadata sesi tetap dicantumkan.
-* Agen Office.
-* Claude in Chrome.
-* Claude Science, yang berstatus beta.
-
-Pada kedua produk, cadangan dan snapshot mewarisi kunci.
-
-### Dinonaktifkan atau dimodifikasi
-
-Beberapa fitur dimatikan atau dimodifikasi secara substansial saat CMEK diaktifkan. Daftar ini tidak lengkap; tinjau bersama tim Anda sebelum mengaktifkan CMEK.
-
-**Claude Platform**
-
-* Playground di Claude Console dinonaktifkan.
-* Structured outputs tidak tersedia untuk model Claude Fable atau Claude Mythos di organisasi CMEK.
-* Fitur beta dan research preview lainnya mungkin tidak dicakup oleh CMEK.
-
-**Claude Enterprise**
-
-* Pencarian chat dinonaktifkan karena judul dan konten chat dienkripsi dengan kunci Anda. Anggota tidak dapat mencari chat sebelumnya, dan toggle **Search and reference chats** tetap nonaktif, sehingga Claude juga tidak dapat mencarinya.
-* [Pencarian pengetahuan proyek](https://support.claude.com/en/articles/11473015-retrieval-augmented-generation-rag-for-projects) ("retrieval-augmented generation" (generasi yang diperkaya pengambilan), atau RAG) dinonaktifkan. Pengetahuan proyek dimuat langsung ke dalam konteks setiap percakapan alih-alih diindeks dan dicari. Akibatnya, sebuah proyek dapat menggunakan pengetahuan yang jauh lebih sedikit dibandingkan tanpa CMEK. Pengetahuan yang melebihi batas yang dapat dimuat akan dikecualikan dari percakapan.
-* Claude Code di web dan Claude in Slack tidak tersedia: sesi baru tidak dapat dimulai dan Claude in Slack menolak permintaan, bahkan jika admin mengaktifkan produk-produk ini. Claude Code Desktop tetap tersedia untuk sesi lokal tetapi nonaktif kecuali admin mengaktifkannya di [claude.ai > Organization settings > Claude Code](https://claude.ai/admin-settings/claude-code).
-* Claude Code tidak dapat [mempublikasikan artifact](https://code.claude.com/docs/id/artifacts#availability). Namun, artifact yang dibuat di chat atau Cowork dapat dibagikan dalam organisasi Anda, tetapi tidak secara publik.
-* Analitik tertentu dinonaktifkan, terlepas dari pengaturan admin: Claude smart reports (beta, di bawah claude.ai/analytics/insights) dan metrik kontribusi Claude Code dari GitHub (beta, di bawah claude.ai/analytics/claude-code). Analitik admin untuk skill dan connector, di dashboard analitik claude.ai dan melalui [Claude Enterprise Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api), tidak menyertakan penggunaan di chat, dan menyembunyikan nama skill, plugin, dan connector kustom.
-* Ekspor data organisasi dan ekspor log audit, keduanya di [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls), dinonaktifkan.
-* Penilaian respons (jempol ke atas dan jempol ke bawah pada respons Claude) dinonaktifkan.
-* [Pemindaian keamanan skill dan plugin](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise#skill-content-scanning) tidak tersedia: pengaturan tidak dapat diaktifkan, dan skill serta plugin dipasang tanpa pemindaian.
-* Fitur beta dan research preview berikut tidak tersedia di organisasi CMEK, terlepas dari pengaturan admin: Claude Design, Claude Slides, dan Claude Docs dalam percakapan serta tab **Artifacts**, dan routine.
-
-### Dienkripsi dengan kunci Anthropic
-
-Fitur-fitur ini tetap tersedia, tetapi datanya tidak dienkripsi dengan kunci Anda. Anda dapat menonaktifkan fitur apa pun yang tidak sesuai untuk kasus penggunaan Anda di **Settings**.
-
-**Claude Platform**
-
-* Data yang tidak dalam keadaan istirahat (seperti cache) dan data dengan TTL lebih pendek dari 24 jam.
-* Activity Feed, log audit, dan lalu lintas jaringan telemetri seperti OTEL, sehingga pelanggan dapat mempertahankan kepatuhan bahkan jika kunci dicabut.
-* Nilai [kredensial vault](https://platform.claude.com/docs/id/managed-agents/vaults) Claude Managed Agents, seperti token OAuth dan client secret. Ini disimpan di bawah enkripsi yang dikelola Anthropic, bersifat write-only, dan tidak pernah dikembalikan dalam respons API.
-* [Profil pengguna](https://platform.claude.com/docs/id/api/beta/user_profiles): field `name`, `external_id`, dan `metadata` disimpan di bawah enkripsi yang dikelola Anthropic, bukan kunci Anda. Jangan menyimpan data pribadi sensitif di `metadata` profil.
-* Penilaian dan komentar tentang Claude Console yang dikirim anggota melalui opsi **Feedback**. Tidak ada pengaturan yang menonaktifkannya; anggota hanya mengirimkannya jika mereka memilih untuk melakukannya.
-* Header permintaan [tujuan OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#add-a-destination), seperti header kunci API dari platform observabilitas Anda. Header ini disimpan di bawah enkripsi yang dikelola Anthropic. Nilainya bersifat write-only dan tidak pernah dikembalikan dalam respons API.
-
-**Claude Enterprise**
-
-* Fitur beta dan research preview mungkin tidak tercakup oleh CMEK dan dapat tidak berfungsi di organisasi CMEK, misalnya, Claude Security dan aplikasi Claude Design di claude.ai/design.
-* [Personal preferences - bagian Instructions for Claude](https://claude.ai/new#settings/account) dan Cowork Global instructions. Keduanya diatur di tingkat akun dan dibagikan ke semua organisasi milik pengguna.
-
-Pada kedua produk, data akun untuk pengguna di organisasi Anda (seperti nama, alamat email, dan gambar profil) tidak dienkripsi dengan kunci Anda.
-
-## Pelestarian terbatas di luar kunci Anda
-
-Dalam tiga kasus sempit, Anthropic dapat melestarikan catatan tertentu di bawah enkripsi yang dikelola Anthropic:
-
-* Di mana Anthropic diwajibkan oleh hukum untuk menyimpan catatan (misalnya, materi yang dilaporkan ke NCMEC berdasarkan 18 U.S.C. § 2258A).
-* Risiko mendesak dari bahaya serius (misalnya, pengembangan senjata CBRNE, serangan siber ofensif, atau ancaman kekerasan yang akan segera terjadi).
-* Pelanggaran Bagian D.4 dari [Commercial Terms of Service](https://www.anthropic.com/legal/commercial-terms) Anthropic atau ketentuan setara dalam perjanjian lain pelanggan yang berlaku dengan Anthropic.
-
-Di luar [penyaringan CSAM](https://support.claude.com/en/articles/9020328-csam-detection-and-reporting), pelestarian memerlukan keputusan eksplisit dari peninjau manusia dan mengikuti [kebijakan retensi untuk data komersial](https://privacy.claude.com/en/articles/10023548-how-long-do-you-store-my-data) Anthropic. Untuk setiap instance pelestarian, peristiwa [Compliance API Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) yang sesuai dihasilkan dengan kode alasan yang menyampaikan tujuan pelestarian. Lihat [Pelestarian konten CMEK](https://platform.claude.com/docs/id/manage-claude/access-transparency#cmek-content-preservation) untuk detailnya. Metadata penyaringan keamanan (catatan yang berasal dari pemindaian keamanan otomatis Anthropic, seperti pengidentifikasi pola dan indikator kecocokan, bukan konten percakapan) disimpan di bawah enkripsi yang dikelola Anthropic dan tetap dapat dibaca setelah pencabutan kunci.
-
-## Keterbatasan
-
-* **Tindakan yang tidak dapat dibalik:** Setelah kunci dilampirkan ke workspace, kunci tidak dapat dilepas atau ditukar. Pada Claude Platform, melampirkan kunci juga mengunci pengaturan retensi data workspace: Anda tidak dapat mematikan retensi data 30 hari untuk workspace tersebut, dan kembali ke zero data retention memerlukan pembuatan workspace baru dan memindahkan lalu lintas Anda ke sana. Merotasi material kunci dalam kunci yang sama (misalnya, rotasi otomatis AWS KMS, jadwal rotasi Cloud KMS, atau kebijakan rotasi Azure Key Vault) didukung secara transparan dan tidak memerlukan perubahan di Anthropic. Beralih ke kunci yang *berbeda* memerlukan pembuatan workspace baru dengan kunci baru dan memigrasikan data Anda. Mencabut atau menonaktifkan kunci membuat semua data yang dilindungi CMEK di workspace tersebut tidak dapat diakses secara permanen, tanpa jalur pemulihan.
-* **Tidak ada enkripsi retroaktif:** CMEK hanya melindungi data yang ditulis setelah kunci Anda berlaku (lihat [Cara kerjanya](https://platform.claude.com/docs/id/manage-claude/cmek#how-it-works)).
-* **Latensi:** Operasi yang membungkus atau membuka bungkus kunci data melakukan perjalanan bolak-balik ke layanan manajemen kunci Anda, yang dapat menambahkan sedikit latensi pada tindakan yang membaca atau menulis data saat istirahat.
-* **Penundaan pencabutan:** Pencabutan kunci dapat memerlukan waktu hingga 1 jam (TTL cache). Permintaan yang sudah dalam perjalanan selama jendela tersebut mungkin terus berhasil.
-* **Biaya KMS:** CMEK memerlukan kunci di layanan manajemen kunci pihak ketiga (AWS KMS, Google Cloud KMS, atau Azure Key Vault), yang mungkin menimbulkan biaya terpisah yang ditagih oleh penyedia KMS Anda.
-* **Telemetri Claude Code di belakang gateway:** Ketika Claude Code terhubung melalui gateway atau proxy LLM (`ANTHROPIC_BASE_URL` kustom), CMEK tidak berlaku untuk telemetri operasional Claude Code. Untuk mematikan telemetri ini, atur variabel lingkungan `DISABLE_TELEMETRY` ke `1`, seperti yang dijelaskan di bawah [Layanan telemetri](https://code.claude.com/docs/id/data-usage#telemetry-services) dalam dokumentasi Claude Code.
-
-## Konfigurasikan penyedia Anda
-
-Ikuti panduan untuk layanan manajemen kunci yang Anda gunakan. Pada Claude Platform on AWS, ikuti [Menyiapkan CMEK di Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws) sebagai gantinya.
-
-<CardGroup cols={3}>
-  <Card href="https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms" title="AWS KMS">
-    Buat kunci AWS KMS dengan kebijakan kunci yang memberikan akses Anthropic, lalu daftarkan.
+<CardGroup cols={2}>
+  <Card title="AWS KMS" href="https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms">
+    Untuk Claude Platform dan Claude Enterprise.
   </Card>
 
-  <Card href="https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms" title="Google Cloud KMS">
-    Buat crypto key Cloud KMS, berikan akses akun layanan Anthropic, lalu daftarkan.
+  <Card title="Google Cloud KMS" href="https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms">
+    Untuk Claude Platform dan Claude Enterprise.
   </Card>
 
-  <Card href="https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault" title="Azure Key Vault">
-    Buat kunci RSA, berikan akses service principal Anthropic, lalu daftarkan dan validasi.
+  <Card title="Azure Key Vault" href="https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault">
+    Untuk Claude Platform dan Claude Enterprise.
+  </Card>
+
+  <Card title="Claude Platform on AWS" href="https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws">
+    Untuk organisasi yang sidebar Claude Console-nya menampilkan **Account managed by AWS**.
   </Card>
 </CardGroup>
+
+Di Claude Platform, Anda juga dapat menambahkan dan melampirkan kunci Anda [dengan Admin API](https://platform.claude.com/docs/id/manage-claude/cmek-admin-api).
+
+## Pahami CMEK sebelum Anda menyiapkannya
+
+Produk yang Anda gunakan menentukan apa yang dienkripsi oleh kunci Anda, apa yang tetap berada di bawah kunci Anthropic, dan fitur mana yang dinonaktifkan atau berubah.
+
+<CardGroup cols={2}>
+  <Card title="Cara kerja CMEK" href="https://platform.claude.com/docs/id/manage-claude/cmek-how-it-works">
+    Bagaimana kunci Anda melindungi data, kapan kunci tersebut mulai berlaku, dan apa yang dapat Anda lihat.
+  </Card>
+
+  <Card title="CMEK, retensi data, dan ZDR" href="https://platform.claude.com/docs/id/manage-claude/cmek-data-retention">
+    Menggunakan kunci dengan tanpa retensi data (ZDR), dan apa yang dapat dipreservasi oleh Anthropic di luar kunci Anda.
+  </Card>
+
+  <Card title="Apa yang dicakup CMEK di Claude Platform" href="https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-platform">
+    Cari fitur atau jenis data.
+  </Card>
+
+  <Card title="Apa yang dicakup CMEK di Claude Enterprise" href="https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise">
+    Cari fitur, dan lihat apa yang akan diperhatikan oleh pengguna Anda.
+  </Card>
+</CardGroup>
+
+## Apa yang Anda sepakati
+
+* Setelah Anda melampirkan kunci, Anda [tidak dapat melepas atau menggantinya](https://platform.claude.com/docs/id/manage-claude/cmek-key-lifecycle#what-each-action-does).
+* Kunci Anda hanya melindungi data yang ditulis [setelah kunci tersebut mulai berlaku](https://platform.claude.com/docs/id/manage-claude/cmek-how-it-works#when-your-key-takes-effect).
+* Jika kunci Anda dihapus, Anthropic tidak dapat memulihkan data yang dilindunginya. [Selama kunci dinonaktifkan](https://platform.claude.com/docs/id/manage-claude/cmek-key-lifecycle#restore-access), Claude tidak dapat membaca data tersebut.
+* Di Claude Platform, workspace yang memiliki kunci [wajib menerapkan retensi data](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#data-retention).
+
+## Siapa yang dapat menggunakan CMEK
+
+CMEK bersifat opsional. Untuk mengaktifkannya bagi organisasi yang memenuhi syarat, hubungi tim akun Anthropic Anda. Anda memerlukan salah satu peran berikut untuk menyiapkannya:
+
+* Claude Platform: Organization Admin
+* Claude Platform on AWS: Admin
+* Claude Enterprise: Owner atau Primary Owner
+
+## Setelah penyiapan
+
+* [Apa yang terjadi saat Anda merotasi, menonaktifkan, atau menghapus kunci enkripsi Anda](https://platform.claude.com/docs/id/manage-claude/cmek-key-lifecycle)
+* [Memecahkan masalah CMEK](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting)

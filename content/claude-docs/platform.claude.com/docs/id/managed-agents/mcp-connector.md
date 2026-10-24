@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/mcp-connector
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 13caffc2548c129577f5544e85a04f4ab6fe6fab321c7892711631a0645cb6e1
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 6f9e320300c190a60e106147336af691d76254d215350de69d25091a62765e63
 ---
 
 ---
@@ -218,7 +218,7 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
 </CodeGroup>
 
 <Tip>
-  Toolset MCP secara default menggunakan kebijakan izin `always_ask`, yang memerlukan persetujuan pengguna sebelum setiap pemanggilan alat. Lihat [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) untuk mengonfigurasi perilaku ini.
+  Toolset MCP secara default menggunakan kebijakan izin `always_ask`, yang memerlukan persetujuan pengguna sebelum setiap pemanggilan alat. Lihat [Kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) untuk mengonfigurasi perilaku ini.
 </Tip>
 
 ### Referensi field `mcp_servers`
@@ -369,10 +369,10 @@ Kredensial dicocokkan berdasarkan URL, sehingga vault harus berisi kredensial ya
 
 Pembuatan sesi tidak memvalidasi konektivitas atau kredensial MCP. Pembuatan sesi memang memeriksa host setiap server yang dideklarasikan terhadap pengaturan jaringan environment: dengan environment `limited`, pembuatan sesi gagal dengan error 400 ketika sebuah host tidak diizinkan, seperti yang dijelaskan di bagian [Menyediakan autentikasi saat pembuatan sesi](https://platform.claude.com/docs/id/managed-agents/mcp-connector#provide-authentication-at-session-creation). Jika server MCP tidak dapat dijangkau atau menolak kredensial yang diberikan, sesi tetap dimulai dan interaksi tetap dapat dilakukan. Event [`session.error`](https://platform.claude.com/docs/id/managed-agents/reference#event-types) dipancarkan dengan `mcp_server_name` (java, php: `mcpServerName`; csharp: `McpServerName`; go: `MCPServerName`) dari server yang terdampak dan sebuah `retry_status` (java, php: `retryStatus`; csharp, go: `RetryStatus`):
 
-| Jenis error                       | Arti                                                                                                                                                                                                        |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `mcp_connection_failed_error`     | Server MCP tidak dapat dijangkau (error jaringan, timeout, atau kegagalan HTTP non-autentikasi).                                                                                                            |
-| `mcp_authentication_failed_error` | Autentikasi dengan server MCP gagal: server menolak kredensial dari vault yang dilampirkan, memerlukan autentikasi ketika tidak ada kredensial yang cocok dikonfigurasi, atau penyegaran token OAuth gagal. |
+| Jenis error                       | Arti                                                                                                                                                                                                                  |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mcp_connection_failed_error`     | Server MCP tidak dapat dijangkau (error jaringan, timeout, atau kegagalan HTTP non-autentikasi).                                                                                                                      |
+| `mcp_authentication_failed_error` | Autentikasi dengan server MCP gagal: server menolak kredensial dari vault yang dilampirkan, server memerlukan autentikasi padahal tidak ada kredensial yang cocok yang dikonfigurasi, atau refresh token OAuth gagal. |
 
 Anda dapat memutuskan apakah akan memblokir interaksi lebih lanjut pada error ini, memicu rotasi kredensial, atau membiarkan sesi berlanjut tanpa alat dari server yang terdampak. Koneksi dicoba ulang pada transisi `session.status_idle` ke `session.status_running` berikutnya.
 
@@ -384,7 +384,7 @@ Anda dapat memutuskan apakah akan memblokir interaksi lebih lanjut pada error in
   </Card>
 
   <Card title="Aliran event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
-    Kirim event, lakukan streaming respons, dan interupsi atau alihkan sesi Anda di tengah eksekusi.
+    Kirim event, stream respons, dan interupsi atau arahkan ulang sesi Anda saat sedang berjalan.
   </Card>
 
   <Card title="Jenis server MCP yang didukung" icon="book" href="https://platform.claude.com/docs/id/managed-agents/reference#supported-mcp-server-types">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: c1da1fcbb151d2cf035f14b92a420fa96b69ca1627eca7e5031af50ebb798c7a
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 858c961d06f51d5c79bdfa555e4e4b1af6bbf439aef81187de7df1443645e5c1
 ---
 
 ---
@@ -70,7 +70,7 @@ func main() {
 }
 ```
 
-Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci personal atau kunci akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) dengan akses ke beberapa workspace, tetapkan ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
+Untuk opsi autentikasi termasuk "Workload Identity Federation" (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
 
 <AccordionGroup>
   <Accordion title="Percakapan">
@@ -700,6 +700,10 @@ fmt.Printf("%+v\n", message.Content)
 fmt.Printf("Status Code: %d\n", response.StatusCode)
 fmt.Printf("Headers: %+#v\n", response.Header)
 ```
+
+### Tracing OpenTelemetry
+
+Saat aplikasi Anda mendaftarkan tracer provider OpenTelemetry, SDK memancarkan span untuk setiap permintaan yang dikirimnya. Untuk mengirim span ke platform observabilitas Anda, lihat [Menyiapkan OpenTelemetry dengan Claude SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
 
 ### Membuat permintaan kustom/tidak terdokumentasi
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference
-fetched_at: 2026-09-26T02:19:50.539049Z
-sha256: 20472cede5e210e4018d80349c026957eed2aaf73c36bc134d905dd949f4923e
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: bc049c3e6770b54bf60030e6234cace312df196a72d70411c08b8958820e1d7c
 ---
 
 ---
@@ -28,7 +28,7 @@ description: Field konfigurasi proxy, Tunnels REST API, persyaratan sertifikat, 
 | `tls.cert_file`                   | Path ke sertifikat TLS server.                                                                                                                                                                                                                            | Wajib                                           |
 | `tls.key_file`                    | Path ke private key TLS server.                                                                                                                                                                                                                           | Wajib                                           |
 | `routes`                          | Peta dari subdomain atau hostname lengkap ke URL upstream. Lihat [Pencocokan rute](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#route-matching).                                                                            | Wajib                                           |
-| `upstream.allowed_ips`            | Rentang CIDR IPv4 atau alamat tunggal yang diizinkan untuk dihubungi oleh proxy. Saling eksklusif dengan `disable_ip_validation`.                                                                                                                         | Rentang privat RFC1918                          |
+| `upstream.allowed_ips`            | Rentang CIDR IPv4 atau alamat tunggal yang boleh dihubungi oleh proxy. Saling eksklusif dengan `disable_ip_validation`.                                                                                                                                   | Rentang privat RFC1918                          |
 | `upstream.disable_ip_validation`  | Menonaktifkan validasi IP upstream sepenuhnya. Saling eksklusif dengan `allowed_ips`.                                                                                                                                                                     | `false`                                         |
 | `upstream.tls.ca_file`            | Bundle CA untuk memvalidasi TLS upstream.                                                                                                                                                                                                                 | Tidak ada                                       |
 | `upstream.tls.include_system_cas` | Juga mempercayai bundle CA sistem untuk TLS upstream.                                                                                                                                                                                                     | `false`                                         |
@@ -69,7 +69,7 @@ Header yang wajib pada setiap permintaan:
 
 Unggah dengan `POST /v1/tunnels/{tunnel_id}/certificates`. Sebuah tunnel dapat menampung hingga dua sertifikat CA aktif sekaligus, yang memungkinkan rotasi tanpa downtime.
 
-* Berenkode PEM, sertifikat tunggal, hingga 8 kB.
+* Berenkode PEM, satu sertifikat, hingga 8 kB.
 * Ekstensi `BasicConstraints` ada dengan `CA:TRUE`, ditandai critical.
 * Ekstensi `SubjectKeyIdentifier` ada.
 * `KeyUsage` mencakup `keyCertSign`.
@@ -87,7 +87,7 @@ Disajikan oleh proxy selama [inner TLS](https://platform.claude.com/docs/id/agen
 * Berada dalam masa berlakunya.
 * RSA 2048-bit atau lebih besar, atau ECDSA P-256 atau lebih besar, dengan tanda tangan SHA-256 atau lebih kuat.
 
-Komponen setup menghasilkan CA ECDSA P-256 dengan masa berlaku lima tahun dan sertifikat server RSA 4096-bit dengan SAN wildcard dan masa berlaku 90 hari.
+Komponen setup menghasilkan CA ECDSA P-256 dengan validitas 5 tahun dan sertifikat server RSA 4096-bit dengan SAN wildcard dan validitas 90 hari.
 
 ## Komponen setup
 

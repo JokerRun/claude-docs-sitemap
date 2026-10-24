@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 667fab5d70bdf0240239a2a8a465197d91295f37215440c14f9504898635360e
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 08cc175105049f01fa8d83491438892f7b9d2e838c5cbacbb8d64f0477098ea9
 ---
 
 ---
@@ -876,7 +876,7 @@ When using tools, Claude often comments on what it's doing or responds naturally
 
 For example, given the prompt "What's the weather like in San Francisco right now, and what time is it there?", Claude might respond with:
 
-```text JSON
+```json JSON
 {
   "role": "assistant",
   "content": [

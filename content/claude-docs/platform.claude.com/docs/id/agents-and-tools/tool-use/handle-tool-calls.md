@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls
-fetched_at: 2026-09-23T02:21:59.104890Z
-sha256: 6d112c166970085db7aadc46fbf750e1195d7905c2ffbc3cc51ce03eca9d52c0
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: d93fa7817124ef3b3d4a4b4608da7facf52323fd3216af4c0513414327ca6ee8
 ---
 
 ---
@@ -21,9 +21,9 @@ Respons Claude berbeda tergantung pada apakah Claude menggunakan [alat klien ata
 
 ## Menangani hasil dari alat klien
 
-Respons akan memiliki `stop_reason` berupa `tool_use` dan satu atau lebih blok konten `tool_use` yang mencakup:
+Respons memiliki `stop_reason` bernilai `tool_use` dan satu atau lebih blok konten `tool_use` yang mencakup:
 
-* `id`: Pengidentifikasi unik untuk blok penggunaan alat tertentu ini. Ini akan digunakan untuk mencocokkan hasil alat nantinya.
+* `id`: Pengidentifikasi unik untuk blok penggunaan alat ini. Ini digunakan untuk mencocokkan hasil alat nantinya.
 * `name`: Nama alat yang digunakan.
 * `input`: Objek yang berisi input yang diteruskan ke alat, sesuai dengan `input_schema` alat tersebut.
 
@@ -56,7 +56,7 @@ Ketika Anda menerima respons penggunaan alat untuk alat klien, Anda harus:
 
 1. Mengekstrak `name`, `id`, dan `input` dari blok `tool_use`.
 
-2. Menjalankan alat yang sebenarnya di codebase Anda yang sesuai dengan nama alat tersebut, dengan meneruskan `input` alat.
+2. Menjalankan alat yang sebenarnya di basis kode Anda yang sesuai dengan nama alat tersebut, dengan meneruskan `input` alat.
 
 3. Melanjutkan percakapan dengan mengirim pesan baru dengan `role` berupa `user`, dan blok `content` yang berisi tipe `tool_result` serta informasi berikut:
 
@@ -70,10 +70,10 @@ Ketika Anda menerima respons penggunaan alat untuk alat klien, Anda harus:
   **Persyaratan pemformatan penting:**
 
   * Blok hasil alat harus langsung mengikuti blok penggunaan alat yang bersesuaian dalam riwayat pesan. Anda tidak dapat menyertakan pesan apa pun di antara pesan penggunaan alat dari asisten dan pesan hasil alat dari pengguna.
-  * Dalam pesan pengguna yang berisi hasil alat, blok tool\_result harus berada di urutan PERTAMA dalam array content. Teks apa pun harus berada SETELAH semua hasil alat.
+  * Dalam pesan pengguna yang berisi hasil alat, blok `tool_result` harus berada PERTAMA dalam array konten. Teks apa pun harus berada SETELAH semua hasil alat.
   * Jika giliran asisten juga memanggil [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) yang belum memiliki blok hasil, pesan pengguna harus hanya berisi blok `tool_result`. Teks setelah hasil akan mengakhiri giliran lebih awal; untuk alat server yang dipanggil Claude secara langsung, permintaan kemudian gagal dengan error 400 yang menyebutkan alat server yang belum terselesaikan. Lihat [Alasan berhenti dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use).
 
-  Misalnya, ini akan menyebabkan error 400:
+  Misalnya, ini menyebabkan kesalahan 400:
 
   ```json
   {
@@ -97,11 +97,11 @@ Ketika Anda menerima respons penggunaan alat untuk alat klien, Anda harus:
   }
   ```
 
-  Jika Anda menerima error seperti "tool\_use ids were found without tool\_result blocks immediately after", periksa apakah hasil alat Anda diformat dengan benar.
+  Jika Anda menerima kesalahan seperti "tool\_use ids were found without tool\_result blocks immediately after", periksa apakah hasil alat Anda diformat dengan benar.
 </Note>
 
 <Warning>
-  Hasil alat sering membawa konten dari sumber di luar kendali Anda: halaman web, email masuk, unggahan pengguna, API pihak ketiga. Perlakukan konten tersebut sebagai tidak tepercaya: penyerang yang dapat memengaruhinya mungkin menyisipkan instruksi yang mencoba mengalihkan Claude ("indirect prompt injection" atau injeksi prompt tidak langsung). Simpan konten tidak tepercaya di dalam blok `tool_result` alih-alih prompt `system` atau blok `text` pengguna biasa, dan lihat [Memitigasi jailbreak dan injeksi prompt](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks#indirect-prompt-injection) untuk penguatan lebih lanjut.
+  Hasil alat sering membawa konten dari sumber di luar kendali Anda: halaman web, email masuk, unggahan pengguna, API pihak ketiga. Perlakukan konten tersebut sebagai tidak tepercaya: penyerang yang dapat memengaruhinya mungkin menyisipkan instruksi yang mencoba mengalihkan Claude (injeksi prompt tidak langsung). Simpan konten tidak tepercaya di dalam blok `tool_result` alih-alih prompt `system` atau blok `text` pengguna biasa, dan lihat [Mitigasi jailbreak dan injeksi prompt](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks#indirect-prompt-injection) untuk pengamanan lebih lanjut.
 </Warning>
 
 <AccordionGroup>
@@ -189,10 +189,10 @@ Setelah menerima hasil alat, Claude akan menggunakan informasi tersebut untuk me
 
 ## Menangani hasil dari alat server
 
-Claude mengeksekusi alat secara internal dan menggabungkan hasilnya langsung ke dalam responsnya tanpa memerlukan interaksi pengguna tambahan.
+Claude menjalankan alat secara internal dan memasukkan hasilnya langsung ke dalam responsnya tanpa memerlukan interaksi pengguna tambahan.
 
 <Note>
-  Sebuah respons dapat berisi blok `tool_use` klien dan blok `server_tool_use` yang tidak memiliki blok hasil. Panggilan alat server tersebut belum selesai, dan blok hasilnya tiba dalam respons berikutnya. Balas dengan pesan pengguna yang hanya berisi blok `tool_result` untuk alat klien dan pertahankan array `tools` yang sama; untuk alat server yang dipanggil Claude secara langsung, API menjalankannya pada permintaan tersebut dan respons berikutnya dimulai dengan blok hasilnya. Lihat [Alasan berhenti dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use).
+  Sebuah respons dapat berisi blok `tool_use` klien sekaligus blok `server_tool_use` yang belum memiliki blok hasil. Panggilan alat server tersebut belum selesai, dan blok hasilnya akan tiba dalam respons berikutnya. Balas dengan pesan pengguna yang hanya berisi blok `tool_result` untuk alat klien dan pertahankan array `tools` yang sama; untuk alat server yang dipanggil langsung oleh Claude, API menjalankannya pada permintaan tersebut dan respons berikutnya dimulai dengan blok hasilnya. Lihat [Alasan berhenti dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use).
 </Note>
 
 <Tip>
@@ -228,14 +228,14 @@ Ada beberapa jenis error berbeda yang dapat terjadi saat menggunakan alat dengan
     Claude kemudian akan menggabungkan error ini ke dalam responsnya kepada pengguna. Misalnya: "Maaf, saya tidak dapat mengambil cuaca saat ini karena API layanan cuaca tidak tersedia. Silakan coba lagi nanti."
 
     <Tip>
-      Tulis pesan error yang instruktif. Alih-alih error generik seperti `"failed"`, sertakan apa yang salah dan apa yang harus dicoba Claude selanjutnya (misalnya, `"Rate limit exceeded. Retry after 60 seconds."`). Ini memberi Claude konteks yang dibutuhkannya untuk pulih atau beradaptasi tanpa menebak-nebak.
+      Tulis pesan kesalahan yang instruktif. Alih-alih kesalahan generik seperti `"failed"`, sertakan apa yang salah dan apa yang harus dicoba Claude selanjutnya (misalnya, `"Rate limit exceeded. Retry after 60 seconds."`). Ini memberi Claude konteks yang dibutuhkan untuk pulih atau beradaptasi tanpa menebak.
     </Tip>
   </Accordion>
 
   <Accordion title="Nama alat tidak valid">
-    Jika upaya Claude menggunakan alat tidak valid (misalnya, parameter wajib tidak ada), biasanya itu berarti tidak ada cukup informasi bagi Claude untuk menggunakan alat dengan benar. Pilihan terbaik Anda selama pengembangan adalah mencoba permintaan lagi dengan nilai `description` yang lebih detail dalam definisi alat Anda.
+    Jika upaya Claude menggunakan alat tidak valid (misalnya, parameter wajib tidak ada), biasanya itu berarti tidak ada cukup informasi bagi Claude untuk menggunakan alat dengan benar. Pendekatan terbaik selama pengembangan adalah mencoba permintaan lagi dengan nilai `description` yang lebih rinci dalam definisi alat Anda.
 
-    Namun, Anda juga dapat melanjutkan percakapan dengan `tool_result` yang menunjukkan error tersebut, dan Claude akan mencoba menggunakan alat lagi dengan informasi yang hilang telah diisi:
+    Namun, Anda juga dapat melanjutkan percakapan dengan `tool_result` yang menunjukkan kesalahan, dan Claude akan mencoba menggunakan alat lagi dengan informasi yang hilang telah diisi:
 
     ```json JSON
     {
@@ -251,15 +251,15 @@ Ada beberapa jenis error berbeda yang dapat terjadi saat menggunakan alat dengan
     }
     ```
 
-    Jika permintaan alat tidak valid atau parameternya tidak ada, Claude akan mencoba ulang 2-3 kali dengan koreksi sebelum meminta maaf kepada pengguna.
+    Jika permintaan alat tidak valid atau kekurangan parameter, Claude akan mencoba ulang 2–3 kali dengan koreksi sebelum meminta maaf kepada pengguna.
 
     <Tip>
-      Untuk menghilangkan panggilan alat yang tidak valid sepenuhnya, gunakan [penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) dengan `strict: true` pada definisi alat Anda. Ini menjamin bahwa input alat akan selalu cocok dengan skema Anda secara tepat, mencegah parameter yang hilang dan ketidakcocokan tipe.
+      Untuk menghilangkan panggilan alat yang tidak valid sepenuhnya, gunakan [penggunaan alat strict](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) dengan `strict: true` pada definisi alat Anda. Ini menjamin bahwa input alat selalu sama persis dengan skema Anda, mencegah parameter yang hilang dan ketidakcocokan tipe.
     </Tip>
   </Accordion>
 
   <Accordion title="Error alat server">
-    Ketika alat server mengalami error (misalnya, masalah jaringan dengan Web Search), Claude akan menangani error ini secara transparan dan berupaya memberikan respons alternatif atau penjelasan kepada pengguna. Tidak seperti alat klien, Anda tidak perlu menangani hasil `is_error` untuk alat server.
+    Ketika alat server mengalami kesalahan (misalnya, masalah jaringan dengan pencarian web), Claude akan menangani kesalahan ini secara transparan dan mencoba memberikan respons atau penjelasan alternatif kepada pengguna. Tidak seperti alat klien, Anda tidak perlu menangani hasil `is_error` untuk alat server.
 
     Khusus untuk pencarian web, kode error yang mungkin muncul meliputi:
 
@@ -278,7 +278,7 @@ Ada beberapa jenis error berbeda yang dapat terjadi saat menggunakan alat dengan
     Tangani respons di mana Claude memanggil beberapa alat dalam satu giliran.
   </Card>
 
-  <Card title="Tool Runner (SDK)" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner">
+  <Card title="Tool runner (SDK)" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner">
     Biarkan SDK mengelola loop `tool_use`, pemformatan hasil, dan percobaan ulang untuk Anda.
   </Card>
 

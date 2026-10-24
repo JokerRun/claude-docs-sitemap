@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/examples
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 60b4697816f29c3a11ace4f364655dc9ff2ac21d51464ab4eda12b23d8ddebfd
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 59fd222b1ed054bab4164c16bf796ce8a12361f088eeaf455f851b07aaae34ef
 ---
 
 > ## Documentation Index
@@ -19,7 +19,7 @@ This page routes you to complete, runnable Agent SDK projects and guided Claude 
 
 If you haven't built anything with the SDK yet, start with one of these before a full application:
 
-* [Agent SDK quickstart](/docs/en/agent-sdk/quickstart.md): build your first working agent in TypeScript or Python, with setup steps included. The agent finds and fixes bugs in a sample file.
+* [Agent SDK quickstart](https://code.claude.com/docs/en/agent-sdk/quickstart.md): build your first working agent in TypeScript or Python, with setup steps included. The agent finds and fixes bugs in a sample file.
 
 * [Hello World](https://github.com/anthropics/claude-agent-sdk-demos/tree/main/hello-world): a minimal TypeScript project to clone when you want to start from repo code
 

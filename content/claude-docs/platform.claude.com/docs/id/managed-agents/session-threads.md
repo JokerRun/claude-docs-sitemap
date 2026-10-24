@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-threads
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 087cac6e286bd958931398cde20d342d74034334ed8fd35f61d41d5052a13c69
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: ded5c24c3687ee6bdcecb8640cf1556425347a30693de240daff197d59d1bfa2
 ---
 
 ---
@@ -23,7 +23,7 @@ Dalam [sesi multiagen](https://platform.claude.com/docs/id/managed-agents/multia
 
 **Aliran event tingkat sesi** (`/v1/sessions/{session_id}/events/stream`) dianggap sebagai **primary thread** (thread utama), yang berisi tampilan ringkas dari semua aktivitas di seluruh thread. Anda tidak melihat aktivitas lengkap dari [subagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#delegate-to-subagents), tetapi Anda melihat awal dan akhir pekerjaan mereka, serta event yang memblokir seperti permintaan izin alat.
 
-**Thread sesi** adalah tempat Anda menelusuri aktivitas agen tertentu secara mendalam.
+**Thread sesi** adalah tempat Anda memeriksa aktivitas agen tertentu.
 
 `status` (csharp, go: `Status`) sesi merupakan agregasi dari semua aktivitas agen; jika setidaknya satu thread berstatus `running`, maka status sesi secara keseluruhan juga `running`. Sebuah [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs) yang sedang berjalan juga dapat membuat sesi tetap `running`, bahkan ketika tidak ada thread-nya yang sedang bekerja. Ketika tidak ada thread yang bekerja dan sebuah thread menunggu klien Anda, sesi berstatus `idle`; lihat [Mengetahui kapan pekerjaan selesai](https://platform.claude.com/docs/id/managed-agents/workflow-runs#know-when-the-work-is-done).
 
@@ -263,7 +263,7 @@ Secara opsional, arsipkan thread sesi ketika thread tersebut telah menyelesaikan
   ```
 </CodeGroup>
 
-Pengarsipan hanya berhasil jika thread berstatus `idle`. Thread yang tertahan pada `requires_action` dihitung sebagai idle dan dapat langsung diarsipkan; hanya thread yang sedang berjalan yang harus diinterupsi terlebih dahulu:
+Pengarsipan hanya berhasil jika thread berstatus `idle`. Thread yang tertahan pada `requires_action` dihitung sebagai idle, sehingga Anda dapat mengarsipkannya secara langsung. Untuk mengarsipkan thread yang sedang berjalan, interupsi terlebih dahulu:
 
 <CodeGroup>
   ```bash cURL

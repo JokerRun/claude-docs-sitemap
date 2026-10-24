@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 14dbf0e3d3c7289d6905185e408b279b2ff1d3f289913a20658d441afbcd3fb0
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: bca32160caf7d869a1b95b2c3014fd79abfd9c328a91ca8127b0c7f90748d437
 ---
 
 ---
@@ -36,16 +36,16 @@ Files API menyediakan pendekatan buat-sekali, gunakan-berkali-kali untuk bekerja
 * **Kelola file Anda** dengan operasi list, retrieve, dan delete
 
 <Warning id="workspace-scoped-access">
-  **File yang diunggah dapat diakses oleh seluruh workspace Anda, tidak dibatasi pada pengguna akhir, percakapan, atau sesi tertentu.** Kunci API apa pun yang memiliki akses ke suatu workspace dapat mengakses file apa pun yang diunggah ke workspace tersebut. Setiap service account, dan setiap pengguna yang peran organisasinya mengizinkan akses API, dapat menggunakan Default Workspace selain workspace mana pun tempat Anda menambahkan mereka, jadi simpan file yang harus tetap terpisah di [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping) tersendiri dan akses file tersebut hanya dengan kunci yang dibatasi pada workspace itu. Jangan pernah menerima nilai `file_id` dari pengguna akhir atau sumber tidak tepercaya lainnya: ID file yang diberikan pengguna akan memungkinkan satu pengguna aplikasi Anda membaca konten yang diunggah pengguna lain. Perlakukan ID file sebagai referensi sisi server, dan simpan pemetaan antara pengguna Anda dan file mereka di dalam aplikasi Anda.
+  **File yang diunggah dapat diakses oleh seluruh workspace Anda, tidak dibatasi pada satu pengguna akhir, percakapan, atau sesi.** Kunci API apa pun yang memiliki akses ke sebuah workspace dapat mengakses file apa pun yang diunggah ke workspace tersebut. Setiap akun layanan, dan setiap pengguna yang peran organisasinya mengizinkan akses API, dapat menggunakan Default Workspace selain workspace mana pun tempat Anda menambahkan mereka, jadi simpan file yang harus tetap terpisah di workspace-nya sendiri dan akses file tersebut hanya dengan [kunci yang dibatasi pada workspace tersebut](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping). Jangan pernah menerima nilai `file_id` dari pengguna akhir atau sumber tidak tepercaya lainnya: ID file yang diberikan pengguna akan memungkinkan satu pengguna aplikasi Anda membaca konten yang diunggah oleh pengguna lain. Perlakukan ID file sebagai referensi sisi server, dan simpan pemetaan antara pengguna Anda dan file mereka di aplikasi Anda.
 
-  Jika Anda membangun aplikasi multi-tenant di atas Files API, buat [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) terpisah untuk setiap tenant. Workspace adalah batas isolasi untuk file, sehingga satu workspace per tenant memberikan isolasi ketat bagi data setiap tenant dari semua tenant lainnya. Setiap organisasi dapat memiliki hingga 100 workspace; hubungi tim akun Anda jika Anda membutuhkan lebih banyak.
+  Jika Anda membangun aplikasi multitenant di atas Files API, buat [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) terpisah untuk setiap tenant. Workspace adalah batas isolasi untuk file, sehingga workspace untuk setiap tenant memberikan isolasi ketat bagi data tenant tersebut dari setiap tenant lainnya. Setiap organisasi dapat memiliki hingga 100 workspace; hubungi tim akun Anda jika Anda membutuhkan lebih banyak.
 </Warning>
 
 ## Cara menggunakan Files API
 
 ### Mengunggah file
 
-Unggah file untuk direferensikan dalam panggilan API mendatang:
+Unggah file untuk dirujuk dalam panggilan API berikutnya:
 
 <CodeGroup>
   ```bash cURL
@@ -382,12 +382,12 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
 
 Files API mendukung berbagai jenis file yang sesuai dengan berbagai jenis blok konten:
 
-| Jenis file                                                                                                                              | Jenis MIME                                           | Jenis blok konten  | Kasus penggunaan                       |
-| --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ------------------ | -------------------------------------- |
-| PDF                                                                                                                                     | `application/pdf`                                    | `document`         | Analisis teks, pemrosesan dokumen      |
-| Teks biasa                                                                                                                              | `text/plain`                                         | `document`         | Analisis teks, pemrosesan              |
-| Gambar                                                                                                                                  | `image/jpeg`, `image/png`, `image/gif`, `image/webp` | `image`            | Analisis gambar, tugas visual          |
-| [Dataset, lainnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upload-and-analyze-your-own-files) | Bervariasi                                           | `container_upload` | Menganalisis data, membuat visualisasi |
+| Jenis file                                                                                                                                                                                    | Jenis MIME                                           | Jenis blok konten  | Kasus penggunaan                  |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ------------------ | --------------------------------- |
+| PDF                                                                                                                                                                                           | `application/pdf`                                    | `document`         | Analisis teks, pemrosesan dokumen |
+| Teks biasa                                                                                                                                                                                    | `text/plain`                                         | `document`         | Analisis teks, pemrosesan         |
+| Gambar                                                                                                                                                                                        | `image/jpeg`, `image/png`, `image/gif`, `image/webp` | `image`            | Analisis gambar, tugas visual     |
+| Dataset, lainnya (lihat [Mengunggah dan menganalisis file Anda sendiri](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upload-and-analyze-your-own-files)) | Bervariasi                                           | `container_upload` | Analisis data, visualisasi        |
 
 #### Blok dokumen
 
@@ -422,7 +422,7 @@ Untuk gambar, gunakan blok konten `image`:
 
 #### Blok container upload
 
-Untuk mengirim file ke [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upload-and-analyze-your-own-files), gunakan blok konten `container_upload`:
+Untuk [mengirim file ke alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upload-and-analyze-your-own-files), gunakan blok konten `container_upload`:
 
 ```json
 {
@@ -433,7 +433,7 @@ Untuk mengirim file ke [alat eksekusi kode](https://platform.claude.com/docs/id/
 
 ### Bekerja dengan format file lain
 
-Untuk jenis file yang tidak didukung oleh blok `document` (misalnya, .docx dan .xlsx), konversikan file ke teks biasa dan sertakan kontennya langsung dalam pesan Anda. File yang sudah berupa teks biasa, seperti file .csv dan .md, dapat dibaca dengan cara ini atau diunggah melalui Files API dengan jenis konten `text/plain` yang eksplisit. Untuk menganalisis dataset alih-alih membacanya sebagai teks, unggah dataset tersebut untuk [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upload-and-analyze-your-own-files) menggunakan blok `container_upload`.
+Untuk jenis file yang tidak didukung oleh blok `document` (misalnya, .docx dan .xlsx), konversikan file menjadi teks biasa dan sertakan kontennya langsung dalam pesan Anda. File yang sudah berupa teks biasa, seperti file .csv dan .md, dapat dibaca dengan cara ini atau diunggah melalui Files API dengan jenis konten `text/plain` yang eksplisit. Untuk menganalisis dataset alih-alih membacanya sebagai teks, unggah dataset tersebut untuk alat eksekusi kode menggunakan blok `container_upload` (lihat [Mengunggah dan menganalisis file Anda sendiri](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upload-and-analyze-your-own-files)).
 
 Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
 
@@ -468,9 +468,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
 
   ```bash CLI
   # Referensi "@./path" menyisipkan isi file langsung ke dalam field.
-  ant messages create \
-    --model claude-opus-5-5 \
-    --max-tokens 1024 <<'YAML'
+  ant messages create --model claude-opus-5-5 --max-tokens 1024 <<'YAML'
   messages:
     - role: user
       content:
@@ -616,7 +614,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
   $client = new Client();
 
   // Baca file teks
-  $textContent = file_get_contents("document.txt");
+  $textContent = file_get_contents('document.txt');
 
   $message = $client->messages->create(
       maxTokens: 1024,
@@ -648,7 +646,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
   text_content = File.read("document.txt")
 
   message = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       {
@@ -677,7 +675,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
 
 #### Daftar file
 
-Ambil daftar file yang telah Anda unggah. Endpoint ini menggunakan "pagination" (paginasi): setiap permintaan mengembalikan hingga `limit` file (20 secara default, dan paling banyak 1.000), dan kursor `next_page` pada respons mengambil halaman berikutnya saat diteruskan kembali sebagai parameter `page`. File diurutkan dari yang terbaru. Lihat [referensi List Files API](https://platform.claude.com/docs/id/api/files/list). SDK mengembalikan halaman pertama dan menyediakan helper [paginasi otomatis](https://platform.claude.com/docs/id/api/overview#pagination). Contoh CLI membatasi total dengan `--max-items`:
+Ambil daftar file yang telah Anda unggah. Endpoint ini menggunakan "pagination" (paginasi): setiap permintaan mengembalikan hingga `limit` file (20 secara default, dan paling banyak 1.000), dan kursor `next_page` pada respons mengambil halaman berikutnya saat diteruskan kembali sebagai parameter `page`. File diurutkan dari yang terbaru. Lihat [referensi List Files API](https://platform.claude.com/docs/id/api/files/list). SDK mengembalikan halaman pertama dan menyediakan helper [auto-pagination](https://platform.claude.com/docs/id/api/overview#pagination).
 
 <CodeGroup>
   ```bash cURL
@@ -687,6 +685,7 @@ Ambil daftar file yang telah Anda unggah. Endpoint ini menggunakan "pagination" 
   ```
 
   ```bash CLI
+  # Perintah list melakukan paginasi otomatis, jadi --max-items membatasi jumlah total
   ant files list --max-items 10
   ```
 
@@ -937,17 +936,17 @@ Di Claude API, file gambar, video, dan audio yang didukung yang dihasilkan Claud
 
 ### Batas penyimpanan
 
-* **Ukuran file maksimum:** 500 MB per file
-* **Total penyimpanan:** 1 TB per organisasi
+* **Ukuran file maksimum:** 500 MB untuk setiap file
+* **Total penyimpanan:** 1 TB untuk setiap organisasi
 
 ### Siklus hidup file
 
-* File dibatasi pada workspace tempat file tersebut diunggah. Permintaan apa pun dalam workspace yang sama dapat mereferensikannya; jangan pernah menerima ID file dari sumber tidak tepercaya (lihat [peringatan akses workspace](https://platform.claude.com/docs/id/build-with-claude/files#workspace-scoped-access))
-* File tidak dapat dimodifikasi atau diubah namanya setelah diunggah. Untuk mengubah konten file, unggah file baru dan hapus yang lama
-* File tetap ada hingga Anda menghapusnya dengan endpoint `DELETE /v1/files/{file_id}` atau hingga mencapai `expires_at`
-* File yang dihapus tidak dapat dipulihkan
-* File tidak dapat diakses melalui API sesaat setelah penghapusan, tetapi mungkin masih ada dalam panggilan Messages API yang sedang aktif dan penggunaan alat terkait
-* File yang dihapus pengguna akan dihapus sesuai dengan [kebijakan retensi data](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data) Anthropic. Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention)
+* File dibatasi pada workspace tempat file tersebut diunggah. Permintaan apa pun di workspace yang sama dapat merujuknya; jangan pernah menerima ID file dari sumber yang tidak tepercaya (lihat [peringatan akses workspace](https://platform.claude.com/docs/id/build-with-claude/files#workspace-scoped-access)).
+* File tidak dapat diubah atau diganti namanya setelah diunggah. Untuk mengubah konten file, unggah file baru dan hapus file lama.
+* File tetap tersimpan hingga Anda menghapusnya dengan endpoint `DELETE /v1/files/{file_id}` atau file mencapai `expires_at`-nya.
+* File yang dihapus tidak dapat dipulihkan.
+* File tidak dapat diakses melalui API sesaat setelah dihapus, tetapi file tersebut mungkin tetap ada dalam panggilan Messages API yang aktif dan penggunaan alat terkait.
+* File yang dihapus pengguna akan dihapus sesuai dengan [kebijakan retensi data](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data) Anthropic. Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 
 ### Kedaluwarsa file
 
@@ -955,15 +954,15 @@ Agar file kedaluwarsa secara otomatis, sertakan field form `expires_in_seconds` 
 
 Ketika file mencapai `expires_at`:
 
-* Mengunduh kontennya (`GET /v1/files/{file_id}/content`) mengembalikan error 404
-* Permintaan Messages yang mereferensikan file tersebut gagal sebelum inferensi
-* Metadatanya (`GET /v1/files/{file_id}`) tetap dapat dibaca hingga 30 hari, dengan `expires_at` di masa lalu
-* File tersebut tetap muncul dalam respons list selama jangka waktu itu; bandingkan `expires_at` dengan waktu saat ini untuk memfilter file yang kedaluwarsa
+* Mengunduh kontennya (`GET /v1/files/{file_id}/content`) mengembalikan error 404.
+* Permintaan Messages yang merujuk file tersebut gagal sebelum inferensi.
+* Metadatanya (`GET /v1/files/{file_id}`) tetap dapat dibaca hingga 30 hari, dengan `expires_at` berada di masa lalu.
+* File tersebut tetap muncul dalam respons daftar selama jangka waktu itu; bandingkan `expires_at` dengan waktu saat ini untuk memfilter file yang kedaluwarsa.
 
 Menghapus file yang kedaluwarsa dengan `DELETE /v1/files/{file_id}` akan menghapus metadatanya segera alih-alih menunggu jangka waktu 30 hari berlalu.
 
 <Note>
-  Kedaluwarsa adalah fitur siklus hidup, bukan kontrol penghapusan yang dijamin. Setelah `expires_at`, konten file tidak lagi dapat diambil melalui API dan dilepaskan dari kuota penyimpanan Anda; konten yang mendasarinya mungkin disimpan untuk jangka waktu terbatas setelahnya untuk peninjauan keamanan sebelum penghapusan permanen, dan metadata file tetap terlihat hingga 30 hari setelah kedaluwarsa. Untuk menghapus file sebelum jadwal kedaluwarsanya, gunakan `DELETE /v1/files/{file_id}`.
+  Kedaluwarsa adalah fitur siklus hidup, bukan kontrol penghapusan yang dijamin. Setelah `expires_at`, konten file tidak lagi dapat diambil melalui API dan dilepaskan dari kuota penyimpanan Anda; konten yang mendasarinya mungkin disimpan untuk jangka waktu terbatas setelahnya untuk tinjauan keamanan sebelum dihapus secara permanen, dan metadata file tetap terlihat hingga 30 hari setelah kedaluwarsa. Untuk menghapus file sebelum jadwal kedaluwarsanya, gunakan `DELETE /v1/files/{file_id}`.
 </Note>
 
 ### Pencatatan audit
@@ -983,13 +982,13 @@ Files API telah keluar dari beta dan tidak memerlukan header beta. Migrasi dari 
 
 Untuk bermigrasi:
 
-1. **Hapus header beta.** Hilangkan `anthropic-beta: files-api-2025-04-14` dari permintaan Anda. Di SDK, panggil `client.files` alih-alih `client.beta.files`; tetap menggunakan `client.beta.files` hanya berfungsi pada [rilis SDK yang tidak lagi mengirim header tersebut](https://platform.claude.com/docs/id/build-with-claude/files#sdk-beta-namespace). Rilis sebelumnya mengirimkannya dari `client.beta.files` bahkan tanpa argumen `betas`.
+1. **Hapus beta header.** Hilangkan `anthropic-beta: files-api-2025-04-14` dari permintaan Anda. Dengan SDK, panggil `client.files` (csharp, go: `client.Files`; java: `client.files()`; php: `$client->files`) alih-alih `client.beta.files` (csharp, go: `client.Beta.Files`; java: `client.beta().files()`; php: `$client->beta->files`); tetap menggunakan `client.beta.files` (csharp, go: `client.Beta.Files`; java: `client.beta().files()`; php: `$client->beta->files`) hanya berfungsi pada [rilis SDK yang tidak lagi mengirimkan header tersebut](https://platform.claude.com/docs/id/build-with-claude/files#sdk-beta-namespace). Rilis sebelumnya mengirimkannya dari `client.beta.files` (csharp, go: `client.Beta.Files`; java: `client.beta().files()`; php: `$client->beta->files`) bahkan ketika Anda tidak meneruskan nama beta apa pun.
 2. **Perbarui paginasi.** Ganti loop `after_id`/`before_id` dengan kursor `page`/`next_page`, atau gunakan helper paginasi otomatis SDK yang ditunjukkan di [Mengelola file](https://platform.claude.com/docs/id/build-with-claude/files#managing-files).
 3. **Baca `expires_at`.** Field ini hanya muncul tanpa header; `null` berarti file tidak memiliki kedaluwarsa (lihat [Kedaluwarsa file](https://platform.claude.com/docs/id/build-with-claude/files#file-expiration)).
 
 ### Namespace beta SDK
 
-Mulai dari Python SDK 1.2.0, TypeScript SDK 0.122.0, Go SDK 1.68.0, Java SDK 2.59.0, Ruby SDK 1.67.0, dan C# SDK 12.44.0, `client.beta.files` tidak lagi mengirim `files-api-2025-04-14` dan mengembalikan bentuk yang sama dengan `client.files`, dengan nama tipe berawalan `Beta`. Namespace ini menerima argumen `betas` untuk fitur Files yang masih dalam beta, seperti pemfilteran `scope_id` di bawah header beta [Managed Agents](https://platform.claude.com/docs/id/managed-agents/files). Rilis SDK sebelumnya memiliki tipe sesuai bentuk beta; jika Anda bergantung pada tipe tersebut, tetaplah pada rilis sebelumnya hingga Anda bermigrasi.
+Mulai dari Python SDK 1.2.0, TypeScript SDK 0.122.0, Go SDK 1.68.0, Java SDK 2.59.0, PHP SDK 0.45.0, Ruby SDK 1.67.0, dan C# SDK 12.44.0, `client.beta.files` (csharp, go: `client.Beta.Files`; java: `client.beta().files()`; php: `$client->beta->files`) tidak lagi mengirimkan `files-api-2025-04-14` dan mengembalikan bentuk yang sama dengan `client.files` (csharp, go: `client.Files`; java: `client.files()`; php: `$client->files`), dengan nama tipe berawalan `Beta` (di PHP, kelas dalam namespace `Anthropic\Beta`). Namespace ini menerima nama beta melalui `betas` (csharp, go: `Betas`; java: `.addBeta()`) untuk fitur Files yang masih dalam beta, seperti pemfilteran `scope_id` di bawah beta header [Managed Agents](https://platform.claude.com/docs/id/managed-agents/files). Rilis SDK sebelumnya memiliki tipe yang sesuai dengan bentuk beta; jika Anda bergantung pada tipe tersebut, tetaplah pada rilis sebelumnya hingga Anda bermigrasi.
 
 Permintaan yang membawa `anthropic-beta: managed-agents-2026-04-01` tanpa `files-api-2025-04-14` menerima bentuk di halaman ini dengan satu kelonggaran kompatibilitas pada `GET /v1/files`: `before_id` dan `after_id` masih diterima (tidak dapat digabungkan dengan `page` atau `ids[]`), dan respons list menyertakan `has_more`, `first_id`, dan `last_id` di samping `next_page`. Versi beta Managed Agents yang lebih baru menerima bentuk biasa.
 
@@ -997,13 +996,13 @@ Permintaan yang membawa `anthropic-beta: managed-agents-2026-04-01` tanpa `files
 
 Error umum saat menggunakan Files API meliputi:
 
-* **File tidak ditemukan (404):** `file_id` yang ditentukan tidak ada atau Anda tidak memiliki akses ke file tersebut
-* **Jenis file tidak valid (400):** Jenis file tidak cocok dengan jenis blok konten (misalnya, menggunakan file gambar dalam blok dokumen)
-* **Tidak dapat diunduh (400):** File yang Anda unggah memiliki `"downloadable": false` dan tidak dapat diunduh. Hanya file yang dibuat oleh skills atau alat eksekusi kode yang dapat diunduh
-* **Melebihi ukuran jendela konteks (400):** File lebih besar dari ukuran "context window" (jendela konteks) (misalnya, menggunakan file teks biasa 500 MB dalam permintaan `/v1/messages`)
-* **Nama file tidak valid (400):** Nama file tidak memenuhi persyaratan panjang (1-255 karakter) atau mengandung karakter terlarang (`<`, `>`, `:`, `"`, `|`, `?`, `*`, `\`, `/`, atau karakter Unicode 0-31)
-* **File terlalu besar (413):** File melebihi batas 500 MB
-* **Batas penyimpanan terlampaui (400):** Organisasi Anda telah mencapai batas penyimpanan 1 TB
+* **File tidak ditemukan (404):** `file_id` yang ditentukan tidak ada atau Anda tidak memiliki akses ke file tersebut.
+* **Jenis file tidak valid (400):** Jenis file tidak cocok dengan jenis blok konten (misalnya, menggunakan file gambar dalam blok dokumen).
+* **Tidak dapat diunduh (400):** File yang Anda unggah memiliki `"downloadable": false` dan tidak dapat diunduh. Hanya file yang dibuat oleh skills atau alat eksekusi kode yang dapat diunduh.
+* **Melebihi ukuran jendela konteks (400):** File lebih besar dari ukuran "context window" (jendela konteks) (misalnya, menggunakan file teks biasa berukuran 500 MB dalam permintaan `/v1/messages`).
+* **Nama file tidak valid (400):** Nama file tidak memenuhi persyaratan panjang (1–255 karakter) atau berisi karakter terlarang (`<`, `>`, `:`, `"`, `|`, `?`, `*`, `\`, `/`, atau karakter Unicode 0–31).
+* **File terlalu besar (413):** File melebihi batas 500 MB.
+* **Batas penyimpanan terlampaui (400):** Organisasi Anda telah mencapai batas penyimpanan 1 TB.
 
 ```json Output
 {
@@ -1040,7 +1039,7 @@ Panggilan API terkait file dibatasi hingga sekitar 500 permintaan per menit ("ra
   </Card>
 
   <Card title="Alat eksekusi kode" icon="terminal" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool">
-    Jalankan kode Python dan bash dalam container sandbox untuk menganalisis data, menghasilkan file, dan mengiterasi solusi.
+    Jalankan kode Python dan Bash dalam container sandbox untuk menganalisis data, menghasilkan file, dan melakukan iterasi pada solusi.
   </Card>
 
   <Card title="Vision" icon="image" href="https://platform.claude.com/docs/id/build-with-claude/vision">

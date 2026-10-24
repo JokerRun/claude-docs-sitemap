@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: dc8f0f237a616cd18245d4dda0c9c1486231b66b8cccdf991bb4eda914a616f5
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 3cd62f7e1c6e8f85643427496488379efdf4cd1cbcd4749e2a6c5a89df85f70a
 ---
 
 ---
@@ -117,7 +117,7 @@ Structured outputs guarantee schema-compliant responses through constrained deco
 
     Claude returns JSON like this in the response's text content block:
 
-    ```text Output wrap
+    ```json Output
     {
       "name": "John Smith",
       "email": "john@example.com",
@@ -155,7 +155,7 @@ Structured outputs guarantee schema-compliant responses through constrained deco
 
     Claude returns JSON like this in the response's text content block:
 
-    ```text Output wrap
+    ```json Output
     {
       "name": "John Smith",
       "email": "john@example.com",
@@ -336,7 +336,7 @@ Structured outputs guarantee schema-compliant responses through constrained deco
     ```
 
     <Note>
-      Passing a struct as the schema is in beta in Go, so this example uses `client.Beta.Messages.New`. To use the GA `client.Messages.New`, pass a JSON schema as shown in [Using a raw JSON schema](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#using-a-raw-json-schema).
+      Passing a struct as the schema is in beta in Go, so this example uses `client.Beta.Messages.New`. To use the stable `client.Messages.New`, pass a JSON schema as shown in [Using a raw JSON schema](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#using-a-raw-json-schema).
     </Note>
 
     The SDK generates and transforms the JSON schema from the struct and unmarshals the response into it.
@@ -381,7 +381,7 @@ Structured outputs guarantee schema-compliant responses through constrained deco
 
     The previous example outputs:
 
-    ```text Output wrap
+    ```json Output
     {"name":"John Smith","email":"john@example.com","plan_interest":"Enterprise","demo_requested":true}
     ```
 
@@ -470,7 +470,7 @@ Structured outputs guarantee schema-compliant responses through constrained deco
 
       The JSON output has this nested structure:
 
-      ```text Output wrap
+      ```json Output
       {
         "composedA": { "a": "hello" },
         "composedB": { "b": "world" }
@@ -491,7 +491,7 @@ Structured outputs guarantee schema-compliant responses through constrained deco
 
       The JSON output has this flat structure:
 
-      ```text Output wrap
+      ```json Output
       {
         "a": "hello",
         "b": "world"
@@ -798,7 +798,7 @@ To use a JSON schema from a file, an OpenAPI spec, or code that builds it at run
 
     Claude returns JSON like this in the response's text content block:
 
-    ```text Output wrap
+    ```json Output
     {
       "name": "John Smith",
       "email": "john@example.com",
@@ -836,7 +836,7 @@ To use a JSON schema from a file, an OpenAPI spec, or code that builds it at run
 
     Claude returns JSON like this in the response's text content block:
 
-    ```text Output wrap
+    ```json Output
     {
       "name": "John Smith",
       "email": "john@example.com",
@@ -990,7 +990,7 @@ To use a JSON schema from a file, an OpenAPI spec, or code that builds it at run
 
     The previous example outputs:
 
-    ```text Output wrap
+    ```json Output
     {"name":"John Smith","email":"john@example.com","plan_interest":"Enterprise","demo_requested":true}
     ```
   </Tab>
@@ -1104,7 +1104,7 @@ To use a JSON schema from a file, an OpenAPI spec, or code that builds it at run
 
     The previous example outputs:
 
-    ```text Output wrap
+    ```json Output
     {"name":"John Smith","email":"john@example.com","plan_interest":"Enterprise"}
     ```
 

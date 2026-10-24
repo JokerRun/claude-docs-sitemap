@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: ad06ec60f6f301d3bc7e5d321e7ddc867896520e269cac08c28725fc526a2839
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: a6dc70a7e2e0bd9fa1293c35e2fa59be809072c14813fad2fdb635d6b41d5699
 ---
 
 ---
@@ -147,7 +147,7 @@ Panggilan pemantauan di halaman ini dijalankan dari alat pemantauan atau operasi
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "type": "work_queue_stats",
   "depth": 0,

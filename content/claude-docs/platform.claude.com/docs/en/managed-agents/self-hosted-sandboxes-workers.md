@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-workers
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 08db26d384b23221266c6405c1764f575de876fe798509c13c6ee796c8f77ec1
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 4242c69e9fafd17328371ea297b4a759759038ef63aea42d222601832ceb6c4b
 ---
 
 ---
@@ -444,7 +444,7 @@ A poller on the host claims work and calls your script once for each work item. 
 
     ```dockerfile
     FROM your-base-image
-    ARG ANT_VERSION=2.1.0
+    ARG ANT_VERSION=2.3.0
     ARG TARGETARCH
     RUN ARCH=$([ "$TARGETARCH" = "arm64" ] && echo arm64 || echo amd64) && \
         curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${ANT_VERSION}/ant_${ANT_VERSION}_linux_${ARCH}.tar.gz" \

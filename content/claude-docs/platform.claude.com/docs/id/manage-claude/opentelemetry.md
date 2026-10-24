@@ -1,12 +1,12 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 481ec54659624b29e734500854dfe18be5d05eaaa48e99ecd8c5ad378f2194f6
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: d6f4cafe5919f039c65cdf34279b1e02e981a676cc3a11b32811875f62e5a6cc
 ---
 
 ---
-title: OpenTelemetry untuk Claude API
+title: Tracing OpenTelemetry untuk Claude API
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry
 description: Lacak permintaan Messages API, penggunaan alat, dan sesi Managed Agents Anda dengan span OpenTelemetry dari Claude SDK dan Claude API.
 featureMetadata:
@@ -20,7 +20,7 @@ featureMetadata:
   Ekspor OpenTelemetry sedang dalam tahap beta. Fitur ini disediakan berdasarkan perjanjian Anda dengan Anthropic, termasuk bagian Layanan Beta dari [Ketentuan Khusus Layanan](https://www.anthropic.com/legal/service-specific-terms).
 </Note>
 
-Claude API dan SDK dapat melakukan "tracing" (penelusuran) terhadap permintaan Messages API, penggunaan alat, dan sesi Managed Agents Anda dengan [OpenTelemetry](https://opentelemetry.io/). Anda dapat melihat trace ini di platform observabilitas yang sudah Anda miliki. Gunakan trace tersebut untuk men-debug permintaan yang gagal atau lambat, melacak penggunaan token dan "latency" (latensi), serta membangun eval dari lalu lintas nyata. Anda juga dapat melihat setiap permintaan di dalam trace aplikasi Anda sendiri, yang ditautkan ke pengguna atau fitur yang mengirimkannya.
+Claude API dan SDK dapat melakukan "tracing" (penelusuran) terhadap permintaan Messages API, penggunaan alat, dan sesi Managed Agents Anda dengan [OpenTelemetry](https://opentelemetry.io/) (OTel). Anda dapat melihat trace ini di platform observabilitas yang sudah Anda miliki. Gunakan trace tersebut untuk men-debug permintaan yang gagal atau lambat, melacak penggunaan token dan "latency" (latensi), serta membangun eval dari lalu lintas nyata. Anda juga dapat melihat setiap permintaan di dalam trace aplikasi Anda sendiri, yang ditautkan ke pengguna atau fitur yang mengirimkannya.
 
 OpenTelemetry adalah standar netral vendor yang didukung oleh sebagian besar platform observabilitas. *Trace* (jejak) adalah catatan lengkap dari satu permintaan yang melewati sistem Anda. *Span* (rentang) adalah satu langkah dalam sebuah trace, seperti permintaan model atau penggunaan alat. API dan SDK menggunakan atribut dari [konvensi semantik GenAI](https://github.com/open-telemetry/semantic-conventions-genai), sehingga platform yang mendukung konvensi tersebut dapat mengenali span tanpa penyiapan tambahan.
 
@@ -128,7 +128,7 @@ Kirim trace ke platform observabilitas apa pun yang menerima OTLP, termasuk mitr
   </Card>
 
   <Card title="Snowflake" image="https://platform.claude.com/docs/images/partner-logos/snowflake.svg" imageHeight={30} imageOffsetLeft={2} href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-ai-gateway/observability#trace-claude-requests">
-    AI Data Cloud.
+    Control plane agentik dengan observabilitas dan tata kelola bawaan.
   </Card>
 
   <Card title="Splunk" image="https://platform.claude.com/docs/images/partner-logos/splunk.svg" imageDark="https://platform.claude.com/docs/images/partner-logos/splunk-dark.svg" imageHeight={27} imageOffsetLeft={1} href="https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/claude">

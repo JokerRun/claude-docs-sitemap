@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 62b7646d5388a15d4fddb20902635538db660df95e0695b0eb4ba38d31022d56
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 488cc9d6b37800cf60dd34b41f4cf79253306a05950008241f0a26c61ea24cff
 ---
 
 ---
@@ -79,7 +79,7 @@ With the `inline-tools-2026-09-15` beta header, a `tool_addition` block in a mid
 
 ### Compact on demand (beta)
 
-With the `compact-2026-09-04` beta header, a request that sends the top-level `compaction` parameter returns a signed `compaction` block summarizing the whole conversation, which you then send first in place of the summarized messages. It is available on the models that support compaction, Claude Opus 5.5 included. You choose when to compact, the request can run in the background, and the thinking blocks in the turns you keep can stay valid after the swap (under the conditions in [Compaction and preserved thinking](https://platform.claude.com/docs/en/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid)), which matters on Claude Opus 5.5 because its [thinking blocks are tied to the conversation](https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them). See [Compaction on demand](https://platform.claude.com/docs/en/build-with-claude/compaction-on-demand) for platform availability and the full request flow.
+With the `compact-2026-09-04` beta header, a request that sends the top-level `compaction` parameter returns a signed `compaction` block summarizing the whole conversation, which you then send first in place of the summarized messages. It is available on the models that support compaction, Claude Opus 5.5 included. You choose when to compact, and the request can run in the background. Under the conditions in [Compaction and preserved thinking](https://platform.claude.com/docs/en/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid), the thinking blocks in the turns you keep can stay valid after the swap. This matters on Claude Opus 5.5 because its [thinking blocks are tied to the conversation](https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them). See [Compaction on demand](https://platform.claude.com/docs/en/build-with-claude/compaction-on-demand) for platform availability and the full request flow.
 
 ## Behavior differences
 

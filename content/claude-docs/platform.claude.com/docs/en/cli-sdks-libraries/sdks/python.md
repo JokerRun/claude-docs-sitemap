@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 975aa98e6cd4080e77de26cdb364a1e6257fdd117d05e393db2c04e9d87606bd
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 8a15625d8554f1ba8bde44ef87d5b9330db0ea745d56c10d03b7d02b5a65d7b3
 ---
 
 ---
@@ -29,7 +29,7 @@ For platform-specific integrations or improved async performance, install with e
 # For Amazon Bedrock support
 pip install "anthropic[bedrock]"
 
-# For Google Cloud support
+# For Claude Models on Google Cloud (Google managed) support
 pip install "anthropic[vertex]"
 
 # For Claude Platform on AWS support
@@ -618,7 +618,7 @@ message = (
 print(message.content)
 ```
 
-These methods return an `APIResponse` object. On the async client they return an `AsyncAPIResponse`, and `.parse()`, `.read()`, `.text()`, and `.json()` must be awaited.
+These methods return an `APIResponse` object. On the async client they return an `AsyncAPIResponse`, and you must await `.parse()`, `.read()`, `.text()`, and `.json()`.
 
 ### Streaming response body
 
@@ -647,6 +647,10 @@ You can enable logging by setting the environment variable `ANTHROPIC_LOG` to `d
 ```bash
 export ANTHROPIC_LOG=debug
 ```
+
+### OpenTelemetry tracing
+
+When your application registers an OpenTelemetry tracer provider, the SDK emits a span for each request that it sends. To send the spans to your observability platform, see [Set up OpenTelemetry with the Claude SDK](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk).
 
 ### Making custom/undocumented requests
 
@@ -758,7 +762,7 @@ All six client classes are included in the base `anthropic` package:
 
 | Provider                                          | Client                                         | Extra dependencies                      |
 | ------------------------------------------------- | ---------------------------------------------- | --------------------------------------- |
-| Agent Platform                                    | `from anthropic import AnthropicVertex`        | `pip install "anthropic[vertex]"`       |
+| Claude Models on Google Cloud (Google managed)    | `from anthropic import AnthropicVertex`        | `pip install "anthropic[vertex]"`       |
 | Bedrock                                           | `from anthropic import AnthropicBedrockMantle` | `pip install "anthropic[bedrock]"`      |
 | Bedrock (`bedrock-runtime` path)                  | `from anthropic import AnthropicBedrock`       | `pip install "anthropic[bedrock]"`      |
 | Claude Platform on AWS                            | `from anthropic import AnthropicAWS`           | `pip install "anthropic[aws]"`          |

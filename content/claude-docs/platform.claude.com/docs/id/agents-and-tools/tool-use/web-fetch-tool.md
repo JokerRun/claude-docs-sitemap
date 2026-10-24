@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 52fdd6364ddd4747e75a731c025e3c5f3657c7ad19531b737a9861cb966e3b2e
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 574c1a667346ab5759f90eb26c0400f9bab7baca4709ee41bd54549599bca0ef
 ---
 
 ---
@@ -15,7 +15,7 @@ description: Ambil dan baca konten dari URL tertentu untuk memperkaya konteks Cl
   Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-Alat web fetch memungkinkan Claude mengambil konten lengkap dari halaman web dan dokumen PDF yang ditentukan.
+Alat web fetch memungkinkan Claude untuk mengambil konten lengkap dari halaman web dan dokumen PDF yang ditentukan.
 
 Versi terbaru alat web fetch (`web_fetch_20260318`) mendukung **dynamic filtering** (pemfilteran dinamis): Claude dapat menulis dan mengeksekusi kode untuk memfilter konten yang diambil sebelum konten tersebut mencapai "context window" (jendela konteks). Dengan begitu, hanya informasi yang relevan yang disimpan dan sisanya dibuang. Hal ini mengurangi konsumsi token sambil tetap menjaga kualitas respons. Pemfilteran dinamis tersedia untuk model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). `web_fetch_20260318` juga menambahkan kontrol [penyertaan respons](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#response-inclusion) untuk alur kerja agentik. Versi-versi sebelumnya tetap tersedia: `web_fetch_20260309` untuk pemfilteran dinamis dan [bypass cache](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#cache-bypass), `web_fetch_20260209` khusus untuk pemfilteran dinamis, dan `web_fetch_20250910` untuk fetch dasar.
 
@@ -74,7 +74,7 @@ Claude **tidak** melakukan fetch untuk pertanyaan pengetahuan umum atau pertanya
 
 ### Pemfilteran dinamis
 
-Mengambil halaman web dan PDF secara utuh dapat menghabiskan token dengan cepat, terutama ketika Anda hanya membutuhkan informasi tertentu dari dokumen berukuran besar. Dengan `web_fetch_20260209` atau versi yang lebih baru, Claude dapat menulis dan mengeksekusi kode untuk memfilter konten yang diambil sebelum memuatnya ke dalam konteks.
+Mengambil halaman web dan PDF lengkap dapat dengan cepat menghabiskan token, terutama ketika hanya informasi tertentu yang dibutuhkan dari dokumen besar. Dengan `web_fetch_20260209` atau yang lebih baru, Claude dapat menulis dan menjalankan kode untuk memfilter konten yang diambil sebelum memuatnya ke dalam konteks.
 
 Pemfilteran dinamis ini sangat berguna untuk:
 
@@ -250,6 +250,12 @@ Untuk mengaktifkan pemfilteran dinamis, gunakan `web_fetch_20260209` atau versi 
 </CodeGroup>
 
 ## Cara menggunakan web fetch
+
+<Note>
+  Admin organisasi dapat menonaktifkan web fetch untuk organisasi Anda di halaman [**Capabilities**](https://platform.claude.com/settings/capabilities) pada Claude Console. Dengan web fetch nonaktif, permintaan Messages API yang menyertakan alat ini gagal dengan `invalid_request_error` 400 yang menyatakan bahwa web fetch tidak diaktifkan. Dengan web fetch aktif, admin juga dapat mengatur domain yang diizinkan atau diblokir untuk web fetch di halaman yang sama. Untuk cara daftar tersebut diterapkan pada permintaan, lihat [Pemfilteran domain](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#domain-filtering).
+</Note>
+
+Untuk cara pengaturan web fetch organisasi Anda diterapkan dalam sesi Claude Managed Agents, lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions).
 
 Sertakan alat web fetch dalam permintaan API Anda:
 
@@ -427,7 +433,7 @@ Alat web fetch mendukung parameter-parameter berikut:
   "type": "web_fetch_20250910",
   "name": "web_fetch",
 
-  // Optional: Limit the number of fetches per request
+  // Optional: Limit the number of fetches for each request
   "max_uses": 10,
 
   // Optional: Only fetch from these domains
@@ -461,7 +467,7 @@ Parameter `max_uses` membatasi jumlah web fetch yang dilakukan. Fetch yang gagal
 
 Untuk pemfilteran domain dengan `allowed_domains` dan `blocked_domains`, lihat [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#domain-filtering).
 
-Di [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), atur field ini pada entri `web_fetch` dari toolset agen, di mana setiap domain yang tercantum harus berupa hostname biasa tanpa path; lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions).
+Di [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), atur field ini pada entri `web_fetch` dari toolset agen; lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions).
 
 ### Batas konten
 
@@ -515,7 +521,7 @@ Parameter `response_inclusion` mengontrol cara blok hasil fetch ditampilkan dala
 
 ### Sitasi
 
-Berbeda dengan web search yang sitasinya selalu diaktifkan, sitasi pada web fetch bersifat opsional dan dinonaktifkan secara default. Atur `"citations": {"enabled": true}` agar Claude dapat mengutip bagian tertentu dari dokumen yang diambil.
+Berbeda dengan web search, di mana sitasi selalu diaktifkan, sitasi bersifat opsional untuk web fetch dan dinonaktifkan secara default. Atur `"citations": {"enabled": true}` untuk memungkinkan Claude mengutip bagian tertentu dari dokumen yang diambil.
 
 <Note>
   Saat menampilkan output API secara langsung kepada pengguna akhir, sertakan sitasi ke sumber aslinya. Jika Anda memodifikasi output API, termasuk dengan memproses ulang atau menggabungkannya dengan materi Anda sendiri sebelum ditampilkan kepada pengguna akhir, tampilkan sitasi sebagaimana mestinya berdasarkan konsultasi dengan tim hukum Anda.
@@ -632,7 +638,7 @@ Untuk dokumen PDF, konten dikembalikan sebagai data berenkode base64:
 
 ### Error
 
-Ketika alat web fetch mengalami error, Claude API mengembalikan respons 200 (sukses) dengan error yang dinyatakan di dalam body respons. Claude melihat hasil error tersebut dan melanjutkan gilirannya. Contohnya:
+Ketika alat web fetch mengalami error, Claude API mengembalikan respons 200 (sukses) dengan error yang direpresentasikan dalam body respons. Claude menerima hasil error tersebut dan melanjutkan giliran. Contohnya:
 
 ```json Output
 {
@@ -675,7 +681,7 @@ Alat ini juga menolak URL yang tampaknya berisi kredensial, seperti kunci API at
   Berfungsi dengan `web_fetch_20250910`, `web_fetch_20260209`, `web_fetch_20260309`, dan `web_fetch_20260318`.
 </Note>
 
-Parameter opsional `url_sources` memungkinkan Anda menonaktifkan sumber mana pun dari ketiga sumber yang diizinkan, atau membatasi hasil alat ke alat tertentu. Parameter ini memiliki satu key per sumber, dan setiap key memiliki default `{"type": "all"}`:
+Parameter opsional `url_sources` memungkinkan Anda menonaktifkan salah satu dari tiga sumber yang diizinkan, atau membatasi hasil alat ke alat tertentu. Parameter ini memiliki satu key untuk setiap sumber, dan setiap key memiliki nilai default `{"type": "all"}`:
 
 * `user_input`: URL dalam pesan pengguna. `type`-nya adalah `"all"` atau `"none"`.
 * `client_tool_results`: URL dalam hasil alat sisi klien. `type`-nya adalah `"all"`, `"none"`, atau filter `"only"` atau `"except"` yang menyebutkan nama alat, seperti pada contoh berikut.
@@ -884,7 +890,9 @@ Ketika alat web search dan web fetch sama-sama diaktifkan, dan pengguna menyebut
               .build())
           .addTool(WebFetchTool20250910.builder()
               .maxUses(5L)
-              .citations(CitationsConfigParam.builder().enabled(true).build())
+              .citations(CitationsConfigParam.builder()
+                  .enabled(true)
+                  .build())
               .build())
           .build();
 
@@ -977,7 +985,7 @@ data: {"type": "content_block_start", "index": 1, "content_block": {"type": "ser
 event: content_block_delta
 data: {"type": "content_block_delta", "index": 1, "delta": {"type": "input_json_delta", "partial_json": "{\"url\":\"https://example.com/article\"}"}}
 
-// Pause while fetch executes
+// Pause while fetch runs
 
 // Fetch results streamed
 event: content_block_start
@@ -1022,11 +1030,11 @@ Contoh penggunaan token untuk konten umum:
 
 <CardGroup>
   <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool" title="Alat code execution" icon="code">
-    Jalankan kode Python dan bash dalam container sandbox untuk menganalisis data, menghasilkan file, dan menyempurnakan solusi secara iteratif.
+    Jalankan kode Python dan Bash dalam container sandbox untuk menganalisis data, menghasilkan file, dan melakukan iterasi pada solusi.
   </Card>
 
   <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools" title="Alat server" icon="cloud">
-    Bekerja dengan alat yang dieksekusi oleh Anthropic: blok server\_tool\_use, kelanjutan pause\_turn, dan pemfilteran domain.
+    Bekerja dengan alat yang dijalankan Anthropic: blok `server_tool_use`, kelanjutan `pause_turn`, dan pemfilteran domain.
   </Card>
 
   <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference" title="Referensi alat" icon="book">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-operations
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 7644fc9ebfc8ca05112016312ed8e15dcdec3a285ee2bcd59c81237ce33de89a
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: af5ca47b72de780ecd805b5bda87488a04dcbea05ea9e092e5d098e86fb6aad2
 ---
 
 ---
@@ -203,7 +203,7 @@ The session must be `idle` to update the agent. To update the agent while the se
 
 ## Updating the session budget
 
-A session [created with a budget](https://platform.claude.com/docs/en/managed-agents/sessions#set-a-session-budget) accepts two kinds of budget update: replacing the cap with a new `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`), and removing it by passing `"budget": null` (python: `budget=None`; typescript: `budget: null`; ruby: `budget: nil`; go: `Budget: param.NullStruct[anthropic.BetaManagedAgentsBudgetLimitParam]()`; java: `.budget(Optional.empty())`; csharp: `Budget = null`; php: `requestOptions: ['extraBodyParams' => ['budget' => null]]`; cli: `--budget null`). Both automatically resume work that paused when the session reached its cap. A replacement cap can be higher or lower than the current one, but it must be strictly greater than the session's consumed list cost, and removal is one-way: a non-null `budget` (csharp, go: `Budget`) is accepted only on a session that currently has one, so you can't re-add a removed budget or add one to a session created without it. See [Session budgets](https://platform.claude.com/docs/en/managed-agents/budgets#resume-a-session-at-its-budget) for request examples, the error behaviors, and what counts toward list cost.
+A session [created with a budget](https://platform.claude.com/docs/en/managed-agents/sessions#set-a-session-budget) accepts two kinds of budget update: replacing the cap with a new `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`), and removing it by passing `"budget": null` (python: `budget=None`; typescript: `budget: null`; ruby: `budget: nil`; go: `Budget: param.NullStruct[anthropic.BetaManagedAgentsBudgetLimitParam]()`; java: `.budget(Optional.empty())`; csharp: `Budget = null`; php: `requestOptions: ['extraBodyParams' => ['budget' => null]]`; cli: `--budget null`). Both automatically resume work that paused when the session reached its cap. A replacement cap can be higher or lower than the current one, but it must be strictly greater than the session's consumed list cost. Removal is one-way: a non-null `budget` (csharp, go: `Budget`) is accepted only on a session that currently has one. You therefore can't re-add a removed budget or add one to a session created without it. See [Session budgets](https://platform.claude.com/docs/en/managed-agents/budgets#resume-a-session-at-its-budget) for request examples, the error behaviors, and what counts toward list cost.
 
 ## Retrieving a session
 

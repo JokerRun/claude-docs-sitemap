@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-4-6
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: db6be93c32e1421ae407662292bd07b603540ec6c3964cfdb1529a84c28f10d0
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 1e18f1d055de738688bb257e06a2256a1af8c8de198585916a0646f3bf5edd60
 ---
 
 ---
 title: Prompt sistem Claude Sonnet 4.6
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-4-6
-description: Lihat pembaruan pada prompt sistem inti untuk Claude Sonnet 4.6 di [claude.ai](https://claude.ai) serta [aplikasi Claude iOS](https://anthropic.com/ios) dan [aplikasi Claude Android](https://anthropic.com/android).
+description: Lihat pembaruan pada prompt sistem inti untuk Claude Sonnet 4.6 di [claude.ai](https://claude.ai), [aplikasi Claude iOS](https://anthropic.com/ios), dan [aplikasi Claude Android](https://anthropic.com/android).
 ---
 
 ## 7 Oktober 2026

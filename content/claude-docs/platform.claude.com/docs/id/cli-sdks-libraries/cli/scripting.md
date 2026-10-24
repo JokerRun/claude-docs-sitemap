@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 80f6166122eac686eeb54ed82bd911cc8b8e77123c8fd547d35f037807865373
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: bd4c61b18035d1f1db2a6ab306f6a3c3a3d725cf2b264e0b2a78988a164b43c3
 ---
 
 ---
@@ -79,14 +79,12 @@ CLI dirancang agar dapat dikombinasikan dengan perangkat shell standar.
 
 ### Merangkai output list ke perintah kedua
 
-`--transform id --raw-output` pada endpoint list menghasilkan satu ID polos per baris, sehingga alat standar seperti `head` dan `xargs` dapat langsung diterapkan. Ambil hasil pertama, lalu teruskan ke perintah lanjutan:
+`--transform id --raw-output` pada endpoint list menghasilkan satu ID polos di setiap baris, sehingga alat standar seperti `head` dan `xargs` dapat langsung digunakan. Ambil hasil pertama, lalu berikan ke perintah berikutnya:
 
 ```bash
 FIRST_AGENT=$(ant beta:agents list --transform id --raw-output | head -1)
 
-ant beta:agents:versions list \
-  --agent-id "$FIRST_AGENT" \
-  --format jsonl
+ant beta:agents:versions list --agent-id "$FIRST_AGENT" --format jsonl
 ```
 
 ### Memeriksa error
@@ -111,7 +109,7 @@ Agent not found.
 * "Unggah setiap PDF di `./reports` ke Files API dan cetak ID yang dihasilkan."
 * "Ambil event untuk sesi `session_01...` dan beri tahu saya di mana agen tersebut macet."
 
-Claude Code memanggil `ant` melalui shell, mem-parsing output terstrukturnya, dan menalar hasilnya (tanpa memerlukan kode integrasi khusus).
+Claude Code menjalankan perintah `ant`, mengurai output terstruktur, dan menalar hasilnya (tanpa memerlukan kode integrasi khusus).
 
 ## Mengautentikasi permintaan curl dengan kredensial CLI
 

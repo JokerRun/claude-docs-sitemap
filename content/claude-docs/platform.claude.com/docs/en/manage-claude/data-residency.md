@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/data-residency
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 601a64d7aefb772a146f6e10d7d00575ebc29ae236835a188ef4894aa60f5841
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 1015b6e869f84dba8a0e4ccc852bf0bcb78df46995e7de199b70dc6d8d98d00d
 ---
 
 ---
@@ -215,7 +215,7 @@ The `inference_geo` parameter controls where model inference runs for a specific
 
 The response `usage` object includes an `inference_geo` field indicating where inference ran:
 
-```text Output wrap
+```json Output
 {
   "usage": {
     "input_tokens": 25,

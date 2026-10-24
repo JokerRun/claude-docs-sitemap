@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/permission-policies
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: e67245d60fd8e6d83e6996481167591da583b8b8f90346470191544a68bb6fe8
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: d04f1f752169deafc515c3b44db2e048a913840194031ab472f1fcbe3c8189d0
 ---
 
 ---
@@ -149,7 +149,6 @@ When creating an agent, you can apply a policy to every tool in `agent_toolset_2
   if err != nil {
   	panic(err)
   }
-  _ = agent
   ```
 
   ```java Java
@@ -365,7 +364,6 @@ This example connects a GitHub MCP server and allows its tools to run without co
   if err != nil {
   	panic(err)
   }
-  _ = agent
   ```
 
   ```java Java
@@ -574,7 +572,6 @@ Use the `configs` (csharp, go: `Configs`) array to override the default for indi
   		}},
   	},
   }}
-  _ = tools
   ```
 
   ```java Java
@@ -856,7 +853,6 @@ The following example sets `auto` as the default for the agent toolset and for t
   if err != nil {
   	panic(err)
   }
-  _ = agent
   ```
 
   ```java Java
@@ -981,7 +977,7 @@ Under any permission policy, each `agent.tool_use` and `agent.mcp_tool_use` even
 
 For example, when `bash` is under `auto` and the server evaluates a call as high-risk, the denied call appears on the event stream as follows:
 
-```text wrap
+```json
 {
   "type": "agent.tool_use",
   "id": "sevt_01pqr...",
@@ -1028,7 +1024,7 @@ A tool call evaluates to `ask` under an `always_ask` policy, or under `auto` whe
 
 For example, a `bash` call paused under an `always_ask` policy appears on the stream as follows:
 
-```text wrap
+```json
 {
   "type": "agent.tool_use",
   "id": "sevt_01def...",

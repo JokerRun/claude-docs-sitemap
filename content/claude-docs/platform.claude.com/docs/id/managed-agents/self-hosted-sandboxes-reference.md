@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-reference
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 993c969dae53d390e4e879e8829597239849a12e6079b935101b33b890715f7e
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: ad0b9e912ce92f9a3f63380cf2da8e15946774871a5e0c973be4db181dc88cfc
 ---
 
 ---
@@ -140,7 +140,7 @@ SDK Python, TypeScript, dan Go menyediakan tiga helper dengan tingkat kontrol ya
 | Opsi                                                                                 | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `drain` (go: `Drain`)                                                                | Apakah polling dihentikan setelah antrean kosong alih-alih menunggu pekerjaan baru.                                                                                                                                                                                                                                                                                                                          |
-| `block_ms` (typescript: `blockMs`; go: `BlockMs`)                                    | Berapa lama setiap poll menunggu pekerjaan tiba sebelum kembali, dalam milidetik. Harus antara 1 dan 999; helper melakukan poll ulang secara otomatis. Teruskan `null` (python: `None`; go: `param.Null[int64]()`) untuk pemeriksaan non-blocking. Default-nya adalah long-poll 999 ms.                                                                                                                      |
+| `block_ms` (typescript: `blockMs`; go: `BlockMs`)                                    | Berapa lama setiap poll menunggu pekerjaan tiba sebelum kembali, dalam milidetik. Harus antara 1 dan 999; helper melakukan poll ulang secara otomatis. Teruskan `null` (python: `None`; go: `param.Null[int64]()`) untuk pemeriksaan non-blocking. Default-nya long-poll 999ms.                                                                                                                              |
 | `reclaim_older_than_ms` (typescript: `reclaimOlderThanMs`; go: `ReclaimOlderThanMs`) | Mengklaim ulang work item yang telah diklaim tetapi tidak pernah di-acknowledge dalam jumlah milidetik ini.                                                                                                                                                                                                                                                                                                  |
 | `auto_stop` (typescript: `autoStop`; go: `AutoStop`)                                 | Apakah sinyal berhenti dikirim untuk setiap work item setelah badan loop Anda selesai memprosesnya. Atur ke `false` (python: `False`; go: `param.NewOpt(false)`) ketika apa pun yang menjalankan work item mengirim sinyal berhenti sendiri. `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`) melakukannya, begitu pula sandbox yang Anda luncurkan yang memiliki pemanggilan stop tersebut. |
 
@@ -184,7 +184,7 @@ Untuk contoh lengkap, lihat [Meluncurkan sandbox dari poller SDK](https://platfo
   if err := env.SetupSkills(ctx, client, work.Data.ID); err != nil {
   	panic(err)
   }
-  // skills downloaded to /workspace/skills/<name>/
+  // skills diunduh ke /workspace/skills/<name>/
   tools := agenttoolset.BetaAgentToolset20260401(env)
   ```
 

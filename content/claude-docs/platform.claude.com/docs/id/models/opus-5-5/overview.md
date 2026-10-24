@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/overview
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 4d87df635537bcdebbaf8541b32ec250e2b40781b3a0bc839e25bb31a3231bc5
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: e563ac9195e461478f4da7b86d5d6782caef15166a9284d3290c9e13860288f0
 ---
 
 ---
 title: Claude Opus 5.5
 url: https://platform.claude.com/docs/id/models/opus-5-5/overview
-description: "Sekilas tentang Claude Opus 5.5: kegunaannya, ID model di setiap platform, jendela konteks, batas output, harga, ketersediaan, serta panduan dan sumber daya untuk membangun dengannya."
+description: "Ikhtisar Claude Opus 5.5: kegunaannya, ID model di setiap platform, jendela konteks, batas output, harga, ketersediaan, serta panduan dan sumber daya untuk membangun dengannya."
 ---
 
 **Latest.** Released September 22, 2026.
@@ -23,7 +23,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $4 / MTok
 
 ## Ikhtisar
 
-Claude Opus 5.5 dibangun untuk agentic coding dan pekerjaan pengetahuan yang berjalan lama, dengan harga $4 / $20 USD per juta token input / output. Empat "breaking changes" (perubahan yang merusak kompatibilitas) memengaruhi kode yang sudah berjalan di Claude Opus 5: [thinking tidak dapat dinonaktifkan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#thinking-cant-be-disabled), [penggunaan alat paksa mengembalikan error](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#forced-tool-use-is-not-supported), [blok thinking terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them), dan, di Claude API dan Claude Models on Google Cloud (Google managed), [alat computer use `computer_20251124` yang lebih lama tidak diterima](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#computer-20251124-is-not-supported). Tiga yang pertama juga berlaku di Claude Fable 5.1. Satu perubahan lain mengubah bentuk respons tanpa menggagalkan permintaan apa pun: [teks di antara panggilan alat dikembalikan dalam blok `thinking`](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#text-between-tool-calls) yang teksnya kosong pada pengaturan `display` default. Aplikasi yang melakukan streaming teks tersebut ke penggunanya sebagai pembaruan progres akan menjadi senyap di antara panggilan alat hingga aplikasi tersebut menetapkan nilai `display` yang mengembalikan teks.
+Claude Opus 5.5 dibuat untuk pekerjaan coding agentik dan pekerjaan pengetahuan yang berjalan lama, dengan harga $4 / $20 USD per juta token input / output. Empat perubahan yang merusak kompatibilitas memengaruhi kode yang sudah berjalan di Claude Opus 5: [thinking tidak dapat dinonaktifkan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#thinking-cant-be-disabled), [penggunaan alat paksa mengembalikan error](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#forced-tool-use-is-not-supported), [blok thinking terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them), dan, di Claude API serta Claude Models on Google Cloud (Google managed), [alat computer use `computer_20251124` yang lebih lama tidak diterima](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#computer-20251124-is-not-supported). Tiga yang pertama juga berlaku di Claude Fable 5.1. Satu perubahan lain mengubah bentuk respons tanpa membuat permintaan apa pun gagal: [teks di antara panggilan alat dikembalikan dalam blok `thinking`](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#text-between-tool-calls) yang teksnya kosong pada pengaturan `display` default. Aplikasi yang melakukan streaming teks tersebut kepada penggunanya sebagai pembaruan progres akan menjadi diam di antara panggilan alat hingga aplikasi tersebut menetapkan nilai `display` yang mengembalikan teks.
 
 [Yang baru di Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5)
 
@@ -108,7 +108,7 @@ Claude Opus 5.5 dibangun untuk agentic coding dan pekerjaan pengetahuan yang ber
   </Card>
 
   <Card title="Effort" icon="sliders" href="https://platform.claude.com/docs/id/build-with-claude/effort">
-    Kontrol untuk kedalaman pemikiran, "latency" (latensi), dan biaya. Pilih level untuk setiap beban kerja.
+    Kontrol untuk kedalaman pemikiran, latensi, dan biaya. Pilih level untuk setiap beban kerja.
   </Card>
 
   <Card title="Pemikiran adaptif" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">

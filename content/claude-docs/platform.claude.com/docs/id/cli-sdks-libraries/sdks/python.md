@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: f55f79227c7fc15cc93e9c210f198da25df80f84fc8fb00c92bd072dde526a07
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: b9378ad08916f5e3d19abe2f27d3ba52afc65b2635aef2261fe8e840c229a87c
 ---
 
 ---
@@ -78,7 +78,7 @@ for block in message.content:
   Pertimbangkan untuk menggunakan [python-dotenv](https://pypi.org/project/python-dotenv/) untuk menambahkan `ANTHROPIC_API_KEY="my-anthropic-api-key"` ke file `.env` Anda agar "API key" (kunci API) Anda tidak tersimpan di source control.
 </Tip>
 
-Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci personal atau kunci akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) dengan akses ke beberapa workspace, tetapkan ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
+Untuk opsi autentikasi termasuk "Workload Identity Federation" (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
 
 ## Penggunaan async
 
@@ -647,6 +647,10 @@ Anda dapat mengaktifkan logging dengan mengatur variabel lingkungan `ANTHROPIC_L
 ```bash
 export ANTHROPIC_LOG=debug
 ```
+
+### Tracing OpenTelemetry
+
+Saat aplikasi Anda mendaftarkan tracer provider OpenTelemetry, SDK memancarkan span untuk setiap permintaan yang dikirimnya. Untuk mengirim span ke platform observabilitas Anda, lihat [Menyiapkan OpenTelemetry dengan Claude SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
 
 ### Membuat permintaan kustom/tidak terdokumentasi
 

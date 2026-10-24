@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 097748921d71213db3f1ad7d7f5936358488f79ac037348f6497d258938ce8be
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: c51a17082d868d39f2106263b597d6784a3dbc2c9cbe7e24655fc3186ce7ef04
 ---
 
 ---
@@ -28,11 +28,11 @@ Sesi berkembang melalui status-status berikut. Lihat [Memulai sesi](https://plat
 | `idle`         | Agen sedang menunggu input, termasuk pesan pengguna atau konfirmasi alat. Sesi yang dibuat tanpa `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) dimulai dalam status `idle`. Sesi dapat berstatus `idle` saat sebuah [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs#while-a-run-is-open) masih terbuka, sehingga `idle` saja tidak berarti pekerjaan telah selesai. Lihat [Mengetahui kapan pekerjaan selesai](https://platform.claude.com/docs/id/managed-agents/workflow-runs#know-when-the-work-is-done). |
 | `running`      | Agen sedang aktif mengeksekusi.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | `rescheduling` | Terjadi kesalahan sementara, mencoba ulang secara otomatis.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `terminated`   | Sesi telah berakhir, baik karena kesalahan yang tidak dapat dipulihkan maupun karena telah diarsipkan. Sesi yang menyelesaikan pekerjaannya menjadi `idle`, bukan `terminated`.                                                                                                                                                                                                                                                                                                                                                                                                |
+| `terminated`   | Sesi telah berakhir, baik karena kesalahan yang tidak dapat dipulihkan atau karena telah diarsipkan. Sesi yang menyelesaikan pekerjaannya beralih ke `idle`, bukan `terminated`.                                                                                                                                                                                                                                                                                                                                                                                               |
 
 ## Memperbarui konfigurasi agen
 
-Anda dapat memperbarui `agent.tools` (csharp, go: `Agent.Tools`) dan `agent.mcp_servers` (java, php: `agent.mcpServers`; csharp: `Agent.McpServers`; go: `Agent.MCPServers`) milik sesi, termasuk kebijakan izin dan pengaturan web per alat seperti [filter domain](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#change-the-lists-mid-session), di tengah sesi tanpa membuat versi agen baru. Pembaruan bersifat lokal untuk sesi dan tidak diteruskan kembali ke agen yang mendasarinya. `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`) dan `blocked_domains` (java, php: `blockedDomains`; csharp, go: `BlockedDomains`) yang diperbarui berlaku untuk sisa sesi.
+Anda dapat memperbarui `agent.tools` (csharp, go: `Agent.Tools`) dan `agent.mcp_servers` (java, php: `agent.mcpServers`; csharp: `Agent.McpServers`; go: `Agent.MCPServers`) sebuah sesi, termasuk kebijakan izin dan pengaturan web per alat seperti [filter domain](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#change-the-lists-mid-session), di tengah sesi tanpa membuat versi agen baru. Pembaruan bersifat lokal untuk sesi dan tidak berlaku untuk agen yang mendasarinya. `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`) dan `blocked_domains` (java, php: `blockedDomains`; csharp, go: `BlockedDomains`) yang diperbarui berlaku untuk sisa sesi.
 
 Hanya `tools` (csharp, go: `Tools`) dan `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`) milik agen yang dapat berubah setelah sesi dibuat. Untuk menjalankan sesi dengan nilai `model` (csharp, go: `Model`), `system` (csharp, go: `System`; ruby: `system_`), atau `skills` (csharp, go: `Skills`) yang berbeda dari milik agen, gunakan [override konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) saat Anda membuat sesi. Konfigurasi model agen, termasuk pin [`inference_geo`](https://platform.claude.com/docs/id/manage-claude/data-residency)-nya, juga tidak dapat berubah di tengah sesi: tetapkan pin saat Anda menyimpan agen, atau tetapkan atau hapus pin untuk satu sesi dengan override `model` (csharp, go: `Model`) saat Anda membuatnya. Field `system` (csharp, go: `System`; ruby: `system_`) yang dikonfigurasi pada agen bersifat tetap selama masa hidup sesi. Pada model yang mendukungnya, Anda tetap dapat menambahkan panduan tingkat sistem di tengah sesi dengan mengirimkan [event `system.message`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#send-system-messages).
 
@@ -203,7 +203,7 @@ Sesi harus berstatus `idle` untuk memperbarui agen. Untuk memperbarui agen saat 
 
 ## Memperbarui anggaran sesi
 
-Sesi yang [dibuat dengan anggaran](https://platform.claude.com/docs/id/managed-agents/sessions#set-a-session-budget) menerima dua jenis pembaruan anggaran: mengganti batas dengan `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`) baru, dan menghapusnya dengan meneruskan `"budget": null` (python: `budget=None`; typescript: `budget: null`; ruby: `budget: nil`; go: `Budget: param.NullStruct[anthropic.BetaManagedAgentsBudgetLimitParam]()`; java: `.budget(Optional.empty())`; csharp: `Budget = null`; php: `requestOptions: ['extraBodyParams' => ['budget' => null]]`; cli: `--budget null`). Keduanya secara otomatis melanjutkan pekerjaan yang dijeda ketika sesi mencapai batasnya. Batas pengganti dapat lebih tinggi atau lebih rendah dari batas saat ini, tetapi harus benar-benar lebih besar dari biaya daftar (list cost) yang telah dikonsumsi sesi, dan penghapusan bersifat satu arah: `budget` (csharp, go: `Budget`) yang tidak null hanya diterima pada sesi yang saat ini memilikinya, sehingga Anda tidak dapat menambahkan kembali anggaran yang telah dihapus atau menambahkannya ke sesi yang dibuat tanpa anggaran. Lihat [Anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets#resume-a-session-at-its-budget) untuk contoh permintaan, perilaku kesalahan, dan apa saja yang dihitung dalam biaya daftar.
+Sesi yang [dibuat dengan anggaran](https://platform.claude.com/docs/id/managed-agents/sessions#set-a-session-budget) menerima dua jenis pembaruan anggaran: mengganti batas dengan `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`) baru, dan menghapusnya dengan meneruskan `"budget": null` (python: `budget=None`; typescript: `budget: null`; ruby: `budget: nil`; go: `Budget: param.NullStruct[anthropic.BetaManagedAgentsBudgetLimitParam]()`; java: `.budget(Optional.empty())`; csharp: `Budget = null`; php: `requestOptions: ['extraBodyParams' => ['budget' => null]]`; cli: `--budget null`). Keduanya secara otomatis melanjutkan pekerjaan yang dijeda ketika sesi mencapai batasnya. Batas pengganti dapat lebih tinggi atau lebih rendah dari batas saat ini, tetapi harus benar-benar lebih besar dari biaya daftar (list cost) yang telah digunakan sesi. Penghapusan bersifat satu arah: `budget` (csharp, go: `Budget`) yang tidak null hanya diterima pada sesi yang saat ini memilikinya. Oleh karena itu, Anda tidak dapat menambahkan kembali anggaran yang telah dihapus atau menambahkannya ke sesi yang dibuat tanpa anggaran. Lihat [Anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets#resume-a-session-at-its-budget) untuk contoh permintaan, perilaku kesalahan, dan apa saja yang dihitung terhadap biaya daftar.
 
 ## Mengambil sesi
 
@@ -369,7 +369,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
   ```
 
   ```go Go
-  // Page 1: prev_page is empty because nothing precedes the first page.
+  // Halaman 1: prev_page kosong karena tidak ada yang mendahului halaman pertama.
   firstPage, err := client.Beta.Sessions.List(ctx, anthropic.BetaSessionListParams{
   	AgentID: anthropic.String(agent.ID),
   	Limit:   anthropic.Int(1),
@@ -380,7 +380,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
   fmt.Printf("Page 1 prev_page: %q\n", firstPage.PrevPage)
   fmt.Printf("Page 1 next_page: %q\n", firstPage.NextPage)
 
-  // Advance: pass next_page as the Page cursor to fetch page 2.
+  // Maju: berikan next_page sebagai kursor Page untuk mengambil halaman 2.
   secondPage, err := client.Beta.Sessions.List(ctx, anthropic.BetaSessionListParams{
   	AgentID: anthropic.String(agent.ID),
   	Limit:   anthropic.Int(1),
@@ -393,7 +393,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
   	fmt.Printf("Page 2: %s: %s\n", listedSession.ID, listedSession.Status)
   }
 
-  // Go back: page 2's prev_page is the cursor for the page before it.
+  // Kembali: prev_page halaman 2 adalah kursor untuk halaman sebelumnya.
   previousPage, err := client.Beta.Sessions.List(ctx, anthropic.BetaSessionListParams{
   	AgentID: anthropic.String(agent.ID),
   	Limit:   anthropic.Int(1),
@@ -405,7 +405,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
   for _, listedSession := range previousPage.Data {
   	fmt.Printf("Back to page 1: %s: %s\n", listedSession.ID, listedSession.Status)
   }
-  // For forward-only iteration, use ListAutoPaging to auto-follow next_page.
+  // Untuk iterasi maju saja, gunakan ListAutoPaging agar next_page diikuti otomatis.
   ```
 
   ```java Java
@@ -545,7 +545,7 @@ Arsipkan sesi untuk mencegah event baru dikirim sambil tetap mempertahankan riwa
 
 ## Menghapus sesi
 
-Hapus sesi untuk menghapus secara permanen catatan, event, dan sandbox terkaitnya. Sesi yang berstatus `running` tidak dapat dihapus; untuk menghapusnya, kirimkan [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#interrupt-the-agent) secara tersendiri dan tunggu hingga sesi menjadi `idle`. Jika sebuah [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs#while-a-run-is-open) terbuka, penghapusan mungkin mengembalikan kesalahan 400, bahkan ketika sesi berstatus `idle`, atau mungkin berhasil. Setelah penghapusan berhasil, tidak ada event `workflow_run` yang melaporkan berakhirnya eksekusi milik sesi tersebut. Sebelum Anda menghapus, kirimkan `user.message` yang [meminta agen untuk menghentikan eksekusinya](https://platform.claude.com/docs/id/managed-agents/workflow-runs#interrupt-a-session-with-runs-open), atau tunggu hingga setiap eksekusi berakhir. Kemudian hapus sesi setelah berstatus `idle`.
+Menghapus sesi bersifat permanen. Tindakan ini menghapus catatan sesi, event, dan sandbox terkait. Sesi yang berstatus `running` tidak dapat dihapus; untuk menghapusnya, kirimkan [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#interrupt-the-agent) secara tersendiri dan tunggu hingga sesi menjadi `idle`. Jika sebuah [workflow run](https://platform.claude.com/docs/id/managed-agents/workflow-runs#while-a-run-is-open) terbuka, penghapusan mungkin mengembalikan kesalahan 400, bahkan ketika sesi berstatus `idle`, atau mungkin berhasil. Setelah penghapusan berhasil, tidak ada event `workflow_run` yang melaporkan berakhirnya run sesi tersebut. Sebelum Anda menghapus, kirimkan `user.message` yang [meminta agen untuk menghentikan run-nya](https://platform.claude.com/docs/id/managed-agents/workflow-runs#interrupt-a-session-with-runs-open), atau tunggu hingga setiap run berakhir. Kemudian hapus sesi setelah berstatus `idle`.
 
 Memory store, vault, skill, environment, dan agen adalah sumber daya independen dan tidak terpengaruh oleh penghapusan sesi. File yang Anda unggah melalui Files API juga tidak terpengaruh, tetapi file yang dihasilkan oleh sesi itu sendiri terikat pada sesi tersebut dan dihapus secara permanen bersama sistem file-nya. Unduh apa pun yang perlu Anda simpan sebelum menghapus sesi. File output yang ditulis di akhir giliran terakhir dapat memerlukan beberapa detik setelah sesi menjadi idle untuk muncul di [daftar file sesi](https://platform.claude.com/docs/id/managed-agents/files#listing-and-downloading-session-files), jadi periksa terlebih dahulu bahwa file yang Anda harapkan sudah terdaftar.
 

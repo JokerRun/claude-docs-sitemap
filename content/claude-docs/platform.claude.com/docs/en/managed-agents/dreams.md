@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/dreams
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: fc74b206ff8c33cf26b89bcfbfdf80f24260ff570754e90cc271b92c3c7dd254
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: fb076873e1ed0d22176e61727333146f619f1767931b226d2dfd9d806478c393
 ---
 
 ---
@@ -161,7 +161,7 @@ Dreaming inputs include the pre-existing memory store and an array of sessions. 
 
 The response is the full `dream` resource with `status: "pending"`:
 
-```text
+```json
 {
   "type": "dream",
   "id": "drm_01AbCDefGhIjKlMnOpQrStUv",
@@ -222,7 +222,7 @@ Dreams run asynchronously and typically take minutes to a few hours, driven by t
 
   ```typescript TypeScript
   while (dream.status === "pending" || dream.status === "running") {
-    await sleep(10_000);
+    await new Promise((resolve) => setTimeout(resolve, 10_000));
     dream = await client.beta.dreams.retrieve(dream.id);
     console.log(`status=${dream.status} input_tokens=${dream.usage.input_tokens}`);
   }

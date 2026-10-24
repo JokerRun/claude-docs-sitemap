@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/home
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 569a6602200e89ddcbc743869a86e51d655d6102e870086365eadada66feaf1a
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 75222cc84a0179487083818b20758d8616e0db9a7ea8a9b9a833ac326378fb6f
 ---
 
 ---
@@ -73,7 +73,7 @@ dengan Claude"
     ```
 
     ```go Go
-    import "github.com/anthropics/anthropic-sdk-go"
+    import "github.com/anthropics/anthropic-sdk-go/v2"
 
     client := anthropic.NewClient()
     msg, _ := client.Messages.New(

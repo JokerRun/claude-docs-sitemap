@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 564b393d3e8e3b0215208176a2b1af5381914453a6865886e4c829b63d15e5d9
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 2372173e0a86675485b4fc2cea7cbf64086f31f1e6127a00c32540256c6786d3
 ---
 
 ---
@@ -15,29 +15,29 @@ description: Arahkan seberapa sering dan seberapa dalam Claude berpikir dengan t
   Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-"Thinking" (pemikiran) Claude bersifat adaptif: model mengevaluasi setiap permintaan dan menentukan apakah perlu berpikir dan seberapa banyak. Anda menetapkan niat, secara opsional menentukan effort, dan model mengalokasikan penalaran di tempat yang menurut penilaiannya akan membantu.
+Pemikiran Claude bersifat adaptif: model mengevaluasi setiap permintaan dan menentukan apakah perlu berpikir dan seberapa banyak. Anda menetapkan tujuan, secara opsional menentukan effort, dan model mengalokasikan penalaran di tempat penalaran kemungkinan besar akan membantu.
 
 Hal ini membuat pemikiran sangat cocok untuk beban kerja yang mencampur permintaan sepele dan kompleks, serta untuk alur kerja agentik jangka panjang di mana jumlah penalaran yang tepat bervariasi dari satu langkah ke langkah lainnya.
 
-Untuk mempelajari cara mengaktifkan pemikiran, cara membaca output pemikiran, dan tentang [output pemikiran pada Claude Fable 5 dan Claude Mythos 5](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5), lihat ikhtisar [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking). Halaman ini membahas bagaimana Claude menentukan kapan harus berpikir, cara mengarahkan pemikiran, serta mekanisme caching, biaya, dan harga yang mengikutinya.
+Untuk mempelajari cara mengaktifkan pemikiran dan cara membaca output pemikiran, lihat ikhtisar [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking). Halaman ini membahas bagaimana Claude menentukan kapan harus berpikir, cara mengarahkan pemikiran, serta mekanisme caching, biaya, dan harga yang mengikutinya.
 
 ## Bagaimana Claude menentukan kapan harus berpikir
 
-Pemikiran bersifat opsional bagi model. Pada setiap permintaan, Claude menimbang kompleksitas input dan menentukan apakah penalaran yang lebih dalam akan meningkatkan jawaban. Pertanyaan faktual sederhana mungkin mendapatkan respons langsung tanpa blok pemikiran sama sekali; soal matematika multilangkah atau tugas debugging yang rumit memicu penalaran yang lebih dalam.
+Pemikiran bersifat opsional bagi model. Pada setiap permintaan, Claude mengevaluasi kompleksitas input dan menentukan apakah penalaran yang lebih dalam akan meningkatkan jawaban. Pertanyaan faktual sederhana mungkin mendapatkan respons langsung tanpa blok pemikiran sama sekali; soal matematika multilangkah atau tugas debugging yang rumit memicu penalaran yang lebih dalam.
 
-Keputusan ini terjadi per permintaan. Percakapan yang sama dapat berisi giliran dengan dan tanpa pemikiran, dan giliran di mana Claude memilih untuk tidak berpikir tidak berisi blok pemikiran. Jangan membangun logika aplikasi yang mengasumsikan setiap giliran asisten dimulai dengan blok pemikiran.
+Penentuan ini terjadi untuk setiap permintaan. Percakapan yang sama dapat berisi giliran dengan dan tanpa pemikiran, dan giliran di mana Claude melewatkan pemikiran tidak berisi blok pemikiran. Jangan membangun logika aplikasi yang mengasumsikan setiap giliran asisten dimulai dengan blok pemikiran.
 
-Kontrol utama atas keputusan ini adalah parameter [effort](https://platform.claude.com/docs/id/build-with-claude/effort), yang berfungsi sebagai panduan lunak tentang seberapa bersedia Claude untuk berpikir dan seberapa dalam; lihat [Tingkat effort](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost#effort-levels) di halaman ini untuk mengetahui apa yang dilakukan setiap tingkat.
+Kontrol utama atas penentuan ini adalah parameter [effort](https://platform.claude.com/docs/id/build-with-claude/effort), yang berfungsi sebagai panduan lunak tentang seberapa sering dan seberapa dalam Claude menggunakan pemikiran; lihat [Tingkat effort](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost#effort-levels) di halaman ini untuk mengetahui fungsi setiap tingkat.
 
 Jika Anda ingin Claude berpikir lebih jarang, turunkan tingkat effort sebelum beralih ke pengarahan berbasis prompt.
 
-Pemikiran juga berselang-seling dengan penggunaan alat secara otomatis: Claude dapat berpikir di antara pemanggilan alat, merefleksikan setiap hasil alat sebelum menentukan apa yang harus dilakukan selanjutnya ([pemikiran berselang-seling](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking)). Anda tidak memerlukan header beta atau konfigurasi tambahan apa pun untuk ini.
+Pemikiran juga berselang-seling dengan penggunaan alat secara otomatis: Claude dapat berpikir di antara pemanggilan alat, mengevaluasi setiap hasil alat sebelum menentukan apa yang harus dilakukan selanjutnya ([pemikiran berselang-seling](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking)). Anda tidak memerlukan header beta atau konfigurasi tambahan apa pun untuk ini.
 
-Untuk gambaran lengkap tentang bagaimana konfigurasi pemikiran dan parameter effort berinteraksi, lihat [Pemikiran dan effort](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-effort).
+Untuk detail lengkap tentang bagaimana konfigurasi pemikiran dan parameter effort berinteraksi, lihat [Pemikiran dan effort](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-effort).
 
 ## Mengarahkan seberapa sering Claude berpikir
 
-Apakah Claude berpikir pada giliran tertentu dapat diatur melalui prompt. Effort menetapkan sikap keseluruhan, tetapi Anda juga dapat membentuk keputusan tersebut secara langsung dengan panduan bahasa alami, baik secara global di "system prompt" (prompt sistem) maupun per pesan dari giliran pengguna.
+Apakah Claude berpikir pada giliran tertentu dapat diatur melalui prompt. Effort menetapkan sikap keseluruhan, tetapi Anda juga dapat membentuk perilaku tersebut secara langsung dengan panduan bahasa alami, baik secara global di prompt sistem maupun untuk pesan individual di giliran pengguna.
 
 Gunakan kedua tuas ini bersama-sama dalam urutan berikut:
 
@@ -59,14 +59,14 @@ Effort adalah tuas pengarah utama untuk pemikiran. Setiap tingkat menetapkan def
 | `max`                                                        | Claude paling mudah terdorong untuk berpikir dan berpikir dengan kedalaman terbesar, tanpa batasan panjang pemikiran.                    |
 | `xhigh`                                                      | Claude lebih mudah terdorong untuk berpikir dan berpikir lebih dalam dibandingkan pada `high`, cocok untuk eksplorasi yang diperpanjang. |
 | `high` (default pada sebagian besar model)                   | Claude berpikir pada sebagian besar permintaan yang mendapat manfaat darinya. Memberikan penalaran mendalam pada tugas kompleks.         |
-| `medium` (default pada Claude Opus 5.5 dan Claude Haiku 5.5) | Claude menggunakan pemikiran moderat. Dapat melewatkan pemikiran untuk kueri sederhana.                                                  |
+| `medium` (default pada Claude Opus 5.5 dan Claude Haiku 5.5) | Claude menggunakan pemikiran sedang. Mungkin melewatkan pemikiran untuk kueri sederhana.                                                 |
 | `low`                                                        | Claude meminimalkan pemikiran. Melewatkan pemikiran untuk tugas sederhana di mana kecepatan paling penting.                              |
 
-Pada setiap tingkat, Claude menentukan per permintaan apakah akan berpikir. Dalam loop penggunaan alat, permintaan pertama setelah input pengguna baru biasanya membawa sebagian besar penalaran, dan permintaan lanjutan yang hanya memproses hasil alat dapat melewatkan pemikiran, termasuk pada `xhigh` dan `max`. Pemikiran per permintaan juga cenderung berkurang seiring percakapan menjadi lebih panjang. Tidak ada tingkat yang menjamin adanya blok pemikiran pada setiap permintaan.
+Pada setiap tingkat, Claude menentukan untuk setiap permintaan apakah perlu berpikir. Dalam loop penggunaan alat, permintaan pertama setelah input pengguna baru biasanya membawa sebagian besar penalaran, dan permintaan lanjutan yang hanya memproses hasil alat dapat melewatkan pemikiran, termasuk pada `xhigh` dan `max`. Pemikiran per permintaan juga cenderung berkurang seiring percakapan menjadi lebih panjang. Tidak ada tingkat yang menjamin adanya blok pemikiran pada setiap permintaan.
 
 Tabel ini menjelaskan bagaimana setiap tingkat mengubah perilaku pemikiran. Untuk panduan tentang tingkat mana yang harus dipilih untuk beban kerja tertentu, termasuk rekomendasi per model, lihat [Kapan menyesuaikan parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort#when-to-adjust-the-effort-parameter) di halaman effort.
 
-Effort ditetapkan di `output_config.effort`, bukan di dalam objek `thinking`; untuk contoh lengkap per bahasa, lihat [Effort](https://platform.claude.com/docs/id/build-with-claude/effort#basic-usage).
+Effort ditetapkan pada `output_config.effort`, bukan di dalam objek `thinking`; untuk contoh lengkap per bahasa, lihat [Menetapkan tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort#basic-usage).
 
 ```json
 {
@@ -81,7 +81,7 @@ Ketersediaan tingkat bervariasi menurut model; [tabel ketersediaan effort](https
 
 ### Panduan prompt sistem
 
-Panduan prompt sistem menggeser ambang pemikiran Claude untuk setiap permintaan dalam percakapan. Jika Claude berpikir lebih sering daripada yang dibutuhkan beban kerja Anda, tambahkan panduan seperti ini ke prompt sistem Anda:
+Panduan prompt sistem menggeser ambang pemikiran Claude untuk setiap permintaan dalam percakapan. Jika Claude berpikir lebih sering daripada yang dibutuhkan beban kerja Anda, tambahkan panduan seperti berikut ke prompt sistem Anda:
 
 ```text wrap
 Extended thinking adds latency and should only be used when it
@@ -103,14 +103,14 @@ Anda juga dapat mengarahkan pemikiran per pesan dari giliran pengguna, terlepas 
 
 Pengarahan per pesan berguna ketika hanya sebagian permintaan dalam percakapan yang memerlukan penalaran yang diperpanjang. Harness agen, misalnya, dapat menambahkan frasa pendorong pada langkah perencanaan dan frasa pencegah pada konfirmasi rutin, tanpa menyentuh prompt sistem atau mengubah parameter permintaan apa pun di antara giliran.
 
-Pada Claude Haiku 5.5, frasa pencegah tidak secara andal mengurangi pemikiran. Di Claude API dan Claude Models on Google Cloud (Google managed), jalankan giliran rutin pada model tersebut dengan lebih sedikit pemikiran menggunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) sebagai gantinya, yang juga mempertahankan cache prompt.
+Pada Claude Haiku 5.5, frasa pencegah tidak secara andal mengurangi pemikiran. Pada Claude API dan Claude Models on Google Cloud (Google managed), jalankan giliran rutin pada model tersebut dengan pemikiran yang lebih sedikit menggunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) sebagai gantinya, yang juga mempertahankan cache prompt.
 
 ### Verifikasi pengarahan pada beban kerja Anda
 
 Pengarahan berbasis prompt mengubah perilaku model, jadi perlakukan seperti perubahan prompt lainnya: ukur sebelum Anda merilisnya. Jalankan sampel representatif dari lalu lintas Anda dengan dan tanpa panduan tersebut, lalu bandingkan seberapa sering pemikiran terpicu (keberadaan blok pemikiran dalam respons), penggunaan token output, latensi, dan kualitas jawaban pada kasus yang penting bagi Anda.
 
 <Warning>
-  Mengarahkan Claude untuk berpikir lebih jarang dapat menurunkan kualitas pada tugas yang diuntungkan oleh penalaran. Menurunkan tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) biasanya merupakan tuas pertama yang lebih baik, karena ini adalah kontrol yang terkalibrasi, bukan instruksi yang sensitif terhadap pilihan kata. Ukur dampaknya pada beban kerja spesifik Anda sebelum menerapkan penyetelan berbasis prompt ke produksi.
+  Mengarahkan Claude untuk lebih jarang berpikir dapat menurunkan kualitas pada tugas yang mendapat manfaat dari penalaran. Menurunkan tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) biasanya merupakan tuas pertama yang lebih baik, karena ini adalah kontrol yang terkalibrasi, bukan instruksi yang sensitif terhadap susunan kata. Ukur dampaknya pada beban kerja spesifik Anda sebelum menerapkan penyetelan berbasis prompt ke produksi.
 </Warning>
 
 ## Mekanisme
@@ -123,7 +123,7 @@ Giliran asisten tidak perlu dimulai dengan blok pemikiran. (Model yang menggunak
 
 Untuk aplikasi multigiliran, ini berarti Anda dapat mengirimkan kembali riwayat percakapan dalam bentuk apa pun yang Anda miliki:
 
-* Giliran asisten di mana Claude memilih untuk tidak berpikir adalah riwayat yang valid apa adanya.
+* Giliran asisten yang dihasilkan Claude tanpa pemikiran merupakan riwayat yang valid apa adanya.
 * Anda dapat melanjutkan percakapan yang dimulai tanpa pemikiran, atau yang menggunakan konfigurasi pemikiran berbeda, tanpa menulis ulang riwayatnya.
 * Riwayat yang disusun dari sumber campuran tidak memerlukan blok pemikiran disisipkan kembali di awal setiap giliran asisten untuk lolos validasi.
 
@@ -133,626 +133,636 @@ Pelonggaran ini berkaitan dengan validasi, bukan tentang apa yang sebaiknya Anda
 
 Permintaan berurutan yang mempertahankan konfigurasi pemikiran dan tingkat effort yang sama akan mempertahankan "prompt caching" (caching prompt); lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching) untuk aturan lengkapnya. Nilai effort yang telah diselesaikan dirender ke dalam prompt, sehingga mengubahnya di antara permintaan akan membatalkan breakpoint cache, sama seperti mengubah parameter lama [`budget_tokens`](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#extended-thinking-with-prompt-caching) pada model yang menggunakannya. Menetapkan `effort` secara eksplisit ke default model setara dengan menghilangkannya dan tidak merusak cache.
 
-Konsekuensi praktisnya: pilih konfigurasi pemikiran dan tingkat effort tingkat atas per percakapan dan pertahankan. Jika beberapa giliran membutuhkan lebih banyak atau lebih sedikit pemikiran, gunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) pada model yang mendukungnya, atau arahkan dengan [prompting per pesan](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost#tuning-thinking-behavior). Keduanya membiarkan breakpoint cache sebelumnya tetap utuh, sedangkan perubahan pada konfigurasi pemikiran atau tingkat effort tingkat atas tidak.
+Konsekuensi praktisnya: pilih konfigurasi pemikiran dan tingkat effort tingkat atas untuk setiap percakapan dan pertahankan. Jika beberapa giliran membutuhkan lebih banyak atau lebih sedikit pemikiran, gunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) pada model yang mendukungnya, atau arahkan dengan [prompting per pesan](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost#tuning-thinking-behavior). Keduanya membiarkan breakpoint cache sebelumnya tetap utuh, sedangkan perubahan pada konfigurasi pemikiran atau tingkat effort tingkat atas tidak.
 
 Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran yang dapat Anda jalankan sendiri:
 
 <Accordion title="Perubahan effort membatalkan cache prompt">
-  <Tabs>
-    <Tab title="cURL">
-      <Note>
-        Alur kerja ini tidak cocok dijadikan perintah shell sekali jalan. Lihat tab SDK untuk pola multigiliran; permintaan HTTP per giliran mengikuti contoh di halaman [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
-      </Note>
-    </Tab>
+  <CodeGroup exclude="shell:cURL, shell:CLI">
+    <CodeGroupItem language="cURL">
+      Alur kerja ini membutuhkan logika lebih banyak daripada satu perintah shell. Gunakan Claude SDK untuk menjalankannya; permintaan HTTP per giliran mengikuti contoh di halaman [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
+    </CodeGroupItem>
 
-    <Tab title="CLI">
-      <Note>
-        Alur kerja ini tidak cocok dijadikan perintah shell sekali jalan. Lihat tab SDK untuk pola multigiliran; pemanggilan CLI per giliran mengikuti contoh di halaman [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
-      </Note>
-    </Tab>
+    <CodeGroupItem language="CLI">
+      Alur kerja ini membutuhkan logika lebih banyak daripada satu perintah shell. Gunakan Claude SDK untuk menjalankannya; perintah CLI per giliran mengikuti contoh di halaman [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
+    </CodeGroupItem>
 
-    <Tab title="Python">
-      ```python
-      import requests
+    ```python Python
+    import requests
 
-      client = Anthropic()
+    client = Anthropic()
 
 
-      def fetch_article_content(url):
-          text = requests.get(url).text
-          lines = (line.strip() for line in text.splitlines())
-          return "\n".join(line for line in lines if line)
+    def fetch_article_content(url):
+        text = requests.get(url).text
+        lines = (line.strip() for line in text.splitlines())
+        return "\n".join(line for line in lines if line)
 
 
-      # Ambil konten artikel
-      book_url = "https://www.gutenberg.org/cache/epub/1342/pg1342.txt"
-      book_content = fetch_article_content(book_url)
-      # Gunakan teks secukupnya untuk caching (beberapa bab pertama)
-      LARGE_TEXT = book_content[:10000]
+    # Ambil konten artikel
+    book_url = "https://www.gutenberg.org/cache/epub/1342/pg1342.txt"
+    book_content = fetch_article_content(book_url)
+    # Gunakan teks secukupnya untuk caching (beberapa bab pertama)
+    LARGE_TEXT = book_content[:10000]
 
-      # Tanpa prompt sistem - caching dilakukan di messages
-      MESSAGES = [
-          {
-              "role": "user",
-              "content": [
-                  {
-                      "type": "text",
-                      "text": LARGE_TEXT,
-                      "cache_control": {"type": "ephemeral"},
-                  },
-                  {"type": "text", "text": "Analyze the tone of this passage."},
-              ],
-          }
-      ]
-
-      # Permintaan pertama - buat cache
-      print("First request - establishing cache")
-      response1 = client.messages.create(
-          model="claude-opus-5-5",
-          max_tokens=16000,
-          thinking={"type": "adaptive"},
-          messages=MESSAGES,
-      )
-
-      print(f"First response usage: {response1.usage}")
-
-      MESSAGES.append({"role": "assistant", "content": response1.content})
-      MESSAGES.append({"role": "user", "content": "Analyze the characters in this passage."})
-
-      # Permintaan kedua - konfigurasi sama (diharapkan cache hit)
-      print("\nSecond request - same configuration (cache hit expected)")
-      response2 = client.messages.create(
-          model="claude-opus-5-5",
-          max_tokens=16000,
-          thinking={"type": "adaptive"},
-          messages=MESSAGES,
-      )
-
-      print(f"Second response usage: {response2.usage}")
-
-      MESSAGES.append({"role": "assistant", "content": response2.content})
-      MESSAGES.append({"role": "user", "content": "Analyze the setting in this passage."})
-
-      # Permintaan ketiga - tingkat effort berbeda (diharapkan cache miss)
-      print("\nThird request - different effort level (cache miss expected)")
-      response3 = client.messages.create(
-          model="claude-opus-5-5",
-          max_tokens=16000,
-          thinking={"type": "adaptive"},
-          output_config={"effort": "low"},
-          messages=MESSAGES,
-      )
-
-      print(f"Third response usage: {response3.usage}")
-      ```
-    </Tab>
-
-    <Tab title="TypeScript">
-      ```typescript
-
-      const client = new Anthropic();
-
-      async function fetchArticleContent(url: string): Promise<string> {
-        const response = await fetch(url);
-        const text = await response.text();
-        const lines = text.split("\n").map((line) => line.trim());
-        return lines.filter((line) => line).join("\n");
-      }
-
-      const bookUrl = "https://www.gutenberg.org/cache/epub/1342/pg1342.txt";
-      const bookContent = await fetchArticleContent(bookUrl);
-      const LARGE_TEXT = bookContent.substring(0, 10000);
-
-      // Tanpa prompt sistem - caching dilakukan di messages
-      const messages: Anthropic.MessageParam[] = [
+    # Tanpa prompt sistem: caching dilakukan di messages
+    MESSAGES = [
         {
-          role: "user",
-          content: [
-            {
-              type: "text",
-              text: LARGE_TEXT,
-              cache_control: { type: "ephemeral" }
-            },
-            {
-              type: "text",
-              text: "Analyze the tone of this passage."
-            }
-          ]
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": LARGE_TEXT,
+                    "cache_control": {"type": "ephemeral"},
+                },
+                {"type": "text", "text": "Analyze the tone of this passage."},
+            ],
         }
-      ];
+    ]
 
-      // Permintaan pertama - membangun cache
-      console.log("First request - establishing cache");
-      const response1 = await client.messages.create({
-        model: "claude-opus-5-5",
-        max_tokens: 16000,
-        thinking: { type: "adaptive" },
-        messages
-      });
+    # Permintaan pertama: membangun cache
+    print("First request - establishing cache")
+    response1 = client.messages.create(
+        model="claude-opus-5-5",
+        max_tokens=16000,
+        thinking={"type": "adaptive"},
+        messages=MESSAGES,
+    )
 
-      console.log("First response usage: ", response1.usage);
+    print(f"First response usage: {response1.usage}")
 
-      messages.push(
-        { role: "assistant", content: response1.content },
-        { role: "user", content: "Analyze the characters in this passage." }
-      );
+    MESSAGES.append({"role": "assistant", "content": response1.content})
+    MESSAGES.append({"role": "user", "content": "Analyze the characters in this passage."})
 
-      // Permintaan kedua - konfigurasi sama (diharapkan cache hit)
-      console.log("\nSecond request - same configuration (cache hit expected)");
-      const response2 = await client.messages.create({
-        model: "claude-opus-5-5",
-        max_tokens: 16000,
-        thinking: { type: "adaptive" },
-        messages
-      });
+    # Permintaan kedua: konfigurasi sama (diharapkan cache hit)
+    print("\nSecond request - same configuration (cache hit expected)")
+    response2 = client.messages.create(
+        model="claude-opus-5-5",
+        max_tokens=16000,
+        thinking={"type": "adaptive"},
+        messages=MESSAGES,
+    )
 
-      console.log("Second response usage: ", response2.usage);
+    print(f"Second response usage: {response2.usage}")
 
-      messages.push(
-        { role: "assistant", content: response2.content },
-        { role: "user", content: "Analyze the setting in this passage." }
-      );
+    MESSAGES.append({"role": "assistant", "content": response2.content})
+    MESSAGES.append({"role": "user", "content": "Analyze the setting in this passage."})
 
-      // Permintaan ketiga - tingkat effort berbeda (diharapkan cache miss)
-      console.log("\nThird request - different effort level (cache miss expected)");
-      const response3 = await client.messages.create({
-        model: "claude-opus-5-5",
-        max_tokens: 16000,
-        thinking: { type: "adaptive" },
-        output_config: { effort: "low" },
-        messages
-      });
+    # Permintaan ketiga: tingkat effort berbeda (diharapkan cache miss)
+    print("\nThird request - different effort level (cache miss expected)")
+    response3 = client.messages.create(
+        model="claude-opus-5-5",
+        max_tokens=16000,
+        thinking={"type": "adaptive"},
+        output_config={"effort": "low"},
+        messages=MESSAGES,
+    )
 
-      console.log("Third response usage: ", response3.usage);
-      ```
-    </Tab>
+    print(f"Third response usage: {response3.usage}")
+    ```
 
-    <Tab title="C#">
-      ```csharp
-      AnthropicClient client = new();
+    ```typescript TypeScript
 
-      string bookUrl = "https://www.gutenberg.org/cache/epub/1342/pg1342.txt";
-      string bookContent = await FetchArticleContent(bookUrl);
-      string largeText = bookContent.Substring(0, Math.Min(10000, bookContent.Length));
+    const client = new Anthropic();
 
-      Console.WriteLine("First request - establishing cache");
-      var parameters1 = new MessageCreateParams
+    async function fetchArticleContent(url: string): Promise<string> {
+      const response = await fetch(url);
+      const text = await response.text();
+      const lines = text.split("\n").map((line) => line.trim());
+      return lines.filter((line) => line).join("\n");
+    }
+
+    const bookUrl = "https://www.gutenberg.org/cache/epub/1342/pg1342.txt";
+    const bookContent = await fetchArticleContent(bookUrl);
+    const LARGE_TEXT = bookContent.substring(0, 10000);
+
+    // Tanpa prompt sistem: caching dilakukan di messages
+    const messages: Anthropic.MessageParam[] = [
       {
-          Model = Model.ClaudeOpus5_5,
-          MaxTokens = 16000,
-          Thinking = new ThinkingConfigAdaptive(),
-          Messages =
-          [
-              new UserMessageParam
-              {
-                  Content = new List<ContentBlockParam>
-                  {
-                      new ContentBlockParam(new TextBlockParam()
-                      {
-                          Text = largeText,
-                          CacheControl = new CacheControlEphemeral(),
-                      }),
-                      new ContentBlockParam(new TextBlockParam()
-                      {
-                          Text = "Analyze the tone of this passage."
-                      }),
-                  }
-              }
-          ]
-      };
-
-      var response1 = await client.Messages.Create(parameters1);
-      Console.WriteLine($"First response usage: {response1.Usage}");
-
-      Console.WriteLine("\nSecond request - same configuration (cache hit expected)");
-      var parameters2 = new MessageCreateParams
-      {
-          Model = Model.ClaudeOpus5_5,
-          MaxTokens = 16000,
-          Thinking = new ThinkingConfigAdaptive(),
-          Messages =
-          [
-              new UserMessageParam
-              {
-                  Content = new List<ContentBlockParam>
-                  {
-                      new ContentBlockParam(new TextBlockParam()
-                      {
-                          Text = largeText,
-                          CacheControl = new CacheControlEphemeral(),
-                      }),
-                      new ContentBlockParam(new TextBlockParam()
-                      {
-                          Text = "Analyze the tone of this passage."
-                      }),
-                  }
-              },
-              new AssistantMessageParam
-              {
-                  Content = response1.Content.Select(block => new ContentBlockParam(block.Json)).ToList()
-              },
-              new UserMessageParam { Content = "Analyze the characters in this passage." }
-          ]
-      };
-
-      var response2 = await client.Messages.Create(parameters2);
-      Console.WriteLine($"Second response usage: {response2.Usage}");
-
-      Console.WriteLine("\nThird request - different effort level (cache miss expected)");
-      var parameters3 = new MessageCreateParams
-      {
-          Model = Model.ClaudeOpus5_5,
-          MaxTokens = 16000,
-          Thinking = new ThinkingConfigAdaptive(),
-          OutputConfig = new OutputConfig
+        role: "user",
+        content: [
           {
-              Effort = Effort.Low
+            type: "text",
+            text: LARGE_TEXT,
+            cache_control: { type: "ephemeral" }
           },
-          Messages =
-          [
-              new UserMessageParam
-              {
-                  Content = new List<ContentBlockParam>
-                  {
-                      new ContentBlockParam(new TextBlockParam()
-                      {
-                          Text = largeText,
-                          CacheControl = new CacheControlEphemeral(),
-                      }),
-                      new ContentBlockParam(new TextBlockParam()
-                      {
-                          Text = "Analyze the tone of this passage."
-                      }),
-                  }
-              },
-              new AssistantMessageParam
-              {
-                  Content = response1.Content.Select(block => new ContentBlockParam(block.Json)).ToList()
-              },
-              new UserMessageParam { Content = "Analyze the characters in this passage." },
-              new AssistantMessageParam
-              {
-                  Content = response2.Content.Select(block => new ContentBlockParam(block.Json)).ToList()
-              },
-              new UserMessageParam { Content = "Analyze the setting in this passage." }
-          ]
-      };
-
-      var response3 = await client.Messages.Create(parameters3);
-      Console.WriteLine($"Third response usage: {response3.Usage}");
-
-      static async Task<string> FetchArticleContent(string url)
-      {
-          using HttpClient httpClient = new();
-          string content = await httpClient.GetStringAsync(url);
-          return content;
+          {
+            type: "text",
+            text: "Analyze the tone of this passage."
+          }
+        ]
       }
-      ```
-    </Tab>
+    ];
 
-    <Tab title="Go">
-      ```go
-      client := anthropic.NewClient()
+    // Permintaan pertama: membangun cache
+    console.log("First request - establishing cache");
+    const response1 = await client.messages.create({
+      model: "claude-opus-5-5",
+      max_tokens: 16000,
+      thinking: { type: "adaptive" },
+      messages
+    });
 
-      bookURL := "https://www.gutenberg.org/cache/epub/1342/pg1342.txt"
-      bookContent, err := fetchArticleContent(bookURL)
-      if err != nil {
-      	log.Fatal(err)
-      }
+    console.log("First response usage: ", response1.usage);
 
-      largeText := bookContent
-      if len(largeText) > 10000 {
-      	largeText = largeText[:10000]
-      }
+    messages.push(
+      { role: "assistant", content: response1.content },
+      { role: "user", content: "Analyze the characters in this passage." }
+    );
 
-      // Tanpa prompt sistem - caching dilakukan di messages
-      messages := []anthropic.MessageParam{
-      	anthropic.NewUserMessage(
-      		anthropic.ContentBlockParamUnion{OfText: &anthropic.TextBlockParam{
-      			Text:         largeText,
-      			CacheControl: anthropic.NewCacheControlEphemeralParam(),
-      		}},
-      		anthropic.NewTextBlock("Analyze the tone of this passage."),
-      	),
-      }
+    // Permintaan kedua: konfigurasi sama (diharapkan cache hit)
+    console.log("\nSecond request - same configuration (cache hit expected)");
+    const response2 = await client.messages.create({
+      model: "claude-opus-5-5",
+      max_tokens: 16000,
+      thinking: { type: "adaptive" },
+      messages
+    });
 
-      // Permintaan pertama - membangun cache
-      fmt.Println("First request - establishing cache")
-      response1, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus5_5,
-      	MaxTokens: 16000,
-      	Thinking: anthropic.ThinkingConfigParamUnion{
-      		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
-      	},
-      	Messages: messages,
-      })
-      if err != nil {
-      	log.Fatal(err)
-      }
-      fmt.Printf("First response usage: %s\n", response1.Usage.RawJSON())
+    console.log("Second response usage: ", response2.usage);
 
-      messages = append(messages, response1.ToParam())
-      messages = append(messages, anthropic.NewUserMessage(anthropic.NewTextBlock("Analyze the characters in this passage.")))
+    messages.push(
+      { role: "assistant", content: response2.content },
+      { role: "user", content: "Analyze the setting in this passage." }
+    );
 
-      // Permintaan kedua - konfigurasi sama (diharapkan cache hit)
-      fmt.Println("\nSecond request - same configuration (cache hit expected)")
-      response2, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus5_5,
-      	MaxTokens: 16000,
-      	Thinking: anthropic.ThinkingConfigParamUnion{
-      		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
-      	},
-      	Messages: messages,
-      })
-      if err != nil {
-      	log.Fatal(err)
-      }
-      fmt.Printf("Second response usage: %s\n", response2.Usage.RawJSON())
+    // Permintaan ketiga: tingkat effort berbeda (diharapkan cache miss)
+    console.log("\nThird request - different effort level (cache miss expected)");
+    const response3 = await client.messages.create({
+      model: "claude-opus-5-5",
+      max_tokens: 16000,
+      thinking: { type: "adaptive" },
+      output_config: { effort: "low" },
+      messages
+    });
 
-      messages = append(messages, response2.ToParam())
-      messages = append(messages, anthropic.NewUserMessage(anthropic.NewTextBlock("Analyze the setting in this passage.")))
+    console.log("Third response usage: ", response3.usage);
+    ```
 
-      // Permintaan ketiga - tingkat effort berbeda (diharapkan cache miss)
-      fmt.Println("\nThird request - different effort level (cache miss expected)")
-      response3, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus5_5,
-      	MaxTokens: 16000,
-      	Thinking: anthropic.ThinkingConfigParamUnion{
-      		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
-      	},
-      	OutputConfig: anthropic.OutputConfigParam{
-      		Effort: anthropic.OutputConfigEffortLow,
-      	},
-      	Messages: messages,
-      })
-      if err != nil {
-      	log.Fatal(err)
-      }
-      fmt.Printf("Third response usage: %s\n", response3.Usage.RawJSON())
-      ```
-    </Tab>
+    ```csharp C#
+    AnthropicClient client = new();
 
-    <Tab title="Java">
-      ```java
-      import com.anthropic.models.messages.CacheControlEphemeral;
-      // ...
-      void main() throws Exception {
-          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+    string bookUrl = "https://www.gutenberg.org/cache/epub/1342/pg1342.txt";
+    string bookContent = await FetchArticleContent(bookUrl);
+    string largeText = bookContent.Substring(0, Math.Min(10000, bookContent.Length));
 
-          String bookUrl = "https://www.gutenberg.org/cache/epub/1342/pg1342.txt";
-          String bookContent = fetchArticleContent(bookUrl);
-          String largeText = bookContent.substring(0, Math.min(10000, bookContent.length()));
+    Console.WriteLine("First request - establishing cache");
+    var parameters1 = new MessageCreateParams
+    {
+        Model = Model.ClaudeOpus5_5,
+        MaxTokens = 16000,
+        Thinking = new ThinkingConfigAdaptive(),
+        Messages =
+        [
+            new UserMessageParam
+            {
+                Content = new List<ContentBlockParam>
+                {
+                    new ContentBlockParam(new TextBlockParam()
+                    {
+                        Text = largeText,
+                        CacheControl = new CacheControlEphemeral(),
+                    }),
+                    new ContentBlockParam(new TextBlockParam()
+                    {
+                        Text = "Analyze the tone of this passage."
+                    }),
+                }
+            }
+        ]
+    };
 
-          // Permintaan pertama - membangun cache
-          IO.println("First request - establishing cache");
-          MessageCreateParams params1 = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(16000L)
-              .thinking(ThinkingConfigAdaptive.builder().build())
-              .addUserMessageOfContentBlockParams(List.of(
-                  ContentBlockParam.ofText(TextBlockParam.builder()
-                      .text(largeText)
-                      .cacheControl(CacheControlEphemeral.builder().build())
-                      .build()),
-                  ContentBlockParam.ofText(TextBlockParam.builder()
-                      .text("Analyze the tone of this passage.")
-                      .build())
-              ))
-              .build();
+    var response1 = await client.Messages.Create(parameters1);
+    Console.WriteLine($"First response usage: {response1.Usage}");
 
-          Message response1 = client.messages().create(params1);
-          IO.println("First response usage: " + response1.usage());
+    Console.WriteLine("\nSecond request - same configuration (cache hit expected)");
+    var parameters2 = new MessageCreateParams
+    {
+        Model = Model.ClaudeOpus5_5,
+        MaxTokens = 16000,
+        Thinking = new ThinkingConfigAdaptive(),
+        Messages =
+        [
+            new UserMessageParam
+            {
+                Content = new List<ContentBlockParam>
+                {
+                    new ContentBlockParam(new TextBlockParam()
+                    {
+                        Text = largeText,
+                        CacheControl = new CacheControlEphemeral(),
+                    }),
+                    new ContentBlockParam(new TextBlockParam()
+                    {
+                        Text = "Analyze the tone of this passage."
+                    }),
+                }
+            },
+            new AssistantMessageParam
+            {
+                Content = response1.Content.Select(block => new ContentBlockParam(block.Json)).ToList()
+            },
+            new UserMessageParam { Content = "Analyze the characters in this passage." }
+        ]
+    };
 
-          // Permintaan kedua - konfigurasi sama (diharapkan cache hit)
-          IO.println("\nSecond request - same configuration (cache hit expected)");
-          MessageCreateParams params2 = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(16000L)
-              .thinking(ThinkingConfigAdaptive.builder().build())
-              .addUserMessageOfContentBlockParams(List.of(
-                  ContentBlockParam.ofText(TextBlockParam.builder()
-                      .text(largeText)
-                      .cacheControl(CacheControlEphemeral.builder().build())
-                      .build()),
-                  ContentBlockParam.ofText(TextBlockParam.builder()
-                      .text("Analyze the tone of this passage.")
-                      .build())
-              ))
-              .addAssistantMessageOfContentBlockParams(response1.content().stream()
-                  .map(block -> block.toParam())
-                  .collect(Collectors.toList()))
-              .addUserMessage("Analyze the characters in this passage.")
-              .build();
+    var response2 = await client.Messages.Create(parameters2);
+    Console.WriteLine($"Second response usage: {response2.Usage}");
 
-          Message response2 = client.messages().create(params2);
-          IO.println("Second response usage: " + response2.usage());
-
-          // Permintaan ketiga - tingkat effort berbeda (diharapkan cache miss)
-          IO.println("\nThird request - different effort level (cache miss expected)");
-          MessageCreateParams params3 = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(16000L)
-              .thinking(ThinkingConfigAdaptive.builder().build())
-              .outputConfig(OutputConfig.builder()
-                  .effort(OutputConfig.Effort.LOW)
-                  .build())
-              .addUserMessageOfContentBlockParams(List.of(
-                  ContentBlockParam.ofText(TextBlockParam.builder()
-                      .text(largeText)
-                      .cacheControl(CacheControlEphemeral.builder().build())
-                      .build()),
-                  ContentBlockParam.ofText(TextBlockParam.builder()
-                      .text("Analyze the tone of this passage.")
-                      .build())
-              ))
-              .addAssistantMessageOfContentBlockParams(response1.content().stream()
-                  .map(block -> block.toParam())
-                  .collect(Collectors.toList()))
-              .addUserMessage("Analyze the characters in this passage.")
-              .addAssistantMessageOfContentBlockParams(response2.content().stream()
-                  .map(block -> block.toParam())
-                  .collect(Collectors.toList()))
-              .addUserMessage("Analyze the setting in this passage.")
-              .build();
-
-          Message response3 = client.messages().create(params3);
-          IO.println("Third response usage: " + response3.usage());
-      }
-
-      String fetchArticleContent(String url) throws Exception {
-          HttpClient client = HttpClient.newHttpClient();
-          HttpRequest request = HttpRequest.newBuilder()
-              .uri(URI.create(url))
-              .build();
-          HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-          return response.body();
-      }
-      ```
-    </Tab>
-
-    <Tab title="PHP">
-      ```php
-      function fetchArticleContent($url) {
-          $content = file_get_contents($url);
-          $lines = explode("\n", $content);
-          $cleanedLines = array_filter(array_map('trim', $lines));
-          return implode("\n", $cleanedLines);
-      }
-
-      $client = new Client();
-
-      $bookUrl = "https://www.gutenberg.org/cache/epub/1342/pg1342.txt";
-      $bookContent = fetchArticleContent($bookUrl);
-      $largeText = substr($bookContent, 0, 10000);
-
-      echo "First request - establishing cache\n";
-      $response1 = $client->messages->create(
-          maxTokens: 16000,
-          messages: [[
-              'role' => 'user',
-              'content' => [
-                  [
-                      'type' => 'text',
-                      'text' => $largeText,
-                      'cache_control' => ['type' => 'ephemeral']
-                  ],
-                  [
-                      'type' => 'text',
-                      'text' => 'Analyze the tone of this passage.'
-                  ]
-              ]
-          ]],
-          model: 'claude-opus-5-5',
-          thinking: ['type' => 'adaptive'],
-      );
-
-      echo "First response usage: " . json_encode($response1->usage) . "\n";
-
-      echo "\nSecond request - same configuration (cache hit expected)\n";
-      $response2 = $client->messages->create(
-          maxTokens: 16000,
-          messages: [
-              [
-                  'role' => 'user',
-                  'content' => [
-                      [
-                          'type' => 'text',
-                          'text' => $largeText,
-                          'cache_control' => ['type' => 'ephemeral']
-                      ],
-                      [
-                          'type' => 'text',
-                          'text' => 'Analyze the tone of this passage.'
-                      ]
-                  ]
-              ],
-              [
-                  'role' => 'assistant',
-                  'content' => $response1->content
-              ],
-              [
-                  'role' => 'user',
-                  'content' => 'Analyze the characters in this passage.'
-              ]
-          ],
-          model: 'claude-opus-5-5',
-          thinking: ['type' => 'adaptive'],
-      );
-
-      echo "Second response usage: " . json_encode($response2->usage) . "\n";
-
-      echo "\nThird request - different effort level (cache miss expected)\n";
-      $response3 = $client->messages->create(
-          maxTokens: 16000,
-          messages: [
-              [
-                  'role' => 'user',
-                  'content' => [
-                      [
-                          'type' => 'text',
-                          'text' => $largeText,
-                          'cache_control' => ['type' => 'ephemeral']
-                      ],
-                      [
-                          'type' => 'text',
-                          'text' => 'Analyze the tone of this passage.'
-                      ]
-                  ]
-              ],
-              [
-                  'role' => 'assistant',
-                  'content' => $response1->content
-              ],
-              [
-                  'role' => 'user',
-                  'content' => 'Analyze the characters in this passage.'
-              ],
-              [
-                  'role' => 'assistant',
-                  'content' => $response2->content
-              ],
-              [
-                  'role' => 'user',
-                  'content' => 'Analyze the setting in this passage.'
-              ]
-          ],
-          model: 'claude-opus-5-5',
-          thinking: ['type' => 'adaptive'],
-          outputConfig: ['effort' => 'low'],
-      );
-
-      echo "Third response usage: " . json_encode($response3->usage) . "\n";
-      ```
-    </Tab>
-
-    <Tab title="Ruby">
-      ```ruby
-      require "net/http"
-      require "uri"
-
-      def fetch_article_content(url)
-        uri = URI.parse(url)
-        response = Net::HTTP.get_response(uri)
-        text = response.body
-
-        lines = text.split("\n").map(&:strip)
-        lines.reject(&:empty?).join("\n")
-      end
-
-      client = Anthropic::Client.new
-
-      book_url = "https://www.gutenberg.org/cache/epub/1342/pg1342.txt"
-      book_content = fetch_article_content(book_url)
-      large_text = book_content[0...10000]
-
-      puts "First request - establishing cache"
-      response1 = client.messages.create(
-        model: "claude-opus-5-5",
-        max_tokens: 16000,
-        thinking: {
-          type: "adaptive"
+    Console.WriteLine("\nThird request - different effort level (cache miss expected)");
+    var parameters3 = new MessageCreateParams
+    {
+        Model = Model.ClaudeOpus5_5,
+        MaxTokens = 16000,
+        Thinking = new ThinkingConfigAdaptive(),
+        OutputConfig = new OutputConfig
+        {
+            Effort = Effort.Low
         },
-        messages: [{
+        Messages =
+        [
+            new UserMessageParam
+            {
+                Content = new List<ContentBlockParam>
+                {
+                    new ContentBlockParam(new TextBlockParam()
+                    {
+                        Text = largeText,
+                        CacheControl = new CacheControlEphemeral(),
+                    }),
+                    new ContentBlockParam(new TextBlockParam()
+                    {
+                        Text = "Analyze the tone of this passage."
+                    }),
+                }
+            },
+            new AssistantMessageParam
+            {
+                Content = response1.Content.Select(block => new ContentBlockParam(block.Json)).ToList()
+            },
+            new UserMessageParam { Content = "Analyze the characters in this passage." },
+            new AssistantMessageParam
+            {
+                Content = response2.Content.Select(block => new ContentBlockParam(block.Json)).ToList()
+            },
+            new UserMessageParam { Content = "Analyze the setting in this passage." }
+        ]
+    };
+
+    var response3 = await client.Messages.Create(parameters3);
+    Console.WriteLine($"Third response usage: {response3.Usage}");
+
+    static async Task<string> FetchArticleContent(string url)
+    {
+        using HttpClient httpClient = new();
+        string content = await httpClient.GetStringAsync(url);
+        return content;
+    }
+    ```
+
+    ```go Go
+    client := anthropic.NewClient()
+
+    bookURL := "https://www.gutenberg.org/cache/epub/1342/pg1342.txt"
+    bookContent, err := fetchArticleContent(bookURL)
+    if err != nil {
+    	log.Fatal(err)
+    }
+
+    largeText := bookContent
+    if len(largeText) > 10000 {
+    	largeText = largeText[:10000]
+    }
+
+    // Tanpa prompt sistem: caching dilakukan di messages
+    messages := []anthropic.MessageParam{
+    	anthropic.NewUserMessage(
+    		anthropic.ContentBlockParamUnion{OfText: &anthropic.TextBlockParam{
+    			Text:         largeText,
+    			CacheControl: anthropic.NewCacheControlEphemeralParam(),
+    		}},
+    		anthropic.NewTextBlock("Analyze the tone of this passage."),
+    	),
+    }
+
+    // Permintaan pertama: membangun cache
+    fmt.Println("First request - establishing cache")
+    response1, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
+    	Model:     anthropic.ModelClaudeOpus5_5,
+    	MaxTokens: 16000,
+    	Thinking: anthropic.ThinkingConfigParamUnion{
+    		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
+    	},
+    	Messages: messages,
+    })
+    if err != nil {
+    	log.Fatal(err)
+    }
+    fmt.Printf("First response usage: %s\n", response1.Usage.RawJSON())
+
+    messages = append(messages, response1.ToParam())
+    messages = append(messages, anthropic.NewUserMessage(anthropic.NewTextBlock("Analyze the characters in this passage.")))
+
+    // Permintaan kedua: konfigurasi sama (diharapkan cache hit)
+    fmt.Println("\nSecond request - same configuration (cache hit expected)")
+    response2, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
+    	Model:     anthropic.ModelClaudeOpus5_5,
+    	MaxTokens: 16000,
+    	Thinking: anthropic.ThinkingConfigParamUnion{
+    		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
+    	},
+    	Messages: messages,
+    })
+    if err != nil {
+    	log.Fatal(err)
+    }
+    fmt.Printf("Second response usage: %s\n", response2.Usage.RawJSON())
+
+    messages = append(messages, response2.ToParam())
+    messages = append(messages, anthropic.NewUserMessage(anthropic.NewTextBlock("Analyze the setting in this passage.")))
+
+    // Permintaan ketiga: tingkat effort berbeda (diharapkan cache miss)
+    fmt.Println("\nThird request - different effort level (cache miss expected)")
+    response3, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
+    	Model:     anthropic.ModelClaudeOpus5_5,
+    	MaxTokens: 16000,
+    	Thinking: anthropic.ThinkingConfigParamUnion{
+    		OfAdaptive: &anthropic.ThinkingConfigAdaptiveParam{},
+    	},
+    	OutputConfig: anthropic.OutputConfigParam{
+    		Effort: anthropic.OutputConfigEffortLow,
+    	},
+    	Messages: messages,
+    })
+    if err != nil {
+    	log.Fatal(err)
+    }
+    fmt.Printf("Third response usage: %s\n", response3.Usage.RawJSON())
+    ```
+
+    ```java Java
+    import com.anthropic.models.messages.CacheControlEphemeral;
+    // ...
+    void main() throws Exception {
+        AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+        String bookUrl = "https://www.gutenberg.org/cache/epub/1342/pg1342.txt";
+        String bookContent = fetchArticleContent(bookUrl);
+        String largeText = bookContent.substring(0, Math.min(10000, bookContent.length()));
+
+        // Permintaan pertama: membangun cache
+        IO.println("First request - establishing cache");
+        MessageCreateParams params1 = MessageCreateParams.builder()
+            .model(Model.CLAUDE_OPUS_5_5)
+            .maxTokens(16000L)
+            .thinking(ThinkingConfigAdaptive.builder().build())
+            .addUserMessageOfContentBlockParams(List.of(
+                ContentBlockParam.ofText(TextBlockParam.builder()
+                    .text(largeText)
+                    .cacheControl(CacheControlEphemeral.builder().build())
+                    .build()),
+                ContentBlockParam.ofText(TextBlockParam.builder()
+                    .text("Analyze the tone of this passage.")
+                    .build())
+            ))
+            .build();
+
+        Message response1 = client.messages().create(params1);
+        IO.println("First response usage: " + response1.usage());
+
+        // Permintaan kedua: konfigurasi sama (diharapkan cache hit)
+        IO.println("\nSecond request - same configuration (cache hit expected)");
+        MessageCreateParams params2 = MessageCreateParams.builder()
+            .model(Model.CLAUDE_OPUS_5_5)
+            .maxTokens(16000L)
+            .thinking(ThinkingConfigAdaptive.builder().build())
+            .addUserMessageOfContentBlockParams(List.of(
+                ContentBlockParam.ofText(TextBlockParam.builder()
+                    .text(largeText)
+                    .cacheControl(CacheControlEphemeral.builder().build())
+                    .build()),
+                ContentBlockParam.ofText(TextBlockParam.builder()
+                    .text("Analyze the tone of this passage.")
+                    .build())
+            ))
+            .addAssistantMessageOfContentBlockParams(response1.content().stream()
+                .map(block -> block.toParam())
+                .collect(Collectors.toList()))
+            .addUserMessage("Analyze the characters in this passage.")
+            .build();
+
+        Message response2 = client.messages().create(params2);
+        IO.println("Second response usage: " + response2.usage());
+
+        // Permintaan ketiga: tingkat effort berbeda (diharapkan cache miss)
+        IO.println("\nThird request - different effort level (cache miss expected)");
+        MessageCreateParams params3 = MessageCreateParams.builder()
+            .model(Model.CLAUDE_OPUS_5_5)
+            .maxTokens(16000L)
+            .thinking(ThinkingConfigAdaptive.builder().build())
+            .outputConfig(OutputConfig.builder()
+                .effort(OutputConfig.Effort.LOW)
+                .build())
+            .addUserMessageOfContentBlockParams(List.of(
+                ContentBlockParam.ofText(TextBlockParam.builder()
+                    .text(largeText)
+                    .cacheControl(CacheControlEphemeral.builder().build())
+                    .build()),
+                ContentBlockParam.ofText(TextBlockParam.builder()
+                    .text("Analyze the tone of this passage.")
+                    .build())
+            ))
+            .addAssistantMessageOfContentBlockParams(response1.content().stream()
+                .map(block -> block.toParam())
+                .collect(Collectors.toList()))
+            .addUserMessage("Analyze the characters in this passage.")
+            .addAssistantMessageOfContentBlockParams(response2.content().stream()
+                .map(block -> block.toParam())
+                .collect(Collectors.toList()))
+            .addUserMessage("Analyze the setting in this passage.")
+            .build();
+
+        Message response3 = client.messages().create(params3);
+        IO.println("Third response usage: " + response3.usage());
+    }
+
+    String fetchArticleContent(String url) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        return response.body();
+    }
+    ```
+
+    ```php PHP
+    function fetchArticleContent($url)
+    {
+        $content = file_get_contents($url);
+        $lines = explode("\n", $content);
+        $cleanedLines = array_filter(array_map('trim', $lines));
+        return implode("\n", $cleanedLines);
+    }
+
+    $client = new Client();
+
+    $bookUrl = 'https://www.gutenberg.org/cache/epub/1342/pg1342.txt';
+    $bookContent = fetchArticleContent($bookUrl);
+    $largeText = substr($bookContent, 0, 10000);
+
+    echo "First request - establishing cache\n";
+    $response1 = $client->messages->create(
+        maxTokens: 16000,
+        messages: [[
+            'role' => 'user',
+            'content' => [
+                [
+                    'type' => 'text',
+                    'text' => $largeText,
+                    'cache_control' => ['type' => 'ephemeral']
+                ],
+                [
+                    'type' => 'text',
+                    'text' => 'Analyze the tone of this passage.'
+                ]
+            ]
+        ]],
+        model: 'claude-opus-5-5',
+        thinking: ['type' => 'adaptive'],
+    );
+
+    echo 'First response usage: ' . json_encode($response1->usage) . "\n";
+
+    echo "\nSecond request - same configuration (cache hit expected)\n";
+    $response2 = $client->messages->create(
+        maxTokens: 16000,
+        messages: [
+            [
+                'role' => 'user',
+                'content' => [
+                    [
+                        'type' => 'text',
+                        'text' => $largeText,
+                        'cache_control' => ['type' => 'ephemeral']
+                    ],
+                    [
+                        'type' => 'text',
+                        'text' => 'Analyze the tone of this passage.'
+                    ]
+                ]
+            ],
+            [
+                'role' => 'assistant',
+                'content' => $response1->content
+            ],
+            [
+                'role' => 'user',
+                'content' => 'Analyze the characters in this passage.'
+            ]
+        ],
+        model: 'claude-opus-5-5',
+        thinking: ['type' => 'adaptive'],
+    );
+
+    echo 'Second response usage: ' . json_encode($response2->usage) . "\n";
+
+    echo "\nThird request - different effort level (cache miss expected)\n";
+    $response3 = $client->messages->create(
+        maxTokens: 16000,
+        messages: [
+            [
+                'role' => 'user',
+                'content' => [
+                    [
+                        'type' => 'text',
+                        'text' => $largeText,
+                        'cache_control' => ['type' => 'ephemeral']
+                    ],
+                    [
+                        'type' => 'text',
+                        'text' => 'Analyze the tone of this passage.'
+                    ]
+                ]
+            ],
+            [
+                'role' => 'assistant',
+                'content' => $response1->content
+            ],
+            [
+                'role' => 'user',
+                'content' => 'Analyze the characters in this passage.'
+            ],
+            [
+                'role' => 'assistant',
+                'content' => $response2->content
+            ],
+            [
+                'role' => 'user',
+                'content' => 'Analyze the setting in this passage.'
+            ]
+        ],
+        model: 'claude-opus-5-5',
+        thinking: ['type' => 'adaptive'],
+        outputConfig: ['effort' => 'low'],
+    );
+
+    echo 'Third response usage: ' . json_encode($response3->usage) . "\n";
+    ```
+
+    ```ruby Ruby
+    require "net/http"
+    require "uri"
+
+    def fetch_article_content(url)
+      uri = URI.parse(url)
+      response = Net::HTTP.get_response(uri)
+      text = response.body
+
+      lines = text.split("\n").map(&:strip)
+      lines.reject(&:empty?).join("\n")
+    end
+
+    client = Anthropic::Client.new
+
+    book_url = "https://www.gutenberg.org/cache/epub/1342/pg1342.txt"
+    book_content = fetch_article_content(book_url)
+    large_text = book_content[0...10000]
+
+    puts "First request - establishing cache"
+    response1 = client.messages.create(
+      model: "claude-opus-5-5",
+      max_tokens: 16000,
+      thinking: {
+        type: "adaptive"
+      },
+      messages: [{
+        role: "user",
+        content: [
+          {
+            type: "text",
+            text: large_text,
+            cache_control: { type: "ephemeral" }
+          },
+          {
+            type: "text",
+            text: "Analyze the tone of this passage."
+          }
+        ]
+      }]
+    )
+
+    puts "First response usage: #{response1.usage}"
+
+    puts "\nSecond request - same configuration (cache hit expected)"
+    response2 = client.messages.create(
+      model: "claude-opus-5-5",
+      max_tokens: 16000,
+      thinking: {
+        type: "adaptive"
+      },
+      messages: [
+        {
           role: "user",
           content: [
             {
@@ -765,94 +775,67 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
               text: "Analyze the tone of this passage."
             }
           ]
-        }]
-      )
-
-      puts "First response usage: #{response1.usage}"
-
-      puts "\nSecond request - same configuration (cache hit expected)"
-      response2 = client.messages.create(
-        model: "claude-opus-5-5",
-        max_tokens: 16000,
-        thinking: {
-          type: "adaptive"
         },
-        messages: [
-          {
-            role: "user",
-            content: [
-              {
-                type: "text",
-                text: large_text,
-                cache_control: { type: "ephemeral" }
-              },
-              {
-                type: "text",
-                text: "Analyze the tone of this passage."
-              }
-            ]
-          },
-          {
-            role: "assistant",
-            content: response1.content
-          },
-          {
-            role: "user",
-            content: "Analyze the characters in this passage."
-          }
-        ]
-      )
-
-      puts "Second response usage: #{response2.usage}"
-
-      puts "\nThird request - different effort level (cache miss expected)"
-      response3 = client.messages.create(
-        model: "claude-opus-5-5",
-        max_tokens: 16000,
-        thinking: {
-          type: "adaptive"
+        {
+          role: "assistant",
+          content: response1.content
         },
-        output_config: {
-          effort: "low"
-        },
-        messages: [
-          {
-            role: "user",
-            content: [
-              {
-                type: "text",
-                text: large_text,
-                cache_control: { type: "ephemeral" }
-              },
-              {
-                type: "text",
-                text: "Analyze the tone of this passage."
-              }
-            ]
-          },
-          {
-            role: "assistant",
-            content: response1.content
-          },
-          {
-            role: "user",
-            content: "Analyze the characters in this passage."
-          },
-          {
-            role: "assistant",
-            content: response2.content
-          },
-          {
-            role: "user",
-            content: "Analyze the setting in this passage."
-          }
-        ]
-      )
+        {
+          role: "user",
+          content: "Analyze the characters in this passage."
+        }
+      ]
+    )
 
-      puts "Third response usage: #{response3.usage}"
-      ```
-    </Tab>
-  </Tabs>
+    puts "Second response usage: #{response2.usage}"
+
+    puts "\nThird request - different effort level (cache miss expected)"
+    response3 = client.messages.create(
+      model: "claude-opus-5-5",
+      max_tokens: 16000,
+      thinking: {
+        type: "adaptive"
+      },
+      output_config: {
+        effort: "low"
+      },
+      messages: [
+        {
+          role: "user",
+          content: [
+            {
+              type: "text",
+              text: large_text,
+              cache_control: { type: "ephemeral" }
+            },
+            {
+              type: "text",
+              text: "Analyze the tone of this passage."
+            }
+          ]
+        },
+        {
+          role: "assistant",
+          content: response1.content
+        },
+        {
+          role: "user",
+          content: "Analyze the characters in this passage."
+        },
+        {
+          role: "assistant",
+          content: response2.content
+        },
+        {
+          role: "user",
+          content: "Analyze the setting in this passage."
+        }
+      ]
+    )
+
+    puts "Third response usage: #{response3.usage}"
+    ```
+  </CodeGroup>
 
   Berikut adalah output dari skrip tersebut (Anda mungkin melihat angka yang sedikit berbeda):
 
@@ -879,7 +862,7 @@ Anda tidak menetapkan anggaran token pemikiran. Dua kontrol membatasi biaya:
 
 Karena pemikiran dihitung terhadap `max_tokens`, tetapkan nilainya cukup tinggi untuk menyisakan ruang bagi penalaran dan jawaban. `max_tokens` yang diukur untuk respons tanpa pemikiran sering kali terlalu kecil begitu Claude mulai berpikir pada permintaan yang sulit.
 
-Pada effort `high` dan di atasnya, Claude mungkin berpikir secara ekstensif dan lebih mungkin menghabiskan anggaran. Jika Anda melihat [`stop_reason: "max_tokens"`](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#stopped-at-max-tokens) dalam respons, Anda memiliki dua solusi:
+Pada effort `high` ke atas, Claude mungkin berpikir secara ekstensif dan lebih mungkin menghabiskan anggaran. Jika Anda melihat [`stop_reason: "max_tokens"`](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#stopped-at-max-tokens) dalam respons, Anda memiliki dua solusi:
 
 * Naikkan `max_tokens` untuk memberi model lebih banyak ruang untuk pemikiran ditambah jawaban.
 * Turunkan tingkat effort agar Claude berpikir lebih sedikit dan menyisakan lebih banyak anggaran untuk teks respons.
@@ -891,7 +874,7 @@ Mana yang tepat bergantung pada apakah respons yang terpotong memerlukan penalar
 Pemikiran menimbulkan biaya untuk:
 
 * Token yang digunakan Claude saat berpikir (ditagih sebagai token output)
-* Blok pemikiran dari giliran asisten sebelumnya yang tetap berada dalam konteks, sesuai [default preservasi](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-block-preservation-by-model): semua giliran secara default pada model keep-all, hanya giliran terakhir pada model lainnya (ditagih sebagai token input)
+* Blok pemikiran dari giliran asisten sebelumnya yang tetap berada dalam konteks, sesuai dengan [default preservasi](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-block-preservation-by-model): semua giliran secara default pada model keep-all, hanya giliran terakhir di tempat lain (ditagih sebagai token input)
 * Token output teks standar
 
 <Note>
@@ -939,6 +922,6 @@ Untuk melihat berapa banyak token output yang ditagih yang dihabiskan untuk pena
   </Card>
 
   <Card title="Effort" icon="sliders" href="https://platform.claude.com/docs/id/build-with-claude/effort">
-    Kontrol seberapa banyak pemikiran dan output yang dialokasikan Claude per permintaan.
+    Kendalikan seberapa banyak pemikiran dan output yang dialokasikan Claude untuk setiap permintaan.
   </Card>
 </CardGroup>

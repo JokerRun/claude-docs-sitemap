@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 2b95cedee228d9fa4e9afadc22ff67d56410a9599c62a1531d38879848a92bde
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 8d2eb21847f0da4d499169d1bc2cf2c8c30b3a051af7841c8e4831109265ea3d
 ---
 
 ---
@@ -109,8 +109,8 @@ Anthropic's [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.1.0")
-        implementation("com.anthropic:anthropic-java-bedrock:3.1.0")
+        implementation("com.anthropic:anthropic-java:3.3.0")
+        implementation("com.anthropic:anthropic-java-bedrock:3.3.0")
         ```
       </Tab>
 
@@ -119,12 +119,12 @@ Anthropic's [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.1.0</version>
+            <version>3.3.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-bedrock</artifactId>
-            <version>3.1.0</version>
+            <version>3.3.0</version>
         </dependency>
         ```
       </Tab>
@@ -332,7 +332,7 @@ The SDK resolves credentials and region using the standard AWS precedence: const
 </Tabs>
 
 <Tip>
-  You can also create the standard client with `Anthropic` (go: `anthropic.NewClient()`; java: `AnthropicOkHttpClient.builder()`; csharp: `AnthropicClient`; php: `Anthropic\Client`; ruby: `Anthropic::Client`): set `base_url` (typescript: `baseURL`; go: `option.WithBaseURL()`; java: `.baseUrl()`; csharp: `BaseUrl`; php: `baseUrl`) to `https://bedrock-mantle.{region}.api.aws/anthropic` and pass your bearer token as `api_key` (typescript, php: `apiKey`; go: `option.WithAPIKey()`; java: `.apiKey()`; csharp: `ApiKey`). This path supports bearer-token authentication only. SigV4 signing requires `AnthropicBedrockMantle` (csharp: `AnthropicBedrockMantleClient`; go: `bedrock.NewMantleClient`; java: `BedrockMantleBackend`; php: `MantleClient`; ruby: `Anthropic::BedrockMantleClient`).
+  You can also create the standard client with `Anthropic` (go: `anthropic.NewClient()`; java: `AnthropicOkHttpClient.builder()`; csharp: `AnthropicClient`; php: `Anthropic\Client`; ruby: `Anthropic::Client`): set `base_url` (typescript: `baseURL`; go: `option.WithBaseURL()`; java: `.baseUrl()`; csharp: `BaseUrl`; php: `baseUrl`) to `https://bedrock-mantle.{region}.api.aws/anthropic` and pass your bearer token as `api_key` (typescript, php: `apiKey`; go: `option.WithAPIKey()`; java: `.apiKey()`; csharp: `ApiKey`). This path supports bearer-token authentication only. SigV4 signing requires `AnthropicBedrockMantle` (csharp: `AnthropicBedrockMantleClient`; go: `bedrock.NewMantleClient()`; java: `BedrockMantleBackend`; php: `MantleClient`; ruby: `Anthropic::BedrockMantleClient`).
 </Tip>
 
 ## Supported models

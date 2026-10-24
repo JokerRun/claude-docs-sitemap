@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-api-key
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: a23797ef177a88b2c63087be0a764539dc39b06ba6bedf3f4a14bc608e71a254
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 0876cef1ba4a63703cd5ea85799aabb559935b9b6b538bd17470e30b90e1e986
 ---
 
 ---
@@ -15,7 +15,7 @@ Kunci API untuk Claude API (juga disebut kunci API Anthropic) berada di Claude C
 
 ## Pilih jenis kunci
 
-Saat Anda membuat kunci, Anda memilih jenisnya, yang menentukan apa yang dapat dilakukan kunci tersebut, di mana kunci tersebut berfungsi, dan kapan kunci tersebut berhenti berfungsi. **Kunci pribadi** (personal key) bertindak sebagai Anda, dan berhenti berfungsi jika Anda meninggalkan organisasi. **Kunci akun layanan** (service account key) mewakili sebuah [akun layanan](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#service-accounts) yang dapat digunakan oleh beban kerja seperti pipeline CI, layanan produksi, atau agen. Gunakan kunci pribadi untuk pengembangan Anda sendiri, dan kunci akun layanan untuk apa pun yang digunakan bersama.
+Saat membuat kunci, Anda memilih jenisnya, yang menentukan apa yang dapat dilakukan kunci tersebut, di mana kunci itu berfungsi, dan kapan kunci itu berhenti berfungsi. **Kunci pribadi** bertindak sebagai Anda, dan berhenti berfungsi jika Anda keluar dari suatu organisasi. **Kunci akun layanan** mewakili sebuah [akun layanan](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#service-accounts), yang dapat digunakan oleh workload seperti pipeline CI, layanan produksi, atau agen. Gunakan kunci pribadi untuk pengembangan Anda sendiri, dan kunci akun layanan untuk apa pun yang digunakan bersama.
 
 Anda juga dapat membuat **kunci workspace** (workspace key), yaitu kunci lama (legacy) tanpa pemilik: kunci ini milik workspace tempat Anda membuatnya dan tetap berfungsi setelah pembuatnya meninggalkan organisasi. Lebih disarankan untuk menggunakan kunci pribadi atau kunci akun layanan, karena kunci-kunci ini berhenti berfungsi secara otomatis ketika akun yang terkait dihapus dari organisasi.
 
@@ -31,7 +31,7 @@ Anda juga dapat membuat **kunci workspace** (workspace key), yaitu kunci lama (l
   </Step>
 
   <Step title="Buat kunci">
-    Klik **Create key**, beri nama kunci, pilih [masa kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration), dan atur **Linked account** ke diri Anda sendiri atau ke akun layanan. Anda juga dapat memilih [workspace](https://platform.claude.com/settings/workspaces) di Console untuk membatasi cakupan kunci tersebut.
+    Klik **Create key**, beri nama kunci, pilih [masa kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration), dan atur **Linked account** ke diri Anda sendiri atau ke akun layanan. Anda juga dapat memilih [workspace](https://platform.claude.com/settings/workspaces) di Console untuk membatasi cakupan kunci.
   </Step>
 
   <Step title="Salin dan simpan kunci">
@@ -39,7 +39,7 @@ Anda juga dapat membuat **kunci workspace** (workspace key), yaitu kunci lama (l
   </Step>
 </Steps>
 
-Jika tombol **Create key** di halaman API keys dinonaktifkan, peran Anda mungkin tidak mengizinkan Anda membuat kunci di sana. Mintalah admin organisasi untuk mengubah peran Anda, atau untuk membuat kunci akun layanan bagi beban kerja Anda.
+Jika tombol **Create key** di halaman kunci API dinonaktifkan, peran Anda mungkin tidak mengizinkan Anda membuat kunci di sana. Mintalah admin organisasi untuk mengubah peran Anda, atau untuk membuat kunci akun layanan untuk workload Anda.
 
 ## Gunakan kunci API Anda
 
@@ -49,9 +49,9 @@ Atur kunci sebagai variabel lingkungan:
 export ANTHROPIC_API_KEY="sk-ant-api03-..."
 ```
 
-[SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) membaca `ANTHROPIC_API_KEY` secara otomatis. Permintaan HTTP langsung mengirimkan kunci sebagai `Authorization: Bearer <key>`. Jika kunci API Anda berfungsi di beberapa workspace, Anda juga harus mengirimkan header `anthropic-workspace-id` pada setiap permintaan Claude API, seperti yang ditunjukkan di [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace). Untuk Admin API, lihat [Kunci API dan Admin API](https://platform.claude.com/docs/id/get-api-key#api-keys-and-the-admin-api).
+[Client SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) membaca `ANTHROPIC_API_KEY` secara otomatis. Permintaan HTTP langsung mengirim kunci sebagai `Authorization: Bearer <key>`. Jika kunci API Anda tidak dibatasi ke suatu workspace, Anda juga harus mengirim header `anthropic-workspace-id` pada setiap permintaan Claude API, seperti yang ditunjukkan di [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace). Untuk Admin API, lihat [Kunci API dan Admin API](https://platform.claude.com/docs/id/get-api-key#api-keys-and-the-admin-api).
 
-Untuk membuat permintaan pertama Anda, ikuti [Quickstart](https://platform.claude.com/docs/id/get-started), dan lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication) untuk gambaran lengkapnya, termasuk kredensial berumur pendek dengan Workload Identity Federation.
+Untuk membuat permintaan pertama Anda, ikuti [Panduan Memulai Cepat](https://platform.claude.com/docs/id/get-started), dan lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication) untuk detail lengkap, termasuk kredensial berumur pendek dengan Workload Identity Federation.
 
 ## Kunci API dan Admin API
 

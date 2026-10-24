@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 5ec477151db50219f034451d020f72eea27240c92157dc8103ffb8602ae1782f
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 2fcf3acb37ac06e6fbafc5e2eec90b7b3e1b9d6cb282d6dc5e463242041b8e1f
 ---
 
 ---
@@ -15,10 +15,10 @@ Memory tool memungkinkan Claude menyimpan dan mengambil informasi di seluruh per
 
 Memory mendukung pengambilan konteks just-in-time. Alih-alih memuat semua informasi relevan di awal, sebuah agen mencatat apa yang dipelajarinya dalam file memori dan membacanya kembali sesuai permintaan. Ini menjaga konteks aktif tetap fokus pada tugas saat ini, yang penting untuk sesi berjalan lama yang jika tidak akan membebani jendela konteks. Lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) untuk pola yang lebih luas.
 
-Memory tool beroperasi di sisi klien: Claude meminta operasi file, dan aplikasi Anda mengeksekusinya. Anda mengontrol di mana dan bagaimana data disimpan melalui infrastruktur Anda sendiri.
+Alat memori beroperasi di sisi klien: Claude meminta operasi file, dan aplikasi Anda menjalankannya. Anda mengontrol di mana dan bagaimana data disimpan melalui infrastruktur Anda sendiri.
 
 <Note>
-  Hubungi kami melalui [formulir umpan balik](https://forms.gle/YXC2EKGMhjN1c4L88) untuk membagikan umpan balik Anda tentang fitur ini.
+  Gunakan [formulir umpan balik](https://forms.gle/YXC2EKGMhjN1c4L88) untuk membagikan umpan balik Anda tentang fitur ini.
 </Note>
 
 <Note>
@@ -35,7 +35,7 @@ Memory tool beroperasi di sisi klien: Claude meminta operasi file, dan aplikasi 
 
 Ketika memory tool diaktifkan, Claude secara otomatis memeriksa direktori memorinya sebelum memulai tugas. Saat bekerja, Claude menyimpan apa yang dipelajarinya dalam file di bawah `/memories` dan membacanya kembali dalam percakapan berikutnya untuk melanjutkan pekerjaan sebelumnya.
 
-Karena memory tool berada di sisi klien, Claude hanya meminta operasi memori. Aplikasi Anda mengeksekusi setiap permintaan terhadap penyimpanan yang Anda kontrol dan mengembalikan hasilnya dalam blok `tool_result` (lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls)). Path `/memories` adalah prefiks yang dipetakan handler Anda ke penyimpanan nyata, seperti direktori per-pengguna atau kunci dalam database. Memori sepenuhnya berada di aplikasi Anda. Percakapan berikutnya melanjutkan dari memori yang sama ketika mengirim entri `tools` yang sama dan handler Anda melayani penyimpanan yang sama. Untuk keamanan, batasi semua operasi memori ke direktori `/memories` (lihat [Perlindungan path traversal](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#path-traversal-protection)).
+Karena alat memori berada di sisi klien, Claude hanya meminta operasi memori. Aplikasi Anda menjalankan setiap permintaan terhadap penyimpanan yang Anda kontrol dan mengembalikan hasilnya dalam blok `tool_result` (lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls)). Path `/memories` adalah prefiks yang dipetakan handler Anda ke penyimpanan sebenarnya, seperti direktori per pengguna atau kunci dalam database. Memori sepenuhnya berada di aplikasi Anda. Percakapan berikutnya melanjutkan dari memori yang sama ketika percakapan tersebut mengirimkan entri `tools` yang sama dan handler Anda melayani penyimpanan yang sama. Demi keamanan, batasi semua operasi memori ke direktori `/memories` (lihat [Perlindungan path traversal](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#path-traversal-protection)).
 
 ### Contoh: Cara kerja panggilan memory tool
 
@@ -230,17 +230,17 @@ Menggunakan memory tool memerlukan dua langkah:
   ```java Java
   import com.anthropic.models.messages.MemoryTool20250818;
   // ...
-    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-    MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5_5)
-      .maxTokens(2048L)
-      .addTool(MemoryTool20250818.builder().build())
-      .addUserMessage("Help me respond to this customer service ticket.")
-      .build();
+      MessageCreateParams params = MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(2048L)
+          .addTool(MemoryTool20250818.builder().build())
+          .addUserMessage("Help me respond to this customer service ticket.")
+          .build();
 
-    Message message = client.messages().create(params);
-    IO.println(message);
+      Message message = client.messages().create(params);
+      IO.println(message);
   ```
 
   ```php PHP
@@ -255,7 +255,7 @@ Menggunakan memory tool memerlukan dua langkah:
               'content' => 'Help me respond to this customer service ticket.',
           ],
       ],
-      tools: [new MemoryTool20250818],
+      tools: [new MemoryTool20250818()],
   );
 
   echo $message;
@@ -286,7 +286,7 @@ Menggunakan memory tool memerlukan dua langkah:
 
 ## Mengimplementasikan handler memori
 
-Balasan Claude terhadap permintaan seperti yang sebelumnya diakhiri dengan blok `tool_use` yang meminta operasi memori, seperti `view /memories`. Aplikasi Anda mengeksekusi operasi tersebut dan mengembalikan hasilnya dalam blok `tool_result`, lalu mengirim percakapan kembali sehingga Claude dapat melanjutkan: [loop penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) standar.
+Balasan Claude terhadap permintaan seperti sebelumnya diakhiri dengan blok `tool_use` yang meminta operasi memori, seperti `view /memories`. Aplikasi Anda menjalankan operasi tersebut dan mengembalikan hasilnya dalam blok `tool_result`, lalu mengirim percakapan kembali agar Claude dapat melanjutkan: [loop penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) standar.
 
 Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop-nya. Buat subclass dari `BetaAbstractMemoryTool` (Python dan C#), gunakan `betaMemoryTool` (TypeScript), atau implementasikan `BetaMemoryToolHandler` (Java) untuk mendukung memori dengan penyimpanan Anda sendiri, seperti file di disk, database, penyimpanan cloud, atau file terenkripsi. Python dan TypeScript juga menyertakan implementasi sistem file lokal siap pakai, `BetaLocalFilesystemMemoryTool`. Helper dan tool runner berada di namespace beta SDK Anda meskipun memory tool itu sendiri tidak memerlukan header beta. SDK Go dan Ruby tidak memiliki helper memori, sehingga contoh-contoh tersebut menjalankan loop penggunaan alat sendiri, dan PHP membungkus closure handler Anda dalam `BetaRunnableTool` generiknya. Ketiganya menggunakan penyimpanan dalam memori yang Anda ganti dengan penyimpanan Anda sendiri.
 
@@ -385,7 +385,7 @@ Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop-
   	"sort"
   	"strings"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   // Penyimpanan dalam memori yang memetakan path file memori ke isinya.
@@ -519,28 +519,28 @@ Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop-
   import java.nio.file.Path;
 
   void main() {
-    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-    // Implementasi BetaMemoryToolHandler Anda untuk enam perintah memori
-    BetaMemoryToolHandler handler = new FileSystemMemoryToolHandler(Path.of("memories"));
+      // Implementasi BetaMemoryToolHandler Anda untuk enam perintah memori
+      BetaMemoryToolHandler handler = new FileSystemMemoryToolHandler(Path.of("memories"));
 
-    MessageCreateParams createParams = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_5_5)
-      .maxTokens(1024L)
-      .addTool(BetaMemoryTool20250818.builder().build())
-      .addUserMessage("Remember that customer Acme Corp prefers email follow-ups.")
-      .build();
+      MessageCreateParams createParams = MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(1024L)
+          .addTool(BetaMemoryTool20250818.builder().build())
+          .addUserMessage("Remember that customer Acme Corp prefers email follow-ups.")
+          .build();
 
-    ToolRunnerCreateParams runnerParams = ToolRunnerCreateParams.builder()
-      .betaMemoryToolHandler(handler)
-      .initialMessageParams(createParams)
-      .maxIterations(10)
-      .build();
+      ToolRunnerCreateParams runnerParams = ToolRunnerCreateParams.builder()
+          .betaMemoryToolHandler(handler)
+          .initialMessageParams(createParams)
+          .maxIterations(10)
+          .build();
 
-    BetaToolRunner runner = client.beta().messages().toolRunner(runnerParams);
-    for (BetaMessage message : runner) {
-      IO.println(message);
-    }
+      BetaToolRunner runner = client.beta().messages().toolRunner(runnerParams);
+      for (BetaMessage message : runner) {
+          IO.println(message);
+      }
   }
   ```
 
@@ -559,7 +559,7 @@ Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop-
   $store = [];
 
   $memory = new BetaRunnableTool(
-      definition: new BetaMemoryTool20250818,
+      definition: new BetaMemoryTool20250818(),
       run: function (array $input) use (&$store): string {
           $path = $input['path'] ?? '';
           switch ($input['command']) {
@@ -595,7 +595,7 @@ Empat SDK menyediakan helper memory tool yang menangani antarmuka alat dan loop-
                   }
                   $lines = explode("\n", $store[$path]);
                   if ($input['insert_line'] < 0 || $input['insert_line'] > count($lines)) {
-                      return "Error: Invalid `insert_line` parameter: {$input['insert_line']}. It should be within the range of lines of the file: [0, " . count($lines) . "]";
+                      return "Error: Invalid `insert_line` parameter: {$input['insert_line']}. It should be within the range of lines of the file: [0, " . count($lines) . ']';
                   }
                   array_splice($lines, $input['insert_line'], 0, [preg_replace('/\n\z/', '', $input['insert_text'])]);
                   $store[$path] = implode("\n", $lines);
@@ -740,7 +740,7 @@ Menampilkan isi direktori atau isi file dengan rentang baris opsional:
 
 #### Nilai kembalian
 
-**Untuk direktori:** Kembalikan daftar yang menampilkan file dan direktori dengan ukurannya:
+**Untuk direktori:** Kembalikan daftar yang menampilkan file dan direktori beserta ukurannya:
 
 ```text
 Here're the files and directories up to 2 levels deep in {path}, excluding hidden items and node_modules:
@@ -754,7 +754,7 @@ Here're the files and directories up to 2 levels deep in {path}, excluding hidde
 * Mengecualikan item tersembunyi (file yang dimulai dengan `.`) dan `node_modules`
 * Menggunakan karakter tab antara ukuran dan path
 
-`view` pertama terhadap `/memories` pada penyimpanan kosong bukanlah kesalahan. Jika SDK Anda menyertakan memory tool sistem file lokal, `BetaLocalFilesystemMemoryTool`, alat tersebut membuat root memori sebelum panggilan pertama Claude dan mengembalikan header daftar diikuti satu baris ukuran-dan-path untuk direktori kosong itu sendiri.
+`view` pertama pada `/memories` di penyimpanan kosong bukanlah error. Jika SDK Anda menyertakan alat memori filesystem lokal, `BetaLocalFilesystemMemoryTool`, alat tersebut membuat root memori sebelum panggilan pertama Claude dan mengembalikan header daftar diikuti oleh satu baris ukuran-dan-path untuk direktori kosong itu sendiri.
 
 **Untuk file:** Kembalikan isi file dengan header dan nomor baris:
 
@@ -936,7 +936,7 @@ Anda juga dapat memandu apa yang ditulis Claude ke memori. Misalnya: "Hanya tuli
 
 ## Pertimbangan keamanan
 
-Aplikasi Anda mengeksekusi setiap operasi file yang diminta Claude, jadi pengamanan ini adalah tanggung jawab Anda:
+Aplikasi Anda menjalankan setiap operasi file yang diminta Claude, sehingga perlindungan berikut menjadi tanggung jawab Anda:
 
 ### Informasi sensitif
 
@@ -993,7 +993,7 @@ Untuk proyek perangkat lunak yang mencakup beberapa sesi agen, siapkan file memo
 
 ### Cara kerja pola
 
-1. **Sesi inisialisasi:** Sesi pertama menyiapkan file memori sebelum pekerjaan substantif apa pun dimulai. Ini mencakup log kemajuan (melacak apa yang telah dilakukan dan apa yang akan datang), daftar periksa fitur (mendefinisikan ruang lingkup pekerjaan), dan referensi ke skrip startup atau inisialisasi apa pun yang dibutuhkan proyek.
+1. **Sesi inisialisasi:** Sesi pertama menyiapkan file memori sebelum pekerjaan substantif apa pun dimulai. Ini mencakup log kemajuan (melacak apa yang telah dilakukan dan apa yang berikutnya), daftar periksa fitur (mendefinisikan cakupan pekerjaan), dan referensi ke skrip startup atau inisialisasi apa pun yang dibutuhkan proyek.
 
 2. **Sesi berikutnya:** Setiap sesi baru dibuka dengan membaca file memori tersebut. Ini memulihkan keadaan proyek tanpa menjelajahi ulang basis kode atau menelusuri kembali keputusan sebelumnya.
 
@@ -1004,7 +1004,7 @@ Untuk proyek perangkat lunak yang mencakup beberapa sesi agen, siapkan file memo
 Kerjakan satu fitur pada satu waktu. Tandai fitur sebagai selesai hanya setelah verifikasi end-to-end mengonfirmasi bahwa fitur tersebut berfungsi, bukan ketika kode ditulis. Ini menjaga log kemajuan tetap akurat dari sesi ke sesi.
 
 <Tip>
-  Untuk studi kasus terperinci tentang pola ini dalam praktik, termasuk skrip inisialisasi, struktur file kemajuan, dan pemulihan berbasis git, lihat [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
+  Untuk studi kasus terperinci tentang penerapan pola ini, termasuk skrip inisialisasi, struktur file kemajuan, dan pemulihan berbasis Git, lihat [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
 </Tip>
 
 ## Langkah selanjutnya

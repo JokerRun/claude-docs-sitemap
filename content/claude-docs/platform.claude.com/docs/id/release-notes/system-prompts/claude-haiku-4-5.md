@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-haiku-4-5
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: c9e543890dab838a8bc79f957b18309ea0799b2168a8d010179f4da4f2ef27b8
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 64ce1560ba0f2ef807e5a1fcbeda3841cd7efad764ae65a95bcf8ec4f74773bb
 ---
 
 ---
 title: Prompt sistem Claude Haiku 4.5
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-haiku-4-5
-description: Lihat pembaruan pada prompt sistem inti untuk Claude Haiku 4.5 di [claude.ai](https://claude.ai) serta [aplikasi Claude iOS](https://anthropic.com/ios) dan [aplikasi Claude Android](https://anthropic.com/android).
+description: Lihat pembaruan pada prompt sistem inti untuk Claude Haiku 4.5 di [claude.ai](https://claude.ai), [aplikasi Claude iOS](https://anthropic.com/ios), dan [aplikasi Claude Android](https://anthropic.com/android).
 ---
 
 Perubahan antara versi-versi bertanggal berikut ditandai dengan `**` di sekitar teks yang diubah.

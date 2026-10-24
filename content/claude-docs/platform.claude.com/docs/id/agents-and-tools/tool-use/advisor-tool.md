@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 3e90a8a07222e154fd903c27ae368fad6f8b51115208f03937429040e8e8fbc2
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 50a3594ea39c3b741d51725d98d580c6193a1edd4f23b1794d75c3bf5ca3e5ef
 ---
 
 ---
@@ -11,9 +11,9 @@ url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool
 description: Pasangkan model executor yang lebih cepat dengan model advisor berkecerdasan lebih tinggi yang memberikan panduan strategis di tengah proses generasi.
 ---
 
-"Advisor tool" (alat advisor) memungkinkan **model executor** yang lebih cepat dan lebih murah untuk berkonsultasi dengan **model advisor** berkecerdasan lebih tinggi di tengah proses generasi guna mendapatkan panduan strategis. Advisor membaca seluruh percakapan, menghasilkan rencana atau koreksi arah, dan executor melanjutkan tugasnya.
+Alat advisor memungkinkan **model eksekutor** yang lebih cepat dan lebih murah berkonsultasi dengan **model advisor** berkecerdasan lebih tinggi di tengah proses generasi untuk mendapatkan panduan strategis. Advisor membaca seluruh percakapan dan menghasilkan rencana atau koreksi arah, lalu eksekutor melanjutkan tugasnya.
 
-Pola ini cocok untuk beban kerja agentik jangka panjang (agen coding, computer use, pipeline riset multilangkah) di mana sebagian besar giliran bersifat mekanis tetapi memiliki rencana yang sangat baik sangatlah penting. Anda mendapatkan kualitas yang mendekati advisor yang bekerja sendiri, sementara sebagian besar pembuatan token terjadi dengan tarif model executor. Untuk hasil terukur, termasuk bagaimana manfaatnya menyusut ketika kemampuan executor sendiri mendekati kemampuan advisor, lihat [Mengoptimalkan biaya dan kecerdasan](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence).
+Pola ini cocok untuk beban kerja agentik jangka panjang (agen coding, computer use, pipeline riset multilangkah) di mana sebagian besar giliran bersifat mekanis tetapi memiliki rencana yang sangat baik adalah hal yang krusial. Anda mendapatkan kualitas yang mendekati advisor yang bekerja sendiri, sementara sebagian besar generasi token terjadi dengan tarif model eksekutor. Untuk hasil terukur, termasuk bagaimana manfaatnya menyusut saat kemampuan eksekutor sendiri mendekati kemampuan advisor, lihat [Mengoptimalkan biaya dan kecerdasan](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence).
 
 ```mermaid
 sequenceDiagram
@@ -231,7 +231,7 @@ Advisor kurang cocok untuk tanya jawab satu giliran (tidak ada yang perlu direnc
               'content' => 'Build a concurrent worker pool in Go with graceful shutdown.',
           ],
       ],
-      model: 'claude-sonnet-5',
+      model: Model::CLAUDE_SONNET_5,
       tools: [
           [
               'type' => 'advisor_20260301',
@@ -299,7 +299,7 @@ Advisor itu sendiri berjalan tanpa alat dan tanpa manajemen konteks. Blok thinki
 
 Objek `caching` memiliki bentuk `{"type": "ephemeral", "ttl": "5m" | "1h"}`. Tidak seperti `cache_control` pada blok konten, ini bukan penanda breakpoint. Ini adalah sakelar aktif/nonaktif. Server menentukan di mana batas cache ditempatkan.
 
-Alat advisor juga menerima properti generik yang tersedia pada definisi alat apa pun: `cache_control`, `allowed_callers`, `defer_loading`, dan `strict` (dibahas dalam [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)). Lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#tool-definition-properties) untuk semantiknya.
+Alat advisor juga menerima properti generik yang tersedia pada definisi alat apa pun: `cache_control`, `allowed_callers`, `defer_loading`, dan `strict` (dibahas di [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)). Lihat [Properti definisi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#tool-definition-properties) di Referensi alat untuk semantiknya.
 
 ## Struktur respons
 
@@ -401,7 +401,7 @@ Jika panggilan advisor gagal, hasilnya membawa error:
 }
 ```
 
-Executor melihat error tersebut dan melanjutkan tanpa saran lebih lanjut. Permintaan itu sendiri tidak gagal.
+Eksekutor menerima error tersebut dan melanjutkan tanpa saran lebih lanjut. Permintaan itu sendiri tidak gagal.
 
 | `error_code`              | Arti                                                                                                                                                       |
 | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -607,7 +607,9 @@ Kirimkan kembali seluruh konten asisten, termasuk blok `advisor_tool_result`, ke
 
       List<BetaToolUnion> tools = List.of(
           BetaToolUnion.ofAdvisorTool20260301(
-              BetaAdvisorTool20260301.builder().model(Model.CLAUDE_OPUS_5_5).build()));
+              BetaAdvisorTool20260301.builder()
+                  .model(Model.CLAUDE_OPUS_5_5)
+                  .build()));
 
       List<BetaMessageParam> messages = new ArrayList<>();
       messages.add(BetaMessageParam.ofUser(
@@ -750,7 +752,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
 
 
   def run_your_tools(content):
-      # Ganti dengan dispatch alat Anda. Mengembalikan satu blok tool_result per blok tool_use.
+      # Ganti dengan dispatch alat Anda. Mengembalikan satu blok tool_result untuk setiap blok tool_use.
       return [
           {
               "type": "tool_result",
@@ -790,7 +792,9 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
       if response.stop_reason == "pause_turn":
           continue  # server tool pending; re-send to let the API complete it
       if response.stop_reason != "tool_use":
-          break  # end_turn, or a stop such as max_tokens that needs handling (see below)
+          # end_turn, atau penghentian seperti max_tokens yang perlu ditangani
+          # (dijelaskan setelah contoh ini)
+          break
 
       results = run_your_tools(response.content)  # list of tool_result blocks
       if results:
@@ -813,7 +817,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
   function runYourTools(
     content: Anthropic.Beta.Messages.BetaContentBlock[]
   ): Anthropic.Beta.Messages.BetaToolResultBlockParam[] {
-    // Ganti dengan dispatch alat Anda. Mengembalikan satu blok tool_result per blok tool_use.
+    // Ganti dengan dispatch alat Anda. Mengembalikan satu blok tool_result untuk setiap blok tool_use.
     return content
       .filter((block) => block.type === "tool_use")
       .map((block) => ({
@@ -849,7 +853,9 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
       continue; // server tool pending; re-send to let the API complete it
     }
     if (response.stop_reason !== "tool_use") {
-      break; // end_turn, or a stop such as max_tokens that needs handling (see below)
+      // end_turn, atau stop seperti max_tokens yang perlu ditangani
+      // (dijelaskan setelah contoh ini)
+      break;
     }
 
     const results = runYourTools(response.content); // list of tool_result blocks
@@ -876,7 +882,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
       + "now before committing to an approach.";
   const int MaxTurns = 10; // agent loop cap
 
-  // Ganti dengan dispatch alat Anda. Mengembalikan satu blok tool_result per blok tool_use.
+  // Ganti dengan dispatch alat Anda. Mengembalikan satu blok tool_result untuk setiap blok tool_use.
   List<BetaContentBlockParam> RunYourTools(IReadOnlyList<BetaContentBlock> content)
   {
       List<BetaContentBlockParam> results = [];
@@ -929,7 +935,9 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
       }
       if (response.StopReason != BetaStopReason.ToolUse)
       {
-          break; // end_turn, or a stop such as max_tokens that needs handling (see below)
+          // end_turn, atau penghentian seperti max_tokens yang perlu ditangani
+          // (dijelaskan setelah contoh ini)
+          break;
       }
 
       var results = RunYourTools(response.Content); // list of tool_result blocks
@@ -954,7 +962,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
   	maxTurns = 10 // agent loop cap
   )
 
-  // Ganti dengan dispatch alat Anda. Mengembalikan satu blok tool_result per blok tool_use.
+  // Ganti dengan dispatch alat Anda. Mengembalikan satu blok tool_result untuk setiap blok tool_use.
   func runYourTools(content []anthropic.BetaContentBlockUnion) []anthropic.BetaContentBlockParamUnion {
   	var results []anthropic.BetaContentBlockParamUnion
   	for _, block := range content {
@@ -1005,15 +1013,14 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
   			continue // server tool pending; re-send to let the API complete it
   		}
   		if response.StopReason != anthropic.BetaStopReasonToolUse {
-  			break // end_turn, or a stop such as max_tokens that needs handling (see below)
+  			// end_turn, atau stop seperti max_tokens yang perlu ditangani
+  			// (dijelaskan setelah contoh ini)
+  			break
   		}
 
   		results := runYourTools(response.Content) // list of tool_result blocks
   		if len(results) > 0 {
-  			messages = append(messages, anthropic.BetaMessageParam{
-  				Role:    anthropic.BetaMessageParamRoleUser,
-  				Content: results,
-  			})
+  			messages = append(messages, anthropic.NewBetaUserMessage(results...))
   		}
   		// Lewati ini jika prompt sistem Anda sudah meminta model untuk jarang memanggil alat.
   		if turn == nudgeTurn-1 && !advisorCalled {
@@ -1043,7 +1050,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
           + "now before committing to an approach.";
   static final int MAX_TURNS = 10; // agent loop cap
 
-  // Ganti dengan dispatch alat Anda. Mengembalikan satu blok tool_result per blok tool_use.
+  // Ganti dengan dispatch alat Anda. Mengembalikan satu blok tool_result untuk setiap blok tool_use.
   List<BetaContentBlockParam> runYourTools(List<BetaContentBlock> content) {
       List<BetaContentBlockParam> results = new ArrayList<>();
       for (BetaContentBlock block : content) {
@@ -1063,7 +1070,9 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
 
       List<BetaToolUnion> tools = List.of(
           BetaToolUnion.ofAdvisorTool20260301(
-              BetaAdvisorTool20260301.builder().model(Model.CLAUDE_OPUS_5_5).build())
+              BetaAdvisorTool20260301.builder()
+                  .model(Model.CLAUDE_OPUS_5_5)
+                  .build())
           // ... alat Anda yang lain
       );
       String task = "Build a concurrent worker pool in Go with graceful shutdown.";
@@ -1089,7 +1098,9 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
               continue; // server tool pending; re-send to let the API complete it
           }
           if (!BetaStopReason.TOOL_USE.equals(stopReason)) {
-              break; // end_turn, or a stop such as max_tokens that needs handling (see below)
+              // end_turn, atau penghentian seperti max_tokens yang perlu ditangani
+              // (dijelaskan setelah contoh ini)
+              break;
           }
 
           List<BetaContentBlockParam> results = runYourTools(response.content()); // list of tool_result blocks
@@ -1108,12 +1119,12 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
   $client = new Client();
 
   const NUDGE_TURN = 2; // inject before this assistant turn if no advisor call yet
-  const NUDGE_TEXT = "You have not consulted the advisor yet. If the task has a non-obvious "
+  const NUDGE_TEXT = 'You have not consulted the advisor yet. If the task has a non-obvious '
       . "design decision or a failure mode you haven't ruled out, call advisor "
-      . "now before committing to an approach.";
+      . 'now before committing to an approach.';
   const MAX_TURNS = 10; // agent loop cap
 
-  // Ganti dengan dispatch alat Anda. Mengembalikan satu blok tool_result per blok tool_use.
+  // Ganti dengan dispatch alat Anda. Mengembalikan satu blok tool_result untuk setiap blok tool_use.
   function runYourTools(array $content): array
   {
       $results = [];
@@ -1155,7 +1166,9 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
           continue; // server tool pending; re-send to let the API complete it
       }
       if ($response->stopReason !== 'tool_use') {
-          break; // end_turn, or a stop such as max_tokens that needs handling (see below)
+          // end_turn, atau penghentian seperti max_tokens yang perlu ditangani
+          // (dijelaskan setelah contoh ini)
+          break;
       }
 
       $results = runYourTools($response->content); // list of tool_result blocks
@@ -1179,7 +1192,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
     "now before committing to an approach."
   MAX_TURNS = 10 # agent loop cap
 
-  # Ganti dengan dispatch alat Anda. Mengembalikan satu blok tool_result per blok tool_use.
+  # Ganti dengan dispatch alat Anda. Mengembalikan satu blok tool_result untuk setiap blok tool_use.
   def run_your_tools(content)
     content.filter_map do |block|
       next unless block.type == :tool_use
@@ -1188,7 +1201,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
   end
 
   tools = [
-    { type: "advisor_20260301", name: "advisor", model: "claude-opus-5-5" }
+    { type: "advisor_20260301", name: "advisor", model: Anthropic::Model::CLAUDE_OPUS_5_5 }
     # ... alat Anda yang lain
   ]
   task = "Build a concurrent worker pool in Go with graceful shutdown."
@@ -1197,7 +1210,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
 
   (1..MAX_TURNS).each do |turn|
     response = client.beta.messages.create(
-      model: "claude-haiku-5-5",
+      model: Anthropic::Model::CLAUDE_HAIKU_5_5,
       max_tokens: 4096,
       tools: tools,
       messages: messages,
@@ -1208,7 +1221,9 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
       block.type == :server_tool_use && block.name == :advisor
     end
     next if response.stop_reason == :pause_turn # server tool pending; re-send to let the API complete it
-    break unless response.stop_reason == :tool_use # end_turn, or a stop such as max_tokens that needs handling (see below)
+    # end_turn, atau penghentian seperti max_tokens yang perlu ditangani
+    # (dijelaskan setelah contoh ini)
+    break unless response.stop_reason == :tool_use
 
     results = run_your_tools(response.content) # list of tool_result blocks
     messages << { role: "user", content: results } unless results.empty?
@@ -1232,9 +1247,9 @@ Untuk memaksa konsultasi pada permintaan tertentu alih-alih memberikan dorongan,
 
 Sub-inferensi advisor tidak melakukan streaming. Stream executor berhenti sejenak saat advisor berjalan; kemudian hasil lengkap tiba dalam satu event.
 
-Blok `server_tool_use` dengan `name: "advisor"` menandakan bahwa panggilan advisor dimulai. Jeda dimulai saat blok tersebut ditutup (`content_block_stop`). Selama jeda, stream senyap kecuali keepalive `ping` SSE standar yang dikeluarkan kira-kira setiap 30 detik. Panggilan advisor singkat mungkin tidak menampilkan ping.
+Blok `server_tool_use` dengan `name: "advisor"` menandakan bahwa panggilan advisor sedang dimulai. Jeda dimulai saat blok tersebut ditutup (`content_block_stop`). Selama jeda, stream tidak aktif kecuali keepalive SSE `ping` standar yang dikirim kira-kira setiap 30 detik. Panggilan advisor yang singkat mungkin tidak menampilkan ping.
 
-Saat advisor selesai, `advisor_tool_result` tiba dalam bentuk lengkap dalam satu event `content_block_start` (tanpa delta). Output executor kemudian melanjutkan streaming.
+Saat panggilan advisor selesai, `advisor_tool_result` tiba dalam bentuk lengkap dalam satu event `content_block_start` (tanpa delta). Output eksekutor kemudian melanjutkan streaming.
 
 Event `message_delta` menyusul dengan array `usage.iterations` yang diperbarui yang mencerminkan jumlah token advisor.
 
@@ -1385,7 +1400,7 @@ Tetapkan `caching` pada definisi alat untuk mengaktifkan caching prompt untuk tr
 
 Prompt advisor pada panggilan ke-N adalah prompt panggilan ke-(N-1) dengan satu segmen tambahan di akhir, sehingga prefiksnya stabil di seluruh panggilan. Dengan `caching` diaktifkan, setiap panggilan advisor menulis entri cache, dan panggilan berikutnya membaca hingga titik tersebut dan hanya membayar selisihnya. Anda akan melihat `cache_read_input_tokens` menjadi bukan nol pada iterasi `advisor_message` kedua dan seterusnya.
 
-**Kapan mengaktifkannya:** Biaya penulisan cache lebih besar daripada penghematan dari pembacaan ketika advisor dipanggil dua kali atau kurang per percakapan. Caching mencapai titik impas pada sekitar tiga panggilan advisor dan semakin menguntungkan setelahnya. Aktifkan untuk loop agen yang panjang, dan biarkan nonaktif untuk tugas singkat.
+**Kapan mengaktifkannya:** Biaya penulisan cache lebih besar daripada penghematan dari pembacaan jika advisor dipanggil dua kali atau kurang dalam setiap percakapan. Caching mencapai titik impas pada sekitar tiga panggilan advisor dan semakin menguntungkan setelahnya. Aktifkan untuk loop agen yang panjang, dan biarkan nonaktif untuk tugas singkat.
 
 **Jaga konsistensi:** Tetapkan `caching` sekali dan biarkan untuk seluruh percakapan. Menonaktifkan dan mengaktifkannya kembali di tengah percakapan menyebabkan cache miss.
 
@@ -1562,12 +1577,12 @@ Alat advisor dapat dikombinasikan dengan alat sisi server dan sisi klien lainnya
 
 Executor dapat mencari di web, memanggil advisor, dan menggunakan alat kustom Anda dalam giliran yang sama. Rencana advisor dapat memengaruhi alat mana yang akan digunakan executor selanjutnya.
 
-| Fitur                                                                                       | Interaksi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing)  | Didukung. `usage.iterations` dilaporkan per item.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting)  | Hanya mengembalikan token input iterasi pertama executor. Untuk perkiraan kasar advisor, panggil `client.beta.messages.count_tokens()` (typescript: `client.beta.messages.countTokens()`; go, csharp: `client.Beta.Messages.CountTokens()`; java: `client.beta().messages().countTokens()`; php: `$client->beta->messages->countTokens()`; cli: `ant beta:messages count-tokens`; curl: `POST /v1/messages/count_tokens`) dengan `model` ditetapkan ke model advisor dan pesan yang sama.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) | `clear_tool_uses` tidak sepenuhnya kompatibel dengan blok alat advisor. Untuk `clear_thinking`, lihat peringatan caching sebelumnya.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `pause_turn`                                                                                | Panggilan advisor yang menggantung mengakhiri respons dengan `stop_reason: "pause_turn"` dan blok `server_tool_use` tanpa hasil ketika tidak ada blok `tool_use` klien yang menunggu hasil Anda dalam giliran yang sama. Advisor berjalan saat dilanjutkan. Jika executor juga memanggil salah satu alat Anda dalam giliran tersebut, respons justru berakhir dengan `stop_reason: "tool_use"`, dan panggilan advisor yang tertunda berjalan di awal permintaan Anda berikutnya, setelah Anda mengirim blok `tool_result`. Lihat [Melanjutkan giliran yang dijeda](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#resuming-a-paused-turn), [Mencampur alat server dan alat klien dalam satu giliran](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#mixing-server-tools-and-client-tools-in-one-turn), dan [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn). |
+| Fitur                                                                                       | Interaksi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing)  | Didukung. `usage.iterations` dilaporkan per item.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting)  | Hanya mengembalikan token input iterasi pertama executor. Untuk perkiraan kasar advisor, panggil `client.beta.messages.count_tokens()` (typescript: `client.beta.messages.countTokens()`; go, csharp: `client.Beta.Messages.CountTokens()`; java: `client.beta().messages().countTokens()`; php: `$client->beta->messages->countTokens()`; cli: `ant beta:messages count-tokens`; curl: `POST /v1/messages/count_tokens`) dengan `model` ditetapkan ke model advisor dan pesan yang sama.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) | `clear_tool_uses` tidak sepenuhnya kompatibel dengan blok alat advisor. Untuk `clear_thinking`, lihat peringatan caching sebelumnya.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `pause_turn`                                                                                | Panggilan advisor yang menggantung mengakhiri respons dengan `stop_reason: "pause_turn"` dan blok `server_tool_use` tanpa hasil jika tidak ada blok `tool_use` klien yang menunggu hasil Anda dalam giliran yang sama. Advisor berjalan saat dilanjutkan. Jika eksekutor juga memanggil salah satu alat Anda dalam giliran tersebut, respons berakhir dengan `stop_reason: "tool_use"` sebagai gantinya, dan panggilan advisor yang tertunda berjalan di awal permintaan Anda berikutnya, setelah Anda mengirim blok `tool_result`. Lihat [Melanjutkan giliran yang dijeda](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#resuming-a-paused-turn), [Mencampur alat server dan alat klien dalam satu giliran](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#mixing-server-tools-and-client-tools-in-one-turn), dan [Loop sisi server dan pause\_turn](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn). |
 
 ## Praktik terbaik
 
@@ -1611,7 +1626,7 @@ If you've already retrieved data pointing one way and the advisor points another
 
 #### Prompt sistem alternatif untuk Haiku pada beban kerja coding
 
-Claude Haiku 4.5 menerapkan panduan advisor default secara konservatif. Itu menjaga tingkat panggilannya tetap rendah secara tepat pada beban kerja riset dan pencarian tetapi mengorbankan kualitas pada beban kerja coding, di mana konsultasi advisor awal secara andal sepadan dengan biayanya. Pada benchmark coding internal, varian dekat dari blok berikut (pengecualian read-only dalam Hard rule ditambahkan setelah pengukuran) meningkatkan tingkat kelulusan Haiku sekitar 7,5 poin persentase di atas default bawaan.
+Claude Haiku 4.5 menerapkan panduan advisor default secara konservatif. Hal itu menjaga tingkat panggilannya tetap rendah secara tepat pada beban kerja riset dan pencarian, tetapi mengorbankan kualitas pada beban kerja coding, di mana konsultasi advisor awal secara andal sepadan dengan biayanya. Pada benchmark coding internal, varian yang mirip dengan blok berikut (pengecualian read-only dalam Hard rule ditambahkan setelah pengukuran) meningkatkan tingkat kelulusan Haiku sekitar 7,5 poin persentase dibandingkan default bawaan.
 
 Gunakan blok ini sebagai pengganti blok waktu dan saran sebelumnya ketika executor Haiku Anda menjalankan beban kerja yang didominasi coding atau tugas penulisan:
 
@@ -1654,7 +1669,7 @@ Hard rule: your first write_file, edit_file, or state-changing bash call on a ta
 
 #### Memangkas panjang output advisor
 
-Output advisor adalah pendorong biaya terbesar advisor, dan `max_tokens` tingkat atas tidak membatasinya. Advisor melihat prompt sistem Anda dan pesan pengguna Anda sebagai konteks kutipan tentang tugas executor, sehingga instruksi yang ditujukan langsung kepada advisor diikuti jauh lebih andal daripada deskripsi orang ketiga. Penempatan paling efektif yang diuji Anthropic adalah sebuah baris dalam pesan pengguna:
+Output advisor adalah pendorong biaya terbesar advisor, dan `max_tokens` tingkat atas tidak membatasinya. Advisor menerima prompt sistem Anda dan pesan pengguna Anda sebagai konteks yang dikutip tentang tugas eksekutor, sehingga instruksi yang ditujukan langsung kepada advisor diikuti jauh lebih andal daripada deskripsi orang ketiga. Penempatan paling efektif yang diuji Anthropic adalah sebuah baris dalam pesan pengguna:
 
 ```text wrap
 (Advisor: please keep your guidance under 80 words — I need a focused starting point, not a comprehensive plan.)
@@ -1670,7 +1685,7 @@ Pasangkan pendekatan ini dengan panduan waktu dalam [Prompt sistem yang disarank
 
 ### Membatasi output advisor
 
-Tetapkan `max_tokens` pada definisi alat untuk membatasi total output advisor (thinking ditambah teks) per panggilan:
+Atur `max_tokens` pada definisi alat untuk membatasi total output advisor (pemikiran ditambah teks) untuk setiap panggilan:
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -1757,7 +1772,7 @@ Nilai minimumnya adalah 1024. Menetapkan `max_tokens` di atas batas output model
 
 Ini bukan sekadar pemotongan keras. Server juga memberikan kepada advisor anggaran token yang tersisa, sehingga advisor membentuk responsnya agar sesuai.
 
-**Titik awal yang direkomendasikan:** `max_tokens: 2048`. Dalam pengujian Anthropic pada benchmark penalaran sulit (n = 40 per konfigurasi), ini mengurangi rata-rata output advisor sekitar 7x dibandingkan dengan membiarkan batas tidak ditetapkan, dengan pemotongan hampir nol dan tanpa degradasi kualitas yang terdeteksi. Nilai minimum 1024 mengurangi output sekitar 10x tetapi memotong sekitar 10 persen panggilan. Perbedaan akurasi di seluruh konfigurasi berada dalam rentang noise pada ukuran sampel ini. Validasi pada beban kerja Anda sendiri.
+**Titik awal yang direkomendasikan:** `max_tokens: 2048`. Dalam pengujian Anthropic pada benchmark penalaran yang sulit (n = 40 untuk setiap konfigurasi), pengaturan ini mengurangi rata-rata output advisor sekitar 7x dibandingkan dengan membiarkan batas tidak diatur, dengan pemotongan mendekati nol dan tanpa penurunan kualitas yang terdeteksi. Nilai minimum 1024 mengurangi output sekitar 10x tetapi memotong sekitar 10 persen panggilan. Perbedaan akurasi di semua konfigurasi masih berada dalam batas noise pada ukuran sampel ini. Validasikan pada beban kerja Anda sendiri.
 
 | `max_tokens`     | Rata-rata token output advisor | Panggilan terpotong |
 | ---------------- | ------------------------------ | ------------------- |
@@ -1767,7 +1782,7 @@ Ini bukan sekadar pemotongan keras. Server juga memberikan kepada advisor anggar
 
 Tugas penalaran sulit memunculkan output advisor yang jauh lebih panjang daripada [1.400 hingga 1.800 token tipikal](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#usage-and-billing) yang dikutip sebelumnya untuk beban kerja yang lebih ringan. Gunakan tabel ini untuk mengukur rasio penghematan, bukan sebagai baseline universal untuk output advisor.
 
-Saat advisor mencapai batas, blok hasil membawa `stop_reason: "max_tokens"` pada kedua [varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants), model advisor mana pun yang Anda gunakan. Gunakan `stop_reason` untuk mendeteksi saran yang terpotong dan memutuskan apakah akan menaikkan batas atau membiarkan executor melanjutkan dengan panduan parsial. API juga menambahkan `[Advisor output truncated at max_tokens=2048.]` (menyebutkan batas Anda) ke teks saran, sehingga executor melihat pemotongan dalam konteksnya sendiri; dengan advisor `advisor_result` plaintext, penanda tersebut juga terlihat oleh klien Anda. Kedua sinyal hanya muncul saat Anda menetapkan `max_tokens` pada definisi alat.
+Ketika advisor mencapai batas, blok hasil membawa `stop_reason: "max_tokens"` pada kedua [varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants), model advisor mana pun yang Anda gunakan. Gunakan `stop_reason` untuk mendeteksi saran yang terpotong dan memutuskan apakah akan menaikkan batas atau membiarkan executor melanjutkan dengan panduan parsial. API juga menambahkan `[Advisor output truncated at max_tokens=2048.]` (menyebutkan batas Anda) ke teks saran, sehingga executor menerima pemberitahuan pemotongan dalam konteksnya sendiri; dengan advisor `advisor_result` plaintext, penanda tersebut juga terlihat oleh klien Anda. Kedua sinyal ini hanya muncul ketika Anda mengatur `max_tokens` pada definisi alat.
 
 ```json
 {
@@ -1819,7 +1834,7 @@ Jika Anda meminta pasangan yang tidak valid, API mengembalikan `400 invalid_requ
 
 ### Ketersediaan platform
 
-Alat advisor tersedia dalam versi beta di Claude API, di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed). Saat ini alat ini belum tersedia di Amazon Bedrock, Claude Models on Google Cloud (Google managed), atau Microsoft Foundry.
+Alat advisor tersedia dalam beta di Claude API, di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed). Alat ini saat ini tidak tersedia di Amazon Bedrock, Claude Models on Google Cloud (Google managed), atau Microsoft Foundry.
 
 ## Advisor di Claude Managed Agents
 
@@ -1833,7 +1848,7 @@ Sesi [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/
   </Card>
 
   <Card title="Alat server" icon="tool" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools">
-    Bekerja dengan alat yang dieksekusi oleh Anthropic: blok server\_tool\_use, kelanjutan pause\_turn, dan pemfilteran domain.
+    Bekerja dengan alat yang dijalankan Anthropic: blok `server_tool_use`, kelanjutan `pause_turn`, dan pemfilteran domain.
   </Card>
 
   <Card title="Referensi alat" icon="book" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference">
@@ -1841,6 +1856,6 @@ Sesi [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/
   </Card>
 
   <Card title="Effort" icon="gauge" href="https://platform.claude.com/docs/id/build-with-claude/effort">
-    Kendalikan berapa banyak token yang digunakan Claude saat merespons dengan parameter effort, dengan menyeimbangkan antara ketelitian respons dan efisiensi token.
+    Kendalikan berapa banyak token yang digunakan Claude saat merespons dengan parameter `effort`, menyeimbangkan antara ketelitian respons dan efisiensi token.
   </Card>
 </CardGroup>

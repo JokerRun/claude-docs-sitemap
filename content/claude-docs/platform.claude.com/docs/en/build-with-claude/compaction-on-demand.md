@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction-on-demand
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 33f696a50f2aac78ec03e119167dad3b1659a418e6de5790ffe6cdd9f0893bd8
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: d83632272cdbfec188352a3e42deb2bb7288a9c4c294f352911f5759e83c3b1a
 ---
 
 ---
@@ -287,7 +287,7 @@ Send the conversation as it stands with `"compaction": {"type": "summarize"}`. T
   ```
 </CodeGroup>
 
-```text Response
+```json Response
 {
   "id": "msg_013Zva2CMHLNnXjNJJKqJ2EF",
   "type": "message",

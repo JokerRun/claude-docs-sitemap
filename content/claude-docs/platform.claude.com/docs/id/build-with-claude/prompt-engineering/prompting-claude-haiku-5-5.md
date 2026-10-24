@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 816c7fa1c925bf465617e1016656a9636f64b2465c5b471d3bb3d46924bf4ef9
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: d8a75d65cb382bac12c602060fba560a7381e5ccd5c10b1417aa955ed5feb322
 ---
 
 ---
@@ -28,7 +28,7 @@ Prompt Claude Haiku 4.5 yang sudah ada seharusnya berkinerja baik tanpa perubaha
 <Note>
   Untuk perubahan API yang bersifat breaking saat bermigrasi dari Claude Haiku 4.5, lihat [panduan migrasi](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide).
 
-  Beberapa bagian di halaman ini menyarankan teks untuk ditambahkan ke prompt sistem Anda. Tambahkan hanya ke percakapan baru. Permintaan yang mengirim kembali blok thinking setelah `system` berubah dapat mengembalikan error 400, sehingga percakapan tersimpan yang dilanjutkan dengan prompt sistem baru dapat gagal. Untuk mengubah instruksi di tengah percakapan, [letakkan instruksi tersebut di giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#changing-context). Di Claude API, Amazon Bedrock, dan Claude Models on Google Cloud (Google managed), sebagai gantinya Anda dapat [menambahkan pesan sistem ke percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#new-instructions).
+  Beberapa bagian di halaman ini menyarankan teks untuk ditambahkan ke prompt sistem Anda. Tambahkan hanya ke percakapan baru. Permintaan yang mengirim kembali blok pemikiran setelah `system` berubah dapat mengembalikan error 400, sehingga percakapan tersimpan yang dilanjutkan dengan prompt sistem baru dapat gagal. Untuk mengubah instruksi di tengah percakapan, [letakkan instruksi tersebut di giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#changing-context). Di Claude API, Amazon Bedrock, dan Claude Models on Google Cloud (Google managed), Anda dapat sebagai gantinya [menambahkan pesan sistem ke percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#new-instructions).
 </Note>
 
 ## Gunakan effort untuk mengontrol thinking
@@ -45,7 +45,7 @@ Claude Haiku 5.5 adalah model Haiku pertama dengan tingkat effort. Thinking beke
 * Thinking aktif secara default dan dihitung terhadap `max_tokens`, yang dapat mencapai 128.000. Nilai `max_tokens` yang disesuaikan untuk permintaan Claude Haiku 4.5 yang berjalan tanpa thinking dapat memotong balasan, jadi sisakan ruang untuk thinking.
 * Untuk mendapatkan thinking yang lebih sedikit, turunkan tingkat effort. Dalam pengujian Anthropic, meminta model di dalam prompt untuk menjawab secara langsung tidak menghentikannya dari berpikir. Anda juga dapat mematikan thinking dengan `thinking: {"type": "disabled"}`. Ini hanya berfungsi pada `low`, `medium`, dan `high`. Pada `xhigh` dan `max`, permintaan mengembalikan error 400.
 * Pada effort `xhigh` dalam chat multi-giliran, model terkadang menulis seluruh jawabannya di dalam thinking dan mengakhiri giliran tanpa teks yang terlihat. Jika Anda melihat perilaku ini, periksa setiap respons untuk balasan yang kosong.
-* Mengubah nilai `effort` tingkat atas di antara permintaan akan membatalkan cache prompt untuk pesan-pesan percakapan. Di Claude API dan Claude Models on Google Cloud (Google managed), Anda dapat mengubah tingkat di tengah percakapan dengan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta), yang mempertahankan cache. Perubahan berlaku untuk setiap giliran berikutnya hingga digantikan oleh perubahan lain. Fitur ini memerlukan header beta `mid-conversation-output-config-2026-07-01` dan adaptive thinking, yang merupakan default. Dengan thinking dimatikan, perubahan effort per pesan mengembalikan error 400.
+* Mengubah nilai `effort` tingkat atas di antara permintaan akan membatalkan cache prompt untuk pesan-pesan percakapan. Di Claude API dan Claude Models on Google Cloud (Google managed), Anda dapat mengubah tingkat di tengah percakapan dengan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta), yang mempertahankan cache. Perubahan berlaku untuk setiap giliran berikutnya hingga digantikan oleh perubahan lain. Ini memerlukan beta header `mid-conversation-output-config-2026-07-01` dan pemikiran adaptif, yang merupakan default. Dengan pemikiran dinonaktifkan, perubahan effort per pesan mengembalikan error 400.
 
 ## Hasil pencarian yang akurat
 
@@ -57,7 +57,7 @@ The current date is {{current_date}}.
 
 Render tanggal sekali, saat percakapan dimulai, dan kirim `system` dan `tools` yang sama pada setiap permintaan berikutnya dalam percakapan tersebut (lihat [Pertahankan giliran sebelumnya tidak berubah](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#keep-earlier-turns-unchanged)). Ketika percakapan berlanjut pada hari berikutnya, [berikan tanggal baru di giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#changing-context) sebagai gantinya.
 
-Model juga terkadang memerlukan dorongan tambahan untuk melakukan pencarian. Hal ini paling sering terjadi pada effort `low` dan dengan prompt sistem yang panjang. Untuk memperbaikinya, tambahkan teks ini tepat setelah tanggal:
+Model juga terkadang memerlukan dorongan tambahan untuk melakukan pencarian. Hal ini paling sering terjadi pada effort `low` dan dengan prompt sistem yang panjang. Untuk mengatasinya, tambahkan teks ini tepat setelah tanggal:
 
 ```text wrap
 Your training data ends well before today's date. Records, office holders, prices, versions, rules and anything "latest" may have changed since then, so search for those before you answer, even when you feel sure. Facts that can't change need no search. When the answer depends on where the user is, put the user's country or region in the search query.
@@ -128,7 +128,7 @@ Ketika kepatuhan instruksi paling penting, gunakan juga effort `high`.
 
 ## Jauhkan penalaran dari teks yang dilihat pengguna
 
-Claude Haiku 5.5 terkadang menulis teks yang menyerupai penalaran dalam balasan yang dilihat pengguna. Hal ini lebih sering terjadi dengan thinking dimatikan atau pada effort `low`. Jika Anda melihat perilaku ini, beralihlah ke adaptive thinking dan effort `medium`.
+Claude Haiku 5.5 terkadang menulis teks yang menyerupai penalaran dalam balasan yang dilihat pengguna. Hal ini lebih sering terjadi dengan pemikiran dinonaktifkan atau pada effort `low`. Jika Anda melihat perilaku ini, beralihlah ke pemikiran adaptif dan effort `medium`.
 
 ## Penolakan safeguard
 
@@ -137,7 +137,7 @@ Claude Haiku 5.5 menjalankan "safety classifiers" (pengklasifikasi keamanan) yan
 * `cyber`: permintaan dapat memungkinkan bahaya siber, seperti pengembangan malware atau exploit. Menemukan kerentanan dalam kode sumber diperbolehkan. Pekerjaan keamanan siber dwiguna berisiko tinggi tidak diperbolehkan. Pekerjaan keamanan siber yang tidak berbahaya juga dapat memicu kategori ini. Jika pengklasifikasi `cyber` memblokir pekerjaan keamanan yang sah di organisasi Anda, Anda dapat mendaftar ke [Cyber Verification Program](https://support.claude.com/en/articles/14604842).
 * `frontier_llm`: permintaan dapat membantu pengembangan model AI pesaing.
 * `bio`: permintaan dapat memungkinkan bahaya biologis, seperti metode laboratorium yang berbahaya. Pertanyaan kesehatan sehari-hari dan pertanyaan edukatif tidak terpengaruh. Jika pengklasifikasi `bio` memblokir pekerjaan ilmu hayati di organisasi Anda, Anda dapat mendaftar ke [Life Sciences Verification Program](https://www.anthropic.com/news/life-sciences-verification-program).
-* `general_harms`: permintaan termasuk dalam area kebijakan penggunaan selain tiga di atas. Pekerjaan yang tidak berbahaya juga dapat memicu kategori ini.
+* `general_harms`: permintaan termasuk dalam area kebijakan penggunaan selain ketiga kategori sebelumnya. Pekerjaan yang tidak berbahaya juga dapat memicu kategori ini.
 
 Jika Anda beralih dari Claude Haiku 4.5, penolakan ini merupakan hal baru.
 

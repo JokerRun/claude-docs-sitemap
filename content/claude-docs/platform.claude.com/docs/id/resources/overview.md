@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/resources/overview
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 9b48822c784000d72a9957610640e20c831946184854c9349a562477f6a6981d
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: e8c49435b9dfb1c9bbc9eb9b103e5b7f2ccbc867d2722837852e726fe3726d76
 ---
 
 ---
@@ -89,7 +89,7 @@ description: Kartu model dengan dokumentasi terperinci untuk model-model Claude.
   </Card>
 
   <Card title="Kartu Model Claude 3" icon="file" href="https://www.anthropic.com/claude-3-model-card">
-    Dokumentasi terperinci tentang model Claude 3 termasuk adendum 3.5 terbaru.
+    Dokumentasi terperinci tentang model Claude 3, termasuk adendum 3.5 terbaru.
   </Card>
 
   <Card title="Kartu Model Claude 2" icon="file" href="https://www.anthropic.com/claude-2-model-card">

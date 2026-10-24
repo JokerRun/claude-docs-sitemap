@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: c159b5c07ebb45bf14c5620b74f65de78d952f16cf6578e6c94237897805a469
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: f283741fe3f95cc6b163635ba86acf8425f683ddfc062f0d420d12b65bcfac38
 ---
 
 ---
@@ -281,7 +281,7 @@ Parameters:
 <Accordion title="Example view commands">
   Example for viewing a file:
 
-  ```text wrap
+  ```json
   {
     "type": "tool_use",
     "id": "toolu_01A09q90qw90lq917835lq9",
@@ -295,7 +295,7 @@ Parameters:
 
   Example for viewing a directory:
 
-  ```text wrap
+  ```json
   {
     "type": "tool_use",
     "id": "toolu_02B19r91rw91mr917835mr9",
@@ -320,7 +320,7 @@ Parameters:
 * `new_str`: The new text to insert in place of the old text
 
 <Accordion title="Example str_replace command">
-  ```text wrap
+  ```json
   {
     "type": "tool_use",
     "id": "toolu_01A09q90qw90lq917835lq9",
@@ -346,7 +346,7 @@ Parameters:
 * `file_text`: The content to write to the new file
 
 <Accordion title="Example create command">
-  ```text
+  ```json
   {
     "type": "tool_use",
     "id": "toolu_01A09q90qw90lq917835lq9",
@@ -372,7 +372,7 @@ Parameters:
 * `insert_text`: The text to insert
 
 <Accordion title="Example insert command">
-  ```text
+  ```json
   {
     "type": "tool_use",
     "id": "toolu_01A09q90qw90lq917835lq9",
@@ -567,7 +567,7 @@ First, your application provides Claude with the text editor tool and a prompt t
 
 Claude uses the text editor tool first to view the file:
 
-```text Output
+```json Output
 {
   "id": "msg_01XAbCDeFgHiJkLmNoPQrStU",
   "model": "claude-opus-5-5",
@@ -1028,7 +1028,7 @@ Your application should then read the file and return its contents to Claude:
 
 Claude identifies the syntax error and uses the `str_replace` command to fix it:
 
-```text Output
+```json Output
 {
   "id": "msg_01VwXyZAbCdEfGhIjKlMnO",
   "model": "claude-opus-5-5",
@@ -1468,7 +1468,7 @@ Your application should then make the edit and return the result:
 
 Finally, Claude provides a complete explanation of the fix:
 
-````text Output
+````json Output
 {
   "id": "msg_01IjKlMnOpQrStUvWxYzAb",
   "model": "claude-opus-5-5",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: c2a5a44c43eccc6e08577654e664c0c4717c17e00a22ec186d6464108a53072a
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 3dd3efba07e8a7502d137f46ff862c3bb9a5cfffb59e3575a77027340424db92
 ---
 
 ---
@@ -1000,7 +1000,7 @@ The following request keeps `get_weather` in `tools` and defines `db_query` afte
 
 The response's `content` includes a `tool_use` block for the new tool, for example:
 
-```text
+```json
 {
   "type": "tool_use",
   "id": "toolu_01A09q90qw90lq917835lq9",

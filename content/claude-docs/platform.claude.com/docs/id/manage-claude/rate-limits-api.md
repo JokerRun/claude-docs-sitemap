@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/rate-limits-api
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: d61c0243d0dde999a5cb48e2cac01ebcfe6ee0ff73d736f130dd3e41c1465bb7
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 133b9da62905e8554fb32d3a9b1a601ead906fdf2a9a28a591e40b04f5cee85c
 ---
 
 ---
@@ -289,7 +289,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "data": [
     {
@@ -637,7 +637,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "data": [
     {
@@ -860,7 +860,7 @@ Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "data": [
     {

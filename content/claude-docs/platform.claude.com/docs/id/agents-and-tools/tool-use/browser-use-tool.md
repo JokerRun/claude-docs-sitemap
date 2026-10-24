@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: f53095ae87c91fc6d722004106187f164a9c95dd54765d967442e56aa2ca71ba
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 7a321361289402bc2c4006bb01331e78e023f4155162398a69df668a148070b3
 ---
 
 ---
@@ -36,7 +36,7 @@ featureMetadata:
 
 Alat browser use memungkinkan Claude menavigasi, membaca, dan berinteraksi dengan halaman web di browser yang dijalankan oleh aplikasi Anda. Claude bekerja dengan halaman melalui strukturnya ("accessibility tree" (pohon aksesibilitas), elemen, formulir, dan tab) sekaligus melalui screenshot dan koordinat viewport.
 
-Alat ini adalah [client toolset](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets) yang didefinisikan oleh Anthropic: satu entri `browser_toolset_20260801` di `tools` memberi Claude 27 alat anggota secara default, seperti `navigate`, `read_page`, `left_click`, dan `screenshot`, ditambah empat lagi saat Anda [mengaktifkannya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#enable-optional-member-tools). Aplikasi Anda menjalankan setiap panggilan menggunakan otomatisasi browsernya sendiri; tidak ada yang dijalankan di sisi Anthropic. Alat ini saat ini tidak tersedia di [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/tools).
+Alat ini adalah [toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets) yang didefinisikan oleh Anthropic: satu entri `browser_toolset_20260801` di `tools` memberi Claude 27 alat anggota secara default, seperti `navigate`, `read_page`, `left_click`, dan `screenshot`, ditambah empat lagi ketika Anda [mengaktifkan anggota opsional](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#enable-optional-member-tools). Aplikasi Anda menjalankan setiap pemanggilan terhadap otomatisasi browsernya sendiri; tidak ada yang berjalan di sisi Anthropic. Alat ini saat ini tidak tersedia di [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/tools).
 
 Pilih browser use ketika tugas tetap berada di dalam halaman web dan berarti bertindak pada halaman tersebut, atau ketika halaman membangun kontennya dengan JavaScript. Ketika tugas memerlukan seluruh desktop, gunakan [alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), yang bekerja hanya melalui screenshot dan koordinat. Untuk membaca halaman yang dapat Anda tunjukkan kepada Claude, atau menemukan sumber di web, [alat web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool) dan [alat web search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) lebih ringan. Keduanya adalah [server tools](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) yang dijalankan API untuk Anda, tanpa browser yang perlu dioperasikan.
 
@@ -180,7 +180,7 @@ Alat penggunaan browser tersedia di Claude API dan [Claude Models on Google Clou
       messages: [
           ['role' => 'user', 'content' => 'Open example.com/docs and tell me how to get started.'],
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       tools: [
           ['type' => 'browser_toolset_20260801'],
       ],
@@ -193,7 +193,7 @@ Alat penggunaan browser tersedia di Claude API dan [Claude Models on Google Clou
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 2048,
     tools: [
       { type: "browser_toolset_20260801" }
@@ -243,7 +243,7 @@ Respons pertama Claude berakhir dengan `stop_reason: "tool_use"` dan membawa sat
 }
 ```
 
-"Executor" (eksekutor) Anda, yaitu bagian dari aplikasi Anda yang mengendalikan browser dan menghasilkan hasil alat, menjalankan `navigate`, lalu `read_page`. Aplikasi Anda mengembalikan satu `tool_result` per blok dalam permintaan berikutnya, dengan menyertakan kembali `toolset_name` pada masing-masing. Hasil `navigate` melaporkan tab tempat halaman dimuat dalam blok `browser_state`; hasil `read_page` berupa teks di mana setiap elemen membawa sebuah referensi:
+"Executor" (pelaksana) Anda (bagian dari aplikasi Anda yang mengendalikan browser dan menghasilkan hasil alat) menjalankan `navigate`, lalu `read_page`. Aplikasi Anda mengembalikan satu `tool_result` untuk setiap blok dalam permintaan berikutnya, dengan menggemakan `toolset_name` pada masing-masing. Hasil `navigate` melaporkan tab yang dimuatnya dalam blok `browser_state`; hasil `read_page` berupa teks di mana setiap elemen membawa sebuah referensi:
 
 ```json
 {
@@ -302,7 +302,7 @@ Browser use berjalan sebagai "agent loop" (loop agen) di aplikasi Anda: Claude m
 
   <Step title="Jalankan panggilan secara berurutan dan kembalikan hasilnya">
     * Iterasi setiap blok `tool_use` di `response.content` (jangan berasumsi hanya ada tepat satu) dan jalankan secara berurutan, sesuai urutan kemunculannya, karena panggilan selanjutnya biasanya bergantung pada panggilan sebelumnya.
-    * Kembalikan satu `tool_result` per blok dalam pesan `user` baru, dicocokkan dengan `tool_use_id`, dan gemakan `"toolset_name": "browser"` pada masing-masing. Setiap panggilan harus dijawab atau permintaan berikutnya akan ditolak.
+    * Kembalikan satu `tool_result` untuk setiap blok dalam pesan `user` baru, dicocokkan dengan `tool_use_id`, dan gemakan `"toolset_name": "browser"` pada masing-masing. Jawab setiap pemanggilan, atau permintaan berikutnya akan ditolak.
     * Jika sebuah panggilan gagal, kembalikan `is_error: true` dengan deskripsi teks untuk blok tersebut, lalu terapkan aturan penghentian di [Tindakan batch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#batch-actions) ke setiap blok berikutnya dalam giliran tersebut.
   </Step>
 
@@ -484,11 +484,11 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
   ```
 
   ```go Go
-  // placeholderPNG stands in for a real capture: an executor returns the
-  // viewport as base64-encoded PNG data.
+  // placeholderPNG menggantikan tangkapan layar asli: executor mengembalikan
+  // viewport sebagai data PNG yang dienkode base64.
   const placeholderPNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
 
-  // textContent wraps text as tool_result content.
+  // textContent membungkus teks sebagai konten tool_result.
   func textContent(text string) []anthropic.ToolResultBlockParamContentUnion {
   	return []anthropic.ToolResultBlockParamContentUnion{
   		{OfText: &anthropic.TextBlockParam{Text: text}},
@@ -515,7 +515,7 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
   	return fmt.Sprintf("typed: %s", text)
   }
 
-  // captureScreenshot returns an image block rather than text.
+  // captureScreenshot mengembalikan blok gambar, bukan teks.
   func captureScreenshot() []anthropic.ToolResultBlockParamContentUnion {
   	return []anthropic.ToolResultBlockParamContentUnion{{
   		OfImage: &anthropic.ImageBlockParam{
@@ -538,7 +538,7 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
   	case "read_page":
   		return textContent(readPage()), nil
   	case "left_click":
-  		// target is either an element reference from read_page or a viewport coordinate
+  		// target berupa referensi elemen dari read_page atau koordinat viewport
   		target, _ := params["target"].(map[string]any)
   		if ref, ok := target["ref"].(string); ok && target["type"] == "ref" {
   			return textContent(clickRef(ref)), nil
@@ -554,11 +554,11 @@ Berikut kerangka langkah panggilan alat dari loop tersebut dalam dua bagian. Per
   		}
   	case "screenshot":
   		return captureScreenshot(), nil
-  	// Handle other actions as needed
+  	// Tangani aksi lain sesuai kebutuhan
   	default:
   		return nil, fmt.Errorf("unknown or unimplemented member: %s", action)
   	}
-  	// Reached when a member's input is missing a field or a field has the wrong type
+  	// Tercapai saat input anggota kehilangan field atau field bertipe salah
   	return nil, fmt.Errorf("invalid input for %s", action)
   }
   ```
@@ -892,9 +892,9 @@ Bagian kedua menjalankan batch secara berurutan, mengirim setiap blok ke handler
   ```go Go
   const notExecuted = "Not executed: an earlier action in this turn failed."
 
-  // browserToolResult builds the result for one browser action. Unlike an
-  // ordinary tool result, it must echo the toolset name. A real executor also
-  // adds a browser_state block to navigation and tab-management results.
+  // browserToolResult membangun hasil untuk satu aksi browser. Berbeda dengan
+  // hasil alat biasa, ia harus menyertakan kembali nama toolset. Executor asli juga
+  // menambahkan blok browser_state ke hasil navigasi dan pengelolaan tab.
   func browserToolResult(toolUseID string, content []anthropic.ToolResultBlockParamContentUnion, isError bool) anthropic.ContentBlockParamUnion {
   	result := anthropic.ToolResultBlockParam{
   		ToolUseID:   toolUseID,
@@ -907,16 +907,16 @@ Bagian kedua menjalankan batch secara berurutan, mengirim setiap blok ke handler
   	return anthropic.ContentBlockParamUnion{OfToolResult: &result}
   }
 
-  // processToolCalls runs the browser actions in Claude's response in order and
-  // builds one tool_result for each tool_use block. After the first failure it skips
-  // the rest: Claude planned them assuming the earlier actions succeeded.
+  // processToolCalls menjalankan aksi browser dalam respons Claude secara berurutan dan
+  // membangun satu tool_result untuk setiap blok tool_use. Setelah kegagalan pertama, sisanya
+  // dilewati: Claude merencanakannya dengan asumsi aksi sebelumnya berhasil.
   func processToolCalls(response *anthropic.Message) []anthropic.ContentBlockParamUnion {
   	var toolResults []anthropic.ContentBlockParamUnion
   	failed := false
   	for _, block := range response.Content {
   		switch variant := block.AsAny().(type) {
   		case anthropic.ToolUseBlock:
-  			// This example declares only the browser toolset; route other tools here if you add them.
+  			// Contoh ini hanya mendeklarasikan toolset browser; arahkan alat lain ke sini jika Anda menambahkannya.
   			if variant.ToolsetName != "browser" {
   				continue
   			}
@@ -1102,7 +1102,7 @@ Aplikasi Anda mengembalikan tiga blok `tool_result` dalam satu pesan `user`, mas
 
 Anda tidak perlu mengembalikan tangkapan layar setelah setiap panggilan. Claude biasanya mengakhiri batch dengan panggilan observasi (`screenshot`, `read_page`, atau `get_page_text`), dan aplikasi Anda juga dapat melampirkan observasinya sendiri, seperti tangkapan layar baru atau pohon aksesibilitas, sebagai blok konten tambahan pada hasil terakhir dalam batch untuk menghemat satu perjalanan bolak-balik. Karena hasil manajemen tab harus berupa tepat satu blok `browser_state`, lampirkan pada hasil terakhir yang bukan panggilan manajemen tab.
 
-Jika eksekutor Anda hanya dapat menjalankan satu panggilan per perjalanan bolak-balik, atur `disable_parallel_tool_use` ke `true` di `tool_choice` dan Claude mengembalikan paling banyak satu panggilan anggota per giliran, dengan biaya lebih banyak perjalanan bolak-balik ([Menonaktifkan penggunaan alat paralel](https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use#disable-parallel-tool-use)). Sisa kontrak di [Tindakan batch untuk alat penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions) tetap berlaku, termasuk satu `tool_result` untuk setiap `tool_use` dalam pesan `user` berikutnya, kecuali dua hal: teks penghentian dan apa yang dimuat `content` dari hasil yang berhasil. Konten hasil mengikuti [Alat anggota](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#member-tools) di halaman ini: hasil `new_tab`, `switch_tab`, `close_tab`, atau `list_tabs` adalah tepat satu blok `browser_state` tanpa teks atau gambar ([Hasil manajemen tab](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#tab-management-results)), dan hasil anggota lainnya dapat menambahkan blok `browser_state` ke teks atau gambarnya ([Konteks tab pada hasil lain](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#tab-context-on-other-results)). Di mana breakpoint cache di dalam batch berlaku dijelaskan di baris `cache_control` pada [Parameter alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#tool-parameters) alat penggunaan komputer.
+Jika executor Anda hanya dapat menjalankan satu pemanggilan untuk setiap perjalanan bolak-balik, atur `disable_parallel_tool_use` ke `true` di `tool_choice` dan Claude akan mengembalikan paling banyak satu pemanggilan anggota untuk setiap giliran, dengan konsekuensi lebih banyak perjalanan bolak-balik ([Menonaktifkan penggunaan alat paralel](https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use#disable-parallel-tool-use)). Sisa kontrak di bawah [Aksi batch untuk alat penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions) tetap berlaku, termasuk satu `tool_result` untuk setiap `tool_use` dalam pesan `user` berikutnya, kecuali dua hal: teks penghentian dan isi `content` hasil yang berhasil. Konten hasil mengikuti [Alat anggota](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#member-tools) di halaman ini: hasil `new_tab`, `switch_tab`, `close_tab`, atau `list_tabs` adalah tepat satu blok `browser_state` tanpa teks atau gambar ([Hasil manajemen tab](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#tab-management-results)), dan hasil anggota lainnya dapat menambahkan blok `browser_state` ke teks atau gambarnya ([Konteks tab pada hasil lain](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#tab-context-on-other-results)). Di mana breakpoint cache di dalam batch berlaku dijelaskan di baris `cache_control` pada [Parameter alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#tool-parameters) alat penggunaan komputer.
 
 ### Target dan koordinat
 
@@ -1113,7 +1113,7 @@ Alat anggota yang bertindak pada suatu lokasi menerima objek `target`, yang beru
 | `CoordinateTarget` | `"coordinate"` | `x`, `y` (integer, piksel viewport)        | `left_click`, `right_click`, `middle_click`, `double_click`, `triple_click`, `hover`, `left_click_drag` (`from` dan `target`), `left_mouse_down`, `left_mouse_up`, `mouse_move`, `scroll` |
 | `RefTarget`        | `"ref"`        | `ref` (referensi elemen seperti `"ref_2"`) | `left_click`, `right_click`, `middle_click`, `double_click`, `triple_click`, `hover`, `scroll_to`, `form_input`, `file_upload`                                                            |
 
-**Koordinat adalah piksel viewport**, ruang piksel dari `screenshot` viewport penuh dengan titik asal di kiri atas halaman yang dirender; tidak ada desktop atau bingkai jendela di sekelilingnya. Toolset tidak mendeklarasikan dimensi tampilan dan Claude menyimpulkan ukuran viewport dari tangkapan layar yang Anda kembalikan, jadi pertahankan satu ukuran yang konsisten. `zoom` tidak mengubah bingkai, sehingga `region`-nya dan koordinat apa pun yang dikeluarkan Claude setelah melihat gambar yang diperbesar tetap merupakan piksel viewport penuh.
+**Koordinat adalah piksel viewport**, ruang piksel dari `screenshot` viewport penuh dengan titik asal di kiri atas halaman yang dirender; tidak ada desktop atau bingkai jendela di sekitarnya. Toolset tidak mendeklarasikan dimensi tampilan dan Claude menyimpulkan ukuran viewport dari screenshot yang Anda kembalikan, jadi pertahankan ukurannya tetap konsisten. `zoom` tidak mengubah bingkai, sehingga `region`-nya dan koordinat apa pun yang dikeluarkan Claude setelah menerima gambar yang di-zoom tetap berupa piksel viewport penuh.
 
 **Tangkapan layar harus sesuai dengan batas gambar.** API tidak memperkecil gambar toolset: tangkapan layar atau gambar zoom yang melebihi [batas ukuran gambar](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size) model Anda, atau melebihi batas per gambar yang lebih ketat yang berlaku setelah permintaan memuat [lebih dari 20 gambar](https://platform.claude.com/docs/id/build-with-claude/vision#request-limits), akan ditolak. Ubah ukurannya sebelum mengembalikan, dan skalakan kembali koordinat Claude dengan kebalikan faktor Anda sebelum mengirimkannya ([Mengatur ukuran tangkapan layar agar sesuai batas gambar](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions)).
 
@@ -1133,7 +1133,7 @@ Referensi dibatasi pada tab yang menghasilkannya dan tetap valid hingga tab ters
 
 Claude menggunakan kedua gaya penargetan dan beralih di antaranya berdasarkan apa yang diekspos halaman; prompt Anda dan apa yang dikembalikan eksekutor Anda mengarahkan pilihan tersebut:
 
-* **Utamakan referensi ketika halaman memiliki pohon aksesibilitas yang dapat digunakan.** Referensi bertahan dari pergeseran tata letak dan reflow yang membuat koordinat piksel rapuh, dan memungkinkan Claude bertindak pada kontrol yang sulit dikenai dengan pointer.
+* **Utamakan referensi ketika halaman memiliki pohon aksesibilitas yang dapat digunakan.** Referensi bertahan terhadap pergeseran tata letak dan reflow yang membuat koordinat piksel rapuh, dan memungkinkan Claude bertindak pada kontrol yang sulit diklik dengan pointer.
 * **Kembali ke koordinat untuk konten yang tidak dijelaskan pohon.** Antarmuka yang dirender canvas, video tersemat atau permukaan remote-desktop, daftar yang sangat tervirtualisasi, dan elemen di dalam iframe lintas-origin sering tidak memiliki node yang berguna, sehingga Claude bekerja dari `screenshot` dan `zoom` dan mengklik berdasarkan koordinat; eksekutor Anda menentukan frame mana yang dikenai koordinat.
 * **Batasi cakupan pembacaan, dan baca pohon sebelum Anda mengambil tangkapan layar.** Pada halaman besar, `read_page` dengan `filter: "interactive"` atau `ref` dari sebuah kontainer mengembalikan subpohon yang terfokus, dan pembacaan pohon dari halaman tipikal sering menghabiskan lebih sedikit token input daripada tangkapan layar sambil memberi Claude referensi yang dapat langsung ditindaklanjuti. Tangkapan layar tetap menjadi observasi yang tepat ketika tata letak visual, gambar, atau status rendering penting.
 
@@ -1146,7 +1146,7 @@ Penggunaan browser membawa risiko yang tidak dimiliki fitur API standar, karena 
 
   1. Jalankan browser dan eksekutor Anda di container atau mesin virtual khusus dengan hak akses minimal, profil baru yang tidak menyimpan kredensial, dan tanpa akses ke sistem file sensitif atau jaringan internal; isolasi alat apa pun yang Anda jalankan bersamanya dengan cara yang sama.
   2. Batasi host yang dapat dijangkau browser ke "allowlist" (daftar izin) domain yang diberlakukan di lapisan jaringan dan diperiksa ulang di handler `navigate` Anda setelah redirect, dan blokir rentang loopback, link-local, dan privat kecuali tugas membutuhkannya.
-  3. Perlakukan semua yang disediakan halaman sebagai input yang tidak tepercaya, termasuk judul tab dan URL, serta `url`, `path`, dan `error` setiap unduhan, yang Anda laporkan dalam blok [`browser_state`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#track-tabs-and-page-state), dan bangun pembacaan halaman dari apa yang dirender halaman (pohon aksesibilitas atau teks yang terlihat), bukan sumber DOM mentah, sehingga teks tersembunyi tidak sampai ke Claude.
+  3. Perlakukan semua yang disediakan halaman sebagai input yang tidak tepercaya. Itu termasuk judul dan URL tab, serta `url`, `path`, dan `error` setiap unduhan, yang Anda laporkan dalam blok [`browser_state`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#track-tabs-and-page-state). Bangun pembacaan halaman dari apa yang dirender halaman (pohon aksesibilitas atau teks yang terlihat), bukan sumber DOM mentah, sehingga teks tersembunyi tidak mencapai Claude.
   4. Di handler `navigate` Anda, terima kata kunci riwayat `"back"`, `"forward"`, dan `"reload"`, perlakukan URL tanpa skema sebagai `https://`, lalu parse URL dan tolak skema apa pun selain `http` atau `https` (`javascript:`, `file:`, `data:`, `chrome:`, dan seterusnya) dengan [hasil error](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#return-errors-from-your-executor). Periksa skema dengan parser URL, bukan dengan prefiks string; API tidak memfilter URL yang dibuka Claude, sehingga API tidak dapat menolaknya untuk Anda.
   5. Biarkan `javascript_exec` dan `file_upload` tetap nonaktif kecuali Anda membutuhkannya, dan baca [Mengaktifkan anggota opsional](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#enable-optional-member-tools) sebelum mengaktifkan salah satunya.
   6. Minta manusia mengonfirmasi tindakan yang berdampak besar dan apa pun yang memerlukan persetujuan afirmatif (pembelian, modifikasi akun, pengiriman pesan, dan penerimaan ketentuan), dan lakukan pemeriksaan tersebut di eksekutor Anda sebelum setiap panggilan, karena satu giliran dapat membawa beberapa panggilan.
@@ -1156,15 +1156,15 @@ Claude terkadang mengikuti instruksi yang ditemukan dalam konten halaman bahkan 
 
 Anthropic telah melatih model untuk menahan injeksi prompt ini dan telah menambahkan lapisan pertahanan ekstra. Jika Anda menggunakan alat browser use, classifier akan secara otomatis memindai apa yang dikembalikan browser, seperti teks halaman atau screenshot, untuk menandai potensi injeksi prompt. Ketika classifier ini mengidentifikasi potensi injeksi prompt, classifier akan secara otomatis mengarahkan model untuk memeriksa apakah instruksi tersebut benar-benar berasal dari Anda sebelum menindaklanjutinya.
 
-Perlindungan ekstra ini tidak akan ideal untuk setiap kasus penggunaan (misalnya, kasus penggunaan tanpa manusia dalam loop), jadi jika Anda ingin memilih keluar dan menonaktifkannya, [hubungi dukungan](https://support.claude.com/en/). Tindakan pencegahan di atas tetap penting meskipun classifier ini sudah diterapkan.
+Perlindungan tambahan ini tidak ideal untuk setiap kasus penggunaan (misalnya, kasus penggunaan tanpa manusia dalam loop), jadi jika Anda ingin memilih keluar dan menonaktifkannya, [hubungi dukungan](https://support.claude.com/en/). Tindakan pencegahan yang tercantum sebelumnya tetap penting bahkan dengan adanya classifier ini.
 
 Karena browser berjalan di lingkungan Anda, situs yang dikunjungi Claude melihat identitas jaringan eksekutor Anda, dan konten halaman mencapai API hanya sebagai hasil alat yang Anda kembalikan. Beri tahu pengguna akhir tentang risiko yang relevan dan dapatkan persetujuan mereka sebelum mengaktifkan penggunaan browser dalam produk Anda.
 
 ## Alat anggota
 
-Entri `browser_toolset_20260801` mendeklarasikan 31 alat anggota; `input` setiap panggilan adalah tepat parameter yang tercantum di sini, dan `tab_id`, jika opsional, default ke tab aktif. `Target`, `CoordinateTarget`, dan `RefTarget` adalah bentuk yang dijelaskan di [Target dan koordinat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#targets-and-coordinates). Empat anggota (`javascript_exec`, `file_upload`, `read_console`, dan `read_network`) dinonaktifkan secara default dan hanya muncul ketika Anda [mengaktifkannya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#enable-optional-member-tools). Batas input dan konvensi output yang dicatat di baris setiap anggota dinyatakan kepada Claude, tidak diterapkan oleh API, jadi validasi input (termasuk koordinat terhadap viewport Anda) dan terapkan konvensi tersebut di eksekutor Anda.
+Entri `browser_toolset_20260801` mendeklarasikan 31 alat anggota; `input` setiap pemanggilan adalah tepat parameter yang tercantum di sini, dan `tab_id`, jika opsional, secara default mengacu pada tab aktif. `Target`, `CoordinateTarget`, dan `RefTarget` adalah bentuk yang dijelaskan di [Target dan koordinat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#targets-and-coordinates). Empat anggota (`javascript_exec`, `file_upload`, `read_console`, dan `read_network`) dinonaktifkan secara default dan hanya muncul ketika Anda mengaktifkannya (lihat [Mengaktifkan anggota opsional](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#enable-optional-member-tools)). Batas input dan konvensi output yang dicatat di baris setiap anggota dinyatakan kepada Claude, bukan diberlakukan oleh API, jadi validasi input (termasuk koordinat terhadap viewport Anda) dan terapkan konvensi tersebut di executor Anda.
 
-Hanya `screenshot` dan `zoom` yang memerlukan [blok `image`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls#handling-results-from-client-tools) dalam hasilnya, dan empat anggota manajemen tab (`new_tab`, `list_tabs`, `switch_tab`, dan `close_tab`) mengembalikan tepat satu blok `browser_state` (lihat [Hasil manajemen tab](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#tab-management-results)). Setiap anggota lainnya mengembalikan blok `text`: baik pengakuan singkat seperti `Clicked element ref_2.` atau output anggota tersebut. Hasil apa pun selain hasil manajemen tab juga dapat membawa blok `image`, biasanya tangkapan layar yang diambil setelah tindakan, sehingga Claude melihat hasilnya tanpa panggilan `screenshot` terpisah; [Tindakan batch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#batch-actions) menunjukkan di mana melampirkannya dalam batch. `tool_result` anggota hanya boleh berisi blok konten `text`, `image`, dan `browser_state`.
+Hanya `screenshot` dan `zoom` yang memerlukan [blok `image`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls#handling-results-from-client-tools) dalam hasilnya, dan empat anggota manajemen tab (`new_tab`, `list_tabs`, `switch_tab`, dan `close_tab`) mengembalikan tepat satu blok `browser_state` (lihat [Hasil manajemen tab](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#tab-management-results)). Setiap anggota lain mengembalikan blok `text`: baik pengakuan singkat seperti `Clicked element ref_2.` atau output anggota tersebut. Hasil apa pun selain hasil manajemen tab juga dapat membawa blok `image`, biasanya screenshot yang diambil setelah tindakan, sehingga Claude menerima hasilnya tanpa pemanggilan `screenshot` terpisah; [Aksi batch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#batch-actions) menunjukkan di mana melampirkannya dalam batch. `tool_result` anggota hanya boleh berisi blok konten `text`, `image`, dan `browser_state`.
 
 ### Navigasi dan tangkapan
 
@@ -1205,7 +1205,7 @@ Hanya `screenshot` dan `zoom` yang memerlukan [blok `image`](https://platform.cl
 | Anggota         | Input                                  | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | --------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `read_page`     | `filter?`, `depth?`, `ref?`, `tab_id?` | Kembalikan pohon aksesibilitas halaman sebagai teks dengan setiap elemen diberi tag referensi seperti `[ref_2]`. Dengan `filter` dihilangkan, kembalikan setiap elemen yang terlihat; dengan `"interactive"`, hanya elemen interaktif yang terlihat; dengan `"all"`, juga elemen di luar viewport. `depth` membatasi kedalaman pohon (minimum 1, default 15) dan `ref` membatasi pembacaan ke subpohon elemen tersebut. Batasi output pada 50.000 karakter dan nyatakan demikian dalam teks; Claude kemudian mempersempit dengan `depth` yang lebih kecil atau `ref`. |
-| `find`          | `query`, `tab_id?`                     | Cari elemen yang cocok dengan deskripsi bahasa alami seperti `"search field"` atau `"add to cart button"`, dan kembalikan hingga 20 kecocokan dalam format bertag yang sama dengan `read_page`.                                                                                                                                                                                                                                                                                                                                                                       |
+| `find`          | `query`, `tab_id?`                     | Menemukan elemen yang cocok dengan deskripsi bahasa alami seperti `"search field"` atau `"add to cart button"`, dan mengembalikan hingga 20 kecocokan dalam format bertanda yang sama dengan `read_page`.                                                                                                                                                                                                                                                                                                                                                             |
 | `get_page_text` | `tab_id?`                              | Kembalikan teks halaman yang terlihat sebagai teks biasa, dengan memprioritaskan konten artikel utama; cocok untuk artikel, dokumentasi, dan halaman padat teks lainnya.                                                                                                                                                                                                                                                                                                                                                                                              |
 
 ### Formulir dan file
@@ -1259,7 +1259,7 @@ Cantumkan hanya anggota yang ingin Anda ubah di `configs`; setiap anggota yang A
 }
 ```
 
-Anggota yang dinonaktifkan menghilang dari definisi yang dilihat Claude; itu tidak menjamin Claude tidak pernah menyebutkannya, jadi eksekutor Anda tetap menjawab panggilan seperti itu dengan [hasil error](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#return-errors-from-your-executor).
+Anggota yang dinonaktifkan menghilang dari definisi yang diterima Claude; hal itu tidak menjamin Claude tidak akan pernah menyebutkannya, jadi executor Anda tetap menjawab pemanggilan semacam itu dengan [hasil error](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#return-errors-from-your-executor).
 
 ### Menggabungkan dengan alat lain
 
@@ -1300,13 +1300,13 @@ Claude menulis path ini saat membaca halaman yang tidak tepercaya, sehingga impl
 
 ### Membaca aktivitas konsol dan jaringan
 
-`read_console` mengembalikan entri konsol tab dan `read_network` mengembalikan permintaan jaringannya, masing-masing sebagai teks dengan satu baris per entri yang terakumulasi sejak pembacaan sebelumnya dari tab tersebut. Baris konsol membawa entri log, peringatan, atau error; baris jaringan membawa metode, URL, status, tipe MIME, dan waktu. Entri hanya ada sejak saat otomatisasi browser Anda terhubung ke tab, sehingga hasil kosong tidak berarti tab yang sudah terbuka tidak memiliki lalu lintas.
+`read_console` mengembalikan entri console tab dan `read_network` mengembalikan permintaan jaringannya, masing-masing sebagai teks dengan satu baris untuk setiap entri yang terkumpul sejak pembacaan sebelumnya dari tab tersebut. Baris console membawa entri log, peringatan, atau error; baris jaringan membawa metode, URL, status, tipe MIME, dan waktu. Entri hanya ada sejak saat otomatisasi browser Anda terhubung ke tab, jadi hasil kosong tidak berarti tab yang sudah terbuka sebelumnya tidak memiliki lalu lintas.
 
 Anggota ini memungkinkan Claude mendiagnosis halaman yang bermasalah (permintaan gagal di balik spinner, error skrip di balik tombol yang tidak berfungsi) tanpa tangkapan layar berulang. Entri konsol dan jaringan dikendalikan halaman dan sering berisi rahasia seperti token dalam URL permintaan, jadi sensor nilai yang menyerupai kredensial yang tidak Anda inginkan dalam konteks Claude dan potong entri yang sangat panjang sebelum mengembalikannya.
 
 ## Melacak tab dengan `browser_state`
 
-Claude merujuk tab berdasarkan `tab_id`, aplikasi Anda adalah sumber kebenaran mengenai tab mana yang ada, dan Anda melaporkan status tersebut dalam blok konten `browser_state` yang tidak pernah dilihat Claude secara langsung: API merender teks yang dibaca Claude darinya.
+Claude mengacu pada tab berdasarkan `tab_id`, aplikasi Anda adalah sumber kebenaran tentang tab mana saja yang ada, dan Anda melaporkan status tersebut dalam blok konten `browser_state` yang tidak pernah diterima Claude secara langsung: API merender teks yang dibaca Claude dari blok tersebut.
 
 ```json
 {
@@ -1325,7 +1325,7 @@ Claude merujuk tab berdasarkan `tab_id`, aplikasi Anda adalah sumber kebenaran m
 
 * `tabs` adalah inventaris lengkap tab yang terbuka setelah panggilan, bukan delta. Nilainya boleh kosong; jika tidak kosong, tepat satu entri memiliki `"active": true`.
 * `state_changes` (tidak ditampilkan di sini) melaporkan efek samping dari panggilan: entri `tab_opened` untuk setiap tab yang dibuka oleh panggilan dan masih terbuka saat panggilan selesai, yang `tab_id`-nya juga harus muncul di `tabs`, serta [peristiwa unduhan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#report-downloads). Hilangkan field ini jika tidak ada yang perlu dilaporkan; array kosong akan ditolak.
-* Kirim blok ini hanya pada hasil yang menjawab panggilan anggota browser, paling banyak sekali per `tool_result`, dan jangan pernah pada hasil dengan `is_error: true`. Anda menyatakan "tidak ada status tab untuk dilaporkan" dengan menghilangkan blok tersebut.
+* Kirim blok ini hanya pada hasil yang menjawab panggilan anggota browser, paling banyak sekali untuk setiap `tool_result`, dan jangan pernah pada hasil dengan `is_error: true`. Anda menyatakan "tidak ada status tab untuk dilaporkan" dengan menghilangkan blok tersebut.
 * API merender `tabs`, serta entri unduhan apa pun di `state_changes`, menjadi teks untuk Claude. Dua bagian berikutnya dan [Melaporkan unduhan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#report-downloads) menunjukkan teks tersebut.
 
 **Anda yang menetapkan nilai `tab_id`.** String stabil apa pun dapat digunakan, seperti pengidentifikasi halaman dari pustaka otomasi Anda atau penghitung Anda sendiri, selama Anda tidak menggunakan ulang `tab_id` saat tab dengan pengidentifikasi tersebut masih tercantum sebagai terbuka dalam hasil sebelumnya. API memberlakukan batasan berikut pada blok ini:
@@ -1335,14 +1335,14 @@ Claude merujuk tab berdasarkan `tab_id`, aplikasi Anda adalah sumber kebenaran m
 * Batasan yang sama berlaku untuk `tab_id` yang diteruskan Claude ke `switch_tab` dan `close_tab`, karena API merendernya ke dalam teks hasil, jadi jawab panggilan yang `tab_id`-nya melanggar batasan tersebut dengan hasil error alih-alih blok `browser_state`.
 
 <Warning>
-  Judul dan URL tab berasal dari halaman dan dirender menjadi teks yang dibaca Claude, sehingga keduanya merupakan permukaan serangan "prompt injection" (injeksi prompt). API merender URL tab apa adanya, jadi sanitasi URL yang berasal dari halaman sebelum mengisi `tabs`. API meng-escape tanda kutip ganda dan backslash dalam judul saat merendernya, jadi jangan melakukan pre-escape pada judul (judul yang sudah di-escape sebelumnya akan sampai ke Claude dalam keadaan ter-escape ganda); memotong atau membuang judul yang mencurigakan tetap bermanfaat. `url`, `path`, dan `error` pada entri unduhan juga dirender menjadi teks yang dibaca Claude, jadi perlakukan juga sebagai tidak tepercaya; API memberi tanda kutip dan meng-escape nilai-nilai tersebut seperti halnya judul. Batasan panjang dan karakter yang diberlakukan API adalah batas minimum, bukan pertahanan.
+  Judul dan URL tab berasal dari halaman dan dirender menjadi teks yang dibaca Claude, sehingga keduanya merupakan permukaan "prompt injection" (injeksi prompt). API merender URL tab apa adanya, jadi sanitasi URL yang disediakan halaman sebelum mengisi `tabs`. API meng-escape tanda kutip ganda dan backslash dalam judul saat merendernya, jadi jangan melakukan pre-escape pada judul (judul yang sudah di-pre-escape akan sampai ke Claude dalam kondisi ter-escape ganda); memotong atau membuang judul yang mencurigakan tetap bermanfaat. `url`, `path`, dan `error` pada entri unduhan juga dirender menjadi teks yang dibaca Claude, jadi perlakukan juga sebagai tidak tepercaya; API mengutip dan meng-escape nilai-nilai tersebut seperti halnya judul. Batasan panjang dan karakter yang diberlakukan API adalah batas minimum, bukan pertahanan.
 </Warning>
 
 ### Hasil manajemen tab
 
-Untuk `new_tab`, `switch_tab`, `close_tab`, dan `list_tabs`, `content` dari hasil yang berhasil adalah tepat satu blok `browser_state` tanpa teks atau gambar, dan API menulis teks yang dilihat Claude. Blok pada hasil `new_tab` juga harus membawa tepat satu perubahan status `tab_opened` yang `tab_id`-nya cocok dengan entri yang ditandai `active: true`.
+Untuk `new_tab`, `switch_tab`, `close_tab`, dan `list_tabs`, `content` dari hasil yang berhasil adalah tepat satu blok `browser_state` tanpa teks atau gambar, dan API menulis teks yang diterima Claude. Blok pada hasil `new_tab` juga harus membawa tepat satu perubahan status `tab_opened` yang `tab_id`-nya cocok dengan entri yang ditandai `active: true`.
 
-| Anggota      | Teks yang dilihat Claude                                                                                                         |
+| Anggota      | Teks yang diterima Claude                                                                                                        |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------- |
 | `switch_tab` | `Switched to tab {tab_id}`, diambil dari `input.tab_id` panggilan                                                                |
 | `close_tab`  | `Closed tab {tab_id}`, diambil dari `input.tab_id` panggilan                                                                     |
@@ -1385,7 +1385,7 @@ Sebagai contoh, ketika Claude memanggil `new_tab` (`input`-nya kosong), eksekuto
 }
 ```
 
-Claude melihat `Created new tab with tab_id: tab-3, URL: about:blank. It is now the current tab.` Laporkan URL tempat tab dibuka, seperti di sini, bukan URL tujuan pengalihan setelahnya; hasil-hasil berikutnya melaporkan URL tab yang berlaku saat itu.
+Claude menerima `Created new tab with tab_id: tab-3, URL: about:blank. It is now the current tab.` Laporkan URL tempat tab dibuka, seperti di sini, bukan URL tujuan pengalihan berikutnya; hasil selanjutnya akan melaporkan URL tab yang berlaku saat itu.
 
 ### Konteks tab pada hasil lainnya
 
@@ -1404,7 +1404,7 @@ Tab Context:
 Tiga kasus tidak merender footer meskipun blok ada:
 
 * Hasil `zoom` apa pun.
-* Hasil tanpa blok `text` (misalnya, hasil `screenshot` yang hanya berisi gambar). Tidak ada yang dirender atau diingat untuk hasil tersebut; konteks tab muncul pada hasil berikutnya yang memuat teks sekaligus blok `browser_state`, jadi sertakan blok teks singkat bersama gambar jika Anda ingin Claude melihat perubahan tab pada hasil yang sama. Pengecualiannya adalah hasil yang bloknya melaporkan [peristiwa unduhan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#report-downloads). API menambahkan baris-baris unduhan sebagai blok teks, dan footer mengikutinya seperti pada hasil apa pun yang memiliki teks.
+* Hasil tanpa blok `text` (misalnya hasil `screenshot` yang hanya berisi gambar). Tidak ada yang dirender atau diingat untuk hasil tersebut; konteks tab muncul pada hasil berikutnya yang membawa teks sekaligus blok `browser_state`, jadi sertakan blok teks singkat bersama gambar ketika Anda ingin perubahan tab sampai ke Claude pada hasil yang sama. Pengecualiannya adalah hasil yang bloknya melaporkan [peristiwa unduhan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#report-downloads). API menambahkan baris unduhan sebagai blok teks, dan footer mengikutinya seperti pada hasil mana pun yang memiliki teks.
 * Hasil yang daftar `tabs`-nya kosong pada panggilan yang tidak membawa `tab_id`, karena tidak ada tab yang dapat disebutkan.
 
 Sebagai contoh, ketika Claude mengklik tautan "Pricing" (`ref_5`) sebelumnya dalam sesi ini, halaman membukanya di tab baru yang tidak diminta Claude, dan tanpa laporan Claude harus memanggil `list_tabs` untuk menemukannya. Kembalikan konfirmasi klik ditambah blok yang `state_changes`-nya menyebutkan tab yang dibuka, dengan menandai tab mana pun yang dibiarkan aktif oleh eksekutor Anda:
@@ -1438,17 +1438,17 @@ Sebagai contoh, ketika Claude mengklik tautan "Pricing" (`ref_5`) sebelumnya dal
 }
 ```
 
-Claude melihat `Clicked element ref_5.` diikuti footer Tab Context yang ditampilkan sebelumnya. Tab yang dibuka selama panggilan yang gagal tidak mendapatkan entri `tab_opened`, karena hasil error tidak membawa `browser_state`; tab tersebut muncul dalam inventaris `tabs` pada hasil berhasil berikutnya. Dalam sebuah batch, lampirkan blok pada hasil dari panggilan tempat perubahan terjadi, dan berikan setiap hasil manajemen tab yang berhasil bloknya sendiri meskipun hasil sebelumnya dalam giliran yang sama telah melaporkan status yang sama.
+Claude menerima `Clicked element ref_5.` diikuti footer Tab Context yang ditampilkan sebelumnya. Tab yang dibuka selama panggilan yang gagal tidak mendapatkan entri `tab_opened`, karena hasil error tidak membawa `browser_state`; tab tersebut muncul di inventaris `tabs` pada hasil berhasil berikutnya. Dalam sebuah batch, lampirkan blok ke hasil dari panggilan tempat perubahan terjadi, dan berikan setiap hasil manajemen tab yang berhasil bloknya sendiri meskipun hasil sebelumnya pada giliran yang sama telah melaporkan status yang sama.
 
 ### Melaporkan unduhan
 
-Ketika klik atau navigasi memulai unduhan file, laporkan dalam `state_changes` pada hasil dari panggilan tempat unduhan terjadi, dikorelasikan antarhasil dengan `download_id` yang Anda tetapkan. Unduhan berjalan secara asinkron dan dapat mencakup beberapa hasil, sehingga ada tiga jenis peristiwa:
+Ketika klik atau navigasi memulai unduhan file, laporkan di `state_changes` pada hasil dari panggilan tempat unduhan terjadi, yang dikorelasikan antar-hasil dengan `download_id` yang Anda tetapkan. Unduhan berjalan secara asinkron dan dapat mencakup beberapa hasil, sehingga ada tiga jenis peristiwa:
 
-| `type`               | Field                                        | Kapan dikirim                                                                                                                                                                                                                                                                                                                                                                     |
-| -------------------- | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `download_started`   | `download_id`, `url`                         | Pada hasil dari panggilan tempat unduhan dimulai. `url` adalah URL final tempat file disajikan, setelah pengalihan.                                                                                                                                                                                                                                                               |
-| `download_completed` | `download_id`, `url`, `path?`, `size_bytes?` | Pada hasil dari panggilan berikutnya mana pun yang sedang berjalan ketika unduhan selesai. Sertakan `path` hanya ketika alat lain di lingkungan yang sama (misalnya, [alat bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool) atau `file_upload`) dapat membaca file di sana; jika tidak, `download_id` adalah satu-satunya pengidentifikasi unduhan. |
-| `download_failed`    | `download_id`, `url`, `error?`               | Ketika unduhan gagal atau dibatalkan, dengan alasannya dalam `error` jika browser menyediakannya.                                                                                                                                                                                                                                                                                 |
+| `type`               | Field                                        | Kapan dikirim                                                                                                                                                                                                                                                                                                                                                                   |
+| -------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `download_started`   | `download_id`, `url`                         | Pada hasil dari panggilan tempat unduhan dimulai. `url` adalah URL akhir tempat file disajikan, setelah pengalihan.                                                                                                                                                                                                                                                             |
+| `download_completed` | `download_id`, `url`, `path?`, `size_bytes?` | Pada hasil dari panggilan berikutnya mana pun yang sedang berjalan saat unduhan selesai. Sertakan `path` hanya ketika alat lain di lingkungan yang sama (misalnya, [alat bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool) atau `file_upload`) dapat membaca file di sana; jika tidak, `download_id` adalah satu-satunya pengidentifikasi unduhan. |
+| `download_failed`    | `download_id`, `url`, `error?`               | Ketika unduhan gagal atau dibatalkan, dengan alasannya dalam `error` jika browser menyediakannya.                                                                                                                                                                                                                                                                               |
 
 API merender setiap entri sebagai satu baris teks untuk Claude, sesuai urutan kemunculan entri. API menambahkan baris-baris tersebut setelah teks hasil, dipisahkan oleh satu baris kosong, dan sebelum footer Tab Context apa pun. Setiap jenis hasil anggota memuat baris-baris ini, termasuk hasil `zoom` dan hasil manajemen tab. Hasil tanpa blok `text` mendapatkannya sebagai blok teks tersendiri. Setiap baris memuat `download_id` dan `url`, ditambah `path` dan `size_bytes` (untuk `download_completed`) atau `error` (untuk `download_failed`) jika Anda mengirimkannya. Anda tidak perlu mendeskripsikan unduhan dalam teks Anda sendiri. API membungkus `url`, `path`, dan `error` dengan tanda kutip ganda serta meng-escape tanda kutip ganda dan backslash di dalamnya, jadi jangan melakukan pre-escape pada nilai-nilai ini.
 
@@ -1478,7 +1478,7 @@ Misalnya, klik pada "Download price list (CSV)" (`ref_8`) di tab Pricing memulai
 }
 ```
 
-Claude melihat `Screenshot captured.` diikuti satu baris kosong dan baris seperti ini:
+Claude menerima `Screenshot captured.` diikuti satu baris kosong dan baris seperti ini:
 
 ```text wrap
 Download completed with download_id: dl-1, URL: "https://example.com/pricing/price-list.csv". Saved to "/home/user/downloads/price-list.csv". Size: 48213 bytes.
@@ -1486,7 +1486,7 @@ Download completed with download_id: dl-1, URL: "https://example.com/pricing/pri
 
 Laporan unduhan mengikuti aturan berikut:
 
-* Paling banyak satu entri per `download_id` dalam satu blok, sehingga unduhan yang dimulai dan selesai selama panggilan yang sama hanya melaporkan `download_completed`.
+* Kirim paling banyak satu entri untuk setiap `download_id` dalam satu blok, sehingga unduhan yang dimulai dan selesai selama panggilan yang sama hanya melaporkan `download_completed`.
 * Jangan pernah mengirim `state_changes` pada hasil `is_error: true`; laporkan peristiwa unduhan yang terjadi selama panggilan yang gagal pada hasil berhasil berikutnya.
 * `state_changes` bukan inventaris unduhan yang sedang berlangsung; laporkan setiap peristiwa sekali.
 * Setiap entri hanya membawa field yang dideklarasikan oleh `type`-nya. `size_bytes` adalah bilangan bulat non-negatif, `download_id` tidak boleh kosong, dan `download_id`, `url`, `path`, serta `error` masing-masing paling banyak 4.096 karakter tanpa karakter kontrol atau pemisah baris atau paragraf Unicode. `url` berasal dari server jarak jauh dan sering membawa kredensial query-string bertanda tangan setelah pengalihan, jadi hapus parameter query yang tidak Anda inginkan dalam konteks Claude dan sanitasi sebelum melaporkannya atau menggunakannya dalam path sistem file.

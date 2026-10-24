@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/middleware
-fetched_at: 2026-10-15T02:20:20.510650Z
-sha256: fdb44abe1ebd4f68d45201edb55439fe78011bf325121acf55518fd573205163
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 9b73e0d92e86415a102c86bc3508640e7c16f7157097a41b1aa6d0242801e466
 ---
 
 ---
@@ -180,7 +180,7 @@ Di SDK Go, pemanggilan `option.WithMiddleware` yang berulang akan digabungkan (k
 
 ## Mengganti klien HTTP
 
-SDK juga menerima klien HTTP kustom (untuk konfigurasi proxy, TLS kustom, atau "connection pooling" (pengumpulan koneksi)). Hanya satu klien HTTP yang digunakan per klien SDK; mengaturnya akan menggantikan klien default. Klien HTTP kustom menerima permintaan setelah semua middleware selesai berjalan.
+SDK juga menerima klien HTTP kustom (untuk konfigurasi proxy, TLS kustom, atau "connection pooling" (pengumpulan koneksi)). Hanya satu klien HTTP yang digunakan untuk setiap klien SDK; mengaturnya akan menggantikan yang default. Klien HTTP kustom menerima permintaan setelah semua middleware selesai dijalankan.
 
 ## Middleware bawaan
 

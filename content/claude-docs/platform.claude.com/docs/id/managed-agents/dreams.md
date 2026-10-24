@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 732f1f2ef2a2f2eb518e615813cb08eea78949dc981056e78a1527e486f9bcd0
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: e7b42a3b91f46a03029e185bdbb293d7281de2e39155bfb429d21355655c3168
 ---
 
 ---
 title: Dreams
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-description: Biarkan Claude merefleksikan sesi-sesi sebelumnya untuk mengkurasi memori agen dan memunculkan wawasan baru.
+description: Biarkan Claude meninjau sesi-sesi sebelumnya untuk mengkurasi memori agen dan memunculkan wawasan baru.
 ---
 
 <Tip>
@@ -195,7 +195,7 @@ Responsnya adalah resource `dream` lengkap dengan `status: "pending"`:
 
 Field opsional `instructions` (csharp, go: `Instructions`) mengarahkan apa yang disintesis oleh pipeline dreaming. Field ini diterapkan di seluruh pipeline: apa yang harus dibaca dengan cermat, apa yang harus digabungkan atau dibuang, dan bagaimana menyusun store output.
 
-Gunakan `instructions` (csharp, go: `Instructions`) untuk panduan sintesis tingkat tinggi seperti area fokus ("fokus pada preferensi gaya coding"), konten yang harus dipertahankan tanpa perubahan, atau konvensi output yang ingin Anda terapkan di seluruh store. Pipeline ini adalah proses sintesis atas input, bukan editor yang diterapkan pada teks store, sehingga perintah imperatif yang menargetkan baris tertentu ("ubah kalimat X menjadi Y", "perbaiki hitungan di bagian Z") umumnya tidak menghasilkan perubahan. Untuk melakukan pengeditan terarah pada memori individual, gunakan [Memory Stores API](https://platform.claude.com/docs/id/managed-agents/memory#view-and-edit-memories) langsung pada store output.
+Gunakan `instructions` (csharp, go: `Instructions`) untuk panduan sintesis tingkat tinggi seperti area fokus ("fokus pada preferensi gaya coding"), konten yang harus dipertahankan tanpa perubahan, atau konvensi output yang ingin Anda terapkan di seluruh store. Pipeline ini adalah proses sintesis atas input, bukan editor yang diterapkan pada teks store, sehingga perintah imperatif yang menargetkan baris tertentu ("ubah kalimat X menjadi Y," "perbaiki hitungan di bagian Z") umumnya tidak menghasilkan perubahan. Untuk melakukan pengeditan yang ditargetkan pada memori individual, gunakan [Memory Stores API](https://platform.claude.com/docs/id/managed-agents/memory#view-and-edit-memories) langsung pada store output.
 
 ## Melacak kemajuan
 
@@ -222,7 +222,7 @@ Dreams berjalan secara asinkron dan biasanya memakan waktu beberapa menit hingga
 
   ```typescript TypeScript
   while (dream.status === "pending" || dream.status === "running") {
-    await sleep(10_000);
+    await new Promise((resolve) => setTimeout(resolve, 10_000));
     dream = await client.beta.dreams.retrieve(dream.id);
     console.log(`status=${dream.status} input_tokens=${dream.usage.input_tokens}`);
   }
@@ -290,9 +290,9 @@ Setelah dream berstatus `running`, field `session_id` (java: `sessionId`; php: `
 
 ## Menggunakan output
 
-Ketika `status` (csharp, go: `Status`) mencapai `completed`, entri `memory_store` di `outputs` (csharp, go: `Outputs`) mereferensikan store yang telah terisi penuh. Ini adalah memory store biasa di workspace Anda. Tinjau dengan [Memory Stores API](https://platform.claude.com/docs/id/managed-agents/memory#view-and-edit-memories) atau di Console, lalu pilih salah satu:
+Ketika `status` (csharp, go: `Status`) mencapai `completed`, entri `memory_store` di `outputs` (csharp, go: `Outputs`) mereferensikan store yang sudah terisi penuh. Ini adalah memory store biasa di workspace Anda. Tinjau dengan [Memory Stores API](https://platform.claude.com/docs/id/managed-agents/memory#view-and-edit-memories) atau di Claude Console, lalu pilih salah satu:
 
-* **Manfaatkan:** lampirkan ke sesi mendatang sebagai resource `memory_store` sebagai pengganti (atau bersama dengan) memory store input, atau
+* **Gunakan:** lampirkan ke sesi mendatang sebagai resource `memory_store` sebagai pengganti (atau bersama) memory store input, atau
 * **Buang:** [hapus memory store](https://platform.claude.com/docs/id/api/beta/memory_stores/delete) atau [arsipkan memory store](https://platform.claude.com/docs/id/api/beta/memory_stores/archive).
 
 <CodeGroup>

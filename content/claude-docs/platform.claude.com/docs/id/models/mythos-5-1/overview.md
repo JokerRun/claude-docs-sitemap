@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/mythos-5-1/overview
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 728046dd972788d9967d24488e8c339451986331a641677afd444120f8ecbf49
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: dea84f62bb782952957a203ef7f4811503ec19d57d8bc16d99f00271da47a783
 ---
 
 ---
 title: Claude Mythos 5.1
 url: https://platform.claude.com/docs/id/models/mythos-5-1/overview
-description: "Sekilas tentang Claude Mythos 5.1: model yang sama dengan Claude Fable 5.1, hanya tersedia bagi organisasi yang telah diverifikasi melalui program verifikasi Anthropic. ID model, spesifikasi, harga, dan cara meminta akses."
+description: Claude Mythos 5.1 adalah model yang sama dengan Claude Fable 5.1, hanya tersedia bagi organisasi yang telah diverifikasi melalui program verifikasi Anthropic. ID model, spesifikasi, harga, dan cara meminta akses.
 ---
 
 **Verification required.** Released September 1, 2026.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-operations
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: c88b1739e976b9eb1a0f6821ff2aa44151aa9947f719a355964c8d4c597c8d73
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 3691edc9577d77ed7f18cc73d7cfec4d16476a86198ed1fa4a5153a2d0dbe256
 ---
 
 ---
@@ -147,7 +147,7 @@ The monitoring calls on this page run from your monitoring or operations tooling
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "type": "work_queue_stats",
   "depth": 0,

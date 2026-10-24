@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 78eb6633d974575609c936b0c5fcf280af6f69546c53656403944698db89db49
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 69178f5d2bbf7ca39fc932f88fdbc9ba9ab9a967991850da4b450a7ba2a9b541
 ---
 
 ---
@@ -22,7 +22,7 @@ Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang
 <Tabs>
   <Tab title="Gradle">
     ```kotlin
-    implementation("com.anthropic:anthropic-java:3.1.0")
+    implementation("com.anthropic:anthropic-java:3.3.0")
     ```
   </Tab>
 
@@ -31,7 +31,7 @@ Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java</artifactId>
-        <version>3.1.0</version>
+        <version>3.3.0</version>
     </dependency>
     ```
   </Tab>
@@ -106,7 +106,7 @@ AnthropicClient client = AnthropicOkHttpClient.builder()
   .build();
 ```
 
-Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci personal atau kunci akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) dengan akses ke beberapa workspace, tetapkan ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
+Untuk opsi autentikasi termasuk "Workload Identity Federation" (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
 
 ### Opsi konfigurasi
 
@@ -1166,6 +1166,10 @@ export ANTHROPIC_LOG=debug
 
   ProGuard dan R8 seharusnya secara otomatis mendeteksi dan menggunakan aturan yang dipublikasikan, tetapi Anda juga dapat menyalin aturan keep secara manual jika diperlukan.
 </Accordion>
+
+### Tracing OpenTelemetry
+
+Saat aplikasi Anda mendaftarkan tracer provider OpenTelemetry, SDK memancarkan span untuk setiap permintaan yang dikirimnya. Untuk mengirim span ke platform observabilitas Anda, lihat [Menyiapkan OpenTelemetry dengan Claude SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
 
 ### Fungsionalitas API yang tidak terdokumentasi
 

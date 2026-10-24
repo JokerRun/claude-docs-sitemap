@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: bd8c3c47bb8fefadb8ad00e66b454cd2bddfa8babe51491d015fb2551f95db24
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 33dd22f6cedadbbbe531aa833c8e90c6567c7a8c500c051c20f34574b45733b1
 ---
 
 ---
 title: Alat server
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools
-description: "Bekerja dengan alat yang dieksekusi Anthropic: blok server_tool_use, kelanjutan pause_turn, giliran campuran alat server dan klien, serta pemfilteran domain."
+description: "Bekerja dengan alat yang dijalankan oleh Anthropic: blok server_tool_use, kelanjutan pause_turn, giliran campuran alat server dan klien, serta pemfilteran domain."
 ---
 
 Alat yang dieksekusi server berbagi mekanisme berikut: blok `server_tool_use`, kelanjutan `pause_turn`, giliran yang mencampur alat server dan klien, kelayakan Zero Data Retention (ZDR), dan pemfilteran domain. Untuk alat individual, lihat [referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference).
@@ -26,7 +26,7 @@ Blok `server_tool_use` muncul dalam respons Claude ketika alat yang dieksekusi s
 }
 ```
 
-API mengeksekusi alat secara internal. Anda melihat panggilan dan hasilnya dalam respons, tetapi Anda tidak menangani eksekusinya. Tidak seperti blok `tool_use` klien, Anda tidak perlu merespons dengan `tool_result`. Blok hasil alat (misalnya, `web_search_tool_result` untuk pencarian web) mengikuti blok `server_tool_use` dalam giliran asisten yang sama, dipasangkan berdasarkan `tool_use_id`. Jika Claude memanggil salah satu alat klien Anda pada saat yang sama, blok `server_tool_use` muncul tanpa hasilnya, dan respons berakhir dengan `stop_reason: "tool_use"`. API menjalankan alat tersebut ketika Anda mengembalikan blok `tool_result` klien dalam permintaan berikutnya.
+API menjalankan alat tersebut secara internal. Anda melihat panggilan dan hasilnya dalam respons, tetapi Anda tidak menangani eksekusinya. Tidak seperti blok `tool_use` klien, Anda tidak perlu merespons dengan `tool_result`. Blok hasil alat (misalnya, `web_search_tool_result` untuk pencarian web) mengikuti blok `server_tool_use` dalam giliran asisten yang sama, dipasangkan berdasarkan `tool_use_id`. Jika Claude memanggil salah satu alat klien Anda pada saat yang sama, blok `server_tool_use` muncul tanpa hasilnya, dan respons berakhir dengan `stop_reason: "tool_use"`. API menjalankan alat tersebut ketika Anda mengembalikan blok `tool_result` klien dalam permintaan Anda berikutnya.
 
 ## Loop sisi server dan pause\_turn
 
@@ -131,7 +131,7 @@ Berikut cara menangani stop reason `pause_turn`:
     ]
   });
 
-  // Periksa apakah respons memiliki stop reason pause_turn
+  // Periksa apakah respons memiliki alasan berhenti pause_turn
   if (response.stop_reason === "pause_turn") {
     // Lanjutkan percakapan dengan konten yang dijeda
     const messages: Anthropic.MessageParam[] = [
@@ -171,7 +171,8 @@ Berikut cara menangani stop reason `pause_turn`:
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
       Messages = [
-          new UserMessageParam {
+          new UserMessageParam
+          {
               Content = "Search for comprehensive information about quantum computing breakthroughs in 2025"
           }
       ],
@@ -188,10 +189,12 @@ Berikut cara menangani stop reason `pause_turn`:
           Model = Model.ClaudeOpus5_5,
           MaxTokens = 1024,
           Messages = [
-              new UserMessageParam {
+              new UserMessageParam
+              {
                   Content = "Search for comprehensive information about quantum computing breakthroughs in 2025"
               },
-              new AssistantMessageParam {
+              new AssistantMessageParam
+              {
                   Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList()
               }
           ],
@@ -342,7 +345,7 @@ Berikut cara menangani stop reason `pause_turn`:
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       {
@@ -373,7 +376,7 @@ Berikut cara menangani stop reason `pause_turn`:
     ]
 
     continuation = client.messages.create(
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 1024,
       messages: messages,
       tools: [
@@ -402,14 +405,14 @@ Untuk nilai `stop_reason` lainnya dan pola penanganan umum, lihat [Stop reason d
 
 ## Mencampur alat server dan alat klien dalam satu giliran
 
-Claude dapat memanggil alat server dan alat klien dalam kelompok panggilan alat paralel yang sama, misalnya, `web_fetch` bersama dengan alat yang didefinisikan pengguna. Alat klien adalah alat apa pun yang dieksekusi oleh kode Anda dan yang menghasilkan blok `tool_use`, baik itu didefinisikan pengguna maupun alat klien berskema Anthropic seperti [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool). Ketika itu terjadi, API tidak menjalankan alat server. API segera mengembalikan respons agar Anda dapat menjalankan alat klien terlebih dahulu:
+Claude dapat memanggil alat server dan alat klien dalam kelompok panggilan alat paralel yang sama, misalnya, `web_fetch` bersama dengan alat yang ditentukan pengguna. Alat klien adalah alat apa pun yang dijalankan oleh kode Anda dan menghasilkan blok `tool_use`, baik yang ditentukan pengguna maupun alat klien dengan skema Anthropic seperti [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool). Ketika hal itu terjadi, API tidak menjalankan alat server. API langsung mengembalikan respons sehingga Anda dapat menjalankan alat klien terlebih dahulu:
 
 * `stop_reason` adalah `"tool_use"`, bukan `"pause_turn"`.
 * `content` berisi blok `server_tool_use` dan blok `tool_use` klien, tetapi tidak ada blok hasil untuk alat server: panggilan tersebut belum selesai.
 * Tidak ada penanda lain. Deteksi status ini dengan mencari blok `server_tool_use` yang `id`-nya tidak memiliki blok hasil yang cocok dalam respons. Blok `mcp_tool_use` dari [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) berperilaku dengan cara yang sama. Panggilan alat server yang sudah memiliki blok hasilnya dalam respons yang sama sudah selesai dan tidak memerlukan apa pun dari Anda.
 
 <Note>
-  Dengan [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), bentuk respons yang sama memiliki arti yang berbeda. Blok `tool_use` klien berasal dari kode yang sedang berjalan di alat `code_execution`, bukan dari Claude secara langsung, dan field `caller`-nya menyebutkan blok `code_execution` yang memanggilnya. Kode tersebut sudah mulai berjalan: kode itu dijeda menunggu blok `tool_result` Anda, dan mengirimkannya akan melanjutkan eksekusi alih-alih memulai alat yang ditangguhkan. Blok hasil milik blok `code_execution` itu sendiri tiba setelah kode selesai, yang dapat memerlukan lebih dari satu putaran hasil alat. Pesan pengguna lanjutannya sendiri sama dalam kedua kasus; dengan pemanggilan alat terprogram, kirimkan juga kembali `id` dari field `container` respons, seperti yang ditunjukkan halaman tersebut.
+  Dengan [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), bentuk respons yang sama memiliki arti yang berbeda. Blok `tool_use` klien berasal dari kode yang berjalan di alat `code_execution`, bukan langsung dari Claude, dan field `caller`-nya menyebutkan blok `code_execution` yang memanggilnya. Kode tersebut sudah dimulai: kode itu dijeda menunggu blok `tool_result` Anda, dan mengirimkannya akan melanjutkan eksekusi alih-alih memulai alat yang ditunda. Blok hasil milik blok `code_execution` itu sendiri tiba setelah kode selesai, yang dapat memerlukan lebih dari satu putaran hasil alat. Pesan pengguna lanjutan itu sendiri sama dalam kedua kasus; dengan pemanggilan alat terprogram, kirimkan juga kembali `id` dari field `container` respons, seperti yang ditunjukkan di halaman tersebut.
 </Note>
 
 ```json
@@ -451,7 +454,7 @@ Untuk melanjutkan giliran, jalankan alat klien dan kirim pesan pengguna yang isi
 }
 ```
 
-API melampirkan hasil Anda ke giliran asisten yang masih terbuka, menjalankan alat server yang ditangguhkan (untuk eksekusi kode yang dijeda, melanjutkannya), lalu membiarkan Claude melanjutkan. Untuk alat server yang dipanggil Claude secara langsung, respons berikutnya dimulai dengan blok hasil yang menjawab `id` `server_tool_use` dari respons sebelumnya, diikuti oleh konten yang baru dihasilkan dan `stop_reason` yang baru:
+API melampirkan hasil Anda ke giliran asisten yang masih terbuka, menjalankan alat server yang ditunda (untuk eksekusi kode yang dijeda, melanjutkannya), lalu membiarkan Claude melanjutkan. Untuk alat server yang dipanggil Claude secara langsung, respons berikutnya dimulai dengan blok hasil yang menjawab `id` `server_tool_use` dari respons sebelumnya, diikuti oleh konten yang baru dihasilkan dan `stop_reason` yang baru:
 
 ```json
 {
@@ -848,7 +851,9 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
       Message response = client.messages().create(MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024L)
-          .addTool(WebFetchTool20250910.builder().maxUses(5L).build())
+          .addTool(WebFetchTool20250910.builder()
+              .maxUses(5L)
+              .build())
           .addTool(runCommandTool)
           .addUserMessage(prompt)
           .build());
@@ -873,7 +878,9 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
           Message continuation = client.messages().create(MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024L)
-              .addTool(WebFetchTool20250910.builder().maxUses(5L).build())
+              .addTool(WebFetchTool20250910.builder()
+                  .maxUses(5L)
+                  .build())
               .addTool(runCommandTool)
               .addUserMessage(prompt)
               .addMessage(response)
@@ -1010,7 +1017,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
   ```
 </CodeGroup>
 
-Kode ini juga benar ketika Claude tidak mencampur kedua jenis panggilan. Giliran yang hanya berisi blok `tool_use` klien mengambil jalur kelanjutan yang sama, dan giliran yang hanya berisi panggilan alat server tidak memerlukan blok `tool_result` klien dari Anda: blok hasilnya biasanya sudah ada, dan giliran yang kembali dalam keadaan ditangguhkan, seperti [respons `pause_turn`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn), dikirim ulang apa adanya.
+Kode ini juga benar ketika Claude tidak mencampur kedua jenis panggilan. Giliran yang hanya berisi blok `tool_use` klien mengambil jalur kelanjutan yang sama. Giliran yang hanya berisi panggilan alat server tidak memerlukan blok `tool_result` klien dari Anda, karena blok hasilnya biasanya sudah ada. Jika giliran tersebut kembali dalam keadaan ditangguhkan, misalnya sebagai [respons `pause_turn`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn), kirim ulang apa adanya.
 
 ## ZDR dan allowed\_callers
 
@@ -1028,9 +1035,9 @@ Untuk menggunakan alat server `_20260209` atau yang lebih baru dengan ZDR, nonak
 }
 ```
 
-Ini membatasi alat hanya untuk pemanggilan langsung, melewati langkah eksekusi kode internal.
+Ini membatasi alat hanya untuk panggilan langsung, melewati langkah eksekusi kode internal.
 
-`allowed_callers` mengontrol bagaimana alat dapat dipanggil: secara langsung oleh Claude (`"direct"`), dari dalam kontainer eksekusi kode (misalnya, `"code_execution_20260120"`), atau keduanya. Versi `_20260209` dari alat web secara default hanya menggunakan pemanggil eksekusi kode; versi sebelumnya secara default menggunakan `["direct"]`. Pada model yang tidak mendukung pemanggilan alat terprogram, versi ini memerlukan `allowed_callers: ["direct"]`; tanpanya API mengembalikan error validasi yang meminta Anda mengaturnya.
+`allowed_callers` mengontrol bagaimana alat dapat dipanggil: langsung oleh Claude (`"direct"`), dari dalam container eksekusi kode (misalnya, `"code_execution_20260120"`), atau keduanya. Versi `_20260209` dari alat web secara default hanya menggunakan pemanggil eksekusi kode; versi sebelumnya secara default menggunakan `["direct"]`. Pada model yang tidak mendukung pemanggilan alat terprogram, versi ini memerlukan `allowed_callers: ["direct"]`; tanpanya API mengembalikan kesalahan validasi yang meminta Anda untuk mengaturnya.
 
 <Note>
   Bahkan ketika web fetch digunakan dalam konfigurasi yang memenuhi syarat ZDR, penerbit situs web mungkin menyimpan parameter apa pun yang diteruskan ke URL jika Claude mengambil konten dari situs mereka.
@@ -1066,16 +1073,14 @@ Saat menggunakan filter domain:
 Format domain yang tidak valid ditolak pada saat permintaan dengan 400 `invalid_request_error`.
 
 <Note>
-  Pembatasan domain tingkat permintaan bekerja bersama dengan pembatasan domain tingkat organisasi apa pun yang dikonfigurasi di Claude Console. `allowed_domains` tingkat permintaan harus merupakan subset dari daftar yang diizinkan tingkat organisasi; entri di luarnya menyebabkan API mengembalikan error validasi. Daftar yang diizinkan tingkat permintaan yang menyertakan domain yang diblokir organisasi Anda ditolak dengan error `400` yang menyebutkan entri yang bertentangan.
+  Pembatasan domain tingkat permintaan bekerja bersama dengan pembatasan domain tingkat organisasi apa pun yang dikonfigurasi di Claude Console. `allowed_domains` tingkat permintaan harus merupakan subset dari daftar yang diizinkan tingkat organisasi; entri di luarnya menyebabkan API mengembalikan kesalahan validasi. Daftar yang diizinkan tingkat permintaan yang menyertakan domain yang diblokir oleh organisasi Anda akan ditolak dengan kesalahan `400` yang menyebutkan entri yang bertentangan.
 </Note>
 
 <Warning>
   Karakter Unicode dalam nama domain dapat melewati filter domain melalui serangan homograf: `аmazon.com` (dengan `а` Sirilik) terlihat identik dengan `amazon.com` tetapi merupakan domain yang berbeda. Gunakan nama domain khusus ASCII dalam daftar izin dan blokir, dan audit entri yang ada untuk karakter non-ASCII.
 </Warning>
 
-[Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) menggunakan field `allowed_domains` dan `blocked_domains` yang sama pada entri `web_search` dan `web_fetch` dari toolset agen. Pada Managed Agents, setiap daftar berisi paling banyak 64 entri, domain yang tercantum untuk `web_fetch` tidak dapat menyertakan path, dan field yang khusus untuk alat Messages API, seperti `max_uses`, `citations`, dan `cache_control`, tidak tersedia. Lihat [Aturan daftar domain](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#domain-list-rules) untuk aturan lengkapnya.
-
-Pengaturan pencarian web dan web fetch tingkat organisasi di Claude Console hanya berlaku untuk permintaan Messages API. Pengaturan tersebut tidak berlaku untuk sesi Managed Agents, yang menggunakan daftar per alat pada toolset agen sebagai gantinya. Untuk sesi di environment cloud dengan jaringan `limited`, `allowed_hosts` environment juga berlaku untuk `web_search` dan `web_fetch`; lihat [Jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking). Daftar per alat membatasi alat-alat ini lebih lanjut, dalam host yang diizinkan oleh `allowed_hosts`.
+Untuk daftar domain dan pengaturan organisasi Anda dalam sesi Claude Managed Agents, lihat [Membatasi domain pencarian web dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions).
 
 ## Pemfilteran dinamis dengan eksekusi kode
 
@@ -1113,7 +1118,7 @@ Beban kerja batch yang umum meliputi memperkaya dataset dengan informasi dari we
   </Card>
 
   <Card title="Alat eksekusi kode" icon="terminal" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool">
-    Jalankan kode Python dan bash dalam kontainer sandbox untuk menganalisis data, menghasilkan file, dan mengiterasi solusi.
+    Jalankan kode Python dan Bash dalam container sandbox untuk menganalisis data, menghasilkan file, dan melakukan iterasi pada solusi.
   </Card>
 
   <Card title="Alat pencarian alat" icon="compass" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: a2d05b03eb5514d1f3c483ca77ffb56a9bba10677beb9fbdba8c9d1e4051eff4
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 5ed308b5d699bc4b436d819bdd314518f2890ad1e055ece7c873149ce37932df
 ---
 
 ---
@@ -35,7 +35,7 @@ Jika belum, luangkan waktu untuk menetapkannya terlebih dahulu. Lihat [Tentukan 
 
 ## Kapan melakukan rekayasa prompt
 
-Panduan ini berfokus pada kriteria keberhasilan yang dapat dikendalikan melalui "prompt engineering" (rekayasa prompt). Tidak setiap kriteria keberhasilan atau evaluasi yang gagal paling baik diselesaikan dengan rekayasa prompt. Misalnya, terkadang Anda dapat meningkatkan "latency" (latensi) dan biaya dengan lebih mudah dengan memilih model yang berbeda.
+Panduan ini berfokus pada kriteria keberhasilan yang dapat dikendalikan melalui "prompt engineering" (rekayasa prompt). Tidak setiap kriteria keberhasilan atau eval yang gagal paling baik diselesaikan dengan prompt engineering. Misalnya, Anda terkadang dapat meningkatkan "latency" (latensi) dan biaya dengan lebih mudah dengan memilih model yang berbeda.
 
 ***
 

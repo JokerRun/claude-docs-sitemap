@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 44b7a7388828f518aa6d1d952ad5759a938ad9da27ec4f3a8e6e243d22730a51
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 789eea72696f045f9053be25d3c48341390fe51b86b9355d03007b2398881934
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-[Quickstart](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#quickstart) menjalankan satu worker CLI `ant` yang melakukan polling secara terus-menerus dan menjalankan setiap sesi dalam satu proses. Halaman ini membahas cara lain untuk menjalankan worker dan cara memilih di antaranya.
+[Quickstart](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#quickstart) menjalankan satu worker CLI `ant` yang melakukan polling secara terus-menerus dan menjalankan setiap sesi dalam satu proses. Halaman ini membahas cara-cara lain untuk menjalankan worker dan cara memilih di antaranya.
 
 ## Pilih pola deployment
 
@@ -164,11 +164,11 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
 
 <Steps>
   <Step title="Berlangganan webhook sesi">
-    Di [Console](https://platform.claude.com/settings/workspaces/default/webhooks), tentukan endpoint webhook yang mendengarkan event `session.status_run_started`. Lihat [Webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) untuk detailnya.
+    Di [Claude Console](https://platform.claude.com/settings/workspaces/default/webhooks), tentukan endpoint webhook yang mendengarkan event `session.status_run_started`. Lihat [Webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) untuk detailnya.
   </Step>
 
   <Step title="Ekspor kunci penandatanganan webhook">
-    Bersama dengan ID environment dan kunci dari [quickstart](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-your-first-session), ekspor kunci penandatanganan webhook di host handler Anda. Handler menggunakannya untuk memverifikasi payload yang masuk.
+    Bersama dengan ID environment dan kunci dari [Menjalankan sesi pertama Anda](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-your-first-session), ekspor kunci penandatanganan webhook di host handler Anda. Handler menggunakannya untuk memverifikasi payload yang masuk.
 
     ```bash
     export ANTHROPIC_WEBHOOK_SIGNING_KEY="whsec_..."
@@ -176,7 +176,7 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
   </Step>
 
   <Step title="Implementasikan handler webhook">
-    Panggil worker saat `session.status_run_started` terpicu. Handler menguras antrean dan menyerahkan setiap work item yang diklaim ke `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`), yang mengunduh skill, mengeksekusi pemanggilan alat, mengirimkan hasil kembali, lalu kembali.
+    Mulai worker saat `session.status_run_started` dipicu. Handler menguras antrean dan menyerahkan setiap item pekerjaan yang diklaim ke `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`), yang mengunduh skill, menjalankan pemanggilan alat, mengirimkan hasil kembali, lalu kembali.
 
     <CodeGroup exclude="shell, csharp, java, php, ruby">
       <CodeGroupItem>
@@ -335,8 +335,8 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
       	worker = environments.NewEnvironmentWorker(client, environments.EnvironmentWorkerOptions{
       		Workdir: "/workspace",
       	})
-      	// Cancelled on SIGINT or SIGTERM (set in main) so an in-flight work item can
-      	// upload changed memory files and remove its store directories before exit.
+      	// Dibatalkan pada SIGINT atau SIGTERM (diatur di main) agar work item yang sedang berjalan dapat
+      	// mengunggah file memori yang berubah dan menghapus direktori store-nya sebelum keluar.
       	shutdown context.Context
       )
 
@@ -356,10 +356,10 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
       		return
       	}
 
-      	// The Go SDK does not provide a RunOne convenience: drain pending items
-      	// with WorkPoller and run each one with HandleItem.
-      	// Detach from r.Context(): the session can outlive the webhook delivery timeout.
-      	// The process-wide shutdown context still ends the item cleanly on SIGTERM.
+      	// Go SDK tidak menyediakan kemudahan RunOne: kuras item yang tertunda
+      	// dengan WorkPoller dan jalankan masing-masing dengan HandleItem.
+      	// Lepaskan dari r.Context(): sesi dapat bertahan lebih lama dari batas waktu pengiriman webhook.
+      	// Konteks shutdown tingkat proses tetap mengakhiri item dengan bersih pada SIGTERM.
       	ctx := shutdown
       	poller := environments.NewWorkPoller(ctx, client, environments.WorkPollerOptions{
       		EnvironmentID:      environmentID,
@@ -377,7 +377,7 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
       			EnvironmentID:  item.EnvironmentID,
       			SessionID:      item.Data.ID,
       			EnvironmentKey: environmentKey,
-      			// The per-session secret is what lets the worker mount the session's memory stores.
+      			// Secret per sesi inilah yang memungkinkan worker memasang memory store milik sesi.
       			WorkSecret: item.Secret,
       		}); err != nil {
       			slog.Error("handle work item", "work_id", item.ID, "err", err)
@@ -406,8 +406,8 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
       			os.Exit(1)
       		}
       	}()
-      	// On a signal, stop accepting deliveries and return only after in-flight
-      	// handlers, and therefore their work items' memory teardown, have finished.
+      	// Saat ada sinyal, berhenti menerima pengiriman dan kembali hanya setelah handler yang sedang berjalan,
+      	// dan karenanya teardown memori work item mereka, telah selesai.
       	<-ctx.Done()
       	if err := server.Shutdown(context.Background()); err != nil {
       		slog.Error("http shutdown", "err", err)
@@ -436,7 +436,7 @@ Handler ini menjalankan setiap item yang diklaim dalam satu proses di satu host.
 
 ## Menjalankan satu sandbox per sesi
 
-Sebuah poller di host mengklaim pekerjaan dan memanggil skrip Anda sekali per work item. Skrip tersebut meluncurkan sandbox untuk satu sesi itu.
+Poller di host mengklaim pekerjaan dan memanggil skrip Anda sekali untuk setiap item pekerjaan. Skrip tersebut meluncurkan sandbox untuk satu sesi itu.
 
 <Steps>
   <Step title="Bangun image sandbox">
@@ -444,7 +444,7 @@ Sebuah poller di host mengklaim pekerjaan dan memanggil skrip Anda sekali per wo
 
     ```dockerfile
     FROM your-base-image
-    ARG ANT_VERSION=2.1.0
+    ARG ANT_VERSION=2.3.0
     ARG TARGETARCH
     RUN ARCH=$([ "$TARGETARCH" = "arm64" ] && echo arm64 || echo amd64) && \
         curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${ANT_VERSION}/ant_${ANT_VERSION}_linux_${ARCH}.tar.gz" \
@@ -500,7 +500,7 @@ Teruskan secret hanya ke sandbox yang melayani sesi tersebut, dan jangan pernah 
 
 ### Meluncurkan sandbox dari poller SDK
 
-Untuk mengklaim pekerjaan dari kode Anda sendiri alih-alih `ant beta:worker poll --on-work`, gunakan `work.poller()` (go: `environments.NewWorkPoller()`). Fungsi ini melakukan polling antrean dan memberi Anda setiap sesi yang diklaim, lalu Anda meluncurkan sandbox:
+Untuk mengklaim pekerjaan dari kode Anda sendiri alih-alih `ant beta:worker poll --on-work`, gunakan `work.poller()` (typescript: `new WorkPoller()`; go: `environments.NewWorkPoller()`). Fungsi ini melakukan polling terhadap antrean dan memberi Anda setiap sesi yang diklaim, lalu Anda meluncurkan sandbox:
 
 <CodeGroup exclude="shell, csharp, java, php, ruby">
   <CodeGroupItem language="cURL">
@@ -625,10 +625,10 @@ Untuk mengklaim pekerjaan dari kode Anda sendiri alih-alih `ant beta:worker poll
   	"os"
   	"os/exec"
 
-  	"github.com/anthropics/anthropic-sdk-go"
-  	"github.com/anthropics/anthropic-sdk-go/lib/environments"
-  	"github.com/anthropics/anthropic-sdk-go/option"
-  	"github.com/anthropics/anthropic-sdk-go/packages/param"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
+  	"github.com/anthropics/anthropic-sdk-go/v2/lib/environments"
+  	"github.com/anthropics/anthropic-sdk-go/v2/option"
+  	"github.com/anthropics/anthropic-sdk-go/v2/packages/param"
   )
 
   var sandboxEnv = []string{
@@ -772,8 +772,8 @@ Ganti entrypoint `ant beta:worker run` dengan entrypoint SDK ketika sandbox haru
   )
 
   func main() {
-  	// Cancelling the context when the container is stopped lets the worker upload
-  	// changed memory files and remove the store directories before it exits.
+  	// Membatalkan context saat container dihentikan memungkinkan worker mengunggah
+  	// file memori yang berubah dan menghapus direktori store sebelum keluar.
   	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
   	defer stop()
 
@@ -781,8 +781,8 @@ Ganti entrypoint `ant beta:worker run` dengan entrypoint SDK ketika sandbox haru
   	worker := environments.NewEnvironmentWorker(client, environments.EnvironmentWorkerOptions{
   		Workdir: "/workspace",
   	})
-  	// With zero-value options, HandleItem reads the ANTHROPIC_* variables the spawn
-  	// script forwarded, including ANTHROPIC_WORK_SECRET.
+  	// Dengan opsi bernilai nol, HandleItem membaca variabel ANTHROPIC_* yang diteruskan
+  	// oleh skrip spawn, termasuk ANTHROPIC_WORK_SECRET.
   	if err := worker.HandleItem(ctx, environments.HandleItemOptions{}); err != nil {
   		log.Fatalf("worker: %v", err)
   	}
@@ -808,7 +808,7 @@ Anthropic tidak me-mount file atau repositori GitHub ke dalam sandbox self-hoste
 
 1. Teruskan referensi file, seperti path S3 atau SHA commit, di field `metadata` sesi.
 2. Di skrip spawn atau handler `--on-work` Anda, ambil sesi (`GET /v1/sessions/{session_id}`) dan baca `metadata`. Work item yang diklaim membawa ID sesi tetapi tidak membawa metadata.
-3. Siapkan file ke dalam direktori kerja sebelum eksekusi alat dimulai.
+3. Siapkan file ke dalam direktori kerja sebelum alat apa pun dijalankan.
 
 <CodeGroup>
   ```bash cURL

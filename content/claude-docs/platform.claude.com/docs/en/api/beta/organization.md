@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: ed3472e84444a2d97f975bcd4d317e3654b918b86124d924577191a2ba53b0d1
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: a699462cc7c338cda78529b6e79b8429b54fe8a084f63381cf10ac62a72178aa
 ---
 
 ---
@@ -22003,7 +22003,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 #### Body parameters (form-data)
 
-- `files: array of string`
+- `files: array of file`
 
   The version's files: one part per file, the part's filename being the file's path within the Plugin (for example `skills/review-pr/SKILL.md`), or a single `.zip` or `.plugin` archive holding them all. On the wire each part is named `files[]`, and a part named plain `files` is not read; with cURL, `-F 'files[]=@SKILL.md;filename=skills/review-pr/SKILL.md'`. The files must include the manifest, `.claude-plugin/plugin.json`.
 
@@ -23846,7 +23846,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 #### Body parameters (form-data)
 
-- `files: array of string`
+- `files: array of file`
 
   The version's files: one part per file, the part's filename being the file's path within the Plugin (for example `skills/review-pr/SKILL.md`), or a single `.zip` or `.plugin` archive holding them all. On the wire each part is named `files[]`, and a part named plain `files` is not read; with cURL, `-F 'files[]=@SKILL.md;filename=skills/review-pr/SKILL.md'`. The files must include the manifest, `.claude-plugin/plugin.json`.
 
@@ -27135,7 +27135,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 #### Body parameters (form-data)
 
-- `archive: string`
+- `archive: file`
 
   A .zip of the marketplace directory (its contents at the root, or wrapped in one folder as a Git host's download produces), sent as a file part with a filename; DEFLATE- or STORE-compressed, at most 32 MB. A part sent without a filename, a second archive part, or any other form field is a 400; a larger archive is a 413.
 

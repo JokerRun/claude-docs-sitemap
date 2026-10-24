@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/go
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: ff79e6181c57d370bea5093ae3debf8ef3947d05857d6e22de60a9f3771cb609
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 04bd65bcf49f26aceeeec935e5bf54fea6f2106046bee7452a011d50a92827a6
 ---
 
 ---
@@ -547,7 +547,7 @@ This SDK will also return an error if a non-streaming request is expected to be 
 
 ## File uploads
 
-Request parameters that correspond to file uploads in multipart requests are typed as `io.Reader`. The contents of the `io.Reader` are sent by default as a multipart form part with the file name of `anonymous_file` and content type of `application/octet-stream`, so the recommended approach is to specify a custom content type with the `anthropic.File(reader io.Reader, filename string, contentType string)` helper, which wraps any `io.Reader` with the appropriate file name and content type.
+Request parameters that correspond to file uploads in multipart requests are typed as `io.Reader`. The contents of the `io.Reader` are sent by default as a multipart form part with the file name of `anonymous_file` and content type of `application/octet-stream`. For this reason, the recommended approach is to specify a custom content type with the `anthropic.File(reader io.Reader, filename string, contentType string)` helper. This helper wraps any `io.Reader` with the appropriate file name and content type.
 
 ```go
 // A file from the filesystem
@@ -643,7 +643,7 @@ For request middleware (`option.WithMiddleware`) and replacing the default `http
 
 The Go SDK supports the following platforms:
 
-* **Agent Platform:** `import "github.com/anthropics/anthropic-sdk-go/v2/vertex"`. Use `vertex.WithGoogleAuth(ctx, region, projectID)` or `vertex.WithCredentials(ctx, region, projectID, creds)`.
+* **Claude Models on Google Cloud (Google managed):** `import "github.com/anthropics/anthropic-sdk-go/v2/vertex"`. Use `vertex.WithGoogleAuth(ctx, region, projectID)` or `vertex.WithCredentials(ctx, region, projectID, creds)`.
 * **Bedrock:** `import "github.com/anthropics/anthropic-sdk-go/v2/bedrock"`. Use `bedrock.NewMantleClient` for the Messages-API Bedrock endpoint (streams over SSE), or `bedrock.WithLoadDefaultConfig(ctx)` / `bedrock.WithConfig(cfg)` (`bedrock-runtime` path). Importing the `bedrock` package globally registers a decoder for `application/vnd.amazon.eventstream` with the SDK's streaming layer (through package `init()`). This applies whether you use the `bedrock-runtime` `WithConfig`/`WithLoadDefaultConfig` path or `NewMantleClient`.
 * **Claude Platform on AWS:** `import anthropicaws "github.com/anthropics/anthropic-sdk-go/v2/aws"`. Use `anthropicaws.NewClient(ctx, cfg)` with an `anthropicaws.ClientConfig` value to construct a client; set `WorkspaceID` on the config or the `ANTHROPIC_AWS_WORKSPACE_ID` environment variable. The `anthropicaws` import alias avoids a name collision with `github.com/aws/aws-sdk-go-v2/aws` when both are imported. Available in beta.
 * **Foundry:** `import "github.com/anthropics/anthropic-sdk-go/v2/foundry"`. Use `foundry.NewClient(cfg)` with a `foundry.ClientConfig` value to construct a client; set `APIKey` (or `AzureADTokenProvider` for Microsoft Entra ID) and `Resource` on the config, or the `ANTHROPIC_FOUNDRY_API_KEY` and `ANTHROPIC_FOUNDRY_RESOURCE` environment variables.
@@ -680,6 +680,10 @@ fmt.Printf("%+v\n", message.Content)
 fmt.Printf("Status Code: %d\n", response.StatusCode)
 fmt.Printf("Headers: %+#v\n", response.Header)
 ```
+
+### OpenTelemetry tracing
+
+When your application registers an OpenTelemetry tracer provider, the SDK emits a span for each request that it sends. To send the spans to your observability platform, see [Set up OpenTelemetry with the Claude SDK](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk).
 
 ### Making custom/undocumented requests
 

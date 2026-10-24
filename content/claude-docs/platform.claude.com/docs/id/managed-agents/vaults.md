@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 86dc2d8a714b33083b1a108c66501032bb5a6fcfb0e937755d61859fc4154976
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 79b73437da8e7d26c8b3665417ac17bf19deeb59c98ec5407cf8877bfac6cc8a
 ---
 
 ---
@@ -449,7 +449,6 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
       if err != nil {
       	panic(err)
       }
-      _ = bearerCredential
       ```
 
       ```java Java
@@ -695,7 +694,7 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
 
     `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) pada kredensial mengontrol bagian mana dari permintaan keluar yang menerima substitusi rahasia. Ini adalah objek opsional, setingkat dengan `networking` (csharp, go: `Networking`), dengan dua field Boolean: `header` (csharp, go: `Header`) (header permintaan) dan `body` (csharp, go: `Body`) (body permintaan). `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) tidak bergantung pada `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) di dalam `networking` (csharp, go: `Networking`): `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) membatasi host mana yang menerima substitusi rahasia, dan `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) membatasi bagian permintaan mana yang menerima substitusi tersebut.
 
-    `injection_location` berperilaku berbeda saat pembuatan dan saat pembaruan:
+    `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) berperilaku berbeda saat pembuatan dan saat pembaruan:
 
     | Operasi                | Perilaku `injection_location`                                                                                                                                                                                                                 |
     | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -707,15 +706,15 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
     Placeholder di lokasi yang dinonaktifkan tidak disubstitusikan maupun dihapus. Permintaan dikirim ke pihak ketiga dengan string placeholder buram literal di lokasi tersebut. Jika permintaan tiba di pihak ketiga dengan berisi string placeholder literal, berarti lokasi tersebut dinonaktifkan untuk kredensial itu atau host tujuan tidak tercakup oleh `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) di dalam `networking` (csharp, go: `Networking`) kredensial tersebut.
 
     <Note>
-      Kredensial yang dibuat di Console hanya mengaktifkan injeksi header. Jika klien Anda mengirimkan rahasia di body permintaan, seperti permintaan token berformat form-encoded, placeholder akan diteruskan secara literal dan layanan akan menolaknya dengan error autentikasinya sendiri. Aktifkan injeksi body di formulir Console saat Anda membuat kredensial, atau perbarui kredensial dengan `{"injection_location": {"body": true}}`.
+      Kredensial yang dibuat di Claude Console hanya mengaktifkan injeksi header. Jika klien Anda mengirimkan rahasia di body permintaan, seperti permintaan token yang dikodekan sebagai form, placeholder akan diteruskan secara literal dan layanan akan menolaknya dengan error autentikasinya sendiri. Aktifkan injeksi body di formulir Console saat Anda membuat kredensial, atau perbarui kredensial dengan `{"injection_location": {"body": true}}`.
     </Note>
 
-    Substitusi terjadi pada saat egress, bukan di dalam sandbox. Apa pun yang memproses kredensial secara lokal akan melihat placeholder buram, bukan nilai sebenarnya: klien yang memvalidasi format kredensial saat startup mungkin menolaknya, dan klien yang menghitung tanda tangan permintaan dari rahasia (misalnya, AWS SigV4) menghasilkan tanda tangan yang tidak valid. Kredensial variabel lingkungan berfungsi untuk klien yang mengirimkan nilai rahasia apa adanya dalam permintaan keluar, di lokasi yang diaktifkan oleh `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) kredensial tersebut.
+    Substitusi terjadi pada saat egress, bukan di dalam sandbox. Apa pun yang memproses kredensial secara lokal akan melihat placeholder buram, bukan nilai sebenarnya: klien yang memvalidasi format kredensial saat startup mungkin menolaknya, dan klien yang menghitung tanda tangan permintaan dari rahasia (misalnya, AWS SigV4) akan menghasilkan tanda tangan yang tidak valid. Kredensial variabel lingkungan berfungsi untuk klien yang mengirimkan nilai rahasia apa adanya dalam permintaan keluar, di lokasi yang diaktifkan oleh `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) milik kredensial.
 
     Substitusi hanya berlaku untuk arah keluar. Jika klien menggunakan rahasia yang tersimpan untuk mengambil token sesi (misalnya, grant client-credentials OAuth), token yang dikembalikan tiba di sandbox tanpa disensor. Untuk alur berbasis pertukaran, lakukan pertukaran tersebut sendiri dan simpan token hasilnya di vault sebagai gantinya.
 
     <Tip>
-      Batasi cakupan kunci API hanya pada izin yang dibutuhkan agen. Agen dapat melakukan apa pun yang diizinkan oleh kunci tersebut, sehingga kunci dengan izin yang lebih luas dari yang diperlukan meningkatkan radius dampak jika agen berperilaku tidak terduga.
+      Batasi kunci API hanya pada izin yang dibutuhkan agen. Agen dapat melakukan apa pun yang diizinkan oleh kunci tersebut, sehingga kunci dengan izin yang lebih luas dari yang diperlukan akan meningkatkan potensi kerusakan jika agen berperilaku tidak terduga.
     </Tip>
   </Tab>
 </Tabs>
@@ -833,7 +832,7 @@ Perilaku runtime:
 
 ## Merotasi kredensial
 
-Nilai rahasia, `display_name` (java, php: `displayName`; csharp, go: `DisplayName`), dan (pada kredensial variabel lingkungan) `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) dapat diperbarui. Pembaruan `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) digabungkan per field, seperti yang dijelaskan di tab Variabel lingkungan pada [Menambahkan kredensial](https://platform.claude.com/docs/id/managed-agents/vaults#add-a-credential). Untuk sesi yang sedang berjalan, pembaruan `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) menyebar dengan cara yang sama seperti rotasi rahasia: kredensial sesi diselesaikan ulang tanpa restart, seperti yang dijelaskan di [Siklus hidup kredensial](https://platform.claude.com/docs/id/managed-agents/vaults#credential-lifecycle), dan lokasi yang diperbarui berlaku untuk permintaan keluar sesi berikutnya. Field struktural (`mcp_server_url` (java: `mcpServerUrl`; php: `mcpServerURL`; csharp: `McpServerUrl`; go: `MCPServerURL`), `secret_name` (java, php: `secretName`; csharp, go: `SecretName`), `token_endpoint` (java, php: `tokenEndpoint`; csharp, go: `TokenEndpoint`), `client_id` (java: `clientId`; php: `clientID`; csharp, go: `ClientID`)) dikunci setelah pembuatan. Untuk mengubahnya, arsipkan kredensial dan buat yang baru.
+Nilai rahasia, `display_name` (java, php: `displayName`; csharp, go: `DisplayName`), dan (pada kredensial variabel lingkungan) `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) dapat diperbarui. Pembaruan `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) digabungkan per bidang, seperti yang dijelaskan di tab **Variabel lingkungan** pada [Menambahkan kredensial](https://platform.claude.com/docs/id/managed-agents/vaults#add-a-credential). Untuk sesi yang sedang berjalan, pembaruan `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) berlaku dengan cara yang sama seperti rotasi rahasia: kredensial sesi di-resolve ulang tanpa restart, seperti yang dijelaskan di [Siklus hidup kredensial](https://platform.claude.com/docs/id/managed-agents/vaults#credential-lifecycle), dan lokasi yang diperbarui berlaku untuk permintaan keluar sesi berikutnya. Bidang struktural (`mcp_server_url` (java: `mcpServerUrl`; php: `mcpServerURL`; csharp: `McpServerUrl`; go: `MCPServerURL`), `secret_name` (java, php: `secretName`; csharp, go: `SecretName`), `token_endpoint` (java, php: `tokenEndpoint`; csharp, go: `TokenEndpoint`), `client_id` (java: `clientId`; php: `clientID`; csharp, go: `ClientID`)) dikunci setelah pembuatan. Untuk mengubahnya, arsipkan kredensial tersebut dan buat yang baru.
 
 <CodeGroup>
   ```bash cURL
@@ -968,7 +967,7 @@ Nilai rahasia, `display_name` (java, php: `displayName`; csharp, go: `DisplayNam
 
 ## Siklus hidup kredensial
 
-Kredensial diselesaikan ulang secara berkala, baik selama sesi maupun selama siklus hidup vault. Ini memastikan bahwa rotasi, pengarsipan, atau penghapusan kredensial dipropagasikan ke sesi yang sedang berjalan tanpa restart.
+Kredensial di-resolve ulang secara berkala, baik selama sesi maupun selama siklus hidup vault. Hal ini memastikan bahwa rotasi, pengarsipan, atau penghapusan kredensial berlaku pada sesi yang sedang berjalan tanpa restart.
 
 Untuk mendapatkan notifikasi jika kredensial diarsipkan, dihapus, atau gagal di-refresh, Anda dapat berlangganan [webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) vault dan kredensial yang terkait dengan perubahan siklus hidup tersebut.
 

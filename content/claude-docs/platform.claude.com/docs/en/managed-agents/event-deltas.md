@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/event-deltas
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 9ec44c6d9e2a34e978eb1b2b3c20cefcb1fa1f4c15885a00e568880b5ce73873
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 4492473434a21ce16eac561e3efe3fd23509565310d4898a6e67b481cad47f01
 ---
 
 ---
@@ -38,7 +38,7 @@ A subagent's previews appear on [that subagent's own thread stream](https://plat
 
 When a previewed event starts, the stream emits an `event_start` carrying the upcoming event's type and `id`:
 
-```text wrap
+```json
 {
   "type": "event_start",
   "event": {
@@ -50,7 +50,7 @@ When a previewed event starts, the stream emits an `event_start` carrying the up
 
 For `agent.message`, the start is followed by `event_delta` events carrying incremental text. Each delta names the event it extends in `event_id` and the content block it extends in `delta.index`:
 
-```text wrap
+```json
 {
   "type": "event_delta",
   "event_id": "sevt_01abc...",

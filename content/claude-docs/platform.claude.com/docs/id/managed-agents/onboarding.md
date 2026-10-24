@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/onboarding
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 3631d87e2a6be259a4b28105424e452c727a98602f77bae18bccbb2d0727cdad
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 76d003f6d7c0560296f66faa15ae2b8bb37514ddf4042be9024006b2e0a4f708
 ---
 
 ---
 title: Membangun di Console
 url: https://platform.claude.com/docs/id/managed-agents/onboarding
-description: Buat, uji, dan lakukan iterasi pada agen secara visual di Console, lalu jalankan agen tersebut dari kode Anda dengan API.
+description: Buat, uji, dan iterasi agen secara visual di Claude Console, lalu jalankan dari kode Anda dengan API.
 featureMetadata:
   topic:
     title: Managed Agents
@@ -17,11 +17,11 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-[Console](https://platform.claude.com/workspaces/default/agent-quickstart/) menyediakan antarmuka visual untuk membuat dan mengonfigurasi agen. Console memungkinkan Anda melakukan iterasi konfigurasi secara interaktif sebelum menulis kode.
+[Claude Console](https://platform.claude.com/workspaces/default/agent-quickstart/) menyediakan antarmuka visual untuk membuat dan mengonfigurasi agen. Antarmuka ini memungkinkan Anda melakukan iterasi konfigurasi secara interaktif sebelum menulis kode.
 
 ## Cara membangun agen
 
-[Antarmuka visual](https://platform.claude.com/workspaces/default/agent-quickstart/) di Claude Console memandu Anda melalui setiap bidang dalam definisi agen:
+[Antarmuka visual](https://platform.claude.com/workspaces/default/agent-quickstart/) di Claude Console memandu Anda melalui setiap kolom definisi agen:
 
 * **Model dan prompt sistem:** Pilih model dan tulis "system prompt" (prompt sistem) di editor lebar penuh.
 * **Server MCP:** Tambahkan server MCP jarak jauh melalui URL dan autentikasi agen Anda agar dapat mengambil tindakan atas nama Anda.
@@ -34,7 +34,7 @@ Saat Anda mengonfigurasi, Console menampilkan permintaan API yang setara sehingg
 
 Console menyertakan session runner inline. Setelah mengonfigurasi agen Anda, Anda dapat memulai sesi pengujian secara langsung, mengirim pesan, dan memantau aliran event tanpa meninggalkan halaman. Ini adalah cara tercepat untuk memeriksa bahwa prompt sistem dan pilihan alat Anda menghasilkan perilaku yang Anda harapkan.
 
-## Dari Console ke codebase Anda
+## Dari Console ke basis kode Anda
 
 Setelah agen Anda berfungsi sesuai harapan:
 

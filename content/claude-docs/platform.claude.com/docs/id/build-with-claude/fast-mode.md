@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 224b20692c6d780082aaa2d991edb0badc02f28154885be7b7ade7f6fd0c0c1f
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 07b9edecdb7af8b9b99d83eea361a5d74e0f7a0f344c9e94d3d4c721e1a85a42
 ---
 
 ---
@@ -402,17 +402,17 @@ Untuk melacak penggunaan dan biaya mode cepat di seluruh organisasi Anda, lihat 
 
 ### Percobaan ulang otomatis
 
-SDK secara otomatis mencoba ulang error `429` mode cepat hingga 2 kali secara default (dapat dikonfigurasi dengan `max_retries` (typescript, java, php: `maxRetries`; csharp: `MaxRetries`; go: `option.WithMaxRetries`)), menunggu jeda yang tertera di header `retry-after` sebelum setiap percobaan ulang. Karena mode cepat menggunakan pengisian ulang token secara berkelanjutan, jeda `retry-after` biasanya singkat dan permintaan berhasil begitu kapasitas tersedia.
+SDK secara otomatis mencoba ulang error `429` mode cepat hingga 2 kali secara default (dapat dikonfigurasi dengan `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries()`; csharp: `MaxRetries`; go: `option.WithMaxRetries()`)), menunggu jeda yang tertera di header `retry-after` sebelum setiap percobaan ulang. Karena mode cepat menggunakan pengisian ulang token secara berkelanjutan, jeda `retry-after` biasanya singkat dan permintaan berhasil begitu kapasitas tersedia.
 
 ### Beralih kembali ke kecepatan standar
 
-Jika Anda lebih memilih beralih ke kecepatan standar daripada menunggu kapasitas mode cepat, tangkap error batas laju dan coba ulang tanpa `speed: "fast"`. Atur `max_retries` (typescript, java, php: `maxRetries`; csharp: `MaxRetries`; go: `option.WithMaxRetries`) ke `0` pada permintaan cepat awal untuk melewati percobaan ulang otomatis dan langsung gagal saat terjadi error batas laju.
+Jika Anda lebih memilih beralih ke kecepatan standar daripada menunggu kapasitas mode cepat, tangkap error batas laju dan coba ulang tanpa `speed: "fast"`. Atur `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries()`; csharp: `MaxRetries`; go: `option.WithMaxRetries()`) ke `0` pada permintaan cepat awal untuk melewati percobaan ulang otomatis dan langsung gagal saat terjadi error batas laju.
 
 <Note>
   Beralih dari kecepatan cepat ke standar akan mengakibatkan [prompt cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) miss. Permintaan pada kecepatan yang berbeda tidak berbagi prefiks yang di-cache.
 </Note>
 
-Karena mengatur `max_retries` (typescript, java, php: `maxRetries`; csharp: `MaxRetries`; go: `option.WithMaxRetries`) ke `0` juga menonaktifkan percobaan ulang untuk error sementara lainnya (overloaded, error server internal), contoh-contoh berikut mengirim ulang permintaan asli dengan percobaan ulang default untuk kasus-kasus tersebut.
+Karena mengatur `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries()`; csharp: `MaxRetries`; go: `option.WithMaxRetries()`) ke `0` juga menonaktifkan percobaan ulang untuk error sementara lainnya (overloaded, error server internal), contoh-contoh berikut mengirim ulang permintaan asli dengan percobaan ulang default untuk kasus-kasus tersebut.
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python

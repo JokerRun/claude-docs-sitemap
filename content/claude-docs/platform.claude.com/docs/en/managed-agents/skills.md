@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/skills
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: b200748fa455cae6d6a83dcc7cccce70640d4f754afa5c5568d7da23280526be
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 1d11a1d37c9179f96f4e3df120ff5cd009e8c49d3abcab3fa8a86971f314b666
 ---
 
 ---
@@ -337,7 +337,6 @@ Each entry in the `skills` (csharp, go: `Skills`) array uses the following field
   if err != nil {
   	panic(err)
   }
-  _ = agent
   ```
 
   ```java Java
@@ -393,7 +392,7 @@ Each entry in the `skills` (csharp, go: `Skills`) array uses the following field
 Skills can also live in your code base. When a session mounts a repository through the [`github_repository` resource](https://platform.claude.com/docs/en/managed-agents/github), the repository's root `.claude/skills` directory is scanned at session start, and each skill found there becomes available to the agent. No upload and no entry in the agent's `skills` (csharp, go: `Skills`) array are required. The agent receives each discovered skill's name, description, and path in the sandbox, and reads the skill's `SKILL.md` when a task matches, including any scripts and resources the skill ships. Discovery relies on the agent's `read` tool from the [agent toolset](https://platform.claude.com/docs/en/managed-agents/tools), which is enabled by default; an agent with `read` disabled doesn't load repository skills.
 
 <Warning>
-  Repository skills are agent instructions, so a mounted repository is part of your agent's trust boundary. Anyone who can commit to the repository (a merged external pull request, a compromised dependency, a contributor) can add or change a skill, the platform loads it at session start without a review step, and session tools such as `bash` and `web_fetch` give those instructions real reach. Mount only repositories you trust, and review `.claude/skills` before mounting a repository that accepts outside contributions.
+  Repository skills are agent instructions, so a mounted repository is part of your agent's trust boundary. Anyone who can commit to the repository (a merged external pull request, a compromised dependency, a contributor) can add or change a skill. The platform loads that skill at session start without a review step, and session tools such as `bash` and `web_fetch` give its instructions real reach. Mount only repositories you trust, and review `.claude/skills` before mounting a repository that accepts outside contributions.
 </Warning>
 
 <Note>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: a95905bcba030708d1d1bd14241c85140cba8df0d646b5a79ea402079dddb481
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: a5cd58829023e4cac954c227eb74ad6e913ecfbc3befc2c7a6c5fd5d12b84967
 ---
 
 ---
@@ -56,7 +56,7 @@ Panduan ini memandu Anda dalam membuat agen, menyiapkan lingkungan, memulai sesi
     Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=2.1.0
+    VERSION=2.3.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -107,7 +107,7 @@ ant --version
 
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:3.1.0")
+    implementation("com.anthropic:anthropic-java:3.3.0")
     ```
   </Tab>
 
@@ -772,7 +772,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
       	defer stream.Close()
 
-      	// Send the user message after the stream opens
+      	// Kirim pesan pengguna setelah stream terbuka
       	_, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
       		Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
       			OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
@@ -788,7 +788,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       		panic(err)
       	}
 
-      	// Process streaming events
+      	// Proses event streaming
       loop:
       	for stream.Next() {
       		switch event := stream.Current().AsAny().(type) {

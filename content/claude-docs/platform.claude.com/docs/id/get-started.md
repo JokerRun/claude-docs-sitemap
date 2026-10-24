@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: f79e76a7f17941d880777dbf0059817c0457aed2d01bf89c304e9920aa402ba8
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 8980e36b2879282a7b8ecda1b0b87e2e4c518dd1d12b071d48f691fe0cc90fa3
 ---
 
 ---
@@ -13,7 +13,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
 
 ## Prasyarat
 
-* Sebuah [akun Claude Console](https://platform.claude.com)
+* [Akun Claude Console](https://platform.claude.com/)
 * Sebuah [kunci API](https://platform.claude.com/docs/id/get-api-key)
 
 ## Memanggil API
@@ -22,7 +22,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
   <Tab title="cURL">
     <Steps>
       <Step title="Atur kunci API Anda">
-        Ekspor kunci API Anda sebagai variabel lingkungan. Perintah cURL di bawah membacanya dari `$ANTHROPIC_API_KEY`.
+        Ekspor kunci API Anda sebagai variabel lingkungan. Perintah cURL pada langkah berikutnya membacanya dari `$ANTHROPIC_API_KEY`.
 
         ```bash
         export ANTHROPIC_API_KEY="your-api-key-here"
@@ -346,7 +346,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         ```bash
         mkdir claude-quickstart && cd claude-quickstart
         go mod init claude-quickstart
-        go get github.com/anthropics/anthropic-sdk-go
+        go get github.com/anthropics/anthropic-sdk-go/v2
         ```
       </Step>
 
@@ -361,7 +361,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         	"fmt"
         	"log"
 
-        	"github.com/anthropics/anthropic-sdk-go"
+        	"github.com/anthropics/anthropic-sdk-go/v2"
         )
 
         func main() {
@@ -442,7 +442,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:3.1.0")
+                implementation("com.anthropic:anthropic-java:3.3.0")
             }
 
             application {
@@ -468,7 +468,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>3.1.0</version>
+                  <version>3.3.0</version>
                 </dependency>
               </dependencies>
             </project>

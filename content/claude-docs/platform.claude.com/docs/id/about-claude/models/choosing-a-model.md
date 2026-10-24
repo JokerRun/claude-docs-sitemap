@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/choosing-a-model
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 6bb393150fe73ff8a8c071218bc9dde9a07c90dc8dc31d15f1d765877695698f
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 27b22da703bdc8740f8beb03eca493ba98ec98e48463d462c1e7cee3b1bae3fd
 ---
 
 ---
@@ -35,7 +35,7 @@ Untuk banyak aplikasi, memulai dengan model yang lebih cepat dan lebih hemat bia
 3. Evaluasi apakah kinerjanya memenuhi kebutuhan Anda.
 4. Tingkatkan hanya jika diperlukan untuk kesenjangan kemampuan tertentu.
 
-Pendekatan ini memungkinkan iterasi yang cepat, biaya pengembangan yang lebih rendah, dan sering kali sudah memadai untuk banyak aplikasi umum. Pendekatan ini paling cocok untuk:
+Pendekatan ini memungkinkan iterasi yang cepat dan biaya pengembangan yang lebih rendah, serta sering kali sudah memadai untuk banyak aplikasi umum. Pendekatan ini paling cocok untuk:
 
 * Pembuatan prototipe dan pengembangan awal
 * Aplikasi dengan persyaratan latensi yang ketat
@@ -44,7 +44,7 @@ Pendekatan ini memungkinkan iterasi yang cepat, biaya pengembangan yang lebih re
 
 ### Opsi 2: Mulai dengan mengutamakan kemampuan
 
-Untuk tugas kompleks di mana kecerdasan dan kemampuan tingkat lanjut adalah yang terpenting, Anda mungkin ingin memulai dengan mengutamakan kemampuan: implementasikan dengan titik awal terkuat untuk tugas Anda, lalu optimalkan ke model yang lebih efisien di kemudian hari:
+Untuk tugas kompleks di mana kecerdasan dan kemampuan tingkat lanjut sangat penting, Anda mungkin ingin memulai dengan mengutamakan kemampuan: implementasikan dengan titik awal terkuat untuk tugas Anda, lalu optimalkan ke model yang lebih efisien di kemudian hari:
 
 1. Implementasikan dengan Claude Opus 5.5.
 2. [Optimalkan prompt Anda](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5) untuk model ini.
@@ -75,7 +75,7 @@ Sebagian besar beban kerja dimulai dengan Claude Opus 5.5.
 | Kemampuan tertinggi yang tersedia                                                  | Claude Fable 5.1                      | Sesi agen yang berjalan berjam-jam, riset mendalam multilangkah, analisis yang dituntaskan hingga menjadi dokumen, spreadsheet, atau deck yang selesai    |
 | Coding agentik yang kompleks dan pekerjaan enterprise                              | Claude Opus 5.5                       | Agen coding otonom yang berjalan berjam-jam, refactoring skala besar, rekayasa sistem yang kompleks, alur kerja yang banyak melibatkan visi, computer use |
 | Kecepatan dan kemampuan untuk beban kerja coding, agen, dan enterprise sehari-hari | Claude Sonnet 5.5                     | Pembuatan kode, analisis data, pembuatan konten, pemahaman visual, penggunaan alat agentik                                                                |
-| Latensi dan harga terendah                                                         | Claude Haiku 5.5                      | Aplikasi real-time, pemrosesan cerdas bervolume tinggi, deployment yang sensitif terhadap biaya yang membutuhkan penalaran kuat, tugas sub-agen           |
+| Latensi dan harga terendah                                                         | Claude Haiku 5.5                      | Aplikasi real-time, pemrosesan cerdas bervolume tinggi, deployment yang sensitif terhadap biaya yang membutuhkan penalaran kuat, tugas subagen            |
 
 ***
 
@@ -83,7 +83,7 @@ Sebagian besar beban kerja dimulai dengan Claude Opus 5.5.
 
 Untuk menentukan apakah Anda perlu meningkatkan atau mengganti model, Anda sebaiknya:
 
-1. [Membuat pengujian benchmark](https://platform.claude.com/docs/id/test-and-evaluate/develop-tests) yang spesifik untuk kasus penggunaan Anda - memiliki set evaluasi yang baik adalah langkah terpenting dalam proses ini.
+1. [Buat tes benchmark](https://platform.claude.com/docs/id/test-and-evaluate/develop-tests) yang spesifik untuk kasus penggunaan Anda. Memiliki set evaluasi yang baik adalah langkah terpenting dalam proses ini.
 
 2. Menguji dengan prompt dan data aktual Anda.
 

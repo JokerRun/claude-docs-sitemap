@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: f32b1f726251bdfb5d25c6ba65752159292b0479dd442ef07f846f206b3bc68e
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: fc623352972719252574ae460ee757bb02b7f1eb2c75807fa1c6f4e382ce990c
 ---
 
 ---
@@ -247,7 +247,7 @@ Field `packages` (csharp, go: `Packages`) melakukan pra-instalasi paket ke dalam
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    --data '{
+    -d '{
       "name": "data-analysis",
       "config": {
         "type": "cloud",
@@ -354,7 +354,6 @@ Field `packages` (csharp, go: `Packages`) melakukan pra-instalasi paket ke dalam
   if err != nil {
   	panic(err)
   }
-  _ = environment
   ```
 
   ```java Java
@@ -540,7 +539,6 @@ Contoh berikut membuat environment dengan jaringan `limited`:
   if err != nil {
   	panic(err)
   }
-  _ = environment
   ```
 
   ```java Java
@@ -620,7 +618,7 @@ Ketika `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: 
 | Container    | `registry-1.docker.io`, `auth.docker.io`, `production.cloudflare.docker.com`, `download.docker.com`, `ghcr.io`                                                                             |
 
 <Warning>
-  Akses jaringan diberikan per host, bukan per operasi. Sandbox dapat mengirim permintaan apa pun ke host yang diizinkan, termasuk unggahan seperti `git push` dan publikasi paket, dengan kredensial apa pun yang diberikan oleh perintah. Jika agen memproses input yang tidak tepercaya (file repositori, konten web yang diambil, atau output alat pihak ketiga), "prompt injection" (injeksi prompt) yang berhasil dapat menggunakan host yang diizinkan untuk menyalin file keluar dari sandbox. Untuk mengurangi risiko ini, atur [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) alat `bash` ke `always_ask` atau `auto`. Jika environment tidak menentukan `packages` (csharp, go: `Packages`), sebagai gantinya Anda dapat membiarkan `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) tetap bernilai `false` dan hanya mencantumkan host yang dibutuhkan agen Anda di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`).
+  Akses jaringan diberikan berdasarkan host, bukan berdasarkan operasi. Sandbox dapat mengirim permintaan apa pun ke host yang diizinkan, termasuk unggahan seperti `git push` dan publikasi paket, dengan kredensial apa pun yang diberikan oleh perintah. Jika agen memproses input yang tidak tepercaya (file repositori, konten web yang diambil, atau output alat pihak ketiga), "prompt injection" (injeksi prompt) yang berhasil dapat menggunakan host yang diizinkan untuk menyalin file keluar dari sandbox. Untuk mengurangi risiko ini, atur [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) alat `bash` ke `always_ask` atau `auto`. Jika lingkungan tidak menentukan `packages` (csharp, go: `Packages`), Anda dapat sebagai gantinya membiarkan `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) diatur ke `false` dan hanya mencantumkan host yang dibutuhkan agen Anda di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`).
 </Warning>
 
 #### Risiko jaringan tanpa batasan
@@ -741,19 +739,19 @@ Gunakan `unrestricted` hanya ketika agen harus menjangkau situs yang tidak dapat
   ```
 
   ```go Go
-  // List environments
+  // Daftar environment
   environments, err := client.Beta.Environments.List(ctx, anthropic.BetaEnvironmentListParams{})
   // ...
 
-  // Retrieve a specific environment
+  // Ambil environment tertentu
   env, err := client.Beta.Environments.Get(ctx, environment.ID, anthropic.BetaEnvironmentGetParams{})
   // ...
 
-  // Archive an environment (read-only, existing sessions continue)
+  // Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
   _, err = client.Beta.Environments.Archive(ctx, environment.ID, anthropic.BetaEnvironmentArchiveParams{})
   // ...
 
-  // Delete an environment (only if no sessions reference it)
+  // Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
   _, err = client.Beta.Environments.Delete(ctx, environment.ID, anthropic.BetaEnvironmentDeleteParams{})
   ```
 

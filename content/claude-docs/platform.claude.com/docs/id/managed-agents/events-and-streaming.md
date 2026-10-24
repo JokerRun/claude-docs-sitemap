@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 43ae7e1c93f9a9344756be30a5562c77bd4fbf42b5b148f0d4fd4a791a62b1c3
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: c3b71918e25b388eee993f771cffea16c33ad825f3fdb39852cd01c464a768cb
 ---
 
 ---
 title: Aliran event sesi
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-description: Kirim event, lakukan streaming respons, dan interupsi atau arahkan ulang sesi Anda di tengah eksekusi.
+description: Kirim event, streaming respons, dan interupsi atau arahkan ulang sesi Anda saat sedang berjalan.
 featureMetadata:
   topic:
     title: Managed Agents
@@ -146,7 +146,7 @@ Lakukan "streaming" (streaming) event dari sesi untuk menerima pembaruan real-ti
   ```
 
   ```go Go
-  	// Open the stream first, then send the user message
+  	// Buka stream terlebih dahulu, lalu kirim pesan pengguna
   	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
   	defer stream.Close()
 
@@ -168,7 +168,7 @@ Lakukan "streaming" (streaming) event dari sesi untuk menerima pembaruan real-ti
   	for stream.Next() {
   		switch event := stream.Current().AsAny().(type) {
   		case anthropic.BetaManagedAgentsAgentMessageEvent:
-  			// concrete-typed list: BetaManagedAgentsTextBlock
+  			// list bertipe konkret: BetaManagedAgentsTextBlock
   			for _, block := range event.Content {
   				fmt.Print(block.Text)
   			}
@@ -395,7 +395,7 @@ Untuk menyambung ulang ke sesi yang sudah ada tanpa kehilangan event, gabungkan 
   	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
   	defer stream.Close()
 
-  	// Stream is open and buffering. List history before tailing live.
+  	// Stream terbuka dan sedang buffering. Tampilkan riwayat sebelum mengikuti event live.
   	seenEventIDs := map[string]struct{}{}
   	history := client.Beta.Sessions.Events.ListAutoPaging(ctx, session.ID, anthropic.BetaSessionEventListParams{})
   	for history.Next() {
@@ -405,7 +405,7 @@ Untuk menyambung ulang ke sesi yang sudah ada tanpa kehilangan event, gabungkan 
   		panic(err)
   	}
 
-  	// Tail live events, skipping anything already seen
+  	// Ikuti event live, lewati apa pun yang sudah terlihat
   tail:
   	for stream.Next() {
   		event := stream.Current()
@@ -415,7 +415,7 @@ Untuk menyambung ulang ke sesi yang sudah ada tanpa kehilangan event, gabungkan 
   		seenEventIDs[event.ID] = struct{}{}
   		switch event := event.AsAny().(type) {
   		case anthropic.BetaManagedAgentsAgentMessageEvent:
-  			// concrete-typed list: BetaManagedAgentsTextBlock
+  			// list bertipe konkret: BetaManagedAgentsTextBlock
   			for _, block := range event.Content {
   				fmt.Print(block.Text)
   			}
@@ -666,7 +666,7 @@ Tidak ada event yang Anda kirim yang dapat melanjutkan sesi yang dijeda karena a
 
 ## Menjawab panggilan alat yang menjeda sesi
 
-Sesi dijeda ketika agen memanggil [alat kustom](https://platform.claude.com/docs/id/managed-agents/tools#custom-tools), dan ketika panggilan alat memerlukan konfirmasi Anda berdasarkan [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies). Kedua jeda mengikuti urutan yang sama:
+Sesi dijeda saat agen memanggil [alat kustom](https://platform.claude.com/docs/id/managed-agents/tools#custom-tools), dan saat panggilan alat memerlukan konfirmasi Anda berdasarkan [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies). Kedua jeda tersebut mengikuti urutan yang sama:
 
 1. Sesi memancarkan panggilan alat sebagai event `agent.custom_tool_use`, `agent.tool_use`, atau `agent.mcp_tool_use`.
 2. Sesi dijeda dengan event `session.status_idle` yang `stop_reason.type`-nya adalah `requires_action`. ID event yang memblokir ada di array `stop_reason.event_ids`.
@@ -699,10 +699,8 @@ Contoh berikut menjawab setiap panggilan saat panggilan tersebut tiba:
       for event in stream:
           match event.type:
               case "agent.custom_tool_use":
-                  # Jalankan alat
                   result = call_tool(event.name, event.input)
 
-                  # Kirim hasilnya kembali
                   client.beta.sessions.events.send(
                       session.id,
                       events=[
@@ -724,10 +722,8 @@ Contoh berikut menjawab setiap panggilan saat panggilan tersebut tiba:
   loop: for await (const event of stream) {
     switch (event.type) {
       case "agent.custom_tool_use": {
-        // Jalankan alat
         const result = await callTool(event.name, event.input);
 
-        // Kirim hasilnya kembali
         await client.beta.sessions.events.send(session.id, {
           events: [
             {
@@ -753,10 +749,8 @@ Contoh berikut menjawab setiap panggilan saat panggilan tersebut tiba:
   {
       if (streamEvent.Value is BetaManagedAgentsAgentCustomToolUseEvent toolUse)
       {
-          // Jalankan alat
           var result = await CallTool(toolUse.Name, toolUse.Input);
 
-          // Kirim hasilnya kembali
           await client.Beta.Sessions.Events.Send(session.ID, new()
           {
               Events =
@@ -785,9 +779,7 @@ Contoh berikut menjawab setiap panggilan saat panggilan tersebut tiba:
   	for stream.Next() {
   		switch event := stream.Current().AsAny().(type) {
   		case anthropic.BetaManagedAgentsAgentCustomToolUseEvent:
-  			// Run the tool
   			result := callTool(event.Name, event.Input)
-  			// Send the result back
   			if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   				Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   					OfUserCustomToolResult: &anthropic.BetaManagedAgentsUserCustomToolResultEventParams{
@@ -819,11 +811,9 @@ Contoh berikut menjawab setiap panggilan saat panggilan tersebut tiba:
       for (var event : (Iterable<BetaManagedAgentsStreamSessionEvents>) stream.stream()::iterator) {
           switch (event.type().value()) {
               case AGENT_CUSTOM_TOOL_USE -> {
-                  // Jalankan alat
                   var toolUse = event.asAgentCustomToolUse();
                   var result = callTool(toolUse.name(), toolUse.input());
 
-                  // Kirim hasilnya kembali
                   client.beta().sessions().events().send(
                       session.id(),
                       EventSendParams.builder()
@@ -849,10 +839,8 @@ Contoh berikut menjawab setiap panggilan saat panggilan tersebut tiba:
   foreach ($stream as $event) {
       switch (true) {
           case $event instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsAgentCustomToolUseEvent:
-              // Jalankan alat
               $result = callTool($event->name, $event->input);
 
-              // Kirim hasilnya kembali
               $client->beta->sessions->events->send(
                   $session->id,
                   events: [
@@ -877,9 +865,7 @@ Contoh berikut menjawab setiap panggilan saat panggilan tersebut tiba:
   client.beta.sessions.events.stream_events(session.id).each do |event|
     case event
     when Anthropic::Beta::Sessions::BetaManagedAgentsAgentCustomToolUseEvent
-      # Jalankan alat
       result = call_tool.call(event.name, event.input)
-      # Kirim hasilnya kembali
       client.beta.sessions.events.send_(
         session.id,
         events: [
@@ -921,7 +907,6 @@ Contoh berikut menyetujui setiap panggilan yang tertunda:
               match stop_reason.type:
                   case "requires_action":
                       for event_id in stop_reason.event_ids:
-                          # Setujui panggilan alat yang tertunda
                           client.beta.sessions.events.send(
                               session.id,
                               events=[
@@ -951,7 +936,6 @@ Contoh berikut menyetujui setiap panggilan yang tertunda:
     }
 
     for (const eventId of event.stop_reason.event_ids) {
-      // Setujui panggilan alat yang tertunda
       await client.beta.sessions.events.send(session.id, {
         events: [
           {
@@ -974,7 +958,6 @@ Contoh berikut menyetujui setiap panggilan yang tertunda:
       {
           foreach (var eventId in requiresAction.EventIds)
           {
-              // Setujui panggilan alat yang tertunda
               await client.Beta.Sessions.Events.Send(session.ID, new()
               {
                   Events =
@@ -1008,7 +991,6 @@ Contoh berikut menyetujui setiap panggilan yang tertunda:
   		switch stopReason := event.StopReason.AsAny().(type) {
   		case anthropic.BetaManagedAgentsSessionRequiresAction:
   			for _, eventID := range stopReason.EventIDs {
-  				// Approve the pending tool call
   				if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   					Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   						OfUserToolConfirmation: &anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
@@ -1037,7 +1019,6 @@ Contoh berikut menyetujui setiap panggilan yang tertunda:
           .takeWhile(stopReason -> !stopReason.isEndTurn())
           .filter(stopReason -> stopReason.isRequiresAction())
           .flatMap(stopReason -> stopReason.asRequiresAction().eventIds().stream())
-          // Setujui setiap panggilan alat yang tertunda
           .forEach(toolUseId -> client.beta().sessions().events().send(
               session.id(),
               EventSendParams.builder()
@@ -1057,7 +1038,6 @@ Contoh berikut menyetujui setiap panggilan yang tertunda:
           switch (true) {
               case $event->stopReason instanceof \Anthropic\Beta\Sessions\Events\ManagedAgentsSessionRequiresAction:
                   foreach ($event->stopReason->eventIDs as $eventId) {
-                      // Setujui panggilan alat yang tertunda
                       $client->beta->sessions->events->send(
                           $session->id,
                           events: [
@@ -1085,7 +1065,6 @@ Contoh berikut menyetujui setiap panggilan yang tertunda:
       case stop_reason
       when Anthropic::Beta::Sessions::BetaManagedAgentsSessionRequiresAction
         stop_reason.event_ids.each do |event_id|
-          # Setujui panggilan alat yang tertunda
           client.beta.sessions.events.send_(
             session.id,
             events: [
@@ -1197,8 +1176,8 @@ Sesi tetap ada di antara interaksi. Untuk melanjutkan sesi, kirim event `user.me
   ```
 
   ```go Go
-  // Resume a previously created session by sending it a new user.message
-  // event. In production, pass the stored ID of the session to resume.
+  // Lanjutkan sesi yang dibuat sebelumnya dengan mengirimkan event user.message
+  // baru. Di produksi, berikan ID tersimpan dari sesi yang akan dilanjutkan.
   if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
@@ -1270,7 +1249,7 @@ Riwayat percakapan dipertahankan kecuali sesi dihapus secara eksplisit. Ketika s
 
 ## Menginterupsi agen
 
-Kirim event `user.interrupt` untuk menghentikan agen di tengah eksekusi, lalu lanjutkan dengan event `user.message` untuk mengarahkannya ulang:
+Kirim event `user.interrupt` untuk menghentikan agen saat sedang berjalan, lalu lanjutkan dengan event `user.message` untuk mengarahkannya ulang:
 
 <CodeGroup>
   ```bash cURL
@@ -1369,8 +1348,8 @@ Kirim event `user.interrupt` untuk menghentikan agen di tengah eksekusi, lalu la
   ```
 
   ```go Go
-  // Agent is currently analyzing a file...
-  // Interrupt with a new direction:
+  // Agen sedang menganalisis sebuah file...
+  // Interupsi dengan arahan baru:
   if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{
   		{
@@ -1621,7 +1600,7 @@ Teruskan filter `types` (curl: `types[]`; cli: `--type`; csharp, go: `Types`) un
 
 Pada [model yang didukung](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#supported-models), kirim event `system.message` untuk memberikan konteks tingkat sistem yang istimewa kepada agen. Konteks tersebut berlaku untuk giliran yang menyertainya dan semua giliran berikutnya. Gunakan ini ketika agen memerlukan panduan tingkat sistem yang diperbarui di tengah sesi, misalnya persona yang berbeda, batasan yang direvisi, atau konteks yang diambil saat runtime.
 
-`content` (csharp, go: `Content`) dari event menerima 1–1000 item teks. Konten tersebut ditambahkan ke konteks sistem sesi sebagai giliran `role: "system"`. Konten ini tidak menggantikan "system prompt" (prompt sistem) tingkat atas, yang diatur oleh field `system` (csharp, go: `System`; ruby: `system_`) pada definisi agen.
+`content` (csharp, go: `Content`) dari event menerima 1–1.000 item teks. Konten tersebut ditambahkan ke konteks sistem sesi sebagai giliran `role: "system"`. Konten ini tidak menggantikan "system prompt" (prompt sistem) tingkat atas, yang ditetapkan oleh field `system` (csharp, go: `System`; ruby: `system_`) pada definisi agen.
 
 <CodeGroup>
   ```bash cURL
@@ -1792,7 +1771,7 @@ Saat sesi idle dengan alasan berhenti `requires_action`, `system.message` harus 
   </Card>
 
   <Card title="Berlangganan webhook" icon="link" href="https://platform.claude.com/docs/id/managed-agents/webhooks">
-    Dapatkan notifikasi ketika event penting terjadi tanpa polling.
+    Dapatkan notifikasi saat event penting terjadi tanpa polling.
   </Card>
 
   <Card title="Jenis event" icon="book" href="https://platform.claude.com/docs/id/managed-agents/reference#event-types">

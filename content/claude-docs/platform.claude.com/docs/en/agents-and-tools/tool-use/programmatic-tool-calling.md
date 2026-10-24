@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 131fbbba69f20b267c1d7f079a1a61ebef233b06c0680b36050a27aa19b6f8bc
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 75051edcb39dc93897a1d0c0b63ad70679f04a43fba553d18b58a90c7a8f3f55
 ---
 
 ---
@@ -375,7 +375,7 @@ The response stops with `stop_reason: "tool_use"`, a `container` ID, and a `tool
 
 When you configure a tool to be callable from code execution and Claude determines that tool is needed:
 
-1. Claude writes Python code that calls the tool as a function. The code can include multiple tool calls and pre/post-processing logic.
+1. Claude writes Python code that calls the tool as a function. The code can include multiple tool calls, plus preprocessing and post-processing logic.
 2. Claude runs this code in a sandboxed container through code execution.
 3. When a tool function is called, code execution pauses and the API returns a `tool_use` block.
 4. You provide the tool result, and code execution continues (intermediate results are not loaded into Claude's context window).
@@ -430,7 +430,7 @@ Every tool use block includes a `caller` field indicating how it was called:
 
 **Direct call (traditional tool use):**
 
-```text wrap
+```json
 {
   "type": "tool_use",
   "id": "toolu_abc123",
@@ -442,7 +442,7 @@ Every tool use block includes a `caller` field indicating how it was called:
 
 **Programmatic call:**
 
-```text wrap
+```json
 {
   "type": "tool_use",
   "id": "toolu_xyz789",
@@ -488,7 +488,7 @@ The request shape is identical to the [Quick start](https://platform.claude.com/
 
 Claude writes code that calls your tool. The API pauses and returns:
 
-```text Output
+```json Output
 {
   "role": "assistant",
   "content": [
@@ -1150,13 +1150,13 @@ Send the full conversation history plus your tool result. Three details matter o
 
 ### Step 4: Next tool call or completion
 
-The code picks up where it paused and processes your result. Each continuation response either pauses again with more programmatic `tool_use` blocks, or completes the code execution and lets Claude continue the turn (Step 5). Check `stop_reason` and each `tool_use` block's `caller` to tell the two apart: a response that pauses for you has `stop_reason: "tool_use"` and a `tool_use` block whose `caller` names a code execution version, and you repeat Step 3 with a `tool_result` for every pending programmatic call in one user message.
+The code picks up where it paused and processes your result. Each continuation response either pauses again with more programmatic `tool_use` blocks, or completes the code execution and lets Claude continue the turn (Step 5). Check `stop_reason` and each `tool_use` block's `caller` to tell the two apart. A response that pauses for you has `stop_reason: "tool_use"` and a `tool_use` block whose `caller` names a code execution version. In that case, repeat Step 3 with a `tool_result` for every pending programmatic call in one user message.
 
 ### Step 5: Final response
 
 Once the code execution completes, Claude provides the final response:
 
-```text Output
+```json Output
 {
   "content": [
     {
@@ -1245,7 +1245,7 @@ for error in errors[-10:]:  # Only return last 10 errors
 
 When code execution calls a tool:
 
-```text wrap
+```json
 {
   "type": "tool_use",
   "id": "toolu_abc123",
@@ -1279,7 +1279,7 @@ Your tool result is passed back to the running code:
 
 When all tool calls are satisfied and code completes:
 
-```text
+```json
 {
   "type": "code_execution_tool_result",
   "tool_use_id": "srvtoolu_xyz789",
@@ -1306,7 +1306,7 @@ When all tool calls are satisfied and code completes:
 
 If your tool result doesn't arrive within about 4 minutes, the pending call raises a `TimeoutError` inside Claude's running code. Claude receives the error in `stderr` and typically retries the call:
 
-```text
+```json
 {
   "type": "code_execution_tool_result",
   "tool_use_id": "srvtoolu_abc123",

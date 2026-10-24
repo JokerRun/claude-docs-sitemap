@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 4fc970e01042a1d7c7cc94be6aa3af38defd991654cdefa8db6c403402b81f58
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 29b4849d2ff7dafc7eff444cce3f7c728d27818ec471b050eb022dd3f229542b
 ---
 
 ---
@@ -147,7 +147,7 @@ export ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID="wrkspc_01AbCdEf23GhIj"
 
 ### Install an SDK
 
-The [SDK client](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) for Claude Models on Google Cloud (Anthropic managed) is `AnthropicGoogleCloud` (csharp: `AnthropicGoogleCloudClient`; go: `googlecloud.NewClient`; java: `GoogleCloudBackend`; php: `Anthropic\GoogleCloud\Client`; ruby: `Anthropic::GoogleCloudClient`). The client resolves your Google credentials. It also builds the base URL from your project, location, and workspace ID.
+The [SDK client](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) for Claude Models on Google Cloud (Anthropic managed) is `AnthropicGoogleCloud` (csharp: `AnthropicGoogleCloudClient`; go: `googlecloud.NewClient()`; java: `GoogleCloudBackend`; php: `Anthropic\GoogleCloud\Client`; ruby: `Anthropic::GoogleCloudClient`). The client resolves your Google credentials. It also builds the base URL from your project, location, and workspace ID.
 
 <Note>
   The SDK client for Claude Models on Google Cloud (Anthropic managed) is in beta.
@@ -182,20 +182,20 @@ Install the package that provides the client:
 
   <Tab title="Java">
     ```kotlin Gradle
-    implementation("com.anthropic:anthropic-java:3.1.0")
-    implementation("com.anthropic:anthropic-java-google-cloud:3.1.0")
+    implementation("com.anthropic:anthropic-java:3.3.0")
+    implementation("com.anthropic:anthropic-java-google-cloud:3.3.0")
     ```
 
     ```xml Maven
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java</artifactId>
-      <version>3.1.0</version>
+      <version>3.3.0</version>
     </dependency>
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java-google-cloud</artifactId>
-      <version>3.1.0</version>
+      <version>3.3.0</version>
     </dependency>
     ```
   </Tab>
@@ -511,9 +511,9 @@ The following features work on Claude Models on Google Cloud (Anthropic managed)
 
 * **Fast mode:** [Fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode) for Claude Opus 5.5.
 
-- **Beta features:** If a beta is limited to selected organizations on the Claude API, the Anthropic organization that setup creates needs the same access.
+* **Beta features:** If a beta is limited to selected organizations on the Claude API, the Anthropic organization that setup creates needs the same access.
 
-- **Tools:** [Tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview), including:
+* **Tools:** [Tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview), including:
 
   * Web search
   * Web fetch
@@ -522,9 +522,9 @@ The following features work on Claude Models on Google Cloud (Anthropic managed)
   * The advisor tool
   * The MCP connector
 
-- **Skills and files:** [Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) and the [Files API](https://platform.claude.com/docs/en/build-with-claude/files).
+* **Skills and files:** [Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) and the [Files API](https://platform.claude.com/docs/en/build-with-claude/files).
 
-- **Model capabilities:**
+* **Model capabilities:**
 
   * [Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching)
   * [Extended thinking](https://platform.claude.com/docs/en/build-with-claude/thinking)
@@ -533,11 +533,11 @@ The following features work on Claude Models on Google Cloud (Anthropic managed)
   * [Structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
   * [Token counting](https://platform.claude.com/docs/en/build-with-claude/token-counting)
 
-- **Batches and models:** The [Message Batches API](https://platform.claude.com/docs/en/build-with-claude/batch-processing) and the Models API.
+* **Batches and models:** The [Message Batches API](https://platform.claude.com/docs/en/build-with-claude/batch-processing) and the Models API.
 
 To turn the [Compliance API](https://platform.claude.com/docs/en/manage-claude/compliance-api) on or off for the Anthropic organization that setup creates, [open the Claude Console](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console), go to **Settings > Compliance**, and use the **Compliance API** toggle.
 
-Customer-managed encryption keys (CMEK) are available with Google Cloud KMS keys. To activate CMEK for the Anthropic organization that setup creates, see [Customer-managed encryption keys](https://platform.claude.com/docs/en/manage-claude/cmek). To set up a key, follow [Configure Google Cloud KMS for CMEK](https://platform.claude.com/docs/en/manage-claude/cmek-google-cloud-kms). Then register, verify, and attach the key in the [Claude Console](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console), as the setup page's **Claude Console** tab describes.
+Customer-managed encryption keys (CMEK) are available with Google Cloud KMS keys. To activate CMEK for the Anthropic organization that setup creates, see [Who can use CMEK](https://platform.claude.com/docs/en/manage-claude/cmek#availability). To set up a key, follow [Set up CMEK with Google Cloud KMS](https://platform.claude.com/docs/en/manage-claude/cmek-google-cloud-kms). Then register, verify, and attach the key in the [Claude Console](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console), as the setup page's **Claude Platform** tab describes.
 
 ### Claude Managed Agents
 
@@ -638,7 +638,7 @@ To move to Claude Models on Google Cloud (Anthropic managed), complete the follo
   </Step>
 
   <Step title="Replace the import and the client">
-    Change the code that imports and creates your client. Use `AnthropicGoogleCloud` (csharp: `AnthropicGoogleCloudClient`; go: `googlecloud.NewClient`; java: `GoogleCloudBackend`; php: `Anthropic\GoogleCloud\Client`; ruby: `Anthropic::GoogleCloudClient`) in place of `AnthropicVertex` (csharp: `AnthropicVertexClient`; go: `vertex.WithGoogleAuth`; java: `VertexBackend`; php: `Anthropic\Vertex\Client`; ruby: `Anthropic::VertexClient`). In a cURL request, change the URL, the headers, and the body. Your current code creates a client for Claude Models on Google Cloud (Google managed). For example, the following code creates that client with the global endpoint:
+    Change the code that imports and creates your client. Use `AnthropicGoogleCloud` (csharp: `AnthropicGoogleCloudClient`; go: `googlecloud.NewClient()`; java: `GoogleCloudBackend`; php: `Anthropic\GoogleCloud\Client`; ruby: `Anthropic::GoogleCloudClient`) in place of `AnthropicVertex` (csharp: `AnthropicVertexClient`; go: `vertex.WithGoogleAuth()`; java: `VertexBackend`; php: `Anthropic\Vertex\Client`; ruby: `Anthropic::VertexClient`). In a cURL request, change the URL, the headers, and the body. Your current code creates a client for Claude Models on Google Cloud (Google managed). For example, the following code creates that client with the global endpoint:
 
     <CodeGroup exclude="shell:CLI">
       ```bash cURL

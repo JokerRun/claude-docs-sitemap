@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 2761acf6164094252af504adc50b0e83d6138c1cd67cb12609cbf8c96866f372
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: a6a1578e75c0e9c79345f68d89dab4ce030a1fba0249a60420111568f1f43a27
 ---
 
 ---
@@ -24,7 +24,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
 ## Kasus penggunaan
 
 * **Alur kerja pengembangan:** Menjalankan perintah build, pengujian, dan alat pengembangan
-* **Otomatisasi sistem:** Mengeksekusi skrip, mengelola file, mengotomatiskan tugas
+* **Otomatisasi sistem:** Jalankan skrip, kelola file, otomatiskan tugas
 * **Pemrosesan data:** Memproses file, menjalankan skrip analisis, mengelola dataset
 * **Penyiapan lingkungan:** Menginstal paket, mengonfigurasi lingkungan
 
@@ -153,12 +153,13 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
   ```
 
   ```php PHP
+  use Anthropic\Messages\Model;
   use Anthropic\Messages\ToolBash20250124;
 
   $client = new Client();
 
   $response = $client->messages->create(
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 1024,
       tools: [new ToolBash20250124()],
       messages: [
@@ -173,7 +174,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, header beta, d
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: [{type: "bash_20250124", name: "bash"}],
     messages: [
@@ -223,7 +224,7 @@ Setiap pemanggilan alat adalah satu siklus bolak-balik antara Claude dan aplikas
 
 Claude juga dapat mengembalikan beberapa blok `tool_use` dalam satu respons. Jalankan secara berurutan dalam sesi yang sama dan kembalikan semua hasilnya dalam satu pesan `user`. Lihat [Penggunaan alat paralel](https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use).
 
-API bersifat stateless. Tidak ada apa pun tentang sesi shell Anda yang berpindah antar permintaan, sehingga aplikasi Anda yang menentukan kapan sesi dimulai, berapa lama sesi hidup, dan kapan memulai ulangnya. Untuk siklus permintaan dan respons lengkap, lihat [Menangani pemanggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls).
+API bersifat stateless. Tidak ada apa pun tentang sesi shell Anda yang berpindah di antara permintaan, sehingga aplikasi Anda yang menentukan kapan sesi dimulai, berapa lama sesi bertahan, dan kapan harus memulai ulang. Untuk siklus permintaan dan respons lengkap, lihat [Menangani pemanggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls).
 
 ## Parameter
 
@@ -313,7 +314,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
 
           def execute_command(self, command):
               """Run a command in the session and return its output."""
-              sentinel = f"__CLAUDE_BASH_DONE_{uuid.uuid4().hex}__"  # unique per call
+              sentinel = f"__CLAUDE_BASH_DONE_{uuid.uuid4().hex}__"  # unique for each call
               self.process.stdin.write(f"{command}\necho {sentinel}\n")
               self.process.stdin.flush()
 
@@ -359,7 +360,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
 
         // Jalankan perintah dalam sesi dan kembalikan output-nya.
         executeCommand(command: string): Promise<string> {
-          const sentinel = `__CLAUDE_BASH_DONE_${randomUUID()}__`; // unique per call
+          const sentinel = `__CLAUDE_BASH_DONE_${randomUUID()}__`; // unique for each call
           const output: string[] = [];
           const result = new Promise<string>((resolve) => {
             const onLine = (line: string): void => {
@@ -423,7 +424,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
           // Jalankan perintah dalam sesi dan kembalikan outputnya.
           public string ExecuteCommand(string command)
           {
-              var sentinel = $"__CLAUDE_BASH_DONE_{Guid.NewGuid():N}__"; // unique per call
+              var sentinel = $"__CLAUDE_BASH_DONE_{Guid.NewGuid():N}__"; // unique for each call
               Process.StandardInput.Write($"{command}\necho {sentinel}\n");
               Process.StandardInput.Flush();
 
@@ -490,7 +491,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
       func (s *BashSession) ExecuteCommand(command string) string {
       	buf := make([]byte, 16)
       	rand.Read(buf)
-      	sentinel := fmt.Sprintf("__CLAUDE_BASH_DONE_%s__", hex.EncodeToString(buf)) // unique per call
+      	sentinel := fmt.Sprintf("__CLAUDE_BASH_DONE_%s__", hex.EncodeToString(buf)) // unique for each call
       	fmt.Fprintf(s.stdin, "%s\necho %s\n", command, sentinel)
 
       	var output strings.Builder
@@ -554,7 +555,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
 
           // Jalankan perintah dalam sesi dan kembalikan output-nya.
           String executeCommand(String command) throws IOException {
-              String sentinel = "__CLAUDE_BASH_DONE_" + UUID.randomUUID() + "__"; // unique per call
+              String sentinel = "__CLAUDE_BASH_DONE_" + UUID.randomUUID() + "__"; // unique for each call
               stdin.write(command + "\necho " + sentinel + "\n");
               stdin.flush();
 
@@ -611,7 +612,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
           // Jalankan perintah dalam sesi dan kembalikan outputnya.
           public function executeCommand(string $command): string
           {
-              $sentinel = '__CLAUDE_BASH_DONE_' . bin2hex(random_bytes(16)) . '__'; // unique per call
+              $sentinel = '__CLAUDE_BASH_DONE_' . bin2hex(random_bytes(16)) . '__'; // unique for each call
               fwrite($this->stdin, "{$command}\necho {$sentinel}\n");
               fflush($this->stdin);
 
@@ -634,8 +635,8 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
       }
 
       $session = new BashSession();
-      echo $session->executeCommand("cd /tmp && pwd");
-      echo $session->executeCommand("pwd"); // still /tmp: the session kept its state
+      echo $session->executeCommand('cd /tmp && pwd');
+      echo $session->executeCommand('pwd'); // still /tmp: the session kept its state
       ```
 
       ```ruby Ruby
@@ -652,7 +653,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
 
         # Jalankan perintah dalam sesi dan kembalikan output-nya.
         def execute_command(command)
-          sentinel = "__CLAUDE_BASH_DONE_#{SecureRandom.hex(16)}__" # unique per call
+          sentinel = "__CLAUDE_BASH_DONE_#{SecureRandom.hex(16)}__" # unique for each call
           @stdin.write("#{command}\necho #{sentinel}\n")
           @stdin.flush
 
@@ -704,7 +705,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
                   command = content.input.get("command")
                   result = bash_session.execute_command(command)
 
-              # Satu tool_result per blok tool_use, semuanya dikembalikan dalam pesan pengguna berikutnya
+              # Satu tool_result untuk setiap blok tool_use, semuanya dikembalikan dalam pesan user berikutnya
               tool_results.append(
                   {"type": "tool_result", "tool_use_id": content.id, "content": result}
               )
@@ -722,7 +723,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
             result = await bashSession.executeCommand(block.input.command ?? "");
           }
 
-          // Satu tool_result per blok tool_use, semuanya dikembalikan dalam pesan pengguna berikutnya
+          // Satu tool_result untuk setiap blok tool_use, semuanya dikembalikan dalam pesan user berikutnya
           toolResults.push({ type: "tool_result", tool_use_id: block.id, content: result });
         }
       }
@@ -746,7 +747,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
                   result = bashSession.ExecuteCommand(command);
               }
 
-              // Satu tool_result per blok tool_use, semuanya dikembalikan dalam pesan pengguna berikutnya
+              // Satu tool_result untuk setiap blok tool_use, semuanya dikembalikan dalam pesan pengguna berikutnya
               toolResults.Add(new ToolResultBlockParam { ToolUseID = toolUse.ID, Content = result });
           }
       }
@@ -772,7 +773,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
       			result = bashSession.ExecuteCommand(input.Command)
       		}
 
-      		// Satu tool_result per blok tool_use, semuanya dikembalikan dalam pesan pengguna berikutnya
+      		// Satu tool_result untuk setiap blok tool_use, semuanya dikembalikan dalam pesan user berikutnya
       		toolResults = append(toolResults, anthropic.NewToolResultBlock(block.ID, result, false))
       	}
       }
@@ -791,7 +792,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
                   result = bashSession.executeCommand(command);
               }
 
-              // Satu tool_result per blok tool_use, semuanya dikembalikan dalam pesan pengguna berikutnya
+              // Satu tool_result untuk setiap blok tool_use, semuanya dikembalikan dalam pesan user berikutnya
               toolResults.add(Map.of("type", "tool_result", "tool_use_id", block.id(), "content", result));
           }
       }
@@ -808,7 +809,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
                   $result = $bashSession->executeCommand($block->input['command']);
               }
 
-              // Satu tool_result per blok tool_use, semuanya dikembalikan dalam pesan pengguna berikutnya
+              // Satu tool_result untuk setiap blok tool_use, semuanya dikembalikan dalam pesan pengguna berikutnya
               $toolResults[] = ['type' => 'tool_result', 'tool_use_id' => $block->id, 'content' => $result];
           }
       }
@@ -827,7 +828,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
             bash_session.execute_command(block.input[:command])
           end
 
-        # Satu tool_result per blok tool_use, semuanya dikembalikan dalam pesan pengguna berikutnya
+        # Satu tool_result untuk setiap blok tool_use, semuanya dikembalikan dalam pesan user berikutnya
         tool_results << {type: "tool_result", tool_use_id: block.id, content: result}
       end
       ```
@@ -835,7 +836,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
   </Step>
 
   <Step title="Kembalikan hasilnya ke Claude">
-    Kirim `tool_result` kembali dalam pesan `user` yang melanjutkan percakapan yang sama. Claude meminta perintah lain dalam sesi yang sama atau menyelesaikan jawabannya:
+    Kirim `tool_result` kembali dalam pesan `user` yang melanjutkan percakapan yang sama. Claude akan meminta perintah lain di sesi yang sama atau menyelesaikan jawabannya:
 
     <CodeGroup>
       ```bash cURL
@@ -1113,12 +1114,13 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
       ```
 
       ```php PHP
+      use Anthropic\Messages\Model;
       use Anthropic\Messages\ToolBash20250124;
 
       $client = new Client();
 
       $response = $client->messages->create(
-          model: 'claude-opus-5-5',
+          model: Model::CLAUDE_OPUS_5_5,
           maxTokens: 1024,
           tools: [new ToolBash20250124()],
           messages: [
@@ -1154,7 +1156,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
       client = Anthropic::Client.new
 
       response = client.messages.create(
-        model: "claude-opus-5-5",
+        model: Anthropic::Model::CLAUDE_OPUS_5_5,
         max_tokens: 1024,
         tools: [{type: "bash_20250124", name: "bash"}],
         messages: [
@@ -1439,11 +1441,11 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki sem
 
 ### Menangani kesalahan
 
-Ketika suatu perintah gagal atau sesi rusak, beri tahu Claude apa yang terjadi. Kembalikan pesan tersebut sebagai konten `tool_result` dan setel `is_error` ke `true`, yang menandai pemanggilan alat sebagai gagal. Lihat [Menangani kesalahan dengan is\_error](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls#handling-errors-with-is-error).
+Saat suatu perintah gagal atau sesi rusak, beri tahu Claude apa yang terjadi. Kembalikan pesan sebagai konten `tool_result` dan setel `is_error` ke `true`, yang menandai pemanggilan alat sebagai gagal. Lihat [Menangani kesalahan dengan is\_error](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls#handling-errors-with-is-error).
 
 <AccordionGroup>
   <Accordion title="Timeout eksekusi perintah">
-    Jika suatu perintah membutuhkan waktu terlalu lama untuk dieksekusi:
+    Jika suatu perintah membutuhkan waktu terlalu lama untuk dijalankan:
 
     ```json
     {
@@ -1501,7 +1503,7 @@ Ketika suatu perintah gagal atau sesi rusak, beri tahu Claude apa yang terjadi. 
 
 <AccordionGroup>
   <Accordion title="Gunakan timeout perintah">
-    Perintah yang tidak pernah selesai, seperti perintah yang menunggu input, memblokir sesi selamanya karena baris sentinelnya tidak pernah tiba. Beri setiap perintah tenggat waktu. Ketika tenggat waktu terlewati, hentikan shell dan semua yang dimulai oleh perintah tersebut, lalu mulai ulang sesi:
+    Perintah yang tidak pernah selesai, seperti perintah yang menunggu input, akan memblokir sesi selamanya karena baris sentinelnya tidak pernah tiba. Berikan batas waktu untuk setiap perintah. Saat batas waktu terlewati, hentikan shell dan semua yang dimulai oleh perintah tersebut, lalu mulai ulang sesi:
 
     <CodeGroup exclude="shell">
       ```python Python
@@ -1611,7 +1613,7 @@ Ketika suatu perintah gagal atau sesi rusak, beri tahu Claude apa yang terjadi. 
       // output yang dapat dibaca sebelum setiap fgets() agar loop dapat memeriksa tenggat.
       function executeWithTimeout(BashSession $session, string $command, int $timeout = 30): string
       {
-          $sentinel = '__CLAUDE_BASH_DONE_' . bin2hex(random_bytes(16)) . '__'; // unique per call
+          $sentinel = '__CLAUDE_BASH_DONE_' . bin2hex(random_bytes(16)) . '__'; // unique for each call
           fwrite($session->stdin, "{$command}\necho {$sentinel}\n");
           fflush($session->stdin);
 
@@ -1810,7 +1812,7 @@ Ketika suatu perintah gagal atau sesi rusak, beri tahu Claude apa yang terjadi. 
   </Accordion>
 
   <Accordion title="Catat semua perintah">
-    Simpan jejak audit. Arahkan setiap perintah melalui satu wrapper yang mencatat perintah sebelum dijalankan dan outputnya setelah selesai. Perintah yang macet atau merusak sesi tetap meninggalkan catatan:
+    Simpan jejak audit. Arahkan setiap perintah melalui satu wrapper yang mencatat perintah sebelum dijalankan dan output setelah selesai. Perintah yang macet atau merusak sesi tetap meninggalkan catatan:
 
     <CodeGroup exclude="shell">
       ```python Python
@@ -1936,9 +1938,9 @@ Lihat [harga penggunaan alat](https://platform.claude.com/docs/id/agents-and-too
 
 * Menjalankan pengujian: `pytest && coverage report`
 * Membangun proyek: `npm install && npm run build`
-* Operasi Git: `git status && git add . && git commit -m "message"`
+* Menjalankan operasi Git: `git status && git add . && git commit -m "message"`
 
-Untuk panduan menggunakan git sebagai mekanisme checkpoint-dan-pemulihan dalam alur kerja agen yang berjalan lama, lihat [praktik terbaik manajemen state](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#state-management-best-practices).
+Untuk panduan tentang penggunaan Git sebagai mekanisme checkpoint dan pemulihan dalam alur kerja agen yang berjalan lama, lihat [praktik terbaik manajemen state](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#state-management-best-practices).
 
 ### Operasi file
 
@@ -1949,8 +1951,8 @@ Untuk panduan menggunakan git sebagai mekanisme checkpoint-dan-pemulihan dalam a
 ### Tugas sistem
 
 * Memeriksa sumber daya: `df -h && free -m`
-* Manajemen proses: `ps aux | grep python`
-* Penyiapan lingkungan: `export PATH=$PATH:/new/path && echo $PATH`
+* Mengelola proses: `ps aux | grep python`
+* Menyiapkan lingkungan: `export PATH=$PATH:/new/path && echo $PATH`
 
 ## Keterbatasan
 
@@ -1976,6 +1978,6 @@ Alat bash cocok dipasangkan dengan [Alat editor teks](https://platform.claude.co
   </Card>
 
   <Card title="Penggunaan alat dengan Claude" icon="tool" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview">
-    Hubungkan Claude ke alat dan API eksternal. Lihat di mana alat dieksekusi, kapan Claude memanggilnya, dan alat mana yang cocok untuk tugas Anda.
+    Hubungkan Claude ke alat dan API eksternal. Lihat di mana alat dijalankan, kapan Claude memanggilnya, dan alat mana yang sesuai dengan tugas Anda.
   </Card>
 </CardGroup>

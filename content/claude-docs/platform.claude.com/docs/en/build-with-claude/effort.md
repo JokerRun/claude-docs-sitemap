@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/effort
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 725fe89abb7e466aa4b60edb72ff4fc951f5d6be3a0d1b2f70b0ca7e0e3aecdc
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: c0b2147dcb5b60c6d9eb9b097c509257bfd408e3851395fa5e55c35a2b387c83
 ---
 
 ---
@@ -275,7 +275,7 @@ Claude Opus 5.5 supports all five effort levels, and `medium` is the default (Cl
 
 ### Recommended effort levels for Claude Opus 5
 
-Claude Opus 5 supports all five effort levels. **Start with `high`, the default**, and adjust based on your evals: step up to `xhigh` for demanding coding and agentic work, or to `max` when a task justifies unconstrained token spending, and use `low` and `medium` liberally as your primary control for token cost and response time wherever your evals show quality holds. If you carried effort settings over from an earlier model, run a fresh effort sweep on your evals rather than reusing them.
+Claude Opus 5 supports all five effort levels. **Start with `high`, the default**, and adjust based on your evals: step up to `xhigh` for demanding coding and agentic work, or to `max` when a task justifies unconstrained token spending. Use `low` and `medium` liberally as your primary control for token cost and response time wherever your evals show quality holds. If you carried effort settings over from an earlier model, run a fresh effort sweep on your evals rather than reusing them.
 
 Effort controls thinking volume, not visible response length: on Claude Opus 5, changing effort does not reliably shorten responses, so [prompt for length](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5#response-length-and-verbosity) instead.
 

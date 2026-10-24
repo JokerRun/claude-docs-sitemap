@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/claude-code/routines-fire
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: d9b0cef615a27eefdb1317f279f835d5c3f197eb7b2ed0606b961a5f36d09f4a
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: f5d9da1370dd2c6642af8f9ef0405c587c125b6c00deb0cf3bb3885d5e2d2569
 ---
 
 ---
@@ -102,7 +102,7 @@ The body is optional. Unknown fields in the body are ignored.
 
 A successful request returns `200 OK` with the new session details:
 
-```text
+```json
 {
   "type": "routine_fire",
   "claude_code_session_id": "session_01HJKLMNOPQRSTUVWXYZ",
@@ -120,7 +120,7 @@ A successful request returns `200 OK` with the new session details:
 
 Errors use the standard Anthropic [error envelope](https://platform.claude.com/docs/en/api/errors):
 
-```text wrap
+```json
 {
   "type": "error",
   "error": {

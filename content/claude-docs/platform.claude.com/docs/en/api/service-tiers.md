@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/service-tiers
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 51cdd4d4e828cbad93654af0155599cc3ab52719ad8443bcb31628d973b04c65
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: c07b77eaafebe0db2980d2131269e701767c3294d09e44ec010b99407228340f
 ---
 
 ---
@@ -194,7 +194,7 @@ The `service_tier` parameter accepts the following values:
 
 The response `usage` object also includes the service tier assigned to the request:
 
-```text wrap
+```json
 {
   "usage": {
     "input_tokens": 410,

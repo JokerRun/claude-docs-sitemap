@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: fb99cd706999ffca2a5df17bf5386a68b0d844081c82c6e0bb25f0ebf3fcbe7c
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: f767e591e872cf1831215411f9806b893e4652e57998ae0baf472352d43e2c50
 ---
 
 ---
@@ -586,8 +586,8 @@ Inti dari penggunaan komputer adalah "loop agen": sebuah siklus di mana Claude m
   ```
 
   ```go Go
-  // samplingLoop runs the computer-use agent loop until Claude stops
-  // requesting tools or the iteration limit is reached.
+  // samplingLoop menjalankan loop agen computer-use hingga Claude berhenti
+  // meminta alat atau batas iterasi tercapai.
   func samplingLoop(ctx context.Context, model anthropic.Model, messages []anthropic.MessageParam, maxIterations int) ([]anthropic.MessageParam, error) {
   	for range maxIterations {
   		response, err := client.Messages.New(ctx, anthropic.MessageNewParams{
@@ -600,16 +600,16 @@ Inti dari penggunaan komputer adalah "loop agen": sebuah siklus di mana Claude m
   			return nil, err
   		}
 
-  		// Add Claude's response to the conversation history
+  		// Tambahkan respons Claude ke riwayat percakapan
   		messages = append(messages, response.ToParam())
 
-  		// Run the actions Claude requested, in order, and collect the results
+  		// Jalankan aksi yang diminta Claude secara berurutan, dan kumpulkan hasilnya
   		toolResults := processToolCalls(response)
   		if len(toolResults) == 0 {
   			return messages, nil // No more tool use; task complete
   		}
 
-  		// Send every result back to Claude in a single user message
+  		// Kirim semua hasil kembali ke Claude dalam satu pesan pengguna
   		messages = append(messages, anthropic.NewUserMessage(toolResults...))
   	}
   	return messages, nil
@@ -1056,11 +1056,11 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       ```
 
       ```go Go
-      // placeholderPNG stands in for a real capture: an executor returns the
-      // screen as base64-encoded PNG data.
+      // placeholderPNG menggantikan tangkapan layar nyata: executor mengembalikan
+      // layar sebagai data PNG yang dienkode base64.
       const placeholderPNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
 
-      // captureScreenshot returns an image block rather than text.
+      // captureScreenshot mengembalikan blok gambar, bukan teks.
       func captureScreenshot() []anthropic.ToolResultBlockParamContentUnion {
       	return []anthropic.ToolResultBlockParamContentUnion{{
       		OfImage: &anthropic.ImageBlockParam{
@@ -1074,7 +1074,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       	}}
       }
 
-      // textContent wraps text as tool_result content.
+      // textContent membungkus teks sebagai konten tool_result.
       func textContent(text string) []anthropic.ToolResultBlockParamContentUnion {
       	return []anthropic.ToolResultBlockParamContentUnion{
       		{OfText: &anthropic.TextBlockParam{Text: text}},
@@ -1098,7 +1098,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       	case "screenshot":
       		return captureScreenshot(), nil
       	case "left_click":
-      		// coordinate is optional; without it, click where the cursor already is
+      		// coordinate bersifat opsional; tanpanya, klik di posisi kursor saat ini
       		coord, ok := params["coordinate"].([]any)
       		if !ok {
       			return textContent(clickAtCursor()), nil
@@ -1114,11 +1114,11 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       		if text, ok := params["text"].(string); ok {
       			return textContent(typeText(text)), nil
       		}
-      	// Handle other actions as needed
+      	// Tangani aksi lain sesuai kebutuhan
       	default:
       		return nil, fmt.Errorf("unknown or unimplemented member: %s", action)
       	}
-      	// Reached when a member's input is missing a field or a field has the wrong type
+      	// Tercapai saat input anggota tidak memiliki field atau field bertipe salah
       	return nil, fmt.Errorf("invalid input for %s", action)
       }
       ```
@@ -1411,8 +1411,8 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       ```go Go
       const notExecuted = "Not executed: an earlier computer action in this turn failed."
 
-      // computerToolResult builds the result for one computer action. Unlike an
-      // ordinary tool result, it must echo the toolset name.
+      // computerToolResult membangun hasil untuk satu aksi komputer. Berbeda dengan
+      // hasil alat biasa, ia harus menyertakan kembali nama toolset.
       func computerToolResult(toolUseID string, content []anthropic.ToolResultBlockParamContentUnion, isError bool) anthropic.ContentBlockParamUnion {
       	result := anthropic.ToolResultBlockParam{
       		ToolUseID:   toolUseID,
@@ -1425,16 +1425,16 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       	return anthropic.ContentBlockParamUnion{OfToolResult: &result}
       }
 
-      // processToolCalls runs the computer actions in Claude's response in order and
-      // builds one tool_result for each tool_use block. After the first failure it skips
-      // the rest: Claude planned them assuming the earlier actions succeeded.
+      // processToolCalls menjalankan aksi komputer dalam respons Claude secara berurutan dan
+      // membangun satu tool_result untuk setiap blok tool_use. Setelah kegagalan pertama, sisanya
+      // dilewati: Claude merencanakannya dengan asumsi aksi sebelumnya berhasil.
       func processToolCalls(response *anthropic.Message) []anthropic.ContentBlockParamUnion {
       	var toolResults []anthropic.ContentBlockParamUnion
       	failed := false
       	for _, block := range response.Content {
       		switch variant := block.AsAny().(type) {
       		case anthropic.ToolUseBlock:
-      			// This example declares only the computer toolset; route other tools here if you add them.
+      			// Contoh ini hanya mendeklarasikan toolset komputer; arahkan alat lain ke sini jika Anda menambahkannya.
       			if variant.ToolsetName != "computer" {
       				continue
       			}
@@ -1446,7 +1446,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       			var content []anthropic.ToolResultBlockParamContentUnion
       			err := json.Unmarshal(variant.Input, &input)
       			if err == nil {
-      				// Text, or the image block that screenshot returns
+      				// Teks, atau blok gambar yang dikembalikan screenshot
       				content, err = handleComputerAction(variant.Name, input)
       			}
       			if err != nil {
@@ -1866,7 +1866,7 @@ Jika klik meleset dari targetnya, penyebabnya biasanya salah satu dari berikut i
       ```typescript TypeScript
       async function clickAndWait(x: number, y: number, waitMs = 500): Promise<void> {
         clickAt(x, y);
-        await setTimeout(waitMs); // Allow UI to update
+        await new Promise((resolve) => setTimeout(resolve, waitMs)); // Allow UI to update
       }
       ```
 

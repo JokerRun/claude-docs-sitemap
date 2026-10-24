@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 40de9f54deb768e8ad21cfff2c2e1a3009d66116301f9e72f6931c8e337c522e
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 808ebe03b40efa9357b747e3e1ceec9b0a848ba8a538a32eec9aa5115bd7ddbf
 ---
 
 ---
@@ -1186,7 +1186,7 @@ You can also provide search results directly in user messages. This is useful fo
 
 Regardless of how search results are provided, Claude automatically includes citations when using information from them:
 
-```text
+```json
 {
   "role": "assistant",
   "content": [
@@ -1273,7 +1273,7 @@ Search results can contain multiple text blocks in the `content` array:
 
 A citation referencing the rate limits block looks like:
 
-```text wrap
+```json
 {
   "type": "search_result_location",
   "cited_text": "Rate Limits: The API allows 1000 requests per hour per key.",
@@ -2012,7 +2012,7 @@ The following example replays a complete conversation. The first user message ca
 
 The response cites both sources. The pre-fetched result is `search_result_index: 0` and the tool-returned result is `search_result_index: 1`, matching the order the `search_result` blocks appear in the conversation:
 
-```text
+```json
 {
   "role": "assistant",
   "content": [

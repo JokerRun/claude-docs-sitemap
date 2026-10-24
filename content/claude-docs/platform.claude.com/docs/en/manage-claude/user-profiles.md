@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/user-profiles
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 116ffd6517f1f774610128cd3682f76f332a148560c3f3b218cf986dc801e664
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 2bfc01ceabead4908044874393c6d6d3d4898215208e16d77dc5db006a1316cb
 ---
 
 ---
@@ -188,7 +188,7 @@ The following example registers a company that buys API access through a gateway
 
 The response is the new profile:
 
-```text wrap
+```json
 {
   "type": "user_profile",
   "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
@@ -410,7 +410,7 @@ A `passthrough` profile identifies a company, not the person making the request.
 
 A profile's `enforcement_status` and `enforcement_actions` fields report the enforcement actions that Anthropic has open on the end customer. An enforcement action is a restriction or a ban. Every response that returns a profile includes both fields: create, retrieve, update, and each profile in a list. Send these requests with no `user-profiles-` value in the `anthropic-beta` header, because `user-profiles-2026-09-04` and earlier values leave the fields out. The following example shows the fields on a retrieved profile, with the other fields left out:
 
-```text wrap
+```json
 {
   "type": "user_profile",
   "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",

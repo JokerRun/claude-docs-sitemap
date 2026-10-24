@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 1e4c4e90a18b9b7dba7adb98adeb69b68c11002541aad45c12add7f77807fd95
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 71793a2e9d1e1d4abdc785d77cfe4ef2f303242622456c3c7ced866c5a8fc696
 ---
 
 ---
@@ -481,7 +481,7 @@ Setiap fragmen input tiba begitu Claude menulisnya, dan fragmen-fragmen tersebut
 Complete tool input: {"filename": "poem.txt", "lines_of_text": ["The Wanderer's Journey", ...]}
 ```
 
-Tanpa `eager_input_streaming`, API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali, sehingga tidak ada yang tercetak untuk parameter besar sampai Claude selesai menghasilkannya. Dengan field tersebut, fragmen mulai tiba segera setelah Claude memulai parameter, dan fragmen-fragmen itu biasanya lebih panjang, dengan lebih sedikit pemotongan di tengah kata.
+Tanpa `eager_input_streaming`, API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali, sehingga tidak ada yang tercetak untuk parameter besar sampai Claude selesai menghasilkannya. Dengannya, fragmen tiba sejak Claude memulai parameter, dan biasanya lebih panjang, dengan lebih sedikit pemotongan di tengah kata.
 
 ## Mengakumulasi delta input alat
 
@@ -493,11 +493,11 @@ Jika SDK Anda menyediakan helper akumulator (seperti yang dilakukan tab Python, 
 
 Kontrak akumulasinya:
 
-1. Pada `content_block_start` dengan `type: "tool_use"`, inisialisasi string kosong: `input_json = ""`
-2. Untuk setiap `content_block_delta` dengan `type: "input_json_delta"`, tambahkan: `input_json += event.delta.partial_json`
-3. Pada `content_block_stop`, parse string terakumulasi
+1. Pada `content_block_start` dengan `type: "tool_use"`, inisialisasi string kosong: `input_json = ""`.
+2. Untuk setiap `content_block_delta` dengan `type: "input_json_delta"`, tambahkan: `input_json += event.delta.partial_json`.
+3. Pada `content_block_stop`, parse string yang terkumpul.
 
-Lindungi proses parse, seperti yang dilakukan contoh SDK berikut. Respons juga dapat berhenti pada `max_tokens` di tengah parameter. Periksa [stop reason](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons) dan putuskan apakah akan mencoba ulang permintaan dengan `max_tokens` yang lebih tinggi atau memperbaiki input parsial tersebut.
+Lindungi proses parsing, seperti yang dilakukan contoh SDK berikut. Respons juga dapat berhenti di `max_tokens` di tengah parameter. Periksa [stop reason](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons) dan putuskan apakah akan mencoba ulang permintaan dengan `max_tokens` yang lebih tinggi atau memperbaiki input parsial.
 
 Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) memang disengaja. Objek kosong menandai slot dalam array konten. String delta membangun nilai sebenarnya.
 
@@ -731,23 +731,23 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   ObjectMapper objectMapper = new ObjectMapper();
 
   Tool weatherTool = Tool.builder()
-          .name("get_weather")
-          .description("Get current weather for a city")
-          .eagerInputStreaming(true)
-          .inputSchema(Tool.InputSchema.builder()
-                  .properties(Tool.InputSchema.Properties.builder()
-                          .putAdditionalProperty("city", JsonValue.from(Map.of("type", "string")))
-                          .build())
-                  .addRequired("city")
-                  .build())
-          .build();
+      .name("get_weather")
+      .description("Get current weather for a city")
+      .eagerInputStreaming(true)
+      .inputSchema(Tool.InputSchema.builder()
+          .properties(Tool.InputSchema.Properties.builder()
+              .putAdditionalProperty("city", JsonValue.from(Map.of("type", "string")))
+              .build())
+          .addRequired("city")
+          .build())
+      .build();
 
   MessageCreateParams createParams = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5_5)
-          .maxTokens(1024)
-          .addTool(weatherTool)
-          .addUserMessage("Weather in Paris?")
-          .build();
+      .model(Model.CLAUDE_OPUS_5_5)
+      .maxTokens(1024)
+      .addTool(weatherTool)
+      .addUserMessage("Weather in Paris?")
+      .build();
 
   // Indeks blok konten -> JSON input alat yang terakumulasi
   Map<Long, StringBuilder> toolInputs = new HashMap<>();
@@ -837,7 +837,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
                   $accumulated = $toolInputs[$event->index];
                   try {
                       $parsed = json_decode($accumulated, associative: true, flags: JSON_THROW_ON_ERROR);
-                      echo "Tool input: " . json_encode($parsed) . "\n";
+                      echo 'Tool input: ' . json_encode($parsed) . "\n";
                   } catch (\JsonException $e) {
                       // String yang terakumulasi tidak dijamin merupakan JSON yang valid.
                       // Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
@@ -938,7 +938,7 @@ Kembalikan pembungkus tersebut, yang diserialisasi menjadi string, sebagai `cont
   </Card>
 
   <Card title="Menangani pemanggilan alat" icon="arrows-left-right" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls">
-    Parse blok tool\_use, format respons tool\_result, dan tangani error dengan is\_error.
+    Parse blok `tool_use`, format respons `tool_result`, dan tangani error dengan `is_error`.
   </Card>
 
   <Card title="Referensi alat" icon="book" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference">

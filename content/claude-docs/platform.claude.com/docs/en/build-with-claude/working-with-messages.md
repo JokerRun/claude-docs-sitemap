@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/working-with-messages
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 3188eab5ed69cce1a81291def99e054102e953d50e41eb9ef1090a27db1705da
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 0a66bef1b30c5d0207f14d43720c88ee7658f2e1a4a2c3bf8f5a088cdc39d22f
 ---
 
 ---
@@ -140,7 +140,7 @@ This guide covers common patterns for working with the Messages API, including b
   ```
 </CodeGroup>
 
-```text Output wrap
+```json Output
 {
   "id": "msg_01XFDUDYJgAACzvnptvVoYEL",
   "type": "message",
@@ -307,7 +307,7 @@ The Messages API is stateless, which means that you always send the full convers
   ```
 </CodeGroup>
 
-```text Output wrap
+```json Output
 {
   "id": "msg_018gCsTGsXkYJVqYPxTgDHBU",
   "type": "message",
@@ -485,7 +485,7 @@ You can prefill part of Claude's response in the last position of the input mess
   ```
 </CodeGroup>
 
-```text Output wrap
+```json Output
 {
   "id": "msg_01Q8Faay6S7QPTvEUUQARt7h",
   "type": "message",
@@ -1014,7 +1014,7 @@ Claude can read both text and images in requests. You can supply images using th
   ```
 </CodeGroup>
 
-```text Output
+```json Output
 {
   "id": "msg_011CdKmWtV3oFx1C5yUbf5CY",
   "type": "message",

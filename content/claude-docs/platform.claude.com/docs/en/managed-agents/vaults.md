@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/vaults
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 9888145f0967f31757205211543e2ca36841ff775e047f5727daffed2d660dc2
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 62918c32a5b181e761e42b6a729a2a725491a258a1cabc699726f1050f82351b
 ---
 
 ---
@@ -122,7 +122,7 @@ A vault is the collection of `credentials` associated with an end user. Give it 
 
 The response is the full vault record:
 
-```text wrap
+```json
 {
   "type": "vault",
   "id": "vlt_01ABC...",
@@ -449,7 +449,6 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
       if err != nil {
       	panic(err)
       }
-      _ = bearerCredential
       ```
 
       ```java Java
@@ -1071,7 +1070,7 @@ The top-level `status` (csharp, go: `Status`) tells you what to do next:
 
 The response is a `vault_credential_validation` object. `mcp_probe` includes the failed MCP handshake step; `refresh` includes the outcome of the attempted refresh.
 
-```text wrap
+```json
 {
   "type": "vault_credential_validation",
   "credential_id": "vcrd_01ABC...",

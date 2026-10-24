@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 8f61ab878bf955def9ea2cee16f95e94e0da88152c6953914a49e89ef52e9f25
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 0be1b15713a67cb41fcd02c8da167d934061de05b7bc468e0fcf8bbf8d65e719
 ---
 
 ---
@@ -709,13 +709,13 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
 <Tabs>
   <Tab title="cURL">
     <Info>
-      Alur kerja ini tidak cocok diterjemahkan menjadi perintah shell sekali jalan. Lihat tab SDK untuk pola loop-nya; permintaan HTTP per giliran identik dengan [Penggunaan dasar](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics#basic-usage).
+      Alur kerja ini tidak cocok diterjemahkan menjadi perintah shell sekali jalan. Gunakan Claude SDK untuk menjalankan loop; permintaan HTTP per giliran identik dengan [Penggunaan dasar](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics#basic-usage).
     </Info>
   </Tab>
 
   <Tab title="CLI">
     <Info>
-      Alur kerja ini tidak cocok diterjemahkan menjadi perintah shell sekali jalan. Lihat tab SDK untuk pola loop-nya; pemanggilan CLI per giliran identik dengan [Penggunaan dasar](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics#basic-usage).
+      Alur kerja ini tidak cocok diterjemahkan menjadi perintah shell sekali jalan. Gunakan Claude SDK untuk menjalankan loop; perintah CLI per giliran identik dengan [Penggunaan dasar](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics#basic-usage).
     </Info>
   </Tab>
 
@@ -975,7 +975,7 @@ Field `diagnostics` pada `Message` respons memiliki tiga kemungkinan nilai:
 | Nilai                          | Arti                                                                                                                                                                                                                         |
 | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `null`                         | Permintaan tidak menyertakan objek `diagnostics`, `previous_message_id` bernilai `null` (giliran pertama, tidak ada yang dibandingkan), atau perbandingan telah dijalankan dan tidak menemukan penyimpangan.                 |
-| `{"cache_miss_reason": null}`  | Perbandingan masih berjalan ketika respons diserialisasi. Ini dapat terjadi ketika respons dimulai dengan sangat cepat. Anggap sebagai tidak konklusif dan periksa giliran berikutnya.                                       |
+| `{"cache_miss_reason": null}`  | Perbandingan masih berjalan ketika respons diserialisasi. Hal ini dapat terjadi ketika respons dimulai dengan sangat cepat. Anggap hasilnya tidak meyakinkan dan periksa giliran berikutnya.                                 |
 | `{"cache_miss_reason": {...}}` | Sebuah `cache_miss_reason` dilampirkan. Untuk tipe `*_changed`, ini mengidentifikasi titik penyimpangan pertama; `previous_message_not_found` dan `unavailable` adalah kasus di mana tidak ada perbandingan yang dihasilkan. |
 
 Ketika `cache_miss_reason` tidak null, bentuknya seperti ini:
@@ -1003,7 +1003,7 @@ Ketika `cache_miss_reason` tidak null, bentuknya seperti ini:
 
 ## Tipe alasan cache miss
 
-`cache_miss_reason` adalah discriminated union pada `type`. Respons hanya melaporkan penyimpangan paling awal, jadi perbaiki itu terlebih dahulu; penyimpangan selanjutnya mungkin tersembunyi di baliknya.
+`cache_miss_reason` adalah discriminated union pada `type`. Respons hanya melaporkan divergensi paling awal, jadi perbaiki itu terlebih dahulu; divergensi berikutnya mungkin tersembunyi di baliknya.
 
 | Tipe                         | Artinya                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Yang perlu diubah                                                                                                                                                                                                                                                                                                                       |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1020,23 +1020,23 @@ Ketika `cache_miss_reason` tidak null, bentuknya seperti ini:
 
 ## Membaca diagnostik bersama usage
 
-`diagnostics` menjawab "apakah permintaan saya berubah?" sedangkan `usage.cache_read_input_tokens` menjawab "apakah cache hit?". Menggabungkan keduanya memberi tahu Anda di mana harus mencari.
+`diagnostics` menjawab "apakah permintaan saya berubah?" sedangkan `usage.cache_read_input_tokens` menjawab "apakah cache hit?" Menggabungkan keduanya memberi tahu Anda di mana harus mencari.
 
 Matriks ini berlaku untuk giliran di mana Anda meneruskan `previous_message_id` yang nyata. Pada giliran pertama (`previous_message_id: null`), `diagnostics` selalu `null` dan `cache_read_input_tokens` biasanya nol karena cache sedang ditulis, bukan dibaca; tidak diperlukan pemecahan masalah. Matriks ini juga tidak berlaku ketika `cache_miss_reason` bernilai `null` (perbandingan masih tertunda; periksa giliran berikutnya) atau ketika `type`-nya adalah `previous_message_not_found` atau `unavailable` (tidak ada perbandingan yang dihasilkan).
 
-| Hasil diagnostik                        | Token cache read | Interpretasi                                                                                                                                                                                                                                      |
-| --------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `null`                                  | tinggi           | Berfungsi sesuai harapan. Prefiks Anda stabil dan cache hit.                                                                                                                                                                                      |
-| `null`                                  | rendah atau nol  | Permintaan Anda cocok tetapi entri cache tidak lagi tersedia. Pertimbangkan untuk memperpendek jeda antar giliran atau menggunakan [TTL cache 1 jam](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration). |
-| `cache_miss_reason` bertipe `*_changed` | rendah atau nol  | Bug Anda. Permintaan berubah; perbaiki penyebab yang ditunjukkan oleh `type`.                                                                                                                                                                     |
-| `cache_miss_reason` bertipe `*_changed` | tinggi           | Jarang. Perubahan terjadi di bagian akhir prompt tetapi breakpoint `cache_control` sebelumnya masih hit. Layak diperbaiki, tetapi dampaknya rendah.                                                                                               |
+| Hasil diagnostik                            | Token cache read | Interpretasi                                                                                                                                                                                                                                      |
+| ------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `null`                                      | tinggi           | Berfungsi sesuai harapan. Prefiks Anda stabil dan cache hit.                                                                                                                                                                                      |
+| `null`                                      | rendah atau nol  | Permintaan Anda cocok tetapi entri cache tidak lagi tersedia. Pertimbangkan untuk memperpendek jeda antar giliran atau menggunakan [TTL cache 1 jam](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration). |
+| `cache_miss_reason` adalah tipe `*_changed` | rendah atau nol  | Permintaan berubah; perbaiki penyebab yang ditunjukkan oleh `type`.                                                                                                                                                                               |
+| `cache_miss_reason` bertipe `*_changed`     | tinggi           | Jarang. Perubahan terjadi di bagian akhir prompt tetapi breakpoint `cache_control` sebelumnya masih hit. Layak diperbaiki, tetapi dampaknya rendah.                                                                                               |
 
 ## Keterbatasan
 
 * **Hanya Claude API:** Tidak tersedia di Amazon Bedrock atau Claude Models on Google Cloud (Google managed).
 * **Retensi terbatas:** Fingerprint untuk pencarian `previous_message_id` kedaluwarsa setelah periode singkat. Jalankan perbandingan diagnostik antara permintaan yang berdekatan waktunya.
 * **Workspace yang sama:** Permintaan sebelumnya harus dijalankan dalam organisasi dan workspace yang sama. Untuk memeriksanya, bandingkan [header respons](https://platform.claude.com/docs/id/api/overview#response-headers) `anthropic-workspace-id` pada kedua respons.
-* **Horizon perbandingan:** Untuk percakapan yang sangat panjang di mana satu-satunya perubahan berada jauh di dalam daftar pesan, responsnya mungkin `unavailable` alih-alih lokasi yang tepat.
+* **Cakupan perbandingan:** Untuk percakapan yang sangat panjang ketika satu-satunya perubahan berada jauh di dalam daftar pesan, respons mungkin berupa `unavailable` alih-alih lokasi yang tepat.
 * **Best-effort:** Diagnostik tidak pernah memblokir atau menggagalkan permintaan Anda. Jika informasi diagnostik tidak tersedia, respons mengembalikan `unavailable`, atau `cache_miss_reason: null` ketika perbandingan masih berjalan.
 
 ## Retensi data

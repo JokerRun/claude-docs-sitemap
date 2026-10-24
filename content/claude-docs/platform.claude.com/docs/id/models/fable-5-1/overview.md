@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-1/overview
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: d0849694a654463c9a6a61c92320fef8c0c36aebb19bbef63ddb610c61cf3a90
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 56ee6d162eedabdfe907ae66cb39fe1cd6c39f490cf3d7f679daf97f472b9aa5
 ---
 
 ---
 title: Claude Fable 5.1
 url: https://platform.claude.com/docs/id/models/fable-5-1/overview
-description: "Sekilas tentang Claude Fable 5.1: kegunaannya, ID model di setiap platform, jendela konteks, batas output, harga, ketersediaan, dan sumber daya untuk membangun dengannya."
+description: "Ikhtisar Claude Fable 5.1: kegunaannya, ID model di setiap platform, jendela konteks, batas output, harga, ketersediaan, dan sumber daya untuk membangun dengannya."
 ---
 
 **Latest.** Released September 1, 2026.

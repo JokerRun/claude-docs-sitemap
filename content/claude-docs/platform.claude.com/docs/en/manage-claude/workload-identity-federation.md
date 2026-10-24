@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/workload-identity-federation
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 036e0180e11e08797167aa053486451ae05c30c6a3eb28fae1804f1af89ef6ea
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: d57a95831c07fa9529cdc1b1fd824ae9983f5af5667d36ab97dc8514cb5c34f5
 ---
 
 ---
@@ -378,7 +378,7 @@ The SDK caches the token and refreshes it on a two-tier schedule modeled on `bot
 
 Because the SDK re-reads `ANTHROPIC_IDENTITY_TOKEN_FILE` on every exchange, it transparently picks up rotated projected tokens (Kubernetes service-account tokens, for example, rotate well before their `exp`).
 
-By default, identity tokens that carry a `jti` claim are single-use: each exchange must present a JWT that has not been exchanged before, and re-presenting one fails with the reason `jti_reused` on the [authentication history page](https://platform.claude.com/settings/workload-identity-federation?tab=history) in the Claude Console. If your workload fetches its own tokens from your identity provider, mint a fresh JWT for each exchange instead of reusing a cached one (retry loops are the usual cause of reuse). The same applies to a token read from `ANTHROPIC_IDENTITY_TOKEN_FILE`: the SDK re-reads the file on every exchange, so the file must hold a new token before each refresh. A refresh that re-reads an unrotated token, or a restarted process that re-presents a token it already exchanged, is rejected the same way. Rotating the token well within the minted token's lifetime keeps the file ahead of the refresh schedule; if your token source cannot rotate that often, you can disable `check_jti` for that issuer as a last resort (this removes replay protection for every rule on the issuer). See [JWT verification](https://platform.claude.com/docs/en/manage-claude/wif-reference#jwt-verification) for details.
+By default, identity tokens that carry a `jti` claim are single-use: each exchange must present a JWT that has not been exchanged before, and re-presenting one fails with the reason `jti_reused` on the [authentication history page](https://platform.claude.com/settings/workload-identity-federation?tab=history) in the Claude Console. If your workload fetches its own tokens from your identity provider, mint a fresh JWT for each exchange instead of reusing a cached one (retry loops are the usual cause of reuse). The same applies to a token read from `ANTHROPIC_IDENTITY_TOKEN_FILE`: the SDK re-reads the file on every exchange, so the file must hold a new token before each refresh. A refresh that re-reads an unrotated token, or a restarted process that re-presents a token it already exchanged, is rejected the same way. Rotating the token well within the minted token's lifetime keeps the file ahead of the refresh schedule. If your token source cannot rotate that often, you can disable `check_jti` for that issuer as a last resort. This removes replay protection for every rule on the issuer. See [JWT verification](https://platform.claude.com/docs/en/manage-claude/wif-reference#jwt-verification) for details.
 
 ## Identity providers
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta-headers
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 2fcac246e1e805d3babfe37e9d158b0be45b134e8e9ca53b685666ae5fc41f82
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: d3463c19ba0109b25705a74a4358901c86cb6a4274ef8b9cb4796e3db9fadb3f
 ---
 
 ---
@@ -216,7 +216,7 @@ Beta feature names typically follow the pattern `feature-name-YYYY-MM-DD`, where
 
 If you use an invalid beta name, or a beta your organization doesn't have access to, you'll receive a `400` error response:
 
-```text Output
+```json Output
 {
   "type": "error",
   "error": {

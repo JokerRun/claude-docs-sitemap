@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-haiku-3
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 2da6a96c564fb2f1e5a1b1325d9757fbc1d6e66fbcf6a2f21b63fffc5b847e6c
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: d89e9e87aab553bdac469b2d1ee0f3ae68982a9f68eaa06dae94333be53a5fe2
 ---
 
 ---
 title: Prompt sistem Claude Haiku 3
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-haiku-3
-description: Lihat pembaruan pada prompt sistem inti untuk Claude Haiku 3 di [claude.ai](https://claude.ai) serta [aplikasi Claude iOS](https://anthropic.com/ios) dan [aplikasi Claude Android](https://anthropic.com/android).
+description: Lihat pembaruan pada prompt sistem inti untuk Claude Haiku 3 di [claude.ai](https://claude.ai), [aplikasi Claude iOS](https://anthropic.com/ios), dan [aplikasi Claude Android](https://anthropic.com/android).
 ---
 
 ## 12 Juli 2024

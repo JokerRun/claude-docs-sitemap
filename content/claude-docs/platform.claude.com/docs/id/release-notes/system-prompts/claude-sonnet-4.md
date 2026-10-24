@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-4
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: ecd9f8f7c626e95116d547d8d3135b0a1ec2c9081438fc132b0988f1c5a231c2
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 3a351341aa6656ae50d4c93240dcbfbd0073dcdce3017612ef86edf016c0ff42
 ---
 
 ---
 title: Prompt sistem Claude Sonnet 4
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-4
-description: Lihat pembaruan pada prompt sistem inti untuk Claude Sonnet 4 di [claude.ai](https://claude.ai) serta [aplikasi Claude iOS](https://anthropic.com/ios) dan [aplikasi Claude Android](https://anthropic.com/android).
+description: Lihat pembaruan pada prompt sistem inti untuk Claude Sonnet 4 di [claude.ai](https://claude.ai), [aplikasi Claude iOS](https://anthropic.com/ios), dan [aplikasi Claude Android](https://anthropic.com/android).
 ---
 
 ## 5 Agustus 2025

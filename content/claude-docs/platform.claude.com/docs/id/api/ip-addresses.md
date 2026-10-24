@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/ip-addresses
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: d55db8dcceb967f5552e1ff20429bcd0e11a1b52197770b264480fb93024fcc2
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: e17d226455ecf0569135e127d0032b01fad3d519b30b6429b1bfe9498380fbb5
 ---
 
 ---
 title: Alamat IP
 url: https://platform.claude.com/docs/id/api/ip-addresses
-description: Layanan Anthropic menggunakan alamat IP tetap untuk koneksi masuk maupun keluar. Anda dapat menggunakan alamat-alamat ini untuk mengonfigurasi aturan firewall Anda agar dapat mengakses Claude API dan Console dengan aman. Alamat-alamat ini tidak akan berubah tanpa pemberitahuan.
+description: Layanan Anthropic menggunakan alamat IP tetap untuk koneksi masuk dan keluar. Anda dapat menggunakan alamat-alamat ini untuk mengonfigurasi aturan firewall Anda demi akses yang aman ke Claude API dan Claude Console. Alamat-alamat ini tidak akan berubah tanpa pemberitahuan.
 ---
 
 <Note>
@@ -37,7 +37,7 @@ Ini adalah alamat IP stabil yang digunakan Anthropic untuk permintaan keluar (mi
 
 ### Alamat IP yang sudah tidak digunakan
 
-Alamat IP berikut tidak lagi digunakan oleh Anthropic. Jika Anda sebelumnya telah memasukkan alamat-alamat ini ke dalam allowlist, Anda sebaiknya menghapusnya dari aturan firewall Anda.
+Alamat IP berikut tidak lagi digunakan oleh Anthropic. Jika Anda sebelumnya telah memasukkan alamat-alamat ini ke dalam allowlist, hapus alamat-alamat tersebut dari aturan firewall Anda.
 
 ```text wrap
 34.162.46.92/32

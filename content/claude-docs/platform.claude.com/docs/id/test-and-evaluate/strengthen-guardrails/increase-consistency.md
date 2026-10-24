@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/increase-consistency
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 46e9373f03ddd329e127689dfea71aab585c33f2ceceaf62538cb04eaf908aa3
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 7c2eded0c5c44e857c0bf098634fbb4ebc7766f0240274c2c38142c4c0e38e64
 ---
 
 ---
@@ -21,9 +21,9 @@ description: Buat output Claude lebih konsisten dengan menentukan format yang te
 
 Berikut cara membuat respons Claude lebih konsisten:
 
-## Tentukan format output yang diinginkan
+## Tentukan format output yang Anda inginkan
 
-Definisikan secara tepat format output yang Anda inginkan menggunakan JSON, XML, atau template kustom sehingga Claude mengikuti setiap elemen pemformatan output yang Anda perlukan.
+Definisikan secara tepat format output yang Anda inginkan menggunakan JSON, XML, atau template kustom agar Claude mengikuti setiap elemen format output yang Anda perlukan.
 
 <Accordion title="Contoh: Menstandarkan umpan balik pelanggan">
   ```text User wrap
@@ -76,7 +76,7 @@ Definisikan secara tepat format output yang Anda inginkan menggunakan JSON, XML,
    pada model yang mendukungnya, atau instruksi prompt sistem.
 </Note>
 
-Lakukan "prefill" (pengisian awal) pada giliran `Assistant` dengan format yang Anda inginkan. Trik ini melewati pembukaan ramah Claude dan menegakkan struktur Anda.
+Lakukan prefill pada giliran `Assistant` dengan format yang Anda inginkan. Trik ini melewati pembukaan ramah Claude dan menerapkan struktur Anda.
 
 <Accordion title="Contoh: Laporan penjualan harian">
   ```text User wrap
@@ -169,7 +169,7 @@ Lakukan "prefill" (pengisian awal) pada giliran `Assistant` dengan format yang A
 
 ## Batasi dengan contoh
 
-Berikan contoh output yang Anda inginkan. Ini lebih efektif daripada instruksi abstrak.
+Berikan contoh output yang Anda inginkan. Cara ini lebih efektif daripada instruksi abstrak.
 
 <Accordion title="Contoh: Menghasilkan intelijen pasar yang konsisten">
   ```text User wrap
@@ -323,7 +323,7 @@ Untuk tugas yang memerlukan konteks yang konsisten (misalnya, chatbot, basis pen
 
 ## Rangkai prompt untuk tugas kompleks
 
-Pecah tugas kompleks menjadi subtugas yang lebih kecil dan konsisten. Setiap subtugas mendapatkan perhatian penuh Claude, sehingga mengurangi kesalahan inkonsistensi di seluruh alur kerja berskala besar.
+Pecah tugas yang kompleks menjadi subtugas yang lebih kecil dan konsisten. Setiap prompt kemudian mencakup satu subtugas, sehingga mengurangi kesalahan inkonsistensi di seluruh alur kerja berskala besar.
 
 ## Jaga Claude tetap dalam karakter
 

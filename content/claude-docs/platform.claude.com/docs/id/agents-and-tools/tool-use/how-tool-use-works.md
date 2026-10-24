@@ -1,33 +1,33 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 35383a2dfe3da3220256a0936a056c85f74c9c08c0f7cddf9768ffb25ea5af71
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 2fbc70f2be12de820bc8d82d73619ddd307b61981e077fa8a3bb370d8eca47ee
 ---
 
 ---
 title: Cara kerja penggunaan alat
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works
-description: Pahami loop penggunaan alat, di mana alat dieksekusi, dan kapan menggunakan alat alih-alih prosa.
+description: Pahami loop penggunaan alat, tempat alat dijalankan, dan kapan harus menggunakan alat alih-alih prosa.
 ---
 
 Halaman ini menjelaskan konsep di balik "tool use" (penggunaan alat): di mana alat berjalan, bagaimana loop agentik bekerja, dan kapan penggunaan alat merupakan pendekatan yang tepat. Untuk panduan praktis, mulailah dengan tutorial [Membangun agen yang menggunakan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent) atau panduan [Mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools).
 
 ## Kontrak penggunaan alat
 
-Penggunaan alat adalah kontrak antara aplikasi Anda dan model. Anda menentukan operasi apa yang tersedia dan bentuk input serta outputnya; Claude menentukan kapan dan bagaimana memanggilnya. Model tidak pernah mengeksekusi apa pun sendiri. Model mengeluarkan permintaan terstruktur, kode Anda (atau server Anthropic) menjalankan operasi tersebut, dan hasilnya mengalir kembali ke dalam percakapan.
+Penggunaan alat adalah kontrak antara aplikasi Anda dan model. Anda menentukan operasi apa saja yang tersedia dan bentuk input serta output-nya; Claude menentukan kapan dan bagaimana memanggilnya. Model tidak pernah menjalankan apa pun dengan sendirinya. Model mengeluarkan permintaan terstruktur, kode Anda (atau server Anthropic) menjalankan operasi tersebut, dan hasilnya mengalir kembali ke dalam percakapan.
 
 Kontrak ini membuat model berperilaku kurang seperti generator teks dan lebih seperti fungsi yang Anda panggil. Engineer dengan pengalaman API klasik dapat mengintegrasikan penggunaan alat dengan cara yang sama seperti antarmuka bertipe lainnya: definisikan skema, tangani callback, kembalikan hasil. Perbedaannya adalah pemanggil di sisi lain adalah model bahasa yang memilih fungsi mana yang akan dipanggil berdasarkan percakapan.
 
 ## Di mana alat berjalan
 
-Sumbu utama yang membedakan alat adalah di mana kode dieksekusi. Setiap alat termasuk dalam salah satu dari tiga kelompok, dan kelompok tersebut menentukan apa yang menjadi tanggung jawab aplikasi Anda.
+Sumbu utama yang membedakan alat adalah tempat kode dijalankan. Setiap alat termasuk dalam salah satu dari tiga kategori, dan kategori tersebut menentukan apa yang menjadi tanggung jawab aplikasi Anda.
 
 ### Alat yang didefinisikan pengguna (dieksekusi klien)
 
-Anda menulis skema, Anda mengeksekusi kode, Anda mengembalikan hasil. Ini adalah kasus yang paling umum: sebagian besar lalu lintas penggunaan alat adalah [alat yang didefinisikan pengguna](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools) yang memanggil logika khusus aplikasi.
+Anda menulis skema, menjalankan kode, dan mengembalikan hasilnya. Ini adalah kasus yang paling umum: sebagian besar lalu lintas penggunaan alat adalah [alat yang didefinisikan pengguna](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools) yang memanggil logika khusus aplikasi.
 
-Ketika Claude memanggil salah satu alat Anda, respons API berisi blok `tool_use` dengan nama alat dan objek JSON berisi argumen. Aplikasi Anda mengekstrak argumen tersebut, menjalankan operasi (kueri database, panggilan HTTP, penulisan file, apa pun yang dilakukan alat tersebut), dan mengirim outputnya kembali dalam blok `tool_result` pada permintaan berikutnya. Claude tidak pernah melihat implementasi Anda; Claude hanya melihat skema yang Anda berikan dan hasil yang Anda kembalikan.
+Ketika Claude memanggil salah satu alat Anda, respons API berisi blok `tool_use` dengan nama alat dan objek JSON berisi argumen. Aplikasi Anda mengekstrak argumen tersebut, menjalankan operasi (query database, panggilan HTTP, penulisan file, apa pun yang dilakukan alat tersebut), dan mengirimkan output kembali dalam blok `tool_result` pada permintaan berikutnya. Claude tidak pernah menerima implementasi Anda; Claude hanya menerima skema yang Anda berikan dan hasil yang Anda kembalikan.
 
 ### Alat berskema Anthropic (dieksekusi klien)
 
@@ -37,7 +37,7 @@ Model eksekusinya identik dengan alat yang didefinisikan pengguna: respons beris
 
 ### Alat yang dieksekusi server
 
-Untuk [`web_search`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool), [`web_fetch`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool), [`code_execution`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), dan [`tool_search`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool), Anthropic yang menjalankan kodenya. Anda mengaktifkan alat dalam permintaan Anda dan server menangani semua hal lainnya. Anda tidak pernah menyusun blok `tool_result` untuk alat-alat ini. Ketika sebuah giliran hanya memanggil [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools), loop sisi server mengeksekusi operasi dan mengumpankan outputnya kembali ke model sebelum respons sampai kepada Anda, kecuali jika loop berhenti sebelum selesai, paling sering karena loop tersebut dijeda.
+Untuk [`web_search`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool), [`web_fetch`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool), [`code_execution`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), dan [`tool_search`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool), Anthropic yang menjalankan kodenya. Anda mengaktifkan alat dalam permintaan Anda dan server menangani sisanya. Anda tidak pernah membuat blok `tool_result` untuk alat-alat ini. Ketika sebuah giliran hanya memanggil [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools), loop sisi server menjalankan operasi dan mengumpankan output kembali ke model sebelum respons sampai kepada Anda, kecuali loop berhenti sebelum selesai, paling sering karena dijeda.
 
 Respons yang Anda terima berisi blok `server_tool_use` yang menunjukkan apa yang dijalankan dan apa yang dikembalikan. Dalam kasus umum, eksekusi sudah selesai pada saat Anda melihatnya, dan tugas aplikasi Anda adalah mengaktifkan alat dan membaca jawaban akhir alih-alih berpartisipasi dalam loop eksekusi; pengecualian utamanya adalah loop yang dijeda ([`pause_turn`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works#the-server-side-loop)) dan giliran yang juga memanggil alat klien.
 
@@ -49,11 +49,11 @@ Bentuk kanoniknya adalah loop `while` yang bergantung pada `stop_reason`:
 
 1. Kirim permintaan dengan array `tools` Anda dan pesan pengguna.
 2. Claude merespons dengan `stop_reason: "tool_use"` dan satu atau lebih blok `tool_use`.
-3. Eksekusi setiap alat. Format outputnya sebagai blok `tool_result`.
+3. Jalankan setiap alat. Format output sebagai blok `tool_result`.
 4. Kirim permintaan baru yang berisi pesan asli, respons asisten, dan pesan pengguna dengan blok `tool_result`.
 5. Ulangi dari langkah 2 selama `stop_reason` adalah `"tool_use"`.
 
-Dalam praktiknya ini dibaca sebagai: selama `stop_reason == "tool_use"`, eksekusi alat dan lanjutkan percakapan. Loop berakhir pada stop reason lainnya (`"end_turn"`, `"max_tokens"`, `"stop_sequence"`, atau `"refusal"`), yang berarti Claude telah menghasilkan jawaban akhir atau berhenti karena alasan lain yang harus ditangani aplikasi Anda.
+Dalam praktiknya, ini berbunyi: selama `stop_reason == "tool_use"`, jalankan alat dan lanjutkan percakapan. Loop keluar pada stop reason lainnya (`"end_turn"`, `"max_tokens"`, `"stop_sequence"`, atau `"refusal"`), yang berarti Claude telah menghasilkan jawaban akhir atau berhenti karena alasan lain yang harus ditangani aplikasi Anda.
 
 Untuk mekanisme membangun permintaan, menangani panggilan alat paralel, dan memformat hasil, lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls).
 
@@ -61,7 +61,7 @@ Untuk mekanisme membangun permintaan, menangani panggilan alat paralel, dan memf
 
 Alat yang dieksekusi server menjalankan loop-nya sendiri di dalam infrastruktur Anthropic. Satu permintaan dari aplikasi Anda mungkin memicu beberapa pencarian web atau eksekusi kode sebelum respons kembali. Model mencari, membaca hasil, menentukan apakah perlu mencari lagi, dan beriterasi hingga mendapatkan apa yang dibutuhkan, semuanya tanpa partisipasi aplikasi Anda.
 
-Loop internal ini memiliki batas iterasi. Jika model masih beriterasi ketika mencapai batas tersebut, respons kembali dengan `stop_reason: "pause_turn"` alih-alih `"end_turn"`. Giliran yang dijeda berarti pekerjaan belum selesai; kirim ulang percakapan (termasuk respons yang dijeda) agar model melanjutkan dari tempat ia berhenti. Lihat [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) untuk pola kelanjutannya.
+Loop internal ini memiliki batas iterasi. Jika model masih beriterasi saat mencapai batas tersebut, respons dikembalikan dengan `stop_reason: "pause_turn"` alih-alih `"end_turn"`. Giliran yang dijeda berarti pekerjaan belum selesai; kirim ulang percakapan (termasuk respons yang dijeda) agar model dapat melanjutkan dari titik terakhirnya. Lihat [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) untuk pola kelanjutannya.
 
 Loop ini juga menyerahkan kendali kembali kepada Anda sebelum alat server berjalan jika Claude memanggil alat server tersebut dan alat klien dalam kelompok panggilan alat paralel yang sama. Respons kemudian kembali dengan `stop_reason: "tool_use"` dan blok `server_tool_use` yang belum memiliki blok hasil; API menjalankannya setelah Anda mengembalikan hasil alat klien. Lihat [Stop reason dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use) untuk kontrak persisnya.
 
@@ -79,7 +79,7 @@ Tanda jelas bahwa Anda seharusnya menggunakan alat: jika Anda menulis regex untu
 Penggunaan alat tidak cocok ketika:
 
 * Model dapat menjawab hanya dari pelatihan. Peringkasan, penerjemahan, dan pertanyaan pengetahuan umum tidak memerlukan perjalanan bolak-balik alat.
-* Interaksinya adalah tanya jawab sekali jalan tanpa efek samping. Jika tidak ada yang perlu dieksekusi, tidak ada yang perlu dilakukan alat.
+* Interaksinya berupa tanya jawab sekali jalan tanpa efek samping. Jika tidak ada yang perlu dijalankan, tidak ada yang perlu dilakukan oleh alat.
 * Latensi pemanggilan alat akan mendominasi respons yang sepele. Setiap panggilan alat setidaknya satu perjalanan bolak-balik tambahan; untuk tugas ringan, overhead-nya dapat melebihi pekerjaannya.
 
 ## Memilih di antara pendekatan

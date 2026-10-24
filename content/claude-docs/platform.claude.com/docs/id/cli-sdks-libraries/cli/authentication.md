@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: fefaab09ab2629aa18cbdf827c4b6dd4a32abdfc002dc7647fecafc95b255c9e
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 498ad65ad3cefd22e3a12b7475a7e9541c90812ca97e4f47be8a7805d899bdf3
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication
 description: Autentikasi CLI ant dengan login interaktif, kunci API, profil bernama, dan Workload Identity Federation.
 ---
 
-CLI `ant` mendukung beberapa sumber kredensial. [Quickstart](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart#authentication) mencakup jalur mudah satu perintah (`ant auth login`). Halaman ini mencakup setiap opsi secara lengkap.
+CLI `ant` mendukung beberapa sumber kredensial. [Quickstart](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart#authentication) membahas login satu perintah (`ant auth login`). Halaman ini membahas setiap opsi secara lengkap.
 
 ## Login interaktif
 
@@ -78,9 +78,9 @@ CLI juga membaca kunci API Anda dari variabel lingkungan `ANTHROPIC_API_KEY`. Da
   </Tab>
 </Tabs>
 
-Untuk menimpa kunci untuk satu pemanggilan, berikan [`--api-key-stdin`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#global-flags) dan pipe kunci ke perintah. Untuk mengarah ke host API yang berbeda, atur `ANTHROPIC_BASE_URL` atau berikan `--base-url`.
+Untuk menimpa kunci untuk satu kali eksekusi, berikan [`--api-key-stdin`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#global-flags) dan alirkan (pipe) kunci ke perintah. Untuk mengarahkan ke host API yang berbeda, atur `ANTHROPIC_BASE_URL` atau berikan `--base-url`.
 
-Jika Anda menggunakan kunci API yang dibatasi ke beberapa workspace, seperti [kunci akun personal atau service](https://platform.claude.com/docs/id/manage-claude/authentication#key-types), Anda harus [menentukan workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) untuk menjalankan perintah Anda. Lakukan ini dengan mengatur variabel lingkungan `ANTHROPIC_WORKSPACE_ID`, yang dibaca CLI secara otomatis, atau dengan menggunakan [flag `--workspace-id`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#global-flags). Nilainya harus berupa ID `wrkspc_...`.
+Jika Anda menggunakan [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi ke workspace, Anda harus [menentukan workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) tempat perintah Anda dijalankan. Lakukan ini dengan mengatur variabel lingkungan `ANTHROPIC_WORKSPACE_ID`, yang dibaca CLI secara otomatis, atau dengan menggunakan [flag `--workspace-id`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#global-flags). Nilainya harus berupa ID `wrkspc_...`.
 
 ```bash CLI
 ant messages create \
@@ -159,7 +159,7 @@ Untuk skema file profil dan blok federasi, lihat [File konfigurasi profil](https
   </Card>
 
   <Card title="Scripting dan otomatisasi CLI" icon="code" href="https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting">
-    Sumber daya API kontrol versi, pola scripting, dan penggunaan dari Claude Code
+    Kontrol versi untuk sumber daya API, pola scripting, dan penggunaan dari Claude Code
   </Card>
 
   <Card title="Workload Identity Federation" icon="cloud" href="https://platform.claude.com/docs/id/manage-claude/workload-identity-federation">

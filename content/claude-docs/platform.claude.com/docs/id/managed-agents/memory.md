@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: cb4e08cdfe8afd00104a9be786031076e4a3a19a25926fefc82bf216467ce887
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: d73f2f740756adbab11fb0ef17f47a58a8b3a7c7517e3b94bf499cf3d5cb65ac
 ---
 
 ---
@@ -219,7 +219,7 @@ Muat store terlebih dahulu dengan materi referensi sebelum agen apa pun berjalan
 </CodeGroup>
 
 <Tip>
-  Memori individual di dalam store dibatasi hingga 100 kB (\~25 ribu token). Sebuah store menampung maksimum 10.000 memori. Susun memori sebagai banyak file kecil yang terfokus, bukan beberapa file besar.
+  Setiap memori individual di dalam store dibatasi hingga 100 kB (\~25 ribu token). Sebuah store dapat menampung maksimal 10.000 memori. Susun memori sebagai banyak file kecil yang terfokus, bukan beberapa file besar.
 </Tip>
 
 ## Melampirkan memory store ke sesi
@@ -380,15 +380,15 @@ Anda juga dapat mengonfigurasi `access` (csharp, go: `Access`). Nilai default-ny
   Memory store dilampirkan dengan akses `read_write` secara default. Jika agen memproses input yang tidak tepercaya (prompt yang diberikan pengguna, konten web yang diambil, atau output alat pihak ketiga), prompt injection yang berhasil dapat menulis konten berbahaya ke dalam store. Sesi-sesi berikutnya kemudian membaca konten tersebut sebagai memori tepercaya. Gunakan `read_only` untuk materi referensi, lookup bersama, dan store apa pun yang tidak perlu dimodifikasi oleh agen.
 </Warning>
 
-Maksimum **8 memory store** didukung per sesi. Lampirkan beberapa store ketika bagian-bagian memori yang berbeda memiliki pemilik atau aturan akses yang berbeda. Alasan umum:
+Maksimal **8 memory store** didukung untuk setiap sesi. Lampirkan beberapa store ketika bagian memori yang berbeda memiliki pemilik atau aturan akses yang berbeda. Alasan umum:
 
-* **Materi referensi bersama:** satu store read-only yang dilampirkan ke banyak sesi (standar, konvensi, pengetahuan domain), dipisahkan dari store read-write milik masing-masing sesi.
-* **Pemetaan ke struktur produk Anda:** satu store per pengguna akhir, per tim, atau per proyek, sambil berbagi satu konfigurasi agen.
-* **Siklus hidup yang berbeda:** store yang bertahan lebih lama dari sesi tunggal mana pun, atau store yang ingin Anda arsipkan sesuai jadwalnya sendiri.
+* **Materi referensi bersama:** satu store read-only yang dilampirkan ke banyak sesi (standar, konvensi, pengetahuan domain), dipisahkan dari store read-write milik setiap sesi
+* **Pemetaan ke struktur produk Anda:** satu store untuk setiap pengguna akhir, tim, atau proyek, sambil berbagi satu konfigurasi agen
+* **Siklus hidup yang berbeda:** store yang bertahan lebih lama dari satu sesi mana pun, atau store yang ingin Anda arsipkan sesuai jadwalnya sendiri
 
 ### Bagaimana agen mengakses memori
 
-Setiap store yang dilampirkan di-mount di dalam sandbox sesi sebagai direktori di bawah `/mnt/memory/`. Nama direktori adalah nama tampilan store yang disanitasi menjadi slug yang aman untuk filesystem (huruf kecil; rangkaian karakter non-alfanumerik menjadi satu tanda hubung), sehingga store bernama "Demo Memory" di-mount di `/mnt/memory/demo-memory/`. Path yang tepat dikembalikan dalam field `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`) pada resource memory store sesi; bacalah dari sana alih-alih menyusunnya sendiri. Agen membaca dan menulis store dengan [toolset agen](https://platform.claude.com/docs/id/managed-agents/tools) standar. Penulisan di bawah mount path disimpan kembali ke store dan tetap tersinkronisasi di seluruh sesi yang berbagi store tersebut; penulisan ke path lain di bawah `/mnt/memory/` akan gagal, karena sandbox me-mount direktori induk tersebut sebagai read-only. Deskripsi singkat setiap mount (nama tampilan, mount path, mode akses, `description` (csharp, go: `Description`) store, dan `instructions` (csharp, go: `Instructions`) apa pun) secara otomatis ditambahkan ke prompt sistem.
+Setiap store yang dilampirkan di-mount di dalam sandbox sesi sebagai direktori di bawah `/mnt/memory/`. Nama direktori adalah nama tampilan store yang disanitasi menjadi slug yang aman untuk filesystem (huruf kecil, dengan setiap rangkaian karakter non-alfanumerik diganti dengan satu tanda hubung), sehingga store bernama "Demo Memory" di-mount di `/mnt/memory/demo-memory/`. Path yang tepat dikembalikan dalam field `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`) pada resource memory-store sesi; bacalah dari sana alih-alih menyusunnya sendiri. Agen membaca dan menulis store dengan [agent toolset](https://platform.claude.com/docs/id/managed-agents/tools) standar. Penulisan di bawah mount path disimpan kembali ke store dan tetap sinkron di seluruh sesi yang berbagi store tersebut; penulisan ke path lain mana pun di bawah `/mnt/memory/` akan gagal, karena sandbox me-mount direktori induk tersebut sebagai read-only. Deskripsi singkat dari setiap mount (nama tampilan, mount path, mode akses, `description` (csharp, go: `Description`) store, dan `instructions` (csharp, go: `Instructions`) apa pun) secara otomatis ditambahkan ke prompt sistem.
 
 `access` (csharp, go: `Access`) diberlakukan di tingkat filesystem: mount `read_only` menolak penulisan, sedangkan penulisan ke mount `read_write` menghasilkan [versi memori](https://platform.claude.com/docs/id/managed-agents/memory#audit-memory-changes) yang diatribusikan ke sesi.
 
@@ -409,7 +409,7 @@ Memory store dapat dikelola langsung melalui API. Gunakan ini untuk membangun al
 Daftar memori dalam sebuah store. Hasil dikembalikan dalam urutan yang stabil dan ditentukan server.
 
 * `path_prefix` membatasi daftar ke satu direktori. Nilainya harus diakhiri dengan `/` dan mencocokkan segmen path utuh, sehingga `path_prefix=/notes/` mengembalikan `/notes/todo.md` tetapi tidak `/notes-archive/todo.md`.
-* `depth` mengontrol seberapa dalam daftar menelusuri di bawah `path_prefix`: hilangkan (atau teruskan `0`) untuk mendaftar seluruh subtree, atau teruskan `1` untuk mendaftar hanya anak langsungnya. Nilai lain mengembalikan error `400`.
+* `depth` mengontrol seberapa dalam daftar menjangkau di bawah `path_prefix`: hilangkan (atau teruskan `0`) untuk mendaftar seluruh subtree, atau teruskan `1` untuk hanya mendaftar anak langsung. Nilai lain mengembalikan error `400`.
 
 <CodeGroup>
   ```bash cURL
@@ -503,7 +503,7 @@ Daftar memori dalam sebuah store. Hasil dikembalikan dalam urutan yang stabil da
   ```
 </CodeGroup>
 
-Lihat [referensi List memories](https://platform.claude.com/docs/id/api/beta/memory_stores/memories/list) untuk parameter lengkap dan skema respons.
+Lihat referensi [Mendaftar memori](https://platform.claude.com/docs/id/api/beta/memory_stores/memories/list) untuk parameter lengkap dan skema respons.
 
 ### Membaca memori
 
@@ -580,11 +580,11 @@ Mengambil memori individual mengembalikan konten lengkapnya.
   ```
 </CodeGroup>
 
-Lihat [referensi Retrieve a memory](https://platform.claude.com/docs/id/api/beta/memory_stores/memories/retrieve) untuk parameter lengkap dan skema respons.
+Lihat referensi [Mengambil memori](https://platform.claude.com/docs/id/api/beta/memory_stores/memories/retrieve) untuk parameter lengkap dan skema respons.
 
 ### Membuat memori
 
-`POST /v1/memory_stores/{memory_store_id}/memories` (python, ruby: `client.beta.memory_stores.memories.create()`; typescript: `client.beta.memoryStores.memories.create()`; go: `client.Beta.MemoryStores.Memories.New()`; java: `client.beta().memoryStores().memories().create()`; csharp: `client.Beta.MemoryStores.Memories.Create()`; php: `$client->beta->memoryStores->memories->create()`; cli: `ant beta:memory-stores:memories create`) membuat memori pada `path` (csharp, go: `Path`) tertentu. Create tidak menimpa; untuk mengubah memori yang sudah ada, [perbarui memori tersebut](https://platform.claude.com/docs/id/managed-agents/memory#update-a-memory) dengan `POST /v1/memory_stores/{memory_store_id}/memories/{memory_id}` (python, ruby: `client.beta.memory_stores.memories.update()`; typescript: `client.beta.memoryStores.memories.update()`; go, csharp: `client.Beta.MemoryStores.Memories.Update()`; java: `client.beta().memoryStores().memories().update()`; php: `$client->beta->memoryStores->memories->update()`; cli: `ant beta:memory-stores:memories update`).
+`POST /v1/memory_stores/{memory_store_id}/memories` (python, ruby: `client.beta.memory_stores.memories.create()`; typescript: `client.beta.memoryStores.memories.create()`; go: `client.Beta.MemoryStores.Memories.New()`; java: `client.beta().memoryStores().memories().create()`; csharp: `client.Beta.MemoryStores.Memories.Create()`; php: `$client->beta->memoryStores->memories->create()`; cli: `ant beta:memory-stores:memories create`) membuat memori pada `path` (csharp, go: `Path`) tertentu. Create tidak menimpa; untuk [memperbarui memori yang sudah ada](https://platform.claude.com/docs/id/managed-agents/memory#update-a-memory), gunakan `POST /v1/memory_stores/{memory_store_id}/memories/{memory_id}` (python, ruby: `client.beta.memory_stores.memories.update()`; typescript: `client.beta.memoryStores.memories.update()`; go, csharp: `client.Beta.MemoryStores.Memories.Update()`; java: `client.beta().memoryStores().memories().update()`; php: `$client->beta->memoryStores->memories->update()`; cli: `ant beta:memory-stores:memories update`).
 
 <CodeGroup>
   ```bash cURL
@@ -666,7 +666,7 @@ Lihat [referensi Retrieve a memory](https://platform.claude.com/docs/id/api/beta
   ```
 </CodeGroup>
 
-Lihat [referensi Create a memory](https://platform.claude.com/docs/id/api/beta/memory_stores/memories/create) untuk parameter lengkap dan skema respons.
+Lihat referensi [Membuat memori](https://platform.claude.com/docs/id/api/beta/memory_stores/memories/create) untuk parameter lengkap dan skema respons.
 
 ### Memperbarui memori
 
@@ -749,11 +749,11 @@ Lihat [referensi Create a memory](https://platform.claude.com/docs/id/api/beta/m
   ```
 </CodeGroup>
 
-Lihat [referensi Update a memory](https://platform.claude.com/docs/id/api/beta/memory_stores/memories/update) untuk parameter lengkap dan skema respons.
+Lihat referensi [Memperbarui memori](https://platform.claude.com/docs/id/api/beta/memory_stores/memories/update) untuk parameter lengkap dan skema respons.
 
 #### Pengeditan konten yang aman (optimistic concurrency)
 
-Untuk menghindari menimpa penulisan yang terjadi bersamaan, teruskan prakondisi `content_sha256`. Pembaruan hanya diterapkan jika hash konten yang tersimpan masih cocok dengan yang Anda baca; jika tidak cocok, baca ulang memori dan coba lagi terhadap state terbaru.
+Untuk menghindari penimpaan penulisan yang terjadi secara bersamaan, teruskan prekondisi `content_sha256`. Pembaruan hanya diterapkan jika hash konten yang tersimpan masih cocok dengan yang Anda baca; jika tidak cocok, baca ulang memori dan coba lagi terhadap state terbaru.
 
 <CodeGroup>
   ```bash cURL
@@ -915,13 +915,13 @@ Untuk menghindari menimpa penulisan yang terjadi bersamaan, teruskan prakondisi 
   ```
 </CodeGroup>
 
-Lihat [referensi Delete a memory](https://platform.claude.com/docs/id/api/beta/memory_stores/memories/delete) untuk parameter lengkap dan skema respons.
+Lihat referensi [Menghapus memori](https://platform.claude.com/docs/id/api/beta/memory_stores/memories/delete) untuk parameter lengkap dan skema respons.
 
 ## Mengaudit perubahan memori
 
 Setiap mutasi pada memori menciptakan **versi memori** yang tidak dapat diubah (`memver_...`). Gunakan endpoint versi untuk mengaudit siapa yang mengubah apa dan kapan, untuk memeriksa atau memulihkan snapshot sebelumnya, dan untuk membersihkan konten sensitif dari riwayat dengan redact.
 
-Versi dimiliki oleh store (bukan memori individual) dan tidak dihapus ketika memori itu sendiri dihapus, sehingga jejak audit juga mencakup memori yang telah dihapus, dengan tunduk pada retensi yang dijelaskan di bawah. Versi disimpan selama 30 hari setelah ditulis; namun, versi-versi terbaru dari memori yang masih aktif selalu disimpan terlepas dari usianya, sehingga memori yang jarang berubah mungkin menyimpan riwayat lebih dari 30 hari. Panggilan `GET /v1/memory_stores/{memory_store_id}/memories/{memory_id}` (python, ruby: `client.beta.memory_stores.memories.retrieve()`; typescript: `client.beta.memoryStores.memories.retrieve()`; go: `client.Beta.MemoryStores.Memories.Get()`; java: `client.beta().memoryStores().memories().retrieve()`; csharp: `client.Beta.MemoryStores.Memories.Retrieve()`; php: `$client->beta->memoryStores->memories->retrieve()`; cli: `ant beta:memory-stores:memories retrieve`) langsung selalu mengembalikan versi terbaru; endpoint versi memberi Anda riwayat yang disimpan.
+Versi dimiliki oleh store (bukan memori individual) dan tidak dihapus ketika memori itu sendiri dihapus, sehingga jejak audit juga mencakup memori yang telah dihapus, dengan tunduk pada retensi yang dijelaskan nanti. Versi disimpan selama 30 hari setelah ditulis; namun, versi terbaru dari memori yang aktif selalu disimpan tanpa memandang usianya, sehingga memori yang jarang berubah mungkin menyimpan riwayat lebih dari 30 hari. Panggilan `GET /v1/memory_stores/{memory_store_id}/memories/{memory_id}` (python, ruby: `client.beta.memory_stores.memories.retrieve()`; typescript: `client.beta.memoryStores.memories.retrieve()`; go: `client.Beta.MemoryStores.Memories.Get()`; java: `client.beta().memoryStores().memories().retrieve()`; csharp: `client.Beta.MemoryStores.Memories.Retrieve()`; php: `$client->beta->memoryStores->memories->retrieve()`; cli: `ant beta:memory-stores:memories retrieve`) langsung selalu mengembalikan versi terbaru; endpoint versi memberi Anda riwayat yang disimpan.
 
 Tidak ada endpoint pemulihan khusus; untuk melakukan rollback, ambil versi yang Anda inginkan dan tulis kembali `content` (csharp, go: `Content`)-nya dengan `POST /v1/memory_stores/{memory_store_id}/memories/{memory_id}` (python, ruby: `client.beta.memory_stores.memories.update()`; typescript: `client.beta.memoryStores.memories.update()`; go, csharp: `client.Beta.MemoryStores.Memories.Update()`; java: `client.beta().memoryStores().memories().update()`; php: `$client->beta->memoryStores->memories->update()`; cli: `ant beta:memory-stores:memories update`) (atau `POST /v1/memory_stores/{memory_store_id}/memories` (python, ruby: `client.beta.memory_stores.memories.create()`; typescript: `client.beta.memoryStores.memories.create()`; go: `client.Beta.MemoryStores.Memories.New()`; java: `client.beta().memoryStores().memories().create()`; csharp: `client.Beta.MemoryStores.Memories.Create()`; php: `$client->beta->memoryStores->memories->create()`; cli: `ant beta:memory-stores:memories create`) jika memori induk telah dihapus, asalkan versi yang Anda inginkan masih disimpan).
 
@@ -1043,7 +1043,7 @@ Daftar riwayat versi untuk sebuah store, yang terbaru lebih dulu. Contoh berikut
   ```
 </CodeGroup>
 
-Lihat [referensi List memory versions](https://platform.claude.com/docs/id/api/beta/memory_stores/memory_versions/list) untuk parameter lengkap dan skema respons.
+Lihat referensi [Mendaftar versi memori](https://platform.claude.com/docs/id/api/beta/memory_stores/memory_versions/list) untuk parameter lengkap dan skema respons.
 
 ### Mengambil versi
 
@@ -1123,11 +1123,11 @@ Mengambil versi individual mengembalikan field yang sama dengan respons daftar d
   ```
 </CodeGroup>
 
-Lihat [referensi Retrieve a memory version](https://platform.claude.com/docs/id/api/beta/memory_stores/memory_versions/retrieve) untuk parameter lengkap dan skema respons.
+Lihat referensi [Mengambil versi memori](https://platform.claude.com/docs/id/api/beta/memory_stores/memory_versions/retrieve) untuk parameter lengkap dan skema respons.
 
 ### Meredaksi versi
 
-Redact membersihkan konten dari versi historis sambil mempertahankan jejak audit (siapa melakukan apa, kapan). Gunakan untuk alur kerja kepatuhan seperti menghapus rahasia yang bocor, PII, atau permintaan penghapusan dari pengguna.
+Redact membersihkan konten dari versi historis sambil mempertahankan jejak audit (siapa melakukan apa, kapan). Gunakan untuk alur kerja kepatuhan seperti menghapus rahasia atau PII yang bocor, atau memenuhi permintaan penghapusan dari pengguna.
 
 Versi yang merupakan head saat ini dari memori yang masih aktif tidak dapat diredaksi. Tulis versi baru terlebih dahulu (atau hapus memorinya), lalu redaksi versi lama.
 
@@ -1200,7 +1200,7 @@ Versi yang merupakan head saat ini dari memori yang masih aktif tidak dapat dire
   ```
 </CodeGroup>
 
-Lihat [referensi Redact a memory version](https://platform.claude.com/docs/id/api/beta/memory_stores/memory_versions/redact) untuk parameter lengkap dan skema respons.
+Lihat referensi [Me-redact versi memori](https://platform.claude.com/docs/id/api/beta/memory_stores/memory_versions/redact) untuk parameter lengkap dan skema respons.
 
 ## Mengelola memory store
 
@@ -1279,7 +1279,7 @@ Daftar store di workspace. Store yang diarsipkan dikecualikan secara default; at
   ```
 </CodeGroup>
 
-Lihat [referensi List memory stores](https://platform.claude.com/docs/id/api/beta/memory_stores/list) untuk parameter lengkap dan skema respons.
+Lihat referensi [Mendaftar memory store](https://platform.claude.com/docs/id/api/beta/memory_stores/list) untuk parameter lengkap dan skema respons.
 
 ### Mengarsipkan store
 
@@ -1329,7 +1329,7 @@ Pengarsipan membuat store menjadi read-only dan mencegahnya dilampirkan ke sesi 
   ```
 </CodeGroup>
 
-Lihat [referensi Archive a memory store](https://platform.claude.com/docs/id/api/beta/memory_stores/archive) untuk parameter lengkap dan skema respons.
+Lihat referensi [Mengarsipkan memory store](https://platform.claude.com/docs/id/api/beta/memory_stores/archive) untuk parameter lengkap dan skema respons.
 
 Untuk [menghapus store secara permanen](https://platform.claude.com/docs/id/api/beta/memory_stores/delete) beserta semua memori dan versinya, panggil `DELETE /v1/memory_stores/{memory_store_id}` (python, ruby: `client.beta.memory_stores.delete()`; typescript: `client.beta.memoryStores.delete()`; go, csharp: `client.Beta.MemoryStores.Delete()`; java: `client.beta().memoryStores().delete()`; php: `$client->beta->memoryStores->delete()`; cli: `ant beta:memory-stores delete`).
 
@@ -1337,7 +1337,7 @@ Untuk [menghapus store secara permanen](https://platform.claude.com/docs/id/api/
 
 Ketika sebuah store mencapai batas 10.000 memori, penulisan ke memori baru akan gagal: baik panggilan `POST /v1/memory_stores/{memory_store_id}/memories` (python, ruby: `client.beta.memory_stores.memories.create()`; typescript: `client.beta.memoryStores.memories.create()`; go: `client.Beta.MemoryStores.Memories.New()`; java: `client.beta().memoryStores().memories().create()`; csharp: `client.Beta.MemoryStores.Memories.Create()`; php: `$client->beta->memoryStores->memories->create()`; cli: `ant beta:memory-stores:memories create`) langsung maupun penulisan file oleh agen ke path yang belum dipetakan. Memori yang sudah ada tetap dapat dibaca dan diedit. Praktik berikut membantu Anda tetap jauh di bawah batas dan pulih dengan baik jika Anda mencapainya.
 
-* **Gunakan store yang terfokus.** Alih-alih satu store besar serbaguna, gunakan store yang lebih kecil dan dibuat untuk tujuan tertentu: satu per pengguna, satu untuk pengetahuan domain bersama, dan satu untuk konteks khusus proyek. Setiap store memiliki batas 10.000 memorinya sendiri, sehingga menjaga cakupan store tetap terbatas mengurangi kemungkinan salah satunya penuh.
+* **Gunakan store yang terfokus.** Alih-alih satu store besar serba guna, gunakan store yang lebih kecil dan dibuat untuk tujuan tertentu: satu untuk setiap pengguna, satu untuk pengetahuan domain bersama, dan satu untuk konteks khusus proyek. Setiap store memiliki batas 10.000 memorinya sendiri, sehingga menjaga cakupan store mengurangi kemungkinan salah satunya penuh.
 
 * **Ringkas atau pangkas sebelum store penuh.** Hapus memori yang usang atau redundan dengan `DELETE /v1/memory_stores/{memory_store_id}/memories/{memory_id}` (python, ruby: `client.beta.memory_stores.memories.delete()`; typescript: `client.beta.memoryStores.memories.delete()`; go, csharp: `client.Beta.MemoryStores.Memories.Delete()`; java: `client.beta().memoryStores().memories().delete()`; php: `$client->beta->memoryStores->memories->delete()`; cli: `ant beta:memory-stores:memories delete`). Anda juga dapat menjalankan [sesi dreaming](https://platform.claude.com/docs/id/managed-agents/dreams), yang mengonsolidasikan konten yang terfragmentasi ke dalam store output baru yang terpisah alih-alih memodifikasi store asli. Alihkan sesi Anda ke store output tersebut, lalu arsipkan atau hapus store asli.
 

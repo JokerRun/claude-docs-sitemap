@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: ba88b3399fd18bcfead4cebc5da0794829903cd4d2242a712816eee100f4f15a
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 77bc770ae8208b83a0eac5eb39187b3541f0916f6da82e0b3e6d937e62c61cda
 ---
 
 ---
@@ -55,7 +55,7 @@ A typical interaction looks like this:
 
 Claude calls the memory tool:
 
-```text wrap
+```json
 {
   "type": "tool_use",
   "id": "toolu_01C4D5E6F7G8H9I0J1K2L3M4",
@@ -79,7 +79,7 @@ Claude calls the memory tool:
 
 **4. Claude reads relevant files:**
 
-```text wrap
+```json
 {
   "type": "tool_use",
   "id": "toolu_01D5E6F7G8H9I0J1K2L3M4N5",

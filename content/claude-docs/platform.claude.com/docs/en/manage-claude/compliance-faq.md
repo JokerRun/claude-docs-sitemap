@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-faq
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 0c5e293603b5a4c4c157f5a18d9587b02a5867ece05ff4d9105b5061a66f98e2
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 4dfd4809a213f92470d50adf709984589f68c6827e8245a8de0dd73ffe233748
 ---
 
 ---
@@ -50,7 +50,7 @@ description: Answers to common questions about Compliance API access, scopes, re
   <Accordion title="Why does my Admin API key return 403 on chat or file endpoints?">
     An Admin API key's only Compliance API scope is `read:compliance_activities`, which authorizes the Activity Feed only. Every other Compliance API endpoint requires a scope that only a Compliance Access Key created in claude.ai can carry. Calling a content or directory endpoint with an Admin API key returns a 403 naming the scope that endpoint family requires: `read:compliance_user_data` for chats, files, projects, project attachments, sessions, users, and group members, and `read:compliance_org_data` for organizations, roles, groups, and effective organization settings. For example, listing chats returns the following response.
 
-    ```text Response
+    ```json Response
     {
       "error": {
         "type": "permission_error",

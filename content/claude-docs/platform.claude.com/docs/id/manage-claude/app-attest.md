@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/app-attest
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 1d4eaf933b461c2d98d9e95af501882b96f0be732e6f6077bac9a383d7aaee2b
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 971bfa91a6bff5b342d15c26da6f9f10b600ee14a30c46496932cccfed80859e
 ---
 
 ---
@@ -23,7 +23,7 @@ Autentikasi App Attest hanya tersedia ketika aplikasi Anda memanggil Claude API 
 
 Saat pertama kali aplikasi Anda menggunakan Claude di sebuah perangkat, aplikasi meminta challenge dari Anthropic, melakukan atestasi perangkat dengan `DCAppAttestService` milik Apple, dan menukarkan atestasi yang telah diverifikasi dengan "access token" (token akses). Paket Claude for Foundation Models menjalankan alur ini secara otomatis dan meminta token baru saat token lama kedaluwarsa; tidak ada kode atestasi yang perlu Anda tulis.
 
-Token dibatasi cakupannya pada workspace Anda, kedaluwarsa setelah satu jam, dan hanya mengotorisasi panggilan [Messages API](https://platform.claude.com/docs/id/api/messages/create). Token tidak membawa identitas pengguna akhir: App Attest mengidentifikasi aplikasi Anda, bukan orang yang menggunakannya, jadi tangani logika per pengguna apa pun di dalam aplikasi Anda.
+Token dibatasi cakupannya pada workspace Anda, kedaluwarsa setelah 1 jam, dan hanya mengotorisasi panggilan [Messages API](https://platform.claude.com/docs/id/api/messages/create). Token tidak membawa identitas pengguna akhir: App Attest mengidentifikasi aplikasi Anda, bukan orang yang menggunakannya, jadi tangani logika per pengguna apa pun di dalam aplikasi Anda.
 
 ## Menyiapkan App Attest
 

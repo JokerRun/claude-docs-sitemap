@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: f0a5d61b67123a31527e64aae7c5cfc05c4c7e27fff16f5b35ea14b135423960
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: a1145a06cdf3dbd0c152165d759290ae69f5c72a4cfa47de161cc2bd94de1259
 ---
 
 ---
@@ -916,7 +916,7 @@ def process_file(path):
     return open(path).read()
 ```
 
-Configuration parameters should also be justified and documented to avoid "voodoo constants" (Ousterhout's law). If you don't know the right value, how will Claude determine it?
+Also justify and document configuration parameters to avoid "voodoo constants" (Ousterhout's law). If you don't know the right value, how will Claude determine it?
 
 **Good example: Self-documenting:**
 

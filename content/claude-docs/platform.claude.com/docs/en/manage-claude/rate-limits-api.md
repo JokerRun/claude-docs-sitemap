@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/rate-limits-api
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 7de9ec719310d3946b2b4315351cf4f4a17bd33aca9700dc4fbaa5e774048edc
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: eeb5dc802723f8d9d7cbc6498455d4eeeba3f5527884f6bfe797f0214170ab3c
 ---
 
 ---
@@ -289,7 +289,7 @@ For complete parameter details and response schemas, see the [Organization Rate 
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "data": [
     {
@@ -637,7 +637,7 @@ For complete parameter details and response schemas, see the [Workspace Rate Lim
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "data": [
     {
@@ -860,7 +860,7 @@ To read a workspace's applicable limits in one request, add the optional `includ
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "data": [
     {

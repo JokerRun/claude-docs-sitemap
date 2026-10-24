@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: aecd532651f2853484d7bdbf6f17baaec6ec9db3d849f283edbbd77c88577edb
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 3b6bc74bb1c2a576a49ea8e8ee1f2fbc9304ece57a5e7aefacaad7e5ea1e546a
 ---
 
 ---
@@ -24,7 +24,7 @@ To use Claude Models on Google Cloud (Google managed), you need:
 
 ### Install an SDK
 
-Anthropic's [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) support Claude Models on Google Cloud (Google managed) through `AnthropicVertex` (csharp: `AnthropicVertexClient`; go: `vertex.WithGoogleAuth`; java: `VertexBackend`; php: `Anthropic\Vertex\Client`; ruby: `Anthropic::VertexClient`). Install the package that provides it:
+Anthropic's [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) support Claude Models on Google Cloud (Google managed) through `AnthropicVertex` (csharp: `AnthropicVertexClient`; go: `vertex.WithGoogleAuth()`; java: `VertexBackend`; php: `Anthropic\Vertex\Client`; ruby: `Anthropic::VertexClient`). Install the package that provides it:
 
 <Tabs>
   <Tab title="Python">
@@ -54,20 +54,20 @@ Anthropic's [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries
   <Tab title="Java">
     <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:3.1.0")
-      implementation("com.anthropic:anthropic-java-vertex:3.1.0")
+      implementation("com.anthropic:anthropic-java:3.3.0")
+      implementation("com.anthropic:anthropic-java-vertex:3.3.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>3.1.0</version>
+          <version>3.3.0</version>
       </dependency>
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-vertex</artifactId>
-          <version>3.1.0</version>
+          <version>3.3.0</version>
       </dependency>
       ```
     </CodeGroup>
@@ -555,7 +555,7 @@ For what changes when you move, see [How the two Google Cloud offerings differ](
   </Step>
 
   <Step title="Replace the import and the client">
-    Change the code that imports and creates your client. Use `AnthropicVertex` (csharp: `AnthropicVertexClient`; go: `vertex.WithGoogleAuth`; java: `VertexBackend`; php: `Anthropic\Vertex\Client`; ruby: `Anthropic::VertexClient`) in place of `AnthropicGoogleCloud` (csharp: `AnthropicGoogleCloudClient`; go: `googlecloud.NewClient`; java: `GoogleCloudBackend`; php: `Anthropic\GoogleCloud\Client`; ruby: `Anthropic::GoogleCloudClient`). A cURL request needs a new URL, new headers, and a new body. The following code creates the client for Claude Models on Google Cloud (Anthropic managed) that you use today:
+    Change the code that imports and creates your client. Use `AnthropicVertex` (csharp: `AnthropicVertexClient`; go: `vertex.WithGoogleAuth()`; java: `VertexBackend`; php: `Anthropic\Vertex\Client`; ruby: `Anthropic::VertexClient`) in place of `AnthropicGoogleCloud` (csharp: `AnthropicGoogleCloudClient`; go: `googlecloud.NewClient()`; java: `GoogleCloudBackend`; php: `Anthropic\GoogleCloud\Client`; ruby: `Anthropic::GoogleCloudClient`). A cURL request needs a new URL, new headers, and a new body. The following code creates the client for Claude Models on Google Cloud (Anthropic managed) that you use today:
 
     <CodeGroup>
       ```bash cURL

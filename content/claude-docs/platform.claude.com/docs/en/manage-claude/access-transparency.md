@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/access-transparency
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 8a247c50edd90985dbb3c86abd33560d79debeacd354e863f724535fdfc9008f
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: b0b526d9346df00af68a12d56b33e840361dbf34ce237a19b04cc4f6d472ccee
 ---
 
 ---
@@ -102,7 +102,7 @@ Each `anthropic_access` activity carries the standard Activity fields plus the f
 
 Example JSON message:
 
-```text wrap
+```json
 {
   "id": "activity_013b013744txqZtFHLUaRqLr",
   "type": "anthropic_access",
@@ -139,7 +139,7 @@ curl --fail-with-body -sS -G \
 
 Example JSON message:
 
-```text wrap
+```json
 {
   "id": "activity_01AbCdEfGhJkMnPqRsTuVwXy",
   "type": "cmek_preserve",
@@ -193,7 +193,7 @@ Access Transparency applies from the time it is enabled for your organization. C
 
 ### Notification timing
 
-`anthropic_access` and `cmek_preserve` events are delivered to your Compliance API feed within 2 business days of the access or preservation they record. This feed should not be treated as a real-time alerting channel, and the `accessed_at` timestamp reflects when the access occurred, which might be up to 2 business days before the activity becomes visible in your feed. The `created_at` field reflects the time Anthropic recorded the event, and the event usually becomes visible in your feed shortly after that time. These events do not follow the Activity Feed's usual 1-minute [indexing lag](https://platform.claude.com/docs/en/manage-claude/compliance-integration-patterns#window-polling): an event can become visible up to 2 business days after its `created_at`. If you poll the feed by `created_at` window, overlap consecutive windows by at least 2 business days for `anthropic_access` and `cmek_preserve` events so that a late-indexed event is not dropped.
+`anthropic_access` and `cmek_preserve` events are delivered to your Compliance API feed within 2 business days of the access or preservation they record. Do not treat this feed as a real-time alerting channel. The `accessed_at` timestamp reflects when the access occurred, which might be up to 2 business days before the activity becomes visible in your feed. The `created_at` field reflects the time Anthropic recorded the event, and the event usually becomes visible in your feed shortly after that time. These events do not follow the Activity Feed's usual 1-minute [indexing lag](https://platform.claude.com/docs/en/manage-claude/compliance-integration-patterns#window-polling): an event can become visible up to 2 business days after its `created_at`. If you poll the feed by `created_at` window, overlap consecutive windows by at least 2 business days for `anthropic_access` and `cmek_preserve` events so that a late-indexed event is not dropped.
 
 ### Automated processing does not generate access events
 
@@ -239,7 +239,7 @@ For organizations that also enable CMEK, your cloud KMS audit log (CloudTrail, C
   </Accordion>
 
   <Accordion title="How does Access Transparency relate to CMEK?">
-    They are independent. With CMEK, safety preservation outside your key emits a separate `cmek_preserve` event on the same feed. See [CMEK content preservation](https://platform.claude.com/docs/en/manage-claude/access-transparency#cmek-content-preservation) and [Customer-managed encryption keys](https://platform.claude.com/docs/en/manage-claude/cmek).
+    They are independent. With CMEK, safety preservation outside your key emits a separate `cmek_preserve` event on the same feed. See [CMEK content preservation](https://platform.claude.com/docs/en/manage-claude/access-transparency#cmek-content-preservation) and [Limited preservation outside your key](https://platform.claude.com/docs/en/manage-claude/cmek-data-retention#limited-preservation-outside-your-key).
   </Accordion>
 
   <Accordion title="How can I tell that my Access Transparency record has not been altered?">

@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-3-7
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: a026152ada2170ee81db979ada5b6b8daef1bdee4e18c004d2adce9381aea3b3
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 6d3dd8c84aa1c711da16223072185b202a18bec7e728ef27e95c51acb1103b0a
 ---
 
 ---
 title: Prompt sistem Claude Sonnet 3.7
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-3-7
-description: Lihat pembaruan pada prompt sistem inti untuk Claude Sonnet 3.7 di [claude.ai](https://claude.ai) serta [aplikasi Claude iOS](https://anthropic.com/ios) dan [aplikasi Claude Android](https://anthropic.com/android).
+description: Lihat pembaruan pada prompt sistem inti untuk Claude Sonnet 3.7 di [claude.ai](https://claude.ai), [aplikasi Claude iOS](https://anthropic.com/ios), dan [aplikasi Claude Android](https://anthropic.com/android).
 ---
 
 ## 24 Februari 2025

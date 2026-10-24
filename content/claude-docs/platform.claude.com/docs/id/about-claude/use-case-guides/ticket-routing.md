@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 6280f82a958104b91d01e04f59f562551383bf3c505b89222d504ea116f42fd3
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: e7eb49e411b96c1ae1dae56dcacd7d0e9a3b550635ce0a1ad4c5db61a7e1dce1
 ---
 
 ---
 title: Perutean tiket
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/ticket-routing
-description: Panduan ini menjelaskan cara memanfaatkan kemampuan pemahaman bahasa alami tingkat lanjut Claude untuk mengklasifikasikan tiket dukungan pelanggan dalam skala besar berdasarkan maksud pelanggan, urgensi, prioritas, profil pelanggan, dan lainnya.
+description: Panduan ini menjelaskan cara menggunakan kemampuan pemahaman bahasa alami tingkat lanjut Claude untuk mengklasifikasikan tiket dukungan pelanggan dalam skala besar berdasarkan maksud pelanggan, urgensi, prioritas, profil pelanggan, dan lainnya.
 ---
 
 ## Prasyarat
@@ -35,7 +35,7 @@ Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan "large 
   </Accordion>
 
   <Accordion title="Aturan klasifikasi Anda didasarkan pada pemahaman semantik">
-    Pendekatan ML tradisional sering bergantung pada model bag-of-words atau pencocokan pola sederhana. Claude unggul dalam memahami dan menerapkan aturan yang mendasari ketika kelas didefinisikan oleh kondisi alih-alih contoh.
+    Pendekatan ML tradisional sering bergantung pada model bag-of-words atau pencocokan pola sederhana. Claude unggul dalam menerapkan aturan dasar ketika kelas didefinisikan oleh kondisi, bukan oleh contoh.
   </Accordion>
 
   <Accordion title="Anda memerlukan penalaran yang dapat diinterpretasikan untuk keputusan klasifikasi">
@@ -166,27 +166,27 @@ Berikut adalah beberapa kriteria dan tolok ukur standar saat menggunakan LLM unt
 
 <AccordionGroup>
   <Accordion title="Konsistensi klasifikasi">
-    Metrik ini menilai seberapa konsisten Claude mengklasifikasikan tiket serupa dari waktu ke waktu. Ini sangat penting untuk menjaga keandalan perutean. Ukur ini dengan menguji model secara berkala menggunakan sekumpulan input terstandar dan targetkan tingkat konsistensi 95% atau lebih tinggi.
+    Metrik ini menilai seberapa konsisten Claude mengklasifikasikan tiket serupa dari waktu ke waktu. Hal ini sangat penting untuk menjaga keandalan perutean. Ukur ini dengan menguji model secara berkala menggunakan sekumpulan input terstandarisasi dan targetkan tingkat konsistensi 95 persen atau lebih tinggi.
   </Accordion>
 
   <Accordion title="Kecepatan adaptasi">
-    Ini mengukur seberapa cepat Claude dapat beradaptasi dengan kategori baru atau pola tiket yang berubah. Uji ini dengan memperkenalkan jenis tiket baru dan mengukur waktu yang dibutuhkan model untuk mencapai akurasi yang memuaskan (misalnya, >90%) pada kategori baru tersebut. Targetkan adaptasi dalam 50–100 tiket sampel.
+    Ini mengukur seberapa cepat Claude dapat beradaptasi dengan kategori baru atau pola tiket yang berubah. Uji ini dengan memperkenalkan jenis tiket baru dan mengukur waktu yang dibutuhkan model untuk mencapai akurasi yang memuaskan (misalnya, lebih dari 90 persen) pada kategori baru tersebut. Targetkan adaptasi dalam 50–100 tiket sampel.
   </Accordion>
 
   <Accordion title="Penanganan multibahasa">
-    Ini menilai kemampuan Claude untuk merutekan tiket secara akurat dalam berbagai bahasa. Ukur akurasi perutean di berbagai bahasa, dengan target penurunan akurasi tidak lebih dari 5–10% untuk bahasa non-utama.
+    Ini menilai kemampuan Claude untuk merutekan tiket secara akurat dalam berbagai bahasa. Ukur akurasi perutean di berbagai bahasa, dengan target penurunan akurasi tidak lebih dari 5–10 persen untuk bahasa non-utama.
   </Accordion>
 
   <Accordion title="Penanganan kasus tepi">
-    Ini mengevaluasi performa Claude pada tiket yang tidak biasa atau kompleks. Buat set pengujian berisi kasus tepi dan ukur akurasi perutean, dengan target akurasi minimal 80% pada input yang menantang ini.
+    Ini mengevaluasi performa Claude pada tiket yang tidak biasa atau kompleks. Buat set pengujian kasus tepi dan ukur akurasi perutean, dengan target akurasi minimal 80 persen pada input yang menantang ini.
   </Accordion>
 
   <Accordion title="Mitigasi bias">
-    Ini mengukur keadilan Claude dalam perutean di berbagai demografi pelanggan. Audit keputusan perutean secara rutin untuk potensi bias, dengan target akurasi perutean yang konsisten (dalam rentang 2–3%) di semua kelompok pelanggan.
+    Ini mengukur keadilan Claude dalam perutean di berbagai demografi pelanggan. Audit keputusan perutean secara teratur untuk mendeteksi potensi bias, dengan target akurasi perutean yang konsisten (dalam rentang 2–3 persen) di semua kelompok pelanggan.
   </Accordion>
 
   <Accordion title="Efisiensi prompt">
-    Dalam situasi di mana meminimalkan jumlah token sangat penting, kriteria ini menilai seberapa baik performa Claude dengan konteks minimal. Ukur akurasi perutean dengan jumlah konteks yang bervariasi, dengan target akurasi 90%+ hanya dengan judul tiket dan deskripsi singkat.
+    Dalam situasi di mana meminimalkan jumlah token sangat penting, kriteria ini menilai seberapa baik performa Claude dengan konteks minimal. Ukur akurasi perutean dengan jumlah konteks yang bervariasi, dengan target akurasi minimal 90 persen hanya dengan judul tiket dan deskripsi singkat.
   </Accordion>
 
   <Accordion title="Skor keterjelasan">
@@ -198,7 +198,7 @@ Berikut adalah beberapa kriteria keberhasilan umum yang mungkin berguna terlepas
 
 <AccordionGroup>
   <Accordion title="Akurasi perutean">
-    Akurasi perutean mengukur seberapa sering tiket ditugaskan dengan benar ke tim atau individu yang tepat pada percobaan pertama. Ini biasanya diukur sebagai persentase tiket yang dirutekan dengan benar dari total tiket. Tolok ukur industri sering menargetkan akurasi 90–95%, meskipun ini dapat bervariasi berdasarkan kompleksitas struktur dukungan.
+    Akurasi perutean mengukur seberapa sering tiket ditugaskan dengan benar ke tim atau individu yang tepat pada percobaan pertama. Ini biasanya diukur sebagai persentase tiket yang dirutekan dengan benar dari total tiket. Tolok ukur industri sering menargetkan akurasi 90–95 persen, meskipun hal ini dapat bervariasi tergantung pada kompleksitas struktur dukungan.
   </Accordion>
 
   <Accordion title="Waktu hingga penugasan">
@@ -206,11 +206,11 @@ Berikut adalah beberapa kriteria keberhasilan umum yang mungkin berguna terlepas
   </Accordion>
 
   <Accordion title="Tingkat perutean ulang">
-    Tingkat perutean ulang menunjukkan seberapa sering tiket perlu ditugaskan ulang setelah perutean awal. Tingkat yang lebih rendah menunjukkan perutean awal yang lebih akurat. Targetkan tingkat perutean ulang di bawah 10%, dengan sistem berperforma terbaik mencapai tingkat serendah 5% atau kurang.
+    Tingkat perutean ulang menunjukkan seberapa sering tiket perlu ditugaskan ulang setelah perutean awal. Tingkat yang lebih rendah menunjukkan perutean awal yang lebih akurat. Targetkan tingkat perutean ulang di bawah 10 persen, dengan sistem berkinerja terbaik mencapai tingkat serendah 5 persen atau kurang.
   </Accordion>
 
   <Accordion title="Tingkat penyelesaian kontak pertama">
-    Ini mengukur persentase tiket yang diselesaikan selama interaksi pertama dengan pelanggan. Tingkat yang lebih tinggi menunjukkan perutean yang efisien dan tim dukungan yang siap. Tolok ukur industri biasanya berkisar antara 70–75%, dengan yang berperforma terbaik mencapai tingkat 80% atau lebih tinggi.
+    Ini mengukur persentase tiket yang diselesaikan selama interaksi pertama dengan pelanggan. Tingkat yang lebih tinggi menunjukkan perutean yang efisien dan tim dukungan yang siap. Tolok ukur industri biasanya berkisar antara 70 hingga 75 persen, dengan pihak berkinerja terbaik mencapai tingkat 80 persen atau lebih tinggi.
   </Accordion>
 
   <Accordion title="Waktu penanganan rata-rata">
@@ -218,31 +218,31 @@ Berikut adalah beberapa kriteria keberhasilan umum yang mungkin berguna terlepas
   </Accordion>
 
   <Accordion title="Skor kepuasan pelanggan">
-    Sering diukur melalui survei pasca-interaksi, skor ini mencerminkan kepuasan pelanggan secara keseluruhan terhadap proses dukungan. Perutean yang efektif berkontribusi pada kepuasan yang lebih tinggi. Targetkan skor CSAT 90% atau lebih tinggi, dengan yang berperforma terbaik sering mencapai tingkat kepuasan 95%+.
+    Sering diukur melalui survei pasca-interaksi, skor ini mencerminkan kepuasan pelanggan secara keseluruhan terhadap proses dukungan. Perutean yang efektif berkontribusi pada kepuasan yang lebih tinggi. Targetkan skor CSAT 90 persen atau lebih tinggi, dengan pihak berkinerja terbaik sering mencapai tingkat kepuasan minimal 95 persen.
   </Accordion>
 
   <Accordion title="Tingkat eskalasi">
-    Ini mengukur seberapa sering tiket perlu dieskalasi ke tingkat dukungan yang lebih tinggi. Tingkat eskalasi yang lebih rendah sering menunjukkan perutean awal yang lebih akurat. Upayakan tingkat eskalasi di bawah 20%, dengan sistem terbaik di kelasnya mencapai tingkat 10% atau kurang.
+    Ini mengukur seberapa sering tiket perlu dieskalasi ke tingkat dukungan yang lebih tinggi. Tingkat eskalasi yang lebih rendah sering menunjukkan perutean awal yang lebih akurat. Upayakan tingkat eskalasi di bawah 20 persen, dengan sistem terbaik di kelasnya mencapai tingkat 10 persen atau kurang.
   </Accordion>
 
   <Accordion title="Produktivitas agen">
-    Metrik ini melihat berapa banyak tiket yang dapat ditangani agen secara efektif setelah menerapkan solusi perutean. Perutean yang lebih baik seharusnya meningkatkan produktivitas. Ukur ini dengan melacak tiket yang diselesaikan per agen per hari atau per jam, dengan target peningkatan 10–20% setelah menerapkan sistem perutean baru.
+    Metrik ini melihat berapa banyak tiket yang dapat ditangani agen secara efektif setelah menerapkan solusi perutean. Perutean yang lebih baik seharusnya meningkatkan produktivitas. Ukur ini dengan melacak tiket yang diselesaikan per agen per hari atau jam, dengan target peningkatan 10–20 persen setelah menerapkan sistem perutean baru.
   </Accordion>
 
   <Accordion title="Tingkat defleksi layanan mandiri">
-    Ini mengukur persentase tiket potensial yang diselesaikan melalui opsi layanan mandiri sebelum masuk ke sistem perutean. Tingkat yang lebih tinggi menunjukkan triase pra-perutean yang efektif. Targetkan tingkat defleksi 20–30%, dengan yang berperforma terbaik mencapai tingkat 40% atau lebih tinggi.
+    Ini mengukur persentase tiket potensial yang diselesaikan melalui opsi layanan mandiri sebelum masuk ke sistem perutean. Tingkat yang lebih tinggi menunjukkan triase pra-perutean yang efektif. Targetkan tingkat defleksi 20–30 persen, dengan pihak berkinerja terbaik mencapai tingkat 40 persen atau lebih tinggi.
   </Accordion>
 
   <Accordion title="Biaya per tiket">
-    Metrik ini menghitung biaya rata-rata untuk menyelesaikan setiap tiket dukungan. Perutean yang efisien seharusnya membantu mengurangi biaya ini dari waktu ke waktu. Meskipun tolok ukur sangat bervariasi, banyak organisasi menargetkan pengurangan biaya per tiket sebesar 10–15% setelah menerapkan sistem perutean yang lebih baik.
+    Metrik ini menghitung biaya rata-rata untuk menyelesaikan setiap tiket dukungan. Perutean yang efisien seharusnya membantu mengurangi biaya ini seiring waktu. Meskipun tolok ukur sangat bervariasi, banyak organisasi menargetkan pengurangan biaya per tiket sebesar 10–15 persen setelah menerapkan sistem perutean yang lebih baik.
   </Accordion>
 </AccordionGroup>
 
 ### Pilih model Claude yang tepat
 
-Pilihan model bergantung pada pertimbangan antara biaya, akurasi, dan waktu respons.
+Pilihan model bergantung pada pertukaran antara biaya, akurasi, dan waktu respons.
 
-Claude Haiku 5.5 (`claude-haiku-5-5`) cocok untuk perutean tiket: model ini adalah model saat ini yang tercepat dan paling hemat biaya, dan pada effort `low` model ini menangani permintaan sederhana bervolume tinggi seperti klasifikasi. Jika masalah klasifikasi Anda memerlukan keahlian mendalam di bidang tertentu, jumlah kategori maksud yang besar, atau penalaran yang kompleks, Anda dapat memilih [model Sonnet yang lebih besar](https://platform.claude.com/docs/id/models/overview).
+Claude Haiku 5.5 (`claude-haiku-5-5`) cocok untuk perutean tiket: model ini adalah model saat ini yang tercepat dan paling hemat biaya, dan pada effort `low` model ini dapat menangani permintaan sederhana bervolume tinggi seperti klasifikasi. Jika masalah klasifikasi Anda memerlukan keahlian mendalam di bidang tertentu, kategori maksud dalam jumlah besar, atau penalaran yang kompleks, Anda dapat memilih [model Sonnet yang lebih besar](https://platform.claude.com/docs/id/models/overview).
 
 ### Bangun prompt yang kuat
 
@@ -696,7 +696,7 @@ Meminta Claude membagi responsnya ke dalam bagian-bagian tag XML terpisah memung
 
 Sulit untuk mengetahui seberapa baik prompt Anda bekerja tanpa menerapkannya dalam lingkungan produksi uji dan [menjalankan evaluasi](https://platform.claude.com/docs/id/test-and-evaluate/develop-tests).
 
-Bangun struktur penerapan. Mulailah dengan mendefinisikan signature metode untuk membungkus panggilan ke Claude. Perluas metode yang sudah mulai Anda tulis sebelumnya, yang menerima `ticket_contents` (typescript, csharp, go, java: `ticketContents`; php: `$ticketContents`) sebagai input, sehingga sekarang metode tersebut mengembalikan penalaran dan maksud sebagai output. Jika Anda memiliki otomatisasi yang sudah ada menggunakan ML tradisional, sebaiknya Anda mengikuti signature metode tersebut.
+Bangun struktur penerapan. Mulailah dengan mendefinisikan signature fungsi untuk membungkus panggilan ke Claude. Perluas fungsi yang telah Anda mulai tulis sebelumnya, yang menerima `ticket_contents` (typescript, csharp, go, java: `ticketContents`; php: `$ticketContents`) sebagai input, sehingga sekarang fungsi tersebut mengembalikan penalaran dan maksud sebagai output. Jika Anda sudah memiliki otomatisasi yang menggunakan ML tradisional, sebaiknya ikuti signature tersebut.
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
@@ -912,7 +912,9 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature metode untuk
       Message message = client.messages().create(MessageCreateParams.builder()
           .model(DEFAULT_MODEL)
           .maxTokens(2048L)
-          .outputConfig(OutputConfig.builder().effort(OutputConfig.Effort.LOW).build())
+          .outputConfig(OutputConfig.builder()
+              .effort(OutputConfig.Effort.LOW)
+              .build())
           .addUserMessage(classificationPrompt)
           .build());
       String reasoningAndIntent = message.content().stream()
@@ -1019,7 +1021,7 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature metode untuk
 Kode ini:
 
 * Membuat instance klien menggunakan kunci API Anda.
-* Mendefinisikan fungsi `classify_support_request` (typescript, go, java, php: `classifySupportRequest`; csharp: `ClassifySupportRequest`) yang menerima string `ticket_contents` (typescript, csharp, go, java: `ticketContents`; php: `$ticketContents`).
+* Mendefinisikan fungsi `classify_support_request()` (typescript, go, java, php: `classifySupportRequest()`; csharp: `ClassifySupportRequest()`) yang menerima string `ticket_contents` (typescript, csharp, go, java: `ticketContents`; php: `$ticketContents`).
 * Mengirimkan `ticket_contents` (typescript, csharp, go, java: `ticketContents`; php: `$ticketContents`) ke Claude untuk diklasifikasikan menggunakan `classification_prompt` (typescript, csharp, go, java: `classificationPrompt`; php: `$classificationPrompt`).
 * Mengembalikan penalaran dan maksud model yang diekstrak dari respons.
 
@@ -1035,14 +1037,14 @@ Untuk menjalankan evaluasi, Anda memerlukan kasus uji untuk menjalankannya. Sisa
 
 ### Bangun fungsi evaluasi
 
-Contoh evaluasi untuk panduan ini mengukur kinerja Claude berdasarkan tiga metrik utama:
+Contoh evaluasi untuk panduan ini mengukur performa Claude berdasarkan dua metrik utama:
 
 * Akurasi
 * Biaya per klasifikasi
 
-Anda mungkin perlu menilai Claude pada aspek lain tergantung pada faktor apa yang penting bagi Anda.
+Anda mungkin perlu menilai Claude pada aspek lain tergantung pada faktor mana yang penting bagi Anda.
 
-Untuk menilai hal ini, pertama-tama modifikasi skrip untuk menambahkan fungsi yang membandingkan maksud yang diprediksi dengan maksud sebenarnya dan menghitung persentase prediksi yang benar. Kemudian tambahkan fungsionalitas perhitungan biaya dan pengukuran waktu.
+Untuk menilai hal ini, pertama-tama modifikasi skrip agar membandingkan maksud yang diprediksi dengan maksud sebenarnya. Kemudian buat skrip tersebut mengembalikan penggunaan token dari panggilan API, yang dapat Anda gunakan untuk menghitung biaya.
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
@@ -1063,7 +1065,7 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip untuk menambahkan fungsi ya
   DEFAULT_MODEL = "claude-haiku-5-5"
 
 
-  def classify_support_request(request, actual_intent):
+  def classify_support_request(ticket_contents, actual_intent):
       # Definisikan prompt untuk tugas klasifikasi
       classification_prompt = f"""You will be acting as a customer support ticket classification system.
           […]
@@ -1106,7 +1108,7 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip untuk menambahkan fungsi ya
   const DEFAULT_MODEL = "claude-haiku-5-5";
 
   async function classifySupportRequest(
-    request: string,
+    ticketContents: string,
     actualIntent: string
   ): Promise<{ reasoning: string; intent: string; correct: boolean; usage: Anthropic.Usage }> {
     // Definisikan prompt untuk tugas klasifikasi
@@ -1152,7 +1154,7 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip untuk menambahkan fungsi ya
   // Tetapkan model default
   const Model DefaultModel = Model.ClaudeHaiku5_5;
 
-  async Task<(string Reasoning, string Intent, bool Correct, Usage Usage)> ClassifySupportRequest(string request, string actualIntent)
+  async Task<(string Reasoning, string Intent, bool Correct, Usage Usage)> ClassifySupportRequest(string ticketContents, string actualIntent)
   {
       // Definisikan prompt untuk tugas klasifikasi
       var classificationPrompt = """
@@ -1210,7 +1212,7 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip untuk menambahkan fungsi ya
   // Tetapkan model default
   const defaultModel = anthropic.ModelClaudeHaiku5_5
 
-  func classifySupportRequest(ctx context.Context, request, actualIntent string) (reasoning, intent string, correct bool, usage anthropic.Usage, err error) {
+  func classifySupportRequest(ctx context.Context, ticketContents, actualIntent string) (reasoning, intent string, correct bool, usage anthropic.Usage, err error) {
   	// Definisikan prompt untuk tugas klasifikasi
   	classificationPrompt := `You will be acting as a customer support ticket classification system.
   		[…]
@@ -1269,7 +1271,7 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip untuk menambahkan fungsi ya
 
   record Classification(String reasoning, String intent, boolean correct, Usage usage) {}
 
-  Classification classifySupportRequest(String request, String actualIntent) {
+  Classification classifySupportRequest(String ticketContents, String actualIntent) {
       // Definisikan prompt untuk tugas klasifikasi
       String classificationPrompt = """
           You will be acting as a customer support ticket classification system.
@@ -1280,7 +1282,9 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip untuk menambahkan fungsi ya
       Message message = client.messages().create(MessageCreateParams.builder()
           .model(DEFAULT_MODEL)
           .maxTokens(2048L)
-          .outputConfig(OutputConfig.builder().effort(OutputConfig.Effort.LOW).build())
+          .outputConfig(OutputConfig.builder()
+              .effort(OutputConfig.Effort.LOW)
+              .build())
           .addUserMessage(classificationPrompt)
           .build());
       // Ambil statistik penggunaan panggilan API: berapa banyak token input dan output yang digunakan.
@@ -1319,7 +1323,7 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip untuk menambahkan fungsi ya
   /**
    * @return array{string, string, bool, Usage} the reasoning, the intent, whether the intent is correct, and the usage
    */
-  function classifySupportRequest(Client $client, string $request, string $actualIntent): array
+  function classifySupportRequest(Client $client, string $ticketContents, string $actualIntent): array
   {
       // Definisikan prompt untuk tugas klasifikasi
       $classificationPrompt = <<<PROMPT
@@ -1369,7 +1373,7 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip untuk menambahkan fungsi ya
   # Tetapkan model default
   DEFAULT_MODEL = Anthropic::Model::CLAUDE_HAIKU_5_5
 
-  def classify_support_request(client, request, actual_intent)
+  def classify_support_request(client, ticket_contents, actual_intent)
     # Definisikan prompt untuk tugas klasifikasi
     classification_prompt = <<~PROMPT
       You will be acting as a customer support ticket classification system.
@@ -1404,30 +1408,30 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip untuk menambahkan fungsi ya
 
 Berikut adalah rincian perubahannya:
 
-* Metode `classify_support_request` (typescript, go, java, php: `classifySupportRequest`; csharp: `ClassifySupportRequest`) sekarang menerima `actual_intent` (typescript, csharp, go, java: `actualIntent`; php: `$actualIntent`) dari kasus uji dan membandingkannya dengan klasifikasi maksud Claude untuk menilai apakah keduanya cocok.
-* Metode ini mengekstrak statistik penggunaan untuk panggilan API guna menghitung biaya berdasarkan token input dan output yang digunakan.
+* Fungsi `classify_support_request()` (typescript, go, java, php: `classifySupportRequest()`; csharp: `ClassifySupportRequest()`) sekarang menerima `actual_intent` (typescript, csharp, go, java: `actualIntent`; php: `$actualIntent`) dari kasus uji dan membandingkannya dengan klasifikasi maksud Claude untuk menilai apakah keduanya cocok.
+* Fungsi ini mengekstrak statistik penggunaan untuk panggilan API guna menghitung biaya berdasarkan token input dan output yang digunakan.
 
 ### Jalankan evaluasi Anda
 
-Evaluasi yang tepat memerlukan ambang batas dan tolok ukur yang jelas untuk menentukan apa yang merupakan hasil yang baik. Skrip sebelumnya mengembalikan nilai runtime untuk akurasi, waktu respons, dan biaya per klasifikasi, tetapi Anda masih memerlukan ambang batas yang ditetapkan dengan jelas. Misalnya:
+Evaluasi yang tepat memerlukan ambang batas dan tolok ukur yang jelas untuk menentukan hasil yang baik. Skrip sebelumnya mengembalikan nilai yang Anda perlukan untuk mengukur akurasi dan biaya per klasifikasi, tetapi Anda masih memerlukan ambang batas yang ditetapkan dengan jelas. Sebagai contoh:
 
 * **Akurasi:** 95% (dari 100 pengujian)
 * **Biaya per klasifikasi:** pengurangan rata-rata 50% (di seluruh 100 pengujian) dari metode perutean saat ini
 
-Memiliki ambang batas ini memungkinkan Anda dengan cepat dan mudah mengetahui dalam skala besar, dan dengan empirisme yang tidak memihak, metode apa yang terbaik untuk Anda dan perubahan apa yang mungkin perlu dilakukan agar lebih sesuai dengan kebutuhan Anda.
+Dengan adanya ambang batas ini, Anda dapat mengetahui dalam skala besar, dan dengan empirisme yang tidak memihak, metode mana yang terbaik untuk Anda dan perubahan apa yang mungkin perlu Anda lakukan agar lebih sesuai dengan kebutuhan Anda.
 
 ***
 
 ## Tingkatkan performa
 
-Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan guna meningkatkan performa di luar [teknik rekayasa prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) standar & [strategi implementasi guardrail](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Berikut adalah beberapa skenario umum:
+Dalam skenario yang kompleks, mungkin bermanfaat untuk mempertimbangkan strategi tambahan untuk meningkatkan performa di luar [teknik prompt engineering](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) standar dan [strategi implementasi guardrail](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Berikut adalah beberapa skenario umum:
 
 ### Gunakan hierarki taksonomi untuk kasus dengan 20+ kategori maksud
 
 Seiring bertambahnya jumlah kelas, jumlah contoh yang diperlukan juga bertambah, yang berpotensi membuat prompt menjadi sulit dikelola. Sebagai alternatif, Anda dapat mempertimbangkan untuk menerapkan sistem klasifikasi hierarkis menggunakan campuran pengklasifikasi.
 
 1. Atur maksud Anda dalam struktur pohon taksonomi.
-2. Buat serangkaian pengklasifikasi di setiap tingkat pohon, yang memungkinkan pendekatan perutean bertingkat.
+2. Buat serangkaian classifier di setiap tingkat pohon untuk memungkinkan pendekatan perutean bertingkat.
 
 Misalnya, Anda mungkin memiliki pengklasifikasi tingkat atas yang secara luas mengkategorikan tiket ke dalam "Technical Issues", "Billing Questions", dan "General Inquiries". Masing-masing kategori ini kemudian dapat memiliki sub-pengklasifikasi sendiri untuk lebih menyempurnakan klasifikasi.
 
@@ -1461,7 +1465,7 @@ flowchart LR
 
 * **Kelebihan - nuansa dan akurasi yang lebih besar:** Anda dapat membuat prompt yang berbeda untuk setiap jalur induk, memungkinkan klasifikasi yang lebih terarah dan spesifik konteks. Hal ini dapat menghasilkan akurasi yang lebih baik dan penanganan permintaan pelanggan yang lebih bernuansa.
 
-* **Kekurangan - "latency" (latensi) yang meningkat:** Perlu diketahui bahwa beberapa pengklasifikasi dapat menyebabkan peningkatan latensi, dan Anthropic merekomendasikan penerapan pendekatan ini dengan model tercepat, Haiku.
+* **Kekurangan - "latency" (latensi) yang meningkat:** Beberapa classifier dapat menyebabkan latency yang meningkat, dan Anthropic merekomendasikan penerapan pendekatan ini dengan model tercepat, Haiku.
 
 ### Gunakan database vektor dan pengambilan pencarian kemiripan untuk menangani tiket yang sangat bervariasi
 
@@ -1469,7 +1473,7 @@ Meskipun memberikan contoh merupakan cara paling efektif untuk meningkatkan perf
 
 Dalam skenario ini, Anda dapat menggunakan database vektor untuk melakukan pencarian kemiripan dari dataset contoh dan mengambil contoh yang paling relevan untuk kueri tertentu.
 
-Pendekatan ini, yang diuraikan secara rinci dalam [resep klasifikasi](https://platform.claude.com/cookbook/capabilities-classification-guide), telah terbukti meningkatkan performa dari akurasi 71% menjadi akurasi 93%.
+Pendekatan ini, yang diuraikan secara rinci dalam [resep klasifikasi](https://platform.claude.com/cookbook/capabilities-classification-guide), telah terbukti meningkatkan performa dari akurasi 71 persen menjadi akurasi 93 persen.
 
 ### Perhitungkan secara khusus kasus tepi yang diperkirakan
 
@@ -1483,9 +1487,9 @@ Berikut adalah beberapa skenario di mana Claude mungkin salah mengklasifikasikan
   </Accordion>
 
   <Accordion title="Claude memprioritaskan emosi daripada maksud">
-    Ketika pelanggan mengungkapkan ketidakpuasan, Claude mungkin memprioritaskan penanganan emosi daripada menyelesaikan masalah yang mendasarinya.
+    Ketika pelanggan mengungkapkan ketidakpuasan, Claude mungkin lebih memprioritaskan menanggapi emosi daripada menyelesaikan masalah yang mendasarinya.
 
-    * **Solusi:** Berikan Claude arahan tentang kapan harus memprioritaskan sentimen pelanggan atau tidak. Ini bisa sesederhana “Abaikan semua emosi pelanggan. Fokus hanya pada menganalisis maksud permintaan pelanggan dan informasi apa yang mungkin diminta pelanggan.”
+    * **Solusi:** Berikan Claude arahan tentang kapan harus memprioritaskan sentimen pelanggan atau tidak. Misalnya: “Abaikan semua emosi pelanggan. Fokus hanya pada analisis maksud dari permintaan pelanggan dan informasi apa yang mungkin diminta oleh pelanggan.”
   </Accordion>
 
   <Accordion title="Beberapa masalah menyebabkan kebingungan prioritas masalah">
@@ -1511,11 +1515,11 @@ Untuk kedua pendekatan ini, Anda perlu membungkus skrip Anda dalam sebuah layana
 ***
 
 <CardGroup cols={2}>
-  <Card title="Cookbook klasifikasi" icon="link" href="https://platform.claude.com/cookbook/capabilities-classification-guide">
-    Kunjungi cookbook klasifikasi untuk contoh kode lainnya dan panduan evaluasi yang terperinci.
+  <Card title="Resep klasifikasi" icon="link" href="https://platform.claude.com/cookbook/capabilities-classification-guide">
+    Kunjungi resep klasifikasi untuk contoh kode lainnya dan panduan evaluasi yang terperinci.
   </Card>
 
   <Card title="Claude Console" icon="link" href="https://platform.claude.com/dashboard">
-    Mulai membangun dan mengevaluasi alur kerja Anda di Claude Console.
+    Mulailah membangun dan mengevaluasi alur kerja Anda di Claude Console.
   </Card>
 </CardGroup>

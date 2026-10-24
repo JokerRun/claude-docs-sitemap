@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 7f603abe750829363b6e8e58815945a4039c249305a2b2dde35268f34d47ec42
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 9084f7bd849223949400aaf5f254f2b7e19a61536fc869bbf90380df6d637c93
 ---
 
 ---
@@ -27,7 +27,7 @@ Lingkungan `self_hosted` berfungsi sebagai antrean kerja. Anda menjalankan **env
 2. Worker Anda mengklaim item kerja dan mengunduh [skill](https://platform.claude.com/docs/id/managed-agents/skills) milik agen serta [memory store](https://platform.claude.com/docs/id/managed-agents/memory) milik sesi.
 3. Claude berjalan di sisi Anthropic dan meminta pemanggilan alat. Worker Anda menjalankan setiap pemanggilan secara lokal dan mengirimkan hasilnya kembali.
 
-Input dan output alat tetap mengalir ke "control plane" (bidang kendali) Anthropic, sehingga model dapat melihat hasil dan menentukan langkah selanjutnya. Anthropic menyimpan skill dan memory store. Sandbox Anda menyimpan salinannya untuk sesi tersebut. Lihat [Model keamanan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security) untuk batas aliran data selengkapnya.
+Input dan output alat tetap mengalir ke control plane Anthropic, sehingga model dapat menerima hasil dan menentukan apa yang harus dilakukan selanjutnya. Anthropic menyimpan skill dan memory store. Sandbox Anda menyimpan salinannya untuk sesi tersebut. Lihat [Model keamanan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security) untuk batas aliran data selengkapnya.
 
 Sandbox yang di-host sendiri mendukung setiap model Claude yang tersedia di Managed Agents. Model dikonfigurasi pada agen, bukan pada lingkungan.
 
@@ -193,7 +193,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
         Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
         ```bash
-        VERSION=2.1.0
+        VERSION=2.3.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -322,7 +322,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
           "environment_id": "'"$ANTHROPIC_ENVIRONMENT_ID"'"
         }'
 
-      # Kirimkan tugas: SESSION_ID adalah id dari respons pembuatan
+      # Kirimkan tugas ke sesi: SESSION_ID adalah ID dari respons pembuatan
       curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
@@ -349,7 +349,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
         --agent "$AGENT_ID" \
         --environment-id "$ANTHROPIC_ENVIRONMENT_ID"
 
-      # Kirimkan tugas: SESSION_ID adalah id dari respons pembuatan
+      # Kirimkan tugas ke sesi: SESSION_ID adalah ID dari respons pembuatan
       ant beta:sessions:events send --session-id "$SESSION_ID" <<'YAML'
       events:
         - type: user.message
@@ -512,7 +512,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
     cat /workspace/hello.txt
     ```
 
-    File tersebut mendeskripsikan kernel host Anda sendiri, jadi pemanggilan alat agen berjalan di sana. Untuk mengikuti pekerjaan agen secara langsung, lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).
+    File tersebut mendeskripsikan kernel host Anda sendiri, jadi pemanggilan alat oleh agen berjalan di sana. Untuk mengikuti pekerjaan agen secara real-time, lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).
   </Step>
 </Steps>
 
@@ -528,7 +528,7 @@ Environment env_... is a self-hosted environment. `resources` are not supported 
 
 ## Sandbox yang di-host sendiri dan tunnel MCP
 
-Hosting sendiri mengendalikan *di mana kode agen dieksekusi*. [Tunnel MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview) mengendalikan *bagaimana Anthropic menjangkau server MCP di jaringan Anda*. Keduanya independen:
+Self-hosting mengendalikan *di mana kode agen berjalan*. [Tunnel MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview) mengendalikan *bagaimana Anthropic menjangkau server MCP di jaringan Anda*. Keduanya independen:
 
 * Sesi di sandbox cloud Anthropic dapat menjangkau server MCP privat melalui tunnel. Misalnya, server MCP privat mungkin berada di depan database atau API internal di balik firewall Anda.
 * Sesi yang di-host sendiri dapat menggunakan server MCP melalui tunnel maupun server MCP publik.
@@ -558,7 +558,7 @@ Halaman-halaman ini menjelaskan cara membangun worker di platform sandboxing apa
     Jalankan worker SDK, picu worker dari webhook, atau berikan sandbox tersendiri untuk setiap sesi.
   </Card>
 
-  <Card title="Memory store" icon="brain" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory">
+  <Card title="Memory store di sandbox self-hosted" icon="brain" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory">
     Siapkan host, konfigurasikan sinkronisasi, dan tangani store hanya-baca serta konflik.
   </Card>
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-errors
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 67f0d3dd044101b1367acdecc9100e386f593dec1ee7e009af8383ffa0d4f719
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 6fa1cc6d7f43ccb6bf60bed985dd4ff0df8134bacc3dd58a1187f47d684734d5
 ---
 
 ---
@@ -32,7 +32,7 @@ Di halaman ini, sesi lokal berjalan di mesin pengguna dan sesi jarak jauh berjal
 
 Cocokkan berdasarkan kode status HTTP dan `error.type`, bukan berdasarkan string pesan. Pesan cukup stabil untuk disalin ke runbook tetapi mungkin diubah susunan katanya seiring waktu; kode status dan nilai type adalah bagian dari kontrak API. Beberapa respons yang memiliki kode status dan type yang sama dibedakan oleh kode error di `error.details.error_code` jika respons membawanya, dan jika tidak, oleh pesannya; masing-masing disebutkan di tempat yang relevan.
 
-Tabel berikut memberi tahu Anda secara sekilas apakah perlu mencoba ulang. Setiap bagian berikutnya menampilkan body error apa adanya beserta perbaikannya.
+Tabel berikut memberi tahu Anda apakah perlu mencoba ulang. Setiap bagian berikutnya menunjukkan body kesalahan secara verbatim dan perbaikannya.
 
 | Status                                                                                                                     | Coba ulang?                      | Kapan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -125,7 +125,7 @@ Invalid pagination cursor for 'after_id'
 
 Endpoint direktori, proyek, dan sesi (organisasi, pengguna, peran, izin peran, grup, anggota grup, proyek, lampiran proyek, sesi lokal dan jarak jauh, serta pesan sesi) melakukan paginasi dengan token `page` yang buram alih-alih `after_id` dan `before_id`. Saran yang sama berlaku: teruskan nilai `next_page` dari respons sebelumnya tanpa diubah, dan berhenti ketika `has_more` bernilai `false` (atau, pada endpoint sesi, yang tidak mengembalikan `has_more`, ketika `next_page` bernilai `null`). Token `page` yang salah bentuk mengembalikan 400 `invalid_request_error` yang sama seperti `after_id` atau `before_id` yang salah bentuk, dengan pesan yang spesifik untuk endpoint tersebut.
 
-Dua endpoint sesi lokal yang menggunakan paginasi (endpoint list dan endpoint messages) mengembalikan 400 `invalid_request_error` berikut untuk nilai `page` apa pun yang tidak dapat didekode, misalnya, token yang terpotong atau diubah setelah Anda menyimpannya, atau token yang diterbitkan oleh endpoint lain atau di bawah organisasi induk yang berbeda. Pada endpoint messages sesi lokal (`GET /v1/compliance/apps/sessions/local/{session_id}/messages`), setiap kursor `page` juga terikat pada sesi dan `order` tempat kursor tersebut diterbitkan, sehingga kursor yang diterbitkan untuk sesi atau urutan pengurutan yang berbeda mengembalikan body yang sama:
+Dua endpoint sesi lokal yang berpaginasi (list dan endpoint messages) mengembalikan 400 `invalid_request_error` berikut untuk nilai `page` apa pun yang tidak dapat didekode. Contohnya termasuk token yang terpotong atau diubah setelah Anda menyimpannya, dan token yang diterbitkan oleh endpoint berbeda atau di bawah organisasi induk berbeda. Pada endpoint messages sesi lokal (`GET /v1/compliance/apps/sessions/local/{session_id}/messages`), setiap cursor `page` juga terikat pada sesi dan `order` yang menjadi dasar penerbitannya, sehingga cursor yang diterbitkan untuk sesi atau urutan pengurutan yang berbeda mengembalikan body yang sama:
 
 ```text wrap
 The page parameter is not a valid cursor for this request.
@@ -356,7 +356,14 @@ No project document found with the provided id, or it has already been deleted.
 Local session not found.
 ```
 
-**Penyebab:** ID sesi yang diteruskan ke `GET /v1/compliance/apps/sessions/local/{session_id}` atau `GET /v1/compliance/apps/sessions/local/{session_id}/messages` tidak cocok dengan sesi lokal yang dapat dibaca melalui Compliance API. Kedua endpoint mengembalikan satu pesan ini, tanpa membedakan penyebabnya, ketika ID bukan sesi di organisasi yang dapat dibaca oleh kunci Anda (termasuk ID milik organisasi induk lain), ketika sesi tidak pernah ada, ketika [zero data retention](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) berlaku untuk sesi tersebut, atau ketika seluruh aktivitas sesi telah melewati periode retensi yang berlaku untuk organisasi yang menjalankannya. Respons `Local session not found.` tidak memiliki bentuk sementara, karena sesi lokal tidak memiliki status penyediaan (`pending`); bandingkan dengan [Sesi jarak jauh tidak ditemukan](https://platform.claude.com/docs/id/manage-claude/compliance-errors#remote-session-not-found), di mana sesi `pending` mengembalikan 404 hingga sesi dimulai. ID sesi yang bukan pengenal `clls_` yang terbentuk dengan benar akan mengembalikan [400 Bad Request](https://platform.claude.com/docs/id/manage-claude/compliance-errors#400-bad-request) sebagai gantinya.
+**Penyebab:** ID sesi yang diteruskan ke `GET /v1/compliance/apps/sessions/local/{session_id}` atau `GET /v1/compliance/apps/sessions/local/{session_id}/messages` tidak cocok dengan sesi lokal yang dapat dibaca melalui Compliance API. Kedua endpoint mengembalikan pesan yang sama ini, tanpa membedakan penyebabnya, dalam salah satu kasus berikut:
+
+* ID bukan sesi di organisasi yang dapat dibaca kunci Anda (termasuk ID yang milik organisasi induk lain).
+* Sesi tidak pernah ada.
+* [Zero data retention](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) berlaku untuk sesi tersebut.
+* Seluruh aktivitas sesi telah melewati periode retensi yang berlaku untuk organisasi yang menjalankannya.
+
+Respons `Local session not found.` tidak memiliki bentuk sementara, karena sesi lokal tidak memiliki status penyediaan (`pending`); bandingkan dengan [Sesi jarak jauh tidak ditemukan](https://platform.claude.com/docs/id/manage-claude/compliance-errors#remote-session-not-found), di mana sesi `pending` mengembalikan 404 hingga dimulai. ID sesi yang bukan pengidentifikasi `clls_` yang berformat benar mengembalikan [400 Bad Request](https://platform.claude.com/docs/id/manage-claude/compliance-errors#400-bad-request) sebagai gantinya.
 
 Endpoint sesi lokal, termasuk endpoint list, mengembalikan pesan 404 yang berbeda, `Local sessions are not available.`, selama endpoint itu sendiri tidak tersedia untuk organisasi induk Anda. Respons tersebut tidak bergantung pada ID sesi; tidak ada kunci, scope, atau pengaturan di sisi pelanggan yang dapat mengubahnya, dan respons tersebut dapat bersifat sementara. Kedua respons membawa type `not_found_error`; teks pesanlah yang membedakan keduanya.
 
@@ -370,7 +377,13 @@ Endpoint sesi lokal, termasuk endpoint list, mengembalikan pesan 404 yang berbed
 Remote session not found.
 ```
 
-**Penyebab:** ID sesi yang diteruskan ke `GET /v1/compliance/apps/sessions/remote/{session_id}/messages` tidak cocok dengan transkrip sesi yang dapat dibaca melalui Compliance API. Hal ini terjadi ketika ID sesi (`cse_...`) tidak ada atau sesi telah dihapus, ketika sesi milik organisasi yang tidak dapat dibaca oleh kunci Anda, atau ketika `status` sesi masih `pending`: sesi yang tertunda belum memiliki transkrip, sehingga endpoint messages mengembalikan 404 hingga sesi dimulai. ID sesi yang bukan pengenal `cse_` yang terbentuk dengan benar akan mengembalikan [400 Bad Request](https://platform.claude.com/docs/id/manage-claude/compliance-errors#400-bad-request) sebagai gantinya.
+**Penyebab:** ID sesi yang diteruskan ke `GET /v1/compliance/apps/sessions/remote/{session_id}/messages` tidak cocok dengan transkrip sesi yang dapat dibaca melalui Compliance API. Ini terjadi dalam salah satu kasus berikut:
+
+* ID sesi (`cse_...`) tidak ada atau sesi telah dihapus.
+* Sesi milik organisasi yang tidak dapat dibaca kunci Anda.
+* `status` sesi masih `pending`: sesi yang tertunda belum memiliki transkrip, sehingga endpoint messages mengembalikan 404 hingga sesi dimulai.
+
+ID sesi yang bukan pengidentifikasi `cse_` yang berformat benar mengembalikan [400 Bad Request](https://platform.claude.com/docs/id/manage-claude/compliance-errors#400-bad-request) sebagai gantinya.
 
 **Perbaikan:** Konfirmasikan ID sesi dan `status`-nya terhadap `GET /v1/compliance/apps/sessions/remote`; lihat [Sesi di cloud](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-remote-sessions). Jika sesi berstatus `pending`, coba ulang setelah sesi keluar dari status tersebut. Jika sesi tidak lagi muncul di list, sesi tersebut telah dihapus dan transkripnya tidak dapat diambil.
 
@@ -396,7 +409,13 @@ Endpoint organisasi, peran, dan grup mengembalikan 404 `not_found_error` dalam f
 organization `91012d09-e48b-438e-a489-1bebfd8fa6f9` not found in this organization's hierarchy
 ```
 
-**Penyebab:** `GET /v1/compliance/organizations/{organization_id}/settings` mengembalikan 404 ini dalam tiga kasus yang sengaja menggunakan body yang sama agar respons tidak mengungkapkan apakah suatu organisasi ada: `organization_id` bukan salah satu organisasi yang tertaut ke induk Anda, nilainya bukan UUID yang valid, atau endpoint pengaturan belum diaktifkan untuk organisasi induk Anda.
+**Penyebab:** `GET /v1/compliance/organizations/{organization_id}/settings` mengembalikan 404 ini dalam tiga kasus:
+
+* `organization_id` bukan salah satu organisasi yang ditautkan ke induk Anda.
+* `organization_id` bukan UUID yang valid.
+* Endpoint settings belum diaktifkan untuk organisasi induk Anda.
+
+Endpoint sengaja mengembalikan body yang sama dalam ketiga kasus, sehingga 404 tidak mengungkapkan apakah suatu organisasi ada.
 
 **Perbaikan:** Verifikasi ID terhadap [Mencantumkan organisasi](https://platform.claude.com/docs/id/api/compliance/organizations/list). Jika ID organisasi yang diketahui benar masih mengembalikan 404, endpoint pengaturan belum diaktifkan untuk organisasi induk Anda; hubungi perwakilan Anthropic Anda.
 
@@ -476,7 +495,7 @@ Too many large session transcripts are being read at once. This is not a limit o
 
 500 dari Compliance API membawa header respons `x-should-retry: false` ketika kegagalannya bersifat deterministik. Claude SDK mematuhi header ini secara otomatis. Jika Anda menggunakan library retry HTTP generik yang mencoba ulang pada setiap 5xx, nonaktifkan percobaan ulang ketika `x-should-retry` bernilai `false`; mencoba ulang error ini akan gagal dengan cara yang sama pada setiap percobaan.
 
-500 tanpa header `x-should-retry: false` bersifat sementara: coba lagi dengan exponential backoff (mulai dari 1 detik, gandakan hingga 60 detik). Hal yang sama berlaku untuk respons 502, 503, 504, dan 529. Pengecualiannya adalah sekumpulan kecil 503 sesi lokal, yang dijelaskan berikutnya, yang bergantung pada pengaturan atau kunci enkripsi organisasi, bukan pada beban. Lihat [Error](https://platform.claude.com/docs/id/api/errors) untuk semantik percobaan ulang di seluruh platform.
+500 tanpa header `x-should-retry: false` bersifat sementara: coba lagi dengan backoff eksponensial (mulai dari 1 detik, gandakan hingga 60 detik). Hal yang sama berlaku untuk respons 502, 503, 504, dan 529. Pengecualiannya adalah sekumpulan kecil 503 sesi lokal, yang dijelaskan berikutnya, yang bergantung pada pengaturan atau kunci enkripsi organisasi, bukan pada beban. Lihat [Error Claude API](https://platform.claude.com/docs/id/api/errors) untuk semantik percobaan ulang di seluruh platform.
 
 ### Sesi lokal untuk sementara tidak tersedia
 

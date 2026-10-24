@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-observability
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 5ba4b67be056e58db96362cfda373dc7c8bc134ff3e1d79f30cb6990f9d3b5d7
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: e02ebb3d26b576d3a57969c7255f61bb5852b8507592ebbb58eb69ce5b85923e
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-Gunakan penampil sesi di Claude Console untuk memeriksa apa yang dilakukan agen dalam sebuah sesi, tanpa menulis kode apa pun. Gunakan total `usage` (csharp, go: `Usage`) sesi untuk melihat apa yang dikonsumsi oleh pekerjaan tersebut.
+Gunakan penampil sesi di Claude Console untuk memeriksa apa yang dilakukan agen dalam sebuah sesi, tanpa menulis kode apa pun. Gunakan total `usage` (csharp, go: `Usage`) sesi untuk melihat apa yang dikonsumsi oleh pekerjaan tersebut. Untuk melihat giliran, permintaan model, dan penggunaan alat sebuah sesi di platform observabilitas Anda, siapkan [tracing OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry).
 
 ## Memeriksa sesi di Console
 

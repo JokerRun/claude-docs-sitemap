@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 4b228d837685e07e195b360bb695cc3bfd57be1b506d19dba9907b51b4dfc3a0
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 6b1650701472209bfb33449d5b5f4127a80a28375f7ca4143150b6b658898f0d
 ---
 
 ---
 title: Penggunaan alat dengan Claude
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview
-description: Hubungkan Claude ke alat dan API eksternal. Lihat di mana alat dieksekusi, kapan Claude memanggilnya, dan alat mana yang sesuai untuk tugas Anda.
+description: Hubungkan Claude ke alat dan API eksternal. Lihat di mana alat dijalankan, kapan Claude memanggilnya, dan alat mana yang sesuai dengan tugas Anda.
 ---
 
-"Tool use" (penggunaan alat), yang juga disebut "function calling" (pemanggilan fungsi), memungkinkan Claude memanggil fungsi yang Anda definisikan atau yang disediakan oleh Anthropic. Claude menentukan kapan harus memanggil alat berdasarkan permintaan pengguna dan deskripsi alat tersebut. Claude kemudian mengembalikan panggilan terstruktur yang dieksekusi oleh aplikasi Anda (alat klien) atau yang dieksekusi oleh Anthropic (alat server).
+"Tool use" (penggunaan alat), yang juga disebut "function calling" (pemanggilan fungsi), memungkinkan Claude memanggil fungsi yang Anda definisikan atau yang disediakan oleh Anthropic. Claude menentukan kapan harus memanggil alat berdasarkan permintaan pengguna dan deskripsi alat tersebut. Kemudian Claude mengembalikan panggilan terstruktur yang dijalankan oleh aplikasi Anda (alat klien) atau yang dijalankan oleh Anthropic (alat server).
 
-Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool), yang dieksekusi oleh Anthropic untuk Anda:
+Berikut contoh minimal menggunakan alat server, yaitu [alat pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool), yang dijalankan Anthropic untuk Anda:
 
 <CodeGroup>
   ```bash cURL
@@ -132,7 +132,7 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](h
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: [{ type: "web_search_20260209", name: "web_search" }],
     messages: [{ role: "user", content: "What's the latest on the Mars rover?" }]
@@ -141,11 +141,11 @@ Berikut adalah contoh minimal menggunakan alat server, yaitu [alat Web search](h
   ```
 </CodeGroup>
 
-Claude menjalankan pencarian di infrastruktur Anthropic dan mengembalikan hasil yang disertai kutipan dalam respons yang sama. Agar Claude memanggil fungsi yang Anda definisikan, berikan alat dengan `input_schema`, lalu eksekusi panggilan tersebut ketika Claude mengembalikan blok `tool_use`. [Cara kerja penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#how-tool-use-works) menunjukkan siklus bolak-balik tersebut dari awal hingga akhir. Pelajari lebih lanjut tentang [mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools) dan [menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls).
+Claude menjalankan pencarian di infrastruktur Anthropic dan mengembalikan hasil beserta kutipannya dalam respons yang sama. Agar Claude memanggil fungsi yang Anda definisikan, berikan alat dengan `input_schema`, lalu jalankan panggilan tersebut ketika Claude mengembalikan blok `tool_use`. [Contoh alat klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#how-tool-use-works) menunjukkan alur bolak-balik tersebut dari awal hingga akhir. Pelajari lebih lanjut tentang [mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools) dan [menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls).
 
 ## Cara kerja penggunaan alat
 
-Alat terutama dibedakan berdasarkan tempat kode dieksekusi. **Alat klien** (termasuk alat yang didefinisikan pengguna dan alat dengan skema yang didefinisikan Anthropic, seperti `bash` dan `text_editor`) berjalan di aplikasi Anda. Claude merespons dengan `stop_reason: "tool_use"` dan satu atau lebih blok `tool_use`. Kode Anda mengeksekusi operasi tersebut dan mengirimkan kembali `tool_result`. **Alat server** (seperti `web_search`, `web_fetch`, `code_execution`, dan `tool_search`) berjalan di infrastruktur Anthropic: Anda melihat hasilnya secara langsung tanpa perlu menangani eksekusi, kecuali jika Claude memanggil alat tersebut dalam kelompok panggilan alat paralel yang sama dengan salah satu alat klien Anda (lihat [Alasan berhenti dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use)).
+Alat terutama dibedakan berdasarkan di mana kodenya dijalankan. **Alat klien** (termasuk alat yang didefinisikan pengguna dan alat dengan skema yang didefinisikan Anthropic, seperti `bash` dan `text_editor`) berjalan di aplikasi Anda. Claude merespons dengan `stop_reason: "tool_use"` dan satu atau lebih blok `tool_use`. Kode Anda menjalankan operasinya dan mengirimkan kembali `tool_result`. **Alat server** (seperti `web_search`, `web_fetch`, `code_execution`, dan `tool_search`) berjalan di infrastruktur Anthropic: Anda melihat hasilnya secara langsung tanpa perlu menangani eksekusinya, kecuali jika Claude memanggil alat tersebut dalam kelompok panggilan alat paralel yang sama dengan salah satu alat klien Anda (lihat [Stop reason dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use)).
 
 Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Permintaan pertama mendefinisikan alat `get_weather`, dan Claude menjawab pertanyaan dengan memanggilnya: respons membawa blok `tool_use`, kode Anda menjalankan pencarian, dan permintaan kedua mengirimkan hasilnya kembali dalam blok `tool_result` sehingga Claude dapat membalas dengan jawabannya.
 
@@ -184,7 +184,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
       model="claude-opus-5-5",
       max_tokens=1024,
       tools=tools,
-      # Minta paling banyak satu panggilan alat per giliran.
+      # Minta paling banyak satu pemanggilan alat di setiap giliran.
       tool_choice={"type": "auto", "disable_parallel_tool_use": True},
       messages=messages,
   )
@@ -240,7 +240,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
     model: "claude-opus-5-5",
     max_tokens: 1024,
     tools,
-    // Minta paling banyak satu panggilan alat per giliran.
+    // Minta paling banyak satu panggilan alat di setiap giliran.
     tool_choice: { type: "auto", disable_parallel_tool_use: true },
     messages
   });
@@ -293,7 +293,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
       }),
   ];
 
-  // Minta paling banyak satu panggilan alat per giliran.
+  // Minta paling banyak satu panggilan alat di setiap giliran.
   var toolChoice = new ToolChoice(new ToolChoiceAuto { DisableParallelToolUse = true });
 
   const string userPrompt = "What's the weather in San Francisco?";
@@ -371,7 +371,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
   		},
   	}},
   }
-  // Minta paling banyak satu panggilan alat per giliran.
+  // Minta paling banyak satu panggilan alat di setiap giliran.
   toolChoice := anthropic.ToolChoiceUnionParam{
   	OfAuto: &anthropic.ToolChoiceAutoParam{DisableParallelToolUse: anthropic.Bool(true)},
   }
@@ -456,7 +456,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
               .build())
           .build();
 
-      // Minta paling banyak satu panggilan alat per giliran.
+      // Minta paling banyak satu panggilan alat di setiap giliran.
       ToolChoiceAuto toolChoice = ToolChoiceAuto.builder()
           .disableParallelToolUse(true)
           .build();
@@ -523,7 +523,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
   ];
   $userMessage = ['role' => 'user', 'content' => "What's the weather in San Francisco?"];
 
-  // Minta paling banyak satu panggilan alat per giliran.
+  // Minta paling banyak satu pemanggilan alat di setiap giliran.
   $toolChoice = ToolChoiceAuto::with(disableParallelToolUse: true);
 
   // Claude membalas dengan blok tool_use yang menyebutkan alat dan argumennya.
@@ -594,10 +594,10 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
 
   # Claude membalas dengan blok tool_use yang menyebutkan alat dan argumennya.
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: tools,
-    # Minta paling banyak satu panggilan alat per giliran.
+    # Minta paling banyak satu pemanggilan alat di setiap giliran.
     tool_choice: {type: "auto", disable_parallel_tool_use: true},
     messages: messages
   )
@@ -616,7 +616,7 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
     }
   ]
   followup = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: tools,
     tool_choice: {type: "auto", disable_parallel_tool_use: true},
@@ -634,7 +634,7 @@ Claude called get_weather with {"location": "San Francisco, CA"}
 The current weather in San Francisco is 15 degrees Celsius with partly cloudy skies.
 ```
 
-[Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) membahas setiap langkah secara mendetail, termasuk pemformatan hasil dan pensinyalan kesalahan; [Penggunaan alat paralel](https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use) membahas respons yang memanggil beberapa alat sekaligus. Untuk melewati penulisan siklus bolak-balik ini sendiri, gunakan [Tool Runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner): SDK mengeksekusi alat Anda dan mengirimkan hasilnya kembali secara otomatis.
+[Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) membahas setiap langkah secara mendetail, termasuk pemformatan hasil dan pensinyalan error; [Penggunaan alat paralel](https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use) membahas respons yang memanggil beberapa alat sekaligus. Agar tidak perlu menulis alur bolak-balik ini sendiri, gunakan [tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner): SDK menjalankan alat Anda dan mengirimkan hasilnya kembali secara otomatis.
 
 Untuk model konseptual lengkap termasuk loop agentik dan kapan memilih setiap pendekatan, lihat [Cara kerja penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works).
 
@@ -679,7 +679,7 @@ Untuk string `type`, versi, dan header beta, lihat [Referensi alat](https://plat
 
 ### Alat Anda sendiri
 
-Untuk alat yang Anda definisikan, Anda menulis skemanya dan aplikasi Anda mengeksekusi setiap panggilan.
+Untuk alat yang Anda definisikan, Anda menulis skemanya dan aplikasi Anda menjalankan setiap panggilan.
 
 <CardGroup cols={2}>
   <Card title="Definisikan alat" icon="hammer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools">
@@ -693,7 +693,7 @@ Untuk alat yang Anda definisikan, Anda menulis skemanya dan aplikasi Anda mengek
 
 ### Alat klien dengan skema Anthropic
 
-Anthropic menerbitkan skemanya dan melatih Claude dengan skema tersebut. Aplikasi Anda tetap mengeksekusi setiap panggilan dan mengembalikan `tool_result`.
+Anthropic menerbitkan skemanya dan melatih Claude berdasarkan skema tersebut. Aplikasi Anda tetap menjalankan setiap panggilan dan mengembalikan `tool_result`.
 
 <CardGroup cols={2}>
   <Card title="Alat Memory" icon="brain" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool">
@@ -731,7 +731,7 @@ Alat server berjalan di infrastruktur Anthropic, tanpa kode handler di aplikasi 
   </Card>
 
   <Card title="Alat Code execution" icon="code" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool">
-    Jalankan kode Python dan bash dalam kontainer sandbox untuk menganalisis data dan menghasilkan file.
+    Jalankan kode Python dan Bash dalam container sandbox untuk menganalisis data dan menghasilkan file.
   </Card>
 
   <Card title="Alat Advisor" icon="lightbulb" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool">
@@ -769,24 +769,24 @@ Token tambahan dari penggunaan alat berasal dari:
 
 Saat Anda menggunakan `tools`, API juga secara otomatis menyertakan "system prompt" (prompt sistem) khusus untuk model yang memungkinkan penggunaan alat. Jumlah token penggunaan alat yang diperlukan untuk setiap model tercantum dalam tabel berikut (tidak termasuk token tambahan yang disebutkan sebelumnya). Perhatikan bahwa tabel ini mengasumsikan setidaknya 1 alat disediakan. Jika tidak ada `tools` yang disediakan, maka pilihan alat `none` menggunakan 0 token prompt sistem tambahan.
 
-| Model                                                                                                                                | Tool use system prompt tokens: auto, none | Tool use system prompt tokens: any, tool |
-| :----------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------- | :--------------------------------------- |
-| Claude Opus 5.5                                                                                                                      | 286 tokens                                |                                          |
-| Claude Opus 5                                                                                                                        | 286 tokens                                | 406 tokens                               |
-| Claude Opus 4.8                                                                                                                      | 290 tokens                                | 410 tokens                               |
-| Claude Opus 4.7                                                                                                                      | 675 tokens                                | 804 tokens                               |
-| Claude Opus 4.6                                                                                                                      | 497 tokens                                | 589 tokens                               |
-| Claude Opus 4.5                                                                                                                      | 496 tokens                                | 588 tokens                               |
-| Claude Opus 4.1 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | 313 tokens                                | 315 tokens                               |
-| Claude Opus 4 ([retired, except on Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))               | 313 tokens                                | 315 tokens                               |
-| Claude Sonnet 5.5                                                                                                                    | 286 tokens                                |                                          |
-| Claude Sonnet 5                                                                                                                      | 354 tokens                                | 474 tokens                               |
-| Claude Sonnet 4.6                                                                                                                    | 497 tokens                                | 589 tokens                               |
-| Claude Sonnet 4.5                                                                                                                    | 496 tokens                                | 588 tokens                               |
-| Claude Sonnet 4 ([retired, except on Bedrock and Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | 313 tokens                                | 315 tokens                               |
-| Claude Haiku 5.5                                                                                                                     | 286 tokens                                | 406 tokens                               |
-| Claude Haiku 4.5                                                                                                                     | 496 tokens                                | 588 tokens                               |
-| Claude Haiku 3.5 ([retired, except on Google Cloud](https://platform.claude.com/docs/id/about-claude/model-deprecations))            | 264 tokens                                | 355 tokens                               |
+| Model                                                                                                                                                                  | Tool use system prompt tokens: auto, none | Tool use system prompt tokens: any, tool |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------- | :--------------------------------------- |
+| Claude Opus 5.5                                                                                                                                                        | 286 tokens                                |                                          |
+| Claude Opus 5                                                                                                                                                          | 286 tokens                                | 406 tokens                               |
+| Claude Opus 4.8                                                                                                                                                        | 290 tokens                                | 410 tokens                               |
+| Claude Opus 4.7                                                                                                                                                        | 675 tokens                                | 804 tokens                               |
+| Claude Opus 4.6                                                                                                                                                        | 497 tokens                                | 589 tokens                               |
+| Claude Opus 4.5                                                                                                                                                        | 496 tokens                                | 588 tokens                               |
+| Claude Opus 4.1 ([retired, except on Bedrock and Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | 313 tokens                                | 315 tokens                               |
+| Claude Opus 4 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations))               | 313 tokens                                | 315 tokens                               |
+| Claude Sonnet 5.5                                                                                                                                                      | 286 tokens                                |                                          |
+| Claude Sonnet 5                                                                                                                                                        | 354 tokens                                | 474 tokens                               |
+| Claude Sonnet 4.6                                                                                                                                                      | 497 tokens                                | 589 tokens                               |
+| Claude Sonnet 4.5                                                                                                                                                      | 496 tokens                                | 588 tokens                               |
+| Claude Sonnet 4 ([retired, except on Bedrock and Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | 313 tokens                                | 315 tokens                               |
+| Claude Haiku 5.5                                                                                                                                                       | 286 tokens                                | 406 tokens                               |
+| Claude Haiku 4.5                                                                                                                                                       | 496 tokens                                | 588 tokens                               |
+| Claude Haiku 3.5 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations))            | 264 tokens                                | 355 tokens                               |
 
 * **auto, none:** The count when tool\_choice is auto or none.
 * **any, tool:** The count when tool\_choice is any or tool.
@@ -798,13 +798,13 @@ Lihat tabel [Ikhtisar model](https://platform.claude.com/docs/id/models/overview
 
 Ketika Anda mengirim prompt penggunaan alat, sama seperti permintaan API lainnya, respons menyertakan jumlah token input dan output dalam metrik `usage` yang dilaporkan.
 
-Beberapa alat server menambahkan biaya berbasis penggunaan di luar token: lihat [Alat Web search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#usage-and-pricing) dan [Alat Code execution](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#usage-and-pricing) untuk tarifnya.
+Beberapa alat server menambahkan biaya berbasis penggunaan di atas biaya token: lihat [Penggunaan dan harga alat pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#usage-and-pricing) dan [Penggunaan dan harga alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#usage-and-pricing) untuk tarifnya.
 
 ## Langkah selanjutnya
 
 <CardGroup cols={3}>
   <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works" title="Cara kerja penggunaan alat" icon="compass">
-    Pahami loop penggunaan alat, di mana alat dieksekusi, dan kapan menggunakan alat alih-alih prosa.
+    Pahami loop penggunaan alat, di mana alat dijalankan, dan kapan menggunakan alat alih-alih prosa.
   </Card>
 
   <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent" title="Tutorial: Bangun agen yang menggunakan alat" icon="graduation-cap">

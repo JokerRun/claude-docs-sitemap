@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 369a82554c1d68658693ab80f5b23e8d5825b0e2271545e1c65001c892552ac4
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: ea3029e25df023136645ce4996e174dc17f656b35f375336fed61ec5c518cde1
 ---
 
 ---
@@ -36,7 +36,7 @@ Kedua pola berbagi batasan berikut:
 * Aktivitas dapat dikueri dalam 1 menit setelah terjadi dan disimpan selama 6 tahun. Pencatatan tidak bersifat retroaktif: pencatatan dimulai ketika Compliance API pertama kali diaktifkan untuk organisasi Anda, dan aktivitas dari sebelum pengaktifan tidak diisi ulang (backfill).
 * `limit` maksimum untuk setiap halaman adalah 5.000.
 * Nilai kursor adalah string opaque yang tidak boleh Anda parse.
-* Permintaan dibatasi hingga 600 per menit per [organisasi induk](https://platform.claude.com/docs/id/manage-claude/compliance-api#how-the-compliance-api-works), dibagi bersama di seluruh kunci, seluruh organisasi tertaut, dan seluruh endpoint `/v1/compliance/*`; tidak seperti endpoint sesi lokal, endpoint sesi remote memiliki anggaran permintaan kedua di atasnya. Lihat [429 Too Many Requests](https://platform.claude.com/docs/id/manage-claude/compliance-errors#429-too-many-requests) untuk header respons dan kontrak retry.
+* Permintaan dibatasi hingga 600 per menit untuk setiap [organisasi induk](https://platform.claude.com/docs/id/manage-claude/compliance-api#how-the-compliance-api-works), yang dibagi di antara setiap kunci, setiap organisasi yang ditautkan, dan setiap endpoint `/v1/compliance/*`; tidak seperti endpoint sesi lokal, endpoint sesi jarak jauh memiliki anggaran permintaan kedua di atasnya. Lihat [429 Too Many Requests](https://platform.claude.com/docs/id/manage-claude/compliance-errors#429-too-many-requests) untuk header respons dan kontrak retry.
 
 | Pola                                  | Pilih ketika                                                                                                                                                                                                                                           |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -50,8 +50,8 @@ Tetapkan `created_at.lt` setidaknya 1 menit di masa lalu sehingga setiap aktivit
 ```bash cURL
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/activities" \
-  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  --header "anthropic-version: 2023-06-01" \
+  -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  -H "anthropic-version: 2023-06-01" \
   --data-urlencode "created_at.gte=2026-04-20T07:00:00Z" \
   --data-urlencode "created_at.lt=2026-04-20T08:00:00Z" \
   --data-urlencode "limit=5000"
@@ -71,13 +71,13 @@ Bahkan dengan penyusunan yang rapi, aktivitas yang terindeks setelah jendelanya 
 # before_id adalah first_id dari respons sebelumnya
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/activities" \
-  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  --header "anthropic-version: 2023-06-01" \
+  -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  -H "anthropic-version: 2023-06-01" \
   --data-urlencode "limit=5000" \
   --data-urlencode "before_id=activity_01XyDMpzjS89pFZXqSFUBDr6"
 ```
 
-Lakukan paginasi hingga `has_more` bernilai `false`, lalu simpan `first_id` dari respons terakhir dan teruskan tanpa perubahan sebagai `before_id` pada eksekusi berikutnya untuk mengambil aktivitas yang lebih baru dari kursor yang disimpan. Untuk berjalan ke arah sebaliknya untuk backfill, simpan `last_id` dan teruskan sebagai `after_id`. Untuk referensi lengkap kursor-vs-page-token dan semantik retry, lihat [Paginasi hasil](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#paginate-results).
+Lakukan paginasi hingga `has_more` bernilai `false`, lalu simpan `first_id` dari respons terakhir dan teruskan tanpa diubah sebagai `before_id` pada eksekusi berikutnya untuk mengambil aktivitas yang lebih baru dari cursor yang disimpan. Untuk berjalan ke arah sebaliknya untuk backfill, simpan `last_id` dan teruskan sebagai `after_id`. Untuk referensi lengkap cursor versus page token dan semantik retry, lihat [Paginasi hasil](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#paginate-results).
 
 Loop **catch-up** produksi mengambil aktivitas yang tercatat sejak polling terakhir Anda dengan menggerakkan iterasi berdasarkan `has_more` dan `first_id`:
 

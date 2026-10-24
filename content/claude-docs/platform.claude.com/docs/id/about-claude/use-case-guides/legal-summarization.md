@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 9cb9bb9eefa987a2fac961097baeec0e359eb53fa2c9928ab933e083e23137ba
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 757756e796a889957e274369640c5ab24e753b7f6c753db8097b2e4b241fa39f
 ---
 
 ---
 title: Peringkasan hukum
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization
-description: Panduan ini menjelaskan cara memanfaatkan kemampuan pemrosesan bahasa alami tingkat lanjut Claude untuk meringkas dokumen hukum secara efisien, mengekstrak informasi penting, dan mempercepat riset hukum. Dengan Claude, Anda dapat menyederhanakan peninjauan kontrak, persiapan litigasi, dan pekerjaan regulasi, sehingga menghemat waktu dan memastikan akurasi dalam proses hukum Anda.
+description: Panduan ini menjelaskan cara menggunakan kemampuan pemrosesan bahasa alami Claude yang canggih untuk meringkas dokumen hukum secara efisien, mengekstrak informasi penting, dan mempercepat riset hukum. Dengan Claude, Anda dapat menyederhanakan peninjauan kontrak, persiapan litigasi, dan pekerjaan regulasi, sehingga menghemat waktu dan memastikan akurasi dalam proses hukum Anda.
 ---
 
-> Kunjungi [summarization cookbook](https://platform.claude.com/cookbook/capabilities-summarization-guide) untuk melihat contoh implementasi peringkasan hukum menggunakan Claude.
+> Kunjungi [resep peringkasan](https://platform.claude.com/cookbook/capabilities-summarization-guide) di Claude Cookbook untuk melihat contoh implementasi peringkasan dokumen hukum menggunakan Claude.
 
 ## Sebelum membangun dengan Claude
 
@@ -20,12 +20,12 @@ description: Panduan ini menjelaskan cara memanfaatkan kemampuan pemrosesan baha
 Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan "large language model" (model bahasa besar), atau LLM, seperti Claude untuk meringkas dokumen hukum:
 
 <AccordionGroup>
-  <Accordion title="Anda ingin meninjau dokumen dalam volume besar secara efisien dan terjangkau">
-    Peninjauan dokumen berskala besar dapat memakan waktu dan mahal jika dilakukan secara manual. Claude dapat memproses dan meringkas dokumen hukum dalam jumlah sangat besar dengan cepat, sehingga secara signifikan mengurangi waktu dan biaya yang terkait dengan peninjauan dokumen. Kemampuan ini sangat berharga untuk tugas-tugas seperti uji tuntas (due diligence), analisis kontrak, atau discovery litigasi, di mana efisiensi sangat penting.
+  <Accordion title="Anda ingin meninjau dokumen dalam jumlah besar secara efisien dan terjangkau">
+    Peninjauan dokumen berskala besar dapat memakan waktu dan biaya jika dilakukan secara manual. Claude dapat memproses dan meringkas dokumen hukum dalam jumlah sangat besar dengan cepat, sehingga secara signifikan mengurangi waktu dan biaya yang terkait dengan peninjauan dokumen. Kemampuan ini sangat berharga untuk tugas-tugas seperti uji tuntas (due diligence), analisis kontrak, atau penemuan bukti litigasi, di mana efisiensi sangat penting.
   </Accordion>
 
-  <Accordion title="Anda memerlukan ekstraksi otomatis metadata penting">
-    Claude dapat secara efisien mengekstrak dan mengategorikan metadata penting dari dokumen hukum, seperti pihak-pihak yang terlibat, tanggal, ketentuan kontrak, atau klausul tertentu. Ekstraksi otomatis ini dapat membantu mengorganisasi informasi, sehingga lebih mudah untuk dicari, dianalisis, dan dikelola dalam kumpulan dokumen yang besar. Ini sangat berguna untuk manajemen kontrak, pemeriksaan kepatuhan, atau pembuatan basis data informasi hukum yang dapat dicari. 
+  <Accordion title="Anda memerlukan ekstraksi metadata penting secara otomatis">
+    Claude dapat secara efisien mengekstrak dan mengategorikan metadata penting dari dokumen hukum, seperti pihak-pihak yang terlibat, tanggal, ketentuan kontrak, atau klausul tertentu. Ekstraksi otomatis ini dapat membantu mengatur informasi, sehingga lebih mudah untuk mencari, menganalisis, dan mengelola kumpulan dokumen yang besar. Hal ini sangat berguna untuk manajemen kontrak, pemeriksaan kepatuhan, atau pembuatan basis data informasi hukum yang dapat dicari. 
   </Accordion>
 
   <Accordion title="Anda ingin menghasilkan ringkasan yang jelas, ringkas, dan terstandarisasi">
@@ -37,7 +37,7 @@ Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan "large 
   </Accordion>
 
   <Accordion title="Anda ingin menyederhanakan dan mempercepat proses riset hukum Anda">
-    Claude dapat membantu riset hukum dengan menganalisis secara cepat volume besar yurisprudensi, undang-undang, dan komentar hukum. Claude dapat mengidentifikasi preseden yang relevan, mengekstrak prinsip-prinsip hukum utama, dan meringkas argumen hukum yang kompleks. Kemampuan ini dapat secara signifikan mempercepat proses riset, sehingga memungkinkan profesional hukum untuk berfokus pada analisis tingkat tinggi dan pengembangan strategi.
+    Claude dapat membantu riset hukum dengan cepat menganalisis sejumlah besar yurisprudensi, undang-undang, dan komentar hukum. Claude dapat mengidentifikasi preseden yang relevan, mengekstrak prinsip-prinsip hukum utama, dan meringkas argumen hukum yang kompleks. Kemampuan ini dapat secara signifikan mempercepat proses riset, sehingga para profesional hukum dapat berfokus pada analisis tingkat tinggi dan pengembangan strategi.
   </Accordion>
 </AccordionGroup>
 
@@ -128,7 +128,7 @@ Misalnya, saat meringkas perjanjian sewa-ulang (sublease agreement), Anda mungki
 
 ### Tetapkan kriteria keberhasilan
 
-Mengevaluasi kualitas ringkasan adalah tugas yang terkenal sulit. Tidak seperti banyak tugas pemrosesan bahasa alami lainnya, evaluasi ringkasan sering kali tidak memiliki metrik yang jelas dan objektif. Prosesnya bisa sangat subjektif, dengan pembaca yang berbeda menghargai aspek ringkasan yang berbeda. Berikut adalah kriteria yang mungkin ingin Anda pertimbangkan saat menilai seberapa baik Claude melakukan peringkasan hukum.
+Mengevaluasi kualitas ringkasan adalah tugas yang terkenal sulit. Tidak seperti banyak tugas pemrosesan bahasa alami lainnya, evaluasi ringkasan sering kali tidak memiliki metrik yang jelas dan objektif. Prosesnya bisa sangat subjektif, dengan pembaca yang berbeda menghargai aspek ringkasan yang berbeda pula. Berikut adalah kriteria yang mungkin ingin Anda pertimbangkan saat menilai seberapa baik Claude melakukan peringkasan dokumen hukum.
 
 <AccordionGroup>
   <Accordion title="Kebenaran faktual">
@@ -193,15 +193,15 @@ Untuk membantu memperkirakan biaya ini, berikut adalah perbandingan biaya untuk 
   * Total biaya: $54,00 + $7,75 = $61,75 USD
 
 <Tip>
-  Biaya aktual mungkin berbeda dari perkiraan ini. Jumlah token berasal dari menjalankan contoh di bagian 
+  Biaya sebenarnya mungkin berbeda dari perkiraan ini. Jumlah token berasal dari menjalankan contoh di bagian 
 
-  [Buat prompt yang kuat](https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization#build-a-strong-prompt)
+  [Bangun prompt yang kuat](https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization#build-a-strong-prompt)
 
-   pada contoh perjanjian dalam panduan ini, sekitar 105.000 token input, dan panjang output bervariasi tergantung dokumen dan dari satu eksekusi ke eksekusi lainnya. Setiap perjanjian di sini adalah satu prompt berukuran sekitar 108.000 token, melebihi ambang batas 100.000 token dari 
+   pada contoh perjanjian dalam panduan ini, sekitar 105.000 token input, dan panjang output bervariasi tergantung dokumen dan dari satu eksekusi ke eksekusi lainnya. Setiap perjanjian di sini adalah satu prompt berukuran sekitar 108.000 token, melebihi ambang 100.000 token untuk 
 
   [harga prompt panjang](https://platform.claude.com/docs/id/about-claude/pricing#long-context-pricing)
 
-   Claude Haiku 5.5. Dokumen yang prompt-nya tetap pada atau di bawah 100.000 token dikenakan $0,10/MTok untuk input dan $0,50/MTok untuk output. Untuk melihat harga mana yang berlaku, hitung token dokumen Anda dengan 
+   Claude Haiku 5.5. Dokumen yang prompt-nya tetap pada atau di bawah 100.000 token dikenakan biaya $0,10 / $0,50 USD per juta token input / output sebagai gantinya. Untuk melihat harga mana yang berlaku, hitung dokumen Anda dengan 
 
   [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting)
 
@@ -218,7 +218,7 @@ Untuk membantu memperkirakan biaya ini, berikut adalah perbandingan biaya untuk 
 
 ### Ubah dokumen ke dalam format yang dapat diproses Claude
 
-Sebelum mulai meringkas dokumen, Anda perlu menyiapkan data Anda. Ini mencakup mengekstrak teks dari PDF, membersihkan teks, dan memastikan teks siap diproses oleh Claude.
+Sebelum Anda mulai meringkas dokumen, Anda perlu menyiapkan data Anda. Ini melibatkan ekstraksi teks dari PDF, pembersihan teks, dan memastikan teks siap diproses oleh Claude.
 
 Berikut adalah demonstrasi proses ini pada sebuah PDF contoh:
 
@@ -333,7 +333,7 @@ Berikut adalah demonstrasi proses ini pada sebuah PDF contoh:
   	"github.com/ledongthuc/pdf"
   )
 
-  // The text of the sample sublease agreement
+  // Teks contoh perjanjian sewa ulang (sublease)
   var documentText string
 
   func getLLMText(pdfData []byte) (string, error) {
@@ -352,18 +352,18 @@ Berikut adalah demonstrasi proses ini pada sebuah PDF contoh:
   	}
   	text := strings.Join(pages, "\n")
 
-  	// Remove page numbers
+  	// Hapus nomor halaman
   	text = regexp.MustCompile(`\n\s*\d+\s*\n`).ReplaceAllString(text, "\n")
 
-  	// Remove extra whitespace
+  	// Hapus spasi berlebih
   	text = regexp.MustCompile(`\s+`).ReplaceAllString(text, " ")
 
   	return text, nil
   }
 
-  // extractDocumentText downloads the sample sublease agreement and extracts its text.
+  // extractDocumentText mengunduh contoh perjanjian sewa ulang dan mengekstrak teksnya.
   func extractDocumentText() {
-  	// Download the sample sublease agreement from the Claude Cookbook's summarization recipe
+  	// Unduh contoh perjanjian sewa ulang dari resep ringkasan di Claude Cookbook
   	response, err := http.Get("https://raw.githubusercontent.com/anthropics/claude-cookbooks/main/capabilities/summarization/data/Sample%20Sublease%20Agreement.pdf")
   	if err != nil {
   		log.Fatal(err)
@@ -472,7 +472,7 @@ Berikut adalah demonstrasi proses ini pada sebuah PDF contoh:
   ```
 </CodeGroup>
 
-Dalam contoh ini, Anda pertama-tama mengunduh PDF dari contoh perjanjian sewa-ulang yang digunakan dalam [summarization cookbook](https://platform.claude.com/cookbook/capabilities-summarization-guide). Perjanjian ini bersumber dari perjanjian sewa-ulang yang tersedia untuk publik dari [situs web sec.gov](https://www.sec.gov/Archives/edgar/data/1045425/000119312507044370/dex1032.htm).
+Dalam contoh ini, Anda terlebih dahulu mengunduh PDF contoh perjanjian sewa ulang yang digunakan dalam [resep peringkasan](https://platform.claude.com/cookbook/capabilities-summarization-guide) di Claude Cookbook. Perjanjian ini bersumber dari perjanjian sewa ulang yang tersedia untuk publik dari [situs web sec.gov](https://www.sec.gov/Archives/edgar/data/1045425/000119312507044370/dex1032.htm).
 
 Contoh ini menggunakan pustaka `pypdf` (typescript: `pdf-parse`; csharp: `PdfPig`; go: `github.com/ledongthuc/pdf`; java: `org.apache.pdfbox:pdfbox`; php: `smalot/pdfparser`; ruby: `pdf-reader`) untuk mengekstrak isi PDF dan mengubahnya menjadi teks. Data teks kemudian dibersihkan dengan menghapus nomor halaman dan spasi berlebih.
 
@@ -644,14 +644,14 @@ Berikut adalah contoh cara membuat prompt yang memastikan ringkasan yang dihasil
   ```
 
   ```go Go
-  // Initialize the Anthropic client
+  // Inisialisasi klien Anthropic
   var client = anthropic.NewClient()
 
   func summarizeDocument(text string, detailsToExtract []string, model anthropic.Model, maxTokens int64) string {
-  	// Format the details to extract to be placed within the prompt's context
+  	// Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
   	detailsToExtractStr := strings.Join(detailsToExtract, "\n")
 
-  	// Prompt the model to summarize the sublease agreement
+  	// Minta model meringkas perjanjian sewa ulang
   	prompt := fmt.Sprintf(`Summarize the following sublease agreement. Focus on these key aspects:
 
       %s
@@ -691,7 +691,7 @@ Berikut adalah contoh cara membuat prompt yang memastikan ringkasan yang dihasil
   	panic("expected a text block in the response")
   }
 
-  // printSubleaseSummary summarizes the sublease agreement and prints the summary.
+  // printSubleaseSummary meringkas perjanjian sewa ulang dan mencetak ringkasannya.
   func printSubleaseSummary() {
   	subleaseSummary := summarizeDocument(documentText, detailsToExtract, anthropic.ModelClaudeOpus5_5, 16000)
   	fmt.Println(subleaseSummary)
@@ -838,11 +838,11 @@ Berikut adalah contoh cara membuat prompt yang memastikan ringkasan yang dihasil
   ```
 </CodeGroup>
 
-Kode ini mengimplementasikan fungsi `summarize_document` (typescript, go, java: `summarizeDocument`; php: `$summarizeDocument`; csharp: `SummarizeDocument`) yang menggunakan Claude untuk meringkas isi perjanjian sewa-ulang. Fungsi ini menerima string teks dan daftar detail yang akan diekstrak sebagai input. Dalam contoh ini, kode memanggil fungsi tersebut dengan variabel `document_text` (typescript, go, java, csharp: `documentText`; php: `$documentText`) dan `details_to_extract` (typescript, go, java, csharp: `detailsToExtract`; php: `$detailsToExtract`) yang telah didefinisikan dalam cuplikan kode sebelumnya.
+Kode ini mengimplementasikan fungsi `summarize_document()` (typescript, go, java: `summarizeDocument()`; php: `$summarizeDocument()`; csharp: `SummarizeDocument()`) yang menggunakan Claude untuk meringkas isi perjanjian sewa-ulang. Fungsi ini menerima string teks dan daftar detail yang akan diekstrak sebagai input. Dalam contoh ini, kode memanggil fungsi tersebut dengan variabel `document_text` (typescript, go, java, csharp: `documentText`; php: `$documentText`) dan `details_to_extract` (typescript, go, java, csharp: `detailsToExtract`; php: `$detailsToExtract`) yang telah didefinisikan dalam cuplikan kode sebelumnya.
 
 Di dalam fungsi, sebuah prompt dibuat untuk Claude, yang mencakup dokumen yang akan diringkas, detail yang akan diekstrak, dan instruksi spesifik untuk meringkas dokumen. Prompt tersebut menginstruksikan Claude untuk merespons dengan ringkasan setiap detail yang akan diekstrak, yang disarangkan di dalam header XML.
 
-Karena kode mengeluarkan setiap bagian ringkasan di dalam tag, setiap bagian dapat dengan mudah diurai sebagai langkah pascapemrosesan. Pendekatan ini memungkinkan ringkasan terstruktur yang dapat disesuaikan dengan kasus penggunaan Anda, sehingga setiap ringkasan mengikuti pola yang sama.
+Karena kode menghasilkan setiap bagian ringkasan di dalam tag, setiap bagian dapat diurai sebagai langkah pascapemrosesan. Pendekatan ini memungkinkan pembuatan ringkasan terstruktur yang dapat disesuaikan untuk kasus penggunaan Anda, sehingga setiap ringkasan mengikuti pola yang sama.
 
 ### Evaluasi prompt Anda
 
@@ -880,15 +880,15 @@ Berikut adalah beberapa pertimbangan tambahan yang perlu diingat saat Anda mener
 
 1. **Pastikan tidak ada tanggung gugat:** Pahami implikasi hukum dari kesalahan dalam ringkasan, yang dapat menimbulkan tanggung gugat hukum bagi organisasi atau klien Anda. Sediakan penafian atau pemberitahuan hukum yang menjelaskan bahwa ringkasan dihasilkan oleh AI dan harus ditinjau oleh profesional hukum.
 
-2. **Tangani beragam jenis dokumen:** Panduan ini membahas cara mengekstrak teks dari PDF. Di dunia nyata, dokumen dapat hadir dalam berbagai format (seperti PDF, dokumen Word, dan file teks). Pastikan pipeline ekstraksi data Anda dapat mengonversi semua format file yang Anda perkirakan akan diterima.
+2. **Tangani beragam jenis dokumen:** Panduan ini membahas cara mengekstrak teks dari PDF. Di dunia nyata, dokumen mungkin hadir dalam berbagai format (seperti PDF, dokumen Word, dan file teks). Pastikan pipeline ekstraksi data Anda dapat mengonversi semua format file yang Anda harapkan akan diterima.
 
-3. **Paralelkan panggilan API ke Claude:** Dokumen panjang dengan jumlah token yang besar mungkin memerlukan waktu hingga satu menit bagi Claude untuk menghasilkan ringkasan. Untuk koleksi dokumen yang besar, Anda mungkin ingin mengirim panggilan API ke Claude secara paralel agar ringkasan dapat diselesaikan dalam jangka waktu yang wajar. Lihat [batas laju](https://platform.claude.com/docs/id/api/rate-limits#rate-limits) Anthropic untuk menentukan jumlah maksimum panggilan API yang dapat dilakukan secara paralel.
+3. **Paralelkan panggilan API ke Claude:** Dokumen panjang dengan jumlah token yang besar mungkin memerlukan waktu hingga satu menit bagi Claude untuk menghasilkan ringkasan. Untuk koleksi dokumen yang besar, Anda mungkin ingin mengirim panggilan API ke Claude secara paralel agar ringkasan dapat diselesaikan dalam jangka waktu yang wajar. Lihat ["rate limits"](https://platform.claude.com/docs/id/api/rate-limits#rate-limits) (batas laju) Anthropic untuk menentukan jumlah maksimum panggilan API yang dapat dilakukan secara paralel.
 
 ***
 
 ## Tingkatkan performa
 
-Dalam skenario yang kompleks, mungkin bermanfaat untuk mempertimbangkan strategi tambahan guna meningkatkan performa di luar [teknik rekayasa prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) standar. Berikut adalah beberapa strategi tingkat lanjut:
+Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan guna meningkatkan performa di luar [teknik prompt engineering](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) standar. Berikut adalah beberapa strategi lanjutan:
 
 ### Lakukan meta-peringkasan untuk meringkas dokumen panjang
 
@@ -1101,10 +1101,10 @@ Berikut adalah contoh cara melakukan meta-peringkasan:
   }
 
   func summarizeLongDocument(text string, detailsToExtract []string, model anthropic.Model, maxTokens int64) string {
-  	// Format the details to extract to be placed within the prompt's context
+  	// Format detail yang akan diekstrak untuk ditempatkan dalam konteks prompt
   	detailsToExtractStr := strings.Join(detailsToExtract, "\n")
 
-  	// Iterate over chunks and summarize each one
+  	// Iterasi setiap chunk dan ringkas masing-masing
   	var chunkSummaries []string
   	for _, chunk := range chunkText(text, 20000) {
   		chunkSummaries = append(chunkSummaries, summarizeDocument(chunk, detailsToExtract, model, maxTokens))
@@ -1154,7 +1154,7 @@ Berikut adalah contoh cara melakukan meta-peringkasan:
   	panic("expected a text block in the response")
   }
 
-  // printLongSummary summarizes the sublease agreement chunk by chunk and prints the combined summary.
+  // printLongSummary meringkas perjanjian sewa ulang per chunk dan mencetak ringkasan gabungannya.
   func printLongSummary() {
   	longSummary := summarizeLongDocument(documentText, detailsToExtract, anthropic.ModelClaudeOpus5_5, 16000)
   	fmt.Println(longSummary)
@@ -1330,27 +1330,27 @@ Berikut adalah contoh cara melakukan meta-peringkasan:
   ```
 </CodeGroup>
 
-Fungsi `summarize_long_document` (typescript, go, java: `summarizeLongDocument`; php: `$summarizeLongDocument`; csharp: `SummarizeLongDocument`) dibangun di atas fungsi `summarize_document` (typescript, go, java: `summarizeDocument`; php: `$summarizeDocument`; csharp: `SummarizeDocument`) sebelumnya dengan membagi dokumen menjadi potongan-potongan yang lebih kecil dan meringkas setiap potongan secara individual.
+Fungsi `summarize_long_document()` (typescript, go, java: `summarizeLongDocument()`; php: `$summarizeLongDocument()`; csharp: `SummarizeLongDocument()`) dibangun di atas fungsi `summarize_document()` (typescript, go, java: `summarizeDocument()`; php: `$summarizeDocument()`; csharp: `SummarizeDocument()`) sebelumnya dengan membagi dokumen menjadi potongan-potongan yang lebih kecil dan meringkas setiap potongan secara individual.
 
-Kode mencapai hal ini dengan menerapkan fungsi `summarize_document` (typescript, go, java: `summarizeDocument`; php: `$summarizeDocument`; csharp: `SummarizeDocument`) ke setiap potongan berukuran 20.000 karakter dalam dokumen asli. Ringkasan-ringkasan individual tersebut kemudian digabungkan, dan ringkasan akhir dibuat dari ringkasan-ringkasan potongan ini.
+Kode mencapai hal ini dengan menerapkan fungsi `summarize_document()` (typescript, go, java: `summarizeDocument()`; php: `$summarizeDocument()`; csharp: `SummarizeDocument()`) ke setiap potongan berukuran 20.000 karakter dalam dokumen asli. Ringkasan-ringkasan individual tersebut kemudian digabungkan, dan ringkasan akhir dibuat dari ringkasan-ringkasan potongan ini.
 
-Perhatikan bahwa fungsi `summarize_long_document` (typescript, go, java: `summarizeLongDocument`; php: `$summarizeLongDocument`; csharp: `SummarizeLongDocument`) sebenarnya tidak mutlak diperlukan untuk contoh PDF ini, karena seluruh dokumen muat dalam jendela konteks Claude. Namun, fungsi ini menjadi penting untuk dokumen yang melebihi jendela konteks Claude atau saat meringkas beberapa dokumen terkait secara bersamaan. Terlepas dari itu, teknik meta-peringkasan ini sering kali menangkap detail penting tambahan dalam ringkasan akhir yang terlewatkan dalam pendekatan ringkasan tunggal sebelumnya.
+Perhatikan bahwa fungsi `summarize_long_document()` (typescript, go, java: `summarizeLongDocument()`; php: `$summarizeLongDocument()`; csharp: `SummarizeLongDocument()`) sebenarnya tidak mutlak diperlukan untuk contoh PDF ini, karena seluruh dokumen muat dalam jendela konteks Claude. Namun, fungsi ini menjadi penting untuk dokumen yang melebihi jendela konteks Claude atau saat meringkas beberapa dokumen terkait secara bersamaan. Terlepas dari itu, teknik meta-peringkasan ini sering kali menangkap detail penting tambahan dalam ringkasan akhir yang terlewatkan dalam pendekatan ringkasan tunggal sebelumnya.
 
 ### Gunakan dokumen berindeks ringkasan untuk menjelajahi koleksi dokumen yang besar
 
-Pencarian dalam koleksi dokumen dengan LLM biasanya melibatkan "retrieval-augmented generation" (generasi yang diperkaya dengan pengambilan), atau RAG. Namun, dalam skenario yang melibatkan dokumen besar atau ketika pengambilan informasi yang presisi sangat penting, pendekatan RAG dasar mungkin tidak memadai. Dokumen berindeks ringkasan (summary indexed documents) adalah pendekatan RAG tingkat lanjut yang menyediakan cara yang lebih efisien untuk memeringkat dokumen untuk pengambilan, dengan menggunakan konteks yang lebih sedikit dibandingkan metode RAG tradisional. Dalam pendekatan ini, Anda pertama-tama menggunakan Claude untuk menghasilkan ringkasan singkat untuk setiap dokumen dalam korpus Anda, lalu menggunakan Claude untuk memeringkat relevansi setiap ringkasan terhadap kueri yang diajukan. Untuk detail lebih lanjut tentang pendekatan ini, termasuk contoh berbasis kode, lihat bagian summary indexed documents di [summarization cookbook](https://platform.claude.com/cookbook/capabilities-summarization-guide).
+Mencari koleksi dokumen dengan LLM biasanya melibatkan "retrieval-augmented generation" (generasi yang diperkaya dengan pengambilan), atau RAG. Namun, dalam skenario yang melibatkan dokumen besar atau ketika pengambilan informasi yang presisi sangat penting, pendekatan RAG dasar mungkin tidak memadai. Dokumen yang diindeks dengan ringkasan (summary indexed documents) adalah pendekatan RAG lanjutan yang menyediakan cara yang lebih efisien untuk memeringkat dokumen untuk pengambilan, dengan menggunakan konteks yang lebih sedikit daripada metode RAG tradisional. Dalam pendekatan ini, Anda terlebih dahulu menggunakan Claude untuk menghasilkan ringkasan singkat untuk setiap dokumen dalam korpus Anda, lalu menggunakan Claude untuk memeringkat relevansi setiap ringkasan terhadap kueri yang diajukan. Untuk detail lebih lanjut tentang pendekatan ini, termasuk contoh berbasis kode, lihat bagian summary indexed documents dalam [resep peringkasan](https://platform.claude.com/cookbook/capabilities-summarization-guide).
 
 ### Lakukan fine-tuning pada Claude agar belajar dari dataset Anda
 
 Teknik tingkat lanjut lainnya untuk meningkatkan kemampuan Claude dalam menghasilkan ringkasan adalah "fine-tuning" (penyetelan halus). Fine-tuning melibatkan pelatihan Claude pada dataset kustom yang secara khusus selaras dengan kebutuhan peringkasan hukum Anda, sehingga memastikan Claude beradaptasi dengan kasus penggunaan Anda. Berikut adalah gambaran umum cara melakukan fine-tuning:
 
-1. **Identifikasi kesalahan:** Mulailah dengan mengumpulkan kasus-kasus di mana ringkasan Claude kurang memadai - ini dapat mencakup detail hukum penting yang terlewat, kesalahpahaman konteks, atau penggunaan terminologi hukum yang tidak tepat.
+1. **Identifikasi kesalahan:** Mulailah dengan mengumpulkan contoh-contoh di mana ringkasan Claude tidak memadai. Ini dapat mencakup detail hukum penting yang terlewat, kesalahpahaman konteks, atau penggunaan terminologi hukum yang tidak tepat.
 
-2. **Kurasi dataset:** Setelah Anda mengidentifikasi masalah-masalah ini, susun dataset dari contoh-contoh bermasalah tersebut. Dataset ini harus mencakup dokumen hukum asli beserta ringkasan yang telah Anda koreksi, sehingga memastikan Claude mempelajari perilaku yang diinginkan.
+2. **Kurasi dataset:** Setelah Anda mengidentifikasi masalah-masalah ini, susun dataset dari contoh-contoh bermasalah tersebut. Dataset ini harus menyertakan dokumen hukum asli beserta ringkasan yang telah Anda koreksi, sehingga memastikan Claude mempelajari perilaku yang Anda inginkan.
 
 3. **Lakukan fine-tuning:** Fine-tuning melibatkan pelatihan ulang model pada dataset yang telah Anda kurasi untuk menyesuaikan bobot dan parameternya. Pelatihan ulang ini membantu Claude beradaptasi lebih baik dengan persyaratan spesifik domain hukum Anda, sehingga meningkatkan kemampuannya untuk meringkas dokumen sesuai standar Anda.
 
-4. **Peningkatan iteratif:** Fine-tuning bukanlah proses sekali jalan. Seiring Claude terus menghasilkan ringkasan, Anda dapat secara iteratif menambahkan contoh-contoh baru di mana performanya kurang baik, sehingga semakin menyempurnakan kemampuannya. Seiring waktu, siklus umpan balik berkelanjutan ini akan menghasilkan model yang sangat terspesialisasi untuk tugas peringkasan hukum Anda.
+4. **Tingkatkan secara iteratif:** Fine-tuning bukanlah proses satu kali. Seiring Claude terus menghasilkan ringkasan, Anda dapat secara iteratif menambahkan contoh-contoh baru di mana performanya kurang baik, sehingga semakin menyempurnakan kemampuannya. Seiring waktu, siklus umpan balik yang berkelanjutan ini akan menghasilkan model yang sangat terspesialisasi untuk tugas peringkasan dokumen hukum Anda.
 
 <Tip>
   Fine-tuning saat ini hanya tersedia melalui Amazon Bedrock. Detail tambahan tersedia di 
@@ -1361,11 +1361,11 @@ Teknik tingkat lanjut lainnya untuk meningkatkan kemampuan Claude dalam menghasi
 </Tip>
 
 <CardGroup cols={2}>
-  <Card title="Summarization cookbook" icon="link" href="https://platform.claude.com/cookbook/capabilities-summarization-guide">
+  <Card title="Resep peringkasan" icon="link" href="https://platform.claude.com/cookbook/capabilities-summarization-guide">
     Lihat contoh berbasis kode yang diimplementasikan sepenuhnya tentang cara menggunakan Claude untuk meringkas kontrak.
   </Card>
 
-  <Card title="Citations cookbook" icon="link" href="https://platform.claude.com/cookbook/misc-using-citations">
-    Jelajahi resep Citations cookbook untuk panduan tentang cara memastikan akurasi dan keterjelasan informasi.
+  <Card title="Resep kutipan" icon="link" href="https://platform.claude.com/cookbook/misc-using-citations">
+    Jelajahi resep Citations untuk panduan tentang cara memastikan akurasi dan keterjelasan informasi.
   </Card>
 </CardGroup>

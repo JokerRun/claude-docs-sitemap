@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/workflow-runs
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: ff3b5d7f3763e1511fc885b6fce419c1600dc8e25d5fba624dbc001785f61fcf
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: a1e08132c77071f914b91600ec4c35f5a3a6db34687498fd0f695baf0fe23404
 ---
 
 ---
@@ -92,7 +92,7 @@ For example, you ask the [contract-review agent](https://platform.claude.com/doc
 
 The run's first event lists its phases:
 
-```text
+```json
 {
   "type": "workflow_run.created",
   "id": "sevt_01abc...",
@@ -113,7 +113,7 @@ The run's first event lists its phases:
 
 Each phase event names its phase by `workflow_run_phase_id`. That is an `id` in `phases`, but the API doesn't guarantee it:
 
-```text wrap
+```json
 {
   "type": "workflow_run.phase_started",
   "id": "sevt_01def...",
@@ -125,7 +125,7 @@ Each phase event names its phase by `workflow_run_phase_id`. That is an `id` in 
 
 The run's last event reports how it ended:
 
-```text wrap
+```json
 {
   "type": "workflow_run.status_ended",
   "id": "sevt_01ghi...",

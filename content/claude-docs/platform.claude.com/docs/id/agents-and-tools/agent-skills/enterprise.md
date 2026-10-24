@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 8b295b37c789b2df7d1061a316df011be1543dfb1b56054ad51f66bc6e5bedd3
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 2c06e4251d0d0d4b1df1b88e5264b5609c40720af7917131955849907a2ae59a
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterpris
 description: Tata kelola, tinjauan keamanan, evaluasi, dan panduan organisasi untuk menerapkan Agent Skills dalam skala enterprise.
 ---
 
-Panduan ini ditujukan bagi admin dan arsitek enterprise yang perlu mengelola Agent Skills di seluruh organisasi. Panduan ini mencakup cara memeriksa, mengevaluasi, menerapkan, dan mengelola Skills dalam skala besar. Untuk panduan penulisan, lihat [praktik terbaik](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices). Untuk detail arsitektur, lihat [ikhtisar Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview).
+Panduan ini ditujukan untuk admin dan arsitek enterprise yang perlu mengatur Agent Skills di seluruh organisasi. Panduan ini membahas cara memeriksa, mengevaluasi, menerapkan, dan mengelola Skills dalam skala besar. Untuk panduan penulisan, lihat [Praktik terbaik penulisan Skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices). Untuk detail arsitektur, lihat [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview).
 
 ## Tinjauan keamanan dan pemeriksaan
 
@@ -31,29 +31,29 @@ Evaluasi setiap Skill terhadap indikator risiko berikut sebelum menyetujui pener
 | Referensi server MCP        | Instruksi yang mereferensikan alat MCP (`ServerName:tool_name`)                                                                    | Tinggi: memperluas akses melampaui Skill itu sendiri                               |
 | Pola akses jaringan         | URL, endpoint API, panggilan `fetch`, `curl`, atau `requests`                                                                      | Tinggi: potensi vektor eksfiltrasi data                                            |
 | Kredensial yang di-hardcode | Kunci API, token, atau kata sandi dalam file atau skrip Skill                                                                      | Tinggi: rahasia terekspos dalam riwayat Git dan "context window" (jendela konteks) |
-| Cakupan akses sistem file   | Path di luar direktori Skill, pola glob yang luas, path traversal (`../`)                                                          | Sedang: dapat mengakses data yang tidak dimaksudkan                                |
-| Pemanggilan alat            | Instruksi yang mengarahkan Claude untuk menggunakan bash, operasi file, atau alat lainnya                                          | Sedang: tinjau operasi apa yang dilakukan                                          |
+| Cakupan akses sistem file   | Path di luar direktori Skill, pola glob yang luas, path traversal (`../`)                                                          | Sedang: mungkin mengakses data yang tidak dimaksudkan                              |
+| Panggilan alat              | Instruksi yang mengarahkan Claude untuk menggunakan bash, operasi file, atau alat lainnya                                          | Sedang: tinjau operasi apa yang dilakukan                                          |
 
 ### Daftar periksa tinjauan
 
 Sebelum menerapkan Skill apa pun dari pihak ketiga atau kontributor internal, selesaikan langkah-langkah berikut:
 
-1. **Baca semua konten direktori Skill.** Tinjau SKILL.md, semua file markdown yang direferensikan, serta skrip atau sumber daya apa pun yang dibundel.
+1. **Baca semua konten direktori Skill.** Tinjau `SKILL.md`, semua file markdown yang direferensikan, serta skrip atau sumber daya yang dibundel.
 2. **Verifikasi bahwa perilaku skrip sesuai dengan tujuan yang dinyatakan.** Jalankan skrip di lingkungan sandbox dan pastikan output selaras dengan deskripsi Skill.
 3. **Periksa adanya instruksi adversarial.** Cari arahan yang memberi tahu Claude untuk mengabaikan aturan keselamatan, menyembunyikan tindakan dari pengguna, mengeksfiltrasi data melalui respons, atau mengubah perilaku berdasarkan input tertentu.
 4. **Periksa adanya pengambilan URL eksternal atau panggilan jaringan.** Telusuri skrip dan instruksi untuk pola akses jaringan (`http`, `requests.get`, `urllib`, `curl`, `fetch`).
 5. **Verifikasi tidak ada kredensial yang di-hardcode.** Periksa adanya kunci API, token, atau kata sandi dalam file Skill. Kredensial harus menggunakan variabel lingkungan atau penyimpanan kredensial yang aman, dan tidak boleh muncul dalam konten Skill.
-6. **Identifikasi alat dan perintah yang diinstruksikan Skill untuk dipanggil oleh Claude.** Daftarkan semua perintah bash, operasi file, dan referensi alat. Pertimbangkan risiko gabungan ketika sebuah Skill menggunakan alat baca-file dan alat jaringan secara bersamaan.
+6. **Identifikasi alat dan perintah yang diinstruksikan Skill untuk dijalankan Claude.** Buat daftar semua perintah bash, operasi file, dan referensi alat. Pertimbangkan risiko gabungan ketika Skill menggunakan alat baca file dan alat jaringan secara bersamaan.
 7. **Konfirmasi tujuan pengalihan.** Jika Skill mereferensikan URL eksternal, verifikasi bahwa URL tersebut mengarah ke domain yang diharapkan.
 8. **Verifikasi tidak ada pola eksfiltrasi data.** Cari instruksi yang membaca data sensitif lalu menulis, mengirim, atau mengodekannya untuk transmisi eksternal, termasuk melalui respons percakapan Claude.
 
 <Warning>
-  Jangan pernah menerapkan Skills dari sumber yang tidak tepercaya tanpa audit penuh. Skill berbahaya dapat mengarahkan Claude untuk mengeksekusi kode arbitrer, mengakses file sensitif, atau mengirimkan data ke luar. Perlakukan instalasi Skill dengan ketelitian yang sama seperti menginstal perangkat lunak pada sistem produksi.
+  Jangan pernah menerapkan Skills dari sumber yang tidak tepercaya tanpa audit menyeluruh. Skill berbahaya dapat mengarahkan Claude untuk menjalankan kode sembarang, mengakses file sensitif, atau mengirimkan data ke luar. Perlakukan instalasi Skill dengan ketelitian yang sama seperti menginstal perangkat lunak pada sistem produksi.
 </Warning>
 
 ### Pemindaian konten Skill
 
-Organisasi Claude Enterprise dapat mengaktifkan pemindaian keamanan otomatis untuk Skills kustom di claude.ai dan Claude Cowork. Setelah Anda mengaktifkan **Skill and plugin security scanning** di [claude.ai > Organization settings > Skills](https://claude.ai/admin-settings/skills), Skills yang kemudian diunggah atau diedit oleh anggota di claude.ai atau Cowork akan dipindai untuk mencari tanda-tanda perilaku berbahaya, seperti eksekusi kode tersembunyi, pengiriman data Anda ke layanan luar, atau instruksi yang mengutak-atik pengaman Claude. Skill yang gagal dalam pemindaian, atau yang pemindaiannya belum selesai, diblokir dari penggunaan. Skill yang lolos dengan peringatan tetap dapat digunakan dengan disertai pemberitahuan kehati-hatian. Jika pemindaian tersedia untuk organisasi Anda, aktifkanlah. Pemindaian ini melengkapi, tetapi tidak menggantikan, [daftar periksa tinjauan](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise#review-checklist).
+Organisasi Claude Enterprise dapat mengaktifkan pemindaian keamanan otomatis untuk Skills kustom di claude.ai dan Claude Cowork. Setelah Anda mengaktifkan **Skill and plugin security scanning** di [claude.ai > Organization settings > Skills](https://claude.ai/admin-settings/skills), Skills yang kemudian diunggah atau diedit anggota di claude.ai atau Cowork akan dipindai untuk mendeteksi tanda-tanda perilaku berbahaya, seperti eksekusi kode tersembunyi, pengiriman data Anda ke layanan luar, atau instruksi yang mengutak-atik perlindungan Claude. Skill yang gagal dalam pemindaian, atau yang pemindaiannya belum selesai, akan diblokir dari penggunaan. Administrator dapat mengizinkan beberapa Skill yang gagal dalam pemindaian. Skill yang lolos dengan peringatan tetap dapat digunakan dengan pemberitahuan kehati-hatian. Jika pemindaian tersedia untuk organisasi Anda, aktifkanlah. Pemindaian ini melengkapi, tetapi tidak menggantikan, [daftar periksa tinjauan](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise#review-checklist).
 
 Pemindaian tidak mencakup Claude API. Skills yang Anda unggah melalui Skills API (`/v1/skills`), termasuk dari Claude Console, tidak dipindai, sehingga untuk penerapan API, andalkan daftar periksa tinjauan dan [penyematan versi](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise#versioning-strategy). Pemindaian juga tidak berlaku untuk Skills yang sudah ada di organisasi Anda saat Anda mengaktifkannya, atau untuk organisasi dengan konfigurasi penanganan data tertentu, seperti customer-managed encryption keys (CMEK), zero data retention (ZDR), atau kesiapan HIPAA. Untuk langkah penyiapan, pengecualian, dan jenis hasil, lihat [Get started with skill and plugin scanning](https://support.claude.com/en/articles/15927065-get-started-with-skill-and-plugin-scanning) di Claude Help Center.
 
@@ -75,9 +75,9 @@ Tetapkan gerbang persetujuan untuk dimensi-dimensi berikut sebelum menerapkan Sk
 
 ### Persyaratan evaluasi
 
-Wajibkan penulis Skill untuk menyerahkan rangkaian evaluasi dengan 3–5 kueri representatif per Skill, yang mencakup kasus di mana Skill seharusnya terpicu, tidak seharusnya terpicu, dan kasus tepi yang ambigu. Wajibkan pengujian di seluruh model yang digunakan organisasi Anda (Haiku, Sonnet, Opus), karena efektivitas Skill bervariasi menurut model.
+Wajibkan penulis Skill untuk menyerahkan rangkaian evaluasi dengan 3–5 kueri representatif untuk setiap Skill, yang mencakup kasus ketika Skill harus terpicu, kasus ketika Skill tidak boleh terpicu, dan kasus tepi yang ambigu. Wajibkan pengujian di seluruh model yang digunakan organisasi Anda (Haiku, Sonnet, Opus), karena efektivitas Skill bervariasi tergantung model.
 
-Untuk panduan terperinci tentang membangun evaluasi, lihat [evaluasi dan iterasi](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices#evaluation-and-iteration) dalam praktik terbaik. Untuk metodologi evaluasi umum, lihat [mengembangkan kasus uji](https://platform.claude.com/docs/id/test-and-evaluate/develop-tests).
+Untuk panduan terperinci tentang membangun evaluasi, lihat [evaluasi dan iterasi](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices#evaluation-and-iteration) dalam praktik terbaik penulisan Skill. Untuk metodologi evaluasi umum, lihat [Tentukan kriteria keberhasilan dan bangun evaluasi](https://platform.claude.com/docs/id/test-and-evaluate/develop-tests).
 
 ### Menggunakan evaluasi untuk keputusan siklus hidup
 
@@ -92,7 +92,7 @@ Hasil evaluasi memberi sinyal kapan harus bertindak:
 
 <Steps>
   <Step title="Rencanakan">
-    Identifikasi alur kerja yang berulang, rawan kesalahan, atau memerlukan pengetahuan khusus. Petakan alur kerja ini ke peran organisasi dan tentukan mana yang menjadi kandidat untuk Skills.
+    Identifikasi alur kerja yang berulang atau rawan kesalahan, atau yang memerlukan pengetahuan khusus. Petakan alur kerja tersebut ke peran organisasi dan tentukan mana yang merupakan kandidat untuk Skills.
   </Step>
 
   <Step title="Buat dan tinjau">
@@ -104,7 +104,7 @@ Hasil evaluasi memberi sinyal kapan harus bertindak:
   </Step>
 
   <Step title="Terapkan">
-    Unggah melalui Skills API untuk akses di seluruh workspace. Lihat [Menggunakan Skills dengan API](https://platform.claude.com/docs/id/build-with-claude/skills-guide) untuk pengunggahan dan manajemen versi. Dokumentasikan Skill dalam registri internal Anda dengan tujuan, pemilik, dan versi.
+    Unggah melalui Skills API untuk akses di seluruh workspace. Lihat [Menggunakan Agent Skills dengan API](https://platform.claude.com/docs/id/build-with-claude/skills-guide) untuk pengunggahan dan manajemen versi. Dokumentasikan Skill dalam registri internal Anda beserta tujuan, pemilik, dan versinya.
   </Step>
 
   <Step title="Pantau">
@@ -120,9 +120,9 @@ Hasil evaluasi memberi sinyal kapan harus bertindak:
 
 ### Batas recall
 
-Sebagai pedoman umum, batasi jumlah Skills yang dimuat secara bersamaan untuk menjaga akurasi recall yang andal. Metadata setiap Skill (nama dan deskripsi) bersaing untuk mendapatkan perhatian dalam "system prompt" (prompt sistem). Dengan terlalu banyak Skills yang aktif, Claude mungkin gagal memilih Skill yang tepat atau melewatkan Skill yang relevan sama sekali. Gunakan rangkaian evaluasi Anda untuk mengukur akurasi recall saat Anda menambahkan Skills, dan berhentilah menambahkan ketika kinerja menurun.
+Sebagai pedoman umum, batasi jumlah Skills yang dimuat secara bersamaan untuk mempertahankan akurasi "recall" (pemanggilan kembali) yang andal. Metadata setiap Skill (nama dan deskripsi) bersaing untuk mendapatkan perhatian dalam prompt sistem. Dengan terlalu banyak Skills yang aktif, Claude mungkin gagal memilih Skill yang tepat atau sama sekali melewatkan Skill yang relevan. Gunakan rangkaian evaluasi Anda untuk mengukur akurasi recall saat Anda menambahkan Skills, dan berhenti menambahkan ketika kinerja menurun.
 
-Perhatikan bahwa permintaan API mendukung maksimum 20 Skills untuk setiap permintaan (lihat [Menggunakan Skills dengan API](https://platform.claude.com/docs/id/build-with-claude/skills-guide)). Jika suatu peran memerlukan lebih banyak Skills daripada yang didukung satu permintaan, pertimbangkan untuk mengonsolidasikan Skills yang sempit menjadi Skills yang lebih luas atau merutekan permintaan ke kumpulan Skill yang berbeda berdasarkan jenis tugas.
+Perhatikan bahwa permintaan API mendukung maksimal 20 Skills untuk setiap permintaan (lihat [Menggunakan Agent Skills dengan API](https://platform.claude.com/docs/id/build-with-claude/skills-guide)). Jika suatu peran memerlukan lebih banyak Skills daripada yang didukung oleh satu permintaan, pertimbangkan untuk menggabungkan Skills yang sempit menjadi Skills yang lebih luas atau merutekan permintaan ke rangkaian Skill yang berbeda berdasarkan jenis tugas.
 
 ### Mulai dari yang spesifik, konsolidasikan kemudian
 
@@ -163,11 +163,11 @@ Setiap bundel berbasis peran sebaiknya hanya berisi Skills yang relevan dengan a
 
 ### Kontrol sumber
 
-Simpan direktori Skill di Git untuk pelacakan riwayat, tinjauan kode melalui pull request, dan kemampuan rollback. Setiap direktori Skill (yang berisi SKILL.md dan file apa pun yang dibundel) secara alami dipetakan ke folder yang dilacak Git.
+Simpan direktori Skill di Git untuk pelacakan riwayat, tinjauan kode melalui pull request, dan kemampuan rollback. Setiap direktori Skill (yang berisi `SKILL.md` dan file apa pun yang dibundel) secara alami dipetakan ke folder yang dilacak Git.
 
 ### Distribusi berbasis API
 
-Skills API menyediakan distribusi dengan cakupan workspace. Skills yang diunggah melalui API tersedia bagi semua anggota workspace. Lihat [Menggunakan Skills dengan API](https://platform.claude.com/docs/id/build-with-claude/skills-guide) untuk endpoint pengunggahan, pembuatan versi, dan manajemen.
+Skills API menyediakan distribusi dengan cakupan workspace. Skills yang diunggah melalui API tersedia untuk semua anggota workspace. Lihat [Menggunakan Agent Skills dengan API](https://platform.claude.com/docs/id/build-with-claude/skills-guide) untuk endpoint pengunggahan, pembuatan versi, dan manajemen.
 
 ### Strategi pembuatan versi
 
@@ -187,15 +187,15 @@ Kelola file sumber Skill di Git sebagai satu-satunya sumber kebenaran. Jika orga
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Ikhtisar Agent Skills" icon="book-open" href="https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview">
+  <Card title="Agent Skills" icon="book-open" href="https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview">
     Detail arsitektur dan platform
   </Card>
 
-  <Card title="Praktik terbaik" icon="lightbulb" href="https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices">
+  <Card title="Praktik terbaik penulisan Skill" icon="lightbulb" href="https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices">
     Panduan penulisan untuk pembuat Skill
   </Card>
 
-  <Card title="Menggunakan Skills dengan API" icon="code" href="https://platform.claude.com/docs/id/build-with-claude/skills-guide">
+  <Card title="Menggunakan Agent Skills dengan API" icon="code" href="https://platform.claude.com/docs/id/build-with-claude/skills-guide">
     Unggah dan kelola Skills secara terprogram
   </Card>
 </CardGroup>

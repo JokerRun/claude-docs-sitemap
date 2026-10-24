@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/choosing-an-environment
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 23dbe36241c5752340edcdaaa984593927bd05a8662c7d146ec97b6f12059c05
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 470db9739d676e529044121281566c5b6c4d0f31bb132201e0420000fd9b1346
 ---
 
 ---
@@ -20,7 +20,7 @@ featureMetadata:
 Sebuah "environment" (lingkungan) menentukan tempat alat dan kode agen Anda berjalan. Alat dan kode tersebut berjalan di dalam sandbox. Sandbox adalah ruang kerja terisolasi, seperti container, tempat agen menjalankan perintah dan mengerjakan file. Anda memiliki dua opsi:
 
 * **Lingkungan cloud:** Anthropic menjalankan sandbox untuk Anda. Setiap sesi mendapatkan container Linux baru miliknya sendiri di infrastruktur yang dikelola Anthropic, dengan bahasa pemrograman, database, dan utilitas umum yang sudah terinstal. Anda memilih aturan jaringannya dan paket tambahan apa pun yang akan diinstal.
-* **Sandbox yang di-host sendiri:** Anda menjalankan sandbox di infrastruktur Anda sendiri. Claude tetap berjalan di sisi Anthropic dan memutuskan alat mana yang akan dipanggil berikutnya. Sebuah program yang Anda jalankan, yang disebut "worker" (pekerja), menjalankan panggilan alat bash dan file milik agen di mesin Anda dan mengirimkan setiap hasilnya kembali. Worker juga dapat menyajikan alat kustom.
+* **Sandbox yang di-host sendiri:** Anda menjalankan sandbox di infrastruktur Anda sendiri. Claude tetap berjalan di sisi Anthropic dan menentukan alat mana yang akan dipanggil berikutnya. Sebuah program yang Anda jalankan, yang disebut "worker" (pekerja), menjalankan panggilan alat bash dan file milik agen di mesin Anda dan mengirimkan setiap hasilnya kembali. Program ini juga dapat menyajikan alat kustom.
 
 Definisi agen tetap sama apa pun pilihan Anda. Anda mengatur model, prompt, dan alat pada [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup), bukan pada lingkungan.
 

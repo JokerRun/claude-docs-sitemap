@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: f684573cce19579f1c71751c8fa2a4c7b1711c54cb521a9b6f0f6928e8ccd00d
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: b293b4bd421362a57a0713276c2b6798b5272644cf3d85086f5ac1d2006ded0d
 ---
 
 ---
@@ -17,7 +17,7 @@ description: Kelola anggota organisasi, workspace, undangan, dan kunci API secar
 
 Admin API tidak tersedia untuk akun individu. Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
 
-Organisasi Claude Enterprise (claude.ai) memanggil Admin API dengan kunci API ber-scope yang dibuat di claude.ai. Dari halaman ini, hanya endpoint anggota dan undangan yang berlaku untuk mereka. Mereka juga mendapatkan endpoint khusus Enterprise: pembacaan grup dan peran kustom, serta [batas pengeluaran](https://platform.claude.com/docs/id/manage-claude/spend-limits-api). [Plugins API](https://platform.claude.com/docs/id/manage-claude/plugins-api), yang juga khusus Enterprise, masih dalam tahap beta. Lihat [Manajemen pengguna](https://platform.claude.com/docs/id/manage-claude/user-management).
+Organisasi Claude Enterprise (claude.ai) memanggil Admin API dengan kunci API ber-scope yang dibuat di claude.ai. Dari halaman ini, hanya endpoint anggota dan undangan yang berlaku untuk mereka. Mereka juga mendapatkan endpoint khusus Enterprise: pembacaan grup dan peran kustom, serta [batas pengeluaran](https://platform.claude.com/docs/id/manage-claude/spend-limits-api). [Plugins API](https://platform.claude.com/docs/id/manage-claude/plugins-api), yang juga khusus Enterprise, masih dalam tahap beta. Begitu pula [Claude Tag API](https://platform.claude.com/docs/id/manage-claude/claude-tag-api). Lihat [Manajemen pengguna](https://platform.claude.com/docs/id/manage-claude/user-management).
 
 Di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), hanya endpoint Admin API berikut yang tersedia:
 

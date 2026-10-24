@@ -1,12 +1,12 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/opentelemetry
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: ceb4c8b7d331e58990d8c1f0e1107233e15817b1f7e0a56848544006d79264ec
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: bae59fc63a8d202b0f8c19435a0ac2a06dfd3775f4f75da10e72fbdea4337998
 ---
 
 ---
-title: OpenTelemetry for the Claude API
+title: OpenTelemetry tracing for the Claude API
 url: https://platform.claude.com/docs/en/manage-claude/opentelemetry
 description: Trace your Messages API requests, tool uses, and Managed Agents sessions with OpenTelemetry spans from the Claude SDK and the Claude API.
 featureMetadata:
@@ -20,7 +20,7 @@ featureMetadata:
   OpenTelemetry export is in beta. It's provided under your agreement with Anthropic, including the Beta Services section of the [Service Specific Terms](https://www.anthropic.com/legal/service-specific-terms).
 </Note>
 
-The Claude API and the SDK can trace your Messages API requests, tool uses, and Managed Agents sessions with [OpenTelemetry](https://opentelemetry.io/). You can view these traces in the observability platform you already have. Use them to debug failed or slow requests, track token spend and latency, and build evals from real traffic. You can also see each request inside your application's own traces, linked to the user or feature that sent it.
+The Claude API and the SDK can trace your Messages API requests, tool uses, and Managed Agents sessions with [OpenTelemetry](https://opentelemetry.io/) (OTel). You can view these traces in the observability platform you already have. Use them to debug failed or slow requests, track token spend and latency, and build evals from real traffic. You can also see each request inside your application's own traces, linked to the user or feature that sent it.
 
 OpenTelemetry is a vendor-neutral standard that most observability platforms support. A *trace* is the full record of one request through your system. A *span* is one step in a trace, such as a model request or a tool use. The API and the SDK use attributes from the [GenAI semantic conventions](https://github.com/open-telemetry/semantic-conventions-genai), so platforms that support the conventions can recognize the spans without extra setup.
 
@@ -128,7 +128,7 @@ Send traces to any observability platform that accepts OTLP, including these par
   </Card>
 
   <Card title="Snowflake" image="https://platform.claude.com/docs/images/partner-logos/snowflake.svg" imageHeight={30} imageOffsetLeft={2} href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-ai-gateway/observability#trace-claude-requests">
-    AI Data Cloud.
+    Agentic control plane with built-in observability and governance.
   </Card>
 
   <Card title="Splunk" image="https://platform.claude.com/docs/images/partner-logos/splunk.svg" imageDark="https://platform.claude.com/docs/images/partner-logos/splunk-dark.svg" imageHeight={27} imageOffsetLeft={1} href="https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/claude">

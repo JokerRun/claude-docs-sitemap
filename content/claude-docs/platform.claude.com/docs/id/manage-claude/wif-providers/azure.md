@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/azure
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 128fd0e10743e2d7ff496cbdf06b7d9779176d19afb67588779df72ccc4e68d0
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: eb1e776ca54b7fa6cfcb93e23e700413d1203bf50e5924cd944ff4945434449e
 ---
 
 ---
@@ -148,12 +148,12 @@ Masa berlaku yang diterima lebih lama berarti token Entra yang bocor tetap dapat
 
 ### Peroleh dan gunakan token
 
-Saat runtime, workload Anda mengambil token Entra-nya, menukarkannya di `POST /v1/oauth/token`, dan menggunakan bearer token yang dikembalikan untuk memanggil Claude. Claude SDK menangani pertukaran dan loop refresh ketika Anda menyediakan `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `IdentityTokenConfig`), seperti ditunjukkan dalam contoh berikut. Kecuali di Java (lihat komentar dalam contoh tersebut), opsi itu menerima penyedia token, dan SDK memanggilnya lagi untuk setiap refresh. Tab cURL menunjukkan alur mentahnya.
+Saat runtime, workload Anda mengambil token Entra-nya, menukarkannya di `POST /v1/oauth/token`, dan menggunakan bearer token yang dikembalikan untuk memanggil Claude. Claude SDK menangani pertukaran dan loop refresh ketika Anda menyediakan `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider()`; java: `IdentityTokenConfig`), seperti ditunjukkan dalam contoh berikut. Kecuali di Java (lihat komentar dalam contoh tersebut), opsi itu menerima penyedia token, dan SDK memanggilnya lagi untuk setiap refresh. Tab cURL menunjukkan alur mentahnya.
 
 Sampel mengambil token managed identity dari endpoint token platform: IMDS pada VM dan VM Scale Sets, atau layanan `IDENTITY_ENDPOINT` pada App Service, Functions, dan Container Apps. Ganti `<APP_ID>` dalam nilai resource `api://<APP_ID>` dengan client ID app registration audience dari [Daftarkan audience token](https://platform.claude.com/docs/id/manage-claude/wif-providers/azure#register-the-token-audience).
 
 <Tip>
-  Jika workload Anda sudah menggunakan pustaka klien Azure Identity, ambil token Entra darinya (`DefaultAzureCredential` dengan scope `api://<APP_ID>/.default`) alih-alih memanggil endpoint token secara langsung. Berikan token tersebut ke `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `IdentityTokenConfig`) seperti yang dilakukan contoh-contoh ini. Pustaka tersebut memilih endpoint yang benar di setiap platform Azure, termasuk AKS dengan Entra Workload Identity.
+  Jika workload Anda sudah menggunakan pustaka klien Azure Identity, ambil token Entra darinya (`DefaultAzureCredential` dengan scope `api://<APP_ID>/.default`) alih-alih memanggil endpoint token secara langsung. Berikan token tersebut ke `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider()`; java: `IdentityTokenConfig`) seperti yang dilakukan contoh-contoh ini. Pustaka tersebut memilih endpoint yang benar di setiap platform Azure, termasuk AKS dengan Entra Workload Identity.
 </Tip>
 
 <CodeGroup>
@@ -796,12 +796,12 @@ Masa berlaku yang diterima lebih lama berarti token Entra yang bocor tetap dapat
 
 ### Peroleh dan gunakan token
 
-Saat runtime, pod melakukan pertukaran dua lompatan: pod mengirim token yang diproyeksikan Kubernetes (file di `AZURE_FEDERATED_TOKEN_FILE`) ke endpoint token Entra sebagai assertion `client_credentials` terfederasi, lalu menukarkan access token Entra yang dihasilkan di `POST /v1/oauth/token`. Claude SDK menangani pertukaran kedua dan loop refresh ketika Anda menyediakan `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `IdentityTokenConfig`), seperti ditunjukkan dalam contoh berikut. Kecuali di Java (lihat komentar dalam contoh tersebut), opsi itu menerima pengambilan token Entra Anda sebagai penyedia token, dan SDK memanggilnya lagi untuk setiap refresh. Tab cURL menunjukkan alur mentahnya.
+Saat runtime, pod melakukan pertukaran dua lompatan: pod mengirim token yang diproyeksikan Kubernetes (file di `AZURE_FEDERATED_TOKEN_FILE`) ke endpoint token Entra sebagai assertion `client_credentials` terfederasi, lalu menukarkan access token Entra yang dihasilkan di `POST /v1/oauth/token`. Claude SDK menangani pertukaran kedua dan loop refresh ketika Anda menyediakan `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider()`; java: `IdentityTokenConfig`), seperti ditunjukkan dalam contoh berikut. Kecuali di Java (lihat komentar dalam contoh tersebut), opsi itu menerima pengambilan token Entra Anda sebagai penyedia token, dan SDK memanggilnya lagi untuk setiap refresh. Tab cURL menunjukkan alur mentahnya.
 
 Dua client ID berbeda muncul dalam sampel. `<APP_ID>` adalah client ID app registration audience dari [Daftarkan audience token](https://platform.claude.com/docs/id/manage-claude/wif-providers/azure#register-the-token-audience); scope `api://<APP_ID>/.default` meminta Entra untuk token yang dialamatkan ke audience tersebut. `$AZURE_CLIENT_ID` adalah client ID managed identity, diinjeksikan oleh webhook, dan mengidentifikasi pemanggil. Jangan menukar satu dengan yang lain.
 
 <Tip>
-  Jika workload Anda sudah menggunakan pustaka klien Azure Identity, ambil token Entra darinya (`DefaultAzureCredential` dengan scope `api://<APP_ID>/.default`) alih-alih melakukan pertukaran dua lompatan sendiri. Berikan token tersebut ke `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `IdentityTokenConfig`) seperti yang dilakukan contoh-contoh ini. Pustaka tersebut membaca variabel lingkungan `AZURE_FEDERATED_TOKEN_FILE`, `AZURE_CLIENT_ID`, dan `AZURE_TENANT_ID` yang sama dan menangani pertukaran Entra.
+  Jika workload Anda sudah menggunakan pustaka klien Azure Identity, ambil token Entra darinya (`DefaultAzureCredential` dengan scope `api://<APP_ID>/.default`) alih-alih melakukan pertukaran dua lompatan sendiri. Berikan token tersebut ke `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider()`; java: `IdentityTokenConfig`) seperti yang dilakukan contoh-contoh ini. Pustaka tersebut membaca variabel lingkungan `AZURE_FEDERATED_TOKEN_FILE`, `AZURE_CLIENT_ID`, dan `AZURE_TENANT_ID` yang sama dan menangani pertukaran Entra.
 </Tip>
 
 <CodeGroup>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/java
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 080befbeccc5434dc53e5798ace7b2dde51a6c2b46e47486d14fce5d9ebcb1ae
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: dfb4a1c61ecc73235ca2d8b63835690e35be2173f48deb406efd8094a74cc4e7
 ---
 
 ---
@@ -22,7 +22,7 @@ The Anthropic Java SDK provides convenient access to the Claude API from applica
 <Tabs>
   <Tab title="Gradle">
     ```kotlin
-    implementation("com.anthropic:anthropic-java:3.1.0")
+    implementation("com.anthropic:anthropic-java:3.3.0")
     ```
   </Tab>
 
@@ -31,7 +31,7 @@ The Anthropic Java SDK provides convenient access to the Claude API from applica
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java</artifactId>
-        <version>3.1.0</version>
+        <version>3.3.0</version>
     </dependency>
     ```
   </Tab>
@@ -826,7 +826,7 @@ Because each class is immutable, builder modification never affects already buil
 
 To send a request to the Claude API, build an instance of some `Params` class and pass it to the corresponding client method. When the response is received, it is deserialized into an instance of a Java class.
 
-For example, `client.messages().create(...)` should be called with an instance of `MessageCreateParams`, and it returns an instance of `Message`.
+For example, `client.messages().create(...)` takes an instance of `MessageCreateParams` and returns an instance of `Message`.
 
 ### Undocumented parameters
 
@@ -1097,7 +1097,7 @@ To use a completely custom HTTP client:
 
 The Java SDK supports the following platforms through separate dependencies that provide platform-specific `Backend` implementations:
 
-* **Agent Platform:** `com.anthropic:anthropic-java-vertex`: Use `VertexBackend.builder()` or `VertexBackend.fromEnv()`. `fromEnv()` reads `CLOUD_ML_REGION` and `ANTHROPIC_VERTEX_PROJECT_ID` and uses Application Default Credentials.
+* **Claude Models on Google Cloud (Google managed):** `com.anthropic:anthropic-java-vertex`: Use `VertexBackend.builder()` or `VertexBackend.fromEnv()`. `fromEnv()` reads `CLOUD_ML_REGION` and `ANTHROPIC_VERTEX_PROJECT_ID` and uses Application Default Credentials.
 * **Bedrock:** `com.anthropic:anthropic-java-bedrock`: Use `BedrockMantleBackend.fromEnv()` or `BedrockMantleBackend.builder()` for the Messages-API Bedrock endpoint, or `BedrockBackend.fromEnv()` / `BedrockBackend.builder()` (`bedrock-runtime` path).
 * **Claude Platform on AWS:** `com.anthropic:anthropic-java-aws`: Use `AwsBackend.fromEnv()` (reads `ANTHROPIC_AWS_WORKSPACE_ID` and the AWS default region/credential chain) or `AwsBackend.builder()`. Available in beta.
 * **Foundry:** `com.anthropic:anthropic-java-foundry`: Use `FoundryBackend.fromEnv()` or `FoundryBackend.builder()`.
@@ -1177,6 +1177,10 @@ export ANTHROPIC_LOG=debug
 
   ProGuard and R8 should automatically detect and use the published rules, but you can also manually copy the keep rules if necessary.
 </Accordion>
+
+### OpenTelemetry tracing
+
+When your application registers an OpenTelemetry tracer provider, the SDK emits a span for each request that it sends. To send the spans to your observability platform, see [Set up OpenTelemetry with the Claude SDK](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk).
 
 ### Undocumented API functionality
 

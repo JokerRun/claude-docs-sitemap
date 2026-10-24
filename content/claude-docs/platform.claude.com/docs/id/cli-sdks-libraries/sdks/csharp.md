@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 851c2fb6a68da478de15201161b2ca06e97f9b7fdbc8dbe5b84effc6399ee35b
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 5607e2af5393ad55f812219a38720c2104b91ba28395fbd4250695cf9ba55b57
 ---
 
 ---
@@ -60,7 +60,7 @@ foreach (var block in message.Content)
 }
 ```
 
-Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci personal atau kunci akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) dengan akses ke beberapa workspace, tetapkan ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
+Untuk opsi autentikasi termasuk "Workload Identity Federation" (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
 
 ## Konfigurasi klien
 
@@ -409,6 +409,10 @@ Aktifkan logging debug dengan mengatur variabel lingkungan:
 ```bash
 export ANTHROPIC_LOG=debug
 ```
+
+### Tracing OpenTelemetry
+
+Saat aplikasi Anda menambahkan source SDK ke tracer provider OpenTelemetry-nya dengan `AddSource("com.anthropic.sdk.csharp*")`, SDK memancarkan span untuk setiap permintaan yang dikirimnya. Untuk mengirim span ke platform observabilitas Anda, lihat [Menyiapkan OpenTelemetry dengan Claude SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
 
 ### Fungsionalitas API yang tidak terdokumentasi
 

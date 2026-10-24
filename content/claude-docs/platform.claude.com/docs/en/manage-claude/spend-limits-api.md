@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/spend-limits-api
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 2ec9de97a7af0a3a61f6e84c4038dc0b3c3bf5a3b776af59644fc0afce5a5505
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: e686eb86197ce86be4ff951d6e872999a17514850f9441b8288fc75e0381d4d7
 ---
 
 ---
@@ -379,7 +379,7 @@ For complete parameter details and response schemas, see [List effective spend l
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "data": [
     {
@@ -632,7 +632,7 @@ For complete parameter details and response schemas, see [Create a spend limit](
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "type": "spend_limit",
   "id": "spl_01RsTuVwXyZaBcDeFgHiJk",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 2174382619895e75f55eb0165624ddfe49297c6ced474632ca07d23f55f98c39
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 3e4bd56aa70c3056bb4f4e1a8c4c1987d40f7212b04841f9880367c17b642a5d
 ---
 
 ---
@@ -46,7 +46,7 @@ $textBlock = array_find($message->content, static fn ($block): bool => $block->t
 echo $textBlock->text;
 ```
 
-Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci personal atau kunci akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) dengan akses ke beberapa workspace, tetapkan ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
+Untuk opsi autentikasi termasuk "Workload Identity Federation" (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
 
 ## Value object
 
@@ -171,6 +171,10 @@ foreach ($page->pagingEachItem() as $item) {
 ```
 
 ## Penggunaan lanjutan
+
+### Tracing OpenTelemetry
+
+Saat aplikasi Anda mendaftarkan tracer provider OpenTelemetry, SDK memancarkan span untuk setiap permintaan yang dikirimnya. Untuk mengirim span ke platform observabilitas Anda, lihat [Menyiapkan OpenTelemetry dengan Claude SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
 
 ### Properti yang tidak terdokumentasi
 

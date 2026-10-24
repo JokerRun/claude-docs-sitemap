@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/embeddings
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: b7d5a601a31d12dd3bfc093ffcd624a0723de9da42900c968dd6282a39a31914
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: be69599559b945e7e4e2dc102dcb63a087e50b1e1f53c5739bd92c9d986d6889
 ---
 
 ---
@@ -149,7 +149,7 @@ curl https://ai.mongodb.com/v1/embeddings \
 
 The response is a JSON object containing the embeddings and the token usage:
 
-```text wrap
+```json
 {
   "object": "list",
   "data": [

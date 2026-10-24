@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/create
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 131a39fc85ff61ad7979465f5efdb3a5b83627c05a9e7469fd4e7f54820a6a9f
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: bc1f56e8f2936a61cf1adf806df6a984fff661a6b94911b13e6e2e9f7b77ced0
 ---
 
 ---
@@ -160,7 +160,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 ## Body parameters (form-data)
 
-- `files: array of string`
+- `files: array of file`
 
   The version's files: one part per file, the part's filename being the file's path within the Plugin (for example `skills/review-pr/SKILL.md`), or a single `.zip` or `.plugin` archive holding them all. On the wire each part is named `files[]`, and a part named plain `files` is not read; with cURL, `-F 'files[]=@SKILL.md;filename=skills/review-pr/SKILL.md'`. The files must include the manifest, `.claude-plugin/plugin.json`.
 

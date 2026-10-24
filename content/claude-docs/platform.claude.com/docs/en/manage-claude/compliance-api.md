@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-api
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: d6b9814e15da65c7d58d1bb73647f9060f6c6dc65f3f782eb347dec62c4c4b85
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 2d0e180a05868b662cc4a337d9a6bacbb2f7c89f55a80e55501f99f36c22960d
 ---
 
 ---
@@ -28,11 +28,11 @@ curl --fail-with-body -sS \
 
 A successful response returns a JSON object containing `data` (an array of `Activity` records), `has_more`, `first_id`, and `last_id`:
 
-```text Response wrap
+```json Response
 {
   "data": [
     {
-      "id": "activity_01XyDMpzjS89pFZXqSFUBDr6",
+      "id": "activity_01DeFgHjKmNpQrStUvWxYzAb",
       "created_at": "2026-04-10T08:09:10Z",
       "organization_id": "org_01Wv6QeBcDfGhJkLmNpQrSt8",
       "organization_uuid": "abcdef01-2345-6789-abcd-ef0123456789",
@@ -44,13 +44,13 @@ A successful response returns a JSON object containing `data` (an array of `Acti
         "user_agent": "Mozilla/5.0..."
       },
       "type": "claude_chat_created",
-      "claude_chat_id": "claude_chat_01XyDMpzjS89pFZXqSFUBDr6",
+      "claude_chat_id": "claude_chat_01CdEfGhJkMnPqRsTuVwXyZa",
       "claude_project_id": "claude_proj_01KGp4eZNug9ri4kE35RSppq"
     }
   ],
   "has_more": true,
-  "first_id": "activity_01XyDMpzjS89pFZXqSFUBDr6",
-  "last_id": "activity_01XyDMpzjS89pFZXqSFUBDr6"
+  "first_id": "activity_01DeFgHjKmNpQrStUvWxYzAb",
+  "last_id": "activity_01DeFgHjKmNpQrStUvWxYzAb"
 }
 ```
 

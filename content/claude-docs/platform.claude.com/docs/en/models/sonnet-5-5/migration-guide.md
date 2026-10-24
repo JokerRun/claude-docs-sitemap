@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: f0fea79ac3f0b34ef023f5a9b9f45c777c80ea79bb729f08568ef6380faeb576
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 1d217c6c3d269043381d07f2f5be9d120b275dd99c40dc480cab396b116a94ec
 ---
 
 ---
@@ -1207,7 +1207,7 @@ After (Claude Sonnet 5.5):
 
 * **About 30 percent more tokens:** Claude Sonnet 5.5 uses Claude Sonnet 5's tokenizer. Against Claude Sonnet 4.6, Claude Sonnet 4.5, and Claude Haiku 4.5, the same text produces about 30 percent more tokens, depending on the content. Recount with [token counting](https://platform.claude.com/docs/en/build-with-claude/token-counting), and revisit `max_tokens` and cost.
 * **Effort:** `xhigh` is new, and the levels are recalibrated. See [Recommended changes](https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide#recommended-changes).
-* **Images:** Claude Sonnet 5.5 uses the high-resolution image tier, up to 2,576 pixels on the long edge and 4,784 visual tokens per image. Claude Sonnet 4.6, Claude Sonnet 4.5, and Claude Haiku 4.5 stop at 1,568 pixels and 1,568 tokens. A 2000×1500 image costs about 2.5 times as many tokens on Claude Sonnet 5.5. See [Resolution and token cost](https://platform.claude.com/docs/en/build-with-claude/vision#evaluate-image-size).
+* **Images:** Claude Sonnet 5.5 uses the high-resolution image tier, up to 2,576 pixels on the long edge and up to 4,784 visual tokens for an image. Claude Sonnet 4.6, Claude Sonnet 4.5, and Claude Haiku 4.5 stop at 1,568 pixels and 1,568 tokens. A 2000×1500 image costs about 2.5 times as many tokens on Claude Sonnet 5.5. See [Resolution and token cost](https://platform.claude.com/docs/en/build-with-claude/vision#evaluate-image-size).
 
 ### Migrating from Claude Sonnet 4.5 or earlier
 

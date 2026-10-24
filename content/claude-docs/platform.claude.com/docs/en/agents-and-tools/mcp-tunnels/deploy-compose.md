@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-compose
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 6aea63f10a02932835663747ef12b398b01017868d849f1ed403f6d4abab4cfc
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 4681694b242182ede8b4b6c910892bfb2d5949beb17aebcf583ab3f559c066a5
 ---
 
 ---
@@ -390,7 +390,7 @@ This guide provides one reference approach using Docker Compose. You are respons
   </Tab>
 </Tabs>
 
-The compose file reads `TUNNEL_TOKEN` from the host environment with no default, so the export must be repeated in every fresh shell and after a reboot.
+The compose file reads `TUNNEL_TOKEN` from the host environment with no default, so you must repeat the export in every fresh shell and after a reboot.
 
 For a multi-VM deployment, copy the `mcp-tunnel/` directory to each host, set `TUNNEL_TOKEN`, and run `docker compose up -d`. In the programmatic flow `TUNNEL_TOKEN` is `$(sudo cat data/tunnel-token)`; in the manual flow it's the value you copied from the Console. The same tunnel token and certificates work across all replicas.
 

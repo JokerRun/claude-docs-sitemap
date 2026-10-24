@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: f3085801a810e542241dfd6921c512c58269cff8cdccdca99ca782f35512a51d
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 0f45a1970c8342028077c19d028effe93216b260dcdb59e44c0b616e4add6071
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-[Alat kustom](https://platform.claude.com/docs/id/managed-agents/tools#custom-tools) adalah alat yang dieksekusi oleh kode Anda sendiri: agen memancarkan event `agent.custom_tool_use` dan menunggu `user.custom_tool_result` yang sesuai. Worker Anda dapat menjadi kode tersebut. Karena berjalan di dalam sandbox Anda, alat tersebut menjangkau layanan internal, kredensial, dan "network egress" (lalu lintas jaringan keluar) yang Anda konfigurasikan untuk sandbox, dan tidak lebih dari itu.
+[Alat kustom](https://platform.claude.com/docs/id/managed-agents/tools#custom-tools) adalah alat yang dijalankan oleh kode Anda sendiri: agen memancarkan event `agent.custom_tool_use` dan menunggu `user.custom_tool_result` yang sesuai. Worker Anda dapat menjadi kode tersebut. Karena berjalan di dalam sandbox Anda, alat tersebut menjangkau layanan internal, kredensial, dan "network egress" (lalu lintas jaringan keluar) yang Anda konfigurasikan untuk sandbox, dan tidak lebih dari itu.
 
 Environment key mengotorisasi pengiriman hasil alat kustom, sehingga kunci API Claude Anda tetap berada di luar host worker.
 
@@ -157,7 +157,7 @@ Environment key mengotorisasi pengiriman hasil alat kustom, sehingga kunci API C
       			},
       			Required: []string{"order_id"},
       		},
-      		// Runs on the worker host: call anything the sandbox can reach.
+      		// Berjalan di host worker: dapat memanggil apa pun yang bisa dijangkau sandbox.
       		func(ctx context.Context, input orderStatusInput) (anthropic.BetaToolResultBlockParamContentUnion, error) {
       			return anthropic.BetaToolResultBlockParamContentUnion{
       				OfText: &anthropic.BetaTextBlockParam{Text: "Order " + input.OrderID + ": shipped"},
@@ -214,7 +214,7 @@ Saat runtime, model memanggil alat yang dibungkus seperti alat kustom lainnya:
 
 [Helper MCP sisi klien](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#client-side-mcp-helpers) milik SDK mengonversi alat-alat server menjadi alat yang dapat dijalankan yang diterima oleh worker. Instal SDK MCP bersama dengan SDK Anthropic: `pip install "anthropic[mcp]" "mcp>=1.24"` (typescript: `npm install @modelcontextprotocol/sdk`; go: `go get github.com/modelcontextprotocol/go-sdk`; csharp: `dotnet add package ModelContextProtocol`; java: `com.anthropic:anthropic-java-mcp`; php: `composer require mcp/sdk`; ruby: `bundle add mcp faraday event_stream_parser`).
 
-Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfigurasikan `http_client` (typescript: `requestInit`; go: `HTTPClient`; csharp: `AdditionalHeaders`; java: `customizeRequest`; php, ruby: `headers`) yang Anda berikan ke transport MCP.
+Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfigurasikan `http_client` (typescript: `requestInit`; go: `HTTPClient`; csharp: `AdditionalHeaders`; java: `.customizeRequest()`; php, ruby: `headers`) yang Anda berikan ke transport MCP.
 
 ### Mendeklarasikan dan melayani alat
 
@@ -369,10 +369,10 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
 
       const mcpServerURL = "http://mcp.internal.example.com:8000/mcp"
 
-      // toCustomTool maps one MCP tool definition onto a custom tool declaration.
-      // The fields map one to one: the typed parameter carries `properties` and
-      // `required`, and every other JSON Schema keyword the server emits travels in
-      // ExtraFields so the declared schema matches the server's schema.
+      // toCustomTool memetakan satu definisi alat MCP ke deklarasi alat kustom.
+      // Field-nya dipetakan satu ke satu: parameter bertipe membawa `properties` dan
+      // `required`, dan setiap kata kunci JSON Schema lain yang dikeluarkan server disalurkan di
+      // ExtraFields sehingga skema yang dideklarasikan cocok dengan skema server.
       func toCustomTool(tool *mcpsdk.Tool) (anthropic.BetaAgentNewParamsToolUnion, error) {
       	raw, err := json.Marshal(tool.InputSchema)
       	if err != nil {
@@ -387,7 +387,7 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
       	for keyword, value := range schema {
       		switch keyword {
       		case "type":
-      			// The parameter type always marshals "type": "object".
+      			// Tipe parameter selalu di-marshal sebagai "type": "object".
       		case "properties":
       			properties, _ := value.(map[string]any)
       			inputSchema.Properties = properties
@@ -419,8 +419,8 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
       func main() {
       	ctx := context.Background()
 
-      	// Run this wherever you create agents, not on the worker host: it
-      	// authenticates with your Claude API key (ANTHROPIC_API_KEY).
+      	// Jalankan ini di mana pun Anda membuat agen, bukan di host worker: ini
+      	// mengautentikasi dengan kunci API Claude Anda (ANTHROPIC_API_KEY).
       	client := anthropic.NewClient()
 
       	mcpClient := mcpsdk.NewClient(&mcpsdk.Implementation{Name: "declare-agent-tools", Version: "1.0.0"}, nil)
@@ -593,7 +593,7 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
   </Step>
 
   <Step title="Layani alat dari worker">
-    Hubungkan ke server MCP yang sama saat startup, konversikan alat-alatnya dengan `async_mcp_tool` (typescript: `mcpTools`; go: `mcp.NewBetaTools`), dan daftarkan bersama dengan `beta_agent_toolset_20260401` (typescript: `betaAgentToolset20260401`; go: `agenttoolset.BetaAgentToolset20260401`). Pertahankan satu sesi MCP tetap terbuka selama masa hidup worker.
+    Hubungkan ke server MCP yang sama saat startup, konversikan alat-alatnya dengan `async_mcp_tool()` (typescript: `mcpTools()`; go: `mcp.NewBetaTools()`), dan daftarkan bersama dengan `beta_agent_toolset_20260401()` (typescript: `betaAgentToolset20260401()`; go: `agenttoolset.BetaAgentToolset20260401()`). Pertahankan satu sesi MCP tetap terbuka selama masa hidup worker.
 
     <CodeGroup exclude="shell, csharp, java, php, ruby">
       ```python Python
@@ -715,8 +715,8 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
 
       	client := anthropic.NewClient(option.WithAuthToken(environmentKey))
 
-      	// Connect to the MCP server once at startup and keep the session open for
-      	// the life of the worker.
+      	// Hubungkan ke server MCP sekali saat startup dan biarkan sesi tetap terbuka selama
+      	// worker berjalan.
       	mcpClient := mcpsdk.NewClient(&mcpsdk.Implementation{Name: "sandbox-worker", Version: "1.0.0"}, nil)
       	session, err := mcpClient.Connect(ctx, &mcpsdk.StreamableClientTransport{Endpoint: mcpServerURL}, nil)
       	if err != nil {
@@ -785,13 +785,13 @@ Helper MCP mempertahankan nama dan deskripsi server, dan sebagian besar skema di
 Dua kasus memerlukan pekerjaan tambahan:
 
 * **Dua server mengekspos nama alat yang sama:** Definisikan sendiri pembungkusnya dengan nama berprefiks dan buat pembungkus tersebut memanggil nama alat asli server.
-* **Generator seperti pydantic memfaktorkan skema ke dalam `$defs`:** Lakukan inline pada skema tersebut sebelum Anda mendeklarasikan alat.
+* **Generator seperti Pydantic memfaktorkan skema ke dalam `$defs`:** Lakukan inline pada skema tersebut sebelum Anda mendeklarasikan alat.
 
 ### Kegagalan alat muncul sebagai hasil alat error
 
 Ketika server MCP melaporkan error alat, worker mengirimkan hasil alat error yang dapat ditanggapi oleh model. Konten MCP yang tidak memiliki padanan hasil alat, seperti blok audio dan tautan sumber daya, juga muncul sebagai error.
 
-Tetapkan timeout pada klien MCP untuk kegagalan yang lebih cepat dan lebih jelas, seperti yang dilakukan contoh worker Python dengan `read_timeout_seconds`. Lihat [Panggilan alat MCP yang dibungkus macet](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations#a-wrapped-mcp-tool-call-hangs) untuk mengetahui apa yang terjadi tanpa timeout.
+Atur timeout pada klien MCP untuk kegagalan yang lebih cepat dan lebih jelas, seperti yang dilakukan contoh worker Python dengan `read_timeout_seconds`. Lihat [Panggilan alat MCP yang dibungkus macet](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations#a-wrapped-mcp-tool-call-hangs) untuk mengetahui apa yang terjadi tanpa timeout.
 
 ### Bungkus hanya server yang Anda operasikan atau percayai
 
@@ -799,4 +799,4 @@ Nama, deskripsi, dan hasil alat yang dibungkus masuk ke konteks model seperti al
 
 ### Kebijakan izin tidak berlaku
 
-[Kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies#custom-tools) mengatur toolset bawaan dan toolset MCP. Worker mengeksekusi setiap panggilan alat yang dibungkus yang dibuat oleh model, jadi tempatkan langkah persetujuan apa pun di dalam kode alat Anda sendiri.
+[Kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies#custom-tools) mengatur toolset bawaan dan toolset MCP. Worker menjalankan setiap panggilan alat yang dibungkus yang dibuat oleh model, jadi letakkan langkah persetujuan apa pun di dalam kode alat Anda sendiri.

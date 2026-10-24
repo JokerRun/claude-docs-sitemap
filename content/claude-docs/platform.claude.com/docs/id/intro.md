@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/intro
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 682dd2a0f0ba7686ad1dad3a33c2d7a4f7f78516087ac56d90aa33aecd02fe98
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: cc97bcbd7ae53d78474a85a388caf3cd8d972c777beb72f63bda7efef4a06529
 ---
 
 ---
@@ -39,7 +39,7 @@ Jika Anda tidak yakin model mana yang akan digunakan, mulailah dengan [Claude Op
 
 ## Jalur yang direkomendasikan untuk developer baru
 
-Ikuti langkah-langkah berikut untuk beranjak dari nol hingga memiliki integrasi Claude yang berfungsi.
+Ikuti langkah-langkah berikut untuk membangun integrasi Claude yang berfungsi.
 
 <Steps>
   <Step title="Lakukan panggilan API pertama Anda">
@@ -118,7 +118,7 @@ Claude dapat membantu berbagai tugas yang melibatkan teks, kode, dan gambar.
     Temukan jawaban atas pertanyaan yang sering diajukan tentang akun dan penagihan.
   </Card>
 
-  <Card title="Status Layanan" icon="chart" href="https://status.claude.com">
+  <Card title="Status layanan" icon="chart" href="https://status.claude.com">
     Periksa status layanan Anthropic.
   </Card>
 </CardGroup>

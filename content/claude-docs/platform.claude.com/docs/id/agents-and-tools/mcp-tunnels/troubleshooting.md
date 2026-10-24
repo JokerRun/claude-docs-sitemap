@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 20c5b7f4de763b7cd968816b8a9f66598d3e079425a6e4b92fbd506b45b70868
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: cd9ae5109f08ee450d2d13333aae13197bc0dbf4705d494dadbdaacb9e87464a
 ---
 
 ---
@@ -27,13 +27,13 @@ Sebuah permintaan melalui tunnel dapat gagal di salah satu dari tiga lapisan; di
 | Proxy mencatat log `IP validation failed: <ip> is not a private address`                                                                                                     | Server MCP upstream ter-resolve di luar RFC1918.                                                          | Lihat [Validasi IP upstream](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting#upstream-ip-validation).                                         |
 | Proxy keluar dengan `cannot unmarshal !!seq into map[string]string`                                                                                                          | `routes` berupa list YAML.                                                                                | Gunakan `routes: { name: http://host:port }`.                                                                                                                                  |
 | Proxy keluar dengan `open /data/tls.key: permission denied`                                                                                                                  | Kunci memiliki izin `0600`; container proxy berjalan sebagai non-root.                                    | `chmod 644 data/tls.key`.                                                                                                                                                      |
-| `curl https://<proxy>:8080` gagal dengan `wrong version number`                                                                                                              | Sesuai harapan; listener berupa WebSocket plaintext. TLS terjadi di dalam stream WS.                      | Verifikasi melalui [Managed Agent atau Messages API](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview#use-the-tunneled-mcp-servers) sebagai gantinya. |
+| `curl https://<proxy>:8080` gagal dengan `wrong version number`                                                                                                              | Ini memang diharapkan; listener adalah WebSocket plaintext. TLS terjadi di dalam stream WS.               | Verifikasi melalui [Managed Agent atau Messages API](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview#use-the-tunneled-mcp-servers) sebagai gantinya. |
 
 Bagian-bagian berikut membahas kegagalan yang memerlukan lebih dari perbaikan satu baris.
 
 ## OAuth gagal di balik allowlist IP sumber
 
-Alur OAuth gagal ketika allowlist IP sumber pada server otorisasi Anda memblokir backend Anthropic dari menjangkau `/token`, `/register`, dan endpoint discovery. Jika Anda lebih memilih untuk tidak memasukkan rentang egress Anthropic ke allowlist, Anda dapat merutekan panggilan OAuth backend-ke-backend melalui tunnel sambil tetap mempertahankan endpoint `/authorize` yang menghadap browser pada hostname publik Anda yang sudah ada.
+Alur OAuth gagal ketika allowlist IP sumber pada server otorisasi Anda memblokir back end Anthropic untuk menjangkau `/token`, `/register`, dan endpoint discovery. Jika Anda lebih memilih untuk tidak memasukkan rentang egress Anthropic ke allowlist, Anda dapat merutekan panggilan OAuth backend-ke-backend melalui tunnel sambil tetap mempertahankan endpoint `/authorize` yang menghadap browser pada hostname publik Anda yang sudah ada.
 
 <Steps>
   <Step title="Tambahkan rute proxy untuk server otorisasi">
@@ -72,7 +72,7 @@ Alur OAuth gagal ketika allowlist IP sumber pada server otorisasi Anda memblokir
   </Step>
 </Steps>
 
-Dengan konfigurasi ini, browser pengguna mengakses `/authorize` pada hostname Anda yang sudah ada (yang sudah diizinkan oleh allowlist Anda), sementara backend Anthropic menjangkau `/token`, `/register`, dan dokumen discovery melalui tunnel.
+Dengan konfigurasi ini, browser pengguna meminta `/authorize` pada hostname Anda yang sudah ada (yang sudah tercakup dalam allowlist Anda), sedangkan back end Anthropic menjangkau `/token`, `/register`, dan dokumen discovery melalui tunnel.
 
 ## Kegagalan autentikasi komponen setup
 
@@ -97,7 +97,7 @@ Periksa log cloudflared terlebih dahulu. Penyebab umum:
 * `TUNNEL_TOKEN` tidak ada, kedaluwarsa, atau disalin dengan tidak benar.
 * Firewall memblokir TCP/UDP keluar pada port 7844 ke tunnel edge.
 
-cloudflared juga mungkin mencatat peringatan tentang ukuran buffer penerimaan UDP; ini adalah petunjuk penyetelan QUIC, bukan error.
+cloudflared mungkin juga mencatat peringatan tentang ukuran buffer penerimaan UDP; ini adalah petunjuk penyetelan QUIC, bukan error.
 
 ## Error sertifikat
 

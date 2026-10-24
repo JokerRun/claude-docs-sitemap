@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/okta
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: db1f4c20f06b90384e0ece3f20d453248bf6d1e4ed0e9a4a1f408092f5ed0e60
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: a60f2adcb918ca7374bade909934f5d4cfc1a0d16c22078c8ddf2651a4ac91ca
 ---
 
 ---
@@ -38,7 +38,7 @@ Secara garis besar, Anda perlu:
 Navigasi yang tepat bergantung pada konfigurasi org Okta Anda dan versi konsol admin. Langkah-langkah bernomor berikut menjelaskan salah satu jalur yang umum:
 
 1. **Buat integrasi aplikasi layanan.** Di Okta Admin Console, buat integrasi aplikasi baru dengan tipe **API Services** (OIDC, machine-to-machine). Catat **Client ID** yang dihasilkan.
-2. **Konfigurasikan autentikasi klien.** Untuk penyiapan tanpa kunci, pilih **Public key / Private key** (`private_key_jwt`) dan daftarkan JWK publik workload Anda. Sebagai alternatif, gunakan client secret jika lingkungan Anda dapat menyimpannya dengan aman. Untuk contoh berikut, Anda mungkin perlu menonaktifkan persyaratan DPoP pada aplikasi; pastikan bahwa penyiapan produksi Anda mematuhi persyaratan keamanan organisasi Anda.
+2. **Konfigurasikan autentikasi klien.** Untuk penyiapan tanpa kunci, pilih **Public key / Private key** (`private_key_jwt`) dan daftarkan JWK publik workload Anda. Sebagai alternatif, gunakan client secret jika lingkungan Anda dapat menyimpannya dengan aman. Untuk contoh berikut, Anda mungkin perlu menonaktifkan persyaratan DPoP pada aplikasi; pastikan penyiapan produksi Anda mematuhi persyaratan keamanan organisasi Anda.
 3. **Tetapkan audience.** Pada server otorisasi kustom Anda, tetapkan audience ke `https://api.anthropic.com` sehingga token akses yang diterbitkan membawa claim `aud` tersebut. Anthropic memvalidasi `aud` terhadap nilai tetap ini.
 4. **Berikan scope.** Pada server otorisasi kustom Anda, pastikan setidaknya ada satu scope yang diizinkan untuk diminta oleh aplikasi layanan (misalnya, `anthropic.access`). Okta menolak permintaan `client_credentials` yang tidak menyertakan scope yang telah diberikan.
 5. **Buat access policy.** Pada server otorisasi kustom Anda, buat access policy dengan setidaknya satu aturan yang mengizinkan aplikasi layanan Anda meminta scope yang Anda berikan pada langkah 4.
@@ -118,6 +118,25 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello, Claude"}]
     }'
+  ```
+
+  ```bash CLI
+  # 1. Minta access token dari Okta dan tulis ke file sementara.
+  export ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
+  curl -sS "$OKTA_ISSUER/v1/token" \
+    -d grant_type=client_credentials \
+    -d scope=anthropic.access \
+    -d client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer \
+    --data-urlencode client_assertion="$SIGNED_CLIENT_ASSERTION" \
+    | jq -r .access_token > "$ANTHROPIC_IDENTITY_TOKEN_FILE"
+
+  # 2. Panggil Claude API. CLI membaca ANTHROPIC_FEDERATION_RULE_ID,
+  # ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan
+  # ANTHROPIC_IDENTITY_TOKEN_FILE lalu melakukan pertukaran token.
+  ant messages create \
+    --model claude-opus-5-5 \
+    --max-tokens 1024 \
+    --message '{role: user, content: "Hello, Claude"}'
   ```
 
   ```python Python
@@ -204,6 +223,58 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
   }
   ```
 
+  ```csharp C#
+  using Anthropic.Credentials;
+  // ...
+
+  var credentials = new WorkloadIdentityCredentials(new WorkloadIdentityOptions
+  {
+      FederationRuleId = Environment.GetEnvironmentVariable("ANTHROPIC_FEDERATION_RULE_ID")!,
+      OrganizationId = Environment.GetEnvironmentVariable("ANTHROPIC_ORGANIZATION_ID"),
+      ServiceAccountId = Environment.GetEnvironmentVariable("ANTHROPIC_SERVICE_ACCOUNT_ID"),
+      WorkspaceId = Environment.GetEnvironmentVariable("ANTHROPIC_WORKSPACE_ID"),
+      IdentityTokenProvider = new OktaTokenProvider(),
+  });
+  using var client = new AnthropicClient(new ClientOptions { Credentials = credentials });
+
+  var message = await client.Messages.Create(new()
+  {
+      Model = Model.ClaudeOpus5_5,
+      MaxTokens = 1024,
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
+  });
+  foreach (var block in message.Content)
+  {
+      if (block.Value is TextBlock textBlock)
+      {
+          Console.WriteLine(textBlock.Text);
+      }
+  }
+
+  class OktaTokenProvider : IIdentityTokenProvider
+  {
+      private static readonly HttpClient Http = new();
+
+      public async Task<string> GetIdentityTokenAsync(CancellationToken ct = default)
+      {
+          var form = new FormUrlEncodedContent(new Dictionary<string, string>
+          {
+              ["grant_type"] = "client_credentials",
+              ["scope"] = "anthropic.access",
+              ["client_assertion_type"] = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+              // Bangun JWT client_assertion RFC 7523 yang ditandatangani dengan kunci privat aplikasi Okta Anda
+              ["client_assertion"] = BuildSignedClientAssertion(),
+          });
+          var response = await Http.PostAsync(
+              $"{Environment.GetEnvironmentVariable("OKTA_ISSUER")}/v1/token", form, ct);
+          response.EnsureSuccessStatusCode();
+          using var json = await JsonDocument.ParseAsync(
+              await response.Content.ReadAsStreamAsync(ct), default, ct);
+          return json.RootElement.GetProperty("access_token").GetString()!;
+      }
+  }
+  ```
+
   ```go Go
   package main
 
@@ -216,8 +287,8 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
   	"os"
   	"strings"
 
-  	"github.com/anthropics/anthropic-sdk-go"
-  	"github.com/anthropics/anthropic-sdk-go/option"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
+  	"github.com/anthropics/anthropic-sdk-go/v2/option"
   )
 
   func fetchOktaToken(ctx context.Context) (string, error) {
@@ -295,18 +366,18 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
 
   void main() throws Exception {
       var form = Map.of(
-                      "grant_type", "client_credentials",
-                      "scope", "anthropic.access",
-                      "client_assertion_type", "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-                      // Buat JWT client_assertion RFC 7523 yang ditandatangani dengan kunci privat aplikasi Okta Anda
-                      "client_assertion", buildSignedClientAssertion())
-              .entrySet().stream()
-              .map(entry -> entry.getKey() + "=" + URLEncoder.encode(entry.getValue(), UTF_8))
-              .collect(Collectors.joining("&"));
+              "grant_type", "client_credentials",
+              "scope", "anthropic.access",
+              "client_assertion_type", "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+              // Buat JWT client_assertion RFC 7523 yang ditandatangani dengan kunci privat aplikasi Okta Anda
+              "client_assertion", buildSignedClientAssertion())
+          .entrySet().stream()
+          .map(entry -> entry.getKey() + "=" + URLEncoder.encode(entry.getValue(), UTF_8))
+          .collect(Collectors.joining("&"));
       var request = HttpRequest.newBuilder(URI.create(System.getenv("OKTA_ISSUER") + "/v1/token"))
-              .header("content-type", "application/x-www-form-urlencoded")
-              .POST(HttpRequest.BodyPublishers.ofString(form))
-              .build();
+          .header("content-type", "application/x-www-form-urlencoded")
+          .POST(HttpRequest.BodyPublishers.ofString(form))
+          .build();
 
       // Java SDK menerima token itu sendiri atau path file, bukan fungsi; dengan
       // source("value"), path(...) berisi token. SDK mengirim token yang sama
@@ -318,100 +389,29 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
       String oktaToken = new ObjectMapper().readTree(response.body()).get("access_token").asText();
 
       AnthropicClient client = AnthropicOkHttpClient.builder()
-              .configurationProvider(InMemoryProfileConfigProvider.of(ProfileConfig.builder()
-                      .organizationId(System.getenv("ANTHROPIC_ORGANIZATION_ID"))
-                      .workspaceId(System.getenv("ANTHROPIC_WORKSPACE_ID"))
-                      .authentication(AuthenticationConfig.builder()
-                              .type(AuthenticationType.OIDC_FEDERATION)
-                              .federationRuleId(System.getenv("ANTHROPIC_FEDERATION_RULE_ID"))
-                              .serviceAccountId(System.getenv("ANTHROPIC_SERVICE_ACCOUNT_ID"))
-                              .identityToken(IdentityTokenConfig.builder()
-                                      .source("value")
-                                      .path(oktaToken)
-                                      .build())
-                              .build())
-                      .build()))
-              .build();
+          .configurationProvider(InMemoryProfileConfigProvider.of(ProfileConfig.builder()
+              .organizationId(System.getenv("ANTHROPIC_ORGANIZATION_ID"))
+              .workspaceId(System.getenv("ANTHROPIC_WORKSPACE_ID"))
+              .authentication(AuthenticationConfig.builder()
+                  .type(AuthenticationType.OIDC_FEDERATION)
+                  .federationRuleId(System.getenv("ANTHROPIC_FEDERATION_RULE_ID"))
+                  .serviceAccountId(System.getenv("ANTHROPIC_SERVICE_ACCOUNT_ID"))
+                  .identityToken(IdentityTokenConfig.builder()
+                      .source("value")
+                      .path(oktaToken)
+                      .build())
+                  .build())
+              .build()))
+          .build();
 
       var message = client.messages().create(MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(1024)
-              .addUserMessage("Hello, Claude")
-              .build());
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(1024)
+          .addUserMessage("Hello, Claude")
+          .build());
 
       IO.println(message.content());
   }
-  ```
-
-  ```csharp C#
-  using Anthropic.Credentials;
-  // ...
-
-  var credentials = new WorkloadIdentityCredentials(new WorkloadIdentityOptions
-  {
-      FederationRuleId = Environment.GetEnvironmentVariable("ANTHROPIC_FEDERATION_RULE_ID")!,
-      OrganizationId = Environment.GetEnvironmentVariable("ANTHROPIC_ORGANIZATION_ID"),
-      ServiceAccountId = Environment.GetEnvironmentVariable("ANTHROPIC_SERVICE_ACCOUNT_ID"),
-      WorkspaceId = Environment.GetEnvironmentVariable("ANTHROPIC_WORKSPACE_ID"),
-      IdentityTokenProvider = new OktaTokenProvider(),
-  });
-  using var client = new AnthropicClient(new ClientOptions { Credentials = credentials });
-
-  var message = await client.Messages.Create(new()
-  {
-      Model = Model.ClaudeOpus5_5,
-      MaxTokens = 1024,
-      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
-  });
-  foreach (var block in message.Content)
-  {
-      if (block.Value is TextBlock textBlock)
-      {
-          Console.WriteLine(textBlock.Text);
-      }
-  }
-
-  class OktaTokenProvider : IIdentityTokenProvider
-  {
-      private static readonly HttpClient Http = new();
-
-      public async Task<string> GetIdentityTokenAsync(CancellationToken ct = default)
-      {
-          var form = new FormUrlEncodedContent(new Dictionary<string, string>
-          {
-              ["grant_type"] = "client_credentials",
-              ["scope"] = "anthropic.access",
-              ["client_assertion_type"] = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-              // Buat JWT client_assertion RFC 7523 yang ditandatangani dengan kunci privat aplikasi Okta Anda
-              ["client_assertion"] = BuildSignedClientAssertion(),
-          });
-          var response = await Http.PostAsync(
-              $"{Environment.GetEnvironmentVariable("OKTA_ISSUER")}/v1/token", form, ct);
-          response.EnsureSuccessStatusCode();
-          using var json = await JsonDocument.ParseAsync(
-              await response.Content.ReadAsStreamAsync(ct), default, ct);
-          return json.RootElement.GetProperty("access_token").GetString()!;
-      }
-  }
-  ```
-
-  ```bash CLI
-  # 1. Minta token akses dari Okta dan tulis ke file sementara.
-  export ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
-  curl -sS "$OKTA_ISSUER/v1/token" \
-    -d grant_type=client_credentials \
-    -d scope=anthropic.access \
-    -d client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer \
-    --data-urlencode client_assertion="$SIGNED_CLIENT_ASSERTION" \
-    | jq -r .access_token > "$ANTHROPIC_IDENTITY_TOKEN_FILE"
-
-  # 2. Panggil Claude API. CLI membaca ANTHROPIC_FEDERATION_RULE_ID,
-  # ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan
-  # ANTHROPIC_IDENTITY_TOKEN_FILE lalu melakukan pertukaran token.
-  ant messages create \
-    --model claude-opus-5-5 \
-    --max-tokens 1024 \
-    --message '{role: user, content: "Hello, Claude"}'
   ```
 
   ```php PHP
@@ -499,11 +499,11 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
   ```
 </CodeGroup>
 
-Kecuali di Java (lihat komentar dalam contoh tersebut), contoh SDK meneruskan pengambilan token Okta Anda ke `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `IdentityTokenConfig`) sebagai penyedia token. Claude SDK memanggilnya setiap kali token akses Anthropic mendekati masa kedaluwarsa, sehingga fungsi pengambil token Okta Anda harus mengembalikan token baru pada setiap panggilan alih-alih menyimpan satu token dalam cache tanpa batas waktu. CLI `ant` membaca ulang `ANTHROPIC_IDENTITY_TOKEN_FILE` pada setiap pertukaran, jadi perbarui file tersebut secara berkala dengan timer untuk shell yang berjalan lama.
+Kecuali di Java (lihat komentar dalam contoh tersebut), contoh SDK meneruskan pengambilan token Okta Anda ke `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider()`; java: `IdentityTokenConfig`) sebagai penyedia token. Claude SDK memanggilnya setiap kali token akses Anthropic mendekati masa kedaluwarsa, sehingga fungsi pengambil token Okta Anda harus mengembalikan token baru pada setiap panggilan alih-alih menyimpan satu token dalam cache tanpa batas waktu. CLI `ant` membaca ulang `ANTHROPIC_IDENTITY_TOKEN_FILE` pada setiap pertukaran, jadi perbarui file tersebut secara berkala dengan timer untuk shell yang berjalan lama.
 
 ## Memverifikasi penyiapan
 
-Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika pertukaran gagal dengan respons `401` `authentication_error` yang buram (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console untuk alasan penolakan dan lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi Okta adalah ketidakcocokan `issuer_url` (harus menyertakan path `/oauth2/<auth-server-id>`; server otorisasi org Okta tidak dapat digunakan).
+Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika pertukaran gagal dengan respons `401` `authentication_error` yang buram (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console untuk alasan penolakan dan lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange). Penyebab paling umum di sisi Okta adalah ketidakcocokan `issuer_url`. `issuer_url` harus menyertakan jalur `/oauth2/<auth-server-id>`, dan server otorisasi org Okta tidak dapat digunakan.
 
 ## Membatasi cakupan aturan Anda
 
@@ -516,9 +516,9 @@ Kunci blok `match` aturan ke cakupan tersempit yang sesuai dengan kasus pengguna
 * **Sematkan Client ID yang tepat:** Tetapkan `subject_prefix` ke Client ID lengkap aplikasi layanan tanpa `*` di akhir.
 * **Sematkan audience:** Cocokkan nilai `audience` yang Anda konfigurasikan pada server otorisasi sehingga token yang dicetak untuk audience berbeda ditolak.
 * **Cocokkan pada custom claim:** Untuk pembatasan cakupan yang lebih terperinci, tambahkan claim di tab **Claims** server otorisasi dan cocokkan dengan map `claims` aturan atau `condition` CEL.
-* **Gunakan satu aturan per aplikasi layanan:** Buat federation rule terpisah untuk setiap aplikasi layanan alih-alih berbagi satu aturan di antara beberapa aplikasi.
+* **Gunakan satu aturan untuk setiap aplikasi layanan:** Buat aturan federasi terpisah untuk setiap aplikasi layanan alih-alih berbagi satu aturan di beberapa aplikasi.
 
 ## Langkah selanjutnya
 
 * Tinjau [referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference) untuk urutan resolusi kredensial lengkap dan konfigurasi profil.
-* Lihat [referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference#rule-matching-semantics) untuk mencocokkan custom claim Okta dengan ekspresi CEL.
+* Lihat [Semantik pencocokan aturan](https://platform.claude.com/docs/id/manage-claude/wif-reference#rule-matching-semantics) untuk mencocokkan klaim Okta kustom dengan ekspresi CEL.

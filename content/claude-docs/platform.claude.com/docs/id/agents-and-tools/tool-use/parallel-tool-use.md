@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 2aaf51b02f220c474f2984d31825ff89444366bb070d1f8b0702d2afaa6f54fa
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 7bafedee341dfddc56e988396235d82a7e1c4332cfec6c98edbc87dd38f8776b
 ---
 
 ---
@@ -372,7 +372,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
   };
 
   var finalResponse = await client.Messages.Create(finalParameters);
-  var text = finalResponse.Content.Select(b => b.Value).OfType<TextBlock>().FirstOrDefault();
+  var text = finalResponse.Content.Select(block => block.Value).OfType<TextBlock>().FirstOrDefault();
   Console.WriteLine($"\nClaude's response:\n{text?.Text}");
 
   Console.WriteLine("\n--- Verification ---");
@@ -704,7 +704,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
   echo "\nClaude's response:\n{$textBlock->text}\n";
 
   echo "\n--- Verification ---\n";
-  echo "✓ Tool results sent in single user message: " . count($toolResults) . " results\n";
+  echo '✓ Tool results sent in single user message: ' . count($toolResults) . " results\n";
   echo "✓ No text before tool results in content array\n";
   echo "✓ Conversation formatted correctly for future parallel tool use\n";
   ```
@@ -745,7 +745,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
 
   puts "Requesting parallel tool calls..."
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       { role: "user", content: "What's the weather in SF and NYC, and what time is it there?" }
@@ -783,7 +783,7 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
 
   puts "\nGetting final response..."
   final_response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       { role: "user", content: "What's the weather in SF and NYC, and what time is it there?" },
@@ -854,7 +854,7 @@ Penggunaan alat paralel aktif secara default. Untuk menonaktifkannya, atur `disa
 
 ### Paling banyak satu panggilan alat
 
-Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_tool_use: true` berarti Claude memanggil paling banyak satu alat per respons. Claude masih dapat menjawab dalam teks biasa tanpa memanggil alat apa pun. Baris yang disorot adalah satu-satunya perubahan dari permintaan penggunaan alat standar:
+Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_tool_use: true` berarti Claude memanggil paling banyak satu alat di setiap respons. Claude tetap dapat menjawab dengan teks biasa tanpa memanggil alat apa pun. Baris yang disorot adalah satu-satunya perubahan dari permintaan penggunaan alat standar:
 
 <CodeGroup>
   ```bash cURL
@@ -1063,7 +1063,9 @@ Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_to
               .inputSchema(schema)
               .build()
       )
-      .toolChoice(ToolChoiceAuto.builder().disableParallelToolUse(true).build())
+      .toolChoice(ToolChoiceAuto.builder()
+          .disableParallelToolUse(true)
+          .build())
       .addUserMessage("What is the weather in San Francisco and New York?")
       .build();
 
@@ -1079,7 +1081,7 @@ Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_to
       messages: [
           ['role' => 'user', 'content' => 'What is the weather in San Francisco and New York?']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       toolChoice: ['type' => 'auto', 'disableParallelToolUse' => true],
       tools: [
           [
@@ -1106,7 +1108,7 @@ Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_to
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: [
       {
@@ -1344,7 +1346,9 @@ Ketika tipe `tool_choice` adalah `any` atau `tool`, mengatur `disable_parallel_t
               .inputSchema(schema)
               .build()
       )
-      .toolChoice(ToolChoiceAny.builder().disableParallelToolUse(true).build())
+      .toolChoice(ToolChoiceAny.builder()
+          .disableParallelToolUse(true)
+          .build())
       .addUserMessage("What is the weather in San Francisco and New York?")
       .build();
 
@@ -1360,7 +1364,7 @@ Ketika tipe `tool_choice` adalah `any` atau `tool`, mengatur `disable_parallel_t
       messages: [
           ['role' => 'user', 'content' => 'What is the weather in San Francisco and New York?']
       ],
-      model: 'claude-opus-5',
+      model: Model::CLAUDE_OPUS_5,
       toolChoice: ['type' => 'any', 'disableParallelToolUse' => true],
       tools: [
           [
@@ -1387,7 +1391,7 @@ Ketika tipe `tool_choice` adalah `any` atau `tool`, mengatur `disable_parallel_t
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5,
     max_tokens: 1024,
     tools: [
       {
@@ -1582,12 +1586,12 @@ Urutan eksekusi adalah pilihan Anda. Jika alat Anda memiliki ketergantungan urut
 ## Langkah selanjutnya
 
 <CardGroup cols={3}>
-  <Card title="Tool Runner (SDK)" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner">
-    Gunakan abstraksi Tool Runner SDK untuk menangani loop agentik, pembungkusan error, dan keamanan tipe secara otomatis.
+  <Card title="Tool runner (SDK)" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner">
+    Gunakan abstraksi tool runner dari SDK untuk menangani loop agentik, pembungkusan error, dan type safety secara otomatis.
   </Card>
 
   <Card title="Menangani panggilan alat" icon="arrows-left-right" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls">
-    Parse blok tool\_use, format respons tool\_result, dan tangani error dengan is\_error.
+    Parse blok `tool_use`, format respons `tool_result`, dan tangani error dengan `is_error`.
   </Card>
 
   <Card title="Mendefinisikan alat" icon="hammer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools">

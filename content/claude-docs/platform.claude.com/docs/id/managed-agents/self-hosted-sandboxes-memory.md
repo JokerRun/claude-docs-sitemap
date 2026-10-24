@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: b9337393b72810c289d430a7429284069646185dfd76e934dec43207165ed7ef
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 9844aca878b6fac5c358e414327750624ae6236f40fd9dbd057429b500581146
 ---
 
 ---
@@ -48,7 +48,7 @@ Dalam [pola sandbox-per-sesi](https://platform.claude.com/docs/id/managed-agents
 
 ### Mengisolasi sesi yang berbagi store
 
-Dua sesi tidak dapat me-mount store yang sama pada satu host secara bersamaan, karena keduanya memerlukan path yang sama. Jika sesi-sesi Anda melampirkan store yang sama, jalankan satu sesi per sistem file. Memberikan setiap sesi [sandbox-nya sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#run-one-sandbox-per-session) memenuhi aturan ini.
+Dua sesi tidak dapat me-mount penyimpanan yang sama pada satu host secara bersamaan, karena keduanya memerlukan path yang sama. Jika sesi-sesi Anda melampirkan penyimpanan yang sama, jalankan satu sesi untuk setiap sistem file. Memberikan setiap sesi [sandbox-nya sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#run-one-sandbox-per-session) memenuhi aturan ini.
 
 ## Cara worker menangani memori
 
@@ -59,7 +59,7 @@ Saat worker mengklaim work item yang sesinya memiliki memory store terlampir, wo
 3. **Merekonsiliasi perubahan setelah pemanggilan alat,** paling banyak sekali per interval sinkronisasi (15 detik secara default). Memori yang berubah di store ditulis ke disk, dan file yang diubah agen diunggah ke store.
 4. **Menjalankan sinkronisasi akhir saat sesi berakhir.** Worker menuntaskan unggahan yang masih tertunda hingga 30 detik, lalu menghapus direktori yang dibuatnya.
 
-Memory store di sisi Anthropic tetap menjadi sumber kebenaran. [Versi memori](https://platform.claude.com/docs/id/managed-agents/memory#audit-memory-changes), redaksi, serta melihat atau mengedit memori di Console berfungsi sama seperti pada sesi cloud. Pembacaan dan penulisan memori oleh agen muncul di [aliran event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) sebagai event alat biasa.
+Penyimpanan memori di sisi Anthropic tetap menjadi sumber kebenaran. [Versi memori](https://platform.claude.com/docs/id/managed-agents/memory#audit-memory-changes), redaksi, serta melihat atau mengedit memori di Claude Console berfungsi seperti pada sesi cloud. Operasi baca dan tulis memori oleh agen muncul di [aliran event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) sebagai event alat biasa.
 
 Karena setiap worker melakukan sinkronisasi berdasarkan interval, perubahan yang ditulis dalam satu sesi baru terlihat oleh sesi lain yang sedang berjalan setelah keduanya melakukan sinkronisasi. Biasanya ini jauh di bawah satu menit pada interval default. Sesi pada sandbox cloud melihat perubahan satu sama lain hampir seketika.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 2e24a7657a3f786d3513b2d929aa67986c3edda7db62d47863d75d5ca6a03b95
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: dcc08d9dd87b3ba55fd4d5763fc2a2cd816ee5143b08fad9d596017401199fb4
 ---
 
 ---
@@ -34,7 +34,7 @@ Agent Skills bawaan memperluas kemampuan Claude dengan keahlian khusus untuk tug
 
 ## Langkah 1: Daftar Skills yang tersedia
 
-Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk mendaftar semua Skills yang dikelola Anthropic. Setiap tab bahasa merupakan kutipan dari satu skrip yang berkesinambungan, dengan semua import dan penyiapan klien di bagian atas:
+Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk menampilkan daftar semua Skills yang dikelola Anthropic. Contoh ini adalah kutipan dari satu skrip berkelanjutan, dengan semua impor dan penyiapan klien di bagian atas:
 
 <CodeGroup>
   ```bash cURL
@@ -77,7 +77,7 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk mendaft
   ```
 
   ```go Go
-  // List Anthropic-managed Skills
+  // Daftar Skill yang dikelola Anthropic
   skills, err := client.Skills.List(ctx, anthropic.SkillListParams{
   	Source: anthropic.String("anthropic"),
   })
@@ -244,7 +244,7 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
   ```
 
   ```go Go
-  // Create a message with the PowerPoint Skill
+  // Buat pesan dengan Skill PowerPoint
   response, err := client.Messages.New(ctx, anthropic.MessageNewParams{
   	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 16000,
@@ -483,9 +483,9 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. `r
   ```
 
   ```go Go
-  // Extract the file ID. The code execution tool runs the Skill's code through
-  // its Bash sub-tool, and generated files appear as bash_code_execution_output
-  // items inside the bash_code_execution_tool_result block.
+  // Ekstrak ID file. Alat eksekusi kode menjalankan kode Skill melalui
+  // sub-alat Bash-nya, dan file yang dihasilkan muncul sebagai bash_code_execution_output
+  // di dalam blok bash_code_execution_tool_result.
   var fileID string
   for _, block := range response.Content {
   	switch result := block.AsAny().(type) {
@@ -499,7 +499,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. `r
   }
 
   if fileID != "" {
-  	// Download the file and save it
+  	// Unduh file dan simpan
   	outputPath := filepath.Join(os.TempDir(), "renewable_energy.pptx")
   	fileContent, err := client.Files.Download(ctx, fileID, anthropic.FileDownloadParams{})
   	if err != nil {

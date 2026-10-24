@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/files/upload
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 7ea38a5bac3e46edb4ba975bbcbf972c9f567283979d49223d822f4c631757b6
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 490c6473b316e62e394994390af44de1d4090a384f593fbffd10f03d5d5c371f
 ---
 
 ---
@@ -32,7 +32,7 @@ Upload File
 
 ## Body parameters (form-data)
 
-- `file: string`
+- `file: file`
 
   The file to upload. Only the final path component of the part's `filename` is kept; an absent or empty `filename` is replaced with `unnamed` plus the extension for the file's stored `mime_type`, when known.
 

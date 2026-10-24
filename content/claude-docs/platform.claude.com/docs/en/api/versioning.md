@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/versioning
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 85ffa5628e02da9f878ce5c42362395c7f70e2a3fed629096f75748d6a7e322e
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: f4a2cdd317587feac501351aca906c5b7375aac18e2cca969d7b31aa3ba2d0b2
 ---
 
 ---
@@ -33,7 +33,7 @@ Anthropic recommends using the latest API version whenever possible.
 
   * [Migrating to API version 2026-10-21](https://platform.claude.com/docs/en/api/migration-2026-10-21) shows how to upgrade.
 
-  * Available on the Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry), and [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai). On [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock), it's available for Claude 4.7 and later models. For other models on Bedrock, see the [migration guide for API version 2026-10-21](https://platform.claude.com/docs/en/api/migration-2026-10-21#upgrade).
+  * Available on the Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry), and [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed). On [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock), it's available for Claude 4.7 and later models. For other models on Bedrock, see the [migration guide for API version 2026-10-21](https://platform.claude.com/docs/en/api/migration-2026-10-21#upgrade).
 
   * Messages API:
 

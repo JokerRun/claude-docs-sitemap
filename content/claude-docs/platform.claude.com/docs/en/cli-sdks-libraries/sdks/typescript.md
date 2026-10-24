@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: de106dc8a78e5109dd17075a163f383d6f52cba5866dbff19c5bf700db203f31
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 36cb763ad6870bb13e05709d255ae998dc5416433f6c2813408290d6aef5e861
 ---
 
 ---
@@ -626,6 +626,10 @@ const client = new Anthropic({
 });
 ```
 
+### OpenTelemetry tracing
+
+When your application registers an OpenTelemetry tracer provider, the SDK emits a span for each request that it sends. To send the spans to your observability platform, see [Set up OpenTelemetry with the Claude SDK](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk).
+
 ### Making custom/undocumented requests
 
 This library is typed for convenient access to the documented API. If you need to access undocumented endpoints, parameters, or response properties, the library can still be used.
@@ -782,7 +786,7 @@ const response = await client.beta.messages.create({
 
 The TypeScript SDK supports the following platforms:
 
-* **Agent Platform:** `npm install @anthropic-ai/vertex-sdk`: Provides `AnthropicVertex` client
+* **Claude Models on Google Cloud (Google managed):** `npm install @anthropic-ai/vertex-sdk`: Provides `AnthropicVertex` client
 * **Bedrock:** `npm install @anthropic-ai/bedrock-sdk`: Provides `AnthropicBedrockMantle` client, and `AnthropicBedrock` for the `bedrock-runtime` path
 * **Claude Platform on AWS:** `npm install @anthropic-ai/aws-sdk`: Provides `AnthropicAws` client. Pass `workspaceId` to the constructor or set the `ANTHROPIC_AWS_WORKSPACE_ID` environment variable. Available in beta.
 * **Foundry:** `npm install @anthropic-ai/foundry-sdk`: Provides `AnthropicFoundry` client

@@ -1,12 +1,12 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 37a5a58558357516409610cf981ac7a0a7169abe2a53134b7c3912eaf009b04a
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 5f644d84d85f2706f4080fb643e1ad0e05e27d4daa8c3154a09cac435bf9183c
 ---
 
 ---
-title: Mengelola tunnel di Console
+title: Mengelola tunnel di Claude Console
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console
 description: Buat tunnel, daftarkan sertifikat CA, ambil token tunnel, dan lampirkan server MCP yang di-tunnel ke agen dari Claude Console.
 ---
@@ -36,7 +36,7 @@ Halaman ini membahas sisi Console dari deployment MCP tunnels: membuat tunnel, m
   </Step>
 
   <Step title="Beri nama tunnel">
-    Klik **New tunnel** dan masukkan nama di dialog **Create tunnel**. Nama wajib diisi dan mengidentifikasi tunnel di daftar, di halaman detail, dan di pemilih server MCP agen. Domain dengan bentuk `abcd1234.tunnel.anthropic.com` ditetapkan secara otomatis.
+    Klik **New tunnel** dan masukkan nama di kotak dialog **Create tunnel**. Nama wajib diisi dan mengidentifikasi tunnel dalam daftar, di halaman detail, dan di pemilih server MCP agen. Domain dengan format `abcd1234.tunnel.anthropic.com` ditetapkan secara otomatis.
   </Step>
 
   <Step title="Opsional: siapkan akses programatik">
@@ -45,7 +45,7 @@ Halaman ini membahas sisi Console dari deployment MCP tunnels: membuat tunnel, m
     Akses programatik bergantung pada [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation); baca halaman tersebut terlebih dahulu jika issuer federasi, aturan, dan service account belum familier bagi Anda. Untuk mengaktifkan toggle, Anda memerlukan:
 
     1. **Issuer OIDC yang terdaftar** untuk penyedia identitas tempat stack Anda menyajikan token (seperti cluster Kubernetes, AWS IAM, Google Cloud, atau GitHub Actions). Daftarkan satu di tab **Issuers** pada halaman [Workload identity](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`) di Claude Console jika organisasi Anda belum memilikinya.
-    2. **Aturan federasi dengan scope `workspace:manage_tunnels`.** Mengaktifkan toggle akan menampilkan pemilih **Federation rule**. Pilih aturan yang sudah ada dengan scope tersebut, atau klik **Create federation rule** untuk membuatnya secara inline.
+    2. **Aturan federasi dengan cakupan `workspace:manage_tunnels`.** Mengaktifkan toggle akan menampilkan pemilih **Federation rule**. Pilih aturan yang sudah ada dengan cakupan tersebut, atau klik **Create federation rule** untuk membuatnya secara inline.
     3. **Service account dari aturan tersebut ditambahkan ke workspace ini.** Tunnels API melakukan otorisasi berdasarkan keanggotaan workspace service account. Jika Anda membuat tunnel di workspace selain workspace default organisasi, [tambahkan service account ke workspace tersebut](https://platform.claude.com/docs/id/manage-claude/workspaces#role-inheritance) dan berikan ID workspace saat deploy (`api.wif.workspaceId` untuk Helm, `ANTHROPIC_WORKSPACE_ID` untuk Compose).
 
     Melewati langkah ini didukung sepenuhnya; kedua panduan deploy memiliki tab **Without programmatic access**.
@@ -72,7 +72,7 @@ Halaman ini membahas sisi Console dari deployment MCP tunnels: membuat tunnel, m
   </Step>
 </Steps>
 
-Organisasi Anda dapat memiliki hingga 10 tunnel aktif. Membuat tunnel tidak membangun konektivitas apa pun; hal itu terjadi setelah stack Anda terhubung menggunakan token tunnel dan sertifikat CA telah didaftarkan.
+Organisasi Anda dapat memiliki hingga 10 tunnel aktif. Membuat tunnel tidak membangun konektivitas apa pun; konektivitas terjadi setelah stack Anda terhubung dengan token tunnel dan sertifikat CA telah didaftarkan.
 
 ## Mendapatkan detail koneksi
 
@@ -97,7 +97,7 @@ Anthropic memverifikasi [inner TLS](https://platform.claude.com/docs/id/agents-a
   </Step>
 
   <Step title="Berikan sertifikat">
-    Klik **Choose file** untuk memilih file `.pem`, `.crt`, atau `.cer`, seret file ke area teks, atau tempel blok PEM secara langsung. Modal menolak materi private key dan konten yang bukan blok `-----BEGIN CERTIFICATE-----`. File harus berukuran 8 kB atau lebih kecil.
+    Klik **Choose file** untuk memilih file `.pem`, `.crt`, atau `.cer`, seret file ke area teks, atau tempel blok PEM secara langsung. Jendela modal menolak materi kunci privat dan konten yang bukan blok `-----BEGIN CERTIFICATE-----`. File harus berukuran 8 kB atau lebih kecil.
   </Step>
 
   <Step title="Tambahkan sertifikat">
@@ -126,20 +126,20 @@ Tunnel sudah ada di Console, tetapi tidak ada lalu lintas yang mengalir hingga t
 Setelah stack Anda berjalan dan memiliki satu atau lebih server MCP yang dikonfigurasi, lampirkan server MCP upstream ke sesi Managed Agent. Untuk memanggil server yang sama dari Messages API, lihat [Menggunakan server MCP yang di-tunnel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview#use-the-tunneled-mcp-servers).
 
 <Note>
-  Pemilih hanya menampilkan tunnel dengan setidaknya satu sertifikat aktif. Tunnel yang masih menampilkan **Needs certificate** di daftar **MCP tunnels** tidak muncul di dropdown; daftarkan sertifikat CA terlebih dahulu. Pemilih juga memiliki cakupan workspace: pemilih mencantumkan tunnel di workspace yang sama dengan sesi, bukan workspace lain.
+  Pemilih hanya menampilkan tunnel dengan setidaknya satu sertifikat aktif. Tunnel yang masih menampilkan **Needs certificate** di daftar **MCP tunnels** tidak muncul di menu dropdown; daftarkan sertifikat CA terlebih dahulu. Pemilih juga bercakupan workspace: pemilih mencantumkan tunnel di workspace yang sama dengan sesi, bukan workspace lain.
 </Note>
 
 <Steps>
-  <Step title="Buka dialog Create session">
+  <Step title="Buka kotak dialog Create session">
     Di Claude Console, buka halaman [Sessions](https://platform.claude.com/sessions) (`platform.claude.com/sessions`) dan klik **Create session**.
   </Step>
 
   <Step title="Definisikan agen inline">
-    Di pemilih agen, pilih **Create new agent** sehingga Anda dapat mengedit daftar server MCP secara langsung.
+    Di pemilih agen, pilih **Create new agent** agar Anda dapat mengedit daftar server MCP secara langsung.
   </Step>
 
   <Step title="Tambahkan server MCP">
-    Klik **+ MCP Server** dan buka dropdown. Tunnel yang dibuat di workspace saat ini muncul di bagian atas daftar, di atas katalog konektor publik. Pilih tunnel yang berada di depan server yang ingin Anda jangkau.
+    Klik **+ MCP Server** dan buka menu dropdown. Tunnel yang dibuat di workspace saat ini muncul di bagian atas daftar, di atas katalog konektor publik. Pilih tunnel yang berada di depan server yang ingin Anda jangkau.
   </Step>
 
   <Step title="Berikan perutean">
@@ -148,14 +148,14 @@ Setelah stack Anda berjalan dan memiliki satu atau lebih server MCP yang dikonfi
 </Steps>
 
 <Note>
-  Tunnel membawa lalu lintas; tunnel tidak melakukan autentikasi ke server MCP upstream. Konfigurasikan OAuth atau autentikasi bearer pada server MCP dengan cara yang sama seperti server MCP lainnya.
+  Tunnel membawa lalu lintas; tunnel tidak melakukan autentikasi ke server MCP upstream. Konfigurasikan autentikasi OAuth atau bearer pada server MCP dengan cara yang sama seperti untuk server MCP lainnya.
 </Note>
 
 ## Mengarsipkan tunnel
 
 Pengarsipan segera menghentikan tunnel dari menerima koneksi dan bersifat permanen.
 
-Di Claude Console, buka halaman [MCP tunnels](https://platform.claude.com/settings/workspaces/default/mcp-tunnels) (`platform.claude.com/settings/workspaces/default/mcp-tunnels`). Di pemilih workspace pada sidebar, pilih workspace yang berisi tunnel tersebut. Buka menu baris untuk tunnel dan pilih **Archive**. Tunnel yang diarsipkan tetap terlihat saat Anda memfilter daftar berdasarkan **Archived** atau **All**.
+Di Claude Console, buka halaman [MCP tunnels](https://platform.claude.com/settings/workspaces/default/mcp-tunnels) (`platform.claude.com/settings/workspaces/default/mcp-tunnels`). Di pemilih workspace pada sidebar, pilih workspace yang menampung tunnel tersebut. Buka menu baris untuk tunnel dan pilih **Archive**. Tunnel yang diarsipkan tetap terlihat saat Anda memfilter daftar berdasarkan **Archived** atau **All**.
 
 ## Langkah selanjutnya
 

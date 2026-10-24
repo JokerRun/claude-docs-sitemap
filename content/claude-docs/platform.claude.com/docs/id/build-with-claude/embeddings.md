@@ -1,23 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/embeddings
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 43517619910e68d7986235bbe124d45a5c21eeabeb736748a893dd268ae91024
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: fcab76405b09b8e1a271f9c9ebd0f942fe294e9999ffa8daab80e7d2049a1b0b
 ---
 
 ---
 title: Embeddings
 url: https://platform.claude.com/docs/id/build-with-claude/embeddings
-description: Text embeddings adalah representasi numerik dari teks yang memungkinkan pengukuran kemiripan semantik. Panduan ini memperkenalkan embeddings, penerapannya, dan cara menggunakan model embedding untuk tugas-tugas seperti pencarian, rekomendasi, dan deteksi anomali.
+description: Text embeddings adalah representasi numerik dari teks yang memungkinkan Anda mengukur kemiripan semantik. Panduan ini memperkenalkan embeddings, penerapannya, dan cara menggunakan model embedding untuk tugas-tugas seperti pencarian, rekomendasi, dan deteksi anomali.
 ---
 
 ## Sebelum mengimplementasikan embeddings
 
 Saat memilih penyedia embeddings, ada beberapa faktor yang dapat Anda pertimbangkan tergantung pada kebutuhan dan preferensi Anda:
 
-* Ukuran dataset & kekhususan domain: ukuran dataset pelatihan model dan relevansinya terhadap domain yang ingin Anda embed. Data yang lebih besar atau lebih spesifik terhadap domain umumnya menghasilkan embeddings dalam-domain yang lebih baik
-* Performa inferensi: kecepatan pencarian embedding dan "latency" (latensi) end-to-end. Ini merupakan pertimbangan yang sangat penting untuk deployment produksi berskala besar
-* Kustomisasi: opsi untuk pelatihan lanjutan pada data privat, atau spesialisasi model untuk domain yang sangat spesifik. Ini dapat meningkatkan performa pada kosakata yang unik
+* Ukuran dataset dan kekhususan domain: ukuran dataset pelatihan model dan relevansinya dengan domain yang ingin Anda embed. Data yang lebih besar atau lebih spesifik domain umumnya menghasilkan embeddings dalam domain yang lebih baik.
+* Performa inferensi: kecepatan pencarian embedding dan "latency" (latensi) end-to-end. Ini merupakan pertimbangan yang sangat penting untuk deployment produksi berskala besar.
+* Kustomisasi: opsi untuk pelatihan lanjutan pada data pribadi, atau spesialisasi model untuk domain yang sangat spesifik. Ini dapat meningkatkan performa pada kosakata yang unik.
 
 ## Cara mendapatkan embeddings dengan Anthropic
 
@@ -95,7 +95,7 @@ export VOYAGE_API_KEY="<your model API key>"
 
 Untuk detail lebih lanjut, lihat [Voyage AI quick start](https://www.mongodb.com/docs/voyageai/quickstart/) dalam dokumentasi MongoDB.
 
-Anda dapat memperoleh embeddings dengan menggunakan [paket Python `voyageai`](https://github.com/voyage-ai/voyageai-python) resmi atau permintaan HTTP, seperti yang dijelaskan di bagian-bagian berikut. Voyage AI juga memiliki klien TypeScript resmi. Untuk menggunakannya dengan kunci API model dari Atlas, atur opsi `environment`-nya ke `https://ai.mongodb.com/v1`, seperti yang dijelaskan dalam [TypeScript client](https://www.mongodb.com/docs/voyageai/api-and-clients/#typescript-client) dalam dokumentasi MongoDB.
+Anda dapat memperoleh embeddings dengan menggunakan [paket Python `voyageai`](https://github.com/voyage-ai/voyageai-python) resmi atau permintaan HTTP, seperti yang dijelaskan di bagian-bagian berikut. Voyage AI juga memiliki klien TypeScript resmi. Untuk menggunakannya dengan kunci API model dari Atlas, atur opsi `environment`-nya ke `https://ai.mongodb.com/v1`, seperti yang dijelaskan di [TypeScript client](https://www.mongodb.com/docs/voyageai/api-and-clients/#typescript-client) dalam dokumentasi MongoDB.
 
 ### Pustaka Python Voyage AI
 
@@ -147,7 +147,7 @@ curl https://ai.mongodb.com/v1/embeddings \
   }'
 ```
 
-Respons yang akan Anda dapatkan adalah objek JSON yang berisi embeddings dan penggunaan token:
+Responsnya berupa objek JSON yang berisi embeddings dan penggunaan token:
 
 ```json
 {
@@ -183,7 +183,7 @@ Model Voyage AI juga tersedia di AWS Marketplace melalui [profil penjual MongoDB
 
 Contoh singkat berikut menunjukkan cara menggunakan embeddings.
 
-Misalkan Anda memiliki korpus kecil berisi enam dokumen untuk di-retrieve
+Misalkan Anda memiliki korpus kecil berisi enam dokumen untuk di-retrieve:
 
 ```python
 documents = [
@@ -207,7 +207,7 @@ vo = voyageai.Client()
 doc_embds = vo.embed(documents, model="voyage-4", input_type="document").embeddings
 ```
 
-Embeddings memungkinkan Anda melakukan pencarian semantik / retrieval di ruang vektor. Diberikan sebuah contoh query,
+Embeddings memungkinkan Anda melakukan pencarian semantik / retrieval di ruang vektor. Perhatikan contoh kueri berikut:
 
 ```python
 query = "When is Apple's conference call scheduled?"
@@ -238,7 +238,7 @@ Outputnya adalah dokumen kelima, yang memang paling relevan dengan query tersebu
 Apple's conference call to discuss fourth fiscal quarter results and business updates is scheduled for Thursday, November 2, 2023 at 2:00 p.m. PT / 5:00 p.m. ET.
 ```
 
-Jika Anda mencari kumpulan resep terperinci tentang cara melakukan RAG dengan embeddings, termasuk database vektor, lihat [resep RAG](https://platform.claude.com/cookbook/third-party-pinecone-rag-using-pinecone).
+Jika Anda mencari serangkaian resep terperinci tentang cara melakukan RAG dengan embeddings, termasuk database vektor, lihat [resep RAG](https://platform.claude.com/cookbook/third-party-pinecone-rag-using-pinecone).
 
 ## FAQ
 
@@ -279,7 +279,7 @@ Jika Anda mencari kumpulan resep terperinci tentang cara melakukan RAG dengan em
 
     Embeddings Voyage AI dinormalisasi ke panjang 1, yang berarti bahwa:
 
-    * Kemiripan cosine setara dengan kemiripan dot-product, sementara yang terakhir dapat dihitung lebih cepat.
+    * Cosine similarity setara dengan dot-product similarity, meskipun yang terakhir dapat dihitung lebih cepat.
     * Kemiripan cosine dan jarak Euclidean menghasilkan peringkat yang identik.
   </Accordion>
 

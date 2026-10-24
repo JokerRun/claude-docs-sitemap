@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-combinations
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 7602bbd3160e69c0e6897600d6f5c58cfc5030083138f6ad02599c6be84744e3
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: de8cbb2e4ff7c0cd50890245893409617bc94b97383919c26198bbee4ebf94e3
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-combinat
 description: Pasangan alat Anthropic yang umum untuk agen riset, agen coding, dan agen yang berjalan lama.
 ---
 
-Alat yang disediakan Anthropic dirancang untuk bekerja bersama. Pola agen yang umum memasangkan alat yang mencakup tahap-tahap pelengkap dalam suatu alur kerja: satu alat mengumpulkan atau menemukan, alat lainnya memproses atau bertindak. Kombinasi di bawah ini adalah titik awal, bukan ketentuan baku. Padukan sesuai kebutuhan tugas Anda.
+Alat yang disediakan Anthropic dirancang untuk bekerja bersama. Pola agen yang umum memasangkan alat-alat yang mencakup tahapan alur kerja yang saling melengkapi: satu alat mengumpulkan atau menemukan, alat lain memproses atau bertindak. Kombinasi berikut adalah titik awal, bukan resep baku. Padukan sesuai kebutuhan tugas Anda.
 
 Setiap cuplikan hanya menampilkan array `tools`. Lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk bentuk permintaan lengkapnya.
 
@@ -28,7 +28,7 @@ Pencarian menemukan sumber; eksekusi kode menganalisis dan menyintesis. Claude m
 }
 ```
 
-Alurnya biasanya adalah cari, lalu eksekusi, lalu secara opsional cari lagi jika putaran pertama menyingkap adanya celah. Eksekusi kode berjalan di sisi server, sehingga tidak ada sandbox sisi klien yang perlu dikelola.
+Alurnya biasanya adalah mencari, lalu menjalankan kode, lalu secara opsional mencari lagi jika putaran pertama mengungkap adanya celah. Eksekusi kode berjalan di sisi server, sehingga tidak ada sandbox sisi klien yang perlu dikelola.
 
 ## Agen coding: text\_editor + bash
 
@@ -76,7 +76,7 @@ Memory bersifat ortogonal terhadap alat Anda yang lain. Memory tidak mengubah ca
 
 ## Serba ada: computer\_use
 
-Alat computer use mencakup sebagian besar alat lainnya dengan mengoperasikan desktop penuh. Claude melihat tangkapan layar dan mengeluarkan aksi mouse dan keyboard, yang berarti Claude dapat mengendalikan aplikasi apa pun yang dapat dikendalikan manusia. Gunakan ini ketika tugas memerlukan interaksi GUI arbitrer yang tidak dapat dijangkau oleh alat yang lebih spesifik: perangkat lunak lawas tanpa API, langkah verifikasi visual, atau alur kerja yang mencakup beberapa aplikasi desktop.
+Alat computer use mencakup sebagian besar alat lainnya dengan mengoperasikan desktop penuh. Claude menerima screenshot dan mengeluarkan aksi mouse dan keyboard, yang berarti Claude dapat mengendalikan aplikasi apa pun yang dapat dioperasikan manusia. Gunakan ini ketika tugas memerlukan interaksi GUI sembarang yang tidak dapat dijangkau oleh alat yang lebih spesifik: perangkat lunak lama tanpa API, langkah verifikasi visual, atau alur kerja yang mencakup beberapa aplikasi desktop.
 
 ```json
 {
@@ -90,7 +90,7 @@ Computer use adalah opsi yang paling umum dan juga yang paling lambat, karena Cl
 
 ## Agen browser: browser\_use
 
-Ketika seluruh tugas terjadi di dalam halaman web (mengisi formulir, membaca konten halaman, bekerja lintas tab), alat browser use lebih cocok daripada computer use. Aplikasi Anda mengendalikan browser yang dikontrolnya dan mengembalikan tangkapan layar atau status halaman; Claude memanggil alat anggota yang sadar-halaman seperti `read_page`, `find`, `form_input`, dan `get_page_text` di samping klik dan pengetikan, sehingga Claude dapat bertindak berdasarkan referensi elemen selain koordinat piksel.
+Ketika seluruh tugas terjadi di dalam halaman web (mengisi formulir, membaca konten halaman, bekerja di beberapa tab), alat browser use lebih cocok daripada computer use. Aplikasi Anda mengendalikan browser yang dikontrolnya dan mengembalikan screenshot atau state halaman; Claude memanggil alat anggota yang memahami halaman seperti `read_page`, `find`, `form_input`, dan `get_page_text` bersama dengan klik dan pengetikan, sehingga Claude dapat bertindak berdasarkan referensi elemen selain koordinat piksel.
 
 ```json
 {

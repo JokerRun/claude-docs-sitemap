@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 36b9293ecb81a5433eca28b8f5cbd6f77e2c7e5323e98ba94a93a26f53a0c91d
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: fad18e0c6cb48040bbc842d65cf7a32f9697dbc929b55801b94ceca3dd882a97
 ---
 
 ---
@@ -17,7 +17,7 @@ Prompt Claude Fable 5 Anda yang sudah ada seharusnya berkinerja baik di Claude F
 
 * Tidak yakin tingkat "effort" (upaya) mana yang harus dijalankan, atau "latency" (latensi) dan biaya lebih tinggi daripada yang dibutuhkan tugas: [Pertimbangkan semua tingkat effort](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#consider-all-effort-levels)
 * Sedikit atau tidak ada teks di antara "tool call" (panggilan alat): [Minta pembaruan progres yang ditujukan kepada pengguna](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#ask-for-user-facing-progress-updates)
-* Satu panggilan alat per giliran dalam "agent loop" (loop agen): [Kelompokkan panggilan alat yang independen dalam loop agen](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#batch-independent-tool-calls-in-agent-loops)
+* Satu panggilan alat untuk setiap giliran dalam loop agen: [Kelompokkan panggilan alat yang independen dalam loop agen](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#batch-independent-tool-calls-in-agent-loops)
 * Permintaan gagal dengan `bound to a different conversation`, atau harness Anda mengedit giliran sebelumnya di antara permintaan: [Jaga riwayat percakapan agar hanya ditambahkan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#keep-the-conversation-history-append-only)
 * Prosa terlalu panjang dan padat: [Kepadatan tulisan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#writing-density)
 * Balasan chat memiliki struktur yang lebih sedikit daripada yang dibutuhkan konten: [Pemformatan dalam chat](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#formatting-in-chat)
@@ -35,7 +35,7 @@ Prompt Claude Fable 5 Anda yang sudah ada seharusnya berkinerja baik di Claude F
 <Note>
   Claude Fable 5.1 menjalankan pengklasifikasi keamanan dan dapat mengembalikan `stop_reason: "refusal"`. Lihat [Penolakan, fallback, dan penagihan](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#refusals-fallback-and-billing) dan [Kurangi positif palsu safeguard](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#reduce-safeguard-false-positives).
 
-  Prompt, skill, dan deskripsi alat yang meminta model untuk menuliskan pemikiran atau penalarannya dapat ditolak dengan kategori `reasoning_extraction`. Sebagai gantinya, mintalah penjelasan singkat atau ringkasan tindakan yang diambil, atau baca penalaran dari blok [pemikiran yang diringkas](https://platform.claude.com/docs/id/build-with-claude/thinking#summarized-thinking) (`display: "summarized"`). Lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).
+  Prompt, skill, dan deskripsi alat yang meminta model untuk menuliskan pemikiran atau penalarannya mungkin ditolak dengan kategori `reasoning_extraction`. Sebagai gantinya, mintalah penjelasan singkat atau ringkasan tindakan yang diambil, atau baca penalaran dari blok [pemikiran yang diringkas](https://platform.claude.com/docs/id/build-with-claude/thinking#summarized-thinking) (`display: "summarized"`). Lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).
 </Note>
 
 ## Pertimbangkan semua tingkat effort
@@ -50,9 +50,9 @@ Dua perilaku khusus effort memiliki bagiannya sendiri: pada `low`, Claude Fable 
 
 Perilaku default Claude Fable 5.1 adalah menulis lebih sedikit pembaruan yang ditujukan kepada pengguna selama giliran pemanggilan alat yang panjang dibandingkan Claude Fable 5. Hal ini menjadi lebih menonjol pada effort yang lebih tinggi dan dalam rantai alat yang lebih panjang. Pengguna melihat agen diam selama beberapa menit, atau pesan akhir yang hanya mencakup langkah terakhir alih-alih seluruh tugas.
 
-Pertama, periksa apakah klien Anda menerima pembaruan progres sama sekali. Catatan singkat model di antara panggilan alat, yaitu apa yang baru saja ditemukannya dan apa yang akan dilakukannya selanjutnya, dikembalikan sebagai [blok `thinking` pembaruan progres](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates), dan blok tersebut kosong di bawah `thinking.display` default yaitu `"omitted"`. Atur `display: "updates"` (beta, header `thinking-display-updates-2026-08-18`) dan tampilkan setiap blok `thinking` yang tidak kosong sebagai baris status, atau atur `"summarized"` untuk menerimanya bersama dengan penalaran yang diringkas. Jika Anda tidak memintanya, pembaruan model mungkin memang tidak sampai ke pengguna Anda.
+Pertama, periksa apakah klien Anda menerima pembaruan progres sama sekali. Catatan singkat model di antara panggilan alat, yaitu apa yang baru saja ditemukannya dan apa yang akan dilakukannya selanjutnya, dikembalikan sebagai [blok `thinking` pembaruan progres](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates), dan blok tersebut kosong di bawah `thinking.display` default yaitu `"omitted"`. Setel `display: "updates"` (beta, header `thinking-display-updates-2026-08-18`) dan tampilkan setiap blok `thinking` yang tidak kosong sebagai baris status, atau setel `"summarized"` untuk menerimanya bersama dengan penalaran yang diringkas. Jika Anda tidak memintanya, pembaruan model mungkin saja tidak sampai ke pengguna Anda.
 
-Kedua, periksa prompt Anda untuk instruksi yang menekan narasi. Beberapa model sebelumnya sangat bersemangat memberikan pembaruan saat bekerja, yang menyebabkan munculnya baris prompt sistem seperti "simpan semua temuan untuk respons akhir." Hapus baris seperti itu sebelum menambahkan apa pun.
+Kedua, periksa prompt Anda untuk instruksi yang menekan narasi. Beberapa model sebelumnya sering memberikan pembaruan saat bekerja, yang menyebabkan adanya baris prompt sistem seperti "simpan semua temuan untuk respons akhir." Hapus baris seperti itu sebelum menambahkan apa pun.
 
 Jika Anda masih menginginkan lebih banyak pembaruan, misalnya saat pair programming atau dalam pekerjaan human-in-the-loop lainnya, tambahkan baris prompt sistem singkat yang menyatakan kapan Anda menginginkan teks yang ditujukan kepada pengguna dari model dan apa yang harus dimuat setiap pembaruan:
 
@@ -60,7 +60,7 @@ Jika Anda masih menginginkan lebih banyak pembaruan, misalnya saat pair programm
 Before you start, say in a line what you're about to do; brief updates while you work help the user follow along. Close with a short recap that stands on its own — what you found, what you did, and what's next — so a reader who only sees the last message has the full picture.
 ```
 
-Jika produk Anda menciutkan atau menyembunyikan output alat, beri tahu model. Jika tidak, model mungkin menjalankan perintah untuk "menunjukkan" output kepada pengguna yang tidak pernah ditampilkan oleh UI Anda. Sampaikan catatan tersebut dalam [pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (`clear_at: "next_user_message"`, beta):
+Jika produk Anda menciutkan atau menyembunyikan output alat, beri tahu model. Jika tidak, model mungkin menjalankan perintah untuk "menunjukkan" output kepada pengguna yang tidak pernah ditampilkan UI Anda. Setiap kali Anda mengirim kembali output alat yang disembunyikan UI Anda, ikuti dengan catatan tersebut dalam [pesan sistem yang berlaku per giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (`clear_at: "next_user_message"`, beta):
 
 ```text wrap
 Only you see that command's output — the user's terminal shows at most a few lines of it. If the user needs to read any of it, put it in your reply.
@@ -68,7 +68,7 @@ Only you see that command's output — the user's terminal shows at most a few l
 
 ## Kelompokkan panggilan alat yang independen dalam loop agen
 
-Claude Fable 5.1 biasanya melakukan panggilan alat paralel sesuai harapan: ketika sebuah permintaan menyebutkan beberapa hal untuk diambil, model melakukan panggilan tersebut secara paralel. Pengecualiannya adalah loop coding dan computer use di mana panggilan independen berikutnya tersirat oleh tugas alih-alih diminta secara eksplisit (agen coding kustom, harness bash-dan-editor, computer use): di sana model mungkin melakukannya satu per giliran. Hal ini tidak memengaruhi kualitas jawaban, tetapi setiap giliran tambahan memakan token, satu kali bolak-balik, dan waktu nyata. Dorongan satu kalimat di akhir permintaan saat ini dapat mengatasinya:
+Claude Fable 5.1 biasanya mengeluarkan panggilan alat paralel seperti yang diharapkan: ketika sebuah permintaan menyebutkan beberapa hal untuk diambil, model mengeluarkan panggilan tersebut secara paralel. Pengecualiannya adalah loop coding dan computer use di mana panggilan independen berikutnya tersirat dari tugas alih-alih diminta secara eksplisit (agen coding kustom, harness bash-dan-editor, computer use): di sana model mungkin mengeluarkannya satu per giliran. Hal ini tidak memengaruhi kualitas jawaban, tetapi setiap giliran tambahan memakan token, satu round trip, dan waktu nyata. Dorongan satu kalimat di akhir permintaan saat ini mengatasinya:
 
 ```text wrap
 First privately list what you need next; then request every item that doesn't depend on another's result in this one response.
@@ -76,7 +76,7 @@ First privately list what you need next; then request every item that doesn't de
 
 Setiap kali Anda mengirim kembali hasil alat, tambahkan kalimat tersebut setelah pesan pengguna itu sebagai [pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages): entri `role: "system"` dalam `messages` dengan `clear_at: "next_user_message"`. Setelah ada pesan pengguna berikutnya, API menghapus salinan sebelumnya, sehingga model hanya membaca salinan terbaru. Pesan sistem berlingkup giliran masih dalam beta dan memerlukan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `mid-conversation-system-clear-at-2026-08-21`. Tanpa beta, tempatkan kalimat tersebut dalam blok teks setelah blok `tool_result` di pesan pengguna yang sama.
 
-Tambahkan salinan baru di setiap giliran dan biarkan salinan sebelumnya tetap di tempatnya, byte demi byte. Salinan tersebut tetap berada dalam array, tetapi setelah dihapus, model tidak melihatnya dan tidak memakan token input. Menghapus atau menulis ulang salinan tersebut berarti mengedit giliran sebelumnya: hal itu memulai ulang [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) dari titik tersebut dan membatalkan blok thinking yang muncul setelahnya (lihat [Jaga riwayat percakapan agar hanya ditambahkan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#keep-the-conversation-history-append-only)).
+Tambahkan salinan baru setiap giliran dan biarkan salinan sebelumnya di tempatnya, persis byte demi byte. Salinan tersebut tetap berada dalam array, tetapi setelah dihapus model tidak melihatnya dan tidak memakan token input. Menghapus atau menulis ulang salinan tersebut sama dengan mengedit giliran sebelumnya: hal itu membatalkan blok thinking yang muncul setelahnya (lihat [Jaga riwayat percakapan agar hanya ditambahkan (append-only)](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#keep-the-conversation-history-append-only)).
 
 Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali persis seperti yang dikembalikan, setiap giliran pengguna hanya memuat hasil alat, dan salinan baru dorongan berlingkup giliran mengikutinya.
 
@@ -398,7 +398,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
   const batchNudge = "First privately list what you need next; then request every item " +
   	"that doesn't depend on another's result in this one response."
 
-  // In-memory files stand in for a working directory so the sample runs anywhere.
+  // File dalam memori menggantikan direktori kerja agar contoh ini dapat dijalankan di mana saja.
   var files = map[string]string{
   	"pyproject.toml": `[project]
   name = "demo"
@@ -444,7 +444,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
   		if err != nil {
   			log.Fatal(err)
   		}
-  		// Append the assistant turn exactly as returned, thinking blocks included.
+  		// Tambahkan giliran asisten persis seperti yang dikembalikan, termasuk blok thinking.
   		messages = append(messages, response.ToParam())
   		if response.StopReason != anthropic.BetaStopReasonToolUse {
   			break
@@ -458,7 +458,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
   			var input struct {
   				Path string `json:"path"`
   			}
-  			// A missing or non-string path leaves input.Path empty, which takes the error-result branch.
+  			// Path yang tidak ada atau bukan string membuat input.Path kosong, sehingga masuk ke cabang hasil error.
   			if err := json.Unmarshal([]byte(toolUse.JSON.Input.Raw()), &input); err != nil {
   				input.Path = ""
   			}
@@ -468,9 +468,9 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
   			}
   			toolResults = append(toolResults, anthropic.NewBetaToolResultBlock(toolUse.ID, text, !found))
   		}
-  		// Send the tool results as the user turn, then a fresh copy of the nudge as a
-  		// turn-scoped system message. Leave earlier copies in place: the API clears them,
-  		// so the model sees only the newest one.
+  		// Kirim hasil alat sebagai giliran pengguna, lalu salinan baru dorongan sebagai
+  		// pesan sistem cakupan giliran. Biarkan salinan sebelumnya tetap ada: API menghapusnya,
+  		// sehingga model hanya melihat salinan yang terbaru.
   		messages = append(messages, anthropic.NewBetaUserMessage(toolResults...))
   		messages = append(messages, anthropic.BetaMessageParam{OfSystem: &anthropic.BetaSystemMessageParam{
   			Content: []anthropic.BetaSystemMessageParamContentUnion{{OfText: &anthropic.BetaTextBlockParam{Text: batchNudge}}},
@@ -757,7 +757,7 @@ Loop berikut menunjukkan penempatan ini. Setiap giliran asisten dikirim kembali 
 
 Tambahkan setiap giliran asisten ke riwayat persis seperti yang dikembalikan API, termasuk blok thinking, dan jangan mengedit giliran sebelumnya di antara permintaan. Untuk akun baru yang dibuat pada atau setelah 31 Agustus 2026, blok thinking Claude Fable 5.1 hanya valid [dalam percakapan yang persis sama dengan yang menghasilkannya](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation): permintaan yang memutar ulang blok thinking setelah prefiksnya (prompt sistem, daftar alat, atau pesan sebelumnya mana pun) berubah akan mengembalikan error 400, atau membuang blok yang terdampak jika Anda mengatur `thinking.block_binding.prefix_mismatch_behavior: "drop_block"` (beta, header `thinking-binding-controls-2026-08-01`). Terapkan pola ini meskipun pemeriksaan tersebut tidak diberlakukan untuk akun Anda, agar kode yang sama berfungsi di setiap akun.
 
-Pengeditan riwayat yang memicu pemeriksaan ini sama dengan yang memulai ulang [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching): menyisipkan dan menghapus pengingat per giliran, meringkas giliran lama di tempat, atau mengubah prompt sistem di tengah sesi. Kirim pengingat per giliran sebagai [pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages), ubah instruksi atau alat dengan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) alih-alih menulis ulang `system` atau `tools`, dan biarkan [compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) atau [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) sisi server melakukan pemangkasan apa pun. Jika Anda melakukan compaction di sisi klien, bentuk paling sederhana adalah mengganti seluruh riwayat dengan satu pesan ringkasan ditambah giliran pengguna baru dan tidak memutar ulang apa pun selain itu: tidak ada blok thinking yang terbawa, sehingga tidak ada yang gagal, dan model berpikir ulang dari awal pada percakapan yang telah dipadatkan (lihat [Compaction kustom di sisi klien](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#custom-compaction-on-the-client)). Karena pembacaan cache kini lebih murah (lihat [Harga](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#pricing)), melakukan compaction lebih awal untuk menghemat biaya mungkin bukan lagi pertukaran biaya-kecerdasan yang tepat di Claude Fable 5.1, jadi bereksperimenlah dengan titik compaction yang lebih lambat.
+Sebagian besar pengeditan riwayat yang memicu pemeriksaan ini juga memulai ulang [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching): menyisipkan dan menghapus pengingat per giliran, meringkas giliran lama di tempat, atau mengubah prompt sistem di tengah sesi. Kirim pengingat per giliran sebagai [pesan sistem yang berlaku per giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages), ubah instruksi atau alat dengan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) alih-alih menulis ulang `system` atau `tools`, dan biarkan [compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) sisi server atau [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) melakukan pemangkasan apa pun. Jika Anda melakukan compaction di sisi klien, bentuk paling sederhana adalah mengganti seluruh riwayat dengan satu pesan ringkasan ditambah giliran pengguna baru dan tidak memutar ulang apa pun selain itu: tidak ada blok thinking yang terbawa, sehingga tidak ada yang gagal, dan model berpikir ulang dari awal pada percakapan yang telah di-compact (lihat [Compaction kustom di sisi klien](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#custom-compaction-on-the-client)). Karena pembacaan cache sekarang lebih murah (lihat [Harga](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#pricing)), melakukan compaction lebih awal untuk menghemat biaya mungkin bukan lagi trade-off biaya-kecerdasan yang tepat di Claude Fable 5.1, jadi bereksperimenlah dengan titik compaction yang lebih lambat.
 
 Untuk menemukan pengeditan yang sudah dilakukan harness Anda, jalankan sesi dengan `prefix_mismatch_behavior: "drop_block"` dan catat `input_transformations`, seperti yang dijelaskan dalam [Cara mengetahui apakah integrasi Anda terdampak](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#how-to-tell-whether-your-integration-is-impacted), atau rekam permintaan persis yang dikirimnya selama beberapa giliran normal dan pastikan permintaan yang berurutan identik byte demi byte hingga giliran yang ditambahkan.
 
@@ -777,7 +777,7 @@ Please remove all mannered prose.
 
 ## Pemformatan dalam chat
 
-Model sebelumnya terlalu sering menggunakan poin-poin dan huruf tebal dalam chat, dan banyak prompt memuat aturan anti-pemformatan yang ditulis untuk menekannya. Claude Fable 5.1 cenderung ke arah sebaliknya: model lebih jarang menggunakan huruf tebal dan lebih kecil kemungkinannya menggunakan judul, daftar, atau tanda kutip. Jika prompt Anda berisi bahasa anti-pemformatan, hapus atau ganti dengan aturan yang menyatakan kapan pemformatan tertentu sesuai, seperti berikut:
+Model sebelumnya terlalu sering menggunakan poin-poin dan huruf tebal dalam chat, dan banyak prompt memuat aturan anti-pemformatan yang ditulis untuk menguranginya. Claude Fable 5.1 cenderung ke arah sebaliknya: model ini lebih jarang menggunakan huruf tebal dan kecil kemungkinannya menggunakan header, daftar, atau tanda kutip. Jika prompt Anda memuat bahasa anti-pemformatan, hapus atau ganti dengan aturan yang menyatakan kapan pemformatan tertentu sesuai, seperti berikut:
 
 ```text wrap
 Use lists and bullet points when asked to, or when the content is multifaceted enough that they help with clarity. If the person explicitly requests minimal formatting, always format your responses without bullet points, headers, lists, or bold emphasis, as requested. In conversational, personal, or emotional exchanges, keep to plain prose.
@@ -803,7 +803,7 @@ Ganti kedua baris `[web_search: ...]` dengan nama alat Anda sendiri, sehingga mo
 
 ## Selesaikan seluruh tugas
 
-Claude Fable 5.1 dapat mengeksekusi tugas yang sangat panjang tanpa banyak panduan tentang metodologi, terutama ketika tujuannya jelas. Namun, pada beban kerja asinkron yang kompleks, dorong model agar tidak mengakhiri gilirannya sebelum pekerjaan selesai. Tanpa dorongan tersebut, model terkadang menjelaskan apa yang akan dilakukannya selanjutnya alih-alih melakukannya ("Selanjutnya, saya akan …") atau berhenti untuk meminta izin atas langkah yang sudah dicakup oleh permintaan awal ("Haruskah saya menerapkan ini?"). Pengguna harus membalas "lanjutkan" atau "silakan," yang cocok untuk pair programming dan pekerjaan human-in-the-loop lainnya tetapi tidak memanfaatkan kemampuan jangka panjang model secara penuh.
+Claude Fable 5.1 dapat menjalankan tugas yang sangat panjang tanpa banyak panduan tentang metodologi, terutama ketika tujuannya jelas. Namun, pada beban kerja asinkron yang kompleks, dorong model agar tidak mengakhiri gilirannya sebelum pekerjaan selesai. Tanpa dorongan tersebut, model terkadang menjelaskan apa yang akan dilakukannya selanjutnya alih-alih melakukannya ("Selanjutnya, saya akan …") atau berhenti untuk meminta izin atas langkah yang sudah dicakup oleh permintaan awal ("Haruskah saya menerapkan ini?"). Pengguna harus membalas "lanjutkan" atau "silakan," yang cocok untuk pair programming dan pekerjaan human-in-the-loop lainnya tetapi tidak memanfaatkan kapabilitas jangka panjang model secara penuh.
 
 Dua tambahan prompt sistem bersama-sama dapat mengurangi hal ini. Terapkan keduanya. Jika Anda perlu membatasi panjang prompt, gunakan hanya yang pertama, yang mempertahankan sebagian besar efeknya. Yang pertama memberi tahu model agar tidak bertanya tentang pekerjaan yang sudah diminta dan agar melaksanakan langkah berikutnya yang telah dinyatakannya:
 
@@ -840,7 +840,7 @@ Summarize the transcript inside <summary></summary> tags. Include relevant infor
 
 ## Batasi perubahan dan pengujian pada apa yang diminta tugas
 
-Ketika diminta mengimplementasikan fitur yang bersifat terbuka, Claude Fable 5.1 memberikan apa yang diminta dan terkadang lebih: model mungkin memperbaiki kode di sekitarnya, memperluas perilaku yang tidak disebutkan tugas, atau meng-commit lebih banyak file pengujian daripada yang dibutuhkan perubahan. Model merespons dengan baik terhadap instruksi eksplisit tentang apa yang harus ditinggalkan. Dengan instruksi berikut, tambahan yang tidak diminta dan kode pengujian yang di-commit berkurang secara substansial tanpa perubahan terukur pada keberhasilan tugas:
+Ketika diminta mengimplementasikan fitur yang bersifat terbuka, Claude Fable 5.1 memberikan apa yang diminta dan terkadang lebih: model mungkin memperbaiki kode di sekitarnya, memperluas perilaku yang tidak disebutkan tugas, atau meng-commit lebih banyak file pengujian daripada yang diperlukan perubahan tersebut. Model merespons dengan baik terhadap instruksi eksplisit tentang apa yang harus dikecualikan. Dengan instruksi berikut, tambahan yang tidak diminta dan kode pengujian yang di-commit berkurang secara substansial tanpa perubahan terukur pada keberhasilan tugas:
 
 ```text wrap
 If, while working or testing, you find a pre-existing bug, a performance concern, or behavior the task doesn't mention, don't fix, optimize or extend it in this change unless the requested behavior cannot work without it; report it as a follow-up in your summary. Where the task is ambiguous, implement the reading its wording and the surrounding code most directly support, state that assumption in your summary, and don't build for the other readings as well. Verify your work however you like; scratch scripts and quick checks need not be kept. Commit tests only where the task asks for them or this repository already keeps tests for this kind of change, sized like the neighboring test files — roughly one focused test per stated behavior — and don't turn scratch checks into additional permanent test files. This is about extras only: implement every behavior the task asks for, completely.
@@ -866,7 +866,7 @@ Pengklasifikasi keamanan Claude Fable 5.1 menghasilkan lebih sedikit "false posi
 
 ## Utamakan pengeditan terarah daripada penulisan ulang seluruh file
 
-Jika Claude Fable 5.1 menulis ulang seluruh file untuk perubahan kecil, tambahkan instruksi berikut ke prompt sistem atau pesan pengguna pertama. Claude Fable 5.1 lebih mungkin dibandingkan Claude Fable 5 untuk menulis ulang seluruh file teks alih-alih melakukan pengeditan terarah. File yang dihasilkan biasanya sama, tetapi kecuali filenya pendek atau sebagian besar isinya berubah, penulisan ulang memakan lebih banyak token output dan waktu. Instruksi ini mengembalikan perilaku Claude Fable 5.1 agar selaras dengan Claude Fable 5 untuk perubahan kecil dan sedang.
+Jika Claude Fable 5.1 menulis ulang seluruh file untuk perubahan kecil, tambahkan instruksi berikut ke prompt sistem atau pesan pengguna pertama. Claude Fable 5.1 lebih mungkin dibandingkan Claude Fable 5 untuk menulis ulang seluruh file teks alih-alih melakukan pengeditan terarah. File yang dihasilkan biasanya sama, tetapi kecuali filenya pendek atau sebagian besarnya berubah, penulisan ulang memakan lebih banyak token output dan waktu. Dengan instruksi ini, Claude Fable 5.1 berperilaku seperti Claude Fable 5 pada perubahan kecil dan sedang.
 
 ```text wrap
 The number of tokens used to edit files is best minimized, all else being equal. Therefore, when it will not affect the end result, try to surgically edit a file rather than rewrite the entire thing.
@@ -874,7 +874,7 @@ The number of tokens used to edit files is best minimized, all else being equal.
 
 ## Sisakan ruang untuk output panjang pada effort xhigh dan max
 
-Pada effort `xhigh` dan terutama `max`, Claude Fable 5.1 dapat berpikir lebih lama sebelum mulai menulis balasannya. Ketika satu permintaan meminta hasil kerja yang panjang, seperti penulisan ulang penuh dokumen yang panjang, model mungkin menyusun sebagian besar hasil kerja tersebut dalam pemikirannya lalu menuliskannya lagi sebagai balasan, yang berarti waktu tunggu lebih lama dan lebih banyak token output. Pendekatan paling sederhana adalah menjalankan permintaan seperti ini pada `high`, titik awal yang direkomendasikan, dan beralih ke `xhigh` atau `max` hanya jika Anda telah mengukur peningkatan kualitas (lihat [Pertimbangkan semua tingkat effort](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#consider-all-effort-levels)). Jika Anda tetap menjalankannya pada `xhigh` atau `max`:
+Pada effort `xhigh` dan terutama `max`, Claude Fable 5.1 dapat berpikir lebih lama sebelum mulai menulis balasannya. Ketika satu permintaan meminta deliverable yang panjang, seperti penulisan ulang penuh dari dokumen yang panjang, model mungkin membuat draf sebagian besar deliverable tersebut dalam pemikirannya lalu menulisnya lagi sebagai balasan, yang berarti waktu tunggu lebih lama dan lebih banyak token output. Pendekatan paling sederhana adalah menjalankan permintaan seperti ini pada `high`, titik awal yang direkomendasikan, dan beralih ke `xhigh` atau `max` hanya jika Anda telah mengukur peningkatan kualitas (lihat [Pertimbangkan semua level effort](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#consider-all-effort-levels)). Jika Anda tetap menjalankannya pada `xhigh` atau `max`:
 
 * Atur `max_tokens` agar menyisakan ruang untuk pemikiran dan balasan, bukan hanya panjang balasan yang Anda harapkan.
 * Tambahkan catatan berikut di akhir pesan pengguna. Catatan ini membuat pemikiran jauh lebih singkat pada permintaan prosa dan kode. Ganti `[max_tokens]` dengan nilai `max_tokens` aktual dari permintaan, misalnya 64.000.
@@ -891,9 +891,9 @@ Jika agen coding Anda memungkinkan Claude Fable 5.1 mendelegasikan pekerjaan ke 
 
 * Buat alat yang memulai subagen langsung mengembalikan hasil.
 * Kirimkan hasil setiap subagen kembali ke agen utama dalam pesan `user` berikutnya setelah hasilnya siap.
-* Berikan agen utama alat terpisah yang dapat dipanggilnya ketika ingin menunggu hasil.
+* Berikan agen utama alat terpisah yang dapat dipanggilnya untuk menunggu hasil.
 
-Model masih sering memilih untuk menunggu. Penghematan waktu berasal dari eksekusi di mana model melanjutkan pekerjaan lain.
+Model masih sering menunggu. Penghematan waktu berasal dari eksekusi di mana model melanjutkan pekerjaan lain.
 
 ## Berikan alat untuk memotong dan memperbesar pada pekerjaan vision
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: fcc441e61b27cc6f1b53dcb9325878dafd95068409c1f63369700b48e1ba2cef
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: bbbf9063950e309eb63b4d7f75d3f37a1f9aec0c709828c0effc61bd1fc1c98c
 ---
 
 ---
@@ -13,7 +13,7 @@ description: Terapkan kepatuhan JSON Schema pada input alat Claude dengan gramma
 
 Menetapkan `strict: true` pada definisi alat menjamin input alat Claude sesuai dengan JSON Schema Anda dengan membatasi sampling token model hanya pada output yang valid menurut skema (sebuah teknik yang disebut "grammar-constrained sampling" (sampling yang dibatasi tata bahasa)). Halaman ini membahas mengapa mode ketat penting untuk agen, cara mengaktifkannya, dan kasus penggunaan umum. Untuk subset JSON Schema yang didukung, lihat [Keterbatasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Untuk panduan skema non-ketat, lihat [Mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools).
 
-"Strict tool use" (penggunaan alat ketat) memvalidasi parameter alat, memastikan Claude memanggil fungsi Anda dengan argumen yang bertipe benar. Gunakan penggunaan alat ketat ketika Anda perlu:
+"Strict tool use" (penggunaan alat strict) memvalidasi parameter alat, memastikan Claude memanggil fungsi Anda dengan argumen yang bertipe benar. Gunakan penggunaan alat strict ketika Anda perlu:
 
 * Memvalidasi parameter alat
 * Membangun alur kerja agentik
@@ -26,7 +26,7 @@ Membangun sistem agentik yang andal memerlukan jaminan kesesuaian skema. Tanpa m
 
 Penggunaan alat ketat menjamin parameter yang type-safe:
 
-* Fungsi menerima argumen yang bertipe benar setiap saat
+* Argumen fungsi yang bertipe benar setiap saat
 * Tidak perlu memvalidasi dan mencoba ulang pemanggilan alat
 * Agen siap produksi yang bekerja secara konsisten dalam skala besar
 
@@ -322,7 +322,7 @@ Sebagai contoh, misalkan sebuah sistem pemesanan membutuhkan `passengers: int`. 
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       { role: "user", content: "What's the weather like in San Francisco?" }
@@ -663,7 +663,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
       client = Anthropic::Client.new
 
       message = client.messages.create(
-        model: "claude-opus-5-5",
+        model: Anthropic::Model::CLAUDE_OPUS_5_5,
         max_tokens: 1024,
         messages: [
           { role: "user", content: "Search for flights to Tokyo departing June 1, 2026" }
@@ -1079,7 +1079,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
       client = Anthropic::Client.new
 
       message = client.messages.create(
-        model: "claude-opus-5-5",
+        model: Anthropic::Model::CLAUDE_OPUS_5_5,
         max_tokens: 1024,
         messages: [
           { role: "user", content: "Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026" }

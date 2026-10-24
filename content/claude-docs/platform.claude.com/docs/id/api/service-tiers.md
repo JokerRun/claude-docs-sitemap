@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/service-tiers
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 9ccd96c005f093a77b91f01f31310bd2a248417eef874446e8b9699fc8cbc3fc
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: b47904e8371fe4b99df5868d76e0e18b20d96670e7f018c2fb27e299b76d91ab
 ---
 
 ---
@@ -88,7 +88,7 @@ Anda dapat mengontrol tingkat layanan mana yang dapat digunakan untuk suatu perm
   messages:
     - role: user
       content: Hello, Claude!
-  service_tier: auto  # Automatically use Priority Tier when available, fallback to standard
+  service_tier: auto  # Automatically use Priority Tier when available, fall back to standard
   YAML
   ```
 
@@ -99,7 +99,7 @@ Anda dapat mengontrol tingkat layanan mana yang dapat digunakan untuk suatu perm
       model="claude-opus-4-8",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello, Claude!"}],
-      service_tier="auto",  # Automatically use Priority Tier when available, fallback to standard
+      service_tier="auto",  # Automatically use Priority Tier when available, fall back to standard
   )
   print(message.usage.service_tier)
   ```
@@ -111,7 +111,7 @@ Anda dapat mengontrol tingkat layanan mana yang dapat digunakan untuk suatu perm
     model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello, Claude!" }],
-    service_tier: "auto" // Automatically use Priority Tier when available, fallback to standard
+    service_tier: "auto" // Automatically use Priority Tier when available, fall back to standard
   });
   console.log(message.usage.service_tier);
   ```
@@ -124,7 +124,7 @@ Anda dapat mengontrol tingkat layanan mana yang dapat digunakan untuk suatu perm
       Model = Model.ClaudeOpus4_8,
       MaxTokens = 1024,
       Messages = [new UserMessageParam { Content = "Hello, Claude!" }],
-      ServiceTier = ServiceTier.Auto, // Automatically use Priority Tier when available, fallback to standard
+      ServiceTier = ServiceTier.Auto, // Automatically use Priority Tier when available, fall back to standard
   });
   Console.WriteLine(message.Usage.ServiceTier);
   ```
@@ -138,7 +138,7 @@ Anda dapat mengontrol tingkat layanan mana yang dapat digunakan untuk suatu perm
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude!")),
   	},
-  	// Otomatis gunakan Priority Tier jika tersedia, fallback ke standar
+  	// Otomatis gunakan Priority Tier jika tersedia, kembali ke standar jika tidak
   	ServiceTier: anthropic.MessageNewParamsServiceTierAuto,
   })
   if err != nil {
@@ -154,7 +154,7 @@ Anda dapat mengontrol tingkat layanan mana yang dapat digunakan untuk suatu perm
       .model(Model.CLAUDE_OPUS_4_8)
       .maxTokens(1024L)
       .addUserMessage("Hello, Claude!")
-      // Otomatis gunakan Priority Tier jika tersedia, fallback ke standar
+      // Otomatis gunakan Priority Tier jika tersedia, kembali ke standard jika tidak
       .serviceTier(MessageCreateParams.ServiceTier.AUTO)
       .build();
 
@@ -166,10 +166,10 @@ Anda dapat mengontrol tingkat layanan mana yang dapat digunakan untuk suatu perm
   $client = new Client();
 
   $message = $client->messages->create(
-      model: 'claude-opus-4-8',
+      model: Model::CLAUDE_OPUS_4_8,
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello, Claude!']],
-      serviceTier: 'auto', // Automatically use Priority Tier when available, fallback to standard
+      serviceTier: 'auto', // Automatically use Priority Tier when available, fall back to standard
   );
   echo $message->usage->serviceTier;
   ```
@@ -178,10 +178,10 @@ Anda dapat mengontrol tingkat layanan mana yang dapat digunakan untuk suatu perm
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-4-8",
+    model: Anthropic::Model::CLAUDE_OPUS_4_8,
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello, Claude!" }],
-    service_tier: :auto # Automatically use Priority Tier when available, fallback to standard
+    service_tier: :auto # Automatically use Priority Tier when available, fall back to standard
   )
   puts(message.usage.service_tier)
   ```
@@ -190,7 +190,7 @@ Anda dapat mengontrol tingkat layanan mana yang dapat digunakan untuk suatu perm
 Parameter `service_tier` menerima nilai-nilai berikut:
 
 * `"auto"` (default) - Menggunakan kapasitas Priority Tier jika tersedia, dan beralih ke kapasitas Anda yang lain jika tidak tersedia
-* `"standard_only"` - Hanya menggunakan kapasitas standard tier, berguna jika Anda tidak ingin menggunakan kapasitas Priority Tier Anda
+* `"standard_only"` - Hanya menggunakan kapasitas tingkatan standard, berguna jika Anda tidak ingin menggunakan kapasitas Priority Tier Anda
 
 Objek `usage` pada respons juga menyertakan tingkat layanan yang ditetapkan untuk permintaan tersebut:
 
@@ -230,7 +230,7 @@ Komitmen Priority Tier terdiri dari:
 * Durasi komitmen (1, 3, 6, atau 12 bulan)
 * Versi model tertentu
 
-Priority Tier menargetkan uptime 99,5% dengan sumber daya komputasi yang diprioritaskan. Permintaan yang melampaui kapasitas komitmen Anda secara otomatis beralih ke standard tier.
+Priority Tier menargetkan uptime 99,5 persen dengan sumber daya komputasi yang diprioritaskan. Permintaan yang melebihi kapasitas yang Anda komitmenkan secara otomatis beralih ke tingkatan standard.
 
 ### Model yang didukung
 

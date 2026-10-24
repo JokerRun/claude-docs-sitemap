@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 1e295a802ead582e5c38180e2a4e829601bc1f9c29c3e35f1d11e3fb61800861
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 78b3d52503f11ca8c13ce33ccdd5c87592c7c34d97c40f30bfd62703da3c5cb3
 ---
 
 ---
@@ -989,7 +989,7 @@ Plain text documents are automatically chunked into sentences. You can provide t
 </Tabs>
 
 <Accordion title="Example plain text citation">
-  ```text
+  ```json
   {
     "type": "char_location",
     "cited_text": "The exact text being cited", // not counted toward output tokens
@@ -1817,7 +1817,7 @@ PDF documents can be provided as base64-encoded data, as a URL, or by `file_id`.
 </Tabs>
 
 <Accordion title="Example PDF citation">
-  ```text
+  ```json
   {
     "type": "page_location",
     "cited_text": "The exact text being cited", // not counted toward output tokens
@@ -2144,7 +2144,7 @@ Custom content documents give you control over citation granularity. No addition
 </CodeGroup>
 
 <Accordion title="Example citation">
-  ```text
+  ```json
   {
     "type": "content_block_location",
     "cited_text": "The exact text being cited", // not counted toward output tokens
@@ -2162,7 +2162,7 @@ Custom content documents give you control over citation granularity. No addition
 
 When citations are enabled, responses include multiple text blocks with citations:
 
-```text wrap
+```json
 {
   "content": [
     { "type": "text", "text": "According to the document, " },
@@ -2241,7 +2241,7 @@ For streaming responses, citations arrive as a `citations_delta` delta type insi
 
 <AccordionGroup>
   <Accordion title="Example streaming events">
-    ```text
+    ```sse
     event: message_start
     data: {"type": "message_start", ...}
 

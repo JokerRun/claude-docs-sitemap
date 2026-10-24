@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/task-budgets
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: cfe8d0ead86a8134c1498c9ec5b584f051924ca161b4f4b214d323ab5146db61
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 9e3a53827df18eaf61fbe8f4243e57a45fdfa5f49effa48e1ef241e8a8615051
 ---
 
 ---
@@ -319,7 +319,7 @@ Consider a loop with `task_budget: {type: "tokens", total: 100000}` and a single
 
 Claude thinks, then emits a tool call and stops with `stop_reason: "tool_use"`:
 
-```text
+```json
 {
   "role": "assistant",
   "content": [

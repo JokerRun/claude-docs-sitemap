@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 0eb053ff3fe9ec4f3954745508707f3472aedc21ce515644effc1a62362ca542
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 1289400b811438ac1b71dae0959572c4014e2cbc68ba13cf90391fa90e663478
 ---
 
 ---
@@ -42,7 +42,7 @@ Ketika pengklasifikasi streaming mendeteksi konten yang melanggar kebijakan Anth
 Dalam event stream, `stop_details` tiba pada event `message_delta` bersama dengan `stop_reason`.
 
 <Note>
-  Respons `refusal` dari pengklasifikasi streaming menyertakan objek `stop_details` dengan `category` dan `explanation` yang dapat dibaca manusia yang dapat Anda tampilkan kepada pengguna. Lihat [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk bentuk respons lengkap dan kategori yang tersedia.
+  Respons `refusal` dari classifier streaming menyertakan objek `stop_details` dengan `category` dan `explanation` yang dapat dibaca manusia, yang dapat Anda tampilkan kepada pengguna. Lihat [Seperti apa bentuk penolakan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk bentuk respons lengkap dan kategori yang tersedia.
 
   Pada penolakan, objek `stop_details` selalu ada, tetapi field `category` dan `explanation`-nya bisa bernilai `null`, misalnya ketika penolakan tidak terpetakan ke kategori bernama mana pun. Lakukan percabangan berdasarkan `stop_reason` atau `stop_details.type` alih-alih mengasumsikan `category` dan `explanation` terisi, dan sediakan pesan Anda sendiri untuk pengguna ketika nilainya `null`.
 </Note>
@@ -243,7 +243,8 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
   $client = new Client();
   $messages = [];
 
-  function resetConversation(&$messages) {
+  function resetConversation(&$messages)
+  {
       $messages = [];
       echo "Conversation reset due to refusal\n";
   }
@@ -264,7 +265,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
           }
       }
   } catch (\Exception $e) {
-      echo "Error: " . $e->getMessage() . "\n";
+      echo 'Error: ' . $e->getMessage() . "\n";
   }
   ```
 
@@ -308,19 +309,19 @@ API saat ini menangani penolakan dengan tiga cara berbeda:
 
 ## Praktik terbaik
 
-* **Pantau penolakan:** Sertakan pemeriksaan **`stop_reason`: `refusal`** dalam penanganan error Anda
-* **Reset secara otomatis:** Implementasikan reset konteks otomatis ketika penolakan terdeteksi
-* **Beralih ke model lain:** Konfigurasikan [fallback sisi server atau middleware SDK](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) agar permintaan yang ditolak dicoba ulang pada model Claude lain alih-alih menampilkan penolakan kepada pengguna. Claude Haiku 5.5 tidak memiliki fallback sisi server, jadi siapkan percobaan ulangnya di klien Anda
-* **Tukarkan kredit fallback pada percobaan ulang manual:** Jika Anda membangun percobaan ulang sendiri, teruskan token [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) dari penolakan agar percobaan ulang tidak membayar biaya cache prompt dua kali. Penolakan Claude Haiku 5.5 tidak membawa kredit fallback
-* **Sediakan pesan kustom:** Buat pesan yang ramah pengguna untuk UX yang lebih baik ketika penolakan terjadi
-* **Lacak pola penolakan:** Pantau frekuensi penolakan untuk mengidentifikasi potensi masalah pada prompt Anda
+* **Pantau penolakan:** Sertakan pemeriksaan **`stop_reason`: `refusal`** dalam penanganan error Anda.
+* **Reset secara otomatis:** Implementasikan reset konteks otomatis ketika penolakan terdeteksi.
+* **Fallback ke model lain:** Konfigurasikan [fallback sisi server atau middleware SDK](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) agar permintaan yang ditolak dicoba ulang pada model Claude lain alih-alih menampilkan penolakan kepada pengguna. Claude Haiku 5.5 tidak memiliki fallback sisi server, jadi siapkan percobaan ulangnya di klien Anda.
+* **Tukarkan kredit fallback pada percobaan ulang manual:** Jika Anda membangun percobaan ulang sendiri, teruskan token [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) dari penolakan agar percobaan ulang tidak membayar biaya cache prompt dua kali. Penolakan Claude Haiku 5.5 tidak membawa kredit fallback.
+* **Sediakan pesan khusus:** Buat pesan yang ramah pengguna untuk UX yang lebih baik ketika penolakan terjadi.
+* **Lacak pola penolakan:** Pantau frekuensi penolakan untuk mengidentifikasi potensi masalah pada prompt Anda.
 
 ## Catatan migrasi
 
 Jika Anda membangun penanganan penolakan saat fitur ini pertama kali dirilis, atau Anda menambahkannya ke integrasi yang sudah ada, periksa hal-hal berikut:
 
 * **Penolakan adalah respons, bukan error.** Penolakan tiba sebagai respons HTTP 200 yang berhasil dengan `stop_reason`: `"refusal"`, sehingga pemantauan yang hanya dibangun berdasarkan tingkat error tidak akan menampilkannya. Lacak penolakan sebagai sinyal tersendiri.
-* **Penolakan menyertakan detail terstruktur.** Pada setiap model, penolakan juga menyertakan objek `stop_details` yang mengidentifikasi kategori kebijakan di balik penolakan tersebut. Lihat [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk bentuk respons lengkap.
+* **Penolakan menyertakan detail terstruktur.** Pada setiap model, penolakan juga menyertakan objek `stop_details` yang mengidentifikasi kategori kebijakan di balik penolakan tersebut. Lihat [Seperti apa bentuk penolakan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk bentuk respons lengkap.
 * **Coba ulang pada model yang berbeda.** Mengirim ulang permintaan yang ditolak ke model yang sama biasanya menghasilkan penolakan lagi. Alih-alih hanya mereset konteks, coba ulang pada model fallback dengan [fallback sisi server, middleware SDK, atau percobaan ulang manual](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback), dan tukarkan [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) ketika Anda membangun percobaan ulang sendiri. Claude Haiku 5.5 tidak memiliki fallback sisi server, dan penolakannya tidak membawa kredit fallback, jadi siapkan percobaan ulangnya di klien Anda.
 * **Periksa hasil batch untuk penolakan.** Permintaan yang ditolak dalam [Message Batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing) dikembalikan sebagai hasil yang berhasil dengan `stop_reason`: `"refusal"`, bukan sebagai hasil yang error.
 * **Pusatkan penanganan pada `stop_reason`.** API terus mengonsolidasikan penanganan penolakan di sekitar `stop_reason`: `"refusal"`, jadi lakukan percabangan berdasarkan stop reason alih-alih perilaku spesifik model.

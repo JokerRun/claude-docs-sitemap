@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-threshold
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 9dad807f5aabae465dfe0c1e8155d79bbec52cca5ec2b25012178f85d0c3cf92
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: f6153392fe07d7f75c117e59f4f14ecdef87ba86049a03dadabff665acfcaf68
 ---
 
 ---
@@ -246,7 +246,7 @@ Aktifkan compaction dengan menambahkan strategi `compact_20260112` ke `context_m
   $response = $client->beta->messages->create(
       maxTokens: 4096,
       messages: $messages,
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['compact-2026-01-12'],
       contextManagement: [
           'edits' => [
@@ -270,7 +270,7 @@ Aktifkan compaction dengan menambahkan strategi `compact_20260112` ke `context_m
 
   response = client.beta.messages.create(
     betas: ["compact-2026-01-12"],
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     messages: messages,
     context_management: {
@@ -466,7 +466,7 @@ Konfigurasikan kapan compaction dipicu menggunakan parameter `trigger`:
   $message = $client->beta->messages->create(
       maxTokens: 4096,
       messages: $messages,
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['compact-2026-01-12'],
       contextManagement: [
           'edits' => [
@@ -490,7 +490,7 @@ Konfigurasikan kapan compaction dipicu menggunakan parameter `trigger`:
 
   response = client.beta.messages.create(
     betas: ["compact-2026-01-12"],
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     messages: messages,
     context_management: {
@@ -639,7 +639,7 @@ Anda dapat memberikan instruksi kustom melalui parameter `instructions`. Instruk
   	MaxTokens: 4096,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Help me build a Python web scraper")),
-  		{Role: anthropic.BetaMessageParamRoleAssistant, Content: []anthropic.BetaContentBlockParamUnion{anthropic.NewBetaTextBlock("I'll help you build a web scraper...")}},
+  		{OfAssistant: &anthropic.BetaAssistantMessageParam{Content: []anthropic.BetaContentBlockParamUnion{anthropic.NewBetaTextBlock("I'll help you build a web scraper...")}}},
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Add support for JavaScript-rendered pages")),
   	},
   	ContextManagement: anthropic.BetaContextManagementConfigParam{
@@ -691,7 +691,7 @@ Anda dapat memberikan instruksi kustom melalui parameter `instructions`. Instruk
           ['role' => 'assistant', 'content' => "I'll help you build a web scraper..."],
           ['role' => 'user', 'content' => 'Add support for JavaScript-rendered pages']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['compact-2026-01-12'],
       contextManagement: [
           'edits' => [
@@ -711,7 +711,7 @@ Anda dapat memberikan instruksi kustom melalui parameter `instructions`. Instruk
 
   response = client.beta.messages.create(
     betas: ["compact-2026-01-12"],
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     messages: [
       { role: "user", content: "Help me build a Python web scraper" },
@@ -1044,7 +1044,7 @@ Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setel
 
   response = client.beta.messages.create(
     betas: ["compact-2026-01-12"],
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     messages: messages,
     context_management: {
@@ -1062,7 +1062,7 @@ Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setel
 
     response = client.beta.messages.create(
       betas: ["compact-2026-01-12"],
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 4096,
       messages: messages,
       context_management: {
@@ -1077,7 +1077,7 @@ Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setel
 
 #### Menerapkan anggaran token total
 
-Ketika model mengerjakan tugas panjang dengan banyak iterasi penggunaan alat, total konsumsi token dapat bertambah secara signifikan. Anda dapat menggabungkan `pause_after_compaction` dengan penghitung compaction untuk memperkirakan penggunaan kumulatif dan menyelesaikan tugas dengan baik begitu anggaran tercapai.
+Ketika model mengerjakan tugas panjang dengan banyak iterasi penggunaan alat, total konsumsi token dapat bertambah secara signifikan. Anda dapat menggabungkan `pause_after_compaction` dengan penghitung compaction untuk memperkirakan penggunaan kumulatif dan menyelesaikan tugas dengan baik setelah anggaran tercapai.
 
 Contoh ini hanya muncul dalam bahasa SDK: nilainya terletak pada logika pelacakan anggaran di sekitar permintaan. Permintaan mentahnya menggabungkan `trigger` dari [Konfigurasi pemicu](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold#trigger-configuration) dengan `pause_after_compaction` dari [Berhenti sejenak setelah compaction](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold#pausing-after-compaction).
 
@@ -1187,7 +1187,7 @@ Contoh ini hanya muncul dalam bahasa SDK: nilainya terletak pada logika pelacaka
       compactionCount += 1;
       messages.Add(new BetaAssistantMessageParam
       {
-          Content = response.Content.Select(b => new BetaContentBlockParam(b.Json)).ToList()
+          Content = response.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList()
       });
 
       // Perkirakan total token yang terpakai; minta model menyelesaikan jika melebihi anggaran
@@ -1337,7 +1337,7 @@ Contoh ini hanya muncul dalam bahasa SDK: nilainya terletak pada logika pelacaka
 
   response = client.beta.messages.create(
     betas: ["compact-2026-01-12"],
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     messages: messages,
     context_management: {
@@ -1624,7 +1624,7 @@ Anda harus mengirimkan kembali blok `compaction` ke API pada permintaan berikutn
 
   response = client.beta.messages.create(
     betas: ["compact-2026-01-12"],
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     messages: messages,
     context_management: {
@@ -1638,7 +1638,7 @@ Anda harus mengirimkan kembali blok `compaction` ke API pada permintaan berikutn
 
   next_response = client.beta.messages.create(
     betas: ["compact-2026-01-12"],
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     messages: messages,
     context_management: {
@@ -1891,20 +1891,20 @@ Blok compaction di-stream secara berbeda dari blok teks. Anda menerima event `co
           try (var streamResponse = client.beta().messages().createStreaming(params)) {
               streamResponse.stream().forEach(event -> {
                   event.contentBlockStart().ifPresent(startEvent -> {
-                      startEvent.contentBlock().compaction().ifPresent(c ->
+                      startEvent.contentBlock().compaction().ifPresent(compactionBlock ->
                           System.out.println("Compaction started...")
                       );
-                      startEvent.contentBlock().text().ifPresent(t ->
+                      startEvent.contentBlock().text().ifPresent(textBlock ->
                           System.out.println("Text response started...")
                       );
                   });
 
                   event.contentBlockDelta().ifPresent(deltaEvent -> {
-                      deltaEvent.delta().compaction().ifPresent(cd ->
-                          System.out.println("Compaction complete: " + cd.content().map(String::length).orElse(0) + " chars")
+                      deltaEvent.delta().compaction().ifPresent(compactionDelta ->
+                          System.out.println("Compaction complete: " + compactionDelta.content().map(String::length).orElse(0) + " chars")
                       );
-                      deltaEvent.delta().text().ifPresent(td ->
-                          System.out.print(td.text())
+                      deltaEvent.delta().text().ifPresent(textDelta ->
+                          System.out.print(textDelta.text())
                       );
                   });
               });
@@ -1918,6 +1918,7 @@ Blok compaction di-stream secara berbeda dari blok teks. Anda menerima event `co
   use Anthropic\Beta\Messages\BetaRawContentBlockStartEvent;
   use Anthropic\Beta\Messages\BetaTextBlock;
   use Anthropic\Beta\Messages\BetaTextDelta;
+  use Anthropic\Messages\Model;
 
   $client = new Client();
   $messages = [['role' => 'user', 'content' => 'Hello, Claude']];
@@ -1925,7 +1926,7 @@ Blok compaction di-stream secara berbeda dari blok teks. Anda menerima event `co
   $stream = $client->beta->messages->createStream(
       maxTokens: 4096,
       messages: $messages,
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['compact-2026-01-12'],
       contextManagement: [
           'edits' => [
@@ -1949,7 +1950,7 @@ Blok compaction di-stream secara berbeda dari blok teks. Anda menerima event `co
           case $event instanceof BetaRawContentBlockDeltaEvent:
               switch (true) {
                   case $event->delta instanceof BetaCompactionContentBlockDelta:
-                      echo "Compaction complete: " . strlen($event->delta->content ?? '') . " chars\n";
+                      echo 'Compaction complete: ' . strlen($event->delta->content ?? '') . " chars\n";
                       break;
                   case $event->delta instanceof BetaTextDelta:
                       echo $event->delta->text;
@@ -1966,7 +1967,7 @@ Blok compaction di-stream secara berbeda dari blok teks. Anda menerima event `co
 
   stream = client.beta.messages.stream(
     betas: ["compact-2026-01-12"],
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     messages: messages,
     context_management: {
@@ -2210,7 +2211,7 @@ Untuk memaksimalkan tingkat cache hit, tambahkan breakpoint `cache_control` di a
   $response = $client->beta->messages->create(
       maxTokens: 4096,
       messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['compact-2026-01-12'],
       system: [
           [
@@ -2236,7 +2237,7 @@ Untuk memaksimalkan tingkat cache hit, tambahkan breakpoint `cache_control` di a
 
   response = client.beta.messages.create(
     betas: ["compact-2026-01-12"],
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     system: [
       {
@@ -2327,8 +2328,7 @@ Endpoint penghitungan token (`/v1/messages/count_tokens`) menerapkan blok `compa
   ```
 
   ```bash CLI
-  ant beta:messages count-tokens \
-    --beta compact-2026-01-12 <<'YAML'
+  ant beta:messages count-tokens --beta compact-2026-01-12 <<'YAML'
   model: claude-opus-5-5
   messages:
     - role: user
@@ -2451,8 +2451,8 @@ Endpoint penghitungan token (`/v1/messages/count_tokens`) menerapkan blok `compa
       ]
   );
 
-  echo "Current tokens: " . $countResponse->inputTokens . "\n";
-  echo "Original tokens: " . $countResponse->contextManagement->originalInputTokens . "\n";
+  echo 'Current tokens: ' . $countResponse->inputTokens . "\n";
+  echo 'Original tokens: ' . $countResponse->contextManagement->originalInputTokens . "\n";
   ```
 
   ```ruby Ruby
@@ -2461,7 +2461,7 @@ Endpoint penghitungan token (`/v1/messages/count_tokens`) menerapkan blok `compa
 
   count_response = client.beta.messages.count_tokens(
     betas: ["compact-2026-01-12"],
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     messages: messages,
     context_management: {
       edits: [{ type: "compact_20260112" }]
@@ -2599,7 +2599,7 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
       return response.Content
           .Select(block => block.Value)
           .OfType<BetaTextBlock>()
-          .Select(tb => tb.Text)
+          .Select(textBlock => textBlock.Text)
           .FirstOrDefault() ?? "";
   }
   ```
@@ -2612,7 +2612,7 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
   	"fmt"
   	"log"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   var (
@@ -2705,7 +2705,8 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
   $client = new Client();
   $messages = [];
 
-  function chat($client, &$messages, $userMessage) {
+  function chat($client, &$messages, $userMessage)
+  {
       $messages[] = ['role' => 'user', 'content' => $userMessage];
 
       $response = $client->beta->messages->create(
@@ -2733,9 +2734,9 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
       return '';
   }
 
-  echo chat($client, $messages, "Help me build a Python web scraper") . "\n";
-  echo chat($client, $messages, "Add support for JavaScript-rendered pages") . "\n";
-  echo chat($client, $messages, "Now add rate limiting and error handling") . "\n";
+  echo chat($client, $messages, 'Help me build a Python web scraper') . "\n";
+  echo chat($client, $messages, 'Add support for JavaScript-rendered pages') . "\n";
+  echo chat($client, $messages, 'Now add rate limiting and error handling') . "\n";
   ```
 
   ```ruby Ruby
@@ -2747,7 +2748,7 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
 
     response = client.beta.messages.create(
       betas: ["compact-2026-01-12"],
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 4096,
       messages: messages,
       context_management: {
@@ -3035,7 +3036,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
       return response.Content
           .Select(block => block.Value)
           .OfType<BetaTextBlock>()
-          .Select(tb => tb.Text)
+          .Select(textBlock => textBlock.Text)
           .FirstOrDefault() ?? "";
   }
   ```
@@ -3048,7 +3049,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   	"fmt"
   	"log"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   var (
@@ -3086,8 +3087,12 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   		// tanpa blok thinking; giliran asisten yang kosong akan dibuang
   		var preserved []anthropic.BetaMessageParam
   		for _, message := range messages[max(0, len(messages)-3):] {
+  			if message.OfAssistant == nil {
+  				preserved = append(preserved, message)
+  				continue
+  			}
   			var content []anthropic.BetaContentBlockParamUnion
-  			for _, block := range message.Content {
+  			for _, block := range message.OfAssistant.Content {
   				if block.OfThinking == nil && block.OfRedactedThinking == nil {
   					content = append(content, block)
   				}
@@ -3095,12 +3100,11 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   			if len(content) == 0 {
   				continue
   			}
-  			message.Content = content
-  			preserved = append(preserved, message)
+  			preserved = append(preserved, anthropic.BetaMessageParam{OfAssistant: &anthropic.BetaAssistantMessageParam{Content: content}})
   		}
 
   		messagesAfterCompaction := []anthropic.BetaMessageParam{
-  			{Role: anthropic.BetaMessageParamRoleAssistant, Content: []anthropic.BetaContentBlockParamUnion{compactionParam}},
+  			{OfAssistant: &anthropic.BetaAssistantMessageParam{Content: []anthropic.BetaContentBlockParamUnion{compactionParam}}},
   		}
   		messagesAfterCompaction = append(messagesAfterCompaction, preserved...)
 
@@ -3231,7 +3235,8 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   $client = new Client();
   $messages = [];
 
-  function chat($client, &$messages, $userMessage) {
+  function chat($client, &$messages, $userMessage)
+  {
       $messages[] = ['role' => 'user', 'content' => $userMessage];
 
       $response = $client->beta->messages->create(
@@ -3293,9 +3298,9 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
       return '';
   }
 
-  echo chat($client, $messages, "Help me build a Python web scraper") . "\n";
-  echo chat($client, $messages, "Add support for JavaScript-rendered pages") . "\n";
-  echo chat($client, $messages, "Now add rate limiting and error handling") . "\n";
+  echo chat($client, $messages, 'Help me build a Python web scraper') . "\n";
+  echo chat($client, $messages, 'Add support for JavaScript-rendered pages') . "\n";
+  echo chat($client, $messages, 'Now add rate limiting and error handling') . "\n";
   ```
 
   ```ruby Ruby
@@ -3307,7 +3312,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
 
     response = client.beta.messages.create(
       betas: ["compact-2026-01-12"],
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 4096,
       messages: messages,
       context_management: {
@@ -3338,7 +3343,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
 
       response = client.beta.messages.create(
         betas: ["compact-2026-01-12"],
-        model: "claude-opus-5-5",
+        model: Anthropic::Model::CLAUDE_OPUS_5_5,
         max_tokens: 4096,
         messages: messages_after_compaction,
         context_management: {
@@ -3382,7 +3387,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
     Pelajari tentang ukuran jendela konteks dan strategi pengelolaannya.
   </Card>
 
-  <Card title="Cookbook compaction memori sesi" icon="book" href="https://platform.claude.com/cookbook/misc-session-memory-compaction">
+  <Card title="Resep compaction memori sesi (Claude Cookbook)" icon="book" href="https://platform.claude.com/cookbook/misc-session-memory-compaction">
     Jelajahi implementasi praktis yang mengelola percakapan berjalan lama dengan compaction memori sesi instan menggunakan threading latar belakang dan caching prompt.
   </Card>
 </CardGroup>

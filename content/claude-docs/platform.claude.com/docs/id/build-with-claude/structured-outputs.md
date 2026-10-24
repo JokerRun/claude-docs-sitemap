@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 7a18ece9404c385573bcee1e21fa75fda5e7274012f5d33dd362731e6c8aa122
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 4b1e0710018cef08bdf3f730c1e3af930fb6fa2e588f83c981a6aa770d61ed35
 ---
 
 ---
@@ -333,7 +333,7 @@ Output terstruktur menjamin respons yang sesuai skema melalui "constrained decod
     ```
 
     <Note>
-      Memberikan struct sebagai skema masih dalam tahap beta di Go, sehingga contoh ini menggunakan `client.Beta.Messages.New`. Untuk menggunakan `client.Messages.New` versi GA, berikan skema JSON seperti yang ditunjukkan di [Menggunakan skema JSON mentah](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#using-a-raw-json-schema).
+      Memberikan struct sebagai skema masih dalam tahap beta di Go, sehingga contoh ini menggunakan `client.Beta.Messages.New`. Untuk menggunakan `client.Messages.New` yang stabil, berikan skema JSON seperti yang ditunjukkan di [Menggunakan skema JSON mentah](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#using-a-raw-json-schema).
     </Note>
 
     SDK menghasilkan dan mentransformasi skema JSON dari struct dan melakukan unmarshal respons ke dalamnya.
@@ -378,7 +378,7 @@ Output terstruktur menjamin respons yang sesuai skema melalui "constrained decod
 
     Contoh di atas menghasilkan output:
 
-    ```text Output wrap
+    ```json Output
     {"name":"John Smith","email":"john@example.com","plan_interest":"Enterprise","demo_requested":true}
     ```
 
@@ -984,7 +984,7 @@ Untuk menggunakan skema JSON dari file, spesifikasi OpenAPI, atau kode yang memb
 
     Contoh di atas menghasilkan output:
 
-    ```text Output wrap
+    ```json Output
     {"name":"John Smith","email":"john@example.com","plan_interest":"Enterprise","demo_requested":true}
     ```
   </Tab>
@@ -1096,7 +1096,7 @@ Untuk menggunakan skema JSON dari file, spesifikasi OpenAPI, atau kode yang memb
 
     Contoh di atas menghasilkan output:
 
-    ```text Output wrap
+    ```json Output
     {"name":"John Smith","email":"john@example.com","plan_interest":"Enterprise"}
     ```
 

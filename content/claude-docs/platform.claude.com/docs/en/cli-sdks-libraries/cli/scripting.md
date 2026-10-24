@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 0c0a1aa9ec97e08105dec9ee42c0b6286321b8d4af23aaefdadc02857a842426
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 31bd86d8d95e36450f9e96cf769fe0a5143be3565ee710ed82517f56b40631c2
 ---
 
 ---
@@ -32,7 +32,7 @@ Once an agent and environment exist, you can drive a session from the shell:
       --title "Summarization task"
     ```
 
-    ```text Output wrap
+    ```json Output
     {
       "id": "session_01JZCh78XvmxJjiXVy3oSi7K",
       "status": "running"

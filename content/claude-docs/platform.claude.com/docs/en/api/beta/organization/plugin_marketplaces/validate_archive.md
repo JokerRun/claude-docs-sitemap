@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugin_marketplaces/validate_archive
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 8b996c9fe0efcd361009c73e9c2e9a04d2ebd844b6be590df5c2c0c7a624d40c
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 380c202c2f5d80dc443199a1d2050d0d2d1d460f9002ac4835fed52f52df3507
 ---
 
 ---
@@ -149,7 +149,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 ## Body parameters (form-data)
 
-- `archive: string`
+- `archive: file`
 
   A .zip of the marketplace directory (its contents at the root, or wrapped in one folder as a Git host's download produces), sent as a file part with a filename; DEFLATE- or STORE-compressed, at most 32 MB. A part sent without a filename, a second archive part, or any other form field is a 400; a larger archive is a 413.
 

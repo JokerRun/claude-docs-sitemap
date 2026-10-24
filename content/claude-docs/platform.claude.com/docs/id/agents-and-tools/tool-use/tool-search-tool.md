@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 114cc180aaad9b63af3a11af714ac66aac0dba3043e2a069e2c1f79106c9dc82
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: e37a6c4d997c901b796c4d0b2e85ef7cdeecee89469d136929fcf4d9f5e01573
 ---
 
 ---
@@ -80,7 +80,7 @@ Ketika Anda mengaktifkan tool search tool:
 2. Anda menyediakan setiap definisi alat dalam array `tools` dan mengatur `defer_loading: true` pada alat yang tidak boleh dimuat di awal. Setidaknya satu alat, biasanya tool search tool itu sendiri, harus tetap non-deferred.
 3. Awalnya, konteks Claude hanya berisi tool search tool dan alat non-deferred apa pun.
 4. Ketika Claude membutuhkan alat tambahan, ia mencari menggunakan tool search tool.
-5. API menjalankan pencarian dan mengembalikan alat yang cocok sebagai blok `tool_reference` (hingga 5 secara default; Claude dapat mengatur `limit` dalam input pencariannya).
+5. API menjalankan pencarian dan mengembalikan alat yang cocok sebagai blok `tool_reference` (hingga 5 secara default, meskipun Claude dapat menetapkan `limit` dalam input pencariannya).
 6. API secara otomatis memperluas referensi ini menjadi definisi alat lengkap.
 7. Claude memilih dari alat yang ditemukan dan memanggilnya.
 
@@ -91,57 +91,57 @@ Contoh berikut menyertakan tool search tool dan dua alat deferred:
 <CodeGroup>
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
-      -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
-      -H "content-type: application/json" \
-      -d '{
-          "model": "claude-opus-5-5",
-          "max_tokens": 2048,
-          "messages": [
-              {
-                  "role": "user",
-                  "content": "What is the weather in San Francisco?"
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 2048,
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is the weather in San Francisco?"
+        }
+      ],
+      "tools": [
+        {
+          "type": "tool_search_tool_regex_20251119",
+          "name": "tool_search_tool_regex"
+        },
+        {
+          "name": "get_weather",
+          "description": "Get the weather at a specific location",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "location": {"type": "string"},
+              "unit": {
+                "type": "string",
+                "enum": ["celsius", "fahrenheit"]
               }
-          ],
-          "tools": [
-              {
-                  "type": "tool_search_tool_regex_20251119",
-                  "name": "tool_search_tool_regex"
-              },
-              {
-                  "name": "get_weather",
-                  "description": "Get the weather at a specific location",
-                  "input_schema": {
-                      "type": "object",
-                      "properties": {
-                          "location": {"type": "string"},
-                          "unit": {
-                              "type": "string",
-                              "enum": ["celsius", "fahrenheit"]
-                          }
-                      },
-                      "required": ["location"]
-                  },
-                  "defer_loading": true
-              },
-              {
-                  "name": "search_files",
-                  "description": "Search through files in the workspace",
-                  "input_schema": {
-                      "type": "object",
-                      "properties": {
-                          "query": {"type": "string"},
-                          "file_types": {
-                              "type": "array",
-                              "items": {"type": "string"}
-                          }
-                      },
-                      "required": ["query"]
-                  },
-                  "defer_loading": true
+            },
+            "required": ["location"]
+          },
+          "defer_loading": true
+        },
+        {
+          "name": "search_files",
+          "description": "Search through files in the workspace",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "query": {"type": "string"},
+              "file_types": {
+                "type": "array",
+                "items": {"type": "string"}
               }
-          ]
-      }'
+            },
+            "required": ["query"]
+          },
+          "defer_loading": true
+        }
+      ]
+    }'
   ```
 
   ```bash CLI
@@ -438,7 +438,7 @@ Contoh berikut menyertakan tool search tool dan dua alat deferred:
       messages: [
           ['role' => 'user', 'content' => 'What is the weather in San Francisco?'],
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       tools: [
           [
               'type' => 'tool_search_tool_regex_20251119',
@@ -486,7 +486,7 @@ Contoh berikut menyertakan tool search tool dan dua alat deferred:
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 2048,
     messages: [
       { role: "user", content: "What is the weather in San Francisco?" }
@@ -535,7 +535,7 @@ Contoh berikut menyertakan tool search tool dan dua alat deferred:
   ```
 </CodeGroup>
 
-Claude mencari katalog, menemukan `get_weather`, dan memanggilnya. Respons berakhir dengan `stop_reason: "tool_use"`. Jalankan alat yang ditemukan dan kembalikan `tool_result` seperti dalam [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls). [Format respons](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool#response-format) menunjukkan blok yang Anda dapatkan kembali dan apa yang harus dikirim selanjutnya.
+Claude mencari katalog, menemukan `get_weather`, dan memanggilnya. Respons berakhir dengan `stop_reason: "tool_use"`. Jalankan alat yang ditemukan dan kembalikan `tool_result` seperti dalam [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls). [Format respons](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool#response-format) menunjukkan blok yang Anda terima kembali dan apa yang harus dikirim berikutnya.
 
 ## Definisi alat
 
@@ -601,7 +601,7 @@ Tandai alat untuk pemuatan sesuai permintaan dengan menambahkan `defer_loading: 
 * Jangan pernah mengatur `defer_loading: true` pada tool search tool itu sendiri.
 * Jaga agar 3–5 alat yang paling sering digunakan tetap non-deferred sehingga Claude dapat memanggilnya tanpa mencari terlebih dahulu.
 
-Toolset computer use dan browser use (`computer_toolset_20260801` dan `browser_toolset_20260801`) mengambil `defer_loading` per alat anggota di dalam objek `configs` entri, bukan pada entri itu sendiri; permintaan yang mengaturnya di tingkat entri akan ditolak. Karena toolset menunda dan memperluas sebagai satu unit, `defer_loading` harus menghasilkan nilai yang sama pada setiap anggota yang diaktifkan, dan ketika Claude menemukan toolset melalui pencarian, setiap anggota yang diaktifkan dimuat sekaligus. Lihat [Client toolsets](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets) untuk format `configs`.
+Toolset computer use dan browser use (`computer_toolset_20260801` dan `browser_toolset_20260801`) menerima `defer_loading` untuk setiap alat anggota di dalam objek `configs` milik entri tersebut, bukan pada entri itu sendiri; permintaan yang menetapkannya pada tingkat entri akan ditolak. Karena toolset ditangguhkan dan diperluas sebagai satu kesatuan, `defer_loading` harus bernilai sama pada setiap anggota yang diaktifkan, dan ketika Claude menemukan toolset melalui pencarian, setiap anggota yang diaktifkan dimuat sekaligus. Lihat [Toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets) untuk format `configs`.
 
 Kedua varian tool search (`regex` dan `bm25`) mencari nama alat, deskripsi, nama argumen, dan deskripsi argumen.
 
@@ -653,10 +653,10 @@ Ketika Claude menggunakan tool search tool, respons menyertakan jenis blok berik
 
 ### Memahami respons
 
-* **`server_tool_use`:** Panggilan Claude ke tool search tool. Pencarian berjalan di server Anthropic. Jangan pernah mengembalikan `tool_result` untuk ID `srvtoolu_...`-nya. `input` menyimpan pencarian (`pattern` untuk varian regex, `query` untuk BM25) dan dapat menyertakan `limit` opsional, sebuah integer dari 1 hingga 10.000 yang membatasi berapa banyak alat yang cocok yang dikembalikan pencarian (default: 5).
+* **`server_tool_use`:** panggilan Claude ke alat pencarian alat. Pencarian berjalan di server Anthropic. Jangan pernah mengembalikan `tool_result` untuk ID `srvtoolu_...`-nya. `input` berisi pencarian (`pattern` untuk varian regex, `query` untuk BM25) dan mungkin menyertakan `limit` opsional, bilangan bulat dari 1 hingga 10.000 yang membatasi berapa banyak alat yang cocok yang dikembalikan oleh pencarian (default: 5).
 * **`tool_search_tool_result`:** hasil pencarian, dalam objek `tool_search_tool_search_result` bersarang. Simpan apa adanya dalam riwayat pesan.
 * **`tool_references`:** sebuah array objek `tool_reference` yang menunjuk ke alat yang ditemukan. API memperluasnya untuk Claude. Anda tidak pernah memperluasnya sendiri.
-* **`tool_use`:** Panggilan Claude ke alat yang ditemukan. Jalankan dan kembalikan `tool_result` persis seperti dalam penggunaan alat standar.
+* **`tool_use`:** panggilan Claude ke alat yang ditemukan. Jalankan dan kembalikan `tool_result` persis seperti dalam penggunaan alat standar.
 
 API secara otomatis memperluas blok `tool_reference` menjadi definisi alat lengkap sebelum menampilkannya ke Claude. Anda tidak perlu menangani perluasan ini sendiri, selama Anda menyediakan semua definisi alat yang cocok dalam parameter `tools`.
 
@@ -808,7 +808,7 @@ data: {"type": "content_block_start", "index": 1, "content_block": {"type": "ser
 event: content_block_delta
 data: {"type": "content_block_delta", "index": 1, "delta": {"type": "input_json_delta", "partial_json": "{\"pattern\":\"weather\"}"}}
 
-// Pause while search executes
+// Pause while search runs
 
 // Search results streamed
 event: content_block_start
@@ -825,7 +825,7 @@ Anda dapat menyertakan tool search tool dalam [Messages Batches API](https://pla
 
 ### Batasan
 
-* **Alat deferred maksimum:** 10.000 alat dengan `defer_loading: true` per permintaan
+* **Maksimum alat yang ditangguhkan:** 10.000 alat dengan `defer_loading: true` untuk setiap permintaan
 * **Hasil pencarian:** setiap pencarian mengembalikan hingga 5 alat yang cocok secara default; Claude dapat mengatur `limit` dalam input pencariannya ke integer mana pun dari 1 hingga 10.000
 * **Panjang pola dan kueri:** maksimum 200 karakter untuk pola regex dan 500 karakter untuk kueri BM25
 * **Dukungan model:** lihat [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool#model-compatibility)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/additional-resources
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 0fa1aed5578e2b4ffeeadc8a255acbe52cd4bca11464df7e59cf2a98de28f902
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: b3a7e5963de185afc09c2f769851969631c7c714f320ee08931d84b3f69ae25f
 ---
 
 ---
@@ -22,7 +22,7 @@ description: Sumber daya pembelajaran dan format dokumentasi yang dioptimalkan u
     Pelajaran langkah demi langkah tentang membangun dengan Claude.
   </Card>
 
-  <Card title="Cookbook" icon="fork-knife" href="https://platform.claude.com/cookbook">
+  <Card title="Claude Cookbook" icon="fork-knife" href="https://platform.claude.com/cookbook">
     Contoh kode dan implementasi yang dapat direplikasi.
   </Card>
 

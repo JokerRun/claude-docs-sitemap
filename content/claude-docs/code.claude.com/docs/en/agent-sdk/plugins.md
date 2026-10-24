@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/plugins
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: bd5623711a1f53dc22f221eca59300e46600468999989d42bf0e4f3018ab8573
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 53399f6bfef95f37119a001a0041cf4eb66db74e67b2537be2cd41cf9c04ede5
 ---
 
 > ## Documentation Index
@@ -20,13 +20,13 @@ Plugins let you extend Claude Code with custom functionality that can be shared 
 * **Hooks**: event handlers that respond to tool use and other events
 * **MCP servers**: external tool integrations via Model Context Protocol
 
-For complete information on plugin structure and how to create plugins, see [Plugins](/docs/en/plugins/overview.md).
+For complete information on plugin structure and how to create plugins, see [Plugins](https://code.claude.com/docs/en/plugins/overview.md).
 
 ## Loading plugins
 
 Load plugins by providing their local file system paths in your options configuration. The `type` field must be `"local"`, the only value the SDK accepts. The SDK supports loading multiple plugins from different locations.
 
-To use a plugin distributed through a [marketplace](/docs/en/plugins/overview.md) or remote repository, download it first and provide the local directory path. For the directory layout a plugin needs, see the [Plugin structure reference](#plugin-structure-reference) below.
+To use a plugin distributed through a [marketplace](https://code.claude.com/docs/en/plugins/overview.md) or remote repository, download it first and provide the local directory path. For the directory layout a plugin needs, see the [Plugin structure reference](#plugin-structure-reference) below.
 
 ```typescript TypeScript theme={null}
 import { query } from "@anthropic-ai/claude-agent-sdk";
@@ -312,7 +312,7 @@ plugins: [
 
 ### Plugin not loading
 
-If your plugin doesn't appear in the init message's `plugins` list, check its [`plugin_errors`](/docs/en/agent-sdk/typescript#sdksystemmessage) field for the reason, then work through these checks:
+If your plugin doesn't appear in the init message's `plugins` list, check its [`plugin_errors`](https://code.claude.com/docs/en/agent-sdk/typescript#sdksystemmessage) field for the reason, then work through these checks:
 
 1. **Check the path**: ensure the path points to the plugin root directory, the parent of `skills/`, `agents/`, `hooks/`, `commands/`, or `.claude-plugin/`
 2. **Validate plugin.json**: if your plugin includes a manifest, ensure it has valid JSON syntax
@@ -329,8 +329,8 @@ If plugin skills don't work:
 
 ## See also
 
-* [Plugins](/docs/en/plugins/overview.md) - Complete plugin development guide
-* [Plugins reference](/docs/en/plugins/manifest-reference.md) - Technical specifications
-* [Commands](/docs/en/agent-sdk/skills.md#dispatch-commands-by-name) - Dispatching commands in the SDK
-* [Subagents](/docs/en/agent-sdk/subagents.md) - Working with specialized agents
-* [Skills](/docs/en/agent-sdk/skills.md) - Using Agent Skills
+* [Plugins](https://code.claude.com/docs/en/plugins/overview.md) - Complete plugin development guide
+* [Plugins reference](https://code.claude.com/docs/en/plugins/manifest-reference.md) - Technical specifications
+* [Commands](https://code.claude.com/docs/en/agent-sdk/skills.md#dispatch-commands-by-name) - Dispatching commands in the SDK
+* [Subagents](https://code.claude.com/docs/en/agent-sdk/subagents.md) - Working with specialized agents
+* [Skills](https://code.claude.com/docs/en/agent-sdk/skills.md) - Using Agent Skills

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/overview
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: aa680eed7f9dc31dea8a0f47da5de2769ecec9cfc50184ce88b392d8bef6d662
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 4eb5a066852f23a1258924cec828219737569c678b3563ebe47335cb1c9335cd
 ---
 
 ---
@@ -75,7 +75,7 @@ Claude Managed Agents dibangun di atas empat konsep:
   </Step>
 
   <Step title="Arahkan atau interupsi">
-    Kirim event pengguna tambahan untuk memandu agen di tengah eksekusi, atau interupsi agen untuk mengubah arah.
+    Kirim event pengguna tambahan untuk memandu agen saat sedang berjalan, atau interupsi agen untuk mengubah arah.
   </Step>
 </Steps>
 

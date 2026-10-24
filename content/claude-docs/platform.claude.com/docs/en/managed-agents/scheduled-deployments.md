@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/scheduled-deployments
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 45e18293da1288407acc54571ad4aa00ac0a0a3435698a4052ce38155c6cec64
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 6f98fa8bab17dafae117b757d15ef1d46e3eb9b019731e74802f89aaffc9e2b4
 ---
 
 ---
@@ -228,7 +228,7 @@ When creating a deployment, you pass the [session configurations](https://platfo
 
 The response includes a deployment object with a populated `schedule.upcoming_runs_at` with the next upcoming fire times, to confirm your schedule was set correctly.
 
-```text wrap
+```json
 {
   "id": "depl_01xyz",
   "status": "active",
@@ -581,7 +581,7 @@ You can additionally filter on deployment runs with errors:
 
 A failed run includes an `error` with a `type` describing why session creation was rejected (for example, `environment_archived_error`, `agent_archived_error`, or `session_rate_limited_error`). See the [List Deployment Runs](https://platform.claude.com/docs/en/api/beta/deployment_runs/list) reference for all filter parameters and the response schema.
 
-```text
+```json
 {
   "type": "deployment_run",
   "id": "drun_01abc124",

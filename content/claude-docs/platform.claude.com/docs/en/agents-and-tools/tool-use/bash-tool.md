@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: e22f67cea8c733f34a3b78c858f089bbeabf5ddcc7f06c1069f93adea7e5e388
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 0b634a4b029c413600b637c0e42f85b99bfc1f22fe66d9a789cb4b354e9b1b7f
 ---
 
 ---
@@ -188,7 +188,7 @@ The current version of the tool is `bash_20250124`. For model support, beta head
 
 Claude responds with `stop_reason: "tool_use"` and a `tool_use` block that contains the command for your application to run:
 
-```text Output wrap
+```json Output
 {
   "id": "msg_01XAbCDeFgHiJkLmNoPQrStU",
   "model": "claude-opus-5-5",

@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 1e6de6d43636377beb97c47a4181d0983464e7dbc63a6ec4e93db0e9e9605670
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 3cd3eb56cd3117c128756e5e570db3b256f845b09187943743d53cd9fdaa4004
 ---
 
 ---
 title: Vision
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-description: Kemampuan vision Claude memungkinkannya memahami dan menganalisis gambar, membuka berbagai kemungkinan menarik untuk interaksi multimodal.
+description: Kemampuan vision Claude memungkinkannya memproses dan menganalisis gambar, membuka kemungkinan menarik untuk interaksi multimodal.
 ---
 
 Panduan ini menjelaskan cara mengirim gambar ke Claude, batasan dan biaya yang berlaku, serta tempat menemukan panduan untuk [alur kerja berbasis koordinat](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates).
@@ -20,7 +20,7 @@ Panduan ini menjelaskan cara mengirim gambar ke Claude, batasan dan biaya yang b
 Gunakan kemampuan vision Claude melalui:
 
 * [claude.ai](https://claude.ai/). Unggah gambar seperti Anda mengunggah file, atau seret dan lepas gambar langsung ke jendela chat.
-* [Playground](https://platform.claude.com/playground) di Claude Console. Tambahkan gambar langsung ke blok pesan User mana pun.
+* [Playground](https://platform.claude.com/playground) di Claude Console. Tambahkan gambar langsung ke blok pesan **User** mana pun.
 * Permintaan API. Lihat contoh-contoh berikut.
 
 Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah satu dari tiga jenis sumber:
@@ -30,7 +30,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
 3. `file_id` yang dikembalikan oleh [Files API](https://platform.claude.com/docs/id/build-with-claude/files) (unggah sekali, referensikan berkali-kali)
 
 <Note>
-  Di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), saat ini hanya sumber berenkode base64 yang tersedia.
+  Di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), saat ini hanya sumber yang dienkode base64 yang tersedia.
 </Note>
 
 <Tip>
@@ -135,7 +135,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
             source: {
               type: "base64",
               media_type: "image/jpeg",
-              data: imageData // Base64-encoded image data as string
+              data: imageData // base64-encoded image data as string
             }
           },
           {
@@ -210,30 +210,32 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
   String imageData =
-    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4z8AAAAMBAQDJ/pLvAAAAAElFTkSuQmCC";
+      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4z8AAAAMBAQDJ/pLvAAAAAElFTkSuQmCC";
 
   List<ContentBlockParam> contentBlockParams = List.of(
-    ContentBlockParam.ofImage(
-      ImageBlockParam.builder()
-        .source(
-          Base64ImageSource.builder()
-            .mediaType(Base64ImageSource.MediaType.IMAGE_PNG)
-            .data(imageData)
-            .build()
-        )
-        .build()
-    ),
-    ContentBlockParam.ofText(TextBlockParam.builder().text("Describe this image.").build())
+      ContentBlockParam.ofImage(
+          ImageBlockParam.builder()
+              .source(
+                  Base64ImageSource.builder()
+                      .mediaType(Base64ImageSource.MediaType.IMAGE_PNG)
+                      .data(imageData)
+                      .build()
+              )
+              .build()
+      ),
+      ContentBlockParam.ofText(TextBlockParam.builder()
+          .text("Describe this image.")
+          .build())
   );
   Message message = client
-    .messages()
-    .create(
-      MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_5_5)
-        .maxTokens(1024)
-        .addUserMessageOfContentBlockParams(contentBlockParams)
-        .build()
-    );
+      .messages()
+      .create(
+          MessageCreateParams.builder()
+              .model(Model.CLAUDE_OPUS_5_5)
+              .maxTokens(1024)
+              .addUserMessageOfContentBlockParams(contentBlockParams)
+              .build()
+      );
 
   IO.println(message);
   ```
@@ -241,7 +243,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
   ```php PHP
   $client = new Client();
 
-  $imageData = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4z8AAAAMBAQDJ/pLvAAAAAElFTkSuQmCC";
+  $imageData = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4z8AAAAMBAQDJ/pLvAAAAAElFTkSuQmCC';
 
   $message = $client->messages->create(
       maxTokens: 1024,
@@ -261,7 +263,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
               ],
           ],
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
@@ -273,7 +275,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
   image_data = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4z8AAAAMBAQDJ/pLvAAAAAElFTkSuQmCC"
 
   message = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       {
@@ -456,26 +458,28 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   List<ContentBlockParam> contentBlockParams = List.of(
-    ContentBlockParam.ofImage(
-      ImageBlockParam.builder()
-        .source(
-          UrlImageSource.builder()
-            .url("https://platform.claude.com/docs/images/vision-example.jpg")
-            .build()
-        )
-        .build()
-    ),
-    ContentBlockParam.ofText(TextBlockParam.builder().text("Describe this image.").build())
+      ContentBlockParam.ofImage(
+          ImageBlockParam.builder()
+              .source(
+                  UrlImageSource.builder()
+                      .url("https://platform.claude.com/docs/images/vision-example.jpg")
+                      .build()
+              )
+              .build()
+      ),
+      ContentBlockParam.ofText(TextBlockParam.builder()
+          .text("Describe this image.")
+          .build())
   );
   Message message = client
-    .messages()
-    .create(
-      MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_5_5)
-        .maxTokens(1024)
-        .addUserMessageOfContentBlockParams(contentBlockParams)
-        .build()
-    );
+      .messages()
+      .create(
+          MessageCreateParams.builder()
+              .model(Model.CLAUDE_OPUS_5_5)
+              .maxTokens(1024)
+              .addUserMessageOfContentBlockParams(contentBlockParams)
+              .build()
+      );
   System.out.println(message);
   ```
 
@@ -582,8 +586,7 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
     https://platform.claude.com/docs/images/vision-example.jpg
 
   # Pertama, unggah gambar Anda ke Files API
-  ant files upload \
-    --file ./vision-example.jpg
+  ant files upload --file ./vision-example.jpg
 
   # Lalu gunakan file_id dari respons unggahan dalam pesan Anda
   ant messages create <<YAML
@@ -756,39 +759,43 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
   import com.anthropic.models.files.FileMetadata;
   import com.anthropic.models.files.FileUploadParams;
   // ...
-      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      // Unggah file gambar
-      FileMetadata file = client.files().upload(
-        FileUploadParams.builder()
-          .file(
-            MultipartField.<InputStream>builder()
-              .value(Files.newInputStream(Path.of("vision-example.jpg")))
-              .filename("vision-example.jpg")
-              .contentType("image/jpeg")
-              .build()
-          )
-          .build()
-      );
+          // Unggah file gambar
+          FileMetadata file = client.files().upload(
+              FileUploadParams.builder()
+                  .file(
+                      MultipartField.<InputStream>builder()
+                          .value(Files.newInputStream(Path.of("vision-example.jpg")))
+                          .filename("vision-example.jpg")
+                          .contentType("image/jpeg")
+                          .build()
+                  )
+                  .build()
+          );
 
-      // Gunakan file yang telah diunggah dalam pesan
-      ImageBlockParam imageParam = ImageBlockParam.builder().fileSource(file.id()).build();
+          // Gunakan file yang telah diunggah dalam pesan
+          ImageBlockParam imageParam = ImageBlockParam.builder()
+              .fileSource(file.id())
+              .build();
 
-      MessageCreateParams params = MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_5_5)
-        .maxTokens(1024)
-        .addUserMessageOfContentBlockParams(
-          List.of(
-            ContentBlockParam.ofImage(imageParam),
-            ContentBlockParam.ofText(
-              TextBlockParam.builder().text("Describe this image.").build()
-            )
-          )
-        )
-        .build();
+          MessageCreateParams params = MessageCreateParams.builder()
+              .model(Model.CLAUDE_OPUS_5_5)
+              .maxTokens(1024)
+              .addUserMessageOfContentBlockParams(
+                  List.of(
+                      ContentBlockParam.ofImage(imageParam),
+                      ContentBlockParam.ofText(
+                          TextBlockParam.builder()
+                              .text("Describe this image.")
+                              .build()
+                      )
+                  )
+              )
+              .build();
 
-      Message message = client.messages().create(params);
-      System.out.println(message.content());
+          Message message = client.messages().create(params);
+          System.out.println(message.content());
   ```
 
   ```php PHP
@@ -1097,7 +1104,9 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
   String image2Data = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYPgPAAEDAQAIicLsAAAAAElFTkSuQmCC";
 
   List<ContentBlockParam> contentBlockParams = List.of(
-      ContentBlockParam.ofText(TextBlockParam.builder().text("Image 1:").build()),
+      ContentBlockParam.ofText(TextBlockParam.builder()
+          .text("Image 1:")
+          .build()),
       ContentBlockParam.ofImage(
           ImageBlockParam.builder()
               .source(
@@ -1108,7 +1117,9 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
               )
               .build()
       ),
-      ContentBlockParam.ofText(TextBlockParam.builder().text("Image 2:").build()),
+      ContentBlockParam.ofText(TextBlockParam.builder()
+          .text("Image 2:")
+          .build()),
       ContentBlockParam.ofImage(
           ImageBlockParam.builder()
               .source(
@@ -1120,7 +1131,9 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
               .build()
       ),
       ContentBlockParam.ofText(
-          TextBlockParam.builder().text("How are these images different?").build()
+          TextBlockParam.builder()
+              .text("How are these images different?")
+              .build()
       )
   );
 
@@ -1171,7 +1184,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
               ],
           ],
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   echo $message;
@@ -1184,7 +1197,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
   image2_data = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYPgPAAEDAQAIicLsAAAAAElFTkSuQmCC"
 
   message = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       {
@@ -1226,24 +1239,24 @@ Dalam percakapan multi-giliran, tambahkan gambar baru pada giliran `user` beriku
 
 ### Batasan permintaan
 
-Jumlah maksimum gambar per pesan atau permintaan adalah:
+Jumlah maksimum gambar untuk setiap pesan atau permintaan adalah:
 
-* 20 per pesan di [claude.ai](https://claude.ai/).
-* 100 per permintaan di API, untuk model dengan "context window" (jendela konteks) 200k token.
-* 600 per permintaan di API, untuk semua model lainnya.
+* 20 untuk setiap pesan di [claude.ai](https://claude.ai/)
+* 100 untuk setiap permintaan di API, untuk model dengan "context window" (jendela konteks) 200k token
+* 600 untuk setiap permintaan di API, untuk semua model lainnya
 
-Dimensi maksimum per gambar adalah 8000x8000 px.
+Dimensi maksimum untuk setiap gambar adalah 8000x8000 px.
 
-Jika satu permintaan API berisi lebih dari 20 gambar, batas dimensi per gambar yang lebih ketat berlaku untuk setiap gambar dalam permintaan tersebut. Semua blok `image` dalam permintaan dihitung terhadap ambang ini, termasuk gambar dari giliran percakapan sebelumnya yang Anda kirim ulang dan gambar yang bersarang di dalam konten `tool_result` (misalnya, tangkapan layar yang dikembalikan ke alat computer use). Di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), blok dokumen seperti PDF juga dihitung terhadap ambang ini. Gambar yang melebihi batas yang lebih ketat akan ditolak dengan `invalid_request_error` yang pesannya merujuk pada "many-image requests" dan menyatakan batas saat ini dalam piksel. Agar tetap di bawah batas di semua platform, ubah ukuran setiap gambar sehingga tidak ada dimensi yang melebihi 2000 px, atau batasi permintaan hingga 20 blok gambar dan dokumen atau kurang.
+Jika satu permintaan API berisi lebih dari 20 gambar, batas dimensi per gambar yang lebih ketat berlaku untuk setiap gambar dalam permintaan tersebut. Semua blok `image` dalam permintaan dihitung terhadap ambang batas ini, termasuk gambar dari giliran percakapan sebelumnya yang Anda kirim ulang dan gambar yang bersarang di dalam konten `tool_result` (misalnya, tangkapan layar yang dikembalikan ke alat computer use). Di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), blok dokumen seperti PDF juga dihitung terhadap ambang batas ini. Gambar yang melebihi batas yang lebih ketat akan ditolak dengan `invalid_request_error` yang pesannya merujuk pada "many-image requests" dan menyebutkan batas saat ini dalam piksel. Agar tetap di bawah batas di semua platform, ubah ukuran setiap gambar sehingga tidak ada dimensi yang melebihi 2000 px, atau batasi permintaan hingga 20 blok gambar dan dokumen atau kurang.
 
 Ukuran maksimum per gambar adalah:
 
-* 10 MB (berenkode base64) saat menggunakan Claude API secara langsung.
-* 5 MB (berenkode base64) di Amazon Bedrock dan Claude Models on Google Cloud (Google managed).
+* 10 MB (dienkode base64) di Claude API dan Claude Models on Google Cloud (Google managed).
+* 5 MB (dienkode base64) di Amazon Bedrock.
 * 10 MB di [claude.ai](https://claude.ai/).
 
 <Note>
-  Meskipun API mendukung hingga 600 gambar per permintaan, [batas ukuran permintaan](https://platform.claude.com/docs/id/api/overview#request-size-limits) dapat tercapai lebih dulu: 32 MB untuk endpoint standar, dan lebih rendah pada beberapa platform yang dioperasikan mitra, seperti Amazon Bedrock dan Claude Models on Google Cloud (Google managed). Untuk banyak gambar, pertimbangkan untuk mengunggah dengan [Files API](https://platform.claude.com/docs/id/build-with-claude/vision#files-api-image-example) dan mereferensikan dengan `file_id` agar payload permintaan tetap kecil.
+  Meskipun API mendukung hingga 600 gambar untuk setiap permintaan, [batas ukuran permintaan](https://platform.claude.com/docs/id/api/overview#request-size-limits) dapat tercapai lebih dulu: 32 MB untuk endpoint standar, dan lebih rendah pada beberapa platform yang dioperasikan mitra, seperti Amazon Bedrock dan Claude Models on Google Cloud (Google managed). Untuk banyak gambar, pertimbangkan [mengunggah dengan Files API](https://platform.claude.com/docs/id/build-with-claude/vision#files-api-image-example) dan mereferensikannya dengan `file_id` agar payload permintaan tetap kecil.
 
   Bahkan saat menggunakan Files API, permintaan dengan banyak gambar besar dapat gagal sebelum mencapai jumlah 600 gambar. Kurangi dimensi gambar atau ukuran file (misalnya, dengan downsampling) sebelum mengunggah (lihat [Resolusi dan biaya token](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size)).
 </Note>
@@ -1254,14 +1267,14 @@ Claude mendukung gambar JPEG, PNG, GIF, dan WebP (`image/jpeg`, `image/png`, `im
 
 ### Resolusi dan biaya token
 
-Claude melihat gambar dalam bentuk patch, bukan piksel. Setiap patch adalah blok gambar berukuran 28×28 piksel, yang disebut sebagai token visual. Oleh karena itu, sebuah gambar memerlukan `⌈width / 28⌉ × ⌈height / 28⌉` token visual.
+Claude memproses gambar dalam bentuk patch, bukan piksel. Setiap patch adalah blok gambar berukuran 28×28 piksel, yang disebut sebagai token visual. Oleh karena itu, sebuah gambar memerlukan biaya `⌈width / 28⌉ × ⌈height / 28⌉` token visual.
 
 Setiap model memiliki resolusi gambar native maksimum, yang dinyatakan sebagai batas sisi panjang dan batas token visual. Gambar yang lebih besar dari salah satu batas tersebut akan diperkecil sebelum diproses; lihat [Cara Claude mengubah ukuran dan menambahkan padding pada gambar](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images) untuk aturan persisnya. Pengecualiannya adalah tangkapan layar dan gambar zoom yang Anda kembalikan ke toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#targets-and-coordinates): API menolak gambar `tool_result` yang melebihi batas model dengan error validasi alih-alih memperkecilnya, jadi ubah ukuran gambar tersebut di aplikasi Anda sebelum mengembalikannya. Agar gambar berukuran berlebih lainnya ditolak dengan error alih-alih diperkecil, atur [field `transformations`](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#oversized-image-error) pada blok gambar.
 
 | Tingkat resolusi | Model                                | Sisi panjang maks | Token visual maks |
 | ---------------- | ------------------------------------ | ----------------- | ----------------- |
-| Resolusi tinggi  | Claude 4.7 dan model yang lebih baru | 2576 px           | 4784              |
-| Standar          | Semua model lainnya                  | 1568 px           | 1568              |
+| Resolusi tinggi  | Claude 4.7 dan model yang lebih baru | 2.576 px          | 4.784             |
+| Standar          | Semua model lainnya                  | 1.568 px          | 1.568             |
 
 Dukungan resolusi tinggi bersifat otomatis pada model yang tercantum dan tidak memerlukan header beta atau opt-in di sisi klien.
 
@@ -1270,11 +1283,11 @@ Tabel berikut menunjukkan resolusi setelah diperkecil dan biaya token visual unt
 | Ukuran gambar                  | Tingkat standar: diperkecil menjadi | Tingkat standar: token | Tingkat resolusi tinggi: diperkecil menjadi | Tingkat resolusi tinggi: token |
 | ------------------------------ | ----------------------------------- | ---------------------- | ------------------------------------------- | ------------------------------ |
 | 200x200 px (0,04 megapiksel)   | Tidak diubah ukurannya              | 64                     | Tidak diubah ukurannya                      | 64                             |
-| 1000x1000 px (1 megapiksel)    | Tidak diubah ukurannya              | 1296                   | Tidak diubah ukurannya                      | 1296                           |
-| 1092x1092 px (1,19 megapiksel) | Tidak diubah ukurannya              | 1521                   | Tidak diubah ukurannya                      | 1521                           |
-| 1920x1080 px (2,07 megapiksel) | 1456x819 px                         | 1560                   | Tidak diubah ukurannya                      | 2691                           |
-| 2000x1500 px (3 megapiksel)    | 1269x952 px                         | 1564                   | Tidak diubah ukurannya                      | 3888                           |
-| 3840x2160 px (8,29 megapiksel) | 1456x819 px                         | 1560                   | 2576x1449 px                                | 4784                           |
+| 1000x1000 px (1 megapiksel)    | Tidak diubah ukurannya              | 1.296                  | Tidak diubah ukurannya                      | 1.296                          |
+| 1092x1092 px (1,19 megapiksel) | Tidak diubah ukurannya              | 1.521                  | Tidak diubah ukurannya                      | 1.521                          |
+| 1920x1080 px (2,07 megapiksel) | 1456x819 px                         | 1.560                  | Tidak diubah ukurannya                      | 2.691                          |
+| 2000x1500 px (3 megapiksel)    | 1269x952 px                         | 1.564                  | Tidak diubah ukurannya                      | 3.888                          |
+| 3840x2160 px (8,29 megapiksel) | 1456x819 px                         | 1.560                  | 2576x1449 px                                | 4.784                          |
 
 Ketika sebuah gambar diperkecil, Claude menskalakannya ke ukuran terbesar yang sesuai dengan batas tingkat tersebut sambil mempertahankan rasio aspeknya. Ini membatasi biaya token. Untuk aturan persis dan implementasi referensi, lihat [Cara Claude mengubah ukuran dan menambahkan padding pada gambar](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images).
 
@@ -1295,20 +1308,20 @@ Saat memberikan gambar ke Claude, perhatikan hal-hal berikut untuk hasil terbaik
 
 ## Koordinat dan bounding box
 
-Untuk bounding box, titik, dan koordinat piksel, lihat [Koordinat dan bounding box](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates). Claude mengembalikan koordinat piksel absolut relatif terhadap gambar yang dilihatnya setelah pengubahan ukuran; panduan tersebut membahas cara Claude mengubah ukuran dan menambahkan padding pada gambar serta cara mengubah ukuran terlebih dahulu atau menskalakan ulang agar koordinat selaras dengan gambar asli Anda.
+Untuk bounding box, titik, dan koordinat piksel, lihat [Koordinat dan bounding box](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates). Claude mengembalikan koordinat piksel absolut relatif terhadap gambar yang diprosesnya setelah pengubahan ukuran; panduan tersebut membahas cara Claude mengubah ukuran dan menambahkan padding pada gambar serta cara mengubah ukuran terlebih dahulu atau menskalakan ulang agar koordinat sesuai dengan gambar asli Anda.
 
 ***
 
 ## Keterbatasan
 
-Meskipun kemampuan pemahaman gambar Claude sangat mutakhir, ada beberapa keterbatasan yang perlu diperhatikan:
+Meskipun kemampuan pemahaman gambar Claude sudah canggih, ada beberapa keterbatasan yang perlu diperhatikan:
 
-* **Identifikasi orang:** Claude [tidak dapat digunakan](https://www.anthropic.com/legal/aup) untuk menyebutkan nama orang dalam gambar dan akan menolak melakukannya.
+* **Identifikasi orang:** Claude tidak dapat digunakan untuk menyebutkan nama orang dalam gambar dan akan menolak melakukannya (lihat [Kebijakan Penggunaan](https://www.anthropic.com/legal/aup)).
 * **Akurasi:** Claude mungkin berhalusinasi atau membuat kesalahan saat menafsirkan gambar berkualitas rendah, diputar, atau sangat kecil di bawah 200 piksel.
 * **Penalaran spasial:** Output koordinat dan lokalisasi Claude bersifat perkiraan. Ikuti panduan di [Koordinat dan bounding box](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates) dan verifikasi output sebelum mengandalkannya.
 * **Penghitungan:** Claude dapat memberikan perkiraan jumlah objek dalam gambar tetapi mungkin tidak selalu akurat secara tepat, terutama dengan objek kecil dalam jumlah besar.
 * **Gambar buatan AI:** Claude tidak dapat menentukan apakah sebuah gambar dibuat oleh AI dan mungkin salah jika ditanya. Jangan mengandalkannya untuk mendeteksi gambar palsu atau sintetis.
-* **Konten tidak pantas:** Claude tidak memproses gambar tidak pantas atau eksplisit yang melanggar [Kebijakan Penggunaan yang Dapat Diterima](https://www.anthropic.com/legal/aup).
+* **Konten yang tidak pantas:** Claude tidak memproses gambar yang tidak pantas atau eksplisit yang melanggar [Kebijakan Penggunaan](https://www.anthropic.com/legal/aup).
 * **Aplikasi kesehatan:** Meskipun Claude dapat menganalisis gambar medis umum, Claude tidak dirancang untuk menafsirkan pindaian diagnostik kompleks seperti CT atau MRI. Output Claude tidak boleh dianggap sebagai pengganti saran atau diagnosis medis profesional.
 
 Selalu tinjau dan verifikasi interpretasi gambar Claude dengan cermat, terutama untuk kasus penggunaan berisiko tinggi. Jangan gunakan Claude untuk tugas yang memerlukan presisi sempurna atau analisis gambar sensitif tanpa pengawasan manusia.
@@ -1331,7 +1344,7 @@ Selalu tinjau dan verifikasi interpretasi gambar Claude dengan cermat, terutama 
   </Accordion>
 
   <Accordion title="Berapa banyak gambar yang dapat saya sertakan dalam satu permintaan?">
-    Hingga 600 per permintaan API (100 untuk model dengan jendela konteks 200k token) dan 20 per giliran di claude.ai. Lihat [Batasan permintaan](https://platform.claude.com/docs/id/build-with-claude/vision#request-limits) untuk detail dan batas dimensi per gambar yang lebih rendah yang berlaku di atas 20 gambar.
+    Hingga 600 untuk setiap permintaan API (100 untuk model dengan jendela konteks 200k token) dan 20 untuk setiap giliran di claude.ai. Lihat [Batasan permintaan](https://platform.claude.com/docs/id/build-with-claude/vision#request-limits) untuk detail dan batas dimensi per gambar yang lebih rendah yang berlaku di atas 20 gambar.
   </Accordion>
 
   <Accordion title="Apakah Claude membaca metadata gambar?">
@@ -1366,7 +1379,7 @@ Selalu tinjau dan verifikasi interpretasi gambar Claude dengan cermat, terutama 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Cookbook multimodal" icon="image" href="https://platform.claude.com/cookbook/multimodal-getting-started-with-vision">
+  <Card title="Resep multimodal" icon="image" href="https://platform.claude.com/cookbook/multimodal-getting-started-with-vision">
     Dapatkan tips dan teknik praktik terbaik untuk tugas seperti menafsirkan grafik dan mengekstrak konten dari formulir.
   </Card>
 

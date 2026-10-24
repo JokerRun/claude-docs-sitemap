@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/migration
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: dd124e5e9b7ff4d9010ebe578fa7de33609c9748799bf1c118971988e550e5f1
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: c59c2b67f68fd3fe8ca628264b73125e67ae632aaf41722dac370e857475e24b
 ---
 
 ---
@@ -27,7 +27,7 @@ Jika Anda membangun agen dengan memanggil `client.messages.create()` (csharp: `c
 
 | Sebelum                                                                                                           | Sesudah                                                                                                                        |
 | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Anda memelihara array riwayat percakapan dan mengirimkannya kembali pada setiap giliran.                          | Sesi menyimpan riwayat di sisi server. Kirim event, terima event.                                                              |
+| Anda memelihara array riwayat percakapan dan mengirimkannya kembali pada setiap giliran.                          | Sesi menyimpan riwayat di sisi server. Anda mengirim event dan menerima event.                                                 |
 | Anda mengiterasi blok konten `tool_use`, menjalankan setiap alat, dan kembali ke loop dengan pesan `tool_result`. | Alat bawaan berjalan di dalam sandbox secara otomatis. Anda hanya menangani alat kustom melalui event `agent.custom_tool_use`. |
 | Anda menyediakan sandbox sendiri untuk menjalankan kode yang dihasilkan agen.                                     | Sandbox sesi menangani eksekusi kode, operasi file, dan bash.                                                                  |
 | Anda memutuskan kapan loop selesai.                                                                               | Sesi memancarkan `session.status_idle` ketika agen tidak memiliki hal lain untuk dilakukan.                                    |
@@ -356,9 +356,7 @@ Jika Anda membangun agen dengan memanggil `client.messages.create()` (csharp: `c
   			ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   		},
   		Tools: []anthropic.BetaAgentNewParamsToolUnion{{
-  			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-  				Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-  			},
+  			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{},
   		}},
   	})
   	if err != nil {
@@ -368,7 +366,6 @@ Jika Anda membangun agen dengan memanggil `client.messages.create()` (csharp: `c
   	session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
   		Agent: anthropic.BetaSessionNewParamsAgentUnion{
   			OfBetaManagedAgentsAgents: &anthropic.BetaManagedAgentsAgentParams{
-  				Type:    anthropic.BetaManagedAgentsAgentParamsTypeAgent,
   				ID:      agent.ID,
   				Version: anthropic.Int(agent.Version),
   			},
@@ -385,10 +382,8 @@ Jika Anda membangun agen dengan memanggil `client.messages.create()` (csharp: `c
   	_, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   		Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   			OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
-  				Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
   				Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{{
   					OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-  						Type: anthropic.BetaManagedAgentsTextBlockTypeText,
   						Text: task,
   					},
   				}},
@@ -860,7 +855,6 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
   	System: anthropic.String("You are a concise weather assistant."),
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfCustom: &anthropic.BetaManagedAgentsCustomToolParams{
-  			Type:        anthropic.BetaManagedAgentsCustomToolParamsTypeCustom,
   			Name:        "get_weather",
   			Description: "Get the current weather for a city.",
   			InputSchema: anthropic.BetaManagedAgentsCustomToolInputSchemaParam{
@@ -894,7 +888,6 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
   session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
   	Agent: anthropic.BetaSessionNewParamsAgentUnion{
   		OfBetaManagedAgentsAgents: &anthropic.BetaManagedAgentsAgentParams{
-  			Type:    anthropic.BetaManagedAgentsAgentParamsTypeAgent,
   			ID:      agent.ID,
   			Version: anthropic.Int(agent.Version),
   		},
@@ -915,10 +908,8 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
   _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
-  			Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
   			Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{{
   				OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-  					Type: anthropic.BetaManagedAgentsTextBlockTypeText,
   					Text: "What's the weather in Tokyo?",
   				},
   			}},
@@ -945,11 +936,9 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
   		if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   			Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   				OfUserCustomToolResult: &anthropic.BetaManagedAgentsUserCustomToolResultEventParams{
-  					Type:            anthropic.BetaManagedAgentsUserCustomToolResultEventParamsTypeUserCustomToolResult,
   					CustomToolUseID: toolUse.ID,
   					Content: []anthropic.BetaManagedAgentsUserCustomToolResultEventParamsContentUnion{{
   						OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-  							Type: anthropic.BetaManagedAgentsTextBlockTypeText,
   							Text: result,
   						},
   					}},
@@ -1164,7 +1153,7 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
 
   agent = client.beta.agents.create(
     name: "weather-agent",
-    model: "claude-opus-5-5",
+    model: Anthropic::Beta::BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
     system_: "You are a concise weather assistant.",
     tools: [
       {
@@ -1248,7 +1237,7 @@ Konsekuensi dari Anthropic menjalankan loop agen adalah beberapa hal yang sebelu
 
 ## Migrasi antar versi model
 
-Ketika model Claude baru dirilis, migrasi integrasi Claude Managed Agents biasanya hanya berupa perubahan satu field: perbarui `model` (csharp, go: `Model`) pada [definisi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) Anda dan perubahan tersebut berlaku pada sesi berikutnya yang Anda buat.
+Ketika model Claude baru dirilis, migrasi integrasi Claude Managed Agents biasanya hanya berupa perubahan satu field: perbarui `model` (csharp, go: `Model`) pada [definisi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) Anda, dan perubahan tersebut berlaku pada sesi berikutnya yang Anda buat.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL

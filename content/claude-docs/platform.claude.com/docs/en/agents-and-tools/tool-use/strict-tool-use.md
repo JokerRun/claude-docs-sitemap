@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 61d54d5d504e747e9ec39d9ea087b634cb2b2c967c1f8282c6bdf7d4fa05eed0
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 430fb6eb8e05d76b7bac61ec500aef9e11aeb6e047a535d88942fc93a00f1865
 ---
 
 ---
@@ -356,7 +356,7 @@ For example, suppose a booking system needs `passengers: int`. Without strict mo
 
 **Response format:** Tool use blocks with validated inputs in `response.content[x].input`
 
-```text Output wrap
+```json Output
 {
   "type": "tool_use",
   "name": "get_weather",

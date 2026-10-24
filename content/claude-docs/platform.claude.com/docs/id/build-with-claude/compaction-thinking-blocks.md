@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 728a127b39824053e914c97a9f183fab86f12d3baaab72af9762a797fe67a6c6
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 3a5ba852ed0dabb55858db71ce4eeee1ea913627f80c531b270f6bc355bb30ca
 ---
 
 ---
@@ -75,7 +75,7 @@ Respons compaction tidak menyatakan apakah thinking yang dipertahankan tetap val
 3. Kirim permintaan berikutnya, dengan blok terlebih dahulu, lalu giliran yang dipertahankan, lalu pesan `user` baru, dan dengan `thinking.block_binding.prefix_mismatch_behavior` ditetapkan ke `"error"`.
 4. Baca hasilnya. Respons 200 yang array `input_transformations`-nya kosong berarti tidak ada blok thinking yang gagal dalam pemeriksaan atau dibuang. Error 400 yang menyatakan bahwa blok terikat pada percakapan yang berbeda berarti ada yang gagal. Pesan tersebut dimulai dengan path dari blok pertama yang gagal, dan [Apa yang dilakukan API dengan blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior) menampilkannya secara lengkap.
 
-Field `prefix_mismatch_behavior` memerlukan header beta `thinking-binding-controls-2026-08-01` selain [header beta `compact-2026-09-04`](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#request-a-summary). Menetapkan field tersebut juga mengikutsertakan permintaan ke dalam pemeriksaan pada akun yang pemeriksaannya tidak aktif secara default.
+Field `prefix_mismatch_behavior` memerlukan beta header `thinking-binding-controls-2026-08-01` selain [beta header `compact-2026-09-04`](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#request-a-summary). Menetapkan field tersebut juga mengikutsertakan permintaan dalam pemeriksaan pada akun yang pemeriksaannya tidak aktif secara default.
 
 Program berikut menjalankan keempat langkah tersebut. Program ini mencetak berapa banyak blok thinking yang ada dalam giliran yang dipertahankan dan berapa banyak entri yang dimiliki `input_transformations`; tidak adanya entri berarti thinking yang dipertahankan tetap valid:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 6103b8349979fa0c12c438fbe965c87e78eb1f87a18b420c5269576c09484721
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: e70ea1ed9d8f6ef5eca3c713aab7042656310dc71336674cb8d37fbef762157e
 ---
 
 ---
@@ -90,7 +90,7 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
 
     TypeScript menawarkan dua pendekatan untuk mendefinisikan alat:
 
-    **Menggunakan Zod (direkomendasikan)** - Gunakan `betaZodTool()` untuk definisi alat yang aman secara tipe dengan validasi Zod (memerlukan Zod 3.25.0 atau lebih tinggi):
+    **Menggunakan Zod (direkomendasikan):** Gunakan `betaZodTool()` untuk definisi alat yang aman tipe dengan validasi Zod (memerlukan Zod 3.25.0 atau lebih tinggi):
 
     ```typescript
     import Anthropic from "@anthropic-ai/sdk";
@@ -125,7 +125,7 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
     }
     ```
 
-    **Menggunakan JSON Schema** - Gunakan `betaTool()` untuk definisi alat yang aman secara tipe tanpa Zod:
+    **Menggunakan JSON Schema:** Gunakan `betaTool()` untuk definisi alat yang aman tipe tanpa Zod:
 
     <Note>
       Input yang dihasilkan oleh Claude tidak divalidasi saat runtime. Lakukan validasi di dalam fungsi `run` jika diperlukan.
@@ -268,8 +268,8 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
     	"fmt"
     	"log"
 
-    	"github.com/anthropics/anthropic-sdk-go"
-    	"github.com/anthropics/anthropic-sdk-go/toolrunner"
+    	"github.com/anthropics/anthropic-sdk-go/v2"
+    	"github.com/anthropics/anthropic-sdk-go/v2/toolrunner"
     )
 
     type GetWeatherInput struct {
@@ -403,25 +403,25 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
 
         // Lambda dapat menggunakan weatherService.
         BetaRunnableTool getWeather = BetaRunnableTool.of(
-                GetWeather.class,
-                input -> BetaToolResultBlockParam.Content.ofString(
-                        weatherService.currentWeather(input.location, input.unit)));
+            GetWeather.class,
+            input -> BetaToolResultBlockParam.Content.ofString(
+                weatherService.currentWeather(input.location, input.unit)));
 
         BetaRunnableTool calculateSum = BetaRunnableTool.of(
-                CalculateSum.class,
-                input -> BetaToolResultBlockParam.Content.ofString(
-                        String.valueOf(input.a + input.b)));
+            CalculateSum.class,
+            input -> BetaToolResultBlockParam.Content.ofString(
+                String.valueOf(input.a + input.b)));
 
         BetaToolRunner runner = client.beta()
-                .messages()
-                .toolRunner(MessageCreateParams.builder()
-                        .model(Model.CLAUDE_OPUS_5_5)
-                        .maxTokens(1024)
-                        .addBeta("structured-outputs-2025-11-13")
-                        .addUserMessage("What's the weather like in Paris? Also, what's 15 + 27?")
-                        .addTool(getWeather)
-                        .addTool(calculateSum)
-                        .build());
+            .messages()
+            .toolRunner(MessageCreateParams.builder()
+                .model(Model.CLAUDE_OPUS_5_5)
+                .maxTokens(1024)
+                .addBeta("structured-outputs-2025-11-13")
+                .addUserMessage("What's the weather like in Paris? Also, what's 15 + 27?")
+                .addTool(getWeather)
+                .addTool(calculateSum)
+                .build());
 
         for (BetaMessage message : runner) {
             IO.println(message);
@@ -571,7 +571,7 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
 
     # Gunakan tool runner
     runner = client.beta.messages.tool_runner(
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 1024,
       tools: [GetWeather.new, CalculateSum.new],
       messages: [
@@ -594,7 +594,7 @@ Bergantung pada signature alat di SDK, sebuah alat mengembalikan hasilnya sebaga
 
 Tool runner adalah iterable yang menghasilkan pesan dari Claude. Pada setiap iterasi, runner memeriksa apakah Claude meminta penggunaan alat. Jika ya, runner menjalankan alat tersebut dan mengirim hasilnya kembali ke Claude secara otomatis, lalu menghasilkan pesan berikutnya dari Claude untuk melanjutkan loop Anda.
 
-Anda dapat mengakhiri loop pada iterasi mana pun dengan pernyataan `break`. Runner terus melakukan loop hingga Claude mengembalikan pesan tanpa penggunaan alat, atau hingga mencapai `max_iterations` (csharp, java, php: `maxIterations`; go: `MaxIterations`) jika Anda mengaturnya.
+Anda dapat mengakhiri loop pada iterasi mana pun dengan pernyataan `break`. Runner terus melakukan loop hingga Claude mengembalikan pesan tanpa penggunaan alat, atau hingga mencapai `max_iterations` (csharp, php: `maxIterations`; java: `.maxIterations()`; go: `MaxIterations`) jika Anda mengaturnya.
 
 Jika Anda tidak memerlukan pesan perantara, Anda dapat memperoleh pesan akhir secara langsung:
 
@@ -713,15 +713,15 @@ Jika Anda tidak memerlukan pesan perantara, Anda dapat memperoleh pesan akhir se
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
     BetaToolRunner runner = client.beta()
-            .messages()
-            .toolRunner(MessageCreateParams.builder()
-                    .model(Model.CLAUDE_OPUS_5_5)
-                    .maxTokens(1024)
-                    .addBeta("structured-outputs-2025-11-13")
-                    .addUserMessage("What's the weather like in Paris? Also, what's 15 + 27?")
-                    .addTool(getWeather)
-                    .addTool(calculateSum)
-                    .build());
+        .messages()
+        .toolRunner(MessageCreateParams.builder()
+            .model(Model.CLAUDE_OPUS_5_5)
+            .maxTokens(1024)
+            .addBeta("structured-outputs-2025-11-13")
+            .addUserMessage("What's the weather like in Paris? Also, what's 15 + 27?")
+            .addTool(getWeather)
+            .addTool(calculateSum)
+            .build());
 
     BetaMessage finalMessage = null;
     for (BetaMessage message : runner) {
@@ -764,7 +764,7 @@ Jika Anda tidak memerlukan pesan perantara, Anda dapat memperoleh pesan akhir se
     client = Anthropic::Client.new
     # ...
     runner = client.beta.messages.tool_runner(
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 1024,
       tools: [GetWeather.new, CalculateSum.new],
       messages: [
@@ -821,7 +821,7 @@ Secara default, runner mengelola status percakapan untuk Anda: setelah setiap gi
 
 Anda mengambil alih dengan memodifikasi pesan runner dari dalam badan loop. Metode persisnya bergantung pada SDK. Lihat tab per bahasa berikut ini.
 
-Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan asisten atau hasil alat dari giliran tersebut. Anda menjadi bertanggung jawab untuk menjaga percakapan tetap valid: tambahkan sendiri pesan asisten dan hasil alat (jika Anda ingin giliran tersebut dihitung), modifikasi status secara bersyarat agar loop tetap dapat berakhir ketika tidak ada panggilan alat, dan berikan `max_iterations` (csharp, java, php: `maxIterations`; go: `MaxIterations`) untuk membatasi loop. Ketujuh SDK mendukung `max_iterations` (csharp, java, php: `maxIterations`; go: `MaxIterations`).
+Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan asisten atau hasil alat dari giliran tersebut. Anda menjadi bertanggung jawab untuk menjaga agar percakapan tetap valid: tambahkan pesan asisten dan hasil alat sendiri (jika Anda ingin giliran tersebut dihitung), ubah status secara bersyarat agar loop tetap dapat berhenti ketika tidak ada pemanggilan alat, dan berikan `max_iterations` (csharp, php: `maxIterations`; java: `.maxIterations()`; go: `MaxIterations`) untuk membatasi loop. SDK mendukung `max_iterations` (csharp, php: `maxIterations`; java: `.maxIterations()`; go: `MaxIterations`) di ketujuh bahasa.
 
 <Tabs exclude="shell">
   <Tab title="Python">
@@ -978,15 +978,15 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
     		break // conversation complete
     	}
 
-    	// The Go runner always appends the assistant message and tool results.
-    	// Param changes here apply to the next iteration.
+    	// Runner Go selalu menambahkan pesan asisten dan hasil alat.
+    	// Perubahan param di sini berlaku untuk iterasi berikutnya.
     	runner.Params.MaxTokens = 2048
     }
     ```
   </Tab>
 
   <Tab title="Java">
-    Gunakan `runner.params()` untuk membaca parameter saat ini dan `runner.setNextParams()` untuk menggantinya pada iterasi berikutnya. Ketika Anda memanggil `setNextParams()` di dalam loop, runner melewati penambahan otomatisnya. Pesan yang baru saja dihasilkan dibuang, dan iterasi berikutnya mengirim params baru Anda tanpa perubahan.
+    Gunakan `runner.params()` untuk membaca parameter saat ini dan `runner.setNextParams()` untuk menggantinya pada iterasi berikutnya. Ketika Anda memanggil `setNextParams()` di dalam loop, runner melewati penambahan otomatisnya. Pesan yang baru saja dihasilkan dibuang, dan iterasi berikutnya mengirimkan parameter baru Anda tanpa perubahan.
 
     Contoh berikut mencoba ulang giliran yang mencapai batas token dengan menggandakan `max_tokens`. Melakukan mutasi hanya pada cabang `max_tokens` menjaga loop tetap konvergen: giliran yang selesai secara normal diteruskan, dan runner menambahkan secara otomatis serta berakhir ketika tidak ada lagi pemanggilan alat.
 
@@ -1123,7 +1123,7 @@ Go, Ruby, C#, dan PHP SDK tidak membaca `ANTHROPIC_LOG`. Di luar Python, tidak a
 
 ### Mencegat error alat
 
-Secara default, error alat diteruskan kembali ke Claude, yang kemudian dapat merespons dengan tepat. Namun, Anda mungkin ingin mendeteksi error dan menanganinya secara berbeda, misalnya untuk menghentikan eksekusi lebih awal atau mengimplementasikan penanganan error kustom.
+Secara default, tool runner meneruskan error alat kembali ke Claude, yang kemudian dapat merespons dengan tepat. Namun, Anda mungkin ingin mendeteksi error dan menanganinya secara berbeda, misalnya, untuk menghentikan eksekusi lebih awal atau menerapkan penanganan error kustom.
 
 <Tabs exclude="shell">
   <Tab title="Python">
@@ -1275,7 +1275,7 @@ Secara default, error alat diteruskan kembali ke Claude, yang kemudian dapat mer
     client = Anthropic::Client.new
     # ...
     runner = client.beta.messages.tool_runner(
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 1024,
       tools: [MyTool.new],
       messages: [{role: "user", content: "Run my_tool with the query 'hello'."}]
@@ -1479,11 +1479,11 @@ Anda dapat memodifikasi hasil alat sebelum dikirim kembali ke Claude. Ini bergun
     BetaRunnableTool searchDocuments = BetaRunnableTool.of(SearchDocuments.class, input -> {
         String largeResult = "..."; // a long document worth caching
         return BetaToolResultBlockParam.Content.ofBlocks(List.of(
-                BetaToolResultBlockParam.Content.Block.ofText(
-                        BetaTextBlockParam.builder()
-                                .text(largeResult)
-                                .cacheControl(BetaCacheControlEphemeral.builder().build())
-                                .build())));
+            BetaToolResultBlockParam.Content.Block.ofText(
+                BetaTextBlockParam.builder()
+                    .text(largeResult)
+                    .cacheControl(BetaCacheControlEphemeral.builder().build())
+                    .build())));
     });
     ```
   </Tab>
@@ -1535,7 +1535,7 @@ Anda dapat memodifikasi hasil alat sebelum dikirim kembali ke Claude. Ini bergun
     client = Anthropic::Client.new
     # ...
     runner = client.beta.messages.tool_runner(
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 1024,
       tools: [SearchDocuments.new],
       messages: [{role: "user", content: "Search for information about the climate of San Francisco"}]
@@ -1714,21 +1714,21 @@ Aktifkan streaming untuk memproses respons setiap giliran secara bertahap. Setia
   </Tab>
 
   <Tab title="Java">
-    Panggil `runner.streaming()` untuk mendapatkan stream untuk setiap giliran. Setiap `StreamResponse` harus ditutup setelah digunakan.
+    Panggil `runner.streaming()` untuk mendapatkan stream untuk setiap giliran. Tutup setiap `StreamResponse` setelah digunakan.
 
     ```java
     void main() {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         BetaToolRunner runner = client.beta()
-                .messages()
-                .toolRunner(MessageCreateParams.builder()
-                        .model(Model.CLAUDE_OPUS_5_5)
-                        .maxTokens(1024)
-                        .addBeta("structured-outputs-2025-11-13")
-                        .addUserMessage("What is 15 + 27?")
-                        .addTool(calculateSum)
-                        .build());
+            .messages()
+            .toolRunner(MessageCreateParams.builder()
+                .model(Model.CLAUDE_OPUS_5_5)
+                .maxTokens(1024)
+                .addBeta("structured-outputs-2025-11-13")
+                .addUserMessage("What is 15 + 27?")
+                .addTool(calculateSum)
+                .build());
 
         for (StreamResponse<BetaRawMessageStreamEvent> stream : runner.streaming()) {
             try (stream) {
@@ -1750,7 +1750,7 @@ Aktifkan streaming untuk memproses respons setiap giliran secara bertahap. Setia
     client = Anthropic::Client.new
     # ...
     runner = client.beta.messages.tool_runner(
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 1024,
       tools: [CalculateSum.new],
       messages: [{role: "user", content: "What is 15 + 27?"}]

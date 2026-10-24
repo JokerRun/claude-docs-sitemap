@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: cd96b6d0c51e88bf400ceca4fc59a9f331ba8b5d61a939a71042f8624680c70d
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: bbf0f947eb41c8ac84df1bc9793cf7948cbd0ea1113da36c4e1893e995d7b427
 ---
 
 ---
@@ -162,7 +162,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 ### Body parameters (form-data)
 
-- `files: array of string`
+- `files: array of file`
 
   The version's files: one part per file, the part's filename being the file's path within the Plugin (for example `skills/review-pr/SKILL.md`), or a single `.zip` or `.plugin` archive holding them all. On the wire each part is named `files[]`, and a part named plain `files` is not read; with cURL, `-F 'files[]=@SKILL.md;filename=skills/review-pr/SKILL.md'`. The files must include the manifest, `.claude-plugin/plugin.json`.
 
@@ -2375,7 +2375,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 #### Body parameters (form-data)
 
-- `files: array of string`
+- `files: array of file`
 
   The version's files: one part per file, the part's filename being the file's path within the Plugin (for example `skills/review-pr/SKILL.md`), or a single `.zip` or `.plugin` archive holding them all. On the wire each part is named `files[]`, and a part named plain `files` is not read; with cURL, `-F 'files[]=@SKILL.md;filename=skills/review-pr/SKILL.md'`. The files must include the manifest, `.claude-plugin/plugin.json`.
 

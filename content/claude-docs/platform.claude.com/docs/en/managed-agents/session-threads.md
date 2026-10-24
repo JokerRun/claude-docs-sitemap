@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-threads
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 3b373934c4da94fe97bdf6a48fdbc6368f338042662ab822a16289f191424a32
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: a37ceda27dc9198bb0aa3ed125f6fb1b03df9029f3667bf014696bcdd959e5a8
 ---
 
 ---
@@ -263,7 +263,7 @@ Optionally archive a session thread when it has completed its work. Archiving a 
   ```
 </CodeGroup>
 
-Archive only succeeds if the thread is `idle`. A thread parked on `requires_action` counts as idle and can be archived directly; only a running thread must be interrupted first:
+Archive only succeeds if the thread is `idle`. A thread parked on `requires_action` counts as idle, so you can archive it directly. To archive a running thread, interrupt it first:
 
 <CodeGroup>
   ```bash cURL
@@ -662,7 +662,7 @@ A thread's stream doesn't replay earlier events. Right after `session.thread_cre
 
 If a subagent needs something from your client, such as [permission](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#tool-confirmation) to run a tool call or the [result of a custom tool](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#handling-custom-tool-calls), the event is cross-posted to the **primary thread** with `session_thread_id` identifying the originating session thread. A tool call needs your permission under `always_ask`, or under [`auto`](https://platform.claude.com/docs/en/managed-agents/permission-policies#let-the-server-evaluate-each-call-with-auto) when the server reaches no determination.
 
-```text wrap
+```json
 {
   "type": "session.thread_status_idle",
   "id": "sevt_01ABC...",

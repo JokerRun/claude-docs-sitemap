@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/webhooks
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 3e2193e68faaf35df622e997b801344a926af80bfbfbb5b067a9c38e8543a06a
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 6caf5f84276c2a938dae34763711be5e189d580291e01970829ab51df57be59f
 ---
 
 ---
@@ -29,7 +29,7 @@ Event webhook mengembalikan `type` dan `id` event, bukan objek lengkapnya. Saat 
 
     | Event                              | Pemicu                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
     | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `session.status_run_started`       | Eksekusi agen dimulai. Ini dipicu pada setiap transisi status sesi ke `running`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+    | `session.status_run_started`       | Agen mulai berjalan. Ini dipicu pada setiap transisi status sesi ke `running`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
     | `session.status_idled`             | Agen menunggu input, misalnya, persetujuan izin alat atau pesan pengguna baru.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
     | `session.budget_reached`           | Sesi mencapai [anggarannya](https://platform.claude.com/docs/id/managed-agents/budgets) dan dijeda. Dipicu paling banyak sekali untuk setiap nilai anggaran yang Anda tetapkan; mengubah anggaran akan mengaktifkannya kembali.                                                                                                                                                                                                                                                                                                                               |
     | `session.status_rescheduled`       | Terjadi kesalahan sementara dan sesi mencoba ulang secara otomatis.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
@@ -77,11 +77,11 @@ Event webhook mengembalikan `type` dan `id` event, bukan objek lengkapnya. Saat 
   </Tab>
 
   <Tab title="Event deployment run">
-    | Event                      | Pemicu                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-    | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `deployment_run.started`   | Run terjadwal dimulai. Hanya run terjadwal yang memancarkan event `deployment_run`; [run manual](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments#trigger-a-manual-run) tidak.                                                                                                                                                                                                                                              |
-    | `deployment_run.succeeded` | Run terjadwal membuat sesinya. Event ini membawa `data.id` (ID run) yang sama dengan event `deployment_run.started` milik run tersebut. Untuk mengikuti pekerjaan sesi, berlanggananlah ke event sesinya (tab Event sesi), atau ambil [deployment run](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments#deployment-runs) untuk mendapatkan `session_id` (java: `sessionId`; php: `sessionID`; csharp, go: `SessionID`)-nya. |
-    | `deployment_run.failed`    | Run terjadwal tidak membuat sesi. Event ini membawa `data.id` yang sama dengan event `deployment_run.started` milik run tersebut. Ambil [deployment run](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments#deployment-runs) untuk detail kesalahannya.                                                                                                                                                                       |
+    | Event                      | Pemicu                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+    | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `deployment_run.started`   | Run terjadwal dimulai. Hanya run terjadwal yang memancarkan event `deployment_run`; [run manual](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments#trigger-a-manual-run) tidak.                                                                                                                                                                                                                                                                  |
+    | `deployment_run.succeeded` | Run terjadwal membuat sesinya. Peristiwa ini membawa `data.id` (ID run) yang sama dengan peristiwa `deployment_run.started` milik run tersebut. Untuk mengikuti pekerjaan sesi, berlanggananlah ke peristiwa sesinya (tab **Peristiwa sesi**), atau ambil [deployment run](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments#deployment-runs) untuk mendapatkan `session_id` (java: `sessionId`; php: `sessionID`; csharp, go: `SessionID`)-nya. |
+    | `deployment_run.failed`    | Run terjadwal tidak membuat sesi. Event ini membawa `data.id` yang sama dengan event `deployment_run.started` milik run tersebut. Ambil [deployment run](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments#deployment-runs) untuk detail kesalahannya.                                                                                                                                                                                           |
   </Tab>
 
   <Tab title="Event environment">
@@ -220,7 +220,7 @@ Atur `ANTHROPIC_WEBHOOK_SIGNING_KEY` ke secret berawalan `whsec_` yang ditampilk
   	"io"
   	"net/http"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   var client = anthropic.NewClient() // reads ANTHROPIC_WEBHOOK_SIGNING_KEY from env
@@ -347,9 +347,9 @@ Atur `ANTHROPIC_WEBHOOK_SIGNING_KEY` ke secret berawalan `whsec_` yang ditampilk
 
 ## Menangani event
 
-Parsing body, lakukan switch pada `data.type`, dan ambil sumber daya berdasarkan ID. Kembalikan `2xx` apa pun untuk mengonfirmasi penerimaan. Respons lain apa pun akan dihitung merugikan endpoint: `3xx` langsung menonaktifkannya (redirect tidak pernah diikuti), sementara kegagalan lainnya dicoba ulang; lihat [Perilaku pengiriman](https://platform.claude.com/docs/id/managed-agents/webhooks#delivery-behavior) untuk aturan percobaan ulang dan penonaktifan otomatis.
+Urai body, lakukan switch pada `data.type`, dan ambil sumber daya berdasarkan ID. Kembalikan `2xx` apa pun untuk mengonfirmasi penerimaan. Respons lain apa pun dihitung merugikan endpoint: `3xx` langsung menonaktifkannya (pengalihan tidak pernah diikuti), sedangkan kegagalan lainnya dicoba ulang; lihat [Perilaku pengiriman](https://platform.claude.com/docs/id/managed-agents/webhooks#delivery-behavior) untuk aturan percobaan ulang dan penonaktifan otomatis.
 
-Setiap payload event memiliki struktur yang sama, termasuk jenis event, pengenal, dan timestamp kapan event terjadi.
+Setiap payload peristiwa memiliki struktur yang sama, termasuk jenis peristiwa, pengidentifikasi, dan timestamp kapan peristiwa terjadi.
 
 ```json
 {
@@ -426,7 +426,7 @@ Setiap payload event memiliki struktur yang sama, termasuk jenis event, pengenal
   ```
 </CodeGroup>
 
-`event.id` tingkat atas bersifat unik per event, bukan per pengiriman. Jika Anda menerima `event.id` yang sama dua kali, itu adalah percobaan ulang dan Anda dapat membuangnya.
+`event.id` tingkat atas bersifat unik untuk setiap peristiwa, bukan untuk setiap pengiriman. Jika Anda menerima `event.id` yang sama dua kali, itu adalah percobaan ulang dan Anda dapat membuangnya.
 
 ## Perilaku pengiriman
 
@@ -434,7 +434,7 @@ Setiap payload event memiliki struktur yang sama, termasuk jenis event, pengenal
 
 * **Cakupan langganan:** Event hanya dikirimkan ke endpoint yang berlangganan jenisnya pada saat event dipancarkan. Event yang dipancarkan saat tidak ada endpoint yang berlangganan jenisnya tidak akan pernah dikirimkan, dan berlangganan kemudian tidak akan mengisinya kembali, jadi berlanggananlah ke suatu jenis event sebelum Anda membutuhkannya.
 
-* **Urutan tidak dijamin.** Event tidak dikirimkan sesuai urutan terjadinya: `session.status_idled` mungkin tiba sebelum `session.outcome_evaluation_ended` meskipun hasilnya dihasilkan lebih dulu, dan event `.deleted` dapat tiba sebelum event `.archived` untuk sumber daya yang sama. Tentukan state Anda berdasarkan sumber daya yang Anda ambil, bukan berdasarkan urutan kedatangan event.
+* **Urutan:** Peristiwa tidak dijamin dikirimkan sesuai urutan terjadinya: `session.status_idled` mungkin tiba sebelum `session.outcome_evaluation_ended` meskipun hasilnya dihasilkan lebih dulu, dan peristiwa `.deleted` dapat tiba sebelum peristiwa `.archived` untuk sumber daya yang sama. Tentukan status Anda dari sumber daya yang Anda ambil, bukan dari urutan tibanya peristiwa.
 
 * **Percobaan ulang:** Untuk setiap endpoint dan event, Anthropic melakukan hingga tiga percobaan pengiriman (respons yang memicu penonaktifan otomatis, yang dijelaskan nanti di bagian ini, tidak pernah dicoba ulang) dengan "exponential backoff" (penundaan eksponensial) ber-jitter antara 5 dan 120 detik. Setiap percobaan mengirimkan `event.id` yang sama. Setelah percobaan terakhir gagal, event dibuang: event tidak diantrekan untuk pengiriman nanti dan tidak ada sinyal bahwa event tersebut hilang. Webhook bukanlah log yang tahan lama, jadi jika Anda perlu mengamati setiap transisi, lakukan rekonsiliasi dengan mendaftar atau mengambil sumber daya melalui API.
 
@@ -444,6 +444,6 @@ Setiap payload event memiliki struktur yang sama, termasuk jenis event, pengenal
 
   * Endpoint mengembalikan respons `3xx`. Redirect tidak pernah diikuti; ini langsung menonaktifkan endpoint, pada percobaan pertama, dengan alasan `auto-disabled: endpoint URL returned a redirect (3xx)`. Jika endpoint Anda berpindah, perbarui URL di Console dan aktifkan kembali endpoint tersebut.
   * URL endpoint di-resolve ke alamat IP non-publik saat Anthropic terhubung. Ini langsung menonaktifkan endpoint, dengan alasan `auto-disabled: endpoint URL resolved to an invalid address`.
-  * Pengiriman ke endpoint gagal terus-menerus selama periode yang berkelanjutan, dengan alasan `auto-disabled after sustained delivery failures`. Pemicunya adalah berapa lama endpoint telah gagal tanpa jeda, bukan jumlah pengiriman. Satu `2xx` saja akan mengatur ulang jendela waktu tersebut, sehingga satu event yang tidak stabil tidak dapat menonaktifkan endpoint.
+  * Pengiriman ke endpoint gagal terus-menerus selama periode yang berkelanjutan, dengan alasan `auto-disabled after sustained delivery failures`. Pemicunya adalah berapa lama endpoint gagal tanpa jeda, bukan jumlah pengiriman. Satu `2xx` saja akan mengatur ulang jendela waktunya, sehingga satu peristiwa yang gagal sesekali tidak dapat menonaktifkan endpoint.
 
   Ketiganya dapat dipulihkan: aktifkan kembali endpoint di Console setelah Anda menyelesaikan masalahnya. Event yang dipancarkan saat endpoint dinonaktifkan tidak akan diputar ulang.

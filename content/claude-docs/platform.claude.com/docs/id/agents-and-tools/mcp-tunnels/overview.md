@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: cb1fe022a9f6a25a70dd6443d0256a52976ebc8b6ee6b7cb7e179492c90d26fe
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: b72030751fca60f0f42106457cbf2e739fb6913a1e2137867d468a20ab09caa7
 ---
 
 ---
@@ -116,13 +116,13 @@ Memilih di antaranya:
 
 * **Target deployment**
 
-  * **Helm** saat men-deploy ke Kubernetes.
-  * **Docker Compose** untuk satu host atau pengujian lokal.
+  * **Helm** saat melakukan deployment ke Kubernetes
+  * **Docker Compose** untuk satu host atau pengujian lokal
 
 * **Autentikasi untuk setup**
 
-  * **Akses programatik** (melalui Workload Identity Federation) jika Anda memiliki penyedia identitas OIDC seperti klaster Kubernetes, cloud IAM, atau SPIFFE.
-  * **Kredensial manual** jika Anda tidak memilikinya, atau saat Anda sedang menguji.
+  * **Akses terprogram** (melalui Workload Identity Federation) saat Anda memiliki penyedia identitas OIDC seperti kluster Kubernetes, cloud IAM, atau SPIFFE
+  * **Kredensial manual** saat Anda tidak memilikinya, atau saat Anda sedang melakukan pengujian
 
 ## Menggunakan server MCP yang di-tunnel
 
@@ -137,14 +137,14 @@ Dalam kedua kasus, tunnel membawa lalu lintas terenkripsi ke server MCP Anda tet
 ### Managed Agents (Console)
 
 1. Di halaman [Sessions](https://platform.claude.com/sessions) (`platform.claude.com/sessions`) di Claude Console, buat sesi dan pilih **Create new agent** agar Anda dapat mengedit daftar server MCP.
-2. Klik **+ MCP Server** dan buka dropdown. Tunnel di workspace sesi yang memiliki setidaknya satu sertifikat aktif muncul di bagian atas daftar, di atas katalog konektor publik.
+2. Klik **+ MCP Server** dan buka menu dropdown. Tunnel di workspace sesi yang memiliki setidaknya satu sertifikat aktif muncul di bagian atas daftar, di atas katalog konektor publik.
 3. Pilih tunnel dan isikan **Subdomain** yang dirutekan proxy Anda ke server MCP tertentu, serta **Path** yang diharapkan oleh server MCP upstream. Baris **Resolves to** menampilkan URL persisnya.
 
 ### Messages API
 
-Teruskan URL server MCP upstream dalam array `mcp_servers`, dengan cara yang sama seperti server MCP jarak jauh lainnya. Body permintaan dan header `anthropic-beta` mengikuti format [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) standar; hanya `url` yang spesifik untuk tunnel. Contoh berikut menggunakan header beta `mcp-client` milik konektor MCP, yang terpisah dari beta `mcp-tunnels` yang digunakan oleh [Tunnels API](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference). Buat permintaan di workspace tempat tunnel dibuat dengan menggunakan kunci API untuk workspace tersebut atau, jika kunci Anda memiliki akses ke beberapa workspace, dengan mengatur [header `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) ke workspace tersebut.
+Teruskan URL server MCP upstream dalam array `mcp_servers`, dengan cara yang sama seperti server MCP remote lainnya. Body permintaan dan header `anthropic-beta` mengikuti format [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) standar; hanya `url` yang spesifik untuk tunnel. Contoh berikut menggunakan header beta `mcp-client` dari konektor MCP, yang terpisah dari beta `mcp-tunnels` yang digunakan oleh [Tunnels API](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference). Buat permintaan di workspace tempat tunnel dibuat dengan menggunakan kunci API untuk workspace tersebut atau, jika kunci Anda tidak dibatasi pada workspace, dengan mengatur [header `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) ke workspace tersebut.
 
-Host URL adalah `<subdomain>.<your-tunnel-domain>`. Path bergantung pada server MCP upstream Anda, bukan tunnel: transport `streamable-http` milik FastMCP melayani di `/mcp`, dan server lain mungkin menggunakan `/` atau path kustom (periksa dokumentasi server). Proxy meneruskan path tanpa diubah.
+Host URL adalah `<subdomain>.<your-tunnel-domain>`. Path bergantung pada server MCP upstream Anda, bukan pada tunnel: transport `streamable-http` milik FastMCP melayani di `/mcp`, dan server lain mungkin menggunakan `/` atau path kustom (periksa dokumentasi server tersebut). Proxy meneruskan path tanpa mengubahnya.
 
 <CodeGroup>
   ```bash cURL

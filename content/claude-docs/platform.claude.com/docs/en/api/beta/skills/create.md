@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/create
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 79ae692740d7b48e80371680b82b011fc0ce15adba29c792b7680d63c5777494
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: e13816341de22a62d1c995b4138e9a34adfd2d2e80bcf052b0a3b5ff907557b7
 ---
 
 ---
@@ -142,7 +142,7 @@ Create Skill
 
 ## Body parameters (form-data)
 
-- `files: array of string`
+- `files: array of file`
 
   Files to upload for the skill.
 

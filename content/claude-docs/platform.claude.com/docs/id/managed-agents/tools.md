@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 4902fe92cbeda1f37b661e06d07805ff747ebc1e6ec689669482c40c1e860e33
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 3299caf38915d01ddda310b7d49f57c1e46d6c6274d8b6d7df2445a662d7a60f
 ---
 
 ---
@@ -19,22 +19,22 @@ featureMetadata:
 
 Claude Managed Agents menyediakan serangkaian alat bawaan yang dapat digunakan Claude secara otonom di dalam sebuah [sesi](https://platform.claude.com/docs/id/managed-agents/sessions). Anda mengontrol alat mana yang tersedia dengan menentukannya dalam konfigurasi agen.
 
-Claude Managed Agents juga mendukung alat kustom yang didefinisikan pengguna. Aplikasi Anda mengeksekusi alat-alat ini secara terpisah dan mengembalikan hasilnya ke Claude, yang menggunakannya untuk melanjutkan tugas. Untuk memberi agen alat dari server MCP, gunakan [konektor MCP](https://platform.claude.com/docs/id/managed-agents/mcp-connector) sebagai gantinya.
+Claude Managed Agents juga mendukung alat kustom yang ditentukan pengguna. Aplikasi Anda menjalankan alat-alat ini secara terpisah dan mengembalikan hasilnya kepada Claude, yang menggunakannya untuk melanjutkan tugas. Untuk memberikan alat dari server MCP kepada agen, gunakan [konektor MCP](https://platform.claude.com/docs/id/managed-agents/mcp-connector) sebagai gantinya.
 
 ## Alat yang tersedia
 
 Toolset agen mencakup alat-alat berikut. Semuanya diaktifkan secara default saat Anda menyertakan toolset dalam konfigurasi agen.
 
-| Alat       | Nama         | Deskripsi                                             |
-| ---------- | ------------ | ----------------------------------------------------- |
-| Bash       | `bash`       | Mengeksekusi perintah bash dalam sesi shell           |
-| Read       | `read`       | Membaca file dari filesystem sandbox                  |
-| Write      | `write`      | Menulis file ke filesystem sandbox                    |
-| Edit       | `edit`       | Melakukan penggantian string dalam sebuah file        |
-| Glob       | `glob`       | Pencocokan pola file yang cepat menggunakan pola glob |
-| Grep       | `grep`       | Pencarian teks menggunakan pola regex                 |
-| Web fetch  | `web_fetch`  | Mengambil konten dari sebuah URL                      |
-| Web search | `web_search` | Mencari informasi di web                              |
+| Alat       | Nama         | Deskripsi                                                       |
+| ---------- | ------------ | --------------------------------------------------------------- |
+| Bash       | `bash`       | Menjalankan perintah bash dalam sesi shell                      |
+| Read       | `read`       | Membaca file dari filesystem sandbox                            |
+| Write      | `write`      | Menulis file ke filesystem sandbox                              |
+| Edit       | `edit`       | Melakukan penggantian string dalam sebuah file                  |
+| Glob       | `glob`       | Melakukan pencocokan pola file yang cepat menggunakan pola glob |
+| Grep       | `grep`       | Mencari teks menggunakan pola regex                             |
+| Web fetch  | `web_fetch`  | Mengambil konten dari sebuah URL                                |
+| Web search | `web_search` | Mencari informasi di web                                        |
 
 Ketika output alat melebihi 100.000 karakter (sekitar 25.000 token), output tersebut secara otomatis ditulis ke sebuah file di [sandbox](https://platform.claude.com/docs/id/managed-agents/environments). Model menerima pratinjau terpotong beserta path file dan dapat membaca konten lengkapnya dari sana.
 
@@ -143,7 +143,6 @@ Contoh berikut mengaktifkan toolset dan menonaktifkan `web_fetch`:
   	},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-  			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
   			Configs: []anthropic.BetaManagedAgentsAgentToolConfigParamsUnion{{
   				OfWebFetch: &anthropic.BetaManagedAgentsWebFetchToolConfigParams{
   					Enabled: anthropic.Bool(false),
@@ -155,7 +154,6 @@ Contoh berikut mengaktifkan toolset dan menonaktifkan `web_fetch`:
   if err != nil {
   	panic(err)
   }
-  _ = agent
   ```
 
   ```java Java
@@ -241,7 +239,7 @@ Entri `web_search` dan `web_fetch` juga menerima daftar domain, batas konten yan
 
 ### Jenis entri konfigurasi di SDK
 
-SDK Python, TypeScript, Go, Java, C#, Ruby, dan PHP memberikan tipe pada setiap entri `configs` (csharp, go: `Configs`) per alat. Tipe tersebut adalah union dengan satu anggota per alat bawaan, yang dibedakan oleh `type` (csharp, go: `Type`).
+SDK memberikan tipe pada setiap entri `configs` (csharp, go: `Configs`) berdasarkan alat. Tipe tersebut adalah union dengan satu anggota untuk setiap alat bawaan, yang dibedakan oleh `type` (csharp, go: `Type`).
 
 Di Go, Java, C#, dan PHP, Anda membuat entri dari nilai bertipe, bukan dari dictionary atau hash biasa. Di SDK tersebut, tipe elemen dari `configs` (csharp, go: `Configs`) adalah union itu sendiri, jadi buat setiap entri dari tipe anggota per alatnya.
 
@@ -394,12 +392,9 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
   		ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   	},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
-  		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-  			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-  		},
+  		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{},
   	}, {
   		OfCustom: &anthropic.BetaManagedAgentsCustomToolParams{
-  			Type:        anthropic.BetaManagedAgentsCustomToolParamsTypeCustom,
   			Name:        "get_weather",
   			Description: "Get current weather for a location",
   			InputSchema: anthropic.BetaManagedAgentsCustomToolInputSchemaParam{
@@ -417,7 +412,6 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
   if err != nil {
   	panic(err)
   }
-  _ = agent
   ```
 
   ```java Java
@@ -488,7 +482,7 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
 
 Nama alat kustom tidak boleh diawali dengan `mcp__` atau `ant__`, atau sama dengan nama alat agen bawaan. Permintaan yang melanggar aturan ini mengembalikan error 400. Agen yang sudah memiliki alat kustom dengan nama yang diawali `ant__` hanya menerima pembaruan jika pembaruan tersebut mengirim `tools` (csharp, go: `Tools`) tanpa nama tersebut, jadi ganti nama atau hapus alat tersebut pada pembaruan Anda berikutnya. Sesi baru ditolak dengan error 400 jika alat semacam itu ada pada agennya (setelah [penimpaan](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) apa pun), pada agen dalam daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `subagents` (csharp, go: `Subagents`), atau pada agen dalam daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `workflows` (csharp, go: `Workflows`). Sesi yang sudah ada tidak terpengaruh.
 
-Agen memanggil alat kustomnya selama sesi. Untuk menerima panggilan dan mengembalikan hasil, lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls).
+Agen memanggil alat kustomnya selama sesi. Untuk menerima panggilan dan mengembalikan hasil, lihat [Menjawab panggilan alat yang menjeda sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls).
 
 Untuk sesi yang berjalan di sandbox self-hosted, environment worker dapat [melayani alat kustom dari sandbox](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools). Ini dapat mencakup alat yang membungkus server MCP di dalam jaringan Anda.
 
@@ -519,10 +513,10 @@ Untuk sesi yang berjalan di sandbox self-hosted, environment worker dapat [melay
   </Card>
 
   <Card title="Kebijakan izin" icon="lock" href="https://platform.claude.com/docs/id/managed-agents/permission-policies">
-    Kontrol kapan alat agen dan alat MCP dijalankan.
+    Kontrol kapan alat agen dan alat MCP berjalan.
   </Card>
 
   <Card title="Aliran event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
-    Kirim event, lakukan streaming respons, dan interupsi atau arahkan ulang sesi Anda di tengah eksekusi.
+    Kirim event, lakukan streaming respons, dan interupsi atau arahkan ulang sesi Anda saat sedang berjalan.
   </Card>
 </CardGroup>

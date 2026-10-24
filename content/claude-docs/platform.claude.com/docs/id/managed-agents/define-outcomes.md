@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 7e92efe219ebedd2b66eefbc52c4c4b21a240f66c9c9fc5fc43396fbf826e692
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 899e3999ffa73b7426359b9866f45300cab9c83a482da4ff6d9e5d1cdbe9318a
 ---
 
 ---
@@ -30,7 +30,7 @@ Rubrik adalah dokumen markdown yang menjelaskan penilaian per kriteria. Rubrik b
 <Accordion title="Tips menulis rubrik yang efektif">
   Susun rubrik sebagai kriteria yang eksplisit dan dapat dinilai, seperti "CSV berisi kolom price dengan nilai numerik" alih-alih "Datanya terlihat bagus." Grader menilai setiap kriteria secara independen, sehingga kriteria yang samar menghasilkan evaluasi yang tidak konsisten.
 
-  Jika Anda tidak memiliki rubrik, cobalah memberi Claude contoh artefak yang sudah diketahui bagus dan minta Claude menganalisis apa yang membuat konten tersebut bagus, lalu ubah analisis itu menjadi rubrik. Pendekatan jalan tengah ini sering menghasilkan hasil yang lebih baik daripada menulis kriteria dari nol.
+  Jika Anda tidak memiliki rubrik, coba berikan Claude contoh artefak yang diketahui baik dan minta Claude menganalisis apa yang membuat konten tersebut baik, lalu ubah analisis itu menjadi rubrik. Pendekatan jalan tengah ini sering kali menghasilkan hasil yang lebih baik daripada menulis kriteria tanpa contoh sebagai titik awal.
 </Accordion>
 
 Contoh rubrik:
@@ -292,7 +292,7 @@ Teruskan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Membuat s
 
 ## Membuat sesi dengan outcome
 
-Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) untuk [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan [environment](https://platform.claude.com/docs/id/managed-agents/environments) yang sudah ada (keduanya dibuat secara terpisah), lalu mengirim event `user.define_outcome`. Agen segera mulai bekerja. Tidak diperlukan event pesan pengguna tambahan.
+Contoh berikut membuat [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) untuk [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan [environment](https://platform.claude.com/docs/id/managed-agents/environments) yang sudah ada (keduanya dibuat secara terpisah), lalu mengirim event `user.define_outcome`. Agen langsung mulai bekerja. Tidak diperlukan event pesan pengguna tambahan.
 
 <CodeGroup>
   ```bash cURL
@@ -417,7 +417,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   ```
 
   ```go Go
-  // Create a session
+  // Buat sesi
   session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
   	Agent: anthropic.BetaSessionNewParamsAgentUnion{
   		OfString: anthropic.String(agent.ID),
@@ -429,7 +429,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   	panic(err)
   }
 
-  // Define the outcome. The agent starts working on receipt.
+  // Definisikan hasil. Agen mulai bekerja saat menerimanya.
   _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserDefineOutcome: &anthropic.BetaManagedAgentsUserDefineOutcomeEventParams{
@@ -439,7 +439,7 @@ Contoh berikut membuat sebuah [sesi](https://platform.claude.com/docs/id/managed
   					Content: rubric,
   				},
   			},
-  			// or: OfFile: &anthropic.BetaManagedAgentsFileRubricParams{FileID: uploaded.ID},
+  			// atau: OfFile: &anthropic.BetaManagedAgentsFileRubricParams{FileID: uploaded.ID},
   			MaxIterations: anthropic.Int(5), // optional; default 3, max 20
   		},
   	}},
@@ -537,7 +537,7 @@ Kemajuan pada sesi berorientasi outcome ditampilkan pada [stream](https://platfo
 ### Event pengguna define outcome
 
 <Note>
-  Hanya satu outcome yang didukung dalam satu waktu, tetapi Anda dapat merangkai outcome secara berurutan. Untuk melakukannya, kirim event `user.define_outcome` baru setelah event terminal `span.outcome_evaluation_end` dari outcome sebelumnya.
+  Hanya satu outcome yang didukung pada satu waktu, tetapi Anda dapat merangkai outcome secara berurutan. Untuk melakukannya, kirim event `user.define_outcome` baru setelah event terminal `span.outcome_evaluation_end` dari outcome sebelumnya.
 </Note>
 
 Ini adalah event yang Anda kirim untuk memulai sebuah outcome. Event ini dikembalikan saat diterima, termasuk timestamp `processed_at` (java, php: `processedAt`; csharp, go: `ProcessedAt`) dan `outcome_id` (java: `outcomeId`; php: `outcomeID`; csharp, go: `OutcomeID`).
@@ -567,7 +567,7 @@ Dipancarkan saat grader memulai evaluasi atas satu loop iterasi. Field `iteratio
 
 ### Evaluasi outcome sedang berlangsung
 
-Heartbeat yang dipancarkan selama grader berjalan. Penalaran internal grader bersifat tertutup: Anda melihat bahwa grader sedang bekerja, bukan apa yang dipikirkannya.
+Heartbeat yang dipancarkan selama grader berjalan. Penalaran internal grader bersifat tertutup: event ini hanya menunjukkan bahwa grader sedang bekerja.
 
 ```json
 {
@@ -581,7 +581,7 @@ Heartbeat yang dipancarkan selama grader berjalan. Penalaran internal grader ber
 
 ### Akhir evaluasi outcome
 
-Dipancarkan ketika siklus evaluasi outcome berakhir: setelah grader selesai mengevaluasi satu iterasi, atau ketika sesi diinterupsi saat sebuah outcome sedang aktif. Field `result` menunjukkan apa yang terjadi selanjutnya.
+Dipancarkan saat siklus evaluasi outcome berakhir: setelah grader selesai mengevaluasi satu iterasi, atau saat sesi diinterupsi ketika sebuah outcome sedang aktif. Field `result` menunjukkan apa yang terjadi selanjutnya.
 
 | Hasil                    | Selanjutnya                                                                                                                                                                                                                             |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -695,7 +695,7 @@ Anda dapat mendengarkan [stream event](https://platform.claude.com/docs/id/manag
 
 ## Mengambil deliverable
 
-Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk mengambilnya, daftarkan file melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dengan ID sesi sebagai `scope_id` (java: `scopeId`; php: `scopeID`; csharp, go: `ScopeID`), lalu unduh berdasarkan ID. Pemfilteran berdasarkan `scope_id` (java: `scopeId`; php: `scopeID`; csharp, go: `ScopeID`) memerlukan beta header `managed-agents-2026-04-01` pada permintaan list, sehingga contoh SDK dan CLI melakukan panggilan tersebut melalui namespace `beta` dan meneruskan header secara eksplisit. File muncul dalam daftar tidak lama setelah agen selesai menulisnya, terkadang beberapa detik setelah sesi menjadi idle. Jika file yang Anda harapkan belum tercantum, lakukan list lagi setelah jeda singkat; setelah file muncul dalam daftar, unggahannya telah selesai.
+Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk mengambilnya, daftarkan file melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dengan ID sesi sebagai `scope_id` (java: `scopeId`; php: `scopeID`; csharp, go: `ScopeID`), lalu unduh berdasarkan ID. Pemfilteran berdasarkan `scope_id` (java: `scopeId`; php: `scopeID`; csharp, go: `ScopeID`) memerlukan header beta `managed-agents-2026-04-01` pada permintaan list, sehingga contoh SDK dan CLI melakukan panggilan tersebut melalui namespace `beta` dan meneruskan header secara eksplisit. File muncul dalam daftar tidak lama setelah agen selesai menulisnya, terkadang beberapa detik setelah sesi menjadi idle. Jika file yang Anda harapkan belum tercantum, lakukan list lagi setelah jeda singkat; setelah file muncul dalam daftar, unggahannya sudah selesai.
 
 <CodeGroup>
   ```bash cURL
@@ -777,8 +777,8 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
   ```
 
   ```go Go
-  // List files produced by this session
-  // (scope_id filtering requires the managed-agents beta on the files request)
+  // Daftar file yang dihasilkan oleh sesi ini
+  // (pemfilteran scope_id memerlukan beta managed-agents pada permintaan files)
   files, err := client.Beta.Files.List(ctx, anthropic.BetaFileListParams{
   	ScopeID: anthropic.String(session.ID),
   	Betas:   []anthropic.AnthropicBeta{anthropic.AnthropicBetaManagedAgents2026_04_01},
@@ -790,7 +790,7 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
   	fmt.Println(file.ID, file.Filename)
   }
 
-  // Download a file
+  // Unduh file
   if len(files.Data) > 0 {
   	resp, err := client.Files.Download(ctx, files.Data[0].ID, anthropic.FileDownloadParams{})
   	if err != nil {
@@ -867,7 +867,7 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
   </Card>
 
   <Card title="Stream event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
-    Kirim event, lakukan streaming respons, dan interupsi atau arahkan ulang sesi Anda di tengah eksekusi.
+    Kirim event, lakukan streaming respons, dan interupsi atau arahkan ulang sesi Anda saat sedang berjalan.
   </Card>
 
   <Card title="Menambahkan file" icon="file" href="https://platform.claude.com/docs/id/managed-agents/files">

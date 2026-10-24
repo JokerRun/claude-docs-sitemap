@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/environments
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: f51a82d0e011926435d11d4108c196bb7b6951ec0317d5c882dd4ed7d50fefee
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 3b3cc680dfab8bfd19e25f19450c445f0f6731d81593546909b0512b95866d86
 ---
 
 ---
@@ -354,7 +354,6 @@ The `packages` (csharp, go: `Packages`) field pre-installs packages into the san
   if err != nil {
   	panic(err)
   }
-  _ = environment
   ```
 
   ```java Java
@@ -540,7 +539,6 @@ The following example creates an environment with `limited` networking:
   if err != nil {
   	panic(err)
   }
-  _ = environment
   ```
 
   ```java Java
@@ -620,7 +618,7 @@ When `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `A
 | Containers   | `registry-1.docker.io`, `auth.docker.io`, `production.cloudflare.docker.com`, `download.docker.com`, `ghcr.io`                                                                             |
 
 <Warning>
-  Network access is granted for each host, not for each operation. The sandbox can send any request to an allowed host, including uploads such as `git push` and package publishing, with any credential the command supplies. If the agent processes untrusted input (repository files, fetched web content, or third-party tool output), a successful prompt injection could use an allowed host to copy files out of the sandbox. To reduce this risk, set the `bash` tool's [permission policy](https://platform.claude.com/docs/en/managed-agents/permission-policies) to `always_ask` or `auto`. If the environment does not specify `packages` (csharp, go: `Packages`), you can instead leave `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) set to `false` and list only the hosts your agent needs in `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`).
+  Network access is granted by host, not by operation. The sandbox can send any request to an allowed host, including uploads such as `git push` and package publishing, with any credential the command supplies. If the agent processes untrusted input (repository files, fetched web content, or third-party tool output), a successful prompt injection could use an allowed host to copy files out of the sandbox. To reduce this risk, set the `bash` tool's [permission policy](https://platform.claude.com/docs/en/managed-agents/permission-policies) to `always_ask` or `auto`. If the environment does not specify `packages` (csharp, go: `Packages`), you can instead leave `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) set to `false` and list only the hosts your agent needs in `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`).
 </Warning>
 
 #### Risks of unrestricted networking

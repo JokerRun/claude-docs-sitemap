@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/authentication
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: ee59e0a409e6fb978cc5ee2f33629f07c28851707392d6a1b0a9a5680fe35259
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 917e54ff2a4691eff211c4b0c1f0b0e49afa02ef1eca2de416c791c36bd0b543
 ---
 
 ---
@@ -29,13 +29,13 @@ Kunci API adalah rahasia statis yang Anda hasilkan di Claude Console dan kirim p
 
 Saat Anda membuat kunci, Anda memilih jenisnya, yang menentukan apa yang dapat dilakukan kunci, di mana kunci bekerja, dan kapan kunci berhenti bekerja:
 
-| Jenis kunci                 | Bertindak sebagai                                                                                                      | Bekerja di                                                                                                                                                                                      | Berhenti bekerja ketika                                                                                                                                                                                                                        |
-| --------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Kunci pribadi**           | Anda, pengguna, dengan peran dan izin Anda                                                                             | Baik satu workspace atau workspace tempat peran Anda mengizinkan penggunaan API, dipilih saat kunci dibuat                                                                                      | Anda kehilangan akses ke organisasi atau, untuk kunci satu-workspace, ke workspace tersebut. Kunci pribadi diarsipkan ketika Anda dihapus dari organisasi. Jika Anda diundang kembali, buat kunci baru; kunci yang diarsipkan tidak dipulihkan |
-| **Kunci akun layanan**      | Sebuah [akun layanan](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#service-accounts) | Baik satu workspace atau apa pun yang dapat diakses akun layanan, dipilih saat kunci dibuat. Akun layanan memiliki akses ke Default Workspace dan ke workspace tempat akun tersebut ditambahkan | Akun layanan diarsipkan atau, untuk kunci satu-workspace, dihapus dari workspace tersebut                                                                                                                                                      |
-| **Kunci workspace** (lawas) | Tidak ada: kunci ini milik workspace tempat kunci dibuat                                                               | Workspace tersebut                                                                                                                                                                              | Kunci kedaluwarsa, dinonaktifkan atau dihapus, atau workspace-nya diarsipkan, terlepas dari apakah pembuatnya meninggalkan organisasi                                                                                                          |
+| Jenis kunci                 | Bertindak sebagai                                                                                                         | Bekerja di                                                                                                                                                                                                                  | Berhenti bekerja ketika                                                                                                                                                                                                                                                                                                        |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Kunci pribadi**           | Anda, sang pengguna, dengan peran dan izin Anda                                                                           | Satu workspace saja atau workspace tempat peran Anda mengizinkan penggunaan API, dipilih saat kunci dibuat                                                                                                                  | Anda kehilangan akses ke organisasi. Kunci satu workspace juga berhenti berfungsi ketika Anda kehilangan akses ke workspace tersebut atau workspace tersebut diarsipkan. Kunci pribadi diarsipkan ketika Anda dikeluarkan dari organisasi. Jika Anda diundang kembali, buat kunci baru; kunci yang diarsipkan tidak dipulihkan |
+| **Kunci service account**   | Sebuah [service account](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#service-accounts) | Satu workspace saja atau apa pun yang dapat diakses oleh service account, dipilih saat kunci dibuat. Service account memiliki akses ke Default Workspace dan ke workspace tempat service account tersebut telah ditambahkan | Service account diarsipkan. Kunci satu workspace juga berhenti berfungsi ketika service account dihapus dari workspace tersebut atau workspace tersebut diarsipkan                                                                                                                                                             |
+| **Kunci workspace** (lawas) | Tidak ada: kunci ini milik workspace tempat kunci dibuat                                                                  | Workspace tersebut                                                                                                                                                                                                          | Kunci kedaluwarsa, dinonaktifkan atau dihapus, atau workspace-nya diarsipkan, terlepas dari apakah pembuatnya meninggalkan organisasi                                                                                                                                                                                          |
 
-Kunci pribadi dan kunci akun layanan didukung identitas: masing-masing milik pengguna atau akun layanan yang sudah dikelola organisasi Anda, dan setiap permintaan bertindak sebagai identitas tersebut. Ketika identitas tersebut dihapus dari organisasi, kunci berhenti bekerja. Ini berarti kunci tidak akan secara tidak sengaja bertahan lebih lama dari orang atau beban kerja yang memilikinya. Utamakan kunci ini daripada kunci workspace untuk integrasi baru.
+Kunci pribadi dan kunci service account didukung identitas: masing-masing dimiliki oleh pengguna atau service account yang sudah dikelola organisasi Anda, dan setiap permintaan bertindak sebagai identitas tersebut. Ketika identitas tersebut dikeluarkan dari organisasi, kunci berhenti berfungsi. Artinya, kunci tidak secara tidak sengaja bertahan lebih lama daripada orang atau workload yang memilikinya. Utamakan jenis kunci ini dibandingkan kunci workspace untuk integrasi baru.
 
 Gunakan kunci pribadi untuk pengembangan dan skrip Anda sendiri. Kunci pribadi yang dibagikan bertindak sebagai satu orang dan rusak ketika orang tersebut pergi. Untuk beban kerja yang dibagikan atau otomatis (CI, layanan produksi), minta admin organisasi membuat akun layanan sehingga beban kerja memiliki identitasnya sendiri.
 
@@ -43,8 +43,8 @@ Kunci API workspace masih berfungsi tetapi harus dianggap lawas; kunci yang didu
 
 ### Membuat dan menggunakan kunci
 
-* **Membuat kunci:** Di Claude Console, buka halaman [API keys](https://platform.claude.com/settings/keys) (`platform.claude.com/settings/keys`) dan klik **Create key**. Beri nama kunci dan pilih [masa kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration). Atur **Linked account** ke diri Anda sendiri untuk kunci pribadi, atau ke akun layanan untuk kunci yang digunakan bersama oleh beberapa pengguna. Anda juga dapat membatasi cakupan kunci ke workspace tertentu, sehingga Anda tidak perlu mengatur ID workspace secara manual dalam permintaan berikutnya.
-* **Menggunakan kunci:** Kirim sebagai `Authorization: Bearer <key>` pada permintaan HTTP langsung, atau atur variabel lingkungan `ANTHROPIC_API_KEY` dan [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) akan mengambilnya secara otomatis.
+* **Membuat kunci:** Di Claude Console, buka halaman [API keys](https://platform.claude.com/settings/keys) (`platform.claude.com/settings/keys`) dan klik **Create key**. Beri nama kunci dan pilih [masa kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration). Atur **Linked account** ke diri Anda sendiri untuk kunci pribadi, atau ke service account untuk kunci yang digunakan bersama oleh banyak pengguna. Anda juga dapat membatasi cakupan kunci ke workspace tertentu, sehingga Anda tidak perlu mengatur ID workspace secara manual pada permintaan berikutnya.
+* **Menggunakan kunci:** Kirim sebagai `Authorization: Bearer <key>` pada permintaan HTTP langsung, atau atur variabel lingkungan `ANTHROPIC_API_KEY` dan [client SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) akan mengambilnya secara otomatis.
 
 ```http
 POST /v1/messages
@@ -55,7 +55,7 @@ content-type: application/json
 
 Header lawas `x-api-key: YOUR_API_KEY` masih didukung sebagai pengganti `Authorization`.
 
-Simpan kunci API di secrets manager, rotasi secara berkala, dan nonaktifkan atau hapus kunci apa pun yang Anda curigai telah bocor. Di [halaman kunci API](https://platform.claude.com/settings/keys) di Claude Console, **Disable** dapat dibatalkan (Admin API melaporkan `status` kunci sebagai `"inactive"`, dan **Re-enable** mengembalikannya ke `"active"`), sedangkan **Delete** bersifat permanen: kunci diarsipkan dan tetap muncul di [List API Keys](https://platform.claude.com/docs/id/api/organization/api_keys/list) dengan `status: "archived"`. Kunci yang kedaluwarsa hanya dapat dihapus. Anda juga dapat mengatur [masa kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration) saat membuat kunci untuk membatasi berapa lama kredensial yang bocor tetap dapat digunakan.
+Simpan kunci API di secrets manager, rotasi secara berkala, dan nonaktifkan atau hapus kunci apa pun yang Anda curigai telah bocor. Di halaman [API keys](https://platform.claude.com/settings/keys) pada Claude Console, **Disable** dapat dibatalkan (Admin API melaporkan `status` kunci sebagai `"inactive"`, dan **Re-enable** mengembalikannya ke `"active"`), sedangkan **Delete** bersifat permanen: kunci diarsipkan dan masih muncul di [List API Keys](https://platform.claude.com/docs/id/api/organization/api_keys/list) dengan `status: "archived"`. Kunci yang sudah kedaluwarsa hanya dapat dihapus. Anda juga dapat mengatur [masa kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration) saat membuat kunci untuk membatasi berapa lama kredensial yang bocor tetap dapat digunakan.
 
 <CodeGroup>
   ```bash cURL
@@ -68,6 +68,11 @@ Simpan kunci API di secrets manager, rotasi secara berkala, dan nonaktifkan atau
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello, Claude"}]
     }'
+  ```
+
+  ```bash CLI
+  # Lihat /docs/en/cli-sdks-libraries/cli/authentication#api-key untuk varian zsh, bash, dan Windows
+  export ANTHROPIC_API_KEY=sk-ant-api03-...
   ```
 
   ```python Python
@@ -82,6 +87,14 @@ Simpan kunci API di secrets manager, rotasi secara berkala, dan nonaktifkan atau
   // const client = new Anthropic();
   ```
 
+  ```csharp C#
+  using Anthropic;
+
+  AnthropicClient client = new() { ApiKey = "my-anthropic-api-key" };
+  // Atau, dengan ANTHROPIC_API_KEY diatur di environment:
+  // AnthropicClient client = new();
+  ```
+
   ```go Go
   client := anthropic.NewClient(
   	option.WithAPIKey("sk-ant-api03-..."), // defaults to os.LookupEnv("ANTHROPIC_API_KEY")
@@ -94,19 +107,11 @@ Simpan kunci API di secrets manager, rotasi secara berkala, dan nonaktifkan atau
 
   // Eksplisit
   AnthropicClient client = AnthropicOkHttpClient.builder()
-    .apiKey("my-anthropic-api-key")
-    .build();
+      .apiKey("my-anthropic-api-key")
+      .build();
 
   // Dari ANTHROPIC_API_KEY (atau properti sistem anthropic.apiKey)
   AnthropicClient clientFromEnv = AnthropicOkHttpClient.fromEnv();
-  ```
-
-  ```csharp C#
-  using Anthropic;
-
-  AnthropicClient client = new() { ApiKey = "my-anthropic-api-key" };
-  // Atau, dengan ANTHROPIC_API_KEY yang diatur di environment:
-  // AnthropicClient client = new();
   ```
 
   ```php PHP
@@ -121,18 +126,13 @@ Simpan kunci API di secrets manager, rotasi secara berkala, dan nonaktifkan atau
   # atau, dengan ANTHROPIC_API_KEY yang diatur di environment:
   anthropic = Anthropic::Client.new
   ```
-
-  ```bash CLI
-  # Lihat /docs/en/cli-sdks-libraries/cli/authentication#api-key untuk varian zsh, bash, dan Windows
-  export ANTHROPIC_API_KEY=sk-ant-api03-...
-  ```
 </CodeGroup>
 
 ### Memilih workspace
 
 Kunci API yang dibuat untuk workspace tertentu hanya berfungsi di workspace tersebut, dan permintaan API yang menggunakan kunci ini dapat menghilangkan ID workspace.
 
-Jika kunci API Anda tidak dibatasi cakupannya ke workspace, Anda harus menentukan ID workspace di header `anthropic-workspace-id` untuk setiap permintaan. Lihat contoh berikut untuk cara mengatur header ini dalam permintaan atau di SDK.
+Jika kunci API Anda tidak dibatasi ke workspace, Anda harus menentukan ID workspace di header `anthropic-workspace-id` untuk setiap permintaan. Lihat contoh berikut untuk cara mengatur header ini dalam permintaan atau di SDK.
 
 [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) menerima kunci pribadi atau kunci akun layanan hanya jika kunci tersebut tidak dibatasi cakupannya ke workspace tertentu.
 
@@ -140,8 +140,8 @@ Anda dapat menemukan ID workspace di kolom **ID** pada halaman [Workspaces](http
 
 <CodeGroup>
   ```bash cURL
-  # Diperlukan pada setiap permintaan untuk kunci multi-workspace.
-  # Hilangkan header anthropic-workspace-id untuk kunci single-workspace.
+  # Wajib di setiap permintaan untuk kunci yang tidak dibatasi ke suatu workspace.
+  # Hilangkan header anthropic-workspace-id untuk kunci yang dibatasi ke satu workspace.
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -155,8 +155,8 @@ Anda dapat menemukan ID workspace di kolom **ID** pada halaman [Workspaces](http
   ```
 
   ```bash CLI
-  # Diperlukan pada setiap perintah untuk kunci multi-workspace.
-  # Hilangkan --workspace-id untuk kunci single-workspace.
+  # Wajib pada setiap perintah untuk kunci yang tidak dibatasi ke suatu workspace.
+  # Hilangkan --workspace-id untuk kunci yang dibatasi ke satu workspace.
   ant messages create \
     --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ \
     --model claude-opus-5-5 \
@@ -167,8 +167,8 @@ Anda dapat menemukan ID workspace di kolom **ID** pada halaman [Workspaces](http
   ```python Python
   client = Anthropic()  # reads ANTHROPIC_API_KEY
 
-  # Diperlukan pada setiap permintaan untuk kunci multi-workspace.
-  # Hilangkan extra_headers untuk kunci single-workspace.
+  # Wajib di setiap permintaan untuk kunci yang tidak dibatasi ke satu workspace.
+  # Hilangkan extra_headers untuk kunci yang dibatasi ke satu workspace.
   message = client.messages.create(
       model="claude-opus-5-5",
       max_tokens=1024,
@@ -186,8 +186,8 @@ Anda dapat menemukan ID workspace di kolom **ID** pada halaman [Workspaces](http
   ```typescript TypeScript
   const client = new Anthropic(); // reads ANTHROPIC_API_KEY
 
-  // Diperlukan pada setiap permintaan untuk kunci multi-workspace.
-  // Hilangkan argumen kedua untuk kunci single-workspace.
+  // Wajib di setiap permintaan untuk kunci yang tidak dibatasi ke satu workspace.
+  // Hilangkan argumen kedua untuk kunci yang dibatasi ke satu workspace.
   const message = await client.messages.create(
     {
       model: "claude-opus-5-5",
@@ -214,8 +214,8 @@ Anda dapat menemukan ID workspace di kolom **ID** pada halaman [Workspaces](http
       Messages = [new UserMessageParam { Content = "Hello, Claude" }],
   };
 
-  // Diperlukan pada setiap permintaan untuk kunci multi-workspace.
-  // Panggil client.Messages.Create(parameters) secara langsung untuk kunci single-workspace.
+  // Wajib pada setiap permintaan untuk kunci yang tidak dibatasi pada satu workspace.
+  // Panggil client.Messages.Create(parameters) secara langsung untuk kunci yang dibatasi pada satu workspace.
   var message = await client
       .WithOptions(options =>
           options with
@@ -242,8 +242,8 @@ Anda dapat menemukan ID workspace di kolom **ID** pada halaman [Workspaces](http
   ```go Go
   client := anthropic.NewClient() // reads ANTHROPIC_API_KEY
 
-  // Wajib pada setiap permintaan untuk kunci multi-workspace.
-  // Hilangkan opsi ini untuk kunci single-workspace.
+  // Wajib di setiap permintaan untuk kunci yang tidak dicakup ke satu workspace.
+  // Hilangkan opsi ini untuk kunci yang dicakup ke satu workspace.
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
   	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
@@ -265,8 +265,8 @@ Anda dapat menemukan ID workspace di kolom **ID** pada halaman [Workspaces](http
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv(); // reads ANTHROPIC_API_KEY
 
-  // Diperlukan pada setiap permintaan untuk kunci multi-workspace.
-  // Hilangkan putAdditionalHeader untuk kunci single-workspace.
+  // Wajib pada setiap permintaan untuk kunci yang tidak dibatasi ke suatu workspace.
+  // Hilangkan putAdditionalHeader untuk kunci yang dibatasi ke satu workspace.
   Message message = client.messages().create(MessageCreateParams.builder()
       .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024)
@@ -303,8 +303,8 @@ Anda dapat menemukan ID workspace di kolom **ID** pada halaman [Workspaces](http
   ```ruby Ruby
   client = Anthropic::Client.new # reads ANTHROPIC_API_KEY
 
-  # Diperlukan pada setiap permintaan untuk kunci multi-workspace.
-  # Hilangkan request_options untuk kunci single-workspace.
+  # Wajib pada setiap permintaan untuk kunci yang tidak dibatasi pada satu workspace.
+  # Hilangkan request_options untuk kunci yang dibatasi pada satu workspace.
   message = client.messages.create(
     model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
@@ -323,7 +323,7 @@ Jika permintaan yang dibuat dengan kunci yang tidak dibatasi cakupannya ke works
   "type": "error",
   "error": {
     "type": "invalid_request_error",
-    "message": "anthropic-workspace-id is required when authenticating with an identity-linked API key; send the id of the workspace this request acts in."
+    "message": "This API key is not scoped to a workspace, so this request must include the anthropic-workspace-id header with the ID of the workspace to use. Add the header, or use an API key that is scoped to a workspace."
   },
   "request_id": "req_011CSHoEeqs5C35K2UUqR7Fy"
 }
@@ -335,7 +335,7 @@ Workload Identity Federation memilih workspace saat pertukaran token sebagai gan
 
 ### Kedaluwarsa kunci
 
-Saat Anda membuat kunci API dari [halaman kunci API](https://platform.claude.com/settings/keys) di Claude Console, Anda memilih kedaluwarsa: preset (3 jam, 1 hari, 7 hari, atau 30 hari), durasi kustom, atau **Never** untuk kunci yang Anda simpan di secrets manager dan rotasi sendiri. Jika organisasi Anda memiliki kebijakan kedaluwarsa maksimum, Console membatasi preset dan durasi kustom ke maksimum kebijakan, dan **Never** tidak tersedia. Kunci yang ada mempertahankan perilaku saat ini; kedaluwarsa diatur pada waktu pembuatan dan tidak dapat diubah setelahnya. Pilihan kedaluwarsa yang sama berlaku saat Anda [membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys) di Claude Console.
+Saat Anda membuat kunci API dari halaman [API keys](https://platform.claude.com/settings/keys) di Claude Console, Anda memilih masa kedaluwarsa: preset (3 jam, 1 hari, 7 hari, atau 30 hari), durasi kustom, atau **Never** untuk kunci yang Anda simpan di secrets manager dan rotasi sendiri. Jika organisasi Anda memiliki kebijakan masa kedaluwarsa maksimum, Console membatasi preset dan durasi kustom hingga batas maksimum kebijakan, dan **Never** tidak tersedia. Kunci yang sudah ada mempertahankan perilakunya saat ini; masa kedaluwarsa diatur saat pembuatan dan tidak dapat diubah setelahnya. Pilihan masa kedaluwarsa yang sama berlaku saat Anda [membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys) di Claude Console.
 
 Anthropic mengirim email kepada pembuat kunci saat kedaluwarsa mendekat: 7 hari sebelum kedaluwarsa untuk kunci yang dibuat dengan masa pakai minimal 14 hari, dan 1 hari sebelumnya untuk kunci dengan masa pakai minimal 7 hari. Kunci dengan masa pakai lebih pendek kedaluwarsa tanpa email peringatan.
 
@@ -349,27 +349,27 @@ Kedaluwarsa membatasi masa pakai kredensial yang bocor, tetapi bukan pengganti k
 
 Jika Anda memiliki kunci workspace, Anda mungkin ingin menggantinya dengan [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/wif-reference) atau kunci pribadi atau akun layanan. Ini memberikan keamanan dan observabilitas yang lebih baik.
 
-Lihat [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/wif-reference) untuk detail tentang mengonfigurasi Workload Identity Federation, yang lebih diutamakan daripada kunci berumur panjang.
+Lihat [referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference) untuk detail tentang mengonfigurasi Workload Identity Federation, yang lebih diutamakan dibandingkan kunci berumur panjang.
 
 Untuk mengganti kunci workspace dengan kunci pribadi atau akun layanan:
 
 1. **Tentukan jenis kunci.** Perkakas Anda sendiri harus menggunakan kunci pribadi. Beban kerja yang dibagikan atau tanpa pengawasan harus menggunakan kunci akun layanan.
-2. **Buat akun layanan** jika diperlukan. Anda mungkin perlu meminta admin organisasi untuk membuatnya di halaman [Service accounts](https://platform.claude.com/settings/service-accounts) (`platform.claude.com/settings/service-accounts`) di Claude Console dan menambahkannya ke workspace yang relevan.
-3. **Buat kunci baru.** Buat secara khusus untuk workspace integrasi kecuali beberapa workspace diperlukan.
-4. **Terapkan kunci baru.** Ganti kunci lama di mana pun integrasi membacanya, biasanya variabel lingkungan `ANTHROPIC_API_KEY` atau entri secrets manager. Untuk kunci multi-workspace, kirim juga header `anthropic-workspace-id` seperti yang ditunjukkan di [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace).
+2. **Buat service account** jika diperlukan. Anda mungkin harus meminta admin organisasi untuk membuatnya di halaman [Service accounts](https://platform.claude.com/settings/service-accounts) (`platform.claude.com/settings/service-accounts`) di Claude Console dan menambahkannya ke workspace yang relevan.
+3. **Buat kunci baru.** Buat kunci tersebut khusus untuk workspace integrasi kecuali integrasi memerlukan beberapa workspace.
+4. **Terapkan kunci baru.** Ganti kunci lama di mana pun integrasi membacanya, biasanya variabel lingkungan `ANTHROPIC_API_KEY` atau entri secrets manager. Untuk kunci yang tidak dibatasi ke workspace, kirim juga header `anthropic-workspace-id` seperti yang ditunjukkan di [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace).
 5. **Hapus kunci lama.** Pastikan permintaan berhasil, lalu hapus kunci workspace di [halaman kunci API](https://platform.claude.com/settings/keys) di Claude Console.
 
 ## Workload Identity Federation
 
-Workload Identity Federation (WIF) memungkinkan beban kerja mengautentikasi dengan identity token berumur pendek yang diterbitkan oleh penyedia identitas (IdP) yang sudah Anda percayai, seperti AWS IAM, Google Cloud, atau penerbit OIDC yang sesuai standar apa pun (seperti GitHub Actions, akun layanan Kubernetes, SPIFFE, Microsoft Entra ID, atau Okta). Beban kerja menukar JWT yang diterbitkan IdP-nya di `POST /v1/oauth/token` untuk access token Claude API berumur pendek, dan SDK menyegarkan token tersebut secara otomatis sebelum kedaluwarsa. Tidak ada string `sk-ant-api...` untuk dibuat, didistribusikan, atau dirotasi.
+Workload Identity Federation (WIF) memungkinkan workload melakukan autentikasi dengan identity token berumur pendek yang diterbitkan oleh "identity provider" (penyedia identitas), atau IdP, yang sudah Anda percayai. IdP tersebut meliputi AWS IAM, Google Cloud, dan penerbit OIDC apa pun yang mematuhi standar (seperti GitHub Actions, service account Kubernetes, SPIFFE, Microsoft Entra ID, atau Okta). Workload menukar JWT yang diterbitkan IdP-nya di `POST /v1/oauth/token` dengan access token Claude API berumur pendek, dan SDK memperbarui token tersebut secara otomatis sebelum kedaluwarsa. Tidak ada string `sk-ant-api...` yang perlu dibuat, didistribusikan, atau dirotasi.
 
-Federasi menghapus kunci Claude API berumur panjang dari lingkungan Anda, yang mengecilkan radius ledakan kredensial yang bocor dan memungkinkan Anda mengelola akses dengan kontrol IdP yang sama yang sudah Anda gunakan untuk sumber daya cloud. Federasi, dengan sendirinya, tidak menjamin keamanan end-to-end: rantai kepercayaan hanya sekuat konfigurasi penyedia identitas Anda, dan rahasia berumur panjang satu lompatan di hulu (misalnya, kredensial cloud statis yang dapat membuat token IdP) masih dapat melemahkannya. Pasangkan federasi dengan kontrol penyedia Anda, seperti daftar izin IP, MFA, dan logging audit.
+Federasi menghilangkan kunci Claude API berumur panjang dari lingkungan Anda, yang membatasi kerusakan yang dapat ditimbulkan oleh kredensial yang bocor dan memungkinkan Anda mengelola akses dengan kontrol IdP yang sama yang sudah Anda gunakan untuk sumber daya cloud. Federasi sendiri tidak menjamin keamanan end-to-end: rantai kepercayaan hanya sekuat konfigurasi penyedia identitas Anda, dan secret berumur panjang satu langkah lebih awal dalam rantai tersebut (misalnya, kredensial cloud statis yang dapat membuat token IdP) masih dapat melemahkannya. Padukan federasi dengan kontrol dari penyedia Anda, seperti allowlist IP, MFA, dan audit logging.
 
 Untuk mengonfigurasi federasi, Anda membuat tiga sumber daya di Claude Console (akun layanan, penerbit federasi, dan aturan federasi) lalu mengarahkan SDK Anda ke aturan tersebut. Lihat [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation) untuk panduan pengaturan lengkap.
 
 ## App Attest
 
-App Attest mengautentikasi aplikasi iOS dan macOS yang memanggil Claude API langsung dari perangkat. Setiap instalasi membuktikan bahwa itu adalah build asli dan tidak dimodifikasi dari aplikasi yang Anda daftarkan di Claude Console, menggunakan layanan App Attest Apple. Anthropic kemudian menerbitkan access token berumur pendek untuk perangkat yang menagih penggunaan ke workspace Anda. Token dibatasi cakupannya ke workspace Anda, kedaluwarsa setelah satu jam, dan hanya mengotorisasi panggilan [Messages API](https://platform.claude.com/docs/id/api/messages/create).
+App Attest mengautentikasi aplikasi iOS dan macOS yang memanggil Claude API langsung dari perangkat. Setiap instalasi membuktikan bahwa instalasi tersebut merupakan build asli dan tidak dimodifikasi dari aplikasi yang Anda daftarkan di Claude Console, menggunakan layanan App Attest dari Apple. Anthropic kemudian menerbitkan access token berumur pendek untuk perangkat tersebut yang menagihkan penggunaan ke workspace Anda. Token dibatasi ke workspace Anda, kedaluwarsa setelah 1 jam, dan hanya mengotorisasi panggilan [Messages API](https://platform.claude.com/docs/id/api/messages/create).
 
 Untuk mendaftarkan aplikasi Anda dan mendapatkan client ID, lihat [App Attest untuk aplikasi iOS dan macOS](https://platform.claude.com/docs/id/manage-claude/app-attest).
 

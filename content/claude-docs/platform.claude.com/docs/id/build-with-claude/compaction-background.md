@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-background
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 15d6dcad72777e7e0bc3ec93b99c21271db038080d91de0a102f31c9d5689865
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: e10e51816f60cc593b7e87766c1c51ed158388112977e719c32b0eb990b89220
 ---
 
 ---
@@ -48,7 +48,7 @@ Permintaan compaction dan blok yang dikembalikannya sama seperti dalam loop. Riw
 Sebagai contoh, jika permintaan compaction memuat pesan 1 hingga 5 dan percakapan bertambah dengan pesan 6 hingga 8 selama permintaan itu berjalan, setelah penukaran riwayat Anda adalah blok tersebut diikuti oleh pesan 6 hingga 8.
 
 <Frame>
-  ![Linimasa background compaction (pemadatan di latar belakang): permintaan compaction dikirim dengan pesan 1 hingga 5 sementara percakapan berlanjut pada riwayat lengkapnya dan bertambah dengan pesan 6 hingga 8; ketika blok tiba, blok tersebut menggantikan pesan 1 hingga 5 di bagian depan riwayat, dan riwayat menjadi blok tersebut diikuti oleh pesan 6 hingga 8](https://platform.claude.com/docs/id/images/compaction-background-timeline.svg)
+  ![Pesan 6 hingga 8 bergabung ke riwayat lengkap sementara pesan 1 hingga 5 diringkas; blok yang tiba kemudian menggantikan pesan 1 hingga 5](https://platform.claude.com/docs/id/images/compaction-background-timeline.svg)
 </Frame>
 
 Jika respons memiliki `stop_reason` lain, tidak ada ringkasan yang dihasilkan, dan hal ini dihitung sebagai kegagalan pada langkah 2. Pertahankan riwayat lengkap; [Menangani ringkasan yang tidak ada atau error](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#when-no-summary-comes-back) mencantumkan penyebabnya dan apa yang harus dilakukan untuk masing-masing.
@@ -542,8 +542,8 @@ Program berikut adalah loop dari [Compaction dalam loop](https://platform.claude
 </CodeGroup>
 
 * **Menentukan kapan melakukan compaction:** Pemeriksaan ukuran juga mensyaratkan bahwa tidak ada permintaan compaction yang sedang tertunda.
-* **Memulai permintaan:** Di tempat loop menunggu respons compaction, versi ini mencatat berapa banyak pesan yang dimuat riwayat, memulai permintaan pada salinan riwayat dengan alat konkurensi milik masing-masing bahasa, dan melanjutkan ke giliran berikutnya tanpa menunggu.
-* **Memeriksa hasil:** Di awal setiap giliran, program memeriksa apakah permintaan yang tertunda sudah selesai. Jika sudah, program melakukan penukaran sebelum mengirim permintaan untuk giliran tersebut.
+* **Memulai permintaan:** Di bagian di mana loop menunggu respons compaction, versi ini mencatat berapa banyak pesan yang dimuat riwayat, memulai permintaan pada salinan riwayat dengan alat konkurensi milik bahasa tersebut, dan melanjutkan ke giliran berikutnya tanpa menunggu.
+* **Memeriksa hasil:** Di awal setiap giliran, program memeriksa apakah permintaan yang tertunda telah selesai. Jika sudah, program melakukan penukaran sebelum mengirim permintaan giliran tersebut.
 * **Melakukan penukaran:** Di tempat loop mengganti seluruh riwayat dengan pesan yang dikembalikan, fungsi penukaran versi ini hanya mengganti pesan-pesan yang dimuat oleh permintaan, dihitung dari bagian depan, dan mempertahankan semua yang ditambahkan sejak saat itu.
 * **Mengakhiri loop:** Jika permintaan compaction masih tertunda saat loop berakhir, program menunggunya dan melakukan penukaran, sehingga ringkasan yang masih dalam perjalanan tidak hilang sebelum Anda menyimpan atau melanjutkan percakapan.
 

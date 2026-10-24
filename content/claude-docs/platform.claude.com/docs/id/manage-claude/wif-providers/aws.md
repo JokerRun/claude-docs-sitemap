@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/aws
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: cfd8c5faf4c876110f2a99bb2e5e00ca4888043b11f9b7fe2e8c29c2f2aeba9f
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: d0a63ce5779aed8e894dd761e05727d2ed7848d88e3e00d55426a4f4fc49ff06
 ---
 
 ---
@@ -102,7 +102,7 @@ Buatlah sespesifik mungkin sesuai yang diizinkan beban kerja. Cocokkan ARN role 
 
 ### Memperoleh dan menggunakan token
 
-Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audience, lalu berikan hasilnya ke kredensial federasi SDK melalui `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider`; java: `IdentityTokenConfig`). Kecuali di Java (lihat komentar dalam contoh tersebut), opsi itu menerima penyedia token, sehingga SDK akan memanggil ulang STS pada setiap refresh.
+Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audience, lalu berikan hasilnya ke kredensial federasi SDK melalui `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider()`; java: `IdentityTokenConfig`). Kecuali di Java (lihat komentar dalam contoh tersebut), opsi itu menerima penyedia token, sehingga SDK akan memanggil ulang STS pada setiap refresh.
 
 <Note>
   `GetWebIdentityToken` hanya tersedia di endpoint STS regional. Jika Anda menerima `'STS' object has no attribute 'get_web_identity_token'` atau error serupa, sematkan klien STS Anda ke suatu region (misalnya, `boto3.client("sts", region_name="us-east-1")`) dan pastikan AWS SDK Anda cukup baru untuk menyertakan API tersebut.

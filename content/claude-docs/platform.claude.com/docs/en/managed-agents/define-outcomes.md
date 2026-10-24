@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/define-outcomes
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: d65da4b33d667a40ad2216e4ccc3eaddaf4f9db5750c6dde81ccbd7bfa46c50c
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 1bbaee181240d64e4bdf4b2b2beb685c46312dae8d86947092bd72a60e5629a9
 ---
 
 ---
@@ -555,7 +555,7 @@ This is the event you send to initiate an outcome. It is echoed back on receipt,
 
 Emitted once the grader starts an evaluation over one iteration loop. The `iteration` field is a 0-indexed revision counter: `0` is the first evaluation, `1` is the re-evaluation after the first revision, and so on.
 
-```text wrap
+```json
 {
   "type": "span.outcome_evaluation_start",
   "id": "sevt_01def...",
@@ -569,7 +569,7 @@ Emitted once the grader starts an evaluation over one iteration loop. The `itera
 
 Heartbeat emitted while the grader runs. The grader's internal reasoning is opaque: the event shows only that the grader is working.
 
-```text wrap
+```json
 {
   "type": "span.outcome_evaluation_ongoing",
   "id": "sevt_01ghi...",
@@ -591,7 +591,7 @@ Emitted when an outcome evaluation cycle ends: after the grader finishes evaluat
 | `failed`                 | Session transitions to `idle`. Returned when the rubric does not apply to the deliverables, for example if the description and rubric contradict each other.                                                              |
 | `interrupted`            | Emitted when the session is interrupted while an outcome is active, even if evaluation hadn't started yet. If no `outcome_evaluation_start` fired before the interrupt, `outcome_evaluation_start_id` is an empty string. |
 
-```text
+```json
 {
   "type": "span.outcome_evaluation_end",
   "id": "sevt_01jkl...",

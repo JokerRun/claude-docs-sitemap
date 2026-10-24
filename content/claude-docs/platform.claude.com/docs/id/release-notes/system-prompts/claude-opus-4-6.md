@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-4-6
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: fe47e607d0927dae4fae8361fa7e5f1bccc6bc645a85a36927c6cfdf241005c5
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 60007f8320599311db47af6a82fb00c3aedd749bd83bd42d19a2a7f8d04e7a6e
 ---
 
 ---
 title: Prompt sistem Claude Opus 4.6
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-4-6
-description: Lihat pembaruan pada prompt sistem inti untuk Claude Opus 4.6 di [claude.ai](https://claude.ai) serta [aplikasi Claude iOS](https://anthropic.com/ios) dan [aplikasi Claude Android](https://anthropic.com/android).
+description: Lihat pembaruan pada prompt sistem inti untuk Claude Opus 4.6 di [claude.ai](https://claude.ai), [aplikasi Claude iOS](https://anthropic.com/ios), dan [aplikasi Claude Android](https://anthropic.com/android).
 ---
 
 ## 5 Februari 2026

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/security
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 8312cc6bd308df8f6ff91593b48c8c386df84b9cee5ef4528791a95c733be917
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 9ece3e1490b55104910e6ad8ab319f9d00ffae3f27c8a57698118f9327b94a8e
 ---
 
 ---
@@ -19,7 +19,7 @@ Arsitektur tunnel menyediakan default yang kuat (konektivitas hanya-keluar, enkr
 
 ## Praktik terbaik
 
-* **Wajibkan OAuth pada setiap server MCP.** Konfigurasikan setiap [server MCP upstream](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) agar mewajibkan OAuth seperti yang dijelaskan dalam [spesifikasi otorisasi MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization). OAuth menyediakan defense in depth (pertahanan berlapis) di atas autentikasi transport tunnel dan memungkinkan otorisasi tingkat pengguna pada lapisan data.
+* **Wajibkan OAuth pada setiap server MCP.** Konfigurasikan setiap [server MCP upstream](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) untuk mewajibkan OAuth seperti yang dijelaskan dalam [spesifikasi otorisasi MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization). OAuth menyediakan "defense in depth" (pertahanan berlapis) di atas autentikasi transport tunnel dan memungkinkan otorisasi tingkat pengguna pada lapisan data.
 * **Aktifkan SSO untuk organisasi Anda.** Tunnel, aturan federasi, dan service account dikelola di Claude Console. SSO menerapkan kontrol sesi dari penyedia identitas Anda pada admin yang dapat mengubahnya.
 * **Batasi `upstream.allowed_ips`.** Gunakan rentang CIDR terkecil yang mencakup server MCP Anda. Ini adalah pertahanan SSRF utama milik [proxy](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components).
 * **Pantau log.** Buat peringatan untuk warning, error, dan pola lalu lintas yang tidak biasa dari tunnel stack.

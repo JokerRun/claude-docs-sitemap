@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 01c0664d738e18c6c193fe72b7ac27a5a63c21f61dc736f3c4a354d1b116e880
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: ff212854bd512c05f76a3d0f793bcaedc3ca16e5c68b094b9ea3cec4ea3d12a2
 ---
 
 ---
@@ -25,7 +25,7 @@ Mode ini bukan parameter API. Mode ini dibangun sepenuhnya dari komponen yang te
 
 ## Menyiapkan loop
 
-Contoh ini terdiri dari satu file. Konstanta-konstantanya mengatur tingkat effort, bentuk fan-out, dan seberapa sering penyegar mode dikirim ulang. `MAX_CONCURRENT` membatasi jumlah subagen yang berjalan bersamaan (port PHP berjalan secara berurutan dan mengabaikan konstanta ini). `MAX_TOTAL_SUBTASKS` membatasi jumlah subtugas yang dapat diantrekan model dalam satu panggilan Workflow. Pemisahan keduanya memungkinkan model merencanakan backlog besar tanpa meluncurkan semuanya sekaligus. Pemeriksaan `DOC_TEST_MODE` membatasi loop menjadi satu giliran saat variabel lingkungan tersebut diatur. Dengan begitu, harness dokumentasi otomatis dapat memvalidasi bahwa file berhasil dikompilasi dan selesai dengan cepat tanpa menjalankan orkestrasi penuh. Biarkan variabel ini tidak diatur saat Anda menjalankan contoh ini sendiri.
+Contoh ini berupa satu file. Konstanta-konstanta mengontrol tingkat effort, bentuk fan-out, dan seberapa sering penyegar mode dikirim ulang. `MAX_CONCURRENT` membatasi berapa banyak subagen yang berjalan pada waktu yang sama (port PHP berjalan secara berurutan dan mengabaikannya); `MAX_TOTAL_SUBTASKS` membatasi berapa banyak subagen yang dapat diantrekan model dalam satu panggilan Workflow. Memisahkan keduanya memungkinkan model merencanakan backlog besar tanpa meluncurkan semuanya sekaligus. Pemeriksaan `DOC_TEST_MODE` membatasi loop menjadi satu giliran saat variabel lingkungan tersebut disetel, sehingga harness dokumentasi otomatis dapat memvalidasi bahwa file dapat dikompilasi dan selesai dengan cepat tanpa menjalankan orkestrasi penuh; biarkan tidak disetel saat Anda menjalankan contoh ini sendiri.
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python
@@ -1080,8 +1080,8 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   ```
 
   ```go Go
-  // Run bash where the example was launched. In DOC_TEST_MODE the docs harness
-  // points it at a throwaway fixture directory instead, removed on exit.
+  // Jalankan bash di tempat contoh ini diluncurkan. Dalam DOC_TEST_MODE, harness dokumentasi
+  // mengarahkannya ke direktori fixture sekali pakai, yang dihapus saat keluar.
   var workDir = func() string {
   	if !docTestMode {
   		dir, err := os.Getwd()
@@ -1105,8 +1105,8 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   	return dir
   }()
 
-  // runBash runs a shell command and returns its output plus an error flag.
-  // No sandbox: example code only.
+  // runBash menjalankan perintah shell dan mengembalikan output-nya beserta flag error.
+  // Tanpa sandbox: hanya kode contoh.
   func runBash(ctx context.Context, command string) (string, bool) {
   	fmt.Fprintf(os.Stderr, "[bash] %s\n", command)
   	ctx, cancel := context.WithTimeout(ctx, bashTimeoutSeconds*time.Second)
@@ -1133,7 +1133,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   	return fmt.Sprintf("(%s)\n%s", err, output), true
   }
 
-  // handleBashBlock runs one bash tool call requested by the model.
+  // handleBashBlock menjalankan satu panggilan alat bash yang diminta model.
   func handleBashBlock(ctx context.Context, block anthropic.ToolUseBlock) (string, bool) {
   	var input struct {
   		Command string `json:"command"`
@@ -1619,8 +1619,8 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
   ```
 
   ```go Go
-  // streamMessage sends one request and accumulates the streamed events into the
-  // final message.
+  // streamMessage mengirim satu permintaan dan mengakumulasi event yang di-stream menjadi
+  // pesan akhir.
   func streamMessage(ctx context.Context, params anthropic.MessageNewParams) (anthropic.Message, error) {
   	ctx, cancel := context.WithTimeout(ctx, requestTimeoutSeconds*time.Second)
   	defer cancel()
@@ -1635,7 +1635,7 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
   	return message, stream.Err()
   }
 
-  // textOf joins the text blocks of a response.
+  // textOf menggabungkan blok teks dari sebuah respons.
   func textOf(message anthropic.Message) string {
   	var text strings.Builder
   	for _, block := range message.Content {
@@ -1646,8 +1646,8 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
   	return text.String()
   }
 
-  // runSubagent runs one subagent: a small nested agent loop with the bash tool plus
-  // report_findings. Subagents inherit the main loop's effort level.
+  // runSubagent menjalankan satu subagen: loop agen bersarang kecil dengan alat bash plus
+  // report_findings. Subagen mewarisi tingkat upaya dari loop utama.
   func runSubagent(ctx context.Context, model string, prompt string) (string, error) {
   	const subagentSystem = "You are one agent in a larger parallel fan-out, assigned a single subtask. " +
   		"Investigate it directly, using bash to check facts rather than guessing, and finish " +
@@ -1959,7 +1959,7 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
 
 ## Menjurnal hasil agar eksekusi ulang dapat dilanjutkan
 
-Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Jurnal kecil beralamat konten membuatnya idempoten: sebelum mengirim subagen, cari SHA-256 dari prompt-nya di file JSON lokal, dan kembalikan hasil yang tercatat jika ada. Hentikan proses, jalankan ulang, dan hanya subtugas yang belum pernah selesai yang dihitung ulang. Jurnal melakukan deduplikasi antar-eksekusi, bukan di dalam satu gelombang fan-out; hapus file jurnal untuk memulai dari awal.
+Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Jurnal kecil yang dialamatkan berdasarkan konten membuatnya idempoten: sebelum mengirimkan subagen, cari SHA-256 dari prompt-nya dalam file JSON lokal, dan kembalikan hasil yang tercatat jika ada. Hentikan eksekusi, jalankan ulang, dan hanya subtugas yang belum pernah selesai yang dihitung ulang. Jurnal melakukan deduplikasi antar eksekusi, bukan di dalam satu gelombang fan-out; hapus file jurnal untuk memulai dari awal.
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python
@@ -2102,9 +2102,9 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
   	return journal
   }
 
-  // journaled returns a cached result for this exact prompt, or computes and persists
-  // it. This makes the fan-out resumable: interrupt the run, rerun it, and only the
-  // subtasks that never finished are recomputed. Delete the journal file to start fresh.
+  // journaled mengembalikan hasil yang di-cache untuk prompt persis ini, atau menghitung dan
+  // menyimpannya. Ini membuat fan-out dapat dilanjutkan: interupsi, jalankan ulang, dan hanya
+  // subtugas yang belum selesai yang dihitung ulang. Hapus file jurnal untuk memulai dari awal.
   func journaled(prompt string, compute func() (string, error)) (string, error) {
   	sum := sha256.Sum256([]byte(prompt))
   	key := hex.EncodeToString(sum[:])
@@ -2250,7 +2250,7 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
 
 ## Fan-out, lalu verifikasi
 
-Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurnal dengan paling banyak `MAX_CONCURRENT` yang berjalan bersamaan (sekuensial pada port PHP), dan mengisolasi kegagalan sehingga satu subagen yang rusak hanya menurun menjadi string error alih-alih mengakhiri proses. Setelah gelombang pertama selesai, gelombang kedua menggunakan kembali jalur subagen yang sama untuk mencoba membantah setiap hasil: setiap pemverifikasi menurunkan ulang klaim dari sumbernya, dengan default dianggap terbantah jika tidak pasti. Baik hasil asli maupun putusannya dikembalikan ke orkestrator sehingga keduanya dapat dipertimbangkan bersama.
+Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurnal dengan paling banyak `MAX_CONCURRENT` yang berjalan bersamaan (berurutan pada port PHP), dan mengisolasi kegagalan sehingga satu subagen yang rusak hanya menghasilkan string error alih-alih mengakhiri eksekusi. Setelah gelombang pertama selesai, gelombang kedua menggunakan kembali jalur subagen yang sama untuk mencoba menyanggah setiap hasil: setiap verifikator menurunkan ulang klaim dari sumbernya, dengan default dianggap tersanggah jika tidak pasti. Hasil asli beserta putusannya dikembalikan ke orkestrator sehingga orkestrator dapat menimbang keduanya bersama-sama.
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python
@@ -2519,8 +2519,8 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   ```
 
   ```go Go
-  // normalizeSubtasks accepts the subtasks input in whatever shape the model emits: an
-  // array, the array JSON-encoded as a single string, or a newline-separated list.
+  // normalizeSubtasks menerima input subtugas dalam bentuk apa pun yang dihasilkan model:
+  // array, array yang di-encode JSON sebagai satu string, atau daftar yang dipisahkan baris baru.
   func normalizeSubtasks(raw json.RawMessage) []string {
   	var tasks []string
   	if err := json.Unmarshal(raw, &tasks); err != nil {
@@ -2553,7 +2553,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   %s`, subtask, result)
   }
 
-  // mapWithLimit runs task over items with at most limit goroutines in flight.
+  // mapWithLimit menjalankan task pada items dengan paling banyak limit goroutine berjalan.
   func mapWithLimit(items []string, limit int, task func(string) string) []string {
   	results := make([]string, len(items))
   	semaphore := make(chan struct{}, limit)
@@ -2569,9 +2569,9 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   	return results
   }
 
-  // runWorkflow runs subtasks as parallel subagents, then runs a second verification wave
-  // over the results, and returns both. maxTotalSubtasks bounds how many the model can
-  // queue; maxConcurrent bounds how many run at once.
+  // runWorkflow menjalankan subtugas sebagai subagen paralel, lalu menjalankan gelombang verifikasi
+  // kedua atas hasilnya, dan mengembalikan keduanya. maxTotalSubtasks membatasi jumlah yang dapat
+  // diantrekan model; maxConcurrent membatasi jumlah yang berjalan sekaligus.
   func runWorkflow(ctx context.Context, model string, rawSubtasks json.RawMessage) (string, bool) {
   	allSubtasks := normalizeSubtasks(rawSubtasks)
   	subtasks := allSubtasks[:min(len(allSubtasks), maxTotalSubtasks)]
@@ -2584,7 +2584,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   	runOne := func(prompt string) string {
   		report, err := journaled(prompt, func() (string, error) { return runSubagent(ctx, model, prompt) })
   		if err != nil {
-  			// Isolation boundary: one bad subagent should not end the run.
+  			// Batas isolasi: satu subagen yang gagal tidak boleh menghentikan keseluruhan proses.
   			return fmt.Sprintf("(subagent failed: %s)", err)
   		}
   		return report
@@ -3307,8 +3307,8 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   ```
 
   ```go Go
-  // modeAgent is an agent loop whose orchestration mode is toggled with mid-conversation
-  // system messages.
+  // modeAgent adalah loop agen yang mode orkestrasinya diaktifkan/dinonaktifkan dengan pesan
+  // sistem di tengah percakapan.
   type modeAgent struct {
   	model              string
   	modeOn             bool
@@ -3322,7 +3322,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   	return &modeAgent{model: model, modeOn: true}
   }
 
-  // setMode turns the mode on or off. The notice is delivered with the next user turn.
+  // setMode mengaktifkan atau menonaktifkan mode. Pemberitahuan dikirim bersama giliran pengguna berikutnya.
   func (agent *modeAgent) setMode(modeOn bool) {
   	if modeOn == agent.modeOn {
   		return
@@ -3337,8 +3337,8 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   	agent.modeOn = modeOn
   }
 
-  // dueSystemMessages returns the system messages owed on this turn: an exit notice, the
-  // full mode text on entry, or a one-line refresher every turnsBetweenRefreshers user turns.
+  // dueSystemMessages mengembalikan pesan sistem yang jatuh tempo pada giliran ini: pemberitahuan keluar,
+  // teks mode lengkap saat masuk, atau pengingat satu baris setiap turnsBetweenRefreshers giliran pengguna.
   func (agent *modeAgent) dueSystemMessages() []anthropic.MessageParam {
   	systemMessage := func(content string) anthropic.MessageParam {
   		return anthropic.MessageParam{OfSystem: &anthropic.SystemMessageParam{
@@ -3364,10 +3364,10 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   	return due
   }
 
-  // turn sends one user turn through the loop, running tool calls until the model stops.
+  // turn mengirim satu giliran user melalui loop, menjalankan panggilan alat hingga model berhenti.
   func (agent *modeAgent) turn(ctx context.Context, userInput string) (string, error) {
-  	// Mid-conversation system messages follow the user turn they apply to, which keeps
-  	// the cached prefix ahead of them untouched.
+  	// Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
+  	// prefiks yang di-cache sebelum pesan tersebut tetap tidak tersentuh.
   	agent.messages = append(agent.messages, anthropic.NewUserMessage(anthropic.NewTextBlock(userInput)))
   	agent.messages = append(agent.messages, agent.dueSystemMessages()...)
   	agent.turnsSinceReminder++
@@ -3390,7 +3390,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   		case anthropic.StopReasonPauseTurn:
   			continue
   		case anthropic.StopReasonMaxTokens:
-  			// Drop the truncated assistant message so later turns do not build on it.
+  			// Buang pesan asisten yang terpotong agar giliran berikutnya tidak dibangun di atasnya.
   			agent.messages = agent.messages[:len(agent.messages)-1]
   			return textOf(response) + "\n\n(warning: response was truncated at max_tokens)", nil
   		case anthropic.StopReasonToolUse:
@@ -3904,7 +3904,7 @@ Contoh ini sengaja dibuat kecil. Harness yang ditujukan untuk beban kerja nyata 
 
 * **Skrip orkestrasi dalam sandbox:** biarkan model menghasilkan program orkestrasi singkat (percabangan, loop, dan langkah reduce) dan menjalankannya di dalam interpreter terisolasi, alih-alih hanya menerima daftar datar berisi string subtugas.
 * **Penjurnalan yang tahan lama:** ganti file JSON lokal dengan penyimpanan yang bertahan dari restart proses dan aman terhadap penulis konkuren di berbagai mesin.
-* **Penegakan anggaran:** lacak total subagen yang diluncurkan di seluruh sesi, bukan hanya per panggilan Workflow, dan tolak untuk melampaui batas keras sehingga rencana yang lepas kendali tidak dapat menghabiskan kuota Anda.
+* **Penegakan anggaran:** lacak total subagen yang diluncurkan di seluruh sesi, bukan hanya untuk setiap panggilan Workflow, dan tolak untuk melebihi batas keras sehingga rencana yang tak terkendali tidak dapat menghabiskan kuota Anda.
 
 Pola-pola dalam contoh ini (pengingat mode, persetujuan tetap dalam deskripsi alat, penjurnalan, dan gelombang verifikasi) tetap berlaku tanpa perubahan; hanya substrat eksekusi di sekitarnya yang menjadi lebih tangguh.
 
@@ -3924,6 +3924,6 @@ Pola-pola dalam contoh ini (pengingat mode, persetujuan tetap dalam deskripsi al
   </Card>
 
   <Card title="Alat bash" icon="terminal" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool">
-    Alat bash yang didefinisikan Anthropic yang dieksekusi secara lokal oleh contoh ini.
+    Alat bash yang didefinisikan Anthropic yang dijalankan secara lokal oleh contoh ini.
   </Card>
 </CardGroup>

@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-fable-5-1
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 65d0c4f9cb52d2f39b4f1650606e45618aeba815653e7f8d5a6258f84175acca
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 307d0028b20e4e26118babd5d90d4ffc611096e5df10798dbc2d8538d1f0fb98
 ---
 
 ---
 title: Prompt sistem Claude Fable 5.1
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-fable-5-1
-description: Lihat pembaruan pada prompt sistem inti untuk Claude Fable 5.1 di [claude.ai](https://claude.ai) serta [aplikasi Claude iOS](https://anthropic.com/ios) dan [aplikasi Claude Android](https://anthropic.com/android).
+description: Lihat pembaruan pada prompt sistem inti untuk Claude Fable 5.1 di [claude.ai](https://claude.ai), [aplikasi Claude iOS](https://anthropic.com/ios), dan [aplikasi Claude Android](https://anthropic.com/android).
 ---
 
 ## 1 September 2026

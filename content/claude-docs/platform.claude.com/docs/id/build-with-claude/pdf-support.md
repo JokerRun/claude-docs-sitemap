@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: a9cc14f16474a349f91722b08698e813c0b4c17af94c119a87af90c856bcabf6
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 1de8f170ac526947b390f899aac49e4548698a8afd52ed7766bd2d719751e342
 ---
 
 ---
@@ -35,11 +35,11 @@ Anda dapat bertanya kepada Claude tentang teks, gambar, grafik, dan tabel apa pu
 
 Claude bekerja dengan PDF standar apa pun. Pastikan ukuran permintaan Anda memenuhi persyaratan berikut:
 
-| Persyaratan                     | Batas                                                                                                       |
-| ------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Ukuran permintaan maksimum      | 32 MB ([bervariasi menurut platform](https://platform.claude.com/docs/id/api/overview#request-size-limits)) |
-| Halaman maksimum per permintaan | 600 (100 jika jendela konteks permintaan di bawah 1 juta token)                                             |
-| Format                          | PDF standar (tanpa kata sandi/enkripsi)                                                                     |
+| Persyaratan                     | Batas                                                                                                                                      |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Ukuran permintaan maksimum      | 32 MB (bervariasi menurut platform; lihat [batas ukuran permintaan](https://platform.claude.com/docs/id/api/overview#request-size-limits)) |
+| Halaman maksimum per permintaan | 600 (100 jika jendela konteks permintaan di bawah 1 juta token)                                                                            |
+| Format                          | PDF standar (tanpa kata sandi/enkripsi)                                                                                                    |
 
 Kedua batas tersebut berlaku untuk seluruh payload permintaan, termasuk konten lain apa pun yang dikirim bersama PDF. Untuk PDF berukuran besar, pertimbangkan untuk mengunggahnya dengan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dan mereferensikannya melalui `file_id` agar payload permintaan tetap kecil.
 
@@ -92,7 +92,7 @@ Jika Claude tidak melihat gambar atau grafik dalam PDF Anda saat menggunakan Con
 </Note>
 
 <Note>
-  File teks biasa seperti .txt, .csv, atau .md dapat digunakan langsung dalam blok dokumen: unggah file tersebut ke Files API dengan tipe MIME `text/plain` dan referensikan melalui `file_id`. Format biner seperti .xlsx atau .docx tidak didukung dalam blok dokumen dan harus dikonversi ke teks atau PDF terlebih dahulu. Lihat [Bekerja dengan format file lain](https://platform.claude.com/docs/id/build-with-claude/files#working-with-other-file-formats).
+  File teks biasa seperti .txt, .csv, atau .md dapat digunakan langsung dalam blok dokumen: unggah file tersebut ke Files API dengan tipe MIME `text/plain` dan referensikan melalui `file_id`. Format biner seperti .xlsx atau .docx tidak didukung dalam blok dokumen, jadi konversikan terlebih dahulu ke teks atau PDF. Lihat [Bekerja dengan format file lain](https://platform.claude.com/docs/id/build-with-claude/files#working-with-other-file-formats).
 </Note>
 
 ## Proses PDF dengan Claude
@@ -106,7 +106,7 @@ Mulailah dengan contoh sederhana menggunakan Messages API. Anda dapat memberikan
 3. Melalui `file_id` dari [Files API](https://platform.claude.com/docs/id/build-with-claude/files)
 
 <Note>
-  Di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), saat ini hanya sumber yang dienkode base64 yang tersedia. Di Microsoft Foundry, Files API tidak didukung untuk deployment yang dihosting di Azure.
+  Di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), saat ini hanya sumber yang dienkode base64 yang tersedia. Di Microsoft Foundry, Files API tidak didukung untuk deployment yang di-host di Azure.
 </Note>
 
 #### Opsi 1: Dokumen PDF berbasis URL
@@ -123,20 +123,20 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
       "messages": [{
-          "role": "user",
-          "content": [{
-              "type": "document",
-              "source": {
-                  "type": "url",
-                  "url": "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf"
-              }
-          },
-          {
-              "type": "text",
-              "text": "What are the key findings in this document?"
-          }]
+        "role": "user",
+        "content": [{
+          "type": "document",
+          "source": {
+            "type": "url",
+            "url": "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf"
+          }
+        },
+        {
+          "type": "text",
+          "text": "What are the key findings in this document?"
+        }]
       }]
-  }'
+    }'
   ```
 
   ```bash CLI
@@ -269,30 +269,30 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
 
   // Buat blok dokumen dengan URL
   DocumentBlockParam documentParam = DocumentBlockParam.builder()
-    .source(
-      UrlPdfSource.builder()
-        .url(
-          "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf"
-        )
-        .build()
-    )
-    .build();
+      .source(
+          UrlPdfSource.builder()
+              .url(
+                  "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf"
+              )
+              .build()
+      )
+      .build();
 
   // Buat pesan dengan blok konten dokumen dan teks
   MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_5_5)
-    .maxTokens(1024)
-    .addUserMessageOfContentBlockParams(
-      List.of(
-        ContentBlockParam.ofDocument(documentParam),
-        ContentBlockParam.ofText(
-          TextBlockParam.builder()
-            .text("What are the key findings in this document?")
-            .build()
-        )
+      .model(Model.CLAUDE_OPUS_5_5)
+      .maxTokens(1024)
+      .addUserMessageOfContentBlockParams(
+          List.of(
+              ContentBlockParam.ofDocument(documentParam),
+              ContentBlockParam.ofText(
+                  TextBlockParam.builder()
+                      .text("What are the key findings in this document?")
+                      .build()
+              )
+          )
       )
-    )
-    .build();
+      .build();
 
   Message message = client.messages().create(params);
   System.out.println(message.content());
@@ -390,23 +390,23 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
 
   # Buat file permintaan JSON menggunakan konten pdf_base64.txt
   jq -n --rawfile PDF_BASE64 pdf_base64.txt '{
-      "model": "claude-opus-5-5",
-      "max_tokens": 1024,
-      "messages": [{
-          "role": "user",
-          "content": [{
-              "type": "document",
-              "source": {
-                  "type": "base64",
-                  "media_type": "application/pdf",
-                  "data": $PDF_BASE64
-              }
-          },
-          {
-              "type": "text",
-              "text": "What are the key findings in this document?"
-          }]
+    "model": "claude-opus-5-5",
+    "max_tokens": 1024,
+    "messages": [{
+      "role": "user",
+      "content": [{
+        "type": "document",
+        "source": {
+          "type": "base64",
+          "media_type": "application/pdf",
+          "data": $PDF_BASE64
+        }
+      },
+      {
+        "type": "text",
+        "text": "What are the key findings in this document?"
       }]
+    }]
   }' > request.json
 
   # Kirim permintaan API menggunakan file JSON tersebut
@@ -418,9 +418,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
   ```
 
   ```bash CLI
-  ant messages create \
-    --model claude-opus-5-5 \
-    --max-tokens 1024 <<'YAML'
+  ant messages create --model claude-opus-5-5 --max-tokens 1024 <<'YAML'
   messages:
     - role: user
       content:
@@ -597,13 +595,18 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
 
   // Metode 1: Unduh dan enkode PDF jarak jauh
   String pdfUrl =
-    "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf";
-  HttpClient httpClient = HttpClient.newBuilder().followRedirects(HttpClient.Redirect.NORMAL).build();
-  HttpRequest request = HttpRequest.newBuilder().uri(URI.create(pdfUrl)).GET().build();
+      "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf";
+  HttpClient httpClient = HttpClient.newBuilder()
+      .followRedirects(HttpClient.Redirect.NORMAL)
+      .build();
+  HttpRequest request = HttpRequest.newBuilder()
+      .uri(URI.create(pdfUrl))
+      .GET()
+      .build();
 
   HttpResponse<byte[]> response = httpClient.send(
-    request,
-    HttpResponse.BodyHandlers.ofByteArray()
+      request,
+      HttpResponse.BodyHandlers.ofByteArray()
   );
   String pdfBase64 = Base64.getEncoder().encodeToString(response.body());
 
@@ -613,24 +616,26 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
 
   // Buat blok dokumen dengan data base64
   DocumentBlockParam documentParam = DocumentBlockParam.builder()
-    .source(Base64PdfSource.builder().data(pdfBase64).build())
-    .build();
+      .source(Base64PdfSource.builder()
+          .data(pdfBase64)
+          .build())
+      .build();
 
   // Buat pesan dengan blok konten dokumen dan teks
   MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_5_5)
-    .maxTokens(1024)
-    .addUserMessageOfContentBlockParams(
-      List.of(
-        ContentBlockParam.ofDocument(documentParam),
-        ContentBlockParam.ofText(
-          TextBlockParam.builder()
-            .text("What are the key findings in this document?")
-            .build()
-        )
+      .model(Model.CLAUDE_OPUS_5_5)
+      .maxTokens(1024)
+      .addUserMessageOfContentBlockParams(
+          List.of(
+              ContentBlockParam.ofDocument(documentParam),
+              ContentBlockParam.ofText(
+                  TextBlockParam.builder()
+                      .text("What are the key findings in this document?")
+                      .build()
+              )
+          )
       )
-    )
-    .build();
+      .build();
 
   Message message = client.messages().create(params);
   System.out.println(message.content());
@@ -680,7 +685,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
   # Pertama, muat dan enkode PDF
   pdf_url = "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf"
   pdf_bytes = URI.open(pdf_url, "rb") { |f| f.read }
-  pdf_data = [pdf_bytes].pack("m0") # Base64-encode without newlines
+  pdf_data = [pdf_bytes].pack("m0") # Encode as base64 without newlines
 
   # Alternatif: Muat dari file lokal
   # pdf_data = [File.binread("document.pdf")].pack("m0")
@@ -688,7 +693,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
   # Kirim ke Claude menggunakan enkode base64
   anthropic = Anthropic::Client.new
   message = anthropic.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       {
@@ -751,8 +756,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
 
   ```bash CLI
   # Pertama, unggah PDF Anda ke Files API
-  ant files upload \
-    --file ./document.pdf
+  ant files upload --file ./document.pdf
 
   # Lalu gunakan file_id dari respons unggahan dalam pesan Anda
   ant messages create <<YAML
@@ -918,26 +922,30 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
 
   // Unggah file PDF
   FileMetadata file = client
-    .files()
-    .upload(FileUploadParams.builder().file(Path.of("/path/to/document.pdf")).build());
+      .files()
+      .upload(FileUploadParams.builder()
+          .file(Path.of("/path/to/document.pdf"))
+          .build());
 
   // Gunakan file yang telah diunggah dalam pesan
   MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_5_5)
-    .maxTokens(1024)
-    .addUserMessageOfContentBlockParams(
-      List.of(
-        ContentBlockParam.ofDocument(
-          DocumentBlockParam.builder().fileSource(file.id()).build()
-        ),
-        ContentBlockParam.ofText(
-          TextBlockParam.builder()
-            .text("What are the key findings in this document?")
-            .build()
-        )
+      .model(Model.CLAUDE_OPUS_5_5)
+      .maxTokens(1024)
+      .addUserMessageOfContentBlockParams(
+          List.of(
+              ContentBlockParam.ofDocument(
+                  DocumentBlockParam.builder()
+                      .fileSource(file.id())
+                      .build()
+              ),
+              ContentBlockParam.ofText(
+                  TextBlockParam.builder()
+                      .text("What are the key findings in this document?")
+                      .build()
+              )
+          )
       )
-    )
-    .build();
+      .build();
 
   Message message = client.messages().create(params);
   System.out.println(message.content());
@@ -992,7 +1000,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
 
   # Gunakan file yang telah diunggah dalam pesan
   message = anthropic.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       {
@@ -1022,7 +1030,7 @@ Saat Anda mengirim PDF ke Claude, langkah-langkah berikut terjadi:
     * Teks dari setiap halaman diekstrak dan disediakan bersama gambar setiap halaman.
   </Step>
 
-  <Step title="Claude menganalisis teks dan gambar untuk memahami dokumen dengan lebih baik.">
+  <Step title="Claude menganalisis teks dan gambar.">
     * Dokumen disediakan sebagai kombinasi teks dan gambar untuk dianalisis.
     * Ini memungkinkan pengguna meminta wawasan tentang elemen visual PDF, seperti grafik, diagram, dan konten non-tekstual lainnya.
   </Step>
@@ -1031,7 +1039,7 @@ Saat Anda mengirim PDF ke Claude, langkah-langkah berikut terjadi:
     Claude dapat mereferensikan konten tekstual maupun visual saat merespons. Anda dapat lebih meningkatkan kinerja dengan mengintegrasikan dukungan PDF dengan:
 
     * [Gunakan caching prompt](https://platform.claude.com/docs/id/build-with-claude/pdf-support#use-prompt-caching): Untuk meningkatkan kinerja pada analisis berulang.
-    * [Proses batch dokumen](https://platform.claude.com/docs/id/build-with-claude/pdf-support#process-document-batches): Untuk pemrosesan dokumen bervolume tinggi.
+    * [Proses batch dokumen](https://platform.claude.com/docs/id/build-with-claude/pdf-support#process-document-batches): Untuk memproses dokumen dalam volume tinggi.
     * [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview): Untuk mengekstrak informasi spesifik dari dokumen untuk digunakan sebagai input alat.
   </Step>
 </Steps>
@@ -1267,39 +1275,46 @@ Cache PDF dengan [caching prompt](https://platform.claude.com/docs/id/build-with
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  // Unduh dan enkode PDF
+  // Unduh dan encode PDF
   String pdfUrl =
-    "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf";
-  HttpClient httpClient = HttpClient.newBuilder().followRedirects(HttpClient.Redirect.NORMAL).build();
-  HttpRequest request = HttpRequest.newBuilder().uri(URI.create(pdfUrl)).GET().build();
+      "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf";
+  HttpClient httpClient = HttpClient.newBuilder()
+      .followRedirects(HttpClient.Redirect.NORMAL)
+      .build();
+  HttpRequest request = HttpRequest.newBuilder()
+      .uri(URI.create(pdfUrl))
+      .GET()
+      .build();
 
   HttpResponse<byte[]> response = httpClient.send(
-    request,
-    HttpResponse.BodyHandlers.ofByteArray()
+      request,
+      HttpResponse.BodyHandlers.ofByteArray()
   );
   String pdfBase64 = Base64.getEncoder().encodeToString(response.body());
 
   MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_5_5)
-    .maxTokens(1024)
-    .addUserMessageOfContentBlockParams(
-      List.of(
-        ContentBlockParam.ofDocument(
-          DocumentBlockParam.builder()
-            .source(Base64PdfSource.builder().data(pdfBase64).build())
-            .cacheControl(CacheControlEphemeral.builder().build())
-            .build()
-        ),
-        ContentBlockParam.ofText(
-          TextBlockParam.builder()
-            .text(
-              "Which model has the highest human preference win rates across each use-case?"
-            )
-            .build()
-        )
+      .model(Model.CLAUDE_OPUS_5_5)
+      .maxTokens(1024)
+      .addUserMessageOfContentBlockParams(
+          List.of(
+              ContentBlockParam.ofDocument(
+                  DocumentBlockParam.builder()
+                      .source(Base64PdfSource.builder()
+                          .data(pdfBase64)
+                          .build())
+                      .cacheControl(CacheControlEphemeral.builder().build())
+                      .build()
+              ),
+              ContentBlockParam.ofText(
+                  TextBlockParam.builder()
+                      .text(
+                          "Which model has the highest human preference win rates across each use-case?"
+                      )
+                      .build()
+              )
+          )
       )
-    )
-    .build();
+      .build();
 
   Message message = client.messages().create(params);
   System.out.println(message);
@@ -1346,12 +1361,12 @@ Cache PDF dengan [caching prompt](https://platform.claude.com/docs/id/build-with
   # Muat dan enkode PDF
   pdf_url = "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf"
   pdf_bytes = URI.open(pdf_url, "rb") { |f| f.read }
-  pdf_data = [pdf_bytes].pack("m0") # Base64-encode without newlines
+  pdf_data = [pdf_bytes].pack("m0") # Encode as base64 without newlines
 
   anthropic = Anthropic::Client.new
 
   message = anthropic.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       {
@@ -1388,51 +1403,51 @@ Gunakan [Message Batches API](https://platform.claude.com/docs/id/build-with-cla
   curl -sL "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf" | base64 | tr -d '\n' > pdf_base64.txt
   # Buat file permintaan JSON menggunakan konten pdf_base64.txt
   jq -n --rawfile PDF_BASE64 pdf_base64.txt '{
-      "requests": [
-      {
-          "custom_id": "my-first-request",
-          "params": {
-              "model": "claude-opus-5-5",
-              "max_tokens": 1024,
-              "messages": [{
-                  "role": "user",
-                  "content": [{
-                      "type": "document",
-                      "source": {
-                          "type": "base64",
-                          "media_type": "application/pdf",
-                          "data": $PDF_BASE64
-                      }
-                  },
-                  {
-                      "type": "text",
-                      "text": "Which model has the highest human preference win rates across each use-case?"
-                  }]
-              }]
-          }
-      },
-      {
-          "custom_id": "my-second-request",
-          "params": {
-              "model": "claude-opus-5-5",
-              "max_tokens": 1024,
-              "messages": [{
-                  "role": "user",
-                  "content": [{
-                      "type": "document",
-                      "source": {
-                          "type": "base64",
-                          "media_type": "application/pdf",
-                          "data": $PDF_BASE64
-                      }
-                  },
-                  {
-                      "type": "text",
-                      "text": "Extract 5 key insights from this document."
-                  }]
-              }]
-          }
-      }]
+    "requests": [
+    {
+      "custom_id": "my-first-request",
+      "params": {
+        "model": "claude-opus-5-5",
+        "max_tokens": 1024,
+        "messages": [{
+          "role": "user",
+          "content": [{
+            "type": "document",
+            "source": {
+              "type": "base64",
+              "media_type": "application/pdf",
+              "data": $PDF_BASE64
+            }
+          },
+          {
+            "type": "text",
+            "text": "Which model has the highest human preference win rates across each use-case?"
+          }]
+        }]
+      }
+    },
+    {
+      "custom_id": "my-second-request",
+      "params": {
+        "model": "claude-opus-5-5",
+        "max_tokens": 1024,
+        "messages": [{
+          "role": "user",
+          "content": [{
+            "type": "document",
+            "source": {
+              "type": "base64",
+              "media_type": "application/pdf",
+              "data": $PDF_BASE64
+            }
+          },
+          {
+            "type": "text",
+            "text": "Extract 5 key insights from this document."
+          }]
+        }]
+      }
+    }]
   }' > request.json
 
   # Lalu lakukan panggilan API menggunakan file JSON tersebut
@@ -1747,70 +1762,79 @@ Gunakan [Message Batches API](https://platform.claude.com/docs/id/build-with-cla
 
   // Unduh dan enkode PDF
   String pdfUrl =
-    "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf";
-  HttpClient httpClient = HttpClient.newBuilder().followRedirects(HttpClient.Redirect.NORMAL).build();
-  HttpRequest request = HttpRequest.newBuilder().uri(URI.create(pdfUrl)).GET().build();
+      "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf";
+  HttpClient httpClient = HttpClient.newBuilder()
+      .followRedirects(HttpClient.Redirect.NORMAL)
+      .build();
+  HttpRequest request = HttpRequest.newBuilder()
+      .uri(URI.create(pdfUrl))
+      .GET()
+      .build();
 
   HttpResponse<byte[]> response = httpClient.send(
-    request,
-    HttpResponse.BodyHandlers.ofByteArray()
+      request,
+      HttpResponse.BodyHandlers.ofByteArray()
   );
   String pdfBase64 = Base64.getEncoder().encodeToString(response.body());
 
   BatchCreateParams params = BatchCreateParams.builder()
-    .addRequest(
-      BatchCreateParams.Request.builder()
-        .customId("my-first-request")
-        .params(
-          BatchCreateParams.Request.Params.builder()
-            .model(Model.CLAUDE_OPUS_5_5)
-            .maxTokens(1024)
-            .addUserMessageOfContentBlockParams(
-              List.of(
-                ContentBlockParam.ofDocument(
-                  DocumentBlockParam.builder()
-                    .source(Base64PdfSource.builder().data(pdfBase64).build())
-                    .build()
-                ),
-                ContentBlockParam.ofText(
-                  TextBlockParam.builder()
-                    .text(
-                      "Which model has the highest human preference win rates across each use-case?"
-                    )
-                    .build()
-                )
+      .addRequest(
+          BatchCreateParams.Request.builder()
+              .customId("my-first-request")
+              .params(
+                  BatchCreateParams.Request.Params.builder()
+                      .model(Model.CLAUDE_OPUS_5_5)
+                      .maxTokens(1024)
+                      .addUserMessageOfContentBlockParams(
+                          List.of(
+                              ContentBlockParam.ofDocument(
+                                  DocumentBlockParam.builder()
+                                      .source(Base64PdfSource.builder()
+                                          .data(pdfBase64)
+                                          .build())
+                                      .build()
+                              ),
+                              ContentBlockParam.ofText(
+                                  TextBlockParam.builder()
+                                      .text(
+                                          "Which model has the highest human preference win rates across each use-case?"
+                                      )
+                                      .build()
+                              )
+                          )
+                      )
+                      .build()
               )
-            )
-            .build()
-        )
-        .build()
-    )
-    .addRequest(
-      BatchCreateParams.Request.builder()
-        .customId("my-second-request")
-        .params(
-          BatchCreateParams.Request.Params.builder()
-            .model(Model.CLAUDE_OPUS_5_5)
-            .maxTokens(1024)
-            .addUserMessageOfContentBlockParams(
-              List.of(
-                ContentBlockParam.ofDocument(
-                  DocumentBlockParam.builder()
-                    .source(Base64PdfSource.builder().data(pdfBase64).build())
-                    .build()
-                ),
-                ContentBlockParam.ofText(
-                  TextBlockParam.builder()
-                    .text("Extract 5 key insights from this document.")
-                    .build()
-                )
+              .build()
+      )
+      .addRequest(
+          BatchCreateParams.Request.builder()
+              .customId("my-second-request")
+              .params(
+                  BatchCreateParams.Request.Params.builder()
+                      .model(Model.CLAUDE_OPUS_5_5)
+                      .maxTokens(1024)
+                      .addUserMessageOfContentBlockParams(
+                          List.of(
+                              ContentBlockParam.ofDocument(
+                                  DocumentBlockParam.builder()
+                                      .source(Base64PdfSource.builder()
+                                          .data(pdfBase64)
+                                          .build())
+                                      .build()
+                              ),
+                              ContentBlockParam.ofText(
+                                  TextBlockParam.builder()
+                                      .text("Extract 5 key insights from this document.")
+                                      .build()
+                              )
+                          )
+                      )
+                      .build()
               )
-            )
-            .build()
-        )
-        .build()
-    )
-    .build();
+              .build()
+      )
+      .build();
 
   MessageBatch batch = client.messages().batches().create(params);
   System.out.println(batch);
@@ -1889,7 +1913,7 @@ Gunakan [Message Batches API](https://platform.claude.com/docs/id/build-with-cla
   # Muat dan enkode PDF
   pdf_url = "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf"
   pdf_bytes = URI.open(pdf_url, "rb") { |f| f.read }
-  pdf_data = [pdf_bytes].pack("m0") # Base64-encode without newlines
+  pdf_data = [pdf_bytes].pack("m0") # Encode as base64 without newlines
 
   anthropic = Anthropic::Client.new
 
@@ -1898,7 +1922,7 @@ Gunakan [Message Batches API](https://platform.claude.com/docs/id/build-with-cla
       {
         custom_id: "my-first-request",
         params: {
-          model: "claude-opus-5-5",
+          model: Anthropic::Model::CLAUDE_OPUS_5_5,
           max_tokens: 1024,
           messages: [
             {
@@ -1924,7 +1948,7 @@ Gunakan [Message Batches API](https://platform.claude.com/docs/id/build-with-cla
       {
         custom_id: "my-second-request",
         params: {
-          model: "claude-opus-5-5",
+          model: Anthropic::Model::CLAUDE_OPUS_5_5,
           max_tokens: 1024,
           messages: [
             {
@@ -1960,7 +1984,7 @@ Batch diproses secara asinkron. Untuk memeriksa progres dan mengambil hasil sete
 
 <CardGroup cols={2}>
   <Card title="Vision" icon="image" href="https://platform.claude.com/docs/id/build-with-claude/vision">
-    Kemampuan vision Claude memungkinkannya memahami dan menganalisis gambar, membuka kemungkinan menarik untuk interaksi multimodal.
+    Kemampuan vision Claude memungkinkannya memproses dan menganalisis gambar, membuka kemungkinan menarik untuk interaksi multimodal.
   </Card>
 
   <Card title="Coba contoh PDF" icon="file" href="https://platform.claude.com/cookbook/multimodal-getting-started-with-vision">

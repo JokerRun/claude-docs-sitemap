@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 8187bfe5b13edc25ad70276eeae3ab2990badd93fc4509425e7690ceb60c1b66
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 4d12952fabfde5dac0bd8e34ce15aacea14cffab6699afae56f05b245ddfa43e
 ---
 
 ---
@@ -307,7 +307,7 @@ The advisor tool also accepts the generic properties available on any tool defin
 
 When the advisor is called, a `server_tool_use` block is followed by an `advisor_tool_result` block in the assistant's content. The following example shows the plaintext `advisor_result` variant returned by a Claude Opus 4.8 advisor. The [Quick start](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool#quick-start) uses Claude Opus 5.5, which returns the encrypted `advisor_redacted_result` variant instead; see [Result variants](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool#result-variants) for both shapes side by side.
 
-```text
+```json
 {
   "role": "assistant",
   "content": [
@@ -356,7 +356,7 @@ Here is the same request sent twice, identical except for the advisor `model` in
 
 With `"model": "claude-opus-4-8"`, the advice is plaintext:
 
-```text
+```json
 {
   "type": "advisor_tool_result",
   "tool_use_id": "srvtoolu_abc123",
@@ -369,7 +369,7 @@ With `"model": "claude-opus-4-8"`, the advice is plaintext:
 
 With `"model": "claude-opus-5-5"`, the advice is encrypted:
 
-```text
+```json
 {
   "type": "advisor_tool_result",
   "tool_use_id": "srvtoolu_abc123",
@@ -390,7 +390,7 @@ In both cases, round-trip the content verbatim on subsequent turns. If you switc
 
 If the advisor call fails, the result carries an error:
 
-```text wrap
+```json
 {
   "type": "advisor_tool_result",
   "tool_use_id": "srvtoolu_abc123",
@@ -1257,7 +1257,7 @@ A `message_delta` event follows with the updated `usage.iterations` array reflec
 
 Advisor calls run as a separate sub-inference billed at the advisor model's rates. Usage is reported in the `usage.iterations[]` array:
 
-```text wrap
+```json
 {
   "usage": {
     "input_tokens": 1760,
@@ -1784,7 +1784,7 @@ Hard reasoning tasks elicit substantially longer advisor output than the [typica
 
 When the advisor does hit the cap, the result block carries `stop_reason: "max_tokens"` on both [result variants](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool#result-variants), whichever advisor model you use. Use `stop_reason` to detect truncated advice and decide whether to raise the cap or let the executor proceed with partial guidance. The API also appends `[Advisor output truncated at max_tokens=2048.]` (naming your cap) to the advice text, so the executor receives the truncation notice in its own context; with a plaintext `advisor_result` advisor that marker is visible to your client as well. Both signals appear only when you set `max_tokens` on the tool definition.
 
-```text
+```json
 {
   "type": "advisor_tool_result",
   "tool_use_id": "srvtoolu_abc123",

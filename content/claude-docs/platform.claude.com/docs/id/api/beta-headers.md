@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/beta-headers
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: b8afdc3c34294269a17d338d8993cd5ce180c1e16721b8df2f336b8660db1ee1
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 31265bb6e895be3b905c8ace6ce7bb436c28beddbbf3320e5e11876d836cb998
 ---
 
 ---
@@ -29,9 +29,9 @@ anthropic-beta: BETA_FEATURE_NAME
 content-type: application/json
 ```
 
-Dokumentasi setiap fitur menyebutkan nama beta persis yang harus dikirim. [Ikhtisar API](https://platform.claude.com/docs/id/api/overview) mencantumkan API yang saat ini dalam tahap beta.
+Dokumentasi setiap fitur menyebutkan nama beta persis yang harus dikirim. [Ikhtisar API](https://platform.claude.com/docs/id/api/overview) mencantumkan API yang berstatus beta.
 
-Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK, menggunakan beta [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) sebagai contoh. SDK menerima nama beta melalui `betas` (csharp, go: `Betas`; java: `.addBeta()`) dan mengirimkan header `anthropic-beta` untuk Anda:
+Contoh berikut mengirimkan permintaan dengan beta [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing). SDK menerima nama beta melalui `betas` (csharp, go: `Betas`; java: `.addBeta()`) dan mengirimkan header `anthropic-beta` untuk Anda:
 
 <CodeGroup>
   ```bash cURL
@@ -121,11 +121,11 @@ Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK,
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_5_5)
-    .maxTokens(1024)
-    .addUserMessage("Hello, Claude")
-    .addBeta(AnthropicBeta.CONTEXT_MANAGEMENT_2025_06_27)
-    .build();
+      .model(Model.CLAUDE_OPUS_5_5)
+      .maxTokens(1024)
+      .addUserMessage("Hello, Claude")
+      .addBeta(AnthropicBeta.CONTEXT_MANAGEMENT_2025_06_27)
+      .build();
 
   BetaMessage message = client.beta().messages().create(params);
   System.out.println(message.content());
@@ -137,7 +137,7 @@ Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK,
   $message = $client->beta->messages->create(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['context-management-2025-06-27'],
   );
 
@@ -148,7 +148,7 @@ Contoh berikut menunjukkan permintaan yang sama dengan cURL, CLI `ant`, dan SDK,
   client = Anthropic::Client.new
 
   message = client.beta.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello, Claude"}],
     betas: ["context-management-2025-06-27"]
@@ -192,7 +192,7 @@ Nama beta sama di setiap platform yang menerimanya, tetapi tidak setiap platform
 Di Amazon Bedrock, lokasi nama beta bergantung pada API yang Anda panggil:
 
 * [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) (endpoint `bedrock-mantle`) menerimanya di header `anthropic-beta`.
-* [InvokeModel API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) membacanya dari body permintaan, bukan dari header. Cantumkan di array `anthropic_beta` pada body, satu nama per elemen, misalnya `"anthropic_beta": ["feature1", "feature2"]`.
+* [InvokeModel API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) membacanya dari body permintaan, bukan dari header. Cantumkan nama-nama tersebut dalam array `anthropic_beta` pada body, satu nama untuk setiap elemen, misalnya `"anthropic_beta": ["feature1", "feature2"]`.
 
 ### Header khusus endpoint
 
@@ -239,6 +239,6 @@ Untuk pembaruan fitur beta, lihat [catatan rilis](https://platform.claude.com/do
   </Card>
 
   <Card title="Ikhtisar API" icon="compass" href="https://platform.claude.com/docs/id/api/overview">
-    Jelajahi fitur-fitur Claude API, termasuk API yang saat ini berstatus beta.
+    Jelajahi fitur-fitur Claude API, termasuk API yang berstatus beta.
   </Card>
 </CardGroup>

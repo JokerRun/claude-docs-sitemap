@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/ruby
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 09198599c995d0c836324eac7674de3af8f623d0833592a3a0a1ffa6c45be7fc
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 3ff2259b534373f28978de110d86f26a089f18d76880868f4924b480e509f637
 ---
 
 ---
@@ -348,6 +348,10 @@ When all available connections from the pool are checked out, requests wait for 
 
 Unless otherwise specified, other classes in the SDK do not have locks protecting their underlying data structure.
 
+## OpenTelemetry tracing
+
+When your application registers an OpenTelemetry tracer provider, the SDK emits a span for each request that it sends. To send the spans to your observability platform, see [Set up OpenTelemetry with the Claude SDK](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk).
+
 ## Making custom or undocumented requests
 
 ### Undocumented properties
@@ -409,7 +413,7 @@ response = anthropic.request(
 
 The Ruby SDK supports the following platforms:
 
-* **Agent Platform:** `Anthropic::VertexClient`. Requires the `googleauth` gem.
+* **Claude Models on Google Cloud (Google managed):** `Anthropic::VertexClient`. Requires the `googleauth` gem.
 * **Bedrock:** `Anthropic::BedrockMantleClient`, or `Anthropic::BedrockClient` for the `bedrock-runtime` path. `Anthropic::BedrockMantleClient` requires the `aws-sdk-core` gem; `Anthropic::BedrockClient` requires the `aws-sdk-bedrockruntime` gem.
 * **Claude Platform on AWS:** Part of the main `anthropic` gem (requires the `aws-sdk-core` gem). Provides `Anthropic::AWSClient`. Pass `workspace_id:` to the constructor or set the `ANTHROPIC_AWS_WORKSPACE_ID` environment variable (see [Workspaces](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws#workspaces)). Available in beta.
 * **Foundry:** Not currently supported in the Ruby SDK. See [Claude in Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry) for supported SDKs.

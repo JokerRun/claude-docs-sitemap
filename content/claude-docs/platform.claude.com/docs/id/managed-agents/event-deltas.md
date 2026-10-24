@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/event-deltas
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: f77f40b8ccc28e407356ee9270ef5e1bec29ff802a4ff5d33cd6b27dd3d9d2e4
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: fb89c6cc9930a9754ef2bb052481902e9e0d93bee048761d2828bed51bb0e02c
 ---
 
 ---
@@ -17,13 +17,13 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-Secara default, teks respons agen mencapai [aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) sebagai event `agent.message` yang di-buffer. Masing-masing dipancarkan hanya setelah permintaan model yang menghasilkannya selesai. "Event deltas" (delta event) memungkinkan Anda menampilkan teks tersebut secara bertahap, sebagai pratinjau langsung, saat model masih menghasilkannya.
+Secara default, teks respons agen mencapai [aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) sebagai event `agent.message` yang di-buffer. Masing-masing dipancarkan hanya setelah permintaan model yang menghasilkannya selesai. "Event delta" (delta event) memungkinkan Anda menampilkan teks tersebut secara bertahap, sebagai pratinjau langsung, saat model masih menghasilkannya.
 
 Pratinjau adalah alat bantu tampilan berbasis upaya terbaik, dan `agent.message` yang di-buffer selalu menjadi catatan otoritatif. Klien yang mengabaikan pratinjau tetap menerima aliran yang lengkap dan benar.
 
 ## Mengaktifkan pratinjau
 
-Pratinjau bersifat opt-in per koneksi aliran. Tambahkan parameter kueri `event_deltas[]` ke aliran yang Anda baca, dan ulangi sekali untuk setiap jenis event yang ingin Anda pratinjau. Nilai yang diterima adalah `agent.message` dan `agent.thinking`. Nilai lain apa pun mengembalikan error 400, begitu pula permintaan dengan lebih dari 100 nilai.
+Pratinjau bersifat opt-in untuk setiap koneksi aliran. Tambahkan parameter kueri `event_deltas[]` ke aliran yang Anda baca, dan ulangi sekali untuk setiap jenis event yang ingin Anda pratinjau. Nilai yang diterima adalah `agent.message` dan `agent.thinking`. Nilai lain apa pun akan mengembalikan error 400, demikian pula permintaan dengan lebih dari 100 nilai.
 
 Kedua endpoint aliran menerima parameter tersebut:
 
@@ -75,9 +75,9 @@ Tidak seperti event yang dipersistenkan, `event_start` dan `event_delta` tidak m
 
 ## Mengakumulasi dan merekonsiliasi
 
-Setiap SDK yang mendukung delta event menyertakan [helper akumulator](https://platform.claude.com/docs/id/managed-agents/event-deltas#sdk-accumulator-helpers) yang menangani pencatatan `index` untuk Anda. Pola manual di bagian ini berfungsi di setiap bahasa ketika Anda memerlukan pencatatan kustom. Terapkan pada jenis event yang dihasilkan.
+Setiap SDK yang mendukung event delta menyertakan [helper akumulator](https://platform.claude.com/docs/id/managed-agents/event-deltas#sdk-accumulator-helpers) yang menangani pembukuan `index` (csharp, go: `Index`) untuk Anda. Pola manual di bagian ini berfungsi di setiap bahasa ketika Anda memerlukan pembukuan kustom. Terapkan pada jenis event yang dihasilkan.
 
-Dalam pola manual, simpan teks pratinjau dalam map sementara dengan kunci `(event_id, index)`, dan perlakukan event yang di-buffer sebagai catatan. Rekonsiliasikan keduanya per permintaan model.
+Dalam pola manual, simpan teks pratinjau dalam map sementara dengan kunci `(event_id, index)`, dan perlakukan event yang di-buffer sebagai catatan. Rekonsiliasi keduanya untuk setiap permintaan model.
 
 Sebuah giliran dibuka dengan satu event `session.status_running`. Pada giliran yang selesai secara normal, setiap permintaan model kemudian menghasilkan event-event berikut, secara berurutan:
 
@@ -85,7 +85,7 @@ Sebuah giliran dibuka dengan satu event `session.status_running`. Pada giliran y
 2. `event_start`
 3. Event-event `event_delta`
 4. `agent.message` yang di-buffer
-5. [`span.model_request_end`](https://platform.claude.com/docs/id/managed-agents/reference#event-types) (di tab Span events)
+5. [`span.model_request_end`](https://platform.claude.com/docs/id/managed-agents/reference#event-types) (di tab **Span events**)
 
 Di wire, ini adalah bagian yang dipratinjau dari urutan tersebut, diselingi dengan event buffer lain dari koneksi:
 
@@ -96,7 +96,7 @@ event_delta     {"event_id": "sevt_01abc...", "delta": {"type": "content_delta",
 agent.message   {"id": "sevt_01abc...", "content": [...]}
 ```
 
-Baris `event_delta` berulang sekali per fragmen teks. Proses setiap event saat tiba:
+Baris `event_delta` berulang sekali untuk setiap fragmen teks. Proses setiap event saat tiba:
 
 1. Pada `event_start`, catat `id` yang diumumkan. Pengidentifikasi selalu selaras: `event_start.event.id`, setiap `event_delta.event_id`, dan `id` dari `agent.message` yang di-buffer memiliki nilai yang sama.
 2. Pada setiap `event_delta`, tambahkan `delta.content.text` ke entri di `(event_id, delta.index)` dan tampilkan teks berjalan. Delta pertama untuk sebuah `index` membuat entri tersebut.
@@ -106,7 +106,7 @@ Baris `event_delta` berulang sekali per fragmen teks. Proses setiap event saat t
 Pola ini bergantung pada dua jaminan:
 
 * Menggabungkan delta pratinjau dalam urutan kedatangan, dengan kunci `(event_id, index)`, menghasilkan prefiks dari `content[index].text` dalam event yang di-buffer. Ini belum tentu keseluruhan teks, karena delta mungkin [dibuang saat beban tinggi](https://platform.claude.com/docs/id/managed-agents/event-deltas#limitations).
-* Sebuah koneksi memancarkan paling banyak satu `event_start` per `event_id`, dan event yang di-buffer adalah hal terakhir yang dikirimkan koneksi tersebut untuk `id` itu.
+* Sebuah koneksi memancarkan paling banyak satu `event_start` untuk setiap `event_id`, dan event yang di-buffer adalah hal terakhir yang dikirimkan koneksi tersebut untuk `id` itu.
 
 ### Helper akumulator SDK
 
@@ -316,7 +316,7 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
   ```
 
   ```go Go
-  	// Opt in to incremental previews of agent.message events
+  	// Aktifkan pratinjau inkremental untuk event agent.message
   	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{
   		EventDeltas: []anthropic.BetaManagedAgentsDeltaType{
   			anthropic.BetaManagedAgentsDeltaTypeAgentMessage,
@@ -337,8 +337,8 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
   		panic(err)
   	}
 
-  	// The accumulator folds event_start / event_delta fragments into
-  	// agent.message snapshots, one for each event ID. The zero value is ready to use.
+  	// Akumulator menggabungkan fragmen event_start / event_delta menjadi
+  	// snapshot agent.message, satu untuk setiap ID event. Nilai nol-nya siap digunakan.
   	var previews anthropic.BetaManagedAgentsEventAccumulator
 
   deltas:
@@ -352,13 +352,13 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
   		case anthropic.BetaManagedAgentsDeltaEvent:
   			fmt.Printf("event_delta             preview: %q\n", previews.AgentMessageText(event.EventID))
   		case anthropic.BetaManagedAgentsAgentMessageEvent:
-  			// The buffered event carries the complete content: the accumulator
-  			// replaces the preview with it
+  			// Event yang di-buffer membawa konten lengkap: accumulator
+  			// mengganti pratinjau dengannya
   			fmt.Printf("agent.message           %s %q\n", event.ID, previews.AgentMessageText(event.ID))
   		case anthropic.BetaManagedAgentsSpanModelRequestEndEvent:
-  			// No more deltas are coming for this request. The accumulator
-  			// drops its snapshots here, closing any preview that was never
-  			// reconciled by a buffered agent.message.
+  			// Tidak ada delta lagi untuk request ini. Accumulator
+  			// membuang snapshot-nya di sini, menutup pratinjau yang tidak pernah
+  			// direkonsiliasi oleh agent.message yang di-buffer.
   			fmt.Println("span.model_request_end  no more deltas for this request")
   		case anthropic.BetaManagedAgentsSessionStatusIdleEvent:
   			break deltas
@@ -569,7 +569,7 @@ Sebuah koneksi hanya mempratinjau thread yang sedang dibacanya. Aliran tingkat s
 
 Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/stream` hanya ada di tingkat sesi, jadi tidak ada endpoint `/threads/{thread_id}/events/stream`.
 
-`event_start` dan `event_delta` memiliki bentuk yang sama di aliran thread seperti di aliran tingkat sesi, dan pola [mengakumulasi dan merekonsiliasi](https://platform.claude.com/docs/id/managed-agents/event-deltas#accumulate-and-reconcile) berlaku sebagaimana tertulis. Jalankan satu instans akumulator per koneksi aliran.
+`event_start` dan `event_delta` memiliki bentuk yang sama pada aliran thread seperti pada aliran tingkat sesi, dan pola [mengakumulasi dan merekonsiliasi](https://platform.claude.com/docs/id/managed-agents/event-deltas#accumulate-and-reconcile) berlaku sebagaimana tertulis. Jalankan satu instans akumulator untuk setiap koneksi aliran.
 
 <CodeGroup>
   ```bash cURL
@@ -700,8 +700,8 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
   ```
 
   ```go Go
-  	// List the session's threads and pick a child: child threads have a non-null
-  	// parent_thread_id, and the primary thread's parent_thread_id is null.
+  	// Tampilkan thread sesi dan pilih child: child thread punya parent_thread_id
+  	// non-null, sedangkan parent_thread_id thread utama bernilai null.
   	var childThreadID string
   	threads := client.Beta.Sessions.Threads.ListAutoPaging(ctx, session.ID, anthropic.BetaSessionThreadListParams{})
   	for threads.Next() {
@@ -714,8 +714,8 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
   		panic(err)
   	}
 
-  	// The child thread's stream takes the same event_deltas parameter as the
-  	// session stream; run one read loop for each stream connection.
+  	// Stream child thread menerima parameter event_deltas yang sama dengan
+  	// stream sesi; jalankan satu loop baca untuk setiap koneksi stream.
   	stream := client.Beta.Sessions.Threads.Events.StreamEvents(ctx, childThreadID, anthropic.BetaSessionThreadEventStreamParams{
   		SessionID: session.ID,
   		EventDeltas: []anthropic.BetaManagedAgentsDeltaType{
@@ -729,9 +729,9 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
   		case anthropic.BetaManagedAgentsDeltaEvent:
   			fmt.Print(event.Delta.Content.Text)
   		case anthropic.BetaManagedAgentsAgentMessageEvent:
-  			// The buffered event is the authoritative record; render its content.
+  			// Event yang di-buffer adalah catatan otoritatif; render kontennya.
   			fmt.Println()
-  			// concrete-typed list: BetaManagedAgentsTextBlock
+  			// list bertipe konkret: BetaManagedAgentsTextBlock
   			for _, block := range event.Content {
   				fmt.Print(block.Text)
   			}
@@ -882,7 +882,7 @@ Loop pembacaan keluar pada [`session.thread_status_idle`](https://platform.claud
 
 <CardGroup cols={2}>
   <Card title="Aliran event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
-    Kirim event, streaming respons, dan interupsi atau arahkan ulang sesi Anda di tengah eksekusi.
+    Kirim event, streaming respons, dan interupsi atau arahkan ulang sesi Anda saat sedang berjalan.
   </Card>
 
   <Card title="Orkestrasi multiagen" icon="stack" href="https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration">

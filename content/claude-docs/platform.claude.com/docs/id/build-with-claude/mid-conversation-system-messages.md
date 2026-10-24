@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: c34160745af1b756056382df320170a74d7a0f63a68477724de05af10a8e99b3
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 5503808a6ea675b75fb25a630feaf8817450d079173c5d3ac63488229446b813
 ---
 
 ---
@@ -290,14 +290,15 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   		// Tarik get_weather mulai titik ini. Blok ini merujuk
   		// alat berdasarkan nama alih-alih mengedit Tools, sehingga giliran sebelumnya tetap
   		// identik per byte dan cache tetap hit.
-  		{
-  			Role: anthropic.BetaMessageParamRoleSystem,
-  			Content: []anthropic.BetaContentBlockParamUnion{
-  				anthropic.NewBetaToolRemovalBlock(anthropic.BetaToolChangeToolReferenceParam{
-  					Name: "get_weather",
-  				}),
+  		anthropic.NewBetaSystemMessage(anthropic.BetaSystemMessageOutputConfigParam{}, anthropic.BetaSystemMessageParamContentUnion{
+  			OfToolRemoval: &anthropic.BetaRequestToolRemovalBlockParam{
+  				Tool: anthropic.BetaRequestToolRemovalBlockToolUnionParam{
+  					OfToolReference: &anthropic.BetaToolChangeToolReferenceParam{
+  						Name: "get_weather",
+  					},
+  				},
   			},
-  		},
+  		}),
   	},
   })
   if err != nil {
@@ -789,23 +790,24 @@ Permintaan berikut mempertahankan `get_weather` di `tools` dan mendefinisikan `d
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("How many orders shipped yesterday?")),
   		// Mulai dari sini, definisikan db_query secara langsung (by value). Tools dan
   		// pesan-pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache hit tetap terjadi.
-  		{
-  			Role: anthropic.BetaMessageParamRoleSystem,
-  			Content: []anthropic.BetaContentBlockParamUnion{
-  				anthropic.NewBetaToolAdditionBlock(anthropic.BetaToolChangeToolDefinitionParam{
-  					Definition: anthropic.BetaToolUnionParam{OfTool: &anthropic.BetaToolParam{
-  						Name:        "db_query",
-  						Description: anthropic.String("Run a read-only SQL query against the analytics database."),
-  						InputSchema: anthropic.BetaToolInputSchemaParam{
-  							Properties: map[string]any{
-  								"sql": map[string]any{"type": "string"},
+  		anthropic.NewBetaSystemMessage(anthropic.BetaSystemMessageOutputConfigParam{}, anthropic.BetaSystemMessageParamContentUnion{
+  			OfToolAddition: &anthropic.BetaRequestToolAdditionBlockParam{
+  				Tool: anthropic.BetaRequestToolAdditionBlockToolUnionParam{
+  					OfToolDefinition: &anthropic.BetaToolChangeToolDefinitionParam{
+  						Definition: anthropic.BetaToolUnionParam{OfTool: &anthropic.BetaToolParam{
+  							Name:        "db_query",
+  							Description: anthropic.String("Run a read-only SQL query against the analytics database."),
+  							InputSchema: anthropic.BetaToolInputSchemaParam{
+  								Properties: map[string]any{
+  									"sql": map[string]any{"type": "string"},
+  								},
+  								Required: []string{"sql"},
   							},
-  							Required: []string{"sql"},
-  						},
-  					}},
-  				}),
+  						}},
+  					},
+  				},
   			},
-  		},
+  		}),
   	},
   })
   if err != nil {
@@ -1013,7 +1015,7 @@ Untuk mengubah skema alat, atau untuk memindahkan alat server ke versi yang lebi
 
 Beberapa aturan berlaku karena posisi tempat definisi dirender:
 
-* **Deklarasikan apa yang Anda ketahui sejak awal.** Alat yang sudah Anda ketahui pada permintaan pertama sebaiknya ditempatkan di `tools`. Jika model belum boleh melihatnya, gunakan `defer_loading: true` dan referensi `tool_addition` di kemudian hari. Definisikan berdasarkan nilai hanya alat yang belum diketahui pada permintaan pertama atau yang berubah kemudian.
+* **Deklarasikan apa yang Anda ketahui sejak awal.** Alat yang sudah Anda ketahui pada permintaan pertama seharusnya berada di `tools`, dengan `defer_loading: true` dan referensi `tool_addition` di kemudian hari jika Anda belum ingin menawarkannya kepada model. Definisikan berdasarkan nilai hanya apa yang tidak diketahui pada permintaan pertama atau yang berubah kemudian.
 * **Pertahankan setidaknya satu alat yang tidak ditangguhkan di `tools`.** Percakapan yang array `tools`-nya tidak memiliki alat yang tidak ditangguhkan tetap diterima. Namun, alat pertama yang didefinisikan berdasarkan nilai akan mengubah awal prompt yang dirender, sehingga permintaan tersebut mengalami satu cache miss penuh. [Alat tool search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool) dihitung sebagai alat yang tidak ditangguhkan.
 * **Tipe alat bertanggal tetap memerlukan header beta masing-masing.** Jika alat server yang Anda definisikan berdasarkan nilai memerlukan header beta sendiri, kirim header tersebut pada setiap permintaan berikutnya dalam percakapan.
 * **`cache_control` ditempatkan pada blok atau di dalam definisi, bukan keduanya.** Field ini juga dihitung terhadap batas breakpoint permintaan. Definisi yang ditangguhkan tidak dapat membawa `cache_control`.
@@ -1022,8 +1024,8 @@ Permintaan menghasilkan error 400 dengan `error.details.error_code` diatur ke `a
 
 * Lebih dari 10.000 alat yang ditangguhkan tersedia setelah pesan mana pun.
 * Lebih dari 10.000 alat yang didefinisikan setelah pesan pengguna pertama tersedia setelah pesan mana pun.
-* Definisi alat yang dikirim setelah pesan pengguna pertama dan masih tersedia setelah pesan mana pun berjumlah total lebih dari 4 MB (4.194.304 byte).
-* Teks alat yang dirender lebih besar dari 4 MB (4.194.304 byte).
+* Definisi alat yang dikirim setelah pesan pengguna pertama yang masih tersedia setelah pesan mana pun berjumlah total lebih dari 4 MB (4.194.304 byte).
+* Teks alat yang dirender lebih besar dari 4 MB (4.194.304 byte).
 
 ### Menambahkan server MCP di tengah percakapan (beta)
 
@@ -1373,16 +1375,17 @@ Permintaan berikut mempertahankan `get_weather` di `tools`, mencantumkan server 
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("What's on my calendar tomorrow?")),
   		// Sediakan alat dari server kalender mulai titik ini dan seterusnya.
   		// Blok ini menyebutkan nama server; blok ini tidak pernah memuat URL atau token.
-  		{
-  			Role: anthropic.BetaMessageParamRoleSystem,
-  			Content: []anthropic.BetaContentBlockParamUnion{
-  				anthropic.NewBetaToolAdditionBlock(anthropic.BetaToolChangeToolDefinitionParam{
-  					Definition: anthropic.BetaToolUnionParam{OfMCPToolset: &anthropic.BetaMCPToolsetParam{
-  						MCPServerName: "calendar",
-  					}},
-  				}),
+  		anthropic.NewBetaSystemMessage(anthropic.BetaSystemMessageOutputConfigParam{}, anthropic.BetaSystemMessageParamContentUnion{
+  			OfToolAddition: &anthropic.BetaRequestToolAdditionBlockParam{
+  				Tool: anthropic.BetaRequestToolAdditionBlockToolUnionParam{
+  					OfToolDefinition: &anthropic.BetaToolChangeToolDefinitionParam{
+  						Definition: anthropic.BetaToolUnionParam{OfMCPToolset: &anthropic.BetaMCPToolsetParam{
+  							MCPServerName: "calendar",
+  						}},
+  					},
+  				},
   			},
-  		},
+  		}),
   	},
   })
   if err != nil {
@@ -1628,12 +1631,12 @@ Beberapa situasi ketika hal ini penting:
 
 * **Perubahan kebijakan atau persona di tengah sesi.** Sesi agentik yang panjang memerlukan batasan baru ("mulai sekarang, tulis semua SQL sebagai kueri berparameter") setelah puluhan giliran yang di-cache. Menambahkannya ke field `system` tingkat atas akan memproses ulang seluruh riwayat.
 * **Konteks per giliran yang harus otoritatif.** Anda ingin menyisipkan catatan kebaruan, tenggat sesi, atau perubahan ketersediaan alat dengan bobot tingkat sistem. Informasi tersebut berubah terlalu sering untuk ditempatkan di prefiks yang di-cache.
-* **Pengingat per giliran yang tidak boleh menumpuk.** Sebuah harness mengingatkan model setelah setiap kumpulan hasil alat ("minta pembacaan yang independen secara bersamaan", "pengguna sudah lama tidak mendengar kabar dari Anda") dan ingin model hanya melihat salinan terbaru. [Pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) dirender untuk satu giliran, lalu tidak menimbulkan biaya apa pun, tanpa menghapus apa pun dari riwayat.
-* **Perubahan status yang diamati aplikasi Anda.** Aplikasi Anda mendeteksi sesuatu yang harus diperlakukan Claude sebagai fakta tingkat operator. Contohnya: file berubah di disk, pengguna mengaktifkan pengaturan persetujuan otomatis, alat yang tersedia berubah, atau sisa anggaran token turun di bawah ambang batas.
-* **Input pengguna yang tidak boleh menginterupsi loop agentik.** Pengguna mengetik pertanyaan lanjutan saat Claude masih menjalankan alat untuk permintaan sebelumnya. Jika input tersebut diteruskan sebagai pesan sistem setelah hasil alat berikutnya, Claude dapat memadukannya ke dalam pekerjaan yang sedang dilakukan. Claude tidak akan memperlakukannya sebagai permintaan baru yang mengharuskannya beralih tugas. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, tambahkan kata-kata pengguna sebagai blok `text` setelah `tool_result` terakhir dalam pesan `user` yang sama sebagai gantinya. Lihat [Penempatan setelah hasil alat](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#placement-after-tool-results).
+* **Pengingat per giliran yang tidak boleh menumpuk.** Sebuah harness mendorong model setelah setiap batch hasil alat ("minta pembacaan yang independen secara bersamaan," "pengguna sudah lama tidak mendengar kabar dari Anda") dan memerlukan model hanya menerima salinan terbaru. [Pesan sistem bercakupan giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) dirender selama satu giliran lalu tidak memakan biaya apa pun, tanpa menghapus apa pun dari riwayat.
+* **Perubahan status yang diamati aplikasi Anda.** Aplikasi Anda mendeteksi sesuatu yang harus diperlakukan Claude sebagai fakta tingkat operator: file berubah di disk, pengguna mengaktifkan pengaturan persetujuan otomatis, alat yang tersedia berubah, atau anggaran token yang tersisa turun di bawah ambang batas.
+* **Input pengguna yang tidak boleh menginterupsi loop agentik.** Pengguna mengetik tindak lanjut saat Claude masih menjalankan alat untuk permintaan sebelumnya. Meneruskannya sebagai pesan sistem setelah hasil alat berikutnya memungkinkan Claude memasukkan input baru ke dalam pekerjaan yang sedang dilakukannya, alih-alih memperlakukannya sebagai permintaan baru untuk beralih. Di Claude Sonnet 5.5 dan Claude Haiku 5.5, tambahkan kata-kata pengguna sebagai blok `text` setelah `tool_result` terakhir dalam pesan `user` yang sama sebagai gantinya. Lihat [Penempatan setelah hasil alat](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#placement-after-tool-results).
 * **Peralihan mode yang memberikan izin tetap.** Mode tingkat sesi dapat menggunakan pesan sistem di tengah percakapan untuk memberikan persetujuan tetap atas kemampuan yang mahal, seperti meluncurkan alur kerja multiagen secara otomatis. Mode tersebut dapat disertai pengingat singkat setiap beberapa giliran dan pemberitahuan keluar saat mode dinonaktifkan. Untuk contoh lengkap, lihat [Membangun mode orkestrasi](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example).
 
-Dalam semua kasus ini, Anda sebenarnya dapat menempatkan instruksi dalam pesan `user` biasa, dan Claude memang mengikuti instruksi yang datang dalam giliran pengguna. Perbedaannya terletak pada prioritas. Pesan `user` diperlakukan sebagai berasal dari pengguna akhir, sedangkan pesan `system` diperlakukan sebagai berasal dari Anda, operator aplikasi. Jika keduanya bertentangan, instruksi sistem lebih diutamakan. Karena itu, gunakan peran `system` untuk fakta dan batasan tingkat operator yang harus tetap berlaku meskipun pengguna akhir meminta hal yang berbeda. Pesan sistem di tengah percakapan mempertahankan prioritas tingkat operator tersebut tanpa menanggung biaya cache miss akibat mengedit field `system` tingkat atas.
+Dalam semua kasus ini, Anda dapat menempatkan instruksi dalam pesan `user` biasa, dan Claude memang mengikuti instruksi yang datang dalam giliran pengguna. Perbedaannya adalah prioritas: pesan `user` diperlakukan sebagai berasal dari pengguna akhir, sedangkan pesan `system` diperlakukan sebagai berasal dari Anda, operator aplikasi. Ketika keduanya bertentangan, instruksi sistem lebih diutamakan, jadi gunakan role `system` untuk fakta dan batasan tingkat operator yang harus tetap berlaku meskipun pengguna akhir meminta sesuatu yang berbeda. Pesan sistem di tengah percakapan mempertahankan prioritas tingkat operator tersebut tanpa menanggung biaya cache miss akibat mengedit field `system` tingkat atas.
 
 ## Cara kerjanya
 
@@ -1828,12 +1831,11 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
   		// lolos kebijakan typing ketat tim. Menambahkan instruksi
   		// di sini menjaga giliran sebelumnya tetap identik per byte, sehingga prefiks yang di-cache oleh
   		// permintaan sebelumnya tetap dibaca dari cache.
-  		{
-  			Role: anthropic.MessageParamRoleSystem,
-  			Content: []anthropic.ContentBlockParamUnion{
-  				anthropic.NewTextBlock("From now on, every suggestion must include explicit type annotations."),
+  		{OfSystem: &anthropic.SystemMessageParam{
+  			Content: []anthropic.TextBlockParam{
+  				{Text: "From now on, every suggestion must include explicit type annotations."},
   			},
-  		},
+  		}},
   	},
   })
   if err != nil {
@@ -1909,7 +1911,7 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
   client = Anthropic::Client.new
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     # Caching prompt otomatis: setiap permintaan menyimpan percakapan sejauh ini ke cache,
     # dan permintaan berikutnya membaca prefiks yang tidak berubah dari cache.
@@ -1961,7 +1963,7 @@ Dalam [loop agentik](https://platform.claude.com/docs/id/agents-and-tools/tool-u
 ]
 ```
 
-Rumuskan konten sistem sebagai konteks, bukan sebagai perintah yang mengesampingkan pengguna. Nyatakan faktanya ("input baru datang dari pengguna: X", "sisa anggaran token sekarang Y") dan biarkan Claude bertindak berdasarkan fakta tersebut. Claude dilatih untuk menolak instruksi yang tampak merugikan pengguna, dan perlindungan itu tetap berlaku untuk peran sistem. Karena itu, kalimat seperti "abaikan apa yang dikatakan pengguna" kurang efektif dibandingkan menyatakan apa yang berubah.
+Rumuskan konten sistem sebagai konteks, bukan sebagai perintah yang mengesampingkan pengguna. Nyatakan faktanya ("input baru diterima dari pengguna: X," "anggaran token yang tersisa sekarang Y") dan biarkan Claude bertindak berdasarkan hal tersebut. Claude dilatih untuk menolak instruksi yang tampak bertentangan dengan kepentingan pengguna, dan perlindungan tersebut tetap berlaku untuk role sistem, sehingga bahasa seperti "abaikan apa yang dikatakan pengguna" kurang efektif dibandingkan menyatakan apa yang berubah.
 
 Pola ini ditujukan untuk meneruskan input dari pengguna akhir percakapan itu sendiri. Jangan gunakan pola ini untuk meneruskan output alat, dokumen yang diambil, atau konten pihak ketiga lainnya. Simpan konten tersebut di blok `tool_result` (lihat [Keterbatasan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)).
 
@@ -2005,7 +2007,7 @@ Pesan sistem berlingkup giliran berstatus beta. Sertakan [header beta](https://p
 
 Kegunaan utamanya adalah pengingat per giliran dalam loop alat. Tambahkan pengingat setelah pesan `tool_result` setiap kali Anda ingin model melihatnya, dan biarkan setiap salinan sebelumnya di tempatnya. Model hanya melihat salinan yang muncul setelah pesan pengguna terakhir, sehingga pengingat tidak pernah menumpuk. Tidak ada yang berubah di bagian awal `messages`, sehingga [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) tetap cocok. Di Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 hal ini juga menjaga [blok thinking tetap valid](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation) di kemudian hari: menghapus pengingat sebelumnya akan mengubah percakapan sebelum blok-blok tersebut dan menggagalkan pemeriksaan percakapan, sedangkan pesan yang dibersihkan tetap berada di array dan membiarkan percakapan tersebut tidak berubah.
 
-Permintaan berikut adalah langkah selanjutnya dari loop agen. `messages[3]` dirender pada permintaan sebelumnya, ketika pesan tersebut merupakan pesan terakhir di array. Begitu `messages[5]` (pesan pengguna yang lebih baru) ada, `messages[3]` dibersihkan: pesan yang dibersihkan tetap berada di array, sehingga percakapan sebelum blok thinking di `messages[4]` tidak berubah, tetapi model tidak lagi melihat teksnya. `messages[6]` dan `messages[7]` keduanya dirender, secara berurutan.
+Permintaan berikut adalah langkah selanjutnya dari sebuah loop agen. `messages[3]` dirender pada permintaan sebelumnya, ketika ia merupakan pesan terakhir dalam array. Begitu `messages[5]` (pesan pengguna berikutnya) ada, `messages[3]` dibersihkan: pesan yang dibersihkan tetap berada di array, sehingga percakapan sebelum blok thinking di `messages[4]` tidak berubah, tetapi model tidak lagi menerima teksnya. `messages[6]` dan `messages[7]` keduanya dirender, secara berurutan.
 
 ```json
 {
@@ -2080,13 +2082,13 @@ Permintaan berikut adalah langkah selanjutnya dari loop agen. `messages[3]` dire
 
 Aturan untuk pesan berlingkup giliran:
 
-* **Kirim ulang pesan yang dibersihkan apa adanya.** Pesan yang dibersihkan tetap merupakan bagian dari riwayat percakapan. Membangunnya ulang dari status saat ini (jumlah token baru, timestamp), menghapusnya karena dianggap berlebihan, atau mengubah nilai `clear_at`-nya merupakan pengeditan terhadap pesan sebelumnya. Cache prompt mengalami miss mulai dari titik tersebut, dan di Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 setiap blok thinking yang dihasilkan setelahnya gagal dalam [pemeriksaan percakapan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation).
+* **Kirim ulang pesan yang dibersihkan secara verbatim.** Pesan yang dibersihkan tetap menjadi bagian dari riwayat percakapan. Membangunnya ulang dari status saat ini (jumlah token baru, timestamp), menghapusnya karena dianggap redundan, atau mengubah nilai `clear_at`-nya merupakan pengeditan terhadap pesan sebelumnya. Di Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, setiap blok thinking yang dihasilkan setelahnya gagal dalam [pemeriksaan percakapan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation).
 * **Hanya teks.** `content` berupa satu atau lebih blok `text` (atau string). Blok `tool_addition` dan `tool_removal` mengembalikan error 400 pada pesan berlingkup giliran, begitu pula `output_config`. Gunakan pesan `role: "system"` terpisah tanpa `clear_at` untuk hal-hal tersebut.
 * **Tidak ada `cache_control` pada bloknya.** Pesan yang dibersihkan tidak pernah menjadi bagian dari kunci cache, sehingga breakpoint padanya tidak akan pernah cocok. Tempatkan breakpoint pada blok terakhir dari giliran pengguna sebelumnya, seperti yang dilakukan contoh. Field [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) tingkat atas melewati pesan berlingkup giliran saat memilih breakpoint. Pada permintaan yang membersihkan sebuah pesan, prefiks cache yang dapat digunakan kembali berakhir pada giliran pengguna sebelumnya, sehingga hanya satu giliran asisten di antara pesan tersebut dan pesan pengguna baru yang diproses ulang.
 * **Aturan penempatan tetap berlaku**, baik dibersihkan maupun tidak. Pesan berlingkup giliran harus mengikuti giliran `user` (atau giliran `assistant` yang diakhiri dengan hasil alat server) dan mendahului giliran `assistant` atau mengakhiri array, seperti pesan sistem di tengah percakapan lainnya. Pesan yang mengakhiri array selalu dirender. Pesan yang langsung diikuti oleh pesan `user` lain merupakan error 400, bukan pesan yang dibersihkan: tempatkan semua hasil dari satu putaran alat dalam satu pesan pengguna dan pengingat setelahnya.
 * **Giliran asisten tidak membersihkannya.** Giliran asisten yang di-prefill atau [dijeda](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#pause-turn) setelah pesan, atau loop alat sisi server, tidak menambahkan pesan pengguna, sehingga pesan tetap dirender pada kelanjutan tersebut. Untuk menjaga pengingat tetap terlihat sepanjang loop alat sisi klien, tambahkan lagi setelah setiap pesan `tool_result`.
 * **Penghitungan token mengikuti apa yang dirender.** Pesan yang dibersihkan tidak menambahkan apa pun ke `usage.input_tokens` atau ke [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting).
-* **Riwayat yang diimpor.** Dalam transkrip yang Anda susun dalam satu langkah (contoh few-shot, percakapan yang dimigrasikan), pesan berlingkup giliran yang sudah memiliki giliran asisten dan pesan pengguna setelahnya dibersihkan sejak permintaan pertama dan tidak pernah dirender. Itulah status yang tepat untuk pengingat per giliran yang Anda bawa. Biarkan `clear_at` tidak diatur hanya pada pesan yang harus dilihat model di setiap permintaan.
+* **Riwayat yang diimpor.** Dalam transkrip yang Anda bangun dalam satu langkah (contoh few-shot, percakapan yang dimigrasikan), pesan bercakupan giliran yang sudah memiliki giliran asisten dan pesan pengguna setelahnya akan dibersihkan sejak permintaan pertama dan tidak pernah dirender. Itu adalah status yang tepat untuk pengingat per giliran yang Anda bawa. Biarkan `clear_at` tidak diatur hanya pada pesan yang harus dirender di setiap permintaan.
 
 Error validasinya adalah:
 
@@ -2121,7 +2123,8 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
   ```
 
   ```bash CLI
-  ant beta:messages create --beta mid-conversation-system-clear-at-2026-08-21 <<'YAML'
+  ant beta:messages create \
+    --beta mid-conversation-system-clear-at-2026-08-21 <<'YAML'
   model: claude-fable-5-1
   max_tokens: 4096
   messages:
@@ -2230,11 +2233,10 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Draft a short status update on the database migration for the team channel.")),
   		// Pengingat lingkup giliran: dirender untuk giliran ini, lalu dihapus setelah ada pesan pengguna berikutnya.
-  		{
-  			Role:    anthropic.BetaMessageParamRoleSystem,
-  			ClearAt: anthropic.BetaMessageParamClearAtNextUserMessage,
-  			Content: []anthropic.BetaContentBlockParamUnion{anthropic.NewBetaTextBlock("The reader is on call: keep this reply under 50 words.")},
-  		},
+  		{OfSystem: &anthropic.BetaSystemMessageParam{
+  			ClearAt: anthropic.BetaSystemMessageParamClearAtNextUserMessage,
+  			Content: []anthropic.BetaSystemMessageParamContentUnion{{OfText: &anthropic.BetaTextBlockParam{Text: "The reader is on call: keep this reply under 50 words."}}},
+  		}},
   	},
   	Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaMidConversationSystemClearAt2026_08_21},
   })
@@ -2311,7 +2313,7 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-fable-5-1",
+    model: Anthropic::Model::CLAUDE_FABLE_5_1,
     max_tokens: 4096,
     messages: [
       {role: "user", content: "Draft a short status update on the database migration for the team channel."},
@@ -2331,7 +2333,7 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
 
 Pesan sistem di tengah percakapan dan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) dirancang untuk digunakan bersama:
 
-* **Aktifkan caching secara eksplisit.** Caching hanya terjadi ketika permintaan menyertakan `cache_control`, baik field [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) tingkat atas maupun [breakpoint eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints) pada blok konten. Pesan sistem di tengah percakapan tidak membuat entri cache dengan sendirinya, dan tanpa caching diaktifkan tidak ada penghematan yang perlu dipertahankan.
+* **Aktifkan caching secara eksplisit.** Caching hanya terjadi ketika permintaan menyertakan `cache_control`, baik field [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) tingkat atas maupun [breakpoint eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints) pada blok konten. Pesan sistem di tengah percakapan tidak membuat entri cache dengan sendirinya, dan tanpa caching yang diaktifkan tidak ada penghematan yang perlu dipertahankan.
 * **Cache prefiks yang stabil seperti biasa.** Tempatkan `cache_control` pada blok terakhir yang tetap sama di seluruh permintaan, baik itu akhir field `system` tingkat atas, akhir definisi alat Anda, atau titik stabil dalam riwayat pesan.
 * **Tambahkan pesan sistem setelah breakpoint.** Karena pesan tersebut muncul setelah prefiks yang di-cache, pesan tersebut tidak mengubah hash prefiks dan cache tetap mengenai.
 * **Pesan sistem di tengah percakapan itu sendiri dapat di-cache.** Begitu berada dalam percakapan, pesan tersebut menjadi bagian dari riwayat yang stabil. Pada giliran berikutnya Anda dapat memindahkan breakpoint cache melewatinya (atau mengandalkan [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) untuk melakukannya) dan pesan sistem dibaca dari cache seperti giliran lainnya.
@@ -2368,7 +2370,7 @@ Hindari mengedit atau menghapus pesan sistem di tengah percakapan yang sudah dik
   </Card>
 
   <Card title="Diagnostik cache" icon="magnifying-glass" href="https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics">
-    Temukan titik persis tempat dua permintaan berbeda ketika cache hit yang Anda harapkan tidak terjadi.
+    Temukan secara tepat di mana dua permintaan berbeda ketika cache hit yang Anda harapkan tidak terjadi.
   </Card>
 
   <Card title="Menggunakan Messages API" icon="message" href="https://platform.claude.com/docs/id/build-with-claude/working-with-messages">

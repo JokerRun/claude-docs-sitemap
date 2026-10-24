@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: ea38b911015c819ad77b25a486476c88c7bf010c943ff4f982f9572b5a3b4355
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: cff6fe127e1b789507c5c158fdbea0dbb417f945ab555cc94bae934f4019cba6
 ---
 
 ---
@@ -25,8 +25,8 @@ Amazon Bedrock menetapkan kriteria akses untuk setiap model Claude secara indivi
 
 Sebelum memulai, pastikan Anda memiliki:
 
-* Akun AWS dengan [akses model Amazon Bedrock](https://console.aws.amazon.com/bedrock/home#/modelaccess) yang diaktifkan untuk model Claude yang ingin Anda gunakan.
-* [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) yang terinstal dan terkonfigurasi (opsional, untuk manajemen kredensial).
+* Akun AWS dengan [akses model Amazon Bedrock](https://console.aws.amazon.com/bedrock/home#/modelaccess) yang diaktifkan untuk model Claude yang ingin Anda gunakan
+* [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) yang telah diinstal dan dikonfigurasi (opsional, untuk manajemen kredensial)
 
 Claude Mythos Preview juga memerlukan akun AWS khusus yang telah dimasukkan ke dalam allowlist oleh tim Bedrock Marketplace. Account executive Anthropic Anda dapat mengajukan ID akun Anda untuk dimasukkan ke allowlist (biasanya diproses dalam 24 jam), dan AWS akan mengirimkan email sambutan setelah prosesnya selesai.
 
@@ -101,7 +101,7 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
 
   <Tab title="Go">
     ```bash
-    go get github.com/anthropics/anthropic-sdk-go/bedrock
+    go get github.com/anthropics/anthropic-sdk-go/v2/bedrock
     ```
   </Tab>
 
@@ -109,8 +109,8 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.1.0")
-        implementation("com.anthropic:anthropic-java-bedrock:3.1.0")
+        implementation("com.anthropic:anthropic-java:3.3.0")
+        implementation("com.anthropic:anthropic-java-bedrock:3.3.0")
         ```
       </Tab>
 
@@ -119,12 +119,12 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.1.0</version>
+            <version>3.3.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-bedrock</artifactId>
-            <version>3.1.0</version>
+            <version>3.3.0</version>
         </dependency>
         ```
       </Tab>
@@ -157,7 +157,7 @@ SDK menentukan kredensial dan region menggunakan urutan prioritas standar AWS: a
     ```bash
     curl https://bedrock-mantle.us-east-1.api.aws/anthropic/v1/messages \
       --aws-sigv4 "aws:amz:us-east-1:bedrock-mantle" \
-      --user "$AWS_ACCESS_KEY_ID:$AWS_SECRET_ACCESS_KEY" \
+      -u "$AWS_ACCESS_KEY_ID:$AWS_SECRET_ACCESS_KEY" \
       -H "x-amz-security-token: $AWS_SESSION_TOKEN" \
       -H "content-type: application/json" \
       -H "anthropic-version: 2023-06-01" \
@@ -289,9 +289,9 @@ SDK menentukan kredensial dan region menggunakan urutan prioritas standar AWS: a
         );
 
         message.content().stream()
-                .filter(ContentBlock::isText)
-                .findFirst()
-                .ifPresent(block -> IO.println(block.asText().text()));
+            .filter(ContentBlock::isText)
+            .findFirst()
+            .ifPresent(block -> IO.println(block.asText().text()));
     }
     ```
   </Tab>
@@ -332,7 +332,7 @@ SDK menentukan kredensial dan region menggunakan urutan prioritas standar AWS: a
 </Tabs>
 
 <Tip>
-  Anda juga dapat membuat klien standar dengan `Anthropic` (go: `anthropic.NewClient()`; java: `AnthropicOkHttpClient.builder()`; csharp: `AnthropicClient`; php: `Anthropic\Client`; ruby: `Anthropic::Client`): atur `base_url` (typescript: `baseURL`; go: `option.WithBaseURL()`; java: `.baseUrl()`; csharp: `BaseUrl`; php: `baseUrl`) ke `https://bedrock-mantle.{region}.api.aws/anthropic` dan teruskan bearer token Anda sebagai `api_key` (typescript, php: `apiKey`; go: `option.WithAPIKey()`; java: `.apiKey()`; csharp: `ApiKey`). Jalur ini hanya mendukung autentikasi bearer token. Penandatanganan SigV4 memerlukan `AnthropicBedrockMantle` (csharp: `AnthropicBedrockMantleClient`; go: `bedrock.NewMantleClient`; java: `BedrockMantleBackend`; php: `MantleClient`; ruby: `Anthropic::BedrockMantleClient`).
+  Anda juga dapat membuat klien standar dengan `Anthropic` (go: `anthropic.NewClient()`; java: `AnthropicOkHttpClient.builder()`; csharp: `AnthropicClient`; php: `Anthropic\Client`; ruby: `Anthropic::Client`): atur `base_url` (typescript: `baseURL`; go: `option.WithBaseURL()`; java: `.baseUrl()`; csharp: `BaseUrl`; php: `baseUrl`) ke `https://bedrock-mantle.{region}.api.aws/anthropic` dan teruskan bearer token Anda sebagai `api_key` (typescript, php: `apiKey`; go: `option.WithAPIKey()`; java: `.apiKey()`; csharp: `ApiKey`). Jalur ini hanya mendukung autentikasi bearer token. Penandatanganan SigV4 memerlukan `AnthropicBedrockMantle` (csharp: `AnthropicBedrockMantleClient`; go: `bedrock.NewMantleClient()`; java: `BedrockMantleBackend`; php: `MantleClient`; ruby: `Anthropic::BedrockMantleClient`).
 </Tip>
 
 ## Model yang didukung
@@ -397,7 +397,7 @@ Untuk daftar fitur lengkap beserta ketersediaannya di Amazon Bedrock, lihat [Ikh
 Claude di Amazon Bedrock tersedia di region AWS berikut. Amazon Bedrock menawarkan dua jenis endpoint:
 
 * **Global:** perutean dinamis di seluruh region yang tersedia untuk ketersediaan maksimum. Tanpa premi harga.
-* **Regional:** endpoint diarahkan ke satu region AWS yang Anda tentukan, untuk persyaratan residensi data. Endpoint regional dikenakan premi harga 10% dibandingkan endpoint global. Untuk merutekan ke beberapa region dalam satu wilayah geografis, gunakan "[inference profile](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html)" (profil inferensi) (US, EU, JP, atau AU). Region yang ditandai **In-region only** dalam tabel mendukung perutean langsung ke satu region tanpa profil inferensi.
+* **Regional:** endpoint mengarah ke satu region AWS yang Anda tentukan, untuk kebutuhan residensi data. Endpoint regional dikenakan premi harga 10 persen dibandingkan endpoint global. Untuk melakukan routing ke beberapa region dalam satu wilayah geografis, gunakan [inference profile](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html) (US, EU, JP, atau AU). Region yang ditandai **In-region only** dalam tabel mendukung routing langsung ke satu region tanpa inference profile.
 
 Endpoint global tersedia untuk Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5.5, Claude Sonnet 5, Claude Haiku 5.5, dan Claude Haiku 4.5. Untuk Claude Fable 5.1, endpoint regional saat ini hanya tersedia di `us-east-1`. Claude Mythos Preview hanya bersifat regional dan tersedia di `us-east-1`.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: da14525b94093daa17d0738a4035e27ccf0754a05c116c5dbee4278676f9e413
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 62c2040622af9f53955f862553984fad2dd595eda695c1310f016e8badd1aa7d
 ---
 
 ---
@@ -21,7 +21,7 @@ Starting with Claude 4 models, streaming responses from Claude's API return **`s
 
 When streaming classifiers detect content that violates Anthropic's policies, the API returns this response:
 
-```text
+```json
 {
   "role": "assistant",
   "content": [

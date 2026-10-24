@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 2d37a5a68e7604d9e650ac8ff76c5329caab9404f07a84eb5aace107b1d150a4
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: abb40864398a27c6d6bd4d8333f28d94b756306ff86647381ebaa3c20196efc6
 ---
 
 ---
@@ -611,7 +611,7 @@ Internally, the API excludes deferred tools from the system-prompt prefix. When 
 
 When Claude uses the tool search tool, the response includes the following block types:
 
-```text JSON
+```json JSON
 {
   "role": "assistant",
   "content": [
@@ -700,7 +700,7 @@ These errors prevent the API from processing the request:
 
 **All tools deferred:**
 
-```text
+```json
 {
   "type": "error",
   "error": {
@@ -712,7 +712,7 @@ These errors prevent the API from processing the request:
 
 **Missing tool definition:**
 
-```text wrap
+```json
 {
   "type": "error",
   "error": {
@@ -726,7 +726,7 @@ These errors prevent the API from processing the request:
 
 When a tool search operation fails during execution, the API returns a 200 response with the error in the body:
 
-```text JSON
+```json JSON
 {
   "type": "tool_search_tool_result",
   "tool_use_id": "srvtoolu_01ABC123",
@@ -800,7 +800,7 @@ A tool with `defer_loading: true` can't also carry `cache_control`: the API retu
 
 With streaming enabled, you'll receive tool search events as part of the stream:
 
-```text
+```sse
 event: content_block_start
 data: {"type": "content_block_start", "index": 1, "content_block": {"type": "server_tool_use", "id": "srvtoolu_xyz789", "name": "tool_search_tool_regex"}}
 

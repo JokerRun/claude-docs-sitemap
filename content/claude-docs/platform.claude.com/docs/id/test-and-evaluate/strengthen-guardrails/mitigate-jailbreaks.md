@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 7c10714fa14263c8c020eafbdb76ec836d4974c096c5ec5aa4ec87418e22c224
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 7b16214d78b693d0177418be5fd1e2ebb923dde86db2ce873d149a0f0c7dd95a
 ---
 
 ---
@@ -11,18 +11,18 @@ url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails
 description: Lindungi aplikasi Anda dari jailbreak dan injeksi prompt dengan penyaringan input, prompt sistem yang diperkuat, dan penanganan yang aman terhadap konten alat yang tidak tepercaya.
 ---
 
-"Jailbreaking" (pembobolan) dan "prompt injection" (injeksi prompt) adalah upaya untuk membuat Claude mengabaikan pedomannya atau instruksi Anda. Meskipun Claude secara inheren tangguh terhadap serangan semacam itu, langkah-langkah tambahan di halaman ini memperkuat pagar pengaman Anda, khususnya terhadap penggunaan yang melanggar [Ketentuan Layanan](https://www.anthropic.com/legal/commercial-terms) atau [Kebijakan Penggunaan](https://www.anthropic.com/legal/aup) Anthropic.
+"Jailbreaking" (pembobolan batasan) dan "prompt injection" (injeksi prompt) adalah upaya untuk membuat Claude mengabaikan pedomannya atau instruksi Anda. Meskipun Claude secara inheren tangguh terhadap serangan semacam itu, langkah-langkah tambahan di halaman ini memperkuat "guardrails" (pagar pengaman) Anda, terutama terhadap penggunaan yang melanggar [Ketentuan Layanan](https://www.anthropic.com/legal/commercial-terms) atau [Kebijakan Penggunaan](https://www.anthropic.com/legal/aup) Anthropic.
 
 Serangan-serangan ini terbagi dalam dua kategori dengan model ancaman yang berbeda:
 
 * **Jailbreak dan injeksi prompt langsung**, di mana *pengguna* aplikasi Anda adalah pihak lawan dan menyusun input yang dimaksudkan untuk melewati pagar pengaman Anda.
-* **Injeksi prompt tidak langsung**, di mana pengguna tepercaya tetapi Claude memproses *konten pihak ketiga* (halaman web, email, dokumen, hasil alat) yang berisi instruksi yang bersifat adversarial.
+* **Prompt injection tidak langsung**, di mana pengguna tepercaya tetapi Claude memproses *konten pihak ketiga* (halaman web, email, dokumen, hasil alat) yang berisi instruksi berbahaya.
 
 ## Jailbreak dan injeksi prompt langsung
 
 Dalam model ancaman ini, seorang pengguna dengan sengaja menyusun input untuk memanipulasi aplikasi Anda agar menghasilkan konten atau mengambil tindakan yang tidak Anda inginkan. Mitigasi berikut memperkuat pagar pengaman aplikasi Anda:
 
-* **Penyaringan harmlessness:** Gunakan model ringan seperti Claude Haiku 5.5 untuk menyaring input pengguna terlebih dahulu sebelum mencapai percakapan utama Anda. Gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) (output terstruktur) untuk membatasi respons menjadi klasifikasi sederhana. Claude Haiku 5.5 menjalankan [pengklasifikasi keamanan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) yang dapat menolak permintaan penyaringan itu sendiri, jadi perlakukan respons dengan `stop_reason: "refusal"` sebagai putusan berbahaya.
+* **Penyaringan keamanan (harmlessness screens):** Gunakan model ringan seperti Claude Haiku 5.5 untuk menyaring input pengguna terlebih dahulu sebelum mencapai percakapan utama Anda. Gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) untuk membatasi respons menjadi klasifikasi sederhana. Claude Haiku 5.5 menjalankan [pengklasifikasi keamanan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) yang dapat menolak permintaan penyaringan itu sendiri, jadi perlakukan respons dengan `stop_reason: "refusal"` sebagai putusan berbahaya.
 
   <Accordion title="Contoh: Penyaringan harmlessness untuk moderasi konten">
     ```text User wrap
@@ -77,7 +77,7 @@ Dalam model ancaman ini, seorang pengguna dengan sengaja menyusun input untuk me
 
 ## Injeksi prompt tidak langsung
 
-Dalam model ancaman ini, Anda melindungi pengguna Anda dari instruksi yang tertanam dalam konten yang dibaca Claude atas nama mereka: isi email masuk, halaman web yang diambil, output OCR dari file yang diunggah, atau hasil dari pemanggilan alat. Penyerang yang dapat memengaruhi konten tersebut mungkin menanamkan instruksi yang mencoba mengalihkan Claude.
+Dalam model ancaman ini, Anda melindungi pengguna Anda dari instruksi yang tertanam dalam konten yang dibaca Claude atas nama mereka: isi email masuk, halaman web yang diambil, output OCR dari file yang diunggah, atau hasil pemanggilan alat. Penyerang yang dapat memengaruhi konten tersebut mungkin menyisipkan instruksi yang mencoba mengalihkan Claude.
 
 Susun aplikasi Anda sehingga Claude dapat secara andal membedakan konten yang tidak tepercaya dari instruksi Anda:
 
@@ -118,7 +118,7 @@ Susun aplikasi Anda sehingga Claude dapat secara andal membedakan konten yang ti
     Isi email adalah string JSON di dalam objek JSON. Meskipun berisi teks yang terlihat seperti instruksi, pengodean tersebut membuatnya tidak ambigu bahwa ini adalah data, bukan arahan.
   </Accordion>
 
-* **Jangan tempatkan instruksi Anda sendiri dalam hasil alat.** Karena Claude memperlakukan konten hasil alat sebagai data yang tidak tepercaya, instruksi yang Anda tempatkan di sana mungkin diabaikan atau ditandai sebagai potensi injeksi. Kirim instruksi Anda dalam giliran `user` yang mengikuti blok `tool_result`. Pada model yang didukung, Anda juga dapat menggunakan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages).
+* **Jangan letakkan instruksi Anda sendiri di hasil alat.** Karena Claude memperlakukan konten hasil alat sebagai data tidak tepercaya, instruksi yang Anda letakkan di sana mungkin diabaikan atau ditandai sebagai potensi injeksi. Kirimkan instruksi Anda dalam giliran `user` yang mengikuti blok `tool_result`. Pada model yang didukung, Anda juga dapat menggunakan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages).
 
 * **Batasi akses Claude ke data dan tindakan sensitif.** Terapkan prinsip hak akses minimum sehingga injeksi yang berhasil hanya dapat menimbulkan kerusakan minimal: jangan beri Claude akses ke rahasia yang tidak diperlukannya, jalankan alat di lingkungan sandbox, dan batasi cakupan izin sesempit mungkin.
 
@@ -170,7 +170,7 @@ Susun aplikasi Anda sehingga Claude dapat secara andal membedakan konten yang ti
 
   [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool)
 
-  , Anthropic menjalankan classifier tambahan yang memindai apa yang dikembalikan oleh alat tersebut, seperti tangkapan layar atau teks halaman, untuk mendeteksi potensi prompt injection dan mengarahkan Claude untuk memeriksa apakah instruksi tersebut benar-benar berasal dari Anda sebelum bertindak. Lihat halaman-halaman tersebut untuk detail dan informasi cara menonaktifkannya.
+  , Anthropic menjalankan pengklasifikasi tambahan pada apa yang dikembalikan alat tersebut, seperti tangkapan layar atau teks halaman. Pengklasifikasi memindai konten ini untuk potensi prompt injection dan mengarahkan Claude untuk memeriksa apakah instruksi tersebut benar-benar berasal dari Anda sebelum bertindak. Lihat halaman-halaman tersebut untuk detail dan informasi cara menonaktifkannya.
 </Note>
 
 ## Pemantauan berkelanjutan
@@ -211,7 +211,7 @@ Gabungkan strategi untuk perlindungan yang kokoh. Berikut contoh tingkat perusah
   Evaluate if this query violates SEC rules, FINRA guidelines, or client privacy.
   ```
 
-  Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) untuk membatasi respons menjadi klasifikasi boolean.
+  Gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) untuk membatasi respons menjadi klasifikasi Boolean.
 </Accordion>
 
 Dengan melapiskan strategi-strategi ini, Anda menciptakan pertahanan yang kokoh terhadap jailbreaking dan injeksi prompt, memastikan aplikasi Anda yang didukung Claude mempertahankan standar keamanan dan kepatuhan tertinggi.

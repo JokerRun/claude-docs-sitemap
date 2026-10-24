@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks-configuration
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 8c445052ab2c5cebfc3b858a71f3e131717802137810b8b83db155e88b1fb1da
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: d541619ea9f1e337519cdcc6411a47decb9b3373761c6d345e825e8ee68ae789
 ---
 
 ---
@@ -26,7 +26,13 @@ You need:
 
 ## Set up Inference hooks
 
-There are three enforcement states: **off** (**Enforce verdicts** is off: your AI security server is never contacted and prompts are not inspected), **shadow** (**Enforce verdicts** is on with **Mode** set to **Shadow mode**: your AI security server receives prompts and returns verdicts, and nothing is blocked), and **enforcing** (**Enforce verdicts** is on with **Mode** set to **Allow the request** or **Block the request**: a deny blocks the request). The following steps take a new configuration from off to enforcing.
+There are three enforcement states:
+
+* **Off:** With **Enforce verdicts** off, your AI security server is never contacted and prompts are not inspected.
+* **Shadow:** With **Enforce verdicts** on and **Mode** set to **Shadow mode**, your AI security server receives prompts and returns verdicts, and nothing is blocked.
+* **Enforcing:** With **Enforce verdicts** on and **Mode** set to **Allow the request** or **Block the request**, a deny blocks the request.
+
+The following steps take a new configuration from off to enforcing.
 
 <Steps>
   <Step title="Allow Inference hooks for your organization">

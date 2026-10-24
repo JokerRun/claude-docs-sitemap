@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: a97fa89c496fdf7eaaca7dc1b42e336e4706c1da33036e8acf2f426fac5d985a
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 2251a6ee3a36c7d277faecbe4ea886e8e28421bff613bab3f9c7f30440169da5
 ---
 
 ---
@@ -150,7 +150,7 @@ Upload a file to reference in future API calls:
 
 The response from uploading a file includes:
 
-```text Response wrap
+```json Response
 {
   "id": "file_011CNha8iCJcU1wXNR6q4V8w",
   "type": "file",
@@ -1004,7 +1004,7 @@ Common errors when using the Files API include:
 * **File too large (413):** The file exceeds the 500 MB limit.
 * **Storage limit exceeded (400):** Your organization has reached the 1 TB storage limit.
 
-```text Output wrap
+```json Output
 {
   "type": "error",
   "error": {

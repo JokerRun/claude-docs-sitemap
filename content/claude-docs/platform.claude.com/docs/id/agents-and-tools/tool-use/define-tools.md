@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: e66cd8aa22b3bd43a199b0cddc8cc040ab6f6dc1a8cf2dbcfc63a6c917cf681b
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: c520105ea91d971e72e7f5c506eebac9b33bac955132a1922d7d08e0ecd2c6e2
 ---
 
 ---
@@ -27,11 +27,11 @@ description: Tentukan skema alat, tulis deskripsi yang efektif, dan kendalikan k
 | Parameter        | Deskripsi                                                                                                                                                                                                                                           |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `name`           | Nama alat. Harus cocok dengan regex `^[a-zA-Z0-9_-]{1,128}$`.                                                                                                                                                                                       |
-| `description`    | Deskripsi teks biasa yang terperinci tentang apa yang dilakukan alat, kapan alat harus digunakan, dan bagaimana perilakunya.                                                                                                                        |
+| `description`    | Deskripsi teks biasa yang terperinci tentang apa yang dilakukan alat, kapan alat harus digunakan, dan bagaimana alat berperilaku.                                                                                                                   |
 | `input_schema`   | Objek [JSON Schema](https://json-schema.org/) yang mendefinisikan parameter yang diharapkan untuk alat.                                                                                                                                             |
-| `input_examples` | (Opsional) Array berisi objek input contoh untuk membantu Claude memahami cara menggunakan alat. Lihat [Memberikan contoh penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#providing-tool-use-examples). |
+| `input_examples` | (Opsional) Array berisi objek input contoh yang menunjukkan kepada Claude cara menggunakan alat. Lihat [Memberikan contoh penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#providing-tool-use-examples). |
 
-Untuk kumpulan lengkap properti opsional yang tersedia pada definisi alat tunggal mana pun, termasuk `cache_control`, `strict`, `defer_loading`, dan `allowed_callers`, lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#tool-definition-properties). Entri toolset klien menerima `cache_control` dan `allowed_callers` pada entri tersebut dan menetapkan `defer_loading` per anggota; lihat [Toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets).
+Untuk kumpulan lengkap properti opsional yang tersedia pada setiap definisi alat tunggal, termasuk `cache_control`, `strict`, `defer_loading`, dan `allowed_callers`, lihat [Properti definisi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#tool-definition-properties). Entri toolset klien menerima `cache_control` dan `allowed_callers` pada entri tersebut dan menetapkan `defer_loading` untuk setiap anggota; lihat [Toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets).
 
 <Accordion title="Contoh definisi alat sederhana">
   ```json JSON
@@ -141,7 +141,7 @@ Deskripsi yang baik menjelaskan dengan jelas apa yang dilakukan alat, kapan meng
 
 ## Menyediakan contoh penggunaan alat
 
-Anda dapat menyediakan contoh konkret input alat yang valid untuk membantu Claude memahami cara menggunakan alat Anda dengan lebih efektif. Ini sangat berguna untuk alat kompleks dengan objek bersarang, parameter opsional, atau input yang sensitif terhadap format.
+Anda dapat memberikan contoh konkret input alat yang valid untuk menunjukkan kepada Claude cara menggunakan alat Anda secara lebih efektif. Ini sangat berguna untuk alat kompleks dengan objek bersarang, parameter opsional, atau input yang sensitif terhadap format.
 
 ### Penggunaan dasar
 
@@ -459,7 +459,7 @@ Tambahkan field `input_examples` opsional ke definisi alat Anda dengan array obj
       messages: [
           ['role' => 'user', 'content' => "What's the weather like in San Francisco?"]
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       tools: [
           [
               'name' => 'get_weather',
@@ -501,7 +501,7 @@ Tambahkan field `input_examples` opsional ke definisi alat Anda dengan array obj
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: [
       {
@@ -545,21 +545,21 @@ Tambahkan field `input_examples` opsional ke definisi alat Anda dengan array obj
   ```
 </CodeGroup>
 
-Contoh disertakan dalam prompt bersama skema alat Anda, menunjukkan kepada Claude pola konkret untuk panggilan alat yang terbentuk dengan baik. Ini membantu Claude memahami kapan harus menyertakan parameter opsional, format apa yang digunakan, dan cara menyusun input yang kompleks.
+Contoh disertakan dalam prompt bersama skema alat Anda, menunjukkan kepada Claude pola konkret untuk panggilan alat yang tersusun dengan baik. Pola-pola ini menunjukkan kapan harus menyertakan parameter opsional, format apa yang digunakan, dan bagaimana menyusun input yang kompleks.
 
 ### Persyaratan dan batasan
 
-* **Validasi skema** - Setiap contoh harus valid sesuai dengan `input_schema` alat. Contoh yang tidak valid mengembalikan error 400
-* **Tidak didukung untuk alat sisi server atau toolset klien** - Contoh input berfungsi pada alat klien yang ditentukan pengguna dan berskema Anthropic selain toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool), tetapi tidak pada alat server seperti pencarian web atau eksekusi kode
-* **Biaya token** - Contoh menambah token prompt: \~20–50 token untuk contoh sederhana, \~100–200 token untuk objek bersarang yang kompleks
+* **Validasi skema** - Setiap contoh harus valid menurut `input_schema` alat. Contoh yang tidak valid mengembalikan error 400.
+* **Tidak didukung untuk alat sisi server atau toolset klien** - Contoh input berfungsi pada alat klien yang ditentukan pengguna dan alat klien dengan skema Anthropic selain toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool), tetapi tidak pada alat server seperti web search atau code execution.
+* **Biaya token** - Contoh menambah token prompt: \~20–50 token untuk contoh sederhana, \~100–200 token untuk objek bersarang yang kompleks.
 
 ## Mengendalikan output Claude
 
 ### Memaksa penggunaan alat
 
-Dalam beberapa kasus, Anda mungkin ingin Claude menggunakan alat tertentu untuk menjawab pertanyaan pengguna, meskipun Claude sebenarnya akan menjawab langsung tanpa memanggil alat. Anda dapat melakukannya dengan menentukan alat di field `tool_choice` pada permintaan.
+Dalam beberapa kasus, Anda mungkin ingin Claude menggunakan alat tertentu untuk menjawab pertanyaan pengguna, meskipun Claude sebenarnya akan menjawab langsung tanpa memanggil alat. Anda dapat melakukan ini dengan menentukan alat di bidang `tool_choice` pada permintaan.
 
-Tidak semua model dan pengaturan mendukung penggunaan alat paksa. Jika tidak didukung, `tool_choice: {"type": "any"}` dan `tool_choice: {"type": "tool", "name": "..."}` gagal, sementara `tool_choice: {"type": "auto"}` (default) dan `tool_choice: {"type": "none"}` tetap berfungsi:
+Tidak semua model dan pengaturan mendukung penggunaan alat yang dipaksakan. Jika tidak didukung, `tool_choice: {"type": "any"}` dan `tool_choice: {"type": "tool", "name": "..."}` akan gagal, sedangkan `tool_choice: {"type": "auto"}` (default) dan `tool_choice: {"type": "none"}` tetap berfungsi:
 
 | Model atau pengaturan                                                                                                                         | Batasan                                                                                                                  | Alternatif yang dapat digunakan                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -789,7 +789,7 @@ Pada model yang mendukungnya, baris yang disorot adalah satu-satunya perbedaan d
       messages: [
           ['role' => 'user', 'content' => "What's the weather like in San Francisco?"]
       ],
-      model: 'claude-opus-5',
+      model: Model::CLAUDE_OPUS_5,
       toolChoice: ['type' => 'tool', 'name' => 'get_weather'],
       tools: [
           [
@@ -814,7 +814,7 @@ Pada model yang mendukungnya, baris yang disorot adalah satu-satunya perbedaan d
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5,
     max_tokens: 1024,
     tools: [
       {
@@ -843,7 +843,7 @@ Pada model yang mendukungnya, baris yang disorot adalah satu-satunya perbedaan d
 
 Saat bekerja dengan parameter `tool_choice`, ada empat opsi yang mungkin:
 
-* `auto` memungkinkan Claude menentukan apakah akan memanggil alat yang disediakan atau tidak. Ini adalah nilai default ketika `tools` disediakan.
+* `auto` memungkinkan Claude menentukan apakah akan memanggil alat yang disediakan. Ini adalah nilai default ketika `tools` disediakan.
 * `any` memberi tahu Claude bahwa ia harus menggunakan salah satu alat yang disediakan, tetapi tidak memaksa alat tertentu.
 * `tool` memaksa Claude untuk selalu menggunakan alat tertentu.
 * `none` mencegah Claude menggunakan alat apa pun. Ini adalah nilai default ketika tidak ada `tools` yang disediakan.
@@ -896,16 +896,16 @@ Misalnya, dengan prompt "What's the weather like in San Francisco right now, and
 
 Gaya respons alami ini membantu pengguna memahami apa yang dilakukan Claude dan menciptakan interaksi yang lebih bersifat percakapan. Anda dapat mengarahkan gaya dan isi respons ini melalui prompt sistem Anda dan dengan menyediakan `<examples>` dalam prompt Anda.
 
-Penting untuk dicatat bahwa Claude dapat menggunakan berbagai frasa dan pendekatan saat menjelaskan tindakannya. Kode Anda harus memperlakukan respons ini seperti teks lain yang dihasilkan asisten, dan tidak bergantung pada konvensi pemformatan tertentu.
+Penting untuk dicatat bahwa Claude mungkin menggunakan berbagai susunan kalimat dan pendekatan saat menjelaskan tindakannya. Kode Anda harus memperlakukan respons ini seperti teks lain yang dihasilkan asisten, dan tidak bergantung pada konvensi pemformatan tertentu.
 
 ## Langkah selanjutnya
 
 <CardGroup>
   <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls" title="Menangani panggilan alat">
-    Parse blok tool\_use dan format respons tool\_result.
+    Parsing blok `tool_use` dan format respons `tool_result`.
   </Card>
 
-  <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner" title="Tool Runner (SDK)">
+  <Card href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner" title="Tool runner (SDK)">
     Biarkan SDK menangani loop agentik secara otomatis.
   </Card>
 

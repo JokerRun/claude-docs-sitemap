@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/claude-code-analytics-api
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 41452f13e1221c7430e93561ed2c9d7188733d0071f059d8fedf572043a81883
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 968b512d6499ef624e9b7915abaca37a9b880c73ca780af7f77d893414b88660
 ---
 
 ---
@@ -154,7 +154,7 @@ For each Claude model used:
 
 The API returns data in the following format:
 
-```text wrap
+```json
 {
   "data": [
     {

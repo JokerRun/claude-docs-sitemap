@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 096f227783a9c43724aa5e468697f4eb4f182cf5cd9170d48c141fcd6d5764dd
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: d380515b68d9a72193262bbd0c9636cc1998803a605057cf0a004ef0f2b07eb5
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-s
 description: Jalankan alat penggunaan browser atau alat penggunaan komputer dari SDK Python atau TypeScript. SDK menjalankan loop dan pemeriksaan yang Anda konfigurasikan, dan Anda menyediakan browser atau desktopnya.
 ---
 
-Dengan browser toolset dan computer toolset di SDK Python dan TypeScript, Anda dapat membangun agen yang bekerja di browser web atau di desktop. Agen tersebut dapat menggunakan aplikasi yang tidak memiliki antarmuka terprogram. Melalui [alat penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool), Claude menavigasi, membaca, dan berinteraksi dengan halaman web. Melalui [alat penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), Claude melihat desktop dalam bentuk tangkapan layar dan menggunakan mouse serta keyboard.
+Dengan toolset browser dan komputer di SDK Python dan TypeScript, Anda dapat membangun agen yang bekerja di browser web atau di desktop. Agen tersebut dapat menggunakan aplikasi yang tidak memiliki antarmuka terprogram. Melalui [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool), Claude bernavigasi, membaca, dan berinteraksi dengan halaman web. Melalui [alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), Claude menerima tangkapan layar desktop dan menggunakan mouse serta keyboard.
 
 SDK menghubungkan Claude ke browser atau desktop Anda. SDK menjalankan pemeriksaan yang Anda konfigurasikan, seperti kebijakan URL untuk `navigate` atau callback persetujuan. SDK mengirim setiap panggilan yang lolos ke driver Anda dan membangun `tool_result` dari apa yang dikembalikan driver. [Tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner) dapat menjalankan loop agentik untuk Anda.
 
@@ -27,7 +27,7 @@ Menulis driver Anda sendiri adalah kasus lanjutan, yang dibahas di [Mengimplemen
 
 ## Menggunakan driver dari penyedia
 
-Dengan driver dari penyedia, seperti salah satu yang ada di [Integrasi mitra](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#partner-integrations), Anda dapat membangun agen dalam beberapa baris kode. Penyedia dalam contoh ini adalah rekaan. Ganti `example_browser_provider` (typescript: `example-browser-provider`) dan `ExampleBrowser` dengan paket dan kelas driver [milik penyedia sungguhan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#partner-integrations), lalu siapkan sesuai yang dijelaskan dokumentasi penyedia tersebut.
+Dengan driver dari penyedia, seperti yang ada di bawah [Integrasi mitra](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#partner-integrations), Anda dapat membangun agen dalam beberapa baris kode. Penyedia dalam contoh ini adalah rekaan. Ganti `example_browser_provider` (typescript: `example-browser-provider`) dan `ExampleBrowser` dengan paket dan kelas driver dari penyedia sungguhan, lalu siapkan keduanya seperti yang dijelaskan dalam dokumentasi penyedia.
 
 <CodeGroup exclude="shell:cURL, shell:CLI, csharp, go, java, php, ruby">
   ```python Python
@@ -96,7 +96,7 @@ Browser Use, Browserbase, Daytona, dan E2B menerbitkan driver mereka sendiri unt
   </Card>
 </CardGroup>
 
-Mitra kami juga menerbitkan kode di GitHub: [quickstart Browser Use](https://github.com/browser-use/browser-use/tree/main/examples/integrations/toolsets-for-claude), [toolset Browserbase](https://github.com/browserbase/claude-cua-toolset), dan [contoh E2B](https://github.com/e2b-dev/e2b-cookbook/tree/main/examples/anthropic-computer-use-orangehrm-js).
+Kode mitra juga tersedia di GitHub: [quickstart Browser Use](https://github.com/browser-use/browser-use/tree/main/examples/integrations/toolsets-for-claude), [toolset Browserbase](https://github.com/browserbase/claude-cua-toolset), dan [contoh E2B](https://github.com/e2b-dev/e2b-cookbook/tree/main/examples/anthropic-computer-use-orangehrm-js).
 
 <Warning>
   Lakukan dua hal ini sebelum Anda menjalankan driver terhadap apa pun selain browser sekali pakai:
@@ -180,7 +180,7 @@ Meng-override `execute` mengubah anggota mana yang ditawarkan kepada Claude. SDK
 
 Driver adalah subclass Anda dari `BetaAbstractBrowserToolset20260801`. Di dalamnya, override anggota yang didukung browser Anda. Anggota yang tidak Anda implementasikan dikirim ke API sebagai dinonaktifkan. Jika Claude tetap memanggilnya, SDK mengembalikan error, dan run berlanjut. Meng-override `execute` mengubah anggota mana yang dikirim sebagai dinonaktifkan ([Menambahkan hook sebelum dan sesudah](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#add-before-and-after-hooks)). Setiap anggota menerima konteks panggilan dan input anggota sebagai objek bertipe, seperti `BetaBrowserNavigateInput`. Tipe input berasal dari `anthropic.types.beta` (typescript: `@anthropic-ai/sdk/resources/beta`). [Alat anggota](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#member-tools) mencantumkan field setiap input.
 
-Di TypeScript, tulis anggota sebagai metode, bukan field arrow-function, karena SDK menemukannya pada prototype. Tulis anggota `type` sebagai `type_` di TypeScript. Di Python, namanya `type`.
+Di TypeScript, tulis member `type` sebagai `type_`, dan tulis member sebagai method, bukan field arrow-function, karena SDK menemukannya pada prototype.
 
 ### Mengembalikan hasil
 
@@ -198,25 +198,25 @@ Apa yang dikembalikan anggota menentukan apa yang dibaca Claude. Hasil yang berh
 
 SDK memanggil `_browser_state` (typescript: `browserState`) setelah setiap panggilan yang mengembalikan hasil, termasuk panggilan yang ditolak dan gagal. Kembalikan setiap tab yang terbuka, dan apa yang berubah sejak laporan terakhir:
 
-* Tab yang dibuka dan event unduhan.
-* Sebuah `BetaNavigationRefused` untuk setiap navigasi yang diblokir oleh [request hook](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#intercept-requests-in-the-driver) Anda.
-* Sebuah `BetaDialogDismissed` untuk setiap dialog native yang ditutup oleh driver Anda.
+* Tab yang dibuka dan event unduhan
+* Sebuah `BetaNavigationRefused` untuk setiap navigasi yang diblokir oleh [request hook](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#intercept-requests-in-the-driver) Anda
+* Sebuah `BetaDialogDismissed` untuk setiap dialog native yang ditutup oleh driver Anda
 
-Masukkan semua ini ke dalam `state_changes`. Di Python, `BetaNavigationRefused()` dan `BetaDialogDismissed(kind=..., message=...)` berasal dari `anthropic.tools.browser`. Di TypeScript, keduanya adalah `{ type: "navigation_refused" }` dan `{ type: "dialog_dismissed", kind, message }`.
+Masukkan semua ini ke `state_changes`. Navigasi yang ditolak adalah `anthropic.tools.browser.BetaNavigationRefused()` (typescript: `{ type: "navigation_refused" }`), dan dialog yang ditutup adalah `anthropic.tools.browser.BetaDialogDismissed(kind=..., message=...)` (typescript: `{ type: "dialog_dismissed", kind, message }`).
 
 Dua yang terakhir bukan perubahan state API. SDK melaporkannya kepada Claude sebagai teks di luar blok `browser_state`: satu baris untuk semua navigasi yang ditolak, yang tidak menyertakan URL, dan satu baris untuk masing-masing dari tiga dialog pertama yang ditutup, lalu jumlah dialog lainnya.
 
 Ketika ada tab yang terbuka, tepat satu tab harus aktif. Setiap anggota yang menerima `tab_id` harus bertindak pada tab yang disebutkannya. Batasan API pada laporan tercantum di [Melacak tab dengan `browser_state`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#track-tabs-and-page-state).
 
-Claude membaca URL setiap tab, URL setiap unduhan, dan URL yang dikembalikan `navigate` Anda, sebagaimana ditulis oleh driver Anda. SDK tidak mem-parse URL ini. SDK mengubah jeda baris dan karakter kontrol lainnya menjadi spasi, memangkas ujung-ujungnya, dan memotong setiap URL pada 4.096 karakter. Jadi isi URL `data:`, path URL `file:`, serta nama pengguna atau kata sandi dalam URL semuanya sampai ke Claude.
+Claude membaca URL setiap tab, URL setiap unduhan, dan URL yang dikembalikan oleh `navigate` Anda, sebagaimana ditulis oleh driver Anda. SDK tidak mem-parse URL ini. SDK mengubah jeda baris dan karakter kontrol lainnya menjadi spasi, memangkas ujung-ujungnya, dan memotong setiap URL pada 4.096 karakter. Jadi isi URL `data:`, path URL `file:`, serta nama pengguna atau kata sandi dalam URL semuanya sampai ke Claude.
 
 ### Menangani error
 
-| Di-raise oleh anggota atau SDK | Yang dibaca Claude                                                                      | Run       |
-| ------------------------------ | --------------------------------------------------------------------------------------- | --------- |
-| `ToolError`                    | Pesannya, sebagai hasil error                                                           | Berlanjut |
-| `ToolsetUsageError`            | Tidak ada                                                                               | Berhenti  |
-| Exception lainnya              | `ClassName: message` di Python atau `Error: message` di TypeScript, sebagai hasil error | Berlanjut |
+| Di-raise oleh anggota atau SDK | Yang dibaca Claude                                                       | Run       |
+| ------------------------------ | ------------------------------------------------------------------------ | --------- |
+| `ToolError`                    | Pesannya, sebagai hasil error                                            | Berlanjut |
+| `ToolsetUsageError`            | Tidak ada                                                                | Berhenti  |
+| Exception lainnya              | `ClassName: message` (typescript: `Error: message`), sebagai hasil error | Berlanjut |
 
 SDK me-raise `ToolsetUsageError` untuk error konfigurasi, penyalahgunaan SDK selama panggilan, atau panggilan setelah `close`. SDK juga me-raise-nya ketika `_browser_state` (typescript: `browserState`) me-raise exception apa pun, bahkan `ToolError`. Tool runner dan `tool_result` (typescript: `toolResult`) tidak menangkapnya, sehingga exception tersebut sampai ke pemanggilnya.
 
@@ -234,11 +234,11 @@ Early start mengubah kapan panggilan dapat dimulai, bukan cara toolset menjalank
 
 * **Pemeriksaan tetap berjalan lebih dulu:** SDK memanggil kebijakan URL, kebijakan file, dan `confirm` Anda sebelum panggilan berjalan. Dengan early start, SDK dapat memanggil `confirm` saat respons masih di-streaming.
 * **Panggilan tetap berjalan satu per satu:** Sebuah toolset menjalankan panggilannya sesuai urutan yang ditulis Claude. Panggilan yang gagal tetap menghentikan panggilan berikutnya dari toolset tersebut dalam giliran itu.
-* **Panggilan yang sudah dimulai tidak dapat dibatalkan:** Jika respons kemudian terpotong, misalnya pada `max_tokens`, atau loop Anda berhenti lebih awal, aksi tersebut tetap terjadi, dan Claude tidak pernah membaca hasilnya.
+* **Panggilan yang sudah dimulai tidak dapat dibatalkan:** Jika respons kemudian terpotong, misalnya pada `max_tokens`, atau loop Anda berhenti lebih awal, aksinya tetap terjadi, dan Claude tidak pernah membaca hasilnya.
 
 ### Menjalankan tanpa tool runner
 
-Berikan instance di `tools` (`browser.toJSON()` di TypeScript), dan jawab setiap panggilan anggota dengan `tool_result` (typescript: `toolResult`). Alat penggunaan browser mengharuskan Anda berhenti pada panggilan gagal pertama ([Tindakan batch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#batch-actions)).
+Berikan `browser` (typescript: `browser.toJSON()`) dalam `tools`, dan jawab setiap panggilan member dengan `tool_result` (typescript: `toolResult`). Alat browser use mengharuskan Anda berhenti pada panggilan gagal pertama ([Aksi batch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#batch-actions)).
 
 Loop ini menggunakan `MyBrowser` dan kebijakan URL dari [contoh lanjutan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#quick-start). Setelah panggilan gagal, loop ini menjawab panggilan berikutnya dalam giliran tersebut tanpa menjalankannya:
 
@@ -574,7 +574,7 @@ Contoh ini menggabungkan bagian-bagian utama dari [Mengimplementasikan driver](h
 
 ## Menjalankan toolset dengan aman
 
-Tindakan Claude berikutnya bergantung pada halaman yang dibacanya. Sebuah halaman, atau teks yang disuntikkan ke dalamnya, dapat mencoba menjangkau layanan internal atau menarik file dari host. Halaman tersebut juga dapat mencoba memicu tindakan dengan efek nyata. Sebelum Anda menjalankan driver terhadap apa pun selain browser sekali pakai, lakukan enam langkah berikut:
+Aksi Claude berikutnya bergantung pada halaman yang dibacanya. Sebuah halaman, atau teks yang disuntikkan ke dalamnya, dapat mencoba menjangkau layanan internal atau mengambil file dari host. Halaman tersebut juga dapat mencoba memicu aksi dengan efek nyata. Sebelum Anda menjalankan driver terhadap apa pun selain browser sekali pakai, lakukan enam langkah ini:
 
 1. [Tulis kebijakan URL](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#write-a-url-policy) yang menolak setiap URL `navigate` yang tidak dibutuhkan tugas.
 2. [Intersep permintaan di driver](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#intercept-requests-in-the-driver), dan periksa setiap request dengan aturan yang sama.
@@ -676,14 +676,14 @@ Contoh ini tidak berkualitas produksi. Kebijakan produksi membutuhkan jauh lebih
 * Tautan yang diklik Claude, formulir yang dikirimkannya, redirect, dan request yang dibuat halaman dengan sendirinya. Hanya driver Anda yang melihatnya. Lihat [Mengintersep permintaan di driver](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#intercept-requests-in-the-driver).
 * Hostname dan URL yang berasal dari konten halaman, yang dapat dipilih oleh penyerang.
 * Mem-parse setiap URL seperti yang dilakukan browser, bukan menemukan hostname dengan pemisahan string biasa.
-* Skema URL. SDK tidak memeriksanya, jadi tolak setiap skema yang tidak dimaksudkan untuk dibuka oleh driver Anda.
+* Skema URL. SDK tidak memeriksanya, jadi tolak setiap skema yang tidak Anda maksudkan untuk dibuka oleh driver Anda.
 * Aturan egress pada container, untuk apa yang tidak dapat dilihat oleh pemeriksaan URL mana pun. Lihat [Menerapkan kebijakan egress pada container](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#put-egress-policy-on-the-container).
 
 Jika Anda memberikan `url_policy=None` (typescript: `urlPolicy: null`), SDK menolak setiap `navigate` ke sebuah URL, sehingga `None` (typescript: `null`) yang dibaca dari konfigurasi Anda tidak dapat secara tidak sengaja membiarkan URL tidak diperiksa. Di TypeScript, `undefined` membiarkan opsi tidak diatur, sama seperti tidak memberikannya.
 
 ### Mengintersep permintaan di driver
 
-Kebijakan URL hanya menilai URL dalam panggilan `navigate`. Tautan yang diklik Claude, formulir yang dikirimkannya, redirect, atau gambar atau skrip pada halaman yang diizinkan masih dapat menjangkau host yang akan ditolak oleh kebijakan. Gunakan [aturan egress](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#put-egress-policy-on-the-container) untuk memblokir host tersebut.
+Kebijakan URL hanya memeriksa URL dalam panggilan `navigate`. Tautan yang diklik Claude, formulir yang dikirimkannya, redirect, atau gambar maupun skrip pada halaman yang diizinkan masih dapat menjangkau host yang akan ditolak oleh kebijakan. Gunakan [aturan egress](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#put-egress-policy-on-the-container) untuk memblokir host tersebut.
 
 Driver dengan intersepsi request juga dapat memeriksa request tersebut di request hook-nya, yaitu fungsi yang dipanggil pustaka otomatisasi Anda sebelum setiap request. Panggil fungsi yang digunakan kebijakan Anda, sehingga Anda menulis aturannya sekali saja:
 
@@ -709,7 +709,7 @@ Driver dengan intersepsi request juga dapat memeriksa request tersebut di reques
   ```
 </CodeGroup>
 
-Request hook seperti ini tidak melihat handshake WebSocket, request service-worker, atau lompatan redirect. Blokir service worker. Periksa handshake WebSocket dan lompatan redirect dengan hook yang dapat melihatnya. Contoh kebijakan menolak URL `ws://` dan `wss://`, jadi ubah `ws://` menjadi `http://` dan `wss://` menjadi `https://` sebelum Anda memberikan URL WebSocket ke `is_allowed` (typescript: `isAllowed`).
+Request hook seperti ini tidak melihat handshake WebSocket, request service-worker, atau lompatan redirect. Blokir service worker. Periksa handshake WebSocket dan lompatan redirect dengan hook yang dapat melihatnya. Contoh kebijakan menolak URL `ws://` dan `wss://`, jadi ubah `ws://` menjadi `http://` dan `wss://` menjadi `https://` sebelum Anda memberikan URL WebSocket ke `is_allowed()` (typescript: `isAllowed()`).
 
 ### Menerapkan kebijakan egress pada container
 
@@ -777,7 +777,7 @@ Siapkan unduhan dengan cara berikut:
 
 Kembalikan `True` (typescript: `true`) untuk menjalankan panggilan, atau `False` (typescript: `false`) untuk menolaknya. Ketika callable Anda bertanya kepada seseorang, tunjukkan anggota, URL halaman, dan input panggilan. Pertama, escape setiap karakter di luar ASCII yang dapat dicetak dalam URL dan input, karena keduanya dapat membawa teks dari halaman.
 
-Contoh ini menanyakan tentang dua anggota yang dilindungi melalui fungsi `ask_user` (typescript: `askUser`) Anda sendiri, dan menyetujui sisanya:
+Contoh ini menanyakan tentang dua anggota yang dilindungi melalui fungsi `ask_user()` (typescript: `askUser()`) Anda sendiri, dan menyetujui sisanya:
 
 <CodeGroup exclude="shell:cURL, shell:CLI, csharp, go, java, php, ruby">
   ```python Python
@@ -875,7 +875,7 @@ Contoh ini menanyakan tentang dua anggota yang dilindungi melalui fungsi `ask_us
 
 Setiap panggilan ke `make_confirm()` (typescript: `makeConfirm()`) mengembalikan callable tanpa persetujuan. Panggil sekali untuk setiap toolset, dan berikan setiap pengguna toolset mereka sendiri.
 
-Persetujuan mencakup halaman sebagaimana ditunjukkan oleh laporan state terakhir, dan halaman dapat berubah sebelum panggilan berjalan. Pembelian, pesan yang dikirim, dan persyaratan yang diterima terjadi melalui anggota biasa seperti `left_click` dan `type`, sehingga `confirm` tidak dapat memilahnya berdasarkan nama. Agar seseorang menyetujui tindakan tersebut, tanyakan juga tentang anggota-anggota itu.
+Persetujuan mencakup halaman sebagaimana ditampilkan oleh laporan state terakhir, dan halaman dapat berubah sebelum panggilan berjalan. Pembelian, pesan terkirim, dan persetujuan syarat dilakukan melalui member biasa seperti `left_click` dan `type`, sehingga `confirm` tidak dapat mengenalinya berdasarkan nama. Agar seseorang menyetujuinya, tanyakan juga tentang member tersebut.
 
 Jangan aktifkan `javascript_exec` kecuali [aturan egress](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#put-egress-policy-on-the-container) membatasi koneksi keluar browser ke host yang dibutuhkan tugas. Sebuah skrip dapat mengirim konten halaman ke alamat mana pun yang dapat dijangkau browser.
 
@@ -906,7 +906,7 @@ Dengan browser hosted, penyedia mengontrol egress dan isolasi host. Kebijakan eg
 
 Pemeriksaan path bawaan tidak melindungi browser remote. `BetaLocalFilePolicy` (typescript: `BetaNodeFilePolicy`) memeriksa path pada filesystem proses yang menjalankan SDK, sedangkan browser membaca dan menulis filesystem-nya sendiri.
 
-SDK tidak dapat mendeteksi bahwa sebuah browser bersifat remote. Jadi untuk browser remote, biarkan `file_upload` nonaktif kecuali driver Anda memeriksa path unggahan di tempat browser berjalan, dengan `BetaFilePolicy` miliknya sendiri. `BetaFilePolicy` memeriksa path dan ID dokumen setiap unggahan, dan memutuskan apakah Claude melihat path unduhan.
+SDK tidak dapat mendeteksi bahwa sebuah browser bersifat jarak jauh. Jadi untuk browser jarak jauh, biarkan `file_upload` nonaktif kecuali driver Anda memeriksa path unggahan di tempat browser berjalan, dengan `BetaFilePolicy` miliknya sendiri. Sebuah `BetaFilePolicy` memeriksa path dan ID dokumen setiap unggahan, serta menentukan apakah Claude melihat path sebuah unduhan.
 
 Buat browser remote menolak unduhan, kecuali host-nya sendiri memiliki penyiapan unduhan dari [Membatasi unggahan dan unduhan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#confine-uploads-and-downloads).
 
@@ -914,20 +914,20 @@ Jauhkan kunci API penyedia dan URL koneksi sesi, yang dapat berisi kunci, dari l
 
 ## Toolset komputer
 
-`BetaAbstractComputerToolset20260801` adalah kelas untuk [alat penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool). Driver adalah subclass dengan satu metode per alat, seperti `screenshot` atau `left_click`. Mulailah dari driver mitra di bawah [Integrasi mitra](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#partner-integrations). Untuk menulis driver Anda sendiri, repositori claude-quickstarts memiliki [contoh VNC minimal](https://github.com/anthropics/claude-quickstarts/tree/main/computer-toolset) dalam Python dan TypeScript. Contoh ini mengendalikan desktop melalui VNC, dan bukan kode produksi.
+`BetaAbstractComputerToolset20260801` adalah kelas untuk [alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool). Driver adalah subkelas dengan satu metode untuk setiap alat, seperti `screenshot` atau `left_click`. Mulailah dari driver milik mitra di bawah [Integrasi mitra](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#partner-integrations). Untuk menulis driver Anda sendiri, repositori claude-quickstarts memiliki [contoh VNC minimal](https://github.com/anthropics/claude-quickstarts/tree/main/computer-toolset) dalam Python dan TypeScript. Contoh ini mengendalikan desktop melalui VNC, dan bukan kode produksi.
 
 Kelas ini menerima `configs`, `confirm`, dan `tool_configs` (typescript: `toolConfigs`), dan Anda memberikannya seperti pada kelas browser. [Menyesuaikan driver](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#customize-a-driver), [Menangani error](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#handle-errors), [Memulai panggilan saat respons sedang di-streaming](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#start-calls-while-the-response-streams), dan [Menjalankan tanpa tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#run-without-the-tool-runner) juga berlaku untuknya, dengan perbedaan berikut:
 
 * **Opsi khusus browser:** Kelas ini tidak memiliki [kebijakan URL](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#write-a-url-policy), [kebijakan file](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#confine-uploads-and-downloads), maupun [laporan status](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#report-browser-state).
 * **`configs`:** Setiap alat yang Anda implementasikan aktif secara default. Pengaturan per alat tercantum di [Parameter alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#tool-parameters).
 * **`confirm`:** Jika kelas Anda mengimplementasikan `type`, `key`, atau `hold_key`, constructor me-raise error konfigurasi kecuali Anda memberikan callable `confirm` atau menonaktifkan alat tersebut dengan `configs`. Kelas yang meng-override `execute` dianggap mengimplementasikan ketiganya.
-* **Panggilan yang dilewati:** Setelah panggilan komputer gagal, tool runner menjawab panggilan komputer berikutnya dalam giliran tersebut dengan `Not executed: an earlier computer action in this turn failed.` Panggilan browser mendapat teks yang berbeda. Dalam loop yang Anda tulis, jawab panggilan komputer yang dilewati dengan teks persis tersebut ([Aksi batch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions)).
+* **Panggilan yang dilewati:** Setelah panggilan komputer gagal, tool runner menjawab panggilan komputer berikutnya dalam giliran tersebut dengan `Not executed: an earlier computer action in this turn failed.` Panggilan browser mendapatkan teks yang berbeda. Dalam loop yang Anda tulis sendiri, jawab panggilan komputer yang dilewati dengan teks persis tersebut ([Aksi batch dalam alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions)).
 * **`execute`:** Di TypeScript, override `execute` memberi tipe `name` sebagai `BetaComputerMemberName` dan `input` sebagai `BetaComputerMemberInput`. Keduanya berasal dari `@anthropic-ai/sdk/resources/beta`.
 * **Teks error:** SDK tidak menyembunyikan path lokal dalam teks error alat komputer atau dalam teks yang dikembalikan alat. Claude membaca keduanya, dipotong pada 4.096 karakter. Tangkap exception di alat Anda, dan raise `ToolError` (throw di TypeScript) dengan teks Anda sendiri.
 
 ### Menulis driver desktop
 
-Driver ini mengimplementasikan lima dari 17 alat yang tercantum di bawah [Tindakan yang tersedia](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#available-actions). Alat yang tidak Anda implementasikan dikirim ke API sebagai dinonaktifkan, seperti yang dijelaskan di [Mengimplementasikan driver](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#implement-a-driver). Dalam contoh ini, `display` mewakili wrapper Anda sendiri di sekitar apa pun yang mengendalikan desktop, seperti klien VNC atau `xdotool`, dan `ask_user` (typescript: `askUser`) mewakili fungsi Anda sendiri yang bertanya kepada seseorang.
+Driver ini mengimplementasikan lima dari 17 alat yang tercantum di bawah [Tindakan yang tersedia](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#available-actions). Alat yang tidak Anda implementasikan dikirim ke API sebagai dinonaktifkan, seperti yang dijelaskan di [Mengimplementasikan driver](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#implement-a-driver). Dalam contoh ini, `display` mewakili wrapper Anda sendiri di sekitar apa pun yang mengendalikan desktop, seperti klien VNC atau `xdotool`, dan `ask_user()` (typescript: `askUser()`) mewakili fungsi Anda sendiri yang bertanya kepada seseorang.
 
 <CodeGroup exclude="shell:cURL, shell:CLI, csharp, go, java, php, ruby">
   ```python Python
@@ -1164,7 +1164,7 @@ Jika screenshot Anda berukuran berbeda dari layar, lakukan konversi ke dua arah 
   ```
 </CodeGroup>
 
-Panggil `to_display` (typescript: `toDisplay`) pada setiap `coordinate` dan `start_coordinate` sebelum Anda menindaklanjutinya, dan `to_screenshot` (typescript: `toScreenshot`) pada posisi yang dilaporkan oleh `cursor_position`. Klik atau scroll tanpa `coordinate` bertindak pada posisi kursor, sehingga tidak ada yang perlu dikonversi. Skalakan `region` pada `zoom` dengan faktor yang sama. Gambar `zoom` tidak mengubah hal ini: titik berikutnya yang dikirim Claude tetap merupakan posisi piksel dalam screenshot penuh.
+Panggil `to_display()` (typescript: `toDisplay()`) pada setiap `coordinate` dan `start_coordinate` sebelum Anda menindaklanjutinya, dan `to_screenshot()` (typescript: `toScreenshot()`) pada posisi yang dilaporkan oleh `cursor_position`. Klik atau scroll tanpa `coordinate` bertindak pada posisi kursor, sehingga tidak ada yang perlu dikonversi. Skalakan `region` pada `zoom` dengan faktor yang sama. Gambar `zoom` tidak mengubah hal ini: titik berikutnya yang dikirim Claude tetap merupakan posisi piksel dalam screenshot penuh.
 
 SDK tidak pernah membaca atau mengubah ukuran gambar. API menolak gambar yang melebihi batas model, yang mengakhiri run. Skalakan setiap screenshot dan gambar `zoom` di driver. Lihat [Sesuaikan ukuran tangkapan layar agar sesuai batas gambar](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions). Pada run yang panjang, satu permintaan dapat memuat lebih dari 20 gambar, dan API kemudian menerapkan batas yang lebih ketat pada setiap gambar. Lihat [Mengelola riwayat tangkapan layar](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#manage-screenshot-history).
 
@@ -1172,7 +1172,7 @@ SDK tidak pernah membaca atau mengubah ukuran gambar. API menolak gambar yang me
 
 Jangan mengandalkan SDK untuk memeriksa input suatu panggilan. Minta driver Anda memeriksa field yang digunakannya dan menolak panggilan yang tidak dapat dijalankannya: raise `ToolError` (throw di TypeScript). Claude membaca pesannya dan dapat mengirim panggilan yang sudah diperbaiki.
 
-Kedua SDK tidak membatasi `duration`, jumlah `repeat`, maupun `scroll_amount`. Langkah 4 di bawah [Menjalankan computer toolset dengan aman](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#run-the-computer-toolset-safely) membahasnya.
+SDK tidak membatasi `duration`, jumlah `repeat`, atau `scroll_amount`. Langkah 4 di bawah [Menjalankan toolset komputer dengan aman](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#run-the-computer-toolset-safely) membahasnya.
 
 Apa yang dikembalikan alat menentukan apa yang dibaca Claude:
 
@@ -1184,7 +1184,7 @@ Apa yang dikembalikan alat menentukan apa yang dibaca Claude:
 
 ### Menjalankan computer toolset dengan aman
 
-Apa yang ada di layar mengarahkan tindakan Claude berikutnya. Sebuah halaman atau notifikasi dapat mencoba membuat Claude mengetik ke jendela yang salah, atau memicu tindakan dengan efek nyata.
+Apa yang ada di layar mengarahkan aksi Claude berikutnya. Sebuah halaman atau notifikasi dapat mencoba membuat Claude mengetik di jendela yang salah, atau memicu aksi dengan efek nyata.
 
 <Warning>
   Driver yang mengimplementasikan `type`, `key`, atau `hold_key` memerlukan callable `confirm`. Tanpanya, konstruktor akan memunculkan error konfigurasi, kecuali `configs` menonaktifkan alat-alat tersebut. SDK sendiri tidak meminta persetujuan siapa pun: SDK menjalankan setiap panggilan yang disetujui oleh `confirm` Anda, dan tanpa `confirm` SDK menjalankan setiap panggilan, termasuk setiap klik. Setiap alat komputer yang Anda implementasikan aktif secara default.
@@ -1198,9 +1198,9 @@ Sebelum Anda menjalankan driver pada apa pun selain mesin sekali pakai, lakukan 
 4. Tolak input yang tidak seharusnya dipenuhi desktop Anda, seperti titik di luar screenshot, `wait` selama beberapa menit, atau `repeat` atau `scroll_amount` yang sangat besar. Raise `ToolError` (throw di TypeScript) alih-alih memindahkan nilainya ke dalam rentang.
 5. Perlakukan semua yang ada di layar sebagai tidak tepercaya, termasuk judul jendela dan teks clipboard. Jangan menjalankannya atau meneruskannya tanpa diperiksa.
 
-SDK menerapkan langkah 2 melalui callable yang Anda berikan. Langkah-langkah lainnya bergantung pada driver dan deployment Anda. Tindakan pencegahan di bawah [Pertimbangan keamanan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#security-considerations) juga berlaku.
+SDK menerapkan langkah 2 melalui callable yang Anda teruskan. Langkah lainnya bergantung pada driver dan deployment Anda. Tindakan pencegahan di bawah [Pertimbangan keamanan untuk alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#security-considerations) juga berlaku.
 
-`confirm` berikut meminta persetujuan seseorang sebelum input keyboard apa pun, melalui fungsi `ask_user` (typescript: `askUser`) milik Anda sendiri, dan menyetujui setiap panggilan lainnya. `context.member` (typescript: `ctx.member`) adalah nama alat. Agar seseorang juga menyetujui klik, atur `ASK_FIRST` ke `KEYBOARD | CLICKS` (typescript: `new Set([...KEYBOARD, ...CLICKS])`).
+`confirm` berikut meminta persetujuan seseorang sebelum input keyboard apa pun, melalui fungsi `ask_user()` (typescript: `askUser()`) milik Anda sendiri, dan menyetujui setiap panggilan lainnya. `context.member` (typescript: `ctx.member`) adalah nama alat. Agar seseorang juga menyetujui klik, atur `ASK_FIRST` ke `KEYBOARD | CLICKS` (typescript: `new Set([...KEYBOARD, ...CLICKS])`).
 
 <CodeGroup exclude="shell:cURL, shell:CLI, csharp, go, java, php, ruby">
   ```python Python

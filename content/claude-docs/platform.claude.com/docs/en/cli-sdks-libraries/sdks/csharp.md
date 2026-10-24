@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 3d039129ccc1aa2cc15fedc6d766f0d51ecc7902d403ffdd945e8fc720685812
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: c7695ccb59a6dec4bcc36ec828ed8c285bd5f9abb20c08d3016a19a13f30963a
 ---
 
 ---
@@ -331,7 +331,7 @@ Console.WriteLine(await chatClient.GetResponseAsync("Tell me about IChatClient",
 
 To send a request to the Claude API, build an instance of a `Params` class and pass it to the corresponding client method. When the response is received, it's deserialized into an instance of a C# class.
 
-For example, `client.Messages.Create` should be called with an instance of `MessageCreateParams`, and it returns an instance of `Task<Message>`.
+For example, `client.Messages.Create` takes an instance of `MessageCreateParams` and returns an instance of `Task<Message>`.
 
 ## Advanced usage
 
@@ -410,6 +410,10 @@ Enable debug logging by setting an environment variable:
 export ANTHROPIC_LOG=debug
 ```
 
+### OpenTelemetry tracing
+
+When your application adds the SDK's sources to its OpenTelemetry tracer provider with `AddSource("com.anthropic.sdk.csharp*")`, the SDK emits a span for each request that it sends. To send the spans to your observability platform, see [Set up OpenTelemetry with the Claude SDK](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk).
+
 ### Undocumented API functionality
 
 The SDK is typed for convenient usage of the documented API. However, it also supports working with undocumented or not yet supported parts of the API.
@@ -430,7 +434,7 @@ The SDK is typed for convenient usage of the documented API. However, it also su
 
 The C# SDK supports the following platforms through separate NuGet packages:
 
-* **Agent Platform:** `Anthropic.Vertex`. See [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed) for client setup.
+* **Claude Models on Google Cloud (Google managed):** `Anthropic.Vertex`. See [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed) for client setup.
 * **Bedrock:** `Anthropic.Bedrock`. Use `AnthropicBedrockMantleClient` for the Messages-API Bedrock endpoint, or `AnthropicBedrockClient` (`bedrock-runtime` path). `AnthropicBedrockMantleClient` takes an optional `MantleAwsClientOptions` config object; `AnthropicBedrockClient` accepts `AnthropicBedrockCredentialsHelper.FromEnv()` or explicit credentials.
 * **Claude Platform on AWS:** `Anthropic.Aws`. Use `AnthropicAwsClient`; set `WorkspaceId` on the client or the `ANTHROPIC_AWS_WORKSPACE_ID` environment variable (see [Workspaces](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws#workspaces)). Available in beta.
 * **Foundry:** `Anthropic.Foundry`. Use `AnthropicFoundryClient` with `DefaultAnthropicFoundryCredentials.FromEnv()` or explicit credentials.

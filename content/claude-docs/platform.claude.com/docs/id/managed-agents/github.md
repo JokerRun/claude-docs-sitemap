@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 5fda36e443f3d2cea652b352af71adc6424a57d02be9e25a7843484ac7cc8666
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 3a768ece7f77e5e0b555419bfd824dcc70cf30cef5dc8141d30a89ebdec686ce
 ---
 
 ---
@@ -378,15 +378,15 @@ Kemudian buat sesi yang memasang repositori GitHub. Dengan [environment](https:/
 
 Sumber daya `github_repository` menerima field berikut:
 
-| Field                                                                                     | Deskripsi                                                                                                                                                                                                                    |
-| ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type` (csharp, go: `Type`)                                                               | Wajib. Harus bernilai `"github_repository"`.                                                                                                                                                                                 |
-| `url` (csharp: `Url`; go: `URL`)                                                          | Wajib. URL HTTPS repositori dalam bentuk `https://github.com/<owner>/<repo>`, tanpa akhiran `.git`. Bentuk lain, termasuk URL SSH, akan ditolak dengan `invalid_request_error`.                                              |
-| `authorization_token` (java, php: `authorizationToken`; csharp, go: `AuthorizationToken`) | Wajib. Token GitHub yang digunakan untuk melakukan clone repositori. Token ini tidak ditampilkan kembali dalam respons API. Lihat [Izin token](https://platform.claude.com/docs/id/managed-agents/github#token-permissions). |
-| `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`)                            | Opsional. Direktori di bawah `/workspace` tempat repositori akan di-clone. Default-nya adalah `/workspace/<repo-name>`.                                                                                                      |
-| `checkout` (csharp, go: `Checkout`)                                                       | Opsional. Branch (`{"type": "branch", "name": "main"}`) atau commit (`{"type": "commit", "sha": "..."}`) yang akan di-checkout. Default-nya adalah branch default repositori.                                                |
+| Field                                                                                     | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type` (csharp, go: `Type`)                                                               | Wajib. Harus bernilai `"github_repository"`.                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `url` (csharp: `Url`; go: `URL`)                                                          | Wajib. URL HTTPS repositori dalam bentuk `https://github.com/<owner>/<repo>`, tanpa akhiran `.git`. Bentuk lain, termasuk URL SSH, akan ditolak dengan `invalid_request_error`.                                                                                                                                                                                                                                                                                  |
+| `authorization_token` (java, php: `authorizationToken`; csharp, go: `AuthorizationToken`) | Opsional. Token GitHub yang digunakan untuk mengkloning repositori dan melakukan push ke repositori tersebut. Tanpa token, repositori privat gagal dikloning setelah sesi dibuat. Repositori publik dapat dikloning tanpa token, dan agen dapat melakukan commit di kloningnya, tetapi `git push` gagal. Token ini tidak ditampilkan kembali dalam respons API. Lihat [Izin token](https://platform.claude.com/docs/id/managed-agents/github#token-permissions). |
+| `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`)                            | Opsional. Direktori di bawah `/workspace` tempat repositori akan di-clone. Default-nya adalah `/workspace/<repo-name>`.                                                                                                                                                                                                                                                                                                                                          |
+| `checkout` (csharp, go: `Checkout`)                                                       | Opsional. Branch (`{"type": "branch", "name": "main"}`) atau commit (`{"type": "commit", "sha": "..."}`) yang akan di-checkout. Default-nya adalah branch default repositori.                                                                                                                                                                                                                                                                                    |
 
-Memasang repositori juga memuat skill apa pun yang disimpan di direktori root `.claude/skills` repositori tersebut. Skill ditemukan satu kali per sesi, dari status repositori yang di-checkout saat sesi dimulai. Lihat [Memuat skill dari repositori GitHub](https://platform.claude.com/docs/id/managed-agents/skills#load-skills-from-a-github-repository).
+Me-mount repositori juga memuat skill apa pun yang disimpan di direktori `.claude/skills` pada root repositori. Skill ditemukan satu kali untuk setiap sesi, dari status repositori yang di-checkout saat sesi dimulai. Lihat [Memuat skill dari repositori GitHub](https://platform.claude.com/docs/id/managed-agents/skills#load-skills-from-a-github-repository).
 
 ## Izin token
 
@@ -653,7 +653,7 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
   ```
 
   ```go Go
-  // List resources on the session
+  // Daftar resource pada session
   listed, err := client.Beta.Sessions.Resources.List(ctx, session.ID, anthropic.BetaSessionResourceListParams{})
   if err != nil {
   	panic(err)
@@ -661,7 +661,7 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
   repoResourceID := listed.Data[0].ID
   fmt.Println(repoResourceID) // "sesrsc_01ABC..."
 
-  // Rotate the authorization token
+  // Rotasi token otorisasi
   _, err = client.Beta.Sessions.Resources.Update(ctx, repoResourceID, anthropic.BetaSessionResourceUpdateParams{
   	SessionID:          session.ID,
   	AuthorizationToken: "ghp_your_new_github_token",

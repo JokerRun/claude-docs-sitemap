@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 4346f85a1cbf8d8e6389b9dc19ddfacb3fed0c0bd81187bcfa6a3bcd04d3e8f7
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: eb088a0d736017b52c5ea6c6e58c2e696208a109800fb6d17e6776810ff3a2c8
 ---
 
 ---
@@ -21,7 +21,7 @@ Untuk mengaktifkan Inference hooks dan mengarahkannya ke endpoint Anda, lihat [M
 
 ## Mendapatkan putusan pertama secara bolak-balik
 
-Integrasi paling sederhana yang berfungsi adalah server yang membaca setiap permintaan dan mengizinkannya. Jalankan salah satu server berikut dan ekspos server tersebut di URL `https://` publik. Misalnya, tempatkan server di belakang "reverse proxy" (proksi balik) yang menangani terminasi TLS pada host yang Anda kendalikan, bukan layanan reverse-tunnel; lihat [Menerima permintaan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#receive-a-request). Setelah itu, minta administrator Anda untuk [menetapkannya sebagai endpoint dan menguji koneksi](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration). Hasil **Test connection** akan melaporkan putusan allow yang dikembalikan server Anda.
+Integrasi terkecil yang berfungsi adalah server yang membaca setiap permintaan dan mengizinkannya. Jalankan salah satu server berikut dan ekspos pada URL `https://` publik. Misalnya, tempatkan di belakang reverse proxy yang melakukan terminasi TLS pada host yang Anda kendalikan, bukan layanan reverse-tunnel (lihat [Menerima permintaan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#receive-a-request)). Kemudian minta administrator Anda untuk [menetapkannya sebagai endpoint dan menguji koneksi](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration). Hasil **Test connection** melaporkan verdict allow yang dikembalikan server Anda.
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -155,7 +155,7 @@ Integrasi paling sederhana yang berfungsi adalah server yang membaca setiap perm
 
 Anthropic mengirimkan HTTPS `POST` ke URL yang dikonfigurasi oleh administrator Anda. Seluruh URL yang dikonfigurasi adalah endpoint-nya: tidak ada sufiks path tetap, jadi pilih path apa pun yang sesuai dengan server Anda.
 
-Host server keamanan AI Anda di tempat yang dapat dijangkau Anthropic: URL `https://` pada port 443, pada host yang dapat dirutekan secara publik (rentang privat, loopback, dan carrier-grade NAT ditolak saat koneksi), dengan sertifikat yang tervalidasi terhadap trust store CA publik, dan merespons tanpa redirect. Host harus memiliki alamat IPv4, yang digunakan Anthropic bahkan ketika host juga memiliki alamat IPv6; URL yang host-nya adalah `localhost` atau alamat IPv6 akan ditolak. URL yang dikonfigurasi harus merupakan tujuan akhir. Host reverse-tunnel (ngrok dan layanan tunnel serupa) tidak didukung: kebijakan jaringan Anthropic memblokirnya. Host server Anda pada domain yang Anda kendalikan. [Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) membahas cara administrator Anda menetapkan dan menguji URL.
+Host server keamanan AI Anda di tempat yang dapat dijangkau Anthropic: URL `https://` pada port 443, pada host yang dapat dirutekan secara publik. Rentang private, loopback, dan carrier-grade NAT ditolak saat koneksi. Server harus memiliki sertifikat yang tervalidasi terhadap trust store CA publik, dan harus merespons tanpa redirect. Host harus memiliki alamat IPv4, yang digunakan Anthropic bahkan ketika host juga memiliki alamat IPv6; URL yang host-nya adalah `localhost` atau alamat IPv6 akan ditolak. URL yang dikonfigurasi harus menjadi tujuan akhir. Host reverse-tunnel (ngrok dan layanan tunnel serupa) tidak didukung: kebijakan jaringan Anthropic memblokirnya. Host server Anda pada domain yang Anda kendalikan. [Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) menjelaskan cara administrator Anda menetapkan dan menguji URL.
 
 Setiap permintaan membawa header tetap berikut, bersama dengan [header permintaan kustom](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) apa pun yang dikonfigurasi administrator Anda dan, setelah organisasi Anda memiliki signing secret, header tanda tangan `webhook-*` yang dijelaskan di [Memverifikasi tanda tangan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#verify-the-signature):
 
@@ -165,7 +165,7 @@ Setiap permintaan membawa header tetap berikut, bersama dengan [header permintaa
 | `User-Agent`      | `anthropic-dlp/1`  |
 | `Accept-Encoding` | `identity`         |
 
-Ada dua event hook, yang dibedakan oleh field `type` tingkat atas. Frame prompt dikirim sekali per permintaan inferensi yang diatur, sebelum inferensi dimulai. Frame tool call dikirim ketika respons model berisi panggilan alat, sebelum salah satunya dijalankan, di organisasi yang mengaktifkan **Validate tool calls**. Dalam kedua kasus, Anthropic menunggu hingga server keamanan AI Anda merespons atau batas waktu putusan habis.
+Ada dua event hook, yang dibedakan oleh field `type` tingkat atas. Frame prompt dikirim sekali untuk setiap permintaan inferensi yang diatur, sebelum inferensi dimulai. Frame tool call dikirim ketika respons model berisi tool call, sebelum salah satunya dijalankan, di organisasi yang mengaktifkan **Validate tool calls**. Dalam kedua kasus, Anthropic menunggu hingga server keamanan AI Anda merespons atau timeout verdict berakhir.
 
 ## Frame prompt
 
@@ -243,7 +243,7 @@ Transkrip adalah percakapan sebagaimana dilihat oleh pengguna akhir, hingga titi
 
 Giliran yang seluruh bloknya dikecualikan akan dihilangkan sepenuhnya. Karena itu, jangan berasumsi bahwa giliran user dan assistant selalu bergantian secara ketat.
 
-Transkrip dikirim tanpa dipotong, sehingga percakapan panjang dengan lampiran besar menghasilkan body permintaan yang besar. Dalam praktiknya, "context window" (jendela konteks) model menjaga ukuran body di bawah sekitar 10 MB, tetapi protokol mengizinkan hingga 64 MiB. Beberapa nilai default yang umum jauh lebih kecil, termasuk `client_max_body_size` nginx sebesar 1 MB dan `express.json()` Express sebesar 100 kB. Body yang ditolak dihitung sebagai kegagalan webhook. Jika penanganan kegagalan diatur ke **Allow the request**, prompt yang terlalu besar akan sampai ke model tanpa diperiksa.
+Transkrip dikirim tanpa dipotong, sehingga percakapan panjang dengan lampiran besar menghasilkan body permintaan yang besar. Dalam praktiknya, "context window" (jendela konteks) model menjaga body di bawah sekitar 10 MB, tetapi protokol mengizinkan hingga 64 MiB. Beberapa default umum jauh lebih kecil, termasuk nginx `client_max_body_size` sebesar 1 MB dan Express `express.json()` sebesar 100 kB, dan body yang ditolak dihitung sebagai kegagalan webhook, sehingga dengan penanganan kegagalan **Allow the request**, prompt yang terlalu besar akan mencapai model tanpa diperiksa.
 
 ### Nilai source
 
@@ -258,14 +258,14 @@ Ketika Claude menghasilkan panggilan alat, Anthropic mengirimkan satu frame tool
 Frame ini berbeda dari frame prompt dalam tiga hal:
 
 * `type` adalah `"tool_call"`.
-* `messages` hanya berisi pesan terbaru, yaitu pesan `assistant` yang baru saja dihasilkan Claude: blok `text` apa pun dan satu blok `tool_use` per panggilan alat yang dicantumkan frame, dalam urutan yang dihasilkan model. Percakapan sebelumnya dihilangkan, karena frame prompt yang dikirim sebelum panggilan model tersebut sudah membawanya. Baca entri terakhir dari `messages`, karena protokol nantinya dapat menambahkan pesan sebelumnya di depannya.
+* `messages` hanya berisi pesan terbaru, yaitu pesan `assistant` yang baru saja dihasilkan Claude: blok `text` apa pun dan satu blok `tool_use` untuk setiap tool call yang dicantumkan frame, dalam urutan yang dihasilkan model. Percakapan sebelumnya dihilangkan, karena frame prompt yang dikirim sebelum panggilan model tersebut sudah membawanya. Bacalah entri terakhir dari `messages`, karena protokol nantinya dapat menambahkan pesan sebelumnya di depannya.
 * Setiap blok `tool_use` membawa objek `tool_info` yang menyatakan siapa yang menjalankan atau menyediakan alat.
 
 Jika `session_id` ditetapkan, nilainya sama pada kedua frame. Frame tool call memiliki `request_id` sendiri, yang bersifat opaque seperti milik frame prompt.
 
 `tool_info` menyatakan siapa yang menjalankan atau menyediakan alat, bukan apa yang dapat dijangkau alat tersebut. Ini adalah salah satu dari empat jenis, yang dibedakan oleh field `type`-nya, dan setiap jenis membawa field-nya sendiri. Anthropic mengirimkan jenis pertama dari berikut ini yang sesuai dengan alat. Jenis baru dapat muncul: terima `type` yang tidak Anda kenali, dan untuk jenis seperti itu andalkan hanya `type`.
 
-Field opsional yang tidak berlaku akan dihilangkan, tidak pernah `null`, sehingga `tool_info` bisa hanya berupa `{"type": "client"}`. `tool_name` dipilih oleh siapa pun yang mendefinisikan alat, dan `toolset_name` milik server oleh siapa pun yang menulis permintaan, jadi jangan perlakukan keduanya sebagai batas kepercayaan.
+Field opsional yang tidak berlaku akan dihilangkan, tidak pernah `null`, sehingga `tool_info` bisa hanya berupa `{"type": "client"}`. `tool_name` dipilih oleh siapa pun yang mendefinisikan alat, dan `toolset_name` milik server oleh siapa pun yang menulis permintaan atau memberi nama connector. Jangan perlakukan keduanya sebagai batas kepercayaan.
 
 ### Alat platform
 
@@ -311,7 +311,7 @@ Alat pihak ketiga adalah alat pada server yang diketahui Anthropic, seperti kone
 | Field             | Ada                      | Deskripsi                                                                                                                                                                        |
 | ----------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `type`            | Selalu                   | `"third_party"`                                                                                                                                                                  |
-| `toolset_name`    | Opsional                 | Nama yang diberikan permintaan kepada server.                                                                                                                                    |
+| `toolset_name`    | Opsional                 | Untuk server di `mcp_servers`, nama yang diberikan permintaan kepada server. Untuk server lain, seperti connector claude.ai, nama server, yang disalin dari `tool_name`.         |
 | `origin`          | Opsional                 | Skema, host, dan port non-default dari URL server. Ini dapat berupa alamat privat atau lokal, termasuk `localhost`. `origin` yang tidak ada berarti tidak diketahui, bukan aman. |
 | `verified_origin` | Setiap kali `origin` ada | `true` hanya ketika server Anthropic sendiri yang terhubung ke server tersebut. Perlakukan `false` sebagai origin yang belum dikonfirmasi Anthropic.                             |
 
@@ -333,6 +333,29 @@ Blok `tool_use` untuk alat pada server MCP yang dinamai `crm` oleh permintaan di
   }
 }
 ```
+
+Blok `tool_use` untuk alat pada connector Gmail, yang dipanggil dalam chat claude.ai:
+
+```json
+{
+  "type": "tool_use",
+  "id": "toolu_01DeFgHiJkLmNoPqRsTuVwXy",
+  "tool_name": "mcp__Gmail__search_threads",
+  "input": {
+    "query": "from:cfo@example.com newer_than:30d"
+  },
+  "tool_info": {
+    "type": "third_party",
+    "toolset_name": "Gmail",
+    "origin": "https://gmail.mcp.example.com",
+    "verified_origin": false
+  }
+}
+```
+
+Untuk connector claude.ai, `verified_origin` dapat bernilai `false` bahkan ketika server Anthropic sendiri yang terhubung ke server tersebut.
+
+Nama yang disalin dari `tool_name` dapat berbeda dari nama yang dilihat pengguna: `mcp__Google_Drive__search_files` menghasilkan `Google_Drive`, bukan `Google Drive`. Nama ini juga dapat diakhiri dengan sufiks pendek (`Gmail-1a2b3c4d`), misalnya ketika connector lain milik pengguna memiliki nama yang sama. Nama ini bukan identifier yang stabil dan tidak membuktikan server mana tempat alat berada. Ketika `tool_name` tidak memiliki nama server di dalamnya, `toolset_name` dihilangkan.
 
 ### Alat klien
 
@@ -414,18 +437,18 @@ Kebalikannya tidak berlaku. Apa pun selain HTTP 200 dengan putusan yang dapat di
 * Jangan menandakan deny dengan status error. Respons non-200 adalah kegagalan, bukan deny.
 * Nilai `action` apa pun selain `allow` atau `deny` diperlakukan sebagai kegagalan webhook.
 
-Anthropic membaca maksimal 64 KiB dari body respons, dan body harus tidak terkompresi. Redirect tidak diikuti, dan cookie diabaikan. Field yang tidak dikenal dalam body putusan diabaikan, sehingga Anda dapat mengembalikan objek yang lebih kaya di samping field yang didokumentasikan di sini.
+Anthropic membaca maksimal 64 KiB dari body respons, dan body harus tidak terkompresi. Redirect tidak diikuti, dan cookie diabaikan. Field yang tidak dikenal dalam body verdict diabaikan, sehingga Anda dapat mengembalikan objek yang lebih kaya bersama field yang didokumentasikan di sini.
 
 Frame tool call menggunakan body putusan yang sama, dan setiap aturan di bagian ini berlaku untuknya tanpa perubahan. `allow` membiarkan panggilan alat berjalan dan respons berlanjut; `deny` menghentikan semuanya dan mengakhiri respons dengan error yang sama seperti prompt yang ditolak, termasuk `deny_reason` Anda. Teks yang sudah dikirim sebelum panggilan alat pertama tidak ditarik kembali.
 
 ## Memverifikasi tanda tangan
 
-Permintaan ditandatangani sesuai spesifikasi [Standard Webhooks](https://www.standardwebhooks.com/) menggunakan tiga header. Anthropic mengirimkan nama header dalam huruf kecil, tetapi proksi dapat mengubah kapitalisasinya. Karena itu, cari header tersebut tanpa membedakan huruf besar dan kecil.
+Permintaan ditandatangani sesuai dengan spesifikasi [Standard Webhooks](https://www.standardwebhooks.com/), menggunakan tiga header. Anthropic mengirimkan nama header dalam huruf kecil, dan proxy bebas mengubah kapitalisasinya, jadi cari header secara case-insensitive.
 
 | Header              | Isi                                                                                                                                                                                                                                                            |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `webhook-id`        | Pengidentifikasi unik untuk pengiriman ini. Nilainya sama dengan `request_id` pada body. Gunakan sebagai "idempotency key" (kunci idempotensi) dan sebagai komponen pertama dari payload yang ditandatangani.                                                  |
-| `webhook-timestamp` | Waktu Unix dalam detik, sebagai string desimal, saat permintaan ditandatangani. Tolak timestamp yang berselisih lebih dari lima menit dari jam server Anda, baik lebih awal maupun lebih lambat.                                                               |
+| `webhook-timestamp` | Waktu Unix dalam detik, sebagai string desimal, saat permintaan ditandatangani. Tolak timestamp yang berselisih lebih dari 5 menit dari jam server Anda, ke arah mana pun.                                                                                     |
 | `webhook-signature` | Satu atau beberapa nilai `v1,<base64>` yang dipisahkan spasi. Setiap nilai adalah HMAC-SHA256 atas `{webhook-id}.{webhook-timestamp}.{raw body bytes}`. Terima permintaan jika ada nilai yang cocok dengan milik Anda, menggunakan perbandingan waktu-konstan. |
 
 Dua detail berikut menjadi penyebab sebagian besar bug verifikasi:
@@ -695,7 +718,7 @@ Contoh-contoh berikut adalah implementasi server, sehingga tidak ada tab shell. 
           byte[] key;
           try {
               key = Base64.getDecoder().decode(
-                      secret.startsWith("whsec_") ? secret.substring("whsec_".length()) : secret);
+                  secret.startsWith("whsec_") ? secret.substring("whsec_".length()) : secret);
           } catch (IllegalArgumentException _) {
               return false; // misconfigured secret: reject rather than crash
           }
@@ -706,7 +729,7 @@ Contoh-contoh berikut adalah implementasi server, sehingga tidak ada tab shell. 
               mac.init(new SecretKeySpec(key, "HmacSHA256"));
               mac.update((messageId + "." + timestamp + ".").getBytes(StandardCharsets.UTF_8));
               expected = ("v1," + Base64.getEncoder().encodeToString(mac.doFinal(body)))
-                      .getBytes(StandardCharsets.UTF_8);
+                  .getBytes(StandardCharsets.UTF_8);
           } catch (GeneralSecurityException impossible) {
               // Setiap JVM menyertakan HmacSHA256, jadi ini tidak pernah terpicu saat runtime.
               throw new IllegalStateException(impossible);
@@ -818,18 +841,11 @@ Contoh-contoh berikut adalah implementasi server, sehingga tidak ada tab shell. 
 
 Administrator Anda menetapkan batas waktu putusan antara 1 dan 10.000ms (default 5.000ms). Anggaran waktu ini mencakup seluruh pertukaran: koneksi, TLS handshake, permintaan, dan respons. Batas waktu yang sama berlaku untuk frame tool call.
 
-Anthropic mencoba ulang tepat satu kali, setelah jeda 100ms, dan hanya ketika upaya koneksi gagal. Percobaan ulang berbagi anggaran batas waktu yang sama dan membawa `webhook-id` serta tanda tangan yang sama. Setelah server keamanan AI Anda merespons, pertukaran tidak pernah dicoba ulang.
+Anthropic melakukan retry tepat satu kali, setelah jeda 100ms, dan hanya ketika upaya koneksi gagal. Retry berbagi anggaran timeout yang sama dan membawa `webhook-id` serta tanda tangan yang sama. Setelah server keamanan AI Anda merespons, pertukaran tidak pernah di-retry.
 
 ### Kegagalan webhook
 
-Semua kondisi berikut merupakan kegagalan webhook:
-
-* Batas waktu habis.
-* Status non-200, termasuk pengalihan.
-* Body respons yang tidak dapat di-parse atau terlalu besar.
-* Endpoint yang tidak dapat dijangkau.
-
-Kegagalan webhook tidak pernah menjadi deny. Sebagai gantinya, pengaturan [penanganan kegagalan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) organisasi Anda menentukan apakah permintaan yang terdampak diblokir atau dilanjutkan tanpa pemeriksaan.
+Timeout, status non-200 (termasuk redirect), body respons yang tidak dapat di-parse atau terlalu besar, dan endpoint yang tidak dapat dijangkau semuanya merupakan kegagalan webhook. Kegagalan webhook tidak pernah menjadi deny; sebaliknya, pengaturan [penanganan kegagalan](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration) organisasi Anda menentukan apakah permintaan yang terdampak diblokir atau berlanjut tanpa pemeriksaan.
 
 ### Circuit breaker
 
@@ -839,7 +855,7 @@ Mulai 10 menit setelah pemicuan, Anthropic memeriksa apakah server Anda telah pu
 
 Frame prompt dan frame tool call berbagi satu circuit breaker, dan kegagalan pada salah satunya dihitung terhadapnya.
 
-Setiap pemicuan dicatat sebagai aktivitas `inference_hooks_circuit_breaker_tripped` di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed), satu aktivitas per pemicuan. Selama breaker terpicu, tidak ada aktivitas Inference hooks per permintaan yang dicatat, sehingga aktivitas pemicuan adalah satu-satunya catatan feed untuk periode terpicu tersebut.
+Setiap pemicuan dicatat sebagai aktivitas `inference_hooks_circuit_breaker_tripped` di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed), satu aktivitas untuk setiap pemicuan. Selama breaker terpicu, tidak ada aktivitas Inference hooks per permintaan yang dicatat, sehingga aktivitas pemicuan adalah satu-satunya catatan feed untuk jendela waktu saat breaker terpicu.
 
 ### Latensi
 
@@ -868,7 +884,7 @@ Tipe event hook lain akan diperkenalkan di masa mendatang. Tipe event baru adala
 
 Server keamanan AI untuk produksi memerlukan beberapa keputusan desain di luar protokol komunikasi.
 
-**Lakukan deduplikasi berdasarkan `webhook-id`.** Header `webhook-id` bersifat unik per pengiriman dan nilainya sama dengan `request_id` pada body. Percobaan ulang akibat kegagalan koneksi menggunakan kembali nilai ini, sehingga header ini dapat berfungsi sebagai kunci idempotensi. Jika Anda mencatat putusan, gunakan nilai ini sebagai kunci catatan.
+**Deduplikasi berdasarkan `webhook-id`.** Header `webhook-id` unik untuk setiap pengiriman dan sama dengan `request_id` pada body, dan retry akibat kegagalan koneksi menggunakannya kembali, sehingga header ini berfungsi sebagai idempotency key. Jika Anda mencatat verdict, gunakan header ini sebagai key catatan.
 
 **Catat putusan dan gabungkan data penolakan.** Simpan setiap putusan yang Anda kembalikan beserta `reference_id`-nya. Setiap penolakan dicatat sebagai aktivitas kepatuhan `inference_hooks_request_denied` yang membawa `reference_id` yang dikembalikan server Anda. Dengan begitu, Anda dapat menggabungkan data penolakan di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) dengan catatan yang bersesuaian di sistem Anda sendiri.
 

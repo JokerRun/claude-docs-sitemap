@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/develop-tests
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 9492270c0293a7e7ce51a829ff854a85f2f1cee1127e4edd53e3cb58207cc5c4
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: a4bd2aa54ddb6a434bd5249df12150ec4b1f436eb0a8f4445469178e15407642
 ---
 
 ---
@@ -70,7 +70,7 @@ Berikut beberapa kriteria yang mungkin penting untuk kasus penggunaan Anda. Daft
 
 <AccordionGroup>
   <Accordion title="Fidelitas tugas">
-    Seberapa baik model perlu berkinerja pada tugas tersebut? Anda mungkin juga perlu mempertimbangkan penanganan kasus tepi, seperti seberapa baik model perlu berkinerja pada input yang jarang atau menantang.
+    Seberapa baik model perlu berkinerja pada tugas tersebut? Anda mungkin juga perlu mempertimbangkan penanganan kasus tepi, seperti seberapa baik model perlu berkinerja pada input yang langka atau menantang.
   </Accordion>
 
   <Accordion title="Konsistensi">
@@ -78,7 +78,7 @@ Berikut beberapa kriteria yang mungkin penting untuk kasus penggunaan Anda. Daft
   </Accordion>
 
   <Accordion title="Relevansi dan koherensi">
-    Seberapa baik model secara langsung menjawab pertanyaan atau instruksi pengguna? Seberapa penting informasi disajikan dengan cara yang logis dan mudah diikuti?
+    Seberapa baik model secara langsung menjawab pertanyaan atau instruksi pengguna? Seberapa penting informasi disajikan secara logis dan mudah diikuti?
   </Accordion>
 
   <Accordion title="Nada dan gaya">
@@ -98,17 +98,17 @@ Berikut beberapa kriteria yang mungkin penting untuk kasus penggunaan Anda. Daft
   </Accordion>
 
   <Accordion title="Harga">
-    Berapa anggaran Anda untuk menjalankan model? Pertimbangkan faktor seperti biaya untuk setiap panggilan API, ukuran model, dan frekuensi penggunaan.
+    Berapa anggaran Anda untuk menjalankan model? Pertimbangkan faktor-faktor seperti biaya untuk setiap panggilan API, ukuran model, dan frekuensi penggunaan.
   </Accordion>
 </AccordionGroup>
 
 Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beberapa kriteria keberhasilan.
 
 <Accordion title="Contoh kriteria multidimensi untuk analisis sentimen">
-  |       | Kriteria                                                                                                                                                                                                                                                                                   |
-  | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-  | Buruk | Model harus mengklasifikasikan sentimen dengan baik                                                                                                                                                                                                                                        |
-  | Baik  | Pada set uji held-out berisi 10.000 postingan Twitter yang beragam, model analisis sentimen harus mencapai:<br />- skor F1 minimal 0,85<br />- 99,5% output tidak toksik<br />- 90% kesalahan hanya menyebabkan ketidaknyamanan, bukan kesalahan fatal\*<br />- 95% waktu respons \< 200ms |
+  |       | Kriteria                                                                                                                                                                                                                                                                                         |
+  | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | Buruk | Model harus mengklasifikasikan sentimen dengan baik                                                                                                                                                                                                                                              |
+  | Baik  | Pada held-out test set berisi 10.000 postingan Twitter yang beragam, model analisis sentimen harus mencapai:<br />- skor F1 minimal 0,85<br />- 99,5% output tidak toksik<br />- 90% kesalahan hanya akan menyebabkan ketidaknyamanan, bukan kesalahan fatal\*<br />- 95% waktu respons \< 200ms |
 
   \*Pada kenyataannya, Anda juga akan mendefinisikan apa arti "ketidaknyamanan" dan "fatal".
 </Accordion>
@@ -132,8 +132,8 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 ### Contoh eval
 
 <AccordionGroup>
-  <Accordion title="Fidelitas tugas (analisis sentimen) - evaluasi kecocokan persis">
-    **Apa yang diukur:** Eval "exact match" (kecocokan persis) mengukur apakah output model cocok dengan jawaban benar yang telah ditentukan sebelumnya, biasanya setelah menormalkan spasi dan huruf besar/kecil. Ini adalah metrik sederhana dan tidak ambigu yang sempurna untuk tugas dengan jawaban kategorikal yang jelas seperti analisis sentimen (positif, negatif, netral).
+  <Accordion title="Ketepatan tugas (analisis sentimen): evaluasi kecocokan persis">
+    **Apa yang diukur:** Eval kecocokan persis mengukur apakah output model cocok dengan jawaban benar yang telah ditentukan sebelumnya, biasanya setelah menormalkan spasi dan huruf besar/kecil. Ini adalah metrik sederhana dan tidak ambigu yang sempurna untuk tugas dengan jawaban kategoris yang jelas seperti analisis sentimen (positif, negatif, netral).
 
     **Contoh kasus uji eval:** 1.000 tweet dengan sentimen yang dilabeli oleh manusia.
 
@@ -494,7 +494,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
     </CodeGroup>
   </Accordion>
 
-  <Accordion title="Konsistensi (bot FAQ) - evaluasi cosine similarity">
+  <Accordion title="Konsistensi (bot FAQ): evaluasi cosine similarity">
     **Apa yang diukur:** "Cosine similarity" (kemiripan kosinus) mengukur kemiripan antara dua vektor (dalam hal ini, sentence embedding dari output model menggunakan [Sentence-BERT (SBERT)](https://sbert.net/)) dengan menghitung kosinus sudut di antara keduanya. Nilai yang mendekati 1 menunjukkan kemiripan yang lebih tinggi. Ini ideal untuk mengevaluasi konsistensi karena pertanyaan yang serupa seharusnya menghasilkan jawaban yang serupa secara semantik, meskipun susunan katanya berbeda.
 
     **Contoh kasus uji eval:** 50 kelompok yang masing-masing berisi beberapa versi parafrase.
@@ -1040,7 +1040,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
     </CodeGroup>
   </Accordion>
 
-  <Accordion title="Relevansi dan koherensi (peringkasan) - evaluasi ROUGE-L">
+  <Accordion title="Relevansi dan koherensi (peringkasan): evaluasi ROUGE-L">
     **Apa yang diukur:** ROUGE-L (Recall-Oriented Understudy for Gisting Evaluation - Longest Common Subsequence) mengevaluasi kualitas ringkasan yang dihasilkan. Metrik ini mengukur panjang subsekuens umum terpanjang antara ringkasan kandidat dan ringkasan referensi. Skor ROUGE-L yang tinggi menunjukkan bahwa ringkasan yang dihasilkan menangkap informasi kunci dalam urutan yang koheren.
 
     **Contoh kasus uji eval:** 200 artikel dengan ringkasan referensi.
@@ -1567,7 +1567,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
     </CodeGroup>
   </Accordion>
 
-  <Accordion title="Nada dan gaya (layanan pelanggan) - skala Likert berbasis LLM">
+  <Accordion title="Nada dan gaya (layanan pelanggan): skala Likert berbasis LLM">
     **Apa yang diukur:** Skala Likert berbasis LLM adalah skala psikometrik yang menggunakan LLM untuk menilai sikap atau persepsi subjektif. Di sini, skala ini digunakan untuk menilai nada respons pada skala 1 hingga 5. Ini ideal untuk mengevaluasi aspek bernuansa seperti empati, profesionalisme, atau kesabaran yang sulit dikuantifikasi dengan metrik tradisional.
 
     **Contoh kasus uji eval:** 100 pertanyaan pelanggan dengan nada target (empatik, sabar, profesional).
@@ -1609,7 +1609,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           5: Perfectly {target_tone}
           Output only the number."""
 
-          # Praktik terbaiknya, gunakan model yang berbeda untuk evaluasi dari model yang menghasilkan output yang dievaluasi
+          # Praktik terbaik umumnya adalah mengevaluasi dengan model yang berbeda dari model yang menghasilkan output yang dievaluasi
           response = client.messages.create(
               model="claude-opus-5-5",
               max_tokens=1024,
@@ -1667,7 +1667,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       5: Perfectly ${targetTone}
       Output only the number.`;
 
-        // Praktik terbaiknya, gunakan model yang berbeda untuk evaluasi dari model yang menghasilkan output yang dievaluasi
+        // Praktik terbaiknya umumnya mengevaluasi dengan model yang berbeda dari model yang menghasilkan output yang dievaluasi
         const response = await client.messages.create({
           model: "claude-opus-5-5",
           max_tokens: 1024,
@@ -1728,7 +1728,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               Output only the number.
               """;
 
-          // Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
+          // Praktik terbaiknya, evaluasi dengan model berbeda dari model yang menghasilkan output yang dievaluasi
           var response = await client.Messages.Create(new MessageCreateParams
           {
               Model = Model.ClaudeOpus5_5,
@@ -1811,7 +1811,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       5: Perfectly %[1]s
       Output only the number.`, targetTone, modelOutput)
 
-      	// Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
+      	// Praktik terbaik umumnya adalah mengevaluasi dengan model yang berbeda dari model yang menghasilkan output yang dievaluasi
       	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
       		Model:     anthropic.ModelClaudeOpus5_5,
       		MaxTokens: 1024,
@@ -1880,7 +1880,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               5: Perfectly %1$s
               Output only the number.""".formatted(targetTone, modelOutput);
 
-          // Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
+          // Praktik terbaik umumnya: evaluasi dengan model yang berbeda dari model yang menghasilkan output yang dievaluasi
           var params = MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024L)
@@ -1938,7 +1938,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           Output only the number.
           PROMPT;
 
-          // Praktik terbaik umumnya: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
+          // Praktik terbaik umumnya: evaluasi dengan model yang berbeda dari model yang menghasilkan output yang dievaluasi
           $response = $client->messages->create(
               model: Model::CLAUDE_OPUS_5_5,
               maxTokens: 1024,
@@ -2038,8 +2038,8 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
     </CodeGroup>
   </Accordion>
 
-  <Accordion title="Pelestarian privasi (chatbot medis) - klasifikasi biner berbasis LLM">
-    **Apa yang diukur:** Klasifikasi biner menentukan apakah suatu input termasuk dalam salah satu dari dua kelas. Di sini, metode ini digunakan untuk mengklasifikasikan apakah suatu respons mengandung PHI atau tidak. Metode ini dapat memperhitungkan konteks dan mengidentifikasi bentuk PHI yang halus atau implisit yang mungkin terlewat oleh sistem berbasis aturan.
+  <Accordion title="Perlindungan privasi (chatbot medis): klasifikasi biner berbasis LLM">
+    **Apa yang diukur:** Klasifikasi biner menentukan apakah suatu input termasuk dalam salah satu dari dua kelas. Di sini, klasifikasi ini digunakan untuk mengklasifikasikan apakah suatu respons mengandung PHI. Metode ini dapat memperhitungkan konteks dan mengidentifikasi bentuk PHI yang halus atau implisit yang mungkin terlewat oleh sistem berbasis aturan.
 
     **Contoh kasus uji eval:** 500 kueri pasien simulasi, beberapa di antaranya mengandung PHI.
 
@@ -2089,7 +2089,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           <response>{model_output}</response>
           Output only 'yes' or 'no'."""
 
-          # Praktik terbaiknya, gunakan model yang berbeda untuk evaluasi dari model yang menghasilkan output yang dievaluasi
+          # Praktik terbaiknya, lakukan evaluasi dengan model yang berbeda dari model yang menghasilkan output yang dievaluasi
           response = client.messages.create(
               model="claude-opus-5-5",
               max_tokens=1024,
@@ -2166,7 +2166,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       <response>${modelOutput}</response>
       Output only 'yes' or 'no'.`;
 
-        // Praktik terbaiknya, gunakan model yang berbeda untuk evaluasi dari model yang menghasilkan output yang dievaluasi
+        // Praktik terbaik umumnya adalah mengevaluasi dengan model yang berbeda dari model yang menghasilkan output yang dievaluasi
         const response = await client.messages.create({
           model: "claude-opus-5-5",
           max_tokens: 1024,
@@ -2234,7 +2234,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               Output only 'yes' or 'no'.
               """;
 
-          // Praktik terbaik umumnya: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
+          // Praktik terbaik umumnya: evaluasi dengan model yang berbeda dari model yang menghasilkan output yang dievaluasi
           var response = await client.Messages.Create(new MessageCreateParams
           {
               Model = Model.ClaudeOpus5_5,
@@ -2331,7 +2331,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       <response>%s</response>
       Output only 'yes' or 'no'.`, modelOutput)
 
-      	// Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
+      	// Praktik terbaik umumnya: evaluasi dengan model yang berbeda dari model yang menghasilkan output yang dievaluasi
       	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
       		Model:     anthropic.ModelClaudeOpus5_5,
       		MaxTokens: 1024,
@@ -2408,7 +2408,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               <response>%s</response>
               Output only 'yes' or 'no'.""".formatted(modelOutput);
 
-          // Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
+          // Praktik terbaik umumnya: evaluasi dengan model yang berbeda dari model yang menghasilkan output yang dievaluasi
           var params = MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024L)
@@ -2479,7 +2479,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           Output only 'yes' or 'no'.
           PROMPT;
 
-          // Praktik terbaik: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
+          // Praktik terbaik umumnya: evaluasi dengan model berbeda dari model yang menghasilkan output yang dievaluasi
           $response = $client->messages->create(
               model: Model::CLAUDE_OPUS_5_5,
               maxTokens: 1024,
@@ -2565,7 +2565,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           Output only 'yes' or 'no'.
         PROMPT
 
-        # Praktik terbaik umumnya: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
+        # Praktik terbaik umumnya: evaluasi dengan model yang berbeda dari model yang menghasilkan output yang dievaluasi
         response = client.messages.create(
           model: Anthropic::Model::CLAUDE_OPUS_5_5,
           max_tokens: 1024,
@@ -2591,7 +2591,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
     </CodeGroup>
   </Accordion>
 
-  <Accordion title="Pemanfaatan konteks (asisten percakapan) - skala ordinal berbasis LLM">
+  <Accordion title="Pemanfaatan konteks (asisten percakapan): skala ordinal berbasis LLM">
     **Apa yang diukur:** Mirip dengan skala Likert, skala ordinal mengukur pada skala tetap yang berurutan (1–5). Ini sempurna untuk mengevaluasi pemanfaatan konteks karena dapat menangkap sejauh mana model mereferensikan dan membangun di atas riwayat percakapan, yang merupakan kunci untuk interaksi yang koheren dan personal.
 
     **Contoh kasus uji eval:** 100 percakapan multi-giliran dengan pertanyaan yang bergantung pada konteks.
@@ -2663,7 +2663,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           5: Perfectly utilizes context
           Output only the number and nothing else."""
 
-          # Praktik terbaiknya, gunakan model yang berbeda untuk evaluasi dari model yang menghasilkan output yang dievaluasi
+          # Praktik terbaik umumnya adalah mengevaluasi dengan model yang berbeda dari model yang menghasilkan output yang dievaluasi
           response = client.messages.create(
               model="claude-opus-5-5",
               max_tokens=1024,
@@ -2755,7 +2755,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       5: Perfectly utilizes context
       Output only the number and nothing else.`;
 
-        // Praktik terbaiknya, gunakan model yang berbeda untuk evaluasi dari model yang menghasilkan output yang dievaluasi
+        // Praktik terbaik umumnya mengevaluasi dengan model yang berbeda dari model yang menghasilkan output yang dievaluasi
         const response = await client.messages.create({
           model: "claude-opus-5-5",
           max_tokens: 1024,
@@ -2836,7 +2836,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               Output only the number and nothing else.
               """;
 
-          // Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
+          // Praktik terbaik umumnya: evaluasi dengan model yang berbeda dari model yang menghasilkan output yang dievaluasi
           var response = await client.Messages.Create(new MessageCreateParams
           {
               Model = Model.ClaudeOpus5_5,
@@ -2947,7 +2947,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
       5: Perfectly utilizes context
       Output only the number and nothing else.`, conversationText.String(), modelOutput)
 
-      	// Praktik terbaik umumnya: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
+      	// Praktik terbaik umumnya: evaluasi dengan model yang berbeda dari model yang menghasilkan output yang dievaluasi
       	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
       		Model:     anthropic.ModelClaudeOpus5_5,
       		MaxTokens: 1024,
@@ -3036,7 +3036,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
               5: Perfectly utilizes context
               Output only the number and nothing else.""".formatted(conversationText, modelOutput);
 
-          // Praktik terbaik umumnya: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
+          // Praktik terbaiknya, evaluasi dengan model yang berbeda dari model yang menghasilkan output yang dievaluasi
           var params = MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024L)
@@ -3107,7 +3107,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           Output only the number and nothing else.
           PROMPT;
 
-          // Praktik terbaik: gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
+          // Praktik terbaik umumnya mengevaluasi dengan model yang berbeda dari model yang menghasilkan output yang dievaluasi
           $response = $client->messages->create(
               model: Model::CLAUDE_OPUS_5_5,
               maxTokens: 1024,
@@ -3194,7 +3194,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           Output only the number and nothing else.
         PROMPT
 
-        # Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
+        # Praktik terbaik umumnya adalah mengevaluasi dengan model yang berbeda dari model yang menghasilkan output yang dievaluasi
         response = client.messages.create(
           model: Anthropic::Model::CLAUDE_OPUS_5_5,
           max_tokens: 1024,
@@ -3239,15 +3239,15 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
 
 2. **Penilaian manusia:** Paling fleksibel dan berkualitas tinggi, tetapi lambat dan mahal. Hindari jika memungkinkan.
 
-3. **Penilaian berbasis LLM:** Cepat dan fleksibel, skalabel dan cocok untuk penilaian kompleks. Uji terlebih dahulu untuk memastikan keandalan, lalu skalakan.
+3. **Penilaian berbasis LLM:** Cepat dan fleksibel, dapat diskalakan, dan cocok untuk penilaian yang kompleks. Uji terlebih dahulu untuk memastikan keandalannya, lalu skalakan.
 
 ### Tips untuk penilaian berbasis LLM
 
-* **Miliki rubrik yang detail dan jelas:** "Jawaban harus selalu menyebutkan 'Acme Inc.' di kalimat pertama. Jika tidak, jawaban otomatis dinilai sebagai 'salah.'"
+* **Miliki rubrik yang terperinci dan jelas:** "Jawaban harus selalu menyebutkan 'Acme Inc.' di kalimat pertama. Jika tidak, jawaban secara otomatis dinilai 'salah'."
   <Note>
-    Suatu kasus penggunaan, atau bahkan kriteria keberhasilan spesifik untuk kasus penggunaan tersebut, mungkin memerlukan beberapa rubrik untuk evaluasi holistik.
+    Suatu kasus penggunaan, atau bahkan kriteria keberhasilan tertentu untuk kasus penggunaan tersebut, mungkin memerlukan beberapa rubrik untuk evaluasi yang holistik.
   </Note>
-* **Empiris atau spesifik:** Misalnya, instruksikan LLM untuk hanya mengeluarkan 'correct' atau 'incorrect', atau menilai dari skala 1–5. Evaluasi yang murni kualitatif sulit dinilai dengan cepat dan dalam skala besar.
+* **Bersifat empiris atau spesifik:** Misalnya, instruksikan LLM untuk hanya mengeluarkan 'correct' atau 'incorrect', atau menilai dengan skala 1–5. Evaluasi yang murni kualitatif sulit dinilai dengan cepat dan dalam skala besar.
 * **Dorong penalaran:** Gunakan model penilai dengan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) aktif, sehingga model bernalar sebelum menghasilkan skor evaluasi. Ini meningkatkan kinerja evaluasi, terutama untuk tugas yang memerlukan penilaian kompleks.
 
 <Accordion title="Contoh: Penilaian berbasis LLM">
@@ -3723,7 +3723,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
     **Tip:** Masukkan halaman ini ke dalam chat sebagai panduan untuk Claude!
   </Card>
 
-  <Card title="Cookbook eval" icon="link" href="https://platform.claude.com/cookbook/misc-building-evals">
+  <Card title="Resep eval" icon="link" href="https://platform.claude.com/cookbook/misc-building-evals">
     Lebih banyak contoh kode eval yang dinilai oleh manusia, kode, dan LLM.
   </Card>
 </CardGroup>

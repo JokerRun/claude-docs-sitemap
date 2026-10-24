@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 964f517f947ac8554337eefbe126221eba8f171b5b718f0e639436a8fc64fbcf
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: c0034330481e7dd5c8bad6956452731d76ae12bc7c986aabd13bc206be93afa1
 ---
 
 ---
@@ -1475,10 +1475,10 @@ Anda dapat menyertakan alat eksekusi kode dalam [Messages Batches API](https://p
 
 Ketika digunakan tanpa alat-alat tersebut, eksekusi kode ditagih berdasarkan waktu eksekusi, yang dilacak secara terpisah dari penggunaan token:
 
-* Waktu eksekusi memiliki minimum 5 menit
-* Setiap organisasi menerima **1.550 jam gratis** penggunaan per bulan
-* Penggunaan tambahan di atas 1.550 jam ditagih sebesar **$0,05 USD per jam, per kontainer**
-* Jika file disertakan dalam permintaan, waktu eksekusi ditagih meskipun alat tidak dipanggil, karena file dimuat terlebih dahulu ke dalam kontainer
+* Waktu eksekusi memiliki durasi minimum 5 menit.
+* Setiap organisasi menerima **1.550 jam gratis** penggunaan per bulan.
+* Penggunaan tambahan di luar 1.550 jam ditagih sebesar **$0,05 USD per jam, per container**.
+* Jika file disertakan dalam permintaan, waktu eksekusi tetap ditagih meskipun alat tidak dipanggil, karena file dimuat terlebih dahulu ke dalam container.
 
 Penggunaan eksekusi kode dilacak dalam respons:
 

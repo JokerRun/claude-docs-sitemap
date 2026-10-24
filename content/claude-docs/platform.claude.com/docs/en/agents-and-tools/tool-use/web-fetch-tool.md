@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 6acfc25b544c09d7eb380051029ba3dda97a1ac8248a002e013c9976bb1383c7
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 0302061bcd7919e76a8f80f82d601537cbcb14ec21c0f86c1aee406b2406626e
 ---
 
 ---
@@ -433,7 +433,7 @@ The web fetch tool supports the following parameters:
   "type": "web_fetch_20250910",
   "name": "web_fetch",
 
-  // Optional: Limit the number of fetches per request
+  // Optional: Limit the number of fetches for each request
   "max_uses": 10,
 
   // Optional: Only fetch from these domains
@@ -531,7 +531,7 @@ Unlike web search, where citations are always enabled, citations are optional fo
 
 Here's an example response structure:
 
-```text Output
+```json Output
 {
   "role": "assistant",
   "content": [
@@ -615,7 +615,7 @@ Fetch results include:
 
 For PDF documents, content is returned as base64-encoded data:
 
-```text Output wrap
+```json Output
 {
   "type": "web_fetch_tool_result",
   "tool_use_id": "srvtoolu_02",
@@ -640,7 +640,7 @@ For PDF documents, content is returned as base64-encoded data:
 
 When the web fetch tool encounters an error, the Claude API returns a 200 (success) response with the error represented in the response body. Claude receives the error result and continues the turn. For example:
 
-```text Output wrap
+```json Output
 {
   "type": "web_fetch_tool_result",
   "tool_use_id": "srvtoolu_a93jad",
@@ -969,7 +969,7 @@ To cache tool definitions across turns, see [Tool use with prompt caching](https
 
 With streaming enabled, fetch events are part of the stream with a pause during content retrieval:
 
-```text Output
+```sse Output
 event: message_start
 data: {"type": "message_start", "message": {"id": "msg_abc123", "type": "message"}}
 
@@ -1002,7 +1002,7 @@ You can include the web fetch tool in the [Messages Batches API](https://platfor
 
 Web fetch usage has **no additional charges** beyond standard token costs:
 
-```text wrap
+```json
 {
   "usage": {
     "input_tokens": 25039,

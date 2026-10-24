@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-4-5
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 29aabb813845f0ac7caabe0a61f98a5acb902a52c3c2cfa5ce347f33ca146e1b
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 4ccb17a80304434bcc1a87f3ff4dcb57b814a8c7229e44d9bd634ab7eea9a41d
 ---
 
 ---
 title: Prompt sistem Claude Opus 4.5
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-opus-4-5
-description: Lihat pembaruan pada prompt sistem inti untuk Claude Opus 4.5 di [claude.ai](https://claude.ai) serta [aplikasi Claude iOS](https://anthropic.com/ios) dan [aplikasi Claude Android](https://anthropic.com/android).
+description: Lihat pembaruan pada prompt sistem inti untuk Claude Opus 4.5 di [claude.ai](https://claude.ai), [aplikasi Claude iOS](https://anthropic.com/ios), dan [aplikasi Claude Android](https://anthropic.com/android).
 ---
 
 Perubahan antara versi-versi bertanggal berikut ditandai dengan `**` di sekitar teks yang diubah.

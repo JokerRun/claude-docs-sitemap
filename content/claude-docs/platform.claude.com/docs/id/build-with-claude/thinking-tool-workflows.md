@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: a5e1259653365bdd0528692d4d9a8be64f7cf63dcea61665d59a6a6506485b3f
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: c8830280097276c3979af1adae7f31a086cd9a6cc94df769b74a6c0224f7d419
 ---
 
 ---
@@ -98,7 +98,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
           },
       }
 
-      # Permintaan pertama - Claude merespons dengan pemikiran dan permintaan alat
+      # Permintaan pertama: Claude merespons dengan pemikiran dan permintaan alat
       response = client.messages.create(
           model="claude-opus-5-5",
           max_tokens=16000,
@@ -124,7 +124,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
         }
       };
 
-      // Permintaan pertama - Claude merespons dengan pemikiran dan permintaan alat
+      // Permintaan pertama: Claude merespons dengan thinking dan permintaan alat
       const response = await client.messages.create({
         model: "claude-opus-5-5",
         max_tokens: 16000,
@@ -249,7 +249,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
           messages: [
               ['role' => 'user', 'content' => "What's the weather in Paris?"]
           ],
-          model: 'claude-opus-5-5',
+          model: Model::CLAUDE_OPUS_5_5,
           thinking: ['type' => 'adaptive'],
           tools: [$weatherTool],
       );
@@ -272,7 +272,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
       }
 
       message = client.messages.create(
-        model: "claude-opus-5-5",
+        model: Anthropic::Model::CLAUDE_OPUS_5_5,
         max_tokens: 16000,
         thinking: {
           type: "adaptive"
@@ -288,7 +288,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
   </Step>
 
   <Step title="Tangkap array content untuk digemakan kembali">
-    Anda akan melihat blok `thinking` dan `tool_use` dalam content respons pada eksekusi di mana Claude memilih untuk berpikir (pada permintaan yang lebih sederhana, mode adaptive mungkin melewatkan blok thinking). Catatan yang ditulis Claude sebelum pemanggilan alat dikembalikan sebagai blok `text` atau, pada model yang menulis [pembaruan progres](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates), sebagai blok `thinking` lainnya. Jaga array content ini tetap utuh: langkah berikutnya mengirimkannya kembali kata demi kata.
+    Anda akan melihat blok `thinking` dan `tool_use` dalam konten respons pada eksekusi yang menyertakan pemikiran (pada permintaan yang lebih sederhana, mode adaptif mungkin melewati blok pemikiran). Catatan yang ditulis Claude sebelum panggilan alat dikembalikan sebagai blok `text` atau, pada model yang menulis [pembaruan progres](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates), sebagai blok `thinking` lainnya. Jaga agar array konten ini tetap utuh: langkah berikutnya mengirimkannya kembali apa adanya.
 
     <Note>
       Untuk melihat teks thinking seperti output ini, tambahkan `display: "summarized"` ke permintaan. Pada model di mana display secara default dihilangkan, termasuk Claude Opus 5.5, tanpa pengaturan tersebut field `thinking` akan dikembalikan sebagai string kosong dengan hanya `signature` yang terisi. Bagaimanapun juga, gemakan kembali array content tanpa perubahan; lihat [Mengontrol tampilan thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#controlling-thinking-display).
@@ -351,11 +351,11 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
       # Ekstrak blok tool use untuk mendapatkan ID-nya bagi tool result
       tool_use_block = next(block for block in response.content if block.type == "tool_use")
 
-      # Panggil API cuaca Anda yang sebenarnya, di sinilah panggilan API Anda yang sebenarnya ditempatkan
-      # Anggap saja inilah yang kita terima kembali
+      # Di sinilah panggilan API cuaca Anda yang sebenarnya ditempatkan
+      # Anggap saja ini yang dikembalikan oleh API cuaca
       weather_data = {"temperature": 88}
 
-      # Permintaan kedua - Sertakan giliran asisten dan tool result
+      # Permintaan kedua: sertakan giliran asisten dan hasil alat
       continuation = client.messages.create(
           model="claude-opus-5-5",
           max_tokens=16000,
@@ -409,12 +409,12 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
       // Ekstrak blok tool_use untuk mendapatkan ID-nya bagi tool_result
       const toolUseBlock = response.content.find((block) => block.type === "tool_use");
 
-      // Panggil API cuaca Anda yang sebenarnya, di sinilah panggilan API Anda yang sebenarnya ditempatkan
-      // Anggap saja inilah yang kita terima kembali
+      // Di sinilah panggilan API cuaca Anda yang sebenarnya akan ditempatkan
+      // Anggap saja ini yang dikembalikan oleh API cuaca
       const weatherData = { temperature: 88 };
 
       if (toolUseBlock) {
-        // Permintaan kedua - Sertakan giliran asisten dan tool_result
+        // Permintaan kedua: sertakan giliran asisten dan hasil alat
         const continuation = await client.messages.create({
           model: "claude-opus-5-5",
           max_tokens: 16000,
@@ -495,14 +495,17 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
               new UserMessageParam { Content = "What's the weather in Paris?" },
               // response.Content mencakup blok thinking; mengirimkannya kembali wajib dilakukan
               new AssistantMessageParam { Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList() },
-              new UserMessageParam { Content = new List<ContentBlockParam>
+              new UserMessageParam
               {
-                  new ContentBlockParam(new ToolResultBlockParam()
+                  Content = new List<ContentBlockParam>
                   {
-                      ToolUseID = toolUseBlock?.ID ?? "",
-                      Content = $"Current temperature: {weatherData.temperature}°F"
-                  })
-              }}
+                      new ContentBlockParam(new ToolResultBlockParam()
+                      {
+                          ToolUseID = toolUseBlock?.ID ?? "",
+                          Content = $"Current temperature: {weatherData.temperature}°F"
+                      })
+                  }
+              }
           ]
       };
 
@@ -712,7 +715,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
       }
 
       response = client.messages.create(
-        model: "claude-opus-5-5",
+        model: Anthropic::Model::CLAUDE_OPUS_5_5,
         max_tokens: 16000,
         thinking: {
           type: "adaptive"
@@ -730,7 +733,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
       weather_data = { temperature: 88 }
 
       continuation = client.messages.create(
-        model: "claude-opus-5-5",
+        model: Anthropic::Model::CLAUDE_OPUS_5_5,
         max_tokens: 16000,
         thinking: {
           type: "adaptive"

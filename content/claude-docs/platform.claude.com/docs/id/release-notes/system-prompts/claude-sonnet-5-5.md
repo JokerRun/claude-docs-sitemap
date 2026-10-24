@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-5-5
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: f0eb053ba44c4bc35c8006dfeb06a127c7319fef821f24daf1a7c780a76d4e21
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: e45ffc96aceba639d2560c02917f2d417ab3857d2799dff1ab2ebbb97985cd0b
 ---
 
 ---
 title: Prompt sistem Claude Sonnet 5.5
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-5-5
-description: Lihat pembaruan pada prompt sistem inti untuk Claude Sonnet 5.5 di [claude.ai](https://claude.ai) serta [aplikasi Claude iOS](https://anthropic.com/ios) dan [aplikasi Claude Android](https://anthropic.com/android).
+description: Lihat pembaruan pada prompt sistem inti untuk Claude Sonnet 5.5 di [claude.ai](https://claude.ai), [aplikasi Claude iOS](https://anthropic.com/ios), dan [aplikasi Claude Android](https://anthropic.com/android).
 ---
 
 ## 7 Oktober 2026

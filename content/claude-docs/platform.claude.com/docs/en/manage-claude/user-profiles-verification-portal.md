@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/user-profiles-verification-portal
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: f5a47d8d1ec45c1bc041fca4767607da715388c803d6aba901a1542d8e19b279
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: b9b47b2ca9aff237eb4e487810f60e51bb23b5a41b2e99810f719ed101018b90
 ---
 
 ---
@@ -134,7 +134,7 @@ The call returns a `404` if creating enrollment links isn't enabled for your org
 
 The response contains the link and the time it stops working:
 
-```text wrap
+```json
 {
   "type": "user_profile_action_url",
   "url": "https://portal.anthropic.com/enroll?enrollment_token=...",

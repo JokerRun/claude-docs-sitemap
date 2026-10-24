@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-prompt-leak
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: a63162a74126f2e79ad20462e1bd76a01575115b0d92c53721b6bbbd6c89323c
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 066cc730149af60688359ff9100eefe9aa07b934bde9de87fc46f1baa77add6b
 ---
 
 ---
@@ -11,16 +11,16 @@ url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails
 description: Kurangi risiko kebocoran prompt dengan memisahkan konteks dari kueri pengguna, memfilter output Claude, dan mengaudit prompt, tanpa menurunkan kinerja tugas.
 ---
 
-"Prompt leak" (kebocoran prompt) dapat mengekspos informasi sensitif yang Anda harapkan "tersembunyi" di dalam prompt Anda. Meskipun tidak ada metode yang sepenuhnya aman, strategi di bawah ini dapat mengurangi risikonya secara signifikan.
+"Prompt leak" (kebocoran prompt) dapat mengekspos informasi sensitif yang Anda harapkan "tersembunyi" dalam prompt Anda. Meskipun tidak ada metode yang sempurna, strategi berikut dapat secara signifikan mengurangi risikonya.
 
 ## Sebelum Anda mencoba mengurangi kebocoran prompt
 
-Pertimbangkan untuk menggunakan strategi rekayasa prompt yang tahan kebocoran hanya ketika **benar-benar diperlukan**. Upaya untuk membuat prompt Anda anti-bocor dapat menambah kompleksitas yang mungkin menurunkan kinerja di bagian lain dari tugas karena meningkatnya kompleksitas tugas LLM secara keseluruhan.
+Pertimbangkan untuk menggunakan strategi "prompt engineering" (rekayasa prompt) yang tahan kebocoran hanya jika **benar-benar diperlukan**. Upaya untuk membuat prompt Anda anti-bocor dapat membuat tugas keseluruhan LLM menjadi lebih kompleks, yang mungkin menurunkan kinerja di bagian lain dari tugas tersebut.
 
 Jika Anda memutuskan untuk menerapkan teknik tahan kebocoran, pastikan untuk menguji prompt Anda secara menyeluruh guna memastikan bahwa kompleksitas tambahan tersebut tidak berdampak negatif pada kinerja model atau kualitas outputnya.
 
 <Tip>
-  Cobalah teknik pemantauan terlebih dahulu, seperti penyaringan output dan pasca-pemrosesan, untuk mencoba menangkap kejadian kebocoran prompt.
+  Cobalah teknik pemantauan terlebih dahulu, seperti penyaringan output dan "post-processing" (pascapemrosesan), untuk mencoba menangkap kejadian kebocoran prompt.
 </Tip>
 
 ***
@@ -60,7 +60,7 @@ Jika Anda memutuskan untuk menerapkan teknik tahan kebocoran, pastikan untuk men
   <Note>
     Anda juga dapat menggunakan LLM yang diberi prompt untuk memfilter output terhadap kebocoran yang lebih halus.
   </Note>
-* **Hindari detail proprietary yang tidak perlu:** Jika Claude tidak membutuhkannya untuk melakukan tugas, jangan sertakan. Konten tambahan mengalihkan perhatian Claude dari fokus pada instruksi "jangan bocor".
-* **Audit rutin:** Tinjau prompt Anda dan output Claude secara berkala untuk mendeteksi potensi kebocoran.
+* **Hindari detail milik perusahaan yang tidak perlu:** Jika Claude tidak membutuhkannya untuk melakukan tugas, jangan sertakan. Konten tambahan mengurangi kepatuhan Claude terhadap instruksi "jangan bocorkan".
+* **Audit secara berkala:** Tinjau prompt Anda dan output Claude secara berkala untuk mendeteksi potensi kebocoran.
 
 Ingat, tujuannya bukan hanya mencegah kebocoran tetapi juga mempertahankan kinerja Claude. Pencegahan kebocoran yang terlalu rumit dapat menurunkan hasil. Keseimbangan adalah kuncinya.

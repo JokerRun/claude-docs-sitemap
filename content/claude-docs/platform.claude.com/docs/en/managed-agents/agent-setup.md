@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: c25342a609d90305b3074a2709757156fccbb9bf00918f330cbcd3639297304c
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: c473fec6c976abf261e4be21e2d4018bc63daebb82b9d3e827eaa63a31930bf8
 ---
 
 ---
@@ -159,7 +159,7 @@ The examples use curl, the `ant` CLI, or the SDK. If you haven't set one up, the
 
 The response echoes your configuration and adds `id`, `type`, `version`, `created_at`, `updated_at`, and `archived_at` fields, and fills in `model` fields you omit, such as `effort`, with their defaults. The `version` starts at 1 and increments each time an update changes the agent.
 
-```text wrap
+```json
 {
   "id": "agent_01HqR2k7vXbZ9mNpL3wYcT8f",
   "type": "agent",

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/gitlab-ci-cd
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 0ed3ad448d858596d1bfdad399bbf4c8a9a7732f54e6747a8c47193fbcfda6cc
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 46583605c55881800a85f9a6991156bdd5d34fb68178806dc33daf7848126d02
 ---
 
 > ## Documentation Index
@@ -21,7 +21,7 @@ sha256: 0ed3ad448d858596d1bfdad399bbf4c8a9a7732f54e6747a8c47193fbcfda6cc
 
 > [!NOTE]
 >
-> This integration is built on top of the [Claude Code CLI and Agent SDK](/docs/en/agent-sdk/overview.md), enabling programmatic use of Claude in your CI/CD jobs and custom automation workflows.
+> This integration is built on top of the [Claude Code CLI and Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview.md), enabling programmatic use of Claude in your CI/CD jobs and custom automation workflows.
 
 ## Why use Claude Code with GitLab?
 
@@ -299,7 +299,7 @@ claude-bedrock:
 * `GCP_PROJECT_ID`: Google Cloud project ID
 * `CLOUD_ML_REGION`: Google Cloud's Agent Platform region (for example, `us-east5`)
 
-GitLab mints the job's OIDC token from the `id_tokens:` block and exposes it as `GITLAB_OIDC_TOKEN`. Set `aud` to the audience value you configured on the Workload Identity Pool provider, for example your GitLab instance URL. The job writes the token to a file, and the credential configuration's `credential_source` entry tells Google's auth libraries to read it from there. Setting `GOOGLE_APPLICATION_CREDENTIALS` to the credential configuration file makes it available to Claude Code through [Application Default Credentials](/docs/en/google-vertex-ai.md#3-configure-gcp-credentials).
+GitLab mints the job's OIDC token from the `id_tokens:` block and exposes it as `GITLAB_OIDC_TOKEN`. Set `aud` to the audience value you configured on the Workload Identity Pool provider, for example your GitLab instance URL. The job writes the token to a file, and the credential configuration's `credential_source` entry tells Google's auth libraries to read it from there. Setting `GOOGLE_APPLICATION_CREDENTIALS` to the credential configuration file makes it available to Claude Code through [Application Default Credentials](https://code.claude.com/docs/en/google-vertex-ai.md#3-configure-gcp-credentials).
 
 ```yaml theme={null}
 stages:

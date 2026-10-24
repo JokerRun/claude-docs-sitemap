@@ -1,42 +1,42 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: c3d247326e3b3093d224b92d40142018cbd446b5b1872a92465eda1603d85c30
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 23d083e898aa88683ba6163ba7c5347bc0a321bbd7969760215f9ee9dcfb4fcb
 ---
 
 ---
 title: Kompatibilitas OpenAI SDK
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk
-description: Anthropic menyediakan lapisan kompatibilitas yang memungkinkan Anda menggunakan OpenAI SDK untuk menguji Claude API. Dengan beberapa perubahan kode, Anda dapat dengan cepat mengevaluasi kemampuan model Anthropic.
+description: Anthropic menyediakan lapisan kompatibilitas yang memungkinkan Anda menggunakan OpenAI SDK untuk menguji Claude API. Dengan beberapa perubahan kode, Anda dapat mengevaluasi kemampuan model Anthropic.
 ---
 
 <Note>
-  Lapisan kompatibilitas ini terutama ditujukan untuk menguji dan membandingkan kemampuan model, dan tidak dianggap sebagai solusi jangka panjang atau siap produksi untuk sebagian besar kasus penggunaan. Meskipun lapisan ini dimaksudkan untuk tetap berfungsi penuh dan tidak mengalami perubahan yang merusak, prioritasnya adalah keandalan dan efektivitas [Claude API](https://platform.claude.com/docs/id/api/overview).
+  Lapisan kompatibilitas ini terutama ditujukan untuk menguji dan membandingkan kemampuan model, dan tidak dianggap sebagai solusi jangka panjang atau siap produksi untuk sebagian besar kasus penggunaan. Meskipun lapisan ini dimaksudkan untuk tetap berfungsi sepenuhnya dan tidak memiliki perubahan yang merusak (breaking changes), prioritasnya adalah keandalan dan efektivitas [Claude API](https://platform.claude.com/docs/id/api/overview).
 
   Untuk informasi lebih lanjut tentang keterbatasan kompatibilitas yang diketahui, lihat [Keterbatasan penting kompatibilitas OpenAI](https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk#important-openai-compatibility-limitations).
 
-  Jika Anda mengalami masalah apa pun dengan fitur kompatibilitas OpenAI SDK, silakan bagikan masukan Anda melalui [formulir masukan kompatibilitas](https://forms.gle/oQV4McQNiuuNbz9n8) ini.
+  Jika Anda mengalami masalah apa pun dengan fitur kompatibilitas OpenAI SDK, bagikan umpan balik Anda melalui [formulir umpan balik kompatibilitas](https://forms.gle/oQV4McQNiuuNbz9n8) ini.
 </Note>
 
 <Tip>
-  Untuk pengalaman terbaik dan akses ke rangkaian fitur lengkap Claude API ([pemrosesan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support), [kutipan](https://platform.claude.com/docs/id/build-with-claude/citations), [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking), dan ["prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)), gunakan [Claude API](https://platform.claude.com/docs/id/api/overview) native.
+  Untuk pengalaman terbaik dan akses ke set fitur Claude API secara lengkap ([pemrosesan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support), [sitasi](https://platform.claude.com/docs/id/build-with-claude/citations), [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking), dan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)), gunakan [Claude API](https://platform.claude.com/docs/id/api/overview) native.
 </Tip>
 
 ## Memulai dengan OpenAI SDK
 
 Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
 
-1. Menggunakan OpenAI SDK resmi
+1. Menggunakan OpenAI SDK resmi.
 
-2. Mengubah hal-hal berikut
+2. Mengubah hal-hal berikut:
 
-   * Perbarui base URL Anda agar mengarah ke Claude API
-   * Ganti "API key" (kunci API) Anda dengan [kunci API Claude](https://platform.claude.com/settings/keys) dari Claude Console
-   * Jika kunci Anda adalah [kunci personal atau kunci akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) dengan akses ke beberapa workspace, kirimkan juga header `anthropic-workspace-id` pada setiap permintaan (misalnya, `default_headers` di Python SDK atau `defaultHeaders` di TypeScript); lihat [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace)
-   * Perbarui nama model Anda untuk menggunakan [model Claude](https://platform.claude.com/docs/id/models/overview)
+   * Perbarui base URL Anda agar mengarah ke Claude API.
+   * Ganti kunci API Anda dengan [kunci Claude API](https://platform.claude.com/settings/keys) dari Claude Console.
+   * Jika kunci Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada sebuah workspace, kirimkan juga header `anthropic-workspace-id` pada setiap permintaan (misalnya, `default_headers` di Python SDK atau `defaultHeaders` di TypeScript); lihat [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace).
+   * Perbarui nama model Anda untuk menggunakan [model Claude](https://platform.claude.com/docs/id/models/overview).
 
-3. Tinjau bagian-bagian berikut untuk mengetahui fitur apa saja yang didukung
+3. Tinjau bagian-bagian berikut untuk mengetahui fitur apa saja yang didukung.
 
 ### Contoh mulai cepat
 
@@ -144,15 +144,15 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
   public class QuickStart {
       public static void main(String[] args) {
           OpenAIClient client = OpenAIOkHttpClient.builder()
-                  .apiKey(System.getenv("ANTHROPIC_API_KEY")) // Your Claude API key
-                  .baseUrl("https://api.anthropic.com/v1/") // the Claude API endpoint
-                  .build();
+              .apiKey(System.getenv("ANTHROPIC_API_KEY")) // Your Claude API key
+              .baseUrl("https://api.anthropic.com/v1/") // the Claude API endpoint
+              .build();
 
           ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
-                  .model("claude-opus-5-5") // Claude model name
-                  .addSystemMessage("You are a helpful assistant.")
-                  .addUserMessage("Who are you?")
-                  .build();
+              .model("claude-opus-5-5") // Claude model name
+              .addSystemMessage("You are a helpful assistant.")
+              .addUserMessage("Who are you?")
+              .build();
 
           ChatCompletion completion = client.chat().completions().create(params);
           System.out.println(completion.choices().get(0).message().content().orElse(""));
@@ -190,20 +190,20 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
 
 Berikut adalah perbedaan paling substansial dibandingkan menggunakan OpenAI:
 
-* Parameter `strict` untuk function calling diabaikan, yang berarti JSON "tool use" (penggunaan alat) tidak dijamin mengikuti skema yang diberikan. Untuk kesesuaian skema yang terjamin, gunakan [Claude API native dengan Structured Outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs).
-* Input audio tidak didukung; input tersebut akan diabaikan dan dihapus dari input
-* Caching prompt tidak didukung, tetapi didukung di [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview)
+* Parameter `strict` untuk function calling diabaikan, yang berarti JSON penggunaan alat tidak dijamin mengikuti skema yang diberikan. Untuk kesesuaian skema yang terjamin, gunakan [Claude API native dengan structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs).
+* Input audio tidak didukung; input tersebut diabaikan dan dihapus dari input.
+* Caching prompt tidak didukung, tetapi didukung di [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview).
 * Pesan system/developer diangkat (hoisted) dan digabungkan ke dalam field `system` tingkat atas, di mana pun pesan tersebut muncul dalam percakapan. Untuk menambahkan instruksi sistem di tengah percakapan, gunakan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) di Claude API native.
 
 Sebagian besar field yang tidak didukung diabaikan secara diam-diam alih-alih menghasilkan error. Semuanya didokumentasikan di bagian-bagian berikut.
 
 ### Pertimbangan kualitas output
 
-Jika Anda telah melakukan banyak penyesuaian pada prompt Anda, kemungkinan besar prompt tersebut telah disetel dengan baik khusus untuk OpenAI. Pertimbangkan untuk mengerjakannya ulang untuk Claude menggunakan [panduan praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
+Jika Anda telah menyesuaikan prompt Anda secara ekstensif, kemungkinan besar prompt tersebut disetel khusus untuk OpenAI. Pertimbangkan untuk menyusunnya ulang untuk Claude menggunakan panduan [praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
 
 ### Pengangkatan pesan system / developer
 
-Sebagian besar input ke OpenAI SDK dipetakan secara langsung ke parameter API Anthropic, tetapi satu perbedaan yang jelas adalah penanganan prompt system / developer. Kedua prompt ini dapat ditempatkan di sepanjang percakapan chat melalui OpenAI. Lapisan kompatibilitas mengambil semua pesan system/developer dan menggabungkannya dengan satu baris baru (`\n`) di antaranya. String lengkap ini kemudian diberikan sebagai field `system` tingkat atas, sebelum setiap pesan.
+Sebagian besar input ke OpenAI SDK dipetakan secara jelas dan langsung ke parameter Claude API, tetapi satu perbedaan yang mencolok adalah penanganan prompt system / developer. Kedua prompt ini dapat ditempatkan di sepanjang percakapan chat di OpenAI API. Lapisan kompatibilitas mengambil semua pesan system/developer dan menggabungkannya dengan satu baris baru (`\n`) di antaranya. String lengkap ini kemudian diberikan sebagai field `system` tingkat atas, sebelum setiap pesan.
 
 ### Dukungan thinking
 
@@ -258,11 +258,11 @@ Anda dapat mengaktifkan [thinking](https://platform.claude.com/docs/id/build-wit
 
   ```java Java
   ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
-          .model("claude-sonnet-4-6")
-          .addUserMessage("Who are you?")
-          .putAdditionalBodyProperty("thinking",
-                  JsonValue.from(Map.of("type", "enabled", "budget_tokens", 2000)))
-          .build();
+      .model("claude-sonnet-4-6")
+      .addUserMessage("Who are you?")
+      .putAdditionalBodyProperty("thinking",
+          JsonValue.from(Map.of("type", "enabled", "budget_tokens", 2000)))
+      .build();
 
   ChatCompletion completion = client.chat().completions().create(params);
   ```
@@ -304,7 +304,7 @@ Anda dapat mengaktifkan [thinking](https://platform.claude.com/docs/id/build-wit
 | `n`                     | Harus tepat 1                                                                                                                                                                                                                                                                                                                                                                                               |
 | `logprobs`              | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `metadata`              | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `response_format`       | Diabaikan. Untuk output JSON, gunakan [Structured Outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) dengan Claude API native                                                                                                                                                                                                                                               |
+| `response_format`       | Diabaikan. Untuk output JSON, gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) dengan Claude API native.                                                                                                                                                                                                                                              |
 | `prediction`            | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `presence_penalty`      | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `frequency_penalty`     | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                   |
@@ -325,27 +325,27 @@ Anda dapat mengaktifkan [thinking](https://platform.claude.com/docs/id/build-wit
     <Tab title="Tools">
       Field `tools[n].function`
 
-      | Field         | Status dukungan                                                                                                                                                            |
-      | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-      | `name`        | Didukung penuh                                                                                                                                                             |
-      | `description` | Didukung penuh                                                                                                                                                             |
-      | `parameters`  | Didukung penuh                                                                                                                                                             |
-      | `strict`      | Diabaikan. Gunakan [Structured Outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) dengan Claude API native untuk validasi skema yang ketat |
+      | Field         | Status dukungan                                                                                                                                                             |
+      | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+      | `name`        | Didukung penuh                                                                                                                                                              |
+      | `description` | Didukung penuh                                                                                                                                                              |
+      | `parameters`  | Didukung penuh                                                                                                                                                              |
+      | `strict`      | Diabaikan. Gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) dengan Claude API native untuk validasi skema yang ketat. |
     </Tab>
 
     <Tab title="Functions">
       Field `functions[n]`
 
       <Info>
-        OpenAI telah menghentikan (deprecated) field `functions` dan menyarankan untuk menggunakan `tools` sebagai gantinya.
+        OpenAI telah menghentikan (deprecated) field `functions` dan merekomendasikan penggunaan `tools` sebagai gantinya.
       </Info>
 
-      | Field         | Status dukungan                                                                                                                                                            |
-      | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-      | `name`        | Didukung penuh                                                                                                                                                             |
-      | `description` | Didukung penuh                                                                                                                                                             |
-      | `parameters`  | Didukung penuh                                                                                                                                                             |
-      | `strict`      | Diabaikan. Gunakan [Structured Outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) dengan Claude API native untuk validasi skema yang ketat |
+      | Field         | Status dukungan                                                                                                                                                             |
+      | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+      | `name`        | Didukung penuh                                                                                                                                                              |
+      | `description` | Didukung penuh                                                                                                                                                              |
+      | `parameters`  | Didukung penuh                                                                                                                                                              |
+      | `strict`      | Diabaikan. Gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) dengan Claude API native untuk validasi skema yang ketat. |
     </Tab>
   </Tabs>
 </Accordion>
@@ -358,7 +358,7 @@ Anda dapat mengaktifkan [thinking](https://platform.claude.com/docs/id/build-wit
       Field untuk `messages[n].role == "developer"`
 
       <Info>
-        Pesan developer diangkat ke awal percakapan sebagai bagian dari pesan sistem awal
+        Pesan developer diangkat ke awal percakapan sebagai bagian dari pesan sistem awal.
       </Info>
 
       | Field     | Status dukungan                 |
@@ -371,7 +371,7 @@ Anda dapat mengaktifkan [thinking](https://platform.claude.com/docs/id/build-wit
       Field untuk `messages[n].role == "system"`
 
       <Info>
-        Pesan system diangkat ke awal percakapan sebagai bagian dari pesan sistem awal
+        Pesan sistem diangkat ke awal percakapan sebagai bagian dari pesan sistem awal.
       </Info>
 
       | Field     | Status dukungan                 |
@@ -435,40 +435,40 @@ Anda dapat mengaktifkan [thinking](https://platform.claude.com/docs/id/build-wit
 
 ### Field respons
 
-| Field                             | Status dukungan                |
-| --------------------------------- | ------------------------------ |
-| `id`                              | Didukung penuh                 |
-| `choices[]`                       | Akan selalu memiliki panjang 1 |
-| `choices[].finish_reason`         | Didukung penuh                 |
-| `choices[].index`                 | Didukung penuh                 |
-| `choices[].message.role`          | Didukung penuh                 |
-| `choices[].message.content`       | Didukung penuh                 |
-| `choices[].message.tool_calls`    | Didukung penuh                 |
-| `object`                          | Didukung penuh                 |
-| `created`                         | Didukung penuh                 |
-| `model`                           | Didukung penuh                 |
-| `finish_reason`                   | Didukung penuh                 |
-| `content`                         | Didukung penuh                 |
-| `usage.completion_tokens`         | Didukung penuh                 |
-| `usage.prompt_tokens`             | Didukung penuh                 |
-| `usage.total_tokens`              | Didukung penuh                 |
-| `usage.completion_tokens_details` | Selalu kosong                  |
-| `usage.prompt_tokens_details`     | Selalu kosong                  |
-| `choices[].message.refusal`       | Selalu kosong                  |
-| `choices[].message.audio`         | Selalu kosong                  |
-| `logprobs`                        | Selalu kosong                  |
-| `service_tier`                    | Selalu kosong                  |
-| `system_fingerprint`              | Selalu kosong                  |
+| Field                             | Status dukungan           |
+| --------------------------------- | ------------------------- |
+| `id`                              | Didukung penuh            |
+| `choices[]`                       | Selalu memiliki panjang 1 |
+| `choices[].finish_reason`         | Didukung penuh            |
+| `choices[].index`                 | Didukung penuh            |
+| `choices[].message.role`          | Didukung penuh            |
+| `choices[].message.content`       | Didukung penuh            |
+| `choices[].message.tool_calls`    | Didukung penuh            |
+| `object`                          | Didukung penuh            |
+| `created`                         | Didukung penuh            |
+| `model`                           | Didukung penuh            |
+| `finish_reason`                   | Didukung penuh            |
+| `content`                         | Didukung penuh            |
+| `usage.completion_tokens`         | Didukung penuh            |
+| `usage.prompt_tokens`             | Didukung penuh            |
+| `usage.total_tokens`              | Didukung penuh            |
+| `usage.completion_tokens_details` | Selalu kosong             |
+| `usage.prompt_tokens_details`     | Selalu kosong             |
+| `choices[].message.refusal`       | Selalu kosong             |
+| `choices[].message.audio`         | Selalu kosong             |
+| `logprobs`                        | Selalu kosong             |
+| `service_tier`                    | Selalu kosong             |
+| `system_fingerprint`              | Selalu kosong             |
 
 ### Kompatibilitas pesan error
 
-Lapisan kompatibilitas mempertahankan format error yang konsisten dengan OpenAI API. Namun, pesan error terperincinya tidak akan sama. Gunakan pesan error hanya untuk logging dan debugging.
+Lapisan kompatibilitas mempertahankan format error yang konsisten dengan OpenAI API. Namun, pesan error yang detail tidak setara. Gunakan pesan error hanya untuk logging dan debugging.
 
 ### Kompatibilitas header
 
-Meskipun OpenAI SDK mengelola header secara otomatis, berikut adalah daftar lengkap header yang didukung oleh Claude API bagi developer yang perlu bekerja dengannya secara langsung.
+Meskipun OpenAI SDK secara otomatis mengelola header, berikut adalah daftar lengkap header yang didukung oleh Claude API untuk developer yang perlu bekerja dengan header tersebut secara langsung.
 
-| Header                           | Status Dukungan     |
+| Header                           | Status dukungan     |
 | -------------------------------- | ------------------- |
 | `x-ratelimit-limit-requests`     | Didukung penuh      |
 | `x-ratelimit-limit-tokens`       | Didukung penuh      |

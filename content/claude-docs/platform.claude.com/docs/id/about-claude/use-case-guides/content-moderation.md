@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: bb48dc019854babe395b6cf7b0eaf9a53410d41c81d8a787146ce6e8261ca6ae
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 7aa8b7a137c007cc13fc625bf9b3c0fdda290e403947fa15a8f94d16cb26f74f
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/about-claude/use-case-guides/content-mo
 description: Moderasi konten adalah aspek penting dalam menjaga lingkungan yang aman, saling menghormati, dan produktif dalam aplikasi digital. Panduan ini membahas bagaimana Claude dapat digunakan untuk memoderasi konten dalam aplikasi digital Anda.
 ---
 
-> Kunjungi [cookbook moderasi konten](https://platform.claude.com/cookbook/misc-building-moderation-filter) untuk melihat contoh implementasi moderasi konten menggunakan Claude.
+> Kunjungi [resep moderasi konten](https://platform.claude.com/cookbook/misc-building-moderation-filter) di Claude Cookbook untuk melihat contoh implementasi moderasi konten menggunakan Claude.
 
 <Tip>
   Panduan ini berfokus pada moderasi konten buatan pengguna dalam aplikasi Anda. Jika Anda mencari panduan tentang memoderasi interaksi dengan Claude, lihat 
@@ -25,7 +25,7 @@ description: Moderasi konten adalah aspek penting dalam menjaga lingkungan yang 
 
 ### Tentukan apakah akan menggunakan Claude untuk moderasi konten
 
-Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan "large language model" (model bahasa besar), atau LLM, seperti Claude alih-alih pendekatan ML tradisional atau berbasis aturan untuk moderasi konten:
+Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan "large language model" (model bahasa besar), atau LLM, seperti Claude alih-alih pendekatan "machine learning" (pembelajaran mesin), atau ML, tradisional atau pendekatan berbasis aturan untuk "content moderation" (moderasi konten):
 
 <AccordionGroup>
   <Accordion title="Anda menginginkan implementasi yang hemat biaya dan cepat">
@@ -33,41 +33,41 @@ Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan "large 
   </Accordion>
 
   <Accordion title="Anda menginginkan pemahaman semantik sekaligus keputusan yang cepat">
-    Pendekatan ML tradisional, seperti model bag-of-words atau pencocokan pola sederhana, sering kali kesulitan memahami nada, maksud, dan konteks dari konten. Meskipun sistem moderasi manusia unggul dalam memahami makna semantik, sistem tersebut memerlukan waktu agar konten dapat ditinjau. Claude menjawab kedua kebutuhan tersebut dengan menggabungkan pemahaman semantik dengan kemampuan untuk memberikan keputusan moderasi dengan cepat.
+    Pendekatan ML tradisional, seperti model bag-of-words atau pencocokan pola sederhana, sering kali kesulitan menangkap nada, maksud, dan konteks konten. Meskipun sistem moderasi manusia unggul dalam memahami makna semantik, sistem tersebut membutuhkan waktu untuk meninjau konten. Claude memenuhi kedua kebutuhan tersebut dengan menggabungkan pemahaman semantik dengan kemampuan untuk memberikan keputusan moderasi dengan cepat.
   </Accordion>
 
   <Accordion title="Anda memerlukan keputusan kebijakan yang konsisten">
-    Dengan memanfaatkan kemampuan penalaran tingkat lanjutnya, Claude dapat menafsirkan dan menerapkan pedoman moderasi yang kompleks secara seragam. Konsistensi ini membantu memastikan perlakuan yang adil terhadap semua konten, mengurangi risiko keputusan moderasi yang tidak konsisten atau bias yang dapat merusak kepercayaan pengguna.
+    Dengan kemampuan penalarannya yang canggih, Claude dapat menafsirkan dan menerapkan pedoman moderasi yang kompleks secara seragam. Konsistensi ini membantu memastikan perlakuan yang adil terhadap semua konten, mengurangi risiko keputusan moderasi yang tidak konsisten atau bias yang dapat merusak kepercayaan pengguna.
   </Accordion>
 
   <Accordion title="Kebijakan moderasi Anda kemungkinan akan berubah atau berkembang seiring waktu">
     Setelah pendekatan ML tradisional ditetapkan, mengubahnya merupakan pekerjaan yang melelahkan dan membutuhkan banyak data. Di sisi lain, seiring berkembangnya produk atau kebutuhan pelanggan Anda, Claude dapat dengan mudah beradaptasi terhadap perubahan atau penambahan kebijakan moderasi tanpa pelabelan ulang data pelatihan secara ekstensif.
   </Accordion>
 
-  <Accordion title="Anda memerlukan penalaran yang dapat diinterpretasikan untuk keputusan moderasi Anda">
-    Jika Anda ingin memberikan penjelasan yang jelas kepada pengguna atau regulator di balik keputusan moderasi, Claude dapat menghasilkan justifikasi yang terperinci dan koheren. Transparansi ini penting untuk membangun kepercayaan dan memastikan akuntabilitas dalam praktik moderasi konten.
+  <Accordion title="Anda memerlukan penalaran yang dapat ditafsirkan untuk keputusan moderasi Anda">
+    Jika Anda ingin memberikan penjelasan yang jelas kepada pengguna atau regulator tentang alasan di balik keputusan moderasi, Claude dapat menghasilkan justifikasi yang terperinci dan koheren. Transparansi ini penting untuk membangun kepercayaan dan memastikan akuntabilitas dalam praktik moderasi konten.
   </Accordion>
 
   <Accordion title="Anda memerlukan dukungan multibahasa tanpa memelihara model terpisah">
-    Pendekatan ML tradisional biasanya memerlukan model terpisah atau proses penerjemahan yang ekstensif untuk setiap bahasa yang didukung. Moderasi manusia memerlukan perekrutan tenaga kerja yang fasih dalam setiap bahasa yang didukung. Kemampuan multibahasa Claude memungkinkannya mengklasifikasikan tiket dalam berbagai bahasa tanpa memerlukan model terpisah atau proses penerjemahan yang ekstensif, sehingga menyederhanakan moderasi untuk basis pelanggan global.
+    Pendekatan ML tradisional biasanya memerlukan model terpisah atau proses penerjemahan yang ekstensif untuk setiap bahasa yang didukung. Moderasi manusia memerlukan perekrutan tenaga kerja yang fasih dalam setiap bahasa yang didukung. Kemampuan multibahasa Claude memungkinkannya mengklasifikasikan konten dalam berbagai bahasa tanpa memerlukan model terpisah atau proses penerjemahan yang ekstensif, sehingga menyederhanakan moderasi untuk basis pelanggan global.
   </Accordion>
 
   <Accordion title="Anda memerlukan dukungan multimodal">
-    Kemampuan multimodal Claude memungkinkannya menganalisis dan menafsirkan konten baik dalam bentuk teks maupun gambar. Hal ini menjadikannya alat yang serbaguna untuk moderasi konten yang komprehensif di lingkungan tempat berbagai jenis media perlu dievaluasi secara bersamaan.
+    Kemampuan multimodal Claude memungkinkannya menganalisis dan menafsirkan konten baik berupa teks maupun gambar. Hal ini menjadikannya alat yang serbaguna untuk moderasi konten yang komprehensif di lingkungan di mana berbagai jenis media perlu dievaluasi bersama.
   </Accordion>
 </AccordionGroup>
 
 <Note>
   Semua model Claude dilatih dengan perilaku keamanan bawaan. Hal ini dapat mengakibatkan Claude memoderasi konten yang dianggap sangat berbahaya (sesuai dengan 
 
-  [Kebijakan Penggunaan yang Dapat Diterima](https://www.anthropic.com/legal/aup)
+  [Kebijakan Penggunaan](https://www.anthropic.com/legal/aup)
 
-  ), terlepas dari prompt yang digunakan. Misalnya, situs web dewasa yang ingin mengizinkan pengguna memposting konten seksual eksplisit mungkin mendapati bahwa Claude tetap menandai konten eksplisit sebagai konten yang memerlukan moderasi, meskipun mereka menyatakan dalam prompt mereka untuk tidak memoderasi konten seksual eksplisit. Pertimbangkan untuk meninjau AUP terlebih dahulu sebelum membangun solusi moderasi.
+  ), terlepas dari prompt yang digunakan. Misalnya, situs web dewasa yang ingin mengizinkan pengguna memposting konten seksual eksplisit mungkin mendapati bahwa Claude tetap menandai konten eksplisit sebagai konten yang memerlukan moderasi, meskipun mereka menyatakan dalam prompt untuk tidak memoderasi konten seksual eksplisit. Pertimbangkan untuk meninjau Kebijakan Penggunaan sebelum membangun solusi moderasi.
 </Note>
 
 ### Buat contoh konten untuk dimoderasi
 
-Sebelum mengembangkan solusi moderasi konten, pertama-tama buatlah contoh konten yang harus ditandai dan konten yang tidak boleh ditandai. Pastikan Anda menyertakan kasus tepi dan skenario menantang yang mungkin sulit ditangani secara efektif oleh sistem moderasi konten. Setelah itu, tinjau contoh-contoh Anda untuk membuat daftar kategori moderasi yang terdefinisi dengan baik. Sebagai contoh, contoh-contoh yang dihasilkan oleh platform media sosial mungkin mencakup hal-hal berikut:
+Sebelum mengembangkan solusi moderasi konten, pertama-tama buatlah contoh konten yang harus ditandai dan konten yang tidak boleh ditandai. Pastikan Anda menyertakan "edge cases" (kasus tepi) dan skenario menantang yang mungkin sulit ditangani secara efektif oleh sistem moderasi konten. Setelah itu, tinjau contoh-contoh Anda untuk membuat daftar kategori moderasi yang terdefinisi dengan baik. Misalnya, contoh yang dibuat oleh platform media sosial mungkin mencakup hal berikut:
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -193,10 +193,10 @@ Sebelum mengembangkan solusi moderasi konten, pertama-tama buatlah contoh konten
   	"Congratulations! You have won a $1,000 gift card. Click here to claim your prize!",
   }
 
-  // Sample user comments to test the content moderation
+  // Contoh komentar pengguna untuk menguji moderasi konten
   var userComments = slices.Concat(allowedUserComments, disallowedUserComments)
 
-  // Categories considered unsafe for content moderation
+  // Kategori yang dianggap tidak aman untuk moderasi konten
   var unsafeCategories = []string{
   	"Child Exploitation",
   	"Conspiracy Theories",
@@ -327,7 +327,7 @@ Kategori tidak aman dapat disesuaikan agar sesuai dengan kebutuhan spesifik Anda
 
 ### Pilih model Claude yang tepat
 
-Saat memilih model, penting untuk mempertimbangkan ukuran data Anda. Jika biaya menjadi perhatian, model yang lebih kecil seperti Claude Haiku 5.5 adalah pilihan yang sangat baik karena efektivitas biayanya. Berikut adalah perkiraan biaya untuk memoderasi teks bagi platform media sosial yang menerima satu miliar postingan per bulan:
+Saat memilih model, penting untuk mempertimbangkan ukuran data Anda. Jika biaya menjadi perhatian, model yang lebih kecil seperti Claude Haiku 5.5 adalah pilihan yang sangat baik karena efektivitas biayanya. Berikut adalah perkiraan biaya untuk memoderasi teks bagi platform media sosial yang menerima 1 miliar postingan per bulan:
 
 * **Ukuran konten**
 
@@ -361,7 +361,7 @@ Saat memilih model, penting untuk mempertimbangkan ukuran data Anda. Jika biaya 
   * Biaya bulanan: $143.000 + $37.500 = $180.500 USD
 
 <Tip>
-  Biaya aktual mungkin berbeda dari estimasi ini. Estimasi ini didasarkan pada prompt yang disorot di bagian tentang 
+  Biaya aktual mungkin berbeda dari perkiraan ini. Perkiraan ini didasarkan pada prompt yang disorot di bagian tentang 
 
   [pemrosesan batch](https://platform.claude.com/docs/id/about-claude/use-case-guides/content-moderation#consider-batch-processing)
 
@@ -374,7 +374,7 @@ Saat memilih model, penting untuk mempertimbangkan ukuran data Anda. Jika biaya 
 
 ### Bangun prompt yang kuat
 
-Untuk menggunakan Claude dalam moderasi konten, Claude harus memahami persyaratan moderasi aplikasi Anda. Mulailah dengan menulis prompt yang memungkinkan Anda mendefinisikan kebutuhan moderasi Anda:
+Untuk menggunakan Claude dalam moderasi konten, Claude harus menafsirkan persyaratan moderasi aplikasi Anda dengan benar. Mulailah dengan menulis prompt yang memungkinkan Anda menentukan kebutuhan moderasi Anda:
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -596,10 +596,10 @@ Untuk menggunakan Claude dalam moderasi konten, Claude harus memahami persyarata
 
   ```go Go
   func moderateMessage(message string, unsafeCategories []string) (bool, []string, string) {
-  	// Convert the unsafe categories into a string, with each category on a new line
+  	// Mengonversi kategori tidak aman menjadi string, dengan setiap kategori pada baris baru
   	unsafeCategoryStr := strings.Join(unsafeCategories, "\n")
 
-  	// Construct the prompt for Claude, including the message and unsafe categories
+  	// Menyusun prompt untuk Claude, termasuk pesan dan kategori tidak aman
   	assessmentPrompt := fmt.Sprintf(`
       Determine whether the following message warrants moderation,
       based on the unsafe categories outlined below.
@@ -620,7 +620,7 @@ Untuk menggunakan Claude dalam moderasi konten, Claude harus memahami persyarata
       }
   Do not include markdown formatting or code fences in your response.`, message, unsafeCategoryStr)
 
-  	// Send the request to Claude for content moderation
+  	// Mengirim permintaan ke Claude untuk moderasi konten
   	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
   		Model:     anthropic.ModelClaudeHaiku4_5_20251001, // Using the Haiku model for lower costs
   		MaxTokens: 200,
@@ -632,13 +632,13 @@ Untuk menggunakan Claude dalam moderasi konten, Claude harus memahami persyarata
   		log.Fatal(err)
   	}
 
-  	// Narrow the first content block to a text block before reading its text
+  	// Mempersempit blok konten pertama menjadi blok teks sebelum membaca teksnya
   	textBlock, ok := response.Content[0].AsAny().(anthropic.TextBlock)
   	if !ok {
   		log.Fatalf("expected a text block, got %q", response.Content[0].Type)
   	}
 
-  	// Parse the JSON response from Claude
+  	// Mem-parsing respons JSON dari Claude
   	var assessment struct {
   		Violation   bool     `json:"violation"`
   		Categories  []string `json:"categories"`
@@ -648,14 +648,14 @@ Untuk menggunakan Claude dalam moderasi konten, Claude harus memahami persyarata
   		log.Fatal(err)
   	}
 
-  	// If there's a violation, return the categories and explanation; otherwise, use empty defaults
+  	// Jika ada pelanggaran, kembalikan kategori dan penjelasannya; jika tidak, gunakan nilai default kosong
   	if !assessment.Violation {
   		return false, nil, ""
   	}
   	return true, assessment.Categories, assessment.Explanation
   }
 
-  // moderateAllComments processes each comment and prints the results.
+  // moderateAllComments memproses setiap komentar dan mencetak hasilnya.
   func moderateAllComments() {
   	for _, comment := range userComments {
   		fmt.Printf("\nComment: %s\n", comment)
@@ -884,9 +884,9 @@ Penilaian model kemudian diurai untuk menentukan apakah terdapat pelanggaran. Ji
 
 ### Evaluasi prompt Anda
 
-Moderasi konten adalah masalah klasifikasi. Oleh karena itu, Anda dapat menggunakan teknik yang sama seperti yang diuraikan dalam [cookbook klasifikasi](https://platform.claude.com/cookbook/capabilities-classification-guide) untuk menentukan akurasi sistem moderasi konten Anda.
+Moderasi konten adalah masalah klasifikasi. Dengan demikian, Anda dapat menggunakan teknik yang sama yang diuraikan dalam [resep klasifikasi](https://platform.claude.com/cookbook/capabilities-classification-guide) Claude Cookbook untuk menentukan akurasi sistem moderasi konten Anda.
 
-Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten sebagai masalah klasifikasi biner, Anda dapat membuat beberapa kategori untuk merepresentasikan berbagai tingkat risiko. Membuat beberapa tingkat risiko memungkinkan Anda menyesuaikan tingkat keagresifan moderasi Anda. Misalnya, Anda mungkin ingin secara otomatis memblokir kueri pengguna yang dianggap berisiko tinggi, sementara pengguna dengan banyak kueri berisiko sedang ditandai untuk ditinjau oleh manusia.
+Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten sebagai masalah klasifikasi biner, Anda dapat membuat beberapa kategori untuk mewakili berbagai tingkat risiko. Membuat beberapa tingkat risiko memungkinkan Anda menyesuaikan tingkat agresivitas moderasi Anda. Misalnya, Anda mungkin ingin secara otomatis memblokir kueri pengguna yang dianggap berisiko tinggi, sementara pengguna dengan banyak kueri berisiko sedang ditandai untuk ditinjau oleh manusia.
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -1126,10 +1126,10 @@ Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten 
 
   ```go Go
   func assessRiskLevel(message string, unsafeCategories []string) (int, []string, string) {
-  	// Convert the unsafe categories into a string, with each category on a new line
+  	// Mengonversi kategori tidak aman menjadi string, dengan setiap kategori pada baris baru
   	unsafeCategoryStr := strings.Join(unsafeCategories, "\n")
 
-  	// Construct the prompt for Claude, including the message, unsafe categories, and risk level definitions
+  	// Menyusun prompt untuk Claude, termasuk pesan, kategori tidak aman, dan definisi tingkat risiko
   	assessmentPrompt := fmt.Sprintf(`
       Assess the risk level of the following message,
       based on the unsafe categories listed below.
@@ -1158,7 +1158,7 @@ Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten 
   }
   Do not include markdown formatting or code fences in your response.`, message, unsafeCategoryStr)
 
-  	// Send the request to Claude for risk assessment
+  	// Mengirim permintaan ke Claude untuk penilaian risiko
   	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
   		Model:     anthropic.ModelClaudeHaiku4_5_20251001, // Using the Haiku model for lower costs
   		MaxTokens: 200,
@@ -1170,13 +1170,13 @@ Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten 
   		log.Fatal(err)
   	}
 
-  	// Narrow the first content block to a text block before reading its text
+  	// Mempersempit blok konten pertama menjadi blok teks sebelum membaca teksnya
   	textBlock, ok := response.Content[0].AsAny().(anthropic.TextBlock)
   	if !ok {
   		log.Fatalf("expected a text block, got %q", response.Content[0].Type)
   	}
 
-  	// Parse the JSON response from Claude
+  	// Mem-parsing respons JSON dari Claude
   	var assessment struct {
   		RiskLevel   int      `json:"risk_level"`
   		Categories  []string `json:"categories"`
@@ -1186,11 +1186,11 @@ Satu pertimbangan tambahan adalah bahwa alih-alih memperlakukan moderasi konten 
   		log.Fatal(err)
   	}
 
-  	// Return the risk level, violated categories, and explanation from the assessment
+  	// Mengembalikan tingkat risiko, kategori yang dilanggar, dan penjelasan dari penilaian
   	return assessment.RiskLevel, assessment.Categories, assessment.Explanation
   }
 
-  // assessAllRiskLevels processes each comment and prints the results.
+  // assessAllRiskLevels memproses setiap komentar dan mencetak hasilnya.
   func assessAllRiskLevels() {
   	for _, comment := range userComments {
   		fmt.Printf("\nComment: %s\n", comment)
@@ -1436,7 +1436,7 @@ Kode ini mengimplementasikan fungsi `assess_risk_level` yang menggunakan Claude 
 
 Di dalam fungsi tersebut, sebuah prompt dibuat untuk Claude, yang mencakup pesan yang akan dinilai, kategori tidak aman, dan instruksi spesifik untuk mengevaluasi tingkat risiko. Prompt tersebut menginstruksikan Claude untuk merespons dengan objek JSON yang mencakup tingkat risiko, kategori yang dilanggar, dan penjelasan opsional.
 
-Pendekatan ini memungkinkan moderasi konten yang fleksibel dengan menetapkan tingkat risiko. Pendekatan ini dapat diintegrasikan dengan mulus ke dalam sistem yang lebih besar untuk mengotomatiskan penyaringan konten atau menandai komentar untuk ditinjau oleh manusia berdasarkan tingkat risiko yang dinilai. Sebagai contoh, saat menjalankan kode ini, komentar `Delete this post now or you better hide. I am coming after you and your family.` diidentifikasi sebagai berisiko tinggi karena ancamannya yang berbahaya. Sebaliknya, komentar `Stay away from the 5G cellphones!! They are using 5G to control you.` dikategorikan sebagai berisiko sedang.
+Pendekatan ini memungkinkan moderasi konten yang fleksibel dengan menetapkan tingkat risiko. Pendekatan ini dapat diintegrasikan dengan mulus ke dalam sistem yang lebih besar untuk mengotomatiskan pemfilteran konten atau menandai komentar untuk ditinjau manusia berdasarkan tingkat risiko yang dinilai. Misalnya, saat Anda menjalankan kode ini, komentar `Delete this post now or you better hide. I am coming after you and your family.` diidentifikasi sebagai berisiko tinggi karena ancamannya yang berbahaya. Sebaliknya, komentar `Stay away from the 5G cellphones!! They are using 5G to control you.` dikategorikan sebagai berisiko sedang.
 
 ### Deploy prompt Anda
 
@@ -1452,7 +1452,7 @@ Setelah Anda yakin dengan kualitas solusi Anda, saatnya untuk men-deploy-nya ke 
 
 ## Tingkatkan kinerja
 
-Dalam skenario yang kompleks, mungkin akan membantu untuk mempertimbangkan strategi tambahan guna meningkatkan kinerja di luar [teknik rekayasa prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) standar. Berikut adalah beberapa strategi tingkat lanjut:
+Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan guna meningkatkan kinerja di luar [teknik "prompt engineering" (rekayasa prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) standar. Berikut adalah beberapa strategi lanjutan:
 
 ### Definisikan topik dan berikan contoh
 
@@ -1778,9 +1778,9 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
   ```
 
   ```go Go
-  // Categories considered unsafe for content moderation, with their definitions.
-  // A slice of category/definition pairs (rather than a map) keeps the rendered
-  // order stable; Go maps iterate in random order.
+  // Kategori yang dianggap tidak aman untuk moderasi konten, beserta definisinya.
+  // Slice berisi pasangan kategori/definisi (bukan map) menjaga urutan render
+  // tetap stabil; map di Go melakukan iterasi dalam urutan acak.
   type categoryDefinition struct {
   	category   string
   	definition string
@@ -1806,14 +1806,14 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
   }
 
   func moderateMessageWithDefinitions(message string, unsafeCategoryDefinitions []categoryDefinition) (bool, []string, string) {
-  	// Format unsafe categories string, with each category and its definition on a new line
+  	// Memformat string kategori tidak aman, dengan setiap kategori dan definisinya pada baris baru
   	categoryLines := make([]string, len(unsafeCategoryDefinitions))
   	for i, entry := range unsafeCategoryDefinitions {
   		categoryLines[i] = fmt.Sprintf("%s: %s", entry.category, entry.definition)
   	}
   	unsafeCategoryStr := strings.Join(categoryLines, "\n")
 
-  	// Construct the prompt for Claude, including the message and unsafe categories
+  	// Menyusun prompt untuk Claude, termasuk pesan dan kategori tidak aman
   	assessmentPrompt := fmt.Sprintf(`Determine whether the following message warrants moderation, based on the unsafe categories outlined below.
 
   Message:
@@ -1834,7 +1834,7 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
   }
   Do not include markdown formatting or code fences in your response.`, message, unsafeCategoryStr)
 
-  	// Send the request to Claude for content moderation
+  	// Mengirim permintaan ke Claude untuk moderasi konten
   	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
   		Model:     anthropic.ModelClaudeHaiku4_5_20251001, // Using the Haiku model for lower costs
   		MaxTokens: 200,
@@ -1846,13 +1846,13 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
   		log.Fatal(err)
   	}
 
-  	// Narrow the first content block to a text block before reading its text
+  	// Mempersempit blok konten pertama menjadi blok teks sebelum membaca teksnya
   	textBlock, ok := response.Content[0].AsAny().(anthropic.TextBlock)
   	if !ok {
   		log.Fatalf("expected a text block, got %q", response.Content[0].Type)
   	}
 
-  	// Parse the JSON response from Claude
+  	// Mem-parsing respons JSON dari Claude
   	var assessment struct {
   		Violation   bool     `json:"violation"`
   		Categories  []string `json:"categories"`
@@ -1862,14 +1862,14 @@ Selain mencantumkan kategori tidak aman dalam prompt, peningkatan lebih lanjut d
   		log.Fatal(err)
   	}
 
-  	// If there's a violation, return the categories and explanation; otherwise, use empty defaults
+  	// Jika ada pelanggaran, kembalikan kategori dan penjelasannya; jika tidak, gunakan nilai default kosong
   	if !assessment.Violation {
   		return false, nil, ""
   	}
   	return true, assessment.Categories, assessment.Explanation
   }
 
-  // moderateAllCommentsWithDefinitions processes each comment and prints the results.
+  // moderateAllCommentsWithDefinitions memproses setiap komentar dan mencetak hasilnya.
   func moderateAllCommentsWithDefinitions() {
   	for _, comment := range userComments {
   		fmt.Printf("\nComment: %s\n", comment)
@@ -2426,8 +2426,8 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
   ```
 
   ```go Go
-  // batchViolation is one entry in Claude's "violations" array: the index of the
-  // offending message plus the categories it violated and why.
+  // batchViolation adalah satu entri dalam array "violations" dari Claude: indeks
+  // pesan yang melanggar beserta kategori yang dilanggar dan alasannya.
   type batchViolation struct {
   	ID          int      `json:"id"`
   	Categories  []string `json:"categories"`
@@ -2435,17 +2435,17 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
   }
 
   func batchModerateMessages(messages []string, unsafeCategories []string) []batchViolation {
-  	// Convert the unsafe categories into a string, with each category on a new line
+  	// Mengonversi kategori tidak aman menjadi string, dengan setiap kategori pada baris baru
   	unsafeCategoryStr := strings.Join(unsafeCategories, "\n")
 
-  	// Format messages string, with each message wrapped in XML-like tags and given an ID
+  	// Memformat string pesan, dengan setiap pesan dibungkus tag mirip XML dan diberi ID
   	messageLines := make([]string, len(messages))
   	for i, message := range messages {
   		messageLines[i] = fmt.Sprintf("<message id=%d>%s</message>", i, message)
   	}
   	messagesStr := strings.Join(messageLines, "\n")
 
-  	// Construct the prompt for Claude, including the messages and unsafe categories
+  	// Menyusun prompt untuk Claude, termasuk pesan-pesan dan kategori tidak aman
   	assessmentPrompt := fmt.Sprintf(`Determine the messages to moderate, based on the unsafe categories outlined below.
 
   Messages:
@@ -2474,7 +2474,7 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
   - Select any number of violations that reasonably apply.
   - Do not include markdown formatting or code fences in your response.`, messagesStr, unsafeCategoryStr)
 
-  	// Send the request to Claude for content moderation
+  	// Mengirim permintaan ke Claude untuk moderasi konten
   	response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
   		Model:     anthropic.ModelClaudeHaiku4_5_20251001, // Using the Haiku model for lower costs
   		MaxTokens: 2048,                                   // Increased token limit to handle batches
@@ -2486,13 +2486,13 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
   		log.Fatal(err)
   	}
 
-  	// Narrow the first content block to a text block before reading its text
+  	// Mempersempit blok konten pertama menjadi blok teks sebelum membaca teksnya
   	textBlock, ok := response.Content[0].AsAny().(anthropic.TextBlock)
   	if !ok {
   		log.Fatalf("expected a text block, got %q", response.Content[0].Type)
   	}
 
-  	// Parse the JSON response from Claude
+  	// Mem-parsing respons JSON dari Claude
   	var assessment struct {
   		Violations []batchViolation `json:"violations"`
   	}
@@ -2502,13 +2502,13 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
   	return assessment.Violations
   }
 
-  // moderateAllCommentsAsBatch moderates the whole batch of comments in a single
-  // request and prints the results for each detected violation.
+  // moderateAllCommentsAsBatch memoderasi seluruh batch komentar dalam satu
+  // permintaan dan mencetak hasil untuk setiap pelanggaran yang terdeteksi.
   func moderateAllCommentsAsBatch() {
-  	// Process the batch of comments and get the response
+  	// Memproses batch komentar dan mendapatkan respons
   	violations := batchModerateMessages(userComments, unsafeCategories)
 
-  	// Print the results for each detected violation
+  	// Mencetak hasil untuk setiap pelanggaran yang terdeteksi
   	for _, violation := range violations {
   		fmt.Printf(`Comment: %s
   Violated Categories: %s
@@ -2735,10 +2735,10 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
   ```
 </CodeGroup>
 
-Dalam contoh ini, fungsi `batch_moderate_messages` menangani moderasi seluruh batch pesan dengan satu panggilan Claude API. Di dalam fungsi tersebut, sebuah prompt dibuat yang mencakup daftar pesan yang akan dievaluasi dan kategori konten tidak aman. Prompt tersebut mengarahkan Claude untuk mengembalikan objek JSON yang mencantumkan semua pesan yang mengandung pelanggaran. Setiap pesan dalam respons diidentifikasi berdasarkan `id`-nya, yang sesuai dengan posisi pesan dalam batch. Perlu diingat bahwa menemukan ukuran batch yang optimal untuk kebutuhan spesifik Anda mungkin memerlukan beberapa eksperimen. Meskipun ukuran batch yang lebih besar dapat menurunkan biaya, hal tersebut juga dapat menyebabkan sedikit penurunan kualitas. Selain itu, Anda mungkin perlu meningkatkan parameter `max_tokens` dalam panggilan Claude API untuk mengakomodasi respons yang lebih panjang. Untuk detail tentang jumlah maksimum token yang dapat dihasilkan oleh model pilihan Anda, lihat [tabel perbandingan model](https://platform.claude.com/docs/id/models/overview#latest-models-comparison).
+Dalam contoh ini, fungsi `batch_moderate_messages` menangani moderasi seluruh batch pesan dengan satu panggilan Claude API. Di dalam fungsi, sebuah prompt dibuat yang mencakup daftar pesan yang akan dievaluasi dan kategori konten tidak aman. Prompt tersebut mengarahkan Claude untuk mengembalikan objek JSON yang mencantumkan semua pesan yang mengandung pelanggaran. Setiap pesan dalam respons diidentifikasi oleh `id`-nya, yang sesuai dengan posisi pesan dalam batch. Perlu diingat bahwa menemukan ukuran batch yang optimal untuk kebutuhan spesifik Anda mungkin memerlukan beberapa eksperimen. Meskipun ukuran batch yang lebih besar dapat menurunkan biaya, hal itu juga dapat menyebabkan sedikit penurunan kualitas. Selain itu, Anda mungkin perlu meningkatkan parameter `max_tokens` dalam panggilan Claude API untuk mengakomodasi respons yang lebih panjang. Untuk detail tentang jumlah maksimum token yang dapat dihasilkan oleh model pilihan Anda, lihat [tabel perbandingan model](https://platform.claude.com/docs/id/models/overview#latest-models-comparison).
 
 <CardGroup cols={2}>
-  <Card title="Cookbook moderasi konten" icon="link" href="https://platform.claude.com/cookbook/misc-building-moderation-filter">
+  <Card title="Resep moderasi konten" icon="link" href="https://platform.claude.com/cookbook/misc-building-moderation-filter">
     Lihat contoh berbasis kode yang diimplementasikan sepenuhnya tentang cara menggunakan Claude untuk moderasi konten.
   </Card>
 

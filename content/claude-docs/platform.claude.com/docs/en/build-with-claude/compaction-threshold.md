@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction-threshold
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 87463e2386b17d214e7e24da452ff22d0ff72255048d05e333ee272fc46be998
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 53c43804de512cbab41f7126fdd27a41ab8d068f422ce429620773a95e8bb4fe
 ---
 
 ---
@@ -1372,7 +1372,7 @@ When compaction is triggered, the API returns a `compaction` block at the start 
 
 A long-running conversation might result in multiple compactions. The last compaction block reflects the final state of the prompt, replacing content prior to it with the generated summary.
 
-```text Output
+```json Output
 {
   "content": [
     {
@@ -2263,7 +2263,7 @@ This keeps long system prompts cached across multiple compaction events througho
 
 Compaction requires an additional sampling step, which contributes to rate limits and billing. The API returns detailed usage information in the response:
 
-```text Output wrap
+```json Output
 {
   "usage": {
     "input_tokens": 23000,

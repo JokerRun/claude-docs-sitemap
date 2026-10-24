@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-4-8
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 9d2da23431ffb396dc6e8773f420a0fce707ab1f53605db00d7fc8500b38dd93
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 67b5fbdd5c9fcf13d4705be51e97f3393806c48d1af7e2cebb4cc46dadfdbd1b
 ---
 
 ---
@@ -21,7 +21,7 @@ Claude Opus 4.8 memiliki kekuatan khusus dalam pekerjaan agentik jangka panjang,
 
 ## Panjang respons dan verbositas
 
-Claude Opus 4.8 mengkalibrasi panjang respons berdasarkan seberapa kompleks tugas tersebut menurut penilaiannya, alih-alih menggunakan verbositas tetap secara default. Ini biasanya berarti jawaban yang lebih pendek untuk pencarian sederhana dan jawaban yang jauh lebih panjang untuk analisis terbuka.
+Claude Opus 4.8 mengkalibrasi panjang respons berdasarkan perkiraannya terhadap kompleksitas tugas, alih-alih menggunakan verbositas tetap secara default. Ini biasanya berarti jawaban yang lebih singkat untuk pencarian sederhana dan jawaban yang jauh lebih panjang untuk analisis terbuka.
 
 Jika produk Anda bergantung pada gaya atau verbositas output tertentu, Anda mungkin perlu menyesuaikan prompt Anda. Sebagai contoh, untuk mengurangi verbositas, Anda dapat menambahkan:
 
@@ -35,13 +35,13 @@ Jika Anda melihat contoh spesifik dari jenis verbositas tertentu (seperti penjel
 
 [Parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) memungkinkan Anda menyesuaikan kecerdasan Claude terhadap pengeluaran token, menukar kemampuan dengan kecepatan yang lebih tinggi dan biaya yang lebih rendah. Mulailah dengan tingkat effort `xhigh` untuk kasus penggunaan coding dan agentik, dan gunakan minimal effort `high` untuk sebagian besar kasus penggunaan yang sensitif terhadap kecerdasan. Bereksperimenlah dengan tingkat effort lain untuk lebih menyesuaikan penggunaan token dan kecerdasan:
 
-* **`max`:** Effort max dapat memberikan peningkatan kinerja dalam beberapa kasus penggunaan, tetapi mungkin menunjukkan hasil yang semakin berkurang dari peningkatan penggunaan token. Pengaturan ini juga terkadang rentan terhadap overthinking. Uji effort max untuk tugas yang menuntut kecerdasan.
+* **`max`:** Effort maksimum dapat memberikan peningkatan kinerja dalam beberapa kasus penggunaan, tetapi mungkin menunjukkan hasil yang semakin berkurang dari peningkatan penggunaan token. Pengaturan ini juga terkadang rentan terhadap pemikiran berlebihan. Uji effort maksimum untuk tugas yang menuntut kecerdasan tinggi.
 * **`xhigh`:** Effort ekstra tinggi adalah pengaturan terbaik untuk sebagian besar kasus penggunaan coding dan agentik.
 * **`high`:** Pengaturan ini menyeimbangkan penggunaan token dan kecerdasan. Untuk sebagian besar kasus penggunaan yang sensitif terhadap kecerdasan, gunakan minimal effort `high`.
 * **`medium`:** Baik untuk kasus penggunaan yang sensitif terhadap biaya yang perlu mengurangi penggunaan token dengan mengorbankan kecerdasan.
 * **`low`:** Cadangkan untuk tugas singkat dengan cakupan terbatas dan beban kerja yang sensitif terhadap latensi yang tidak sensitif terhadap kecerdasan.
 
-Claude Opus 4.8 mematuhi tingkat effort secara ketat, terutama di tingkat rendah. Pada `low` dan `medium`, model membatasi pekerjaannya pada apa yang diminta alih-alih melakukan lebih dari yang diperlukan. Ini baik untuk latensi dan biaya, tetapi pada tugas yang cukup kompleks yang dijalankan dengan effort `low` ada risiko under-thinking.
+Claude Opus 4.8 mematuhi tingkat effort secara ketat, terutama pada tingkat rendah. Pada `low` dan `medium`, model membatasi pekerjaannya pada apa yang diminta alih-alih melampaui permintaan. Ini baik untuk latensi dan biaya, tetapi pada tugas dengan kompleksitas sedang yang berjalan pada effort `low` ada risiko pemikiran yang kurang mendalam.
 
 Jika Anda mengamati penalaran yang dangkal pada masalah kompleks, naikkan effort ke `high` atau `xhigh` alih-alih mengatasinya melalui prompting. Jika Anda perlu mempertahankan effort pada `low` demi latensi, tambahkan panduan yang terarah:
 
@@ -51,7 +51,7 @@ This task involves multistep reasoning. Think carefully through the problem befo
 
 Effort kemungkinan lebih penting untuk model ini dibandingkan Opus sebelumnya, jadi bereksperimenlah dengannya secara aktif saat Anda melakukan upgrade.
 
-Pada Claude Opus 4.8, thinking dinonaktifkan kecuali Anda secara eksplisit mengatur `thinking: {type: "adaptive"}`. Perilaku pemicuan untuk [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) dapat diarahkan. Jika Anda mendapati model berpikir lebih sering dari yang Anda inginkan, yang dapat terjadi dengan "system prompt" (prompt sistem) yang besar atau kompleks, tambahkan panduan untuk mengarahkannya. Seperti biasa, ukur efek dari setiap perubahan prompting terhadap kinerja. Contoh:
+Pada Claude Opus 4.8, pemikiran dinonaktifkan kecuali Anda secara eksplisit menetapkan `thinking: {type: "adaptive"}`. Perilaku pemicuan untuk [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) dapat diarahkan. Jika Anda mendapati model berpikir lebih sering daripada yang Anda inginkan, yang dapat terjadi dengan "system prompt" (prompt sistem) yang besar atau kompleks, tambahkan panduan untuk mengarahkannya. Seperti biasa, ukur efek dari setiap perubahan prompting terhadap kinerja. Contoh:
 
 ```text wrap
 Thinking adds latency and should only be used when it will meaningfully improve answer quality — typically for problems that require multistep reasoning. When in doubt, respond directly.
@@ -77,7 +77,7 @@ Claude Opus 4.8 menafsirkan prompt secara literal dan eksplisit, terutama pada t
 
 ## Nada dan gaya penulisan
 
-Seperti halnya model baru lainnya, gaya prosa pada tulisan panjang mungkin bergeser. Claude Opus 4.8 cenderung ke gaya yang langsung dan beropini dengan frasa yang mengedepankan validasi seminimal mungkin dan penggunaan emoji yang hemat. Jika produk Anda bergantung pada suara tertentu, evaluasi ulang prompt gaya terhadap baseline baru.
+Seperti halnya model baru mana pun, gaya prosa pada tulisan panjang mungkin bergeser. Claude Opus 4.8 cenderung memiliki gaya yang langsung dan beropini dengan sedikit frasa yang mengedepankan validasi dan penggunaan emoji yang hemat. Jika produk Anda bergantung pada suara tertentu, evaluasi ulang prompt gaya terhadap baseline yang baru.
 
 Misalnya, jika suara produk Anda lebih hangat atau lebih bersifat percakapan, tambahkan:
 
@@ -97,7 +97,7 @@ Spawn multiple subagents in the same turn when fanning out across items or readi
 
 ## Default desain dan frontend
 
-Claude Opus 4.8 memiliki naluri desain yang kuat, dengan gaya khas default yang konsisten: latar belakang krem hangat/putih gading (\~`#F4F1EA`), tipe display serif (Georgia, Fraunces, Playfair), aksen kata miring, dan aksen terakota/amber. Ini cocok untuk brief editorial, perhotelan, dan portofolio, tetapi akan terasa tidak pas untuk dashboard, alat pengembang, fintech, layanan kesehatan, atau aplikasi enterprise. Default ini muncul dalam slide deck dan UI web.
+Claude Opus 4.8 memiliki insting desain yang kuat, dengan gaya bawaan default yang konsisten: latar belakang krem hangat/putih pudar (\~`#F4F1EA`), tipe tampilan serif (Georgia, Fraunces, Playfair), aksen kata miring, dan aksen terakota/amber. Ini cocok untuk brief editorial, perhotelan, dan portofolio, tetapi kurang cocok untuk dasbor, alat pengembang, fintech, layanan kesehatan, atau aplikasi enterprise. Default ini muncul di slide deck dan UI web.
 
 Default ini persisten. Instruksi generik ("jangan gunakan krem," "buat bersih dan minimal") cenderung menggeser model ke palet tetap yang berbeda alih-alih menghasilkan variasi. Dua pendekatan bekerja dengan andal:
 
@@ -132,7 +132,7 @@ Color palette should stay within this range:
 Before building, propose 4 distinct visual directions tailored to this brief (each as: bg hex / accent hex / typeface — one-line rationale). Ask the user to pick one, then implement only that direction.
 ```
 
-Selain itu, Claude Opus 4.8 memerlukan lebih sedikit prompting desain frontend dibandingkan model sebelumnya untuk menghindari pola generik yang disebut pengguna sebagai estetika "AI slop". Dengan model sebelumnya, Anthropic merekomendasikan cuplikan prompt yang lebih panjang dalam [skill frontend-design](https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md). Namun, Claude Opus 4.8 menghasilkan frontend yang khas dan kreatif dengan panduan prompting yang lebih minimal. Cuplikan prompt ini bekerja dengan baik bersama saran prompting sebelumnya untuk variasi:
+Selain itu, Claude Opus 4.8 memerlukan lebih sedikit prompting desain frontend dibandingkan model sebelumnya untuk menghindari pola generik yang oleh pengguna disebut estetika "AI slop". Dengan model sebelumnya, Anthropic merekomendasikan cuplikan prompt yang lebih panjang dalam [skill frontend-design](https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md). Namun, Claude Opus 4.8 menghasilkan front end yang khas dan kreatif dengan panduan prompting yang lebih minimal. Cuplikan prompt ini bekerja dengan baik bersama saran prompting sebelumnya untuk variasi:
 
 ```text wrap
 <frontend_aesthetics>
@@ -142,13 +142,13 @@ NEVER use generic AI-generated aesthetics like overused font families (Inter, Ro
 
 ## Produk coding interaktif
 
-Penggunaan token dan perilaku Claude Opus 4.8 dapat berbeda antara agen coding otonom dan asinkron dengan satu giliran pengguna dan agen coding interaktif dan sinkron dengan beberapa giliran pengguna. Secara khusus, model ini cenderung menggunakan lebih banyak token dalam pengaturan interaktif, terutama karena model lebih banyak bernalar setelah giliran pengguna. Ini dapat meningkatkan koherensi jangka panjang, kepatuhan instruksi, dan kemampuan coding dalam sesi coding interaktif yang panjang, tetapi juga disertai penggunaan token yang lebih banyak. Untuk memaksimalkan kinerja dan efisiensi token dalam produk coding, gunakan effort `xhigh` atau `high`, tambahkan fitur otonom seperti mode otomatis, dan kurangi jumlah interaksi manusia yang diperlukan dari pengguna Anda.
+Penggunaan token dan perilaku Claude Opus 4.8 dapat berbeda antara agen coding otonom dan asinkron dengan satu giliran pengguna dan agen coding interaktif dan sinkron dengan beberapa giliran pengguna. Secara khusus, model ini cenderung menggunakan lebih banyak token dalam pengaturan interaktif, terutama karena model lebih banyak bernalar setelah giliran pengguna. Ini dapat meningkatkan koherensi jangka panjang, kepatuhan instruksi, dan kemampuan coding dalam sesi coding interaktif yang panjang, tetapi juga disertai dengan penggunaan token yang lebih banyak. Untuk memaksimalkan kinerja dan efisiensi token dalam produk coding, gunakan effort `xhigh` atau `high`, tambahkan fitur otonom seperti mode otomatis, dan kurangi jumlah interaksi manusia yang diperlukan dari pengguna Anda.
 
 Tentu saja, saat membatasi jumlah interaksi pengguna yang diperlukan, penting untuk menentukan tugas, maksud, dan batasan yang relevan di awal pada giliran manusia pertama. Memberikan deskripsi tugas yang terspesifikasi dengan baik, jelas, dan akurat di awal dapat membantu memaksimalkan otonomi dan kecerdasan sambil meminimalkan penggunaan token tambahan setelah giliran pengguna. Karena Claude Opus 4.8 lebih otonom daripada model sebelumnya, pola penggunaan ini membantu memaksimalkan kinerja. Sebaliknya, prompt yang ambigu atau kurang terspesifikasi yang disampaikan secara bertahap melalui beberapa giliran pengguna cenderung relatif mengurangi efisiensi token dan terkadang kinerja.
 
 ## Harness tinjauan kode
 
-Claude Opus 4.8 secara bermakna lebih baik dalam menemukan bug dibandingkan model sebelumnya, dan memiliki recall serta presisi yang lebih tinggi dalam evaluasi internal. Namun, jika harness tinjauan kode Anda disesuaikan untuk model sebelumnya, Anda mungkin awalnya melihat recall yang lebih rendah. Ini kemungkinan merupakan efek harness, bukan regresi kemampuan. Ketika prompt tinjauan mengatakan hal-hal seperti "hanya laporkan masalah dengan tingkat keparahan tinggi," "bersikaplah konservatif," atau "jangan nitpick," Claude Opus 4.8 mungkin mengikuti instruksi tersebut dengan lebih setia daripada model sebelumnya: model mungkin menyelidiki kode sama telitinya, mengidentifikasi bug, lalu tidak melaporkan temuan yang dinilainya berada di bawah standar yang Anda nyatakan. Ini dapat muncul sebagai model yang melakukan penyelidikan dengan kedalaman yang sama tetapi mengonversi lebih sedikit penyelidikan menjadi temuan yang dilaporkan, terutama pada bug dengan tingkat keparahan lebih rendah. Presisi biasanya naik, tetapi recall yang terukur dapat turun meskipun kemampuan dasar model dalam menemukan bug telah meningkat.
+Claude Opus 4.8 secara bermakna lebih baik dalam menemukan bug daripada model sebelumnya, dan memiliki recall serta presisi yang lebih tinggi dalam evaluasi internal. Namun, jika harness tinjauan kode Anda disetel untuk model sebelumnya, Anda mungkin awalnya melihat recall yang lebih rendah. Ini kemungkinan merupakan efek harness, bukan regresi kapabilitas. Ketika prompt tinjauan mengatakan hal-hal seperti "hanya laporkan masalah dengan tingkat keparahan tinggi," "bersikaplah konservatif," atau "jangan terlalu rewel," Claude Opus 4.8 mungkin mengikuti instruksi tersebut dengan lebih setia daripada model sebelumnya: model mungkin menyelidiki kode sama menyeluruhnya, mengidentifikasi bug, lalu tidak melaporkan temuan yang menurutnya berada di bawah standar yang Anda nyatakan. Ini dapat terlihat sebagai model melakukan investigasi dengan kedalaman yang sama tetapi mengubah lebih sedikit investigasi menjadi temuan yang dilaporkan, terutama pada bug dengan tingkat keparahan lebih rendah. Presisi biasanya meningkat, tetapi recall yang terukur dapat turun meskipun kemampuan dasar model dalam menemukan bug telah meningkat.
 
 Beberapa bahasa prompt yang direkomendasikan:
 
@@ -158,7 +158,7 @@ Report every issue you find, including ones you are uncertain about or consider 
 
 Prompt ini dapat digunakan tanpa memiliki langkah kedua yang sebenarnya, tetapi memindahkan penyaringan kepercayaan keluar dari langkah penemuan sering kali membantu. Jika harness Anda memiliki tahap verifikasi, deduplikasi, atau pemeringkatan terpisah, beri tahu model secara eksplisit bahwa tugasnya pada tahap penemuan adalah cakupan, bukan penyaringan.
 
-Jika Anda memang ingin model melakukan penyaringan sendiri dalam satu kali proses, jelaskan secara konkret di mana standarnya alih-alih menggunakan istilah kualitatif seperti "penting": misalnya, "laporkan bug apa pun yang dapat menyebabkan perilaku yang salah, kegagalan pengujian, atau hasil yang menyesatkan; hanya abaikan nit seperti preferensi gaya atau penamaan murni."
+Jika Anda memang ingin model menyaring sendiri dalam satu kali proses, tentukan secara konkret ambang pelaporannya alih-alih menggunakan istilah kualitatif seperti "penting": misalnya, "laporkan setiap bug yang dapat menyebabkan perilaku yang salah, kegagalan pengujian, atau hasil yang menyesatkan; hanya abaikan hal-hal kecil seperti preferensi gaya atau penamaan semata."
 
 Lakukan iterasi pada prompt terhadap subset evaluasi atau kasus uji Anda untuk memvalidasi peningkatan recall atau skor F1.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/sessions-connect
-fetched_at: 2026-10-10T02:28:27.766834Z
-sha256: 1d30e524b53c96795c1e034dba5c08c8ac97636e66f6f8006fe45007b0db6a08
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 8ae6e1f754e9500112e2bad6e522e2734cbdcffd846604b7a3d942a6f6dd585c
 ---
 
 ---
@@ -39,7 +39,7 @@ Tampilan terminal menampilkan percakapan secara langsung: pesan dan panggilan al
 | Page Up, Page Down | Gulir transkrip. Menggulir ke atas menjeda pengikutan; End melanjutkannya.                                                                         |
 | Ctrl+C             | Putuskan koneksi. Ctrl+D pada baris input kosong juga memutuskan koneksi.                                                                          |
 
-Saat panggilan alat menunggu persetujuan Anda, baris input berubah menjadi **Allow tool call?** Hal ini terjadi di bawah kebijakan `always_ask`, atau di bawah `auto` ketika server tidak mencapai keputusan. Pilih **Yes**, **No**, atau **No, and tell the agent why**. CLI mengirimkan pilihan Anda sebagai event [`user.tool_confirmation`](https://platform.claude.com/docs/id/managed-agents/permission-policies#respond-to-confirmation-requests), dengan alasan apa pun yang Anda ketik sebagai `deny_message`-nya.
+Ketika pemanggilan alat sedang menunggu persetujuan Anda, baris input berubah menjadi **Allow tool call?** Hal ini terjadi di bawah kebijakan `always_ask`, atau di bawah `auto` ketika server tidak mencapai keputusan. Pilih **Yes**, **No**, atau **No, and tell the agent why**. CLI mengirimkan pilihan Anda sebagai event [`user.tool_confirmation`](https://platform.claude.com/docs/id/managed-agents/permission-policies#respond-to-confirmation-requests), dengan alasan apa pun yang Anda ketik sebagai `deny_message`-nya.
 
 Jika sesi berstatus `terminated` atau telah dihapus, tampilan bersifat hanya-baca.
 
@@ -51,4 +51,4 @@ ant beta:sessions connect sesn_011CZkZAtmR3yMPDzynEDxu7 --web
 
 `--web` menyajikan penampil sesi Console dari server lokal di `127.0.0.1`, mencetak URL-nya, dan membukanya di browser Anda. Tambahkan `--no-browser` untuk melewati pembukaan browser. Anda juga dapat mengirim pesan, menginterupsi agen, dan mengizinkan atau menolak panggilan alat dari browser. Tidak seperti tampilan terminal, penampil browser mengikuti setiap thread dari sesi multiagen.
 
-URL tersebut hanya dapat dibuka satu kali, dalam waktu dua menit setelah dicetak. Memuat ulang tab tersebut tetap berfungsi, tetapi untuk membuka penampil di tempat lain, jalankan perintah lagi. Kredensial Anda tidak pernah meninggalkan CLI: halaman hanya mengirim permintaan ke proses `ant` lokal, yang kemudian membuat permintaan API. Server berjalan hingga Anda menekan Ctrl+C.
+URL hanya dapat dibuka sekali, dalam waktu 2 menit setelah dicetak. Memuat ulang tab tersebut tetap berfungsi, tetapi untuk membuka penampil di tempat lain, jalankan perintah lagi. Kredensial Anda tidak pernah meninggalkan CLI: halaman hanya mengirim permintaan ke proses `ant` lokal, yang melakukan permintaan API. Server berjalan sampai Anda menekan Ctrl+C.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: e2126592628ebe7a2b40f4ec13f36026ccd103f92d5814340e102051545b71ec
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 691fc9161b3a587dc89615dc2e5025096d150716694deeda9ca9117f08a67390
 ---
 
 ---
@@ -47,7 +47,7 @@ message.content.each do |block|
 end
 ```
 
-Untuk opsi autentikasi termasuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci personal atau kunci akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) dengan akses ke beberapa workspace, tetapkan ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
+Untuk opsi autentikasi termasuk "Workload Identity Federation" (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
 
 ## Streaming
 
@@ -347,6 +347,10 @@ Setiap instance `Anthropic::Client` memiliki connection pool HTTP sendiri dengan
 Ketika semua koneksi yang tersedia dari pool sedang digunakan, permintaan akan menunggu koneksi baru tersedia, dengan waktu antrean dihitung terhadap timeout permintaan.
 
 Kecuali dinyatakan lain, kelas-kelas lain dalam SDK tidak memiliki lock yang melindungi struktur data dasarnya.
+
+## Tracing OpenTelemetry
+
+Saat aplikasi Anda mendaftarkan tracer provider OpenTelemetry, SDK memancarkan span untuk setiap permintaan yang dikirimnya. Untuk mengirim span ke platform observabilitas Anda, lihat [Menyiapkan OpenTelemetry dengan Claude SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
 
 ## Membuat permintaan kustom atau yang tidak terdokumentasi
 

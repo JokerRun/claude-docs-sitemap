@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 491fa84b9f302e5982a1a69d5cfd167351dbf907e496614006f1e49990e1fdd7
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 8f075340562094899e5acbf1b5e4be3a1ffc25fcba91cade8d39424a82410520
 ---
 
 ---
@@ -226,7 +226,7 @@ Contoh-contoh berikut menggunakan `web_search_20260318`:
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     messages: [
       { role: "user", content: "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio." }
@@ -243,10 +243,10 @@ Contoh-contoh berikut menggunakan `web_search_20260318`:
 ## Cara menggunakan pencarian web
 
 <Note>
-  Pencarian web diaktifkan untuk organisasi Anda kecuali administrator telah menonaktifkannya di [Claude Console](https://platform.claude.com/settings/capabilities), tempat administrator juga dapat membatasi domain mana yang dicari. Jika dinonaktifkan, permintaan yang menyertakan alat ini akan gagal dengan `invalid_request_error` 400 yang menyatakan bahwa pencarian web tidak diaktifkan, alih-alih [kode error](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#errors) di dalam hasil pencarian.
+  Pencarian web diaktifkan untuk organisasi Anda kecuali administrator telah menonaktifkannya di [Claude Console](https://platform.claude.com/settings/capabilities), tempat mereka juga dapat membatasi domain mana yang dicari. Jika dinonaktifkan, permintaan Messages API yang menyertakan alat ini gagal dengan `invalid_request_error` 400 yang menyatakan bahwa pencarian web tidak diaktifkan, alih-alih [kode error](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#errors) di dalam hasil pencarian.
 </Note>
 
-Pengaturan tingkat organisasi di Claude Console ini hanya berlaku untuk permintaan Messages API. Sesi [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) menggunakan daftar `allowed_domains` dan `blocked_domains` per alat pada toolset agen sebagai gantinya; lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions). Untuk sesi di environment cloud dengan jaringan `limited`, `allowed_hosts` milik environment tersebut juga berlaku untuk `web_search` dan `web_fetch`; lihat [Jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking). Daftar per alat membatasi alat-alat ini lebih lanjut, di dalam host yang diizinkan oleh `allowed_hosts`.
+Untuk mengetahui bagaimana pengaturan pencarian web organisasi Anda berlaku dalam sesi Claude Managed Agents, lihat [Membatasi domain pencarian web dan pengambilan web](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions).
 
 Sediakan alat pencarian web dalam permintaan API Anda:
 
@@ -398,7 +398,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       { role: "user", content: "What's the weather in NYC?" }
@@ -422,7 +422,7 @@ Alat pencarian web mendukung parameter berikut:
   "type": "web_search_20250305",
   "name": "web_search",
 
-  // Optional: Limit the number of searches per request
+  // Optional: Limit the number of searches for each request
   "max_uses": 5,
 
   // Optional: Only include results from these domains.
@@ -443,7 +443,7 @@ Alat pencarian web mendukung parameter berikut:
 }
 ```
 
-Semua versi alat pencarian web menerima `allowed_callers`, yang mengontrol apakah Claude memanggil pencarian web secara langsung atau dari eksekusi kode melalui [pemfilteran dinamis](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#dynamic-filtering). Pada `web_search_20260209` dan yang lebih baru, nilai defaultnya adalah `["code_execution_20260120"]`, bukan `["direct"]`. Lihat [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#zdr-and-allowed-callers) untuk cara mengonfigurasinya. `web_search_20260318` dan yang lebih baru juga menerima [`response_inclusion`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#response-inclusion).
+Semua versi alat pencarian web menerima `allowed_callers`, yang mengontrol apakah Claude memanggil pencarian web secara langsung atau dari eksekusi kode melalui [pemfilteran dinamis](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#dynamic-filtering). Pada `web_search_20260209` dan yang lebih baru, nilai default-nya adalah `["code_execution_20260120"]` alih-alih `["direct"]`. Lihat [ZDR dan allowed\_callers](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#zdr-and-allowed-callers) untuk cara mengonfigurasinya. `web_search_20260318` dan yang lebih baru juga menerima [`response_inclusion`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#response-inclusion).
 
 ### Penggunaan maksimum
 
@@ -466,10 +466,10 @@ Parameter `user_location` memungkinkan Anda melokalisasi hasil pencarian berdasa
 * `type`: Jenis lokasi (harus `approximate`)
 * `city`: Nama kota
 * `region`: Wilayah atau negara bagian
-* `country`: Kode negara dua huruf [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). API menolak kode negara yang tidak didukung dengan error 400.
-* `timezone`: [ID zona waktu IANA](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+* `country`: Kode negara dua huruf [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) (API menolak kode yang tidak didukung dengan error 400)
+* `timezone`: [ID zona waktu IANA](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 
-Di Claude Managed Agents, entri `web_search` pada toolset agen menerima objek `user_location` dengan field yang sama. API menolak kode `country` yang tidak didukung dengan error 400 saat Anda membuat atau memperbarui agen, atau saat Anda membuat atau memperbarui sesi yang menyertakan pengaturan tersebut. Lihat [pengaturan alat web](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#settings).
+Di Claude Managed Agents, entri `web_search` dari toolset agen juga menerima `user_location`; lihat [pengaturan alat web](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#settings).
 
 ### Penyertaan respons
 
@@ -558,7 +558,7 @@ Berikut contoh struktur respons:
 }
 ```
 
-Contoh ini menunjukkan pencarian langsung. Ketika pencarian berjalan melalui [pemfilteran dinamis](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#dynamic-filtering), respons juga berisi blok hasil [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), dan setiap pasangan `server_tool_use` dan `web_search_tool_result` bersarang membawa field `caller` yang mengidentifikasi panggilan eksekusi kode yang membuatnya.
+Contoh ini menunjukkan pencarian langsung. Ketika pencarian berjalan melalui [pemfilteran dinamis](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#dynamic-filtering), respons juga berisi blok hasil dari [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), dan setiap pasangan `server_tool_use` dan `web_search_tool_result` bersarang membawa bidang `caller` yang mengidentifikasi panggilan eksekusi kode yang membuatnya.
 
 ### Hasil pencarian
 
@@ -626,7 +626,7 @@ Untuk meng-cache definisi alat lintas giliran, lihat [Penggunaan alat dengan cac
 
 ## Streaming
 
-Dengan streaming diaktifkan, Anda akan menerima event pencarian sebagai bagian dari stream. Akan ada jeda saat pencarian berjalan:
+Dengan streaming diaktifkan, Anda akan menerima peristiwa pencarian sebagai bagian dari stream. Akan ada jeda saat pencarian berjalan:
 
 ```sse Output
 event: message_start
@@ -644,7 +644,7 @@ data: {"type": "content_block_start", "index": 1, "content_block": {"type": "ser
 event: content_block_delta
 data: {"type": "content_block_delta", "index": 1, "delta": {"type": "input_json_delta", "partial_json": "{\"query\":\"latest quantum computing breakthroughs 2025\"}"}}
 
-// Pause while search executes
+// Pause while search runs
 
 // Search results streamed
 event: content_block_start
@@ -657,7 +657,7 @@ data: {"type": "content_block_start", "index": 2, "content_block": {"type": "web
 
 Anda dapat menyertakan alat pencarian web dalam [Messages Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing). Panggilan alat pencarian web melalui Messages Batches API dikenai harga yang sama dengan panggilan dalam permintaan Messages API biasa.
 
-Untuk melindungi kapasitas bersama, Batches API membatasi permintaan pencarian web per organisasi, sehingga batch besar dengan banyak pencarian mungkin membutuhkan waktu lebih lama untuk selesai. Anda dapat melihat batas laju pencarian web organisasi Anda di halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console. Untuk meminta batas yang lebih tinggi, hubungi tim penjualan dari halaman tersebut.
+Untuk melindungi kapasitas bersama, Batches API membatasi permintaan pencarian web untuk setiap organisasi, sehingga batch besar dengan banyak pencarian mungkin memerlukan waktu lebih lama untuk selesai. Anda dapat melihat batas laju pencarian web organisasi Anda di halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console. Untuk meminta batas yang lebih tinggi, hubungi tim penjualan dari halaman tersebut.
 
 ## Penggunaan dan harga
 
@@ -677,7 +677,7 @@ Penggunaan web search (pencarian web) dikenakan biaya di luar penggunaan token:
 }
 ```
 
-Pencarian web tersedia di Claude API dengan harga **$10 per 1.000 pencarian**, ditambah biaya token standar untuk konten yang dihasilkan dari pencarian. Hasil pencarian web yang diambil sepanjang percakapan dihitung sebagai input token, baik dalam iterasi pencarian yang dijalankan selama satu giliran maupun dalam giliran percakapan berikutnya.
+Web search tersedia di Claude API seharga **$10 USD per 1.000 pencarian**, ditambah biaya token standar untuk konten yang dihasilkan pencarian. Hasil web search yang diambil sepanjang percakapan dihitung sebagai token input, baik dalam iterasi pencarian yang dijalankan selama satu giliran maupun dalam giliran percakapan berikutnya.
 
 Setiap pencarian web dihitung sebagai satu penggunaan, terlepas dari jumlah hasil yang dikembalikan. Jika terjadi kesalahan selama pencarian web, pencarian web tersebut tidak akan ditagih.
 
@@ -689,7 +689,7 @@ Setiap pencarian web dihitung sebagai satu penggunaan, terlepas dari jumlah hasi
   </Card>
 
   <Card title="Alat server" icon="tool" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools">
-    Bekerja dengan alat yang dieksekusi Anthropic: blok server\_tool\_use, kelanjutan pause\_turn, dan pemfilteran domain.
+    Bekerja dengan alat yang dijalankan Anthropic: blok `server_tool_use`, kelanjutan `pause_turn`, dan pemfilteran domain.
   </Card>
 
   <Card title="Referensi alat" icon="book" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/tools
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: d3a94792b766fb99c5811f4c56c50313bebdc790ef0f1310b0b94aa2179b7bec
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: b558dbcb86be898a9786dc77144002882c391bfd35764a1b371590ce864eb585
 ---
 
 ---
@@ -154,7 +154,6 @@ The following example enables the toolset and disables `web_fetch`:
   if err != nil {
   	panic(err)
   }
-  _ = agent
   ```
 
   ```java Java
@@ -413,7 +412,6 @@ The following example creates an agent with the built-in toolset and one custom 
   if err != nil {
   	panic(err)
   }
-  _ = agent
   ```
 
   ```java Java

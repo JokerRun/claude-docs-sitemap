@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/overview
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 0f0794701c536be036b0a932cdc73f38ab755964c1a8e71db45d14923bd75c92
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: e265839e7c6eec56223daceda99a1cfb6dc2b74d6fb735da1d10e3ca6bf04c92
 ---
 
 ---
@@ -14,7 +14,7 @@ description: "Alat resmi untuk membangun dengan Claude API: SDK klien dalam tuju
 Anthropic menyediakan tiga jenis alat resmi untuk membangun dengan Claude API:
 
 * **CLI:** Alat baris perintah `ant` untuk scripting shell dan penggunaan interaktif.
-* **SDK klien:** Klien Messages API serbaguna untuk Python, TypeScript, C#, Go, Java, PHP, dan Ruby. Setiap SDK menyediakan antarmuka yang idiomatis, keamanan tipe, serta dukungan bawaan untuk streaming, percobaan ulang, dan penanganan kesalahan.
+* **SDK klien:** Klien Messages API serbaguna untuk Python, TypeScript, C#, Go, Java, PHP, dan Ruby. Setiap SDK menyediakan antarmuka yang idiomatis, keamanan tipe, serta dukungan bawaan untuk streaming, percobaan ulang, penanganan kesalahan, dan [tracing OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
 * **Library dan integrasi:** Paket dan lapisan kompatibilitas yang mengekspos Claude di dalam permukaan API framework lain, alih-alih langsung melalui Messages API.
 
 <Info>
@@ -67,14 +67,14 @@ Setiap versi mayor SDK klien mengirimkan satu [versi API](https://platform.claud
 
 | Alat       | Versi terbaru | Paket                                                                                                 |
 | ---------- | ------------- | ----------------------------------------------------------------------------------------------------- |
-| ant CLI    | `2.1.0`       | [`github.com/anthropics/anthropic-cli`](https://github.com/anthropics/anthropic-cli/releases)         |
-| Python     | `2.1.0`       | [`anthropic`](https://pypi.org/project/anthropic/)                                                    |
-| TypeScript | `1.1.0`       | [`@anthropic-ai/sdk`](https://www.npmjs.com/package/@anthropic-ai/sdk)                                |
-| C#         | `13.1.0`      | [`Anthropic`](https://www.nuget.org/packages/Anthropic)                                               |
-| Go         | `2.1.0`       | [`github.com/anthropics/anthropic-sdk-go`](https://pkg.go.dev/github.com/anthropics/anthropic-sdk-go) |
-| Java       | `3.1.0`       | [`com.anthropic:anthropic-java`](https://central.sonatype.com/artifact/com.anthropic/anthropic-java)  |
-| PHP        | `1.1.0`       | [`anthropic-ai/sdk`](https://packagist.org/packages/anthropic-ai/sdk)                                 |
-| Ruby       | `2.1.0`       | [`anthropic`](https://rubygems.org/gems/anthropic)                                                    |
+| ant CLI    | `2.3.0`       | [`github.com/anthropics/anthropic-cli`](https://github.com/anthropics/anthropic-cli/releases)         |
+| Python     | `2.3.0`       | [`anthropic`](https://pypi.org/project/anthropic/)                                                    |
+| TypeScript | `1.3.0`       | [`@anthropic-ai/sdk`](https://www.npmjs.com/package/@anthropic-ai/sdk)                                |
+| C#         | `13.3.0`      | [`Anthropic`](https://www.nuget.org/packages/Anthropic)                                               |
+| Go         | `2.3.0`       | [`github.com/anthropics/anthropic-sdk-go`](https://pkg.go.dev/github.com/anthropics/anthropic-sdk-go) |
+| Java       | `3.3.0`       | [`com.anthropic:anthropic-java`](https://central.sonatype.com/artifact/com.anthropic/anthropic-java)  |
+| PHP        | `1.3.0`       | [`anthropic-ai/sdk`](https://packagist.org/packages/anthropic-ai/sdk)                                 |
+| Ruby       | `2.3.0`       | [`anthropic`](https://rubygems.org/gems/anthropic)                                                    |
 
 Versi yang sama tersedia dalam format JSON di `https://platform.claude.com/docs/sdk-versions.json`.
 

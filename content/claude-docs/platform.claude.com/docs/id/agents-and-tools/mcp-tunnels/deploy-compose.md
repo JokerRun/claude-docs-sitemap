@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-compose
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 739ce8f96f5d916f8eb8227fd3b1e38a48fbfac0c30568b08fe252e1b833641d
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 7d960659238357e7d2440e0059d877fab682490e50eb9293f2bcfbd3248e9ff2
 ---
 
 ---
@@ -17,11 +17,11 @@ description: Instal stack MCP tunnel pada VM menggunakan Docker Compose.
 
 Panduan ini menerapkan [stack tunnel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) sebagai container yang diperkuat (hardened) pada satu host. Konfigurasi yang sama dapat direplikasi di beberapa host untuk ketersediaan.
 
-## Sebelum Anda memulai
+## Sebelum Anda mulai
 
 Anda memerlukan:
 
-* **Sebuah tunnel.** Dengan akses terprogram, [komponen setup](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) akan membuatkannya untuk Anda jika Anda tidak memberikan ID tunnel; untuk menghubungkan ke tunnel yang sudah ada, [buat tunnel di Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#create-a-tunnel) dan catat ID tunnel (`tnl_...`). Penyediaan manual selalu dimulai dari tunnel yang dibuat di Console.
+* **Sebuah tunnel.** Dengan akses terprogram, [komponen setup](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) membuatkan tunnel untuk Anda ketika Anda tidak menyediakan ID tunnel; untuk terhubung ke tunnel yang sudah ada, [buat tunnel tersebut di Claude Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#create-a-tunnel) dan catat ID tunnel (`tnl_...`). Penyediaan manual selalu dimulai dari tunnel yang dibuat di Console.
 
 * **Cara bagi host untuk mengautentikasi ke Tunnels API.**
 
@@ -251,7 +251,7 @@ Panduan ini menyediakan satu pendekatan referensi menggunakan Docker Compose. An
         cd mcp-tunnel
         ```
 
-        Proxy mendengarkan di `:8080` melalui WebSocket biasa; handshake [TLS dalam](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) terjadi **di dalam** stream WebSocket tersebut menggunakan sertifikat ini. Anthropic memverifikasi handshake dalam terhadap CA yang Anda daftarkan di Console. Subject Alternative Name (SAN) sertifikat server harus menyertakan `*.<tunnel-domain>` sesuai [persyaratan sertifikat](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#certificate-requirements).
+        Proxy mendengarkan di `:8080` melalui WebSocket biasa; handshake [TLS dalam](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) terjadi **di dalam** stream WebSocket tersebut menggunakan sertifikat ini. Anthropic memverifikasi handshake dalam terhadap CA yang Anda daftarkan di Console. Subject Alternative Name (SAN) sertifikat server harus mencakup `*.<tunnel-domain>` seperti yang dijelaskan dalam [persyaratan sertifikat](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#certificate-requirements).
 
         ```bash
         # CA yang ditandatangani sendiri. Ekstensi eksplisit agar memenuhi persyaratan
@@ -289,7 +289,7 @@ Panduan ini menyediakan satu pendekatan referensi menggunakan Docker Compose. An
       </Step>
 
       <Step title="Daftarkan sertifikat CA di Console">
-        Di halaman detail tunnel, gulir ke bagian **Certificates** dan klik **Add certificate**. Unggah `data/ca.crt` langsung dengan **Choose file** (modal menerima `.pem`, `.crt`, dan `.cer`), atau tempel isinya:
+        Di halaman detail tunnel, gulir ke bagian **Certificates** dan klik **Add certificate**. Unggah `data/ca.crt` secara langsung dengan **Choose file** (jendela modal menerima `.pem`, `.crt`, dan `.cer`), atau tempelkan isinya:
 
         ```bash
         cat data/ca.crt
@@ -390,7 +390,7 @@ Panduan ini menyediakan satu pendekatan referensi menggunakan Docker Compose. An
   </Tab>
 </Tabs>
 
-File compose membaca `TUNNEL_TOKEN` dari environment host tanpa nilai default, sehingga ekspor harus diulang di setiap shell baru dan setelah reboot.
+File compose membaca `TUNNEL_TOKEN` dari lingkungan host tanpa nilai default, jadi Anda harus mengulangi export di setiap shell baru dan setelah reboot.
 
 Untuk deployment multi-VM, salin direktori `mcp-tunnel/` ke setiap host, atur `TUNNEL_TOKEN`, dan jalankan `docker compose up -d`. Dalam alur terprogram, `TUNNEL_TOKEN` adalah `$(sudo cat data/tunnel-token)`; dalam alur manual, nilainya adalah yang Anda salin dari Console. Token tunnel dan sertifikat yang sama berfungsi di semua replika.
 

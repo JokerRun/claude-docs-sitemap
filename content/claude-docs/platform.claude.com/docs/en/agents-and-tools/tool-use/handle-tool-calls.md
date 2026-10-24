@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 380b8caf2330b3241cb86eac1a3ff1841a7bb1302146ffa3d4bd17c1c0d9659b
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: b739788e7022c083ea121ffad9ccf7011ef10522f736811cf104a1d91ffe0ff7
 ---
 
 ---
@@ -30,7 +30,7 @@ The response has a `stop_reason` of `tool_use` and one or more `tool_use` conten
 A `tool_use` block for a member of the [computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) or [browser use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool) toolset also carries a `toolset_name` field (`"computer"` or `"browser"`). Its `name` is the member tool Claude is calling, such as `screenshot` or `navigate`, so dispatch those blocks on both fields.
 
 <Accordion title="Example API response with a `tool_use` content block">
-  ```text JSON wrap
+  ```json JSON
   {
     "id": "msg_01Aq9w938a90dw8q",
     "model": "claude-opus-5-5",

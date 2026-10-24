@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 41223e95f5dac130e629f0391283feabb1229cb4ba943680bcd6c251e43940d2
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 17ec0a50255d9eaa539acc596ce246acbb72416d8d16b2ffebb8b40e7d1865c4
 ---
 
 ---
@@ -1341,7 +1341,7 @@ Keep all thinking blocks (maximizes cache hits):
 You can use both thinking block clearing and tool result clearing together:
 
 <Note>
-  When using multiple strategies, the `clear_thinking_20251015` strategy must be listed first in the `edits` array.
+  When using multiple strategies, you must list the `clear_thinking_20251015` strategy first in the `edits` array.
 </Note>
 
 <CodeGroup>
@@ -1742,7 +1742,7 @@ You can use both thinking block clearing and tool result clearing together:
 
 You can see which context edits were applied to your request using the `context_management` response field, along with helpful statistics about the content and input tokens cleared.
 
-```text Output wrap
+```json Output
 {
   "id": "msg_013Zva2CMHLNnXjNJJKqJ2EF",
   "type": "message",
@@ -1774,7 +1774,7 @@ You can see which context edits were applied to your request using the `context_
 
 For streaming responses, the context edits are included in the final `message_delta` event:
 
-```text Streaming Response wrap
+```json Streaming Response
 {
   "type": "message_delta",
   "delta": {
@@ -2076,7 +2076,7 @@ The [token counting](https://platform.claude.com/docs/en/build-with-claude/token
   ```
 </CodeGroup>
 
-```text Output wrap
+```json Output
 {
   "input_tokens": 25000,
   "context_management": {
@@ -2805,7 +2805,7 @@ When using server-side tools, the SDK might incorrectly calculate token usage, c
 
 For example, after a web search operation, the API response might show:
 
-```text Output wrap
+```json Output
 {
   "usage": {
     "input_tokens": 63000,

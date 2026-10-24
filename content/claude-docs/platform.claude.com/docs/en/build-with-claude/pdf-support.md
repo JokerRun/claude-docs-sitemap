@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 655afb4c4b4c7db3ec25c9c3ad4669175065e37c681ba812ba3a58c3571c2967
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 312c870b2623533077ab17d816962af9537ac3838bbab7b3116884e25e861f92
 ---
 
 ---
@@ -92,7 +92,7 @@ If Claude isn't seeing images or charts in your PDFs when using the Converse API
 </Note>
 
 <Note>
-  Plain text files such as .txt, .csv, or .md can be used directly in document blocks: upload them to the Files API with MIME type `text/plain` and reference them by `file_id`. Binary formats such as .xlsx or .docx are not supported in document blocks and must be converted to text or PDF first. See [Working with other file formats](https://platform.claude.com/docs/en/build-with-claude/files#working-with-other-file-formats).
+  Plain text files such as .txt, .csv, or .md can be used directly in document blocks: upload them to the Files API with MIME type `text/plain` and reference them by `file_id`. Binary formats such as .xlsx or .docx are not supported in document blocks, so convert them to text or PDF first. See [Working with other file formats](https://platform.claude.com/docs/en/build-with-claude/files#working-with-other-file-formats).
 </Note>
 
 ## Process PDFs with Claude
@@ -356,7 +356,7 @@ The simplest approach is to reference a PDF directly from a URL:
 
 The response returns Claude's analysis as text blocks in `content`, with token consumption in `usage`:
 
-```text Output
+```json Output
 {
   "id": "msg_01Hfp8YuFjQ55VgWbpdHDehB",
   "type": "message",

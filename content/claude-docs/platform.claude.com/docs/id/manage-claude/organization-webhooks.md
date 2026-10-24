@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/organization-webhooks
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 1ac37c3ededdfdfca3e3e671cf7e08988721ef8437314235bbb2b987632eee2a
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: a8597e7a0e362faa33d040208de3628663d86aaa6adc8a4bbdb69b9e531a5512
 ---
 
 ---
@@ -38,7 +38,7 @@ Anda memerlukan hal-hal berikut:
 
 ## Jenis event
 
-Endpoint webhook organisasi menerima dua jenis event. Keduanya berkaitan dengan ["enforcement action" (tindakan penegakan)](https://platform.claude.com/docs/id/manage-claude/user-profiles#check-whether-anthropic-has-restricted-or-banned-a-profile) pada profil pengguna.
+Endpoint webhook organisasi menerima dua jenis event. Keduanya berkaitan dengan [tindakan penegakan](https://platform.claude.com/docs/id/manage-claude/user-profiles#check-whether-anthropic-has-restricted-or-banned-a-profile) pada profil pengguna.
 
 | Event                                      | Pemicu                                                                                                 |
 | ------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
@@ -51,7 +51,7 @@ Menghapus sebuah profil akan mengakhiri tindakan-tindakan terbukanya tanpa event
 
 Dalam setiap permintaan yang header `anthropic-beta`-nya berisi `user-profiles-2026-09-04` atau nilai yang lebih lama, respons tidak menyertakan field `enforcement_status` dan `enforcement_actions`, dan filter daftar `enforcement_status[]` mengembalikan `400`. Untuk mendapatkan field tersebut, hapus nilai itu dari permintaan Anda.
 
-Jika sebuah tindakan penegakan dibuka sebelum Anthropic mengaktifkan pengiriman event untuk organisasi Anda, atau sebelum Anda mendaftarkan endpoint Anda, Anda tidak mendapatkan event `user_profile.enforcement_action_opened` untuknya. Tindakan tersebut tetap muncul pada profil. Untuk menemukan tindakan-tindakan ini, [tampilkan daftar profil Anda](https://platform.claude.com/docs/id/api/user_profiles/list) dengan `enforcement_status[]=restricted` dan `enforcement_status[]=banned`. Sebuah respons mungkin mengembalikan lebih sedikit profil daripada `limit`, atau tidak ada sama sekali, sebelum daftar berakhir, jadi teruslah meminta halaman sampai `next_page` bernilai `null`.
+Jika sebuah tindakan penegakan dibuka sebelum Anthropic mengaktifkan pengiriman event untuk organisasi Anda, atau sebelum Anda mendaftarkan endpoint Anda, Anda tidak mendapatkan event `user_profile.enforcement_action_opened` untuknya. Tindakan tersebut tetap muncul pada profil. Untuk menemukan tindakan-tindakan ini, [tampilkan daftar profil Anda](https://platform.claude.com/docs/id/api/user_profiles/list) dengan `enforcement_status[]=restricted` dan `enforcement_status[]=banned`. Sebuah respons mungkin mengembalikan lebih sedikit profil daripada `limit`, atau tidak ada sama sekali, sebelum daftar berakhir, jadi terus minta halaman berikutnya hingga `next_page` bernilai `null`.
 
 ### Isi sebuah event
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/thinking-steering-and-cost
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 4365a0ef40131cea8394567d10f804a84d26f1fcb1f513eda90ff3b005209b93
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: edfde87b4531aac70cc8f89ac93b52d3df1a0049d10be4df6e04be80d0c95990
 ---
 
 ---
@@ -896,7 +896,7 @@ What you're billed for is the same regardless of the `display` setting; only wha
 
 To see how many billed output tokens were spent on internal reasoning, read `usage.output_tokens_details.thinking_tokens` in the response. This value reflects the raw reasoning the model generated (not the summarized text returned in the body) and is always less than or equal to `output_tokens`. Subtract it from `output_tokens` to approximate the non-reasoning portion of the output. When streaming, this breakdown appears only on the final `message_delta` event.
 
-```text wrap
+```json
 {
   "usage": {
     "input_tokens": 25,

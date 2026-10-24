@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 2631204fb8f982cd731a10ef7d2308fa567d7f0d531739a6418cecb0ef635dc1
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 140815a2eb5defa3bc9f0d1e97754aff725984255d80b20c72284c2bf8b7fd45
 ---
 
 ---
@@ -100,7 +100,7 @@ Eksekusi `ant apply` pertama menulis `claude-lock.json`, yaitu "lockfile" (berka
 }
 ```
 
-Commit lockfile bersama berkas-berkas Anda. Dengan lockfile inilah eksekusi berikutnya, baik di mesin Anda maupun di CI, menemukan sumber daya tersebut alih-alih membuatnya lagi. Lockfile juga menjadi tempat Anda membaca ID agen untuk [memulai sesi](https://platform.claude.com/docs/id/managed-agents/sessions). Kedua hash di dalamnya merupakan sidik jari dari apa yang terakhir dikirim dan apa yang dikembalikan oleh API. Dari situlah eksekusi berikutnya dapat mendeteksi berkas yang telah diedit, atau sumber daya yang diubah di luar berkas-berkas ini.
+Commit file ini bersama file-file Anda. Inilah cara eksekusi berikutnya, di mesin Anda atau di CI, menemukan sumber daya ini alih-alih membuatnya lagi, dan di sinilah Anda membaca ID agen untuk [memulai sesi](https://platform.claude.com/docs/id/managed-agents/sessions). Kedua hash tersebut menjadi sidik jari dari apa yang terakhir dikirim dan apa yang dikembalikan API. Dengan cara itulah eksekusi selanjutnya mendeteksi file yang diedit, atau sumber daya yang diubah di luar file-file ini.
 
 ## Kembangkan menjadi sebuah proyek
 

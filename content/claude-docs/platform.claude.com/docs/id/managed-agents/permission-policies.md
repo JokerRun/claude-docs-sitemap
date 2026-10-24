@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: e7a1c1ecf7d95ffae42a09ed5027d6ad2e82f31021a9e05554e00f2d77112a44
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: cf1677532217de015b37f5b1688f5440544fe64f6c5074741f65c3b3ac058ad2
 ---
 
 ---
 title: Kebijakan izin
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-description: Kontrol kapan alat agen dan MCP dieksekusi.
+description: Kendalikan kapan alat agen dan MCP dijalankan.
 featureMetadata:
   topic:
     title: Managed Agents
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-"Permission policies" (kebijakan izin) mengontrol apakah alat yang dieksekusi server, yaitu "toolset" (kumpulan alat) agen bawaan dan toolset MCP, berjalan secara otomatis, menunggu persetujuan Anda, atau setiap panggilannya dievaluasi oleh server. "Custom tools" (alat kustom) dieksekusi dan dikendalikan oleh aplikasi Anda sendiri, sehingga tidak diatur oleh kebijakan izin.
+"Permission policies" (kebijakan izin) mengontrol apakah alat yang dieksekusi server (toolset agen bawaan dan toolset MCP) berjalan secara otomatis, menunggu persetujuan Anda, atau setiap panggilannya dievaluasi oleh server. Alat kustom dijalankan oleh aplikasi Anda dan dikendalikan oleh Anda, sehingga tidak diatur oleh kebijakan izin.
 
 ## Jenis kebijakan izin
 
@@ -138,12 +138,9 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
   	},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
   		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-  			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
   			DefaultConfig: anthropic.BetaManagedAgentsAgentToolsetDefaultConfigParams{
   				PermissionPolicy: anthropic.BetaManagedAgentsAgentToolsetDefaultConfigParamsPermissionPolicyUnion{
-  					OfAlwaysAsk: &anthropic.BetaManagedAgentsAlwaysAskPolicyParam{
-  						Type: anthropic.BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk,
-  					},
+  					OfAlwaysAsk: &anthropic.BetaManagedAgentsAlwaysAskPolicyParam{},
   				},
   			},
   		},
@@ -152,7 +149,6 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
   if err != nil {
   	panic(err)
   }
-  _ = agent
   ```
 
   ```java Java
@@ -213,7 +209,7 @@ Saat membuat agen, Anda dapat menerapkan kebijakan ke setiap alat dalam `agent_t
 
 ### Izin toolset MCP
 
-Toolset MCP secara default menggunakan `always_ask`. Ini memastikan bahwa alat baru yang ditambahkan ke server MCP tidak dieksekusi di aplikasi Anda tanpa persetujuan. Untuk menyetujui secara otomatis alat dari server MCP tepercaya, tetapkan `default_config.permission_policy` (java, php: `defaultConfig.permissionPolicy`; csharp, go: `DefaultConfig.PermissionPolicy`) pada entri `mcp_toolset`.
+Toolset MCP secara default menggunakan `always_ask`. Ini memastikan bahwa alat baru yang ditambahkan ke server MCP tidak berjalan di aplikasi Anda tanpa persetujuan. Untuk menyetujui secara otomatis alat dari server MCP tepercaya, tetapkan `default_config.permission_policy` (java, php: `defaultConfig.permissionPolicy`; csharp, go: `DefaultConfig.PermissionPolicy`) pada entri `mcp_toolset`.
 
 `mcp_server_name` (java, php: `mcpServerName`; csharp: `McpServerName`; go: `MCPServerName`) harus cocok dengan `name` (csharp, go: `Name`) dari sebuah server dalam array `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`).
 
@@ -346,25 +342,19 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
   		ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   	},
   	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{{
-  		Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,
   		Name: "github",
   		URL:  "https://mcp.example.com/github",
   	}},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{
   		{
-  			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-  				Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-  			},
+  			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{},
   		},
   		{
   			OfMCPToolset: &anthropic.BetaManagedAgentsMCPToolsetParams{
-  				Type:          anthropic.BetaManagedAgentsMCPToolsetParamsTypeMCPToolset,
   				MCPServerName: "github",
   				DefaultConfig: anthropic.BetaManagedAgentsMCPToolsetDefaultConfigParams{
   					PermissionPolicy: anthropic.BetaManagedAgentsMCPToolsetDefaultConfigParamsPermissionPolicyUnion{
-  						OfAlwaysAllow: &anthropic.BetaManagedAgentsAlwaysAllowPolicyParam{
-  							Type: anthropic.BetaManagedAgentsAlwaysAllowPolicyTypeAlwaysAllow,
-  						},
+  						OfAlwaysAllow: &anthropic.BetaManagedAgentsAlwaysAllowPolicyParam{},
   					},
   				},
   			},
@@ -374,7 +364,6 @@ Contoh ini menghubungkan server MCP GitHub dan mengizinkan alat-alatnya berjalan
   if err != nil {
   	panic(err)
   }
-  _ = agent
   ```
 
   ```java Java
@@ -569,26 +558,20 @@ Gunakan array `configs` (csharp, go: `Configs`) untuk mengganti default untuk al
   ```go Go
   tools := []anthropic.BetaAgentNewParamsToolUnion{{
   	OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-  		Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
   		DefaultConfig: anthropic.BetaManagedAgentsAgentToolsetDefaultConfigParams{
   			PermissionPolicy: anthropic.BetaManagedAgentsAgentToolsetDefaultConfigParamsPermissionPolicyUnion{
-  				OfAlwaysAllow: &anthropic.BetaManagedAgentsAlwaysAllowPolicyParam{
-  					Type: anthropic.BetaManagedAgentsAlwaysAllowPolicyTypeAlwaysAllow,
-  				},
+  				OfAlwaysAllow: &anthropic.BetaManagedAgentsAlwaysAllowPolicyParam{},
   			},
   		},
   		Configs: []anthropic.BetaManagedAgentsAgentToolConfigParamsUnion{{
   			OfBash: &anthropic.BetaManagedAgentsBashToolConfigParams{
   				PermissionPolicy: anthropic.BetaManagedAgentsBashToolConfigParamsPermissionPolicyUnion{
-  					OfAlwaysAsk: &anthropic.BetaManagedAgentsAlwaysAskPolicyParam{
-  						Type: anthropic.BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk,
-  					},
+  					OfAlwaysAsk: &anthropic.BetaManagedAgentsAlwaysAskPolicyParam{},
   				},
   			},
   		}},
   	},
   }}
-  _ = tools
   ```
 
   ```java Java
@@ -835,14 +818,12 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
   		ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   	},
   	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{{
-  		Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,
   		Name: "github",
   		URL:  "https://mcp.example.com/github",
   	}},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{
   		{
   			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-  				Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
   				DefaultConfig: anthropic.BetaManagedAgentsAgentToolsetDefaultConfigParams{
   					PermissionPolicy: anthropic.BetaManagedAgentsAgentToolsetDefaultConfigParamsPermissionPolicyUnion{
   						OfAuto: &anthropic.BetaManagedAgentsAutoPolicyParam{},
@@ -851,9 +832,7 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
   				Configs: []anthropic.BetaManagedAgentsAgentToolConfigParamsUnion{{
   					OfBash: &anthropic.BetaManagedAgentsBashToolConfigParams{
   						PermissionPolicy: anthropic.BetaManagedAgentsBashToolConfigParamsPermissionPolicyUnion{
-  							OfAlwaysAsk: &anthropic.BetaManagedAgentsAlwaysAskPolicyParam{
-  								Type: anthropic.BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk,
-  							},
+  							OfAlwaysAsk: &anthropic.BetaManagedAgentsAlwaysAskPolicyParam{},
   						},
   					},
   				}},
@@ -861,7 +840,6 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
   		},
   		{
   			OfMCPToolset: &anthropic.BetaManagedAgentsMCPToolsetParams{
-  				Type:          anthropic.BetaManagedAgentsMCPToolsetParamsTypeMCPToolset,
   				MCPServerName: "github",
   				DefaultConfig: anthropic.BetaManagedAgentsMCPToolsetDefaultConfigParams{
   					PermissionPolicy: anthropic.BetaManagedAgentsMCPToolsetDefaultConfigParamsPermissionPolicyUnion{
@@ -875,7 +853,6 @@ Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk to
   if err != nil {
   	panic(err)
   }
-  _ = agent
   ```
 
   ```java Java
@@ -1043,7 +1020,7 @@ Panggilan alat dievaluasi menjadi `ask` di bawah kebijakan `always_ask`, atau di
 1. Sesi memancarkan event `agent.tool_use` atau `agent.mcp_tool_use`.
 2. Sesi dijeda dengan event `session.status_idle` yang `stop_reason.type`-nya adalah `requires_action`. ID event yang memblokir ada dalam array `stop_reason.event_ids`. Sesi menunggu respons tanpa batas waktu. Panggilan dari thread sebuah [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs#while-a-run-is-open) mencapai klien Anda di aliran utama. Selama ada hal lain dalam sesi yang sedang bekerja, sesi dapat tetap `running` dan tidak mengirim `session.status_idle`, jadi tanggapi event penggunaan alat itu sendiri. Panggilan hanya menunggu hingga eksekusi selesai dengan thread tersebut atau eksekusi berakhir. Sebuah interupsi mungkin membuatnya tetap menunggu, jadi izinkan atau tolak sendiri.
 3. Kirim event `user.tool_confirmation` untuk setiap event yang memblokir, dengan meneruskan ID event dalam parameter `tool_use_id` (java: `toolUseId`; php: `toolUseID`; csharp, go: `ToolUseID`). Atur `result` (csharp, go: `Result`) ke `"allow"` atau `"deny"`. Gunakan `deny_message` (java, php: `denyMessage`; csharp, go: `DenyMessage`) untuk menjelaskan penolakan. Anda dapat mengirim beberapa konfirmasi dalam satu permintaan `events`.
-4. Setelah semua event yang memblokir diselesaikan, sesi kembali ke `running`. Alat yang diizinkan dieksekusi. Alat yang ditolak tidak dijalankan, dan agen menerima hasil alat yang menyatakan bahwa panggilan ditolak, termasuk `deny_message` (java, php: `denyMessage`; csharp, go: `DenyMessage`) Anda.
+4. Setelah semua event yang memblokir diselesaikan, sesi kembali ke `running`. Alat yang diizinkan dijalankan. Alat yang ditolak tidak dijalankan, dan agen menerima hasil alat yang menyatakan bahwa panggilan ditolak, termasuk `deny_message` (java, php: `denyMessage`; csharp, go: `DenyMessage`) Anda.
 
 Misalnya, panggilan `bash` yang dijeda di bawah kebijakan `always_ask` muncul di stream sebagai berikut:
 
@@ -1071,7 +1048,7 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
 
 <CodeGroup>
   ```bash cURL
-  # Izinkan alat untuk dieksekusi
+  # Izinkan alat untuk dijalankan
   curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -1119,7 +1096,7 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
   ```
 
   ```python Python
-  # Izinkan alat untuk dieksekusi
+  # Izinkan alat untuk dijalankan
   client.beta.sessions.events.send(
       session.id,
       events=[
@@ -1146,7 +1123,7 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
   ```
 
   ```typescript TypeScript
-  // Izinkan alat untuk dieksekusi
+  // Izinkan alat untuk berjalan
   await client.beta.sessions.events.send(session.id, {
     events: [
       {
@@ -1171,7 +1148,7 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
   ```
 
   ```csharp C#
-  // Izinkan alat untuk dieksekusi
+  // Izinkan alat untuk dijalankan
   await client.Beta.Sessions.Events.Send(session.ID, new()
   {
       Events =
@@ -1200,11 +1177,10 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
   ```
 
   ```go Go
-  // Izinkan alat untuk dieksekusi
+  // Izinkan alat untuk berjalan
   _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserToolConfirmation: &anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
-  			Type:      anthropic.BetaManagedAgentsUserToolConfirmationEventParamsTypeUserToolConfirmation,
   			ToolUseID: agentToolUseEvent.ID,
   			Result:    anthropic.BetaManagedAgentsUserToolConfirmationEventParamsResultAllow,
   		},
@@ -1218,7 +1194,6 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
   _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserToolConfirmation: &anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
-  			Type:        anthropic.BetaManagedAgentsUserToolConfirmationEventParamsTypeUserToolConfirmation,
   			ToolUseID:   mcpToolUseEvent.ID,
   			Result:      anthropic.BetaManagedAgentsUserToolConfirmationEventParamsResultDeny,
   			DenyMessage: anthropic.String("Don't create issues in the production project. Use the staging project."),
@@ -1231,7 +1206,7 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
   ```
 
   ```java Java
-  // Izinkan alat untuk dieksekusi
+  // Izinkan alat untuk dijalankan
   client.beta().sessions().events().send(
       session.id(),
       EventSendParams.builder()
@@ -1262,7 +1237,7 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
   ```php PHP
   use Anthropic\Beta\Sessions\Events\ManagedAgentsUserToolConfirmationEventParams;
 
-  // Izinkan alat untuk dieksekusi
+  // Izinkan alat dijalankan
   $client->beta->sessions->events->send(
       $session->id,
       events: [
@@ -1316,7 +1291,7 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
 
 ## Alat kustom
 
-Kebijakan izin tidak berlaku untuk alat kustom. Ketika agen memanggil alat kustom, aplikasi Anda menerima event `agent.custom_tool_use` dan bertanggung jawab untuk memutuskan apakah akan mengeksekusinya sebelum mengirim kembali `user.custom_tool_result`. Lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#answer-tool-calls-that-pause-the-session) untuk alur lengkapnya.
+Kebijakan izin tidak berlaku untuk alat kustom. Ketika agen memanggil alat kustom, aplikasi Anda menerima event `agent.custom_tool_use` dan bertanggung jawab untuk menentukan apakah akan menjalankannya sebelum mengirim kembali `user.custom_tool_result`. Lihat [Menjawab panggilan alat yang menjeda sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#answer-tool-calls-that-pause-the-session) untuk alur lengkapnya.
 
 ## Langkah selanjutnya
 
@@ -1326,6 +1301,6 @@ Kebijakan izin tidak berlaku untuk alat kustom. Ketika agen memanggil alat kusto
   </Card>
 
   <Card title="Aliran event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
-    Kirim event, lakukan streaming respons, dan interupsi atau alihkan sesi Anda di tengah eksekusi.
+    Kirim event, lakukan streaming respons, dan interupsi atau arahkan ulang sesi Anda saat sedang berjalan.
   </Card>
 </CardGroup>

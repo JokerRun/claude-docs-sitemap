@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/user-management
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: ec63f3f8f055fe2a83e35b2bbcc420aa2673c95490e2abb2054041d6772a016a
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 631cad1d657405ec438e1fa3ad540e427d2d811909f75ebfc5f1e10ef680cb6e
 ---
 
 ---
@@ -11,7 +11,16 @@ url: https://platform.claude.com/docs/en/manage-claude/user-management
 description: "Manage the people in your Claude Enterprise organization with the Admin API: list members and change roles, send and withdraw invites, manage groups, and read custom roles."
 ---
 
-This page covers managing the people in your **Claude Enterprise** (claude.ai) organization programmatically, using the [Admin API](https://platform.claude.com/docs/en/api/beta/organization): list members and look them up by email address, change a member's role, remove members, send and withdraw invites, manage your enterprise's groups and their membership, and read your organization's custom roles. For Claude Console (Claude Platform) organizations, see the [Admin API guide for Claude Console](https://platform.claude.com/docs/en/manage-claude/admin-api).
+This page covers managing the people in your **Claude Enterprise** (claude.ai) organization programmatically, using the [Admin API](https://platform.claude.com/docs/en/api/beta/organization):
+
+* List members and look them up by email address
+* Change a member's role
+* Remove members
+* Send and withdraw invites
+* Manage your enterprise's groups and their membership
+* Read your organization's custom roles
+
+For Claude Console (Claude Platform) organizations, see the [Admin API guide for Claude Console](https://platform.claude.com/docs/en/manage-claude/admin-api).
 
 <Note>
   Group and custom-role requests don't require the `anthropic-beta: ce-user-management-2026-07-13` [beta header](https://platform.claude.com/docs/en/api/beta-headers). Requests that still send it are accepted and behave identically.
@@ -26,7 +35,7 @@ The Admin API is a single set of endpoints under `https://api.anthropic.com/v1/o
 | [Members](https://platform.claude.com/docs/en/manage-claude/user-management#members) and [invites](https://platform.claude.com/docs/en/manage-claude/user-management#invites)                                                                                                                                                                                 | Available; see the [Admin API guide](https://platform.claude.com/docs/en/manage-claude/admin-api)         | Available (this page)                                                                                                                                                      |
 | [Groups](https://platform.claude.com/docs/en/manage-claude/user-management#groups)                                                                                                                                                                                                                                                                            | Not available                                                                                             | Available (this page)                                                                                                                                                      |
 | [Custom roles](https://platform.claude.com/docs/en/manage-claude/user-management#custom-roles)                                                                                                                                                                                                                                                                | Not available                                                                                             | Available, read-only (this page)                                                                                                                                           |
-| [Plugins](https://platform.claude.com/docs/en/manage-claude/plugins-api)                                                                                                                                                                                                                                                                                      | Not available                                                                                             | Available in beta                                                                                                                                                          |
+| [Plugins](https://platform.claude.com/docs/en/manage-claude/plugins-api) and [Claude Tag](https://platform.claude.com/docs/en/manage-claude/claude-tag-api)                                                                                                                                                                                                   | Not available                                                                                             | Available in beta                                                                                                                                                          |
 | [Spend limits](https://platform.claude.com/docs/en/manage-claude/spend-limits-api)                                                                                                                                                                                                                                                                            | Not available                                                                                             | Available                                                                                                                                                                  |
 | Usage and cost reports                                                                                                                                                                                                                                                                                                                                        | Available; see the [Usage and Cost API](https://platform.claude.com/docs/en/manage-claude/usage-cost-api) | Available through the [Claude Enterprise Analytics API](https://platform.claude.com/docs/en/manage-claude/analytics-api#get-access-to-the-claude-enterprise-analytics-api) |
 | [Workspaces](https://platform.claude.com/docs/en/manage-claude/workspaces), [API keys](https://platform.claude.com/docs/en/manage-claude/admin-api#api-keys), [rate limits](https://platform.claude.com/docs/en/manage-claude/rate-limits-api), and the other endpoints in the [Admin API guide](https://platform.claude.com/docs/en/manage-claude/admin-api) | Available                                                                                                 | Not available                                                                                                                                                              |
@@ -154,7 +163,7 @@ List the organization's members, newest first:
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "data": [
     {
@@ -611,7 +620,7 @@ For complete parameter details and response schemas, see [Remove user](https://p
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "type": "user_deleted",
   "id": "user_01AbCdEfGhIjKlMnOpQrSt"
@@ -771,7 +780,7 @@ For complete parameter details and response schemas, see [Create invite](https:/
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "type": "invite",
   "id": "invite_01QrStUvWxYzAbCdEfGhIj",
@@ -1168,7 +1177,7 @@ For complete parameter details and response schemas, see [List groups](https://p
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "data": [
     {
@@ -1387,7 +1396,7 @@ For complete parameter details and response schemas, see [Create group](https://
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "type": "rbac_group",
   "id": "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
@@ -1602,7 +1611,7 @@ For complete parameter details and response schemas, see [Delete group](https://
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "id": "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
   "type": "rbac_group_deleted"
@@ -1729,7 +1738,7 @@ For complete parameter details and response schemas, see [List group members](ht
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "data": [
     {
@@ -1863,7 +1872,7 @@ For complete parameter details and response schemas, see [Add group member](http
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "type": "rbac_group_member",
   "rbac_group_id": "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
@@ -1982,7 +1991,7 @@ For complete parameter details and response schemas, see [Remove group member](h
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "rbac_group_id": "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
   "group_id": "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
@@ -2098,7 +2107,7 @@ For complete parameter details and response schemas, see [List roles](https://pl
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "data": [
     {
@@ -2328,7 +2337,7 @@ For complete parameter details and response schemas, see [List role permissions]
   ```
 </CodeGroup>
 
-```text wrap
+```json
 {
   "data": [
     {

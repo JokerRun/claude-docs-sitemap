@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: dd85765f1ac52245e82b13d9767ae5549fa02fe8ce29f521b1d76af1128d01b8
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 430ed77945659310dfe51fe64225036ed0415afd5ad41b7e614a064cf9a2a358
 ---
 
 ---
@@ -147,7 +147,7 @@ export ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID="wrkspc_01AbCdEf23GhIj"
 
 ### Menginstal SDK
 
-[Klien SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk Claude Models on Google Cloud (Anthropic managed) adalah `AnthropicGoogleCloud` (csharp: `AnthropicGoogleCloudClient`; go: `googlecloud.NewClient`; java: `GoogleCloudBackend`; php: `Anthropic\GoogleCloud\Client`; ruby: `Anthropic::GoogleCloudClient`). Klien ini menyelesaikan kredensial Google Anda. Klien ini juga membangun base URL dari proyek, lokasi, dan ID workspace Anda.
+[Klien SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk Claude Models on Google Cloud (Anthropic managed) adalah `AnthropicGoogleCloud` (csharp: `AnthropicGoogleCloudClient`; go: `googlecloud.NewClient()`; java: `GoogleCloudBackend`; php: `Anthropic\GoogleCloud\Client`; ruby: `Anthropic::GoogleCloudClient`). Klien ini menyelesaikan kredensial Google Anda. Klien ini juga membangun base URL dari proyek, lokasi, dan ID workspace Anda.
 
 <Note>
   Klien SDK untuk Claude Models on Google Cloud (Anthropic managed) masih dalam tahap beta.
@@ -176,26 +176,26 @@ Instal paket yang menyediakan klien tersebut:
 
   <Tab title="Go">
     ```bash
-    go get github.com/anthropics/anthropic-sdk-go
+    go get github.com/anthropics/anthropic-sdk-go/v2
     ```
   </Tab>
 
   <Tab title="Java">
     ```kotlin Gradle
-    implementation("com.anthropic:anthropic-java:3.1.0")
-    implementation("com.anthropic:anthropic-java-google-cloud:3.1.0")
+    implementation("com.anthropic:anthropic-java:3.3.0")
+    implementation("com.anthropic:anthropic-java-google-cloud:3.3.0")
     ```
 
     ```xml Maven
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java</artifactId>
-      <version>3.1.0</version>
+      <version>3.3.0</version>
     </dependency>
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java-google-cloud</artifactId>
-      <version>3.1.0</version>
+      <version>3.3.0</version>
     </dependency>
     ```
   </Tab>
@@ -321,8 +321,8 @@ Sebelum menjalankan contoh-contoh ini, selesaikan langkah-langkah di [Sebelum me
   	"context"
   	"fmt"
 
-  	"github.com/anthropics/anthropic-sdk-go"
-  	"github.com/anthropics/anthropic-sdk-go/googlecloud"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
+  	"github.com/anthropics/anthropic-sdk-go/v2/googlecloud"
   )
 
   func main() {
@@ -511,9 +511,9 @@ Fitur-fitur berikut berfungsi di Claude Models on Google Cloud (Anthropic manage
 
 * **Fast mode:** [Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) untuk Claude Opus 5.5.
 
-- **Fitur beta:** Jika sebuah beta dibatasi untuk organisasi tertentu di Claude API, organisasi Anthropic yang dibuat oleh penyiapan memerlukan akses yang sama.
+* **Fitur beta:** Jika sebuah beta dibatasi untuk organisasi tertentu di Claude API, organisasi Anthropic yang dibuat oleh penyiapan memerlukan akses yang sama.
 
-- **Alat:** ["Tool use" (penggunaan alat)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk:
+* **Alat:** ["Tool use" (penggunaan alat)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk:
 
   * Web search
   * Web fetch
@@ -522,9 +522,9 @@ Fitur-fitur berikut berfungsi di Claude Models on Google Cloud (Anthropic manage
   * Advisor tool
   * MCP connector
 
-- **Skill dan file:** [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview) dan [Files API](https://platform.claude.com/docs/id/build-with-claude/files).
+* **Skill dan file:** [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview) dan [Files API](https://platform.claude.com/docs/id/build-with-claude/files).
 
-- **Kemampuan model:**
+* **Kemampuan model:**
 
   * ["Prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
   * ["Extended thinking" (pemikiran diperpanjang)](https://platform.claude.com/docs/id/build-with-claude/thinking)
@@ -533,7 +533,7 @@ Fitur-fitur berikut berfungsi di Claude Models on Google Cloud (Anthropic manage
   * [Structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
   * [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting)
 
-- **Batch dan model:** [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing) dan Models API.
+* **Batch dan model:** [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing) dan Models API.
 
 Untuk mengaktifkan atau menonaktifkan [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) untuk organisasi Anthropic yang dibuat oleh penyiapan, [buka Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console), buka **Settings > Compliance**, dan gunakan toggle **Compliance API**.
 
@@ -579,7 +579,7 @@ Anthropic mengelola "rate limit" (batas laju) untuk Claude Models on Google Clou
 
 ### Penagihan
 
-Claude Models on Google Cloud (Anthropic managed) ditagih melalui Google Cloud Marketplace. Anthropic mengukur penggunaan Anda. Anthropic melaporkan penggunaan tersebut ke Google Cloud dalam Claude Consumption Units. Biaya muncul di tagihan Google Cloud Anda. Anthropic tidak mengirimkan faktur terpisah.
+Claude Models on Google Cloud (Anthropic managed) ditagih melalui Google Cloud Marketplace. Anthropic mengukur penggunaan Anda. Anthropic melaporkan penggunaan tersebut ke Google Cloud dalam satuan Claude Consumption Unit. Satu Claude Consumption Unit bernilai $0,01 USD. Biaya tersebut muncul pada tagihan Google Cloud Anda. Anthropic tidak mengirimkan faktur terpisah.
 
 Lihat data penggunaan dan biaya di halaman **Usage** dan **Cost** di [Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console).
 
@@ -638,7 +638,7 @@ Untuk beralih ke Claude Models on Google Cloud (Anthropic managed), selesaikan l
   </Step>
 
   <Step title="Ganti import dan klien">
-    Ubah kode yang mengimpor dan membuat klien Anda. Gunakan `AnthropicGoogleCloud` (csharp: `AnthropicGoogleCloudClient`; go: `googlecloud.NewClient`; java: `GoogleCloudBackend`; php: `Anthropic\GoogleCloud\Client`; ruby: `Anthropic::GoogleCloudClient`) sebagai pengganti `AnthropicVertex` (csharp: `AnthropicVertexClient`; go: `vertex.WithGoogleAuth`; java: `VertexBackend`; php: `Anthropic\Vertex\Client`; ruby: `Anthropic::VertexClient`). Dalam permintaan cURL, ubah URL, header, dan body. Kode Anda saat ini membuat klien untuk Claude Models on Google Cloud (Google managed). Misalnya, kode berikut membuat klien tersebut dengan endpoint global:
+    Ubah kode yang mengimpor dan membuat klien Anda. Gunakan `AnthropicGoogleCloud` (csharp: `AnthropicGoogleCloudClient`; go: `googlecloud.NewClient()`; java: `GoogleCloudBackend`; php: `Anthropic\GoogleCloud\Client`; ruby: `Anthropic::GoogleCloudClient`) sebagai pengganti `AnthropicVertex` (csharp: `AnthropicVertexClient`; go: `vertex.WithGoogleAuth()`; java: `VertexBackend`; php: `Anthropic\Vertex\Client`; ruby: `Anthropic::VertexClient`). Dalam permintaan cURL, ubah URL, header, dan body. Kode Anda saat ini membuat klien untuk Claude Models on Google Cloud (Google managed). Misalnya, kode berikut membuat klien tersebut dengan endpoint global:
 
     <CodeGroup exclude="shell:CLI">
       ```bash cURL
@@ -690,8 +690,8 @@ Untuk beralih ke Claude Models on Google Cloud (Anthropic managed), selesaikan l
       import (
       	"context"
 
-      	"github.com/anthropics/anthropic-sdk-go"
-      	"github.com/anthropics/anthropic-sdk-go/vertex"
+      	"github.com/anthropics/anthropic-sdk-go/v2"
+      	"github.com/anthropics/anthropic-sdk-go/v2/vertex"
       )
       // ...
       	// Menggunakan kredensial default Google Cloud
@@ -784,8 +784,8 @@ Untuk beralih ke Claude Models on Google Cloud (Anthropic managed), selesaikan l
       import (
       	"context"
 
-      	"github.com/anthropics/anthropic-sdk-go"
-      	"github.com/anthropics/anthropic-sdk-go/googlecloud"
+      	"github.com/anthropics/anthropic-sdk-go/v2"
+      	"github.com/anthropics/anthropic-sdk-go/v2/googlecloud"
       )
       // ...
       	client, err := googlecloud.NewClient(context.Background(), googlecloud.ClientConfig{})

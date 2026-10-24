@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: afbb6cfc1cbd627598a847276d7311061295731466c5cc4800580c797ce6b2b9
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 182690c7d8e357dddb603d28fdf0617e88cc8562f1517e4b985836ea7922db06
 ---
 
 ---
@@ -15,17 +15,17 @@ description: Instal tunnel stack pada klaster Kubernetes menggunakan Helm chart 
   MCP tunnels (terowongan MCP) sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/mcp-tunnels) untuk mencobanya.
 </Note>
 
-Helm chart Anthropic menginstal [tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) sebagai satu Deployment dan melampirkannya ke tunnel Anda: tunnel yang dibuat untuk Anda oleh setup hook chart, atau tunnel yang sudah ada yang Anda buat di [Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#create-a-tunnel).
+Helm chart Anthropic menginstal [tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) sebagai satu Deployment dan melampirkannya ke tunnel Anda: tunnel yang dibuat untuk Anda oleh setup hook chart, atau tunnel yang sudah ada yang Anda buat di [Claude Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#create-a-tunnel).
 
-## Sebelum Anda memulai
+## Sebelum Anda mulai
 
 Anda memerlukan:
 
-* **Sebuah tunnel.** Dengan akses terprogram, setup hook chart akan membuatkan tunnel untuk Anda ketika Anda tidak menyediakan ID tunnel; untuk melampirkan ke tunnel yang sudah ada, [buat tunnel di Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#create-a-tunnel) dan catat ID tunnel (`tnl_...`). Penyediaan manual selalu dimulai dari tunnel yang dibuat di Console; Anda juga memerlukan tunnel token dan tunnel domain-nya.
+* **Sebuah tunnel.** Dengan akses terprogram, setup hook chart membuatkan tunnel untuk Anda ketika Anda tidak memberikan ID tunnel; untuk melampirkan ke tunnel yang sudah ada, [buat tunnel tersebut di Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#create-a-tunnel) dan catat ID tunnel-nya (`tnl_...`). Penyediaan manual selalu dimulai dari tunnel yang dibuat di Console; Anda juga memerlukan tunnel token dan tunnel domain-nya.
 
 * **Cara bagi chart untuk mengautentikasi ke Tunnels API.**
 
-  * **[Akses terprogram](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning) (direkomendasikan).** [Komponen setup](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) mengautentikasi melalui Workload Identity Federation, mengambil tunnel token, membuat CA, mendaftarkannya ke Anthropic, dan menyimpan semuanya dalam sebuah Secret. Anda memerlukan federation rule dengan cakupan `workspace:manage_tunnels`.
+  * **[Akses terprogram](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning) (direkomendasikan).** [Komponen setup](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) melakukan autentikasi melalui Workload Identity Federation, mengambil tunnel token, menghasilkan CA, mendaftarkannya ke Anthropic, dan menyimpan semuanya dalam sebuah Secret. Anda memerlukan federation rule dengan cakupan `workspace:manage_tunnels`.
   * **[Manual](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning).** Lewati akses terprogram. Anda akan [mendapatkan tunnel token dari Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#get-the-connection-details), membuat CA dan sertifikat server sendiri, [mendaftarkan CA di Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate), dan menyediakan kredensial ke klaster sebagai Secret.
 
 * **Sebuah klaster Kubernetes** yang dapat Anda gunakan untuk deploy dengan `helm` dan `kubectl`. Tab **Tanpa akses terprogram** juga menggunakan `openssl` (1.1.1 atau lebih baru).
@@ -162,7 +162,7 @@ Langkah-langkah Instalasi berikut menunjukkan di mana menambahkan route yang ses
               search: http://search-mcp.internal:8080
         ```
 
-        Dengan route ini, Claude menjangkau server di `docs.<your-tunnel-domain>` dan `search.<your-tunnel-domain>`. Beberapa distribusi Kubernetes terkelola mengalokasikan Service CIDR di luar rentang privat standar; jika route Anda menargetkan Service di dalam klaster, tambahkan `gateway.config.upstream.allowed_ips` di sini sesuai [Validasi IP upstream](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting#upstream-ip-validation).
+        Dengan route ini, Claude menjangkau server di `docs.<your-tunnel-domain>` dan `search.<your-tunnel-domain>`. Beberapa distribusi Kubernetes terkelola mengalokasikan Service CIDR di luar rentang privat standar; jika route Anda menargetkan Service di dalam klaster, tambahkan `gateway.config.upstream.allowed_ips` di sini seperti dijelaskan dalam [Validasi IP upstream](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting#upstream-ip-validation).
 
         <Note>
           Jika Anda menggunakan [server MCP contoh](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#optional-use-a-sample-mcp-server), atur `routes` ke `echo: http://hello-mcp:9000` sebagai gantinya.
@@ -221,7 +221,7 @@ Langkah-langkah Instalasi berikut menunjukkan di mana menambahkan route yang ses
       </Step>
 
       <Step title="Buat CA dan sertifikat server">
-        Proxy mendengarkan pada WebSocket biasa, dengan [inner TLS](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) yang dibawa di dalam stream tersebut menggunakan sertifikat yang Anda buat di sini. SAN sertifikat server harus menyertakan `*.<tunnel-domain>` sesuai [persyaratan sertifikat](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#certificate-requirements).
+        Proxy mendengarkan pada WebSocket biasa, dengan [TLS bagian dalam](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) yang dibawa di dalam stream tersebut menggunakan sertifikat yang Anda hasilkan di sini. SAN sertifikat server harus menyertakan `*.<tunnel-domain>` seperti dijelaskan dalam [persyaratan sertifikat](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#certificate-requirements).
 
         ```bash
         export TUNNEL_DOMAIN=YOUR_TUNNEL_DOMAIN_HERE
@@ -303,7 +303,7 @@ Langkah-langkah Instalasi berikut menunjukkan di mana menambahkan route yang ses
               search: http://search-mcp.internal:8080
         ```
 
-        Beberapa distribusi Kubernetes terkelola mengalokasikan Service CIDR di luar rentang privat standar; jika route Anda menargetkan Service di dalam klaster, tambahkan `gateway.config.upstream.allowed_ips` di sini sesuai [Validasi IP upstream](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting#upstream-ip-validation).
+        Beberapa distribusi Kubernetes terkelola mengalokasikan Service CIDR di luar rentang privat standar; jika route Anda menargetkan Service di dalam klaster, tambahkan `gateway.config.upstream.allowed_ips` di sini seperti dijelaskan dalam [Validasi IP upstream](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting#upstream-ip-validation).
 
         <Note>
           Jika Anda menggunakan [server MCP contoh](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm#optional-use-a-sample-mcp-server), atur `routes` ke `echo: http://hello-mcp:9000` sebagai gantinya.

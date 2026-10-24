@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/access-transparency-log
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 48678712970892361f8c9664155c3f4e33183e8144acb4c13b059768f2a4f5e0
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 0f92baddeb6a69e4475a64afac06f1d360fd89e19c736d27e65f4e7cfded2f54
 ---
 
 ---
@@ -364,7 +364,7 @@ Sebagai contoh, event akses ini sebagaimana disajikan Activity Feed:
 
 menjadi JSON kanonis ini. JSON ini memiliki tepat 11 key terdokumentasi, diurutkan, dalam satu baris. `workspace_uuid` dan `transparency_log_leaf_index` dihilangkan, dan `resource_details.parent`, yang tidak ada di event yang disajikan, masuk sebagai `null`:
 
-```text wrap
+```json
 {"accessed_at":"2025-07-08T18:39:58Z","accessor_department":"Trust & Safety","actor":{"email_address":null,"type":"anthropic_actor"},"created_at":"2025-07-08T18:40:00Z","id":"activity_01GPXmAhizavrUuoXNn3tzeA","organization_id":"org_015gtSHLz269eTwgrH8NX5yk","organization_uuid":"25f6429a-3293-49bf-afed-cb312911554b","reason_code":"safety_review","resource_details":{"id":"msg_01HXAMPLE12345678","parent":null,"type":"message"},"type":"anthropic_access","workspace_id":"wrkspc_01PaGUP2rbg1XDh7Z9W1CEpd"}
 ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workload-identity-federation
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: bde8cdf18c0dcb8cb330ff0003186b5d745edb1f276a46448c648cee15241db9
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: ccbafc84e16123a3b3a333be77a630070afbaa15a96c46ea4f9372538406f6fa
 ---
 
 ---
@@ -15,7 +15,7 @@ Workload Identity Federation (WIF) memungkinkan workload Anda melakukan autentik
 
 Workload Anda menyajikan JWT bertanda tangan dari penyedia identitas Anda. Anthropic memvalidasinya terhadap aturan kepercayaan yang Anda konfigurasikan di Claude Console dan mengembalikan token akses Anthropic berumur pendek yang terikat pada sebuah service account di organisasi Anda. Tidak ada rahasia statis yang perlu dibuat, disimpan di CI, dirotasi, atau berisiko bocor.
 
-Workload Identity Federation memperkuat postur keamanan Anda dengan mengganti kunci API statis dengan token yang kedaluwarsa dalam hitungan menit, bukan tidak pernah kedaluwarsa. Ini bukan solusi keamanan yang lengkap dengan sendirinya: autentikasi terfederasi hanya sekuat penyedia identitas hulu yang menandatangani JWT. Padukan Workload Identity Federation dengan kontrol yang sudah didukung IdP Anda (pengikatan identitas workload, akses bersyarat, pencatatan audit) untuk pertahanan berlapis.
+Workload Identity Federation memperkuat postur keamanan Anda dengan mengganti kunci API statis dengan token yang kedaluwarsa dalam hitungan menit, bukan tidak pernah. Fitur ini bukan solusi keamanan yang lengkap dengan sendirinya: autentikasi terfederasi hanya sekuat penyedia identitas hulu yang menandatangani JWT. Padukan Workload Identity Federation dengan kontrol yang sudah didukung IdP Anda (pengikatan identitas workload, akses bersyarat, pencatatan audit) untuk pertahanan berlapis.
 
 ## Konsep
 
@@ -25,7 +25,7 @@ Anda mengonfigurasi tiga sumber daya di Claude Console sebelum workload apa pun 
 
 **Service account** (akun layanan) (`svac_...`) adalah identitas non-manusia bernama di dalam organisasi Anthropic Anda. Ini adalah principal yang diwakili oleh [kunci service account](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) atau token terfederasi saat bertindak. Service account berada di tingkat organisasi dan menjadi aktif di sebuah workspace ketika Anda menambahkannya sebagai anggota workspace tersebut. Pada saat pertukaran, Anthropic memeriksa bahwa workspace pada aturan federasi cocok dengan salah satu keanggotaan workspace milik service account; token yang dicetak kemudian mengikuti batas laju dan atribusi penggunaan workspace tersebut, sama seperti kunci API. Tidak seperti pengguna manusia, service account tidak memiliki email, kata sandi, maupun login Console. Setiap service account secara implisit merupakan anggota workspace default organisasi Anda; tambahkan keanggotaan eksplisit untuk workspace lain tempat service account tersebut perlu bertindak. Agar kunci service account yang berlaku untuk semua workspace dapat bertindak di sebuah workspace, tambahkan service account tersebut ke workspace itu.
 
-Perbedaan utama dibandingkan kunci API workspace: kunci API workspace *adalah* sebuah kredensial, sedangkan service account *memiliki* kredensial. Anda dapat lebih mudah mengaudit workload mana yang bertindak sebagai service account mana.
+Perbedaan utamanya dibandingkan kunci API workspace: kunci API workspace *adalah* kredensial, sedangkan akun layanan *memiliki* kredensial. Anda dapat lebih mudah mengaudit workload mana yang bertindak sebagai akun layanan mana.
 
 ### Federation issuer
 
@@ -38,7 +38,7 @@ Sebuah issuer memiliki dua bagian konfigurasi:
 
 Issuer URL dan JWKS URL harus menggunakan `https`, pada port 443, dan menggunakan hostname DNS publik yang me-resolve ke alamat IP publik; literal IP tidak diterima. Batasan ini hanya berlaku untuk URL yang diambil oleh Anthropic; dalam mode `explicit_url` dan `inline`, `issuer_url` dibandingkan sebagai string dan boleh merujuk ke hostname internal.
 
-Biasanya Anda mendaftarkan satu issuer per lingkungan: klaster EKS produksi Anda, klaster staging Anda, dan GitHub Actions adalah tiga issuer terpisah.
+Anda biasanya mendaftarkan satu penerbit untuk setiap lingkungan: klaster EKS produksi, klaster staging, dan GitHub Actions Anda adalah tiga penerbit terpisah.
 
 ### Federation rule
 
@@ -50,7 +50,7 @@ Sebuah aturan mendefinisikan kondisi pencocokan, target, serta scope otorisasi d
 * **Target:** Service account yang menjadi tujuan pemetaan JWT yang cocok.
 * **Authorization:** `scope` OAuth yang diberikan pada token yang dicetak. Default-nya adalah `workspace:developer`, yang memberikan akses yang sama dengan kunci API workspace. Beberapa produk mengunci scope ketika Anda membuat aturan dari alurnya; misalnya, modal create-tunnel pada [MCP tunnels](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview) membuat aturan dengan scope `workspace:manage_tunnels`. Lihat [OAuth scopes](https://platform.claude.com/docs/id/manage-claude/wif-reference#oauth-scopes). Aturan juga menetapkan `token_lifetime_seconds` (60 hingga 86400, default 3600).
 
-Satu issuer dapat memiliki banyak aturan: satu per tim, namespace, atau tingkat izin. Aturan dievaluasi berdasarkan ID: klien menentukan aturan mana yang digunakan dalam permintaan pertukaran, dan Anthropic memverifikasi bahwa JWT memenuhi kriteria pencocokan aturan tersebut. Tidak ada pencarian aturan secara implisit.
+Satu penerbit dapat memiliki banyak aturan: satu untuk setiap tim, namespace, atau tingkat izin. Aturan dievaluasi berdasarkan ID: klien menentukan aturan mana yang digunakan dalam permintaan pertukaran, dan Anthropic memverifikasi bahwa JWT memenuhi kriteria pencocokan aturan tersebut. Tidak ada pencarian aturan implisit.
 
 ## Cara kerjanya
 
@@ -94,7 +94,7 @@ Setelah federasi dikonfigurasi, workload Anda menukar JWT yang diterbitkan IdP d
 
 ### Membuat klien SDK
 
-Anda dapat membuat klien dengan kredensial eksplisit atau tanpa argumen. Tanpa argumen, SDK me-resolve kredensial dari variabel lingkungan atau profil aktif, seperti dijelaskan di bagian [Prioritas kredensial](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#credential-precedence). Bentuk tanpa argumen adalah pola yang direkomendasikan untuk workload produksi: kirimkan image container yang sama ke mana pun dan injeksikan `ANTHROPIC_FEDERATION_RULE_ID`, `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_SERVICE_ACCOUNT_ID`, `ANTHROPIC_WORKSPACE_ID`, dan `ANTHROPIC_IDENTITY_TOKEN_FILE` per lingkungan.
+Anda dapat membangun klien dengan kredensial eksplisit atau tanpa argumen. Tanpa argumen, SDK me-resolve kredensial dari variabel lingkungan atau profil aktif, seperti yang dijelaskan di [Prioritas kredensial](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#credential-precedence). Bentuk tanpa argumen adalah pola yang direkomendasikan untuk workload produksi: kirim image container yang sama ke mana saja dan injeksikan `ANTHROPIC_FEDERATION_RULE_ID`, `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_SERVICE_ACCOUNT_ID`, `ANTHROPIC_WORKSPACE_ID`, dan `ANTHROPIC_IDENTITY_TOKEN_FILE` untuk setiap lingkungan.
 
 <CodeGroup>
   ```bash cURL
@@ -195,6 +195,35 @@ Anda dapat membuat klien dengan kredensial eksplisit atau tanpa argumen. Tanpa a
   }
   ```
 
+  ```csharp C#
+  using Anthropic.Credentials;
+  // ...
+
+  var credentials = new WorkloadIdentityCredentials(new WorkloadIdentityOptions
+  {
+      FederationRuleId = "fdrl_...",
+      OrganizationId = "00000000-0000-0000-0000-000000000000",
+      ServiceAccountId = "svac_...",
+      WorkspaceId = "wrkspc_...",
+      IdentityTokenProvider = new FileIdentityTokenProvider("/var/run/secrets/anthropic.com/token"),
+  });
+  using var client = new AnthropicClient(new ClientOptions { Credentials = credentials });
+
+  var message = await client.Messages.Create(new()
+  {
+      Model = Model.ClaudeOpus5_5,
+      MaxTokens = 1024,
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
+  });
+  foreach (var block in message.Content)
+  {
+      if (block.Value is TextBlock textBlock)
+      {
+          Console.WriteLine(textBlock.Text);
+      }
+  }
+  ```
+
   ```go Go
   client := anthropic.NewClient(
   	option.WithFederationTokenProvider(
@@ -239,58 +268,29 @@ Anda dapat membuat klien dengan kredensial eksplisit atau tanpa argumen. Tanpa a
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.builder()
-              .fromEnv()
-              .configurationProvider(InMemoryProfileConfigProvider.of(ProfileConfig.builder()
-                      .organizationId("00000000-0000-0000-0000-000000000000")
-                      .workspaceId("wrkspc_...")
-                      .authentication(AuthenticationConfig.builder()
-                              .type(AuthenticationType.OIDC_FEDERATION)
-                              .federationRuleId("fdrl_...")
-                              .serviceAccountId("svac_...")
-                              .identityToken(IdentityTokenConfig.builder()
-                                      .source("file")
-                                      .path("/var/run/secrets/anthropic.com/token")
-                                      .build())
-                              .build())
-                      .build()))
-              .build();
+          .fromEnv()
+          .configurationProvider(InMemoryProfileConfigProvider.of(ProfileConfig.builder()
+              .organizationId("00000000-0000-0000-0000-000000000000")
+              .workspaceId("wrkspc_...")
+              .authentication(AuthenticationConfig.builder()
+                  .type(AuthenticationType.OIDC_FEDERATION)
+                  .federationRuleId("fdrl_...")
+                  .serviceAccountId("svac_...")
+                  .identityToken(IdentityTokenConfig.builder()
+                      .source("file")
+                      .path("/var/run/secrets/anthropic.com/token")
+                      .build())
+                  .build())
+              .build()))
+          .build();
 
       var message = client.messages().create(MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(1024)
-              .addUserMessage("Hello, Claude")
-              .build());
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(1024)
+          .addUserMessage("Hello, Claude")
+          .build());
 
       IO.println(message.content());
-  }
-  ```
-
-  ```csharp C#
-  using Anthropic.Credentials;
-  // ...
-
-  var credentials = new WorkloadIdentityCredentials(new WorkloadIdentityOptions
-  {
-      FederationRuleId = "fdrl_...",
-      OrganizationId = "00000000-0000-0000-0000-000000000000",
-      ServiceAccountId = "svac_...",
-      WorkspaceId = "wrkspc_...",
-      IdentityTokenProvider = new FileIdentityTokenProvider("/var/run/secrets/anthropic.com/token"),
-  });
-  using var client = new AnthropicClient(new ClientOptions { Credentials = credentials });
-
-  var message = await client.Messages.Create(new()
-  {
-      Model = Model.ClaudeOpus5_5,
-      MaxTokens = 1024,
-      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
-  });
-  foreach (var block in message.Content)
-  {
-      if (block.Value is TextBlock textBlock)
-      {
-          Console.WriteLine(textBlock.Text);
-      }
   }
   ```
 
@@ -364,7 +364,7 @@ Untuk mengalihkan workload yang ada dari kunci API statis ke federasi tanpa down
 
 1. **Konfigurasikan federasi secara paralel.** Selesaikan [panduan penyiapan](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#set-up-federation) dan pastikan aturan federasi cocok dengan token workload Anda. Biarkan `ANTHROPIC_API_KEY` yang ada tetap di tempatnya untuk saat ini.
 2. **Lakukan smoke-test kredensial mana yang menang.** Jalankan `ant auth status` dari dalam workload (atau periksa log debug SDK). Karena `ANTHROPIC_API_KEY` berada di atas tingkat federasi dalam rantai prioritas, kunci API masih menang pada tahap ini.
-3. **Hapus pengaturan `ANTHROPIC_API_KEY` di mana pun ia diinjeksikan.** Hapus dari rahasia CI, lingkungan container, dan profil shell (lihat peringatan sebelumnya). Jalankan ulang `ant auth status` dan pastikan sumber federasi kini terpilih.
+3. **Hapus pengaturan `ANTHROPIC_API_KEY` di semua tempat ia diinjeksikan.** Hapus dari rahasia CI, lingkungan container, dan profil shell (lihat peringatan sebelumnya). Jalankan ulang `ant auth status` dan pastikan sumber federasi kini yang digunakan.
 4. **Hapus kunci API.** Setelah workload berjalan dengan token terfederasi, hapus kunci tersebut di halaman [API keys](https://platform.claude.com/settings/keys) (`platform.claude.com/settings/keys`) di Claude Console.
 
 ## Masa berlaku dan pembaruan token
@@ -378,7 +378,7 @@ SDK menyimpan token dalam cache dan memperbaruinya dengan jadwal dua tingkat yan
 
 Karena SDK membaca ulang `ANTHROPIC_IDENTITY_TOKEN_FILE` pada setiap pertukaran, SDK secara transparan mengambil token terproyeksi yang telah dirotasi (token service-account Kubernetes, misalnya, dirotasi jauh sebelum `exp`-nya).
 
-Secara default, token identitas yang membawa klaim `jti` bersifat sekali pakai: setiap pertukaran harus menyajikan JWT yang belum pernah ditukar sebelumnya, dan menyajikan ulang token tersebut akan gagal dengan alasan `jti_reused` di [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console. Jika workload Anda mengambil tokennya sendiri dari penyedia identitas Anda, cetak JWT baru untuk setiap pertukaran alih-alih menggunakan ulang token yang di-cache (loop percobaan ulang adalah penyebab yang umum). Hal yang sama berlaku untuk token yang dibaca dari `ANTHROPIC_IDENTITY_TOKEN_FILE`: SDK membaca ulang file pada setiap pertukaran, sehingga file harus berisi token baru sebelum setiap pembaruan. Pembaruan yang membaca ulang token yang belum dirotasi, atau proses yang dimulai ulang yang menyajikan ulang token yang sudah ditukar, akan ditolak dengan cara yang sama. Merotasi token jauh di dalam masa berlaku token yang dicetak menjaga file tetap mendahului jadwal pembaruan; jika sumber token Anda tidak dapat merotasi sesering itu, Anda dapat menonaktifkan `check_jti` untuk issuer tersebut sebagai upaya terakhir (ini menghapus perlindungan replay untuk setiap aturan pada issuer tersebut). Lihat [Verifikasi JWT](https://platform.claude.com/docs/id/manage-claude/wif-reference#jwt-verification) untuk detailnya.
+Secara default, token identitas yang membawa klaim `jti` hanya dapat digunakan sekali: setiap pertukaran harus menyajikan JWT yang belum pernah ditukar sebelumnya, dan menyajikan ulang JWT tersebut akan gagal dengan alasan `jti_reused` di [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console. Jika workload Anda mengambil tokennya sendiri dari penyedia identitas Anda, buat JWT baru untuk setiap pertukaran alih-alih menggunakan ulang yang ada di cache (loop percobaan ulang adalah penyebab umum penggunaan ulang). Hal yang sama berlaku untuk token yang dibaca dari `ANTHROPIC_IDENTITY_TOKEN_FILE`: SDK membaca ulang file pada setiap pertukaran, sehingga file harus berisi token baru sebelum setiap pembaruan. Pembaruan yang membaca ulang token yang belum dirotasi, atau proses yang dimulai ulang yang menyajikan ulang token yang sudah ditukar, akan ditolak dengan cara yang sama. Merotasi token jauh di dalam masa berlaku token yang dibuat akan menjaga file tetap mendahului jadwal pembaruan. Jika sumber token Anda tidak dapat dirotasi sesering itu, Anda dapat menonaktifkan `check_jti` untuk penerbit tersebut sebagai upaya terakhir. Ini menghapus perlindungan replay untuk setiap aturan pada penerbit tersebut. Lihat [Verifikasi JWT](https://platform.claude.com/docs/id/manage-claude/wif-reference#jwt-verification) untuk detailnya.
 
 ## Penyedia identitas
 

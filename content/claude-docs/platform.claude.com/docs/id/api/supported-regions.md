@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/supported-regions
-fetched_at: 2026-09-02T02:36:53.462770Z
-sha256: 3a651b8f04086345d9483b25b680b0f952a9ba5dda7012ec4980761904d06da4
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: 070f84273ad97ed2235937010c446735c5e588fac16d3016c8c6a27f5e25ab55
 ---
 
 ---
 title: Wilayah yang didukung
 url: https://platform.claude.com/docs/id/api/supported-regions
-description: "Berikut adalah negara, wilayah, dan teritori yang saat ini dapat kami dukung aksesnya:"
+description: "Berikut adalah negara, wilayah, dan teritori tempat Anthropic dapat mendukung akses:"
 ---
 
 * Albania

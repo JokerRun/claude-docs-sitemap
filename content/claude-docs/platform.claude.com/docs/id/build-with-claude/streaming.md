@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: d92e76ccdf0bc68b4adef626027a3a4f3905e24d8f7844ffd8488e44387f1e5e
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: e822abd61f1e44896c147ccce5347785c70ad8aed01c8cca488ee23ff9355d07
 ---
 
 ---
@@ -105,8 +105,8 @@ Saat membuat sebuah Message, Anda dapat mengatur `"stream": true` untuk melakuka
   try (var streamResponse = client.messages().createStreaming(params)) {
       streamResponse.stream().forEach(event -> {
           event.contentBlockDelta().ifPresent(deltaEvent ->
-              deltaEvent.delta().text().ifPresent(td ->
-                  System.out.print(td.text())
+              deltaEvent.delta().text().ifPresent(textDelta ->
+                  System.out.print(textDelta.text())
               )
           );
       });
@@ -121,7 +121,7 @@ Saat membuat sebuah Message, Anda dapat mengatur `"stream": true` untuk melakuka
       messages: [
           ['role' => 'user', 'content' => 'Hello']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   foreach ($stream as $message) {
@@ -133,7 +133,7 @@ Saat membuat sebuah Message, Anda dapat mengatur `"stream": true` untuk melakuka
   client = Anthropic::Client.new
 
   stream = client.messages.stream(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello" }]
   )
@@ -280,7 +280,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
   client = Anthropic::Client.new
 
   message = client.messages.stream(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 128000,
     messages: [{ role: "user", content: "Write a detailed analysis..." }]
   ).accumulated_message
@@ -291,7 +291,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
   ```
 </CodeGroup>
 
-Panggilan `.stream()` (java: `.createStreaming()`; csharp: `.CreateStreaming()`; go: `.NewStreaming()`; php: `->createStream()`) menjaga koneksi HTTP tetap hidup dengan server-sent events, lalu helper akumulasi pesan milik SDK, `stream.get_final_message()` (typescript: `stream.finalMessage()`; ruby: `stream.accumulated_message`; csharp: `.Aggregate()`; go: `message.Accumulate(event)`; java, php: `MessageAccumulator`), mengumpulkan semua event menjadi objek `Message` lengkap.
+Pemanggilan `.stream()` (java: `.createStreaming()`; csharp: `.CreateStreaming()`; go: `.NewStreaming()`; php: `->createStream()`) menjaga koneksi HTTP tetap aktif dengan server-sent events, lalu helper akumulasi pesan milik SDK, `stream.get_final_message()` (typescript: `stream.finalMessage()`; ruby: `stream.accumulated_message`; csharp: `.Aggregate()`; go: `message.Accumulate(event)`; java, php: `MessageAccumulator`), mengumpulkan semua event menjadi objek `Message` yang lengkap.
 
 ## Jenis event
 
@@ -314,7 +314,7 @@ Stream event juga dapat menyertakan sejumlah event `ping`.
 
 ### Event error
 
-API sesekali dapat mengirimkan [error](https://platform.claude.com/docs/id/api/errors) dalam stream event. Misalnya, selama periode penggunaan tinggi, Anda mungkin menerima `overloaded_error`, yang biasanya setara dengan HTTP 529 dalam konteks non-streaming:
+API terkadang dapat mengirimkan [error](https://platform.claude.com/docs/id/api/errors) dalam stream event. Misalnya, selama periode penggunaan tinggi, Anda mungkin menerima `overloaded_error`, yang biasanya sesuai dengan HTTP 529 dalam konteks non-streaming:
 
 ```sse Example error
 event: error
@@ -342,7 +342,7 @@ data: {"type": "content_block_delta","index": 0,"delta": {"type": "text_delta", 
 
 Delta untuk blok konten `tool_use` berkaitan dengan pembaruan pada field `input` dari blok tersebut. Untuk mendukung granularitas maksimum, delta berupa *string JSON parsial*, sedangkan `tool_use.input` akhir selalu berupa *objek*.
 
-Anda dapat mengakumulasi delta string dan mem-parse JSON setelah menerima event `content_block_stop`, dengan menggunakan library seperti [Pydantic](https://docs.pydantic.dev/latest/concepts/json/#partial-json-parsing) untuk melakukan parsing JSON parsial, atau dengan menggunakan [helper streaming](https://platform.claude.com/docs/id/build-with-claude/streaming#streaming-with-sdks) milik SDK. Di Python dan TypeScript SDK, helper ini juga memberi Anda akses ke `input` yang telah di-parse secara bertahap, seiring proses streaming.
+Anda dapat mengakumulasi delta string dan mengurai JSON setelah menerima event `content_block_stop`, dengan menggunakan library seperti [Pydantic](https://docs.pydantic.dev/latest/concepts/json/#partial-json-parsing) untuk melakukan penguraian JSON parsial, atau dengan menggunakan [helper streaming](https://platform.claude.com/docs/id/build-with-claude/streaming#streaming-with-sdks) dari SDK. Di Python dan TypeScript SDK, helper ini juga memberi Anda akses ke `input` yang telah diurai secara bertahap, seiring proses streaming.
 
 Delta blok konten `tool_use` terlihat seperti:
 
@@ -351,11 +351,11 @@ event: content_block_delta
 data: {"type": "content_block_delta","index": 1,"delta": {"type": "input_json_delta","partial_json": "{\"location\": \"San Fra"}}}
 ```
 
-Catatan: Model saat ini hanya mendukung pengeluaran satu properti kunci dan nilai lengkap dari `input` dalam satu waktu. Oleh karena itu, saat menggunakan alat, mungkin ada jeda antara event streaming selagi model bekerja. Setelah kunci dan nilai `input` terakumulasi, keduanya dikeluarkan sebagai beberapa event `content_block_delta` dengan JSON parsial yang dipotong-potong sehingga format ini dapat secara otomatis mendukung granularitas yang lebih halus pada model mendatang.
+Catatan: Model saat ini hanya mendukung pengiriman satu properti key dan value lengkap dari `input` dalam satu waktu. Oleh karena itu, saat menggunakan alat, mungkin ada jeda antar event streaming selama model sedang bekerja. Setelah key dan value `input` terakumulasi, keduanya dikirim sebagai beberapa event `content_block_delta` dengan JSON parsial yang dipecah-pecah sehingga format ini dapat secara otomatis mendukung granularitas yang lebih halus pada model mendatang.
 
 ### Delta thinking
 
-Saat menggunakan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#streaming-thinking) dengan streaming diaktifkan, Anda akan menerima konten thinking melalui event `thinking_delta`. Delta ini berkaitan dengan field `thinking` dari blok konten `thinking`.
+Saat menggunakan [pemikiran dengan streaming diaktifkan](https://platform.claude.com/docs/id/build-with-claude/thinking#streaming-thinking), Anda akan menerima konten pemikiran melalui event `thinking_delta`. Delta ini sesuai dengan field `thinking` dari content block `thinking`.
 
 Untuk konten thinking, event `signature_delta` khusus dikirim tepat sebelum event `content_block_stop`. Signature ini digunakan untuk memverifikasi integritas blok thinking.
 
@@ -393,7 +393,7 @@ Respons stream terdiri dari:
 
 4. Event `message_stop`
 
-Mungkin juga terdapat event `ping` yang tersebar di sepanjang respons. Lihat [Jenis event](https://platform.claude.com/docs/id/build-with-claude/streaming#event-types) untuk detail lebih lanjut tentang formatnya.
+Mungkin juga ada event `ping` yang tersebar di sepanjang respons. Lihat [Jenis event](https://platform.claude.com/docs/id/build-with-claude/streaming#event-types) untuk detail lebih lanjut tentang formatnya.
 
 ### Permintaan streaming dasar
 
@@ -500,8 +500,8 @@ Mungkin juga terdapat event `ping` yang tersebar di sepanjang respons. Lihat [Je
   try (var streamResponse = client.messages().createStreaming(params)) {
       streamResponse.stream().forEach(event -> {
           event.contentBlockDelta().ifPresent(deltaEvent ->
-              deltaEvent.delta().text().ifPresent(td ->
-                  System.out.print(td.text())
+              deltaEvent.delta().text().ifPresent(textDelta ->
+                  System.out.print(textDelta.text())
               )
           );
       });
@@ -516,7 +516,7 @@ Mungkin juga terdapat event `ping` yang tersebar di sepanjang respons. Lihat [Je
       messages: [
           ['role' => 'user', 'content' => 'Hello']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   foreach ($stream as $message) {
@@ -528,7 +528,7 @@ Mungkin juga terdapat event `ping` yang tersebar di sepanjang respons. Lihat [Je
   client = Anthropic::Client.new
 
   stream = client.messages.stream(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     messages: [{ role: "user", content: "Hello" }],
     max_tokens: 256
   )
@@ -567,45 +567,45 @@ data: {"type": "message_stop"}
 ### Permintaan streaming dengan penggunaan alat
 
 <Tip>
-  Penggunaan alat mendukung [streaming fine-grained](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming) untuk nilai parameter. Aktifkan per alat dengan `eager_input_streaming`.
+  Penggunaan alat mendukung [fine-grained streaming](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming) (streaming berbutir halus) untuk nilai parameter. Aktifkan pada alat individual dengan `eager_input_streaming`.
 </Tip>
 
 Permintaan ini meminta Claude menggunakan alat untuk melaporkan cuaca.
 
 <CodeGroup>
   ```bash cURL
-    curl https://api.anthropic.com/v1/messages \
-      -H "content-type: application/json" \
-      -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
-      -d '{
-        "model": "claude-opus-5",
-        "max_tokens": 1024,
-        "tools": [
-          {
-            "name": "get_weather",
-            "description": "Get the current weather in a given location",
-            "input_schema": {
-              "type": "object",
-              "properties": {
-                "location": {
-                  "type": "string",
-                  "description": "The city and state, e.g. San Francisco, CA"
-                }
-              },
-              "required": ["location"]
-            }
+  curl https://api.anthropic.com/v1/messages \
+    -H "content-type: application/json" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -d '{
+      "model": "claude-opus-5",
+      "max_tokens": 1024,
+      "tools": [
+        {
+          "name": "get_weather",
+          "description": "Get the current weather in a given location",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "type": "string",
+                "description": "The city and state, e.g. San Francisco, CA"
+              }
+            },
+            "required": ["location"]
           }
-        ],
-        "tool_choice": {"type": "any"},
-        "messages": [
-          {
-            "role": "user",
-            "content": "What is the weather like in San Francisco?"
-          }
-        ],
-        "stream": true
-      }'
+        }
+      ],
+      "tool_choice": {"type": "any"},
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is the weather like in San Francisco?"
+        }
+      ],
+      "stream": true
+    }'
   ```
 
   ```bash CLI
@@ -804,8 +804,8 @@ Permintaan ini meminta Claude menggunakan alat untuk melaporkan cuaca.
   try (var streamResponse = client.messages().createStreaming(params)) {
       streamResponse.stream().forEach(event -> {
           event.contentBlockDelta().ifPresent(deltaEvent ->
-              deltaEvent.delta().text().ifPresent(td ->
-                  System.out.print(td.text())
+              deltaEvent.delta().text().ifPresent(textDelta ->
+                  System.out.print(textDelta.text())
               )
           );
       });
@@ -820,7 +820,7 @@ Permintaan ini meminta Claude menggunakan alat untuk melaporkan cuaca.
       messages: [
           ['role' => 'user', 'content' => 'What is the weather like in San Francisco?']
       ],
-      model: 'claude-opus-5',
+      model: Model::CLAUDE_OPUS_5,
       toolChoice: ['type' => 'any'],
       tools: [
           [
@@ -866,7 +866,7 @@ Permintaan ini meminta Claude menggunakan alat untuk melaporkan cuaca.
   ]
 
   stream = client.messages.stream(
-    model: "claude-opus-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5,
     max_tokens: 1024,
     tools: tools,
     tool_choice: { type: "any" },
@@ -1118,11 +1118,11 @@ Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "sum
   try (var streamResponse = client.messages().createStreaming(params)) {
       streamResponse.stream().forEach(event -> {
           event.contentBlockDelta().ifPresent(deltaEvent -> {
-              deltaEvent.delta().thinking().ifPresent(td ->
-                  IO.print(td.thinking())
+              deltaEvent.delta().thinking().ifPresent(thinkingDelta ->
+                  IO.print(thinkingDelta.thinking())
               );
-              deltaEvent.delta().text().ifPresent(td ->
-                  IO.print(td.text())
+              deltaEvent.delta().text().ifPresent(textDelta ->
+                  IO.print(textDelta.text())
               );
           });
       });
@@ -1137,7 +1137,7 @@ Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "sum
       messages: [
           ['role' => 'user', 'content' => 'What is the greatest common divisor of 1071 and 462?']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       thinking: ['type' => 'adaptive', 'display' => 'summarized'],
   );
 
@@ -1351,8 +1351,8 @@ Permintaan ini meminta Claude mencari informasi cuaca terkini di web.
   try (var streamResponse = client.messages().createStreaming(params)) {
       streamResponse.stream().forEach(event -> {
           event.contentBlockDelta().ifPresent(deltaEvent ->
-              deltaEvent.delta().text().ifPresent(td ->
-                  System.out.print(td.text())
+              deltaEvent.delta().text().ifPresent(textDelta ->
+                  System.out.print(textDelta.text())
               )
           );
       });
@@ -1382,7 +1382,7 @@ Permintaan ini meminta Claude mencari informasi cuaca terkini di web.
   client = Anthropic::Client.new
 
   stream = client.messages.stream(
-    model: :"claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     tools: [
       {
@@ -1510,7 +1510,7 @@ Untuk model Claude 4.6 dan setelahnya, strategi tangkap-dan-lanjutkan yang sama 
 
 ### Praktik terbaik pemulihan error
 
-1. **Gunakan fitur SDK:** Manfaatkan kemampuan akumulasi pesan dan penanganan error bawaan SDK.
+1. **Gunakan fitur SDK:** Andalkan kemampuan akumulasi pesan dan penanganan error bawaan SDK.
 2. **Tangani jenis konten:** Perhatikan bahwa pesan dapat berisi beberapa blok konten (`text`, `tool_use`, `thinking`). Blok penggunaan alat dan pemikiran tidak dapat dipulihkan sebagian. Anda dapat melanjutkan streaming dari blok teks terbaru.
 
 ## Langkah selanjutnya

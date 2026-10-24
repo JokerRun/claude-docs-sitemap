@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 265f187e9df2a4da23b827bc5a287cbefe9f0106fc66730f82be23125e7b7535
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: e55e19f51d3a396a6fde8ac06c62ff906e362ed9a2f3ae9abfc6112ef3710ddd
 ---
 
 ---
 title: Memulai sesi
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-description: Buat sesi untuk menjalankan agen Anda dan mulai mengeksekusi tugas.
+description: Buat sesi untuk menjalankan agen Anda dan mulai menjalankan tugas.
 featureMetadata:
   topic:
     title: Managed Agents
@@ -327,8 +327,8 @@ Contoh berikut membuat sesi dengan satu `user.message` di `initial_events` (java
   if err != nil {
   	panic(err)
   }
-  // initial_events are not echoed on the create response, so list the
-  // session's events to read the seeded user.message back.
+  // initial_events tidak digaungkan pada respons create, jadi daftarkan
+  // event sesi untuk membaca kembali user.message yang di-seed.
   seededEvents, err := client.Beta.Sessions.Events.List(ctx, seededSession.ID, anthropic.BetaSessionEventListParams{})
   if err != nil {
   	panic(err)
@@ -438,8 +438,8 @@ Setiap field yang dapat ditimpa mengikuti tiga aturan yang sama:
 
 * **Atur field ke `null`, atau ke array kosong untuk field berupa daftar:** Sesi berjalan dengan field tersebut dikosongkan. Aturan ini berlaku sepenuhnya untuk `system` (csharp, go: `System`; ruby: `system_`) dan `skills` (csharp, go: `Skills`). Ada tiga pengecualian:
 
-  * `model` tidak pernah dapat dikosongkan. Sesi selalu memerlukan model, sehingga `model: null` mengembalikan error 400 `agent_model_required`.
-  * Mengosongkan `tools` mengembalikan error 400 ketika `skills` (csharp, go: `Skills`) efektif sesi tidak kosong, karena skill memerlukan alat `read`. Jika tidak, `tools: null` dan `tools: []` akan mengosongkan field tersebut.
+  * `model` (csharp, go: `Model`) tidak pernah dapat dikosongkan. Sesi selalu memerlukan model, sehingga menyetel `model` (csharp, go: `Model`) ke `null` mengembalikan error 400 `agent_model_required`.
+  * Mengosongkan `tools` (csharp, go: `Tools`) mengembalikan error 400 ketika `skills` (csharp, go: `Skills`) efektif milik sesi tidak kosong, karena skill memerlukan alat `read`. Jika tidak, menyetel `tools` (csharp, go: `Tools`) ke `null` atau ke array kosong akan mengosongkan field tersebut.
   * Mengosongkan `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`) mengembalikan error 400 ketika `tools` (csharp, go: `Tools`) efektif sesi masih berisi `mcp_toolset` yang mereferensikan salah satu server agen. Timpa `tools` (csharp, go: `Tools`) dalam permintaan yang sama untuk menghapus entri `mcp_toolset` tersebut, lalu kosongkan `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`).
 
 * **Atur field ke sebuah nilai:** Nilai tersebut menggantikan nilai agen secara penuh. Override tidak pernah digabungkan dengan konfigurasi agen, sehingga override `tools` (csharp, go: `Tools`) harus mencantumkan setiap alat yang harus dimiliki sesi. Demikian pula, override `model` (csharp, go: `Model`) menggantikan objek `model` (csharp, go: `Model`) agen secara penuh, sehingga `effort` (csharp, go: `Effort`) milik agen sendiri tidak terbawa. Untuk menjalankan sesi pada tingkat effort tertentu, atur `effort` (csharp, go: `Effort`) di dalam objek `model` (csharp, go: `Model`) override. Tingkat yang tidak didukung model mengembalikan error 400, dan override `model` (csharp, go: `Model`) tanpa `effort` (csharp, go: `Effort`) berjalan pada tingkat effort default model tersebut.
@@ -539,7 +539,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
   			Model: anthropic.BetaManagedAgentsModelConfigParams{
   				ID: anthropic.BetaManagedAgentsModelClaudeSonnet5_5,
   			},
-  			// Clear the agent's system prompt for this session.
+  			// Kosongkan prompt sistem agen untuk sesi ini.
   			System: param.Null[string](),
   		},
   	},
@@ -548,7 +548,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
   if err != nil {
   	panic(err)
   }
-  // The response's agent is the resolved snapshot with the overrides applied.
+  // Agen pada respons adalah snapshot yang telah diselesaikan dengan override diterapkan.
   fmt.Printf("Model: %s\n", overrideSession.Agent.Model.ID)
   fmt.Printf("System: %q\n", overrideSession.Agent.System)
   ```
@@ -607,7 +607,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
 
 #### Menyematkan geo inferensi untuk sebuah sesi
 
-Karena override `model` (csharp, go: `Model`) menggantikan objek `model` (csharp, go: `Model`) agen secara penuh, override tersebut juga mengatur atau mengosongkan penyematan [geo inferensi](https://platform.claude.com/docs/id/manage-claude/data-residency) model untuk sesi: override yang menyertakan `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) menyematkan geografi yang melayani permintaan model sesi, dan override yang menghilangkannya akan mengosongkan penyematan agen sehingga sesi mengikuti `default_inference_geo` milik workspace. Nilai yang ditimpa divalidasi terhadap `allowed_inference_geos` milik workspace saat sesi dibuat.
+Karena override `model` (csharp, go: `Model`) menggantikan objek `model` (csharp, go: `Model`) agen sepenuhnya, override tersebut juga menetapkan atau menghapus penguncian [inference geo](https://platform.claude.com/docs/id/manage-claude/data-residency) model untuk sesi. Override yang menyertakan `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) mengunci geografi yang melayani permintaan model sesi. Override yang menghilangkannya akan menghapus penguncian agen, sehingga sesi mengikuti `default_inference_geo` milik workspace. Nilai yang ditimpa divalidasi terhadap `allowed_inference_geos` milik workspace saat sesi dibuat.
 
 Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan geo, dan menyematkan permintaan model sesi ke inferensi AS dengan menyertakan `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) dalam override `model` (csharp, go: `Model`). Respons menampilkan kembali nilai tersebut di `agent.model` (csharp, go: `Agent.Model`):
 
@@ -691,7 +691,7 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan ge
   	Agent: anthropic.BetaSessionNewParamsAgentUnion{
   		OfBetaManagedAgentsAgentWithOverridess: &anthropic.BetaManagedAgentsAgentWithOverridesParams{
   			ID: agent.ID,
-  			// Replaces the agent's `model` in full: restate `id`, add `inference_geo` to pin.
+  			// Mengganti `model` agen sepenuhnya: nyatakan ulang `id`, tambahkan `inference_geo` untuk menyematkan.
   			Model: anthropic.BetaManagedAgentsModelConfigParams{
   				ID:           anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   				InferenceGeo: anthropic.String("us"),
@@ -756,9 +756,9 @@ Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan ge
 
 ### Menetapkan anggaran sesi
 
-Untuk membatasi pengeluaran sebuah sesi, teruskan objek opsional `budget` (csharp, go: `Budget`) saat Anda membuatnya. Anggaran adalah batas atas mutlak untuk biaya daftar (list cost) sesi: platform menghitung harga semua yang dikonsumsi sesi berdasarkan tarif daftar publik, dan sesi berhenti mengeluarkan permintaan model baru setelah total berjalan tersebut mencapai `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`). `type` (csharp, go: `Type`) anggaran selalu `limit`. Berikan `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`) sebuah `amount` (csharp, go: `Amount`) dan sebuah `currency` (csharp, go: `Currency`). `amount` (csharp, go: `Amount`) adalah bilangan bulat sen dolar AS yang ditulis sebagai string, seperti `"125"` untuk $1,25. API menerima string alih-alih angka sehingga pembulatan floating-point tidak pernah diterapkan. `USD` adalah satu-satunya mata uang yang saat ini didukung. Ketika sesi mencapai batas, sesi dijeda dan menjadi idle dengan alasan berhenti `budget_reached`. Batas diberlakukan di antara permintaan model, sehingga permintaan yang melewatinya selesai terlebih dahulu dan biaya daftar akhir sesi dapat berada [sedikit melewati batas](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Anggaran hanya dapat dilampirkan saat pembuatan: Anda dapat [mengubah atau menghapusnya](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-session-budget) nanti, tetapi Anda tidak dapat menambahkannya ke sesi yang dibuat tanpa anggaran.
+Untuk membatasi pengeluaran sesi, teruskan objek opsional `budget` (csharp, go: `Budget`) saat Anda membuatnya. Anggaran adalah batas atas mutlak pada biaya daftar sesi: platform menghitung harga semua yang dikonsumsi sesi berdasarkan tarif daftar publik, dan sesi berhenti mengirimkan permintaan model baru setelah total berjalan tersebut mencapai `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`). `type` (csharp, go: `Type`) anggaran selalu `limit`. Berikan `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`) sebuah `amount` (csharp, go: `Amount`) dan sebuah `currency` (csharp, go: `Currency`). `amount` (csharp, go: `Amount`) adalah bilangan bulat sen AS yang ditulis sebagai string, misalnya `"125"` untuk $1,25 USD. API menerima string alih-alih angka sehingga tidak pernah ada pembulatan floating-point yang diterapkan. `USD` adalah satu-satunya mata uang yang saat ini didukung. Ketika sesi mencapai batas tersebut, sesi dijeda dan menjadi idle dengan alasan berhenti `budget_reached`. Batas ini diberlakukan di antara permintaan model, sehingga permintaan yang melampauinya diselesaikan terlebih dahulu dan biaya daftar akhir sesi dapat berada [sedikit melewati batas](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget). Anggaran hanya dapat dilampirkan saat pembuatan: Anda dapat [mengubah atau menghapus anggaran](https://platform.claude.com/docs/id/managed-agents/session-operations#updating-the-session-budget) nanti, tetapi Anda tidak dapat menambahkannya ke sesi yang dibuat tanpa anggaran.
 
-Contoh berikut membuat sesi dengan anggaran $1,25:
+Contoh berikut membuat sesi dengan anggaran $1,25 USD:
 
 <CodeGroup>
   ```bash cURL
@@ -974,7 +974,7 @@ Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, teruskan `vault
 
 ## Memulai sesi
 
-Membuat sesi tanpa `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) akan mendaftarkan sesi tetapi tidak memulai pekerjaan apa pun; sandbox lingkungan mulai disiapkan segera setelah sesi dibuat, sehingga panggilan alat pertama tidak perlu menunggunya. Untuk mendelegasikan tugas, kirim event ke sesi menggunakan [event pengguna](https://platform.claude.com/docs/id/managed-agents/reference#event-types). Untuk menyertakan event pertama dalam permintaan pembuatan, lihat [Mengisi sesi dengan event awal](https://platform.claude.com/docs/id/managed-agents/sessions#seed-the-session-with-initial-events). Sesi bertindak sebagai state machine yang melacak kemajuan sementara event menggerakkan eksekusi yang sebenarnya.
+Membuat sesi tanpa `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) akan mendaftarkan sesi tetapi tidak memulai pekerjaan apa pun; sandbox environment mulai disiapkan segera setelah sesi dibuat, sehingga panggilan alat pertama tidak perlu menunggunya. Untuk mendelegasikan tugas, kirim event ke sesi menggunakan [user event](https://platform.claude.com/docs/id/managed-agents/reference#event-types). Untuk menyediakan event pertama dalam permintaan pembuatan, lihat [Mengisi sesi dengan event awal](https://platform.claude.com/docs/id/managed-agents/sessions#seed-the-session-with-initial-events). Sesi bertindak sebagai state machine yang melacak kemajuan, dan event menggerakkan eksekusi yang sebenarnya.
 
 <CodeGroup>
   ```bash cURL
@@ -1110,7 +1110,7 @@ Lihat [Status sesi](https://platform.claude.com/docs/id/managed-agents/session-o
   </Card>
 
   <Card title="Aliran event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
-    Kirim event, lakukan streaming respons, dan interupsi atau arahkan ulang sesi Anda di tengah eksekusi.
+    Kirim event, lakukan streaming respons, dan interupsi atau arahkan ulang sesi Anda saat sedang berjalan.
   </Card>
 
   <Card title="Deployment terjadwal" icon="arrows-clockwise" href="https://platform.claude.com/docs/id/managed-agents/scheduled-deployments">

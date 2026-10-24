@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 0323e47cc245772b87142a3eb8224a516df888ca87505653eaa6bbb4ac8151ce
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: b75cf7600dcbf4d3fd746ca59b3bec47c4b799cd7c69e564baaac144c44cdfc7
 ---
 
 ---
@@ -24,7 +24,7 @@ Untuk menggunakan Claude Models on Google Cloud (Google managed), Anda memerluka
 
 ### Menginstal SDK
 
-[SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) Anthropic mendukung Claude Models on Google Cloud (Google managed) melalui `AnthropicVertex` (csharp: `AnthropicVertexClient`; go: `vertex.WithGoogleAuth`; java: `VertexBackend`; php: `Anthropic\Vertex\Client`; ruby: `Anthropic::VertexClient`). Instal paket yang menyediakannya:
+[SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) Anthropic mendukung Claude Models on Google Cloud (Google managed) melalui `AnthropicVertex` (csharp: `AnthropicVertexClient`; go: `vertex.WithGoogleAuth()`; java: `VertexBackend`; php: `Anthropic\Vertex\Client`; ruby: `Anthropic::VertexClient`). Instal paket yang menyediakannya:
 
 <Tabs>
   <Tab title="Python">
@@ -47,27 +47,27 @@ Untuk menggunakan Claude Models on Google Cloud (Google managed), Anda memerluka
 
   <Tab title="Go">
     ```bash
-    go get github.com/anthropics/anthropic-sdk-go
+    go get github.com/anthropics/anthropic-sdk-go/v2
     ```
   </Tab>
 
   <Tab title="Java">
     <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:3.1.0")
-      implementation("com.anthropic:anthropic-java-vertex:3.1.0")
+      implementation("com.anthropic:anthropic-java:3.3.0")
+      implementation("com.anthropic:anthropic-java-vertex:3.3.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>3.1.0</version>
+          <version>3.3.0</version>
       </dependency>
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-vertex</artifactId>
-          <version>3.1.0</version>
+          <version>3.3.0</version>
       </dependency>
       ```
     </CodeGroup>
@@ -188,8 +188,8 @@ Contoh-contoh berikut menggunakan endpoint global. Untuk jenis endpoint lainnya,
   	"context"
   	"fmt"
 
-  	"github.com/anthropics/anthropic-sdk-go"
-  	"github.com/anthropics/anthropic-sdk-go/vertex"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
+  	"github.com/anthropics/anthropic-sdk-go/v2/vertex"
   )
   // ...
   	// Menggunakan kredensial default Google Cloud
@@ -349,7 +349,7 @@ Jenis-jenis endpoint berbeda dalam hal ke mana permintaan dikirim:
 * **Multi-region:** Permintaan dikirim ke region mana pun di Amerika Serikat (`"us"`) atau Uni Eropa (`"eu"`). Gunakan ini ketika Anda memerlukan residensi data dalam wilayah geografis yang luas dan ketersediaan yang lebih tinggi daripada satu region.
 * **Regional:** Permintaan hanya dikirim ke region yang Anda sebutkan, seperti `"us-east5"` atau `"europe-west1"`. Gunakan ini ketika Anda memerlukan residensi data dalam satu region atau harus memenuhi mandat kepatuhan yang ketat.
 
-Endpoint multi-region dan regional berbiaya 10% lebih mahal daripada endpoint global. Ketiga jenis endpoint menerima lalu lintas pay-as-you-go, dan provisioned throughput memerlukan endpoint regional.
+Endpoint multi-region dan regional berbiaya 10 persen lebih mahal daripada endpoint global. Ketiga jenis endpoint menerima lalu lintas pay-as-you-go, dan provisioned throughput memerlukan endpoint regional.
 
 Endpoint regional hanya melayani Claude Sonnet 4.6 dan model-model sebelumnya. Untuk model yang lebih baru, gunakan endpoint global atau multi-region.
 
@@ -361,7 +361,7 @@ Contoh-contoh berikut menggunakan endpoint multi-region `us`. Baris yang disorot
 
 <CodeGroup exclude="shell:CLI">
   ```bash cURL
-  # Pengenal multi-region, "us" atau "eu", muncul di nama host dan di path
+  # Pengenal multi-region, "us" atau "eu", muncul di hostname dan di path
   curl https://aiplatform.us.rep.googleapis.com/v1/projects/MY_PROJECT_ID/locations/us/publishers/anthropic/models/claude-opus-5-5:rawPredict \
     -H "Authorization: Bearer $(gcloud auth print-access-token)" \
     -H "Content-Type: application/json" \
@@ -410,8 +410,8 @@ Contoh-contoh berikut menggunakan endpoint multi-region `us`. Baris yang disorot
   import (
   	"context"
 
-  	"github.com/anthropics/anthropic-sdk-go"
-  	"github.com/anthropics/anthropic-sdk-go/vertex"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
+  	"github.com/anthropics/anthropic-sdk-go/v2/vertex"
   )
   // ...
   	// Pengenal multi-region: "us" atau "eu"
@@ -515,7 +515,7 @@ Claude Models on Google Cloud (Google managed) menawarkan ["context window" (jen
 
 Model Claude lainnya memiliki jendela konteks 200k token. Ini termasuk Claude Sonnet 4.5 (deprecated) dan Claude Sonnet 4 (deprecated).
 
-Agent Platform membatasi payload permintaan hingga 30 MB. Saat Anda mengirim dokumen besar atau banyak gambar, Anda mungkin mencapai batas ini sebelum batas token.
+Agent Platform membatasi payload permintaan hingga 30 MB. Saat Anda mengirim dokumen besar atau banyak gambar, Anda mungkin mencapai batas ini sebelum batas token.
 
 ## Penagihan, batas laju, dan logging
 
@@ -555,7 +555,7 @@ Untuk mengetahui apa yang berubah saat Anda berpindah, lihat [Perbedaan kedua pe
   </Step>
 
   <Step title="Ganti import dan klien">
-    Ubah kode yang mengimpor dan membuat klien Anda. Gunakan `AnthropicVertex` (csharp: `AnthropicVertexClient`; go: `vertex.WithGoogleAuth`; java: `VertexBackend`; php: `Anthropic\Vertex\Client`; ruby: `Anthropic::VertexClient`) sebagai pengganti `AnthropicGoogleCloud` (csharp: `AnthropicGoogleCloudClient`; go: `googlecloud.NewClient`; java: `GoogleCloudBackend`; php: `Anthropic\GoogleCloud\Client`; ruby: `Anthropic::GoogleCloudClient`). Permintaan cURL memerlukan URL baru, header baru, dan body baru. Kode berikut membuat klien untuk Claude Models on Google Cloud (Anthropic managed) yang Anda gunakan saat ini:
+    Ubah kode yang mengimpor dan membuat klien Anda. Gunakan `AnthropicVertex` (csharp: `AnthropicVertexClient`; go: `vertex.WithGoogleAuth()`; java: `VertexBackend`; php: `Anthropic\Vertex\Client`; ruby: `Anthropic::VertexClient`) sebagai pengganti `AnthropicGoogleCloud` (csharp: `AnthropicGoogleCloudClient`; go: `googlecloud.NewClient()`; java: `GoogleCloudBackend`; php: `Anthropic\GoogleCloud\Client`; ruby: `Anthropic::GoogleCloudClient`). Permintaan cURL memerlukan URL baru, header baru, dan body baru. Kode berikut membuat klien untuk Claude Models on Google Cloud (Anthropic managed) yang Anda gunakan saat ini:
 
     <CodeGroup>
       ```bash cURL
@@ -601,8 +601,8 @@ Untuk mengetahui apa yang berubah saat Anda berpindah, lihat [Perbedaan kedua pe
       import (
       	"context"
 
-      	"github.com/anthropics/anthropic-sdk-go"
-      	"github.com/anthropics/anthropic-sdk-go/googlecloud"
+      	"github.com/anthropics/anthropic-sdk-go/v2"
+      	"github.com/anthropics/anthropic-sdk-go/v2/googlecloud"
       )
       // ...
       	client, err := googlecloud.NewClient(context.Background(), googlecloud.ClientConfig{})
@@ -688,8 +688,8 @@ Untuk mengetahui apa yang berubah saat Anda berpindah, lihat [Perbedaan kedua pe
       import (
       	"context"
 
-      	"github.com/anthropics/anthropic-sdk-go"
-      	"github.com/anthropics/anthropic-sdk-go/vertex"
+      	"github.com/anthropics/anthropic-sdk-go/v2"
+      	"github.com/anthropics/anthropic-sdk-go/v2/vertex"
       )
       // ...
       	// Menggunakan kredensial default Google Cloud

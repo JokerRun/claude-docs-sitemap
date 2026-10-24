@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-haiku-5-5
-fetched_at: 2026-10-08T02:28:25.993144Z
-sha256: 52fb2a78192f95598fc3839d68a9d3e3a4ef3e37ceee7d84d60e293960345559
+fetched_at: 2026-10-24T02:19:09.817678Z
+sha256: b75899d523359c75fa0bb7bfe564904cad8cb74ca8a82549ac6d437e68ac3420
 ---
 
 ---
 title: Prompt sistem Claude Haiku 5.5
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-haiku-5-5
-description: Lihat pembaruan pada prompt sistem inti untuk Claude Haiku 5.5 di [claude.ai](https://claude.ai) serta [aplikasi Claude iOS](https://anthropic.com/ios) dan [aplikasi Claude Android](https://anthropic.com/android).
+description: Lihat pembaruan pada prompt sistem inti untuk Claude Haiku 5.5 di [claude.ai](https://claude.ai), [aplikasi Claude iOS](https://anthropic.com/ios), dan [aplikasi Claude Android](https://anthropic.com/android).
 ---
 
 ## 7 Oktober 2026
