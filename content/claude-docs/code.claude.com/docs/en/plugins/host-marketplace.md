@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/host-marketplace
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 3eccac1c5fbce214f32979784ce2133043b202e87254e3b6a8b4ea39524ecf5b
+fetched_at: 2026-10-25T02:20:50.950770Z
+sha256: 8c157a1f6d6c8acd86737fe163762f3bc2575da5f3fcbc5f7e0aa7ebd6a876bc
 ---
 
 > ## Documentation Index
@@ -118,7 +118,7 @@ You choose whether the clone runs over SSH or HTTPS by the form of the add comma
 Tell users what each protocol needs on their machine:
 
 * **SSH**: the key must work without a passphrase prompt, for example because it's loaded in `ssh-agent`. The host must already be in `known_hosts`.
-* **HTTPS**: Claude Code leaves the user's git credential helper enabled but forbids it from prompting. A credential the helper already stores works; one it would have to ask for fails. On GitHub, `gh auth login` followed by `gh auth setup-git` stores one.
+* **HTTPS**: Claude Code leaves the user's git credential helper enabled but forbids it from prompting, and doesn't run askpass programs such as one set in `GIT_ASKPASS`. A credential the helper already stores works; one it would have to ask for fails. On GitHub, `gh auth login` followed by `gh auth setup-git` stores one.
 
 For a GitHub Enterprise Server host, users need git access to that host from their machine. See [Plugin marketplaces on GHES](https://code.claude.com/docs/en/github-enterprise-server.md#plugin-marketplaces-on-ghes) for what each Claude Code surface needs to reach a GHES-hosted marketplace.
 

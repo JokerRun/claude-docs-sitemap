@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/ultrareview
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: ede773031b7203c1edc24473d4e46adeb72434e21bfddacd09779565f5f6cb18
+fetched_at: 2026-10-25T02:20:50.950770Z
+sha256: ccaee97adab0ddcc3c845cc1ee28eaee379b04e56061031b5b69444c014c22c5
 ---
 
 > ## Documentation Index
@@ -183,7 +183,7 @@ Running `claude ultrareview` requires the same authentication and usage-credits 
 The subcommand exits with one of three codes:
 
 * **0**: the review completed, with or without findings
-* **1**: the review failed to launch or was stopped before it finished, the cloud session errored, or the timeout elapsed. The code is also 1 when the [folder isn't trusted](#trust-the-folder-before-the-review-runs), including when you answer `n` or press Ctrl-C at the trust question.
+* **1**: the review failed to launch or was stopped before it finished, the cloud session errored, or the timeout elapsed. The code is also 1 when the [folder isn't trusted](#trust-the-folder-before-the-review-runs), including when you answer `n`, press Enter, or press Ctrl-C at the trust question.
 * **130**: you pressed Ctrl-C while the subcommand was launching the review, waiting for the findings, or sending the `--post` comment, rather than at the trust question
 
 If the subcommand exits before the findings arrive, they never reach your terminal. The review may still be running in the cloud. Running the subcommand again starts a new review rather than resuming that one, and the new review [uses a free run or bills as usage credits](#pricing-and-free-runs).
@@ -205,7 +205,7 @@ When it can't ask you, such as in a CI job or with output sent to a file, it exi
 claude ultrareview 1234 --trust-workspace
 ```
 
-To review an untrusted pull request, run `claude ultrareview <PR number> --trust-workspace` from a branch you trust. Unlike `y`, the flag saves nothing. The PR is [cloned in the cloud](#review-a-pull-request), so you don't need its branch locally.
+To review an untrusted pull request, run `claude ultrareview <PR number> --trust-workspace` from a branch you trust. The PR is [cloned in the cloud](#review-a-pull-request), so you don't need its branch locally.
 
 ## How ultrareview compares to /code-review
 

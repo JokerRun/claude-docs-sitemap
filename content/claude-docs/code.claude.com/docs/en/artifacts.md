@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/artifacts
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: a48ba61f9ef97e86fac25ff00f23e431f912a7aafc0ab3d17b4cc7d761b17f26
+fetched_at: 2026-10-25T02:20:50.950770Z
+sha256: e4afc5fb601f82ab2d90def131325fd87ac93448baee1154c96babd16d53a3db
 ---
 
 > ## Documentation Index
@@ -347,9 +347,7 @@ Open the published artifact in a desktop browser to review the artboards. Select
 
 Claude Docs reaches Claude Code as a claude.ai [connector](https://code.claude.com/docs/en/mcp.md#use-mcp-servers-from-claude-ai) rather than a command. When it's connected, `/mcp` lists it as `claude.ai Claude Docs`. A request for a document meant for other people then goes to Claude Docs instead of an artifact page: a spec, a proposal, or a write-up of the plan you worked through in the session. Claude gives you the doc's link when it's drafted.
 
-A document that belongs in the codebase, such as a README, stays a file. To get a file for something Claude would otherwise put in Claude Docs, name the format, such as `.docx` or a Markdown file in the repository.
-
-To turn the connector off, add `claude.ai Claude Docs` to `deniedMcpServers` or use the `/mcp` toggle, both described in [Disable claude.ai connectors](https://code.claude.com/docs/en/mcp.md#disable-claude-ai-connectors).
+A document that belongs in the codebase, such as a README, stays a file. To get a file for something Claude would otherwise put in Claude Docs, name the format, such as `.docx` or a Markdown file in the repository. To turn off only the `claude.ai Claude Docs` connector, see [Disable claude.ai connectors](https://code.claude.com/docs/en/mcp.md#disable-claude-ai-connectors).
 
 ## Page constraints
 

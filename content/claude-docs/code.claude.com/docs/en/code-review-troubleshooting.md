@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review-troubleshooting
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: e0775b42a4b45a9d8793a779a202054f1c9d1d05d7c5afb43dc0e89fa7604fc0
+fetched_at: 2026-10-25T02:20:50.950770Z
+sha256: ea27dac8da01ac609861527065704f126cd002631ef60e7c2c4f883d73c09963
 ---
 
 > ## Documentation Index
@@ -22,7 +22,7 @@ Find the **Claude Code Review** check run on your pull request, then match its t
 | Check run title | What it means | What to do |
 | :- | :- | :- |
 | **Code review queued...** or **Code review in progress...** | The review hasn't finished | Wait for the title to change |
-| **Code review found no issues** | The review finished and found nothing to flag | Nothing |
+| **Code review found no issues** | The review finished and posted no findings | If this isn't the pull request's first review, look in the review body for a count of [findings the review left out](https://code.claude.com/docs/en/code-review-pull-requests.md#what-a-later-review-covers). Otherwise, nothing |
 | A title that says issues were found | The review finished with findings | If you don't see them on the diff, see [Find issues that aren't showing as inline comments](#find-issues-that-aren’t-showing-as-inline-comments) |
 | **Code review skipped — no new changes** | An automatic review didn't run on your latest push | To get a review anyway, comment `@claude review` |
 | **Code review not repeated — earlier findings still open** | An automatic review didn't run on your latest push, and Important findings from the earlier review are still open | Push a fix, or to get a review anyway, comment `@claude review`. See [When a push keeps the earlier result](https://code.claude.com/docs/en/code-review-pull-requests.md#when-a-push-keeps-the-earlier-result) |
@@ -74,7 +74,7 @@ If the check run title says issues were found but you don't see inline review co
 
 ## The check run mentions REVIEW\.md
 
-These are three of the messages a check run can carry about `REVIEW.md`:
+These are four of the messages a check run can carry about `REVIEW.md`:
 
 * **"This review applied the repository's review instructions (REVIEW\.md) from its default branch, which is not protected against direct pushes."**: the review read the root file only. See [Which branch REVIEW.md is read from](https://code.claude.com/docs/en/code-review-customize.md#which-branch-review-md-is-read-from) for what protecting the branch changes.
 * **"were not applied to this review: branch protection could not be confirmed"**: the review read no `REVIEW.md`.
@@ -82,6 +82,7 @@ These are three of the messages a check run can carry about `REVIEW.md`:
   * **Too many links**: it carries more than 64 Markdown links. Cut links to [64 or fewer](https://code.claude.com/docs/en/code-review-customize.md#include-other-files-in-review-md).
   * **A link the review can't parse**: it has a malformed Markdown link. Fix or remove the link.
   * **A link to a changed file**: it links to a file or folder this pull request changes, and the review couldn't leave out only the lines with that link. Write the rule in `REVIEW.md` itself.
+* **"include line(s) in the root REVIEW\.md were skipped on this review"**: your root `REVIEW.md` applied, but the files those lines name didn't. Check the lists under [Include other files in REVIEW.md](https://code.claude.com/docs/en/code-review-customize.md#include-other-files-in-review-md) and, for a skill, under [Include a skill file](https://code.claude.com/docs/en/code-review-customize.md#include-a-skill-file).
 
 ## Setup problems
 

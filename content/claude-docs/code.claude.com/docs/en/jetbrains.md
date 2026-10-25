@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/jetbrains
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: f4af835e8a33b2b0010d15fe84049e4a8daed48d6c21f50912855a668d9cfb35
+fetched_at: 2026-10-25T02:20:50.950770Z
+sha256: 1d749d341482275601c6f24f6f2e91298285ed5d59268251931f83391be47507
 ---
 
 > ## Documentation Index
@@ -68,7 +68,7 @@ claude
 /ide
 ```
 
-When the connection succeeds, Claude Code confirms with a message like `Connected to IntelliJ IDEA.` If Claude Code detects a running IDE that doesn't have the plugin, `/ide` installs the plugin for you and asks you to restart the IDE.
+When the connection succeeds, Claude Code confirms with a message like `Connected to IntelliJ IDEA.`
 
 If you want Claude to have access to the same files as your IDE, start Claude Code from the same directory as your IDE project root.
 

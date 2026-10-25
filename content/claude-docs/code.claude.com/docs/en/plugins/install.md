@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/install
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: dac1cff425abd374c83c197c030a80a3979ceabc59de5572b304d8aafc7f83a8
+fetched_at: 2026-10-25T02:20:50.950770Z
+sha256: 7d9ae581b0dc1f0f53ef5aa40cfd4682fe65632595b5a879f0b07460b30faad6
 ---
 
 > ## Documentation Index
@@ -245,7 +245,7 @@ If you haven't added that marketplace yet, the command prints `Successfully adde
 
 A private marketplace is one in a repository you need credentials to clone, on GitHub or any other git host. You add it with the same `/plugin marketplace add` or `claude plugin marketplace add` command as a public one. Claude Code clones it with the git credentials already on your machine and never prompts, so each way of connecting has a requirement:
 
-* **HTTPS**: your git credential helpers apply, so access you set up with `gh auth login`, the macOS Keychain, or `git-credential-store` works. Interactive prompts are suppressed, so a host you have never authenticated to fails instead of asking for a password.
+* **HTTPS**: your git credential helpers apply, so access you set up with `gh auth login`, the macOS Keychain, or `git-credential-store` works. Git's prompts and askpass programs are off, including one set in `GIT_ASKPASS`, so the clone fails instead of prompting when git would have to ask for a credential.
 * **SSH**: the host must already be in your `known_hosts` file and the key must work without a passphrase prompt. If your git setup names an SSH program in `GIT_SSH_COMMAND`, `GIT_SSH`, or your git config's `core.sshCommand`, Claude Code runs that program.
 * **GitHub `owner/repo` shorthand**: Claude Code checks whether your SSH key authenticates to `github.com`, then clones over SSH if it does and over HTTPS if it doesn't. Set [`CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1`](https://code.claude.com/docs/en/env-vars#variables) to skip that check and always clone over HTTPS.
 

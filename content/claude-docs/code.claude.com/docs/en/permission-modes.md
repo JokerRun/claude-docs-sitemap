@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permission-modes
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 17c8302bf5ee6e9481cb1fdff1f69325babbf880fa324a02565f0a944475643e
+fetched_at: 2026-10-25T02:20:50.950770Z
+sha256: 5e07339f3924fc487e58551bba005de871ab3bdf6de73e08b47f79834eac018f
 ---
 
 > ## Documentation Index
@@ -255,7 +255,7 @@ For where `defaultMode` goes in a settings file, see the example under [Start in
 
 **Web and mobile**
 
-On [claude.ai/code](https://claude.ai/code), use the mode dropdown next to the prompt box. In the mobile app, tap the **+** button in the prompt box, then **Permission**. Cloud sessions and Remote Control sessions offer different permission modes:
+On [claude.ai/code](https://claude.ai/code), use the mode dropdown in the row under the prompt box. In the mobile app, tap the **+** button in the prompt box, then **Permission**. Cloud sessions and Remote Control sessions offer different permission modes:
 
 * **[Cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web.md)**: Accept edits, Plan, and Auto. Accept edits corresponds to `default` mode: cloud sessions pre-approve file edits regardless of mode, so the dropdown shows Accept edits instead of Manual. Cloud sessions still honor `defaultMode: "acceptEdits"` from settings. Auto mode appears only when your organization allows it and the selected model supports it. Bypass permissions isn't available.
 * **[Remote Control](https://code.claude.com/docs/en/remote-control.md) sessions** on your local machine: Manual, Accept edits, Plan, and Auto for a session you started yourself, and you can't select Bypass permissions from the app. To use Auto, the session has to meet the auto mode [availability requirements](#eliminate-prompts-with-auto-mode). For a project thread running on your computer, see [Run a thread on your own computer](https://code.claude.com/docs/en/claude-projects.md#run-a-thread-on-your-own-computer).

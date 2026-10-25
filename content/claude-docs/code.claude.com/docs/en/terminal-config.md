@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 2fbc85c440ada3cf559080ea8832589f806d11526c6fb36cd4ef20958dc19713
+fetched_at: 2026-10-25T02:20:50.950770Z
+sha256: 964f68477b6ba9c9adb6f843e89fd68b2fe9118bbd59ac0091c68ef9432b1fc0
 ---
 
 > ## Documentation Index
@@ -128,17 +128,22 @@ If it does and you see no status for a session, check for each of these causes:
 * **Background session**: a [background session](https://code.claude.com/docs/en/agent-view.md) doesn't report its status to your terminal, even while you're attached to it. Agent view shows its status instead.
 * **[`CLAUDE_CODE_DISABLE_TERMINAL_TITLE`](https://code.claude.com/docs/en/env-vars#variables)**: if you set this variable to `1`, Claude Code doesn't check for support or report status. Unset it.
 
+The tab title doesn't start with a status glyph in a terminal that reports support for the protocol. The terminal shows the session's state itself, so Claude Code leaves out the glyph it puts in front of the title in other terminals.
+
 ## Configure tmux
 
 When Claude Code runs inside tmux, by default Shift+Enter submits instead of inserting a newline, and desktop notifications and the [progress bar](https://code.claude.com/docs/en/settings-reference.md#terminalprogressbarenabled) never reach the outer terminal. Add these lines to `~/.tmux.conf`, then run `tmux source-file ~/.tmux.conf` to apply them to the running server:
 
 ```bash ~/.tmux.conf theme={null}
 set -g allow-passthrough on
+set -g focus-events on
 set -s extended-keys on
 set -as terminal-features 'xterm*:extkeys'
 ```
 
 The `allow-passthrough` line lets notifications and progress updates reach the outer terminal instead of being swallowed by tmux. The `extended-keys` lines let tmux distinguish Shift+Enter from plain Enter so the newline shortcut works.
+
+A [mod's `Image`](https://code.claude.com/docs/en/plugins/mods/reference#elements) needs the `allow-passthrough` and `focus-events` lines, along with the other [requirements for drawing inside tmux](https://code.claude.com/docs/en/plugins/mods/gallery.md#draw-an-image-inside-tmux). After you add the lines, also detach from tmux, attach again, and restart Claude Code.
 
 ## Fix Backspace deleting a whole word on Windows
 

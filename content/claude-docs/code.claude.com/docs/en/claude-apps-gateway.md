@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 2661b44b59919124a99459f34e51aac73b5e38f14add593bd329caad8bf22c25
+fetched_at: 2026-10-25T02:20:50.950770Z
+sha256: 16a45584b9c31f06bbd9b84a18c35ea2371cc2efc08c1c4c032d35d5b090c351
 ---
 
 > ## Documentation Index
@@ -465,17 +465,19 @@ Under the default first-wins setting, an admin value blocks the parent's only wh
 
 #### How hook and skill keys in parent settings take effect
 
-If you pass `disableAllHooks: true` as a parent setting through the Agent SDK's `managedSettings` option, not every hook stops. Your [SDK hook callbacks](https://code.claude.com/docs/en/agent-sdk/hooks.md) still run, and so do the administrator's hooks, which your application can't switch off.
+Keys your application passes in the Agent SDK's [`managedSettings`](https://code.claude.com/docs/en/agent-sdk/typescript#options) option are parent settings. On a machine where an administrator deploys managed settings, Claude Code ignores parent settings unless the administrator [lets an embedding host add policy](https://code.claude.com/docs/en/managed-settings.md#let-an-embedding-host-add-policy).
 
-On a machine where an administrator deploys managed settings, Claude Code ignores parent settings unless the administrator [lets an embedding host add policy](https://code.claude.com/docs/en/managed-settings.md#let-an-embedding-host-add-policy).
+If you pass [`disableAllHooks: true`](https://code.claude.com/docs/en/settings-reference#disableallhooks) in `managedSettings`:
+
+* **Stop**: user, project, and local hooks, plus hooks declared in agent frontmatter or in the SDK's [`settings` option](https://code.claude.com/docs/en/agent-sdk/typescript#options).
+* **Keep running**: your application's [SDK hook callbacks](https://code.claude.com/docs/en/agent-sdk/hooks.md) and an administrator's hooks from managed settings. Your application can't turn the administrator's hooks off.
 
 | What you pass | What happens |
 | :- | :- |
-| `disableAllHooks: true` | Treated as `allowManagedHooksOnly: true`, so the hooks listed as [blocked under `allowManagedHooksOnly`](https://code.claude.com/docs/en/settings-reference#what-runs-under-allowmanagedhooksonly) stop, and so do hooks in the SDK's [`settings` option](https://code.claude.com/docs/en/agent-sdk/typescript#options). |
-| [`disableSkillShellExecution: true`](https://code.claude.com/docs/en/settings-reference#disableskillshellexecution) | Takes effect. |
+| `hooks`, or `allowedHttpHookUrls` or `httpHookAllowedEnvVars` with entries | Claude Code ignores the key. Use the SDK `settings` option instead. |
 | `allowedHttpHookUrls: []` | Takes effect unless the administrator defines `hooks` or enables a plugin. No HTTP hook runs, except for URLs another settings source lists. |
 | `httpHookAllowedEnvVars: []` | Takes effect unless the administrator defines `hooks` or enables a plugin. HTTP hook headers can include only environment variables another settings source lists. |
-| `allowedHttpHookUrls` or `httpHookAllowedEnvVars` with entries | Claude Code ignores it, since merging would widen an administrator's list. Use the SDK `settings` option instead. |
+| [`disableSkillShellExecution: true`](https://code.claude.com/docs/en/settings-reference#disableskillshellexecution) | Takes effect. |
 
 Passing these keys in `managedSettings` requires Claude Code v2.1.309 or later, or TypeScript Agent SDK v0.3.309 or later.
 

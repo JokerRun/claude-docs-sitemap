@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 69a20c07fa8cc7c5c3e9700f2b1916625d4f085ed9c612c8e882b09774a7f4bf
+fetched_at: 2026-10-25T02:20:50.950770Z
+sha256: a20529e1f84261b71a776204ce778a1870f94d500fdb29daa73cb9b755af88e5
 ---
 
 > ## Documentation Index
@@ -665,6 +665,8 @@ While the panel is open, you can:
 * **Change what the panel compares against**: press `Ctrl+X B` to cycle from this session's changes, to your uncommitted changes as one list, to everything since your branch split from the default branch. Claude Code remembers the choice for each repository.
 
 To rebind the keys that scroll the file list or change the comparison, see [Diff panel actions](https://code.claude.com/docs/en/keybindings.md#diff-panel-actions).
+
+During an unfinished merge, rebase, cherry-pick, or revert, the panel keeps showing the changes it last read from git, so it doesn't fill with the operation's incoming changes. It updates at its first refresh after the operation ends, for example when Claude next edits a file.
 
 ### Diff dialog
 

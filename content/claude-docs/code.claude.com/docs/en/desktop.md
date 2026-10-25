@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: cac328c14a3c725e6716cad666f9a6142e289aa5d8b821d718bea210964d4025
+fetched_at: 2026-10-25T02:20:50.950770Z
+sha256: 03298b688d61d56339526e6bd9fde6ce5bb75cfce6a0881a8cb673f29ab5e056
 ---
 
 > ## Documentation Index
@@ -230,7 +230,7 @@ The session details panel is a set of cards beside the chat that show where the 
 
 #### Hide or show the session details panel
 
-To hide or show the panel, click **Hide session rail** or **Show session rail** in the session's title bar, or in the bar's **⋮** menu when the window is narrow. If you still don't see the panel, [check which Code tab layout you have](#check-which-layout-you-have).
+To hide or show the panel, click **Hide session rail** or **Show session rail** in the session's title bar, or in the bar's **⋮** menu. If you still don't see the panel, [check which Code tab layout you have](#check-which-layout-you-have).
 
 ### Run commands in the terminal
 
@@ -851,7 +851,7 @@ Variables such as `PATH` and `CLAUDE_CONFIG_DIR` have their own instructions:
 | [`CLAUDE_CONFIG_DIR`](https://code.claude.com/docs/en/env-vars#variables) or [`CLAUDE_CODE_TMPDIR`](https://code.claude.com/docs/en/env-vars#variables) | Set it in [one of the places you'd set a variable for dev servers](#set-environment-variables-for-dev-servers), then quit and reopen Desktop |
 | `API_TIMEOUT_MS`, `ANTHROPIC_BASE_URL`, or another variable Desktop sets itself | See [Environment variables Desktop sets itself](#environment-variables-desktop-sets-itself) |
 
-On macOS or Linux, if you already set your variable with `export` in `~/.zshrc` or `~/.bashrc`, see [Exported variable missing or wrong in commands Claude runs](#exported-variable-missing-or-wrong-in-commands-claude-runs).
+On macOS or Linux, if a variable you set with `export` is missing or wrong in a command Claude runs, see [Exported variable missing or wrong in commands Claude runs](#exported-variable-missing-or-wrong-in-commands-claude-runs).
 
 #### Set environment variables for local sessions
 
@@ -915,7 +915,7 @@ If a command gets the wrong value, check whether you also set the variable in a 
 
 **4. Use a saved environment**
 
-Add the variable to a [saved local environment](#set-environment-variables-for-local-sessions), then start a new session from that environment. For a variable such as `PATH` or `CLAUDE_CONFIG_DIR`, follow [its own instructions](#environment-variables-in-local-sessions) instead.
+Add the variable to a [saved local environment](#set-environment-variables-for-local-sessions), then start a new session from that environment. For a variable such as `PATH`, `CLAUDE_CONFIG_DIR`, or `API_TIMEOUT_MS`, follow [its own instructions](#environment-variables-in-local-sessions) instead.
 
 Before v2.1.304, Claude Code doesn't pass exported variables to commands, so [check which version the session runs](#claude-code-version-in-the-code-tab).
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 583b13cb76e652503040e238bc23e9a81035c6ce76742c722cb4304654bed863
+fetched_at: 2026-10-25T02:20:50.950770Z
+sha256: 900ff49d19bd0c11eb1b3560b7ca0ad0b19699ce7ce668c01bba62ab6a68e08d
 ---
 
 > ## Documentation Index
@@ -37,7 +37,7 @@ When a developer starts a cloud session, the session-start UI shows an environme
 
 The two Claude Code boxes in the diagram are session processes: one runner executing two sessions at once, up to its configured capacity. A runner serves one [owner](#key-concepts) at a time and locks to that owner when it claims its first session, so checked-out code never mixes between owners; [Runner lifecycle](#runner-lifecycle) covers the rule.
 
-You can start runners yourself and keep them running, or run the [autoscaling orchestrator](https://code.claude.com/docs/en/self-hosted-environments-configuration.md#on-demand-runners), a second process you host, which starts runners as sessions queue; each runner exits on its own when its work finishes. Either way, you set the environment up once, and it appears in the picker on every supported surface.
+You can start runners yourself and keep them running, or run the [autoscaling orchestrator](https://code.claude.com/docs/en/self-hosted-environments-configuration.md#on-demand-runners), a second process you host, which starts runners as sessions queue. Either way, you set the environment up once, and it appears in the picker on every supported surface.
 
 ## Availability and limitations
 
@@ -129,7 +129,8 @@ By default, model inference uses the Anthropic API. The control plane delivers t
 
 Corporate egress proxies are supported. The runner and the optional [autoscaling orchestrator](https://code.claude.com/docs/en/self-hosted-environments-configuration.md#on-demand-runners) honor the proxy and mTLS environment variables described in [Network configuration](https://code.claude.com/docs/en/network-config.md), such as `HTTPS_PROXY` and `NO_PROXY`; set them in each process's environment. The variables cover control-plane calls, the orchestrator's [SCM connector](https://code.claude.com/docs/en/self-hosted-environments-reference.md#scm-connector-flags) WebSocket, and the built-in clone for HTTPS remotes, and sessions inherit them from the runner. Session streaming uses server-sent events over HTTPS, so a proxy in the path must not buffer responses.
 
-If your proxy also requires a `Proxy-Authorization` header, the runner can add it to each connection it opens to the proxy; see [Authenticate to an egress proxy](https://code.claude.com/docs/en/self-hosted-environments-deploy.md#authenticate-to-an-egress-proxy).
+* **Proxy authentication**: if your proxy also requires a `Proxy-Authorization` header, the runner can add it to each connection it opens to the proxy; see [Authenticate to an egress proxy](https://code.claude.com/docs/en/self-hosted-environments-deploy.md#authenticate-to-an-egress-proxy).
+* **Long-lived responses**: if a runner picks up a session but Claude never answers its first message, your proxy may be the cause. See [A session is picked up, but Claude never answers its first message](https://code.claude.com/docs/en/self-hosted-environments-deploy.md#when-a-sessions-first-message-is-never-answered).
 
 ## What stays on your infrastructure
 
