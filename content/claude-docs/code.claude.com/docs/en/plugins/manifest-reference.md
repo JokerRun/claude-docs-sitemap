@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/manifest-reference
-fetched_at: 2026-10-25T02:20:50.950770Z
-sha256: 2e9a4d61356e87ee92b7292586e81388cb98e2ac029a42952ed756dad85a00a0
+fetched_at: 2026-10-26T02:24:48.652012Z
+sha256: a10a371d18d571e769f99720d4402f3ec13ceb668561266f57145cfa940fa4ed
 ---
 
 > ## Documentation Index
@@ -613,7 +613,7 @@ This shell-form hook runs a script bundled with the plugin:
 }
 ```
 
-On Windows, the substituted paths use forward slashes so a shell doesn't read backslashes as escapes.
+On Windows, most substituted paths use forward slashes, as in `C:/Users/you/...`. They keep their native backslashes in an [exec-form hook](https://code.claude.com/docs/en/hooks.md#exec-form-and-shell-form) and in a hook that runs through PowerShell, which is the default shell on Windows when Git Bash isn't installed.
 
 ## Standard layout
 

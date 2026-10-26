@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings-reference
-fetched_at: 2026-10-25T02:20:50.950770Z
-sha256: 2d71c202b432896cfa95eaec34dcf4522d1712c093296bad2bdaaeb1bf3cf7d1
+fetched_at: 2026-10-26T02:24:48.652012Z
+sha256: 312fa9bab67ab75cf80d75b30e20bda143632b3acd52b08f40fd37da10635954
 ---
 
 > ## Documentation Index
@@ -1237,11 +1237,11 @@ On a platform the sandbox doesn't support, Claude Code doesn't start with this k
 
 * **Scope**: [`Any file`](#scopes), with [limits on project and local settings](https://code.claude.com/docs/en/sandboxing.md#repository-settings-under-an-admin-required-sandbox)
 * **Type**: Boolean
-  * `true`: Claude Code exits with an error at startup when `sandbox.enabled` is `true` but the sandbox can't start
+  * `true`: Claude Code exits with an error at startup when `sandbox.enabled` is `true` but the sandbox can't start. If the sandbox passes that check and then fails to initialize, the session keeps running and Claude Code [refuses each sandboxed command](https://code.claude.com/docs/en/sandboxing.md#commands-refused-with-sandbox-is-required)
   * `false`: Claude Code runs commands unsandboxed when the sandbox can't start
 * **Default**: `false`
 
-This makes every managed machine sandbox commands or refuse to start:
+This turns the sandbox on for managed machines and sets `failIfUnavailable` to `true`:
 
 ```json managed-settings.json theme={null}
 {

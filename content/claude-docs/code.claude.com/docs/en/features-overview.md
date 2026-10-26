@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/features-overview
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 753436faa0a5105d8a89fd8b0ba37cbd160f665849f2a87d170f102719ddbc0b
+fetched_at: 2026-10-26T02:24:48.652012Z
+sha256: 8dfe7fd9840225b38d7d2c98e1b0feec93120411432cbceba608b7a6cfe253dc
 ---
 
 > ## Documentation Index
@@ -269,7 +269,7 @@ Skills are extra capabilities in Claude's toolkit. They can be reference materia
 
 **Context cost:** Low until used. User-only skills have zero cost until invoked.
 
-**In subagents:** Skills work differently in subagents. Instead of on-demand loading, skills listed in the subagent's `skills` field are fully preloaded into its context at launch. Subagents can still discover and invoke unlisted project, user, and plugin skills through the Skill tool.
+**In subagents:** The full content of skills listed in a subagent's `skills` field [loads into its context at launch](https://code.claude.com/docs/en/sub-agents.md#preload-skills-into-subagents), rather than on demand. Subagents can still discover and invoke unlisted project, user, and plugin skills through the Skill tool.
 
 > [!TIP]
 >

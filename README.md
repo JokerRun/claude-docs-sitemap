@@ -33,7 +33,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/agent-sdk/custom-tools | 2026-10-20 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/examples | 2026-10-21 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/file-check... | 2026-10-22 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/hooks | 2026-10-21 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/hooks | 2026-10-25 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/hosting | 2026-09-28 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/mcp | 2026-10-22 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/migration-... | 2026-10-09 |  |

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: ae281440ad99e518a74a6d44da7038f17ad45217dba5ee9fe58815bc386913b3
+fetched_at: 2026-10-26T02:24:48.652012Z
+sha256: a2391a0f4b8892bd32c0ea95d3d3d25f319c6891c963895ea0f2dd4c74150aa4
 ---
 
 > ## Documentation Index
@@ -387,7 +387,7 @@ Behind a [Claude apps gateway with spend limits](https://code.claude.com/docs/en
 * `used_percentage` and `resets_at`: come with every response, so they are present whenever `spend_limit` is. `used_percentage` runs from 0 to 100, or above 100 once you exceed the limit, and `resets_at` is the Unix epoch seconds when the limit's period resets.
 * `used_usd`, `limit_usd`, and `period`: your estimated spend so far and your limit in US dollars, and the period the limit covers, one of `daily`, `weekly`, or `monthly`. The gateway [computes `used_usd` from token counts](https://code.claude.com/docs/en/claude-apps-gateway-spend-limits#how-requests-are-priced), so it's an estimate and not a billed amount. Claude Code reads them from the gateway in a separate request, about every five minutes while you send requests. The dollar amounts can be about five minutes older than `used_percentage`, so the two may briefly disagree. Requires v2.1.284 or later on both Claude Code and the gateway.
 
-Treat `used_usd`, `limit_usd`, and `period` as optional even when `spend_limit` is present. Your script receives the percentage before them, and they stay absent if you set `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`, which turns that request off. Read each with a fallback in your script, such as `jq -r '.rate_limits.spend_limit.used_usd // empty'`.
+Treat `used_usd`, `limit_usd`, and `period` as optional even when `spend_limit` is present, because your script receives the percentage before them. Read each with a fallback in your script, such as `jq -r '.rate_limits.spend_limit.used_usd // empty'`. Before Claude Code v2.1.295, they stayed absent if you set `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`, which turned that request off.
 
 ### Prompt cache fields
 

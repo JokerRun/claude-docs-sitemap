@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/interface
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 715e5e3f65cf1f5ce7a49aaa0a3f7e6784a71564fe1dacd70c09bb8ee5c14aee
+fetched_at: 2026-10-26T02:24:48.652012Z
+sha256: 1ae63daab4ad8bef231752b67d9f3842f1750850b304ce145cf999011f2c4d97
 ---
 
 > ## Documentation Index
@@ -515,7 +515,16 @@ When the user presses a button, types into a field, or picks from a list your mo
 * **`Input`**: takes `onSubmit(value)` and `onInput(value)`
 * **`Select`**: takes `onSelect(value)` with its choices in `options`, a list of at least one choice with unique values, such as `[{ value: 'sm', label: 'Small' }, { value: 'lg', label: 'Large' }]`
 
-A test presses or types into a control by its `key`, so give each control one. Each use of a control also fires [`ui.press`, `ui.input`, or `ui.select`](https://code.claude.com/docs/en/plugins/mods/reference#interface) with the `key` in `e.element`, and another mod can handle those events. Its hook runs before your callback, so it sees what the user types into your `Input` and can change it or answer in place of your callback. The mods API has no method that presses another mod's button.
+### Which controls need a `key`
+
+Give every `Input` and `Select` a `key` prop, such as `key: 'size'`. A `Button` can go without a `key` when it has a `label` prop or a single string child. Its key is then the `label` value or that string.
+
+Tests and other mods identify a control by its key:
+
+* **Tests**: a [test](https://code.claude.com/docs/en/plugins/mods/test.md#test-a-drawing) presses or types into a control by its key.
+* **Other mods**: Claude Code fires [`ui.press`, `ui.input`, or `ui.select`](https://code.claude.com/docs/en/plugins/mods/reference#interface) with the control's key in `e.element` before it runs the control's callback. Another mod's hook for that event sees what the user typed into your `Input` and can change that text or keep your callback from running. The mods API gives that mod no method to press your buttons.
+
+If a message says `needs a key` or `is drawn twice`, [find the cause by that message](https://code.claude.com/docs/en/plugins/mods/troubleshoot.md#needs-a-key).
 
 ### Keyboard focus and hotkeys
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/create
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: c50f7af09c92d5d90cef1018af11c38cc44de7ea6ffab0d83c9348ff7a3dbd7c
+fetched_at: 2026-10-26T02:24:48.652012Z
+sha256: c03a4d3223146fbccdb3b66dae188f9710bd22ceefca089996d3f78e897cccd5
 ---
 
 > ## Documentation Index
@@ -54,6 +54,8 @@ Run `/plugin` at the Claude Code prompt and press Tab until the **Installed** ta
 **4. Try the mod**
 
 Use what you asked for. For the example prompt, the current branch name appears above the prompt box. If the mod doesn't do what you wanted, tell Claude what to change. The mod reloads at the end of each turn that changes its files, so you can try the change as soon as Claude finishes.
+
+If a transcript line that starts with the mod's name says the [change didn't load](https://code.claude.com/docs/en/plugins/mods/troubleshoot.md#this-mods-change-didnt-load), paste that line into your next message when you ask Claude for a fix. Claude doesn't see the line unless you paste it.
 
 ### Use the mod in other sessions
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/loading
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: b254d1372a3cd61f36e884d31002f09071425dc57d0a79aa1f250790e4c7881f
+fetched_at: 2026-10-26T02:24:48.652012Z
+sha256: 4384e0e85677682e34e68362a70b06e4a6ef74a7f03e3ad044c0e817b1c35c0e
 ---
 
 > ## Documentation Index
@@ -48,7 +48,7 @@ Plugins load at session start from `installed_plugins.json` and the cache withou
 * **A marketplace that settings declare but `known_marketplaces.json` lacks**: Claude Code clones it, then reloads plugins and downloads enabled plugins that aren't cached yet
 * **A declared marketplace whose source changed in settings**: Claude Code re-fetches it from the new source and shows `Plugins changed. Run /reload-plugins to activate.`
 
-An enabled plugin that neither path fetched and that has no usable cache directory shows `Plugin "<name>" not cached at <path>` in the `/plugin` **Errors** tab, and `claude plugin list` adds `— run /plugin to refresh` to the same line. For the fix, see [`Plugin "<name>" not cached at <path>`](https://code.claude.com/docs/en/plugins/troubleshooting#plugin-not-cached-at).
+An enabled plugin that neither path fetched and that has no usable cache directory shows `Plugin "<name>" not cached at <path>` in the `/plugin` **Errors** tab. For the fix, see [`Plugin "<name>" not cached at <path>`](https://code.claude.com/docs/en/plugins/troubleshooting#plugin-not-cached-at).
 
 ## Find where a plugin came from
 

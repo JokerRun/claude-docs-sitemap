@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments-configuration
-fetched_at: 2026-10-25T02:20:50.950770Z
-sha256: 406a98f6564f4b91c6051777c2c3e11cefe3740a20f79f190f59d89ad2bc4213
+fetched_at: 2026-10-26T02:24:48.652012Z
+sha256: 92466f87e58383f4247bdd033592869ede2048ee3a622a72c385e56f57bec5b1
 ---
 
 > ## Documentation Index
@@ -790,7 +790,7 @@ Sessions also read these settings files:
 
 For the order these sources apply in, see [settings precedence](https://code.claude.com/docs/en/settings.md#settings-precedence).
 
-When Anthropic's control plane supplies a session with [Claude Code hooks](https://code.claude.com/docs/en/hooks.md), the runner installs them alongside, not over, your own configuration. Requires Claude Code v2.1.229 or later.
+When Anthropic's control plane supplies a session with [Claude Code hooks](https://code.claude.com/docs/en/hooks.md), the runner installs them alongside, not over, your own configuration. Requires Claude Code v2.1.229 or later; older runners ignore supplied hooks. The supplied hooks run `python3`, so install `python3` in your [runner image](https://code.claude.com/docs/en/self-hosted-environments-deploy.md#build-the-runner-image).
 
 * **Where they land**: the runner writes each supplied hook script to a reserved `hooks/.ccr-launcher/` subdirectory of the session's config directory and registers the scripts in a separate settings file it passes to the session with `--settings`, leaving the seeded `settings.json` and your own scripts at `hooks/<name>` untouched. The runner recreates the reserved subdirectory for each session and doesn't seed host content at `~/.claude/hooks/.ccr-launcher/` into sessions.
 * **Who authors them**: the control plane populates the scripts from fixed constants in its own deployment, never from per-session or third-party input.

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/components
-fetched_at: 2026-10-25T02:20:50.950770Z
-sha256: 9da4bed2412f440540da2d3830d65972c83fe838c3e17230c0feed3e5e3281c0
+fetched_at: 2026-10-26T02:24:48.652012Z
+sha256: 4e824b70bbe00db2d487ab5aeac1c63575fdc151b0d0a3eff573f461ce6f6d4b
 ---
 
 > ## Documentation Index
@@ -655,7 +655,7 @@ You don't know where your plugin will be installed, so refer to its files and da
 
 In the data directory path, `<id>` is the plugin identifier with every character other than letters, digits, `_`, and `-` replaced by `-`, so `my-plugin@my-marketplace` becomes `my-plugin-my-marketplace`.
 
-On Windows, the substituted paths use forward slashes so a shell doesn't read backslashes as escapes.
+On Windows, most substituted paths use forward slashes, as in `C:/Users/you/...`. They keep their native backslashes in an [exec-form hook](https://code.claude.com/docs/en/hooks.md#exec-form-and-shell-form) and in a hook that runs through PowerShell, which is the default shell on Windows when Git Bash isn't installed.
 
 ### Install dependencies into the data directory
 

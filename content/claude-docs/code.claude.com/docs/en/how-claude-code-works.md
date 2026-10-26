@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 0e27ec5df14be0571ab8a247a45ddecf28b67792706cde8fa5ab02fcbf2befa0
+fetched_at: 2026-10-26T02:24:48.652012Z
+sha256: 148f87b89f7341cffa6d81fc33a3cacf10033d31addc79685b4878bcb4b7d112
 ---
 
 > ## Documentation Index
@@ -138,7 +138,7 @@ To change or remove the attribution lines, set [`attribution`](https://code.clau
 
 #### When context fills up
 
-Claude Code manages context automatically as you approach the limit. It clears older tool outputs first, then summarizes the conversation if needed. Your requests and key code snippets are preserved; detailed instructions from early in the conversation may be lost. Put persistent rules in CLAUDE.md rather than relying on conversation history.
+Claude Code manages context automatically as you approach the limit. It compacts the conversation into a summary. The summary keeps your requests and key code snippets, but detailed instructions from early in the conversation may be lost. Put persistent rules in CLAUDE.md rather than relying on conversation history.
 
 To control what's preserved during compaction, add a "Compact Instructions" section to CLAUDE.md or run `/compact` with a focus (like `/compact focus on the API changes`).
 

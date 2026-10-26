@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-10-25T02:20:50.950770Z
-sha256: 3ce0f8a007da9192d076b08ca1aa9332b28c12f443189066e3534b1595eaeb47
+fetched_at: 2026-10-26T02:24:48.652012Z
+sha256: 511ca59bb8bd2f6c9131dd6c621cdf0933f956050180c57839eb1c6afe76abca
 ---
 
 > ## Documentation Index
@@ -1754,7 +1754,7 @@ To run a hook when a specific file changes on disk, whatever wrote it, use [File
 
 Use [PreToolUse decision control](#pretooluse-decision-control) to allow, deny, ask, or defer the tool call.
 
-An [Agent SDK callback hook](https://code.claude.com/docs/en/agent-sdk/hooks.md) on `PreToolUse` that exceeds its timeout blocks the tool call, and Claude receives an error result naming the timeout.
+An [Agent SDK callback hook](https://code.claude.com/docs/en/agent-sdk/hooks.md#hook-timeout) on `PreToolUse` that exceeds its timeout blocks the tool call.
 
 #### PreToolUse input
 
@@ -4093,7 +4093,7 @@ Claude Code delivers an async hook's results only while the session runs:
 
 When an async hook fires, Claude Code starts the hook process and immediately continues without waiting for it to finish. The hook receives the same JSON input via stdin as a synchronous hook.
 
-After the background process exits, Claude Code delivers the `additionalContext` and `systemMessage` fields from the hook's JSON response to Claude on the next conversation turn. Unlike a synchronous hook's `systemMessage`, neither field is shown to you.
+After the background process exits, Claude Code delivers the `additionalContext` and `systemMessage` fields from the hook's JSON response to Claude on the next conversation turn, except for [repeated `SessionStart` output](#limitations). Unlike a synchronous hook's `systemMessage`, neither field is shown to you.
 
 Print the JSON response alone on stdout or on one line of its own:
 
@@ -4161,6 +4161,7 @@ Async hooks have additional constraints compared to synchronous hooks:
 
 * Hook output is delivered on the next conversation turn. If the session is idle, the response waits until the next user interaction. Exception: an `asyncRewake` hook that exits with code 2 wakes Claude immediately even when the session is idle.
 * Each execution creates a separate background process.
+* An async `SessionStart` hook runs every time the event fires. Claude Code skips the hook's output when the `additionalContext` and `systemMessage` text matches what Claude last received from that hook, unless a synchronous `SessionStart` hook has added other text since. Claude Code delivers the text when it changes, and again the next time the hook runs after a compaction or `/clear`. Before v2.1.295, Claude Code added the same text to the conversation again on every resume.
 
 ## Security considerations
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 109ca94cf31213552a032c5b5e689af5d3e28c55565195249068b7ff2d591021
+fetched_at: 2026-10-26T02:24:48.652012Z
+sha256: 0c8e34969548bf1d89c1176488df2c5deed04efb4511ddff849734fc2177152c
 ---
 
 > ## Documentation Index
@@ -127,9 +127,9 @@ Learn more: [Commands](https://code.claude.com/docs/en/commands.md) · [Skills](
 
 ### Compaction
 
-Automatic summarization of your conversation when the [context window](#context-window) approaches its limit. Older tool outputs are cleared first, then the conversation is summarized. Project-root CLAUDE.md and auto memory survive compaction and reload from disk; instructions given only in conversation may be lost. Run `/compact` to trigger manually, optionally with a focus like `/compact focus on the API changes`.
+Automatic summarization of your conversation when the [context window](#context-window) approaches its limit. Project-root CLAUDE.md and auto memory survive compaction, but instructions given only in conversation may not. Run `/compact` to trigger manually, optionally with a focus like `/compact focus on the API changes`.
 
-Learn more: [What survives compaction](https://code.claude.com/docs/en/context-window.md#what-survives-compaction) · [When context fills up](https://code.claude.com/docs/en/how-claude-code-works.md#when-context-fills-up)
+Learn more: [What survives compaction](https://code.claude.com/docs/en/context-window.md#what-survives-compaction) · [When context fills up](https://code.claude.com/docs/en/how-claude-code-works.md#when-context-fills-up) · [When Claude Code compacts a conversation you leave idle](https://code.claude.com/docs/en/settings-reference.md#idlecompaction)
 
 ### Connector
 
