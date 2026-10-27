@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sessions
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: d5861713756f734bb93d8313be530f446f27971bd1c05b62bab33f4aa080431b
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: 182a4a7be94a7be87e7a5687d284182be2d655b26d9c2ab788b3c21fd3793447
 ---
 
 > ## Documentation Index
@@ -231,7 +231,7 @@ These commands control what's in the context window without leaving the session:
 * **`/compact [instructions]`**: replace history with a summary, optionally focused on what you specify
 * **`/context`**: show what is currently consuming context
 
-For how compaction interacts with CLAUDE.md, skills, and rules, see the [context window guide](https://code.claude.com/docs/en/context-window.md). For strategies on when to clear versus compact, see [Best practices](https://code.claude.com/docs/en/best-practices.md#manage-your-session).
+For how compaction interacts with CLAUDE.md, skills, and rules, see the [context window guide](https://code.claude.com/docs/en/context-window.md). For strategies on when to clear versus compact, see [Best practices](https://code.claude.com/docs/en/best-practices.md#keep-cost-and-context-down).
 
 ## Export and locate session data
 
@@ -256,7 +256,7 @@ claude -p --resume <session-id> --output-format json "summarize what we changed"
 
 By default, Claude Code stores transcripts as JSONL at `~/.claude/projects/<project>/<session-id>.jsonl`, where `<project>` is your working directory path with non-alphanumeric characters replaced by `-`. For a working directory whose converted name exceeds 200 characters, Claude Code truncates the name to 200 characters and appends a hash of the full path, so the directory name stays within filesystem limits.
 
-Each line is a JSON object for a message, tool use, or metadata entry. The entry format is internal to Claude Code and changes between versions, so scripts that parse these files directly can break on any release. To build on session data, use `/export` or the [script interfaces](#access-conversations-from-scripts) instead.
+Each line is a JSON object: a message, a tool use or result, a record of a request Claude Code sent the model, or a metadata entry. The entry format is internal to Claude Code and changes between versions, so scripts that parse these files directly can break on any release. To build on session data, use `/export` or the [script interfaces](#access-conversations-from-scripts) instead.
 
 The location, retention, and write behavior are configurable:
 

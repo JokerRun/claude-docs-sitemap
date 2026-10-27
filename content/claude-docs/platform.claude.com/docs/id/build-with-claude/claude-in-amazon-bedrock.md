@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: cff6fe127e1b789507c5c158fdbea0dbb417f945ab555cc94bae934f4019cba6
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: 8f2f22321f633dd94fbcf06acb011d2e51c38d50841dd59296f739b346731945
 ---
 
 ---
@@ -357,17 +357,11 @@ ID model di Claude di Amazon Bedrock memiliki prefiks penyedia `anthropic.`. Kem
 
 Gunakan versi terbaru Claude Code dengan Claude di Amazon Bedrock; jalankan `claude update` untuk memperbarui.
 
-<Tip>
-  Meng-upgrade ke model Claude yang lebih baru? [Skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model) di Claude Code menerapkan penggantian ID model dan perubahan parameter yang bersifat breaking di seluruh basis kode Anda:
+Biarkan Claude Code memigrasikan kode Anda ke model yang lebih baru
 
-  Biarkan Claude Code memigrasikan kode Anda
-
-  ```text
-  /claude-api migrate proyek ini ke model Claude Opus terbaru
-  ```
-
-  Skill ini mendeteksi platform cloud mana yang ditargetkan oleh kode Anda dan menyesuaikan format ID model serta perubahan fitur untuk platform tersebut.
-</Tip>
+```text
+/claude-api migrate proyek ini ke model Claude Opus terbaru
+```
 
 ## Dukungan fitur
 

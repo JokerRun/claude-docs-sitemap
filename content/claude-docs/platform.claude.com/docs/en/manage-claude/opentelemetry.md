@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/opentelemetry
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: bae59fc63a8d202b0f8c19435a0ac2a06dfd3775f4f75da10e72fbdea4337998
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: a945b2932efc7c9cc6779143b1bf066beed8315f3a2f03173979e4571b3ec65e
 ---
 
 ---
@@ -19,6 +19,12 @@ featureMetadata:
 <Note>
   OpenTelemetry export is in beta. It's provided under your agreement with Anthropic, including the Beta Services section of the [Service Specific Terms](https://www.anthropic.com/legal/service-specific-terms).
 </Note>
+
+<video aria-label="Trace agents with OpenTelemetry on the Claude Platform">
+  <source src="https://media.platform.claude.com/docs/opentelemetry/tracing/overview-1080p.mp4" type="video/mp4" media="(min-width: 1280px)" />
+  <source src="https://media.platform.claude.com/docs/opentelemetry/tracing/overview-720p.mp4" type="video/mp4" media="(min-width: 640px)" />
+  <source src="https://media.platform.claude.com/docs/opentelemetry/tracing/overview-480p.mp4" type="video/mp4" />
+</video>
 
 The Claude API and the SDK can trace your Messages API requests, tool uses, and Managed Agents sessions with [OpenTelemetry](https://opentelemetry.io/) (OTel). You can view these traces in the observability platform you already have. Use them to debug failed or slow requests, track token spend and latency, and build evals from real traffic. You can also see each request inside your application's own traces, linked to the user or feature that sent it.
 

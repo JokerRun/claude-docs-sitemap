@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-quickstart
-fetched_at: 2026-10-25T02:20:50.950770Z
-sha256: 2c0459b7b49d442dd2c18ad472ef69c336187cc3c70740f64c0ae9be82c7f9a1
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: fa7a88e188f85b8724a599a9f7784aea2ed22bdad1f9f30b26fdb514092ba549
 ---
 
 > ## Documentation Index
@@ -193,7 +193,7 @@ The diff compares the session's changes against its base branch by default. To c
 
 **2. Leave inline comments**
 
-Select any line in the diff, type your feedback, and press Enter. Comments queue up until you send your next message, then they're bundled with it. Claude sees "at `src/auth.ts:47`, don't catch the error here" alongside your main instruction, so you don't have to describe where the problem is.
+Hover over a line in the diff and click the **+** that appears beside its line number to open a comment box, then type your feedback and press Enter. Comments queue up until you send your next message, then they're bundled with it. Claude sees "at `src/auth.ts:47`, don't catch the error here" alongside your main instruction, so you don't have to describe where the problem is.
 
 **3. Create a pull request**
 

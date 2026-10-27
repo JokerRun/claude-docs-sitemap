@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/using
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 1b4fba4192f7a4557f6791002bf7fd592e5a95d13cd33e0fc376cb86c7c4663b
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: c00145acac36d24efe5f511ce3a7bec1c35990938c07b6bece1a3b0b4566a505
 ---
 
 ---
@@ -124,7 +124,7 @@ ant beta:agents create \
   --name "Research Agent" \
   --model '{id: claude-opus-5-5}' \
   --tool '{type: agent_toolset_20260401}' \
-  --tool '{type: custom, name: search_docs, input_schema: {type: object, properties: {query: {type: string}}}}'
+  --tool '{type: custom, name: search_docs, description: Search the documentation, input_schema: {type: object, properties: {query: {type: string}}}}'
 ```
 
 ### Stdin

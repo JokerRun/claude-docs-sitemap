@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: b75cf7600dcbf4d3fd746ca59b3bec47c4b799cd7c69e564baaac144c44cdfc7
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: 1dd5d9d59bcd41dcb430eaba3b6eecf0e7f99661952ebb15aed597fa4b212287
 ---
 
 ---
@@ -321,17 +321,11 @@ Google menetapkan tanggal siklus hidup untuk model-model yang dilayani oleh Clau
   Claude Mythos Preview adalah pratinjau riset. Claude Models on Google Cloud (Google managed) menawarkannya kepada pelanggan yang diundang. Untuk informasi lebih lanjut, lihat [Project Glasswing](https://anthropic.com/glasswing).
 </Note>
 
-<Tip>
-  Meng-upgrade ke model Claude yang lebih baru? [Skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model) di Claude Code menerapkan penggantian ID model dan perubahan parameter yang bersifat breaking di seluruh basis kode Anda:
+Biarkan Claude Code memigrasikan kode Anda ke model yang lebih baru
 
-  Biarkan Claude Code memigrasikan kode Anda
-
-  ```text
-  /claude-api migrate proyek ini ke model Claude Opus terbaru
-  ```
-
-  Skill ini mendeteksi platform cloud mana yang ditargetkan oleh kode Anda dan menyesuaikan format ID model serta perubahan fitur untuk platform tersebut.
-</Tip>
+```text
+/claude-api migrate proyek ini ke model Claude Opus terbaru
+```
 
 ## Endpoint global, multi-region, dan regional
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: d2d271a17e8d2fd13979baec2b8cfda9f4dc8027f8fbcc05842c7d9721ce43f7
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: 45cbe7e56652e643b1383703f73666c23ff6e9acd98412762ac394e970c4cc3c
 ---
 
 ---
@@ -372,17 +372,11 @@ ID model identik dengan Claude API pihak pertama. Tidak ada ARN gaya Bedrock ata
 
 Model baru biasanya diluncurkan di Claude Platform on AWS pada hari yang sama dengan Claude API pihak pertama.
 
-<Tip>
-  Meng-upgrade ke model Claude yang lebih baru? [Skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model) di Claude Code menerapkan penggantian ID model dan perubahan parameter yang bersifat breaking di seluruh basis kode Anda:
+Biarkan Claude Code memigrasikan kode Anda ke model yang lebih baru
 
-  Biarkan Claude Code memigrasikan kode Anda
-
-  ```text
-  /claude-api migrate proyek ini ke model Claude Opus terbaru
-  ```
-
-  Skill ini mendeteksi platform cloud mana yang ditargetkan oleh kode Anda dan menyesuaikan format ID model serta perubahan fitur untuk platform tersebut.
-</Tip>
+```text
+/claude-api migrate proyek ini ke model Claude Opus terbaru
+```
 
 ## Membuat permintaan
 

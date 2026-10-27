@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/managed-settings
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 1f8f9170166c8f475ad2a87e08a8db9517f7f5518e91be2a9ef8519e8a3e622e
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: b8331e890c11bd57aff6e22a16a2f25f2bd1745093fd3977a24fdf6ee81d043b
 ---
 
 > ## Documentation Index
@@ -414,7 +414,7 @@ The table covers the permission, plugin, and delivery controls. For any key not 
 | [`managedMcpServers`](https://code.claude.com/docs/en/settings-reference#managedmcpservers) | Remote MCP servers provided to every user alongside their own. It provides servers rather than locking anything down. See [Provide servers through managed settings](https://code.claude.com/docs/en/managed-mcp.md#provide-servers-through-managed-settings). Requires Claude Code v2.1.259 or later |
 | [`managedSourcesBehavior`](https://code.claude.com/docs/en/settings-reference#managedsourcesbehavior) | Whether Claude Code applies only the highest-priority managed source or [composes every one of them](#compose-every-managed-source) |
 | [`parentSettingsBehavior`](https://code.claude.com/docs/en/settings-reference#parentsettingsbehavior) | Whether host-supplied parent settings merge under the managed policy |
-| [`pluginSuggestionMarketplaces`](https://code.claude.com/docs/en/settings-reference#pluginsuggestionmarketplaces) | Marketplaces whose plugins Claude Code may suggest to users |
+| [`pluginSuggestionMarketplaces`](https://code.claude.com/docs/en/settings-reference#pluginsuggestionmarketplaces) | Marketplaces whose plugins Claude Code may suggest to users in the terminal |
 | [`pluginTrustMessage`](https://code.claude.com/docs/en/settings-reference#plugintrustmessage) | Custom message appended to the plugin trust warning shown before installation |
 | [`policyHelper`](https://code.claude.com/docs/en/settings-reference#policyhelper) | Executable that computes managed settings at startup; see [Compute managed settings with a policy helper](https://code.claude.com/docs/en/settings-reference.md#policyhelper) |
 | [`sandbox.filesystem.allowManagedReadPathsOnly`](https://code.claude.com/docs/en/settings-reference#sandbox-filesystem-allowmanagedreadpathsonly) | When `true`, only `filesystem.allowRead` paths from managed settings are respected. `denyRead` still merges from all sources |

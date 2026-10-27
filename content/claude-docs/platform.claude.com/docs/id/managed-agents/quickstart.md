@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: a5cd58829023e4cac954c227eb74ad6e913ecfbc3befc2c7a6c5fd5d12b84967
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: 0539e767b32f535402ba4049c05cdae4998525329a2616932df9f6cf70626c66
 ---
 
 ---
@@ -19,15 +19,11 @@ featureMetadata:
 
 Panduan ini memandu Anda dalam membuat agen, menyiapkan lingkungan, memulai sesi, dan melakukan streaming respons agen.
 
-<Tip>
-  **Lebih suka panduan interaktif?** Versi terbaru [Claude Code](https://claude.com/product/claude-code) dapat memandu Anda melalui penyiapan dan menjawab pertanyaan Anda:
+Biarkan Claude Code menyiapkan agen Anda untuk Anda
 
-  Biarkan Claude Code menyiapkan agen Anda untuk Anda
-
-  ```text
-  /claude-api managed-agents-onboard
-  ```
-</Tip>
+```text
+/claude-api managed-agents-onboard
+```
 
 ## Konsep inti
 

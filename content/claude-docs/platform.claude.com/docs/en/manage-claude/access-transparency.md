@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/access-transparency
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: b0b526d9346df00af68a12d56b33e840361dbf34ce237a19b04cc4f6d472ccee
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: d427317754e4d41ca7bc5694ee23cdfa5cc5ea6663095344f489b6b577f7e3da
 ---
 
 ---
@@ -80,6 +80,8 @@ curl --fail-with-body -sS -G \
 ```
 
 Pagination, date-range filtering (`created_at.gte` / `.lt`), and the response envelope (`has_more`, `first_id`, `last_id`) are shared with the rest of the Activity Feed. See [Query the Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed).
+
+Turning the Compliance API off stops your access to Access Transparency events, not their recording. The Activity Feed returns them after the Compliance API is turned back on.
 
 Each `anthropic_access` activity carries the standard Activity fields plus the following:
 

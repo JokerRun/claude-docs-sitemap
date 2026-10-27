@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-1/migration-guide
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: fbf19cde0f5a006ce45dcccdd6fd7a9c562773c275161dc1215a2ac0a1005f76
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: a1be320ae5773d1c1ffcf8b0e5d9aa0d7522d46dfd5bc1b0cbf854ffc1a170c3
 ---
 
 ---
@@ -15,17 +15,11 @@ description: Beralih ke Claude Fable 5.1 dan Claude Mythos 5.1 dari Claude Fable
   Panduan ini membahas migrasi kode [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages). Jika Anda menggunakan [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), tidak ada perubahan yang diperlukan selain memperbarui nama model.
 </Note>
 
-<Tip>
-  **Otomatiskan migrasi Anda dengan [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).** Skill ini sudah disertakan dalam Claude Code dan berfungsi untuk model Claude terkini mana pun sebagai target:
+Biarkan Claude Code memigrasikan kode Anda
 
-  Biarkan Claude Code memigrasikan kode Anda
-
-  ```text
-  /claude-api migrate proyek ini ke claude-fable-5-1
-  ```
-
-  Skill ini menerapkan penggantian ID model dan, sesuai kebutuhan, perubahan parameter yang bersifat breaking, penggantian prefill, serta kalibrasi effort untuk model target Anda di seluruh basis kode Anda, lalu menghasilkan daftar periksa berisi item yang perlu diverifikasi secara manual. Skill ini meminta Anda mengonfirmasi cakupan migrasi (seluruh direktori kerja, sebuah subdirektori, atau daftar file tertentu) sebelum mengedit file apa pun. Skill ini juga mendeteksi klien Amazon Bedrock dan Claude Platform on AWS serta menyesuaikan format ID model dan perubahan fitur untuk platform tersebut.
-</Tip>
+```text
+/claude-api migrate proyek ini ke claude-fable-5-1
+```
 
 [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1) menggantikan Claude Fable 5 dengan harga input dan output yang sama, dengan pembacaan cache seperempat dari biayanya. Model ini tersedia di Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) memiliki kemampuan yang sama dan hanya tersedia bagi organisasi yang telah diverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842). Untuk perbedaan perilaku dan pola prompting, lihat [Prompting Claude Fable 5.1](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 87c141d7708abaddce4ef7b3d13b019ddbbd799861613aba81bbff3f2a9d5fab
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: c737d79c27e99d44fa9a54f0ecd10e0027ef920df2ab4f0d93e6651f5c57aa5f
 ---
 
 ---
@@ -21,7 +21,7 @@ description: Retrieve, filter, and paginate your organization's Compliance API A
   Both Compliance Access Keys (`sk-ant-api01-...`) carrying this scope and Admin API keys (`sk-ant-admin01-...`) can call the Activity Feed. See [Set up the Compliance API](https://platform.claude.com/docs/en/manage-claude/compliance-api-access) for the conditions under which each key type carries the scope.
 </Check>
 
-The Activity Feed records authentication, chat, file, project, administrative, and platform activity across your organization and returns it in reverse chronological order. Activities are queryable within 1 minute of occurring and are retained for 6 years. Recording is not retroactive: it begins when the Compliance API is first enabled for your organization, and activity from before enablement is not backfilled.
+The Activity Feed records authentication, chat, file, project, administrative, and platform activity across your organization and returns it in reverse chronological order. Activities are queryable within 1 minute of occurring and are retained for 6 years. Recording is not retroactive: it begins when the Compliance API is first enabled for your organization, and activity from before enablement is not backfilled. Access Transparency events are an exception. If your organization is enrolled in [Access Transparency](https://platform.claude.com/docs/en/manage-claude/access-transparency), these events are recorded even while the Compliance API is off. The feed can therefore include some from before the Compliance API was first enabled.
 
 ```bash cURL
 curl --fail-with-body -sS \

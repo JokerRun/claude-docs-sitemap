@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/preserved-thinking
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: f93832e30331a96673080d30dd01dcdf10a0c99052847845d88d897f7d85b0bf
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: 5bc8ce279ff243117198c541ed8a973dd8a0aaaa7b146d2bcc79f2ae2bac556c
 ---
 
 ---
@@ -79,6 +79,8 @@ Tanpa header tersebut, pembuangan terjadi secara diam-diam. Entri ini bukan bug 
 Blok pemikiran yang dihasilkan Claude Sonnet 5.5 atau Claude Haiku 5.5 hanya berfungsi di akun yang menghasilkannya, atau di akun yang terhubung dengannya. Ketika akun lain mengirim salah satu blok ini, API membuang blok tersebut sebelum model melihatnya, dan permintaan berhasil. Model menjawab tanpa penalaran dalam blok yang dibuang. Blok dari model sebelumnya tidak terpengaruh.
 
 Di Claude API dan Claude Models on Google Cloud (Google managed), dengan [beta header](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01`, respons mencantumkan setiap blok yang dihapus dalam `input_transformations` sebagai entri `thinking_dropped` dengan `reason: "organization_binding_mismatch"`. Tanpa header tersebut, penghapusan terjadi secara diam-diam.
+
+API juga dapat mengabaikan blok pemikiran yang dihasilkan oleh akun lain, jika akun tersebut tidak lagi dalam status baik. Hal ini berlaku untuk permintaan ke model Claude Fable dan Claude Mythos, Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5. Permintaan tetap berhasil, dan model menjawab tanpa penalaran dari blok tersebut.
 
 ## Menjaga prefiks tetap tidak berubah
 
@@ -446,19 +448,13 @@ Setiap baris membandingkan dua permintaan yang berurutan:
 
 ### Periksa apakah kode Anda mengedit prefiks
 
-<Tip>
-  **Otomatiskan pemeriksaan ini dengan skill Claude API.** Di versi terbaru [Claude Code](https://code.claude.com/docs/en/overview), buka repositori yang membangun permintaan Anda dan jalankan [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#checking-an-integration-for-preserved-thinking) bawaan:
+Biarkan Claude Code memeriksa kode Anda
 
-  Biarkan Claude Code memeriksa kode Anda
+```text
+/claude-api preserved-thinking-migration
+```
 
-  ```text
-  /claude-api preserved-thinking-migration
-  ```
-
-  Skill tersebut merekam beberapa sesi multi-giliran Anda sendiri dan membandingkan (diff) permintaan berturut-turut untuk menemukan di mana kode Anda mengedit prefiks. Kemudian skill memutar ulang sesi dengan `"drop_block"` dan menghitung blok pemikiran yang dibuang API. Setelah itu, skill memperbaiki satu penyebab pada satu waktu dan mengukur lagi setelah setiap perbaikan.
-</Tip>
-
-Pertama, bandingkan apa yang Anda kirim. Rekam body permintaan yang dikirim integrasi Anda selama beberapa giliran normal, termasuk compaction atau perubahan alat. Untuk setiap pasangan permintaan berturut-turut, bandingkan `system`, `tools`, dan `messages` yang sama-sama dimiliki keduanya. Semuanya harus identik hingga giliran yang baru ditambahkan.
+Untuk memeriksanya secara manual, pertama bandingkan apa yang Anda kirim. Rekam body permintaan yang dikirim integrasi Anda selama beberapa giliran normal, termasuk compaction atau perubahan alat. Untuk setiap pasangan permintaan berturut-turut, bandingkan `system`, `tools`, dan `messages` yang sama-sama dimiliki keduanya. Semuanya harus identik hingga giliran yang baru ditambahkan.
 
 Kemudian konfirmasikan dengan API. Tambahkan header beta `thinking-binding-controls-2026-08-01`, tetapkan `prefix_mismatch_behavior` ke `"drop_block"`, dan jalankan sesi multi-giliran normal melalui integrasi Anda pada claude-fable-5-1. Contoh berikut menjalankan dua giliran sebagaimana seharusnya integrasi Anda: `messages` hanya bertambah, setiap giliran asisten dikirim kembali persis seperti yang dikembalikan API, termasuk blok `thinking`, dan `block_binding` ditetapkan pada setiap permintaan. Setelah setiap giliran, contoh ini mencetak jumlah blok `thinking` dalam respons dan jumlah blok yang dibuang:
 

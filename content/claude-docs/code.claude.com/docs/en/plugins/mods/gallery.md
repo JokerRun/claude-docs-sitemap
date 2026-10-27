@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/gallery
-fetched_at: 2026-10-25T02:20:50.950770Z
-sha256: 2e4883e4ac8eb52c669ea8a22793a31fc67e7b87b97cfaeb53b63ca7a3c744bd
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: 783a4482fb89d7cdb5404aff8cc70c01082244bef572f1b22f230ad9dc211096
 ---
 
 > ## Documentation Index
@@ -253,7 +253,7 @@ A button that has the focus draws in inverse video. Here the user has pressed Ta
 
 ### `Input`
 
-An `Input` is a one-line text field that runs `onSubmit` when the user presses Enter:
+An `Input` is a text field that runs `onSubmit` when the user presses Enter. It holds one line unless you give it `rows`:
 
 ```javascript theme={null}
 Input({
@@ -277,6 +277,26 @@ With the focus, the label turns bold, a cursor appears, and the `submitLabel` sh
 Typing replaces the placeholder:
 
 ![The same field holding the typed letters Rel, followed by the return sign and the word save.](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-input-typed-light.png?fit=max\&auto=format\&n=EXkwf0kKMewZsyod\&q=85\&s=4eb6d4443763a21415dad4e426bc747a)
+
+Add `rows` for a field that holds several lines, such as a note or a commit message:
+
+```javascript theme={null}
+Input({
+  key: 'note',
+  label: 'Note',
+  placeholder: 'Write a note',
+  rows: 4,
+  onSubmit: noop,
+})
+```
+
+Whatever the field holds, it takes that many rows, up to the height of the pane or band it's drawn in. Longer text scrolls inside it.
+
+* Enter still submits. In the terminal, the user starts a new line by typing a backslash and then pressing Enter, or by pressing Shift+Enter where [the terminal emulator supports it](https://code.claude.com/docs/en/terminal-config.md#enter-multiline-prompts). Those are the same keys as in the prompt.
+* Up and Down move between the field's rows. From its first and last row they move to the control before or after.
+* `onSubmit` and `onInput` receive the whole text with its lines joined by `\n`.
+
+The terminal and the Desktop app draw the rows. In the VS Code extension, the field holds one line.
 
 ### `Select`
 

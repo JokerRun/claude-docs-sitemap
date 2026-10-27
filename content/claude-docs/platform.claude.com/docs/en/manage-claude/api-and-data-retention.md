@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/api-and-data-retention
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: cfb552d049eb1c7ba2d674d0d3ee05d70542e9c0ea894b2ea89173dc30747a9d
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: ee9db609e2b18169fea1867f160ccfeb6825949254a40497e30ffdd449e73ec4
 ---
 
 ---
@@ -63,13 +63,14 @@ The Claude API supports HIPAA-ready integrations for organizations that handle p
 ### What HIPAA readiness covers
 
 * **Claude API:** HIPAA readiness applies to the Claude API (`api.anthropic.com`) for eligible features listed in the [feature eligibility table](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#feature-eligibility).
+* **Claude in Microsoft Foundry:** [Claude in Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry) (Hosted on Anthropic or Hosted on Azure) is an eligible service for customers with a BAA with Anthropic plus the HIPAA configuration enabled on the Azure subscription. Request the HIPAA configuration through your Anthropic account team. For requirements and covered features, see the [HIPAA Implementation Guide](https://trust.anthropic.com/resources).
 
 ### What HIPAA readiness does not cover
 
 * **Claude consumer products:** Claude Free, Pro, and Max plans.
 * **Claude Console:** Usage through the Claude Console interface (enabling HIPAA readiness from Console settings is supported; processing PHI through the Console is not covered).
 * **Partner-operated platforms:** Amazon Bedrock and Google Cloud's Agent Platform. Refer to those platforms' compliance documentation.
-* **Claude Platform on AWS and Microsoft Foundry:** HIPAA readiness is not available on these platforms.
+* **Claude Platform on AWS:** HIPAA readiness is not available on Claude Platform on AWS.
 * **Third-party integrations:** Data processed by external tools or services connected to your application.
 * **Claude Code:** Claude Code is not covered under HIPAA readiness.
 * **Beta features:** Features in beta are generally not covered under the BAA unless explicitly listed as eligible in the [feature eligibility table](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#feature-eligibility).

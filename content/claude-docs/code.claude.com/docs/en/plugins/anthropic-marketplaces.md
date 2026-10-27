@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/anthropic-marketplaces
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 7cddf8023c58c4e9ab182c8df25a8c89768f555ccbfefb92e75a3dcaa7eccc94
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: 176d7b317c69285fc66bd464c42a50fb8dd92f502558d29d55f4fa098fd601bb
 ---
 
 > ## Documentation Index
@@ -48,7 +48,7 @@ If you wrote a plugin and want other people to install it, see [Publish a plugin
 
 If a tutorial or an older set of instructions tells you to run `/plugin marketplace add anthropics/claude-code`, that adds the demo marketplace, named `claude-code-plugins`. It isn't the official marketplace.
 
-Most of the demo marketplace's plugins are also in the official marketplace under the same names. For example, `code-review`, `feature-dev`, `commit-commands`, and `security-guidance` are in both. Install those from `claude-plugins-official` so you don't have two copies installed.
+Most of the demo marketplace's plugins are also in the official marketplace under the same names. For example, `code-review`, `feature-dev`, and `commit-commands` are in both. Install those from `claude-plugins-official` so you don't have two copies installed.
 
 ## Find plugins in the official marketplace
 

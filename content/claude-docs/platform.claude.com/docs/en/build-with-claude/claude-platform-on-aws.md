@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 6e6807aa2dd5de2e4e9a2e0136e91d508798ad37c5aa9e644d95b3cb68fb66f8
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: 47b5a7b8e3a351ad30c4053b8d1401b5d1619b1297e3ef72ef359de87a0c0f4e
 ---
 
 ---
@@ -375,17 +375,11 @@ Model IDs are identical to the first-party Claude API. There are no Bedrock-styl
 
 New models typically launch on Claude Platform on AWS the same day as the first-party Claude API.
 
-<Tip>
-  Upgrading to a newer Claude model? The [Claude API skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model) in Claude Code applies model ID swaps and breaking parameter changes across your code base:
+Let Claude Code migrate your code to a newer model
 
-  Let Claude Code migrate your code for you
-
-  ```text
-  /claude-api migrate this project to the latest Claude Opus model
-  ```
-
-  The skill detects which cloud platform your code targets and adjusts model ID formats and feature changes for that platform.
-</Tip>
+```text
+/claude-api migrate this project to the latest Claude Opus model
+```
 
 ## Making requests
 

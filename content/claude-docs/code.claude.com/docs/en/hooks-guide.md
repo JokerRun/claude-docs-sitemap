@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-10-25T02:20:50.950770Z
-sha256: 49b5c6ff0ed6379a97ff44ca6614061f580819371b2547550f28a2ed44d5552e
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: 0449c1803dceb093fd2edfbdfcbff33e522d16268952822f7a8715e0590d6fe2
 ---
 
 > ## Documentation Index
@@ -636,6 +636,7 @@ On `PreToolUse`, you can also return `"ask"` to show the user the normal permiss
 
 * Reads from [network paths](https://code.claude.com/docs/en/permissions.md#network-paths)
 * MCP tools marked [`requiresUserInteraction`](https://code.claude.com/docs/en/mcp#require-approval-for-a-specific-tool)
+* Calls to [tools an Agent SDK app marks `always_ask`](https://code.claude.com/docs/en/agent-sdk/custom-tools#require-approval-for-specific-tools), unless the [permission mode approves the call](https://code.claude.com/docs/en/agent-sdk/typescript.md#permission-modes-that-can-approve-an-always_ask-call)
 * Connector tools [your organization set to `ask`](https://code.claude.com/docs/en/mcp#organization-controls-on-connector-tools) in sessions where that setting reaches Claude Code
 
 For what `"allow"` does in plan mode, see [Hook approvals in plan mode](https://code.claude.com/docs/en/permissions.md#hook-approvals-in-plan-mode).
@@ -971,6 +972,7 @@ With a hook in a settings file or a plugin's `hooks/hooks.json` you can't loosen
 
   * Reads from [network paths](https://code.claude.com/docs/en/permissions.md#network-paths)
   * MCP tools marked [`requiresUserInteraction`](https://code.claude.com/docs/en/mcp#require-approval-for-a-specific-tool)
+  * Calls to [tools an Agent SDK app marks `always_ask`](https://code.claude.com/docs/en/agent-sdk/custom-tools#require-approval-for-specific-tools), unless the [permission mode approves the call](https://code.claude.com/docs/en/agent-sdk/typescript.md#permission-modes-that-can-approve-an-always_ask-call)
   * Connector tools [your organization set to `ask`](https://code.claude.com/docs/en/mcp#organization-controls-on-connector-tools) in sessions where that setting reaches Claude Code
 
   In [plan mode](https://code.claude.com/docs/en/permissions.md#hook-approvals-in-plan-mode), if your `PreToolUse` hook returns `"allow"` for a file edit, you get the same prompt, block, or approval the edit would get with no hook. To lift this limit on hook approvals, [approve the plan](https://code.claude.com/docs/en/permission-modes.md#review-and-approve-a-plan) or switch to another permission mode.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 962bca4fa645dbbbf7caa2d4921ebfdc2b23214276191771f6695919ae5caa79
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: 54df8e446277091e9577e7879c592d870765815e2286415c5f1ecbe07e6a1c3b
 ---
 
 ---
@@ -19,15 +19,11 @@ featureMetadata:
 
 This guide walks you through creating an agent, setting up an environment, starting a session, and streaming agent responses.
 
-<Tip>
-  **Prefer an interactive walkthrough?** The latest version of [Claude Code](https://claude.com/product/claude-code) can guide you through the setup and answer your questions:
+Let Claude Code set up your agent for you
 
-  Let Claude Code set up your agent for you
-
-  ```text
-  /claude-api managed-agents-onboard
-  ```
-</Tip>
+```text
+/claude-api managed-agents-onboard
+```
 
 ## Core concepts
 

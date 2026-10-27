@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-10-26T02:24:48.652012Z
-sha256: 352d0d4a6be0ce61fdc594e5aa612a1120734362bd8551ba454e06b70a064a20
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: 939b8a6fa08689089e928f29fc7c98f5af5e279eb39b0ce1f9a702463a819eb2
 ---
 
 > ## Documentation Index
@@ -107,7 +107,7 @@ The `dontAsk` permission mode is available only in the [CLI](https://code.claude
 
 > [!TIP]
 >
-> Start complex tasks in Plan so Claude maps out an approach before making changes. Once you approve the plan, switch to Accept edits or Manual to execute it. See [explore first, then plan, then code](https://code.claude.com/docs/en/best-practices.md#explore-first-then-plan-then-code) for more on this workflow.
+> Start complex tasks in Plan so Claude maps out an approach before making changes. Once you approve the plan, switch to Accept edits or Manual to execute it. See [plan mode](https://code.claude.com/docs/en/permission-modes.md#analyze-before-you-edit-with-plan-mode) for more on this workflow.
 
 Cloud sessions support Accept edits, Plan, and Auto. Accept edits corresponds to `default` mode: cloud sessions pre-approve file edits, so the selector shows Accept edits instead of Manual. Bypass permissions isn't available in cloud sessions, including sessions in a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments).
 
@@ -173,7 +173,7 @@ To turn off external browsing entirely, set the [`disableBrowserExternalNavigati
 
 After Claude makes changes to your code, the diff view lets you review modifications file by file before creating a pull request. To open the diff view, click the line counts, such as `+12 -1`, in the **Changes** card of the [session details panel](#see-session-details). You can also click **Changes** in the session's title bar.
 
-To comment on specific lines, click any line in the diff to open a comment box. Type your feedback and press **Enter** to add the comment. After adding comments to multiple lines, submit all comments at once:
+To comment on specific lines, hover over a line and click the **+** that appears beside its line number to open a comment box. Type your feedback and press **Enter** to add the comment. After adding comments to multiple lines, submit all comments at once:
 
 * **macOS**: press **Cmd+Enter**
 * **Windows**: press **Ctrl+Enter**
@@ -282,7 +282,7 @@ Press **Cmd+/** on macOS or **Ctrl+/** on Windows to see all shortcuts available
 * **Cmd+Ctrl**: press **Ctrl+Alt**
 * **Cmd**: press **Ctrl**
 
-Session cycling, the terminal toggle, and the view-mode toggle use **Ctrl** on every platform.
+Shortcuts that start with `Ctrl` stay the same on every platform.
 
 | Shortcut | Action |
 | - | - |
@@ -291,7 +291,7 @@ Session cycling, the terminal toggle, and the view-mode toggle use **Ctrl** on e
 | `Cmd` `Option` `1`–`9` | On the new session screen in the [current layout](#check-which-layout-you-have), select an environment |
 | `Cmd` `Option` `0` | On the new session screen in the current layout, open the [**New environment** dialog](#create-a-saved-environment) |
 | `Cmd` `W` | Close session |
-| `Ctrl` `Tab` / `Ctrl` `Shift` `Tab` | Next or previous session |
+| `Ctrl` `Tab` / `Ctrl` `Shift` `Tab` | Switch between sessions |
 | `Cmd` `Shift` `]` / `Cmd` `Shift` `[` | Next or previous session |
 | `Esc` | Stop Claude's response |
 | `Tab` / `Right arrow` | [Accept the suggested prompt](#accept-a-suggested-prompt) in an empty prompt box |
@@ -397,7 +397,7 @@ Each session is an independent conversation with its own context and changes. Yo
 
 ### Work in parallel with sessions
 
-Click **+ New** in the sidebar, or press **Cmd+N** on macOS or **Ctrl+N** on Windows, to work on multiple tasks in parallel. Press **Ctrl+Tab** and **Ctrl+Shift+Tab** to cycle through sessions in the sidebar.
+Click **+ New** in the sidebar, or press **Cmd+N** on macOS or **Ctrl+N** on Windows, to work on multiple tasks in parallel. Press **Ctrl+Tab** and **Ctrl+Shift+Tab** to switch between sessions.
 
 You can also open a second session next to the current session or in a window of its own:
 
@@ -408,9 +408,10 @@ In the split view, the pane you opened or clicked last has focus, and the other 
 
 #### Run a session in its own worktree
 
-In a project that's a Git repository, turn on **Worktree** before you start a session to run it in its own [Git worktree](https://code.claude.com/docs/en/worktrees.md), an isolated copy of the project. By default, **Worktree** is off and Claude works in the project folder itself. Click the project folder control in the [row under the prompt box](#start-a-session) and turn on **Worktree**.
+In a project that's a Git repository, turn on **Worktree** before you start a session to run it in its own [Git worktree](https://code.claude.com/docs/en/worktrees.md), an isolated copy of the project. By default, **Worktree** is off and Claude works in the project folder itself. On the [current layout](#check-which-layout-you-have), turn on the **Worktree** button in the [row under the prompt box](#start-a-session).
 
-* **With a [saved environment](#create-a-saved-environment)**: set **Worktree** when you create or edit the environment
+* **With a [third-party provider](https://code.claude.com/docs/en/third-party-integrations.md)**: if the row under the prompt box shows the project folder control but no **Worktree** button, click that control and turn on **Worktree**
+* **As the default for a [saved local or SSH environment](#create-a-saved-environment)**: set **Worktree** when you create or edit the environment
 * **[Earlier layout](#check-which-layout-you-have)**: select the **worktree** checkbox beside the branch name, above the prompt box
 
 Worktrees are stored in `<project-root>/.claude/worktrees/` by default. To store them in a custom directory instead:
@@ -1000,6 +1001,28 @@ A Linux or macOS remote machine needs a supported processor, an SSH server with 
 * **Install folder**: Desktop installs a helper program and Claude Code under `~/.claude/remote/` in your home directory. It runs them from there, so that folder can't be on a file system mounted `noexec`. Allow about 1 GB of disk space in the home directory of each user who connects. For what that folder holds, see [Files and processes on the remote machine](#files-and-processes-on-the-remote-machine).
 * **Shell**: the shell set for your account on the remote machine has to run commands sent over SSH, as Bash, Zsh, and `sh` do
 * **Network**: Claude Code runs on the remote machine and makes its network requests from there, so the machine needs the [network access that Claude Code requires](https://code.claude.com/docs/en/network-config.md#network-access-requirements). If the machine can't download Claude Code, Desktop downloads it on your computer and uploads it. Claude Code's other requests still go out from the remote machine. On a Linux remote machine, if those requests need a proxy, [set it for SSH sessions](#set-a-proxy-or-a-ca-certificate-for-ssh-sessions).
+
+#### Check a remote machine's host key
+
+A host key is the key that a remote machine presents to prove which machine it is, and a fingerprint is a short form of that key. When you trust a key, your computer saves it and connects to whatever presents it, without asking again. Check a key before you trust it, because something may be intercepting the connection.
+
+First find which machine the key belongs to, from where you see the fingerprint:
+
+* **Desktop asks `Connect to <host> for the first time?`, or you selected Review new key**: the machine that Desktop names, `<host>`
+* **Desktop asks `Connect through <jump host> for the first time?`**: the jump host, which is the machine that your connection passes through, not the machine that you want to reach
+* **`ssh` asks or warns in a terminal**: the machine that its message names, which may not be the one that you typed
+
+Get that machine's own fingerprint from the machine, not over the connection that you're checking:
+
+* **Someone else manages the machine**: ask them for its host key fingerprint
+* **You manage it, and it runs Linux or macOS**: run `ssh-keygen -lf /etc/ssh/ssh_host_<type>_key.pub` on it, at its console or over a connection that you already trust. For `<type>`, use the key type that Desktop or `ssh` shows beside the fingerprint, in lowercase: `ed25519` for `ED25519` or `ssh-ed25519`.
+
+Then compare the machine's own fingerprint with the one that you were shown:
+
+* **They match**: trust the key. Select **Trust and connect** or **Trust new key** in Desktop, or answer `yes` in the terminal.
+* **They differ, or you can't check**: don't connect. Select **Cancel** in Desktop, or answer `no` in the terminal. If someone else manages the machine, tell them which fingerprint you were shown.
+
+If a troubleshooting step sent you here, go back to that step after either result.
 
 #### Set a proxy or a CA certificate for SSH sessions
 
@@ -2141,6 +2164,48 @@ If you see "Git LFS is required by this repository but is not installed," instal
 ### MCP servers not working on Windows
 
 If MCP server toggles don't respond or servers fail to connect on Windows, check that the server is properly configured in your settings, restart the app, verify the server process is running in Task Manager, and review server logs for connection errors.
+
+### SSH host key verification failed
+
+Each of these messages means that Desktop refused a [host key](#check-a-remote-machines-host-key):
+
+* `SSH host key verification failed` or `Host denied (verification failed)` under **View details** on a `Couldn't connect to <host>` card
+* `Connection failed: Host key changed or not trusted` by the prompt box or after **Test connection**
+* `<host>'s host key is not trusted` or `<host>'s host key has changed` on a disconnected session
+
+Desktop usually refuses a key because it differs from the one saved on your computer, or because no key is saved for that machine. A machine that was rebuilt or reinstalled usually presents a new key, and so does something that intercepts the connection. Check the key before you connect again, starting from what Desktop shows with the message:
+
+* **You're on Windows, and Desktop says `Connection failed: Host key changed or not trusted`**: first rule out a [missing OpenSSH client](#ssh-host-key-refused-on-windows-without-an-openssh-client)
+* **Desktop tells you to set `UserKnownHostsFile`**: in `~/.ssh/config`, set it to `~/.ssh/known_hosts`, then [check the key from a terminal](#check-the-host-key-from-a-terminal)
+* **You see a Review new key button**: select it, and [compare](#check-a-remote-machines-host-key) the fingerprint that Desktop shows with the machine's own. If they match, select **Trust new key** to replace the saved key. Otherwise select **Cancel**.
+* **You see no Review new key button, Desktop shows `Couldn't show the new key`, or Desktop refuses the key again after Trust new key**: [check the key from a terminal](#check-the-host-key-from-a-terminal)
+
+#### Check the host key from a terminal
+
+Run `ssh <SSH host>` on your computer, with the **SSH host** value of your [SSH connection](#ssh-sessions) in Desktop. Add `-p <SSH port>` if the connection has an **SSH port** value. On Windows, use PowerShell, because Desktop doesn't connect with the `ssh` in Git Bash or WSL. If PowerShell finds no `ssh`, [install Microsoft's OpenSSH client](#ssh-host-key-refused-on-windows-without-an-openssh-client).
+
+Note which machine `ssh` names in its message, which can be a jump host and not `<SSH host>`, then follow the case that fits:
+
+* **`ssh` asks whether to continue connecting**: [compare](#check-a-remote-machines-host-key) the fingerprint that it shows with that machine's own. Answer `yes` only if they match.
+* **`ssh` warns that the host key has changed**: [compare](#check-a-remote-machines-host-key) the warning's fingerprint with that machine's own. Only if they match, delete the line that `Offending <type> key in <file>:<line>` names and rerun `ssh`. If `ssh` warns again about another line, compare, delete and rerun as before.
+* **`ssh` refuses a key that it doesn't know, without asking**: get that machine's `known_hosts` line from whoever manages it, not over the connection that you're checking. Add the line to your `known_hosts` file, with the name from `ssh`'s message as its host name, and rerun `ssh`.
+* **`ssh` goes on to sign in without asking you about the host key**: don't type a password yet. [Check the keys that `ssh` already trusts](#check-the-keys-that-ssh-already-trusts).
+
+Once `ssh` accepts a key that you checked or added, retry in Desktop. If Desktop refuses the key again, see [Get Desktop's logs for an SSH problem](#get-desktops-logs-for-an-ssh-problem).
+
+##### Check the keys that `ssh` already trusts
+
+Rerun the same `ssh` command with `-v -S none` added. In its output, a `Server host key:` line shows a fingerprint, and the next `Host '<name>' is known` line names the machine that it belongs to. [Compare](#check-a-remote-machines-host-key) each fingerprint that you find with that machine's own.
+
+* **A jump host has no `Server host key:` line**: run `ssh -v -S none <jump host>` too, and compare that fingerprint in the same way.
+* **A fingerprint doesn't match, or you can't check it**: don't connect again. Remove the saved key: under `Host '<name>' is known`, the line `Found key in <file>:<line>` names the file that holds it. Run `ssh-keygen -R "<name>" -f <file>`. If you keep host keys in more than one file, remove the key from each. If you can't change a file, tell whoever manages your computer.
+* **Every fingerprint matches**: retry in Desktop. If Desktop refuses the key again, see [Get Desktop's logs for an SSH problem](#get-desktops-logs-for-an-ssh-problem).
+
+### SSH host key refused on Windows without an OpenSSH client
+
+On Windows without an OpenSSH client, Desktop refuses even a correct host key, with `Connection failed: Host key changed or not trusted`. It needs the client to look up saved keys. To see whether you have one, run `ssh` in PowerShell. If PowerShell doesn't recognize `ssh`, install [Microsoft's OpenSSH client](https://learn.microsoft.com/windows-server/administration/openssh/openssh_install_firstuse) and restart Desktop.
+
+Then connect again. If Desktop asks whether to connect for the first time, [check the machine's host key](#check-a-remote-machines-host-key) before you trust it. If Desktop still refuses the key, follow the other cases under [SSH host key verification failed](#ssh-host-key-verification-failed).
 
 ### SSH connection fails after you log in
 

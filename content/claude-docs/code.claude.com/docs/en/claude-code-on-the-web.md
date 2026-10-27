@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-10-25T02:20:50.950770Z
-sha256: 54179672811c78e422475af50a4182aa842657bcdba6f5987572bfb5545519f5
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: c10a29de17dfd3b4cffdd5c84d7c39b90b3d584d8e1958b387c026e6cad8dc92
 ---
 
 > ## Documentation Index
@@ -294,6 +294,28 @@ To change the auto-compact window instead, set [`CLAUDE_CODE_AUTO_COMPACT_WINDOW
 [Subagents](https://code.claude.com/docs/en/sub-agents.md) work the same way they do locally. Claude can spawn them with the Agent tool to offload research or parallel work into a separate context window, keeping the main conversation lighter. Outside a [project](https://code.claude.com/docs/en/claude-projects.md#what-threads-pick-up-from-your-repositories)'s threads, subagents defined in your repo's `.claude/agents/` load automatically.
 
 [Agent teams](https://code.claude.com/docs/en/agent-teams.md) are off by default but can be enabled by adding `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` to your [environment variables](https://code.claude.com/docs/en/cloud-environments.md#set-environment-variables).
+
+### Plugin suggestions in the conversation
+
+A card in the conversation that lists one or more [plugins](https://code.claude.com/docs/en/plugins/overview.md), with an **Add** button, means Claude is suggesting plugins for your task. Claude can make these suggestions without you asking. You don't have to respond, and Claude carries on with the task either way.
+
+#### Add or remove a suggested plugin
+
+Select **Add** on a plugin to turn it on for your claude.ai account, where it stays on after the session ends. To undo, open the added plugin from the card, select **Manage** to reach the plugin's page on claude.ai, and remove the plugin from that page.
+
+#### Turn off plugin suggestions
+
+To stop Claude from suggesting plugins, deny the `SearchPlugins` and `SuggestPluginInstall` tools with [permission rules](https://code.claude.com/docs/en/permissions.md#manage-permissions). In a session with one repository outside a [project](https://code.claude.com/docs/en/claude-projects.md), commit the rules to that repository's `.claude/settings.json`, listing both tool names under `permissions.deny`:
+
+```json theme={null}
+{
+  "permissions": {
+    "deny": ["SearchPlugins", "SuggestPluginInstall"]
+  }
+}
+```
+
+Claude Code ignores permission rules in the repository's `.claude/settings.json`, including these deny rules, when the [managed settings](https://code.claude.com/docs/en/managed-settings.md) that apply to the session set [`allowManagedPermissionRulesOnly`](https://code.claude.com/docs/en/settings-reference#allowmanagedpermissionrulesonly). In that case, put the rules in those managed settings instead. For other setups, such as a session with several repositories or a cloud thread in a project, see which [settings reach a cloud session](https://code.claude.com/docs/en/settings.md#settings-in-cloud-sessions).
 
 ### Take back a queued message
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-observability
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: e02ebb3d26b576d3a57969c7255f61bb5852b8507592ebbb58eb69ce5b85923e
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: 50c9e1be4278424a3d82be1c94f3e4a769fe27886e1411afefc4bdd75c074898
 ---
 
 ---
@@ -25,7 +25,7 @@ Penampil sesi hanya dapat diakses oleh Developer dan Admin. Untuk membukanya, bu
 
 Penampil sesi menampilkan:
 
-* **Timeline minimap:** Ikhtisar aktivitas sesi dari waktu ke waktu yang dapat diperbesar, dengan satu jalur per thread dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration). Pilih sebuah jalur untuk melihat thread tersebut, atau pilih sebuah penanda untuk melompat ke event-nya.
+* **Timeline minimap:** Ikhtisar aktivitas sesi dari waktu ke waktu yang dapat diperbesar, dengan satu jalur untuk setiap thread dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration). Pilih sebuah jalur untuk melihat thread tersebut, atau pilih sebuah tanda untuk melompat ke event-nya.
 * **Transcript:** Percakapan yang dikelompokkan berdasarkan permintaan model, termasuk pemikiran, panggilan alat beserta input dan hasilnya, serta teks pesan saat di-streaming. Anda dapat memfilter event dan menyalin atau mengunduhnya sebagai JSON.
 * **Inspector:** Panel samping yang dapat diubah ukurannya dengan detail tentang sesi, dalam lima tab.
 
@@ -86,7 +86,7 @@ Objek `stats` sesi memiliki `active_seconds` sendiri, yang menjumlahkan waktu ak
 
 ### Penggunaan per thread
 
-`usage` milik setiap [thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads) juga memuat `list_cost` dan `active_seconds`. Angka per thread dibulatkan secara independen dan tidak mencakup biaya waktu berjalan sesi, sehingga jumlahnya tidak persis sama dengan `list_cost` sesi. Angka sesi adalah angka yang otoritatif.
+`usage` (csharp, go: `Usage`) milik setiap [thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads) juga memuat `list_cost` (java, php: `listCost`; csharp, go: `ListCost`) dan `active_seconds` (java, php: `activeSeconds`; csharp, go: `ActiveSeconds`). Angka per thread dibulatkan secara independen dan tidak mencakup biaya waktu berjalan sesi, sehingga jumlahnya tidak persis sama dengan `list_cost` (java, php: `listCost`; csharp, go: `ListCost`) sesi. Angka sesi adalah angka yang otoritatif.
 
 ### Membaca penggunaan dari stream
 
@@ -103,19 +103,19 @@ Untuk menerapkan batas pengeluaran, tetapkan anggaran sesi alih-alih melakukan p
 
 ## Tips debugging
 
-* **Periksa event sesi:** Sesi melaporkan error melalui event [`session.error`](https://platform.claude.com/docs/id/managed-agents/reference#event-types).
-* **Tinjau hasil alat:** Kegagalan eksekusi alat sering kali menjelaskan perilaku agen yang tidak terduga. Tab **Tools** di Inspector menampilkan kegagalan setiap alat.
+* **Periksa event sesi:** Sesi melaporkan kesalahan melalui event [`session.error`](https://platform.claude.com/docs/id/managed-agents/reference#event-types).
+* **Tinjau hasil alat:** Kegagalan alat sering kali menjelaskan perilaku agen yang tidak terduga. Tab **Tools** pada Inspector menampilkan kegagalan setiap alat.
 * **Gunakan prompt sistem:** Tambahkan instruksi logging ke prompt sistem agar agen merangkum apa yang dilakukannya dan apa yang ditemukannya.
-* **Pecahkan masalah pratinjau:** Jika stream yang memilih untuk menggunakan event delta tidak berperilaku seperti yang Anda harapkan, lihat [Memecahkan masalah pratinjau](https://platform.claude.com/docs/id/managed-agents/event-deltas#troubleshoot-previews).
+* **Memecahkan masalah pratinjau:** Jika stream yang memilih untuk menerima delta event tidak berperilaku seperti yang Anda harapkan, lihat [Memecahkan masalah pratinjau](https://platform.claude.com/docs/id/managed-agents/event-deltas#troubleshoot-previews).
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
   <Card title="Aliran event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
-    Kirim event, streaming respons, dan interupsi atau arahkan ulang sesi Anda di tengah eksekusi.
+    Kirim event, streaming respons, dan interupsi atau arahkan ulang sesi Anda saat sedang berjalan.
   </Card>
 
   <Card title="Anggaran sesi" icon="coins" href="https://platform.claude.com/docs/id/managed-agents/budgets">
-    Batasi pengeluaran sesi dengan anggaran dolar yang ketat dan diberlakukan berdasarkan tarif daftar publik.
+    Batasi pengeluaran sesi dengan anggaran dolar yang ketat yang diberlakukan berdasarkan tarif daftar publik.
   </Card>
 </CardGroup>

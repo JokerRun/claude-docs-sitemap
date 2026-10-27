@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 3b6bc74bb1c2a576a49ea8e8ee1f2fbc9304ece57a5e7aefacaad7e5ea1e546a
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: d8cd2f7fb76f4942ba35fbaad4e60108b36f95bc0bfb3c484e78be73612d97e3
 ---
 
 ---
@@ -321,17 +321,11 @@ Google sets the lifecycle dates for the models that Claude Models on Google Clou
   Claude Mythos Preview is a research preview. Claude Models on Google Cloud (Google managed) offers it to invited customers. For more information, see [Project Glasswing](https://anthropic.com/glasswing).
 </Note>
 
-<Tip>
-  Upgrading to a newer Claude model? The [Claude API skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model) in Claude Code applies model ID swaps and breaking parameter changes across your code base:
+Let Claude Code migrate your code to a newer model
 
-  Let Claude Code migrate your code for you
-
-  ```text
-  /claude-api migrate this project to the latest Claude Opus model
-  ```
-
-  The skill detects which cloud platform your code targets and adjusts model ID formats and feature changes for that platform.
-</Tip>
+```text
+/claude-api migrate this project to the latest Claude Opus model
+```
 
 ## Global, multi-region, and regional endpoints
 

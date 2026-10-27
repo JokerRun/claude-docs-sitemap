@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: a2d7fa8d58e64bcaeffadaf77b9aea7c10bd040eb724214382fd1d6c59b2dd20
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: c2bb23d35f0c4c39166cf9b53f6a39eef72c9aed8b5115b56e5eccd3c7df98d0
 ---
 
 ---
@@ -19,6 +19,10 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
   Untuk pembaruan Claude Code, lihat [CHANGELOG.md lengkap](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) di repositori `claude-code`.
 </Tip>
 
+### 23 Oktober 2026
+
+* [Claude Tag API](https://platform.claude.com/docs/id/manage-claude/claude-tag-api) tersedia dalam beta untuk organisasi Claude Enterprise dengan beta header `experimental-claude-tag-2026-10-21`. Endpoint `/v1/organizations/claude_tag/` dari API ini membaca dan mengubah pengaturan [Claude Tag](https://claude.com/docs/claude-tag/overview) pada channel Slack dan workspace Slack, menampilkan pengaturan mana yang berlaku di sebuah channel dan dari mana masing-masing berasal, serta melampirkan Access bundle. Panggil API ini dengan kunci Admin API yang dibuat oleh pemilik utama Anda di claude.ai dengan scope `read:claude_tag` atau `write:claude_tag`. API ini tidak tersedia untuk organisasi Claude Platform (Claude Console).
+
 ### 22 Oktober 2026
 
 * Kami telah meluncurkan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), yaitu Claude API yang dioperasikan oleh Anthropic dan diakses melalui proyek Google Cloud Anda. Google Cloud IAM mengontrol akses. Google Cloud Marketplace menangani penagihan.
@@ -30,10 +34,6 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 * Kami telah merilis versi baru dari [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) dan [CLI `ant`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart) yang mengirimkan versi API `2026-10-21` secara default: Python SDK 2.0.0, TypeScript SDK 1.0.0, C# SDK 13.0.0, Go SDK 2.0.0, Java SDK 3.0.0, PHP SDK 1.0.0, Ruby SDK 2.0.0, dan CLI `ant` 2.0.0. Lihat [Beralih ke 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade).
 * Versi SDK dan CLI yang baru juga memiliki "breaking changes" (perubahan yang merusak kompatibilitas) yang tidak bergantung pada versi API, dan dilisensikan di bawah Apache 2.0, bukan Lisensi MIT. Lihat [Perubahan SDK dan CLI](https://platform.claude.com/docs/id/api/migration-2026-10-21#sdk-changes).
 * Kami telah menambahkan field `enforcement_status` dan `enforcement_actions` ke [profil pengguna](https://platform.claude.com/docs/id/manage-claude/user-profiles), sehingga Anda dapat melihat apakah Anthropic telah membatasi atau memblokir salah satu pelanggan akhir Anda. Untuk menemukan profil yang memiliki pembatasan atau pemblokiran yang masih aktif, [tampilkan daftar profil Anda](https://platform.claude.com/docs/id/api/user_profiles/list) dengan filter `enforcement_status[]` yang baru. Lihat [Memeriksa apakah Anthropic telah membatasi atau memblokir sebuah profil](https://platform.claude.com/docs/id/manage-claude/user-profiles#check-whether-anthropic-has-restricted-or-banned-a-profile).
-
-### 20 Oktober 2026
-
-* [Claude Tag API](https://platform.claude.com/docs/id/manage-claude/claude-tag-api) tersedia dalam beta untuk organisasi Claude Enterprise dengan beta header `claude-tag-2026-09-28`. Endpoint `/v1/organizations/claude_tag/` dari API ini membaca dan mengubah pengaturan [Claude Tag](https://claude.com/docs/claude-tag/overview) pada channel Slack dan workspace Slack, menampilkan pengaturan mana yang berlaku di sebuah channel dan dari mana masing-masing berasal, serta melampirkan Access bundle. Panggil API ini dengan kunci Admin API yang dibuat oleh pemilik utama Anda di claude.ai dengan scope `read:claude_tag` atau `write:claude_tag`. API ini tidak tersedia untuk organisasi Claude Platform (Claude Console).
 
 ### 20 Oktober 2026
 

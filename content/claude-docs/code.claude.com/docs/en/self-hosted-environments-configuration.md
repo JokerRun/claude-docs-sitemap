@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments-configuration
-fetched_at: 2026-10-26T02:24:48.652012Z
-sha256: 92466f87e58383f4247bdd033592869ede2048ee3a622a72c385e56f57bec5b1
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: 38d00b79a64a26eda96a82034e0f44be30ea802a8bfb4ec68a9573f3ea9a7329
 ---
 
 > ## Documentation Index
@@ -388,7 +388,7 @@ By default, a runner your hook starts doesn't exit when its session's turn finis
 
 | Flag, with an example value | Pass it to | What it does |
 | :- | :- | :- |
-| `--release-idle-session-min 30` | Every runner your hook starts | The runner releases its session after that many idle minutes and then exits 0. The session resumes when its user sends their next message, but [work it hadn't pushed is gone](https://code.claude.com/docs/en/self-hosted-environments-deploy.md#additional-limitations). |
+| `--release-idle-session-min 30` | Every runner your hook starts | The runner releases its session after that many idle minutes and then exits 0. The session resumes when its user sends their next message, but [work it hadn't pushed is gone](https://code.claude.com/docs/en/self-hosted-environments-deploy.md#additional-limitations). [Hold a session](https://code.claude.com/docs/en/self-hosted-environments-deploy.md#keep-an-idle-session-while-its-processes-run) for processes it left running. |
 | `--kill-session-after-min 480` | Every runner your hook starts | Limits each session to that many minutes, as a backstop for [sessions that don't count as idle](https://code.claude.com/docs/en/self-hosted-environments-deploy.md#some-sessions-don’t-count-as-idle), so set it above your longest expected session |
 | `--exit-if-unused-min 60` | Standby runners, which your hook starts for pre-warming requests | A standby that never takes a session exits after that many minutes. If you set [`--min-idle`](https://code.claude.com/docs/en/self-hosted-environments-reference#orchestrator-cli-flags), you get a replacement unless the standby was surplus, so use a value well above your boot time. |
 

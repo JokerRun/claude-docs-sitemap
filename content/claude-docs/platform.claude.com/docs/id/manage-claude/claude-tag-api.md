@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/claude-tag-api
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 01f5453aedcc947ff2ab530f989fab4feae3627aa12304bd403778e6afbc619d
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: be4b405453f475c5fc12abb4da27e86a2af00e0f6c97f27be3bbaf06b02b2ef9
 ---
 
 ---
@@ -486,7 +486,7 @@ Objek channel menggambarkan satu channel Slack:
 
   ```java Java
   import com.anthropic.models.beta.organization.claudetag.BetaClaudeTagSettingsCreate;
-  import com.anthropic.models.beta.organization.claudetag.slackchannels.BetaClaudeTagSlackChannelIdentifiers;
+  import com.anthropic.models.beta.organization.claudetag.BetaClaudeTagSlackChannelIdentifiers;
   import com.anthropic.models.beta.organization.claudetag.slackchannels.SlackChannelCreateParams;
 
   void main() {
@@ -1504,7 +1504,7 @@ Objek workspace menggambarkan satu workspace Slack. Objek ini memiliki field yan
       new() { Settings = new() { GuestPolicy = new BetaClaudeTagGuestPolicyRestrict() } }
   );
 
-  Console.WriteLine(workspace.Settings.GuestPolicy?.Type.GetString());
+  Console.WriteLine(workspace.Settings.GuestPolicy?.Type.Raw());
   ```
 
   ```go Go
@@ -1857,7 +1857,7 @@ Bundle yang dilampirkan claude.ai sebagai bagian dari penyiapan on-call dicantum
 
   await foreach (var target in page.Paginate())
   {
-      Console.WriteLine($"{target.ID}: {target.Type.GetString()}");
+      Console.WriteLine($"{target.ID}: {target.Type.Raw()}");
   }
   ```
 
@@ -1959,8 +1959,7 @@ Lampirkan Bundle ke sebuah channel:
   ```bash CLI
   ant beta:organization:claude-tag:bundles:targets create \
     --bundle-id capp_011CZkZjLP1cWxj5EtMmdgbq \
-    --type slack_channel \
-    --slack-channel-id slch_011CZkZmRt4vNq8sHbYw2KdX
+    --target '{type: slack_channel, slack_channel_id: slch_011CZkZmRt4vNq8sHbYw2KdX}'
   ```
 
   ```python Python
@@ -1968,8 +1967,10 @@ Lampirkan Bundle ke sebuah channel:
 
   target = client.beta.organization.claude_tag.bundles.targets.create(
       "capp_011CZkZjLP1cWxj5EtMmdgbq",
-      type="slack_channel",
-      slack_channel_id="slch_011CZkZmRt4vNq8sHbYw2KdX",
+      target={
+          "type": "slack_channel",
+          "slack_channel_id": "slch_011CZkZmRt4vNq8sHbYw2KdX",
+      },
   )
 
   print(target.id)
@@ -1980,7 +1981,7 @@ Lampirkan Bundle ke sebuah channel:
 
   const target = await client.beta.organization.claudeTag.bundles.targets.create(
     "capp_011CZkZjLP1cWxj5EtMmdgbq",
-    { type: "slack_channel", slack_channel_id: "slch_011CZkZmRt4vNq8sHbYw2KdX" }
+    { target: { type: "slack_channel", slack_channel_id: "slch_011CZkZmRt4vNq8sHbYw2KdX" } }
   );
 
   console.log(target.id);
@@ -1995,7 +1996,7 @@ Lampirkan Bundle ke sebuah channel:
       "capp_011CZkZjLP1cWxj5EtMmdgbq",
       new()
       {
-          BetaClaudeTagBundleTargetCreate = new BetaClaudeTagSlackChannelBundleTargetCreate
+          Target = new BetaClaudeTagSlackChannelBundleTargetCreate
           {
               SlackChannelID = "slch_011CZkZmRt4vNq8sHbYw2KdX",
           },
@@ -2012,7 +2013,7 @@ Lampirkan Bundle ke sebuah channel:
   	context.Background(),
   	"capp_011CZkZjLP1cWxj5EtMmdgbq",
   	anthropic.BetaOrganizationClaudeTagBundleTargetNewParams{
-  		BetaClaudeTagBundleTargetCreate: anthropic.BetaClaudeTagBundleTargetCreateUnionParam{
+  		Target: anthropic.BetaClaudeTagBundleTargetCreateUnionParam{
   			OfSlackChannel: &anthropic.BetaClaudeTagSlackChannelBundleTargetCreateParam{
   				SlackChannelID: "slch_011CZkZmRt4vNq8sHbYw2KdX",
   			},
@@ -2033,7 +2034,7 @@ Lampirkan Bundle ke sebuah channel:
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       var params = TargetCreateParams.builder()
-          .slackChannelBetaClaudeTagBundleTargetCreate("slch_011CZkZmRt4vNq8sHbYw2KdX")
+          .slackChannelTarget("slch_011CZkZmRt4vNq8sHbYw2KdX")
           .build();
       var target = client.beta().organization().claudeTag().bundles().targets()
           .create("capp_011CZkZjLP1cWxj5EtMmdgbq", params);
@@ -2047,7 +2048,7 @@ Lampirkan Bundle ke sebuah channel:
 
   $target = $client->beta->organization->claudeTag->bundles->targets->create(
       bundleID: 'capp_011CZkZjLP1cWxj5EtMmdgbq',
-      betaClaudeTagBundleTargetCreate: [
+      target: [
           'type' => 'slack_channel',
           'slackChannelID' => 'slch_011CZkZmRt4vNq8sHbYw2KdX',
       ],
@@ -2062,7 +2063,7 @@ Lampirkan Bundle ke sebuah channel:
   bundle_id = "capp_011CZkZjLP1cWxj5EtMmdgbq"
   target = client.beta.organization.claude_tag.bundles.targets.create(
     bundle_id,
-    beta_claude_tag_bundle_target_create: {
+    target: {
       type: :slack_channel,
       slack_channel_id: "slch_011CZkZmRt4vNq8sHbYw2KdX"
     }
@@ -2099,8 +2100,7 @@ Lampirkan Bundle ke sebuah workspace:
   ```bash CLI
   ant beta:organization:claude-tag:bundles:targets create \
     --bundle-id capp_011CZkZjLP1cWxj5EtMmdgbq \
-    --type slack_workspace \
-    --slack-workspace-id slws_011CZkZnWa7xPc3uJfZe5LgT
+    --target '{type: slack_workspace, slack_workspace_id: slws_011CZkZnWa7xPc3uJfZe5LgT}'
   ```
 
   ```python Python
@@ -2108,8 +2108,10 @@ Lampirkan Bundle ke sebuah workspace:
 
   target = client.beta.organization.claude_tag.bundles.targets.create(
       "capp_011CZkZjLP1cWxj5EtMmdgbq",
-      type="slack_workspace",
-      slack_workspace_id="slws_011CZkZnWa7xPc3uJfZe5LgT",
+      target={
+          "type": "slack_workspace",
+          "slack_workspace_id": "slws_011CZkZnWa7xPc3uJfZe5LgT",
+      },
   )
 
   print(target.id)
@@ -2120,7 +2122,7 @@ Lampirkan Bundle ke sebuah workspace:
 
   const target = await client.beta.organization.claudeTag.bundles.targets.create(
     "capp_011CZkZjLP1cWxj5EtMmdgbq",
-    { type: "slack_workspace", slack_workspace_id: "slws_011CZkZnWa7xPc3uJfZe5LgT" }
+    { target: { type: "slack_workspace", slack_workspace_id: "slws_011CZkZnWa7xPc3uJfZe5LgT" } }
   );
 
   console.log(target.id);
@@ -2135,7 +2137,7 @@ Lampirkan Bundle ke sebuah workspace:
       "capp_011CZkZjLP1cWxj5EtMmdgbq",
       new()
       {
-          BetaClaudeTagBundleTargetCreate = new BetaClaudeTagSlackWorkspaceBundleTargetCreate
+          Target = new BetaClaudeTagSlackWorkspaceBundleTargetCreate
           {
               SlackWorkspaceID = "slws_011CZkZnWa7xPc3uJfZe5LgT",
           },
@@ -2152,7 +2154,7 @@ Lampirkan Bundle ke sebuah workspace:
   	context.Background(),
   	"capp_011CZkZjLP1cWxj5EtMmdgbq",
   	anthropic.BetaOrganizationClaudeTagBundleTargetNewParams{
-  		BetaClaudeTagBundleTargetCreate: anthropic.BetaClaudeTagBundleTargetCreateUnionParam{
+  		Target: anthropic.BetaClaudeTagBundleTargetCreateUnionParam{
   			OfSlackWorkspace: &anthropic.BetaClaudeTagSlackWorkspaceBundleTargetCreateParam{
   				SlackWorkspaceID: "slws_011CZkZnWa7xPc3uJfZe5LgT",
   			},
@@ -2173,7 +2175,7 @@ Lampirkan Bundle ke sebuah workspace:
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       var params = TargetCreateParams.builder()
-          .slackWorkspaceBetaClaudeTagBundleTargetCreate("slws_011CZkZnWa7xPc3uJfZe5LgT")
+          .slackWorkspaceTarget("slws_011CZkZnWa7xPc3uJfZe5LgT")
           .build();
       var target = client.beta().organization().claudeTag().bundles().targets()
           .create("capp_011CZkZjLP1cWxj5EtMmdgbq", params);
@@ -2187,7 +2189,7 @@ Lampirkan Bundle ke sebuah workspace:
 
   $target = $client->beta->organization->claudeTag->bundles->targets->create(
       bundleID: 'capp_011CZkZjLP1cWxj5EtMmdgbq',
-      betaClaudeTagBundleTargetCreate: [
+      target: [
           'type' => 'slack_workspace',
           'slackWorkspaceID' => 'slws_011CZkZnWa7xPc3uJfZe5LgT',
       ],
@@ -2202,7 +2204,7 @@ Lampirkan Bundle ke sebuah workspace:
   bundle_id = "capp_011CZkZjLP1cWxj5EtMmdgbq"
   target = client.beta.organization.claude_tag.bundles.targets.create(
     bundle_id,
-    beta_claude_tag_bundle_target_create: {
+    target: {
       type: :slack_workspace,
       slack_workspace_id: "slws_011CZkZnWa7xPc3uJfZe5LgT"
     }
@@ -2262,7 +2264,7 @@ Lampiran ke sebuah channel memiliki kondisi yang menentukan kapan lampiran itu b
       new() { BundleID = "capp_011CZkZjLP1cWxj5EtMmdgbq" }
   );
 
-  Console.WriteLine(target.Type.GetString());
+  Console.WriteLine(target.Type.Raw());
   ```
 
   ```go Go

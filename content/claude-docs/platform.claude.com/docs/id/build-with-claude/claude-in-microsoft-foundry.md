@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 0a751ed1f5c642d201fc43eb6594a6132aa5cef6337b20d9a159e3cddcb25966
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: c96dc0c3897213af16368c784dadf3d2883146e45dc819ff87277e7cbdc4b09e
 ---
 
 ---
@@ -711,17 +711,11 @@ Secara default, nama deployment sama dengan ID model yang ditampilkan pada tabel
   [Claude Mythos Preview](https://anthropic.com/glasswing) adalah pratinjau riset yang tersedia bagi pelanggan yang diundang di Microsoft Foundry.
 </Info>
 
-<Tip>
-  Meng-upgrade ke model Claude yang lebih baru? [Skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model) di Claude Code menerapkan penggantian ID model dan perubahan parameter yang bersifat breaking di seluruh basis kode Anda:
+Biarkan Claude Code memigrasikan kode Anda ke model yang lebih baru
 
-  Biarkan Claude Code memigrasikan kode Anda
-
-  ```text
-  /claude-api migrate proyek ini ke model Claude Opus terbaru
-  ```
-
-  Skill ini mendeteksi platform cloud mana yang ditargetkan oleh kode Anda dan menyesuaikan format ID model serta perubahan fitur untuk platform tersebut.
-</Tip>
+```text
+/claude-api migrate proyek ini ke model Claude Opus terbaru
+```
 
 ## Penagihan
 

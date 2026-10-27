@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-directory
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 1af779e83e62b9017c7966b989e54beb160e9e742d9bf0c45935ad3ae2d82b14
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: cff57d17260dfa4d534f10a957de9917a89404c24c9e8a7db8d2bc88707a75cf
 ---
 
 > ## Documentation Index
@@ -110,15 +110,22 @@ If a setting, hook, or file isn't taking effect, see [Debug your configuration](
 
 Beyond the config you author, `~/.claude` holds data Claude Code writes during sessions. These files are plaintext. Anything that passes through a tool is written to a transcript on disk: file contents, command output, pasted text.
 
+The transcript can also hold what Claude Code sends the model with your messages:
+
+* The system prompt
+* Tool definitions
+* Request parameters
+* The instruction files it loaded, such as CLAUDE.md
+
 ### Cleaned up automatically
 
 Claude Code deletes the files in the paths below once they're older than [`cleanupPeriodDays`](https://code.claude.com/docs/en/settings-reference#cleanupperioddays), as long as it can safely determine the retention period. The default is 30 days and the minimum is 1; setting `0` fails with a validation error. The same age cutoff applies to automatic removal of [orphaned worktrees](https://code.claude.com/docs/en/worktrees.md#clean-up-subagent-and-background-session-worktrees).
 
 | Path under `~/.claude/` | Contents |
 | - | - |
-| `projects/<project>/<session>.jsonl` | Full conversation transcript: every message, tool call, and tool result |
+| `projects/<project>/<session>.jsonl` | Conversation transcript: messages, tool calls, and tool results, plus the system prompt, tool definitions, and parameters of the requests Claude Code sent the model |
 | `projects/<project>/<session>.orphaned-<timestamp>-<suffix>.jsonl`, `projects/<project>/<session>.jsonl.superseded-<timestamp>` | A previous transcript for the session that Claude Code set aside instead of overwriting or deleting it. It doesn't appear in the session picker |
-| `projects/<project>/<session>/subagents/` | [Subagent](https://code.claude.com/docs/en/sub-agents.md) conversation transcripts, removed with the parent session transcript when it ages out |
+| `projects/<project>/<session>/subagents/` | [Subagent](https://code.claude.com/docs/en/sub-agents.md) transcripts in the same format as the session transcript, removed with the parent session transcript when it ages out |
 | `projects/<project>/<session>/tool-results/` | Large tool outputs spilled to separate files, and full-size copies of [images that MCP tools return](https://code.claude.com/docs/en/mcp.md#images-in-tool-results) |
 | `projects/<project>/<session>/mcp-tasks/` | What a resumed session needs to follow its running [MCP tasks](https://code.claude.com/docs/en/mcp.md#mcp-tasks-that-run-on-the-server) again, and the results of finished tasks that Claude hasn't read yet |
 | `file-history/<session>/` | Pre-edit snapshots of files Claude changed, used for [checkpoint restore](https://code.claude.com/docs/en/checkpointing.md). Holds snapshots for the 100 most recent checkpoints; snapshot files that no retained checkpoint references are deleted, except each file's first snapshot |

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: acb1f1388ee96a516f707c42bac1e834b22df90081e5c2eccb90a2f76a5430f6
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: ae3a7dbbd9f7b09fd808f764ab3b8105db2c38757150550018c98c852650cd2d
 ---
 
 > ## Documentation Index
@@ -378,7 +378,7 @@ Deploy the application:
 3. Push to the deployment target
 ```
 
-Keep the body itself concise. Once a skill loads, its content [stays in context across turns](#skill-content-lifecycle), so every line is a recurring token cost. State what to do rather than narrating how or why, and apply the same conciseness test you would for [CLAUDE.md content](https://code.claude.com/docs/en/best-practices.md#write-an-effective-claude-md).
+Keep the body itself concise. Once a skill loads, its content [stays in context across turns](#skill-content-lifecycle), so every line is a recurring token cost. State what to do rather than narrating how or why, and apply the same conciseness test you would for [CLAUDE.md content](https://code.claude.com/docs/en/best-practices.md#keep-claude-md-short).
 
 ### Frontmatter reference
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: eee71e3407bd30b17ba5e23549ab5c6a89af90b5f63af3b5aaad87b4b67e42a1
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: 993e378cdad637f3c2a337f6f259e7f081d35114d16eb31785659f6cd0220c24
 ---
 
 ---
@@ -17,17 +17,11 @@ Panduan ini mencantumkan perubahan kode untuk beralih ke Claude Sonnet 5.5 dari 
   Panduan ini membahas migrasi kode [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages). Jika Anda menggunakan [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), tidak ada perubahan yang diperlukan selain memperbarui nama model.
 </Note>
 
-<Tip>
-  **Otomatiskan migrasi Anda dengan [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).** Skill ini sudah disertakan dalam Claude Code dan berfungsi untuk model Claude terkini mana pun sebagai target:
+Biarkan Claude Code memigrasikan kode Anda
 
-  Biarkan Claude Code memigrasikan kode Anda
-
-  ```text
-  /claude-api migrate proyek ini ke claude-sonnet-5-5
-  ```
-
-  Skill ini menerapkan penggantian ID model dan, sesuai kebutuhan, perubahan parameter yang bersifat breaking, penggantian prefill, serta kalibrasi effort untuk model target Anda di seluruh basis kode Anda, lalu menghasilkan daftar periksa berisi item yang perlu diverifikasi secara manual. Skill ini meminta Anda mengonfirmasi cakupan migrasi (seluruh direktori kerja, sebuah subdirektori, atau daftar file tertentu) sebelum mengedit file apa pun. Skill ini juga mendeteksi klien Amazon Bedrock dan Claude Platform on AWS serta menyesuaikan format ID model dan perubahan fitur untuk platform tersebut.
-</Tip>
+```text
+/claude-api migrate proyek ini ke claude-sonnet-5-5
+```
 
 Claude Sonnet 5.5 memiliki harga yang sama dengan Claude Sonnet 5, kecuali untuk pembacaan cache prompt, yang berbiaya $0,10 USD per juta token, setengah dari tarif Claude Sonnet 5. Lihat [harga Claude](https://platform.claude.com/docs/id/about-claude/pricing). Untuk "context window" (jendela konteks) dan batas output-nya, lihat [halaman model Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview). Untuk fitur dan prompting, lihat [Yang baru di Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#feature-support) dan [Prompting Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5).
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-10-26T02:24:48.652012Z
-sha256: 148f87b89f7341cffa6d81fc33a3cacf10033d31addc79685b4878bcb4b7d112
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: c9ce867044bc1a080e24ae222e5727ae18355f4baca7c2060685e974b087a1ae
 ---
 
 > ## Documentation Index
@@ -181,7 +181,7 @@ You can also allow specific commands in `.claude/settings.json` so Claude doesn'
 
 ## Work effectively with Claude Code
 
-These tips help you get better results from Claude Code. For more on specific prompts, verification, and planning, see [Best practices](https://code.claude.com/docs/en/best-practices.md).
+These tips help you get better results from Claude Code. For more on specific prompts, verification, and the rules worth enforcing rather than prompting for, see [Best practices](https://code.claude.com/docs/en/best-practices.md).
 
 ### Ask Claude Code for help
 

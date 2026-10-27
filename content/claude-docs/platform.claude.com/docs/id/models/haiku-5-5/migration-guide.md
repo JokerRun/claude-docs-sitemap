@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: cf3ada88eee5fa51034293afc9aae4335a8b6bd976f4734ff049824051e7b799
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: 1858d1c233048e285eb6ea7943ed6dd52cb4ff7ab13de3176e79c5686d7ae4ce
 ---
 
 ---
@@ -15,17 +15,11 @@ description: Beralih ke Claude Haiku 5.5 dari model Haiku sebelumnya dengan pand
   Panduan ini membahas migrasi kode [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages). Jika Anda menggunakan [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), tidak ada perubahan yang diperlukan selain memperbarui nama model.
 </Note>
 
-<Tip>
-  **Otomatiskan migrasi Anda dengan [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).** Skill ini sudah disertakan dalam Claude Code dan berfungsi untuk model Claude terkini mana pun sebagai target:
+Biarkan Claude Code memigrasikan kode Anda
 
-  Biarkan Claude Code memigrasikan kode Anda
-
-  ```text
-  /claude-api migrate proyek ini ke claude-haiku-5-5
-  ```
-
-  Skill ini menerapkan penggantian ID model dan, sesuai kebutuhan, perubahan parameter yang bersifat breaking, penggantian prefill, serta kalibrasi effort untuk model target Anda di seluruh basis kode Anda, lalu menghasilkan daftar periksa berisi item yang perlu diverifikasi secara manual. Skill ini meminta Anda mengonfirmasi cakupan migrasi (seluruh direktori kerja, sebuah subdirektori, atau daftar file tertentu) sebelum mengedit file apa pun. Skill ini juga mendeteksi klien Amazon Bedrock dan Claude Platform on AWS serta menyesuaikan format ID model dan perubahan fitur untuk platform tersebut.
-</Tip>
+```text
+/claude-api migrate proyek ini ke claude-haiku-5-5
+```
 
 Panduan ini membahas pemindahan kode yang memanggil Claude Haiku 4.5 ke Claude Haiku 5.5. Untuk kode yang memanggil Claude Haiku 3.5 atau Claude Haiku 3, lakukan juga perubahan di [Migrasi ke Claude Haiku 5.5 dari Claude Haiku 3.5 dan model Haiku sebelumnya](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#migrating-from-haiku-35). Untuk beralih ke model Sonnet atau Opus, lihat [Upgrade antar versi model](https://platform.claude.com/docs/id/about-claude/models/migration-guide). Untuk mengetahui berapa lama Claude Haiku 4.5 tetap tersedia, lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations).
 

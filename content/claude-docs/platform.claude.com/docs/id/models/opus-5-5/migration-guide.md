@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/migration-guide
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: f5e451462e6c6389d83a7e35a90f313f1cdb8d1354edeea9082c809d4e4c7b41
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: fd9fdb5d4733666b483798353c58ee730e7a43860ed323d969addd9d60cb559e
 ---
 
 ---
@@ -15,17 +15,11 @@ description: Beralih ke Claude Opus 5.5 dari model Opus sebelumnya atau Claude S
   Panduan ini membahas migrasi kode [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages). Jika Anda menggunakan [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), tidak ada perubahan yang diperlukan selain memperbarui nama model.
 </Note>
 
-<Tip>
-  **Otomatiskan migrasi Anda dengan [skill Claude API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).** Skill ini sudah disertakan dalam Claude Code dan berfungsi untuk model Claude terkini mana pun sebagai target:
+Biarkan Claude Code memigrasikan kode Anda
 
-  Biarkan Claude Code memigrasikan kode Anda
-
-  ```text
-  /claude-api migrate proyek ini ke claude-opus-5-5
-  ```
-
-  Skill ini menerapkan penggantian ID model dan, sesuai kebutuhan, perubahan parameter yang bersifat breaking, penggantian prefill, serta kalibrasi effort untuk model target Anda di seluruh basis kode Anda, lalu menghasilkan daftar periksa berisi item yang perlu diverifikasi secara manual. Skill ini meminta Anda mengonfirmasi cakupan migrasi (seluruh direktori kerja, sebuah subdirektori, atau daftar file tertentu) sebelum mengedit file apa pun. Skill ini juga mendeteksi klien Amazon Bedrock dan Claude Platform on AWS serta menyesuaikan format ID model dan perubahan fitur untuk platform tersebut.
-</Tip>
+```text
+/claude-api migrate proyek ini ke claude-opus-5-5
+```
 
 Halaman ini mencantumkan perubahan kode untuk beralih ke Claude Opus 5.5 dari [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-47), [Claude Opus 4.6 dan model Opus sebelumnya](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-46), atau [Claude Sonnet 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-sonnet-5). Setiap pembaca memerlukan [Apa yang harus dipenuhi setiap permintaan ke Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#request-requirements) dan [Menangani thinking di setiap respons](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#thinking-in-every-response). Kemudian buka bagian untuk model Anda saat ini: kalimat pertamanya menyebutkan bagian lain yang berlaku untuk Anda. [Daftar periksa migrasi](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migration-checklist) mencantumkan setiap perubahan berdasarkan model awal.
 

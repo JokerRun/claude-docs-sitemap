@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/opus-5-5/migration-guide
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 8532ae45dc19a7071274f38ea452c4a86b4be49ec6fd6004ab2ea00eb7bb33f0
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: 5ac05c52af1fe0a7649d77e69b992747ab749c3ea7287f1dbf569400356c37d4
 ---
 
 ---
@@ -15,17 +15,11 @@ description: Switch to Claude Opus 5.5 from earlier Opus models or Claude Sonnet
   This guide covers migrating [Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) code. If you use [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview), no changes beyond updating the model name are required.
 </Note>
 
-<Tip>
-  **Automate your migration with the [Claude API skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).** It comes bundled with Claude Code and works for any current Claude model as the target:
+Let Claude Code migrate your code for you
 
-  Let Claude Code migrate your code for you
-
-  ```text
-  /claude-api migrate this project to claude-opus-5-5
-  ```
-
-  The skill applies the model ID swap and, as needed, breaking parameter changes, prefill replacement, and effort calibration for your target model across your code base, then produces a checklist of items to verify manually. It asks you to confirm the migration scope (entire working directory, a subdirectory, or a specific file list) before editing any files. The skill also detects Amazon Bedrock and Claude Platform on AWS clients and adjusts model ID formats and feature changes for those platforms.
-</Tip>
+```text
+/claude-api migrate this project to claude-opus-5-5
+```
 
 This page lists the code changes for moving to Claude Opus 5.5 from [Claude Opus 5](https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Claude Opus 4.8](https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8), [Claude Opus 4.7](https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#migrating-from-claude-opus-47), [Claude Opus 4.6 and earlier Opus models](https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#migrating-from-claude-opus-46), or [Claude Sonnet 5](https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#migrating-from-claude-sonnet-5). Every reader needs [What every request to Claude Opus 5.5 must satisfy](https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#request-requirements) and [Handle thinking in every response](https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#thinking-in-every-response). Then go to the section for your current model: its first sentence names the other sections that apply to you. The [migration checklist](https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#migration-checklist) lists every change by starting model.
 

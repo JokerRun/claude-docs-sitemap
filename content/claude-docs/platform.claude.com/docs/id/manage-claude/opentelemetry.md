@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: d6f4cafe5919f039c65cdf34279b1e02e981a676cc3a11b32811875f62e5a6cc
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: 4cadfb8561b560cc64b14ec4fe2f292840d6c9e1376b6f4464da071a2359d96e
 ---
 
 ---
@@ -19,6 +19,12 @@ featureMetadata:
 <Note>
   Ekspor OpenTelemetry sedang dalam tahap beta. Fitur ini disediakan berdasarkan perjanjian Anda dengan Anthropic, termasuk bagian Layanan Beta dari [Ketentuan Khusus Layanan](https://www.anthropic.com/legal/service-specific-terms).
 </Note>
+
+<video aria-label="Menelusuri agen dengan OpenTelemetry di Claude Platform">
+  <source src="https://media.platform.claude.com/docs/opentelemetry/tracing/overview-1080p.mp4" type="video/mp4" media="(min-width: 1280px)" />
+  <source src="https://media.platform.claude.com/docs/opentelemetry/tracing/overview-720p.mp4" type="video/mp4" media="(min-width: 640px)" />
+  <source src="https://media.platform.claude.com/docs/opentelemetry/tracing/overview-480p.mp4" type="video/mp4" />
+</video>
 
 Claude API dan SDK dapat melakukan "tracing" (penelusuran) terhadap permintaan Messages API, penggunaan alat, dan sesi Managed Agents Anda dengan [OpenTelemetry](https://opentelemetry.io/) (OTel). Anda dapat melihat trace ini di platform observabilitas yang sudah Anda miliki. Gunakan trace tersebut untuk men-debug permintaan yang gagal atau lambat, melacak penggunaan token dan "latency" (latensi), serta membangun eval dari lalu lintas nyata. Anda juga dapat melihat setiap permintaan di dalam trace aplikasi Anda sendiri, yang ditautkan ke pengguna atau fitur yang mengirimkannya.
 
@@ -48,21 +54,21 @@ Siapkan tracing OpenTelemetry dengan Claude API dan Claude SDK
   </Card>
 </CardGroup>
 
-| Yang Anda dapatkan                                                                                                                | Tracing SDK                                                                 | Tracing API                                                                                | Keduanya sekaligus                                                                         |
+| Yang Anda dapatkan                                                                                                                | Penelusuran SDK                                                             | Penelusuran API                                                                            | Keduanya bersama                                                                           |
 | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | Permintaan [Messages API](https://platform.claude.com/docs/id/api/messages/create)                                                | ✅                                                                           | ✅                                                                                          | ✅                                                                                          |
 | Permintaan [Sessions API](https://platform.claude.com/docs/id/managed-agents/sessions)                                            | ✅                                                                           | ✅                                                                                          | ✅                                                                                          |
-| [Penggunaan token](https://platform.claude.com/docs/id/manage-claude/opentelemetry#count-tokens)                                  | ✅                                                                           | ✅                                                                                          | ✅                                                                                          |
+| Penggunaan token (lihat [Penghitungan token](https://platform.claude.com/docs/id/manage-claude/opentelemetry#count-tokens))       | ✅                                                                           | ✅                                                                                          | ✅                                                                                          |
 | Setiap eksekusi model dalam sebuah permintaan                                                                                     | —                                                                           | ✅                                                                                          | ✅                                                                                          |
 | Giliran [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)                                             | —                                                                           | ✅                                                                                          | ✅                                                                                          |
 | [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools), dijalankan oleh API                    | —                                                                           | ✅                                                                                          | ✅                                                                                          |
 | Alat klien, dijalankan oleh [tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner)              | ✅                                                                           | —                                                                                          | ✅                                                                                          |
 | Alat dalam [sandbox self-hosted](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk#trace-a-self-hosted-sandbox) | ✅                                                                           | —                                                                                          | ✅                                                                                          |
 | Permintaan API lainnya, seperti mengunggah file                                                                                   | ✅                                                                           | —                                                                                          | ✅                                                                                          |
-| Pengaturan                                                                                                                        | [Kode](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk) | [Console](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api)             | Keduanya                                                                                   |
+| Penyiapan                                                                                                                         | [Kode](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk) | [Console](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api)             | Keduanya                                                                                   |
 | Izin yang diperlukan                                                                                                              | Tidak ada                                                                   | [Admin](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#what-you-need) | [Admin](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#what-you-need) |
 | Cakupan                                                                                                                           | Klien yang menggunakan SDK                                                  | Klien apa pun                                                                              | Klien apa pun                                                                              |
-| Dukungan platform cloud                                                                                                           | Semua                                                                       | Claude Platform<br />Claude Platform on AWS                                                | Claude Platform<br />Claude Platform on AWS                                                |
+| Dukungan platform cloud                                                                                                           | Apa pun                                                                     | Claude Platform<br />Claude Platform on AWS                                                | Claude Platform<br />Claude Platform on AWS                                                |
 
 Untuk Claude Code, Agent SDK, atau Cowork, lihat [pemantauan Claude Code](https://code.claude.com/docs/en/monitoring-usage), [observability Agent SDK](https://code.claude.com/docs/en/agent-sdk/observability), atau [pemantauan aktivitas Cowork](https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry).
 
@@ -155,7 +161,7 @@ Dengan [zero data retention](https://platform.claude.com/docs/id/manage-claude/a
 
 ### Batas konten
 
-Dengan Full content, setiap span menampung konten hingga 0,75 MB secara default. Batas ini cukup untuk jendela konteks 200k token berisi teks berbahasa Inggris dan tetap berada di bawah batas permintaan 1 MB yang diterapkan oleh banyak platform observabilitas dan proxy. Jika Anda memilih platform mitra sebagai **Provider**, Console menetapkan batas yang diterima oleh platform tersebut.
+Dengan Full content, setiap span secara default menampung konten hingga 0,75 MB. Ukuran itu cukup untuk jendela konteks 200 ribu token berisi teks bahasa Inggris dan tetap di bawah batas permintaan 1 MB pada banyak platform observabilitas dan proxy. Jika Anda memilih platform mitra sebagai **Provider**, Console menetapkan batas yang diterima oleh platform tersebut.
 
 Ketika konten melebihi batas, SDK atau API memendekkan konten tersebut dan mengatur `anthropic.content.truncated` ke `true`. Span permintaan menghapus prompt sistem dan pesan paling awal terlebih dahulu, dan span alat menghapus blok mulai dari akhir hasil. Gambar dan dokumen hanya muncul sebagai jenisnya.
 
@@ -205,7 +211,7 @@ Contoh ini mengikuti satu permintaan chat, di mana aplikasi Anda mengirim pesan 
 6. Session tool runner menjalankan `list_issues` (ditampilkan sebagai span `anthropic.custom_tool_use list_issues`) dan mengirim hasilnya dengan memanggil `sessions.events.send`.
 7. Giliran kedua dimulai dengan hasil alat (ditampilkan sebagai span `anthropic.session.turn` terakhir).
 
-![Contoh trace sesi Managed Agents: span POST /chat Anda, permintaan event stream dan event list dari session tool runner, span klien dan server untuk permintaan yang mengirimkan pesan pengguna, giliran dengan permintaan model, penggunaan alat bash dan giliran pada thread lain, runner yang menjalankan list\_issues, span klien dan server untuk permintaan yang mengirimkan hasil alat, dan giliran kedua.](https://platform.claude.com/docs/id/images/opentelemetry-trace-shape.svg)
+![Contoh trace sesi Managed Agents: POST /chat, empat permintaan event sesi, tiga giliran, satu penggunaan alat bash, dan list\_issues](https://platform.claude.com/docs/id/images/opentelemetry-trace-shape.svg)
 
 SDK di aplikasi Anda memancarkan span [`anthropic.custom_tool_use`](https://platform.claude.com/docs/id/api/opentelemetry/spans#anthropic-tool-use-anthropic-mcp-tool-use-and-anthropic-custom-tool-use) dan span klien dari setiap permintaan. Untuk mendapatkan span ini, [siapkan tracing SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
 

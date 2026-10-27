@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 8cec75ef59cb91f46a8a68e7cab0a81e03c10ece080f891b1e7c37b0825b64af
+fetched_at: 2026-10-27T02:22:08.565782Z
+sha256: 1f49185927016030d57f1c441583f14dcc137e38b2de59745b66e5c47db2fe05
 ---
 
 ---
@@ -254,18 +254,10 @@ Future models and features will not be compatible with Text Completions. See our
 
   The prompt that you want Claude to complete.
 
-  For proper response generation you will need to format your prompt using alternating `
-
-  Human:`and`
-
-  Assistant:` conversational turns. For example:
+  For proper response generation you will need to format your prompt using alternating `\n\nHuman:` and `\n\nAssistant:` conversational turns. For example:
 
   ```
-  "
-  
-  Human: {userQuestion}
-  
-  Assistant:"
+  "\n\nHuman: {userQuestion}\n\nAssistant:"
   ```
 
   See [prompt validation](https://platform.claude.com/docs/en/build-with-claude/working-with-messages?sdk_languages=http) and our guide to [prompt design](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview?sdk_languages=http) for more details.
@@ -288,9 +280,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   Sequences that will cause the model to stop generating.
 
-  Our models stop on `"
-
-  Human:"`, and may include additional built-in stop sequences in the future. By providing the stop_sequences parameter, you may include additional strings that will cause the model to stop generating.
+  Our models stop on `"\n\nHuman:"`, and may include additional built-in stop sequences in the future. By providing the stop_sequences parameter, you may include additional strings that will cause the model to stop generating.
 
 - `stream: optional boolean`
 
