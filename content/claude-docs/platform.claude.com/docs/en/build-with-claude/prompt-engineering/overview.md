@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: cbd28e3fa05da7afd15cfb011e6fe653b4c2da453c398b6863a9b5c48fb61962
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 0dcdf2155778c9ace8ab0f2db4a9515c0a0df9b04ee32f82108cd93a6b42e318
 ---
 
 ---
@@ -23,11 +23,11 @@ If not, spend time establishing that first. See [Define success criteria and bui
 
 <CardGroup cols={2}>
   <Card title="Prompt generator notebook" icon="link" href="https://colab.research.google.com/github/anthropics/claude-cookbooks/blob/main/misc/metaprompt.ipynb">
-    Don't have a first draft prompt? Generate one with the metaprompt recipe from the Claude Cookbook.
+    Don’t have a first draft prompt? Generate one with the metaprompt recipe from the Claude Cookbook.
   </Card>
 
   <Card title="Prompting best practices" icon="link" href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">
-    For model-specific tuning guidance for Claude's latest models, start here.
+    For model-specific tuning guidance for Claude’s latest models, start here.
   </Card>
 </CardGroup>
 
@@ -41,7 +41,7 @@ This guide focuses on success criteria that are controllable through prompt engi
 
 ## How to prompt engineer
 
-All prompting techniques (from clarity and examples to XML structuring, role prompting, thinking, and prompt chaining) are covered in [Prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices). That's the living reference; start there.
+All prompting techniques (from clarity and examples to XML structuring, role prompting, thinking, and prompt chaining) are covered in [Prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices). That’s the living reference; start there.
 
 For general prompt engineering craft beyond Claude-specific techniques, see the blog post on [best practices for prompt engineering](https://claude.com/blog/best-practices-for-prompt-engineering).
 
@@ -49,7 +49,7 @@ For general prompt engineering craft beyond Claude-specific techniques, see the 
 
 ## Prompt engineering tutorial
 
-If you're an interactive learner, you can start with the interactive tutorials instead!
+If you’re an interactive learner, you can start with the interactive tutorials instead!
 
 <CardGroup cols={2}>
   <Card title="GitHub prompting tutorial" icon="link" href="https://github.com/anthropics/prompt-eng-interactive-tutorial">

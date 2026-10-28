@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: b9378ad08916f5e3d19abe2f27d3ba52afc65b2635aef2261fe8e840c229a87c
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 2dcf2a881bff1b5e4d3776c6246071af2e6f5e0c0c0df339e26b930beede076e
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
 description: Instal dan konfigurasikan Anthropic Python SDK dengan dukungan klien sinkron dan asinkron
 ---
 
-Anthropic Python SDK menyediakan akses yang mudah ke Claude API dari aplikasi Python. SDK ini mendukung operasi sinkron maupun asinkron, "streaming" (streaming), serta integrasi dengan Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), Claude Models on Google Cloud (Google managed), dan Microsoft Foundry.
+Anthropic Python SDK menyediakan akses yang mudah ke Claude API dari aplikasi Python. SDK ini mendukung operasi sinkron maupun asinkron, “streaming” (streaming), serta integrasi dengan Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), Claude Models on Google Cloud (Google managed), dan Microsoft Foundry.
 
 <Info>
   Untuk dokumentasi fitur API beserta contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang khusus untuk Python.
@@ -75,10 +75,10 @@ for block in message.content:
 ```
 
 <Tip>
-  Pertimbangkan untuk menggunakan [python-dotenv](https://pypi.org/project/python-dotenv/) untuk menambahkan `ANTHROPIC_API_KEY="my-anthropic-api-key"` ke file `.env` Anda agar "API key" (kunci API) Anda tidak tersimpan di source control.
+  Pertimbangkan untuk menggunakan [python-dotenv](https://pypi.org/project/python-dotenv/) untuk menambahkan `ANTHROPIC_API_KEY="my-anthropic-api-key"` ke file `.env` Anda agar “API key” (kunci API) Anda tidak tersimpan di source control.
 </Tip>
 
-Untuk opsi autentikasi termasuk "Workload Identity Federation" (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
+Untuk opsi autentikasi termasuk “Workload Identity Federation” (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
 
 ## Penggunaan async
 
@@ -142,7 +142,7 @@ asyncio.run(main())
 
 ## Respons streaming
 
-SDK menyediakan dukungan untuk respons streaming menggunakan "Server-Sent Events" (peristiwa yang dikirim server), atau SSE.
+SDK menyediakan dukungan untuk respons streaming menggunakan “Server-Sent Events” (peristiwa yang dikirim server), atau SSE.
 
 ```python
 client = Anthropic()
@@ -235,7 +235,7 @@ print(count.input_tokens)  # 10
 
 ## Penggunaan alat
 
-SDK ini menyediakan dukungan untuk "tool use" (penggunaan alat), yang juga dikenal sebagai function calling. Untuk detail lebih lanjut, lihat [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
+SDK ini menyediakan dukungan untuk “tool use” (penggunaan alat), yang juga dikenal sebagai function calling. Untuk detail lebih lanjut, lihat [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
 
 ### Helper alat
 
@@ -476,7 +476,7 @@ Hindari menetapkan nilai `max_tokens` yang besar tanpa menggunakan streaming. Be
 
 SDK akan melempar `ValueError` jika permintaan non-streaming diperkirakan memakan waktu lebih dari sekitar 10 menit. Memberikan `stream=True` atau menimpa opsi `timeout` di tingkat klien atau permintaan akan menonaktifkan error ini.
 
-"Latency" (latensi) permintaan yang diperkirakan lebih lama dari [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#timeouts) untuk permintaan non-streaming akan mengakibatkan klien memutus koneksi dan mencoba ulang tanpa menerima respons.
+“Latency” (latensi) permintaan yang diperkirakan lebih lama dari [timeout](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#timeouts) untuk permintaan non-streaming akan mengakibatkan klien memutus koneksi dan mencoba ulang tanpa menerima respons.
 
 SDK menetapkan opsi [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive-HOWTO/overview.html) untuk mengurangi dampak timeout koneksi idle pada beberapa jaringan. Ini dapat ditimpa dengan memberikan opsi `http_client` kustom ke klien.
 
@@ -600,7 +600,7 @@ if response.my_field is None:
 
 ### Mengakses data respons mentah (misalnya, header)
 
-`Response` "mentah" yang dikembalikan oleh `httpx2` dapat diakses melalui properti `.with_raw_response` pada klien. Ini berguna untuk mengakses header respons atau metadata lainnya:
+`Response` “mentah” yang dikembalikan oleh `httpx2` dapat diakses melalui properti `.with_raw_response` pada klien. Ini berguna untuk mengakses header respons atau metadata lainnya:
 
 ```python
 client = Anthropic()

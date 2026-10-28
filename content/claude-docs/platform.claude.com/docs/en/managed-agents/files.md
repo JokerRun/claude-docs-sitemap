@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/files
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: a282d38e35ec03e90da051228704199f3c97d52d7965a24e17e714127373b52e
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: ab040cc732930b68c3106268440d5283c4e01d03745ad2b3bc526be0b0353e69
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-You can provide files to your agent by uploading them through the Files API and mounting them in the session's sandbox.
+You can provide files to your agent by uploading them through the Files API and mounting them in the session’s sandbox.
 
 ## Uploading files
 
@@ -730,7 +730,7 @@ The agent can work with any file type, including:
   Files mounted in the sandbox are read-only copies. The agent can read them but cannot modify the original uploaded file. To work with modified versions, the agent writes to new paths within the sandbox.
 </Note>
 
-* The path you specify is rooted under the session's uploads directory: a `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`) of `/data.csv` places the file at `/mnt/session/uploads/data.csv` in the sandbox.
+* The path you specify is rooted under the session’s uploads directory: a `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`) of `/data.csv` places the file at `/mnt/session/uploads/data.csv` in the sandbox.
 * If you omit `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`), the file is placed at `/mnt/session/uploads/<file_id>`.
 * Parent directories are created automatically.
 * Paths should be absolute (starting with `/`).

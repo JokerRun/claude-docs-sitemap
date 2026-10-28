@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-4-8
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 67b5fbdd5c9fcf13d4705be51e97f3393806c48d1af7e2cebb4cc46dadfdbd1b
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 614953808cda02879aa1ef0f07e2cdb40a7c1b2ac3743051fe2a50d204e1740d
 ---
 
 ---
@@ -16,7 +16,7 @@ Panduan ini membahas pola prompting yang khusus untuk Claude Opus 4.8. Untuk per
 Claude Opus 4.8 memiliki kekuatan khusus dalam pekerjaan agentik jangka panjang, pekerjaan berbasis pengetahuan, visi, dan tugas memori. Model ini berkinerja baik secara langsung pada prompt Claude Opus 4.7 yang sudah ada. Pola-pola berikut mencakup perilaku yang paling sering memerlukan penyesuaian.
 
 <Note>
-  Untuk perubahan parameter API sejak Claude Opus 4.7 ("context window" (jendela konteks) 1M sebagai default dan pesan sistem di tengah percakapan), lihat [Migrasi ke Claude Opus 5.5 dari Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-47), yang membahas perubahan yang sama dalam perjalanan menuju Claude Opus 5.5; Claude Opus 4.8 memiliki perilaku yang sama.
+  Untuk perubahan parameter API sejak Claude Opus 4.7 (“context window” (jendela konteks) 1M sebagai default dan pesan sistem di tengah percakapan), lihat [Migrasi ke Claude Opus 5.5 dari Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-47), yang membahas perubahan yang sama dalam perjalanan menuju Claude Opus 5.5; Claude Opus 4.8 memiliki perilaku yang sama.
 </Note>
 
 ## Panjang respons dan verbositas
@@ -51,7 +51,7 @@ This task involves multistep reasoning. Think carefully through the problem befo
 
 Effort kemungkinan lebih penting untuk model ini dibandingkan Opus sebelumnya, jadi bereksperimenlah dengannya secara aktif saat Anda melakukan upgrade.
 
-Pada Claude Opus 4.8, pemikiran dinonaktifkan kecuali Anda secara eksplisit menetapkan `thinking: {type: "adaptive"}`. Perilaku pemicuan untuk [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) dapat diarahkan. Jika Anda mendapati model berpikir lebih sering daripada yang Anda inginkan, yang dapat terjadi dengan "system prompt" (prompt sistem) yang besar atau kompleks, tambahkan panduan untuk mengarahkannya. Seperti biasa, ukur efek dari setiap perubahan prompting terhadap kinerja. Contoh:
+Pada Claude Opus 4.8, pemikiran dinonaktifkan kecuali Anda secara eksplisit menetapkan `thinking: {type: "adaptive"}`. Perilaku pemicuan untuk [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) dapat diarahkan. Jika Anda mendapati model berpikir lebih sering daripada yang Anda inginkan, yang dapat terjadi dengan “system prompt” (prompt sistem) yang besar atau kompleks, tambahkan panduan untuk mengarahkannya. Seperti biasa, ukur efek dari setiap perubahan prompting terhadap kinerja. Contoh:
 
 ```text wrap
 Thinking adds latency and should only be used when it will meaningfully improve answer quality — typically for problems that require multistep reasoning. When in doubt, respond directly.
@@ -65,15 +65,15 @@ Sebaliknya, jika Anda menjalankan beban kerja berat pada `medium` dan melihat un
 
 ## Pemicuan penggunaan alat
 
-Claude Opus 4.8 memiliki kecenderungan untuk lebih mengutamakan penalaran daripada pemanggilan alat. Ini menghasilkan hasil yang lebih baik dalam sebagian besar kasus. Namun, meningkatkan pengaturan effort adalah tuas yang berguna untuk meningkatkan tingkat "tool use" (penggunaan alat), terutama dalam pekerjaan berbasis pengetahuan. Pengaturan effort `high` atau `xhigh` menunjukkan penggunaan alat yang jauh lebih banyak dalam pencarian agentik dan coding. Untuk skenario di mana Anda menginginkan lebih banyak penggunaan alat, Anda juga dapat menyesuaikan prompt Anda untuk secara eksplisit menginstruksikan model tentang kapan dan bagaimana menggunakan alatnya dengan benar. Misalnya, jika Anda mendapati bahwa model tidak menggunakan alat pencarian web Anda, jelaskan dengan jelas mengapa dan bagaimana model harus menggunakannya.
+Claude Opus 4.8 memiliki kecenderungan untuk lebih mengutamakan penalaran daripada pemanggilan alat. Ini menghasilkan hasil yang lebih baik dalam sebagian besar kasus. Namun, meningkatkan pengaturan effort adalah tuas yang berguna untuk meningkatkan tingkat “tool use” (penggunaan alat), terutama dalam pekerjaan berbasis pengetahuan. Pengaturan effort `high` atau `xhigh` menunjukkan penggunaan alat yang jauh lebih banyak dalam pencarian agentik dan coding. Untuk skenario di mana Anda menginginkan lebih banyak penggunaan alat, Anda juga dapat menyesuaikan prompt Anda untuk secara eksplisit menginstruksikan model tentang kapan dan bagaimana menggunakan alatnya dengan benar. Misalnya, jika Anda mendapati bahwa model tidak menggunakan alat pencarian web Anda, jelaskan dengan jelas mengapa dan bagaimana model harus menggunakannya.
 
 ## Pembaruan progres untuk pengguna
 
-Claude Opus 4.8 memberikan pembaruan yang lebih teratur dan berkualitas lebih tinggi kepada pengguna sepanjang jejak agentik yang panjang. Jika Anda telah menambahkan scaffolding untuk memaksa pesan status sementara ("Setelah setiap 3 pemanggilan alat, rangkum progres"), cobalah menghapusnya. Jika Anda mendapati bahwa panjang atau isi pembaruan Claude Opus 4.8 untuk pengguna tidak terkalibrasi dengan baik untuk kasus penggunaan Anda, jelaskan secara eksplisit seperti apa pembaruan ini seharusnya dalam prompt dan berikan contoh.
+Claude Opus 4.8 memberikan pembaruan yang lebih teratur dan berkualitas lebih tinggi kepada pengguna sepanjang jejak agentik yang panjang. Jika Anda telah menambahkan scaffolding untuk memaksa pesan status sementara (“Setelah setiap 3 pemanggilan alat, rangkum progres”), cobalah menghapusnya. Jika Anda mendapati bahwa panjang atau isi pembaruan Claude Opus 4.8 untuk pengguna tidak terkalibrasi dengan baik untuk kasus penggunaan Anda, jelaskan secara eksplisit seperti apa pembaruan ini seharusnya dalam prompt dan berikan contoh.
 
 ## Kepatuhan instruksi yang lebih literal
 
-Claude Opus 4.8 menafsirkan prompt secara literal dan eksplisit, terutama pada tingkat effort yang lebih rendah. Model ini tidak secara diam-diam menggeneralisasi instruksi dari satu item ke item lain, dan tidak menyimpulkan permintaan yang tidak Anda buat. Keuntungan dari literalisme ini adalah presisi dan lebih sedikit thrash, dan umumnya berkinerja lebih baik untuk kasus penggunaan API dengan prompt yang disesuaikan dengan cermat, ekstraksi terstruktur, dan pipeline di mana Anda menginginkan perilaku yang dapat diprediksi. Jika Anda memerlukan Claude untuk menerapkan instruksi secara luas, nyatakan cakupannya secara eksplisit (misalnya, "Terapkan pemformatan ini ke setiap bagian, bukan hanya yang pertama").
+Claude Opus 4.8 menafsirkan prompt secara literal dan eksplisit, terutama pada tingkat effort yang lebih rendah. Model ini tidak secara diam-diam menggeneralisasi instruksi dari satu item ke item lain, dan tidak menyimpulkan permintaan yang tidak Anda buat. Keuntungan dari literalisme ini adalah presisi dan lebih sedikit thrash, dan umumnya berkinerja lebih baik untuk kasus penggunaan API dengan prompt yang disesuaikan dengan cermat, ekstraksi terstruktur, dan pipeline di mana Anda menginginkan perilaku yang dapat diprediksi. Jika Anda memerlukan Claude untuk menerapkan instruksi secara luas, nyatakan cakupannya secara eksplisit (misalnya, “Terapkan pemformatan ini ke setiap bagian, bukan hanya yang pertama”).
 
 ## Nada dan gaya penulisan
 
@@ -99,7 +99,7 @@ Spawn multiple subagents in the same turn when fanning out across items or readi
 
 Claude Opus 4.8 memiliki insting desain yang kuat, dengan gaya bawaan default yang konsisten: latar belakang krem hangat/putih pudar (\~`#F4F1EA`), tipe tampilan serif (Georgia, Fraunces, Playfair), aksen kata miring, dan aksen terakota/amber. Ini cocok untuk brief editorial, perhotelan, dan portofolio, tetapi kurang cocok untuk dasbor, alat pengembang, fintech, layanan kesehatan, atau aplikasi enterprise. Default ini muncul di slide deck dan UI web.
 
-Default ini persisten. Instruksi generik ("jangan gunakan krem," "buat bersih dan minimal") cenderung menggeser model ke palet tetap yang berbeda alih-alih menghasilkan variasi. Dua pendekatan bekerja dengan andal:
+Default ini persisten. Instruksi generik (“jangan gunakan krem,” “buat bersih dan minimal”) cenderung menggeser model ke palet tetap yang berbeda alih-alih menghasilkan variasi. Dua pendekatan bekerja dengan andal:
 
 **1. Tentukan alternatif yang konkret.** Model mengikuti spesifikasi eksplisit dengan tepat:
 
@@ -132,7 +132,7 @@ Color palette should stay within this range:
 Before building, propose 4 distinct visual directions tailored to this brief (each as: bg hex / accent hex / typeface — one-line rationale). Ask the user to pick one, then implement only that direction.
 ```
 
-Selain itu, Claude Opus 4.8 memerlukan lebih sedikit prompting desain frontend dibandingkan model sebelumnya untuk menghindari pola generik yang oleh pengguna disebut estetika "AI slop". Dengan model sebelumnya, Anthropic merekomendasikan cuplikan prompt yang lebih panjang dalam [skill frontend-design](https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md). Namun, Claude Opus 4.8 menghasilkan front end yang khas dan kreatif dengan panduan prompting yang lebih minimal. Cuplikan prompt ini bekerja dengan baik bersama saran prompting sebelumnya untuk variasi:
+Selain itu, Claude Opus 4.8 memerlukan lebih sedikit prompting desain frontend dibandingkan model sebelumnya untuk menghindari pola generik yang oleh pengguna disebut estetika “AI slop”. Dengan model sebelumnya, Anthropic merekomendasikan cuplikan prompt yang lebih panjang dalam [skill frontend-design](https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md). Namun, Claude Opus 4.8 menghasilkan front end yang khas dan kreatif dengan panduan prompting yang lebih minimal. Cuplikan prompt ini bekerja dengan baik bersama saran prompting sebelumnya untuk variasi:
 
 ```text wrap
 <frontend_aesthetics>
@@ -148,7 +148,7 @@ Tentu saja, saat membatasi jumlah interaksi pengguna yang diperlukan, penting un
 
 ## Harness tinjauan kode
 
-Claude Opus 4.8 secara bermakna lebih baik dalam menemukan bug daripada model sebelumnya, dan memiliki recall serta presisi yang lebih tinggi dalam evaluasi internal. Namun, jika harness tinjauan kode Anda disetel untuk model sebelumnya, Anda mungkin awalnya melihat recall yang lebih rendah. Ini kemungkinan merupakan efek harness, bukan regresi kapabilitas. Ketika prompt tinjauan mengatakan hal-hal seperti "hanya laporkan masalah dengan tingkat keparahan tinggi," "bersikaplah konservatif," atau "jangan terlalu rewel," Claude Opus 4.8 mungkin mengikuti instruksi tersebut dengan lebih setia daripada model sebelumnya: model mungkin menyelidiki kode sama menyeluruhnya, mengidentifikasi bug, lalu tidak melaporkan temuan yang menurutnya berada di bawah standar yang Anda nyatakan. Ini dapat terlihat sebagai model melakukan investigasi dengan kedalaman yang sama tetapi mengubah lebih sedikit investigasi menjadi temuan yang dilaporkan, terutama pada bug dengan tingkat keparahan lebih rendah. Presisi biasanya meningkat, tetapi recall yang terukur dapat turun meskipun kemampuan dasar model dalam menemukan bug telah meningkat.
+Claude Opus 4.8 secara bermakna lebih baik dalam menemukan bug daripada model sebelumnya, dan memiliki recall serta presisi yang lebih tinggi dalam evaluasi internal. Namun, jika harness tinjauan kode Anda disetel untuk model sebelumnya, Anda mungkin awalnya melihat recall yang lebih rendah. Ini kemungkinan merupakan efek harness, bukan regresi kapabilitas. Ketika prompt tinjauan mengatakan hal-hal seperti “hanya laporkan masalah dengan tingkat keparahan tinggi,” “bersikaplah konservatif,” atau “jangan terlalu rewel,” Claude Opus 4.8 mungkin mengikuti instruksi tersebut dengan lebih setia daripada model sebelumnya: model mungkin menyelidiki kode sama menyeluruhnya, mengidentifikasi bug, lalu tidak melaporkan temuan yang menurutnya berada di bawah standar yang Anda nyatakan. Ini dapat terlihat sebagai model melakukan investigasi dengan kedalaman yang sama tetapi mengubah lebih sedikit investigasi menjadi temuan yang dilaporkan, terutama pada bug dengan tingkat keparahan lebih rendah. Presisi biasanya meningkat, tetapi recall yang terukur dapat turun meskipun kemampuan dasar model dalam menemukan bug telah meningkat.
 
 Beberapa bahasa prompt yang direkomendasikan:
 
@@ -158,12 +158,12 @@ Report every issue you find, including ones you are uncertain about or consider 
 
 Prompt ini dapat digunakan tanpa memiliki langkah kedua yang sebenarnya, tetapi memindahkan penyaringan kepercayaan keluar dari langkah penemuan sering kali membantu. Jika harness Anda memiliki tahap verifikasi, deduplikasi, atau pemeringkatan terpisah, beri tahu model secara eksplisit bahwa tugasnya pada tahap penemuan adalah cakupan, bukan penyaringan.
 
-Jika Anda memang ingin model menyaring sendiri dalam satu kali proses, tentukan secara konkret ambang pelaporannya alih-alih menggunakan istilah kualitatif seperti "penting": misalnya, "laporkan setiap bug yang dapat menyebabkan perilaku yang salah, kegagalan pengujian, atau hasil yang menyesatkan; hanya abaikan hal-hal kecil seperti preferensi gaya atau penamaan semata."
+Jika Anda memang ingin model menyaring sendiri dalam satu kali proses, tentukan secara konkret ambang pelaporannya alih-alih menggunakan istilah kualitatif seperti “penting”: misalnya, “laporkan setiap bug yang dapat menyebabkan perilaku yang salah, kegagalan pengujian, atau hasil yang menyesatkan; hanya abaikan hal-hal kecil seperti preferensi gaya atau penamaan semata.”
 
 Lakukan iterasi pada prompt terhadap subset evaluasi atau kasus uji Anda untuk memvalidasi peningkatan recall atau skor F1.
 
 ## Computer use
 
-Claude Opus 4.8 mendukung versi alat sebelumnya, `computer_20251124`, dan, di Claude API serta Claude Models on Google Cloud (Google managed), toolset `computer_toolset_20260801`. Di kedua platform tersebut, Claude Opus 4.8 juga mendukung [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`) untuk tugas di dalam halaman web. Kemampuan ["computer use" (penggunaan komputer)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) berfungsi di berbagai resolusi, hingga resolusi maksimum 2576px / 3,75MP. Pengujian computer use internal menunjukkan bahwa mengirim gambar pada resolusi 1080p memberikan keseimbangan yang baik antara kinerja dan biaya.
+Claude Opus 4.8 mendukung versi alat sebelumnya, `computer_20251124`, dan, di Claude API serta Claude Models on Google Cloud (Google managed), toolset `computer_toolset_20260801`. Di kedua platform tersebut, Claude Opus 4.8 juga mendukung [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`) untuk tugas di dalam halaman web. Kemampuan [“computer use” (penggunaan komputer)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) berfungsi di berbagai resolusi, hingga resolusi maksimum 2576px / 3,75MP. Pengujian computer use internal menunjukkan bahwa mengirim gambar pada resolusi 1080p memberikan keseimbangan yang baik antara kinerja dan biaya.
 
 Untuk beban kerja yang sangat sensitif terhadap biaya, 720p atau 1366×768 adalah opsi berbiaya lebih rendah dengan kinerja yang kuat. Lakukan pengujian Anda sendiri untuk menemukan pengaturan ideal untuk kasus penggunaan Anda; bereksperimen dengan pengaturan effort juga dapat membantu menyesuaikan perilaku model.

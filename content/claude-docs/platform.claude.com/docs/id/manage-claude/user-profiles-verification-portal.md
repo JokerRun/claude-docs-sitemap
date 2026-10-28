@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-profiles-verification-portal
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: b5de1ba373b681adb90e489a492e914b827ff345fa8e16f18d085b5b8a87bcd1
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: dc879e309576f743756c7f204fb05a126b241674e93a01ee01f364b45bcc0c87
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/manage-claude/user-profiles-verificatio
 description: Buat tautan pendaftaran untuk profil pengguna, lihat apa yang dilakukan pelanggan akhir Anda di Verification Portal, dan periksa program mana yang berlaku untuk profil tersebut setelahnya.
 ---
 
-Anthropic menjalankan program yang permohonannya dapat diajukan oleh sebuah organisasi di Verification Portal. Agar persetujuan "end customer" (pelanggan akhir) berlaku saat mereka menggunakan Claude melalui platform Anda, pelanggan akhir menautkan "user profile" (profil pengguna) mereka ke organisasi Anthropic milik mereka sendiri di portal. Anda yang memulai prosesnya: buat "enrollment link" (tautan pendaftaran) untuk profil tersebut dan berikan kepada pelanggan akhir.
+Anthropic menjalankan program yang permohonannya dapat diajukan oleh sebuah organisasi di Verification Portal. Agar persetujuan “end customer” (pelanggan akhir) berlaku saat mereka menggunakan Claude melalui platform Anda, pelanggan akhir menautkan “user profile” (profil pengguna) mereka ke organisasi Anthropic milik mereka sendiri di portal. Anda yang memulai prosesnya: buat “enrollment link” (tautan pendaftaran) untuk profil tersebut dan berikan kepada pelanggan akhir.
 
 Profil pengguna memberi tahu Anthropic untuk pelanggan akhir mana setiap permintaan API ditujukan. Anda membuat satu profil untuk setiap pelanggan akhir dan mengirimkan ID `uprof_`-nya pada setiap permintaan yang Anda buat untuk mereka. Profil harus sudah ada sebelum Anda dapat membuat tautan untuknya. Untuk membuatnya, lihat [Profil pengguna untuk atribusi pelanggan akhir](https://platform.claude.com/docs/id/manage-claude/user-profiles).
 

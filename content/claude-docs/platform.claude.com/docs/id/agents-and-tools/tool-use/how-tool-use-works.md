@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 2fbc70f2be12de820bc8d82d73619ddd307b61981e077fa8a3bb370d8eca47ee
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 9d662ccf6206611eeedfc719dd90e295d3e62a255654b1db1da8a071c634f134
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-
 description: Pahami loop penggunaan alat, tempat alat dijalankan, dan kapan harus menggunakan alat alih-alih prosa.
 ---
 
-Halaman ini menjelaskan konsep di balik "tool use" (penggunaan alat): di mana alat berjalan, bagaimana loop agentik bekerja, dan kapan penggunaan alat merupakan pendekatan yang tepat. Untuk panduan praktis, mulailah dengan tutorial [Membangun agen yang menggunakan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent) atau panduan [Mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools).
+Halaman ini menjelaskan konsep di balik “tool use” (penggunaan alat): di mana alat berjalan, bagaimana loop agentik bekerja, dan kapan penggunaan alat merupakan pendekatan yang tepat. Untuk panduan praktis, mulailah dengan tutorial [Membangun agen yang menggunakan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent) atau panduan [Mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools).
 
 ## Kontrak penggunaan alat
 

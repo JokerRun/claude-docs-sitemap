@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/increase-consistency
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: ee9f44efa96fd38c9c39447d6d907891dbf4a6f93d1506bf8690e8c8332cff53
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: b7dbb60aa4ca4a63e18da36403d6a626de8204d664a63092707ccc6ab23afd3f
 ---
 
 ---
@@ -19,7 +19,7 @@ description: Make Claude's outputs more consistent by specifying exact formats, 
   The techniques below are useful for general output consistency or when you need flexibility beyond strict JSON schemas.
 </Tip>
 
-Here's how to make Claude's responses more consistent:
+Here’s how to make Claude’s responses more consistent:
 
 ## Specify the output format you want
 
@@ -62,7 +62,7 @@ Precisely define the output format you want using JSON, XML, or custom templates
   ```
 </Accordion>
 
-## Prefill Claude's response
+## Prefill Claude’s response
 
 <Note>
   Prefilling is not supported on Claude 4.6 and later models and 
@@ -76,7 +76,7 @@ Precisely define the output format you want using JSON, XML, or custom templates
    on models that support it, or system prompt instructions, instead.
 </Note>
 
-Prefill the `Assistant` turn with the format you want. This trick bypasses Claude's friendly preamble and enforces your structure.
+Prefill the `Assistant` turn with the format you want. This trick bypasses Claude’s friendly preamble and enforces your structure.
 
 <Accordion title="Example: Daily sales report">
   ```text User wrap
@@ -256,7 +256,7 @@ Provide examples of the output you want. This is more effective than abstract in
 
 ## Use retrieval for contextual consistency
 
-For tasks requiring consistent context (for example, chatbots, knowledge bases), use retrieval to ground Claude's responses in a fixed information set.
+For tasks requiring consistent context (for example, chatbots, knowledge bases), use retrieval to ground Claude’s responses in a fixed information set.
 
 <Accordion title="Example: Enhancing IT support consistency">
   ```text User wrap
@@ -329,11 +329,11 @@ Break down complex tasks into smaller, consistent subtasks. Each prompt then cov
 
 For role-based applications, maintaining consistent character requires deliberate prompting.
 
-* **Use system prompts to set the role:** Use [system prompts](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role) to define Claude's role and personality. This sets a strong foundation for consistent responses.
+* **Use system prompts to set the role:** Use [system prompts](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role) to define Claude’s role and personality. This sets a strong foundation for consistent responses.
   <Tip>
-    When setting up the character, provide detailed information about the personality, background, and any specific traits or quirks. This helps the model better emulate and generalize the character's traits.
+    When setting up the character, provide detailed information about the personality, background, and any specific traits or quirks. This helps the model better emulate and generalize the character’s traits.
   </Tip>
-* **Prepare Claude for possible scenarios:** Provide a list of common scenarios and expected responses in your prompts. This "trains" Claude to handle diverse situations without breaking character.
+* **Prepare Claude for possible scenarios:** Provide a list of common scenarios and expected responses in your prompts. This “trains” Claude to handle diverse situations without breaking character.
 
 <Accordion title="Example: Enterprise chatbot for role prompting">
   ```text System wrap

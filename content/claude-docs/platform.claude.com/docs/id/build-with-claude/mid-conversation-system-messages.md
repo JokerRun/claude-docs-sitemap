@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 5503808a6ea675b75fb25a630feaf8817450d079173c5d3ac63488229446b813
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 8437727ff15f0f070bcd94f1ee42cc3589658fbf3e27bcfa7d5f19402d7a8707
 ---
 
 ---
@@ -12,10 +12,10 @@ description: Ubah instruksi sistem atau ketersediaan alat di tengah percakapan t
 ---
 
 <Note>
-  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-Instruksi sistem biasanya berada di field `system` tingkat atas, sebelum setiap pesan dalam percakapan. Posisi tersebut sangat baik untuk "prompt caching" ([caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)): "system prompt" (prompt sistem) merupakan bagian dari prefiks yang stabil, sehingga giliran berikutnya mengenai cache. Namun, posisi itu kurang tepat untuk instruksi yang baru Anda sadari diperlukan di tengah sesi, karena mengedit field `system` tingkat atas mengubah bagian paling awal dari prompt dan membatalkan cache untuk semua yang mengikutinya.
+Instruksi sistem biasanya berada di field `system` tingkat atas, sebelum setiap pesan dalam percakapan. Posisi tersebut sangat baik untuk “prompt caching” ([caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)): “system prompt” (prompt sistem) merupakan bagian dari prefiks yang stabil, sehingga giliran berikutnya mengenai cache. Namun, posisi itu kurang tepat untuk instruksi yang baru Anda sadari diperlukan di tengah sesi, karena mengedit field `system` tingkat atas mengubah bagian paling awal dari prompt dan membatalkan cache untuk semua yang mengikutinya.
 
 Pesan sistem di tengah percakapan menutup celah tersebut. Anda menambahkan pesan `{"role": "system"}` pada titik dalam percakapan ketika instruksi baru menjadi relevan, alih-alih mengedit field `system` tingkat atas. Prefiks yang di-cache tetap sama, sehingga permintaan berikutnya tetap membacanya dari cache, dan instruksi baru tetap diterapkan sebagai instruksi sistem, bukan sebagai teks pengguna biasa.
 
@@ -1629,9 +1629,9 @@ Pesan sistem di tengah percakapan memungkinkan Anda menambahkan instruksi di **a
 
 Beberapa situasi ketika hal ini penting:
 
-* **Perubahan kebijakan atau persona di tengah sesi.** Sesi agentik yang panjang memerlukan batasan baru ("mulai sekarang, tulis semua SQL sebagai kueri berparameter") setelah puluhan giliran yang di-cache. Menambahkannya ke field `system` tingkat atas akan memproses ulang seluruh riwayat.
+* **Perubahan kebijakan atau persona di tengah sesi.** Sesi agentik yang panjang memerlukan batasan baru (“mulai sekarang, tulis semua SQL sebagai kueri berparameter”) setelah puluhan giliran yang di-cache. Menambahkannya ke field `system` tingkat atas akan memproses ulang seluruh riwayat.
 * **Konteks per giliran yang harus otoritatif.** Anda ingin menyisipkan catatan kebaruan, tenggat sesi, atau perubahan ketersediaan alat dengan bobot tingkat sistem. Informasi tersebut berubah terlalu sering untuk ditempatkan di prefiks yang di-cache.
-* **Pengingat per giliran yang tidak boleh menumpuk.** Sebuah harness mendorong model setelah setiap batch hasil alat ("minta pembacaan yang independen secara bersamaan," "pengguna sudah lama tidak mendengar kabar dari Anda") dan memerlukan model hanya menerima salinan terbaru. [Pesan sistem bercakupan giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) dirender selama satu giliran lalu tidak memakan biaya apa pun, tanpa menghapus apa pun dari riwayat.
+* **Pengingat per giliran yang tidak boleh menumpuk.** Sebuah harness mendorong model setelah setiap batch hasil alat (“minta pembacaan yang independen secara bersamaan,” “pengguna sudah lama tidak mendengar kabar dari Anda”) dan memerlukan model hanya menerima salinan terbaru. [Pesan sistem bercakupan giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) dirender selama satu giliran lalu tidak memakan biaya apa pun, tanpa menghapus apa pun dari riwayat.
 * **Perubahan status yang diamati aplikasi Anda.** Aplikasi Anda mendeteksi sesuatu yang harus diperlakukan Claude sebagai fakta tingkat operator: file berubah di disk, pengguna mengaktifkan pengaturan persetujuan otomatis, alat yang tersedia berubah, atau anggaran token yang tersisa turun di bawah ambang batas.
 * **Input pengguna yang tidak boleh menginterupsi loop agentik.** Pengguna mengetik tindak lanjut saat Claude masih menjalankan alat untuk permintaan sebelumnya. Meneruskannya sebagai pesan sistem setelah hasil alat berikutnya memungkinkan Claude memasukkan input baru ke dalam pekerjaan yang sedang dilakukannya, alih-alih memperlakukannya sebagai permintaan baru untuk beralih. Di Claude Sonnet 5.5 dan Claude Haiku 5.5, tambahkan kata-kata pengguna sebagai blok `text` setelah `tool_result` terakhir dalam pesan `user` yang sama sebagai gantinya. Lihat [Penempatan setelah hasil alat](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#placement-after-tool-results).
 * **Peralihan mode yang memberikan izin tetap.** Mode tingkat sesi dapat menggunakan pesan sistem di tengah percakapan untuk memberikan persetujuan tetap atas kemampuan yang mahal, seperti meluncurkan alur kerja multiagen secara otomatis. Mode tersebut dapat disertai pengingat singkat setiap beberapa giliran dan pemberitahuan keluar saat mode dinonaktifkan. Untuk contoh lengkap, lihat [Membangun mode orkestrasi](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example).
@@ -1963,7 +1963,7 @@ Dalam [loop agentik](https://platform.claude.com/docs/id/agents-and-tools/tool-u
 ]
 ```
 
-Rumuskan konten sistem sebagai konteks, bukan sebagai perintah yang mengesampingkan pengguna. Nyatakan faktanya ("input baru diterima dari pengguna: X," "anggaran token yang tersisa sekarang Y") dan biarkan Claude bertindak berdasarkan hal tersebut. Claude dilatih untuk menolak instruksi yang tampak bertentangan dengan kepentingan pengguna, dan perlindungan tersebut tetap berlaku untuk role sistem, sehingga bahasa seperti "abaikan apa yang dikatakan pengguna" kurang efektif dibandingkan menyatakan apa yang berubah.
+Rumuskan konten sistem sebagai konteks, bukan sebagai perintah yang mengesampingkan pengguna. Nyatakan faktanya (“input baru diterima dari pengguna: X,” “anggaran token yang tersisa sekarang Y”) dan biarkan Claude bertindak berdasarkan hal tersebut. Claude dilatih untuk menolak instruksi yang tampak bertentangan dengan kepentingan pengguna, dan perlindungan tersebut tetap berlaku untuk role sistem, sehingga bahasa seperti “abaikan apa yang dikatakan pengguna” kurang efektif dibandingkan menyatakan apa yang berubah.
 
 Pola ini ditujukan untuk meneruskan input dari pengguna akhir percakapan itu sendiri. Jangan gunakan pola ini untuk meneruskan output alat, dokumen yang diambil, atau konten pihak ketiga lainnya. Simpan konten tersebut di blok `tool_result` (lihat [Keterbatasan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)).
 

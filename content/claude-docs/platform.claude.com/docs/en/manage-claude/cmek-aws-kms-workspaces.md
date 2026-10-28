@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms-workspaces
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: de0a99c502bf3c1d1df75d91a26877fac1c264298d6f790c23f0b1c0d6bee463
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 5a9e5b5e165d60306141b56221c109d7d48e95dfb8bcfc85e4ce13d38fb0772f
 ---
 
 ---
@@ -11,11 +11,11 @@ url: https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms-workspaces
 description: Add a key policy condition that names the workspaces allowed to use your AWS KMS key.
 ---
 
-The [key policy from setup](https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms#key-policy) lets every workspace in your organization use the key. With this optional condition, a workspace that isn't listed can't use it.
+The [key policy from setup](https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms#key-policy) lets every workspace in your organization use the key. With this optional condition, a workspace that isn’t listed can’t use it.
 
-Add a workspace's [compartment ID](https://platform.claude.com/docs/en/manage-claude/cmek-how-it-works#what-one-key-protects) to the policy before you [attach the key](https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms#register-the-key-with-anthropic) to that workspace. For a new workspace, that means creating it without the key.
+Add a workspace’s [compartment ID](https://platform.claude.com/docs/en/manage-claude/cmek-how-it-works#what-one-key-protects) to the policy before you [attach the key](https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms#register-the-key-with-anthropic) to that workspace. For a new workspace, that means creating it without the key.
 
-## Copy the workspace's compartment ID
+## Copy the workspace’s compartment ID
 
 In the Claude Console, open the [Data retention](https://platform.claude.com/settings/privacy) page and select the workspace from the dropdown menu at the top. Copy the **Compartment ID** under **Encryption key**. The [Get Workspace](https://platform.claude.com/docs/en/api/organization/workspaces/retrieve) endpoint returns it as `compartment_id`.
 

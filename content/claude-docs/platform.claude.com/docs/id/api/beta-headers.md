@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/beta-headers
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 31265bb6e895be3b905c8ace6ce7bb436c28beddbbf3320e5e11876d836cb998
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 4aa10c6b39dde6dee1dec51f277edacfd231d0a6c17076b2d30573e294071fcc
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/api/beta-headers
 description: Akses fitur eksperimental sebelum menjadi bagian dari API standar dengan header `anthropic-beta` atau parameter `betas` pada SDK.
 ---
 
-"Beta headers" (header beta) memungkinkan Anda mengakses fitur eksperimental dan kemampuan model baru sebelum menjadi bagian dari API standar.
+“Beta headers” (header beta) memungkinkan Anda mengakses fitur eksperimental dan kemampuan model baru sebelum menjadi bagian dari API standar.
 
 <Info>
   [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) menyediakan namespace `client.beta` (csharp, go: `client.Beta`; java: `client.beta()`; php: `$client->beta`) untuk memanggil API dengan fitur beta yang diaktifkan.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: e70ea1ed9d8f6ef5eca3c713aab7042656310dc71336674cb8d37fbef762157e
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: a5e1bf8360d2e99cdf6424f26b869dfa1cf6373fc6d6cb890be55e10ecf80b05
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
 description: Gunakan tool runner SDK untuk menangani loop agentik, pembungkusan error, dan keamanan tipe secara otomatis.
 ---
 
-Tool runner menangani "agentic loop" (loop agentik), pembungkusan error, dan "type safety" (keamanan tipe) sehingga Anda tidak perlu melakukannya sendiri. Ketika Anda memerlukan persetujuan human-in-the-loop, logging kustom, atau eksekusi bersyarat, gunakan [loop manual](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) sebagai gantinya.
+Tool runner menangani “agentic loop” (loop agentik), pembungkusan error, dan “type safety” (keamanan tipe) sehingga Anda tidak perlu melakukannya sendiri. Ketika Anda memerlukan persetujuan human-in-the-loop, logging kustom, atau eksekusi bersyarat, gunakan [loop manual](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) sebagai gantinya.
 
 Alih-alih menangani pemanggilan alat, hasil alat, dan manajemen percakapan secara manual, tool runner secara otomatis:
 

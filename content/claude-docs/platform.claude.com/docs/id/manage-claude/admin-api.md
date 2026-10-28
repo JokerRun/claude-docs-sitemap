@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: b293b4bd421362a57a0713276c2b6798b5272644cf3d85086f5ac1d2006ded0d
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: c64ec175e860122bf292a793a6c8141ebc6dd672402089642072219f37a897b7
 ---
 
 ---
@@ -1731,7 +1731,7 @@ Pantau produktivitas developer dan adopsi Claude Code dengan [Claude Code Analyt
 
 ## Batas laju
 
-Baca "rate limit" (batas laju) yang dikonfigurasi untuk organisasi Anda dan workspace-nya dengan [Rate Limits API](https://platform.claude.com/docs/id/manage-claude/rate-limits-api).
+Baca “rate limit” (batas laju) yang dikonfigurasi untuk organisasi Anda dan workspace-nya dengan [Rate Limits API](https://platform.claude.com/docs/id/manage-claude/rate-limits-api).
 
 ## Compliance API
 

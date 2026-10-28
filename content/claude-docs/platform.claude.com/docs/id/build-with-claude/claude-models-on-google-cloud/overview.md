@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/overview
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: a0cd8ad3dc72e560c548e05f14db8284458e9ef212af360ac11e7d1064370f21
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: a5a6a0364af3368702711905ed47110d226e5af3fcd22778aba1d14d10f0e7e6
 ---
 
 ---
@@ -14,7 +14,7 @@ description: Bandingkan Claude Models on Google Cloud (Anthropic managed) dan Cl
 Anda dapat menggunakan Claude melalui proyek Google Cloud Anda dengan dua cara:
 
 * **[Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed):** Anthropic mengoperasikan [Claude API](https://platform.claude.com/docs/id/api/overview).
-* **[Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed):** Google mengoperasikan model Claude sebagai bagian dari Google Cloud's Agent Platform.
+* **[Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed):** Google mengoperasikan model Claude sebagai bagian dari Google Cloud’s Agent Platform.
 
 ## Perbedaan kedua penawaran Google Cloud
 

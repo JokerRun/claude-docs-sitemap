@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 84179cbb36a6ae6bf74c2a38d534ef60ff4d4ea24a3c238a6ec99a373ccea61d
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 2f19fb832843132b4e7dc1b2e4a1bc493989e144f76fd02be5d249e92996cfe8
 ---
 
 ---
@@ -62,7 +62,7 @@ for (const block of message.content) {
 }
 ```
 
-Untuk opsi autentikasi termasuk "Workload Identity Federation" (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
+Untuk opsi autentikasi termasuk “Workload Identity Federation” (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
 
 ## Tipe request dan response
 
@@ -99,7 +99,7 @@ console.log(message.usage);
 
 ## Streaming response
 
-SDK menyediakan dukungan untuk streaming response menggunakan "Server-Sent Events" (peristiwa yang dikirim server), atau SSE.
+SDK menyediakan dukungan untuk streaming response menggunakan “Server-Sent Events” (peristiwa yang dikirim server), atau SSE.
 
 ```typescript
 const client = new Anthropic();
@@ -217,7 +217,7 @@ Jika `Error` biasa yang dilemparkan, pesannya akan dikonversi menjadi content bl
 
 ## Penggunaan alat
 
-SDK ini menyediakan dukungan untuk penggunaan alat, yang juga dikenal sebagai "function calling" (pemanggilan fungsi). Untuk detail lebih lanjut, lihat [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
+SDK ini menyediakan dukungan untuk penggunaan alat, yang juga dikenal sebagai “function calling” (pemanggilan fungsi). Untuk detail lebih lanjut, lihat [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
 
 ## Helper MCP
 
@@ -427,7 +427,7 @@ console.log(message._request_id); // req_018EeWyXxfu5pfWkrYcMdjWG
 
 ## Percobaan ulang
 
-Error tertentu secara otomatis dicoba ulang 2 kali secara default, dengan "exponential backoff" (jeda eksponensial) yang singkat. Error koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, dan error Internal >=500 semuanya dicoba ulang secara default.
+Error tertentu secara otomatis dicoba ulang 2 kali secara default, dengan “exponential backoff” (jeda eksponensial) yang singkat. Error koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, dan error Internal >=500 semuanya dicoba ulang secara default.
 
 Anda dapat menggunakan opsi `maxRetries` untuk mengonfigurasi atau menonaktifkan ini:
 
@@ -552,7 +552,7 @@ const message = await client.messages.create(
 
 ### Mengakses data Response mentah (misalnya, header)
 
-`Response` "mentah" yang dikembalikan oleh `fetch()` dapat diakses melalui metode `.asResponse()` pada tipe `APIPromise` yang dikembalikan oleh semua metode. Metode ini langsung kembali segera setelah header untuk response yang sukses diterima dan tidak mengonsumsi body response, sehingga Anda bebas menulis logika parsing atau streaming kustom.
+`Response` “mentah” yang dikembalikan oleh `fetch()` dapat diakses melalui metode `.asResponse()` pada tipe `APIPromise` yang dikembalikan oleh semua metode. Metode ini langsung kembali segera setelah header untuk response yang sukses diterima dan tidak mengonsumsi body response, sehingga Anda bebas menulis logika parsing atau streaming kustom.
 
 Anda juga dapat menggunakan metode `.withResponse()` untuk mendapatkan `Response` mentah beserta data yang telah di-parse. Tidak seperti `.asResponse()`, metode ini mengonsumsi body, dan kembali setelah body di-parse.
 

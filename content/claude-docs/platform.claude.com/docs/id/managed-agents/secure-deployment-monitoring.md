@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/secure-deployment-monitoring
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: afc9ea3a69c2a75ded74fcc298e8b0480031665fd7285086f451371153b7f255
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 13c5078045b33b16961e4af07158a72e5b41c4a2a1c52213b6064d50db52549e
 ---
 
 ---
@@ -21,7 +21,7 @@ Secara opsional, tinjau event setiap sesi dengan job offline. Pantau webhook unt
 
 ## Secara opsional, minta peninjau offline membaca setiap transkrip
 
-"Offline reviewer" (peninjau offline) adalah job yang Anda jalankan, terpisah dari sesi yang ditinjaunya, yang membaca event setiap sesi setelah event tersebut ditulis. Sesi yang panjang memiliki terlalu banyak event untuk dibaca oleh seseorang, sehingga job tersebut meminta Claude untuk membacanya. Tinjauan ini menandai perilaku di luar apa yang diberikan kepada agen. Untuk prompt tinjauan, langkah penyiapan, dan kode yang berfungsi, lihat [resep tinjauan keamanan](https://platform.claude.com/cookbook/managed-agents-cma-agent-security-review) di Claude Cookbook.
+“Offline reviewer” (peninjau offline) adalah job yang Anda jalankan, terpisah dari sesi yang ditinjaunya, yang membaca event setiap sesi setelah event tersebut ditulis. Sesi yang panjang memiliki terlalu banyak event untuk dibaca oleh seseorang, sehingga job tersebut meminta Claude untuk membacanya. Tinjauan ini menandai perilaku di luar apa yang diberikan kepada agen. Untuk prompt tinjauan, langkah penyiapan, dan kode yang berfungsi, lihat [resep tinjauan keamanan](https://platform.claude.com/cookbook/managed-agents-cma-agent-security-review) di Claude Cookbook.
 
 ## Pantau sesi dan tinjau retensi
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 0be1b15713a67cb41fcd02c8da167d934061de05b7bc468e0fcf8bbf8d65e719
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 52a5f4436a2d1a6851573ab4c0630d7219f6f8c9e12a8cf89ab55d7df932c583
 ---
 
 ---
@@ -18,13 +18,13 @@ featureMetadata:
     Claude API: ga
 ---
 
-[Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) memangkas latensi dan biaya secara signifikan, tetapi hanya ketika bagian awal prompt Anda identik byte demi byte dengan permintaan terbaru. Alat yang diurutkan ulang, timestamp yang diinterpolasi ke dalam "system prompt" (prompt sistem) Anda, atau pengeditan pada pesan sebelumnya dapat secara diam-diam membatalkan cache. Tanpa diagnostik cache, satu-satunya sinyal adalah `usage.cache_read_input_tokens` yang turun menjadi nol, tanpa indikasi apa pun tentang apa yang berubah.
+[Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) memangkas latensi dan biaya secara signifikan, tetapi hanya ketika bagian awal prompt Anda identik byte demi byte dengan permintaan terbaru. Alat yang diurutkan ulang, timestamp yang diinterpolasi ke dalam “system prompt” (prompt sistem) Anda, atau pengeditan pada pesan sebelumnya dapat secara diam-diam membatalkan cache. Tanpa diagnostik cache, satu-satunya sinyal adalah `usage.cache_read_input_tokens` yang turun menjadi nol, tanpa indikasi apa pun tentang apa yang berubah.
 
 Diagnostik cache menutup celah tersebut. Teruskan `id` dari respons sebelumnya, dan API akan membandingkan kedua permintaan serta memberi tahu Anda di mana keduanya menyimpang (model, prompt sistem, alat, atau riwayat pesan) sehingga Anda dapat memperbaiki akar masalahnya alih-alih menebak-nebak.
 
 ## Cara kerja diagnostik cache
 
-Untuk setiap permintaan yang menyertakan objek `diagnostics`, API menyimpan "fingerprint" (sidik jari) ringan dengan kunci berupa `id` respons. API tidak menyimpan apa pun untuk permintaan yang tidak menyertakan objek tersebut. Pada permintaan berikutnya, sertakan `id` dari respons sebelumnya sebagai `diagnostics.previous_message_id`. API membangun ulang fingerprint untuk permintaan baru, membandingkannya dengan fingerprint yang tersimpan, dan melampirkan objek `diagnostics` ke respons yang menjelaskan titik penyimpangan pertama.
+Untuk setiap permintaan yang menyertakan objek `diagnostics`, API menyimpan “fingerprint” (sidik jari) ringan dengan kunci berupa `id` respons. API tidak menyimpan apa pun untuk permintaan yang tidak menyertakan objek tersebut. Pada permintaan berikutnya, sertakan `id` dari respons sebelumnya sebagai `diagnostics.previous_message_id`. API membangun ulang fingerprint untuk permintaan baru, membandingkannya dengan fingerprint yang tersimpan, dan melampirkan objek `diagnostics` ke respons yang menjelaskan titik penyimpangan pertama.
 
 Perbandingan ini berkaitan dengan struktur permintaan, terlepas dari apakah cache benar-benar hit atau tidak. Lihat [Membaca diagnostik bersama usage](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics#reading-diagnostics-alongside-usage) untuk cara menggabungkan hasil `diagnostics` dengan `usage.cache_read_input_tokens`.
 
@@ -32,7 +32,7 @@ Fingerprint hanya berisi hash dan estimasi jumlah token (tidak pernah berisi kon
 
 ## Penggunaan dasar
 
-Sertakan objek `diagnostics` pada setiap giliran. Objek inilah yang menjadi tanda keikutsertaan (opt-in): API hanya menyimpan fingerprint untuk permintaan yang menyertakannya. Pada giliran pertama, berikan `"previous_message_id": null` untuk ikut serta tanpa pesan sebelumnya sebagai pembanding. Pada giliran-giliran berikutnya, berikan `id` dari respons sebelumnya. "Beta header" (header beta) `cache-diagnosis-2026-04-07` tidak lagi diperlukan, dan permintaan yang masih mengirimkannya tetap berfungsi seperti sebelumnya.
+Sertakan objek `diagnostics` pada setiap giliran. Objek inilah yang menjadi tanda keikutsertaan (opt-in): API hanya menyimpan fingerprint untuk permintaan yang menyertakannya. Pada giliran pertama, berikan `"previous_message_id": null` untuk ikut serta tanpa pesan sebelumnya sebagai pembanding. Pada giliran-giliran berikutnya, berikan `id` dari respons sebelumnya. “Beta header” (header beta) `cache-diagnosis-2026-04-07` tidak lagi diperlukan, dan permintaan yang masih mengirimkannya tetap berfungsi seperti sebelumnya.
 
 <CodeGroup>
   ```bash cURL
@@ -1020,7 +1020,7 @@ Ketika `cache_miss_reason` tidak null, bentuknya seperti ini:
 
 ## Membaca diagnostik bersama usage
 
-`diagnostics` menjawab "apakah permintaan saya berubah?" sedangkan `usage.cache_read_input_tokens` menjawab "apakah cache hit?" Menggabungkan keduanya memberi tahu Anda di mana harus mencari.
+`diagnostics` menjawab “apakah permintaan saya berubah?” sedangkan `usage.cache_read_input_tokens` menjawab “apakah cache hit?” Menggabungkan keduanya memberi tahu Anda di mana harus mencari.
 
 Matriks ini berlaku untuk giliran di mana Anda meneruskan `previous_message_id` yang nyata. Pada giliran pertama (`previous_message_id: null`), `diagnostics` selalu `null` dan `cache_read_input_tokens` biasanya nol karena cache sedang ditulis, bukan dibaca; tidak diperlukan pemecahan masalah. Matriks ini juga tidak berlaku ketika `cache_miss_reason` bernilai `null` (perbandingan masih tertunda; periksa giliran berikutnya) atau ketika `type`-nya adalah `previous_message_not_found` atau `unavailable` (tidak ada perbandingan yang dihasilkan).
 

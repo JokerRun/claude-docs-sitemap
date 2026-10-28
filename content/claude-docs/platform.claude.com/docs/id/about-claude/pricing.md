@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: bf89afb015bde52c42e9695c3065bec42907f3bcee1a59da31a73e948c47accd
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 5ad9807ce61fc92d6064c9c215c5f97d8c58ba03f00a62f04e12310007e322b3
 ---
 
 ---
@@ -102,7 +102,7 @@ Model Claude tersedia di [Amazon Bedrock](https://platform.claude.com/docs/id/bu
 | **Pajak**               | Pengukuran sebelum pajak; AWS Marketplace menangani pajak                                                                                                                                                                                                  |
 | **Visibilitas biaya**   | Rincian real-time di Claude Console (diakses melalui AWS Console); AWS Cost Explorer menampilkan CCU agregat                                                                                                                                               |
 
-**CCU:** Claude Consumption Unit. CCU adalah satuan ukuran yang digunakan semata-mata untuk penagihan Platform Marketplace. Jika Pelanggan mengakses Layanan melalui Platform Marketplace tertentu (misalnya, Claude Platform on AWS), penggunaan akan ditagih dalam Claude Consumption Units ("CCU") alih-alih per MTok. Seratus (100) CCU mewakili $1,00 USD biaya terutang untuk Layanan, dihitung berdasarkan harga yang berlaku di [claude.com/pricing#api](https://claude.com/pricing#api), setelah penerapan diskon apa pun.
+**CCU:** Claude Consumption Unit. CCU adalah satuan ukuran yang digunakan semata-mata untuk penagihan Platform Marketplace. Jika Pelanggan mengakses Layanan melalui Platform Marketplace tertentu (misalnya, Claude Platform on AWS), penggunaan akan ditagih dalam Claude Consumption Units (“CCU”) alih-alih per MTok. Seratus (100) CCU mewakili $1,00 USD biaya terutang untuk Layanan, dihitung berdasarkan harga yang berlaku di [claude.com/pricing#api](https://claude.com/pricing#api), setelah penerapan diskon apa pun.
 
 ### Geografi inferensi
 
@@ -131,7 +131,7 @@ Saat Anda mendaftar di halaman layanan **Claude Platform on AWS** di AWS Console
 | **Pajak**               | Pengukuran sebelum pajak; Azure Marketplace menangani pajak                                                                                                                                                                                                |
 | **Visibilitas biaya**   | Azure Cost Management menampilkan CCU agregat                                                                                                                                                                                                              |
 
-**CCU:** Claude Consumption Unit. CCU adalah satuan ukuran yang digunakan semata-mata untuk penagihan Platform Marketplace. Jika Pelanggan mengakses Layanan melalui Platform Marketplace tertentu (misalnya, Claude Platform on AWS, Claude in Microsoft Foundry), penggunaan akan ditagih dalam Claude Consumption Units ("CCU") alih-alih per MTok. Seratus (100) CCU mewakili $1,00 USD biaya terutang untuk Layanan, dihitung berdasarkan harga yang berlaku di [claude.com/pricing#api](https://claude.com/pricing#api), setelah penerapan diskon apa pun.
+**CCU:** Claude Consumption Unit. CCU adalah satuan ukuran yang digunakan semata-mata untuk penagihan Platform Marketplace. Jika Pelanggan mengakses Layanan melalui Platform Marketplace tertentu (misalnya, Claude Platform on AWS, Claude in Microsoft Foundry), penggunaan akan ditagih dalam Claude Consumption Units (“CCU”) alih-alih per MTok. Seratus (100) CCU mewakili $1,00 USD biaya terutang untuk Layanan, dihitung berdasarkan harga yang berlaku di [claude.com/pricing#api](https://claude.com/pricing#api), setelah penerapan diskon apa pun.
 
 ### Geografi inferensi
 
@@ -141,7 +141,7 @@ Deployment yang dihosting di Azure dapat menggunakan jenis deployment US Data Zo
 
 ### Caching prompt
 
-"Prompt caching" (caching prompt) mengurangi biaya dan "latency" (latensi) dengan menggunakan kembali bagian prompt Anda yang telah diproses sebelumnya di seluruh panggilan API. Alih-alih memproses ulang prompt sistem, dokumen, atau riwayat percakapan besar yang sama pada setiap permintaan, API membaca dari cache dengan sebagian kecil dari harga input standar.
+“Prompt caching” (caching prompt) mengurangi biaya dan “latency” (latensi) dengan menggunakan kembali bagian prompt Anda yang telah diproses sebelumnya di seluruh panggilan API. Alih-alih memproses ulang prompt sistem, dokumen, atau riwayat percakapan besar yang sama pada setiap permintaan, API membaca dari cache dengan sebagian kecil dari harga input standar.
 
 Ada dua cara untuk mengaktifkan caching prompt:
 
@@ -172,7 +172,7 @@ Untuk informasi lebih lanjut, lihat [Residensi data](https://platform.claude.com
 
 ### Harga fast mode
 
-[Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) menyediakan output yang jauh lebih cepat untuk Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8 dengan harga premium. Mode cepat untuk Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset. Harga mode cepat berlaku di seluruh "context window" (jendela konteks), termasuk permintaan di atas 200k token input. Mode cepat tersedia di Claude API (first-party) dan, untuk Claude Opus 5.5, di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#billing) serta di [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Azure.
+[Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) menyediakan output yang jauh lebih cepat untuk Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8 dengan harga premium. Mode cepat untuk Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset. Harga mode cepat berlaku di seluruh “context window” (jendela konteks), termasuk permintaan di atas 200k token input. Mode cepat tersedia di Claude API (first-party) dan, untuk Claude Opus 5.5, di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#billing) serta di [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Azure.
 
 | Model                           | Input          | Output         |
 | ------------------------------- | -------------- | -------------- |
@@ -230,7 +230,7 @@ Harga Claude Haiku 5.5 ditentukan berdasarkan panjang prompt: permintaan yang pr
 
 ### Harga penggunaan alat
 
-Permintaan "tool use" (penggunaan alat) dikenai harga berdasarkan:
+Permintaan “tool use” (penggunaan alat) dikenai harga berdasarkan:
 
 1. Jumlah total token input yang dikirim ke model (termasuk dalam parameter `tools`)
 2. Jumlah token output yang dihasilkan
@@ -244,7 +244,7 @@ Token tambahan dari penggunaan alat berasal dari:
 * Blok konten `tool_use` dalam permintaan dan respons API
 * Blok konten `tool_result` dalam permintaan API
 
-Saat Anda menggunakan `tools`, API juga secara otomatis menyertakan "system prompt" (prompt sistem) khusus untuk model yang memungkinkan penggunaan alat. Jumlah token penggunaan alat yang diperlukan untuk setiap model tercantum dalam tabel berikut (tidak termasuk token tambahan yang disebutkan sebelumnya). Perhatikan bahwa tabel ini mengasumsikan setidaknya 1 alat disediakan. Jika tidak ada `tools` yang disediakan, maka pilihan alat `none` menggunakan 0 token prompt sistem tambahan.
+Saat Anda menggunakan `tools`, API juga secara otomatis menyertakan “system prompt” (prompt sistem) khusus untuk model yang memungkinkan penggunaan alat. Jumlah token penggunaan alat yang diperlukan untuk setiap model tercantum dalam tabel berikut (tidak termasuk token tambahan yang disebutkan sebelumnya). Perhatikan bahwa tabel ini mengasumsikan setidaknya 1 alat disediakan. Jika tidak ada `tools` yang disediakan, maka pilihan alat `none` menggunakan 0 token prompt sistem tambahan.
 
 | Model                                                                                                                                                                  | Tool use system prompt tokens: auto, none | Tool use system prompt tokens: any, tool |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------- | :--------------------------------------- |
@@ -273,7 +273,7 @@ Jumlah token ini ditambahkan ke token input dan output normal Anda untuk menghit
 
 Untuk harga per model terkini, lihat bagian [harga model](https://platform.claude.com/docs/id/about-claude/pricing#model-pricing).
 
-Untuk informasi lebih lanjut tentang implementasi dan praktik terbaik "tool use" (penggunaan alat), lihat [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
+Untuk informasi lebih lanjut tentang implementasi dan praktik terbaik “tool use” (penggunaan alat), lihat [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
 
 ### Harga alat tertentu
 
@@ -484,7 +484,7 @@ Saat membangun agen dengan Claude:
 
 ### Batas laju
 
-"Rate limit" (batas laju) bervariasi menurut tingkat penggunaan dan memengaruhi berapa banyak permintaan yang dapat Anda buat:
+“Rate limit” (batas laju) bervariasi menurut tingkat penggunaan dan memengaruhi berapa banyak permintaan yang dapat Anda buat:
 
 * **Tingkat Start:** Batas tingkat awal untuk memulai
 * **Tingkat Build:** Batas yang ditingkatkan untuk aplikasi yang sedang berkembang

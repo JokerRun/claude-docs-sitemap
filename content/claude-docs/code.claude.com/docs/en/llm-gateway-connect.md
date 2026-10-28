@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-connect
-fetched_at: 2026-10-25T02:20:50.950770Z
-sha256: 00e53bb08254971eb53c0503c482edd499354a206d7d0a1c6ec6d3e135375b34
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 95016dc8ea52c671c74acf44f9472b50b94a76328b923d3195aa3426ae8effc6
 ---
 
 > ## Documentation Index
@@ -367,8 +367,6 @@ The helper's value is sent in both the `Authorization` and `x-api-key` headers, 
 ### Turn off traffic outside the gateway path
 
 The gateway carries model requests, but Claude Code also sends nonessential background traffic outside the gateway path, to Anthropic and to third-party services such as GitHub: version checks, telemetry, release notes, and similar requests. On a network that only allows egress to the gateway, these requests fail and can appear as blocked connections in your egress monitoring.
-
-Claude Code attaches a credential to a telemetry or usage-metrics request only when the request goes to the host the credential belongs to. While `ANTHROPIC_BASE_URL` points at the gateway, Claude Code sends its telemetry events to Anthropic without your gateway credential. With a [credential variable](#set-the-credential-variable) or `apiKeyHelper` also active, Claude Code doesn't report usage metrics to the Console [analytics dashboard](https://code.claude.com/docs/en/analytics.md#access-analytics-for-api-customers). Before v2.1.246, Claude Code could attach the gateway credential to telemetry and usage-metrics requests bound for Anthropic hosts; model requests always went to the gateway with the credential the gateway expects.
 
 To turn that traffic off, set `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1` alongside the gateway variables, in the same shell exports or settings-file `env` block:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fallback-credit
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 32b13d930f0ad91ee9b4f5f8d58bf0204c7287e1cb80b868094880a4b429a916
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: b274c5da09b9d7c8d1522042736e9664f32afe7fc8f3b8913880274ddbd43a86
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/build-with-claude/fallback-credit
 description: Hindari membayar biaya prompt-cache dua kali saat Anda mencoba ulang permintaan yang ditolak pada model lain.
 ---
 
-Prompt cache bersifat per-model. Ketika sebuah model menolak permintaan dan Anda mencoba ulang pada model lain, prefiks percakapan yang sudah di-cache untuk model pertama harus ditulis ke dalam cache model baru dari awal. Penulisan cache (cache write) lebih mahal daripada pembacaan cache (cache read). "Fallback credit" (kredit fallback) menghilangkan biaya tambahan tersebut. Penolakan membawa token kredit, Anda mengirimkan kembali token tersebut pada percobaan ulang, dan percobaan ulang ditagih seolah-olah percakapan telah berada pada model baru sejak awal.
+Prompt cache bersifat per-model. Ketika sebuah model menolak permintaan dan Anda mencoba ulang pada model lain, prefiks percakapan yang sudah di-cache untuk model pertama harus ditulis ke dalam cache model baru dari awal. Penulisan cache (cache write) lebih mahal daripada pembacaan cache (cache read). “Fallback credit” (kredit fallback) menghilangkan biaya tambahan tersebut. Penolakan membawa token kredit, Anda mengirimkan kembali token tersebut pada percobaan ulang, dan percobaan ulang ditagih seolah-olah percakapan telah berada pada model baru sejak awal.
 
 Anda memerlukan halaman ini hanya jika Anda membangun percobaan ulang sendiri: melalui HTTP mentah atau dengan logika percobaan ulang kustom. [Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) dan [middleware SDK](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) menerapkan kredit fallback secara otomatis. Jika Anda menggunakan salah satunya, lewati halaman ini.
 
@@ -541,7 +541,7 @@ Sebagian besar percobaan ulang berhasil ditukarkan pada upaya pertama. Ketika ti
   Jika permintaan yang ditolak mengeksekusi alat server, percobaan ulang tanpa token akan menjalankan ulang dan menagih ulang alat-alat tersebut. Dalam kasus itu, tampilkan error 400 kepada pemanggil Anda alih-alih meneruskan ke percobaan ulang tanpa token.
 </Note>
 
-<Accordion title="Jika error menyatakan 'redemption temporarily unavailable'">
+<Accordion title="Jika error menyatakan ‘redemption temporarily unavailable’">
   Penolakan ini bersifat sementara, bukan keputusan atas bentuk percobaan ulang Anda. Coba ulang permintaan yang sama, dengan token yang sama, dalam jendela lima menit token tersebut. Jangan berpindah ke langkah berikutnya dalam tangga.
 </Accordion>
 
@@ -571,7 +571,7 @@ Bagian-bagian berikut membahas kasus tepi dan aturan penukaran lengkap. Sebagian
   * **`fallback-credit-*`:** pertahankan header ini pada kedua permintaan. Percobaan ulang memerlukannya untuk menukarkan token.
 
   <Note>
-    Pada model yang menyertakan "context window" (jendela konteks) 1M token secara default, seperti Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Sonnet 5.5, dan Claude Sonnet 5, header beta `context-1m-2025-08-07` tidak berpengaruh. Agar kedua permintaan tetap identik, hilangkan header tersebut pada keduanya alih-alih mengirimkannya pada satu permintaan dan tidak pada yang lain.
+    Pada model yang menyertakan “context window” (jendela konteks) 1M token secara default, seperti Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Sonnet 5.5, dan Claude Sonnet 5, header beta `context-1m-2025-08-07` tidak berpengaruh. Agar kedua permintaan tetap identik, hilangkan header tersebut pada keduanya alih-alih mengirimkannya pada satu permintaan dan tidak pada yang lain.
   </Note>
 </Accordion>
 

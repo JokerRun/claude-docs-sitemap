@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/migration-2026-10-21
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 5a0c90feb66f5dd3483c590a3ad5c386b7589ccf7b0fbc4561c52f0b1f2de043
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: df4c44e206decb12c835468d89cfbebdc09bd7dc5a5694573edcc40eedfc1c75
 ---
 
 ---
@@ -392,7 +392,7 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk setiap peran. Setia
     function send(UserMessageParam|AssistantMessageParam|SystemMessageParam $message): void {}
     ```
 
-    * `MessageParam::fromArray()` dan `(new MessageParam)->withContent()` melempar "Call to undefined method". Panggil keduanya pada class peran tersebut, yang mengatur `role` sendiri.
+    * `MessageParam::fromArray()` dan `(new MessageParam)->withContent()` melempar “Call to undefined method”. Panggil keduanya pada class peran tersebut, yang mengatur `role` sendiri.
     * `withRole()` sekarang hanya menerima string: PHP melempar `TypeError` untuk case `Role`. Untuk memberikan peran lain pada pesan, buat class dari peran tersebut.
     * `clearAt` dan `outputConfig` hanya ada di `BetaSystemMessageParam`, dan `BetaMessageParam::with()` mengabaikannya untuk dua peran lainnya. Enum `BetaMessageParam\ClearAt` sekarang menjadi `BetaSystemMessageParam\ClearAt`.
     * `MessageParam\Content` sekarang menjadi `MessageContentParam`, dan `BetaMessageParam\Content` sekarang menjadi `BetaMessageContentParam`. Tipe PHPStan-nya juga menggunakan nama baru: `ContentShape` sekarang menjadi `MessageContentParamShape`.
@@ -569,7 +569,7 @@ Ini memengaruhi SDK C#, Go, Java, PHP, dan Ruby serta satu flag CLI. Pada versi 
   <Tab title="PHP">
     Contoh enum case semacam itu adalah `Anthropic\Beta\Sessions\Events\ManagedAgentsTextBlock\Type::TEXT`. Hampir semuanya adalah `type` dari class Managed Agents di bawah `Anthropic\Beta`. Properti-properti ini sekarang berupa string dengan satu nilai tersebut sebagai default-nya, seperti `type` dari `Anthropic\Messages\TextBlockParam` sebelumnya. Properti opsional, seperti `type` dari `Anthropic\Beta\Environments\BetaPackages`, tetap mempertahankan enum-nya.
 
-    `with()` tidak lagi menerima `type`. Hapus argumen tersebut: PHP melempar "Unknown named parameter" untuk `type:` yang tersisa, dan dalam panggilan posisional argumen setelahnya bergeser maju satu posisi.
+    `with()` tidak lagi menerima `type`. Hapus argumen tersebut: PHP melempar “Unknown named parameter” untuk `type:` yang tersisa, dan dalam panggilan posisional argumen setelahnya bergeser maju satu posisi.
 
     ```php
     // Sebelum
@@ -623,7 +623,7 @@ Ini memengaruhi SDK C#, Go, Java, PHP, dan Ruby serta satu flag CLI. Pada versi 
 
 ### Compaction sisi klien dihapus dari tool runner
 
-Ini memengaruhi SDK TypeScript dan Ruby. "Compaction" (pemadatan) sisi klien di tool runner telah dihapus dan digantikan oleh compaction sisi server, yang merangkum percakapan di dalam API alih-alih dengan permintaan tambahan dari klien.
+Ini memengaruhi SDK TypeScript dan Ruby. “Compaction” (pemadatan) sisi klien di tool runner telah dihapus dan digantikan oleh compaction sisi server, yang merangkum percakapan di dalam API alih-alih dengan permintaan tambahan dari klien.
 
 <Tabs exclude="shell, python, csharp, go, java, php">
   <Tab title="TypeScript">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-how-it-works
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: e2c5f0c4cb97736637f889ec1a54ff6a43dab5692637fa01adddc4cd7f606b5f
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: a22ef0a9402514dc72579f78602499f4983965b04b47b70f385fec1ef00c5057
 ---
 
 ---
@@ -21,7 +21,7 @@ Data keys cross between Anthropic and your cloud. Your key never leaves your KMS
   ![Your key stays in your cloud's KMS and wraps Anthropic's data keys, which encrypt your data. Your cloud can log each call.](https://platform.claude.com/docs/images/cmek/key-wrapping.svg)
 </Frame>
 
-Anthropic keeps no copy of your key, so without it, Claude [can't read the data it protects](https://platform.claude.com/docs/en/manage-claude/cmek-key-lifecycle).
+Anthropic keeps no copy of your key, so without it, Claude [can’t read the data it protects](https://platform.claude.com/docs/en/manage-claude/cmek-key-lifecycle).
 
 ## What one key protects
 
@@ -39,15 +39,15 @@ On Claude Platform and Claude Enterprise, Anthropic processes all encryption ope
 
 ## When your key takes effect
 
-Your key protects only data written after it takes effect. Existing data (prior chats, files, and sessions) stays under Anthropic's key and isn't re-encrypted.
+Your key protects only data written after it takes effect. Existing data (prior chats, files, and sessions) stays under Anthropic’s key and isn’t re-encrypted.
 
-On Claude Platform and Claude Platform on AWS, a key attached to a workspace before its first request takes effect with that request. In a workspace in use, your key can take up to a day to take effect, and data written meanwhile stays under Anthropic's key. That's why Anthropic recommends a new workspace.
+On Claude Platform and Claude Platform on AWS, a key attached to a workspace before its first request takes effect with that request. In a workspace in use, your key can take up to a day to take effect, and data written meanwhile stays under Anthropic’s key. That’s why Anthropic recommends a new workspace.
 
 ## What you can see
 
-Your cloud's audit log can record every operation Anthropic performs with your key. Where you have to turn that logging on, your setup page lists it as a prerequisite. In AWS CloudTrail, some entries are [expected errors](https://platform.claude.com/docs/en/manage-claude/cmek-troubleshooting#cloudtrail).
+Your cloud’s audit log can record every operation Anthropic performs with your key. Where you have to turn that logging on, your setup page lists it as a prerequisite. In AWS CloudTrail, some entries are [expected errors](https://platform.claude.com/docs/en/manage-claude/cmek-troubleshooting#cloudtrail).
 
-Changes to your CMEK configuration appear in the [Compliance API Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed). Key operations don't.
+Changes to your CMEK configuration appear in the [Compliance API Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed). Key operations don’t.
 
 ## Latency and standards
 

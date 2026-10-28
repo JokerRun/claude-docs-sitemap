@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: d8a75d65cb382bac12c602060fba560a7381e5ccd5c10b1417aa955ed5feb322
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: bb5259b4589da6763ad0aed2d9422b5a4ac00434f8e5becb83140ea83019f9f6
 ---
 
 ---
@@ -67,7 +67,7 @@ Dalam pengujian Anthropic, teks ini meningkatkan tingkat pencarian pada pertanya
 
 Anda dapat melewatkan teks ini jika prompt sistem Anda pendek. Dengan prompt pendek pada effort `medium`, tanggal saja sudah membuat model lebih sering melakukan pencarian.
 
-Hindari instruksi menyeluruh seperti "search for any present-day factual question, regardless of how confident you are." Dalam pengujian Anthropic, instruksi tersebut membuat model melakukan pencarian pada separuh prompt yang tidak memerlukan pencarian. Instruksi itu tidak menghasilkan lebih banyak jawaban yang benar.
+Hindari instruksi menyeluruh seperti “search for any present-day factual question, regardless of how confident you are.” Dalam pengujian Anthropic, instruksi tersebut membuat model melakukan pencarian pada separuh prompt yang tidak memerlukan pencarian. Instruksi itu tidak menghasilkan lebih banyak jawaban yang benar.
 
 ## Gunakan adaptive thinking dengan output JSON dan alat Anda sendiri
 
@@ -108,7 +108,7 @@ Dalam pengujian Anthropic, model lebih sering memeriksa perubahannya dengan teks
 
 ## Pesan pengguna di tengah giliran
 
-Claude Haiku 5.5 dilatih untuk menahan "prompt injection" (injeksi prompt) melalui hasil alat. Misalkan pesan yang diketik pengguna di tengah tugas tiba di dalam blok `tool_result`, atau sebagai [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) tepat setelah hasil alat. Model kemudian dapat memperlakukannya sebagai teks yang tidak tepercaya dan mengabaikannya. Untuk menghindari hal ini:
+Claude Haiku 5.5 dilatih untuk menahan “prompt injection” (injeksi prompt) melalui hasil alat. Misalkan pesan yang diketik pengguna di tengah tugas tiba di dalam blok `tool_result`, atau sebagai [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) tepat setelah hasil alat. Model kemudian dapat memperlakukannya sebagai teks yang tidak tepercaya dan mengabaikannya. Untuk menghindari hal ini:
 
 * Jangan pernah menempatkan teks pengguna di dalam blok `tool_result`.
 * Sampaikan input pengguna di tengah giliran sebagai giliran pengguna. Tambahkan kata-kata pengguna sebagai blok teks setelah `tool_result` terakhir dalam pesan pengguna yang sama.
@@ -132,7 +132,7 @@ Claude Haiku 5.5 terkadang menulis teks yang menyerupai penalaran dalam balasan 
 
 ## Penolakan safeguard
 
-Claude Haiku 5.5 menjalankan "safety classifiers" (pengklasifikasi keamanan) yang dapat menolak permintaan. Permintaan yang ditolak mengembalikan respons dengan `stop_reason: "refusal"`, dan `stop_details.category` menyebutkan [kategori penolakan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response):
+Claude Haiku 5.5 menjalankan “safety classifiers” (pengklasifikasi keamanan) yang dapat menolak permintaan. Permintaan yang ditolak mengembalikan respons dengan `stop_reason: "refusal"`, dan `stop_details.category` menyebutkan [kategori penolakan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response):
 
 * `cyber`: permintaan dapat memungkinkan bahaya siber, seperti pengembangan malware atau exploit. Menemukan kerentanan dalam kode sumber diperbolehkan. Pekerjaan keamanan siber dwiguna berisiko tinggi tidak diperbolehkan. Pekerjaan keamanan siber yang tidak berbahaya juga dapat memicu kategori ini. Jika pengklasifikasi `cyber` memblokir pekerjaan keamanan yang sah di organisasi Anda, Anda dapat mendaftar ke [Cyber Verification Program](https://support.claude.com/en/articles/14604842).
 * `frontier_llm`: permintaan dapat membantu pengembangan model AI pesaing.

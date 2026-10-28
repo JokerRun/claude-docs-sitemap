@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/embeddings
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: fcab76405b09b8e1a271f9c9ebd0f942fe294e9999ffa8daab80e7d2049a1b0b
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 253e2d2c51b0c01097ad7318d36807437fe4db158205b6f00dd1524d4a14b46e
 ---
 
 ---
@@ -16,7 +16,7 @@ description: Text embeddings adalah representasi numerik dari teks yang memungki
 Saat memilih penyedia embeddings, ada beberapa faktor yang dapat Anda pertimbangkan tergantung pada kebutuhan dan preferensi Anda:
 
 * Ukuran dataset dan kekhususan domain: ukuran dataset pelatihan model dan relevansinya dengan domain yang ingin Anda embed. Data yang lebih besar atau lebih spesifik domain umumnya menghasilkan embeddings dalam domain yang lebih baik.
-* Performa inferensi: kecepatan pencarian embedding dan "latency" (latensi) end-to-end. Ini merupakan pertimbangan yang sangat penting untuk deployment produksi berskala besar.
+* Performa inferensi: kecepatan pencarian embedding dan “latency” (latensi) end-to-end. Ini merupakan pertimbangan yang sangat penting untuk deployment produksi berskala besar.
 * Kustomisasi: opsi untuk pelatihan lanjutan pada data pribadi, atau spesialisasi model untuk domain yang sangat spesifik. Ini dapat meningkatkan performa pada kosakata yang unik.
 
 ## Cara mendapatkan embeddings dengan Anthropic
@@ -300,12 +300,12 @@ Jika Anda mencari serangkaian resep terperinci tentang cara melakukan RAG dengan
     >
     > * Contoh
     >
-    >   * Ketika `input_type="query"`, query seperti "When is Apple's conference call scheduled?" akan menjadi "**Represent the query for retrieving supporting documents:** When is Apple's conference call scheduled?"
-    >   * Ketika `input_type="document"`, dokumen seperti "Apple's conference call to discuss fourth fiscal quarter results and business updates is scheduled for Thursday, November 2, 2023 at 2:00 p.m. PT / 5:00 p.m. ET." akan menjadi "**Represent the document for retrieval:** Apple's conference call to discuss fourth fiscal quarter results and business updates is scheduled for Thursday, November 2, 2023 at 2:00 p.m. PT / 5:00 p.m. ET."
+    >   * Ketika `input_type="query"`, query seperti “When is Apple’s conference call scheduled?” akan menjadi “**Represent the query for retrieving supporting documents:** When is Apple’s conference call scheduled?”
+    >   * Ketika `input_type="document"`, dokumen seperti “Apple’s conference call to discuss fourth fiscal quarter results and business updates is scheduled for Thursday, November 2, 2023 at 2:00 p.m. PT / 5:00 p.m. ET.” akan menjadi “**Represent the document for retrieval:** Apple’s conference call to discuss fourth fiscal quarter results and business updates is scheduled for Thursday, November 2, 2023 at 2:00 p.m. PT / 5:00 p.m. ET.”
   </Accordion>
 
   <Accordion title="Opsi kuantisasi apa saja yang tersedia?">
-    "Quantization" (kuantisasi) dalam embeddings mengonversi nilai presisi tinggi, seperti bilangan floating-point presisi tunggal 32-bit, ke format presisi lebih rendah seperti bilangan bulat 8-bit atau nilai biner 1-bit, sehingga mengurangi penyimpanan, memori, dan biaya masing-masing sebesar 4x dan 32x. Model Voyage AI yang didukung memungkinkan kuantisasi dengan menentukan tipe data output menggunakan parameter `output_dtype`:
+    “Quantization” (kuantisasi) dalam embeddings mengonversi nilai presisi tinggi, seperti bilangan floating-point presisi tunggal 32-bit, ke format presisi lebih rendah seperti bilangan bulat 8-bit atau nilai biner 1-bit, sehingga mengurangi penyimpanan, memori, dan biaya masing-masing sebesar 4x dan 32x. Model Voyage AI yang didukung memungkinkan kuantisasi dengan menentukan tipe data output menggunakan parameter `output_dtype`:
 
     * `float`: Setiap embedding yang dikembalikan adalah daftar bilangan floating-point presisi tunggal 32-bit (4-byte). Ini adalah default dan memberikan presisi / akurasi retrieval tertinggi.
     * `int8` dan `uint8`: Setiap embedding yang dikembalikan adalah daftar bilangan bulat 8-bit (1-byte) yang masing-masing berkisar dari -128 hingga 127 dan 0 hingga 255.

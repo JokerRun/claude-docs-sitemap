@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed
-fetched_at: 2026-10-27T02:22:08.565782Z
-sha256: 1dd5d9d59bcd41dcb430eaba3b6eecf0e7f99661952ebb15aed597fa4b212287
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 82f6f2cc1600d346c95999a904786c495b1963fe3f8909a105595bff225c17ad
 ---
 
 ---
@@ -313,7 +313,7 @@ Contoh-contoh berikut menggunakan endpoint global. Untuk jenis endpoint lainnya,
 | Claude Haiku 4.5                                                                                      | `claude-haiku-4-5@20251001`  |
 | Claude Haiku 3.5 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | `claude-3-5-haiku@20241022`  |
 
-Claude Models on Google Cloud (Google managed) menawarkan model Claude yang berbeda di region yang berbeda. Untuk memeriksa model mana yang ditawarkan suatu region, cari "Claude" di [Model Garden](https://cloud.google.com/model-garden) atau lihat halaman [Anthropic Claude models on Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) dari Google Cloud.
+Claude Models on Google Cloud (Google managed) menawarkan model Claude yang berbeda di region yang berbeda. Untuk memeriksa model mana yang ditawarkan suatu region, cari “Claude” di [Model Garden](https://cloud.google.com/model-garden) atau lihat halaman [Anthropic Claude models on Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) dari Google Cloud.
 
 Google menetapkan tanggal siklus hidup untuk model-model yang dilayani oleh Claude Models on Google Cloud (Google managed). Tanggal-tanggal ini dapat berbeda dari jadwal Claude API. Untuk tanggal penghentian terkini suatu model, lihat halaman [Anthropic Claude models on Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) dari Google Cloud. Untuk arti Deprecated dan Retired, lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations).
 
@@ -459,11 +459,11 @@ Fitur-fitur yang didukung di Claude Models on Google Cloud (Google managed) meli
 
 * [Messages API](https://platform.claude.com/docs/id/api/messages/create)
 
-* ["Prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
+* [“Prompt caching” (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
 
 * [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking)
 
-* ["Tool use" (penggunaan alat)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk alat-alat berikut:
+* [“Tool use” (penggunaan alat)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk alat-alat berikut:
 
   * [Alat bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool)
   * [Alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool)
@@ -493,7 +493,7 @@ Sebagai pengganti fallback sisi server, gunakan [pola fallback sisi klien](https
 
 ### Jendela konteks
 
-Claude Models on Google Cloud (Google managed) menawarkan ["context window" (jendela konteks) 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) untuk model-model berikut:
+Claude Models on Google Cloud (Google managed) menawarkan [“context window” (jendela konteks) 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) untuk model-model berikut:
 
 * Claude Fable 5.1
 * Claude Fable 5
@@ -515,7 +515,7 @@ Agent Platform membatasi payload permintaan hingga 30 MB. Saat Anda mengirim do
 
 ### Batas laju
 
-Google Cloud mengelola "rate limit" (batas laju) dan kuota untuk Claude Models on Google Cloud (Google managed). Untuk detailnya, termasuk cara meminta peningkatan kuota, lihat halaman [Quotas for Anthropic Claude models](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude/quotas) dari Google Cloud.
+Google Cloud mengelola “rate limit” (batas laju) dan kuota untuk Claude Models on Google Cloud (Google managed). Untuk detailnya, termasuk cara meminta peningkatan kuota, lihat halaman [Quotas for Anthropic Claude models](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude/quotas) dari Google Cloud.
 
 ### Penagihan
 
@@ -755,7 +755,7 @@ Untuk mengetahui apa yang berubah saat Anda berpindah, lihat [Perbedaan kedua pe
   </Card>
 
   <Card title="Dokumentasi Agent Platform" icon="book" href="https://cloud.google.com/vertex-ai/docs">
-    Baca dokumentasi Google Cloud's Agent Platform.
+    Baca dokumentasi Google Cloud’s Agent Platform.
   </Card>
 
   <Card title="Endpoint global untuk model Claude" icon="link" href="https://cloud.google.com/blog/products/ai-machine-learning/global-endpoint-for-claude-models-generally-available-on-vertex-ai">

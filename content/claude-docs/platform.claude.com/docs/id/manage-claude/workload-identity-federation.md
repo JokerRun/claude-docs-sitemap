@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workload-identity-federation
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: ccbafc84e16123a3b3a333be77a630070afbaa15a96c46ea4f9372538406f6fa
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 6661e9c1609c05c6e81e10f8c9bef720f8f4767e2ff48ff54b44bac3ebe649e9
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/manage-claude/workload-identity-federat
 description: Autentikasi workload ke Claude API dengan token identitas berumur pendek dari penyedia identitas Anda sendiri, alih-alih kunci API statis berumur panjang.
 ---
 
-Workload Identity Federation (WIF) memungkinkan workload Anda melakukan autentikasi ke Claude API dengan token OpenID Connect (OIDC) berumur pendek alih-alih kunci API `sk-ant-...` berumur panjang. Token tersebut berasal dari "identity provider" (penyedia identitas), atau IdP, yang sudah Anda operasikan: AWS IAM, Google Cloud, atau penerbit OIDC apa pun yang sesuai standar seperti GitHub Actions, Kubernetes, SPIFFE, Microsoft Entra ID, atau Okta.
+Workload Identity Federation (WIF) memungkinkan workload Anda melakukan autentikasi ke Claude API dengan token OpenID Connect (OIDC) berumur pendek alih-alih kunci API `sk-ant-...` berumur panjang. Token tersebut berasal dari “identity provider” (penyedia identitas), atau IdP, yang sudah Anda operasikan: AWS IAM, Google Cloud, atau penerbit OIDC apa pun yang sesuai standar seperti GitHub Actions, Kubernetes, SPIFFE, Microsoft Entra ID, atau Okta.
 
 Workload Anda menyajikan JWT bertanda tangan dari penyedia identitas Anda. Anthropic memvalidasinya terhadap aturan kepercayaan yang Anda konfigurasikan di Claude Console dan mengembalikan token akses Anthropic berumur pendek yang terikat pada sebuah service account di organisasi Anda. Tidak ada rahasia statis yang perlu dibuat, disimpan di CI, dirotasi, atau berisiko bocor.
 
@@ -19,7 +19,7 @@ Workload Identity Federation memperkuat postur keamanan Anda dengan mengganti ku
 
 ## Konsep
 
-Anda mengonfigurasi tiga sumber daya di Claude Console sebelum workload apa pun dapat melakukan federasi. Bersama-sama, ketiganya menyatakan "token yang ditandatangani oleh penerbit X, dengan klaim yang terlihat seperti Y, boleh bertindak sebagai service account Z."
+Anda mengonfigurasi tiga sumber daya di Claude Console sebelum workload apa pun dapat melakukan federasi. Bersama-sama, ketiganya menyatakan “token yang ditandatangani oleh penerbit X, dengan klaim yang terlihat seperti Y, boleh bertindak sebagai service account Z.”
 
 ### Service account
 
@@ -29,7 +29,7 @@ Perbedaan utamanya dibandingkan kunci API workspace: kunci API workspace *adalah
 
 ### Federation issuer
 
-**Federation issuer** (penerbit federasi) (`fdis_...`) mendaftarkan penyedia identitas OIDC ke organisasi Anda. Mendaftarkan issuer memberi tahu Anthropic bahwa "JWT yang ditandatangani oleh penyedia ini boleh menyatakan identitas workload untuk organisasi saya."
+**Federation issuer** (penerbit federasi) (`fdis_...`) mendaftarkan penyedia identitas OIDC ke organisasi Anda. Mendaftarkan issuer memberi tahu Anthropic bahwa “JWT yang ditandatangani oleh penyedia ini boleh menyatakan identitas workload untuk organisasi saya.”
 
 Sebuah issuer memiliki dua bagian konfigurasi:
 
@@ -42,7 +42,7 @@ Anda biasanya mendaftarkan satu penerbit untuk setiap lingkungan: klaster EKS pr
 
 ### Federation rule
 
-**Federation rule** (aturan federasi) (`fdrl_...`) adalah jembatan antara issuer dan service account: "ketika JWT dari issuer X memiliki klaim yang terlihat seperti Y, cetak token untuk service account Z dengan scope S."
+**Federation rule** (aturan federasi) (`fdrl_...`) adalah jembatan antara issuer dan service account: “ketika JWT dari issuer X memiliki klaim yang terlihat seperti Y, cetak token untuk service account Z dengan scope S.”
 
 Sebuah aturan mendefinisikan kondisi pencocokan, target, serta scope otorisasi dan masa berlaku token yang diterapkan ketika aturan cocok:
 

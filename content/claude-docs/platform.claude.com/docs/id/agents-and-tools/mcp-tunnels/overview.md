@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: b72030751fca60f0f42106457cbf2e739fb6913a1e2137867d468a20ab09caa7
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 74a7bbc1ec768c38359c89af34f76fd9b5a7eb1d045e5b34ce3c0335576820ec
 ---
 
 ---
@@ -11,10 +11,10 @@ url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview
 description: Hubungkan Claude secara aman ke server MCP yang berjalan di jaringan privat Anda tanpa membuka port masuk atau mengekspos layanan ke internet publik.
 ---
 
-Tunnel MCP memungkinkan Anda menghubungkan Claude ke server "Model Context Protocol", atau MCP, yang berjalan di dalam jaringan privat Anda. Lalu lintas mengalir melalui koneksi yang hanya bersifat keluar (outbound-only), sehingga Anda tidak perlu membuka port firewall masuk, mengekspos layanan ke internet publik, atau memasukkan rentang IP Anthropic ke daftar izin (allowlist) pada origin Anda.
+Tunnel MCP memungkinkan Anda menghubungkan Claude ke server “Model Context Protocol”, atau MCP, yang berjalan di dalam jaringan privat Anda. Lalu lintas mengalir melalui koneksi yang hanya bersifat keluar (outbound-only), sehingga Anda tidak perlu membuka port firewall masuk, mengekspos layanan ke internet publik, atau memasukkan rentang IP Anthropic ke daftar izin (allowlist) pada origin Anda.
 
 <Note>
-  Tunnel MCP sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/mcp-tunnels) untuk mencobanya. Tunnel MCP disediakan "apa adanya" tanpa komitmen uptime, dukungan, atau kelangsungan apa pun, dan bergantung pada penyedia jaringan pihak ketiga (Cloudflare) yang tidak memberikan komitmen ketersediaan untuk transport yang mendasarinya. Anthropic dapat mengubah atau menghentikan tunnel MCP kapan saja.
+  Tunnel MCP sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/mcp-tunnels) untuk mencobanya. Tunnel MCP disediakan “apa adanya” tanpa komitmen uptime, dukungan, atau kelangsungan apa pun, dan bergantung pada penyedia jaringan pihak ketiga (Cloudflare) yang tidak memberikan komitmen ketersediaan untuk transport yang mendasarinya. Anthropic dapat mengubah atau menghentikan tunnel MCP kapan saja.
 </Note>
 
 Untuk kelayakan Zero Data Retention dan HIPAA BAA, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility).

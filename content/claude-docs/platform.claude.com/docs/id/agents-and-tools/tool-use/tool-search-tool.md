@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: e37a6c4d997c901b796c4d0b2e85ef7cdeecee89469d136929fcf4d9f5e01573
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 8d8cb69b27359b83312338e9fadefa80645134dce06993c7e83a832cd7a5d0a9
 ---
 
 ---
@@ -31,7 +31,7 @@ Tool search berjalan sebagai alat sisi server, tetapi Anda juga dapat mengimplem
 </Note>
 
 <Note>
-  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 <Warning>
@@ -560,7 +560,7 @@ Tool search tool memiliki dua varian:
 
   Dengan `tool_search_tool_regex_20251119`, Claude menulis pola `re.search()` Python, bukan kueri bahasa alami. Pencocokan tidak peka huruf besar-kecil. Pola umum meliputi berikut ini:
 
-  * `"weather"`: cocok dengan nama alat dan deskripsi yang mengandung "weather"
+  * `"weather"`: cocok dengan nama alat dan deskripsi yang mengandung “weather”
   * `"get_.*_data"`: cocok dengan alat seperti `get_user_data` dan `get_weather_data`
   * `"database.*query|query.*database"`: cocok dengan urutan kata mana pun
 
@@ -848,7 +848,7 @@ Pemanggilan alat standar, tanpa tool search, lebih cocok ketika Anda memiliki ku
 * Tulis nama dan deskripsi alat yang jelas dan deskriptif.
 * Gunakan namespacing yang konsisten dalam nama alat: beri prefiks berdasarkan layanan atau sumber daya (misalnya, `github_`, `slack_`) sehingga satu pencarian cocok dengan seluruh grup.
 * Gunakan kata kunci dalam deskripsi yang cocok dengan cara pengguna mendeskripsikan tugas.
-* Tambahkan bagian prompt sistem yang mendeskripsikan kategori alat yang tersedia: "Anda dapat mencari alat untuk berinteraksi dengan Slack, GitHub, dan Jira."
+* Tambahkan bagian prompt sistem yang mendeskripsikan kategori alat yang tersedia: “Anda dapat mencari alat untuk berinteraksi dengan Slack, GitHub, dan Jira.”
 * Pantau alat mana yang ditemukan Claude untuk menyempurnakan deskripsi Anda.
 
 ## Penggunaan

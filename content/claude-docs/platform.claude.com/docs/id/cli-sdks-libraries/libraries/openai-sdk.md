@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 23d083e898aa88683ba6163ba7c5347bc0a321bbd7969760215f9ee9dcfb4fcb
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 4b26cdd67e681196e47429631858133392f4e411ad1bb8b8300f39139b42ea55
 ---
 
 ---
@@ -207,7 +207,7 @@ Sebagian besar input ke OpenAI SDK dipetakan secara jelas dan langsung ke parame
 
 ### Dukungan thinking
 
-Anda dapat mengaktifkan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) dengan menambahkan parameter `thinking`. Pada model saat ini, thinking bersifat adaptif, dengan Claude menentukan kapan dan seberapa dalam untuk berpikir, dan pada model Claude 5 fitur ini aktif secara default; "extended thinking" (pemikiran diperpanjang) yang dikonfigurasi secara manual adalah mode lama (legacy). Meskipun thinking meningkatkan penalaran Claude untuk tugas-tugas kompleks, OpenAI SDK tidak mengembalikan thinking Claude. Untuk fitur thinking lengkap, termasuk [thinking yang diringkas](https://platform.claude.com/docs/id/build-with-claude/thinking#summarized-thinking), gunakan Claude API native.
+Anda dapat mengaktifkan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) dengan menambahkan parameter `thinking`. Pada model saat ini, thinking bersifat adaptif, dengan Claude menentukan kapan dan seberapa dalam untuk berpikir, dan pada model Claude 5 fitur ini aktif secara default; “extended thinking” (pemikiran diperpanjang) yang dikonfigurasi secara manual adalah mode lama (legacy). Meskipun thinking meningkatkan penalaran Claude untuk tugas-tugas kompleks, OpenAI SDK tidak mengembalikan thinking Claude. Untuk fitur thinking lengkap, termasuk [thinking yang diringkas](https://platform.claude.com/docs/id/build-with-claude/thinking#summarized-thinking), gunakan Claude API native.
 
 <CodeGroup exclude="shell, php">
   ```python Python
@@ -282,7 +282,7 @@ Anda dapat mengaktifkan [thinking](https://platform.claude.com/docs/id/build-wit
 
 ## Batas laju
 
-"Rate limit" (batas laju) mengikuti [batas standar](https://platform.claude.com/docs/id/api/rate-limits) Anthropic untuk endpoint `/v1/messages`.
+“Rate limit” (batas laju) mengikuti [batas standar](https://platform.claude.com/docs/id/api/rate-limits) Anthropic untuk endpoint `/v1/messages`.
 
 ## Dukungan API kompatibel OpenAI secara terperinci
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-admin-api
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 240e731acd5c0706b31f2c25cd31d30a759249903148b38a2377ccd7c03d7a00
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 58e0eac55c6913f0fda96cf99552b85d772df77d4ba0a49b30a7ce79e91ccdfc
 ---
 
 ---
@@ -17,7 +17,7 @@ Membuat kunci eksternal adalah apa yang dilakukan **Add key** di Claude Console,
 
 ## Sebelum Anda memulai
 
-* "Customer-managed encryption keys" (kunci enkripsi yang dikelola pelanggan), atau CMEK, telah [diaktifkan untuk organisasi Anda](https://platform.claude.com/docs/id/manage-claude/cmek#availability).
+* “Customer-managed encryption keys” (kunci enkripsi yang dikelola pelanggan), atau CMEK, telah [diaktifkan untuk organisasi Anda](https://platform.claude.com/docs/id/manage-claude/cmek#availability).
 * Anda memiliki [kunci API Admin](https://platform.claude.com/docs/id/manage-claude/admin-api-keys). Contoh-contoh membacanya dari `ANTHROPIC_API_KEY`.
 * Anda telah membuat kunci Anda di [AWS KMS](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#encryption-key-setup), [Google Cloud KMS](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms#encryption-key-setup), atau [Azure Key Vault](https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault#encryption-key-setup), dan menyimpan nilai-nilai yang diminta untuk disalin oleh langkah-langkah penyiapan.
 * Anda memiliki workspace yang [menyimpan data](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#data-retention), idealnya workspace baru, karena [data yang sudah ada tetap berada di bawah kunci milik Anthropic](https://platform.claude.com/docs/id/manage-claude/cmek-how-it-works#when-your-key-takes-effect).

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: b152932fb66232083e32ef66ab0aa13a65791e3e20d489ab3efa84f2507abcca
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: da404ec6b357d5d4d6cfc834b9deae879a6e87b4f436d25510a8382c7b5d3b91
 ---
 
 ---
@@ -19,13 +19,13 @@ Claude Opus 5.5 dibuat untuk pekerjaan coding agentik dan pekerjaan pengetahuan 
 | --------------- | --------------- | ----------------------------------------------------------------- |
 | Claude Opus 5.5 | claude-opus-5-5 | Untuk agentic coding dan pekerjaan pengetahuan yang berjalan lama |
 
-["Adaptive thinking" (pemikiran adaptif)](https://platform.claude.com/docs/id/build-with-claude/thinking) selalu aktif, dan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) mengontrol kedalaman thinking; nilai default-nya pada model ini adalah `medium`. Untuk "context window" (jendela konteks), batas output, batas pengetahuan, dan harga, lihat [halaman model Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview); untuk semua model saat ini, lihat [ikhtisar model](https://platform.claude.com/docs/id/models/overview).
+[“Adaptive thinking” (pemikiran adaptif)](https://platform.claude.com/docs/id/build-with-claude/thinking) selalu aktif, dan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) mengontrol kedalaman thinking; nilai default-nya pada model ini adalah `medium`. Untuk “context window” (jendela konteks), batas output, batas pengetahuan, dan harga, lihat [halaman model Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview); untuk semua model saat ini, lihat [ikhtisar model](https://platform.claude.com/docs/id/models/overview).
 
 ## Perubahan yang merusak kompatibilitas
 
 ### Thinking tidak dapat dinonaktifkan
 
-Di Claude Opus 5, "thinking" (pemikiran) aktif secara default dan `thinking: {"type": "disabled"}` diterima pada effort `high` atau lebih rendah. Di Claude Opus 5.5, thinking selalu aktif: permintaan yang menetapkan `thinking: {"type": "disabled"}`, atau anggaran manual dengan `thinking: {"type": "enabled", "budget_tokens": N}`, mengembalikan 400 `invalid_request_error`. Hilangkan field `thinking`, atau kirim `thinking: {"type": "adaptive"}`, yang setara. Tidak ada header beta yang terlibat.
+Di Claude Opus 5, “thinking” (pemikiran) aktif secara default dan `thinking: {"type": "disabled"}` diterima pada effort `high` atau lebih rendah. Di Claude Opus 5.5, thinking selalu aktif: permintaan yang menetapkan `thinking: {"type": "disabled"}`, atau anggaran manual dengan `thinking: {"type": "enabled", "budget_tokens": N}`, mengembalikan 400 `invalid_request_error`. Hilangkan field `thinking`, atau kirim `thinking: {"type": "adaptive"}`, yang setara. Tidak ada header beta yang terlibat.
 
 Pesan error-nya adalah:
 
@@ -37,11 +37,11 @@ Pesan error-nya adalah:
 "thinking.type.enabled" is not supported for this model. Use "thinking.type.adaptive" and "output_config.effort" to control thinking behavior.
 ```
 
-[Parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) adalah kontrol untuk kedalaman thinking, "latency" (latensi), dan biaya: turunkan nilainya di tempat Anda sebelumnya menonaktifkan thinking; [Mengoptimalkan biaya dan kecerdasan](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#tune-effort) memuat hasil terukur untuk memilih level. Karena setiap respons dapat dimulai dengan satu atau lebih blok `thinking` (dikembalikan dengan field `thinking` kosong pada `display: "omitted"` default), pilih blok konten berdasarkan field `type`-nya, bukan berdasarkan posisi, dan kirimkan kembali blok `thinking` tanpa diubah dalam loop penggunaan alat. Kode yang sudah berjalan di Claude Opus 5 dengan thinking aktif tidak memerlukan perubahan. Lihat [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) dan [sebelum dan sesudah untuk thinking](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#thinking-cant-be-disabled) di panduan migrasi.
+[Parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) adalah kontrol untuk kedalaman thinking, “latency” (latensi), dan biaya: turunkan nilainya di tempat Anda sebelumnya menonaktifkan thinking; [Mengoptimalkan biaya dan kecerdasan](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#tune-effort) memuat hasil terukur untuk memilih level. Karena setiap respons dapat dimulai dengan satu atau lebih blok `thinking` (dikembalikan dengan field `thinking` kosong pada `display: "omitted"` default), pilih blok konten berdasarkan field `type`-nya, bukan berdasarkan posisi, dan kirimkan kembali blok `thinking` tanpa diubah dalam loop penggunaan alat. Kode yang sudah berjalan di Claude Opus 5 dengan thinking aktif tidak memerlukan perubahan. Lihat [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) dan [sebelum dan sesudah untuk thinking](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#thinking-cant-be-disabled) di panduan migrasi.
 
 ### Penggunaan alat paksa tidak didukung
 
-Claude Opus 5.5 tidak mendukung "forced tool use" (penggunaan alat paksa). `tool_choice` yang ditetapkan ke `{"type": "any"}` atau `{"type": "tool", "name": "..."}` mengembalikan 400 `invalid_request_error`:
+Claude Opus 5.5 tidak mendukung “forced tool use” (penggunaan alat paksa). `tool_choice` yang ditetapkan ke `{"type": "any"}` atau `{"type": "tool", "name": "..."}` mengembalikan 400 `invalid_request_error`:
 
 ```text wrap
 tool_choice: type "tool" and "any" are not supported for this model.
@@ -67,11 +67,11 @@ Untuk memindahkan integrasi yang ada di Claude API atau Claude Models on Google 
 
 ## Dukungan fitur
 
-Claude Opus 5.5 mendukung [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta), [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages), [anggaran tugas](https://platform.claude.com/docs/id/build-with-claude/task-budgets), ["prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) dengan prompt minimum yang dapat di-cache sebesar 512 token, [pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing), [Files API](https://platform.claude.com/docs/id/build-with-claude/files), [dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support), [vision](https://platform.claude.com/docs/id/build-with-claude/vision), serta [alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) sisi server dan sisi klien. Di Claude API dan Claude Models on Google Cloud (Google managed), computer use memerlukan toolset `computer_toolset_20260801` (lihat [perubahan yang merusak kompatibilitas](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#computer-20251124-is-not-supported)). Lihat halaman masing-masing fitur untuk ketersediaan model.
+Claude Opus 5.5 mendukung [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta), [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages), [anggaran tugas](https://platform.claude.com/docs/id/build-with-claude/task-budgets), [“prompt caching” (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) dengan prompt minimum yang dapat di-cache sebesar 512 token, [pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing), [Files API](https://platform.claude.com/docs/id/build-with-claude/files), [dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support), [vision](https://platform.claude.com/docs/id/build-with-claude/vision), serta [alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) sisi server dan sisi klien. Di Claude API dan Claude Models on Google Cloud (Google managed), computer use memerlukan toolset `computer_toolset_20260801` (lihat [perubahan yang merusak kompatibilitas](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#computer-20251124-is-not-supported)). Lihat halaman masing-masing fitur untuk ketersediaan model.
 
 ### Mode cepat
 
-[Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) tersedia untuk Claude Opus 5.5 di Claude API, di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), dan di [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Azure. Di Claude API dan di Claude Models on Google Cloud (Anthropic managed), setel `speed: "fast"` pada permintaan Anda. Claude Opus 5.5 tidak memerlukan beta header. Lihat [Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) untuk model yang didukung, "rate limit" (batas laju), dan harga.
+[Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) tersedia untuk Claude Opus 5.5 di Claude API, di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), dan di [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Azure. Di Claude API dan di Claude Models on Google Cloud (Anthropic managed), setel `speed: "fast"` pada permintaan Anda. Claude Opus 5.5 tidak memerlukan beta header. Lihat [Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) untuk model yang didukung, “rate limit” (batas laju), dan harga.
 
 ### Mendefinisikan alat dalam pesan (beta)
 
@@ -95,7 +95,7 @@ Jika integrasi Claude Opus 5 Anda berjalan dengan thinking dinonaktifkan, lihat 
 
 ## Penolakan dan fallback
 
-Claude Opus 5.5 dilengkapi dengan pengklasifikasi keamanan, dan semua yang ada di [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) berlaku. Permintaan yang ditolak mengembalikan HTTP 200 dengan `stop_reason: "refusal"` dan objek [`stop_details`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) yang menyebutkan area kebijakan, jadi tangani penolakan dan konfigurasikan fallback: coba ulang di model lain dengan [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) (`fallbacks: "default"`, dalam beta, mencoba ulang di model yang direkomendasikan Anthropic untuk kategori tersebut), [middleware SDK](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback), atau mekanisme coba ulang Anda sendiri. Apakah penolakan yang tiba sebelum output apa pun ditagih bergantung pada kategori penolakannya, dan penolakan tersebut tetap dihitung terhadap "rate limit" (batas laju) Anda dalam kedua kasus; lihat [Cara penolakan ditagih](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#how-refusals-are-billed).
+Claude Opus 5.5 dilengkapi dengan pengklasifikasi keamanan, dan semua yang ada di [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) berlaku. Permintaan yang ditolak mengembalikan HTTP 200 dengan `stop_reason: "refusal"` dan objek [`stop_details`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) yang menyebutkan area kebijakan, jadi tangani penolakan dan konfigurasikan fallback: coba ulang di model lain dengan [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) (`fallbacks: "default"`, dalam beta, mencoba ulang di model yang direkomendasikan Anthropic untuk kategori tersebut), [middleware SDK](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback), atau mekanisme coba ulang Anda sendiri. Apakah penolakan yang tiba sebelum output apa pun ditagih bergantung pada kategori penolakannya, dan penolakan tersebut tetap dihitung terhadap “rate limit” (batas laju) Anda dalam kedua kasus; lihat [Cara penolakan ditagih](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#how-refusals-are-billed).
 
 ## Harga
 

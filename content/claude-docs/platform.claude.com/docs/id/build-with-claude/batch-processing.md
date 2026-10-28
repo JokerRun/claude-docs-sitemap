@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: e8948f638413a95da287c42ba633ed8c5f2886f41cc37a4d07ddf3bc181677bb
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: bd56df2eb3501076cb9b31338171341903db8414d010752f3362e1111baf6f9f
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
 description: Proses permintaan Messages dalam volume besar secara asinkron dengan Message Batches API, memangkas biaya sebesar 50% dan meningkatkan throughput.
 ---
 
-"Batch processing" (pemrosesan batch) adalah pendekatan yang ampuh untuk menangani permintaan dalam volume besar secara efisien. Alih-alih memproses permintaan satu per satu dengan respons langsung, pemrosesan batch memungkinkan Anda mengirimkan banyak permintaan sekaligus untuk diproses secara asinkron. Pola ini sangat berguna ketika:
+“Batch processing” (pemrosesan batch) adalah pendekatan yang ampuh untuk menangani permintaan dalam volume besar secara efisien. Alih-alih memproses permintaan satu per satu dengan respons langsung, pemrosesan batch memungkinkan Anda mengirimkan banyak permintaan sekaligus untuk diproses secara asinkron. Pola ini sangat berguna ketika:
 
 * Anda perlu memproses data dalam volume besar
 * Respons langsung tidak diperlukan
@@ -21,7 +21,7 @@ description: Proses permintaan Messages dalam volume besar secara asinkron denga
 Message Batches API adalah implementasi pertama Anthropic untuk pola ini.
 
 <Note>
-  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 # Message Batches API
@@ -51,7 +51,7 @@ Ini sangat berguna untuk operasi massal yang tidak memerlukan hasil langsung, se
 * Sistem memproses setiap batch secepat mungkin, dengan sebagian besar batch selesai dalam 1 jam. Anda dapat mengakses hasil batch ketika semua pesan telah selesai atau setelah 24 jam, mana pun yang lebih dulu. Batch akan kedaluwarsa jika pemrosesan tidak selesai dalam 24 jam.
 * Hasil batch tersedia selama 29 hari setelah pembuatan. Setelah itu, Anda masih dapat melihat Batch tersebut, tetapi hasilnya tidak lagi tersedia untuk diunduh.
 * Batch dibatasi pada lingkup [Workspace](https://platform.claude.com/settings/workspaces) di Claude Console. Anda dapat melihat semua batch (dan hasilnya) yang dibuat di dalam Workspace tempat permintaan Anda dijalankan.
-* "Rate limit" (batas laju) berlaku baik untuk permintaan HTTP Batches API maupun jumlah permintaan dalam batch yang menunggu untuk diproses. Lihat [batas laju Message Batches API](https://platform.claude.com/docs/id/api/rate-limits#message-batches-api). Selain itu, pemrosesan dapat diperlambat berdasarkan permintaan saat ini dan volume permintaan Anda. Dalam hal tersebut, Anda mungkin melihat lebih banyak permintaan yang kedaluwarsa setelah 24 jam.
+* “Rate limit” (batas laju) berlaku baik untuk permintaan HTTP Batches API maupun jumlah permintaan dalam batch yang menunggu untuk diproses. Lihat [batas laju Message Batches API](https://platform.claude.com/docs/id/api/rate-limits#message-batches-api). Selain itu, pemrosesan dapat diperlambat berdasarkan permintaan saat ini dan volume permintaan Anda. Dalam hal tersebut, Anda mungkin melihat lebih banyak permintaan yang kedaluwarsa setelah 24 jam.
 * Karena throughput yang tinggi dan pemrosesan yang bersamaan, batch mungkin sedikit melampaui [batas pengeluaran](https://platform.claude.com/settings/billing) yang dikonfigurasi di Claude Console untuk Workspace Anda.
 * Setiap permintaan dalam batch harus memiliki `max_tokens` minimal `1`. `max_tokens: 0` ([pra-pemanasan cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pre-warming-the-cache)) tidak didukung di dalam batch, karena entri cache ephemeral yang ditulis selama pemrosesan batch kemungkinan besar akan kedaluwarsa sebelum permintaan lanjutan dijalankan.
 
@@ -64,10 +64,10 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
 Hampir semua permintaan yang dapat Anda buat ke Messages API dapat disertakan dalam batch. Ini mencakup:
 
 * Vision
-* "Tool use" (penggunaan alat), termasuk semua [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) (web search, web fetch, code execution, konektor MCP, advisor, dan tool search)
+* “Tool use” (penggunaan alat), termasuk semua [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) (web search, web fetch, code execution, konektor MCP, advisor, dan tool search)
 * Pesan sistem
 * Percakapan multi-giliran
-* "Extended thinking" (pemikiran diperpanjang)
+* “Extended thinking” (pemikiran diperpanjang)
 * Sebagian besar fitur beta
 
 Karena setiap permintaan dalam batch diproses secara independen, Anda dapat mencampur berbagai jenis permintaan dalam satu batch.
@@ -77,11 +77,11 @@ Sejumlah kecil parameter Messages API **tidak** didukung dalam permintaan batch.
 | Parameter                                                                               | Alasan                                                                                                           |
 | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | `stream: true`                                                                          | Hasil batch dikembalikan sebagai satu file, bukan stream.                                                        |
-| `speed` ([Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode)) | Mode cepat menyetel "latency" (latensi) sinkron, yang tidak berlaku untuk pemrosesan batch asinkron.             |
+| `speed` ([Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode)) | Mode cepat menyetel “latency” (latensi) sinkron, yang tidak berlaku untuk pemrosesan batch asinkron.             |
 | `max_tokens: 0`                                                                         | Lihat [Batasan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing#batch-limitations). |
 
 <Tip>
-  Karena batch dapat memerlukan waktu lebih dari 5 menit untuk diproses, pertimbangkan untuk menggunakan [durasi cache 1 jam](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration) dengan "prompt caching" (caching prompt) untuk tingkat cache hit yang lebih baik saat memproses batch dengan konteks bersama.
+  Karena batch dapat memerlukan waktu lebih dari 5 menit untuk diproses, pertimbangkan untuk menggunakan [durasi cache 1 jam](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration) dengan “prompt caching” (caching prompt) untuk tingkat cache hit yang lebih baik saat memproses batch dengan konteks bersama.
 </Tip>
 
 ## Harga

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 5607e2af5393ad55f812219a38720c2104b91ba28395fbd4250695cf9ba55b57
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: c4a217654c71ca3ecb699f3734012e1d714645a6abe7f5285e8ce7e35efd2ed2
 ---
 
 ---
@@ -60,7 +60,7 @@ foreach (var block in message.Content)
 }
 ```
 
-Untuk opsi autentikasi termasuk "Workload Identity Federation" (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
+Untuk opsi autentikasi termasuk “Workload Identity Federation” (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
 
 ## Konfigurasi klien
 
@@ -117,7 +117,7 @@ Metode `WithOptions` tidak memengaruhi klien atau layanan aslinya.
 
 ## Streaming
 
-SDK mendefinisikan metode yang mengembalikan stream "chunk" respons, di mana setiap chunk dapat diproses secara individual segera setelah tiba alih-alih menunggu respons lengkap. Metode streaming umumnya berkorespondensi dengan respons [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) atau [JSONL](https://jsonlines.org).
+SDK mendefinisikan metode yang mengembalikan stream “chunk” respons, di mana setiap chunk dapat diproses secara individual segera setelah tiba alih-alih menunggu respons lengkap. Metode streaming umumnya berkorespondensi dengan respons [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) atau [JSONL](https://jsonlines.org).
 
 Metode streaming selalu memiliki akhiran `Streaming` pada namanya, bahkan jika metode tersebut tidak memiliki varian non-streaming.
 
@@ -169,7 +169,7 @@ Selain itu, semua error 4xx mewarisi dari `Anthropic4xxException`.
 
 ## Percobaan ulang
 
-SDK secara otomatis mencoba ulang sebanyak 2 kali secara default, dengan "exponential backoff" (jeda eksponensial) singkat di antara permintaan.
+SDK secara otomatis mencoba ulang sebanyak 2 kali secara default, dengan “exponential backoff” (jeda eksponensial) singkat di antara permintaan.
 
 Hanya tipe error berikut yang dicoba ulang:
 

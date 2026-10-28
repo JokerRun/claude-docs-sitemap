@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: bbbf9063950e309eb63b4d7f75d3f37a1f9aec0c709828c0effc61bd1fc1c98c
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 1104cc32862c483cb3a7fccaf3b3a6ab097c360e789e1f7afa68e02ab9cee205
 ---
 
 ---
@@ -11,9 +11,9 @@ url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-u
 description: Terapkan kepatuhan JSON Schema pada input alat Claude dengan grammar-constrained sampling.
 ---
 
-Menetapkan `strict: true` pada definisi alat menjamin input alat Claude sesuai dengan JSON Schema Anda dengan membatasi sampling token model hanya pada output yang valid menurut skema (sebuah teknik yang disebut "grammar-constrained sampling" (sampling yang dibatasi tata bahasa)). Halaman ini membahas mengapa mode ketat penting untuk agen, cara mengaktifkannya, dan kasus penggunaan umum. Untuk subset JSON Schema yang didukung, lihat [Keterbatasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Untuk panduan skema non-ketat, lihat [Mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools).
+Menetapkan `strict: true` pada definisi alat menjamin input alat Claude sesuai dengan JSON Schema Anda dengan membatasi sampling token model hanya pada output yang valid menurut skema (sebuah teknik yang disebut “grammar-constrained sampling” (sampling yang dibatasi tata bahasa)). Halaman ini membahas mengapa mode ketat penting untuk agen, cara mengaktifkannya, dan kasus penggunaan umum. Untuk subset JSON Schema yang didukung, lihat [Keterbatasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Untuk panduan skema non-ketat, lihat [Mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools).
 
-"Strict tool use" (penggunaan alat strict) memvalidasi parameter alat, memastikan Claude memanggil fungsi Anda dengan argumen yang bertipe benar. Gunakan penggunaan alat strict ketika Anda perlu:
+“Strict tool use” (penggunaan alat strict) memvalidasi parameter alat, memastikan Claude memanggil fungsi Anda dengan argumen yang bertipe benar. Gunakan penggunaan alat strict ketika Anda perlu:
 
 * Memvalidasi parameter alat
 * Membangun alur kerja agentik
@@ -1126,7 +1126,7 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
 
 Penggunaan alat ketat mengompilasi definisi `input_schema` alat menjadi grammar menggunakan pipeline yang sama dengan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs). Skema alat di-cache sementara hingga 24 jam sejak penggunaan terakhir. Prompt dan respons tidak disimpan di luar respons API.
 
-Penggunaan alat ketat memenuhi syarat HIPAA, tetapi **"protected health information" (informasi kesehatan yang dilindungi), atau PHI, tidak boleh disertakan dalam definisi skema alat**. API menyimpan cache skema yang telah dikompilasi secara terpisah dari konten pesan, dan skema yang di-cache ini tidak menerima perlindungan PHI yang sama seperti prompt dan respons. Jangan sertakan PHI dalam nama properti `input_schema`, nilai `enum`, nilai `const`, atau ekspresi reguler `pattern`. PHI hanya boleh muncul dalam konten pesan (prompt dan respons), di mana PHI dilindungi berdasarkan pengamanan HIPAA.
+Penggunaan alat ketat memenuhi syarat HIPAA, tetapi **“protected health information” (informasi kesehatan yang dilindungi), atau PHI, tidak boleh disertakan dalam definisi skema alat**. API menyimpan cache skema yang telah dikompilasi secara terpisah dari konten pesan, dan skema yang di-cache ini tidak menerima perlindungan PHI yang sama seperti prompt dan respons. Jangan sertakan PHI dalam nama properti `input_schema`, nilai `enum`, nilai `const`, atau ekspresi reguler `pattern`. PHI hanya boleh muncul dalam konten pesan (prompt dan respons), di mana PHI dilindungi berdasarkan pengamanan HIPAA.
 
 Untuk kelayakan ZDR dan HIPAA di seluruh fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 

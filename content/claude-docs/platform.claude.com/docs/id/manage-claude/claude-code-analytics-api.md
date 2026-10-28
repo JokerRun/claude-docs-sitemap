@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: dc4524ef178aeaa69d592eab2c76eb4268a3bd355035aef8c2082d7d6355b1ee
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 9b4dc957d72ab1bc66f7bd4d6853704f15f22a164c921c40620b5270d4711041
 ---
 
 ---
@@ -69,7 +69,7 @@ Lacak penggunaan Claude Code, metrik produktivitas, dan aktivitas developer di s
 * **Data tingkat pengguna:** Setiap record mewakili aktivitas satu pengguna untuk hari yang ditentukan
 * **Metrik produktivitas:** Lacak sesi, baris kode, commit, pull request, dan penggunaan alat
 * **Data token dan biaya:** Pantau penggunaan dan estimasi biaya yang dirinci berdasarkan model Claude
-* **"Cursor-based pagination" (paginasi berbasis kursor):** Tangani dataset besar dengan paginasi yang stabil menggunakan kursor opaque
+* **“Cursor-based pagination” (paginasi berbasis kursor):** Tangani dataset besar dengan paginasi yang stabil menggunakan kursor opaque
 * **Kesegaran data:** Metrik tersedia dengan penundaan hingga 1 jam demi konsistensi
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi Claude Code Analytics API](https://platform.claude.com/docs/id/api/beta/organization/usage_report/retrieve_claude_code).

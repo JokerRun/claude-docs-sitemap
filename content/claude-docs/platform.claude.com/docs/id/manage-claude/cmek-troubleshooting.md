@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 0215b8d2ad72a4100c8c5b54c34b3e1f78e7fa6522443b3ecd80904deffaf9a3
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 0fb79d815002b4019dd2a017e12f8b0bccecabc917ee97761db324a62a0f697d
 ---
 
 ---
@@ -13,7 +13,7 @@ description: Temukan penyebab dan perbaikan untuk pesan kesalahan CMEK, verifika
 
 **Verify** di Claude Console, **Add** di claude.ai, dan panggilan validate pada Admin API semuanya menjalankan pemeriksaan yang sama. Jika pemeriksaan gagal (**Connection failed** di Claude Console), lihat penyebabnya untuk [AWS KMS](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#aws-kms), [Google Cloud KMS](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#google-cloud-kms), atau [Azure Key Vault](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#azure-key-vault).
 
-Jika suatu fitur berhenti berfungsi, mungkin fitur tersebut termasuk yang dinonaktifkan oleh "customer-managed encryption keys" (kunci enkripsi yang dikelola pelanggan), atau CMEK. Periksa [daftar Claude Platform](https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-platform#turned-off-or-changed) atau [daftar Claude Enterprise](https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise#turned-off-or-changed).
+Jika suatu fitur berhenti berfungsi, mungkin fitur tersebut termasuk yang dinonaktifkan oleh “customer-managed encryption keys” (kunci enkripsi yang dikelola pelanggan), atau CMEK. Periksa [daftar Claude Platform](https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-platform#turned-off-or-changed) atau [daftar Claude Enterprise](https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise#turned-off-or-changed).
 
 Jika tidak ada yang sesuai di sini, hubungi tim akun Anthropic Anda.
 
@@ -134,7 +134,7 @@ Jika melampirkan masih gagal, temukan event `kms:` yang ditolak di CloudTrail pa
 CMEK keys can only be attached to workspaces in this organization that have inference data retention enabled.
 ```
 
-[Organisasi Anda menggunakan "zero data retention" (tanpa retensi data), atau ZDR](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#zdr-organizations), dan kunci memerlukan workspace yang menyimpan data. Alihkan workspace ke **Standard data retention** terlebih dahulu.
+[Organisasi Anda menggunakan “zero data retention” (tanpa retensi data), atau ZDR](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#zdr-organizations), dan kunci memerlukan workspace yang menyimpan data. Alihkan workspace ke **Standard data retention** terlebih dahulu.
 
 ### Workspace tidak memiliki pengaturan Encryption key
 

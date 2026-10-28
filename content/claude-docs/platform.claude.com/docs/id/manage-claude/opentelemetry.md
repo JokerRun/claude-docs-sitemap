@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry
-fetched_at: 2026-10-27T02:22:08.565782Z
-sha256: 4cadfb8561b560cc64b14ec4fe2f292840d6c9e1376b6f4464da071a2359d96e
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 33360a07273dee6de925d43557de4fe064da065859815a7fe05334d265c10e40
 ---
 
 ---
@@ -26,7 +26,7 @@ featureMetadata:
   <source src="https://media.platform.claude.com/docs/opentelemetry/tracing/overview-480p.mp4" type="video/mp4" />
 </video>
 
-Claude API dan SDK dapat melakukan "tracing" (penelusuran) terhadap permintaan Messages API, penggunaan alat, dan sesi Managed Agents Anda dengan [OpenTelemetry](https://opentelemetry.io/) (OTel). Anda dapat melihat trace ini di platform observabilitas yang sudah Anda miliki. Gunakan trace tersebut untuk men-debug permintaan yang gagal atau lambat, melacak penggunaan token dan "latency" (latensi), serta membangun eval dari lalu lintas nyata. Anda juga dapat melihat setiap permintaan di dalam trace aplikasi Anda sendiri, yang ditautkan ke pengguna atau fitur yang mengirimkannya.
+Claude API dan SDK dapat melakukan “tracing” (penelusuran) terhadap permintaan Messages API, penggunaan alat, dan sesi Managed Agents Anda dengan [OpenTelemetry](https://opentelemetry.io/) (OTel). Anda dapat melihat trace ini di platform observabilitas yang sudah Anda miliki. Gunakan trace tersebut untuk men-debug permintaan yang gagal atau lambat, melacak penggunaan token dan “latency” (latensi), serta membangun eval dari lalu lintas nyata. Anda juga dapat melihat setiap permintaan di dalam trace aplikasi Anda sendiri, yang ditautkan ke pengguna atau fitur yang mengirimkannya.
 
 OpenTelemetry adalah standar netral vendor yang didukung oleh sebagian besar platform observabilitas. *Trace* (jejak) adalah catatan lengkap dari satu permintaan yang melewati sistem Anda. *Span* (rentang) adalah satu langkah dalam sebuah trace, seperti permintaan model atau penggunaan alat. API dan SDK menggunakan atribut dari [konvensi semantik GenAI](https://github.com/open-telemetry/semantic-conventions-genai), sehingga platform yang mendukung konvensi tersebut dapat mengenali span tanpa penyiapan tambahan.
 

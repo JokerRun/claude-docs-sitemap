@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: cabc7269de960e8258eb67db36b7aeefdc2bb86587fb0f5d9312ce6a2b28a2ec
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 15f9f07f667ac2077262e9585987dc89e5ec2374f32a822b4e3d4beb0366a24b
 ---
 
 ---
@@ -18,7 +18,7 @@ Claude Fable 5 menangani masalah yang sebelumnya terlalu kompleks, berjalan terl
 Claude Fable 5 memiliki beberapa perbedaan perilaku dari Claude Opus 4.8 yang mungkin memerlukan pembaruan prompt atau scaffolding. Peningkatan kemampuan pada tingkat ini juga merupakan momen yang baik untuk mengevaluasi ulang instruksi, alat, dan guardrail mana yang masih diperlukan. Pola-pola berikut membahas perilaku yang paling sering memerlukan penyesuaian.
 
 <Note>
-  Untuk cara kerja thinking pada Claude Fable 5 dan Claude Mythos 5 (hanya adaptive thinking, output thinking yang hanya berupa ringkasan, tanpa anggaran "extended thinking" (pemikiran diperpanjang)), lihat [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking#configuring-thinking). Untuk stop reason `refusal` dan penanganan fallback, lihat [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback).
+  Untuk cara kerja thinking pada Claude Fable 5 dan Claude Mythos 5 (hanya adaptive thinking, output thinking yang hanya berupa ringkasan, tanpa anggaran “extended thinking” (pemikiran diperpanjang)), lihat [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking#configuring-thinking). Untuk stop reason `refusal` dan penanganan fallback, lihat [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback).
 
   Claude Fable 5 menjalankan pengklasifikasi keamanan yang menargetkan teknik keamanan siber ofensif (seperti membangun exploit, malware, atau perangkat serangan), konten biologi dan ilmu hayati (seperti metode laboratorium atau mekanisme molekuler), serta ekstraksi thinking yang diringkas dari model. Pekerjaan keamanan siber yang tidak berbahaya dan tugas ilmu hayati yang bermanfaat mungkin juga memicu pengaman ini. Untuk mengalihkan permintaan yang ditolak secara otomatis, konfigurasikan [fallback sisi server atau sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) ke Claude Opus 4.8.
 </Note>
@@ -47,7 +47,7 @@ When you have enough information to act, act. Do not re-derive facts already est
 
 ## Pertimbangkan semua tingkat effort
 
-[Effort](https://platform.claude.com/docs/id/build-with-claude/effort) adalah kontrol utama untuk trade-off antara kecerdasan, "latency" (latensi), dan biaya pada Claude Fable 5. Gunakan `high` sebagai default untuk sebagian besar tugas, dengan `xhigh` untuk beban kerja yang paling sensitif terhadap kemampuan dan `medium` atau `low` untuk pekerjaan rutin. Pengaturan effort yang lebih rendah pada Claude Fable 5 tetap berkinerja baik dan sering kali melampaui kinerja `xhigh` pada model-model sebelumnya. Kurangi effort jika suatu tugas selesai tetapi memakan waktu lebih lama dari yang diperlukan, atau jika Anda menginginkan gaya kerja yang lebih cepat dan lebih interaktif.
+[Effort](https://platform.claude.com/docs/id/build-with-claude/effort) adalah kontrol utama untuk trade-off antara kecerdasan, “latency” (latensi), dan biaya pada Claude Fable 5. Gunakan `high` sebagai default untuk sebagian besar tugas, dengan `xhigh` untuk beban kerja yang paling sensitif terhadap kemampuan dan `medium` atau `low` untuk pekerjaan rutin. Pengaturan effort yang lebih rendah pada Claude Fable 5 tetap berkinerja baik dan sering kali melampaui kinerja `xhigh` pada model-model sebelumnya. Kurangi effort jika suatu tugas selesai tetapi memakan waktu lebih lama dari yang diperlukan, atau jika Anda menginginkan gaya kerja yang lebih cepat dan lebih interaktif.
 
 Pada pekerjaan rutin dengan effort yang lebih tinggi, Claude Fable 5 dapat mengumpulkan konteks dan mempertimbangkan melebihi apa yang dibutuhkan tugas. Pada saat yang sama, effort yang lebih tinggi sering menghasilkan perilaku verifikasi yang sangat baik, penalaran yang canggih, dan output yang paling teliti. Untuk mencegah perapian atau refactoring yang tidak diminta pada effort yang lebih tinggi:
 
@@ -111,7 +111,7 @@ Reflect on the previous sessions we've had together. Use subagents to identify c
 
 ## Kasus langka penghentian dini
 
-Jauh di dalam sesi yang panjang, Claude Fable 5 sesekali dapat mengakhiri giliran dengan pernyataan niat berupa teks saja ("Sekarang saya akan menjalankan X") tanpa mengeluarkan panggilan alat yang sesuai, atau berhenti sejenak untuk meminta izin padahal sudah memiliki cukup informasi untuk melanjutkan. Cukup dengan "lanjutkan" atau "silakan kerjakan sampai selesai secara end-to-end". Untuk mendefinisikan kapan jeda itu tepat, padukan ini dengan instruksi checkpoint di [Kepatuhan instruksi yang kuat](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5#strong-instruction-following). Untuk pipeline otonom, tambahkan pengingat sistem:
+Jauh di dalam sesi yang panjang, Claude Fable 5 sesekali dapat mengakhiri giliran dengan pernyataan niat berupa teks saja (“Sekarang saya akan menjalankan X”) tanpa mengeluarkan panggilan alat yang sesuai, atau berhenti sejenak untuk meminta izin padahal sudah memiliki cukup informasi untuk melanjutkan. Cukup dengan “lanjutkan” atau “silakan kerjakan sampai selesai secara end-to-end”. Untuk mendefinisikan kapan jeda itu tepat, padukan ini dengan instruksi checkpoint di [Kepatuhan instruksi yang kuat](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5#strong-instruction-following). Untuk pipeline otonom, tambahkan pengingat sistem:
 
 ```text wrap
 You are operating autonomously. The user is not watching in real time and cannot answer questions mid-task, so asking "Want me to…?" or "Shall I…?" will block the work. For reversible actions that follow from the original request, proceed without asking. Offering follow-ups after the task is done is fine; asking permission after already discussing with the user before doing the work is not. Before ending your turn, check your last paragraph. If it is a plan, an analysis, a question, a list of next steps, or a promise about work you have not done ("I'll…", "let me know when…"), do that work now with tool calls. End your turn only when the task is complete or you are blocked on input only the user can provide.
@@ -166,7 +166,7 @@ Saat menjalankan agen asinkron yang panjang, berikan agen cara untuk menampilkan
 }
 ```
 
-Tambahkan alat ini kapan pun UX Anda bergantung pada penyampaian konten atau interaksi pengguna langsung secara verbatim di tengah tugas. Untuk agen yang hanya menarasikan progres rutin, ringkasan model sendiri biasanya sudah memadai. Mendefinisikan alat saja tidak cukup; tanpa instruksi dalam "system prompt" (prompt sistem), Claude Fable 5 jarang memanggilnya. Padukan alat tersebut dengan bahasa pemancing seperti:
+Tambahkan alat ini kapan pun UX Anda bergantung pada penyampaian konten atau interaksi pengguna langsung secara verbatim di tengah tugas. Untuk agen yang hanya menarasikan progres rutin, ringkasan model sendiri biasanya sudah memadai. Mendefinisikan alat saja tidak cukup; tanpa instruksi dalam “system prompt” (prompt sistem), Claude Fable 5 jarang memanggilnya. Padukan alat tersebut dengan bahasa pemancing seperti:
 
 ```text wrap
 Between tool calls, when you have content the user must read verbatim (a partial deliverable, a direct answer to their question), call the send_to_user tool with that content. Use send_to_user only for user-facing content, not for narration or reasoning.

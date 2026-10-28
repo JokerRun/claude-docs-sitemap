@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 07b9edecdb7af8b9b99d83eea361a5d74e0f7a0f344c9e94d3d4c721e1a85a42
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 0e9d3db1fbc5bd4ee2b9c03a0b9b2c4bccabf450aa0da72c4ba3d8589dd178e9
 ---
 
 ---
@@ -28,14 +28,14 @@ featureMetadata:
     - Mode cepat pada Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset dan memerlukan header beta `fast-mode-2026-02-01`.
 ---
 
-"Fast mode" (mode cepat) memberikan token output per detik hingga 2,5x lebih tinggi dengan harga premium. Atur `speed: "fast"` pada permintaan Anda untuk ikut serta. Mode cepat tersedia pada Claude Opus 5.5 dan dalam pratinjau riset pada Claude Opus 5 dan Claude Opus 4.8.
+“Fast mode” (mode cepat) memberikan token output per detik hingga 2,5x lebih tinggi dengan harga premium. Atur `speed: "fast"` pada permintaan Anda untuk ikut serta. Mode cepat tersedia pada Claude Opus 5.5 dan dalam pratinjau riset pada Claude Opus 5 dan Claude Opus 4.8.
 
 ## Cara kerja mode cepat
 
 Mode cepat menjalankan model yang sama dengan konfigurasi inferensi yang lebih cepat. Tidak ada perubahan pada kecerdasan atau kemampuan.
 
 * Token output per detik hingga 2,5x lebih tinggi dibandingkan kecepatan standar
-* Manfaat kecepatan berfokus pada "output tokens per second" (token output per detik), atau OTPS, bukan "time to first token" (waktu hingga token pertama), atau TTFT
+* Manfaat kecepatan berfokus pada “output tokens per second” (token output per detik), atau OTPS, bukan “time to first token” (waktu hingga token pertama), atau TTFT
 * Kompatibel dengan [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming), di mana peningkatan OTPS paling terlihat
 
 ## Penggunaan dasar

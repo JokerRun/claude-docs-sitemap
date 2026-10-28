@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/claude-code/routines-fire
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: f5d9da1370dd2c6642af8f9ef0405c587c125b6c00deb0cf3bb3885d5e2d2569
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 0acd05da33d17a27cc4966ac49c58c9021171c00291e085cca300bd7bb49e356
 ---
 
 ---
@@ -15,7 +15,7 @@ description: Start a Claude Code routine session on demand by sending an authent
   This is an experimental API. Request and response shapes, rate limits, and token semantics might change.
 </Warning>
 
-[Claude Code](https://code.claude.com/docs) is Anthropic's agentic coding tool. [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web) runs Claude Code sessions on Anthropic-managed cloud infrastructure at claude.ai/code, and a [routine](https://code.claude.com/docs/en/routines) is a saved configuration there: a prompt, one or more repositories, and connectors, packaged so it can run unattended on a schedule, in response to GitHub events, or when called over HTTP.
+[Claude Code](https://code.claude.com/docs) is Anthropic’s agentic coding tool. [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web) runs Claude Code sessions on Anthropic-managed cloud infrastructure at claude.ai/code, and a [routine](https://code.claude.com/docs/en/routines) is a saved configuration there: a prompt, one or more repositories, and connectors, packaged so it can run unattended on a schedule, in response to GitHub events, or when called over HTTP.
 
 This endpoint is the HTTP entry point. POSTing to it starts a new run of an existing routine and returns the resulting session ID and URL. Typical callers are alerting systems, CI pipelines, and internal tools that need to start a Claude Code session programmatically.
 
@@ -88,7 +88,7 @@ Older integrations that send an `anthropic-beta: experimental-cc-routine-2026-04
 
 | Name         | Type   | Description                                                                                                                                                                         |
 | ------------ | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `routine_id` | string | The routine's identifier. Despite the parameter name, the value is prefixed `trig_` rather than `routine_`. Included in the URL the modal window shows when you add an API trigger. |
+| `routine_id` | string | The routine’s identifier. Despite the parameter name, the value is prefixed `trig_` rather than `routine_`. Included in the URL the modal window shows when you add an API trigger. |
 
 ### Request body
 
@@ -144,7 +144,7 @@ Errors use the standard Anthropic [error envelope](https://platform.claude.com/d
 
 The bearer token is scoped to a single routine. A compromised token can only trigger that routine; it grants no read access, no access to other routines, and no access to account data.
 
-Generate and revoke tokens from the routine's API trigger settings at [claude.ai/code/routines](https://claude.ai/code/routines). There is no public API for token management. Generating a new token revokes the previous one.
+Generate and revoke tokens from the routine’s API trigger settings at [claude.ai/code/routines](https://claude.ai/code/routines). There is no public API for token management. Generating a new token revokes the previous one.
 
 ## Idempotency
 

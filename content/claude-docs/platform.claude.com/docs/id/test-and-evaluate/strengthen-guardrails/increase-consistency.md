@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/increase-consistency
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 7c2eded0c5c44e857c0bf098634fbb4ebc7766f0240274c2c38142c4c0e38e64
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: a4ac72b08933380e72b3b6e9f88263b66cf7b886e70db8ad5d4efe513c031ed5
 ---
 
 ---
@@ -256,7 +256,7 @@ Berikan contoh output yang Anda inginkan. Cara ini lebih efektif daripada instru
 
 ## Gunakan retrieval untuk konsistensi kontekstual
 
-Untuk tugas yang memerlukan konteks yang konsisten (misalnya, chatbot, basis pengetahuan), gunakan "retrieval" (pengambilan informasi) untuk mendasarkan respons Claude pada kumpulan informasi yang tetap.
+Untuk tugas yang memerlukan konteks yang konsisten (misalnya, chatbot, basis pengetahuan), gunakan “retrieval” (pengambilan informasi) untuk mendasarkan respons Claude pada kumpulan informasi yang tetap.
 
 <Accordion title="Contoh: Meningkatkan konsistensi dukungan TI">
   ```text User wrap
@@ -333,7 +333,7 @@ Untuk aplikasi berbasis peran, mempertahankan karakter yang konsisten memerlukan
   <Tip>
     Saat menyiapkan karakter, berikan informasi terperinci tentang kepribadian, latar belakang, dan sifat atau keunikan spesifik apa pun. Ini membantu model meniru dan menggeneralisasi sifat-sifat karakter dengan lebih baik.
   </Tip>
-* **Persiapkan Claude untuk skenario yang mungkin terjadi:** Berikan daftar skenario umum dan respons yang diharapkan dalam prompt Anda. Ini "melatih" Claude untuk menangani beragam situasi tanpa keluar dari karakter.
+* **Persiapkan Claude untuk skenario yang mungkin terjadi:** Berikan daftar skenario umum dan respons yang diharapkan dalam prompt Anda. Ini “melatih” Claude untuk menangani beragam situasi tanpa keluar dari karakter.
 
 <Accordion title="Contoh: Chatbot enterprise untuk role prompting">
   ```text System wrap

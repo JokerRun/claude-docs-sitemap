@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: f9e57c9628c283206dd1cb9f8a4e88c2d604be64708e411c18e6fc109cccc92a
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: ff935c9ee19f6613cd0e85c30c1d34b86d813dd374f324f1971ea213fd871d9e
 ---
 
 ---
@@ -29,9 +29,9 @@ API mengikuti format kode error HTTP yang dapat diprediksi:
 
 * 413 - `request_too_large`: Permintaan melebihi jumlah byte maksimum yang diizinkan. Lihat [Batas ukuran permintaan](https://platform.claude.com/docs/id/api/errors#request-size-limits) untuk batas maksimum per endpoint.
 
-* 429 - `rate_limit_error`: Organisasi Anda telah mencapai ["rate limit" (batas laju)](https://platform.claude.com/docs/id/api/rate-limits), mencapai batas pengeluaran bulanan tingkat penggunaannya, atau mencapai batas pengeluaran pada workspace Claude Code. Error 429 akibat batas pengeluaran tingkat tidak memiliki header `retry-after` dan akan terus gagal hingga akses dipulihkan; lihat [Mencapai batas pengeluaran Anda](https://platform.claude.com/docs/id/api/rate-limits#reaching-your-spend-cap) untuk cara mengenalinya.
+* 429 - `rate_limit_error`: Organisasi Anda telah mencapai [“rate limit” (batas laju)](https://platform.claude.com/docs/id/api/rate-limits), mencapai batas pengeluaran bulanan tingkat penggunaannya, atau mencapai batas pengeluaran pada workspace Claude Code. Error 429 akibat batas pengeluaran tingkat tidak memiliki header `retry-after` dan akan terus gagal hingga akses dipulihkan; lihat [Mencapai batas pengeluaran Anda](https://platform.claude.com/docs/id/api/rate-limits#reaching-your-spend-cap) untuk cara mengenalinya.
 
-* 500 - `api_error`: Terjadi error tak terduga di dalam sistem Anthropic. Coba ulang permintaan dengan "exponential backoff" (penundaan eksponensial); jika error berlanjut, hubungi dukungan dengan menyertakan [ID permintaan](https://platform.claude.com/docs/id/api/errors#request-id).
+* 500 - `api_error`: Terjadi error tak terduga di dalam sistem Anthropic. Coba ulang permintaan dengan “exponential backoff” (penundaan eksponensial); jika error berlanjut, hubungi dukungan dengan menyertakan [ID permintaan](https://platform.claude.com/docs/id/api/errors#request-id).
 
 * 504 - `timeout_error`: Permintaan mengalami timeout saat diproses. Pertimbangkan untuk menggunakan [Messages API dengan streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) untuk permintaan yang berjalan lama. Lihat [Permintaan panjang](https://platform.claude.com/docs/id/api/errors#long-requests) untuk opsi lainnya.
 
@@ -45,7 +45,7 @@ API mengikuti format kode error HTTP yang dapat diprediksi:
 
 SDK resmi secara otomatis mencoba ulang kegagalan sementara (seperti error koneksi, batas laju, dan error server 5xx) dengan exponential backoff, dua kali secara default, dengan mematuhi header `retry-after` jika ada. Klien SDK menerima `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries()`; csharp: `MaxRetries`; go: `option.WithMaxRetries()`) untuk mengonfigurasi atau menonaktifkan perilaku ini.
 
-Saat menerima respons [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) melalui "server-sent events" (peristiwa yang dikirim server), atau SSE, error dapat terjadi setelah API mengembalikan respons 200. Dalam kasus tersebut, penanganan error tidak mengikuti mekanisme standar ini. Lihat [Event error](https://platform.claude.com/docs/id/build-with-claude/streaming#error-events) untuk bentuk error di tengah stream.
+Saat menerima respons [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) melalui “server-sent events” (peristiwa yang dikirim server), atau SSE, error dapat terjadi setelah API mengembalikan respons 200. Dalam kasus tersebut, penanganan error tidak mengikuti mekanisme standar ini. Lihat [Event error](https://platform.claude.com/docs/id/build-with-claude/streaming#error-events) untuk bentuk error di tengah stream.
 
 ## Batas ukuran permintaan
 
@@ -435,7 +435,7 @@ Lihat [Mendapatkan pesan akhir tanpa menangani peristiwa](https://platform.claud
 
 ### Prefill tidak didukung
 
-Model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing) tidak mendukung "prefill" (pengisian awal) pesan asisten. Mengirim permintaan dengan pesan asisten terakhir yang di-prefill ke salah satu model ini akan mengembalikan 400 `invalid_request_error`:
+Model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing) tidak mendukung “prefill” (pengisian awal) pesan asisten. Mengirim permintaan dengan pesan asisten terakhir yang di-prefill ke salah satu model ini akan mengembalikan 400 `invalid_request_error`:
 
 ```json
 {
@@ -457,11 +457,11 @@ Jika pesan asisten terbaru berisi blok `thinking` atau `redacted_thinking` yang 
 `thinking` or `redacted_thinking` blocks in the latest assistant message cannot be modified. These blocks must remain as they were in the original response.
 ```
 
-Dengan "tool use" (penggunaan alat), kirim kembali setiap blok `thinking` dan `redacted_thinking` dari giliran asisten persis seperti yang diterima, termasuk blok yang field `thinking`-nya kosong. Jika aplikasi Anda menyaring blok konten berdasarkan tipe sebelum mengirim ulang, sertakan `thinking` dan `redacted_thinking`. Lihat [perbaikan untuk blok thinking yang dimodifikasi](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-blocks-modified) di Pemecahan masalah thinking, serta [Mempertahankan blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks) dan [Preserved thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking).
+Dengan “tool use” (penggunaan alat), kirim kembali setiap blok `thinking` dan `redacted_thinking` dari giliran asisten persis seperti yang diterima, termasuk blok yang field `thinking`-nya kosong. Jika aplikasi Anda menyaring blok konten berdasarkan tipe sebelum mengirim ulang, sertakan `thinking` dan `redacted_thinking`. Lihat [perbaikan untuk blok thinking yang dimodifikasi](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-blocks-modified) di Pemecahan masalah thinking, serta [Mempertahankan blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks) dan [Preserved thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking).
 
 ### Extended thinking tidak didukung
 
-Model Claude 4.7 dan yang lebih baru telah menghapus "extended thinking" (pemikiran diperpanjang). Mengirim `thinking: {"type": "enabled"}` ke salah satu model ini akan mengembalikan 400 `invalid_request_error`:
+Model Claude 4.7 dan yang lebih baru telah menghapus “extended thinking” (pemikiran diperpanjang). Mengirim `thinking: {"type": "enabled"}` ke salah satu model ini akan mengembalikan 400 `invalid_request_error`:
 
 ```text wrap
 "thinking.type.enabled" is not supported for this model. Use "thinking.type.adaptive" and "output_config.effort" to control thinking behavior.
@@ -513,7 +513,7 @@ messages.N: output_config.effort 'low' differs from the 'high' in effect before 
 
 Claude Haiku 5.5 menerima `thinking: {"type": "disabled"}` dan menerapkan dua batas effort yang sama yang berlaku untuk `between_tools`: pada effort `xhigh` atau `max`, atau dengan `output_config.effort` per pesan yang berbeda dari level yang berlaku, permintaan akan mengembalikan error 400 `invalid_request_error` dengan pesan yang sesuai seperti yang ditunjukkan sebelumnya.
 
-Dalam kedua pesan tersebut, "enable thinking" berarti adaptive thinking: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Claude Sonnet 5.5 dan Claude Haiku 5.5 menolak `"enabled"` dengan error 400. Untuk memvariasikan effort di setiap giliran, gunakan adaptive thinking.
+Dalam kedua pesan tersebut, “enable thinking” berarti adaptive thinking: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Claude Sonnet 5.5 dan Claude Haiku 5.5 menolak `"enabled"` dengan error 400. Untuk memvariasikan effort di setiap giliran, gunakan adaptive thinking.
 
 Mengirim `thinking: {"type": "between_tools"}` ke model apa pun selain Claude Sonnet 5.5 akan mengembalikan 400 `invalid_request_error`:
 

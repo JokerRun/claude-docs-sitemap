@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 33dd22f6cedadbbbe531aa833c8e90c6567c7a8c500c051c20f34574b45733b1
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: eaf771c7250237f2c98c79ab56b64cb02710328eadcaa84e2f9c70f2366333b1
 ---
 
 ---
@@ -30,7 +30,7 @@ API menjalankan alat tersebut secara internal. Anda melihat panggilan dan hasiln
 
 ## Loop sisi server dan pause\_turn
 
-Saat menggunakan alat server seperti pencarian web, API mengeksekusi panggilan alat dalam "agentic loop" (loop agentik) sisi server. Pada giliran yang berjalan lama, API mungkin menjeda loop tersebut dan mengembalikan stop reason `pause_turn`.
+Saat menggunakan alat server seperti pencarian web, API mengeksekusi panggilan alat dalam “agentic loop” (loop agentik) sisi server. Pada giliran yang berjalan lama, API mungkin menjeda loop tersebut dan mengembalikan stop reason `pause_turn`.
 
 Berikut cara menangani stop reason `pause_turn`:
 
@@ -1092,7 +1092,7 @@ Versi `_20260209` dan yang lebih baru dari pencarian web dan web fetch menggunak
 
 ## Streaming event alat server
 
-Event alat server di-streaming sebagai bagian dari alur "server-sent events" (event yang dikirim server), atau SSE, yang normal. Blok `server_tool_use` yang dipanggil Claude secara langsung di-streaming seperti blok `tool_use` klien: event `content_block_start` diikuti oleh event `input_json_delta`. Blok hasil tiba secara lengkap dalam satu event `content_block_start`, tanpa delta.
+Event alat server di-streaming sebagai bagian dari alur “server-sent events” (event yang dikirim server), atau SSE, yang normal. Blok `server_tool_use` yang dipanggil Claude secara langsung di-streaming seperti blok `tool_use` klien: event `content_block_start` diikuti oleh event `input_json_delta`. Blok hasil tiba secara lengkap dalam satu event `content_block_start`, tanpa delta.
 
 Lihat [Streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) untuk referensi event lengkap. Halaman alat individual mendokumentasikan nama event khusus alat jika berbeda.
 

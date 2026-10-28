@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/commerce-agents
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 19052013ca163c5aba85532e2e2889032904ae5a4302eaebf19f0a0924cadd69
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 723e37d67ba05d9e1d65e289e0c53001ddbebcff5b3ce984e4c41c74fb04a6dd
 ---
 
 ---
@@ -11,9 +11,9 @@ url: https://platform.claude.com/docs/id/about-claude/use-case-guides/commerce-a
 description: Bangun agen belanja dan agen merchant di Claude menggunakan Claude for commerce, sebuah blueprint open-source dengan implementasi yang berfungsi pada Messages API, Claude Agent SDK, dan Claude Managed Agents.
 ---
 
-Panduan ini menunjukkan cara membangun agen perdagangan di Claude: "shopping agent" (agen belanja) yang digunakan pelanggan di dalam aplikasi Anda, dan "merchant agent" (agen merchant) untuk orang-orang yang menjalankan toko, baik staf operasional bisnis itu sendiri maupun para penjual di platformnya. Panduan ini melakukannya melalui Claude for commerce, sebuah "blueprint" (cetak biru) open-source yang berisi implementasi yang berfungsi dari setiap agen pada [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages), [Claude Agent SDK](https://code.claude.com/docs/id/agent-sdk/overview), dan [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), contoh yang dapat dijalankan untuk ritel, perjalanan, telekomunikasi, dan hiburan, serta plugin Claude Code yang membuat kerangka desain yang sama untuk sistem Anda sendiri.
+Panduan ini menunjukkan cara membangun agen perdagangan di Claude: “shopping agent” (agen belanja) yang digunakan pelanggan di dalam aplikasi Anda, dan “merchant agent” (agen merchant) untuk orang-orang yang menjalankan toko, baik staf operasional bisnis itu sendiri maupun para penjual di platformnya. Panduan ini melakukannya melalui Claude for commerce, sebuah “blueprint” (cetak biru) open-source yang berisi implementasi yang berfungsi dari setiap agen pada [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages), [Claude Agent SDK](https://code.claude.com/docs/id/agent-sdk/overview), dan [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), contoh yang dapat dijalankan untuk ritel, perjalanan, telekomunikasi, dan hiburan, serta plugin Claude Code yang membuat kerangka desain yang sama untuk sistem Anda sendiri.
 
-Kode, instruksi penyiapan, dan dokumentasi keamanan tersedia di [repositori Claude for commerce di GitHub](https://github.com/anthropics/commerce-agents). Untuk mengetahui cara agen dibangun beserta alasannya, termasuk desain agen tunggal dengan skill, komponen UI sebagai alat, keamanan yang ditegakkan oleh harness, "prompt caching" (caching prompt), memori, dan eval, baca postingan engineering [Panduan anatomi agen perdagangan yang efektif](https://claude.com/blog/the-anatomy-of-effective-commerce-agents).
+Kode, instruksi penyiapan, dan dokumentasi keamanan tersedia di [repositori Claude for commerce di GitHub](https://github.com/anthropics/commerce-agents). Untuk mengetahui cara agen dibangun beserta alasannya, termasuk desain agen tunggal dengan skill, komponen UI sebagai alat, keamanan yang ditegakkan oleh harness, “prompt caching” (caching prompt), memori, dan eval, baca postingan engineering [Panduan anatomi agen perdagangan yang efektif](https://claude.com/blog/the-anatomy-of-effective-commerce-agents).
 
 <Note>
   Blueprint ini adalah implementasi referensi untuk di-fork dan diadaptasi, bukan produk yang didukung atau layanan yang di-hosting.
@@ -30,7 +30,7 @@ Agen belanja berada di dalam aplikasi Anda dan menjangkau sistem Anda melalui sa
 * Menjawab pertanyaan tentang pesanan, pengiriman, pengembalian, dan kebijakan dari sistem pesanan dan kebijakan Anda sendiri.
 * Mengingat apa yang diminta pelanggan untuk diingat dan menerapkannya di sesi berikutnya.
 
-Lima skill dimuat sesuai kebutuhan untuk mencakup pencarian dan penemuan, riset pembelian, perencanaan menuju suatu tujuan, layanan pelanggan, serta memori dan personalisasi. Aturan yang dibutuhkan agen di sebagian besar giliran, seperti grounding, semantik keranjang dan checkout, serta presentasi, ditempatkan di "system prompt" (prompt sistem) sebagai gantinya.
+Lima skill dimuat sesuai kebutuhan untuk mencakup pencarian dan penemuan, riset pembelian, perencanaan menuju suatu tujuan, layanan pelanggan, serta memori dan personalisasi. Aturan yang dibutuhkan agen di sebagian besar giliran, seperti grounding, semantik keranjang dan checkout, serta presentasi, ditempatkan di “system prompt” (prompt sistem) sebagai gantinya.
 
 Agen menyebutkan produk, harga, ketersediaan, dan ketentuan toko hanya berdasarkan hasil alat dalam percakapan, dan penulisan ke keranjang hanya menerima ID produk yang dikembalikan oleh alat katalog atau pesanan dalam sesi tersebut. Checkout menyiapkan ringkasan yang dikonfirmasi pelanggan di aplikasi Anda. Jika Anda menggunakan checkout yang di-hosting, back end Anda mengembalikan URL-nya dan host merendernya tanpa meneruskannya melalui model.
 
@@ -41,12 +41,12 @@ Agen merchant mendukung orang-orang yang menjalankan toko. Agen ini menjangkau s
 * Menjelaskan kinerja bisnis: mengapa suatu metrik berubah, segmen mana yang mendorongnya, dan laju dibandingkan dengan periode yang sebanding. Delegasi analisis opsional menjalankan kueri hanya-baca dengan batas waktu dan ukuran.
 * Menyajikan ringkasan harian tentang hal-hal yang perlu diperhatikan, termasuk stok rendah, produk yang lambat terjual, dan pengecualian pesanan.
 * Meningkatkan konten listing dan memperbaiki data katalog dari materi yang diberikan operator.
-* Merekomendasikan perubahan harga dan promosi dalam batas "guardrails" (pagar pengaman) toko, dengan pratinjau margin.
+* Merekomendasikan perubahan harga dan promosi dalam batas “guardrails” (pagar pengaman) toko, dengan pratinjau margin.
 * Menyusun draf kampanye pemasaran lengkap dengan audiens, penempatan, dan anggaran.
 
 Lima skill-nya mencakup wawasan kinerja, inventaris dan operasional, katalog dan listing, harga dan promosi, serta kampanye pemasaran.
 
-Setiap penulisan yang diusulkan agen merchant, baik pembaruan listing, perubahan harga, tindakan inventaris, promosi, maupun kampanye, merupakan "staged change" (perubahan yang disiapkan) dengan ID yang dibuat server, yang dilihat operator sebagai kartu pratinjau. Pagar pengaman seperti perubahan harga maksimum, kedalaman promosi, ukuran restock, anggaran kampanye, dan kolom yang dilindungi diperiksa saat perubahan disiapkan dan sekali lagi saat diterapkan. Perubahan hanya diterapkan setelah seseorang menyetujuinya di luar percakapan: tombol di portal merchant pada jalur Messages API, prompt konfirmasi di konsol Agent SDK, atau [kebijakan izin always-ask](https://platform.claude.com/docs/id/managed-agents/permission-policies) pada alat apply di Claude Managed Agents. Persetujuan yang diketik di chat tidak menyetujui apa pun.
+Setiap penulisan yang diusulkan agen merchant, baik pembaruan listing, perubahan harga, tindakan inventaris, promosi, maupun kampanye, merupakan “staged change” (perubahan yang disiapkan) dengan ID yang dibuat server, yang dilihat operator sebagai kartu pratinjau. Pagar pengaman seperti perubahan harga maksimum, kedalaman promosi, ukuran restock, anggaran kampanye, dan kolom yang dilindungi diperiksa saat perubahan disiapkan dan sekali lagi saat diterapkan. Perubahan hanya diterapkan setelah seseorang menyetujuinya di luar percakapan: tombol di portal merchant pada jalur Messages API, prompt konfirmasi di konsol Agent SDK, atau [kebijakan izin always-ask](https://platform.claude.com/docs/id/managed-agents/permission-policies) pada alat apply di Claude Managed Agents. Persetujuan yang diketik di chat tidak menyetujui apa pun.
 
 ## Contoh vertikal
 

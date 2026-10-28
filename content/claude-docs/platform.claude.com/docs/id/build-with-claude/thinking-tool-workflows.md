@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: c8830280097276c3979af1adae7f31a086cd9a6cc94df769b74a6c0224f7d419
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 90f1a7970e5c349c1ee089dfdd76a029ee09e72d588e7627b0dcc2cab07d0992
 ---
 
 ---
@@ -12,16 +12,16 @@ description: Telusuri perjalanan bolak-balik penggunaan alat dua giliran yang le
 ---
 
 <Note>
-  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-Halaman ini menelusuri perjalanan bolak-balik "tool use" (penggunaan alat) dua giliran yang lengkap dengan thinking diaktifkan: Claude berpikir, meminta pemanggilan alat, menerima hasilnya, dan menyelesaikan jawabannya, dengan blok thinking ditangani dengan benar di setiap langkah. Aturan lengkapnya ada di halaman [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking), di [Thinking dengan penggunaan alat](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use) dan [Mempertahankan blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks); halaman ini menunjukkan aturan-aturan tersebut diterapkan dalam kode yang dapat dijalankan.
+Halaman ini menelusuri perjalanan bolak-balik “tool use” (penggunaan alat) dua giliran yang lengkap dengan thinking diaktifkan: Claude berpikir, meminta pemanggilan alat, menerima hasilnya, dan menyelesaikan jawabannya, dengan blok thinking ditangani dengan benar di setiap langkah. Aturan lengkapnya ada di halaman [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking), di [Thinking dengan penggunaan alat](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use) dan [Mempertahankan blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks); halaman ini menunjukkan aturan-aturan tersebut diterapkan dalam kode yang dapat dijalankan.
 
 ## Aturan yang diterapkan dalam panduan ini
 
 Setiap tautan mengarah ke pernyataan lengkapnya di halaman Thinking:
 
-* [Batasi pilihan alat ke `auto` atau `none` dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use): opsi `tool_choice` yang memaksa penggunaan alat akan mengembalikan error dengan "extended thinking" (pemikiran diperpanjang) manual (`thinking: {type: "enabled"}`). Adaptive thinking mendukung penggunaan alat yang dipaksakan, kecuali pada Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1, yang mengembalikan error 400. Jika penggunaan alat yang dipaksakan diterima, thinking akan dilewati: respons dimulai dengan pemanggilan alat.
+* [Batasi pilihan alat ke `auto` atau `none` dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use): opsi `tool_choice` yang memaksa penggunaan alat akan mengembalikan error dengan “extended thinking” (pemikiran diperpanjang) manual (`thinking: {type: "enabled"}`). Adaptive thinking mendukung penggunaan alat yang dipaksakan, kecuali pada Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1, yang mengembalikan error 400. Jika penggunaan alat yang dipaksakan diterima, thinking akan dilewati: respons dimulai dengan pemanggilan alat.
 * [Pertahankan satu konfigurasi thinking per giliran asisten](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use): loop penggunaan alat adalah satu giliran asisten, jadi ubah konfigurasi hanya di antara giliran.
 * [Kirim kembali blok thinking secara lengkap dan tanpa modifikasi](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks): saat Anda mengembalikan hasil alat, blok thinking dari pesan asisten harus ikut dikembalikan bersamanya.
 * [Gemakan pesan asisten persis seperti yang diterima](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks): membangun ulang pesan atau menyaring blok `redacted_thinking` akan memicu error 400.
@@ -775,7 +775,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
 
 ## Bagaimana interleaved thinking mengubah alur
 
-"Interleaved thinking" (pemikiran berselang-seling) memungkinkan Claude berpikir di antara pemanggilan alat, bernalar tentang setiap hasil alat sebelum menindaklanjutinya. Konsep dan ketersediaan per model dibahas di [Interleaved thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking) pada halaman Thinking; interleaving mengubah di mana blok thinking muncul, bukan apakah pemanggilan alat dapat dirangkai. Perbandingan berikut menunjukkan apa yang diubah oleh interleaved thinking dalam alur kerja dua alat:
+“Interleaved thinking” (pemikiran berselang-seling) memungkinkan Claude berpikir di antara pemanggilan alat, bernalar tentang setiap hasil alat sebelum menindaklanjutinya. Konsep dan ketersediaan per model dibahas di [Interleaved thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking) pada halaman Thinking; interleaving mengubah di mana blok thinking muncul, bukan apakah pemanggilan alat dapat dirangkai. Perbandingan berikut menunjukkan apa yang diubah oleh interleaved thinking dalam alur kerja dua alat:
 
 <AccordionGroup>
   <Accordion title="Penggunaan alat tanpa interleaved thinking">

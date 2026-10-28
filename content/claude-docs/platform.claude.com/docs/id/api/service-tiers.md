@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/service-tiers
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: b47904e8371fe4b99df5868d76e0e18b20d96670e7f018c2fb27e299b76d91ab
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: c24816a1fd558e08275e5b00de453b0eb878cb5197ffa27fcd033cc942bfe17d
 ---
 
 ---
@@ -15,7 +15,7 @@ description: Berbagai tingkat layanan memungkinkan Anda menyeimbangkan ketersedi
   Komitmen kapasitas Priority Tier tidak lagi tersedia untuk dibeli. Organisasi yang memiliki komitmen yang sudah ada dapat terus menggunakan Priority Tier hingga tanggal berakhirnya kontrak mereka, dan halaman ini tetap tersedia sebagai referensi bagi mereka. Jika Anda memerlukan kapasitas yang terjamin, [hubungi tim penjualan](https://claude.com/contact-sales).
 </Warning>
 
-Anthropic menawarkan tiga "service tiers" (tingkat layanan):
+Anthropic menawarkan tiga “service tiers” (tingkat layanan):
 
 * **Priority Tier:** Hanya tersedia bagi organisasi yang memiliki komitmen kapasitas yang sudah ada
 * **Standard:** Tingkat default untuk uji coba maupun penskalaan kasus penggunaan sehari-hari
@@ -27,7 +27,7 @@ Standard tier adalah tingkat layanan default untuk semua permintaan API. API mem
 
 ## Priority Tier
 
-API memprioritaskan permintaan dalam tingkat ini di atas semua permintaan lainnya. Prioritas ini membantu meminimalkan [error "server overloaded"](https://platform.claude.com/docs/id/api/errors#http-errors), bahkan pada waktu puncak.
+API memprioritaskan permintaan dalam tingkat ini di atas semua permintaan lainnya. Prioritas ini membantu meminimalkan [error “server overloaded”](https://platform.claude.com/docs/id/api/errors#http-errors), bahkan pada waktu puncak.
 
 Untuk informasi lebih lanjut, lihat [Komitmen Priority Tier yang sudah ada](https://platform.claude.com/docs/id/api/service-tiers#existing-priority-tier-commitments).
 
@@ -60,7 +60,7 @@ Jika tidak, permintaan diproses pada standard tier.
 </Note>
 
 <Note>
-  Permintaan yang ditetapkan ke Priority Tier mengambil dari kapasitas Priority Tier maupun "rate limits" (batas laju) reguler. Jika melayani permintaan tersebut akan melampaui batas laju, permintaan akan ditolak.
+  Permintaan yang ditetapkan ke Priority Tier mengambil dari kapasitas Priority Tier maupun “rate limits” (batas laju) reguler. Jika melayani permintaan tersebut akan melampaui batas laju, permintaan akan ditolak.
 </Note>
 
 ## Menggunakan tingkat layanan

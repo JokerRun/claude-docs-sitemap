@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 13a5c6b7d8b8efabee2e2db4941d60220f8343774454b55b52f0a42ea4d26770
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 08187a24c80f77c3a3ed0de7e1c39da0a9b03ce15b9fc5831c6639eec6d545d0
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
 description: Bagaimana model Claude Fable, model Claude Opus, Claude Sonnet 5.5, dan Claude Haiku 5.5 mengembalikan penolakan classifier dan cara mencoba ulang permintaan yang ditolak pada model fallback.
 ---
 
-Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5 menyertakan "safety classifier" (pengklasifikasi keamanan) yang dapat menolak sebuah permintaan. Ketika hal itu terjadi, Anda menerima respons normal, bukan error, dengan `stop_reason: "refusal"`. `stop_details.category` pada respons tersebut menyebutkan area kebijakannya (lihat [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response)). Anda biasanya masih bisa mendapatkan jawaban dengan mengirimkan permintaan yang sama ke model Claude lain. Halaman ini menunjukkan cara mengenali "refusal" (penolakan) dan cara menyiapkan percobaan ulang tersebut.
+Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5 menyertakan “safety classifier” (pengklasifikasi keamanan) yang dapat menolak sebuah permintaan. Ketika hal itu terjadi, Anda menerima respons normal, bukan error, dengan `stop_reason: "refusal"`. `stop_details.category` pada respons tersebut menyebutkan area kebijakannya (lihat [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response)). Anda biasanya masih bisa mendapatkan jawaban dengan mengirimkan permintaan yang sama ke model Claude lain. Halaman ini menunjukkan cara mengenali “refusal” (penolakan) dan cara menyiapkan percobaan ulang tersebut.
 
 Baca halaman ini ketika Anda membangun di atas salah satu model ini dan ingin permintaan yang ditolak diteruskan ke model lain secara otomatis. Halaman ini juga berlaku ketika Anda telah melihat `"refusal"` dalam sebuah respons dan ingin tahu apa yang harus dilakukan selanjutnya.
 

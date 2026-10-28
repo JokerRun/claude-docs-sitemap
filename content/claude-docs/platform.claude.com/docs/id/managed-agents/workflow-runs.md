@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/workflow-runs
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 7dd15bfb907830fd5f2b5f71fbfb3f8ab942c7acc5084f32afd659697e0a945f
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: e00f43d9e6b268864f8d08ce9cfd93beb70debd0f028a01b60fee9947362fde6
 ---
 
 ---
@@ -32,12 +32,12 @@ Agen yang dijalankan sesi menulis setiap workflow untuk pekerjaan yang Anda jela
 Diagram menunjukkan satu contoh. Setiap workflow yang ditulis agen memiliki fase dan agennya sendiri. Sebuah eksekusi memiliki lapisan-lapisan berikut:
 
 * **Eksekusi workflow:** Server menjalankan workflow di latar belakang, sebagai satu eksekusi workflow. Sebuah sesi dapat memiliki beberapa eksekusi yang terbuka pada saat yang sama.
-* **Fase:** Workflow dapat membagi pekerjaannya menjadi fase-fase. Fase adalah tahap bernama dari run, seperti "Read the contracts." Anda mengikuti kemajuan run melalui event fase-nya.
+* **Fase:** Workflow dapat membagi pekerjaannya menjadi fase-fase. Fase adalah tahap bernama dari run, seperti “Read the contracts.” Anda mengikuti kemajuan run melalui event fase-nya.
 * **Thread agen:** Dalam sebuah fase, program menjalankan agen. Setiap agen bekerja di [session thread](https://platform.claude.com/docs/id/managed-agents/session-threads) miliknya sendiri, dengan prompt yang ditulis oleh program. Agen dalam run dapat berupa agen inline, yang didefinisikan sendiri oleh program, atau [agen yang telah ditentukan sebelumnya](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents), yang Anda cantumkan dalam daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `workflows` (csharp, go: `Workflows`). Untuk apa yang ditampilkan setiap thread, lihat [Thread milik run](https://platform.claude.com/docs/id/managed-agents/workflow-runs#a-runs-threads).
 
 Program dapat melakukan hal-hal berikut:
 
-* **Menjalankan agen pada saat yang sama:** Program dapat menjalankan banyak agen pada saat yang sama, yang disebut "fanning out" (penyebaran). Dalam diagram, tiga agen membaca kontrak di fase pertama.
+* **Menjalankan agen pada saat yang sama:** Program dapat menjalankan banyak agen pada saat yang sama, yang disebut “fanning out” (penyebaran). Dalam diagram, tiga agen membaca kontrak di fase pertama.
 * **Meneruskan hasil dari satu agen ke agen lain:** Setiap agen mengembalikan hasilnya ke program. Program dapat meneruskan hasil tersebut ke agen lain. Dalam diagram, agen di fase kedua bekerja dengan apa yang dikembalikan oleh tiga agen pertama. Agen-agen dalam sebuah eksekusi juga bekerja dengan file yang sama, di sandbox sesi.
 * **Mengambil langkah berikutnya sendiri:** Hasil agen masuk ke program, bukan ke agen yang dijalankan sesi. Program menentukan agen mana yang berjalan berikutnya, dan ia menulis prompt mereka.
 * **Mengulang dan memilih:** Di dalam sebuah fase, program dapat mengulang pekerjaan dan memilih langkah berikutnya berdasarkan apa yang dikembalikan agen. Misalnya, program dapat meminta sebuah draf direvisi hingga peninjauan lolos atau sejumlah putaran yang ditetapkan habis. Dalam diagram, program dapat mengulang sebuah langkah di dalam fase kedua.
@@ -85,10 +85,10 @@ Hasil error terlihat seperti `{"type": "error", "error": {"type": "timeout_error
 
 Misalnya, Anda bertanya kepada [agen peninjau kontrak](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#turn-on-dynamic-workflows) mana dari 300 kontrak yang memiliki klausul perubahan kendali, dan agen memulai sebuah eksekusi:
 
-1. `workflow_run.created` menamai eksekusi "Find change-of-control clauses" dan mencantumkan fase "Read the contracts" dan "Reconcile the findings" di `phases` (csharp, go: `Phases`). Kemudian `workflow_run.status_running` menyusul.
+1. `workflow_run.created` menamai eksekusi “Find change-of-control clauses” dan mencantumkan fase “Read the contracts” dan “Reconcile the findings” di `phases` (csharp, go: `Phases`). Kemudian `workflow_run.status_running` menyusul.
 2. Event fase menandai setiap fase, dan setiap thread yang dibuat eksekusi mengirim `session.thread_created` dengan `workflow_run_id` (java: `workflowRunId`; php: `workflowRunID`; csharp, go: `WorkflowRunID`) eksekusi.
 3. `workflow_run.status_ended` tiba dengan `result: {"type": "completed"}`.
-4. Agen menjawab, "41 dari 300 kontrak memilikinya," dan `session.status_idle` tiba dengan `end_turn`.
+4. Agen menjawab, “41 dari 300 kontrak memilikinya,” dan `session.status_idle` tiba dengan `end_turn`.
 
 Event pertama eksekusi mencantumkan fase-fasenya:
 
@@ -811,7 +811,7 @@ Sebuah sesi dapat memulai eksekusi dalam jumlah berapa pun selama masa hidupnya.
 
 ### Batas laju
 
-Pekerjaan sebuah eksekusi dihitung dalam "rate limit" (batas laju) yang sudah dimiliki organisasi Anda.
+Pekerjaan sebuah eksekusi dihitung dalam “rate limit” (batas laju) yang sudah dimiliki organisasi Anda.
 
 | Apa                                                                                     | Dihitung dalam                                                                                                                                                          | Apa yang harus dilakukan                                                                                                                                                     |
 | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

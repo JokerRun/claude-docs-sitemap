@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/secure-deployment
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 75b3921eed8823db8136730c99f253f347cead5f7aee17b006c3ea59ae7b982f
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 0a058d369c25bc0f9ac99ac4374d2fb82ceb66369fb2afbef16b69f126037ac9
 ---
 
 ---
@@ -297,7 +297,7 @@ Alat `web_fetch` juga hanya membuka URL yang sudah muncul dalam sesi:
 | Hasil alat MCP                                                                                    | Tidak                                          |
 | File yang dilampirkan ke pesan pengguna                                                           | Tidak                                          |
 
-Dalam sesi multiagen, `web_fetch` membuka URL dari agen lain hanya jika URL tersebut sampai ke agen itu melalui sumber yang ditandai Ya. Hasil alat kustom dari panggilan langsung dihitung sebagai sumber yang ditandai Ya. Ini berlaku bahkan jika Claude yang menulis teksnya, misalnya ketika alat mengulang inputnya. URL dapat dihitung bahkan ketika ditulis tanpa `https://`, seperti `example.com/docs`. Alat `web_fetch` tidak selalu dapat membuka tautan yang menampilkan kata-kata alih-alih URL-nya, seperti "Hubungi dukungan." Jika agen harus mengambil URL yang belum muncul dalam sesi, kirimkan URL tersebut dalam pesan pengguna.
+Dalam sesi multiagen, `web_fetch` membuka URL dari agen lain hanya jika URL tersebut sampai ke agen itu melalui sumber yang ditandai Ya. Hasil alat kustom dari panggilan langsung dihitung sebagai sumber yang ditandai Ya. Ini berlaku bahkan jika Claude yang menulis teksnya, misalnya ketika alat mengulang inputnya. URL dapat dihitung bahkan ketika ditulis tanpa `https://`, seperti `example.com/docs`. Alat `web_fetch` tidak selalu dapat membuka tautan yang menampilkan kata-kata alih-alih URL-nya, seperti “Hubungi dukungan.” Jika agen harus mengambil URL yang belum muncul dalam sesi, kirimkan URL tersebut dalam pesan pengguna.
 
 Aturan ini mengurangi kemungkinan teks yang diinjeksi membangun URL yang membawa data pribadi. Teks pengguna akhir, hasil pencarian, halaman yang diambil, dan hasil alat kustom masih dapat menambahkan URL, jadi tetap tetapkan `allowed_domains`. Messages API menerapkan aturan serupa dengan daftar sumber yang berbeda. Lihat [Validasi URL](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#url-validation).
 

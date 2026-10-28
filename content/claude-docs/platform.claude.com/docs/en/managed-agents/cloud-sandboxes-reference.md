@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/cloud-sandboxes-reference
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: fc5a8d922735b63a468f09525a2dbbd0517373ef05726ebc3fca8c959e2833fe
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 5aa3719267b7ca4eac98442e74100faf033b72db3fc8dc971bc36d93dd83933c
 ---
 
 ---
@@ -42,7 +42,7 @@ Common Python data and document libraries, including NumPy, pandas, Matplotlib, 
 | ------------- | ----------------------------------------------------------------------------- |
 | PostgreSQL 16 | Server and `psql` client are installed. The server is not running by default. |
 | Redis 7       | Server and `redis-cli` are installed. The server is not running by default.   |
-| SQLite        | Available through language bindings, such as Python's `sqlite3` module.       |
+| SQLite        | Available through language bindings, such as Python’s `sqlite3` module.       |
 
 ## Utilities
 

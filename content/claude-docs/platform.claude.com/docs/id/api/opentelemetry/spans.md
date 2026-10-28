@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/opentelemetry/spans
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 81886808920294aef111c6d16cd621553d7c045535309d254a1e9e4197a7e96f
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 9fe28223116b675be3f06b8ae348f41120cb1d09d20af6d69277db666f6738c6
 ---
 
 ---
@@ -51,7 +51,7 @@ Setiap span untuk sebuah permintaan memiliki atribut berikut, kecuali jika deskr
 
 | Atribut                     | Tipe     | Deskripsi                                                                                                                                                                    |
 | --------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `gen_ai.provider.name`      | `string` | `anthropic`. Ada di setiap span.<br />**SDK:** `aws.bedrock` pada klien Amazon Bedrock (termasuk Mantle) dan `gcp.vertex_ai` pada klien untuk Google Cloud's Agent Platform. |
+| `gen_ai.provider.name`      | `string` | `anthropic`. Ada di setiap span.<br />**SDK:** `aws.bedrock` pada klien Amazon Bedrock (termasuk Mantle) dan `gcp.vertex_ai` pada klien untuk Google Cloud’s Agent Platform. |
 | `anthropic.organization.id` | `string` | ID organisasi.                                                                                                                                                               |
 | `anthropic.workspace.id`    | `string` | ID workspace tempat pekerjaan dijalankan.                                                                                                                                    |
 | `anthropic.request.id`      | `string` | Nilai header respons `request-id`.                                                                                                                                           |

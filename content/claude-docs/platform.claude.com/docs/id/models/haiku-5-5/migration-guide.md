@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide
-fetched_at: 2026-10-27T02:22:08.565782Z
-sha256: 1858d1c233048e285eb6ea7943ed6dd52cb4ff7ab13de3176e79c5686d7ae4ce
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: e0d29320f6354cb9c75b2b8ccad1929a83cbdf3497124dc4d46ce7635f7982ee
 ---
 
 ---
@@ -67,7 +67,7 @@ Ganti ID model Claude Haiku 4.5 dengan ID Claude Haiku 5.5 untuk platform Anda.
 
 ## Hitung ulang token
 
-Claude Haiku 5.5 menggunakan "tokenizer" (pemecah token) baru yang sama dengan Claude 4.7 dan model-model setelahnya. Seperti semua model yang menggunakan tokenizer ini, teks input yang sama menghasilkan sekitar 30% lebih banyak token pada Claude Haiku 5.5 dibandingkan pada Claude Haiku 4.5. Peningkatan pastinya bergantung pada konten. Permintaan, respons, dan event streaming tetap memiliki bentuk yang sama. Yang berubah adalah apa pun yang Anda ukur atau anggarkan dalam token:
+Claude Haiku 5.5 menggunakan “tokenizer” (pemecah token) baru yang sama dengan Claude 4.7 dan model-model setelahnya. Seperti semua model yang menggunakan tokenizer ini, teks input yang sama menghasilkan sekitar 30% lebih banyak token pada Claude Haiku 5.5 dibandingkan pada Claude Haiku 4.5. Peningkatan pastinya bergantung pada konten. Permintaan, respons, dan event streaming tetap memiliki bentuk yang sama. Yang berubah adalah apa pun yang Anda ukur atau anggarkan dalam token:
 
 * Field `usage` dan hasil [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) lebih tinggi untuk teks yang sama.
 * Sejumlah token tertentu memuat lebih sedikit teks.
@@ -93,7 +93,7 @@ Sebelumnya, permintaan ke Claude Haiku 4.5 mengatur `thinking` ke `enabled` deng
 }
 ```
 
-Sesudahnya, permintaan yang sama ke Claude Haiku 5.5 menggunakan "adaptive thinking" (pemikiran adaptif). Nilai `thinking` berubah, dan `output_config.effort` mengatur seberapa banyak model berpikir:
+Sesudahnya, permintaan yang sama ke Claude Haiku 5.5 menggunakan “adaptive thinking” (pemikiran adaptif). Nilai `thinking` berubah, dan `output_config.effort` mengatur seberapa banyak model berpikir:
 
 ```json
 {
@@ -123,11 +123,11 @@ Pada Claude Haiku 5.5, hilangkan `temperature`, `top_p`, dan `top_k` dan gunakan
 
 ## Ganti prefill asisten
 
-"Prefill" (pengisian awal) adalah giliran asisten terakhir dalam `messages` yang dilanjutkan oleh model. Claude Haiku 4.5 menerimanya ketika thinking nonaktif. Claude Haiku 5.5 menolaknya dengan error 400, bahkan ketika thinking dinonaktifkan. Akhiri `messages` dengan giliran pengguna, dan ganti setiap prefill sesuai dengan tujuannya:
+“Prefill” (pengisian awal) adalah giliran asisten terakhir dalam `messages` yang dilanjutkan oleh model. Claude Haiku 4.5 menerimanya ketika thinking nonaktif. Claude Haiku 5.5 menolaknya dengan error 400, bahkan ketika thinking dinonaktifkan. Akhiri `messages` dengan giliran pengguna, dan ganti setiap prefill sesuai dengan tujuannya:
 
 * **Format output:** gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), atau alat dengan field enum untuk klasifikasi.
 * **Pembukaan:** minta jawaban langsung dalam prompt sistem.
-* **Kelanjutan:** pindahkan ke pesan pengguna, misalnya "Respons Anda sebelumnya terputus dan berakhir dengan `[previous_response]`. Lanjutkan dari bagian terakhir."
+* **Kelanjutan:** pindahkan ke pesan pengguna, misalnya “Respons Anda sebelumnya terputus dan berakhir dengan `[previous_response]`. Lanjutkan dari bagian terakhir.”
 * **Pengingat konteks:** letakkan di giliran pengguna.
 
 ## Pindahkan computer use ke toolset

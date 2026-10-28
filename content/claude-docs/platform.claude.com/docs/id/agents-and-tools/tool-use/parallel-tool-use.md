@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 7bafedee341dfddc56e988396235d82a7e1c4332cfec6c98edbc87dd38f8776b
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 418050cc2afa730ab7dee40afd37fb435e97741e5bd3b7c9acb69087422ed8bf
 ---
 
 ---
@@ -11,13 +11,13 @@ url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool
 description: Aktifkan, format, dan nonaktifkan panggilan alat paralel, dengan panduan riwayat pesan dan pemecahan masalah.
 ---
 
-Secara default, Claude dapat memanggil beberapa alat dalam satu respons. Halaman ini membahas cara menjalankan panggilan tersebut, cara memformat riwayat pesan agar paralelisme tetap berfungsi, dan cara menonaktifkan "parallel tool use" (penggunaan alat paralel) saat Anda membutuhkannya. Untuk alur panggilan tunggal, lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls).
+Secara default, Claude dapat memanggil beberapa alat dalam satu respons. Halaman ini membahas cara menjalankan panggilan tersebut, cara memformat riwayat pesan agar paralelisme tetap berfungsi, dan cara menonaktifkan “parallel tool use” (penggunaan alat paralel) saat Anda membutuhkannya. Untuk alur panggilan tunggal, lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls).
 
 ## Semantik eksekusi
 
 Ketika Claude memanggil alat, respons memiliki `stop_reason` berupa `tool_use` dan dapat berisi beberapa blok `tool_use` dalam satu giliran asisten. Cara Anda menjalankan panggilan tersebut adalah keputusan Anda. API tidak menetapkan urutan eksekusi: Anda dapat menjalankan panggilan secara bersamaan (`Promise.all`, `asyncio.gather`), secara berurutan sesuai urutan kemunculannya, atau dalam kombinasi apa pun yang sesuai dengan alat Anda.
 
-Pilih strategi berdasarkan apa yang dilakukan alat Anda. Operasi independen yang hanya membaca biasanya aman dijalankan secara paralel untuk "latency" (latensi) yang lebih rendah. Alat dengan efek samping, state bersama, atau persyaratan urutan mungkin lebih baik dijalankan secara berurutan.
+Pilih strategi berdasarkan apa yang dilakukan alat Anda. Operasi independen yang hanya membaca biasanya aman dijalankan secara paralel untuk “latency” (latensi) yang lebih rendah. Alat dengan efek samping, state bersama, atau persyaratan urutan mungkin lebih baik dijalankan secara berurutan.
 
 Strategi apa pun yang Anda gunakan, kembalikan satu `tool_result` untuk setiap blok `tool_use`, semuanya bersama-sama dalam pesan pengguna berikutnya. Cocokkan setiap hasil dengan panggilannya menggunakan `tool_use_id`, dan letakkan setiap blok `tool_result` sebelum konten teks apa pun dalam pesan tersebut. Lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk aturan pemformatan lengkap. Jika Anda memilih untuk tidak menjalankan panggilan tertentu (misalnya, karena Anda menjalankan batch secara berurutan dan panggilan sebelumnya gagal), tetap kembalikan `tool_result` untuk panggilan tersebut dengan `is_error: true` dan penjelasan singkat.
 
@@ -1424,7 +1424,7 @@ Jika Claude tidak melakukan panggilan alat paralel ketika diharapkan, periksa ma
 
 **1. Pemformatan hasil alat yang salah**
 
-Masalah yang paling umum adalah memformat hasil alat secara salah dalam riwayat percakapan. Ini "mengajarkan" Claude untuk menghindari panggilan paralel.
+Masalah yang paling umum adalah memformat hasil alat secara salah dalam riwayat percakapan. Ini “mengajarkan” Claude untuk menghindari panggilan paralel.
 
 Khusus untuk penggunaan alat paralel:
 
@@ -1581,7 +1581,7 @@ Untuk memverifikasi bahwa panggilan alat paralel berfungsi:
 
 **4. Panggilan dalam satu batch tampak saling bergantung**
 
-Urutan eksekusi adalah pilihan Anda. Jika alat Anda memiliki ketergantungan urutan, menjalankan batch secara berurutan dan berhenti pada kegagalan pertama adalah strategi yang valid (dan merupakan strategi yang diwajibkan untuk alat [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#batch-actions)): kembalikan `is_error: true` untuk setiap panggilan yang tidak Anda jalankan. Jika Anda menjalankan secara paralel dan sebuah panggilan gagal karena prasyaratnya belum selesai, kembalikan `is_error: true` dengan pesan error yang wajar. Claude akan mengeluarkan ulang panggilan tersebut pada giliran berikutnya. Untuk mengurangi panggilan yang saling bergantung muncul bersamaan, tambahkan ini ke prompt sistem Anda: "Hanya kelompokkan panggilan alat yang tidak saling bergantung dalam satu batch."
+Urutan eksekusi adalah pilihan Anda. Jika alat Anda memiliki ketergantungan urutan, menjalankan batch secara berurutan dan berhenti pada kegagalan pertama adalah strategi yang valid (dan merupakan strategi yang diwajibkan untuk alat [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#batch-actions)): kembalikan `is_error: true` untuk setiap panggilan yang tidak Anda jalankan. Jika Anda menjalankan secara paralel dan sebuah panggilan gagal karena prasyaratnya belum selesai, kembalikan `is_error: true` dengan pesan error yang wajar. Claude akan mengeluarkan ulang panggilan tersebut pada giliran berikutnya. Untuk mengurangi panggilan yang saling bergantung muncul bersamaan, tambahkan ini ke prompt sistem Anda: “Hanya kelompokkan panggilan alat yang tidak saling bergantung dalam satu batch.”
 
 ## Langkah selanjutnya
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 7b16214d78b693d0177418be5fd1e2ebb923dde86db2ce873d149a0f0c7dd95a
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: e595437bb23221c7336bc25e039080df24b372c12652d0aa75294c223b901a3a
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails
 description: Lindungi aplikasi Anda dari jailbreak dan injeksi prompt dengan penyaringan input, prompt sistem yang diperkuat, dan penanganan yang aman terhadap konten alat yang tidak tepercaya.
 ---
 
-"Jailbreaking" (pembobolan batasan) dan "prompt injection" (injeksi prompt) adalah upaya untuk membuat Claude mengabaikan pedomannya atau instruksi Anda. Meskipun Claude secara inheren tangguh terhadap serangan semacam itu, langkah-langkah tambahan di halaman ini memperkuat "guardrails" (pagar pengaman) Anda, terutama terhadap penggunaan yang melanggar [Ketentuan Layanan](https://www.anthropic.com/legal/commercial-terms) atau [Kebijakan Penggunaan](https://www.anthropic.com/legal/aup) Anthropic.
+“Jailbreaking” (pembobolan batasan) dan “prompt injection” (injeksi prompt) adalah upaya untuk membuat Claude mengabaikan pedomannya atau instruksi Anda. Meskipun Claude secara inheren tangguh terhadap serangan semacam itu, langkah-langkah tambahan di halaman ini memperkuat “guardrails” (pagar pengaman) Anda, terutama terhadap penggunaan yang melanggar [Ketentuan Layanan](https://www.anthropic.com/legal/commercial-terms) atau [Kebijakan Penggunaan](https://www.anthropic.com/legal/aup) Anthropic.
 
 Serangan-serangan ini terbagi dalam dua kategori dengan model ancaman yang berbeda:
 
@@ -57,7 +57,7 @@ Dalam model ancaman ini, seorang pengguna dengan sengaja menyusun input untuk me
 
 * **Validasi input:** Filter input pengguna untuk pola injeksi yang sudah dikenal sebelum mencapai Claude. Anda dapat menggunakan LLM untuk membuat penyaringan validasi yang tergeneralisasi dengan memberikan bahasa jailbreaking yang sudah dikenal sebagai contoh.
 
-* **Rekayasa prompt:** Susun "system prompt" (prompt sistem) yang menekankan batasan etika dan hukum, dan yang secara eksplisit memberi tahu Claude cara menolak.
+* **Rekayasa prompt:** Susun “system prompt” (prompt sistem) yang menekankan batasan etika dan hukum, dan yang secara eksplisit memberi tahu Claude cara menolak.
 
   <Accordion title="Contoh: Prompt sistem etis untuk chatbot perusahaan">
     ```text System wrap
@@ -73,7 +73,7 @@ Dalam model ancaman ini, seorang pengguna dengan sengaja menyusun input untuk me
     ```
   </Accordion>
 
-* **Tanggapi pelanggar berulang:** Sesuaikan respons dan pertimbangkan untuk membatasi atau memblokir pengguna yang berulang kali mencoba mengakali pagar pengaman aplikasi Anda. Misalnya, jika pengguna tertentu memicu jenis penolakan yang sama beberapa kali (seperti "output diblokir oleh kebijakan pemfilteran konten"), beri tahu pengguna bahwa tindakan mereka melanggar kebijakan penggunaan yang relevan dan ambil tindakan yang sesuai.
+* **Tanggapi pelanggar berulang:** Sesuaikan respons dan pertimbangkan untuk membatasi atau memblokir pengguna yang berulang kali mencoba mengakali pagar pengaman aplikasi Anda. Misalnya, jika pengguna tertentu memicu jenis penolakan yang sama beberapa kali (seperti “output diblokir oleh kebijakan pemfilteran konten”), beri tahu pengguna bahwa tindakan mereka melanggar kebijakan penggunaan yang relevan dan ambil tindakan yang sesuai.
 
 ## Injeksi prompt tidak langsung
 
@@ -99,7 +99,7 @@ Susun aplikasi Anda sehingga Claude dapat secara andal membedakan konten yang ti
     ```
   </Accordion>
 
-* **Enkode konten yang tidak tepercaya dalam JSON.** Jika memungkinkan, bungkus string pihak ketiga dalam objek JSON daripada menggabungkannya ke dalam teks bentuk bebas. Escaping JSON menyediakan pembatas yang tidak ambigu antara payload yang tidak tepercaya dan struktur di sekitarnya, sehingga penyerang tidak dapat menutup tanda kutip atau tag untuk "keluar" ke dalam konteks instruksi.
+* **Enkode konten yang tidak tepercaya dalam JSON.** Jika memungkinkan, bungkus string pihak ketiga dalam objek JSON daripada menggabungkannya ke dalam teks bentuk bebas. Escaping JSON menyediakan pembatas yang tidak ambigu antara payload yang tidak tepercaya dan struktur di sekitarnya, sehingga penyerang tidak dapat menutup tanda kutip atau tag untuk “keluar” ke dalam konteks instruksi.
 
   <Accordion title="Contoh: Hasil alat yang dienkode JSON untuk email masuk">
     ```json
@@ -179,7 +179,7 @@ Analisis output secara rutin untuk mencari tanda-tanda injeksi yang berhasil. Gu
 
 ## Lanjutan: Merangkai pengaman
 
-Gabungkan strategi untuk perlindungan yang kokoh. Berikut contoh tingkat perusahaan dengan "tool use" (penggunaan alat):
+Gabungkan strategi untuk perlindungan yang kokoh. Berikut contoh tingkat perusahaan dengan “tool use” (penggunaan alat):
 
 <Accordion title="Contoh: Perlindungan berlapis untuk chatbot penasihat keuangan">
   ### Prompt sistem bot

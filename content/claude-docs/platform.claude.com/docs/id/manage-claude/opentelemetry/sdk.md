@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: b77052c51488355e262846dab60d674c681b7596379979bbaf1a29b2e65c4f13
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: e1d314f0d2952a916f81c9ea350ca341054ce19abe6d53f89c025d939b4312ed
 ---
 
 ---
@@ -25,9 +25,9 @@ featureMetadata:
       value: Messages API, Claude Managed Agents
 ---
 
-Dengan OpenTelemetry, Claude SDK dapat memancarkan "span" (rentang) untuk setiap permintaan yang dikirimnya dan setiap penggunaan alat yang dijalankan oleh [tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner). Anda dapat melihat span ini di platform observabilitas Anda, bersarang di dalam trace Anda sendiri.
+Dengan OpenTelemetry, Claude SDK dapat memancarkan “span” (rentang) untuk setiap permintaan yang dikirimnya dan setiap penggunaan alat yang dijalankan oleh [tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner). Anda dapat melihat span ini di platform observabilitas Anda, bersarang di dalam trace Anda sendiri.
 
-SDK memancarkan span di aplikasi Anda. "Exporter" (pengekspor) OpenTelemetry aplikasi Anda mengirimkannya ke platform observabilitas Anda.
+SDK memancarkan span di aplikasi Anda. “Exporter” (pengekspor) OpenTelemetry aplikasi Anda mengirimkannya ke platform observabilitas Anda.
 
 <Note>
   Selama masa beta, opsi SDK dan skema span dapat berubah dengan cara yang merusak kode, kueri, atau dasbor Anda. Misalnya, versi baru SDK dapat mengganti nama span, atribut, opsi, atau variabel lingkungan. Sematkan versi SDK di dependensi Anda untuk memilih kapan Anda mengadopsi perubahan tersebut.

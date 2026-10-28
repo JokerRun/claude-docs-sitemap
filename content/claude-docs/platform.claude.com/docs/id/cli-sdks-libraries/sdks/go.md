@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 858c961d06f51d5c79bdfa555e4e4b1af6bbf439aef81187de7df1443645e5c1
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: fd7fb86a148c473b48ad0b8142adb56a7070d40100b394be46c6feb67d3235fa
 ---
 
 ---
@@ -70,7 +70,7 @@ func main() {
 }
 ```
 
-Untuk opsi autentikasi termasuk "Workload Identity Federation" (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
+Untuk opsi autentikasi termasuk “Workload Identity Federation” (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
 
 <AccordionGroup>
   <Accordion title="Percakapan">
@@ -305,7 +305,7 @@ custom := param.Override[anthropic.FooParams](12)
 
 ### Union permintaan
 
-Union direpresentasikan sebagai struct dengan field berawalan "Of" untuk setiap variannya. Hanya satu field yang boleh bernilai bukan nol. Field yang bukan nol tersebut akan diserialisasi.
+Union direpresentasikan sebagai struct dengan field berawalan “Of” untuk setiap variannya. Hanya satu field yang boleh bernilai bukan nol. Field yang bukan nol tersebut akan diserialisasi.
 
 Subproperti dari union dapat diakses melalui metode pada struct union. Metode ini mengembalikan pointer ke nilai tersebut, jika ada.
 
@@ -490,7 +490,7 @@ Ketika error lain terjadi, error tersebut dikembalikan tanpa dibungkus; misalnya
 
 ## Percobaan ulang
 
-Error tertentu akan dicoba ulang secara otomatis sebanyak 2 kali secara default, dengan "exponential backoff" (penundaan eksponensial) yang singkat. Secara default, SDK mencoba ulang semua error koneksi, 408 Request Timeout, 409 Conflict, 429 Rate Limit, dan error Internal >=500.
+Error tertentu akan dicoba ulang secara otomatis sebanyak 2 kali secara default, dengan “exponential backoff” (penundaan eksponensial) yang singkat. Secara default, SDK mencoba ulang semua error koneksi, 408 Request Timeout, 409 Conflict, 429 Rate Limit, dan error Internal >=500.
 
 Anda dapat menggunakan opsi `WithMaxRetries` untuk mengonfigurasi atau menonaktifkan ini:
 

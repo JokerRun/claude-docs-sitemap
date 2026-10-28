@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 9844aca878b6fac5c358e414327750624ae6236f40fd9dbd057429b500581146
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 5d395712b883696366bd3a7b4fcae92e53be6bcd7ac195bdb4ffb6ae3212c8ef
 ---
 
 ---
@@ -54,7 +54,7 @@ Dua sesi tidak dapat me-mount penyimpanan yang sama pada satu host secara bersam
 
 Saat worker mengklaim work item yang sesinya memiliki memory store terlampir, worker akan:
 
-1. **Mengunduh setiap store ke `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`)-nya.** Ini adalah direktori yang sama di bawah `/mnt/memory/` yang digunakan sesi cloud, dan prompt sistem sesi menjelaskannya kepada agen. Misalnya, store bernama "User Preferences" ditempatkan di `/mnt/memory/user-preferences/`.
+1. **Mengunduh setiap store ke `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`)-nya.** Ini adalah direktori yang sama di bawah `/mnt/memory/` yang digunakan sesi cloud, dan prompt sistem sesi menjelaskannya kepada agen. Misalnya, store bernama “User Preferences” ditempatkan di `/mnt/memory/user-preferences/`.
 2. **Membuka direktori tersebut untuk alat file.** Agen bekerja dengan memori menggunakan alat file yang sama dengan yang digunakannya di direktori kerja.
 3. **Merekonsiliasi perubahan setelah pemanggilan alat,** paling banyak sekali per interval sinkronisasi (15 detik secara default). Memori yang berubah di store ditulis ke disk, dan file yang diubah agen diunggah ke store.
 4. **Menjalankan sinkronisasi akhir saat sesi berakhir.** Worker menuntaskan unggahan yang masih tertunda hingga 30 detik, lalu menghapus direktori yang dibuatnya.

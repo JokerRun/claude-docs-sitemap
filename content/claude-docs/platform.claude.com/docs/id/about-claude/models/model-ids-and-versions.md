@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 6929117a3d5f6b0a0403796926b5c0a115b55c99248f3eaf34c753e93752f81f
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: a8fe74e4fccb30ce3c7c080a6cb390297ac3137a4207b7b8966e5935fc44e98e
 ---
 
 ---
@@ -81,7 +81,7 @@ Setiap ID model, baik bertanggal maupun tanpa tanggal, memiliki jadwal deprecati
 
 ## Bobot model versus infrastruktur penyajian
 
-"Model weights" (bobot model) bersifat tetap untuk ID tertentu, tetapi "serving infrastructure" (infrastruktur penyajian) di sekitar model dapat berubah seiring waktu. Infrastruktur ini mencakup komponen seperti router permintaan, pengklasifikasi keamanan, dan logika sampling.
+“Model weights” (bobot model) bersifat tetap untuk ID tertentu, tetapi “serving infrastructure” (infrastruktur penyajian) di sekitar model dapat berubah seiring waktu. Infrastruktur ini mencakup komponen seperti router permintaan, pengklasifikasi keamanan, dan logika sampling.
 
 Sesekali, pembaruan infrastruktur menghasilkan perbedaan kecil dalam perilaku yang dapat diamati meskipun ID model dan bobotnya tidak berubah. Jika Anda melihat perbedaan perilaku yang tidak terduga pada ID model yang sebelumnya stabil, pembaruan infrastruktur adalah penyebab yang paling mungkin.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/overview
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: e563ac9195e461478f4da7b86d5d6782caef15166a9284d3290c9e13860288f0
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: f4c337ac0a6f00370f80f770b20edd0f6d33f5d5355034e58d5587373537b5ba
 ---
 
 ---
@@ -95,7 +95,7 @@ Claude Opus 5.5 dibuat untuk pekerjaan coding agentik dan pekerjaan pengetahuan 
 
 ## Perlu diketahui
 
-* "Adaptive thinking" (pemikiran adaptif) selalu aktif dan tidak dapat dinonaktifkan. Kendalikan kedalaman pemikiran dengan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort).
+* “Adaptive thinking” (pemikiran adaptif) selalu aktif dan tidak dapat dinonaktifkan. Kendalikan kedalaman pemikiran dengan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort).
 * Pada [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing#extended-output-beta), Claude Opus 5.5 mendukung hingga 300 ribu token output dengan header beta `output-300k-2026-03-24`.
 * Panjang prompt minimum yang dapat di-cache adalah 512 token. Lihat [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations).
 * Kueri batas dan kemampuan secara terprogram dengan [Models API](https://platform.claude.com/docs/id/api/models/list).

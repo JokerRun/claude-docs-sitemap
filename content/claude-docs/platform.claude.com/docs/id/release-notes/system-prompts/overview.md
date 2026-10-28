@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/overview
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 1a9b7a453b822ba4c55483093388fb4f50498af085aa64de2c0c283f9068ed42
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 8dae3f133c8629439875edc3021f0e585d87b1dd36096ac48a196652dc0669cf
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/release-notes/system-prompts/overview
 description: Lihat pembaruan pada prompt sistem inti di [claude.ai](https://claude.ai), [aplikasi Claude iOS](https://anthropic.com/ios), dan [aplikasi Claude Android](https://anthropic.com/android).
 ---
 
-Antarmuka web Claude ([claude.ai](https://claude.ai)) dan aplikasi seluler menggunakan "system prompt" (prompt sistem) untuk memberikan informasi terkini, seperti tanggal saat ini, kepada Claude di awal setiap percakapan. Prompt sistem juga mendorong perilaku tertentu, seperti selalu menyediakan cuplikan kode dalam Markdown. Prompt ini diperbarui secara berkala untuk meningkatkan respons Claude. Pembaruan prompt sistem ini tidak berlaku untuk Claude API. Beberapa model memiliki beberapa entri bertanggal di halamannya.
+Antarmuka web Claude ([claude.ai](https://claude.ai)) dan aplikasi seluler menggunakan “system prompt” (prompt sistem) untuk memberikan informasi terkini, seperti tanggal saat ini, kepada Claude di awal setiap percakapan. Prompt sistem juga mendorong perilaku tertentu, seperti selalu menyediakan cuplikan kode dalam Markdown. Prompt ini diperbarui secara berkala untuk meningkatkan respons Claude. Pembaruan prompt sistem ini tidak berlaku untuk Claude API. Beberapa model memiliki beberapa entri bertanggal di halamannya.
 
 <CardGroup cols={3}>
   <Card id="claude-haiku-5-5" title="Claude Haiku 5.5" icon="file" href="https://platform.claude.com/docs/id/release-notes/system-prompts/claude-haiku-5-5" />

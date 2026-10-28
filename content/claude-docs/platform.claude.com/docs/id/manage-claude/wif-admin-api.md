@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-admin-api
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: a3c5477e2ed432aff2822d1184930f9ad711612d318785d28d877b82d92763b7
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 8d466e55ccee84202a88a85fa7e778be05824e8e77857a4b6625bc4d4d88defe
 ---
 
 ---
@@ -11,11 +11,11 @@ url: https://platform.claude.com/docs/id/manage-claude/wif-admin-api
 description: Buat dan kelola akun layanan, penerbit, dan aturan Workload Identity Federation secara terprogram untuk alur kerja infrastructure-as-code dan CI.
 ---
 
-Admin API memungkinkan Anda membuat dan mengelola sumber daya [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation) secara terprogram: akun layanan, penerbit federasi, dan aturan federasi. Gunakan API ini untuk menyimpan konfigurasi federasi Anda sebagai "infrastructure as code" (infrastruktur sebagai kode), menyediakannya dari CI, dan mereproduksinya di berbagai organisasi alih-alih mengklik satu per satu di Claude Console. Endpoint ini berbagi awalan path `/v1/organizations` dengan bagian lain dari [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api).
+Admin API memungkinkan Anda membuat dan mengelola sumber daya [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation) secara terprogram: akun layanan, penerbit federasi, dan aturan federasi. Gunakan API ini untuk menyimpan konfigurasi federasi Anda sebagai “infrastructure as code” (infrastruktur sebagai kode), menyediakannya dari CI, dan mereproduksinya di berbagai organisasi alih-alih mengklik satu per satu di Claude Console. Endpoint ini berbagi awalan path `/v1/organizations` dengan bagian lain dari [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api).
 
 ## Prasyarat
 
-Setiap permintaan di halaman ini diautentikasi dengan "bearer token" (token pembawa) OAuth yang membawa scope `org:admin`. Scope ini hanya diberikan kepada anggota organisasi dengan peran admin, owner, atau primary owner, dan memberikan akses ke seluruh organisasi: setiap pengikatan workspace diabaikan. Ada dua cara untuk memperoleh token, dan keduanya membawa izin yang berbeda: token dari login Anda sendiri bertindak sebagai pengguna, sedangkan token terfederasi bertindak sebagai akun layanan dan tidak dapat melakukan setiap operasi di halaman ini.
+Setiap permintaan di halaman ini diautentikasi dengan “bearer token” (token pembawa) OAuth yang membawa scope `org:admin`. Scope ini hanya diberikan kepada anggota organisasi dengan peran admin, owner, atau primary owner, dan memberikan akses ke seluruh organisasi: setiap pengikatan workspace diabaikan. Ada dua cara untuk memperoleh token, dan keduanya membawa izin yang berbeda: token dari login Anda sendiri bertindak sebagai pengguna, sedangkan token terfederasi bertindak sebagai akun layanan dan tidak dapat melakukan setiap operasi di halaman ini.
 
 ### Interaktif (terminal Anda)
 
@@ -495,7 +495,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [Referensi API akun laya
 
 ## Penerbit federasi
 
-[Penerbit federasi](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#federation-issuers) (`fdis_...`) mendaftarkan penyedia identitas OIDC ke organisasi Anda. Field `jwks` adalah "discriminated union" (union terdiskriminasi) yang mengontrol cara Anthropic mengambil kunci penandatanganan penyedia:
+[Penerbit federasi](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#federation-issuers) (`fdis_...`) mendaftarkan penyedia identitas OIDC ke organisasi Anda. Field `jwks` adalah “discriminated union” (union terdiskriminasi) yang mengontrol cara Anthropic mengambil kunci penandatanganan penyedia:
 
 | Nilai `jwks`                             | Kapan digunakan                                                                  |
 | ---------------------------------------- | -------------------------------------------------------------------------------- |
@@ -1274,7 +1274,7 @@ Aturan dengan `oauth_scope: org:admin` harus menargetkan akun layanan yang `orga
 
 Endpoint list akun layanan, penerbit federasi, dan aturan federasi menerima `limit` (1 hingga 100, default 20) dan cursor `page` yang diambil dari respons sebelumnya. Teruskan nilai `next_page` dari respons sebagai parameter query `page` pada permintaan berikutnya. List sub-resource rule-workspaces mengembalikan set lengkap tanpa paginasi. Sumber daya yang diarsipkan disembunyikan dari daftar secara default; teruskan `include_archived=true` untuk menyertakannya.
 
-Pengarsipan adalah "soft delete" (penghapusan lunak) dan bersifat idempoten: mengarsipkan sumber daya yang sudah diarsipkan akan berhasil. Mengarsipkan penerbit atau akun layanan mengembalikan `400` selama aturan federasi yang aktif masih mereferensikannya; arsipkan aturan tersebut terlebih dahulu.
+Pengarsipan adalah “soft delete” (penghapusan lunak) dan bersifat idempoten: mengarsipkan sumber daya yang sudah diarsipkan akan berhasil. Mengarsipkan penerbit atau akun layanan mengembalikan `400` selama aturan federasi yang aktif masih mereferensikannya; arsipkan aturan tersebut terlebih dahulu.
 
 ## Lihat juga
 

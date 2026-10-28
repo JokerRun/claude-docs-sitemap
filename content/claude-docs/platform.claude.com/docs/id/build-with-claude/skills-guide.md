@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: e949a2d084d9412e733b7fbf7840e6b43c511bd09ad52d5275917daad9b5c4e8
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 3e851ac2eea728be6543eae3cede40f5c89db7bd0d07aed5f37ac244cb1bdee0
 ---
 
 ---
@@ -21,7 +21,7 @@ Agent Skills memperluas kemampuan Claude melalui folder terorganisir yang berisi
 </Note>
 
 <Note>
-  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 ## Tautan cepat
@@ -2264,7 +2264,7 @@ File diidentifikasi berdasarkan nama file yang Anda lampirkan (akhiran `;filenam
 
 * Persyaratan frontmatter YAML:
 
-  * `name`: Maksimum 64 karakter, hanya huruf kecil/angka/tanda hubung, tanpa tag XML, tanpa kata yang dicadangkan ("anthropic", "claude")
+  * `name`: Maksimum 64 karakter, hanya huruf kecil/angka/tanda hubung, tanpa tag XML, tanpa kata yang dicadangkan (`anthropic`, `claude`)
   * `description`: Maksimum 1.024 karakter, tidak boleh kosong, tanpa tag XML
 
 Untuk skema permintaan/respons lengkap, lihat referensi API [Create Skill](https://platform.claude.com/docs/id/api/skills/create).
@@ -3120,7 +3120,7 @@ Lihat [referensi API Create Skill Version](https://platform.claude.com/docs/id/a
 
 Ketika Anda menentukan Skills dalam container:
 
-1. **Penemuan metadata:** Claude menerima metadata untuk setiap Skill (nama, deskripsi) dalam "system prompt" (prompt sistem).
+1. **Penemuan metadata:** Claude menerima metadata untuk setiap Skill (nama, deskripsi) dalam “system prompt” (prompt sistem).
 2. **Pemuatan file:** File Skill disalin ke dalam container di `/skills/{skill-name}/`. Direktorinya adalah nama Skill (`pptx` untuk Skill Anthropic, `name` di `SKILL.md` untuk Skill kustom), bukan ID `skill_01...`-nya.
 3. **Penggunaan otomatis:** Claude secara otomatis memuat dan menggunakan Skills ketika relevan dengan permintaan Anda.
 4. **Komposisi:** Beberapa Skills dapat dikomposisikan bersama untuk alur kerja yang kompleks.
@@ -3553,7 +3553,7 @@ Kemudian gunakan bersama Skill Excel untuk membuat model keuangan. Berikan ID Sk
 
 * **Persyaratan frontmatter YAML:**
 
-  * `name`: Maksimum 64 karakter, hanya huruf kecil/angka/tanda hubung, tanpa tag XML, tanpa kata yang dicadangkan ("anthropic", "claude")
+  * `name`: Maksimum 64 karakter, hanya huruf kecil/angka/tanda hubung, tanpa tag XML, tanpa kata yang dicadangkan (`anthropic`, `claude`)
   * `description`: Maksimum 1.024 karakter, tidak boleh kosong, tanpa tag XML
 
 ### Kendala lingkungan

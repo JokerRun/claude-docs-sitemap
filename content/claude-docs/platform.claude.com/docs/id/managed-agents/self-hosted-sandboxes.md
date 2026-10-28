@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 9084f7bd849223949400aaf5f254f2b7e19a61536fc869bbf90380df6d637c93
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: a86587c7fc209ce5b3b7ecdadfa81e5374d6c0961fa69840ddb6353bb4573219
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-"Self-hosted sandboxes" (sandbox yang di-host sendiri) memindahkan eksekusi alat agen dari sandbox cloud yang dikelola Anthropic ke infrastruktur yang Anda kendalikan, sementara Anthropic tetap menjalankan agen. Untuk mempelajari apa artinya dan memutuskan apakah ini cocok untuk agen Anda, lihat [Memilih lingkungan agen](https://platform.claude.com/docs/id/managed-agents/choosing-an-environment).
+“Self-hosted sandboxes” (sandbox yang di-host sendiri) memindahkan eksekusi alat agen dari sandbox cloud yang dikelola Anthropic ke infrastruktur yang Anda kendalikan, sementara Anthropic tetap menjalankan agen. Untuk mempelajari apa artinya dan memutuskan apakah ini cocok untuk agen Anda, lihat [Memilih lingkungan agen](https://platform.claude.com/docs/id/managed-agents/choosing-an-environment).
 
 ## Cara kerjanya
 
@@ -39,10 +39,10 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
 
 ### Prasyarat
 
-* **Sebuah agen:** Jika Anda belum memilikinya, selesaikan [Memulai dengan Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/quickstart) terlebih dahulu dan catat ID agennya.
-* **Sebuah host Linux:** Host memerlukan `/bin/bash` tepat di path tersebut. Worker hanya memerlukan HTTPS keluar.
-* **Sebuah kunci API Claude:** Anda menggunakannya dari mesin Anda sendiri untuk membuat sesi dan membaca statistik antrean. Jangan simpan di host worker, karena pemanggilan alat agen dapat membacanya.
-* **CLI `ant` atau SDK di mesin Anda sendiri:** Langkah statistik dan sesi dalam panduan mulai cepat ini dijalankan di sana, bukan di host worker. Instal CLI dengan cara yang sama seperti [langkah instalasi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-your-first-session) untuk worker, atau instal [SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview).
+* **Sebuah agen:** Jika Anda belum memilikinya, selesaikan [Memulai dengan Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/quickstart) terlebih dahulu dan catat ID agen tersebut.
+* **Host Linux atau macOS:** Host memerlukan `/bin/bash` tepat di path tersebut. Worker hanya memerlukan HTTPS keluar.
+* **Kunci API Claude:** Anda menggunakannya dari mesin Anda sendiri untuk membuat sesi dan membaca statistik antrean. Jauhkan kunci ini dari host worker, tempat panggilan alat agen dapat membacanya.
+* **CLI `ant` atau SDK di mesin Anda sendiri:** Langkah statistik dan sesi dalam quickstart ini dijalankan di sana, bukan di host worker. Instal CLI dengan cara yang sama seperti [langkah instalasi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-your-first-session) untuk worker, atau instal [SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview).
 
 <Note>
   Di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), worker melakukan autentikasi dengan AWS IAM (SigV4) atau [kunci API yang dibuat di AWS Console](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#api-key-authentication), bukan kunci lingkungan. Lampirkan kebijakan terkelola [`AnthropicSelfHostedEnvironmentAccess`](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#managed-policies) ke principal IAM yang digunakan worker Anda. Kunci lingkungan yang dibuat di Claude Console tidak berfungsi dengan endpoint Claude Platform on AWS.
@@ -50,11 +50,15 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
   Di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), worker melakukan autentikasi dengan [kredensial Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#authentication), bukan dengan kunci lingkungan. Berikan identitas Google Cloud yang digunakan worker Anda peran `roles/claude.user` atau `roles/claude.admin` pada proyek. Kedua peran tersebut mencakup [`environments.processWork`](https://platform.claude.com/docs/id/api/claude-models-on-google-cloud-anthropic-managed-iam-permissions#environments), yang dibutuhkan worker untuk melakukan polling dan mengelola item pekerjaan, serta izin sesi dan skill yang dibutuhkannya untuk menjalankan sesi. Kunci lingkungan yang dibuat di Claude Console tidak berfungsi dengan endpoint Claude Models on Google Cloud (Anthropic managed). Worker bawaan di CLI `ant` dan di SDK Python, TypeScript, dan Go tidak mendukung Claude Models on Google Cloud (Anthropic managed), jadi implementasikan worker Anda sendiri yang memanggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work) secara langsung. Lihat [Fitur yang tidak didukung](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#features-not-supported).
 </Note>
 
+<Note>
+  Di macOS, alat bash milik worker menjalankan Bash 3.2 bawaan sistem di `/bin/bash`, meskipun Anda menginstal Bash yang lebih baru dengan Homebrew. Untuk menggunakan memory store di macOS, terlebih dahulu [siapkan host macOS](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#prepare-a-macos-host).
+</Note>
+
 ### Jalankan sesi pertama Anda
 
 <Steps>
-  <Step title="Buat lingkungan yang di-host sendiri">
-    Di Claude Console, buka halaman [Environments](https://platform.claude.com/environments) (`platform.claude.com/environments`), klik **Create environment**, dan di bawah **Hosting** pilih **Self-hosted**.
+  <Step title="Buat lingkungan self-hosted">
+    Di Claude Console, buka halaman [Environments](https://platform.claude.com/environments) (`platform.claude.com/environments`), klik **Create environment**, lalu di bawah **Hosting** pilih **Self-hosted**.
 
     Atau melalui API:
 
@@ -189,11 +193,17 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
     Jalankan ini di host worker.
 
     <Tabs>
+      <Tab title="Homebrew (macOS)">
+        ```bash
+        brew install anthropics/tap/ant
+        ```
+      </Tab>
+
       <Tab title="curl (Linux/WSL)">
         Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
         ```bash
-        VERSION=2.3.0
+        VERSION=2.4.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -206,21 +216,50 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
         Anda dapat menemukan semua rilis di [halaman rilis GitHub](https://github.com/anthropics/anthropic-cli/releases).
       </Tab>
 
-      <Tab title="Homebrew (macOS)">
+      <Tab title="Go">
+        Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
+
         ```bash
-        brew install anthropics/tap/ant
+        go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
+        ```
+
+        Binary ditempatkan di `$(go env GOPATH)/bin`. Tambahkan ke `PATH` Anda jika belum ada:
+
+        ```bash
+        export PATH="$PATH:$(go env GOPATH)/bin"
         ```
       </Tab>
     </Tabs>
-  </Step>
 
-  <Step title="Jalankan worker">
-    Buat direktori kerja, lalu jalankan worker. `--workdir` secara default menggunakan direktori saat ini, jadi berikan `/workspace` agar sesuai dengan default sistem.
+    Periksa instalasi:
 
     ```bash
-    sudo mkdir -p /workspace && sudo chown "$USER" /workspace
-    ant beta:worker poll --workdir /workspace
+    ant --version
     ```
+  </Step>
+
+  <Step title="Mulai worker">
+    Buat direktori kerja, lalu mulai worker dengan `--workdir` diatur ke direktori tersebut. Tanpa flag ini, worker menggunakan direktori saat ini.
+
+    <Tabs>
+      <Tab title="Linux">
+        Berikan `/workspace` agar sesuai dengan default sistem.
+
+        ```bash
+        sudo mkdir -p /workspace && sudo chown "$USER" /workspace
+        ant beta:worker poll --workdir /workspace
+        ```
+      </Tab>
+
+      <Tab title="macOS">
+        Volume root bersifat read-only, sehingga `mkdir` tidak dapat membuat `/workspace`. Gunakan direktori di dalam direktori home Anda sebagai gantinya. Jika agen menggunakan skill, tambahkan path lengkap direktori ini (`echo ~/workspace` menampilkannya) ke prompt sistem agen, seperti yang dijelaskan di [Sandbox filesystem](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-reference#sandbox-filesystem).
+
+        ```bash
+        mkdir -p ~/workspace
+        ant beta:worker poll --workdir ~/workspace
+        ```
+      </Tab>
+    </Tabs>
 
     Worker membaca dua variabel yang Anda ekspor dan melakukan polling hingga Anda menghentikannya.
   </Step>
@@ -322,7 +361,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
           "environment_id": "'"$ANTHROPIC_ENVIRONMENT_ID"'"
         }'
 
-      # Kirimkan tugas ke sesi: SESSION_ID adalah ID dari respons pembuatan
+      # Kirim tugas ke sesi: SESSION_ID adalah ID dari respons pembuatan
       curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2023-06-01" \
@@ -505,14 +544,24 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
     Sesi menunggu di antrean lingkungan hingga sebuah worker mengklaimnya. Jika tidak ada worker yang terhubung, sesi tetap berada dalam antrean alih-alih gagal.
   </Step>
 
-  <Step title="Pastikan alat berjalan di host Anda">
+  <Step title="Pastikan alat dijalankan di host Anda">
     Di host worker, baca file yang ditulis oleh agen:
 
-    ```bash
-    cat /workspace/hello.txt
-    ```
+    <Tabs>
+      <Tab title="Linux">
+        ```bash
+        cat /workspace/hello.txt
+        ```
+      </Tab>
 
-    File tersebut mendeskripsikan kernel host Anda sendiri, jadi pemanggilan alat oleh agen berjalan di sana. Untuk mengikuti pekerjaan agen secara real-time, lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).
+      <Tab title="macOS">
+        ```bash
+        cat ~/workspace/hello.txt
+        ```
+      </Tab>
+    </Tabs>
+
+    File tersebut mendeskripsikan kernel host Anda sendiri, sehingga panggilan alat agen dijalankan di sana. Untuk mengikuti pekerjaan agen secara real time, lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).
   </Step>
 </Steps>
 

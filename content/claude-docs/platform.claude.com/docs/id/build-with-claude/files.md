@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: bca32160caf7d869a1b95b2c3014fd79abfd9c328a91ca8127b0c7f90748d437
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 3218f08dba760e4fbb9ad111b73662f6b763168f59a852b64f79cd75d6083fef
 ---
 
 ---
@@ -675,7 +675,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
 
 #### Daftar file
 
-Ambil daftar file yang telah Anda unggah. Endpoint ini menggunakan "pagination" (paginasi): setiap permintaan mengembalikan hingga `limit` file (20 secara default, dan paling banyak 1.000), dan kursor `next_page` pada respons mengambil halaman berikutnya saat diteruskan kembali sebagai parameter `page`. File diurutkan dari yang terbaru. Lihat [referensi List Files API](https://platform.claude.com/docs/id/api/files/list). SDK mengembalikan halaman pertama dan menyediakan helper [auto-pagination](https://platform.claude.com/docs/id/api/overview#pagination).
+Ambil daftar file yang telah Anda unggah. Endpoint ini menggunakan “pagination” (paginasi): setiap permintaan mengembalikan hingga `limit` file (20 secara default, dan paling banyak 1.000), dan kursor `next_page` pada respons mengambil halaman berikutnya saat diteruskan kembali sebagai parameter `page`. File diurutkan dari yang terbaru. Lihat [referensi List Files API](https://platform.claude.com/docs/id/api/files/list). SDK mengembalikan halaman pertama dan menyediakan helper [auto-pagination](https://platform.claude.com/docs/id/api/overview#pagination).
 
 <CodeGroup>
   ```bash cURL
@@ -999,7 +999,7 @@ Error umum saat menggunakan Files API meliputi:
 * **File tidak ditemukan (404):** `file_id` yang ditentukan tidak ada atau Anda tidak memiliki akses ke file tersebut.
 * **Jenis file tidak valid (400):** Jenis file tidak cocok dengan jenis blok konten (misalnya, menggunakan file gambar dalam blok dokumen).
 * **Tidak dapat diunduh (400):** File yang Anda unggah memiliki `"downloadable": false` dan tidak dapat diunduh. Hanya file yang dibuat oleh skills atau alat eksekusi kode yang dapat diunduh.
-* **Melebihi ukuran jendela konteks (400):** File lebih besar dari ukuran "context window" (jendela konteks) (misalnya, menggunakan file teks biasa berukuran 500 MB dalam permintaan `/v1/messages`).
+* **Melebihi ukuran jendela konteks (400):** File lebih besar dari ukuran “context window” (jendela konteks) (misalnya, menggunakan file teks biasa berukuran 500 MB dalam permintaan `/v1/messages`).
 * **Nama file tidak valid (400):** Nama file tidak memenuhi persyaratan panjang (1–255 karakter) atau berisi karakter terlarang (`<`, `>`, `:`, `"`, `|`, `?`, `*`, `\`, `/`, atau karakter Unicode 0–31).
 * **File terlalu besar (413):** File melebihi batas 500 MB.
 * **Batas penyimpanan terlampaui (400):** Organisasi Anda telah mencapai batas penyimpanan 1 TB.
@@ -1029,7 +1029,7 @@ Konten file yang digunakan dalam permintaan Messages dikenai harga sebagai token
 
 ### Batas laju
 
-Panggilan API terkait file dibatasi hingga sekitar 500 permintaan per menit ("rate limit" atau batas laju). Untuk meminta batas yang lebih tinggi, [hubungi tim penjualan](mailto:sales@anthropic.com).
+Panggilan API terkait file dibatasi hingga sekitar 500 permintaan per menit (“rate limit” atau batas laju). Untuk meminta batas yang lebih tinggi, [hubungi tim penjualan](mailto:sales@anthropic.com).
 
 ## Langkah selanjutnya
 

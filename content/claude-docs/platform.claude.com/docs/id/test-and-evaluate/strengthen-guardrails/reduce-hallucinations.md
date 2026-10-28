@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 9163eb9e055f3d079619c9590b56f45c1480e9c79e7f423b302ef31f2597ff75
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 29fb30cf0959af8b913fc23b5d2c5a6d5c3a59fe12d28a6d3ee6d938ab0d6bfb
 ---
 
 ---
@@ -11,11 +11,11 @@ url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails
 description: Minimalkan halusinasi dalam output Claude dengan mengizinkan ketidakpastian, mendasarkan respons pada kutipan langsung, dan memverifikasi klaim dengan sitasi.
 ---
 
-Bahkan model bahasa paling canggih, seperti Claude, terkadang dapat menghasilkan teks yang secara faktual salah atau tidak konsisten dengan konteks yang diberikan. Fenomena ini, yang dikenal sebagai "hallucination" (halusinasi), dapat merusak keandalan solusi berbasis AI Anda. Panduan ini membahas teknik-teknik untuk meminimalkan halusinasi dan memastikan output Claude akurat dan dapat dipercaya.
+Bahkan model bahasa paling canggih, seperti Claude, terkadang dapat menghasilkan teks yang secara faktual salah atau tidak konsisten dengan konteks yang diberikan. Fenomena ini, yang dikenal sebagai “hallucination” (halusinasi), dapat merusak keandalan solusi berbasis AI Anda. Panduan ini membahas teknik-teknik untuk meminimalkan halusinasi dan memastikan output Claude akurat dan dapat dipercaya.
 
 ## Strategi dasar untuk meminimalkan halusinasi
 
-* **Izinkan Claude untuk mengatakan "Saya tidak tahu":** Secara eksplisit berikan Claude izin untuk mengakui ketidakpastian. Teknik ini dapat secara drastis mengurangi informasi yang salah.
+* **Izinkan Claude untuk mengatakan “Saya tidak tahu”:** Secara eksplisit berikan Claude izin untuk mengakui ketidakpastian. Teknik ini dapat secara drastis mengurangi informasi yang salah.
 
 <Accordion title="Contoh: Menganalisis laporan merger dan akuisisi">
   ```text User wrap

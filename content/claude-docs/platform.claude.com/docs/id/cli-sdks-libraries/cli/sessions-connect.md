@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/sessions-connect
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 8ae6e1f754e9500112e2bad6e522e2734cbdcffd846604b7a3d942a6f6dd585c
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: dd69cb3e40783ad1c6e23a99b23b58034c28f0ee1897b123254c846acd0007b2
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/sessions-connect
 description: Hubungkan CLI ant ke sesi Claude Managed Agents untuk mengikuti transkripnya secara langsung, mengirim pesan, mengizinkan atau menolak panggilan alat, atau membuka penampil sesi di browser Anda.
 ---
 
-`ant beta:sessions connect` menghubungkan terminal Anda ke [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) Claude Managed Agents yang sudah ada. Perintah ini memuat transkrip sesi dan mengikutinya secara langsung saat agen bekerja. Anda juga dapat turun tangan: mengirim pesan, menginterupsi agen, atau mengizinkan maupun menolak "tool call" (panggilan alat) yang sedang menunggu persetujuan. Dengan `--web`, perintah ini justru membuka sesi di penampil sesi Claude Console di browser Anda.
+`ant beta:sessions connect` menghubungkan terminal Anda ke [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) Claude Managed Agents yang sudah ada. Perintah ini memuat transkrip sesi dan mengikutinya secara langsung saat agen bekerja. Anda juga dapat turun tangan: mengirim pesan, menginterupsi agen, atau mengizinkan maupun menolak “tool call” (panggilan alat) yang sedang menunggu persetujuan. Dengan `--web`, perintah ini justru membuka sesi di penampil sesi Claude Console di browser Anda.
 
 Perintah ini memerlukan CLI versi 1.32.0 atau yang lebih baru. Untuk menginstal atau memperbarui CLI dan melakukan autentikasi, lihat [panduan memulai cepat CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart).
 

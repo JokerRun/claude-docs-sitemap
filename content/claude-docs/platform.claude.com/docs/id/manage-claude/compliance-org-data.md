@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-org-data
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 342e16ea2e166ee1d6238bdb314a7a247f01a7c7b552929c554e162f74a32a16
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 5938c21a3fcc912c9386cdb64233ccb8a5eb2295f4868f68fbf7e842cc809eef
 ---
 
 ---
@@ -21,7 +21,7 @@ description: Enumerasi organisasi di bawah organisasi induk Anda (pengguna, pera
   Compliance Access Key (`sk-ant-api01-...`) yang dibuat di claude.ai adalah satu-satunya jenis kunci yang diterima; lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access) untuk menyediakannya. Panggilan yang diautentikasi dengan kunci Admin API (`sk-ant-admin01-...`) mengembalikan [403 Forbidden](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden).
 </Check>
 
-Endpoint di halaman ini mengekspos sisi direktori dari organisasi Claude Enterprise: organisasi tertautnya, pengguna di masing-masing organisasi, peran yang didefinisikan pada masing-masing, serta grup "role-based access control" (kontrol akses berbasis peran), atau RBAC, maupun grup yang disediakan melalui SCIM (System for Cross-domain Identity Management) beserta anggotanya. Gunakan endpoint ini untuk mengisi daftar pengguna eDiscovery, membangun dasbor pelaporan, dan merekonsiliasi keanggotaan grup terhadap sistem pencatatan eksternal. Compliance Access Key yang mencakup organisasi induk mengembalikan data dari setiap organisasi tertaut di bawahnya, sehingga satu kunci menjangkau seluruh pohon. [Endpoint pengaturan efektif](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#get-effective-organization-settings) melengkapi direktori: endpoint ini mengembalikan pengaturan privasi data, keamanan, dan kapabilitas yang benar-benar berlaku untuk satu organisasi.
+Endpoint di halaman ini mengekspos sisi direktori dari organisasi Claude Enterprise: organisasi tertautnya, pengguna di masing-masing organisasi, peran yang didefinisikan pada masing-masing, serta grup “role-based access control” (kontrol akses berbasis peran), atau RBAC, maupun grup yang disediakan melalui SCIM (System for Cross-domain Identity Management) beserta anggotanya. Gunakan endpoint ini untuk mengisi daftar pengguna eDiscovery, membangun dasbor pelaporan, dan merekonsiliasi keanggotaan grup terhadap sistem pencatatan eksternal. Compliance Access Key yang mencakup organisasi induk mengembalikan data dari setiap organisasi tertaut di bawahnya, sehingga satu kunci menjangkau seluruh pohon. [Endpoint pengaturan efektif](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#get-effective-organization-settings) melengkapi direktori: endpoint ini mengembalikan pengaturan privasi data, keamanan, dan kapabilitas yang benar-benar berlaku untuk satu organisasi.
 
 ## Daftar organisasi
 
@@ -248,7 +248,7 @@ curl --fail-with-body -sS \
   -H "anthropic-version: 2023-06-01"
 ```
 
-Responsnya adalah daftar baris pengaturan bertipe, dan baris mana yang muncul bervariasi menurut organisasi: pengaturan yang tidak dapat diubah oleh administrator organisasi, karena dikendalikan oleh kebijakan Anthropic atau tidak tersedia untuk organisasi tersebut, dihilangkan dari daftar. Perlakukan baris yang tidak ada sebagai "tidak dapat dikendalikan oleh administrator organisasi ini", bukan sebagai "nonaktif". Contoh ringkas berikut menunjukkan tiga dari baris yang dapat dimuat sebuah respons:
+Responsnya adalah daftar baris pengaturan bertipe, dan baris mana yang muncul bervariasi menurut organisasi: pengaturan yang tidak dapat diubah oleh administrator organisasi, karena dikendalikan oleh kebijakan Anthropic atau tidak tersedia untuk organisasi tersebut, dihilangkan dari daftar. Perlakukan baris yang tidak ada sebagai “tidak dapat dikendalikan oleh administrator organisasi ini”, bukan sebagai “nonaktif”. Contoh ringkas berikut menunjukkan tiga dari baris yang dapat dimuat sebuah respons:
 
 ```json Response
 {

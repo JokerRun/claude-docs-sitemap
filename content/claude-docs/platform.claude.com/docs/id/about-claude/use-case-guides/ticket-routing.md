@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: e7eb49e411b96c1ae1dae56dcacd7d0e9a3b550635ce0a1ad4c5db61a7e1dce1
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: addf106382a395eebacb66ef29b563b2ef2ea711771af619b6602e040429a88c
 ---
 
 ---
@@ -19,7 +19,7 @@ description: Panduan ini menjelaskan cara menggunakan kemampuan pemahaman bahasa
 
 ## Tentukan apakah akan menggunakan Claude untuk perutean tiket
 
-Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan "large language model" (model bahasa besar), atau LLM, seperti Claude alih-alih pendekatan ML tradisional untuk tugas klasifikasi Anda:
+Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan “large language model” (model bahasa besar), atau LLM, seperti Claude alih-alih pendekatan ML tradisional untuk tugas klasifikasi Anda:
 
 <AccordionGroup>
   <Accordion title="Anda memiliki data pelatihan berlabel yang terbatas">
@@ -687,7 +687,7 @@ Berikut adalah komponen utama dari prompt ini:
 * Templat prompt menyisipkan `ticket_contents` (typescript, csharp, go, java: `ticketContents`; php: `$ticketContents`) ke dalam tag `<request>`.
 * Prompt memberikan Claude peran yang terdefinisi dengan jelas sebagai sistem klasifikasi yang menganalisis konten tiket dengan cermat untuk menentukan maksud dan kebutuhan inti pelanggan.
 * Prompt menginstruksikan Claude tentang format output yang tepat, dalam hal ini untuk memberikan penalaran dan analisisnya di dalam tag `<reasoning>`, diikuti oleh label klasifikasi yang sesuai di dalam tag `<intent>`.
-* Prompt menentukan kategori maksud yang valid: "Support, Feedback, Complaint", "Order Tracking", dan "Refund/Exchange".
+* Prompt menentukan kategori maksud yang valid: `Support, Feedback, Complaint`, `Order Tracking`, dan `Refund/Exchange`.
 * Prompt menyertakan beberapa contoh (alias few-shot prompting) untuk mengilustrasikan bagaimana output harus diformat, yang meningkatkan akurasi dan konsistensi.
 
 Meminta Claude membagi responsnya ke dalam bagian-bagian tag XML terpisah memungkinkan Anda menggunakan ekspresi reguler untuk mengekstrak penalaran dan maksud dari output secara independen. Hal ini memungkinkan Anda membuat langkah selanjutnya yang terarah dalam alur kerja perutean tiket, seperti hanya menggunakan maksud untuk memutuskan kepada siapa tiket akan dirutekan.
@@ -1433,7 +1433,7 @@ Seiring bertambahnya jumlah kelas, jumlah contoh yang diperlukan juga bertambah,
 1. Atur maksud Anda dalam struktur pohon taksonomi.
 2. Buat serangkaian classifier di setiap tingkat pohon untuk memungkinkan pendekatan perutean bertingkat.
 
-Misalnya, Anda mungkin memiliki pengklasifikasi tingkat atas yang secara luas mengkategorikan tiket ke dalam "Technical Issues", "Billing Questions", dan "General Inquiries". Masing-masing kategori ini kemudian dapat memiliki sub-pengklasifikasi sendiri untuk lebih menyempurnakan klasifikasi.
+Misalnya, Anda mungkin memiliki pengklasifikasi tingkat atas yang secara luas mengkategorikan tiket ke dalam “Technical Issues”, “Billing Questions”, dan “General Inquiries”. Masing-masing kategori ini kemudian dapat memiliki sub-pengklasifikasi sendiri untuk lebih menyempurnakan klasifikasi.
 
 ```mermaid
 ---
@@ -1465,7 +1465,7 @@ flowchart LR
 
 * **Kelebihan - nuansa dan akurasi yang lebih besar:** Anda dapat membuat prompt yang berbeda untuk setiap jalur induk, memungkinkan klasifikasi yang lebih terarah dan spesifik konteks. Hal ini dapat menghasilkan akurasi yang lebih baik dan penanganan permintaan pelanggan yang lebih bernuansa.
 
-* **Kekurangan - "latency" (latensi) yang meningkat:** Beberapa classifier dapat menyebabkan latency yang meningkat, dan Anthropic merekomendasikan penerapan pendekatan ini dengan model tercepat, Haiku.
+* **Kekurangan - “latency” (latensi) yang meningkat:** Beberapa classifier dapat menyebabkan latency yang meningkat, dan Anthropic merekomendasikan penerapan pendekatan ini dengan model tercepat, Haiku.
 
 ### Gunakan database vektor dan pengambilan pencarian kemiripan untuk menangani tiket yang sangat bervariasi
 
@@ -1481,7 +1481,7 @@ Berikut adalah beberapa skenario di mana Claude mungkin salah mengklasifikasikan
 
 <AccordionGroup>
   <Accordion title="Pelanggan membuat permintaan implisit">
-    Pelanggan sering mengungkapkan kebutuhan secara tidak langsung. Misalnya, "Saya sudah menunggu paket saya selama lebih dari dua minggu" mungkin merupakan permintaan tidak langsung untuk status pesanan.
+    Pelanggan sering mengungkapkan kebutuhan secara tidak langsung. Misalnya, “Saya sudah menunggu paket saya selama lebih dari dua minggu” mungkin merupakan permintaan tidak langsung untuk status pesanan.
 
     * **Solusi:** Berikan Claude beberapa contoh pelanggan nyata dari jenis permintaan ini, beserta maksud yang mendasarinya. Anda dapat memperoleh hasil yang lebih baik lagi jika menyertakan alasan klasifikasi untuk maksud tiket yang sangat bernuansa, sehingga Claude dapat menggeneralisasi logikanya ke tiket lain dengan lebih baik.
   </Accordion>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 7aa8b7a137c007cc13fc625bf9b3c0fdda290e403947fa15a8f94d16cb26f74f
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: e87b0068653c0183ad966cb2b653e9e4d1ab8f41b6ffa8437cf11aa9f6bbc33e
 ---
 
 ---
@@ -25,7 +25,7 @@ description: Moderasi konten adalah aspek penting dalam menjaga lingkungan yang 
 
 ### Tentukan apakah akan menggunakan Claude untuk moderasi konten
 
-Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan "large language model" (model bahasa besar), atau LLM, seperti Claude alih-alih pendekatan "machine learning" (pembelajaran mesin), atau ML, tradisional atau pendekatan berbasis aturan untuk "content moderation" (moderasi konten):
+Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan “large language model” (model bahasa besar), atau LLM, seperti Claude alih-alih pendekatan “machine learning” (pembelajaran mesin), atau ML, tradisional atau pendekatan berbasis aturan untuk “content moderation” (moderasi konten):
 
 <AccordionGroup>
   <Accordion title="Anda menginginkan implementasi yang hemat biaya dan cepat">
@@ -67,7 +67,7 @@ Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan "large 
 
 ### Buat contoh konten untuk dimoderasi
 
-Sebelum mengembangkan solusi moderasi konten, pertama-tama buatlah contoh konten yang harus ditandai dan konten yang tidak boleh ditandai. Pastikan Anda menyertakan "edge cases" (kasus tepi) dan skenario menantang yang mungkin sulit ditangani secara efektif oleh sistem moderasi konten. Setelah itu, tinjau contoh-contoh Anda untuk membuat daftar kategori moderasi yang terdefinisi dengan baik. Misalnya, contoh yang dibuat oleh platform media sosial mungkin mencakup hal berikut:
+Sebelum mengembangkan solusi moderasi konten, pertama-tama buatlah contoh konten yang harus ditandai dan konten yang tidak boleh ditandai. Pastikan Anda menyertakan “edge cases” (kasus tepi) dan skenario menantang yang mungkin sulit ditangani secara efektif oleh sistem moderasi konten. Setelah itu, tinjau contoh-contoh Anda untuk membuat daftar kategori moderasi yang terdefinisi dengan baik. Misalnya, contoh yang dibuat oleh platform media sosial mungkin mencakup hal berikut:
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -317,9 +317,9 @@ Sebelum mengembangkan solusi moderasi konten, pertama-tama buatlah contoh konten
   ```
 </CodeGroup>
 
-Memoderasi contoh-contoh ini secara efektif memerlukan pemahaman bahasa yang bernuansa. Dalam komentar `This movie was great, I really enjoyed it. The main actor really killed it!`, sistem moderasi konten perlu mengenali bahwa "killed it" adalah metafora, bukan indikasi kekerasan yang sebenarnya. Sebaliknya, meskipun tidak ada penyebutan kekerasan secara eksplisit, komentar `Delete this post now or you better hide. I am coming after you and your family.` harus ditandai oleh sistem moderasi konten.
+Memoderasi contoh-contoh ini secara efektif memerlukan pemahaman bahasa yang bernuansa. Dalam komentar `This movie was great, I really enjoyed it. The main actor really killed it!`, sistem moderasi konten perlu mengenali bahwa “killed it” adalah metafora, bukan indikasi kekerasan yang sebenarnya. Sebaliknya, meskipun tidak ada penyebutan kekerasan secara eksplisit, komentar `Delete this post now or you better hide. I am coming after you and your family.` harus ditandai oleh sistem moderasi konten.
 
-Kategori tidak aman dapat disesuaikan agar sesuai dengan kebutuhan spesifik Anda. Misalnya, jika Anda ingin mencegah anak di bawah umur membuat konten di situs web Anda, Anda dapat menambahkan "Underage Posting" ke dalam kategori.
+Kategori tidak aman dapat disesuaikan agar sesuai dengan kebutuhan spesifik Anda. Misalnya, jika Anda ingin mencegah anak di bawah umur membuat konten di situs web Anda, Anda dapat menambahkan “Underage Posting” ke dalam kategori.
 
 ***
 
@@ -1452,7 +1452,7 @@ Setelah Anda yakin dengan kualitas solusi Anda, saatnya untuk men-deploy-nya ke 
 
 ## Tingkatkan kinerja
 
-Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan guna meningkatkan kinerja di luar [teknik "prompt engineering" (rekayasa prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) standar. Berikut adalah beberapa strategi lanjutan:
+Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan guna meningkatkan kinerja di luar [teknik “prompt engineering” (rekayasa prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) standar. Berikut adalah beberapa strategi lanjutan:
 
 ### Definisikan topik dan berikan contoh
 

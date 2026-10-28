@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-api-access
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 60a58c0fd128f1cdabf298318d99223664967fa5ac6805e52b4a7dda32a22c97
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: d75d90f98f770729ed5b66cb305fdfc1bd9f5efd1f324dceee8d4611cd7174d5
 ---
 
 ---
@@ -30,7 +30,7 @@ Compliance API menggunakan dua jenis kunci, dan kunci mana yang Anda buat bergan
 | **Kunci Analytics API**                        | [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access)                                              | Claude Enterprise Analytics API (lihat [Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api))                       | Tidak                            |
 | **Kunci Claude API** (`sk-ant-api03-...`)      | Halaman [API keys](https://platform.claude.com/settings/keys) (`platform.claude.com/settings/keys`) di Claude Console               | Memanggil model Claude melalui [Claude API](https://platform.claude.com/docs/id/api/overview)                                                  | Tidak                            |
 
-Tenant Claude Enterprise memiliki satu **organisasi induk** ("parent organization") yang memusatkan identitas, SSO, dan SCIM untuk setiap organisasi beban kerja di bawahnya. Organisasi beban kerja ini adalah **organisasi tertaut** ("linked organizations") milik induk tersebut.
+Tenant Claude Enterprise memiliki satu **organisasi induk** (“parent organization”) yang memusatkan identitas, SSO, dan SCIM untuk setiap organisasi beban kerja di bawahnya. Organisasi beban kerja ini adalah **organisasi tertaut** (“linked organizations”) milik induk tersebut.
 
 <Warning>
   **Organisasi induk Claude Enterprise tidak muncul di Claude Console (`platform.claude.com`).** Organisasi induk tidak memiliki beban kerja, tidak memiliki kunci Claude API, dan tidak memiliki kunci Admin API. Buat Compliance Access Key di **Organization settings** claude.ai, bukan di Claude Console.

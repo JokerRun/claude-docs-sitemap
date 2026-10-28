@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 6b1650701472209bfb33449d5b5f4127a80a28375f7ca4143150b6b658898f0d
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 94f67df5817e03c515f7908371b7a96a8dcbfa7cb8f255131d40b78409aca0d2
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview
 description: Hubungkan Claude ke alat dan API eksternal. Lihat di mana alat dijalankan, kapan Claude memanggilnya, dan alat mana yang sesuai dengan tugas Anda.
 ---
 
-"Tool use" (penggunaan alat), yang juga disebut "function calling" (pemanggilan fungsi), memungkinkan Claude memanggil fungsi yang Anda definisikan atau yang disediakan oleh Anthropic. Claude menentukan kapan harus memanggil alat berdasarkan permintaan pengguna dan deskripsi alat tersebut. Kemudian Claude mengembalikan panggilan terstruktur yang dijalankan oleh aplikasi Anda (alat klien) atau yang dijalankan oleh Anthropic (alat server).
+“Tool use” (penggunaan alat), yang juga disebut “function calling” (pemanggilan fungsi), memungkinkan Claude memanggil fungsi yang Anda definisikan atau yang disediakan oleh Anthropic. Claude menentukan kapan harus memanggil alat berdasarkan permintaan pengguna dan deskripsi alat tersebut. Kemudian Claude mengembalikan panggilan terstruktur yang dijalankan oleh aplikasi Anda (alat klien) atau yang dijalankan oleh Anthropic (alat server).
 
 Berikut contoh minimal menggunakan alat server, yaitu [alat pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool), yang dijalankan Anthropic untuk Anda:
 
@@ -638,7 +638,7 @@ The current weather in San Francisco is 15 degrees Celsius with partly cloudy sk
 
 Untuk model konseptual lengkap termasuk loop agentik dan kapan memilih setiap pendekatan, lihat [Cara kerja penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works).
 
-Untuk terhubung ke server "Model Context Protocol", atau MCP, lihat [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector). Untuk membangun klien MCP Anda sendiri, lihat panduan Model Context Protocol tentang [membangun klien MCP](https://modelcontextprotocol.io/docs/develop/build-client).
+Untuk terhubung ke server “Model Context Protocol”, atau MCP, lihat [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector). Untuk membangun klien MCP Anda sendiri, lihat panduan Model Context Protocol tentang [membangun klien MCP](https://modelcontextprotocol.io/docs/develop/build-client).
 
 ## Kapan Claude menggunakan alat
 
@@ -659,7 +659,7 @@ Halaman setiap alat server menjelaskan batas pemicunya sendiri secara lebih mend
 <Accordion title="Ketika parameter wajib tidak ada">
   Jika prompt pengguna tidak menyertakan informasi yang cukup untuk mengisi semua parameter wajib untuk suatu alat, Claude Opus jauh lebih mungkin mengenali bahwa ada parameter yang hilang dan menanyakannya. Claude Sonnet mungkin bertanya, terutama ketika diminta untuk berpikir sebelum mengeluarkan permintaan alat. Namun Claude Sonnet juga mungkin menyimpulkan nilai yang masuk akal.
 
-  Sebagai contoh, dengan alat `get_weather` yang memerlukan parameter `location`, jika Anda bertanya kepada Claude "What's the weather?" tanpa menentukan lokasi, Claude (khususnya Claude Sonnet) mungkin menebak nilai yang tidak Anda berikan:
+  Sebagai contoh, dengan alat `get_weather` yang memerlukan parameter `location`, jika Anda bertanya kepada Claude “What’s the weather?” tanpa menentukan lokasi, Claude (khususnya Claude Sonnet) mungkin menebak nilai yang tidak Anda berikan:
 
   ```json JSON
   {
@@ -753,7 +753,7 @@ Alat server berjalan di infrastruktur Anthropic, tanpa kode handler di aplikasi 
 
 ## Harga
 
-Permintaan "tool use" (penggunaan alat) dikenai harga berdasarkan:
+Permintaan “tool use” (penggunaan alat) dikenai harga berdasarkan:
 
 1. Jumlah total token input yang dikirim ke model (termasuk dalam parameter `tools`)
 2. Jumlah token output yang dihasilkan
@@ -767,7 +767,7 @@ Token tambahan dari penggunaan alat berasal dari:
 * Blok konten `tool_use` dalam permintaan dan respons API
 * Blok konten `tool_result` dalam permintaan API
 
-Saat Anda menggunakan `tools`, API juga secara otomatis menyertakan "system prompt" (prompt sistem) khusus untuk model yang memungkinkan penggunaan alat. Jumlah token penggunaan alat yang diperlukan untuk setiap model tercantum dalam tabel berikut (tidak termasuk token tambahan yang disebutkan sebelumnya). Perhatikan bahwa tabel ini mengasumsikan setidaknya 1 alat disediakan. Jika tidak ada `tools` yang disediakan, maka pilihan alat `none` menggunakan 0 token prompt sistem tambahan.
+Saat Anda menggunakan `tools`, API juga secara otomatis menyertakan “system prompt” (prompt sistem) khusus untuk model yang memungkinkan penggunaan alat. Jumlah token penggunaan alat yang diperlukan untuk setiap model tercantum dalam tabel berikut (tidak termasuk token tambahan yang disebutkan sebelumnya). Perhatikan bahwa tabel ini mengasumsikan setidaknya 1 alat disediakan. Jika tidak ada `tools` yang disediakan, maka pilihan alat `none` menggunakan 0 token prompt sistem tambahan.
 
 | Model                                                                                                                                                                  | Tool use system prompt tokens: auto, none | Tool use system prompt tokens: any, tool |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------- | :--------------------------------------- |

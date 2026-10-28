@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/choosing-an-environment
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 470db9739d676e529044121281566c5b6c4d0f31bb132201e0420000fd9b1346
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: b81a4afbcd38397df79d3e85ab2cb2278c1aa105ad161876597ea8fd797dc4f1
 ---
 
 ---
@@ -17,10 +17,10 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-Sebuah "environment" (lingkungan) menentukan tempat alat dan kode agen Anda berjalan. Alat dan kode tersebut berjalan di dalam sandbox. Sandbox adalah ruang kerja terisolasi, seperti container, tempat agen menjalankan perintah dan mengerjakan file. Anda memiliki dua opsi:
+Sebuah “environment” (lingkungan) menentukan tempat alat dan kode agen Anda berjalan. Alat dan kode tersebut berjalan di dalam sandbox. Sandbox adalah ruang kerja terisolasi, seperti container, tempat agen menjalankan perintah dan mengerjakan file. Anda memiliki dua opsi:
 
 * **Lingkungan cloud:** Anthropic menjalankan sandbox untuk Anda. Setiap sesi mendapatkan container Linux baru miliknya sendiri di infrastruktur yang dikelola Anthropic, dengan bahasa pemrograman, database, dan utilitas umum yang sudah terinstal. Anda memilih aturan jaringannya dan paket tambahan apa pun yang akan diinstal.
-* **Sandbox yang di-host sendiri:** Anda menjalankan sandbox di infrastruktur Anda sendiri. Claude tetap berjalan di sisi Anthropic dan menentukan alat mana yang akan dipanggil berikutnya. Sebuah program yang Anda jalankan, yang disebut "worker" (pekerja), menjalankan panggilan alat bash dan file milik agen di mesin Anda dan mengirimkan setiap hasilnya kembali. Program ini juga dapat menyajikan alat kustom.
+* **Sandbox yang di-host sendiri:** Anda menjalankan sandbox di infrastruktur Anda sendiri. Claude tetap berjalan di sisi Anthropic dan menentukan alat mana yang akan dipanggil berikutnya. Sebuah program yang Anda jalankan, yang disebut “worker” (pekerja), menjalankan panggilan alat bash dan file milik agen di mesin Anda dan mengirimkan setiap hasilnya kembali. Program ini juga dapat menyajikan alat kustom.
 
 Definisi agen tetap sama apa pun pilihan Anda. Anda mengatur model, prompt, dan alat pada [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup), bukan pada lingkungan.
 

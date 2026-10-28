@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: f887525ccf1db26c0bc275e96602ba75a9d8234cefb5ca0a0be9aa782583e791
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: d5ba3ae11f3fcd7f7c7811b6ea5dad6a539e9fdcefcc727cc836919f252181cb
 ---
 
 ---
@@ -11,15 +11,15 @@ url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
 description: Simpan prefix prompt ke cache dengan `cache_control` untuk memangkas biaya dan latensi, menggunakan caching otomatis atau breakpoint eksplisit dengan TTL 5 menit atau 1 jam.
 ---
 
-"Prompt caching" (caching prompt) mengoptimalkan penggunaan API Anda dengan memungkinkan pemrosesan dilanjutkan dari "prefix" (awalan) tertentu dalam prompt Anda. Ini secara signifikan mengurangi waktu pemrosesan dan biaya untuk tugas berulang atau prompt dengan elemen yang konsisten.
+“Prompt caching” (caching prompt) mengoptimalkan penggunaan API Anda dengan memungkinkan pemrosesan dilanjutkan dari “prefix” (awalan) tertentu dalam prompt Anda. Ini secara signifikan mengurangi waktu pemrosesan dan biaya untuk tugas berulang atau prompt dengan elemen yang konsisten.
 
 <Note>
-  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 Ada dua cara untuk mengaktifkan caching prompt:
 
-* **[Caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching):** Tambahkan satu bidang `cache_control` di tingkat teratas permintaan Anda. Sistem secara otomatis menerapkan "cache breakpoint" (titik henti cache) ke blok terakhir yang dapat di-cache dan memindahkannya maju seiring percakapan bertambah panjang. Paling cocok untuk percakapan multi-giliran di mana riwayat pesan yang terus bertambah harus di-cache secara otomatis.
+* **[Caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching):** Tambahkan satu bidang `cache_control` di tingkat teratas permintaan Anda. Sistem secara otomatis menerapkan “cache breakpoint” (titik henti cache) ke blok terakhir yang dapat di-cache dan memindahkannya maju seiring percakapan bertambah panjang. Paling cocok untuk percakapan multi-giliran di mana riwayat pesan yang terus bertambah harus di-cache secara otomatis.
 * **[Cache breakpoint eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints):** Tempatkan `cache_control` langsung pada blok konten individual untuk kontrol terperinci atas apa yang di-cache.
 
 Cara termudah untuk memulai adalah dengan caching otomatis:
@@ -485,7 +485,7 @@ Breakpoint cache secara otomatis berpindah ke blok terakhir yang dapat di-cache 
 
 ### Dukungan TTL
 
-Secara default, caching otomatis menggunakan "time to live" (masa berlaku), atau TTL, selama 5 menit. Anda dapat menentukan TTL 1 jam dengan harga 2x harga token input dasar:
+Secara default, caching otomatis menggunakan “time to live” (masa berlaku), atau TTL, selama 5 menit. Anda dapat menentukan TTL 1 jam dengan harga 2x harga token input dasar:
 
 ```json
 { "cache_control": { "type": "ephemeral", "ttl": "1h" } }
@@ -515,7 +515,7 @@ Ini memungkinkan Anda menggabungkan kedua pendekatan. Misalnya, gunakan breakpoi
 
 ### Apa yang tetap sama
 
-Caching otomatis menggunakan infrastruktur caching dasar yang sama. Harga, ambang batas token minimum, persyaratan urutan konteks, dan "lookback window" (jendela penelusuran mundur) 20 blok semuanya berlaku sama seperti pada breakpoint eksplisit.
+Caching otomatis menggunakan infrastruktur caching dasar yang sama. Harga, ambang batas token minimum, persyaratan urutan konteks, dan “lookback window” (jendela penelusuran mundur) 20 blok semuanya berlaku sama seperti pada breakpoint eksplisit.
 
 ### Kasus khusus
 
@@ -620,7 +620,7 @@ Jika prompt Anda sedikit di bawah batas minimum untuk model dan platform Anda, m
 
 Untuk permintaan bersamaan, perhatikan bahwa entri cache baru tersedia setelah respons pertama dimulai. Jika Anda memerlukan cache hit untuk permintaan paralel, tunggu respons pertama sebelum mengirim permintaan berikutnya.
 
-Saat ini, "ephemeral" adalah satu-satunya jenis cache yang didukung, yang secara default memiliki masa berlaku 5 menit.
+Saat ini, `ephemeral` adalah satu-satunya jenis cache yang didukung, yang secara default memiliki masa berlaku 5 menit.
 
 ### Apa yang dapat di-cache
 
@@ -780,7 +780,7 @@ Untuk mengoptimalkan performa caching prompt:
 
 Sesuaikan strategi caching prompt Anda dengan skenario Anda:
 
-* Agen percakapan: Kurangi biaya dan "latency" (latensi) untuk percakapan panjang, terutama yang memiliki instruksi panjang atau dokumen yang diunggah.
+* Agen percakapan: Kurangi biaya dan “latency” (latensi) untuk percakapan panjang, terutama yang memiliki instruksi panjang atau dokumen yang diunggah.
 * Asisten coding: Tingkatkan auto-complete dan tanya jawab basis kode dengan menyimpan bagian yang relevan atau versi ringkasan basis kode dalam prompt.
 * Pemrosesan dokumen besar: Sertakan materi panjang yang lengkap termasuk gambar dalam prompt Anda tanpa meningkatkan latensi respons.
 * Kumpulan instruksi terperinci: Bagikan daftar instruksi, prosedur, dan contoh yang ekstensif untuk menyempurnakan respons Claude. Pengembang sering menyertakan satu atau dua contoh dalam prompt, tetapi dengan caching prompt Anda bisa mendapatkan performa yang lebih baik lagi dengan menyertakan 20+ contoh jawaban berkualitas tinggi yang beragam.
@@ -892,7 +892,7 @@ Berikut tiga contoh. Ini menggambarkan token input dari 3 permintaan, yang masin
 
 ## Memanaskan cache terlebih dahulu
 
-"Cache pre-warming" (pemanasan awal cache) memungkinkan Anda memuat prompt sistem atau definisi alat ke dalam cache prompt sebelum pengguna memicu permintaan sebenarnya. Ini menghilangkan penalti "latency" (latensi) akibat cache miss pada interaksi pengguna pertama, sehingga mengurangi "time-to-first-token" (waktu hingga token pertama), atau TTFT, untuk aplikasi yang sensitif terhadap latensi.
+“Cache pre-warming” (pemanasan awal cache) memungkinkan Anda memuat prompt sistem atau definisi alat ke dalam cache prompt sebelum pengguna memicu permintaan sebenarnya. Ini menghilangkan penalti “latency” (latensi) akibat cache miss pada interaksi pengguna pertama, sehingga mengurangi “time-to-first-token” (waktu hingga token pertama), atau TTFT, untuk aplikasi yang sensitif terhadap latensi.
 
 ### Cara kerjanya
 
@@ -3125,7 +3125,7 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
       ```
     </CodeGroup>
 
-    Contoh komprehensif ini menunjukkan cara menggunakan keempat "cache breakpoint" (titik henti cache) yang tersedia untuk mengoptimalkan berbagai bagian prompt Anda:
+    Contoh komprehensif ini menunjukkan cara menggunakan keempat “cache breakpoint” (titik henti cache) yang tersedia untuk mengoptimalkan berbagai bagian prompt Anda:
 
     1. **Cache alat** (breakpoint cache 1): Parameter `cache_control` pada definisi alat terakhir meng-cache semua definisi alat.
 
@@ -3319,7 +3319,7 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platfor
     </CodeGroup>
   </Accordion>
 
-  <Accordion title="Mengapa saya melihat 'TypeError: Cannot read properties of undefined (reading 'messages')'?">
+  <Accordion title="Mengapa saya melihat ‘TypeError: Cannot read properties of undefined (reading ‘messages’)’?">
     Error ini biasanya muncul ketika Anda telah meng-upgrade SDK atau menggunakan contoh kode yang sudah usang. Caching prompt tidak lagi memerlukan prefiks beta. Alih-alih:
 
     ```typescript TypeScript

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 3e576fc1055569075409f29630b5fe973e714ee333ad0e9d06e664f22c8ac529
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 2240014aba5bfb4600fdc3aed5d199f25bf22e69785273b3c2e96423759b1d60
 ---
 
 ---
@@ -22,9 +22,9 @@ featureMetadata:
     Microsoft Foundry: ga
 ---
 
-"Token counting" (penghitungan token) memungkinkan Anda menentukan jumlah token dalam sebuah pesan sebelum Anda mengirimkannya ke Claude. Ini membantu Anda membuat keputusan yang tepat tentang prompt dan penggunaan Anda. Dengan penghitungan token, Anda dapat:
+“Token counting” (penghitungan token) memungkinkan Anda menentukan jumlah token dalam sebuah pesan sebelum Anda mengirimkannya ke Claude. Ini membantu Anda membuat keputusan yang tepat tentang prompt dan penggunaan Anda. Dengan penghitungan token, Anda dapat:
 
-* Mengelola "rate limit" (batas laju) dan biaya secara proaktif
+* Mengelola “rate limit” (batas laju) dan biaya secara proaktif
 * Membuat keputusan perutean model yang cerdas
 * Mengoptimalkan prompt ke panjang tertentu
 
@@ -1438,7 +1438,7 @@ Penghitungan token **gratis digunakan** tetapi tunduk pada batas laju permintaan
 
 <AccordionGroup>
   <Accordion title="Apakah penghitungan token menggunakan caching prompt?">
-    Tidak, penghitungan token memberikan estimasi tanpa menggunakan logika caching. Meskipun Anda dapat menyertakan blok `cache_control` dalam permintaan penghitungan token Anda, "prompt caching" (caching prompt) hanya terjadi selama pembuatan pesan yang sebenarnya.
+    Tidak, penghitungan token memberikan estimasi tanpa menggunakan logika caching. Meskipun Anda dapat menyertakan blok `cache_control` dalam permintaan penghitungan token Anda, “prompt caching” (caching prompt) hanya terjadi selama pembuatan pesan yang sebenarnya.
   </Accordion>
 </AccordionGroup>
 

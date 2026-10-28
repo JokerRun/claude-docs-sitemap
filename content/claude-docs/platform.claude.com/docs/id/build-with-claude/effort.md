@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/effort
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 019ad047d97856668c3ff04c5d2dba4a6fb65639057294867e2dea1637da8436
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 1bf857750e41442171aefd1e511941728768ad189bc162acfa15fc666e2a8f43
 ---
 
 ---
@@ -308,7 +308,7 @@ Default API adalah `high`. Untuk menggunakan `xhigh`, atur `effort` secara ekspl
 | `xhigh`  | Titik awal yang direkomendasikan untuk pekerjaan coding dan agentik, serta untuk tugas eksploratif seperti pemanggilan alat berulang, pencarian web terperinci, dan pencarian basis pengetahuan. Perkirakan penggunaan token yang jauh lebih tinggi daripada `high`.                     |
 | `max`    | Simpan untuk masalah frontier. Pada sebagian besar beban kerja, `max` menambah biaya yang signifikan untuk peningkatan kualitas yang relatif kecil, dan pada beberapa tugas output terstruktur atau yang kurang sensitif terhadap kecerdasan, ini dapat menyebabkan berpikir berlebihan. |
 
-Claude Opus 4.7 juga mematuhi tingkat effort secara lebih ketat daripada Claude Opus 4.6, terutama pada `low` dan `medium`. Pada tingkat effort yang lebih rendah, model membatasi pekerjaannya pada apa yang diminta alih-alih melakukan lebih dari yang diminta. Jika Anda mengamati penalaran yang dangkal pada masalah kompleks dengan Claude Opus 4.7, naikkan effort alih-alih mengakalinya dengan prompt. Jika Anda harus mempertahankan effort rendah demi latensi, tambahkan panduan yang terarah seperti "This task involves multistep reasoning. Think carefully before responding."
+Claude Opus 4.7 juga mematuhi tingkat effort secara lebih ketat daripada Claude Opus 4.6, terutama pada `low` dan `medium`. Pada tingkat effort yang lebih rendah, model membatasi pekerjaannya pada apa yang diminta alih-alih melakukan lebih dari yang diminta. Jika Anda mengamati penalaran yang dangkal pada masalah kompleks dengan Claude Opus 4.7, naikkan effort alih-alih mengakalinya dengan prompt. Jika Anda harus mempertahankan effort rendah demi latensi, tambahkan panduan yang terarah seperti “This task involves multistep reasoning. Think carefully before responding.”
 
 Saat menjalankan Claude Opus 4.7 pada effort `xhigh` atau `max`, atur `max_tokens` yang besar agar model memiliki ruang untuk berpikir dan bertindak di seluruh subagen dan pemanggilan alat. Memulai dari 64k token dan menyesuaikan dari sana adalah default yang wajar.
 

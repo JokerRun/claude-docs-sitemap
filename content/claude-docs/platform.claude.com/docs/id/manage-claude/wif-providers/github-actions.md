@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 64bae4b7131d278de70cb3460624a78e57c9c16ce664e21bdc13837cb8b4f44e
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 2fa9f98a4bbb2f5c615682d56180f47fff201f5dcee5544f7b279618087f38ad
 ---
 
 ---
@@ -11,13 +11,13 @@ url: https://platform.claude.com/docs/id/manage-claude/wif-providers/github-acti
 description: Autentikasi workflow GitHub Actions ke Claude API dengan token identitas berumur pendek alih-alih kunci API berumur panjang.
 ---
 
-Setiap eksekusi workflow GitHub Actions dapat meminta token identitas bertanda tangan dari penerbit yang di-host GitHub di `https://token.actions.githubusercontent.com`. Dengan "Workload Identity Federation" (federasi identitas beban kerja), workflow Anda menukar token tersebut dengan token akses Anthropic berumur pendek, sehingga job CI Anda dapat memanggil Claude API tanpa secret `ANTHROPIC_API_KEY` yang disimpan di repositori Anda.
+Setiap eksekusi workflow GitHub Actions dapat meminta token identitas bertanda tangan dari penerbit yang di-host GitHub di `https://token.actions.githubusercontent.com`. Dengan “Workload Identity Federation” (federasi identitas beban kerja), workflow Anda menukar token tersebut dengan token akses Anthropic berumur pendek, sehingga job CI Anda dapat memanggil Claude API tanpa secret `ANTHROPIC_API_KEY` yang disimpan di repositori Anda.
 
 Klaim `sub` pada token mengodekan repositori dan konteks pemicu. Untuk push ke sebuah branch, klaim ini memiliki bentuk `repo:<owner>/<repo>:ref:refs/heads/<branch>`. Eksekusi pull request menggunakan `repo:<owner>/<repo>:pull_request`, dan deployment yang dibatasi environment menggunakan `repo:<owner>/<repo>:environment:<name>`. Aturan federasi Anda mencocokkan terhadap klaim ini (dan klaim lainnya, seperti `repository_owner` dan `ref`) untuk menentukan eksekusi workflow mana yang diizinkan untuk melakukan autentikasi.
 
 ## Prasyarat
 
-* Pemahaman tentang [konsep WIF](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#concepts): "service account" (akun layanan), "federation issuer" (penerbit federasi), dan "federation rule" (aturan federasi).
+* Pemahaman tentang [konsep WIF](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#concepts): “service account” (akun layanan), “federation issuer” (penerbit federasi), dan “federation rule” (aturan federasi).
 * Repositori GitHub tempat Anda dapat mengedit file workflow dan memberikan izin `id-token: write`.
 * Izin untuk membuat akun layanan, penerbit federasi, dan aturan federasi di Claude Console untuk organisasi Anthropic Anda.
 * ID organisasi Anthropic Anda. Anda dapat menemukannya di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
@@ -32,7 +32,7 @@ permissions:
   contents: read
 ```
 
-Di dalam job, runner menyediakan dua variabel lingkungan: `ACTIONS_ID_TOKEN_REQUEST_URL` dan `ACTIONS_ID_TOKEN_REQUEST_TOKEN`. Panggil URL permintaan dengan token permintaan sebagai kredensial bearer dan "audience" (audiens) pilihan Anda sebagai parameter kueri, lalu tulis "JSON Web Token" (token web JSON), atau JWT, yang dikembalikan ke sebuah file:
+Di dalam job, runner menyediakan dua variabel lingkungan: `ACTIONS_ID_TOKEN_REQUEST_URL` dan `ACTIONS_ID_TOKEN_REQUEST_TOKEN`. Panggil URL permintaan dengan token permintaan sebagai kredensial bearer dan “audience” (audiens) pilihan Anda sebagai parameter kueri, lalu tulis “JSON Web Token” (token web JSON), atau JWT, yang dikembalikan ke sebuah file:
 
 ```yaml
 - name: Fetch GitHub OIDC token

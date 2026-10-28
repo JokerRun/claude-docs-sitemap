@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 99a5bfad314ed01bb6554efbfebde4ecc6a24ce15f904893c5de1ea26c9272b8
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 4e836e44def6d9416c7f8877eeefb5b02224aa35d3ff1e95d0389609c794b9be
 ---
 
 ---
@@ -33,7 +33,7 @@ Prompt Claude Sonnet 5 yang sudah ada seharusnya tetap berkinerja baik tanpa per
 
 ## Kalibrasi effort
 
-[Effort](https://platform.claude.com/docs/id/build-with-claude/effort) adalah kontrol utama untuk seberapa banyak Claude Sonnet 5.5 berpikir, dan bersamanya kualitas, "latency" (latensi), dan biaya. Level-levelnya telah dikalibrasi ulang: suatu level tidak menghasilkan jumlah pemikiran yang sama dengan level yang sama di Claude Sonnet 5. Jalankan pengujian ulang terhadap eval Anda sendiri alih-alih membawa pengaturan yang Anda gunakan di Claude Sonnet 5. Mulailah dari `high`, default di Claude API, kecuali beban kerja Anda bersifat agentik atau sensitif terhadap latensi. Untuk coding agentik dan penggunaan alat multilangkah, mulailah dari `medium` untuk tugas yang terdefinisi dengan baik dan naikkan ke `high` untuk tugas yang lebih sulit atau lebih panjang. Untuk chat dan pekerjaan lain yang sensitif terhadap latensi, mulailah dari `medium` atau `low`, karena effort yang lebih tinggi berarti waktu tunggu yang lebih lama sebelum balasan dimulai. Naikkan effort jika kualitas membutuhkannya.
+[Effort](https://platform.claude.com/docs/id/build-with-claude/effort) adalah kontrol utama untuk seberapa banyak Claude Sonnet 5.5 berpikir, dan bersamanya kualitas, “latency” (latensi), dan biaya. Level-levelnya telah dikalibrasi ulang: suatu level tidak menghasilkan jumlah pemikiran yang sama dengan level yang sama di Claude Sonnet 5. Jalankan pengujian ulang terhadap eval Anda sendiri alih-alih membawa pengaturan yang Anda gunakan di Claude Sonnet 5. Mulailah dari `high`, default di Claude API, kecuali beban kerja Anda bersifat agentik atau sensitif terhadap latensi. Untuk coding agentik dan penggunaan alat multilangkah, mulailah dari `medium` untuk tugas yang terdefinisi dengan baik dan naikkan ke `high` untuk tugas yang lebih sulit atau lebih panjang. Untuk chat dan pekerjaan lain yang sensitif terhadap latensi, mulailah dari `medium` atau `low`, karena effort yang lebih tinggi berarti waktu tunggu yang lebih lama sebelum balasan dimulai. Naikkan effort jika kualitas membutuhkannya.
 
 Effort yang lebih rendah juga mengubah cara model menyelesaikan pekerjaan agentik. Pada `low`, model menjaga pemikirannya tetap singkat dan dapat melewatkan verifikasi perubahan. Lihat [Verifikasi pada tugas coding](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#verification-on-coding-tasks). Pada `low` dan `medium`, dalam tugas agentik yang panjang, model lebih cenderung berhenti dan meminta konfirmasi kepada pengguna sebelum menyelesaikan pekerjaannya. Lihat [Arahkan inisiatif dan cakupan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#steer-initiative-and-scope).
 
@@ -59,7 +59,7 @@ When the work the user asked for is done and checked, stop and report. Don't add
 
 Dengan prompt ini, model menuntaskan lebih banyak pekerjaan pada effort `low` dan `medium`, sehingga sesi pada level tersebut berjalan lebih lama dan lebih mahal. Prompt ini tidak menggantikan aturan Anda sendiri tentang tindakan yang berisiko atau tidak dapat dibatalkan. Tetap simpan aturan tersebut dalam prompt sistem Anda.
 
-**Tambahan yang tidak diminta saat coding.** Model cenderung menambahkan test, dokumentasi, dan file pendukung kecil yang sesuai dengan konvensi repositori Anda, bahkan ketika Anda tidak memintanya. Model melakukan ini pada setiap level effort, dan lebih banyak pada effort yang lebih tinggi. Perubahan yang diminta itu sendiri tetap dekat dengan apa yang diminta. Sebagian besar tim akan menyambut baik hal ini. Jika Anda lebih suka perubahan yang terbatas pada apa yang diminta secara eksplisit, tambahkan hanya paragraf kedua dari prompt tersebut, yang dimulai dengan "When the work the user asked for is done." Pada effort `xhigh` dan `max`, paragraf tersebut mengurangi tambahan-tambahan ini dan membuat perubahan secara keseluruhan lebih kecil.
+**Tambahan yang tidak diminta saat coding.** Model cenderung menambahkan test, dokumentasi, dan file pendukung kecil yang sesuai dengan konvensi repositori Anda, bahkan ketika Anda tidak memintanya. Model melakukan ini pada setiap level effort, dan lebih banyak pada effort yang lebih tinggi. Perubahan yang diminta itu sendiri tetap dekat dengan apa yang diminta. Sebagian besar tim akan menyambut baik hal ini. Jika Anda lebih suka perubahan yang terbatas pada apa yang diminta secara eksplisit, tambahkan hanya paragraf kedua dari prompt tersebut, yang dimulai dengan “When the work the user asked for is done.” Pada effort `xhigh` dan `max`, paragraf tersebut mengurangi tambahan-tambahan ini dan membuat perubahan secara keseluruhan lebih kecil.
 
 **Ketelitian pada effort `xhigh` dan `max`.** Pada level ini model sangat teliti. Setelah menyelesaikan tugas, model dapat memulai putaran review dan verifikasinya sendiri, terkadang dengan subagen jika harness Anda menyediakannya. Model juga dapat membuat perbaikan terkait yang diperhatikannya di sepanjang jalan. Ini memakan lebih banyak waktu dan token, jadi jalankan pekerjaan rutin pada `high` atau di bawahnya, di mana hal ini jarang terjadi. Jika Anda memang menginginkan ketelitian ekstra dari level effort ini, tetapi ingin mengarahkannya ke tugas itu sendiri, tambahkan ini ke prompt sistem Anda:
 
@@ -69,7 +69,7 @@ When the work the user asked for is done and its checks pass, stop and report. D
 
 Dalam pengujian pada tugas coding dengan effort `max`, ini menghentikan model meluncurkan subagen peninjau dan memangkas biaya sesi sekitar sepertiga, tanpa perubahan kualitas. Ini membuat putaran tinjauan yang dimulai sendiri oleh agen utama lebih jarang tetapi tidak menghilangkannya sepenuhnya.
 
-**Permintaan terbuka.** Ketika permintaan bersifat terbuka, misalnya "tunjukkan apa yang bisa Anda lakukan dengan ini," model dapat mulai membuat presentasi, laporan, atau video padahal Anda hanya menginginkan ide. Jika Anda menginginkan ide atau rencana terlebih dahulu, sebutkan dalam permintaan, atau tambahkan ini ke prompt sistem Anda:
+**Permintaan terbuka.** Ketika permintaan bersifat terbuka, misalnya “tunjukkan apa yang bisa Anda lakukan dengan ini,” model dapat mulai membuat presentasi, laporan, atau video padahal Anda hanya menginginkan ide. Jika Anda menginginkan ide atau rencana terlebih dahulu, sebutkan dalam permintaan, atau tambahkan ini ke prompt sistem Anda:
 
 ```text wrap
 When the user asks for ideas, options or a plan, give them that and stop. Don't start building or changing anything until they say to go ahead.
@@ -115,7 +115,7 @@ Di antara pemanggilan alat, Claude Sonnet 5.5 menulis catatan untuk pengguna ten
 
 Untuk menampilkan catatan ini, atur `display: "updates"` (beta, header `thinking-display-updates-2026-08-18`). Dengan `between_tools`, catatan dikembalikan dengan teks ringkasannya, sehingga field `display` tidak diperlukan. `between_tools` tidak menerima field lain: `display`, `budget_tokens`, atau `block_binding` yang dikirim bersamanya mengembalikan error 400. Bagian panduan migrasi tentang [teks di antara pemanggilan alat](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#text-between-tool-calls) menunjukkan cara merender catatan tersebut. Terkadang model perlu menunjukkan teks persis kepada pengguna di tengah giliran yang panjang, seperti cuplikan kode atau pertanyaan yang perlu dijawab. Untuk kasus itu, berikan model alat sederhana untuk mengirim pesan kepada pengguna. Beri tahu model untuk menggunakan alat tersebut hanya untuk konten semacam itu. Deklarasikan alat tersebut di permintaan pertama sesi, sehingga daftar `tools` tidak berubah kemudian.
 
-Selanjutnya, hapus instruksi lama seperti "simpan semua temuan untuk respons akhir." Jika Anda kemudian menginginkan pembaruan pada titik-titik yang dapat diprediksi, misalnya satu baris tentang apa yang akan dilakukan model sebelum pemanggilan alat pertamanya dan rekap singkat di akhir, sebutkan dalam prompt sistem. Model mengikuti instruksi seperti ini. Pembaruan pada titik-titik yang ditetapkan paling membantu dalam pekerjaan human-in-the-loop.
+Selanjutnya, hapus instruksi lama seperti “simpan semua temuan untuk respons akhir.” Jika Anda kemudian menginginkan pembaruan pada titik-titik yang dapat diprediksi, misalnya satu baris tentang apa yang akan dilakukan model sebelum pemanggilan alat pertamanya dan rekap singkat di akhir, sebutkan dalam prompt sistem. Model mengikuti instruksi seperti ini. Pembaruan pada titik-titik yang ditetapkan paling membantu dalam pekerjaan human-in-the-loop.
 
 Jika giliran pemanggilan alat yang panjang masih sunyi lebih lama dari yang Anda inginkan, harness Anda dapat memicu pembaruan. Minta harness menghitung langkah pemanggilan alat berturut-turut yang tidak mengirimkan teks atau pembaruan progres kepada pengguna. Setelah beberapa langkah berturut-turut, misalnya lima, tambahkan pengingat satu giliran setelah hasil alat terbaru. Kirimkan sebagai [pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (beta), dengan teks seperti berikut:
 
@@ -129,7 +129,7 @@ Jika giliran tetap sunyi, berhenti mengirim pengingat setelah yang kedua atau ke
 
 Pada tugas chat dan pekerjaan pengetahuan, Claude Sonnet 5.5 terkadang menjawab dari pengetahuan pelatihannya padahal pencarian web akan menangkap detail yang telah berubah. Contohnya termasuk apa yang diizinkan, diwajibkan, atau dikenakan biaya.
 
-Pertama, periksa prompt Anda untuk bahasa yang menghambat penggunaan alat, seperti "hanya gunakan alat jika benar-benar diperlukan" atau "minimalkan pemanggilan alat", dan hapus. Kemudian, jika produk Anda memberi model alat pencarian, tambahkan ini ke prompt sistem Anda:
+Pertama, periksa prompt Anda untuk bahasa yang menghambat penggunaan alat, seperti “hanya gunakan alat jika benar-benar diperlukan” atau “minimalkan pemanggilan alat”, dan hapus. Kemudian, jika produk Anda memberi model alat pencarian, tambahkan ini ke prompt sistem Anda:
 
 ```text wrap
 Use the search tool to check specifics that may have changed since your training, such as what is allowed, required or charged, even when you feel confident. For researched work such as a report or a comparison, gather current sources rather than writing from your training knowledge.

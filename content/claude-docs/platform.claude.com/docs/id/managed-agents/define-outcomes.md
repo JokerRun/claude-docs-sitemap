@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 899e3999ffa73b7426359b9866f45300cab9c83a482da4ff6d9e5d1cdbe9318a
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 4b80526b4050389701d4fa5a94d619eca2ad7f976c3622cd45d8952e5b8b5827
 ---
 
 ---
@@ -17,9 +17,9 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-Sebuah "outcome" (hasil akhir) memberi tahu sesi seperti apa hasil akhir yang seharusnya dan bagaimana mengukur kualitasnya. Agen bekerja menuju target tersebut, mengevaluasi diri dan beriterasi hingga outcome terpenuhi.
+Sebuah “outcome” (hasil akhir) memberi tahu sesi seperti apa hasil akhir yang seharusnya dan bagaimana mengukur kualitasnya. Agen bekerja menuju target tersebut, mengevaluasi diri dan beriterasi hingga outcome terpenuhi.
 
-Saat Anda mendefinisikan outcome, harness secara otomatis menyediakan sebuah *grader* (penilai) untuk mengevaluasi artefak terhadap sebuah rubrik. Grader menggunakan "context window" (jendela konteks) terpisah agar tidak terpengaruh oleh pilihan implementasi agen utama.
+Saat Anda mendefinisikan outcome, harness secara otomatis menyediakan sebuah *grader* (penilai) untuk mengevaluasi artefak terhadap sebuah rubrik. Grader menggunakan “context window” (jendela konteks) terpisah agar tidak terpengaruh oleh pilihan implementasi agen utama.
 
 Grader mengembalikan penjelasan yang merangkum kriteria mana yang lolos atau gagal, atau mengonfirmasi bahwa artefak memenuhi rubrik. Umpan balik tersebut diserahkan kembali kepada agen untuk iterasi berikutnya.
 
@@ -28,7 +28,7 @@ Grader mengembalikan penjelasan yang merangkum kriteria mana yang lolos atau gag
 Rubrik adalah dokumen markdown yang menjelaskan penilaian per kriteria. Rubrik bersifat wajib.
 
 <Accordion title="Tips menulis rubrik yang efektif">
-  Susun rubrik sebagai kriteria yang eksplisit dan dapat dinilai, seperti "CSV berisi kolom price dengan nilai numerik" alih-alih "Datanya terlihat bagus." Grader menilai setiap kriteria secara independen, sehingga kriteria yang samar menghasilkan evaluasi yang tidak konsisten.
+  Susun rubrik sebagai kriteria yang eksplisit dan dapat dinilai, seperti “CSV berisi kolom price dengan nilai numerik” alih-alih “Datanya terlihat bagus.” Grader menilai setiap kriteria secara independen, sehingga kriteria yang samar menghasilkan evaluasi yang tidak konsisten.
 
   Jika Anda tidak memiliki rubrik, coba berikan Claude contoh artefak yang diketahui baik dan minta Claude menganalisis apa yang membuat konten tersebut baik, lalu ubah analisis itu menjadi rubrik. Pendekatan jalan tengah ini sering kali menghasilkan hasil yang lebih baik daripada menulis kriteria tanpa contoh sebagai titik awal.
 </Accordion>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 641c6af45769050cea2a9e5017f0698699406f0462907d5dfc06756b15472a30
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: d9bba8f60c096a88a080b48262386ed87858b33a2a2a122935fd4375fa304e4b
 ---
 
 ---
@@ -28,7 +28,7 @@ pip install anthropic streamlit python-dotenv
 
 ### Tentukan apakah akan menggunakan Claude untuk chat dukungan
 
-Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan "large language model" (model bahasa besar), atau LLM, seperti Claude untuk mengotomatiskan sebagian proses dukungan pelanggan Anda:
+Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan “large language model” (model bahasa besar), atau LLM, seperti Claude untuk mengotomatiskan sebagian proses dukungan pelanggan Anda:
 
 <AccordionGroup>
   <Accordion title="Volume tinggi pertanyaan berulang">
@@ -194,13 +194,13 @@ Berikut adalah kriteria dan tolok ukur yang dapat digunakan untuk mengevaluasi d
 
 Pilihan model bergantung pada kompromi antara biaya, akurasi, dan waktu respons.
 
-Untuk chat dukungan pelanggan, Claude Opus 5.5 sangat cocok untuk menyeimbangkan kecerdasan, "latency" (latensi), dan biaya, termasuk skenario dukungan paling kompleks yang memerlukan penalaran mendalam di sepanjang percakapan panjang dengan banyak langkah. Namun, untuk kasus di mana Anda memiliki alur percakapan dengan beberapa prompt termasuk RAG, penggunaan alat, atau prompt dengan konteks panjang, Claude Haiku 5.5 mungkin lebih cocok untuk mengoptimalkan latensi. [Effort](https://platform.claude.com/docs/id/build-with-claude/effort) adalah kontrol utamanya untuk kecepatan: `low` adalah tingkat tercepat, cocok untuk chat dan tugas alat yang singkat.
+Untuk chat dukungan pelanggan, Claude Opus 5.5 sangat cocok untuk menyeimbangkan kecerdasan, “latency” (latensi), dan biaya, termasuk skenario dukungan paling kompleks yang memerlukan penalaran mendalam di sepanjang percakapan panjang dengan banyak langkah. Namun, untuk kasus di mana Anda memiliki alur percakapan dengan beberapa prompt termasuk RAG, penggunaan alat, atau prompt dengan konteks panjang, Claude Haiku 5.5 mungkin lebih cocok untuk mengoptimalkan latensi. [Effort](https://platform.claude.com/docs/id/build-with-claude/effort) adalah kontrol utamanya untuk kecepatan: `low` adalah tingkat tercepat, cocok untuk chat dan tugas alat yang singkat.
 
 ### Bangun prompt yang kuat
 
 Menggunakan Claude untuk dukungan pelanggan mengharuskan Claude memiliki arahan dan konteks yang cukup untuk merespons dengan tepat, sekaligus memiliki fleksibilitas yang cukup untuk menangani berbagai pertanyaan pelanggan.
 
-Mulailah dengan menulis elemen-elemen prompt yang kuat, dimulai dengan "system prompt" (prompt sistem). Buat file bernama `config.py` dan tambahkan setiap blok berikut ke dalamnya:
+Mulailah dengan menulis elemen-elemen prompt yang kuat, dimulai dengan “system prompt” (prompt sistem). Buat file bernama `config.py` dan tambahkan setiap blok berikut ke dalamnya:
 
 ```python
 IDENTITY = """You are Eva, a friendly and knowledgeable AI assistant for Acme Insurance
@@ -221,7 +221,7 @@ insurance. You can also help customers get quotes for their insurance needs."""
   .
 </Tip>
 
-Sebaiknya pecah prompt yang kompleks menjadi subbagian dan tulis satu bagian dalam satu waktu. Untuk setiap tugas, Anda mungkin lebih berhasil dengan mengikuti proses langkah demi langkah untuk mendefinisikan bagian-bagian prompt yang dibutuhkan Claude untuk melakukan tugas dengan baik. Untuk contoh dukungan pelanggan asuransi mobil ini, Anda akan menulis sedikit demi sedikit semua bagian prompt dimulai dengan tugas "Sapaan dan panduan umum". Ini juga membuat debugging prompt Anda lebih mudah karena Anda dapat lebih cepat menyesuaikan bagian-bagian individual dari keseluruhan prompt.
+Sebaiknya pecah prompt yang kompleks menjadi subbagian dan tulis satu bagian dalam satu waktu. Untuk setiap tugas, Anda mungkin lebih berhasil dengan mengikuti proses langkah demi langkah untuk mendefinisikan bagian-bagian prompt yang dibutuhkan Claude untuk melakukan tugas dengan baik. Untuk contoh dukungan pelanggan asuransi mobil ini, Anda akan menulis sedikit demi sedikit semua bagian prompt dimulai dengan tugas “Sapaan dan panduan umum”. Ini juga membuat debugging prompt Anda lebih mudah karena Anda dapat lebih cepat menyesuaikan bagian-bagian individual dari keseluruhan prompt.
 
 ```python
 STATIC_GREETINGS_AND_GENERAL = """
@@ -287,7 +287,7 @@ that gives you the confidence to enjoy every electron-powered mile.
 """
 ```
 
-Setelah Anda memiliki konten statis, tambahkan setidaknya 4–5 contoh interaksi "baik" untuk memandu respons Claude. Contoh-contoh ini harus mewakili interaksi pelanggan ideal Anda dan dapat mencakup elemen seperti guardrail dan pemanggilan alat.
+Setelah Anda memiliki konten statis, tambahkan setidaknya 4–5 contoh interaksi “baik” untuk memandu respons Claude. Contoh-contoh ini harus mewakili interaksi pelanggan ideal Anda dan dapat mencakup elemen seperti guardrail dan pemanggilan alat.
 
 ```python
 EXAMPLES = """
@@ -386,7 +386,7 @@ TASK_SPECIFIC_INSTRUCTIONS = " ".join(
 
 ### Tambahkan kemampuan dinamis dan agentik dengan penggunaan alat
 
-Claude mampu mengambil tindakan dan mengambil informasi secara dinamis menggunakan fungsionalitas "tool use" (penggunaan alat) sisi klien. Mulailah dengan mendaftar alat eksternal atau API apa pun yang harus digunakan prompt.
+Claude mampu mengambil tindakan dan mengambil informasi secara dinamis menggunakan fungsionalitas “tool use” (penggunaan alat) sisi klien. Mulailah dengan mendaftar alat eksternal atau API apa pun yang harus digunakan prompt.
 
 Untuk contoh ini, mulailah dengan satu alat untuk menghitung penawaran harga.
 
@@ -1140,7 +1140,7 @@ Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi ta
 
 #### Kurangi latensi konteks panjang dengan RAG
 
-Saat menangani konteks statis dan dinamis dalam jumlah besar, menyertakan semua informasi dalam prompt dapat menyebabkan biaya tinggi, waktu respons yang lebih lambat, dan tercapainya batas "context window" (jendela konteks). Dalam skenario ini, mengimplementasikan teknik "Retrieval Augmented Generation" (generasi yang diperkaya pengambilan), atau RAG, dapat meningkatkan kinerja dan efisiensi.
+Saat menangani konteks statis dan dinamis dalam jumlah besar, menyertakan semua informasi dalam prompt dapat menyebabkan biaya tinggi, waktu respons yang lebih lambat, dan tercapainya batas “context window” (jendela konteks). Dalam skenario ini, mengimplementasikan teknik “Retrieval Augmented Generation” (generasi yang diperkaya pengambilan), atau RAG, dapat meningkatkan kinerja dan efisiensi.
 
 Anda dapat membuat sistem yang lebih skalabel dan responsif dengan mengonversi informasi menjadi representasi vektor menggunakan [model embedding](https://platform.claude.com/docs/id/build-with-claude/embeddings), seperti yang berasal dari Voyage AI by MongoDB. Pendekatan ini memungkinkan pengambilan informasi relevan secara dinamis berdasarkan pertanyaan saat ini, alih-alih menyertakan semua konteks yang mungkin dalam setiap prompt.
 
@@ -1166,7 +1166,7 @@ Saat men-deploy chatbot, terutama dalam skenario layanan pelanggan, penting untu
 
 #### Kurangi waktu respons yang dirasakan dengan streaming
 
-Saat menangani respons yang berpotensi panjang, mengimplementasikan "streaming" (streaming) dapat meningkatkan keterlibatan dan kepuasan pengguna. Dalam skenario ini, pengguna menerima jawaban secara bertahap alih-alih menunggu seluruh respons selesai dihasilkan.
+Saat menangani respons yang berpotensi panjang, mengimplementasikan “streaming” (streaming) dapat meningkatkan keterlibatan dan kepuasan pengguna. Dalam skenario ini, pengguna menerima jawaban secara bertahap alih-alih menunggu seluruh respons selesai dihasilkan.
 
 Berikut cara mengimplementasikan streaming:
 

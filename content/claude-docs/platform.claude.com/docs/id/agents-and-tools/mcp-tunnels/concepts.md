@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: ac93fa14e90b3537749abd7b4a308b29602f6a6dc9395eb6dd946bd0043d5783
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 6ee030ed4275ad0cad50d76dd9fc4da2f7110b31cf19ee41598240f7d5584fa4
 ---
 
 ---
@@ -47,7 +47,7 @@ Ada dua arah yang bekerja dalam sebuah tunnel, dan keduanya menunjuk ke arah yan
 * **Arah koneksi:** cloudflared melakukan dial **keluar (outbound)** dari jaringan Anda ke tunnel edge. Firewall Anda hanya melihat egress pada port 7844; tidak ada port masuk yang dibuka.
 * **Arah permintaan:** setelah koneksi tersebut terbentuk, permintaan MCP berjalan **dari Anthropic menuju jaringan Anda** melaluinya, melewati cloudflared ke proxy, dan diteruskan ke server MCP upstream.
 
-Frasa "outbound-only" (khusus-keluar) menggambarkan koneksinya, bukan permintaan yang dibawa melaluinya.
+Frasa “outbound-only” (khusus-keluar) menggambarkan koneksinya, bukan permintaan yang dibawa melaluinya.
 
 TLS dalam membentang antara back end Anthropic dan proxy Anda. cloudflared dan tunnel edge berada di antara keduanya pada jalur transmisi tetapi hanya melihat ciphertext; proxy adalah tempat pertama di dalam jaringan Anda di mana payload permintaan MCP dapat dibaca.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/manage-tool-context
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 72872eebf0fe577478430ec6e346bf5455204aac65b6eb29693d0fc2fbefff85
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 1c1f13388af3ce84da30f31379cd2442a174e5f643a1be07b7be118aa0adae33
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/manage-tool-c
 description: Pilih di antara pencarian alat, pemanggilan alat secara terprogram, caching prompt, dan pengeditan konteks untuk mengelola pembengkakan konteks.
 ---
 
-Definisi alat dan blok `tool_result` yang terakumulasi menghabiskan "context window" (jendela konteks) Anda. Agen yang berjalan lama dengan banyak alat atau banyak giliran dapat menghabiskan konteks yang tersedia sebelum tugas selesai. Empat pendekatan mengatasi hal ini pada titik yang berbeda dalam pipeline.
+Definisi alat dan blok `tool_result` yang terakumulasi menghabiskan “context window” (jendela konteks) Anda. Agen yang berjalan lama dengan banyak alat atau banyak giliran dapat menghabiskan konteks yang tersedia sebelum tugas selesai. Empat pendekatan mengatasi hal ini pada titik yang berbeda dalam pipeline.
 
 ## Empat pendekatan
 
@@ -26,19 +26,19 @@ Setiap pendekatan menargetkan sumber tekanan konteks yang berbeda. Pilih pendeka
 
 ### Pencarian alat
 
-"Tool search" (pencarian alat) menjaga definisi alat tetap di luar jendela konteks sampai Claude memintanya. Alih-alih mengirim 50 skema alat di awal, Anda mengirim satu alat `tool_search` dan membiarkan Claude menemukan sisanya sesuai permintaan. Ini menukar sedikit "latency" (latensi) (satu giliran tambahan untuk mencari alat) dengan pengurangan besar dalam penggunaan konteks dasar.
+“Tool search” (pencarian alat) menjaga definisi alat tetap di luar jendela konteks sampai Claude memintanya. Alih-alih mengirim 50 skema alat di awal, Anda mengirim satu alat `tool_search` dan membiarkan Claude menemukan sisanya sesuai permintaan. Ini menukar sedikit “latency” (latensi) (satu giliran tambahan untuk mencari alat) dengan pengurangan besar dalam penggunaan konteks dasar.
 
 ### Pemanggilan alat terprogram
 
-"Programmatic tool calling" (pemanggilan alat terprogram) meringkas serangkaian pemanggilan alat menjadi satu blok kode yang ditulis Claude dan dijalankan oleh sandbox eksekusi kode Anthropic. Alih-alih lima perjalanan bolak-balik `tool_use` dan `tool_result`, Claude menghasilkan satu skrip yang memanggil kelima fungsi dari dalam sandbox. Hasil perantara tidak pernah masuk ke riwayat percakapan.
+“Programmatic tool calling” (pemanggilan alat terprogram) meringkas serangkaian pemanggilan alat menjadi satu blok kode yang ditulis Claude dan dijalankan oleh sandbox eksekusi kode Anthropic. Alih-alih lima perjalanan bolak-balik `tool_use` dan `tool_result`, Claude menghasilkan satu skrip yang memanggil kelima fungsi dari dalam sandbox. Hasil perantara tidak pernah masuk ke riwayat percakapan.
 
 ### Caching prompt
 
-"Prompt caching" (caching prompt) tidak mengurangi jumlah token dalam konteks, tetapi mengurangi biaya yang Anda bayar untuk token tersebut pada permintaan berikutnya. Jika definisi alat Anda stabil, cache sekali dan gunakan kembali prefiks yang di-cache di ribuan permintaan. Ini adalah pilihan yang tepat ketika kumpulan alat besar tetapi tetap.
+“Prompt caching” (caching prompt) tidak mengurangi jumlah token dalam konteks, tetapi mengurangi biaya yang Anda bayar untuk token tersebut pada permintaan berikutnya. Jika definisi alat Anda stabil, cache sekali dan gunakan kembali prefiks yang di-cache di ribuan permintaan. Ini adalah pilihan yang tepat ketika kumpulan alat besar tetapi tetap.
 
 ### Pengeditan konteks
 
-"Context editing" (pengeditan konteks) menghapus blok `tool_result` lama dari riwayat percakapan setelah blok tersebut menjalankan fungsinya. Loop agen yang panjang dapat menghasilkan ratusan hasil perantara yang berguna pada saat itu tetapi tidak lagi diperlukan. Pengeditan konteks memungkinkan Anda memangkasnya tanpa memulai ulang percakapan.
+“Context editing” (pengeditan konteks) menghapus blok `tool_result` lama dari riwayat percakapan setelah blok tersebut menjalankan fungsinya. Loop agen yang panjang dapat menghasilkan ratusan hasil perantara yang berguna pada saat itu tetapi tidak lagi diperlukan. Pengeditan konteks memungkinkan Anda memangkasnya tanpa memulai ulang percakapan.
 
 ## Menggabungkan pendekatan
 

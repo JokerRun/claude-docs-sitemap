@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 2372173e0a86675485b4fc2cea7cbf64086f31f1e6127a00c32540256c6786d3
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 3c2ca4a9aa5c70e30244caef21e4dcbc53c04e4b493f4a05e225ce4766cbf8e2
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Arahkan seberapa sering dan seberapa dalam Claude berpikir dengan t
 ---
 
 <Note>
-  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 Pemikiran Claude bersifat adaptif: model mengevaluasi setiap permintaan dan menentukan apakah perlu berpikir dan seberapa banyak. Anda menetapkan tujuan, secara opsional menentukan effort, dan model mengalokasikan penalaran di tempat penalaran kemungkinan besar akan membantu.
@@ -131,7 +131,7 @@ Pelonggaran ini berkaitan dengan validasi, bukan tentang apa yang sebaiknya Anda
 
 ### Caching prompt
 
-Permintaan berurutan yang mempertahankan konfigurasi pemikiran dan tingkat effort yang sama akan mempertahankan "prompt caching" (caching prompt); lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching) untuk aturan lengkapnya. Nilai effort yang telah diselesaikan dirender ke dalam prompt, sehingga mengubahnya di antara permintaan akan membatalkan breakpoint cache, sama seperti mengubah parameter lama [`budget_tokens`](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#extended-thinking-with-prompt-caching) pada model yang menggunakannya. Menetapkan `effort` secara eksplisit ke default model setara dengan menghilangkannya dan tidak merusak cache.
+Permintaan berurutan yang mempertahankan konfigurasi pemikiran dan tingkat effort yang sama akan mempertahankan “prompt caching” (caching prompt); lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching) untuk aturan lengkapnya. Nilai effort yang telah diselesaikan dirender ke dalam prompt, sehingga mengubahnya di antara permintaan akan membatalkan breakpoint cache, sama seperti mengubah parameter lama [`budget_tokens`](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#extended-thinking-with-prompt-caching) pada model yang menggunakannya. Menetapkan `effort` secara eksplisit ke default model setara dengan menghilangkannya dan tidak merusak cache.
 
 Konsekuensi praktisnya: pilih konfigurasi pemikiran dan tingkat effort tingkat atas untuk setiap percakapan dan pertahankan. Jika beberapa giliran membutuhkan lebih banyak atau lebih sedikit pemikiran, gunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) pada model yang mendukungnya, atau arahkan dengan [prompting per pesan](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost#tuning-thinking-behavior). Keduanya membiarkan breakpoint cache sebelumnya tetap utuh, sedangkan perubahan pada konfigurasi pemikiran atau tingkat effort tingkat atas tidak.
 

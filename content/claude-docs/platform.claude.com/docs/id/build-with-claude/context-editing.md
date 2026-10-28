@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-editing
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: df3a0d6736603cac3791934b84862daaa5aea1fc3c7ed3f2f41d0fa010708059
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: fffbe7165ba50ccb59fe65516b75461db4c04be1b4ae19fae99b66de72194a6c
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Kelola konteks percakapan secara otomatis seiring pertumbuhannya de
 ---
 
 <Note>
-  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 ## Ikhtisar
@@ -21,7 +21,7 @@ description: Kelola konteks percakapan secara otomatis seiring pertumbuhannya de
   Untuk sebagian besar kasus penggunaan, [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) adalah strategi utama untuk mengelola konteks dalam percakapan yang berjalan lama. Strategi di halaman ini berguna untuk skenario tertentu di mana Anda memerlukan kontrol yang lebih terperinci atas konten apa yang dibersihkan.
 </Note>
 
-"Context editing" (pengeditan konteks) memungkinkan Anda untuk secara selektif menghapus konten tertentu dari riwayat percakapan seiring pertumbuhannya. Selain mengoptimalkan biaya dan tetap berada dalam batas, ini tentang secara aktif mengkurasi apa yang diterima Claude: konteks adalah sumber daya terbatas dengan hasil yang semakin berkurang, dan konten yang tidak relevan menurunkan fokus model. Pengeditan konteks memberi Anda kontrol runtime yang terperinci atas kurasi tersebut. Untuk prinsip-prinsip yang lebih luas di balik manajemen konteks, lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents). Halaman ini mencakup:
+“Context editing” (pengeditan konteks) memungkinkan Anda untuk secara selektif menghapus konten tertentu dari riwayat percakapan seiring pertumbuhannya. Selain mengoptimalkan biaya dan tetap berada dalam batas, ini tentang secara aktif mengkurasi apa yang diterima Claude: konteks adalah sumber daya terbatas dengan hasil yang semakin berkurang, dan konten yang tidak relevan menurunkan fokus model. Pengeditan konteks memberi Anda kontrol runtime yang terperinci atas kurasi tersebut. Untuk prinsip-prinsip yang lebih luas di balik manajemen konteks, lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents). Halaman ini mencakup:
 
 * **Penghapusan hasil alat:** Paling cocok untuk alur kerja agentik dengan penggunaan alat yang intensif di mana hasil alat lama tidak lagi diperlukan
 * **Penghapusan blok pemikiran:** Untuk mengelola blok pemikiran dari giliran sebelumnya, dengan opsi untuk mempertahankan pemikiran terbaru demi kesinambungan konteks
@@ -73,7 +73,7 @@ Pada Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5,
 
 ### Pengeditan konteks dan caching prompt
 
-Interaksi pengeditan konteks dengan ["prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) bervariasi menurut strategi:
+Interaksi pengeditan konteks dengan [“prompt caching” (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) bervariasi menurut strategi:
 
 * **Pembersihan hasil alat:** Membatalkan validitas prefiks prompt yang di-cache ketika konten dibersihkan. Untuk mengantisipasi hal ini, bersihkan token yang cukup agar pembatalan cache sepadan. Gunakan parameter `clear_at_least` untuk memastikan jumlah minimum token dibersihkan setiap kali. Anda akan dikenai biaya penulisan cache setiap kali konten dibersihkan, tetapi permintaan berikutnya dapat menggunakan kembali prefiks yang baru di-cache.
 
@@ -2321,7 +2321,7 @@ Untuk referensi lengkap alat memori termasuk perintah dan contoh, lihat [Alat me
   Kompaksi tersedia di [SDK TypeScript dan Ruby](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) saat menggunakan [metode `tool_runner`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner).
 </Note>
 
-"Compaction" (kompaksi) adalah fitur SDK yang secara otomatis mengelola konteks percakapan dengan menghasilkan ringkasan ketika penggunaan token tumbuh terlalu besar. Berbeda dengan strategi pengeditan konteks sisi server yang membersihkan konten, kompaksi menginstruksikan Claude untuk merangkum riwayat percakapan, lalu mengganti seluruh riwayat dengan ringkasan tersebut. Ini memungkinkan Claude untuk terus mengerjakan tugas yang berjalan lama yang seharusnya melampaui [jendela konteks](https://platform.claude.com/docs/id/build-with-claude/context-windows).
+“Compaction” (kompaksi) adalah fitur SDK yang secara otomatis mengelola konteks percakapan dengan menghasilkan ringkasan ketika penggunaan token tumbuh terlalu besar. Berbeda dengan strategi pengeditan konteks sisi server yang membersihkan konten, kompaksi menginstruksikan Claude untuk merangkum riwayat percakapan, lalu mengganti seluruh riwayat dengan ringkasan tersebut. Ini memungkinkan Claude untuk terus mengerjakan tugas yang berjalan lama yang seharusnya melampaui [jendela konteks](https://platform.claude.com/docs/id/build-with-claude/context-windows).
 
 ### Cara kerja kompaksi
 

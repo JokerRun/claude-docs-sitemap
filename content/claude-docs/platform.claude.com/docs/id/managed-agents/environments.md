@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: fc623352972719252574ae460ee757bb02b7f1eb2c75807fa1c6f4e382ce990c
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 04562bb9b68605662c24096df912ca3a4c012d777f5f2405f9e8886b90a912db
 ---
 
 ---
@@ -618,7 +618,7 @@ Ketika `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: 
 | Container    | `registry-1.docker.io`, `auth.docker.io`, `production.cloudflare.docker.com`, `download.docker.com`, `ghcr.io`                                                                             |
 
 <Warning>
-  Akses jaringan diberikan berdasarkan host, bukan berdasarkan operasi. Sandbox dapat mengirim permintaan apa pun ke host yang diizinkan, termasuk unggahan seperti `git push` dan publikasi paket, dengan kredensial apa pun yang diberikan oleh perintah. Jika agen memproses input yang tidak tepercaya (file repositori, konten web yang diambil, atau output alat pihak ketiga), "prompt injection" (injeksi prompt) yang berhasil dapat menggunakan host yang diizinkan untuk menyalin file keluar dari sandbox. Untuk mengurangi risiko ini, atur [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) alat `bash` ke `always_ask` atau `auto`. Jika lingkungan tidak menentukan `packages` (csharp, go: `Packages`), Anda dapat sebagai gantinya membiarkan `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) diatur ke `false` dan hanya mencantumkan host yang dibutuhkan agen Anda di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`).
+  Akses jaringan diberikan berdasarkan host, bukan berdasarkan operasi. Sandbox dapat mengirim permintaan apa pun ke host yang diizinkan, termasuk unggahan seperti `git push` dan publikasi paket, dengan kredensial apa pun yang diberikan oleh perintah. Jika agen memproses input yang tidak tepercaya (file repositori, konten web yang diambil, atau output alat pihak ketiga), “prompt injection” (injeksi prompt) yang berhasil dapat menggunakan host yang diizinkan untuk menyalin file keluar dari sandbox. Untuk mengurangi risiko ini, atur [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) alat `bash` ke `always_ask` atau `auto`. Jika lingkungan tidak menentukan `packages` (csharp, go: `Packages`), Anda dapat sebagai gantinya membiarkan `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) diatur ke `false` dan hanya mencantumkan host yang dibutuhkan agen Anda di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`).
 </Warning>
 
 #### Risiko jaringan tanpa batasan

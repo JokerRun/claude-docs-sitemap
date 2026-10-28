@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/webhooks
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 6caf5f84276c2a938dae34763711be5e189d580291e01970829ab51df57be59f
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: da4a14179af9c031725095a0111a712fe63f2760a710e13e0f86e498334f1e80
 ---
 
 ---
@@ -436,7 +436,7 @@ Setiap payload peristiwa memiliki struktur yang sama, termasuk jenis peristiwa, 
 
 * **Urutan:** Peristiwa tidak dijamin dikirimkan sesuai urutan terjadinya: `session.status_idled` mungkin tiba sebelum `session.outcome_evaluation_ended` meskipun hasilnya dihasilkan lebih dulu, dan peristiwa `.deleted` dapat tiba sebelum peristiwa `.archived` untuk sumber daya yang sama. Tentukan status Anda dari sumber daya yang Anda ambil, bukan dari urutan tibanya peristiwa.
 
-* **Percobaan ulang:** Untuk setiap endpoint dan event, Anthropic melakukan hingga tiga percobaan pengiriman (respons yang memicu penonaktifan otomatis, yang dijelaskan nanti di bagian ini, tidak pernah dicoba ulang) dengan "exponential backoff" (penundaan eksponensial) ber-jitter antara 5 dan 120 detik. Setiap percobaan mengirimkan `event.id` yang sama. Setelah percobaan terakhir gagal, event dibuang: event tidak diantrekan untuk pengiriman nanti dan tidak ada sinyal bahwa event tersebut hilang. Webhook bukanlah log yang tahan lama, jadi jika Anda perlu mengamati setiap transisi, lakukan rekonsiliasi dengan mendaftar atau mengambil sumber daya melalui API.
+* **Percobaan ulang:** Untuk setiap endpoint dan event, Anthropic melakukan hingga tiga percobaan pengiriman (respons yang memicu penonaktifan otomatis, yang dijelaskan nanti di bagian ini, tidak pernah dicoba ulang) dengan “exponential backoff” (penundaan eksponensial) ber-jitter antara 5 dan 120 detik. Setiap percobaan mengirimkan `event.id` yang sama. Setelah percobaan terakhir gagal, event dibuang: event tidak diantrekan untuk pengiriman nanti dan tidak ada sinyal bahwa event tersebut hilang. Webhook bukanlah log yang tahan lama, jadi jika Anda perlu mengamati setiap transisi, lakukan rekonsiliasi dengan mendaftar atau mengambil sumber daya melalui API.
 
 * **Timestamp:** Header `webhook-timestamp` dicap saat percobaan pengiriman ditandatangani dan dibuat ulang pada setiap percobaan ulang, sehingga percobaan ulang tidak ditolak oleh pemeriksaan kesegaran SDK. Ini adalah jam untuk percobaan pengiriman, bukan untuk event: gunakan `created_at` (java, php: `createdAt`; csharp, go: `CreatedAt`) dari payload event untuk mengetahui kapan event terjadi.
 

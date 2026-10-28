@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 3e4bd56aa70c3056bb4f4e1a8c4c1987d40f7212b04841f9880367c17b642a5d
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 0d152d5f95a41c582b2085c3e96da9a6fa27d86aeb567a474832a15fc2437edd
 ---
 
 ---
@@ -31,7 +31,7 @@ PHP 8.1.0 atau lebih tinggi.
 
 ## Penggunaan
 
-Library ini menggunakan "named parameters" (parameter bernama) untuk menentukan argumen opsional. Parameter dengan nilai default harus diatur berdasarkan nama.
+Library ini menggunakan “named parameters” (parameter bernama) untuk menentukan argumen opsional. Parameter dengan nilai default harus diatur berdasarkan nama.
 
 ```php
 $client = new Client();
@@ -46,11 +46,11 @@ $textBlock = array_find($message->content, static fn ($block): bool => $block->t
 echo $textBlock->text;
 ```
 
-Untuk opsi autentikasi termasuk "Workload Identity Federation" (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
+Untuk opsi autentikasi termasuk “Workload Identity Federation” (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
 
 ## Value object
 
-Disarankan untuk menggunakan konstruktor statis `with` `Base64ImageSource::with(data: "U3RhaW5sZXNzIHJvY2tz", ...)` dan parameter bernama untuk menginisialisasi "value object" (objek nilai).
+Disarankan untuk menggunakan konstruktor statis `with` `Base64ImageSource::with(data: "U3RhaW5sZXNzIHJvY2tz", ...)` dan parameter bernama untuk menginisialisasi “value object” (objek nilai).
 
 Namun, builder juga disediakan `(new Base64ImageSource)->withData("U3RhaW5sZXNzIHJvY2tz")`.
 
@@ -126,7 +126,7 @@ Kode error adalah sebagai berikut:
 
 ## Percobaan ulang
 
-Error tertentu secara otomatis dicoba ulang dua kali secara default, dengan "exponential backoff" (penundaan eksponensial) yang singkat.
+Error tertentu secara otomatis dicoba ulang dua kali secara default, dengan “exponential backoff” (penundaan eksponensial) yang singkat.
 
 Error koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, error Internal >=500, dan timeout semuanya dicoba ulang secara default.
 
@@ -245,7 +245,7 @@ PHP SDK mendukung platform berikut:
 
 Gunakan `MantleClient` untuk proyek baru; `Anthropic\Bedrock\Client` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
 
-PHP SDK juga mendukung Claude Models on Google Cloud (Anthropic managed) melalui `Anthropic\GoogleCloud\Client`. Klien ini masih dalam tahap beta. `Anthropic\GoogleCloud\Client` memerlukan `google/auth` sebagai "soft dependency" (dependensi opsional). Gunakan `new Anthropic\GoogleCloud\Client(workspaceId: ...)` atau atur variabel lingkungan `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`. Lihat [Resolusi proyek, lokasi, dan workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution).
+PHP SDK juga mendukung Claude Models on Google Cloud (Anthropic managed) melalui `Anthropic\GoogleCloud\Client`. Klien ini masih dalam tahap beta. `Anthropic\GoogleCloud\Client` memerlukan `google/auth` sebagai “soft dependency” (dependensi opsional). Gunakan `new Anthropic\GoogleCloud\Client(workspaceId: ...)` atau atur variabel lingkungan `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`. Lihat [Resolusi proyek, lokasi, dan workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution).
 
 ## Semantic versioning
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: a6af7772cbac82455a1aa68641cab7b529f0157a6e6a3441386078af38abdc35
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 1785a91681e96b635321e51d1177ae22f50c1b07158216bac70b024e7ec0d6f6
 ---
 
 ---
@@ -21,7 +21,7 @@ Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok
 Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permintaan dasar, percakapan multi-giliran, teknik prefill, dan kemampuan vision. Untuk spesifikasi API lengkap, lihat [referensi Messages API](https://platform.claude.com/docs/id/api/messages/create). Untuk harness agen terkelola, lihat [ikhtisar Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview).
 
 <Note>
-  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 ## Permintaan dan respons dasar

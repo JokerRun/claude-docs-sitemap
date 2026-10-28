@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-10-27T02:22:08.565782Z
-sha256: 1eaf39eb0e023b5c430fada234da806071d335363d333bd2031a303a1eeb30ab
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 817e182eb569ad923f1917823e70aee6aa2804c82d601260d2d4cc763818c01d
 ---
 
 > ## Documentation Index
@@ -295,7 +295,9 @@ Claude Code can't always show the dialog. Each case below says which settings ap
 
   The command can't read from the keyboard when you pipe or redirect its input and, on macOS and Linux, it also can't open `/dev/tty`. If you pipe or redirect its output too, the run is non-interactive instead, and the delivered settings apply for that run only.
 * **An error closes the dialog before you answer**: Claude Code doesn't apply the delivered settings and keeps the last-approved settings. It shows the dialog again in the next session that can show it.
-* **A non-interactive run**, such as `claude -p`, an Agent SDK session, or a session in the VS Code extension's chat panel or the desktop app's Code tab: Claude Code can't show the dialog, so when the delivered settings would require approval, it applies them for that run only. It doesn't record them as approved or write them to the [local cache](#fetch-and-caching-behavior), and the next interactive session shows the dialog. Until a user approves in an interactive session, each non-interactive run fetches the settings again at startup. Before v2.1.207, a non-interactive run saved the settings as approved, so later interactive sessions never showed the dialog for them.
+* **A non-interactive run**, such as `claude -p`, an Agent SDK session, or a session in the VS Code extension's chat panel or the desktop app's Code tab: Claude Code can't show the dialog. When the delivered settings would require approval, they apply for that run only.
+
+  Claude Code doesn't record the settings as approved or write them to the [local cache](#fetch-and-caching-behavior), and the next interactive session shows the dialog. Until a user approves in an interactive session, each non-interactive run fetches the settings again at startup.
 
 #### Environment variables and the approval dialog
 
@@ -313,9 +315,9 @@ Other delivered variables can require the user's approval before they take effec
 * `OTEL_EXPORTER_OTLP_ENDPOINT`
 * `CLAUDE_CODE_DISABLE_1M_CONTEXT`
 
-When a delivered variable needs approval, the dialog names it, so the user sees exactly what the policy is asking to set. Before v2.1.218, Claude Code applied fewer variables without asking the user, so settings such as `DISABLE_AUTO_COMPACT` triggered the dialog at any non-empty value.
+When a delivered variable needs approval, the dialog names it, so the user sees exactly what the policy is asking to set.
 
-Claude Code decides whether four privacy toggles need approval by the delivered value rather than by the variable name: `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`, `DISABLE_ERROR_REPORTING`, `DISABLE_TELEMETRY`, and `DO_NOT_TRACK`. A truthy value such as `1` or `true` only turns tracking, reporting, or other nonessential traffic off, so Claude Code applies it without asking the user. For any other non-empty value, Claude Code shows the dialog. Before v2.1.218, all of them except `DO_NOT_TRACK` applied without approval at any value, and `DO_NOT_TRACK` triggered the dialog at any non-empty value.
+Claude Code decides whether four privacy toggles need approval by the delivered value rather than by the variable name: `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`, `DISABLE_ERROR_REPORTING`, `DISABLE_TELEMETRY`, and `DO_NOT_TRACK`. A truthy value such as `1` or `true` only turns tracking, reporting, or other nonessential traffic off, so Claude Code applies it without asking the user. For any other non-empty value, Claude Code shows the dialog.
 
 Claude Code also decides whether [`API_FORCE_IDLE_TIMEOUT`](https://code.claude.com/docs/en/env-vars) needs approval by the delivered value: a truthy value only turns the [body idle timeout](https://code.claude.com/docs/en/network-config.md#streaming-idle-watchdogs) on, so Claude Code applies it without asking the user. For any other non-empty value, Claude Code shows the dialog. Before v2.1.248, any non-empty value triggered the dialog.
 

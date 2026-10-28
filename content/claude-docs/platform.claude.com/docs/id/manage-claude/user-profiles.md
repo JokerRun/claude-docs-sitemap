@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-profiles
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: d0ad692d3a534313d7c8c5485710d1359739c8acfdba7cce0ca4c34d78bbd43c
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 0dc2db7ee4c023eb6acbde9d1a030232e671eb92c2d9224294586199e0322c13
 ---
 
 ---
@@ -11,9 +11,9 @@ url: https://platform.claude.com/docs/id/manage-claude/user-profiles
 description: Atribusikan permintaan API ke pelanggan akhir yang dilayani platform Anda, sehingga tindakan penegakan keamanan dapat diterapkan pada satu profil alih-alih seluruh organisasi Anda.
 ---
 
-Profil pengguna ("profil") memberi tahu Anthropic untuk pelanggan akhir mana setiap permintaan API ditujukan. Tindakan penegakan keamanan, seperti pembatasan atau pemblokiran, kemudian dapat diterapkan pada satu pelanggan akhir alih-alih pada seluruh organisasi Anda. Ketika hal itu terjadi, lalu lintas Anda yang lain tidak terpengaruh.
+Profil pengguna (“profil”) memberi tahu Anthropic untuk pelanggan akhir mana setiap permintaan API ditujukan. Tindakan penegakan keamanan, seperti pembatasan atau pemblokiran, kemudian dapat diterapkan pada satu pelanggan akhir alih-alih pada seluruh organisasi Anda. Ketika hal itu terjadi, lalu lintas Anda yang lain tidak terpengaruh.
 
-Jika Anda mengoperasikan platform atau gateway, atau menjual kembali akses API, permintaan yang Anda kirim untuk pelanggan akhir Anda tiba di bawah organisasi Anda. Anthropic menjalankan "safety classifier" (pengklasifikasi keamanan) otomatis pada lalu lintas API. Tanpa profil pada permintaan, satu pelanggan akhir dapat memicu tindakan penegakan yang berlaku untuk seluruh organisasi Anda.
+Jika Anda mengoperasikan platform atau gateway, atau menjual kembali akses API, permintaan yang Anda kirim untuk pelanggan akhir Anda tiba di bawah organisasi Anda. Anthropic menjalankan “safety classifier” (pengklasifikasi keamanan) otomatis pada lalu lintas API. Tanpa profil pada permintaan, satu pelanggan akhir dapat memicu tindakan penegakan yang berlaku untuk seluruh organisasi Anda.
 
 Anda mendaftarkan setiap pelanggan akhir satu kali dengan `POST /v1/user_profiles` dan menyimpan ID `uprof_` yang dikembalikannya. Kemudian Anda mengirim ID tersebut di header `anthropic-user-profile-id` pada setiap permintaan yang Anda buat atas nama pelanggan akhir tersebut.
 
@@ -43,16 +43,17 @@ Anda membuat dan mengelola profil di salah satu dari berikut ini:
 * Organisasi di Claude API.
 * Organisasi di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws). Principal yang memanggil memerlukan [tindakan IAM profil pengguna](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#user-profiles).
 * Deployment [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) yang [di-hosting di Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#hosting-options), bukan yang di-hosting di Azure. Anda tidak memerlukan organisasi di Claude API atau Claude Platform on AWS. Gunakan endpoint Foundry Anda, dengan base URL dan autentikasi yang sama dengan yang Anda gunakan untuk inferensi.
+* Organisasi di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), tempat Anda dapat membuat, mengambil, mencantumkan, dan memperbarui profil. Gunakan versi terbaru [klien SDK untuk Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#install-an-sdk), atau panggil [base URL tingkat organisasi](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#making-requests) secara langsung, dengan kredensial Google Cloud alih-alih kunci API.
 
 Amazon Bedrock dan Claude Models on Google Cloud (Google managed) tidak memiliki endpoint `/v1/user_profiles`. Jika inferensi Anda berjalan di sana, buat profil Anda di organisasi di Claude API atau Claude Platform on AWS. Di Amazon Bedrock, profil hanya berfungsi dengan [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). Lihat [Atribusikan permintaan di Amazon Bedrock dan Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/manage-claude/user-profiles#attribute-requests-on-amazon-bedrock-and-google-cloud).
 
-Tempatkan lalu lintas yang Anda kirim untuk pelanggan akhir Anda di satu organisasi dan penggunaan internal Anda sendiri di organisasi lain. Profil dimiliki oleh organisasi, bukan workspace, sehingga workspace terpisah dalam satu organisasi tidak cukup. Hanya organisasi untuk lalu lintas pelanggan akhir yang memerlukan profil pengguna. Untuk membuat organisasi lain di Claude API, lihat bagian "How to create a new organization" dari [Creating and managing Workspaces in the Claude Console](https://support.claude.com/en/articles/9796807) di Claude Help Center.
+Tempatkan lalu lintas yang Anda kirim untuk pelanggan akhir Anda di satu organisasi dan penggunaan internal Anda sendiri di organisasi lain. Profil dimiliki oleh organisasi, bukan workspace, sehingga workspace terpisah dalam satu organisasi tidak cukup. Hanya organisasi untuk lalu lintas pelanggan akhir yang memerlukan profil pengguna. Untuk membuat organisasi lain di Claude API, lihat bagian “How to create a new organization” dari [Creating and managing Workspaces in the Claude Console](https://support.claude.com/en/articles/9796807) di Claude Help Center.
 
 Contoh-contoh ini memanggil Claude API dengan kunci API. Anda tidak memerlukan [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys). Di Claude Platform on AWS, gunakan base URL dan autentikasinya.
 
 ## Buat profil untuk setiap pelanggan akhir
 
-Buat satu profil untuk setiap pelanggan akhir yang lalu lintasnya Anda kirim ke Claude. Buat sekali saja, dalam alur onboarding pelanggan Anda. `POST /v1/user_profiles` tidak "idempotent" (idempoten), sehingga setiap panggilan membuat profil baru, bahkan ketika `reference_id` cocok dengan profil yang sudah ada. Jika Anda sudah memiliki pelanggan akhir tanpa profil, lihat panduan nanti di bagian ini tentang mendaftarkan basis pelanggan yang sudah ada.
+Buat satu profil untuk setiap pelanggan akhir yang lalu lintasnya Anda kirim ke Claude. Buat sekali saja, dalam alur onboarding pelanggan Anda. `POST /v1/user_profiles` tidak “idempotent” (idempoten), sehingga setiap panggilan membuat profil baru, bahkan ketika `reference_id` cocok dengan profil yang sudah ada. Jika Anda sudah memiliki pelanggan akhir tanpa profil, lihat panduan nanti di bagian ini tentang mendaftarkan basis pelanggan yang sudah ada.
 
 Contoh berikut mendaftarkan perusahaan yang membeli akses API melalui gateway, sehingga menetapkan `access_type` ke `passthrough`. Untuk profil `application`, hilangkan `access_type`, dan deskripsikan satu pengguna akhir di `name` dan `external_user_details` alih-alih perusahaan. [Tentukan siapa yang mendapatkan profil](https://platform.claude.com/docs/id/manage-claude/user-profiles#decide-who-gets-a-profile) membandingkan kedua jenis akses tersebut.
 
@@ -215,7 +216,7 @@ Responsnya adalah profil baru:
 
 Simpan `id` pada catatan pelanggan Anda, dan minta instance layanan Anda membacanya dari sana alih-alih membuat profil sendiri. Anda mengambil, memperbarui, dan menghapus profil berdasarkan `id` tersebut. Field `programs` bersifat read-only, dan atribusi tidak menggunakannya. Field ini menyimpan status pelanggan akhir di setiap program yang dijalankan Anthropic. Untuk arti nilai-nilainya, lihat [program mana yang berlaku untuk profil](https://platform.claude.com/docs/id/manage-claude/user-profiles-verification-portal#after-the-end-customer-links-the-profile). [Periksa apakah Anthropic telah membatasi atau memblokir profil](https://platform.claude.com/docs/id/manage-claude/user-profiles#check-whether-anthropic-has-restricted-or-banned-a-profile) menjelaskan field `enforcement_status` dan `enforcement_actions`.
 
-Tidak ada batas jumlah profil dalam sebuah organisasi, tetapi pembuatan profil dikenai "rate limit" (batas laju). Sebelum Anda mendaftarkan basis pelanggan yang sudah ada secara massal, hubungi tim akun Anthropic Anda.
+Tidak ada batas jumlah profil dalam sebuah organisasi, tetapi pembuatan profil dikenai “rate limit” (batas laju). Sebelum Anda mendaftarkan basis pelanggan yang sudah ada secara massal, hubungi tim akun Anthropic Anda.
 
 ### Apa yang perlu diberitahukan kepada Anthropic tentang pelanggan akhir
 
@@ -365,7 +366,7 @@ Kirim ID profil di header `anthropic-user-profile-id` pada setiap permintaan yan
 
 Header ini bekerja dengan cara yang sama pada permintaan [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting), [Message Batches](https://platform.claude.com/docs/id/build-with-claude/batch-processing), dan [kompatibilitas OpenAI SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk). Pada batch, header ini berlaku untuk setiap permintaan dalam batch tersebut.
 
-Claude API, Claude Platform on AWS, dan deployment Microsoft Foundry yang di-hosting di Anthropic memeriksa ID pada setiap permintaan. Jika ID tidak valid formatnya atau bukan milik organisasi yang mengirim permintaan, API mengembalikan `400` `invalid_request_error`. Secara default, platform-platform ini hanya menerima ID profil pada permintaan dari organisasi yang membuat profil tersebut. Ini berarti bahwa jika Anda mengirim lalu lintas di bawah lebih dari satu organisasi, misalnya satu di Claude API dan satu di Claude Platform on AWS, permintaan dari organisasi yang tidak membuat profil tersebut akan mendapatkan `400` yang sama.
+Claude API, Claude Platform on AWS, deployment Microsoft Foundry yang di-hosting di Anthropic, dan Claude Models on Google Cloud (Anthropic managed) memeriksa ID pada setiap permintaan. Jika ID tidak valid formatnya atau bukan milik organisasi yang mengirim permintaan, API mengembalikan `400` `invalid_request_error`. Secara default, platform-platform ini hanya menerima ID profil pada permintaan dari organisasi yang membuat profil tersebut. Ini berarti bahwa jika Anda mengirim lalu lintas di bawah lebih dari satu organisasi, misalnya satu di Claude API dan satu di Claude Platform on AWS, permintaan dari organisasi yang tidak membuat profil tersebut akan mendapatkan `400` yang sama.
 
 Message Batches adalah pengecualian: pembuatan batch hanya memeriksa format ID. Jika ID yang formatnya valid bukan milik organisasi yang mengirim batch, batch tetap dibuat, dan setiap permintaan di dalamnya kemudian gagal dengan hasil `errored` yang berisi `invalid_request_error` yang sama.
 
@@ -373,13 +374,14 @@ Message Batches adalah pengecualian: pembuatan batch hanya memeriksa format ID. 
 
 ID profil dari kedua jenis akses juga berfungsi di [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) dan di Claude Models on Google Cloud (Google managed). ID ini tidak berfungsi dengan [integrasi Amazon Bedrock sebelumnya](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) yang Anda panggil dengan `InvokeModel` atau `Converse`. Anda menggunakan kredensial organisasi Anthropic Anda hanya untuk membuat dan mengelola profil. Inferensi tetap menggunakan kredensial AWS atau Google Cloud Anda yang sudah ada.
 
-| Platform                                                                                                                                             | Membuat profil                                         | Kirim ID profil di                         |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------ |
-| Claude API                                                                                                                                           | Ya                                                     | Header `anthropic-user-profile-id`         |
-| [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)                                               | Ya                                                     | Header `anthropic-user-profile-id`         |
-| [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), deployment yang di-hosting di Anthropic      | Ya                                                     | Header `anthropic-user-profile-id`         |
-| [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) | Tidak. Buat di Claude API atau Claude Platform on AWS. | Header `anthropic-user-profile-id`         |
-| [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)                                           | Tidak. Buat di Claude API atau Claude Platform on AWS. | Field `user_profile_id` di body permintaan |
+| Platform                                                                                                                                                   | Membuat profil                                         | Kirim ID profil di                         |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------ |
+| Claude API                                                                                                                                                 | Ya                                                     | Header `anthropic-user-profile-id`         |
+| [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)                                                     | Ya                                                     | Header `anthropic-user-profile-id`         |
+| [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), deployment yang di-hosting di Anthropic            | Ya                                                     | Header `anthropic-user-profile-id`         |
+| [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | Ya                                                     | Header `anthropic-user-profile-id`         |
+| [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)       | Tidak. Buat di Claude API atau Claude Platform on AWS. | Header `anthropic-user-profile-id`         |
+| [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)                                                 | Tidak. Buat di Claude API atau Claude Platform on AWS. | Field `user_profile_id` di body permintaan |
 
 Di Claude di Amazon Bedrock, letakkan ID di tingkat teratas body permintaan:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 182d2e98a262de11dd38ac0f4c396112f9b38538903ccedafa5ec9026db31a27
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 125f2147f9de0f539ac11e99aba7c96eeb6105786dcd446055b07afc9b1ec275
 ---
 
 ---
@@ -15,7 +15,7 @@ Jika sidebar Claude Console Anda tidak menampilkan **Account managed by AWS**, i
 
 ## Sebelum Anda memulai
 
-* "Customer-managed encryption keys" (kunci enkripsi yang dikelola pelanggan), atau CMEK, telah [diaktifkan untuk organisasi Anda](https://platform.claude.com/docs/id/manage-claude/cmek#availability).
+* “Customer-managed encryption keys” (kunci enkripsi yang dikelola pelanggan), atau CMEK, telah [diaktifkan untuk organisasi Anda](https://platform.claude.com/docs/id/manage-claude/cmek#availability).
 
 * Di akun AWS yang menjadi host organisasi Anda, Anda dapat membuat kunci AWS KMS dan menetapkan kebijakan kunci (`kms:CreateKey` dan `kms:PutKeyPolicy`).
 

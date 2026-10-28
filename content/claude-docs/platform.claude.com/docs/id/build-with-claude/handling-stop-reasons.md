@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: a9261e454806dcae780e8482e61e32c23a44ec4cf7792eba6e76009992f8a466
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: b723bbec0980f9129404399d354639a8383f7e57e7ea9a182e535338135e04c6
 ---
 
 ---
@@ -1196,7 +1196,7 @@ Claude menemukan salah satu stop sequence kustom Anda.
 Claude sedang memanggil alat yang perlu Anda jalankan.
 
 <Note>
-  Untuk sebagian besar implementasi "tool use" (penggunaan alat), gunakan [tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner), yang secara otomatis menangani eksekusi alat, pemformatan hasil, dan pengelolaan percakapan.
+  Untuk sebagian besar implementasi “tool use” (penggunaan alat), gunakan [tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner), yang secara otomatis menangani eksekusi alat, pemformatan hasil, dan pengelolaan percakapan.
 </Note>
 
 <CodeGroup>
@@ -1910,7 +1910,7 @@ Permintaan yang ditolak pada Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, 
 
 ### model\_context\_window\_exceeded
 
-Claude berhenti karena mencapai batas "context window" (jendela konteks) model. Ini memungkinkan Anda meminta token maksimum yang mungkin tanpa mengetahui ukuran input yang tepat.
+Claude berhenti karena mencapai batas “context window” (jendela konteks) model. Ini memungkinkan Anda meminta token maksimum yang mungkin tanpa mengetahui ukuran input yang tepat.
 
 <Note>
   Alasan berhenti ini saat ini hanya memiliki tipe di namespace `beta` (csharp, go: `Beta`; java: `beta()`) SDK, sehingga contoh-contoh berikut memanggil `client.beta.messages` (csharp, go: `client.Beta.Messages`; java: `client.beta().messages()`; php: `$client->beta->messages`) dan menggunakan tipe berawalan `Beta`. Pada Sonnet 4.5 (tidak digunakan lagi) dan model yang lebih baru, API mengembalikan nilai ini tanpa header beta. Untuk model yang lebih lama, tambahkan header beta `model-context-window-exceeded-2025-08-26` untuk mengaktifkannya.

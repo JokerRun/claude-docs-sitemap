@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/reference
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 80661294a38dafdf50c94851e51757b90a41a6d0c24a1bd316de5372c68e8dd5
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 66e6d348bcb3507ea5c013f80aada747e0582cf855eff39f83499f75c34d3238
 ---
 
 ---
@@ -39,13 +39,13 @@ String jenis event yang dipersistenkan mengikuti konvensi penamaan `{domain}.{ac
     | Jenis                            | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                  |
     | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
     | `agent.message`                  | Blok konten respons agen.                                                                                                                                                                                                                                                                                                                                                                  |
-    | `agent.thinking`                 | Menandakan bahwa agen sedang membuat kemajuan melalui "extended thinking" (pemikiran diperpanjang). Ini hanya sinyal kemajuan dan tidak membawa konten pemikiran.                                                                                                                                                                                                                          |
+    | `agent.thinking`                 | Menandakan bahwa agen sedang membuat kemajuan melalui “extended thinking” (pemikiran diperpanjang). Ini hanya sinyal kemajuan dan tidak membawa konten pemikiran.                                                                                                                                                                                                                          |
     | `agent.tool_use`                 | Agen memanggil alat agen bawaan (bash, operasi file, dan sebagainya). Membawa `evaluated_permission` (java, php: `evaluatedPermission`; csharp, go: `EvaluatedPermission`) dan, biasanya, `evaluation` (csharp, go: `Evaluation`) (lihat [bagaimana setiap panggilan dievaluasi](https://platform.claude.com/docs/id/managed-agents/permission-policies#see-how-each-call-was-evaluated)). |
     | `agent.tool_result`              | Hasil eksekusi alat agen bawaan.                                                                                                                                                                                                                                                                                                                                                           |
     | `agent.mcp_tool_use`             | Agen memanggil alat server MCP. Membawa `evaluated_permission` (java, php: `evaluatedPermission`; csharp, go: `EvaluatedPermission`) dan, biasanya, `evaluation` (csharp, go: `Evaluation`) (lihat [bagaimana setiap panggilan dievaluasi](https://platform.claude.com/docs/id/managed-agents/permission-policies#see-how-each-call-was-evaluated)).                                       |
     | `agent.mcp_tool_result`          | Hasil eksekusi alat MCP.                                                                                                                                                                                                                                                                                                                                                                   |
     | `agent.custom_tool_use`          | Agen memanggil salah satu alat kustom Anda. Tanggapi dengan event `user.custom_tool_result`.                                                                                                                                                                                                                                                                                               |
-    | `agent.thread_context_compacted` | Riwayat percakapan dipadatkan agar muat dalam "context window" (jendela konteks).                                                                                                                                                                                                                                                                                                          |
+    | `agent.thread_context_compacted` | Riwayat percakapan dipadatkan agar muat dalam “context window” (jendela konteks).                                                                                                                                                                                                                                                                                                          |
     | `agent.thread_message_received`  | Dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), pesan dari thread lain tiba di thread yang alirannya membawa event ini; pada thread utama, sebuah agen mengirim laporan atau pertanyaan kepada agen yang dijalankan oleh sesi.                                                                                                        |
     | `agent.thread_message_sent`      | Dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), thread yang alirannya membawa event ini mengirim pesan ke thread lain; pada thread utama, agen yang dijalankan oleh sesi mengirim tugas atau pesan tindak lanjut ke agen lain.                                                                                                        |
 
@@ -137,14 +137,14 @@ Bagi mitra yang mengintegrasikan Claude Managed Agents, penggunaan branding Clau
 
 **Diizinkan:**
 
-* "Claude Agent" (lebih disukai untuk menu dropdown)
-* "Claude" (ketika berada dalam menu yang sudah berlabel "Agents")
-* "\{YourAgentName} Powered by Claude" (jika Anda sudah memiliki nama agen)
+* “Claude Agent” (lebih disukai untuk menu dropdown)
+* “Claude” (ketika berada dalam menu yang sudah berlabel “Agents”)
+* “\{YourAgentName} Powered by Claude” (jika Anda sudah memiliki nama agen)
 
 **Tidak diizinkan:**
 
-* "Claude Code" atau "Claude Code Agent"
-* "Claude Cowork" atau "Claude Cowork Agent"
+* “Claude Code” atau “Claude Code Agent”
+* “Claude Cowork” atau “Claude Cowork Agent”
 * Seni ASCII bermerek Claude Code atau elemen visual yang meniru Claude Code
 
 Produk Anda harus mempertahankan branding-nya sendiri dan tidak tampak sebagai Claude Code, Claude Cowork, atau produk Anthropic lainnya. Untuk pertanyaan tentang kepatuhan branding, hubungi [tim penjualan](https://www.anthropic.com/contact-sales) Anthropic.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/azure
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: eb1e776ca54b7fa6cfcb93e23e700413d1203bf50e5924cd944ff4945434449e
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: c77f1c84edae9a7e53a6c07b48ec87d9b48a74edd6b10e02aca8b04b4e86c876
 ---
 
 ---
@@ -30,7 +30,7 @@ Pada kedua jalur, token yang Anda sajikan ke Anthropic membawa issuer Entra khus
 
 ## Daftarkan audience token
 
-Microsoft Entra ID hanya menerbitkan token ketika audience yang diminta ada di tenant Anda sebagai app registration dengan service principal. Buat satu app registration untuk merepresentasikan audience Claude API; setiap workload di tenant dapat meminta token untuknya. Tanpa registrasi ini, permintaan token gagal dengan error "resource not found in tenant" (`AADSTS50001` dari endpoint managed identity, `AADSTS500011` dari endpoint token Entra).
+Microsoft Entra ID hanya menerbitkan token ketika audience yang diminta ada di tenant Anda sebagai app registration dengan service principal. Buat satu app registration untuk merepresentasikan audience Claude API; setiap workload di tenant dapat meminta token untuknya. Tanpa registrasi ini, permintaan token gagal dengan error “resource not found in tenant” (`AADSTS50001` dari endpoint managed identity, `AADSTS500011` dari endpoint token Entra).
 
 ```bash
 # Buat pendaftaran aplikasi yang merepresentasikan audience Claude API.

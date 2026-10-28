@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/api-and-data-retention
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: abd8457c66653e87bcba2420763f3e63ee8360ab636e4bb7cd2129e43f04a793
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 70eb79d1f7d3834105a491deb58bf7dea8a6e9818a32344e15ea266a3bc788ed
 ---
 
 ---
@@ -31,7 +31,7 @@ Di bawah pengaturan ZDR, Anthropic tidak menyimpan prompt atau respons pelanggan
 
 ### Apa yang dicakup ZDR
 
-* **Claude Messages API dan Token Counting API:** ZDR berlaku untuk endpoint ini bagi fitur yang memenuhi syarat yang tercantum dalam [tabel kelayakan fitur](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility). Fitur yang berjalan di atas `/v1/messages` tetapi ditandai "No" dalam tabel (seperti eksekusi kode) tidak dicakup.
+* **Claude Messages API dan Token Counting API:** ZDR berlaku untuk endpoint ini bagi fitur yang memenuhi syarat yang tercantum dalam [tabel kelayakan fitur](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility). Fitur yang berjalan di atas `/v1/messages` tetapi ditandai “No” dalam tabel (seperti eksekusi kode) tidak dicakup.
 * **Claude Code dengan kunci API:** ZDR berlaku ketika Claude Code digunakan dengan kunci API dari organisasi Komersial (organisasi di bawah Ketentuan Layanan Komersial Anthropic, berbeda dengan akun Claude konsumen). Jika logging metrik diaktifkan di Claude Code, data produktivitas seperti statistik penggunaan dikecualikan dari ZDR dan dapat disimpan. Claude Code pada Claude Enterprise tidak dicakup oleh pengaturan ini dan memiliki penawaran ZDR terpisah; lihat [Apa yang tidak dicakup ZDR](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#what-zdr-does-not-cover).
 * **Claude Platform on AWS:** [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) mengikuti kebijakan retensi data yang sama dengan Claude API pihak pertama. ZDR tersedia berdasarkan permintaan; hubungi perwakilan akun Anthropic Anda untuk mengaktifkannya.
 * **Claude Models on Google Cloud (Anthropic managed):** [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) mengikuti kebijakan retensi data yang sama dengan Claude API pihak pertama. ZDR tersedia berdasarkan permintaan; hubungi perwakilan akun Anthropic Anda untuk mengaktifkannya.
@@ -68,7 +68,7 @@ Claude API mendukung integrasi yang siap HIPAA untuk organisasi yang menangani p
 
 * **Produk konsumen Claude:** Paket Claude Free, Pro, dan Max.
 * **Claude Console:** Penggunaan melalui antarmuka Claude Console (mengaktifkan kesiapan HIPAA dari pengaturan Console didukung; memproses PHI melalui Console tidak dicakup).
-* **Platform yang dioperasikan mitra:** Amazon Bedrock dan Google Cloud's Agent Platform. Lihat dokumentasi kepatuhan platform tersebut.
+* **Platform yang dioperasikan mitra:** Amazon Bedrock dan Google Cloud’s Agent Platform. Lihat dokumentasi kepatuhan platform tersebut.
 * **Claude Platform on AWS dan Microsoft Foundry:** Kesiapan HIPAA tidak tersedia di platform ini.
 * **Integrasi pihak ketiga:** Data yang diproses oleh alat atau layanan eksternal yang terhubung ke aplikasi Anda.
 * **Claude Code:** Claude Code tidak dicakup oleh kesiapan HIPAA.
@@ -95,7 +95,7 @@ BAA yang Anda tandatangani adalah sumber kebenaran resmi untuk fitur mana yang d
 }
 ```
 
-Pesan kesalahan mencantumkan fitur yang tidak memenuhi syarat yang terdeteksi dalam permintaan; hapus fitur tersebut dan coba lagi. Frasa "without Zero Data Retention" adalah kata-kata API sendiri dan tidak mengubah resolusi. Alat sisi klien yang kolom Details-nya dalam [tabel kelayakan fitur](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility) menyatakan bahwa mereka tidak diblokir diterima tetapi tetap berada di luar kesiapan HIPAA.
+Pesan kesalahan mencantumkan fitur yang tidak memenuhi syarat yang terdeteksi dalam permintaan; hapus fitur tersebut dan coba lagi. Frasa “without Zero Data Retention” adalah kata-kata API sendiri dan tidak mengubah resolusi. Alat sisi klien yang kolom Details-nya dalam [tabel kelayakan fitur](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility) menyatakan bahwa mereka tidak diblokir diterima tetapi tetap berada di luar kesiapan HIPAA.
 
 ### Memulai dengan kesiapan HIPAA
 
@@ -143,7 +143,7 @@ Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5 ditetap
 }
 ```
 
-Persyaratan retensi data 30 hari berlaku di mana pun Covered Models ditawarkan. Pada Claude API (termasuk Claude Platform on AWS), Anthropic menangani data yang disimpan. Pada Amazon Bedrock dan Google Cloud's Agent Platform, data yang disimpan tetap berada dalam lingkungan penyedia cloud Anda; tinjau dokumentasi setiap platform untuk langkah-langkah pengaktifan.
+Persyaratan retensi data 30 hari berlaku di mana pun Covered Models ditawarkan. Pada Claude API (termasuk Claude Platform on AWS), Anthropic menangani data yang disimpan. Pada Amazon Bedrock dan Google Cloud’s Agent Platform, data yang disimpan tetap berada dalam lingkungan penyedia cloud Anda; tinjau dokumentasi setiap platform untuk langkah-langkah pengaktifan.
 
 ### Aktifkan retensi 30 hari untuk workspace
 
@@ -169,9 +169,9 @@ Tabel berikut mencantumkan fitur Claude API mana yang memenuhi syarat untuk peng
 
 Setiap kolom kelayakan menggunakan tiga nilai:
 
-* **Yes:** Fitur sepenuhnya memenuhi syarat di bawah pengaturan. Untuk ZDR, "Yes" juga mengasumsikan Anda menggunakan model yang tidak memerlukan retensi data 30 hari; [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements) tidak tersedia di bawah ZDR terlepas dari kelayakan fitur.
+* **Yes:** Fitur sepenuhnya memenuhi syarat di bawah pengaturan. Untuk ZDR, “Yes” juga mengasumsikan Anda menggunakan model yang tidak memerlukan retensi data 30 hari; [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements) tidak tersedia di bawah ZDR terlepas dari kelayakan fitur.
 * **Yes (qualified):** Prompt Anda dan output Claude tidak disimpan, tetapi artefak teknis terbatas (disebutkan dalam kolom Details) disimpan sebentar agar fitur berfungsi. Lihat [Bagaimana Anthropic mendekati retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#how-anthropic-approaches-data-retention) untuk komitmen yang mengatur fitur-fitur ini.
-* **No:** Fitur tidak memenuhi syarat. Di bawah kesiapan HIPAA, API memblokir permintaan yang menyertakan fitur "No" dan mengembalikan kesalahan `400`, kecuali kolom Details fitur menyatakan sebaliknya. Di bawah ZDR, API **tidak** memblokir fitur-fitur ini; menggunakan salah satunya adalah pilihan untuk keluar dari pengaturan ZDR Anda untuk data spesifik tersebut, dan kebijakan retensi yang didokumentasikan fitur itu sendiri berlaku. Fitur yang ditandai "No" untuk ZDR biasanya stateful (mereka menyimpan pekerjaan, file, atau status kontainer), itulah sebabnya mereka tidak dapat menjadi zero-retention.
+* **No:** Fitur tidak memenuhi syarat. Di bawah kesiapan HIPAA, API memblokir permintaan yang menyertakan fitur “No” dan mengembalikan kesalahan `400`, kecuali kolom Details fitur menyatakan sebaliknya. Di bawah ZDR, API **tidak** memblokir fitur-fitur ini; menggunakan salah satunya adalah pilihan untuk keluar dari pengaturan ZDR Anda untuk data spesifik tersebut, dan kebijakan retensi yang didokumentasikan fitur itu sendiri berlaku. Fitur yang ditandai “No” untuk ZDR biasanya stateful (mereka menyimpan pekerjaan, file, atau status kontainer), itulah sebabnya mereka tidak dapat menjadi zero-retention.
 
 | Fitur                                                                                                                       | Endpoint                                                 | Memenuhi syarat ZDR                                    | Memenuhi syarat HIPAA                  | Detail                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | --------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------ | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -225,11 +225,11 @@ Bahkan dengan pengaturan ZDR atau HIPAA yang berlaku, Anthropic dapat menyimpan 
   </Accordion>
 
   <Accordion title="Dapatkah saya menggunakan fitur yang memenuhi syarat ZDR (qualified) di bawah pengaturan ZDR saya?">
-    Ya. Fitur-fitur ini menyimpan serangkaian data teknis minimal yang didokumentasikan, bukan prompt Anda atau output Claude. Lihat legenda [tabel kelayakan fitur](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility) untuk apa arti "Yes (qualified)" dan [Bagaimana Anthropic mendekati retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#how-anthropic-approaches-data-retention) untuk komitmen yang mengatur fitur-fitur ini.
+    Ya. Fitur-fitur ini menyimpan serangkaian data teknis minimal yang didokumentasikan, bukan prompt Anda atau output Claude. Lihat legenda [tabel kelayakan fitur](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility) untuk apa arti “Yes (qualified)” dan [Bagaimana Anthropic mendekati retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#how-anthropic-approaches-data-retention) untuk komitmen yang mengatur fitur-fitur ini.
   </Accordion>
 
   <Accordion title="Apa yang terjadi jika saya menggunakan fitur yang ditandai &#x22;No&#x22; di bawah ZDR?">
-    Tidak ada yang memblokir permintaan. Fitur yang ditandai "No" untuk ZDR pada dasarnya stateful: Batch API menyimpan pekerjaan Anda, Files API menyimpan file Anda, dan eksekusi kode berjalan dalam kontainer persisten. Data untuk fitur-fitur ini disimpan sesuai kebijakan yang didokumentasikan fitur. Menggunakannya adalah pilihan untuk keluar dari pengaturan ZDR Anda untuk data spesifik tersebut.
+    Tidak ada yang memblokir permintaan. Fitur yang ditandai “No” untuk ZDR pada dasarnya stateful: Batch API menyimpan pekerjaan Anda, Files API menyimpan file Anda, dan eksekusi kode berjalan dalam kontainer persisten. Data untuk fitur-fitur ini disimpan sesuai kebijakan yang didokumentasikan fitur. Menggunakannya adalah pilihan untuk keluar dari pengaturan ZDR Anda untuk data spesifik tersebut.
   </Accordion>
 
   <Accordion title="Dapatkah saya meminta penghapusan data dari fitur yang tidak memenuhi syarat ZDR?">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: cf1677532217de015b37f5b1688f5440544fe64f6c5074741f65c3b3ac058ad2
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 72a68c9af121db7c3b4fd4efa840fb46d4bf255a37d999088c80ac299d86d2b2
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-"Permission policies" (kebijakan izin) mengontrol apakah alat yang dieksekusi server (toolset agen bawaan dan toolset MCP) berjalan secara otomatis, menunggu persetujuan Anda, atau setiap panggilannya dievaluasi oleh server. Alat kustom dijalankan oleh aplikasi Anda dan dikendalikan oleh Anda, sehingga tidak diatur oleh kebijakan izin.
+“Permission policies” (kebijakan izin) mengontrol apakah alat yang dieksekusi server (toolset agen bawaan dan toolset MCP) berjalan secara otomatis, menunggu persetujuan Anda, atau setiap panggilannya dievaluasi oleh server. Alat kustom dijalankan oleh aplikasi Anda dan dikendalikan oleh Anda, sehingga tidak diatur oleh kebijakan izin.
 
 ## Jenis kebijakan izin
 

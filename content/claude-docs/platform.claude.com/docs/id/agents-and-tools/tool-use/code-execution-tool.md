@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: c0034330481e7dd5c8bad6956452731d76ae12bc7c986aabd13bc206be93afa1
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 25c9d2bbdd903112700978a37bbe7884b42adbe80569b248d537e75feda2e272
 ---
 
 ---
@@ -40,11 +40,11 @@ featureMetadata:
     - Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), eksekusi kode didukung di Claude API dan Microsoft Foundry.
 ---
 
-Claude dapat menganalisis data, membuat visualisasi, melakukan perhitungan kompleks, menjalankan perintah sistem, membuat dan mengedit file, serta memproses file yang diunggah langsung di dalam percakapan API. Alat eksekusi kode memungkinkan Claude menjalankan perintah Bash dan memanipulasi file, termasuk menulis kode, dalam lingkungan "sandbox" (lingkungan terisolasi) yang aman.
+Claude dapat menganalisis data, membuat visualisasi, melakukan perhitungan kompleks, menjalankan perintah sistem, membuat dan mengedit file, serta memproses file yang diunggah langsung di dalam percakapan API. Alat eksekusi kode memungkinkan Claude menjalankan perintah Bash dan memanipulasi file, termasuk menulis kode, dalam lingkungan “sandbox” (lingkungan terisolasi) yang aman.
 
 **Eksekusi kode gratis jika digunakan bersama pencarian web atau web fetch (`web_search_20260209`, `web_fetch_20260209`, atau yang lebih baru).** Jika salah satu alat tersebut ada dalam permintaan Anda, tidak ada biaya tambahan untuk eksekusi kode dalam permintaan itu selain biaya token standar. Ini mencakup eksekusi kode di balik pemfilteran dinamis maupun kode apa pun yang dijalankan Claude secara langsung. Harga eksekusi kode standar berlaku jika alat-alat tersebut tidak disertakan.
 
-Eksekusi kode juga menjalankan "dynamic filtering" (pemfilteran dinamis) pada alat [pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) dan [web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool): Claude memfilter hasil di dalam lingkungan eksekusi kode sebelum hasil tersebut mencapai "context window" (jendela konteks). Saat pemfilteran dinamis berjalan, API secara otomatis menyediakan eksekusi kode yang dibutuhkan untuk permintaan tersebut, sehingga Anda tidak perlu menambahkan alat eksekusi kode ke permintaan Anda untuk keperluan itu.
+Eksekusi kode juga menjalankan “dynamic filtering” (pemfilteran dinamis) pada alat [pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) dan [web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool): Claude memfilter hasil di dalam lingkungan eksekusi kode sebelum hasil tersebut mencapai “context window” (jendela konteks). Saat pemfilteran dinamis berjalan, API secara otomatis menyediakan eksekusi kode yang dibutuhkan untuk permintaan tersebut, sehingga Anda tidak perlu menambahkan alat eksekusi kode ke permintaan Anda untuk keperluan itu.
 
 <Note>
   Hubungi kami melalui [formulir umpan balik](https://forms.gle/LTAU6Xn2puCJMi1n6) untuk membagikan umpan balik Anda tentang fitur ini.
@@ -55,7 +55,7 @@ Eksekusi kode juga menjalankan "dynamic filtering" (pemfilteran dinamis) pada al
 Alat eksekusi kode memiliki tiga versi saat ini, dan setiap [model yang didukung](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#compatibility) menerima ketiganya. Setiap versi dibangun di atas versi sebelumnya:
 
 * `code_execution_20250825` mendukung perintah Bash dan operasi file.
-* `code_execution_20260120` menambahkan "REPL state persistence" (persistensi status REPL) dan [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) dari dalam sandbox. Claude Haiku 4.5 menerima tipe alat `code_execution_20260120` dan `code_execution_20260521`, tetapi pemanggilan alat terprogram dan persistensi status REPL yang bergantung padanya tidak tersedia di model tersebut, sehingga versi yang lebih baru berperilaku seperti `code_execution_20250825` di sana.
+* `code_execution_20260120` menambahkan “REPL state persistence” (persistensi status REPL) dan [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) dari dalam sandbox. Claude Haiku 4.5 menerima tipe alat `code_execution_20260120` dan `code_execution_20260521`, tetapi pemanggilan alat terprogram dan persistensi status REPL yang bergantung padanya tidak tersedia di model tersebut, sehingga versi yang lebih baru berperilaku seperti `code_execution_20250825` di sana.
 * `code_execution_20260521` menggunakan runtime yang sama dengan `code_execution_20260120`. Perbedaannya adalah deskripsi alat memberi tahu Claude tentang batas waktu nyata 90 detik pada setiap sel Python dalam pemanggilan alat terprogram, sehingga Claude dapat mengatur anggaran untuk sel yang berjalan lama. Sel yang melebihi batas tersebut mengembalikan hasil eksekusi kode normal dengan `return_code` bukan nol dan pesan status `detection_timeout` dalam output-nya. Ini terpisah dari [kode error](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#errors) `execution_time_exceeded`, yang dikembalikan API ketika seluruh pemanggilan alat melebihi waktu eksekusi maksimum.
 
 Tidak satu pun dari ketiga versi alat memerlukan header `anthropic-beta`. Header beta eksekusi kode lama tetap valid sebagai opsi keikutsertaan.
@@ -263,7 +263,7 @@ Claude menjalankan kode ketika permintaan mendapat manfaat dari komputasi atau p
 * Matematika yang tidak sederhana (angka besar, banyak langkah, hasil yang sensitif terhadap presisi)
 * Analisis data, parsing file, atau visualisasi
 * Eksekusi algoritma atau simulasi
-* Permintaan eksplisit untuk "run", "compute", atau "execute"
+* Permintaan eksplisit untuk “run”, “compute”, atau “execute”
 
 Claude menjawab langsung tanpa menjalankan kode untuk:
 
@@ -271,7 +271,7 @@ Claude menjawab langsung tanpa menjalankan kode untuk:
 * Permintaan faktual, percakapan, atau kreatif
 * Konversi satuan atau terjemahan sederhana
 
-Jika Anda ingin Claude menjalankan kode untuk permintaan yang berada di batas, mintalah secara eksplisit (misalnya, "jalankan kode untuk memverifikasi ini").
+Jika Anda ingin Claude menjalankan kode untuk permintaan yang berada di batas, mintalah secara eksplisit (misalnya, “jalankan kode untuk memverifikasi ini”).
 
 ## Bekerja dengan file
 
@@ -913,7 +913,7 @@ File yang ditulis Claude di tempat lain masih berada di container, sehingga Anda
 
 ### Content Credentials pada file yang dihasilkan
 
-Di Claude API, file gambar, video, dan audio yang didukung yang dihasilkan Claude di sandbox eksekusi kode membawa Content Credentials [C2PA](https://c2pa.org/) saat Anda mengunduhnya melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files). [Format yang didukung](https://opensource.contentauthenticity.org/docs/sdk-repos/c2pa-python/docs/supported-formats/) mencakup PNG, JPEG, GIF, WebP, TIFF, HEIC, AVIF, SVG, MP4, MOV, MP3, WAV, FLAC, dan M4A. Kredensial tersebut adalah manifes yang ditandatangani secara kriptografis dan disematkan dalam metadata file. Manifes ini mengidentifikasi Anthropic sebagai penerbit, membawa stempel waktu, dan mencatat deskripsi tindakan "Claude provided this file at the request of a user and may have created or modified the file contents."
+Di Claude API, file gambar, video, dan audio yang didukung yang dihasilkan Claude di sandbox eksekusi kode membawa Content Credentials [C2PA](https://c2pa.org/) saat Anda mengunduhnya melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files). [Format yang didukung](https://opensource.contentauthenticity.org/docs/sdk-repos/c2pa-python/docs/supported-formats/) mencakup PNG, JPEG, GIF, WebP, TIFF, HEIC, AVIF, SVG, MP4, MOV, MP3, WAV, FLAC, dan M4A. Kredensial tersebut adalah manifes yang ditandatangani secara kriptografis dan disematkan dalam metadata file. Manifes ini mengidentifikasi Anthropic sebagai penerbit, membawa stempel waktu, dan mencatat deskripsi tindakan “Claude provided this file at the request of a user and may have created or modified the file contents.”
 
 Penandatanganan tidak memerlukan perubahan apa pun pada permintaan atau penanganan respons Anda, dan manifes tidak mencatat apa pun tentang Anda, organisasi Anda, atau permintaan Anda. Konten file yang terlihat tidak berubah. Manifes menambahkan beberapa kilobyte, sehingga ukuran dan checksum file yang diunduh berbeda dari file yang ada di dalam container. File teks, PDF, dan dokumen perkantoran tidak ditandatangani karena bukan format yang didukung untuk penandatanganan. File yang Anda unggah disimpan apa adanya, termasuk Content Credentials apa pun yang sudah dibawanya.
 
@@ -1085,7 +1085,7 @@ Setiap jenis alat dapat mengembalikan error tertentu:
 | Semua alat   | `unavailable`             | Alat untuk sementara tidak tersedia                        |
 | Semua alat   | `execution_time_exceeded` | Pemanggilan alat melebihi waktu eksekusi maksimum          |
 | Semua alat   | `invalid_tool_input`      | Parameter yang diberikan ke alat tidak valid               |
-| Semua alat   | `too_many_requests`       | "Rate limit" (batas laju) untuk penggunaan alat terlampaui |
+| Semua alat   | `too_many_requests`       | “Rate limit” (batas laju) untuk penggunaan alat terlampaui |
 | bash         | `output_file_too_large`   | Output perintah melebihi ukuran maksimum                   |
 | text\_editor | `file_not_found`          | File tidak ada (untuk operasi view/edit)                   |
 
@@ -1432,7 +1432,7 @@ Container kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak akti
 
 Saat Anda menyediakan eksekusi kode bersama alat yang disediakan klien yang juga menjalankan kode (seperti [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool) atau REPL kustom), Claude beroperasi dalam lingkungan multikomputer. Alat eksekusi kode berjalan di container sandbox milik Anthropic, sedangkan alat yang disediakan klien Anda berjalan di lingkungan terpisah yang Anda kendalikan. Claude terkadang dapat tertukar antara lingkungan-lingkungan ini, mencoba menggunakan alat yang salah atau mengasumsikan bahwa status dibagikan di antara keduanya.
 
-Untuk menghindari hal ini, tambahkan instruksi ke "system prompt" (prompt sistem) Anda yang memperjelas perbedaannya:
+Untuk menghindari hal ini, tambahkan instruksi ke “system prompt” (prompt sistem) Anda yang memperjelas perbedaannya:
 
 ```text wrap
 When multiple code execution environments are available, be aware that:

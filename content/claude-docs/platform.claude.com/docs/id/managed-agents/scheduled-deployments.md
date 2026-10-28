@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 484b4ebd9f722a29df3b03ab7f54ea2480dcc14ea54d0f3e470a7896666aecba
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 707bc95f5ba211fbf2e8ba95340908fa4065a93dc2b6d4bf0db1bc7d610d7199
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-**Deployment terjadwal** ("scheduled deployment") memungkinkan [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) untuk memulai [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) secara otonom, sehingga agen dapat menyelesaikan tugas dengan ritme yang dapat diprediksi. Anda membuat dan mengelola deployment dengan Deployments API, bagian dari Claude API.
+**Deployment terjadwal** (“scheduled deployment”) memungkinkan [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) untuk memulai [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) secara otonom, sehingga agen dapat menyelesaikan tugas dengan ritme yang dapat diprediksi. Anda membuat dan mengelola deployment dengan Deployments API, bagian dari Claude API.
 
 Untuk konteks peluncuran dan contoh hal-hal yang dijalankan tim secara terjadwal, lihat [scheduled deployments and vaults in Claude Managed Agents](https://claude.com/blog/whats-new-in-claude-managed-agents) di blog.
 
@@ -247,7 +247,7 @@ Respons mencakup objek deployment dengan `schedule.upcoming_runs_at` yang terisi
 }
 ```
 
-Timestamp eksekusi mendatang mencerminkan jadwal persis yang dikonfigurasi. Namun, untuk mendistribusikan beban, eksekusi aktual menerapkan "jitter" (variasi waktu acak) hingga 15 persen dari interval antar eksekusi, dengan minimum 5 detik dan maksimum 9 menit.
+Timestamp eksekusi mendatang mencerminkan jadwal persis yang dikonfigurasi. Namun, untuk mendistribusikan beban, eksekusi aktual menerapkan “jitter” (variasi waktu acak) hingga 15 persen dari interval antar eksekusi, dengan minimum 5 detik dan maksimum 9 menit.
 
 Maksimum **1.000 deployment terjadwal** didukung untuk setiap organisasi. Hubungi dukungan Anthropic jika Anda membutuhkan lebih banyak.
 

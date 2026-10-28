@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 0f45a1970c8342028077c19d028effe93216b260dcdb59e44c0b616e4add6071
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 33d21c4b24e948eb17001de6a5f23e6a470970b70246d050ed9f4a005fb18bd4
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-[Alat kustom](https://platform.claude.com/docs/id/managed-agents/tools#custom-tools) adalah alat yang dijalankan oleh kode Anda sendiri: agen memancarkan event `agent.custom_tool_use` dan menunggu `user.custom_tool_result` yang sesuai. Worker Anda dapat menjadi kode tersebut. Karena berjalan di dalam sandbox Anda, alat tersebut menjangkau layanan internal, kredensial, dan "network egress" (lalu lintas jaringan keluar) yang Anda konfigurasikan untuk sandbox, dan tidak lebih dari itu.
+[Alat kustom](https://platform.claude.com/docs/id/managed-agents/tools#custom-tools) adalah alat yang dijalankan oleh kode Anda sendiri: agen memancarkan event `agent.custom_tool_use` dan menunggu `user.custom_tool_result` yang sesuai. Worker Anda dapat menjadi kode tersebut. Karena berjalan di dalam sandbox Anda, alat tersebut menjangkau layanan internal, kredensial, dan “network egress” (lalu lintas jaringan keluar) yang Anda konfigurasikan untuk sandbox, dan tidak lebih dari itu.
 
 Environment key mengotorisasi pengiriman hasil alat kustom, sehingga kunci API Claude Anda tetap berada di luar host worker.
 

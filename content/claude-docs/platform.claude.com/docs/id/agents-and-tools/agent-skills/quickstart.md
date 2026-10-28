@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: dcc08d9dd87b3ba55fd4d5763fc2a2cd816ee5143b08fad9d596017401199fb4
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 5039dd811bf24f377597433274385f4c492403c540d4a1213a8203c0c82e3c80
 ---
 
 ---
@@ -124,7 +124,7 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk menampi
 
 Anda akan melihat Skills berikut: `pptx`, `xlsx`, `docx`, dan `pdf`.
 
-API ini mengembalikan metadata setiap Skill: nama dan deskripsinya. Claude memuat metadata ini saat startup untuk menentukan Skills mana yang tersedia. Ini adalah tingkat pertama dari **"progressive disclosure" (pengungkapan bertahap)**, di mana Claude menemukan Skills tanpa memuat instruksi lengkapnya terlebih dahulu.
+API ini mengembalikan metadata setiap Skill: nama dan deskripsinya. Claude memuat metadata ini saat startup untuk menentukan Skills mana yang tersedia. Ini adalah tingkat pertama dari **“progressive disclosure” (pengungkapan bertahap)**, di mana Claude menemukan Skills tanpa memuat instruksi lengkapnya terlebih dahulu.
 
 ## Langkah 2: Buat presentasi
 

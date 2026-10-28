@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-combinations
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: a8bef1b41ec5428812910a3a376496c8a3d3ee99c31afb7b9f81f936ca4a4757
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 6a56513156be9b1c051f52af54b564d02f5d025456136c09606c38931723cbb6
 ---
 
 ---
@@ -17,7 +17,7 @@ Each snippet shows only the `tools` array. See [Handle tool calls](https://platf
 
 ## Research agent: web\_search + code\_execution
 
-Search finds sources; code execution analyzes and synthesizes. Claude searches for data, then writes Python to process, tabulate, or visualize it. This pairing is a good fit for questions that require both up-to-date information and nontrivial computation over that information, such as "compare this quarter's earnings across the top five cloud providers."
+Search finds sources; code execution analyzes and synthesizes. Claude searches for data, then writes Python to process, tabulate, or visualize it. This pairing is a good fit for questions that require both up-to-date information and nontrivial computation over that information, such as “compare this quarter’s earnings across the top five cloud providers.”
 
 ```json
 {
@@ -28,7 +28,7 @@ Search finds sources; code execution analyzes and synthesizes. Claude searches f
 }
 ```
 
-The flow is typically search, then run code, then optionally search again if the first pass surfaced a gap. Code execution runs server-side, so there's no client-side sandbox to manage.
+The flow is typically search, then run code, then optionally search again if the first pass surfaced a gap. Code execution runs server-side, so there’s no client-side sandbox to manage.
 
 ## Coding agent: text\_editor + bash
 
@@ -58,11 +58,11 @@ Search surfaces candidate URLs; fetch retrieves full page content for the releva
 }
 ```
 
-This pairing is useful when the answer lives in long-form content (documentation pages, articles, specifications) that a search snippet can't fully capture. Fetch pulls the complete page so Claude can cite specific passages.
+This pairing is useful when the answer lives in long-form content (documentation pages, articles, specifications) that a search snippet can’t fully capture. Fetch pulls the complete page so Claude can cite specific passages.
 
 ## Long-running agent: memory + any other tools
 
-Memory persists state across conversations; the other tools do the work. Add memory to any agent that needs to remember prior sessions, such as a support agent that recalls a customer's earlier issues or a project assistant that tracks decisions made last week.
+Memory persists state across conversations; the other tools do the work. Add memory to any agent that needs to remember prior sessions, such as a support agent that recalls a customer’s earlier issues or a project assistant that tracks decisions made last week.
 
 ```json
 {
@@ -72,11 +72,11 @@ Memory persists state across conversations; the other tools do the work. Add mem
 
 Add your other tools alongside `memory` in the same array.
 
-Memory is orthogonal to your other tools. It doesn't change how they behave; it gives Claude a place to write down and later retrieve facts that would otherwise be lost when the context window resets. See [Memory tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool) for the storage model.
+Memory is orthogonal to your other tools. It doesn’t change how they behave; it gives Claude a place to write down and later retrieve facts that would otherwise be lost when the context window resets. See [Memory tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool) for the storage model.
 
 ## All-in-one: computer\_use
 
-The computer use tool subsumes most others by operating a full desktop. Claude receives screenshots and issues mouse and keyboard actions, which means it can drive any application a human can. Use this when the task requires arbitrary GUI interaction that more specific tools can't reach: legacy software without an API, visual verification steps, or workflows that span multiple desktop apps.
+The computer use tool subsumes most others by operating a full desktop. Claude receives screenshots and issues mouse and keyboard actions, which means it can drive any application a human can. Use this when the task requires arbitrary GUI interaction that more specific tools can’t reach: legacy software without an API, visual verification steps, or workflows that span multiple desktop apps.
 
 ```json
 {
@@ -84,7 +84,7 @@ The computer use tool subsumes most others by operating a full desktop. Claude r
 }
 ```
 
-The toolset entry takes no `name` or display dimensions: coordinates are expressed in the pixel space of the screenshots you return, and you can turn individual actions off through the entry's `configs` field.
+The toolset entry takes no `name` or display dimensions: coordinates are expressed in the pixel space of the screenshots you return, and you can turn individual actions off through the entry’s `configs` field.
 
 Computer use is the most general option and also the slowest, because Claude typically needs a fresh screenshot after each batch of actions. Prefer narrower tools when they cover your use case, and reach for computer use when nothing else fits. If the task stays inside a web browser, use the browser agent pattern in the next section. See [Computer use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) for the sandbox setup.
 

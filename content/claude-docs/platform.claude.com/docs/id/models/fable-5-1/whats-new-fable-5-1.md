@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 413ff7c252224247018e4851a56c7185c297355b232b7aab1da65e6f6673c00b
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 63dad074df2e52543f815ceb7ae3942f5c3f4b4554d58f201f9c94980cf3f8d4
 ---
 
 ---
@@ -24,7 +24,7 @@ Jika Anda sudah memanggil Claude Fable 5, ada tiga perubahan yang merusak kompat
 
 Claude Fable 5.1 dan Claude Mythos 5.1 memiliki spesifikasi dan harga yang sama:
 
-* **Jendela konteks dan output:** "context window" (jendela konteks) [1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) (default dan maksimum) dengan harga per token standar di seluruh jendela, dan maksimum 128k token output.
+* **Jendela konteks dan output:** “context window” (jendela konteks) [1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) (default dan maksimum) dengan harga per token standar di seluruh jendela, dan maksimum 128k token output.
 * **Thinking:** [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) selalu aktif. Gunakan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) untuk mengontrol kedalaman thinking.
 * **Harga:** sama dengan Claude Fable 5, kecuali [harga pembacaan cache yang lebih rendah](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#pricing).
 * **Tokenizer:** sama dengan Claude Fable 5 (diperkenalkan bersama Claude Opus 4.7). Dibandingkan dengan model yang lebih lama dari Claude Opus 4.7, teks yang sama menghasilkan sekitar 30% lebih banyak token. Lihat [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting).
@@ -35,7 +35,7 @@ Untuk semua model saat ini, lihat [ikhtisar model](https://platform.claude.com/d
 
 ### Penggunaan alat paksa tidak didukung
 
-Claude Fable 5.1 dan Claude Mythos 5.1 tidak mendukung "forced tool use" (penggunaan alat paksa). `tool_choice` yang diatur ke `{"type": "any"}` atau `{"type": "tool", "name": "..."}` mengembalikan 400 `invalid_request_error`:
+Claude Fable 5.1 dan Claude Mythos 5.1 tidak mendukung “forced tool use” (penggunaan alat paksa). `tool_choice` yang diatur ke `{"type": "any"}` atau `{"type": "tool", "name": "..."}` mengembalikan 400 `invalid_request_error`:
 
 ```text wrap
 tool_choice: type "tool" and "any" are not supported for this model.
@@ -43,7 +43,7 @@ tool_choice: type "tool" and "any" are not supported for this model.
 
 `tool_choice: {"type": "auto"}` (default) dan `{"type": "none"}` tidak berubah. Validasi yang sama berlaku untuk endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting).
 
-Thinking selalu aktif untuk model-model ini, dan panggilan alat paksa akan melewatinya. Model akan menuliskan proses pengerjaannya ke dalam argumen alat, yang menurunkan kualitas argumen. Untuk JSON yang valid sesuai skema, pertahankan `tool_choice: {"type": "auto"}` dan atur `strict: true` dengan [strict tool use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use), atau pindahkan skema ke [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs). Agar model memanggil alat alih-alih membalas dengan teks, nyatakan dalam prompt kapan alat tersebut berlaku (misalnya, "Use the `get_weather` tool to answer"). Claude Fable 5.1 mengikuti instruksi alat yang eksplisit dengan andal.
+Thinking selalu aktif untuk model-model ini, dan panggilan alat paksa akan melewatinya. Model akan menuliskan proses pengerjaannya ke dalam argumen alat, yang menurunkan kualitas argumen. Untuk JSON yang valid sesuai skema, pertahankan `tool_choice: {"type": "auto"}` dan atur `strict: true` dengan [strict tool use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use), atau pindahkan skema ke [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs). Agar model memanggil alat alih-alih membalas dengan teks, nyatakan dalam prompt kapan alat tersebut berlaku (misalnya, “Use the `get_weather` tool to answer”). Claude Fable 5.1 mengikuti instruksi alat yang eksplisit dengan andal.
 
 ### Hanya Claude Fable 5.1 dan Claude Mythos 5.1 yang membaca blok thinking Claude Fable 5.1
 
@@ -344,7 +344,7 @@ Lihat [Effort per pesan](https://platform.claude.com/docs/id/build-with-claude/e
 
 ### Pesan sistem berlingkup giliran (beta)
 
-[Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) dapat dibatasi lingkupnya ke satu giliran. Atur `clear_at: "next_user_message"` pada pesan `role: "system"` dan teksnya membawa otoritas prompt sistem untuk giliran saat ini, lalu berhenti dirender setelah ada pesan `user` berikutnya. Pesan tetap berada di `messages` dan Anda terus mengirimkannya kembali apa adanya, sehingga tidak ada yang berubah di bagian awal percakapan. [Cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) tetap cocok, [blok thinking berikutnya tetap valid](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation), dan pesan yang sudah dibersihkan tidak memakan token input. Gunakan untuk pengingat per giliran dalam loop alat ("check your inbox before running more code", "the user can't see that tool output") alih-alih menyisipkan teks ke riwayat dan menghapusnya pada permintaan berikutnya. Pesan sistem berlingkup giliran masih dalam beta: sertakan header beta `mid-conversation-system-clear-at-2026-08-21`. Lihat [Pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages).
+[Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) dapat dibatasi lingkupnya ke satu giliran. Atur `clear_at: "next_user_message"` pada pesan `role: "system"` dan teksnya membawa otoritas prompt sistem untuk giliran saat ini, lalu berhenti dirender setelah ada pesan `user` berikutnya. Pesan tetap berada di `messages` dan Anda terus mengirimkannya kembali apa adanya, sehingga tidak ada yang berubah di bagian awal percakapan. [Cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) tetap cocok, [blok thinking berikutnya tetap valid](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation), dan pesan yang sudah dibersihkan tidak memakan token input. Gunakan untuk pengingat per giliran dalam loop alat (“check your inbox before running more code”, “the user can’t see that tool output”) alih-alih menyisipkan teks ke riwayat dan menghapusnya pada permintaan berikutnya. Pesan sistem berlingkup giliran masih dalam beta: sertakan header beta `mid-conversation-system-clear-at-2026-08-21`. Lihat [Pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages).
 
 ```json
 {
@@ -362,7 +362,7 @@ Seperti Claude Fable 5, Claude Fable 5.1 menulis pembaruan progres singkat di an
 
 Teks yang dihasilkan oleh Claude Fable 5.1 dan Claude Mythos 5.1 membawa watermark teks statistik Anthropic di setiap platform tempat model tersedia. File gambar, video, dan audio yang didukung yang dihasilkan Claude (misalnya melalui [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool)) membawa Content Credentials [C2PA](https://c2pa.org/) yang ditandatangani ketika Anda mengambilnya melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) di Claude API.
 
-Watermark tidak mengubah makna, kualitas, atau keterbacaan output. Watermark tidak menambahkan token atau karakter tersembunyi, tidak membawa informasi tentang Anda atau organisasi Anda, dan tidak memerlukan perubahan pada permintaan atau respons Anda. Untuk latar belakang, lihat [How Claude marks AI-generated content](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) dan [How Claude's text watermark works](https://www.anthropic.com/news/claude-text-watermark).
+Watermark tidak mengubah makna, kualitas, atau keterbacaan output. Watermark tidak menambahkan token atau karakter tersembunyi, tidak membawa informasi tentang Anda atau organisasi Anda, dan tidak memerlukan perubahan pada permintaan atau respons Anda. Untuk latar belakang, lihat [How Claude marks AI-generated content](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) dan [How Claude’s text watermark works](https://www.anthropic.com/news/claude-text-watermark).
 
 ## Perbedaan perilaku
 

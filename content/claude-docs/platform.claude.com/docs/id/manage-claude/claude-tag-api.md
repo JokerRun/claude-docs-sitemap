@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/claude-tag-api
-fetched_at: 2026-10-27T02:22:08.565782Z
-sha256: be4b405453f475c5fc12abb4da27e86a2af00e0f6c97f27be3bbaf06b02b2ef9
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: d3d3086dc2e8ca69724b3160f9cff785f28ea09d0915ffb474614ebf3053bf27
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/manage-claude/claude-tag-api
 description: "Kelola Claude Tag di Slack untuk organisasi Claude Enterprise Anda dari sistem Anda sendiri: baca dan ubah pengaturan pada channel dan workspace Slack, lihat pengaturan mana yang berlaku dan alasannya, serta lampirkan Access bundle."
 ---
 
-[Claude Tag](https://claude.com/docs/claude-tag/overview) adalah Claude yang bekerja sebagai rekan tim di Slack: seseorang menyebut Claude di sebuah channel dan Claude menjawab di thread. Claude Tag API memungkinkan Anda membaca dan mengubah, dari sistem Anda sendiri, pengaturan Claude Tag yang tanpa API ini diatur secara manual oleh pemilik organisasi di [claude.ai > Organization settings > Claude Tag](https://claude.ai/admin-settings/claude-tag). Gunakan API ini untuk mengaktifkan Claude channel demi channel dari alur kerja persetujuan, menyimpan konfigurasi Anda dalam "version control" (kontrol versi), atau mengaudit apa yang berlaku di setiap channel.
+[Claude Tag](https://claude.com/docs/claude-tag/overview) adalah Claude yang bekerja sebagai rekan tim di Slack: seseorang menyebut Claude di sebuah channel dan Claude menjawab di thread. Claude Tag API memungkinkan Anda membaca dan mengubah, dari sistem Anda sendiri, pengaturan Claude Tag yang tanpa API ini diatur secara manual oleh pemilik organisasi di [claude.ai > Organization settings > Claude Tag](https://claude.ai/admin-settings/claude-tag). Gunakan API ini untuk mengaktifkan Claude channel demi channel dari alur kerja persetujuan, menyimpan konfigurasi Anda dalam “version control” (kontrol versi), atau mengaudit apa yang berlaku di setiap channel.
 
 Claude Tag adalah produk claude.ai. API ini mengelolanya untuk organisasi Claude Enterprise dan tidak ada hubungannya dengan workspace Claude Platform, penggunaan API, atau Claude Console.
 
@@ -2473,7 +2473,7 @@ Respons kesalahan mengikuti bentuk standar yang didokumentasikan di [Kesalahan C
 | 403    | Kunci bukan kunci dengan cakupan tingkat organisasi, tidak memiliki cakupan yang diperlukan, atau organisasi Anda tidak dapat membuat perubahan ini.                                                                                                                                                                                                                                                                                                                                             |
 | 404    | Resource tidak ditemukan, atau bukan milik organisasi Anda. Juga dikembalikan ketika permintaan menghilangkan nilai `anthropic-beta`, atau API tidak diaktifkan untuk organisasi Anda, sehingga endpoint terbaca sebagai tidak ada.                                                                                                                                                                                                                                                              |
 | 409    | Sesuatu yang lain mengubah atau menghapus resource saat permintaan berjalan. Tidak ada yang diminta oleh permintaan yang dilakukan: tidak ada pengaturan yang disimpan, tidak ada yang dilampirkan, dilepaskan, atau dihapus. Satu-satunya pengecualian adalah permintaan penyiapan, yang mungkin telah menyiapkan channel sebelum `settings`-nya mengalami konflik (`slack_channel_set_up_settings_conflict`). Baca kembali resource tersebut dan kirim ulang permintaan jika masih diperlukan. |
-| 429    | "Rate limit" (batas laju) terlampaui. Lihat [Pembatasan laju](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#rate-limiting).                                                                                                                                                                                                                                                                                                                                                   |
+| 429    | “Rate limit” (batas laju) terlampaui. Lihat [Pembatasan laju](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#rate-limiting).                                                                                                                                                                                                                                                                                                                                                   |
 | 500    | Kesalahan internal.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | 503    | Sementara. Pada sebuah perubahan, status ini tidak mengatakan apakah perubahan sudah disimpan. Setiap perubahan aman untuk diulang, jadi kirim ulang permintaan tanpa diubah. Jika `DELETE` yang dikirim ulang kemudian mengembalikan `404`, channel atau target Bundle sudah tidak ada.                                                                                                                                                                                                         |
 

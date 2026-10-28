@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: cf38e10cc97faaf660e9fccdccc20e9d349d552f2d3f4a2ff8bed851f3e06bd0
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: c91fb51d62dd8ce24b10e4203cb44b68c10965fa929eac03fe369e913f7c0018
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with
 description: Cache definisi alat di seluruh giliran dan pahami apa yang membatalkan cache Anda.
 ---
 
-Halaman ini membahas "prompt caching" (caching prompt) untuk definisi alat: di mana menempatkan breakpoint `cache_control`, bagaimana `defer_loading` mempertahankan cache Anda, dan apa yang membatalkannya. Untuk caching prompt secara umum, lihat [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
+Halaman ini membahas “prompt caching” (caching prompt) untuk definisi alat: di mana menempatkan breakpoint `cache_control`, bagaimana `defer_loading` mempertahankan cache Anda, dan apa yang membatalkannya. Untuk caching prompt secara umum, lihat [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
 
 ## cache\_control pada definisi alat
 

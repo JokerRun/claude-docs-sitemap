@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/versioning
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: e7a2049e347637a6403c7a56bbd2991db76e38d9c0b75247e00e8988c9083f63
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: bbcd1957e135630940b4a48c4af39caa0a71c06d5d21aec2663b049433270411
 ---
 
 ---
@@ -46,7 +46,7 @@ Anthropic merekomendasikan penggunaan versi API terbaru bila memungkinkan.
     * [Grup RBAC](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/list) tidak lagi mengembalikan `roles`. Gunakan `role_ids` sebagai gantinya.
     * [Anggota grup RBAC](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/members/list), serta respons saat menghapus salah satunya, tidak lagi mengembalikan `group_id`. Gunakan `rbac_group_id` sebagai gantinya.
     * [Peran RBAC](https://platform.claude.com/docs/id/api/beta/organization/rbac_roles/list) tidak lagi mengembalikan `name`. Gunakan `display_name` sebagai gantinya.
-    * Entri "rate limit" (batas laju) [organisasi](https://platform.claude.com/docs/id/api/organization/rate_limits/list) dan [workspace](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/list) tidak lagi mengembalikan `group_type`. Gunakan `group.type` sebagai gantinya.
+    * Entri “rate limit” (batas laju) [organisasi](https://platform.claude.com/docs/id/api/organization/rate_limits/list) dan [workspace](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/list) tidak lagi mengembalikan `group_type`. Gunakan `group.type` sebagai gantinya.
     * [Kunci API](https://platform.claude.com/docs/id/api/organization/api_keys/list) tidak lagi mengembalikan `workspace_id`. Gunakan `scope.workspace_id` sebagai gantinya, yang memberikan ID sebenarnya dari workspace bahkan untuk Default Workspace (kunci untuk semua workspace tidak memiliki `workspace_id` dalam `scope`).
 
   * Claude Enterprise Analytics API:
@@ -56,7 +56,7 @@ Anthropic merekomendasikan penggunaan versi API terbaru bila memungkinkan.
 
 - `2023-06-01`
 
-  * Format baru untuk "server-sent events" (event yang dikirim server), atau SSE, pada [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming):
+  * Format baru untuk “server-sent events” (event yang dikirim server), atau SSE, pada [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming):
 
     * Completion bersifat inkremental. Misalnya, `" Hello"`, `" my"`, `" name"`, `" is"`, `" Claude." `alih-alih `" Hello"`, `" Hello my"`, `" Hello my name"`, `" Hello my name is"`, `" Hello my name is Claude."`.
     * Semua event adalah [named events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents#named%5Fevents) (event bernama), bukan [data-only events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents#data-only%5Fmessages) (event hanya-data).

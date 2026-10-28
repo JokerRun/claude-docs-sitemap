@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 8f075340562094899e5acbf1b5e4be3a1ffc25fcba91cade8d39424a82410520
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 6b67d0ff91fd1952f20d1876f9e5b25c79c29d08e8c4815605dfe01603e0b416
 ---
 
 ---
@@ -12,12 +12,12 @@ description: Berikan Claude akses ke konten web terkini dengan sumber yang dikut
 ---
 
 <Note>
-  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 Alat pencarian web (web search tool) memberi Claude akses langsung ke konten web real-time, sehingga Claude dapat menjawab pertanyaan dengan informasi terbaru di luar batas pengetahuannya (knowledge cutoff). Respons menyertakan kutipan untuk sumber yang diambil dari hasil pencarian.
 
-Dengan `web_search_20260209` dan versi yang lebih baru, Claude dapat menulis dan menjalankan kode yang memfilter hasil pencarian sebelum mencapai "context window" (jendela konteks) (**dynamic filtering** atau pemfilteran dinamis), sehingga hanya informasi yang relevan yang dipertahankan. Pemfilteran dinamis tersedia pada model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing).
+Dengan `web_search_20260209` dan versi yang lebih baru, Claude dapat menulis dan menjalankan kode yang memfilter hasil pencarian sebelum mencapai “context window” (jendela konteks) (**dynamic filtering** atau pemfilteran dinamis), sehingga hanya informasi yang relevan yang dipertahankan. Pemfilteran dinamis tersedia pada model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing).
 
 Tersedia tiga versi alat pencarian web:
 
@@ -61,7 +61,7 @@ Claude menjawab langsung tanpa mencari ketika permintaan mengandalkan pengetahua
 * Analisis konten yang sudah disediakan dalam percakapan
 * Giliran percakapan biasa dan sapaan
 
-Pemicuan dapat diarahkan melalui "system prompt" (prompt sistem) Anda: Anda dapat mendorong Claude untuk lebih mudah mencari atau lebih memilih menjawab langsung. Untuk batasan yang tegas, gunakan `max_uses` untuk membatasi jumlah pencarian untuk setiap permintaan.
+Pemicuan dapat diarahkan melalui “system prompt” (prompt sistem) Anda: Anda dapat mendorong Claude untuk lebih mudah mencari atau lebih memilih menjawab langsung. Untuk batasan yang tegas, gunakan `max_uses` untuk membatasi jumlah pencarian untuk setiap permintaan.
 
 ### Pemfilteran dinamis
 
@@ -588,7 +588,7 @@ Field kutipan pencarian web `cited_text`, `title`, dan `url` tidak dihitung dala
 
 ### Error
 
-Ketika alat pencarian web mengalami error (seperti mencapai "rate limit" (batas laju)), Claude API tetap mengembalikan respons 200 (sukses). Error direpresentasikan di dalam body respons menggunakan struktur berikut:
+Ketika alat pencarian web mengalami error (seperti mencapai “rate limit” (batas laju)), Claude API tetap mengembalikan respons 200 (sukses). Error direpresentasikan di dalam body respons menggunakan struktur berikut:
 
 ```json Output
 {

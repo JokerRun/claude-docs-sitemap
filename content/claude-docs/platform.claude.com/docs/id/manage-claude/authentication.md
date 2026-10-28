@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/authentication
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 917e54ff2a4691eff211c4b0c1f0b0e49afa02ef1eca2de416c791c36bd0b543
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 10c4f3e214475459e68a3072f8e7b604c48d2426b7f4b81866aeb3ae41db68b2
 ---
 
 ---
@@ -361,7 +361,7 @@ Untuk mengganti kunci workspace dengan kunci pribadi atau akun layanan:
 
 ## Workload Identity Federation
 
-Workload Identity Federation (WIF) memungkinkan workload melakukan autentikasi dengan identity token berumur pendek yang diterbitkan oleh "identity provider" (penyedia identitas), atau IdP, yang sudah Anda percayai. IdP tersebut meliputi AWS IAM, Google Cloud, dan penerbit OIDC apa pun yang mematuhi standar (seperti GitHub Actions, service account Kubernetes, SPIFFE, Microsoft Entra ID, atau Okta). Workload menukar JWT yang diterbitkan IdP-nya di `POST /v1/oauth/token` dengan access token Claude API berumur pendek, dan SDK memperbarui token tersebut secara otomatis sebelum kedaluwarsa. Tidak ada string `sk-ant-api...` yang perlu dibuat, didistribusikan, atau dirotasi.
+Workload Identity Federation (WIF) memungkinkan workload melakukan autentikasi dengan identity token berumur pendek yang diterbitkan oleh “identity provider” (penyedia identitas), atau IdP, yang sudah Anda percayai. IdP tersebut meliputi AWS IAM, Google Cloud, dan penerbit OIDC apa pun yang mematuhi standar (seperti GitHub Actions, service account Kubernetes, SPIFFE, Microsoft Entra ID, atau Okta). Workload menukar JWT yang diterbitkan IdP-nya di `POST /v1/oauth/token` dengan access token Claude API berumur pendek, dan SDK memperbarui token tersebut secara otomatis sebelum kedaluwarsa. Tidak ada string `sk-ant-api...` yang perlu dibuat, didistribusikan, atau dirotasi.
 
 Federasi menghilangkan kunci Claude API berumur panjang dari lingkungan Anda, yang membatasi kerusakan yang dapat ditimbulkan oleh kredensial yang bocor dan memungkinkan Anda mengelola akses dengan kontrol IdP yang sama yang sudah Anda gunakan untuk sumber daya cloud. Federasi sendiri tidak menjamin keamanan end-to-end: rantai kepercayaan hanya sekuat konfigurasi penyedia identitas Anda, dan secret berumur panjang satu langkah lebih awal dalam rantai tersebut (misalnya, kredensial cloud statis yang dapat membuat token IdP) masih dapat melemahkannya. Padukan federasi dengan kontrol dari penyedia Anda, seperti allowlist IP, MFA, dan audit logging.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-combinations
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: de8cbb2e4ff7c0cd50890245893409617bc94b97383919c26198bbee4ebf94e3
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 8f0296523100b6e3ad66b846accaee2909722f4d5b801889714fa64722fd4968
 ---
 
 ---
@@ -17,7 +17,7 @@ Setiap cuplikan hanya menampilkan array `tools`. Lihat [Menangani panggilan alat
 
 ## Agen riset: web\_search + code\_execution
 
-Pencarian menemukan sumber; eksekusi kode menganalisis dan menyintesis. Claude mencari data, lalu menulis Python untuk memproses, mentabulasi, atau memvisualisasikannya. Pasangan ini cocok untuk pertanyaan yang memerlukan informasi terkini sekaligus komputasi yang tidak sepele atas informasi tersebut, seperti "bandingkan pendapatan kuartal ini di antara lima penyedia cloud teratas."
+Pencarian menemukan sumber; eksekusi kode menganalisis dan menyintesis. Claude mencari data, lalu menulis Python untuk memproses, mentabulasi, atau memvisualisasikannya. Pasangan ini cocok untuk pertanyaan yang memerlukan informasi terkini sekaligus komputasi yang tidak sepele atas informasi tersebut, seperti “bandingkan pendapatan kuartal ini di antara lima penyedia cloud teratas.”
 
 ```json
 {
@@ -72,7 +72,7 @@ Memory mempertahankan status lintas percakapan; alat lainnya melakukan pekerjaan
 
 Tambahkan alat Anda yang lain di samping `memory` dalam array yang sama.
 
-Memory bersifat ortogonal terhadap alat Anda yang lain. Memory tidak mengubah cara alat-alat tersebut berperilaku; memory memberi Claude tempat untuk mencatat dan kemudian mengambil kembali fakta yang jika tidak akan hilang ketika "context window" (jendela konteks) direset. Lihat [Alat memory](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool) untuk model penyimpanannya.
+Memory bersifat ortogonal terhadap alat Anda yang lain. Memory tidak mengubah cara alat-alat tersebut berperilaku; memory memberi Claude tempat untuk mencatat dan kemudian mengambil kembali fakta yang jika tidak akan hilang ketika “context window” (jendela konteks) direset. Lihat [Alat memory](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool) untuk model penyimpanannya.
 
 ## Serba ada: computer\_use
 

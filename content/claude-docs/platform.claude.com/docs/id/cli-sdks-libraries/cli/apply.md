@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 140815a2eb5defa3bc9f0d1e97754aff725984255d80b20c72284c2bf8b7fd45
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 86bd00ed662605d12af8548d116db5047c91a3a9a5a971c820ede3a2f2284509
 ---
 
 ---
@@ -40,7 +40,7 @@ Tulis agen sebagai berkas Markdown di bawah `agents/`, lalu terapkan:
   </CodeGroupItem>
 </CodeGroup>
 
-Frontmatter berisi konfigurasi agen (bidang-bidang dari [Definisikan agen Anda](https://platform.claude.com/docs/id/managed-agents/agent-setup)), sedangkan isi berkas menjadi "system prompt" (prompt sistem) agen tersebut. `ant apply` [menyimpulkan](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply#kind-inference) bahwa berkas tersebut adalah agen berdasarkan path-nya, dalam hal ini direktori `agents/`.
+Frontmatter berisi konfigurasi agen (bidang-bidang dari [Definisikan agen Anda](https://platform.claude.com/docs/id/managed-agents/agent-setup)), sedangkan isi berkas menjadi “system prompt” (prompt sistem) agen tersebut. `ant apply` [menyimpulkan](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply#kind-inference) bahwa berkas tersebut adalah agen berdasarkan path-nya, dalam hal ini direktori `agents/`.
 
 Di terminal interaktif, `ant apply` mencetak rencana dan menunggu persetujuan Anda:
 
@@ -78,7 +78,7 @@ Untuk mengubah agen, edit berkas tersebut dan jalankan `ant apply` lagi. Rencana
 
 ## Commit claude-lock.json
 
-Eksekusi `ant apply` pertama menulis `claude-lock.json`, yaitu "lockfile" (berkas kunci), di direktori tempat Anda menjalankannya. Karena itu, jalankan perintah ini dari root repositori. Lockfile mencatat ID sumber daya yang dibuat oleh setiap berkas, serta organisasi dan workspace tempat sumber daya tersebut berada:
+Eksekusi `ant apply` pertama menulis `claude-lock.json`, yaitu “lockfile” (berkas kunci), di direktori tempat Anda menjalankannya. Karena itu, jalankan perintah ini dari root repositori. Lockfile mencatat ID sumber daya yang dibuat oleh setiap berkas, serta organisasi dan workspace tempat sumber daya tersebut berada:
 
 ```json claude-lock.json
 {

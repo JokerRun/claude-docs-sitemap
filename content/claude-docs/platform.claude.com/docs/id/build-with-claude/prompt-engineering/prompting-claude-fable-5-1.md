@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: fad18e0c6cb48040bbc842d65cf7a32f9697dbc929b55801b94ceca3dd882a97
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 03f4643f28d8203c5813b7cc3c9b42deed4f823149a79bec109ef39cc156af01
 ---
 
 ---
@@ -15,21 +15,21 @@ Untuk kemampuan model, perubahan API, harga, dan ketersediaan, lihat [Yang baru 
 
 Prompt Claude Fable 5 Anda yang sudah ada seharusnya berkinerja baik di Claude Fable 5.1 tanpa perubahan, tetapi ada beberapa perbedaan perilaku yang perlu Anda ketahui. Mulailah dari bagian yang sesuai dengan apa yang Anda amati:
 
-* Tidak yakin tingkat "effort" (upaya) mana yang harus dijalankan, atau "latency" (latensi) dan biaya lebih tinggi daripada yang dibutuhkan tugas: [Pertimbangkan semua tingkat effort](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#consider-all-effort-levels)
-* Sedikit atau tidak ada teks di antara "tool call" (panggilan alat): [Minta pembaruan progres yang ditujukan kepada pengguna](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#ask-for-user-facing-progress-updates)
+* Tidak yakin tingkat “effort” (upaya) mana yang harus dijalankan, atau “latency” (latensi) dan biaya lebih tinggi daripada yang dibutuhkan tugas: [Pertimbangkan semua tingkat effort](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#consider-all-effort-levels)
+* Sedikit atau tidak ada teks di antara “tool call” (panggilan alat): [Minta pembaruan progres yang ditujukan kepada pengguna](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#ask-for-user-facing-progress-updates)
 * Satu panggilan alat untuk setiap giliran dalam loop agen: [Kelompokkan panggilan alat yang independen dalam loop agen](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#batch-independent-tool-calls-in-agent-loops)
 * Permintaan gagal dengan `bound to a different conversation`, atau harness Anda mengedit giliran sebelumnya di antara permintaan: [Jaga riwayat percakapan agar hanya ditambahkan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#keep-the-conversation-history-append-only)
 * Prosa terlalu panjang dan padat: [Kepadatan tulisan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#writing-density)
 * Balasan chat memiliki struktur yang lebih sedikit daripada yang dibutuhkan konten: [Pemformatan dalam chat](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#formatting-in-chat)
 * Ringkasan mereproduksi kata-kata sumber tanpa menandainya sebagai kutipan: [Mengutip sumber yang diambil](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#quoting-retrieved-sources)
 * Giliran berakhir sebelum pekerjaan selesai, atau model meminta izin untuk pekerjaan yang sudah Anda minta: [Selesaikan seluruh tugas](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#finish-the-whole-task)
-* Ringkasan "compaction" (pemadatan) sisi klien menghilangkan batasan, keputusan, atau detail yang persis: [Beri tahu model apa yang harus dipertahankan dalam ringkasan compaction](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#tell-the-model-what-to-preserve-in-compaction-summaries)
+* Ringkasan “compaction” (pemadatan) sisi klien menghilangkan batasan, keputusan, atau detail yang persis: [Beri tahu model apa yang harus dipertahankan dalam ringkasan compaction](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#tell-the-model-what-to-preserve-in-compaction-summaries)
 * Perbaikan atau perluasan yang tidak diminta, atau lebih banyak file pengujian yang di-commit daripada yang dibutuhkan tugas: [Batasi perubahan dan pengujian pada apa yang diminta tugas](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#keep-changes-and-tests-to-what-the-task-asks-for)
 * Menjawab dari ingatan alih-alih melakukan pencarian pada effort rendah: [Pemicuan pencarian pada effort rendah](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#search-triggering-at-low-effort)
 * Permintaan coding yang tidak berbahaya mengembalikan `stop_reason: "refusal"`: [Kurangi positif palsu safeguard](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#reduce-safeguard-false-positives)
 * Seluruh file ditulis ulang untuk perubahan kecil: [Utamakan pengeditan terarah daripada penulisan ulang seluruh file](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#prefer-targeted-edits-over-whole-file-rewrites)
 * Hasil kerja panjang pada effort `xhigh` atau `max` memakan waktu lama atau mencapai `max_tokens`: [Sisakan ruang untuk output panjang pada effort xhigh dan max](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#leave-room-for-long-outputs-at-xhigh-and-max-effort)
-* Agen utama menganggur saat "subagent" (subagen) berjalan: [Biarkan agen utama terus bekerja saat subagen berjalan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#let-the-lead-agent-keep-working-while-subagents-run)
+* Agen utama menganggur saat “subagent” (subagen) berjalan: [Biarkan agen utama terus bekerja saat subagen berjalan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#let-the-lead-agent-keep-working-while-subagents-run)
 * Jawaban tentang grafik dan gambar padat melewatkan detail: [Berikan alat untuk memotong dan memperbesar pada pekerjaan vision](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#give-vision-work-tools-to-crop-and-zoom)
 
 <Note>
@@ -40,7 +40,7 @@ Prompt Claude Fable 5 Anda yang sudah ada seharusnya berkinerja baik di Claude F
 
 ## Pertimbangkan semua tingkat effort
 
-Mulailah dari tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) default, yaitu `high`, lalu uji tingkat lainnya (`low`, `medium`, `xhigh`, dan `max`) terhadap "eval" (evaluasi) Anda sendiri. Effort adalah kontrol utama untuk menyeimbangkan kecerdasan, latensi, dan biaya di Claude Fable 5.1. Jalankan ulang pengujian menyeluruh ini meskipun Anda sudah menjalankannya di Claude Fable 5: nama tingkat effort tidak berarti jumlah pemikiran yang sama di seluruh model.
+Mulailah dari tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) default, yaitu `high`, lalu uji tingkat lainnya (`low`, `medium`, `xhigh`, dan `max`) terhadap “eval” (evaluasi) Anda sendiri. Effort adalah kontrol utama untuk menyeimbangkan kecerdasan, latensi, dan biaya di Claude Fable 5.1. Jalankan ulang pengujian menyeluruh ini meskipun Anda sudah menjalankannya di Claude Fable 5: nama tingkat effort tidak berarti jumlah pemikiran yang sama di seluruh model.
 
 Peningkatan kemampuan Claude Fable 5.1 dibandingkan Claude Fable 5 terlihat di semua tingkat effort dan paling besar pada pengaturan yang lebih tinggi. Pada `medium`, hasilnya kurang lebih setara dengan Claude Fable 5 dengan biaya lebih rendah, jadi turunkan ke `medium` atau `low` jika eval Anda menunjukkan kualitas tetap terjaga. Pada `low`, Claude Fable 5.1 sering kali kompetitif dengan model Claude Opus dan Claude Sonnet dalam hal biaya per tugas sambil mencetak skor lebih tinggi, jadi sertakan dalam perbandingan di mana pun Anda biasanya menjalankan model yang lebih kecil pada tingkat effort yang lebih tinggi.
 
@@ -52,7 +52,7 @@ Perilaku default Claude Fable 5.1 adalah menulis lebih sedikit pembaruan yang di
 
 Pertama, periksa apakah klien Anda menerima pembaruan progres sama sekali. Catatan singkat model di antara panggilan alat, yaitu apa yang baru saja ditemukannya dan apa yang akan dilakukannya selanjutnya, dikembalikan sebagai [blok `thinking` pembaruan progres](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates), dan blok tersebut kosong di bawah `thinking.display` default yaitu `"omitted"`. Setel `display: "updates"` (beta, header `thinking-display-updates-2026-08-18`) dan tampilkan setiap blok `thinking` yang tidak kosong sebagai baris status, atau setel `"summarized"` untuk menerimanya bersama dengan penalaran yang diringkas. Jika Anda tidak memintanya, pembaruan model mungkin saja tidak sampai ke pengguna Anda.
 
-Kedua, periksa prompt Anda untuk instruksi yang menekan narasi. Beberapa model sebelumnya sering memberikan pembaruan saat bekerja, yang menyebabkan adanya baris prompt sistem seperti "simpan semua temuan untuk respons akhir." Hapus baris seperti itu sebelum menambahkan apa pun.
+Kedua, periksa prompt Anda untuk instruksi yang menekan narasi. Beberapa model sebelumnya sering memberikan pembaruan saat bekerja, yang menyebabkan adanya baris prompt sistem seperti “simpan semua temuan untuk respons akhir.” Hapus baris seperti itu sebelum menambahkan apa pun.
 
 Jika Anda masih menginginkan lebih banyak pembaruan, misalnya saat pair programming atau dalam pekerjaan human-in-the-loop lainnya, tambahkan baris prompt sistem singkat yang menyatakan kapan Anda menginginkan teks yang ditujukan kepada pengguna dari model dan apa yang harus dimuat setiap pembaruan:
 
@@ -60,7 +60,7 @@ Jika Anda masih menginginkan lebih banyak pembaruan, misalnya saat pair programm
 Before you start, say in a line what you're about to do; brief updates while you work help the user follow along. Close with a short recap that stands on its own — what you found, what you did, and what's next — so a reader who only sees the last message has the full picture.
 ```
 
-Jika produk Anda menciutkan atau menyembunyikan output alat, beri tahu model. Jika tidak, model mungkin menjalankan perintah untuk "menunjukkan" output kepada pengguna yang tidak pernah ditampilkan UI Anda. Setiap kali Anda mengirim kembali output alat yang disembunyikan UI Anda, ikuti dengan catatan tersebut dalam [pesan sistem yang berlaku per giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (`clear_at: "next_user_message"`, beta):
+Jika produk Anda menciutkan atau menyembunyikan output alat, beri tahu model. Jika tidak, model mungkin menjalankan perintah untuk “menunjukkan” output kepada pengguna yang tidak pernah ditampilkan UI Anda. Setiap kali Anda mengirim kembali output alat yang disembunyikan UI Anda, ikuti dengan catatan tersebut dalam [pesan sistem yang berlaku per giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (`clear_at: "next_user_message"`, beta):
 
 ```text wrap
 Only you see that command's output — the user's terminal shows at most a few lines of it. If the user needs to read any of it, put it in your reply.
@@ -803,7 +803,7 @@ Ganti kedua baris `[web_search: ...]` dengan nama alat Anda sendiri, sehingga mo
 
 ## Selesaikan seluruh tugas
 
-Claude Fable 5.1 dapat menjalankan tugas yang sangat panjang tanpa banyak panduan tentang metodologi, terutama ketika tujuannya jelas. Namun, pada beban kerja asinkron yang kompleks, dorong model agar tidak mengakhiri gilirannya sebelum pekerjaan selesai. Tanpa dorongan tersebut, model terkadang menjelaskan apa yang akan dilakukannya selanjutnya alih-alih melakukannya ("Selanjutnya, saya akan …") atau berhenti untuk meminta izin atas langkah yang sudah dicakup oleh permintaan awal ("Haruskah saya menerapkan ini?"). Pengguna harus membalas "lanjutkan" atau "silakan," yang cocok untuk pair programming dan pekerjaan human-in-the-loop lainnya tetapi tidak memanfaatkan kapabilitas jangka panjang model secara penuh.
+Claude Fable 5.1 dapat menjalankan tugas yang sangat panjang tanpa banyak panduan tentang metodologi, terutama ketika tujuannya jelas. Namun, pada beban kerja asinkron yang kompleks, dorong model agar tidak mengakhiri gilirannya sebelum pekerjaan selesai. Tanpa dorongan tersebut, model terkadang menjelaskan apa yang akan dilakukannya selanjutnya alih-alih melakukannya (“Selanjutnya, saya akan …”) atau berhenti untuk meminta izin atas langkah yang sudah dicakup oleh permintaan awal (“Haruskah saya menerapkan ini?”). Pengguna harus membalas “lanjutkan” atau “silakan,” yang cocok untuk pair programming dan pekerjaan human-in-the-loop lainnya tetapi tidak memanfaatkan kapabilitas jangka panjang model secara penuh.
 
 Dua tambahan prompt sistem bersama-sama dapat mengurangi hal ini. Terapkan keduanya. Jika Anda perlu membatasi panjang prompt, gunakan hanya yang pertama, yang mempertahankan sebagian besar efeknya. Yang pertama memberi tahu model agar tidak bertanya tentang pekerjaan yang sudah diminta dan agar melaksanakan langkah berikutnya yang telah dinyatakannya:
 
@@ -858,9 +858,9 @@ When a query centers on a name you do not confidently recognize, or recognize fr
 
 ## Kurangi positif palsu safeguard
 
-Pengklasifikasi keamanan Claude Fable 5.1 menghasilkan lebih sedikit "false positive" (positif palsu) dibandingkan Claude Fable 5 saat peluncuran, dan menemukan kerentanan dalam kode sumber diizinkan. Positif palsu masih terjadi, dan permintaan yang diblokir mengembalikan `stop_reason: "refusal"` (lihat [Penolakan, fallback, dan penagihan](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#refusals-fallback-and-billing)). Tiga situasi membuatnya lebih mungkin terjadi:
+Pengklasifikasi keamanan Claude Fable 5.1 menghasilkan lebih sedikit “false positive” (positif palsu) dibandingkan Claude Fable 5 saat peluncuran, dan menemukan kerentanan dalam kode sumber diizinkan. Positif palsu masih terjadi, dan permintaan yang diblokir mengembalikan `stop_reason: "refusal"` (lihat [Penolakan, fallback, dan penagihan](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#refusals-fallback-and-billing)). Tiga situasi membuatnya lebih mungkin terjadi:
 
-* **Frasa pemeriksaan kompilasi:** Alih-alih "Apakah program ini dapat dikompilasi tanpa error?", tanyakan "Apakah ada bug dalam program ini?"
+* **Frasa pemeriksaan kompilasi:** Alih-alih “Apakah program ini dapat dikompilasi tanpa error?”, tanyakan “Apakah ada bug dalam program ini?”
 * **Bahasa pemrograman yang kurang dikenal:** Berikan model konteks tentang apa bahasa tersebut dan cara kerjanya, misalnya dengan memberinya akses ke dokumentasi bahasa tersebut.
 * **Base64 dalam output alat:** Alat yang mengembalikan data berenkode base64 ke dalam konteks model dapat memicu positif palsu, jadi menghapusnya adalah perbaikan yang direkomendasikan.
 

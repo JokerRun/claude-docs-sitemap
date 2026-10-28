@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 757756e796a889957e274369640c5ab24e753b7f6c753db8097b2e4b241fa39f
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 91d619b26f86c63b51c549e0c86d522ee01f3a2a64a0d6d89a8e603fea2855ab
 ---
 
 ---
@@ -17,7 +17,7 @@ description: Panduan ini menjelaskan cara menggunakan kemampuan pemrosesan bahas
 
 ### Tentukan apakah akan menggunakan Claude untuk peringkasan hukum
 
-Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan "large language model" (model bahasa besar), atau LLM, seperti Claude untuk meringkas dokumen hukum:
+Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan “large language model” (model bahasa besar), atau LLM, seperti Claude untuk meringkas dokumen hukum:
 
 <AccordionGroup>
   <Accordion title="Anda ingin meninjau dokumen dalam jumlah besar secara efisien dan terjangkau">
@@ -882,7 +882,7 @@ Berikut adalah beberapa pertimbangan tambahan yang perlu diingat saat Anda mener
 
 2. **Tangani beragam jenis dokumen:** Panduan ini membahas cara mengekstrak teks dari PDF. Di dunia nyata, dokumen mungkin hadir dalam berbagai format (seperti PDF, dokumen Word, dan file teks). Pastikan pipeline ekstraksi data Anda dapat mengonversi semua format file yang Anda harapkan akan diterima.
 
-3. **Paralelkan panggilan API ke Claude:** Dokumen panjang dengan jumlah token yang besar mungkin memerlukan waktu hingga satu menit bagi Claude untuk menghasilkan ringkasan. Untuk koleksi dokumen yang besar, Anda mungkin ingin mengirim panggilan API ke Claude secara paralel agar ringkasan dapat diselesaikan dalam jangka waktu yang wajar. Lihat ["rate limits"](https://platform.claude.com/docs/id/api/rate-limits#rate-limits) (batas laju) Anthropic untuk menentukan jumlah maksimum panggilan API yang dapat dilakukan secara paralel.
+3. **Paralelkan panggilan API ke Claude:** Dokumen panjang dengan jumlah token yang besar mungkin memerlukan waktu hingga satu menit bagi Claude untuk menghasilkan ringkasan. Untuk koleksi dokumen yang besar, Anda mungkin ingin mengirim panggilan API ke Claude secara paralel agar ringkasan dapat diselesaikan dalam jangka waktu yang wajar. Lihat [“rate limits”](https://platform.claude.com/docs/id/api/rate-limits#rate-limits) (batas laju) Anthropic untuk menentukan jumlah maksimum panggilan API yang dapat dilakukan secara paralel.
 
 ***
 
@@ -892,7 +892,7 @@ Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi ta
 
 ### Lakukan meta-peringkasan untuk meringkas dokumen panjang
 
-Peringkasan hukum sering kali melibatkan penanganan dokumen panjang atau banyak dokumen terkait sekaligus, sehingga Anda melampaui "context window" (jendela konteks) Claude. Anda dapat menggunakan metode chunking yang dikenal sebagai meta-peringkasan (meta-summarization) untuk menangani kasus penggunaan ini. Teknik ini melibatkan pemecahan dokumen menjadi potongan-potongan (chunk) yang lebih kecil dan mudah dikelola, lalu memproses setiap potongan secara terpisah. Anda kemudian dapat menggabungkan ringkasan setiap potongan untuk membuat meta-ringkasan dari keseluruhan dokumen.
+Peringkasan hukum sering kali melibatkan penanganan dokumen panjang atau banyak dokumen terkait sekaligus, sehingga Anda melampaui “context window” (jendela konteks) Claude. Anda dapat menggunakan metode chunking yang dikenal sebagai meta-peringkasan (meta-summarization) untuk menangani kasus penggunaan ini. Teknik ini melibatkan pemecahan dokumen menjadi potongan-potongan (chunk) yang lebih kecil dan mudah dikelola, lalu memproses setiap potongan secara terpisah. Anda kemudian dapat menggabungkan ringkasan setiap potongan untuk membuat meta-ringkasan dari keseluruhan dokumen.
 
 Berikut adalah contoh cara melakukan meta-peringkasan:
 
@@ -1338,11 +1338,11 @@ Perhatikan bahwa fungsi `summarize_long_document()` (typescript, go, java: `summ
 
 ### Gunakan dokumen berindeks ringkasan untuk menjelajahi koleksi dokumen yang besar
 
-Mencari koleksi dokumen dengan LLM biasanya melibatkan "retrieval-augmented generation" (generasi yang diperkaya dengan pengambilan), atau RAG. Namun, dalam skenario yang melibatkan dokumen besar atau ketika pengambilan informasi yang presisi sangat penting, pendekatan RAG dasar mungkin tidak memadai. Dokumen yang diindeks dengan ringkasan (summary indexed documents) adalah pendekatan RAG lanjutan yang menyediakan cara yang lebih efisien untuk memeringkat dokumen untuk pengambilan, dengan menggunakan konteks yang lebih sedikit daripada metode RAG tradisional. Dalam pendekatan ini, Anda terlebih dahulu menggunakan Claude untuk menghasilkan ringkasan singkat untuk setiap dokumen dalam korpus Anda, lalu menggunakan Claude untuk memeringkat relevansi setiap ringkasan terhadap kueri yang diajukan. Untuk detail lebih lanjut tentang pendekatan ini, termasuk contoh berbasis kode, lihat bagian summary indexed documents dalam [resep peringkasan](https://platform.claude.com/cookbook/capabilities-summarization-guide).
+Mencari koleksi dokumen dengan LLM biasanya melibatkan “retrieval-augmented generation” (generasi yang diperkaya dengan pengambilan), atau RAG. Namun, dalam skenario yang melibatkan dokumen besar atau ketika pengambilan informasi yang presisi sangat penting, pendekatan RAG dasar mungkin tidak memadai. Dokumen yang diindeks dengan ringkasan (summary indexed documents) adalah pendekatan RAG lanjutan yang menyediakan cara yang lebih efisien untuk memeringkat dokumen untuk pengambilan, dengan menggunakan konteks yang lebih sedikit daripada metode RAG tradisional. Dalam pendekatan ini, Anda terlebih dahulu menggunakan Claude untuk menghasilkan ringkasan singkat untuk setiap dokumen dalam korpus Anda, lalu menggunakan Claude untuk memeringkat relevansi setiap ringkasan terhadap kueri yang diajukan. Untuk detail lebih lanjut tentang pendekatan ini, termasuk contoh berbasis kode, lihat bagian summary indexed documents dalam [resep peringkasan](https://platform.claude.com/cookbook/capabilities-summarization-guide).
 
 ### Lakukan fine-tuning pada Claude agar belajar dari dataset Anda
 
-Teknik tingkat lanjut lainnya untuk meningkatkan kemampuan Claude dalam menghasilkan ringkasan adalah "fine-tuning" (penyetelan halus). Fine-tuning melibatkan pelatihan Claude pada dataset kustom yang secara khusus selaras dengan kebutuhan peringkasan hukum Anda, sehingga memastikan Claude beradaptasi dengan kasus penggunaan Anda. Berikut adalah gambaran umum cara melakukan fine-tuning:
+Teknik tingkat lanjut lainnya untuk meningkatkan kemampuan Claude dalam menghasilkan ringkasan adalah “fine-tuning” (penyetelan halus). Fine-tuning melibatkan pelatihan Claude pada dataset kustom yang secara khusus selaras dengan kebutuhan peringkasan hukum Anda, sehingga memastikan Claude beradaptasi dengan kasus penggunaan Anda. Berikut adalah gambaran umum cara melakukan fine-tuning:
 
 1. **Identifikasi kesalahan:** Mulailah dengan mengumpulkan contoh-contoh di mana ringkasan Claude tidak memadai. Ini dapat mencakup detail hukum penting yang terlewat, kesalahpahaman konteks, atau penggunaan terminologi hukum yang tidak tepat.
 

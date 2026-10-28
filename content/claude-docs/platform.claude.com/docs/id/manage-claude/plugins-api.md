@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/plugins-api
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: c4e755e53f1885d5d87f7edf97bc81a303fcc055d41886e8280d185837755780
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 9b047dfe8cf39d4e11324484fe9f829fabe30531f162de19c1a7d5274905f10e
 ---
 
 ---
@@ -25,7 +25,7 @@ Untuk pelaporan *penggunaan* plugin (plugin dan skill mana yang digunakan anggot
 <Check>
   **Diperlukan kunci Admin API dengan cakupan tertentu**
 
-  Endpoint ini memerlukan kunci Admin API dengan "scope" (cakupan) `read:plugins` (untuk endpoint `GET`, termasuk unduhan arsip) atau cakupan `write:plugins` (untuk endpoint `POST` dan `DELETE`, kecuali validasi marketplace, yang diizinkan oleh salah satu dari kedua cakupan tersebut); [Cakupan](https://platform.claude.com/docs/id/manage-claude/plugins-api#scopes) berisi detailnya, termasuk dua cakupan baca lain yang juga berfungsi. Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization) untuk mengetahui di mana pemilik utama Anda membuatnya. Teruskan kunci di header `x-api-key` pada setiap permintaan, bersama dengan header [`anthropic-version`](https://platform.claude.com/docs/id/api/versioning) dan header beta yang ditunjukkan dalam catatan berikut.
+  Endpoint ini memerlukan kunci Admin API dengan “scope” (cakupan) `read:plugins` (untuk endpoint `GET`, termasuk unduhan arsip) atau cakupan `write:plugins` (untuk endpoint `POST` dan `DELETE`, kecuali validasi marketplace, yang diizinkan oleh salah satu dari kedua cakupan tersebut); [Cakupan](https://platform.claude.com/docs/id/manage-claude/plugins-api#scopes) berisi detailnya, termasuk dua cakupan baca lain yang juga berfungsi. Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization) untuk mengetahui di mana pemilik utama Anda membuatnya. Teruskan kunci di header `x-api-key` pada setiap permintaan, bersama dengan header [`anthropic-version`](https://platform.claude.com/docs/id/api/versioning) dan header beta yang ditunjukkan dalam catatan berikut.
 </Check>
 
 <Note>
@@ -256,7 +256,7 @@ Setiap plugin memiliki manifest di `.claude-plugin/plugin.json`. `name` pada man
 * **Pemilik.** Organisasi memiliki marketplace-nya sendiri. Setiap anggota juga dapat memiliki marketplace pribadi.
 * **Sumber.** `manual` berarti plugin diunggah, di claude.ai atau, untuk marketplace organisasi, melalui API ini. `github`, `gitlab`, dan `public_git` berarti plugin disinkronkan dari repositori Git yang dihubungkan oleh pemilik. Tidak ada yang dapat diunggah ke marketplace yang disinkronkan, dan API ini tidak dapat menghapus pluginnya, karena sinkronisasi berikutnya akan membatalkan perubahan mana pun. Sebagai gantinya, ubah repositorinya.
 
-"Library marketplace" (marketplace pustaka) organisasi Anda adalah marketplace `manual` milik organisasi yang menjadi tujuan unggahan ketika Anda tidak menyebutkan marketplace. Marketplace ini dibuat saat pertama kali sesuatu diunggah ke sana.
+“Library marketplace” (marketplace pustaka) organisasi Anda adalah marketplace `manual` milik organisasi yang menjadi tujuan unggahan ketika Anda tidak menyebutkan marketplace. Marketplace ini dibuat saat pertama kali sesuatu diunggah ke sana.
 
 ### Plugin milik organisasi dan milik anggota
 
@@ -274,9 +274,9 @@ Setiap unggahan membuat **versi** baru yang tidak dapat diubah, baik berasal dar
 * `latest_version_id`: versi terbaru
 * `served_version_id`: versi yang disajikan kepada anggota
 
-Secara default `served_version_pinned` bernilai `false`: versi yang disajikan biasanya mengikuti versi terbaru. Ketika content scanning aktif, versi yang disimpan di claude.ai mungkin **menunggu** hasil content scan-nya: versi tersebut disimpan tetapi tidak langsung disajikan. Halaman ini menggunakan kata "menunggu" hanya untuk versi yang disimpan di claude.ai, bukan untuk versi yang diterbitkan anggota atau administrator ke dalam plugin. Selama scanning aktif, versi yang menunggu hanya disajikan ketika `content_scan`-nya menunjukkan `completed` dengan `pass` atau `warn`. Selama sebuah versi menunggu, `served_version_id` menyebutkan versi yang lebih lama daripada `latest_version_id`. Jangan melakukan polling hingga kedua ID cocok: keduanya mungkin tetap berbeda, misalnya ketika scan gagal.
+Secara default `served_version_pinned` bernilai `false`: versi yang disajikan biasanya mengikuti versi terbaru. Ketika content scanning aktif, versi yang disimpan di claude.ai mungkin **menunggu** hasil content scan-nya: versi tersebut disimpan tetapi tidak langsung disajikan. Halaman ini menggunakan kata “menunggu” hanya untuk versi yang disimpan di claude.ai, bukan untuk versi yang diterbitkan anggota atau administrator ke dalam plugin. Selama scanning aktif, versi yang menunggu hanya disajikan ketika `content_scan`-nya menunjukkan `completed` dengan `pass` atau `warn`. Selama sebuah versi menunggu, `served_version_id` menyebutkan versi yang lebih lama daripada `latest_version_id`. Jangan melakukan polling hingga kedua ID cocok: keduanya mungkin tetap berbeda, misalnya ketika scan gagal.
 
-Memilih versi dengan `POST /v1/organizations/plugins/{plugin_id}` akan **menyematkan** ("pin") plugin (`served_version_pinned: true`). Begitu pula ketika administrator memilih versi di claude.ai, atau menerima permintaan anggota untuk memublikasikan ke plugin tersebut. Sejak saat itu, unggahan baru disimpan dan memajukan `latest_version_id`, tetapi anggota tetap mendapatkan versi yang disematkan hingga Anda mengarahkan `served_version_id` ke versi lain. Plugin yang kedua penunjuknya berbeda memiliki versi tersimpan yang tidak sedang disajikan.
+Memilih versi dengan `POST /v1/organizations/plugins/{plugin_id}` akan **menyematkan** (“pin”) plugin (`served_version_pinned: true`). Begitu pula ketika administrator memilih versi di claude.ai, atau menerima permintaan anggota untuk memublikasikan ke plugin tersebut. Sejak saat itu, unggahan baru disimpan dan memajukan `latest_version_id`, tetapi anggota tetap mendapatkan versi yang disematkan hingga Anda mengarahkan `served_version_id` ke versi lain. Plugin yang kedua penunjuknya berbeda memiliki versi tersimpan yang tidak sedang disajikan.
 
 Hal ini memungkinkan pipeline rilis mengunggah setiap build, mengujinya, lalu mempromosikannya. Agar pipeline Anda menentukan kapan setiap build disajikan, pin plugin sekali dengan mengatur `served_version_id` ke versinya saat ini; sejak saat itu, promosikan setiap build yang ingin Anda sajikan. Dengan content scanning aktif, pin pertama tersebut mengembalikan `409 scan_pending` hingga scan versi saat ini selesai, dan `400 scan_failed` jika scan menunjukkan `fail` atau `unknown`, atau mengalami error (`warn` diterima). Plugin yang telah di-pin saat ini tidak dapat di-unpin, baik di sini maupun di claude.ai.
 
@@ -313,7 +313,7 @@ Jika organisasi Anda telah menonaktifkan suatu jenis berbagi di pengaturan claud
 
 ### Pemindaian konten
 
-"Content scanning" (pemindaian konten) adalah pengaturan organisasi di claude.ai. Saat aktif, versi yang baru disimpan akan dipindai (claude.ai mengecualikan beberapa) dan hasilnya dilaporkan di `content_scan`; versi yang tidak dipindai, misalnya versi yang disimpan sebelum pemindaian diaktifkan, memiliki `content_scan: null`. Pemindaian tidak ditawarkan kepada organisasi yang menggunakan kunci enkripsi yang dikelola pelanggan atau retensi data nol.
+“Content scanning” (pemindaian konten) adalah pengaturan organisasi di claude.ai. Saat aktif, versi yang baru disimpan akan dipindai (claude.ai mengecualikan beberapa) dan hasilnya dilaporkan di `content_scan`; versi yang tidak dipindai, misalnya versi yang disimpan sebelum pemindaian diaktifkan, memiliki `content_scan: null`. Pemindaian tidak ditawarkan kepada organisasi yang menggunakan kunci enkripsi yang dikelola pelanggan atau retensi data nol.
 
 Selama scanning aktif, anggota hanya disajikan plugin ketika scan versi yang disajikan berstatus `completed` dengan `pass` atau `warn`. Selama scan berstatus `processing` atau `errored`, atau menunjukkan `fail` atau `unknown`, plugin ditahan dari anggota, dan versi sebelumnya tidak disajikan sebagai gantinya. Versi yang tidak pernah di-scan (`content_scan: null`) disajikan secara normal.
 
@@ -2362,7 +2362,7 @@ Kirim penulisan pengaturan instalasi untuk suatu plugin satu per satu. Jika bebe
 
 ## Pembagian plugin
 
-Pembagian ("share") hanya ada pada plugin milik anggota dan bersifat hanya-baca di API ini (lihat [Pembagian](https://platform.claude.com/docs/id/manage-claude/plugins-api#shares)).
+Pembagian (“share”) hanya ada pada plugin milik anggota dan bersifat hanya-baca di API ini (lihat [Pembagian](https://platform.claude.com/docs/id/manage-claude/plugins-api#shares)).
 
 ### Mencantumkan pembagian plugin
 
@@ -3175,7 +3175,7 @@ Respons error mengikuti bentuk standar yang didokumentasikan dalam [Error Claude
 | 404    | Sumber daya tidak ditemukan. Juga dikembalikan ketika permintaan tidak menyertakan nilai `anthropic-beta`, atau API tidak diaktifkan untuk organisasi Anda, sehingga endpoint tampak seolah-olah tidak ada.                                                                                                                   |
 | 409    | Sebuah nama sudah digunakan, pemindaian konten masih berjalan, atau unggahan yang bertentangan sedang berlangsung.                                                                                                                                                                                                            |
 | 413    | Body permintaan melebihi batas ukuran: 200 MB untuk unggahan, 32 MB untuk validasi marketplace.                                                                                                                                                                                                                               |
-| 429    | "Rate limit" (batas laju) terlampaui. Lihat [Pembatasan laju](https://platform.claude.com/docs/id/manage-claude/plugins-api#rate-limiting).                                                                                                                                                                                   |
+| 429    | “Rate limit” (batas laju) terlampaui. Lihat [Pembatasan laju](https://platform.claude.com/docs/id/manage-claude/plugins-api#rate-limiting).                                                                                                                                                                                   |
 | 500    | Error internal.                                                                                                                                                                                                                                                                                                               |
 | 503    | Sementara. Juga dikembalikan ketika beberapa penulisan pengaturan instalasi untuk satu plugin tiba pada saat yang sama; kirimkan penulisan tersebut satu per satu. Coba lagi dengan backoff, kecuali `registration_pending` (lihat tabel berikut).                                                                            |
 

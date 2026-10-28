@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/develop-tests
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: a4bd2aa54ddb6a434bd5249df12150ec4b1f436eb0a8f4445469178e15407642
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 336992fae3d738c0190e99c0b7eeaf2e60b734ae6d99a7a569f2ff1f19a59014
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/test-and-evaluate/develop-tests
 description: Tentukan kriteria keberhasilan yang terukur untuk aplikasi LLM Anda dan bangun evaluasi untuk mengujinya, mulai dari pemeriksaan kecocokan persis hingga penilaian berbasis LLM.
 ---
 
-Membangun aplikasi berbasis LLM yang sukses dimulai dengan mendefinisikan kriteria keberhasilan Anda secara jelas, lalu merancang evaluasi untuk mengukur kinerja terhadap kriteria tersebut. Siklus ini merupakan inti dari "prompt engineering" (rekayasa prompt).
+Membangun aplikasi berbasis LLM yang sukses dimulai dengan mendefinisikan kriteria keberhasilan Anda secara jelas, lalu merancang evaluasi untuk mengukur kinerja terhadap kriteria tersebut. Siklus ini merupakan inti dari “prompt engineering” (rekayasa prompt).
 
 <Frame>
   ![Diagram alir prompt engineering (rekayasa prompt): test cases (kasus uji), preliminary prompt (prompt awal), iterative testing and refinement (pengujian dan penyempurnaan iteratif), final validation (validasi akhir), ship (rilis)](https://platform.claude.com/docs/id/images/how-to-prompt-eng.svg)
@@ -21,11 +21,11 @@ Membangun aplikasi berbasis LLM yang sukses dimulai dengan mendefinisikan kriter
 
 Kriteria keberhasilan yang baik bersifat:
 
-* **Spesifik:** Definisikan dengan jelas apa yang ingin Anda capai. Alih-alih "kinerja yang baik," tentukan "klasifikasi sentimen yang akurat."
+* **Spesifik:** Definisikan dengan jelas apa yang ingin Anda capai. Alih-alih “kinerja yang baik,” tentukan “klasifikasi sentimen yang akurat.”
 
 * **Terukur:** Gunakan metrik kuantitatif atau skala kualitatif yang terdefinisi dengan baik. Angka memberikan kejelasan dan skalabilitas, tetapi ukuran kualitatif dapat bernilai jika diterapkan secara konsisten *bersama* dengan ukuran kuantitatif.
 
-  * Bahkan topik yang "kabur" seperti etika dan keamanan dapat dikuantifikasi:
+  * Bahkan topik yang “kabur” seperti etika dan keamanan dapat dikuantifikasi:
 
     |       | Kriteria keamanan                                                                         |
     | ----- | ----------------------------------------------------------------------------------------- |
@@ -47,7 +47,7 @@ Kriteria keberhasilan yang baik bersifat:
 
     **Skala kualitatif:**
 
-    * Skala Likert: "Nilai koherensi dari 1 (tidak masuk akal) hingga 5 (sangat logis)"
+    * Skala Likert: “Nilai koherensi dari 1 (tidak masuk akal) hingga 5 (sangat logis)”
     * Rubrik ahli: Ahli bahasa menilai kualitas terjemahan berdasarkan kriteria yang ditentukan
   </Accordion>
 
@@ -110,7 +110,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
   | Buruk | Model harus mengklasifikasikan sentimen dengan baik                                                                                                                                                                                                                                              |
   | Baik  | Pada held-out test set berisi 10.000 postingan Twitter yang beragam, model analisis sentimen harus mencapai:<br />- skor F1 minimal 0,85<br />- 99,5% output tidak toksik<br />- 90% kesalahan hanya akan menyebabkan ketidaknyamanan, bukan kesalahan fatal\*<br />- 95% waktu respons \< 200ms |
 
-  \*Pada kenyataannya, Anda juga akan mendefinisikan apa arti "ketidaknyamanan" dan "fatal".
+  \*Pada kenyataannya, Anda juga akan mendefinisikan apa arti “ketidaknyamanan” dan “fatal”.
 </Accordion>
 
 ***
@@ -495,7 +495,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
   </Accordion>
 
   <Accordion title="Konsistensi (bot FAQ): evaluasi cosine similarity">
-    **Apa yang diukur:** "Cosine similarity" (kemiripan kosinus) mengukur kemiripan antara dua vektor (dalam hal ini, sentence embedding dari output model menggunakan [Sentence-BERT (SBERT)](https://sbert.net/)) dengan menghitung kosinus sudut di antara keduanya. Nilai yang mendekati 1 menunjukkan kemiripan yang lebih tinggi. Ini ideal untuk mengevaluasi konsistensi karena pertanyaan yang serupa seharusnya menghasilkan jawaban yang serupa secara semantik, meskipun susunan katanya berbeda.
+    **Apa yang diukur:** “Cosine similarity” (kemiripan kosinus) mengukur kemiripan antara dua vektor (dalam hal ini, sentence embedding dari output model menggunakan [Sentence-BERT (SBERT)](https://sbert.net/)) dengan menghitung kosinus sudut di antara keduanya. Nilai yang mendekati 1 menunjukkan kemiripan yang lebih tinggi. Ini ideal untuk mengevaluasi konsistensi karena pertanyaan yang serupa seharusnya menghasilkan jawaban yang serupa secara semantik, meskipun susunan katanya berbeda.
 
     **Contoh kasus uji eval:** 50 kelompok yang masing-masing berisi beberapa versi parafrase.
 
@@ -3243,11 +3243,11 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
 
 ### Tips untuk penilaian berbasis LLM
 
-* **Miliki rubrik yang terperinci dan jelas:** "Jawaban harus selalu menyebutkan 'Acme Inc.' di kalimat pertama. Jika tidak, jawaban secara otomatis dinilai 'salah'."
+* **Miliki rubrik yang terperinci dan jelas:** “Jawaban harus selalu menyebutkan ‘Acme Inc.’ di kalimat pertama. Jika tidak, jawaban secara otomatis dinilai ‘salah’.”
   <Note>
     Suatu kasus penggunaan, atau bahkan kriteria keberhasilan tertentu untuk kasus penggunaan tersebut, mungkin memerlukan beberapa rubrik untuk evaluasi yang holistik.
   </Note>
-* **Bersifat empiris atau spesifik:** Misalnya, instruksikan LLM untuk hanya mengeluarkan 'correct' atau 'incorrect', atau menilai dengan skala 1–5. Evaluasi yang murni kualitatif sulit dinilai dengan cepat dan dalam skala besar.
+* **Bersifat empiris atau spesifik:** Misalnya, instruksikan LLM untuk hanya mengeluarkan ‘correct’ atau ‘incorrect’, atau menilai dengan skala 1–5. Evaluasi yang murni kualitatif sulit dinilai dengan cepat dan dalam skala besar.
 * **Dorong penalaran:** Gunakan model penilai dengan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) aktif, sehingga model bernalar sebelum menghasilkan skor evaluasi. Ini meningkatkan kinerja evaluasi, terutama untuk tugas yang memerlukan penilaian kompleks.
 
 <Accordion title="Contoh: Penilaian berbasis LLM">

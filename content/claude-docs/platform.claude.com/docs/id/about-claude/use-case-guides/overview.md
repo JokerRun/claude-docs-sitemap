@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/overview
-fetched_at: 2026-09-17T02:21:00.513769Z
-sha256: 19df698fa037fa2c8760fc4a036a53b4b6b3f9cee9dea3fd0c2cf863af8103bd
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 5fc3209c650db28290dff5533d50ea35681f23be02dfb4b9131a952c27e51d81
 ---
 
 ---
@@ -37,4 +37,4 @@ Claude dirancang untuk unggul dalam berbagai tugas. Jelajahi panduan produksi me
 
 ## Memilih jalur pembangunan
 
-Ketiga jalur untuk membangun dengan Claude berbeda dalam seberapa banyak kendali yang Anda pertahankan dan seberapa banyak implementasi yang Anda serahkan kepada Anthropic. [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) memberi Anda kendali paling besar: Anda menulis "agent loop" (perulangan agen) dan menjalankan alat serta infrastruktur Anda sendiri. [Claude Agent SDK](https://code.claude.com/docs/id/agent-sdk/overview) berada di antara keduanya, menyediakan agent loop dan eksekusi alat dalam proses yang Anda operasikan. Dengan [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), Anda menyerahkan paling banyak: Anthropic meng-hosting agent loop, eksekusi alat, dan "runtime" (lingkungan eksekusi) untuk Anda.
+Ketiga jalur untuk membangun dengan Claude berbeda dalam seberapa banyak kendali yang Anda pertahankan dan seberapa banyak implementasi yang Anda serahkan kepada Anthropic. [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) memberi Anda kendali paling besar: Anda menulis “agent loop” (perulangan agen) dan menjalankan alat serta infrastruktur Anda sendiri. [Claude Agent SDK](https://code.claude.com/docs/id/agent-sdk/overview) berada di antara keduanya, menyediakan agent loop dan eksekusi alat dalam proses yang Anda operasikan. Dengan [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), Anda menyerahkan paling banyak: Anthropic meng-hosting agent loop, eksekusi alat, dan “runtime” (lingkungan eksekusi) untuk Anda.

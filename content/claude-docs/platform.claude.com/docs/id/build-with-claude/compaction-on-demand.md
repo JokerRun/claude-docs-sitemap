@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 3587f5a61e79ab7e96609a515ad5730d4af7362849ec79b6c461aa577514a6ef
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 141c5febbca7797d7dffb360eeca9fdc6f03bede4831ae0b304b2847c976c10d
 ---
 
 ---
@@ -34,7 +34,7 @@ featureMetadata:
     Microsoft Foundry: beta
 ---
 
-Dengan "on-demand compaction" (pemadatan sesuai permintaan), aplikasi Anda yang menentukan kapan sebuah percakapan dirangkum: Anda mengirim satu permintaan dengan parameter `compaction`, dan Claude mengembalikan ringkasan sebagai pengganti balasan.
+Dengan “on-demand compaction” (pemadatan sesuai permintaan), aplikasi Anda yang menentukan kapan sebuah percakapan dirangkum: Anda mengirim satu permintaan dengan parameter `compaction`, dan Claude mengembalikan ringkasan sebagai pengganti balasan.
 
 ## Cara kerja compaction sesuai permintaan
 
@@ -50,7 +50,7 @@ Sejak saat itu, blok tersebut menggantikan pesan-pesan yang dirangkumnya. Blok i
 
 Kirim header beta `compact-2026-09-04` pada permintaan yang meminta ringkasan dan pada setiap permintaan berikutnya yang membawa blok bertanda tangan. Untuk memeriksa apakah suatu model mendukung compaction sesuai permintaan, panggil [Models API](https://platform.claude.com/docs/id/api/beta/models/list) dengan header beta dan baca `capabilities.compaction` dari setiap model. Anda tidak dapat menggabungkan `compaction` dengan `context_management` dalam satu permintaan.
 
-Kirim percakapan apa adanya dengan `"compaction": {"type": "summarize"}`. API meringkas setiap pesan dalam permintaan satu kali, tidak menghasilkan balasan setelahnya, dan hanya mengembalikan blok tersebut dengan `stop_reason` `"compaction"`. Kirim prompt `system` dan `tools` yang sama dengan yang Anda gunakan untuk sisa percakapan. Peringkas membaca keduanya, dan jika Anda mempertahankan giliran setelah blok pada model dengan ["preserved thinking" (pemikiran yang dipertahankan)](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking), thinking dalam giliran tersebut tetap valid hanya jika `system` dan `tools` cocok. Percakapan dalam contoh ini tidak memiliki prompt `system` maupun alat, sehingga permintaan tidak mengirim keduanya:
+Kirim percakapan apa adanya dengan `"compaction": {"type": "summarize"}`. API meringkas setiap pesan dalam permintaan satu kali, tidak menghasilkan balasan setelahnya, dan hanya mengembalikan blok tersebut dengan `stop_reason` `"compaction"`. Kirim prompt `system` dan `tools` yang sama dengan yang Anda gunakan untuk sisa percakapan. Peringkas membaca keduanya, dan jika Anda mempertahankan giliran setelah blok pada model dengan [“preserved thinking” (pemikiran yang dipertahankan)](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking), thinking dalam giliran tersebut tetap valid hanya jika `system` dan `tools` cocok. Percakapan dalam contoh ini tidak memiliki prompt `system` maupun alat, sehingga permintaan tidak mengirim keduanya:
 
 <CodeGroup>
   ```bash cURL
@@ -311,7 +311,7 @@ Kirim percakapan apa adanya dengan `"compaction": {"type": "summarize"}`. API me
 
 Panggilan peringkasan menggunakan model, `system`, `tools`, pengaturan thinking, dan `max_tokens` dari permintaan. Peringkas membaca definisi alat tetapi tidak pernah menjalankan alat, dan respons tidak membawa thinking. `max_tokens` membatasi seluruh panggilan, termasuk thinking apa pun yang dilakukan model sebelum menulis ringkasan, jadi sediakan beberapa ribu token. [Menghitung penggunaan compaction](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#understanding-usage) menunjukkan bagaimana panggilan tersebut ditagih.
 
-Jika giliran `assistant` terakhir diakhiri dengan panggilan alat yang belum memiliki hasil, API menolak permintaan tersebut. Kirim hasil alat dari giliran itu terlebih dahulu. Selain itu, jangan sertakan `stop_sequences`, `output_config.format` untuk structured output, maupun `tool_choice` bertipe `any` atau `tool`. Parameter-parameter tersebut tidak berpengaruh apa pun pada panggilan peringkasan, dan API menolaknya. Percakapan tetap harus muat dalam "context window" (jendela konteks) model, jadi lakukan compaction sebelum percakapan melampauinya, bukan sesudahnya.
+Jika giliran `assistant` terakhir diakhiri dengan panggilan alat yang belum memiliki hasil, API menolak permintaan tersebut. Kirim hasil alat dari giliran itu terlebih dahulu. Selain itu, jangan sertakan `stop_sequences`, `output_config.format` untuk structured output, maupun `tool_choice` bertipe `any` atau `tool`. Parameter-parameter tersebut tidak berpengaruh apa pun pada panggilan peringkasan, dan API menolaknya. Percakapan tetap harus muat dalam “context window” (jendela konteks) model, jadi lakukan compaction sebelum percakapan melampauinya, bukan sesudahnya.
 
 Saat Anda melakukan streaming respons, blok tiba secara utuh. Anda mendapatkan satu event `content_block_start` yang membawa blok lengkap, lalu `content_block_stop`, tanpa event `content_block_delta`. Event `ping` dapat tiba sebelum atau di antara keduanya.
 
@@ -772,7 +772,7 @@ Runner menyusun permintaan compaction dari parameternya sendiri dan tidak menyer
 
 Anda dapat mengirim permintaan compaction setelah giliran apa pun yang telah selesai, jadi kode Andalah yang menentukan kapan.
 
-Untuk memperkirakan seberapa besar permintaan berikutnya, jumlahkan `input_tokens` dan `output_tokens` dari `usage` respons terakhir, seperti yang dilakukan loop. Dengan ["prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#tracking-cache-performance), `input_tokens` hanya menghitung token setelah cache breakpoint terakhir, jadi tambahkan juga `cache_read_input_tokens` dan `cache_creation_input_tokens`. Anda juga dapat mengirim pesan yang sama ke endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting).
+Untuk memperkirakan seberapa besar permintaan berikutnya, jumlahkan `input_tokens` dan `output_tokens` dari `usage` respons terakhir, seperti yang dilakukan loop. Dengan [“prompt caching” (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#tracking-cache-performance), `input_tokens` hanya menghitung token setelah cache breakpoint terakhir, jadi tambahkan juga `cache_read_input_tokens` dan `cache_creation_input_tokens`. Anda juga dapat mengirim pesan yang sama ke endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting).
 
 Bandingkan angka tersebut dengan batas yang Anda pilih, di bawah [jendela konteks](https://platform.claude.com/docs/id/build-with-claude/context-windows) model.
 
@@ -823,7 +823,7 @@ Permintaan compaction, atau permintaan yang membawa blok, juga dapat gagal sepen
 
 ## Menghitung penggunaan compaction
 
-Panggilan peringkasan ditagih dan dikenai "rate limit" (batas laju) seperti permintaan lainnya, dan `usage.iterations` melaporkannya sebagai entri `compaction`. `input_tokens` dan `output_tokens` tingkat atas bernilai nol karena tidak ada balasan yang dihasilkan. Untuk menghitung apa yang dikonsumsi sebuah percakapan, jumlahkan seluruh `usage.iterations`, bukan field tingkat atas. Mengirim kembali blok pada permintaan berikutnya tidak menambah biaya compaction.
+Panggilan peringkasan ditagih dan dikenai “rate limit” (batas laju) seperti permintaan lainnya, dan `usage.iterations` melaporkannya sebagai entri `compaction`. `input_tokens` dan `output_tokens` tingkat atas bernilai nol karena tidak ada balasan yang dihasilkan. Untuk menghitung apa yang dikonsumsi sebuah percakapan, jumlahkan seluruh `usage.iterations`, bukan field tingkat atas. Mengirim kembali blok pada permintaan berikutnya tidak menambah biaya compaction.
 
 Anda kini memiliki loop yang berfungsi untuk melakukan compaction pada percakapan dan menangani ringkasan yang tidak ada. Dua halaman mengubah cara loop tersebut berjalan, dan Anda dapat menggabungkan keduanya: [Compaction yang mempertahankan giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/compaction-keep-recent-turns) mempertahankan giliran terakhir kata demi kata, dan [Compaction di latar belakang](https://platform.claude.com/docs/id/build-with-claude/compaction-background) memungkinkan percakapan berlanjut selama ringkasan ditulis. [Compaction dan pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks) berlaku jika Anda mengirim kembali blok thinking dan melakukan salah satu dari keduanya.
 

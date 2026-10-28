@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 50a3594ea39c3b741d51725d98d580c6193a1edd4f23b1794d75c3bf5ca3e5ef
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: e01dfe9ca7d651ca2f504ef6142ed36a7d630e9d9106b825f05c92c72b1a5bf4
 ---
 
 ---
@@ -33,7 +33,7 @@ sequenceDiagram
 ```
 
 <Note>
-  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 ## Kapan menggunakannya
@@ -413,7 +413,7 @@ Eksekutor menerima error tersebut dan melanjutkan tanpa saran lebih lanjut. Perm
 | `model_not_found`         | Model advisor yang dikonfigurasi tidak tersedia.                                                                                                           |
 | `unavailable`             | Kegagalan advisor lainnya.                                                                                                                                 |
 
-"Rate limit" (batas laju) advisor diambil dari bucket per model yang sama dengan panggilan langsung ke model advisor. Batas laju pada advisor muncul sebagai `too_many_requests` di dalam hasil alat. Batas laju pada executor menggagalkan seluruh permintaan dengan HTTP 429.
+“Rate limit” (batas laju) advisor diambil dari bucket per model yang sama dengan panggilan langsung ke model advisor. Batas laju pada advisor muncul sebagai `too_many_requests` di dalam hasil alat. Batas laju pada executor menggagalkan seluruh permintaan dengan HTTP 429.
 
 ## Percakapan multi-giliran
 
@@ -1237,7 +1237,7 @@ Loop berakhir pada alasan berhenti apa pun selain `tool_use` atau `pause_turn`. 
 
 Tambahkan dorongan sebagai pesan pengguna tersendiri setelah hasil alat, bukan sebagai blok saudara dalam pesan yang sama. Pesan pengguna yang berurutan adalah valid. Dalam pengujian Anthropic pada executor Claude Haiku 4.5 dan Sonnet, keduanya berperilaku setara dengan blok saudara. Bentuk pesan terpisah juga menjaga pengingat tetap jelas berbeda dari output alat.
 
-**Kompromi:** Dorongan meningkatkan tingkat panggilan, yang dapat mendorong tugas yang sangat sederhana ke konsultasi yang tidak perlu. Jika beban kerja Anda mencampur tugas sederhana dan kompleks, pertimbangkan untuk menaikkan `NUDGE_TURN` menjadi 3 agar tugas dua giliran selesai sebelum dorongan dipicu, atau batasi dorongan berdasarkan sinyal kompleksitas tugas yang sudah Anda hitung. Jika prompt sistem Anda sudah berisi bahasa pembatasan ("gunakan advisor hanya untuk ketidakpastian yang sesungguhnya"), lewati dorongan sepenuhnya, karena kedua instruksi tersebut saling bertentangan.
+**Kompromi:** Dorongan meningkatkan tingkat panggilan, yang dapat mendorong tugas yang sangat sederhana ke konsultasi yang tidak perlu. Jika beban kerja Anda mencampur tugas sederhana dan kompleks, pertimbangkan untuk menaikkan `NUDGE_TURN` menjadi 3 agar tugas dua giliran selesai sebelum dorongan dipicu, atau batasi dorongan berdasarkan sinyal kompleksitas tugas yang sudah Anda hitung. Jika prompt sistem Anda sudah berisi bahasa pembatasan (“gunakan advisor hanya untuk ketidakpastian yang sesungguhnya”), lewati dorongan sepenuhnya, karena kedua instruksi tersebut saling bertentangan.
 
 Dorongan teks biasa sangat menonjol pada executor Claude Haiku 4.5 dan Sonnet: 74 persen (Sonnet) hingga 98 persen (Claude Haiku 4.5) dari percobaan yang didorong dalam pengujian Anthropic langsung memanggil advisor pada giliran 2. Jika hal itu terjadi sebelum executor Anda membaca masalah atau mengumpulkan konteks, panggilan advisor yang dihasilkan memiliki konteks rendah dan dapat menggantikan panggilan selanjutnya yang waktunya lebih tepat. Ukur giliran panggilan pertama baseline executor Anda sebelum menambahkan dorongan. Jika executor sudah memanggil advisor secara andal dan panggilan pertamanya biasanya terjadi pada giliran N, tetapkan `NUDGE_TURN` lebih besar dari N. Dalam pengujian Anthropic, dorongan pada giliran 2 pada beban kerja di mana panggilan pertama baseline terjadi pada giliran 7 atau lebih berkorelasi dengan penurunan kinerja tugas sebesar 3 hingga 4 poin persentase. Pada beban kerja browsing di mana tingkat panggilan baseline adalah 86 persen, dorongan yang sama meningkatkan keterlibatan tanpa mengorbankan kinerja tugas.
 

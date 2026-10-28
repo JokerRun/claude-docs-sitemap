@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/supported-regions
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 070f84273ad97ed2235937010c446735c5e588fac16d3016c8c6a27f5e25ab55
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: a2fd63ce2c57508e59745929c229887617787e0ce9484799d4a40ccc959090a6
 ---
 
 ---
@@ -47,7 +47,7 @@ description: "Berikut adalah negara, wilayah, dan teritori tempat Anthropic dapa
 * Komoro
 * Kongo, Republik
 * Kosta Rika
-* Côte d'Ivoire
+* Côte d’Ivoire
 * Kroasia
 * Siprus
 * Ceko (Republik Ceko)

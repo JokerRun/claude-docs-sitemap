@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-platform
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: d54cd6769de886ff8757aa72556c1359d44f296ac121f2087a629491c9b9eb4a
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 57d2f50146bdf86912e995067ac24c0e2215983e3deec0314b11efb7a62c67be
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-plat
 description: Cari tahu data Claude Platform mana yang dienkripsi dengan kunci Anda, apa yang dinonaktifkan atau berubah, dan apa yang tetap berada di bawah kunci Anthropic.
 ---
 
-Untuk Claude Enterprise, lihat [Apa yang dicakup CMEK di Claude Enterprise](https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise). Fitur beta dan pratinjau riset yang tidak tercantum di sini mungkin tidak dilindungi oleh "customer-managed encryption keys" (kunci enkripsi yang dikelola pelanggan), atau CMEK.
+Untuk Claude Enterprise, lihat [Apa yang dicakup CMEK di Claude Enterprise](https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise). Fitur beta dan pratinjau riset yang tidak tercantum di sini mungkin tidak dilindungi oleh “customer-managed encryption keys” (kunci enkripsi yang dikelola pelanggan), atau CMEK.
 
 ## Dienkripsi dengan kunci Anda
 

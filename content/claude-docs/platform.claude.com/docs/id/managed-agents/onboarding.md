@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/onboarding
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 76d003f6d7c0560296f66faa15ae2b8bb37514ddf4042be9024006b2e0a4f708
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 6fececccc828b237a0c22a19f6c1a572eed3594a0073a85bd55d62ef96730282
 ---
 
 ---
@@ -23,7 +23,7 @@ featureMetadata:
 
 [Antarmuka visual](https://platform.claude.com/workspaces/default/agent-quickstart/) di Claude Console memandu Anda melalui setiap kolom definisi agen:
 
-* **Model dan prompt sistem:** Pilih model dan tulis "system prompt" (prompt sistem) di editor lebar penuh.
+* **Model dan prompt sistem:** Pilih model dan tulis “system prompt” (prompt sistem) di editor lebar penuh.
 * **Server MCP:** Tambahkan server MCP jarak jauh melalui URL dan autentikasi agen Anda agar dapat mengambil tindakan atas nama Anda.
 * **Alat:** Perluas kemampuan agen Anda menggunakan toolset agen bawaan dan alat MCP.
 * **Skills:** Lampirkan skill Anthropic atau skill kustom dari pustaka organisasi Anda.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/search-results
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 22d79d1ed58cb66c3556a5a13845d80b63c33de2d2aed1905829849c3bf1cc6a
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: a44bb9e80b654dc785ac968525fc6e99a437a5ecbe075786ceda197eab10e06c
 ---
 
 ---
@@ -12,10 +12,10 @@ description: Aktifkan sitasi alami untuk aplikasi RAG dengan menyediakan hasil p
 ---
 
 <Note>
-  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-Blok konten hasil pencarian memungkinkan Claude mengutip konten Anda sendiri dengan cara yang sama seperti mengutip hasil pencarian web: setiap sitasi membawa sumber dan judul yang Anda berikan. Gunakan blok ini dalam aplikasi "Retrieval-Augmented Generation" (generasi yang diperkaya pengambilan), atau RAG, di mana Claude perlu mengatribusikan jawaban ke dokumen Anda.
+Blok konten hasil pencarian memungkinkan Claude mengutip konten Anda sendiri dengan cara yang sama seperti mengutip hasil pencarian web: setiap sitasi membawa sumber dan judul yang Anda berikan. Gunakan blok ini dalam aplikasi “Retrieval-Augmented Generation” (generasi yang diperkaya pengambilan), atau RAG, di mana Claude perlu mengatribusikan jawaban ke dokumen Anda.
 
 Semua [model aktif](https://platform.claude.com/docs/id/models/overview) mendukung hasil pencarian dengan sitasi, kecuali Claude Haiku 3. Tidak diperlukan header beta: hasil pencarian merupakan bagian dari Messages API standar.
 

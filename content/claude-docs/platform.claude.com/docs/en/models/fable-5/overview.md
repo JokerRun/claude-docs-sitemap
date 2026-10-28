@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/fable-5/overview
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: d89ef4578e1232fc567e0da5a7609c9b37bc9f3304df069ad77c644145aa68c8
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: b4bced23751adabe81217d45efd22959f6721c63fe1a957c494e7c48af669a84
 ---
 
 ---
@@ -23,7 +23,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $10 / MTo
 
 ## Fable versus Mythos
 
-[Claude Mythos 5](https://platform.claude.com/docs/en/models/mythos-5/overview) is offered separately for defensive cybersecurity workflows and is available only to organizations verified through Anthropic's verification programs, such as the [Cyber Verification Program](https://support.claude.com/en/articles/14604842). It shares Claude Fable 5's specifications and pricing.
+[Claude Mythos 5](https://platform.claude.com/docs/en/models/mythos-5/overview) is offered separately for defensive cybersecurity workflows and is available only to organizations verified through Anthropic’s verification programs, such as the [Cyber Verification Program](https://support.claude.com/en/articles/14604842). It shares Claude Fable 5’s specifications and pricing.
 
 ## How it compares to the current lineup
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: eaf59694500360f83953e562588f6d438cab398d4fdb05fa2174f83b06f24e75
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 936e32f38ef1008e3009e9d7697c4ed46f5b7351ff5633ed4370e89d5eb4bc21
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Berikan Claude alat editor teks yang didefinisikan Anthropic untuk 
 ---
 
 <Note>
-  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 Claude dapat menggunakan alat editor teks berskema Anthropic untuk melihat dan memodifikasi file teks, membantu Anda melakukan debug, memperbaiki, dan meningkatkan kode atau dokumen teks lainnya. Hal ini memungkinkan Claude berinteraksi langsung dengan file Anda, memberikan bantuan praktis alih-alih hanya menyarankan perubahan.
@@ -233,7 +233,7 @@ Gunakan alat editor teks dengan cara berikut:
 <Steps>
   <Step title="Berikan Claude alat editor teks dan prompt pengguna">
     * Sertakan alat editor teks dalam permintaan API Anda.
-    * Berikan prompt pengguna yang mungkin memerlukan pemeriksaan atau modifikasi file, seperti "Bisakah Anda memperbaiki kesalahan sintaks dalam kode saya?"
+    * Berikan prompt pengguna yang mungkin memerlukan pemeriksaan atau modifikasi file, seperti “Bisakah Anda memperbaiki kesalahan sintaks dalam kode saya?”
   </Step>
 
   <Step title="Claude menggunakan alat untuk memeriksa file atau direktori">
@@ -274,7 +274,7 @@ Perintah `view` memungkinkan Claude memeriksa isi file atau mendaftar isi direkt
 
 Parameter:
 
-* `command`: Harus "view"
+* `command`: Harus `view`
 * `path`: Path ke file atau direktori yang akan dilihat
 * `view_range` (opsional): Array berisi dua bilangan bulat yang menentukan nomor baris awal dan akhir yang akan dilihat. Nomor baris dimulai dari 1, dan -1 untuk baris akhir berarti membaca hingga akhir file. Parameter ini hanya berlaku saat melihat file, bukan direktori.
 
@@ -314,7 +314,7 @@ Perintah `str_replace` memungkinkan Claude mengganti string tertentu dalam file 
 
 Parameter:
 
-* `command`: Harus "str\_replace"
+* `command`: Harus `str_replace`
 * `path`: Path ke file yang akan dimodifikasi
 * `old_str`: Teks yang akan diganti (harus cocok persis, termasuk whitespace dan indentasi)
 * `new_str`: Teks baru yang akan disisipkan menggantikan teks lama
@@ -341,7 +341,7 @@ Perintah `create` memungkinkan Claude membuat file baru dengan konten yang diten
 
 Parameter:
 
-* `command`: Harus "create"
+* `command`: Harus `create`
 * `path`: Path tempat file baru akan dibuat
 * `file_text`: Konten yang akan ditulis ke file baru
 
@@ -366,7 +366,7 @@ Perintah `insert` memungkinkan Claude menyisipkan teks pada lokasi tertentu dala
 
 Parameter:
 
-* `command`: Harus "insert"
+* `command`: Harus `insert`
 * `path`: Path ke file yang akan dimodifikasi
 * `insert_line`: Nomor baris yang setelahnya teks akan disisipkan (0 untuk awal file)
 * `insert_text`: Teks yang akan disisipkan
@@ -1023,7 +1023,7 @@ Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya ke Claude:
 <Tip>
   **Nomor baris**
 
-  Pada contoh sebelumnya, hasil alat `view` menyertakan isi file dengan nomor baris yang ditambahkan di awal setiap baris (misalnya, "1: def is\_prime(n):"). Nomor baris tidak wajib, tetapi sangat penting agar parameter `view_range` dapat digunakan dengan sukses untuk memeriksa bagian tertentu dari file dan parameter `insert_line` untuk menambahkan konten pada lokasi yang tepat.
+  Pada contoh sebelumnya, hasil alat `view` menyertakan isi file dengan nomor baris yang ditambahkan di awal setiap baris (misalnya, “1: def is\_prime(n):”). Nomor baris tidak wajib, tetapi sangat penting agar parameter `view_range` dapat digunakan dengan sukses untuk memeriksa bagian tertentu dari file dan parameter `insert_line` untuk menambahkan konten pada lokasi yang tepat.
 </Tip>
 
 Claude mengidentifikasi kesalahan sintaks dan menggunakan perintah `str_replace` untuk memperbaikinya:
@@ -1862,17 +1862,17 @@ Saat menggunakan alat editor teks, berbagai kesalahan mungkin terjadi. Berikut p
   <Accordion title="Berikan konteks yang jelas">
     Saat meminta Claude memperbaiki atau memodifikasi kode, jelaskan secara spesifik file mana yang harus diperiksa atau masalah apa yang harus ditangani. Konteks yang jelas membantu Claude mengidentifikasi file yang tepat dan membuat perubahan yang sesuai.
 
-    **Prompt yang kurang membantu:** "Bisakah Anda memperbaiki kode saya?"
+    **Prompt yang kurang membantu:** “Bisakah Anda memperbaiki kode saya?”
 
-    **Prompt yang lebih baik:** "Ada kesalahan sintaks di file primes.py saya yang membuatnya tidak bisa dijalankan. Bisakah Anda memperbaikinya?"
+    **Prompt yang lebih baik:** “Ada kesalahan sintaks di file primes.py saya yang membuatnya tidak bisa dijalankan. Bisakah Anda memperbaikinya?”
   </Accordion>
 
   <Accordion title="Jelaskan path file secara eksplisit">
     Tentukan path file dengan jelas bila diperlukan, terutama jika Anda bekerja dengan beberapa file atau file di direktori yang berbeda.
 
-    **Prompt yang kurang membantu:** "Tinjau file helper saya"
+    **Prompt yang kurang membantu:** “Tinjau file helper saya”
 
-    **Prompt yang lebih baik:** "Bisakah Anda memeriksa file utils/helpers.py saya untuk masalah performa?"
+    **Prompt yang lebih baik:** “Bisakah Anda memeriksa file utils/helpers.py saya untuk masalah performa?”
   </Accordion>
 
   <Accordion title="Buat backup sebelum mengedit">

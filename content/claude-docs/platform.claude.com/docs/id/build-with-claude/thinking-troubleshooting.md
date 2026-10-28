@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 76423eb97c89dfbeea1d65f0bc57ae58847973cb8ebd9587a839e89a55d4c387
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 8009b169d74168b56f56e01b8942fbb57d8986bc76afa03b22d9832f73e40b6b
 ---
 
 ---
@@ -12,16 +12,16 @@ description: "Diagnosis dan perbaiki kegagalan thinking yang paling umum: error 
 ---
 
 <Note>
-  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 Halaman ini membahas kegagalan paling umum saat mengonfigurasi thinking atau melakukan round-trip blok thinking (mengirim kembali blok thinking yang dikembalikan dalam permintaan berikutnya). Bagian pertama memetakan setiap model ke konfigurasi thinking yang didukungnya dan yang ditolaknya; bagian-bagian setelahnya masing-masing dimulai dari gejala yang Anda amati, sehingga Anda dapat mencocokkan pesan error atau respons yang tidak terduga langsung dengan penyebab dan perbaikannya. Untuk mempelajari cara kerja thinking, lihat ikhtisar [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking).
 
 ## Dukungan thinking, default, dan konfigurasi yang ditolak per model
 
-Sebagian besar error konfigurasi thinking adalah ketidakcocokan antara nilai `thinking.type` dalam permintaan dan apa yang didukung model. Pada sebagian besar model, thinking berjalan sebagai `thinking: {type: "adaptive"}`, dan banyak model mengaktifkannya secara default. Beberapa model yang lebih lama justru menggunakan ["extended thinking" (pemikiran diperpanjang)](https://platform.claude.com/docs/id/build-with-claude/extended-thinking), mode manual lama yang dikonfigurasi sebagai `thinking: {type: "enabled", budget_tokens: N}`.
+Sebagian besar error konfigurasi thinking adalah ketidakcocokan antara nilai `thinking.type` dalam permintaan dan apa yang didukung model. Pada sebagian besar model, thinking berjalan sebagai `thinking: {type: "adaptive"}`, dan banyak model mengaktifkannya secara default. Beberapa model yang lebih lama justru menggunakan [“extended thinking” (pemikiran diperpanjang)](https://platform.claude.com/docs/id/build-with-claude/extended-thinking), mode manual lama yang dikonfigurasi sebagai `thinking: {type: "enabled", budget_tokens: N}`.
 
-"Extended thinking" (pemikiran diperpanjang) (`thinking.type: "enabled"` dengan `budget_tokens`) sudah tidak digunakan lagi (deprecated) pada model Claude 4.6 (permintaan yang menggunakannya masih berhasil). Claude 4.7 dan model yang lebih baru tidak mendukungnya dan menolak permintaan yang menggunakannya, dengan mengembalikan error 400. Pada Claude 4.5 dan model sebelumnya yang mendukung thinking, pemikiran diperpanjang adalah satu-satunya mode thinking yang tersedia. Claude Mythos Preview mendukung kedua mode tersebut. Jika kedua mode tersedia, gunakan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (pemikiran adaptif) sebagai gantinya.
+“Extended thinking” (pemikiran diperpanjang) (`thinking.type: "enabled"` dengan `budget_tokens`) sudah tidak digunakan lagi (deprecated) pada model Claude 4.6 (permintaan yang menggunakannya masih berhasil). Claude 4.7 dan model yang lebih baru tidak mendukungnya dan menolak permintaan yang menggunakannya, dengan mengembalikan error 400. Pada Claude 4.5 dan model sebelumnya yang mendukung thinking, pemikiran diperpanjang adalah satu-satunya mode thinking yang tersedia. Claude Mythos Preview mendukung kedua mode tersebut. Jika kedua mode tersedia, gunakan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (pemikiran adaptif) sebagai gantinya.
 
 Tabel ini mencantumkan apa yang didukung setiap model, nilai default-nya, dan nilai `thinking.type` mana yang ditolaknya dengan error 400; nilai apa pun yang tidak tercantum sebagai ditolak akan diterima. Hanya Claude Sonnet 5.5 yang menerima `"between_tools"`, dan model ini menerima nilai tersebut sebagai pengganti `"disabled"`.
 
@@ -115,7 +115,7 @@ output_config.effort 'xhigh' is not supported when thinking is disabled on this 
 
 Ini terjadi karena Claude Sonnet 5.5 menerima `between_tools` hanya pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `high` atau lebih rendah. Pesan tersebut menyatakan thinking dinonaktifkan karena `between_tools` tidak memiliki thinking di awal, meskipun permintaan tidak mengirim `"disabled"`. Pesan tersebut menyebutkan level yang dikirim permintaan.
 
-Turunkan effort ke `high` atau lebih rendah. Untuk berjalan pada `xhigh` atau `max`, gunakan adaptive thinking: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Itulah yang dimaksud pesan tersebut dengan "enable thinking." Claude Sonnet 5.5 menolak `"enabled"` dengan error 400.
+Turunkan effort ke `high` atau lebih rendah. Untuk berjalan pada `xhigh` atau `max`, gunakan adaptive thinking: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Itulah yang dimaksud pesan tersebut dengan “enable thinking.” Claude Sonnet 5.5 menolak `"enabled"` dengan error 400.
 
 Claude Haiku 5.5 mengembalikan pesan yang sama ketika permintaan mengirim `thinking: {type: "disabled"}` pada effort `xhigh` atau `max`. Model ini menerima `"disabled"` hanya pada `high` atau lebih rendah. Turunkan effort, atau atur `thinking` ke `{"type": "adaptive"}`.
 
@@ -129,7 +129,7 @@ messages.N: output_config.effort 'low' differs from the 'high' in effect before 
 
 Pesan tersebut menyatakan thinking dinonaktifkan karena `between_tools` tidak memiliki thinking di awal. Dengan `between_tools`, effort tidak dapat berubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari level yang sedang berlaku mengembalikan error 400. `messages.N` adalah posisi pesan yang menetapkan level baru.
 
-Hapus effort per pesan tersebut, atau atur ke level yang berlaku. Untuk memvariasikan effort pada setiap giliran, gunakan adaptive thinking: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Itulah yang dimaksud pesan tersebut dengan "enable thinking."
+Hapus effort per pesan tersebut, atau atur ke level yang berlaku. Untuk memvariasikan effort pada setiap giliran, gunakan adaptive thinking: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Itulah yang dimaksud pesan tersebut dengan “enable thinking.”
 
 Claude Haiku 5.5 mengembalikan pesan yang sama ketika permintaan dengan `thinking: {type: "disabled"}` menetapkan effort per pesan yang berbeda dari level yang berlaku. Hapus effort per pesan tersebut, atau atur `thinking` ke `{"type": "adaptive"}` untuk memvariasikan effort pada setiap giliran.
 

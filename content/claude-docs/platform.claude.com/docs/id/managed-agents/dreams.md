@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: e7b42a3b91f46a03029e185bdbb293d7281de2e39155bfb429d21355655c3168
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: fc60b90a6cb0a327c9cbdfebb4664e91144853b25b65c8a5d49fc7bd2cd9e900
 ---
 
 ---
@@ -195,7 +195,7 @@ Responsnya adalah resource `dream` lengkap dengan `status: "pending"`:
 
 Field opsional `instructions` (csharp, go: `Instructions`) mengarahkan apa yang disintesis oleh pipeline dreaming. Field ini diterapkan di seluruh pipeline: apa yang harus dibaca dengan cermat, apa yang harus digabungkan atau dibuang, dan bagaimana menyusun store output.
 
-Gunakan `instructions` (csharp, go: `Instructions`) untuk panduan sintesis tingkat tinggi seperti area fokus ("fokus pada preferensi gaya coding"), konten yang harus dipertahankan tanpa perubahan, atau konvensi output yang ingin Anda terapkan di seluruh store. Pipeline ini adalah proses sintesis atas input, bukan editor yang diterapkan pada teks store, sehingga perintah imperatif yang menargetkan baris tertentu ("ubah kalimat X menjadi Y," "perbaiki hitungan di bagian Z") umumnya tidak menghasilkan perubahan. Untuk melakukan pengeditan yang ditargetkan pada memori individual, gunakan [Memory Stores API](https://platform.claude.com/docs/id/managed-agents/memory#view-and-edit-memories) langsung pada store output.
+Gunakan `instructions` (csharp, go: `Instructions`) untuk panduan sintesis tingkat tinggi seperti area fokus (“fokus pada preferensi gaya coding”), konten yang harus dipertahankan tanpa perubahan, atau konvensi output yang ingin Anda terapkan di seluruh store. Pipeline ini adalah proses sintesis atas input, bukan editor yang diterapkan pada teks store, sehingga perintah imperatif yang menargetkan baris tertentu (“ubah kalimat X menjadi Y,” “perbaiki hitungan di bagian Z”) umumnya tidak menghasilkan perubahan. Untuk melakukan pengeditan yang ditargetkan pada memori individual, gunakan [Memory Stores API](https://platform.claude.com/docs/id/managed-agents/memory#view-and-edit-memories) langsung pada store output.
 
 ## Melacak kemajuan
 

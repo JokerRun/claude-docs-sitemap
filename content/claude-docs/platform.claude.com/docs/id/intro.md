@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/intro
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: cc97bcbd7ae53d78474a85a388caf3cd8d972c777beb72f63bda7efef4a06529
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: a6eecab07e5ce3499d53b855107659e17b3576e7e3e377577a5d48a0402a917b
 ---
 
 ---
@@ -26,7 +26,7 @@ Untuk mempelajari lebih lanjut tentang masing-masing, lihat [Menggunakan Message
 
 ## Jelajahi generasi terbaru model Claude
 
-Jika Anda tidak yakin model mana yang akan digunakan, mulailah dengan [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) untuk sebagian besar beban kerja. Gunakan [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) untuk penalaran yang menuntut dan pekerjaan agentik jangka panjang, atau ketika hasil evaluasi (evals) Anda pada Claude Opus 5.5 dengan tingkat effort yang lebih tinggi masih belum memadai. Semua model saat ini mendukung input teks dan gambar, output teks, kemampuan multibahasa, "vision" (penglihatan), dan "tool use" (penggunaan alat). Halaman setiap model mencantumkan platform tempat model tersebut tersedia.
+Jika Anda tidak yakin model mana yang akan digunakan, mulailah dengan [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) untuk sebagian besar beban kerja. Gunakan [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) untuk penalaran yang menuntut dan pekerjaan agentik jangka panjang, atau ketika hasil evaluasi (evals) Anda pada Claude Opus 5.5 dengan tingkat effort yang lebih tinggi masih belum memadai. Semua model saat ini mendukung input teks dan gambar, output teks, kemampuan multibahasa, “vision” (penglihatan), dan “tool use” (penggunaan alat). Halaman setiap model mencantumkan platform tempat model tersebut tersedia.
 
 * [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) (`claude-fable-5-1`) — New — *For demanding reasoning and long-horizon agentic work* — Most capable · Research · Multi-day tasks
 * [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) (`claude-opus-5-5`) — New — *For long-running agentic coding and knowledge work* — Complex projects · Agents · Coding
@@ -55,7 +55,7 @@ Ikuti langkah-langkah berikut untuk membangun integrasi Claude yang berfungsi.
   </Step>
 
   <Step title="Pahami Messages API">
-    Pelajari struktur inti permintaan dan respons, termasuk percakapan multi-giliran, "system prompt" (prompt sistem), dan stop reason.
+    Pelajari struktur inti permintaan dan respons, termasuk percakapan multi-giliran, “system prompt” (prompt sistem), dan stop reason.
 
     [Baca panduan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
   </Step>
@@ -67,7 +67,7 @@ Ikuti langkah-langkah berikut untuk membangun integrasi Claude yang berfungsi.
   </Step>
 
   <Step title="Jelajahi fitur dan alat">
-    Temukan apa yang dapat dilakukan Claude: "thinking" (pemikiran), pencarian web, penanganan file, output terstruktur, dan banyak lagi.
+    Temukan apa yang dapat dilakukan Claude: “thinking” (pemikiran), pencarian web, penanganan file, output terstruktur, dan banyak lagi.
 
     [Telusuri ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview)
   </Step>

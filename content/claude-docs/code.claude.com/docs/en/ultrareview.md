@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/ultrareview
-fetched_at: 2026-10-25T02:20:50.950770Z
-sha256: ccaee97adab0ddcc3c845cc1ee28eaee379b04e56061031b5b69444c014c22c5
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 466beb58c48116a4a6178b89b47b45b1c5f0da85fa6332ed41771cbf8ec6cc13
 ---
 
 > ## Documentation Index
@@ -92,7 +92,7 @@ When the post finishes, Claude tells you the outcome:
 
 ### Pass a request in plain words
 
-On Claude Code v2.1.218 or later, you can also describe what you're working on in plain words:
+You can also describe what you're working on in plain words:
 
 ```text theme={null}
 /code-review ultra check my auth changes
@@ -166,7 +166,9 @@ Without arguments, the subcommand reviews the diff between your current branch a
 
 You consent to the whole-repository fallback and to the billing and terms prompt when you run the subcommand, so the run doesn't stop to confirm them. Running it yourself is what counts as consent. When Claude runs the subcommand for you instead, for example through the Bash tool, Claude Code refuses the whole-repository review.
 
-`claude -p '/code-review ultra'` doesn't get you the findings, so use `claude ultrareview` in scripts. The `-p` run launches the cloud review and exits without waiting for it. When the review would bill usage credits, the `-p` run stops without launching it. Before v2.1.218, `/code-review ultra` in a non-interactive session ran a local review.
+> [!NOTE]
+>
+> `claude -p '/code-review ultra'` doesn't get you the findings, so use `claude ultrareview` in scripts. The `-p` run launches the cloud review and exits without waiting for it. When the review would bill usage credits, the `-p` run stops without launching it.
 
 | Flag | Description |
 | - | - |

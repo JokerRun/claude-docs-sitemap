@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-management
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 63691ed132424281163183399c76943997cf988a287186202e8f8ec0fa5c910f
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: d789ccd00c3acb8fe265fcde526d39a405cfb7ee0ff7753d2b8ccaf8775df3a1
 ---
 
 ---
@@ -190,13 +190,13 @@ API hanya dapat menetapkan peran `user` dan `managed`, saat pembuatan undangan d
 
 ### Anggota dan undangan
 
-Seseorang menjadi anggota dengan menerima undangan (atau melalui "single sign-on" (masuk tunggal), atau SSO, organisasi Anda, jika dikonfigurasi). Membuat undangan akan mengirimkan email undangan; undangan kemudian berstatus `pending` hingga penerima menerimanya (`accepted`) atau `expires_at` yang ditetapkan server terlewati (`expired`). Hanya undangan `pending` yang dapat ditarik. Untuk mengubah alamat email atau peran undangan yang tertunda, tarik undangan tersebut dan buat yang baru.
+Seseorang menjadi anggota dengan menerima undangan (atau melalui “single sign-on” (masuk tunggal), atau SSO, organisasi Anda, jika dikonfigurasi). Membuat undangan akan mengirimkan email undangan; undangan kemudian berstatus `pending` hingga penerima menerimanya (`accepted`) atau `expires_at` yang ditetapkan server terlewati (`expired`). Hanya undangan `pending` yang dapat ditarik. Untuk mengubah alamat email atau peran undangan yang tertunda, tarik undangan tersebut dan buat yang baru.
 
 Jika paket organisasi Anda mengambil anggota dari kumpulan kursi (seat) terbatas yang dibeli, undangan yang tertunda menggunakan satu kursi. Endpoint pembuatan undangan tidak menerima parameter kursi atau tier: kursi ditetapkan secara otomatis dari tier terendah yang masih tersedia. Membuat undangan saat tidak ada kursi kosong akan gagal dengan error 400 alih-alih membeli kursi. Menarik undangan, membiarkannya kedaluwarsa, atau menghapus anggota di kemudian hari akan mengembalikan kursi ke kumpulan.
 
 ### Grup dan peran
 
-Grup menghubungkan anggota dengan peran kustom ("role-based access control" (kontrol akses berbasis peran), yaitu `rbac` dalam path endpoint dan nama scope). Grup dimiliki oleh enterprise Anda secara keseluruhan (organisasi induk bersama setiap organisasi di bawahnya), bukan oleh satu organisasi, sehingga scope grup (`read:rbac_groups` dan `write:rbac_groups`) memerlukan kunci yang dibuat untuk semua organisasi yang tertaut. Setiap grup membawa `source_type`: `direct` untuk grup yang dibuat di claude.ai, `scim` untuk grup yang disediakan oleh penyedia identitas Anda. Field `role_ids` pada grup mencantumkan ID peran kustom yang terlampir padanya; uraikan menjadi nama dan izin dengan [endpoint peran kustom](https://platform.claude.com/docs/id/manage-claude/user-management#custom-roles), dengan catatan bahwa katalog peran bersifat per organisasi sementara grup berlaku di seluruh enterprise, sehingga mengambil peran milik organisasi lain di enterprise Anda akan mengembalikan 404 untuk kunci Anda. Field ini bernilai `null` (bukan `[]`) ketika data peran untuk sementara tidak tersedia, jadi coba lagi untuk membedakan pembacaan yang terdegradasi dari grup tanpa peran.
+Grup menghubungkan anggota dengan peran kustom (“role-based access control” (kontrol akses berbasis peran), yaitu `rbac` dalam path endpoint dan nama scope). Grup dimiliki oleh enterprise Anda secara keseluruhan (organisasi induk bersama setiap organisasi di bawahnya), bukan oleh satu organisasi, sehingga scope grup (`read:rbac_groups` dan `write:rbac_groups`) memerlukan kunci yang dibuat untuk semua organisasi yang tertaut. Setiap grup membawa `source_type`: `direct` untuk grup yang dibuat di claude.ai, `scim` untuk grup yang disediakan oleh penyedia identitas Anda. Field `role_ids` pada grup mencantumkan ID peran kustom yang terlampir padanya; uraikan menjadi nama dan izin dengan [endpoint peran kustom](https://platform.claude.com/docs/id/manage-claude/user-management#custom-roles), dengan catatan bahwa katalog peran bersifat per organisasi sementara grup berlaku di seluruh enterprise, sehingga mengambil peran milik organisasi lain di enterprise Anda akan mengembalikan 404 untuk kunci Anda. Field ini bernilai `null` (bukan `[]`) ketika data peran untuk sementara tidak tersedia, jadi coba lagi untuk membedakan pembacaan yang terdegradasi dari grup tanpa peran.
 
 ## Pembuatan versi
 

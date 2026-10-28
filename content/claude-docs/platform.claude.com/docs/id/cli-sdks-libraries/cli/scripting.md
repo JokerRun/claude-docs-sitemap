@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: bd4c61b18035d1f1db2a6ab306f6a3c3a3d725cf2b264e0b2a78988a164b43c3
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: c018eec29fb008f63fce7e594880b10e7ac68bc9b86291210f109ab0afc87fb9
 ---
 
 ---
@@ -105,15 +105,15 @@ Agent not found.
 
 [Claude Code](https://code.claude.com/docs/id/overview) dapat menggunakan CLI `ant` secara langsung tanpa konfigurasi tambahan. Dengan CLI yang sudah terinstal dan terautentikasi, Anda dapat meminta Claude Code untuk mengoperasikan sumber daya API Anda secara langsung. Misalnya:
 
-* "Tampilkan daftar sesi agen terbaru saya dan rangkum mana saja yang mengalami error."
-* "Unggah setiap PDF di `./reports` ke Files API dan cetak ID yang dihasilkan."
-* "Ambil event untuk sesi `session_01...` dan beri tahu saya di mana agen tersebut macet."
+* “Tampilkan daftar sesi agen terbaru saya dan rangkum mana saja yang mengalami error.”
+* “Unggah setiap PDF di `./reports` ke Files API dan cetak ID yang dihasilkan.”
+* “Ambil event untuk sesi `session_01...` dan beri tahu saya di mana agen tersebut macet.”
 
 Claude Code menjalankan perintah `ant`, mengurai output terstruktur, dan menalar hasilnya (tanpa memerlukan kode integrasi khusus).
 
 ## Mengautentikasi permintaan curl dengan kredensial CLI
 
-Skrip yang memanggil API dengan `curl` atau klien HTTP lain dapat menggunakan kredensial yang disimpan oleh [`ant auth login`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart#authentication) alih-alih "API key" (kunci API) statis. Token akses OAuth ditempatkan di header `Authorization` sebagai bearer token; header `x-api-key` hanya untuk kunci API statis.
+Skrip yang memanggil API dengan `curl` atau klien HTTP lain dapat menggunakan kredensial yang disimpan oleh [`ant auth login`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart#authentication) alih-alih “API key” (kunci API) statis. Token akses OAuth ditempatkan di header `Authorization` sebagai bearer token; header `x-api-key` hanya untuk kunci API statis.
 
 `ant auth print-credentials --access-token` mencetak token akses profil aktif, dengan memperbaruinya terlebih dahulu jika sudah kedaluwarsa atau hampir kedaluwarsa:
 

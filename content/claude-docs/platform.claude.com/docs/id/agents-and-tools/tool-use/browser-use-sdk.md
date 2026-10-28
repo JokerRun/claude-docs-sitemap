@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: d380515b68d9a72193262bbd0c9636cc1998803a605057cf0a004ef0f2b07eb5
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 8ed9ce441ec920bd103e28a13712f08a6b607eea5996ec0e6ff5cef028c1d6c0
 ---
 
 ---
@@ -586,7 +586,7 @@ Aksi Claude berikutnya bergantung pada halaman yang dibacanya. Sebuah halaman, a
 SDK menerapkan langkah 1, 4, dan 5 melalui kebijakan dan callable yang Anda berikan. Langkah 2, 3, dan 6 menjadi tanggung jawab driver dan deployment Anda. Tindakan pencegahan di [Pertimbangan keamanan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#security-considerations) juga berlaku.
 
 <Note>
-  Classifier "prompt injection" (injeksi prompt) milik Anthropic, yang dijelaskan di [Pertimbangan keamanan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#security-considerations), saat ini tidak berjalan pada permintaan toolset browser yang dikirim melalui Amazon Bedrock.
+  Classifier “prompt injection” (injeksi prompt) milik Anthropic, yang dijelaskan di [Pertimbangan keamanan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#security-considerations), saat ini tidak berjalan pada permintaan toolset browser yang dikirim melalui Amazon Bedrock.
 </Note>
 
 ### Menulis kebijakan URL
@@ -713,7 +713,7 @@ Request hook seperti ini tidak melihat handshake WebSocket, request service-work
 
 ### Menerapkan kebijakan egress pada container
 
-Intersepsi tidak dapat melihat setiap permintaan yang dibuat browser, dan kebijakan URL tidak melihat ke mana suatu nama di-resolve. Kebijakan "egress" (lalu lintas keluar) yang ditegakkan oleh jaringan container mencakup keduanya:
+Intersepsi tidak dapat melihat setiap permintaan yang dibuat browser, dan kebijakan URL tidak melihat ke mana suatu nama di-resolve. Kebijakan “egress” (lalu lintas keluar) yang ditegakkan oleh jaringan container mencakup keduanya:
 
 * Blokir rentang alamat link-local dan privat di IPv4 dan IPv6. Itu termasuk alamat metadata cloud `169.254.169.254`.
 * Izinkan koneksi keluar hanya ke host yang dibutuhkan tugas. Jika aturan Anda mencocokkan alamat IP, resolve hostname yang Anda izinkan saat container dimulai.

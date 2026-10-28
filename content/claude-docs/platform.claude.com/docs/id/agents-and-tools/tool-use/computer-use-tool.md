@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: f767e591e872cf1831215411f9806b893e4652e57998ae0baf472352d43e2c50
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 15129a26c6cc2b29b9917f61ffff0e31ac4139ff9f34377bad5d2259153b1e1e
 ---
 
 ---
@@ -42,7 +42,7 @@ featureMetadata:
   **Mulai dengan toolset SDK:** Untuk `computer_toolset_20260801`, SDK Python dan TypeScript memiliki kelas computer toolset, dalam versi beta. Mulailah dari [integrasi mitra](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#partner-integrations), atau lihat bagian [computer toolset](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk#computer-toolset) di halaman toolset SDK. Gunakan halaman ini sebagai referensi alat, atau saat Anda menangani panggilan alat sendiri.
 </Note>
 
-Claude dapat berinteraksi dengan lingkungan komputer melalui alat "computer use" (penggunaan komputer), yang menyediakan kemampuan tangkapan layar serta kendali mouse/keyboard untuk interaksi desktop secara otonom.
+Claude dapat berinteraksi dengan lingkungan komputer melalui alat “computer use” (penggunaan komputer), yang menyediakan kemampuan tangkapan layar serta kendali mouse/keyboard untuk interaksi desktop secara otonom.
 
 Alat penggunaan komputer adalah sebuah [client toolset](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets) (toolset klien) yang didefinisikan oleh Anthropic: satu entri `{"type": "computer_toolset_20260801"}` dalam `tools` memberi Claude 17 alat anggota seperti `screenshot`, `left_click`, `type`, dan `zoom`, dan aplikasi Anda menjalankan setiap panggilan di lingkungan yang Anda kendalikan. Alat ini saat ini belum tersedia di [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/tools). Panggilan Claude berupa blok `tool_use` yang `name`-nya adalah nama anggota dan yang membawa `"toolset_name": "computer"`, sering kali beberapa per giliran (sebuah [aksi batch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions)).
 
@@ -324,7 +324,7 @@ Aplikasi Anda menjalankan setiap panggilan secara berurutan di lingkungan Anda s
 <Steps>
   <Step title="Berikan Claude alat penggunaan komputer dan prompt pengguna">
     * Tambahkan toolset penggunaan komputer (dan secara opsional alat lain) ke array `tools` dari permintaan API Anda.
-    * Sertakan prompt pengguna yang memerlukan interaksi desktop, misalnya, "Simpan gambar kucing ke desktop saya."
+    * Sertakan prompt pengguna yang memerlukan interaksi desktop, misalnya, “Simpan gambar kucing ke desktop saya.”
   </Step>
 
   <Step title="Claude merespons dengan panggilan alat anggota">
@@ -346,11 +346,11 @@ Aplikasi Anda menjalankan setiap panggilan secara berurutan di lingkungan Anda s
   </Step>
 </Steps>
 
-Pengulangan langkah 3 dan 4 tanpa input pengguna disebut sebagai "agent loop" (loop agen), yaitu Claude merespons dengan permintaan penggunaan alat dan aplikasi Anda merespons Claude dengan hasil evaluasi permintaan tersebut.
+Pengulangan langkah 3 dan 4 tanpa input pengguna disebut sebagai “agent loop” (loop agen), yaitu Claude merespons dengan permintaan penggunaan alat dan aplikasi Anda merespons Claude dengan hasil evaluasi permintaan tersebut.
 
 ### Aksi batch
 
-Claude dapat merencanakan urutan tindakan singkat, seperti klik, ketik, lalu mengambil tangkapan layar, dan mengembalikannya bersama-sama dalam satu respons. Ini disebut "batch action" (aksi batch); aksi ini menggunakan bentuk respons yang sama dengan [penggunaan alat paralel](https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use) dengan satu perbedaan: Anda menjalankan blok secara berurutan, bukan secara bersamaan.
+Claude dapat merencanakan urutan tindakan singkat, seperti klik, ketik, lalu mengambil tangkapan layar, dan mengembalikannya bersama-sama dalam satu respons. Ini disebut “batch action” (aksi batch); aksi ini menggunakan bentuk respons yang sama dengan [penggunaan alat paralel](https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use) dengan satu perbedaan: Anda menjalankan blok secara berurutan, bukan secara bersamaan.
 
 Respons dengan batch tiga tindakan terlihat seperti ini:
 
@@ -450,7 +450,7 @@ Penggunaan komputer memerlukan lingkungan komputasi ter-sandbox tempat Claude da
 
 3. **Aplikasi:** Aplikasi Linux yang sudah terpasang seperti Firefox, LibreOffice, editor teks, dan pengelola file yang dapat digunakan Claude untuk menyelesaikan tugas.
 
-4. **Implementasi alat:** Kode integrasi yang menerjemahkan permintaan alat abstrak Claude (seperti "gerakkan mouse" atau "ambil tangkapan layar") menjadi operasi aktual di lingkungan virtual.
+4. **Implementasi alat:** Kode integrasi yang menerjemahkan permintaan alat abstrak Claude (seperti “gerakkan mouse” atau “ambil tangkapan layar”) menjadi operasi aktual di lingkungan virtual.
 
 5. **Loop agen:** Program yang menangani komunikasi antara Claude dan lingkungan, mengirimkan tindakan Claude ke lingkungan dan mengembalikan hasilnya (tangkapan layar, output perintah) kembali ke Claude.
 
@@ -475,7 +475,7 @@ Meningkatkan versi integrasi `computer_20251124` yang sudah ada? Mulailah dengan
 
 ### Pahami loop agen
 
-Inti dari penggunaan komputer adalah "loop agen": sebuah siklus di mana Claude meminta tindakan alat, aplikasi Anda menjalankannya, dan mengembalikan hasilnya ke Claude. Loop ini menggunakan client yang Anda buat di [Mulai cepat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#quick-start), array `tools` yang hanya mendeklarasikan toolset penggunaan komputer, dan helper pemrosesan panggilan alat di bawah [Implementasikan alat penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#implement-the-computer-use-tool). Jika Anda juga mendeklarasikan alat lain, seperti alat bash dan editor teks dari Mulai cepat, lakukan dispatch blok `tool_use` mereka dalam proses yang sama; helper hanya menjawab panggilan anggota penggunaan komputer, dan loop memperlakukan giliran tanpa panggilan yang terjawab sebagai selesai. Berikut contoh yang disederhanakan:
+Inti dari penggunaan komputer adalah “loop agen”: sebuah siklus di mana Claude meminta tindakan alat, aplikasi Anda menjalankannya, dan mengembalikan hasilnya ke Claude. Loop ini menggunakan client yang Anda buat di [Mulai cepat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#quick-start), array `tools` yang hanya mendeklarasikan toolset penggunaan komputer, dan helper pemrosesan panggilan alat di bawah [Implementasikan alat penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#implement-the-computer-use-tool). Jika Anda juga mendeklarasikan alat lain, seperti alat bash dan editor teks dari Mulai cepat, lakukan dispatch blok `tool_use` mereka dalam proses yang sama; helper hanya menjawab panggilan anggota penggunaan komputer, dan loop memperlakukan giliran tanpa panggilan yang terjawab sebagai selesai. Berikut contoh yang disederhanakan:
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -731,9 +731,9 @@ Loop berlanjut hingga Claude merespons tanpa meminta alat apa pun (tugas selesai
 
 ### Prompt sistem
 
-Saat Anda menyertakan alat penggunaan komputer dalam permintaan, API menghasilkan "system prompt" (prompt sistem) khusus penggunaan komputer. Prompt ini mirip dengan [prompt sistem penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#tool-use-system-prompt) tetapi dimulai dengan:
+Saat Anda menyertakan alat penggunaan komputer dalam permintaan, API menghasilkan “system prompt” (prompt sistem) khusus penggunaan komputer. Prompt ini mirip dengan [prompt sistem penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#tool-use-system-prompt) tetapi dimulai dengan:
 
-> You have access to a set of functions you can use to answer the user's question. This includes access to a sandboxed computing environment. You do NOT currently have the ability to inspect files or interact with external resources, except by invoking the below functions.
+> You have access to a set of functions you can use to answer the user’s question. This includes access to a sandboxed computing environment. You do NOT currently have the ability to inspect files or interact with external resources, except by invoking the below functions.
 
 Seperti pada penggunaan alat biasa, parameter `system` yang diberikan pengguna tetap dihormati dan digunakan dalam penyusunan prompt sistem gabungan.
 
@@ -1843,7 +1843,7 @@ Jika klik meleset dari targetnya, penyebabnya biasanya salah satu dari berikut i
 | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Klik secara konsisten bergeser ke satu arah                 | Koordinat Claude, yang berada dalam ruang piksel tangkapan layar yang Anda kembalikan, diterapkan ke tampilan dengan ukuran berbeda tanpa penskalaan | Skalakan setiap koordinat dengan rasio ukuran layar Anda terhadap ukuran tangkapan layar Anda sebelum mengklik (lihat [Menyesuaikan ukuran tangkapan layar agar sesuai batas gambar](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions)); pada tampilan macOS Retina, perhitungkan rasio piksel perangkat 2x |
 | Klik mendarat di area yang tepat tetapi meleset dari target | Target sangat kecil, detail hilang saat menurunkan skala sumber 4K+, atau rasio aspek terdistorsi                                                    | Biarkan anggota `zoom` tetap aktif dan implementasikan agar Claude dapat memeriksa wilayah tersebut pada resolusi penuh; tangkap pada DPI lebih rendah atau potong ke wilayah yang relevan; pertahankan rasio aspek saat mengubah ukuran                                                                                                                                                    |
-| Claude mengklik elemen yang sepenuhnya salah                | Instruksi ambigu, atau elemen yang mirip secara visual di dekatnya                                                                                   | Gunakan prompt posisional ("tombol Submit biru di kanan bawah"); pecah interaksi menjadi langkah-langkah yang lebih kecil                                                                                                                                                                                                                                                                   |
+| Claude mengklik elemen yang sepenuhnya salah                | Instruksi ambigu, atau elemen yang mirip secara visual di dekatnya                                                                                   | Gunakan prompt posisional (“tombol Submit biru di kanan bawah”); pecah interaksi menjadi langkah-langkah yang lebih kecil                                                                                                                                                                                                                                                                   |
 | Akurasi secara konsisten buruk                              | Resolusi terlalu rendah                                                                                                                              | Coba 1280x720 sebagai baseline                                                                                                                                                                                                                                                                                                                                                              |
 
 <Tip>

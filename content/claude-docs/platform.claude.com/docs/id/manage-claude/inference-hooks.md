@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 962ba77b9253c5b9364e7bbfe5a88f40ea2ea50289a382f55436b76b6a3b63ff
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 59ee786c48d555e50d8d9a1817540b39a6e68214a5e9edad768055921d2ba835
 ---
 
 ---
@@ -15,7 +15,7 @@ description: Kirim setiap prompt yang diatur ke server keamanan AI organisasi An
   Inference hooks hanya tersedia untuk organisasi Claude Enterprise. Mengonfigurasinya memerlukan izin `organization:manage` di claude.ai, yang hanya dimiliki oleh peran Owner dan Primary owner; lihat [Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration).
 </Note>
 
-Inference hooks memungkinkan organisasi Claude Enterprise merutekan setiap prompt yang diatur melalui "AI security server" (server keamanan AI), yaitu layanan HTTPS yang dioperasikan oleh organisasi atau vendor keamanannya, sebelum inferensi berjalan. Saat pengguna mengirimkan prompt, Anthropic mengirimkan transkrip percakapan ke server keamanan AI Anda dan menunggu putusan izinkan atau tolak; permintaan yang ditolak tidak pernah mencapai model. Tim keamanan dan kepatuhan menggunakan Inference hooks untuk menegakkan kebijakan data secara inline, dan pengembang membangun server keamanan AI yang mengevaluasi setiap permintaan.
+Inference hooks memungkinkan organisasi Claude Enterprise merutekan setiap prompt yang diatur melalui “AI security server” (server keamanan AI), yaitu layanan HTTPS yang dioperasikan oleh organisasi atau vendor keamanannya, sebelum inferensi berjalan. Saat pengguna mengirimkan prompt, Anthropic mengirimkan transkrip percakapan ke server keamanan AI Anda dan menunggu putusan izinkan atau tolak; permintaan yang ditolak tidak pernah mencapai model. Tim keamanan dan kepatuhan menggunakan Inference hooks untuk menegakkan kebijakan data secara inline, dan pengembang membangun server keamanan AI yang mengevaluasi setiap permintaan.
 
 Karena hook berjalan di server Anthropic, setelah permintaan meninggalkan klien dan sebelum model berjalan, hook ini berlaku secara seragam untuk setiap permintaan yang diatur, di semua produk Claude di organisasi Anda, tanpa perlu menginstal atau menerapkan apa pun di perangkat pengguna.
 
@@ -44,7 +44,7 @@ Sistem Inference hooks tidak menyimpan salinan konten prompt atau respons sendir
 
 Jika server keamanan AI Anda tidak dapat dijangkau, mengembalikan error, atau tidak merespons dalam batas waktu, pengaturan penanganan kegagalan organisasi Anda menentukan hasilnya: blokir permintaan, atau izinkan permintaan berlanjut tanpa inspeksi. Kegagalan berkelanjutan yang disebabkan oleh server Anda akan memicu circuit breaker: Anthropic berhenti menghubunginya dan menerapkan pengaturan penanganan kegagalan Anda ke setiap permintaan, lalu mereset breaker secara otomatis setelah mendeteksi bahwa server Anda kembali mengembalikan verdict; lihat [Circuit breaker](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration#circuit-breaker).
 
-Penegakan dapat diluncurkan sesuai kecepatan Anda, sehingga tidak ada yang harus diblokir pada hari pertama: "shadow mode" (mode bayangan) mengamati putusan pada lalu lintas langsung tanpa memblokir apa pun, persentase peluncuran memeriksa sebagian permintaan sesuai proporsi yang Anda pilih, dan pengecualian membebaskan anggota peran tertentu sepenuhnya. Lihat [Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration).
+Penegakan dapat diluncurkan sesuai kecepatan Anda, sehingga tidak ada yang harus diblokir pada hari pertama: “shadow mode” (mode bayangan) mengamati putusan pada lalu lintas langsung tanpa memblokir apa pun, persentase peluncuran memeriksa sebagian permintaan sesuai proporsi yang Anda pilih, dan pengecualian membebaskan anggota peran tertentu sepenuhnya. Lihat [Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration).
 
 Untuk skema permintaan dan respons lengkap, verifikasi tanda tangan, dan detail operasional, lihat [Mengembangkan integrasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint).
 
@@ -65,7 +65,7 @@ Langkah-langkahnya bergantung pada aplikasi:
 
 ## Kasus penggunaan
 
-* **"Data loss prevention" (pencegahan kehilangan data), atau DLP.** Teruskan transkrip ke pemindai DLP Anda dan tolak prompt yang memuat materi yang diatur regulasi atau bersifat rahasia. Ini adalah penerapan yang paling umum.
+* **“Data loss prevention” (pencegahan kehilangan data), atau DLP.** Teruskan transkrip ke pemindai DLP Anda dan tolak prompt yang memuat materi yang diatur regulasi atau bersifat rahasia. Ini adalah penerapan yang paling umum.
 * **Pengarsipan transkrip secara real-time.** Arsipkan setiap transkrip saat tiba dan selalu kembalikan `allow`. Cara ini menjadi alternatif berbasis push untuk polling [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api).
 * **Telemetri prompt.** Ukur cara organisasi Anda menggunakan Claude, tepat pada saat penggunaan.
 * **Mesin kebijakan.** Tegakkan aturan Anda sendiri sebelum inferensi, seperti allowlist model, pembatasan berbasis proyek, atau kontrol jam kerja.

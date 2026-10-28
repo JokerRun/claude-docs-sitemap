@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 1de8f170ac526947b390f899aac49e4548698a8afd52ed7766bd2d719751e342
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 34f3ae0afccd1a3eb2ad910dfc9f133ef11afd70ae3c10ea942fb820ab0cc2b9
 ---
 
 ---
@@ -44,7 +44,7 @@ Claude bekerja dengan PDF standar apa pun. Pastikan ukuran permintaan Anda memen
 Kedua batas tersebut berlaku untuk seluruh payload permintaan, termasuk konten lain apa pun yang dikirim bersama PDF. Untuk PDF berukuran besar, pertimbangkan untuk mengunggahnya dengan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dan mereferensikannya melalui `file_id` agar payload permintaan tetap kecil.
 
 <Tip>
-  PDF yang padat (banyak halaman dengan font kecil, tabel kompleks, atau grafis yang berat) dapat memenuhi "context window" (jendela konteks) sebelum mencapai batas halaman. Permintaan dengan PDF berukuran besar juga dapat gagal sebelum mencapai batas halaman, bahkan saat menggunakan Files API. Cobalah membagi dokumen menjadi beberapa bagian; untuk file besar, karena setiap halaman diproses sebagai gambar, menurunkan resolusi (downsampling) gambar yang disematkan juga dapat membantu.
+  PDF yang padat (banyak halaman dengan font kecil, tabel kompleks, atau grafis yang berat) dapat memenuhi “context window” (jendela konteks) sebelum mencapai batas halaman. Permintaan dengan PDF berukuran besar juga dapat gagal sebelum mencapai batas halaman, bahkan saat menggunakan Files API. Cobalah membagi dokumen menjadi beberapa bagian; untuk file besar, karena setiap halaman diproses sebagai gambar, menurunkan resolusi (downsampling) gambar yang disematkan juga dapat membantu.
 </Tip>
 
 Karena dukungan PDF bergantung pada kemampuan vision Claude, dukungan ini tunduk pada [keterbatasan dan pertimbangan](https://platform.claude.com/docs/id/build-with-claude/vision#limitations) yang sama seperti tugas vision lainnya.

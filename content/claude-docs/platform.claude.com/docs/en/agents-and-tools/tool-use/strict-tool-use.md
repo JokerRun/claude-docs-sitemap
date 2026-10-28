@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 430fb6eb8e05d76b7bac61ec500aef9e11aeb6e047a535d88942fc93a00f1865
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 70af0ce486e43d3c1ccb505249ad08079896c6fe33a5c231bcf46adac19c39b3
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-u
 description: Enforce JSON Schema compliance on Claude's tool inputs with grammar-constrained sampling.
 ---
 
-Setting `strict: true` on a tool definition guarantees Claude's tool inputs match your JSON Schema by constraining the model's token sampling to schema-valid outputs (a technique called grammar-constrained sampling). This page covers why strict mode matters for agents, how to enable it, and common use cases. For the supported JSON Schema subset, see [JSON Schema limitations](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#json-schema-limitations). For non-strict schema guidance, see [Define tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools).
+Setting `strict: true` on a tool definition guarantees Claude’s tool inputs match your JSON Schema by constraining the model’s token sampling to schema-valid outputs (a technique called grammar-constrained sampling). This page covers why strict mode matters for agents, how to enable it, and common use cases. For the supported JSON Schema subset, see [JSON Schema limitations](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#json-schema-limitations). For non-strict schema guidance, see [Define tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools).
 
 Strict tool use validates tool parameters, ensuring Claude calls your functions with correctly typed arguments. Use strict tool use when you need to:
 
@@ -375,7 +375,7 @@ For example, suppose a booking system needs `passengers: int`. Without strict mo
 
 <Steps>
   <Step title="Define your tool schema">
-    Create a JSON schema for your tool's `input_schema`. The schema uses standard JSON Schema format with some limitations (see [JSON Schema limitations](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#json-schema-limitations)).
+    Create a JSON schema for your tool’s `input_schema`. The schema uses standard JSON Schema format with some limitations (see [JSON Schema limitations](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#json-schema-limitations)).
   </Step>
 
   <Step title="Add strict: true">
@@ -387,7 +387,7 @@ For example, suppose a booking system needs `passengers: int`. Without strict mo
   </Step>
 </Steps>
 
-The [computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) and [browser use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool) toolset entries (`computer_toolset_20260801` and `browser_toolset_20260801`) don't accept `strict: true`; a request that sets it on either entry is rejected.
+The [computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) and [browser use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool) toolset entries (`computer_toolset_20260801` and `browser_toolset_20260801`) don’t accept `strict: true`; a request that sets it on either entry is rejected.
 
 ## Common use cases
 
@@ -1134,7 +1134,7 @@ For ZDR and HIPAA eligibility across all features, see [API and data retention](
 
 <CardGroup cols={2}>
   <Card title="Web fetch tool" icon="link" href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool">
-    Fetch and read content from specific URLs to bring live web content into Claude's context.
+    Fetch and read content from specific URLs to bring live web content into Claude’s context.
   </Card>
 
   <Card title="Tool use with prompt caching" icon="database" href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching">

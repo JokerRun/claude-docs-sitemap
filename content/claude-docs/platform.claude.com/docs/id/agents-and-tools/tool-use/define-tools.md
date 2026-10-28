@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: c520105ea91d971e72e7f5c506eebac9b33bac955132a1922d7d08e0ecd2c6e2
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 1b74a288e80479622f0c9de8fb6ba2b86f17c9edbae119992c40912bbdd56c3a
 ---
 
 ---
@@ -22,7 +22,7 @@ description: Tentukan skema alat, tulis deskripsi yang efektif, dan kendalikan k
 
 ## Menentukan alat klien
 
-"Client tools" (alat klien) ditentukan dalam parameter tingkat atas `tools` pada permintaan API. Alat klien berskema Anthropic, seperti alat bash dan editor teks, dideklarasikan dengan `type` berversi tanggal; lihat halaman masing-masing alat, yang ditautkan dari [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference), untuk field yang diterimanya. Alat computer use dan browser use adalah [toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets): satu entri tanpa `name` yang mendeklarasikan sekumpulan alat anggota yang tetap. Definisi alat yang ditentukan pengguna mencakup:
+“Client tools” (alat klien) ditentukan dalam parameter tingkat atas `tools` pada permintaan API. Alat klien berskema Anthropic, seperti alat bash dan editor teks, dideklarasikan dengan `type` berversi tanggal; lihat halaman masing-masing alat, yang ditautkan dari [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference), untuk field yang diterimanya. Alat computer use dan browser use adalah [toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets): satu entri tanpa `name` yang mendeklarasikan sekumpulan alat anggota yang tetap. Definisi alat yang ditentukan pengguna mencakup:
 
 | Parameter        | Deskripsi                                                                                                                                                                                                                                           |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -56,12 +56,12 @@ Untuk kumpulan lengkap properti opsional yang tersedia pada setiap definisi alat
   }
   ```
 
-  Alat ini, bernama `get_weather`, mengharapkan objek input dengan string `location` yang wajib dan string `unit` opsional yang harus berupa "celsius" atau "fahrenheit".
+  Alat ini, bernama `get_weather`, mengharapkan objek input dengan string `location` yang wajib dan string `unit` opsional yang harus berupa `celsius` atau `fahrenheit`.
 </Accordion>
 
 ### Prompt sistem penggunaan alat
 
-Saat Anda memanggil Claude API dengan parameter `tools`, API menyusun "system prompt" (prompt sistem) khusus dari definisi alat, konfigurasi alat, dan prompt sistem apa pun yang ditentukan pengguna. Prompt yang disusun ini dirancang untuk menginstruksikan model agar menggunakan alat yang ditentukan dan menyediakan konteks yang diperlukan agar alat dapat beroperasi dengan benar:
+Saat Anda memanggil Claude API dengan parameter `tools`, API menyusun “system prompt” (prompt sistem) khusus dari definisi alat, konfigurasi alat, dan prompt sistem apa pun yang ditentukan pengguna. Prompt yang disusun ini dirancang untuk menginstruksikan model agar menggunakan alat yang ditentukan dan menyediakan konteks yang diperlukan agar alat dapat beroperasi dengan benar:
 
 ```text wrap
 In this environment you have access to a set of tools you can use to answer the user's question.
@@ -874,7 +874,7 @@ Memaksa alat juga melewati thinking pada setiap model yang menerima penggunaan a
 
 Saat menggunakan alat, Claude sering mengomentari apa yang sedang dilakukannya atau merespons pengguna secara alami sebelum memanggil alat.
 
-Misalnya, dengan prompt "What's the weather like in San Francisco right now, and what time is it there?", Claude mungkin merespons dengan:
+Misalnya, dengan prompt “What’s the weather like in San Francisco right now, and what time is it there?”, Claude mungkin merespons dengan:
 
 ```json JSON
 {

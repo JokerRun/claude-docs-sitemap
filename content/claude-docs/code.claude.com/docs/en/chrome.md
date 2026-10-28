@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/chrome
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 06e08b9fe52f9cd36dc117cee409138a0117aded8424077f54ee57e20a854761
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: c7ee4a6f0c3dc11354ff3a8899524f66a8713e64b7554be55f73602aa38bf757
 ---
 
 > ## Documentation Index
@@ -50,7 +50,7 @@ Before using Claude Code with Chrome, you need:
 
 In Enterprise organizations that have HIPAA enabled, Claude in Chrome is off by default, and an [Owner](https://code.claude.com/docs/en/server-managed-settings.md#access-control) can turn it on in [**Organization settings > Claude in Chrome**](https://claude.ai/admin-settings/browser-extension). Your Business Associate Agreement (BAA) with Anthropic doesn't cover data sent to third-party sites through Claude in Chrome. See the [Implementation Guide](https://trust.anthropic.com/resources?s=l1wrssd9hsbi4gak0tp5a6\&name=%5Banthropic%5D-hipaa-ready-offering-implementation-guide) for a list of Eligible Services.
 
-Chrome integration also requires signing in with `/login`. If you authenticate with an API key or a long-lived token from [`claude setup-token`](https://code.claude.com/docs/en/authentication#generate-a-long-lived-token), Claude Code keeps Chrome integration off, even when you pass `--chrome`, because the browser extension can't authenticate with those credentials. Before v2.1.216, these sessions could enable Chrome integration, but every attempt to connect to the browser extension failed with a 403 error.
+Chrome integration also requires signing in with `/login`. If you authenticate with an API key or a long-lived token from [`claude setup-token`](https://code.claude.com/docs/en/authentication#generate-a-long-lived-token), Claude Code keeps Chrome integration off, even when you pass `--chrome`. The browser extension can't authenticate with those credentials.
 
 > [!NOTE]
 >

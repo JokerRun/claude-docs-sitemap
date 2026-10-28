@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 6ae0491e6d20a4d37264d7047ef073de9736caf1446f4378913c625e4b212e7a
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 82ce506b326abd4d23f839c27bcdc686976f596da447f49fa392a9d38f2608f7
 ---
 
 ---
@@ -17,7 +17,7 @@ The mode is not an API parameter. It is built entirely from documented pieces:
 
 1. **An effort level:** requests run at a documented [Effort](https://platform.claude.com/docs/en/build-with-claude/effort) value such as `xhigh`. There is no hidden level above the ones on that page. This example sets effort at the top level of each request, which needs no beta header.
 2. **A mode reminder:** a [mid-conversation system message](https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages) tells the model the mode is active, with a one-line refresher every several turns and an exit notice when the mode is turned off. The top-level `system` field never changes, so the cached prefix stays intact.
-3. **Standing consent in the tool description:** the orchestration tool's description states that while the mode is on, the model should author and run a workflow for every substantive task without asking first.
+3. **Standing consent in the tool description:** the orchestration tool’s description states that while the mode is on, the model should author and run a workflow for every substantive task without asking first.
 
 <Note>
   This example uses mid-conversation system messages; for the models and platforms that support them, see [Mid-conversation system messages](https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages). The fan-out itself multiplies token usage: a single request can spawn many subagent conversations, so reserve the mode for work that justifies the cost.
@@ -876,7 +876,7 @@ The Workflow tool carries the real behavioral contract: the opt-in rule, the sta
 
 ## Run the bash tool locally
 
-The bash handler runs the requested command with a timeout, captures combined stdout and stderr, and truncates the result so a runaway command can't flood the context window. Commands run in the directory you launch the example from, so pointing it at a project means starting it there; when `DOC_TEST_MODE` is set, the harness instead gives bash a small throwaway fixture directory that is removed on exit. There is no sandbox here: the command runs with the permissions of the process that launched the example. For clarity this example runs each call in a fresh subshell rather than maintaining the persistent session the `bash_20250124` contract describes; a production agent should back the tool with a long-lived shell so that working directory, environment, and the `restart` action behave as documented.
+The bash handler runs the requested command with a timeout, captures combined stdout and stderr, and truncates the result so a runaway command can’t flood the context window. Commands run in the directory you launch the example from, so pointing it at a project means starting it there; when `DOC_TEST_MODE` is set, the harness instead gives bash a small throwaway fixture directory that is removed on exit. There is no sandbox here: the command runs with the permissions of the process that launched the example. For clarity this example runs each call in a fresh subshell rather than maintaining the persistent session the `bash_20250124` contract describes; a production agent should back the tool with a long-lived shell so that working directory, environment, and the `restart` action behave as documented.
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python
@@ -2880,7 +2880,7 @@ The fan-out accepts up to `MAX_TOTAL_SUBTASKS` prompts, runs them through the jo
 
 ## Toggle the mode with mid-conversation system messages
 
-The agent appends the user's message first, then any system messages that are due: the exit notice, the full mode text on entry, or the periodic refresher. Placing the system message after the user turn keeps every cached byte ahead of it untouched, and satisfies the placement rule that a system message follows a user turn.
+The agent appends the user’s message first, then any system messages that are due: the exit notice, the full mode text on entry, or the periodic refresher. Placing the system message after the user turn keeps every cached byte ahead of it untouched, and satisfies the placement rule that a system message follows a user turn.
 
 <CodeGroup>
   ```bash cURL

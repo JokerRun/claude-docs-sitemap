@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 96c9cb0c8f015be21b75b48a1f194ad74ebcc9fcfce33cbbf5095060fe772460
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 6d2391c84f8d41ea83fd8336940cb7818e9adabde373de5394b1edd42f35a280
 ---
 
 ---
@@ -23,7 +23,7 @@ Anthropic mengamankan control plane di seluruh lingkungan: integritas sesi dan a
 
 * **Kualitas image sandbox dan hardening runtime.** Anthropic tidak memeriksa atau memverifikasi image sandbox Anda. Ikuti praktik terbaik seperti menghapus Linux capabilities yang tidak diperlukan, menjalankan sebagai pengguna non-root, dan menggunakan root filesystem read-only.
 * **Kontrol egress jaringan.** Akses jaringan sandbox Anda ditentukan oleh aturan VPC dan firewall Anda. Tanpa pembatasan egress, eksekusi alat yang telah disusupi dapat menjangkau host eksternal mana pun. Batasi lalu lintas keluar hanya ke endpoint yang dibutuhkan alat Anda.
-* **Penyimpanan dan rotasi service key.** "Environment service key" (kunci layanan lingkungan), yaitu `ANTHROPIC_ENVIRONMENT_KEY`, mengotorisasi polling antrean kerja lingkungan Anda dan pengiriman hasil kembali ke sesi. Simpan kunci ini di secrets manager, bukan di file environment atau image sandbox. Rotasi segera jika Anda mencurigai adanya kebocoran.
+* **Penyimpanan dan rotasi service key.** “Environment service key” (kunci layanan lingkungan), yaitu `ANTHROPIC_ENVIRONMENT_KEY`, mengotorisasi polling antrean kerja lingkungan Anda dan pengiriman hasil kembali ke sesi. Simpan kunci ini di secrets manager, bukan di file environment atau image sandbox. Rotasi segera jika Anda mencurigai adanya kebocoran.
 * **Mengisolasi beban kerja yang tidak tepercaya.** Environment service key dibatasi cakupannya pada antrean kerja satu lingkungan. Jika Anda menjalankan kode yang tidak tepercaya di dalam sandbox Anda, pertimbangkan untuk menyediakan workspace dan lingkungan terpisah untuk setiap batas kepercayaan. Ini membatasi setiap kunci hanya pada sesi satu pengguna, bukan pada kumpulan bersama.
 * **Kredensial per sesi.** Setiap work item yang diklaim oleh worker Anda dapat membawa `secret` (csharp, go: `Secret`) per sesi, yang digunakan worker sebagai pengganti environment service key. Akses ke [memory store](https://platform.claude.com/docs/id/managed-agents/memory) memerlukan `secret` (csharp, go: `Secret`): endpoint memory store menolak environment key (lihat [Meneruskan secret work item](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#forward-the-work-items-secret)). Teruskan `secret` (csharp, go: `Secret`) hanya ke sandbox yang melayani sesi tersebut, jauhkan dari image dan volume bersama, dan jangan pernah mencatatnya di log.
 * **Radius dampak eksekusi alat.** Alat berjalan di dalam sandbox Anda dengan izin apa pun yang dimiliki proses Anda. Terapkan prinsip least privilege pada pengguna proses dan mount hanya direktori yang dibutuhkan alat Anda.

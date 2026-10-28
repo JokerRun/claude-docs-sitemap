@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: a6a1578e75c0e9c79345f68d89dab4ce030a1fba0249a60420111568f1f43a27
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 01e48b14236a56cfca908dc2f7319a6fff48d713a19c3f59cb83b65a957ed584
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Izinkan Claude meminta perintah shell yang dijalankan aplikasi Anda
 ---
 
 <Note>
-  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 Alat bash adalah [alat klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works): Claude tidak menjalankan perintah sendiri. Saat Anda menyertakan alat ini dalam permintaan, Claude membalas dengan blok `tool_use` yang menyebutkan perintah yang akan dijalankan. Aplikasi Anda menjalankan perintah tersebut dalam sesi bash yang dimilikinya dan mengembalikan output dalam blok `tool_result`.

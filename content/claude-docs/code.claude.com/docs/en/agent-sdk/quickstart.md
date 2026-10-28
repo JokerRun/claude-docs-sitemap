@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/quickstart
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 316c90f46dc6ab7abe321e6d9cc6b33dec73046ee362eff1147bdb27cd8e1deb
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: d44e71ca736c0266208a47aa823739200dd2b35d095f1fa0487bf9f12426c67a
 ---
 
 > ## Documentation Index
@@ -23,7 +23,7 @@ Use the Agent SDK to build an AI agent that reads your code, finds bugs, and fix
 
 ## Prerequisites
 
-* **Node.js 18+** or **Python 3.10+**
+* **Node.js 18.14+** or **Python 3.10+**
 * An **Anthropic account**. If you don't have one, [sign up here](https://platform.claude.com/).
 
 ## Setup

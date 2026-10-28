@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 71793a2e9d1e1d4abdc785d77cfe4ef2f303242622456c3c7ced866c5a8fc696
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 615356e8d75e88c2360c29e6e17a9ad8b2f47be752768c1c5c3445d5bc22182a
 ---
 
 ---
@@ -12,10 +12,10 @@ description: Lakukan streaming input alat tanpa buffering JSON di sisi server un
 ---
 
 <Note>
-  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-"Fine-grained tool streaming" (streaming alat fine-grained) mengirimkan input alat ke klien Anda saat Claude menghasilkannya, tanpa buffering atau validasi JSON di sisi server. Melewati langkah buffering mengurangi waktu hingga fragmen pertama dari parameter besar, seperti dokumen atau blok kode, dan fragmen-fragmen tersebut tiba melalui event [Streaming pesan](https://platform.claude.com/docs/id/build-with-claude/streaming) yang sama seperti penggunaan alat standar.
+“Fine-grained tool streaming” (streaming alat fine-grained) mengirimkan input alat ke klien Anda saat Claude menghasilkannya, tanpa buffering atau validasi JSON di sisi server. Melewati langkah buffering mengurangi waktu hingga fragmen pertama dari parameter besar, seperti dokumen atau blok kode, dan fragmen-fragmen tersebut tiba melalui event [Streaming pesan](https://platform.claude.com/docs/id/build-with-claude/streaming) yang sama seperti penggunaan alat standar.
 
 <Warning>
   Karena API tidak melakukan buffering atau memvalidasi input alat sebelum melakukan streaming, Anda mungkin menerima JSON yang parsial atau tidak valid. Respons yang berakhir dengan [stop reason](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons) `max_tokens` juga dapat memotong parameter di tengah jalan. Akumulasikan fragmen-fragmennya, lindungi proses parse, dan lihat [Menangani JSON tidak valid dalam respons alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming#handling-invalid-json-in-tool-responses) untuk cara mengembalikan input yang tidak dapat di-parse ke Claude.

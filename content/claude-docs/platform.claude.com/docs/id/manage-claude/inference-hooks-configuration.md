@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: f2eec5443842f5d9b4a6f489f93f8b1becefed663cee15ed1cca51ef76788e6a
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 180e366e5649fda76102425b6ba1806762d5cd720c4efa0bbb4ad66e1a1b2ad0
 ---
 
 ---
@@ -22,7 +22,7 @@ Inference hooks mengirimkan prompt dari organisasi Anda ke server keamanan AI pi
 Anda memerlukan:
 
 * Izin `organization:manage` di claude.ai, yang hanya dimiliki oleh peran **Owner** dan **Primary owner**. Peran **Admin** tidak memilikinya.
-* Endpoint HTTPS server keamanan AI yang menerima permintaan putusan. Endpoint ini harus berupa URL `https://` pada port 443, berada di host yang dapat dirutekan secara publik, dan dapat dijangkau tanpa pengalihan. Host "reverse tunnel" (terowongan balik), seperti ngrok dan layanan terowongan serupa, tidak didukung karena diblokir oleh kebijakan jaringan Anthropic. Jangan melakukan pengujian melalui terowongan; hosting server Anda di domain yang Anda kendalikan. Untuk [persyaratan hosting](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#receive-a-request) selengkapnya, serta cara membangun server dan memverifikasi permintaan yang ditandatangani, lihat [Mengembangkan integrasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint).
+* Endpoint HTTPS server keamanan AI yang menerima permintaan putusan. Endpoint ini harus berupa URL `https://` pada port 443, berada di host yang dapat dirutekan secara publik, dan dapat dijangkau tanpa pengalihan. Host “reverse tunnel” (terowongan balik), seperti ngrok dan layanan terowongan serupa, tidak didukung karena diblokir oleh kebijakan jaringan Anthropic. Jangan melakukan pengujian melalui terowongan; hosting server Anda di domain yang Anda kendalikan. Untuk [persyaratan hosting](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint#receive-a-request) selengkapnya, serta cara membangun server dan memverifikasi permintaan yang ditandatangani, lihat [Mengembangkan integrasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint).
 
 ## Menyiapkan Inference hooks
 
@@ -81,8 +81,8 @@ Langkah-langkah berikut membawa konfigurasi baru dari mati hingga menegakkan.
   <Step title="Pilih penanganan kegagalan dan batas waktu">
     Di bawah **Failure handling**, atur **Mode** untuk memilih apa yang terjadi ketika server keamanan AI tidak dapat dijangkau atau putusan mengalami timeout:
 
-    * **Block the request:** hentikan inferensi ketika server keamanan AI Anda tidak dapat memberikan putusan ("fail closed", gagal tertutup).
-    * **Allow the request:** biarkan permintaan diteruskan ke model tanpa pemeriksaan ("fail open", gagal terbuka).
+    * **Block the request:** hentikan inferensi ketika server keamanan AI Anda tidak dapat memberikan putusan (“fail closed”, gagal tertutup).
+    * **Allow the request:** biarkan permintaan diteruskan ke model tanpa pemeriksaan (“fail open”, gagal terbuka).
 
     Opsi ketiga pada menu dropdown, **Shadow mode**, adalah alat peluncuran alih-alih kebijakan kegagalan; lihat [Shadow mode](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration#shadow-mode).
 
@@ -152,7 +152,7 @@ Panel ini bersifat upaya terbaik (best-effort): jika Anthropic tidak dapat memba
 
 ## Circuit breaker
 
-Kegagalan webhook berkelanjutan yang disebabkan oleh server keamanan AI Anda akan memicu "circuit breaker" (pemutus sirkuit), yang menghentikan penegakan. Server Anda tidak lagi dihubungi, dan pilihan **Failure handling** Anda berlaku untuk setiap permintaan yang diperiksa. Jika **Block the request** dipilih, pengguna di organisasi Anda akan diblokir hingga pemutus sirkuit diatur ulang. Saat pemutus sirkuit terpicu, administrator juga diberi tahu melalui pusat notifikasi claude.ai.
+Kegagalan webhook berkelanjutan yang disebabkan oleh server keamanan AI Anda akan memicu “circuit breaker” (pemutus sirkuit), yang menghentikan penegakan. Server Anda tidak lagi dihubungi, dan pilihan **Failure handling** Anda berlaku untuk setiap permintaan yang diperiksa. Jika **Block the request** dipilih, pengguna di organisasi Anda akan diblokir hingga pemutus sirkuit diatur ulang. Saat pemutus sirkuit terpicu, administrator juga diberi tahu melalui pusat notifikasi claude.ai.
 
 Setiap pemicuan juga dicatat di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) organisasi Anda sebagai aktivitas `inference_hooks_circuit_breaker_tripped`. Dengan begitu, tim keamanan atau vendor Anda dapat membuat peringatan atas pemicuan dari sistem pemantauan yang sudah mereka jalankan, seperti SIEM yang menyerap feed tersebut. Satu aktivitas dicatat per pemicuan, bukan per permintaan yang terdampak. Pencatatan ini memerlukan Compliance API yang diaktifkan untuk organisasi Anda; lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision-coordinates
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 3377ca5c056ee6cf1507dd7ed4a324d67ac3e22d1ceebc94f57e18c62fa47bb5
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 621d060dcd4b8d304d33d5669cc0b008e5d780e727b6d1c595d0758d7689db25
 ---
 
 ---
@@ -11,12 +11,12 @@ url: https://platform.claude.com/docs/id/build-with-claude/vision-coordinates
 description: Bagaimana Claude mengubah ukuran gambar, dan cara bekerja dengan koordinat piksel yang dikembalikannya untuk bounding box, titik, dan elemen UI.
 ---
 
-Claude dapat menemukan dan memberi label pada wilayah suatu gambar (misalnya, mengembalikan "bounding box" (kotak pembatas) untuk tabel, bidang formulir, elemen bagan, atau komponen UI). Panduan ini membahas bagaimana Claude mengubah ukuran gambar sebelum memprosesnya dan cara bekerja dengan koordinat piksel yang dikembalikannya, sehingga kotak dan titik selaras dengan gambar asli Anda.
+Claude dapat menemukan dan memberi label pada wilayah suatu gambar (misalnya, mengembalikan “bounding box” (kotak pembatas) untuk tabel, bidang formulir, elemen bagan, atau komponen UI). Panduan ini membahas bagaimana Claude mengubah ukuran gambar sebelum memprosesnya dan cara bekerja dengan koordinat piksel yang dikembalikannya, sehingga kotak dan titik selaras dengan gambar asli Anda.
 
 Anda akan membutuhkan ini untuk pipeline OCR, ekstraksi formulir, penguraian bagan, penentuan lokasi elemen UI, dan tugas apa pun di mana Anda bertindak pada wilayah tertentu dari suatu gambar. Untuk pengiriman gambar, format yang didukung, dan batas resolusi per model, lihat [Vision](https://platform.claude.com/docs/id/build-with-claude/vision).
 
 <Note>
-  **Claude bekerja paling baik dengan koordinat piksel absolut.** Mintalah secara eksplisit dalam prompt Anda. Misalnya: *"Kembalikan bounding box setiap tabel sebagai `[x1, y1, x2, y2]` (sudut kiri atas dan kanan bawah) dalam koordinat piksel."* Claude tidak bekerja dengan baik ketika Anda meminta koordinat yang dinormalisasi, misalnya: *"Kembalikan koordinat bounding box antara `0` dan `1000`."* Selalu minta koordinat piksel dan lakukan normalisasi dalam kode Anda sendiri jika perlu. Untuk mendapatkan koordinat sebagai JSON yang dapat dibaca mesin alih-alih prosa, tentukan skema dengan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), misalnya objek dengan array `[x1, y1, x2, y2]` untuk setiap elemen yang terdeteksi.
+  **Claude bekerja paling baik dengan koordinat piksel absolut.** Mintalah secara eksplisit dalam prompt Anda. Misalnya: *“Kembalikan bounding box setiap tabel sebagai `[x1, y1, x2, y2]` (sudut kiri atas dan kanan bawah) dalam koordinat piksel.”* Claude tidak bekerja dengan baik ketika Anda meminta koordinat yang dinormalisasi, misalnya: *“Kembalikan koordinat bounding box antara `0` dan `1000`.”* Selalu minta koordinat piksel dan lakukan normalisasi dalam kode Anda sendiri jika perlu. Untuk mendapatkan koordinat sebagai JSON yang dapat dibaca mesin alih-alih prosa, tentukan skema dengan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), misalnya objek dengan array `[x1, y1, x2, y2]` untuk setiap elemen yang terdeteksi.
 </Note>
 
 Koordinat mengikuti konvensi gambar standar: titik asal `(0, 0)` adalah sudut kiri atas gambar, dengan x bertambah ke kanan dan y bertambah ke bawah. Koordinat yang dikembalikan Claude adalah posisi piksel dalam gambar yang diproses Claude: gambar Anda setelah Claude mengubah ukurannya agar sesuai dengan resolusi native model (lihat [Cara Claude mengubah ukuran dan menambahkan padding pada gambar](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images)). Untuk mendapatkan koordinat yang dapat langsung Anda gunakan, ubah ukuran gambar Anda terlebih dahulu agar koordinat terpetakan satu-ke-satu ke gambar yang Anda miliki (lihat [Ubah ukuran gambar Anda sebelum mengunggah](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#resize-your-image-before-uploading)), atau skalakan ulang koordinat yang dikembalikan Claude (lihat [Skalakan ulang koordinat ketika Anda tidak dapat mengubah ukuran terlebih dahulu](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#rescale-coordinates-when-you-cannot-pre-resize)).
@@ -445,7 +445,7 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
 
 1. Ubah ukuran gambar ke dimensi yang dikembalikan oleh helper pengubah ukuran. Jika gambar sudah sesuai dengan batas model, helper mengembalikan dimensinya tanpa perubahan dan tidak diperlukan pengubahan ukuran.
 2. [Kirim gambar yang telah diubah ukurannya](https://platform.claude.com/docs/id/build-with-claude/vision#send-images-to-claude) ke API. Jangan menambahkan padding sendiri. Claude menangani padding, dan padding tidak menggeser titik asal koordinat.
-3. Dalam prompt Anda, minta koordinat piksel secara eksplisit. Misalnya: *"Kembalikan titik klik untuk tombol Submit sebagai `[x, y]` dalam koordinat piksel."*
+3. Dalam prompt Anda, minta koordinat piksel secara eksplisit. Misalnya: *“Kembalikan titik klik untuk tombol Submit sebagai `[x, y]` dalam koordinat piksel.”*
 4. Gunakan koordinat yang dikembalikan secara langsung terhadap gambar yang Anda kirim. Jika Anda memerlukan koordinat yang dinormalisasi, bagi dengan dimensi gambar yang Anda kirim, bukan dengan dimensi gambar asli dan bukan dengan dimensi dengan padding.
 
 <Note>

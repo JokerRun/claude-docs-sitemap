@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-10-27T02:22:08.565782Z
-sha256: 0539e767b32f535402ba4049c05cdae4998525329a2616932df9f6cf70626c66
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 104a3d0ac691ca256d59b2d2e79473f432061c0764e8df1d22b6a536bf824585
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-Panduan ini memandu Anda dalam membuat agen, menyiapkan lingkungan, memulai sesi, dan melakukan streaming respons agen.
+Panduan ini memandu Anda dalam membuat agen, menyiapkan lingkungan, memulai sesi, dan melakukan “streaming” (streaming) respons agen.
 
 Biarkan Claude Code menyiapkan agen Anda untuk Anda
 
@@ -36,7 +36,7 @@ Biarkan Claude Code menyiapkan agen Anda untuk Anda
 
 ## Prasyarat
 
-* Sebuah [akun Claude Console](https://platform.claude.com)
+* Sebuah [akun Claude Console](https://platform.claude.com/)
 * Sebuah [kunci API](https://platform.claude.com/settings/keys) dari Console
 
 ## Instal CLI
@@ -52,7 +52,7 @@ Biarkan Claude Code menyiapkan agen Anda untuk Anda
     Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=2.3.0
+    VERSION=2.4.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -109,7 +109,7 @@ ant --version
 
   <Tab title="Go">
     ```bash
-    go get github.com/anthropics/anthropic-sdk-go
+    go get github.com/anthropics/anthropic-sdk-go/v2
     ```
   </Tab>
 
@@ -142,7 +142,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
 <Steps>
   <Step title="Buat agen">
-    Buat agen yang mendefinisikan model, "system prompt" (prompt sistem), dan alat yang tersedia.
+    Buat agen yang menentukan model, “system prompt” (prompt sistem), dan alat yang tersedia.
 
     <CodeGroup defaultLanguage="CLI">
       <CodeGroupItem>
@@ -361,7 +361,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
   </Step>
 
   <Step title="Buat lingkungan">
-    Lingkungan mendefinisikan sandbox tempat agen Anda berjalan. Lingkungan ini menggunakan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited` dengan package manager diizinkan, sehingga kode yang berjalan di sandbox dapat menjangkau [registri paket dan host kode](https://platform.claude.com/docs/id/managed-agents/environments#package-manager-hosts) publik. Pencarian web dan pengambilan web berjalan di luar sandbox, dan quickstart ini tidak memerlukannya. Dengan jaringan `limited`, [daftar `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`)](https://platform.claude.com/docs/id/managed-agents/environments#networking) juga berlaku untuk keduanya. Keduanya tidak mengembalikan halaman atau hasil pencarian apa pun di lingkungan ini, karena lingkungan ini tidak mencantumkan host apa pun. Untuk agen Anda sendiri, cantumkan host yang dibutuhkannya di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`).
+    Lingkungan menentukan sandbox tempat agen Anda berjalan. Lingkungan ini menggunakan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited` dengan manajer paket diizinkan, sehingga kode yang berjalan di sandbox dapat menjangkau [registri paket dan host kode](https://platform.claude.com/docs/id/managed-agents/environments#package-manager-hosts) publik. Pencarian web dan pengambilan web berjalan di luar sandbox, dan quickstart ini tidak memerlukannya. Dengan jaringan `limited`, [daftar `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`)](https://platform.claude.com/docs/id/managed-agents/environments#networking) juga berlaku untuk keduanya. Keduanya tidak mengembalikan halaman atau hasil pencarian di lingkungan ini, karena lingkungan ini tidak mencantumkan host apa pun. Untuk agen Anda sendiri, cantumkan host yang dibutuhkannya di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`).
 
     <CodeGroup defaultLanguage="CLI">
       <CodeGroupItem>
@@ -641,11 +641,11 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
     <CodeGroup exclude="shell">
       <CodeGroupItem language="cURL">
-        Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+        Alur kerja ini membutuhkan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
       </CodeGroupItem>
 
       <CodeGroupItem language="CLI">
-        Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+        Alur kerja ini membutuhkan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
       </CodeGroupItem>
 
       ```python Python
@@ -892,7 +892,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```
     </CodeGroup>
 
-    Agen menulis skrip Python, menjalankannya di sandbox, dan memverifikasi bahwa file output telah dibuat. Output Anda akan terlihat serupa dengan ini:
+    Agen menulis skrip Python, menjalankannya di sandbox, dan memverifikasi bahwa file output telah dibuat. Output Anda akan terlihat mirip dengan ini:
 
     ```text wrap
     I'll create a Python script that generates the first 20 Fibonacci numbers and saves them to a file.
@@ -919,19 +919,19 @@ Saat Anda mengirim event pengguna, Claude Managed Agents:
 
 ## Bangun aplikasi lengkap
 
-Masing-masing quickstart ini memasangkan Claude Managed Agents dengan framework chat populer untuk membuat aplikasi lengkap yang dapat dijalankan. Di masing-masing, framework merender antarmuka chat sementara sesi terkelola menjalankan loop agen di sisi server: sesi menyimpan transkrip, menjalankan alat di sandbox, dan melakukan streaming event yang dirender oleh front end.
+Masing-masing quickstart ini memadukan Claude Managed Agents dengan framework chat populer untuk membuat aplikasi lengkap yang dapat dijalankan. Di masing-masing, framework merender antarmuka chat sementara sesi terkelola menjalankan loop agen di sisi server: sesi menyimpan transkrip, menjalankan alat di sandbox, dan melakukan streaming event yang dirender oleh front end.
 
 <CardGroup cols={3}>
   <Card title="Chat SDK" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/chat-sdk">
-    Analis riset dalam chat browser yang dibangun dengan Chat SDK dari Vercel. Setiap percakapan adalah satu sesi persisten yang melakukan streaming balasannya sementara feed langsung menampilkan panggilan alat. Mengganti adapter Chat SDK memindahkan handler yang sama ke Slack, Teams, Discord, atau WhatsApp.
+    Seorang analis riset dalam chat browser yang dibangun dengan Chat SDK dari Vercel. Setiap percakapan adalah satu sesi persisten yang melakukan streaming balasannya sementara feed langsung menampilkan panggilan alat. Mengganti adaptor Chat SDK akan memindahkan handler yang sama ke Slack, Teams, Discord, atau WhatsApp.
   </Card>
 
   <Card title="assistant-ui" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/assistant-ui">
-    Analis spreadsheet dalam chat yang dibangun dari primitif assistant-ui. Sesi menjadi daftar thread, satu reducer mengubah log event sesi menjadi pesan dan kartu alat, dan setiap perintah bash merender gerbang Allow/Deny inline sebelum dijalankan.
+    Seorang analis spreadsheet dalam chat yang dibangun dari primitif assistant-ui. Sesi menjadi daftar thread, satu reducer mengubah log event sesi menjadi pesan dan kartu alat, dan setiap perintah bash merender gerbang Allow/Deny inline sebelum dijalankan.
   </Card>
 
   <Card title="CopilotKit (AG-UI)" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/copilot-kit-ag-ui">
-    Asisten keuangan pribadi dalam chat CopilotKit. Adapter AG-UI untuk Claude Managed Agents memetakan setiap thread chat ke sesi terkelola dan melakukan streaming balasan token demi token, dan alat kustom merender grafik interaktif secara inline dalam percakapan.
+    Asisten keuangan pribadi dalam chat CopilotKit. Adaptor AG-UI untuk Claude Managed Agents memetakan setiap thread chat ke sesi terkelola dan melakukan streaming balasan token demi token, dan alat kustom merender grafik interaktif secara inline dalam percakapan.
   </Card>
 </CardGroup>
 
@@ -939,7 +939,7 @@ Masing-masing quickstart ini memasangkan Claude Managed Agents dengan framework 
 
 <CardGroup cols={2}>
   <Card title="Definisikan agen Anda" icon="brain" href="https://platform.claude.com/docs/id/managed-agents/agent-setup">
-    Buat konfigurasi agen yang dapat digunakan ulang dan berversi
+    Buat konfigurasi agen yang dapat digunakan kembali dan berversi
   </Card>
 
   <Card title="Konfigurasikan lingkungan" icon="settings" href="https://platform.claude.com/docs/id/managed-agents/environments">
@@ -951,7 +951,7 @@ Masing-masing quickstart ini memasangkan Claude Managed Agents dengan framework 
   </Card>
 
   <Card title="Stream event sesi" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/events-and-streaming">
-    Tangani event dan arahkan agen di tengah eksekusi
+    Tangani event dan arahkan agen saat berjalan
   </Card>
 
   <Card title="Deployment terjadwal" icon="arrows-clockwise" href="https://platform.claude.com/docs/id/managed-agents/scheduled-deployments">

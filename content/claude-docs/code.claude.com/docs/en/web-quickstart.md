@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-quickstart
-fetched_at: 2026-10-27T02:22:08.565782Z
-sha256: fa7a88e188f85b8724a599a9f7784aea2ed22bdad1f9f30b26fdb514092ba549
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 55569fe515c8a5c64a32c1cd08c8fb5eb32185abc3fbc3e2e92b45189b116767
 ---
 
 > ## Documentation Index
@@ -189,7 +189,7 @@ After Claude pushes its changes to a branch, the **Changes** card in the panel b
 * You can also click **Changes** in the session's title bar, or in the bar's **⋮** menu.
 * To show the panel when it's hidden, click the **Show session rail** icon in the session's title bar, or in the bar's **⋮** menu.
 
-The diff compares the session's changes against its base branch by default. To compare against a different branch, select **Compare against** and pick one.
+The diff compares the session's changes against its base branch by default. To compare against a different branch, select **Compare against** and pick one. Against the base branch, the diff can [leave out changes that aren't pushed yet](https://code.claude.com/docs/en/claude-code-on-the-web.md#troubleshoot-a-missing-file-in-the-diff-view).
 
 **2. Leave inline comments**
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/using
-fetched_at: 2026-10-27T02:22:08.565782Z
-sha256: c00145acac36d24efe5f511ce3a7bec1c35990938c07b6bece1a3b0b4566a505
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: be58f138a356648ac2273c8e67ca6a7bd5bd5bb111c268be5d2de408c809f008
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/using
 description: Command structure, output formats, GJSON transforms, request bodies, and debugging for the ant CLI.
 ---
 
-This page covers the `ant` CLI's input and output mechanics that apply across every endpoint. To install and authenticate, see the [Quickstart](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/quickstart). To chain commands and version-control resources, see [CLI scripting and automation](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/scripting).
+This page covers the `ant` CLI’s input and output mechanics that apply across every endpoint. To install and authenticate, see the [Quickstart](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/quickstart). To chain commands and version-control resources, see [CLI scripting and automation](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/scripting).
 
 ## Command structure
 
@@ -23,7 +23,7 @@ ant <resource>[:<subresource>] <action> [flags]
 
 Run `ant --help` for the full resource list, or append `--help` to any subcommand for its flags.
 
-Resources in beta (including agents, sessions, deployments, and environments) live under the `beta:` prefix. Commands in this namespace automatically send the appropriate `anthropic-beta` header for that resource, so you don't need to pass it yourself. Use `--beta <header>` only to override the default (for example, to opt into a different schema version).
+Resources in beta (including agents, sessions, deployments, and environments) live under the `beta:` prefix. Commands in this namespace automatically send the appropriate `anthropic-beta` header for that resource, so you don’t need to pass it yourself. Use `--beta <header>` only to override the default (for example, to opt into a different schema version).
 
 ```bash
 ant models list
@@ -43,7 +43,7 @@ ant beta:sessions:events list --session-id session_01...
 | `--transform`                         | Filter or reshape the response with a GJSON path. See [Transform output with GJSON](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/using#transform-output-with-gjson).                                                                                                                                                                                                                                                                                      |
 | `-r`, `--raw-output`                  | Print string results without surrounding quotes, like `jq -r`                                                                                                                                                                                                                                                                                                                                                                                                           |
 | `--base-url`                          | Override the API base URL                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `--workspace-id`                      | Optional. Workspace ID (`wrkspc_...`) to send as the `anthropic-workspace-id` header, for API keys that aren't scoped to a workspace (equivalent to setting `ANTHROPIC_WORKSPACE_ID`). See [Select a workspace](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace). [Admin API](https://platform.claude.com/docs/en/manage-claude/admin-api) commands take their own `--workspace-id`, which names the workspace they manage instead. |
+| `--workspace-id`                      | Optional. Workspace ID (`wrkspc_...`) to send as the `anthropic-workspace-id` header, for API keys that aren’t scoped to a workspace (equivalent to setting `ANTHROPIC_WORKSPACE_ID`). See [Select a workspace](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace). [Admin API](https://platform.claude.com/docs/en/manage-claude/admin-api) commands take their own `--workspace-id`, which names the workspace they manage instead. |
 | `--debug`                             | Print full HTTP request and response to stderr                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | `--format-error`, `--transform-error` | Same as `--format` and `--transform` but applied to [error responses](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/scripting#inspect-errors)                                                                                                                                                                                                                                                                                                              |
 
@@ -99,7 +99,7 @@ AGENT_ID=$(ant beta:agents create \
 ```
 
 <Note>
-  `--raw-output` is distinct from `--format raw`. `--raw-output` strips JSON quotes from string results, like `jq -r`. `--format raw` prints the response body's raw JSON bytes without auto-paginating; on list endpoints it applies `--transform` to the pagination envelope rather than to each item.
+  `--raw-output` is distinct from `--format raw`. `--raw-output` strips JSON quotes from string results, like `jq -r`. `--format raw` prints the response body’s raw JSON bytes without auto-paginating; on list endpoints it applies `--transform` to the pagination envelope rather than to each item.
 </Note>
 
 ## Passing request bodies
@@ -157,7 +157,7 @@ Flags that take a file path, such as `--file` on the upload command, accept a ba
 ant files upload --file ./report.pdf
 ```
 
-To inline a file's contents into a string-valued field, prefix the path with `@`:
+To inline a file’s contents into a string-valued field, prefix the path with `@`:
 
 ```bash
 ant beta:agents create \

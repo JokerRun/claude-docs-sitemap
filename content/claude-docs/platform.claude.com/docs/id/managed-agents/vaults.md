@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 79b73437da8e7d26c8b3665417ac17bf19deeb59c98ec5407cf8877bfac6cc8a
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: e158be71a77c67b987c0b15745b682a10911b4503856cf2de41abc5cddc38fb9
 ---
 
 ---
@@ -701,7 +701,7 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
     | Membuat kredensial     | Jika Anda menyediakan objek tersebut, field apa pun yang Anda hilangkan di dalamnya akan bernilai default `false`: `{"header": true}` membuat kredensial khusus header. Hilangkan objek tersebut sepenuhnya dan kedua lokasi akan diaktifkan. |
     | Memperbarui kredensial | Field digabungkan secara individual: `{"body": false}` menonaktifkan substitusi body dan membiarkan `header` tidak berubah.                                                                                                                   |
 
-    Kredensial harus memiliki setidaknya satu lokasi yang diaktifkan, sehingga pembuatan atau pembaruan yang akan menonaktifkan kedua lokasi mengembalikan error 400. Meneruskan `null` secara eksplisit untuk objek `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) atau untuk salah satu field-nya juga mengembalikan error 400 ("omit the field instead"). Respons selalu mengembalikan kedua field dengan nilai yang telah diselesaikan.
+    Kredensial harus memiliki setidaknya satu lokasi yang diaktifkan, sehingga pembuatan atau pembaruan yang akan menonaktifkan kedua lokasi mengembalikan error 400. Meneruskan `null` secara eksplisit untuk objek `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) atau untuk salah satu field-nya juga mengembalikan error 400 (“omit the field instead”). Respons selalu mengembalikan kedua field dengan nilai yang telah diselesaikan.
 
     Placeholder di lokasi yang dinonaktifkan tidak disubstitusikan maupun dihapus. Permintaan dikirim ke pihak ketiga dengan string placeholder buram literal di lokasi tersebut. Jika permintaan tiba di pihak ketiga dengan berisi string placeholder literal, berarti lokasi tersebut dinonaktifkan untuk kredensial itu atau host tujuan tidak tercakup oleh `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) di dalam `networking` (csharp, go: `Networking`) kredensial tersebut.
 

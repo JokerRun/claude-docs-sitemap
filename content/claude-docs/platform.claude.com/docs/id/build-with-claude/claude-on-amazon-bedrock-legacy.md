@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: fd2f4f12f8e9a6a82468d2a941db174f0c4d66f304d770d9e46c9d9b53e953c2
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 68c2f9a119120a51d281bd8c230ec5f5aaaa073e7fa6175cc8b2f610448af98e
 ---
 
 ---
@@ -26,7 +26,7 @@ Perhatikan bahwa panduan ini mengasumsikan Anda telah mendaftar [akun AWS](https
 ## Instal dan konfigurasikan AWS CLI
 
 1. [Instal versi AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html) pada versi `2.13.23` atau yang lebih baru.
-2. Konfigurasikan kredensial AWS Anda menggunakan perintah AWS configure (lihat [Mengonfigurasi AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)) atau temukan kredensial Anda dengan membuka "Command line or programmatic access" di dasbor AWS Anda dan mengikuti petunjuk di jendela modal.
+2. Konfigurasikan kredensial AWS Anda menggunakan perintah AWS configure (lihat [Mengonfigurasi AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)) atau temukan kredensial Anda dengan membuka “Command line or programmatic access” di dasbor AWS Anda dan mengikuti petunjuk di jendela modal.
 3. Verifikasi bahwa kredensial Anda berfungsi:
 
 ```bash AWS CLI
@@ -153,7 +153,7 @@ AWS menawarkan model Claude yang lebih baru melalui [inferensi lintas region](ht
 Invocation of model ID anthropic.claude-sonnet-4-5-20250929-v1:0 with on-demand throughput isn't supported. Retry your request with the ID or ARN of an inference profile that contains this model.
 ```
 
-Untuk memanggil model-model ini, teruskan profil inferensi alih-alih ID model dasar. ID profil inferensi adalah ID model dasar dengan awalan dari kolom yang bertanda "Yes" dalam tabel berikut, misalnya us.anthropic.claude-sonnet-4-5-20250929-v1:0. Anda juga dapat meneruskan ARN profil inferensi lengkap, dalam bentuk `arn:aws:bedrock:{region}:{account-id}:inference-profile/{inference-profile-id}`. Untuk daftar resmi AWS tentang profil inferensi yang tersedia, lihat [Region dan model yang didukung untuk profil inferensi](https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-support.html). Untuk mempelajari bagaimana awalan memengaruhi perutean dan harga, lihat bagian [Endpoint global versus regional](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#global-vs-regional-endpoints).
+Untuk memanggil model-model ini, teruskan profil inferensi alih-alih ID model dasar. ID profil inferensi adalah ID model dasar dengan awalan dari kolom yang bertanda “Yes” dalam tabel berikut, misalnya us.anthropic.claude-sonnet-4-5-20250929-v1:0. Anda juga dapat meneruskan ARN profil inferensi lengkap, dalam bentuk `arn:aws:bedrock:{region}:{account-id}:inference-profile/{inference-profile-id}`. Untuk daftar resmi AWS tentang profil inferensi yang tersedia, lihat [Region dan model yang didukung untuk profil inferensi](https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-support.html). Untuk mempelajari bagaimana awalan memengaruhi perutean dan harga, lihat bagian [Endpoint global versus regional](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#global-vs-regional-endpoints).
 
 | Model                                                                                                 | Base Bedrock model ID                       | `global` | `us` | `eu` | `jp` | `apac` |
 | :---------------------------------------------------------------------------------------------------- | :------------------------------------------ | :------- | :--- | :--- | :--- | :----- |
@@ -541,7 +541,7 @@ Lihat [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overvie
 
 ### Autentikasi bearer token
 
-Anda dapat melakukan autentikasi dengan Bedrock menggunakan "bearer token" (token pembawa) alih-alih kredensial AWS. Ini berguna di lingkungan perusahaan di mana tim memerlukan akses ke Bedrock tanpa mengelola kredensial AWS, peran IAM, atau izin tingkat akun.
+Anda dapat melakukan autentikasi dengan Bedrock menggunakan “bearer token” (token pembawa) alih-alih kredensial AWS. Ini berguna di lingkungan perusahaan di mana tim memerlukan akses ke Bedrock tanpa mengelola kredensial AWS, peran IAM, atau izin tingkat akun.
 
 Pendekatan paling sederhana adalah menetapkan variabel lingkungan `AWS_BEARER_TOKEN_BEDROCK`, yang dideteksi secara otomatis oleh SDK saat menyelesaikan kredensial dari lingkungan.
 
@@ -774,7 +774,7 @@ Pesan `role: "system"` juga dapat menetapkan `output_config.effort` untuk [mengu
 
 ### Jendela konteks
 
-Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, dan Claude Haiku 5.5 memiliki ["context window" (jendela konteks) 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) di Amazon Bedrock. Model Claude lainnya, termasuk Sonnet 4.5 (deprecated) dan Sonnet 4 (deprecated), memiliki jendela konteks 200k token.
+Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, dan Claude Haiku 5.5 memiliki [“context window” (jendela konteks) 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) di Amazon Bedrock. Model Claude lainnya, termasuk Sonnet 4.5 (deprecated) dan Sonnet 4 (deprecated), memiliki jendela konteks 200k token.
 
 Bedrock membatasi payload permintaan hingga 20 MB. Saat mengirim dokumen besar atau banyak gambar, Anda mungkin mencapai batas ini sebelum batas token.
 

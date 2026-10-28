@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 3f1c8863190157fdb4c6ae962da47614c67f7afc07deb2dd02e22058dca343b8
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: fba4337a5fbceee8d817007800f7ea92b86b546c25013a44a94a0ae56e5c211b
 ---
 
 ---
@@ -17,7 +17,7 @@ Ask Claude Code about this feature
 /claude-api tell me about customer-managed encryption keys
 ```
 
-With customer-managed encryption keys (CMEK), you create a key in your own AWS KMS, Google Cloud KMS, or Azure Key Vault. Anthropic uses it to encrypt certain data at rest. The key stays under your control, so you can rotate it, audit its use, and remove Anthropic's access.
+With customer-managed encryption keys (CMEK), you create a key in your own AWS KMS, Google Cloud KMS, or Azure Key Vault. Anthropic uses it to encrypt certain data at rest. The key stays under your control, so you can rotate it, audit its use, and remove Anthropic’s access.
 
 ## Choose your setup page
 
@@ -45,7 +45,7 @@ On Claude Platform, you can also add and attach your key [with the Admin API](ht
 
 ## Understand CMEK before you set it up
 
-Which product you use decides what your key encrypts, what stays under Anthropic's key, and which features turn off or change.
+Which product you use decides what your key encrypts, what stays under Anthropic’s key, and which features turn off or change.
 
 <CardGroup cols={2}>
   <Card title="How CMEK works" href="https://platform.claude.com/docs/en/manage-claude/cmek-how-it-works">
@@ -67,9 +67,9 @@ Which product you use decides what your key encrypts, what stays under Anthropic
 
 ## What you commit to
 
-* Once you attach a key, you [can't remove or replace it](https://platform.claude.com/docs/en/manage-claude/cmek-key-lifecycle#what-each-action-does).
+* Once you attach a key, you [can’t remove or replace it](https://platform.claude.com/docs/en/manage-claude/cmek-key-lifecycle#what-each-action-does).
 * Your key protects only data written [after it takes effect](https://platform.claude.com/docs/en/manage-claude/cmek-how-it-works#when-your-key-takes-effect).
-* If your key is deleted, Anthropic can't recover the data it protects. [While the key is disabled](https://platform.claude.com/docs/en/manage-claude/cmek-key-lifecycle#restore-access), Claude can't read that data.
+* If your key is deleted, Anthropic can’t recover the data it protects. [While the key is disabled](https://platform.claude.com/docs/en/manage-claude/cmek-key-lifecycle#restore-access), Claude can’t read that data.
 * On Claude Platform, a workspace with a key [must retain data](https://platform.claude.com/docs/en/manage-claude/cmek-data-retention#data-retention).
 
 ## Who can use CMEK

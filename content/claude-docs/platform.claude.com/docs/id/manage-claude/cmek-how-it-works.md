@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-how-it-works
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 5c1e91547d45b90c01ebd496f0277c3ae008184de0d0d004d7950177c07837de
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: fb81346c51385c22916008b1c18a07fc6a2a22e389efb980882f4cf7e8b2b372
 ---
 
 ---
@@ -13,7 +13,7 @@ description: Bagaimana kunci Anda melindungi data yang tersimpan, apa yang dicak
 
 ## Kunci Anda membungkus kunci yang mengenkripsi data Anda
 
-Anthropic mengenkripsi data Anda yang tersimpan dengan kunci data. Dengan "customer-managed encryption keys" (kunci enkripsi yang dikelola pelanggan), atau CMEK, kunci Anda mengenkripsi, atau membungkus, kunci data tersebut. Ini adalah enkripsi amplop (envelope encryption). Untuk menulis atau membaca data, Anthropic meminta "key management service" (layanan manajemen kunci), atau KMS, Anda untuk membungkus atau membuka bungkus sebuah kunci data.
+Anthropic mengenkripsi data Anda yang tersimpan dengan kunci data. Dengan “customer-managed encryption keys” (kunci enkripsi yang dikelola pelanggan), atau CMEK, kunci Anda mengenkripsi, atau membungkus, kunci data tersebut. Ini adalah enkripsi amplop (envelope encryption). Untuk menulis atau membaca data, Anthropic meminta “key management service” (layanan manajemen kunci), atau KMS, Anda untuk membungkus atau membuka bungkus sebuah kunci data.
 
 Kunci data berpindah antara Anthropic dan cloud Anda. Kunci Anda tidak pernah meninggalkan KMS Anda. Data Anda tidak pernah dikirim ke sana.
 

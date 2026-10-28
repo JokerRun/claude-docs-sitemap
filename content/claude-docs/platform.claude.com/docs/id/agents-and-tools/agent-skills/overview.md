@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview
-fetched_at: 2026-10-20T02:19:35.321723Z
-sha256: f30f0294b5a95eec3e13bf4c2f9cb8d3fce2b0d130e4dc5e9349ee06f34fa4bd
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 0bb982478359220eb6ba92979485517b5247d70a7f59fbec8d123174d87060e7
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Agent Skills adalah kapabilitas modular yang memperluas fungsionali
 ---
 
 <Note>
-  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 ## Mengapa menggunakan Skills
@@ -48,7 +48,7 @@ Anthropic menyediakan Agent Skills siap pakai untuk tugas dokumen umum (PowerPoi
 
 Skills menggunakan lingkungan VM Claude untuk menyediakan kapabilitas yang melampaui apa yang mungkin dilakukan dengan prompt saja. Claude beroperasi di mesin virtual dengan akses filesystem, yang memungkinkan Skills hadir sebagai direktori berisi instruksi, kode yang dapat dieksekusi, dan materi referensi, yang diorganisasikan seperti panduan onboarding yang Anda buat untuk anggota tim baru.
 
-Arsitektur berbasis filesystem ini memungkinkan **"progressive disclosure" (pengungkapan bertahap):** Claude memuat informasi secara bertahap sesuai kebutuhan, alih-alih menghabiskan konteks di awal.
+Arsitektur berbasis filesystem ini memungkinkan **“progressive disclosure” (pengungkapan bertahap):** Claude memuat informasi secara bertahap sesuai kebutuhan, alih-alih menghabiskan konteks di awal.
 
 Skills dapat berisi tiga jenis konten, yang masing-masing dimuat pada waktu yang berbeda:
 
@@ -63,7 +63,7 @@ description: Extract text and tables from PDF files, fill forms, merge documents
 ---
 ```
 
-Claude memuat metadata ini saat startup dan menyertakannya dalam "system prompt" (prompt sistem). `description` adalah hal yang dicocokkan Claude dengan permintaan Anda saat menentukan apakah akan memicu Skill, sehingga harus menyatakan apa yang dilakukan Skill dan kapan menggunakannya. Pendekatan ringan ini berarti Anda dapat menginstal banyak Skills tanpa penalti konteks: sampai sebuah Skill dipicu, hanya nama dan deskripsinya yang menempati konteks.
+Claude memuat metadata ini saat startup dan menyertakannya dalam “system prompt” (prompt sistem). `description` adalah hal yang dicocokkan Claude dengan permintaan Anda saat menentukan apakah akan memicu Skill, sehingga harus menyatakan apa yang dilakukan Skill dan kapan menggunakannya. Pendekatan ringan ini berarti Anda dapat menginstal banyak Skills tanpa penalti konteks: sampai sebuah Skill dipicu, hanya nama dan deskripsinya yang menempati konteks.
 
 ### Level 2: Instruksi (dimuat saat dipicu)
 
@@ -86,7 +86,7 @@ with pdfplumber.open("document.pdf") as pdf:
 For advanced form filling, see [FORMS.md](FORMS.md).
 ````
 
-Saat Anda meminta sesuatu yang cocok dengan deskripsi Skill, Claude membaca SKILL.md dari sistem file menggunakan bash. Baru pada saat itulah konten ini masuk ke "context window" (jendela konteks).
+Saat Anda meminta sesuatu yang cocok dengan deskripsi Skill, Claude membaca SKILL.md dari sistem file menggunakan bash. Baru pada saat itulah konten ini masuk ke “context window” (jendela konteks).
 
 ### Level 3: Sumber daya dan kode (dimuat sesuai kebutuhan)
 
@@ -131,7 +131,7 @@ Saat sebuah Skill dipicu, Claude menggunakan bash untuk membaca SKILL.md dari si
 **Apa yang dimungkinkan oleh arsitektur ini:**
 
 * **Akses file sesuai permintaan:** Claude hanya membaca file yang dibutuhkan setiap tugas. Sebuah Skill dapat menyertakan puluhan file referensi, tetapi jika tugas Anda hanya membutuhkan skema penjualan, hanya file itulah yang dimuat Claude. Sisanya tetap berada di sistem file dan tidak memakan token sama sekali.
-* **Eksekusi skrip yang efisien:** Saat Claude menjalankan `validate_form.py`, kode skrip tidak pernah dimuat ke dalam jendela konteks. Hanya outputnya (seperti "Validation passed" atau pesan kesalahan tertentu) yang memakan token, yang membuat skrip jauh lebih efisien daripada meminta Claude menghasilkan kode yang setara secara langsung.
+* **Eksekusi skrip yang efisien:** Saat Claude menjalankan `validate_form.py`, kode skrip tidak pernah dimuat ke dalam jendela konteks. Hanya outputnya (seperti “Validation passed” atau pesan kesalahan tertentu) yang memakan token, yang membuat skrip jauh lebih efisien daripada meminta Claude menghasilkan kode yang setara secara langsung.
 * **Tidak ada batas praktis pada konten yang disertakan:** File tidak memakan konteks hingga diakses, sehingga Skills dapat menyertakan dokumentasi API yang komprehensif, dataset besar, atau contoh yang ekstensif. Tidak ada penalti konteks untuk konten yang disertakan tetapi tidak digunakan.
 
 ### Contoh: Memuat Skill pemrosesan PDF
@@ -139,7 +139,7 @@ Saat sebuah Skill dipicu, Claude menggunakan bash untuk membaca SKILL.md dari si
 Berikut cara Claude memuat dan menggunakan Skill kustom `pdf-processing` dari contoh sebelumnya (bukan Skill siap pakai `pdf`):
 
 1. **Startup:** Prompt sistem menyertakan: `pdf-processing - Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction.`
-2. **Permintaan pengguna:** "Extract the text from this PDF and summarize it"
+2. **Permintaan pengguna:** “Extract the text from this PDF and summarize it”
 3. **Claude memanggil:** `bash: cat pdf-processing/SKILL.md` → Instruksi dimuat ke dalam konteks
 4. **Claude menentukan:** Pengisian formulir tidak diperlukan, sehingga FORMS.md tidak dibaca
 5. **Claude mengeksekusi:** Menggunakan instruksi dari SKILL.md untuk menyelesaikan tugas
@@ -221,7 +221,7 @@ description: Brief description of what this Skill does and when to use it
 * Maksimum 64 karakter
 * Hanya boleh berisi huruf kecil, angka, dan tanda hubung
 * Tidak boleh berisi tag XML
-* Tidak boleh berisi kata yang dicadangkan: "anthropic", "claude"
+* Tidak boleh berisi kata yang dicadangkan: `anthropic`, `claude`
 
 `description`:
 

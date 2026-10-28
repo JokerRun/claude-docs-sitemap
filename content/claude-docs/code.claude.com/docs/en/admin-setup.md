@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/admin-setup
-fetched_at: 2026-10-27T02:22:08.565782Z
-sha256: f15ddbcb3049ed33f89c265abf6c9555015f4613622ae4596cddc4115ccd38e1
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 21d215d6cad2ae26a118c87b9b0d90f8ddaced2d94c16ab56827facff4fe6a38
 ---
 
 > ## Documentation Index
@@ -198,6 +198,7 @@ With provider and delivery mechanism chosen, move on to detailed configuration:
 * [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md): deliver managed policy from the Claude admin console
 * [All settings](https://code.claude.com/docs/en/settings-reference.md): every setting key, with where it goes and an example
 * [Which value Claude Code uses](https://code.claude.com/docs/en/settings.md#which-value-claude-code-uses): the precedence rules across managed, project, local, and user settings
+* [Manage plugins for your organization](https://code.claude.com/docs/en/plugins/org.md): install shared plugins on every machine through managed settings
 * [Monorepos and large repos](https://code.claude.com/docs/en/large-codebases.md): per-directory configuration patterns for organizations deploying into a monorepo
 * [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock.md), [Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai.md), [Microsoft Foundry](https://code.claude.com/docs/en/microsoft-foundry.md): provider-specific deployment
 * [Claude Enterprise Administrator Guide](https://claude.com/resources/tutorials/claude-enterprise-administrator-guide): SSO, SCIM, seat management, and rollout playbook

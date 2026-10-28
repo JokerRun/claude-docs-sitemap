@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-workers
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 4242c69e9fafd17328371ea297b4a759759038ef63aea42d222601832ceb6c4b
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: adae3ec3bd72994c0a97927bceaa20207461b4f677743d1bffd5ac1e3e19c8c2
 ---
 
 ---
@@ -428,7 +428,7 @@ Start a worker that polls the queue continuously. It authenticates with the [env
       </CodeGroupItem>
     </CodeGroup>
 
-    Because the handler claims work itself, it must [forward the work item's secret](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-workers#forward-the-work-items-secret), as the `work_secret` (typescript: `workSecret`; go: `WorkSecret`) argument does here.
+    Because the handler claims work itself, it must [forward the work item’s secret](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-workers#forward-the-work-items-secret), as the `work_secret` (typescript: `workSecret`; go: `WorkSecret`) argument does here.
   </Step>
 </Steps>
 
@@ -444,7 +444,7 @@ A poller on the host claims work and calls your script once for each work item. 
 
     ```dockerfile
     FROM your-base-image
-    ARG ANT_VERSION=2.3.0
+    ARG ANT_VERSION=2.4.0
     ARG TARGETARCH
     RUN ARCH=$([ "$TARGETARCH" = "arm64" ] && echo arm64 || echo amd64) && \
         curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${ANT_VERSION}/ant_${ANT_VERSION}_linux_${ARCH}.tar.gz" \
@@ -475,7 +475,7 @@ A poller on the host claims work and calls your script once for each work item. 
 
     The poller sets the `ANTHROPIC_*` variables that the script forwards, except the secret. See [Environment variables](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-reference#environment-variables).
 
-    `/host/outputs` is a host directory you choose. Mounting it at `/workspace` lets you retrieve the session's deliverables after the sandbox exits. The mount also picks up the downloaded `skills/` tree and any intermediate files.
+    `/host/outputs` is a host directory you choose. Mounting it at `/workspace` lets you retrieve the session’s deliverables after the sandbox exits. The mount also picks up the downloaded `skills/` tree and any intermediate files.
   </Step>
 
   <Step title="Start the poller">
@@ -485,7 +485,7 @@ A poller on the host claims work and calls your script once for each work item. 
   </Step>
 </Steps>
 
-### Forward the work item's secret
+### Forward the work item’s secret
 
 Each claimed work item can carry a per-session `secret` (csharp, go: `Secret`), which Anthropic issues. The worker that runs the session needs it to mount [memory stores](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-memory).
 
@@ -493,8 +493,8 @@ A worker that claims and runs sessions in one process (`ant beta:worker poll` wi
 
 | You claim work with                                            | The secret arrives as                                                    | Pass it to the worker as                                                                                                                                                                             |
 | -------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ant beta:worker poll --on-work`                               | The `secret` field of the work item JSON on your script's standard input | `ANTHROPIC_WORK_SECRET` in the sandbox's environment                                                                                                                                                 |
-| The SDK's `work.poller()` (go: `environments.NewWorkPoller()`) | The `secret` (go: `Secret`) field of each claimed work item              | `ANTHROPIC_WORK_SECRET` in the sandbox's environment, or the `work_secret` (typescript: `workSecret`; go: `WorkSecret`) argument to `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`) |
+| `ant beta:worker poll --on-work`                               | The `secret` field of the work item JSON on your script’s standard input | `ANTHROPIC_WORK_SECRET` in the sandbox’s environment                                                                                                                                                 |
+| The SDK’s `work.poller()` (go: `environments.NewWorkPoller()`) | The `secret` (go: `Secret`) field of each claimed work item              | `ANTHROPIC_WORK_SECRET` in the sandbox’s environment, or the `work_secret` (typescript: `workSecret`; go: `WorkSecret`) argument to `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`) |
 
 Pass the secret only into the sandbox that serves that session, and never log it. See [Security model](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-security) for how it relates to the environment key.
 
@@ -804,9 +804,9 @@ Replace the `ant beta:worker run` entrypoint with an SDK entrypoint when the san
 
 ## Stage files for a session
 
-Anthropic doesn't mount files or GitHub repositories into self-hosted sandboxes. To make session-specific files available:
+Anthropic doesn’t mount files or GitHub repositories into self-hosted sandboxes. To make session-specific files available:
 
-1. Pass file references, such as an S3 path or commit SHA, in the session's `metadata` field.
+1. Pass file references, such as an S3 path or commit SHA, in the session’s `metadata` field.
 2. In your spawn script or `--on-work` handler, retrieve the session (`GET /v1/sessions/{session_id}`) and read `metadata`. The claimed work item carries the session ID but not the metadata.
 3. Stage the files into the working directory before any tool runs.
 

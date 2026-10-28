@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/home
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 57ef5c3d0f5777a6338ee982cb6e0e704fb9286dc11bc5de871132f17307b791
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: a6a02ea552d0a34ebddb93501585f6af1a4900c21abb653ff8fc3dca78666f8b
 ---
 
 ---
@@ -437,7 +437,7 @@ with Claude"
         Deployable starter apps.
       </Card>
 
-      <Card icon="star" title="What's new" href="https://platform.claude.com/docs/en/release-notes/overview">
+      <Card icon="star" title="What’s new" href="https://platform.claude.com/docs/en/release-notes/overview">
         Latest features and updates.
       </Card>
 

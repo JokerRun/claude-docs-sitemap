@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/troubleshooting-tool-use
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 728224cd2e66259480085e755e403f93c99b66929c0fbf74fce7b9e8fde7fc25
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 1dbc415f3df7190b8ddc497b7f5bdbdc51d41afaf562a02b31f4205a92d180f9
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/troubleshooti
 description: Perbaiki kesalahan penggunaan alat yang paling umum dengan tabel diagnostik gejala-ke-perbaikan.
 ---
 
-Tabel gejala-ke-perbaikan untuk kesalahan "tool use" (penggunaan alat) yang paling umum. Setiap perbaikan merujuk silang ke halaman yang memiliki fitur tersebut.
+Tabel gejala-ke-perbaikan untuk kesalahan “tool use” (penggunaan alat) yang paling umum. Setiap perbaikan merujuk silang ke halaman yang memiliki fitur tersebut.
 
 ## Claude memanggil alat yang salah
 

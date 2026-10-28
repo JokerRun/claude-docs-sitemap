@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/data-residency
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: b73f19f1713c927603988ad7f96a3e149a963e3f6d0b1993d6d34d8d688f4892
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 871a6198420f920ae69933070aa70443c4ca9fbc5e36626a5db9215a083c6881
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/manage-claude/data-residency
 description: Kelola di mana inferensi model berjalan dan di mana data disimpan dengan kontrol geografis.
 ---
 
-Kontrol "data residency" (residensi data) memungkinkan Anda mengelola di mana data Anda diproses dan disimpan. Dua pengaturan independen mengatur hal ini:
+Kontrol “data residency” (residensi data) memungkinkan Anda mengelola di mana data Anda diproses dan disimpan. Dua pengaturan independen mengatur hal ini:
 
 * **Inference geo:** Mengontrol di mana inferensi model berjalan, per permintaan. Diatur melalui parameter API `inference_geo` atau sebagai default workspace.
 * **Workspace geo:** Mengontrol di mana data disimpan saat diam (at rest) dan di mana pemrosesan endpoint (seperti transcoding gambar dan eksekusi kode) terjadi. Dikonfigurasi di tingkat workspace di [Claude Console](https://platform.claude.com).
@@ -23,7 +23,7 @@ Kontrol "data residency" (residensi data) memungkinkan Anda mengelola di mana da
 ## Inference geo
 
 <Note>
-  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 Parameter `inference_geo` mengontrol di mana inferensi model berjalan untuk permintaan API tertentu. Tambahkan ke panggilan `POST /v1/messages` mana pun.
@@ -315,7 +315,7 @@ Model lama tidak terpengaruh oleh migrasi ini. Untuk harga terkini pada model ya
 
 ## Keterbatasan saat ini
 
-* **Batas laju bersama:** "Rate limit" (batas laju) dibagi bersama di semua geo.
+* **Batas laju bersama:** “Rate limit” (batas laju) dibagi bersama di semua geo.
 * **Inference geo:** Hanya `"us"` dan `"global"` yang tersedia.
 * **Workspace geo:** Hanya `"us"` yang tersedia saat ini. Workspace geo tidak dapat diubah setelah pembuatan workspace.
 

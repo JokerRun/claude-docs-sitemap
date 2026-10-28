@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-threads
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: ded5c24c3687ee6bdcecb8640cf1556425347a30693de240daff197d59d1bfa2
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 276cb577c61529ed8d272d7881aa3be0f547edc279f73c4a46819bcb0f161450
 ---
 
 ---
@@ -196,7 +196,7 @@ Kirim `user.interrupt` dengan `session_thread_id` (java: `sessionThreadId`; php:
   ```
 </CodeGroup>
 
-Terhadap thread subagen yang terblokir pada `requires_action`, interupsi menutup setiap panggilan alat yang tertunda dengan hasil alat berupa error ("Tool execution was interrupted before completion. Please retry.") dan langsung memancarkan ulang `session.thread_status_idle` dengan `stop_reason: end_turn`; model tidak di-sampling. Terhadap thread anak yang idle dengan `end_turn` atau `budget_reached`, interupsi tidak berpengaruh apa pun. Interupsi yang menyebut thread yang telah dihentikan mengembalikan error 400. Thread anak yang diinterupsi tidak mengirimkan kepada agen thread utama laporan yang biasanya dikirimkannya saat sebuah giliran berakhir. Selama agen tersebut menunggu thread anak, agen tidak memulai giliran lain hingga ada hal lain yang mencapainya, seperti `user.message` atau laporan dari thread lain.
+Terhadap thread subagen yang terblokir pada `requires_action`, interupsi menutup setiap panggilan alat yang tertunda dengan hasil alat berupa error (“Tool execution was interrupted before completion. Please retry.”) dan langsung memancarkan ulang `session.thread_status_idle` dengan `stop_reason: end_turn`; model tidak di-sampling. Terhadap thread anak yang idle dengan `end_turn` atau `budget_reached`, interupsi tidak berpengaruh apa pun. Interupsi yang menyebut thread yang telah dihentikan mengembalikan error 400. Thread anak yang diinterupsi tidak mengirimkan kepada agen thread utama laporan yang biasanya dikirimkannya saat sebuah giliran berakhir. Selama agen tersebut menunggu thread anak, agen tidak memulai giliran lain hingga ada hal lain yang mencapainya, seperti `user.message` atau laporan dari thread lain.
 
 ## Mengarsipkan thread sesi
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/event-deltas
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: fb89c6cc9930a9754ef2bb052481902e9e0d93bee048761d2828bed51bb0e02c
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 275ff5f717b36cd719e908f573ee98a4733ca49e13c35feda16138ffd051faf1
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
 ---
 
-Secara default, teks respons agen mencapai [aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) sebagai event `agent.message` yang di-buffer. Masing-masing dipancarkan hanya setelah permintaan model yang menghasilkannya selesai. "Event delta" (delta event) memungkinkan Anda menampilkan teks tersebut secara bertahap, sebagai pratinjau langsung, saat model masih menghasilkannya.
+Secara default, teks respons agen mencapai [aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) sebagai event `agent.message` yang di-buffer. Masing-masing dipancarkan hanya setelah permintaan model yang menghasilkannya selesai. “Event delta” (delta event) memungkinkan Anda menampilkan teks tersebut secara bertahap, sebagai pratinjau langsung, saat model masih menghasilkannya.
 
 Pratinjau adalah alat bantu tampilan berbasis upaya terbaik, dan `agent.message` yang di-buffer selalu menjadi catatan otoritatif. Klien yang mengabaikan pratinjau tetap menerima aliran yang lengkap dan benar.
 

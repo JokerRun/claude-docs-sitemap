@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/claude-models-on-google-cloud-anthropic-managed-iam-permissions
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 2a59d84898eda73f0cd038c5f36ef642b20637e92b5627afe1ed55eb45e64518
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 27e23467b5ed73f883499a7e2b9af3b9e750ee9bddb70b74ecb572cf699ebeeb
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/en/api/claude-models-on-google-cloud-anthr
 description: Look up Google Cloud IAM permissions, predefined roles, and audit log types for Claude Models on Google Cloud (Anthropic managed).
 ---
 
-Claude Models on Google Cloud (Anthropic managed) uses Google Cloud IAM for access control. Every API route needs one permission from the `claude.googleapis.com` service. If the caller doesn't hold that permission, Google Cloud returns an HTTP 403 error. Three predefined roles bundle the permissions. For setup and authentication, see [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed).
+Claude Models on Google Cloud (Anthropic managed) uses Google Cloud IAM for access control. Every API route needs one permission from the `claude.googleapis.com` service. If the caller doesn’t hold that permission, Google Cloud returns an HTTP 403 error. Three predefined roles bundle the permissions. For setup and authentication, see [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed).
 
 ## Service details
 
@@ -45,9 +45,9 @@ The following tables list 68 permissions across 111 routes.
 
 The `get` and `list` permissions are the read-only ones.
 
-Unless a section says otherwise, each route's audit log type is Data Access.
+Unless a section says otherwise, each route’s audit log type is Data Access.
 
-`roles/claude.viewer` can't send messages or count tokens. Sending a message needs `messages.create`. Counting tokens needs `messages.countTokens`.
+`roles/claude.viewer` can’t send messages or count tokens. Sending a message needs `messages.create`. Counting tokens needs `messages.countTokens`.
 
 Some routes in the following tables might not be available to your organization. To check which features are available, see [Feature support](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#feature-support).
 
@@ -68,7 +68,7 @@ Some routes in the following tables might not be available to your organization.
 | `messageBatches.delete` | Admin, User         | `DELETE /v1/messages/batches/{message_batch_id}`                                                         |
 | `messageBatches.cancel` | Admin, User         | `POST /v1/messages/batches/{message_batch_id}/cancel`                                                    |
 
-`roles/claude.viewer` can read batch results. `messageBatches.get` authorizes both reading a batch's metadata and downloading its results.
+`roles/claude.viewer` can read batch results. `messageBatches.get` authorizes both reading a batch’s metadata and downloading its results.
 
 ### Models
 
@@ -86,7 +86,7 @@ Some routes in the following tables might not be available to your organization.
 | `files.list`   | Admin, User, Viewer | `GET /v1/files`                                                  |
 | `files.delete` | Admin, User         | `DELETE /v1/files/{file_id}`                                     |
 
-`roles/claude.viewer` can download files. `files.get` authorizes both reading a file's metadata and downloading its content.
+`roles/claude.viewer` can download files. `files.get` authorizes both reading a file’s metadata and downloading its content.
 
 ### Skills
 
@@ -123,7 +123,7 @@ You can archive an agent but not delete it.
 | `sessions.archive` | Admin, User         | `POST /v1/sessions/{session_id}/archive`<br />`POST /v1/sessions/{session_id}/threads/{thread_id}/archive`                                                                                                                                                                                                                                                                                                                                                                       |
 | `sessions.delete`  | Admin, User         | `DELETE /v1/sessions/{session_id}`                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
-`sessions.get` authorizes reading the session, its event history and event stream, its resources, and its threads. As a result, `roles/claude.viewer` can read every session's full event history.
+`sessions.get` authorizes reading the session, its event history and event stream, its resources, and its threads. As a result, `roles/claude.viewer` can read every session’s full event history.
 
 Other session operations need the following permissions:
 
@@ -153,7 +153,7 @@ Other session operations need the following permissions:
 
 This permission is separate from `environments.update`. Reading the work queue and its statistics needs only `environments.get`.
 
-Besides `environments.processWork`, a worker needs other permissions to run a session, such as `sessions.get` to read the session and its events, `sessions.update` to send tool results, and `skills.get` to download the agent's skills.
+Besides `environments.processWork`, a worker needs other permissions to run a session, such as `sessions.get` to read the session and its events, `sessions.update` to send tool results, and `skills.get` to download the agent’s skills.
 
 ### Vaults
 
@@ -176,7 +176,7 @@ Credential operations need the following permissions:
 * Reading a credential: `vaults.get`
 * Checking a stored MCP OAuth credential: `vaults.verify`
 
-With `vaults.get`, `roles/claude.viewer` can list a vault's credentials. Claude Models on Google Cloud (Anthropic managed) never returns a credential's secret fields. To learn more, see [Authenticate with vaults](https://platform.claude.com/docs/en/managed-agents/vaults).
+With `vaults.get`, `roles/claude.viewer` can list a vault’s credentials. Claude Models on Google Cloud (Anthropic managed) never returns a credential’s secret fields. To learn more, see [Authenticate with vaults](https://platform.claude.com/docs/en/managed-agents/vaults).
 
 ### Memory stores
 
@@ -234,7 +234,7 @@ Google Cloud records these routes in Admin Activity audit logs.
 | `externalKeys.update` | Admin | `POST /v1/organizations/external_keys/{external_key_id}`   |
 | `externalKeys.delete` | Admin | `DELETE /v1/organizations/external_keys/{external_key_id}` |
 
-These permissions manage your organization's encryption key registrations. Of the three predefined roles, only `roles/claude.admin` includes them.
+These permissions manage your organization’s encryption key registrations. Of the three predefined roles, only `roles/claude.admin` includes them.
 
 ### Usage reports
 

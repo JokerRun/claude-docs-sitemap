@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: 4edf4bd45a3d7caaead6c749f4ef7cb34b963fa0a6e8404169c6eb0cd516540f
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: a0c71ee482a73aaa31fdfcd1ef8eee3f7e2ee6c680ccec907b37efbfdabf7a5c
 ---
 
 ---
@@ -78,7 +78,7 @@ Activity Feed menghasilkan ratusan jenis aktivitas yang berbeda. Lihat [Mengkuer
 
 Aktivitas dikembalikan dari yang terbaru terlebih dahulu, dengan nilai `created_at` yang sama diurutkan berdasarkan ID aktivitas, dan dibatasi hingga `limit` hasil dalam setiap respons (default 100, maksimum 5.000). Lihat [referensi API](https://platform.claude.com/docs/id/api/compliance/activities/list) untuk skema respons lengkap.
 
-Compliance API menggunakan dua skema "pagination" (paginasi) tergantung pada keluarga endpoint:
+Compliance API menggunakan dua skema “pagination” (paginasi) tergantung pada keluarga endpoint:
 
 | Keluarga endpoint                                                                    | Urutan pengurutan                                                          | Skema         | Parameter                                                            |
 | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------- | ------------- | -------------------------------------------------------------------- |
@@ -155,7 +155,7 @@ Setiap entri dalam `data` adalah Activity dengan bentuk tingkat atas berikut:
 | `type`              | string           | Jenis aktivitas, misalnya `claude_chat_created`.                                                                                                                                                                                                                            |
 | *field tambahan*    | bervariasi       | Field spesifik per jenis, misalnya `claude_chat_id` pada peristiwa chat atau `claude_file_id` pada peristiwa file. Lihat [Mengkueri aktivitas kepatuhan](https://platform.claude.com/docs/id/api/compliance/activities/list) di referensi API untuk daftar field per jenis. |
 
-Field `actor` adalah "discriminated union" (union terdiskriminasi). Diskriminator `type` memberi tahu Anda field lain mana yang ada:
+Field `actor` adalah “discriminated union” (union terdiskriminasi). Diskriminator `type` memberi tahu Anda field lain mana yang ada:
 
 | `actor.type`                 | Kapan muncul                                                                                                                                                                                                           | Field utama                                                                                                                                                |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |

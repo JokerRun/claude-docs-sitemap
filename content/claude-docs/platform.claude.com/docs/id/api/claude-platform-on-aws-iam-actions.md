@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions
-fetched_at: 2026-10-21T02:21:05.363362Z
-sha256: bae322c3891350be971623ca095e554b9bcd4269b0a6ca41de76b6a5f830afc5
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 64e60e119128e4b4584712e26a5fc0ae39fc7ddd1bfdd48bdfeeadf8c22192c4
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions
 description: Referensi tindakan IAM untuk mengontrol akses ke Claude Platform on AWS melalui kebijakan AWS.
 ---
 
-Claude Platform on AWS menggunakan AWS IAM untuk kontrol akses. Setiap rute API dipetakan ke sebuah tindakan IAM dalam namespace `aws-external-anthropic`. Halaman ini mencantumkan semua tindakan, rute yang diotorisasi oleh setiap tindakan, dan "managed policies" (kebijakan terkelola) yang tersedia untuk pola akses umum. Untuk penyiapan platform dan autentikasi, lihat [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
+Claude Platform on AWS menggunakan AWS IAM untuk kontrol akses. Setiap rute API dipetakan ke sebuah tindakan IAM dalam namespace `aws-external-anthropic`. Halaman ini mencantumkan semua tindakan, rute yang diotorisasi oleh setiap tindakan, dan “managed policies” (kebijakan terkelola) yang tersedia untuk pola akses umum. Untuk penyiapan platform dan autentikasi, lihat [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
 
 ## Detail layanan
 
@@ -205,6 +205,7 @@ Tindakan mengikuti konvensi AWS `VerbNoun` dan menggunakan disiplin kata kerja s
 | `GetUserProfile`                 | `GET /v1/user_profiles/{id}`                 |
 | `ListUserProfiles`               | `GET /v1/user_profiles`                      |
 | `UpdateUserProfile`              | `POST /v1/user_profiles/{id}`                |
+| `DeleteUserProfile`              | `DELETE /v1/user_profiles/{id}`              |
 | `CreateUserProfileEnrollmentUrl` | `POST /v1/user_profiles/{id}/enrollment_url` |
 
 <Note>
@@ -212,7 +213,7 @@ Tindakan mengikuti konvensi AWS `VerbNoun` dan menggunakan disiplin kata kerja s
 </Note>
 
 <Warning>
-  Pencocokan tindakan IAM tidak peka huruf besar/kecil. Wildcard `aws-external-anthropic:*File` cocok dengan `CreateFile`, `GetFile`, dan `DeleteFile`, tetapi tidak cocok dengan `ListFiles` (yang berakhiran "files", bukan "file"). Wildcard ini juga secara berlebihan cocok dengan `CreateUserProfile`, `GetUserProfile`, dan `UpdateUserProfile` karena "Profile" berakhiran "file". Jika Anda bermaksud memberikan atau menolak hanya tindakan Files API, sebutkan secara eksplisit (`CreateFile`, `GetFile`, `ListFiles`, `DeleteFile`) alih-alih menggunakan pola sufiks `*File`.
+  Pencocokan tindakan IAM tidak peka huruf besar/kecil. Wildcard `aws-external-anthropic:*File` cocok dengan `CreateFile`, `GetFile`, dan `DeleteFile`, tetapi tidak cocok dengan `ListFiles` (yang berakhiran “files”, bukan “file”). Wildcard ini juga secara berlebihan cocok dengan `CreateUserProfile`, `GetUserProfile`, `UpdateUserProfile`, dan `DeleteUserProfile` karena “Profile” berakhiran “file”. Jika Anda bermaksud memberikan atau menolak hanya tindakan Files API, sebutkan secara eksplisit (`CreateFile`, `GetFile`, `ListFiles`, `DeleteFile`) alih-alih menggunakan pola sufiks `*File`.
 </Warning>
 
 ### Workspace
@@ -329,6 +330,7 @@ Tabel berikut mencantumkan setiap rute pada Claude Platform on AWS dan tindakan 
 | `GET`    | `/v1/user_profiles`                                                       | `ListUserProfiles`                          | Data                  |
 | `GET`    | `/v1/user_profiles/{id}`                                                  | `GetUserProfile`                            | Data                  |
 | `POST`   | `/v1/user_profiles/{id}`                                                  | `UpdateUserProfile`                         | Data                  |
+| `DELETE` | `/v1/user_profiles/{id}`                                                  | `DeleteUserProfile`                         | Data                  |
 | `POST`   | `/v1/user_profiles/{id}/enrollment_url`                                   | `CreateUserProfileEnrollmentUrl`            | Data                  |
 | `POST`   | `/v1/organizations/workspaces`                                            | `CreateWorkspace`                           | Management            |
 | `GET`    | `/v1/organizations/workspaces`                                            | `ListWorkspaces`                            | Management            |
@@ -508,7 +510,7 @@ Membatasi sebuah role ke satu workspace:
 ```
 
 <Note>
-  Wildcard `aws-external-anthropic:*` dalam pernyataan pertama mencakup tindakan bercakupan akun (`CreateWorkspace`, `ListWorkspaces`, `ListComplianceActivities`, tindakan kunci eksternal, tindakan tujuan telemetri bercakupan akun, dan tindakan profil pengguna) yang secara diam-diam disaring oleh batasan ARN workspace. Hal ini konsisten dengan maksud "isolasi" (role tidak dapat membuat workspace, mengenumerasi workspace, mengelola registrasi kunci enkripsi, membaca Activity Feed kepatuhan, atau membaca maupun mengelola profil pengguna, dan role tidak dapat membuat, membaca, atau mengubah tujuan telemetri; role masih dapat melampirkan kunci yang sudah terdaftar ke workspace-nya sendiri melalui `UpdateWorkspace`, serta menambahkan workspace-nya sendiri ke suatu tujuan, atau menghapusnya dari tujuan, jika diberikan ID tujuan tersebut), tetapi kebijakan tersebut berisi izin yang tidak berpengaruh. Jika role memerlukan profil pengguna, tambahkan pernyataan `Allow` terpisah untuk tindakan profil pengguna dengan `Resource: "*"`. Lihat [Otomatisasi provisioning](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#provisioning-automation) untuk pola bercakupan akun.
+  Wildcard `aws-external-anthropic:*` dalam pernyataan pertama mencakup tindakan bercakupan akun (`CreateWorkspace`, `ListWorkspaces`, `ListComplianceActivities`, tindakan kunci eksternal, tindakan tujuan telemetri bercakupan akun, dan tindakan profil pengguna) yang secara diam-diam disaring oleh batasan ARN workspace. Hal ini konsisten dengan maksud “isolasi” (role tidak dapat membuat workspace, mengenumerasi workspace, mengelola registrasi kunci enkripsi, membaca Activity Feed kepatuhan, atau membaca maupun mengelola profil pengguna, dan role tidak dapat membuat, membaca, atau mengubah tujuan telemetri; role masih dapat melampirkan kunci yang sudah terdaftar ke workspace-nya sendiri melalui `UpdateWorkspace`, serta menambahkan workspace-nya sendiri ke suatu tujuan, atau menghapusnya dari tujuan, jika diberikan ID tujuan tersebut), tetapi kebijakan tersebut berisi izin yang tidak berpengaruh. Jika role memerlukan profil pengguna, tambahkan pernyataan `Allow` terpisah untuk tindakan profil pengguna dengan `Resource: "*"`. Lihat [Otomatisasi provisioning](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#provisioning-automation) untuk pola bercakupan akun.
 
   `CallWithBearerToken` dan `AssumeConsole` adalah tindakan tanpa rute yang tidak terikat ke ARN workspace. Pernyataan kedua memberikannya pada `Resource: "*"` sehingga role dapat melakukan autentikasi dengan kunci API dan membuka Claude Console. Hilangkan pernyataan ini jika role hanya menggunakan SigV4 dan tidak memerlukan akses Claude Console.
 </Note>

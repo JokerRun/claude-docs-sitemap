@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/access-transparency
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: a102c933e2a5603ff3c916bc77ae821c771af11efff4b3dda44c9520bb47f549
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 9d3040f1bb960b8136271142ba0fee6fe43c69cd39e177cf3c478c9a547a640f
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/manage-claude/access-transparency
 description: Terima catatan audit atas akses manusia terhadap data organisasi Anda oleh personel Anthropic melalui Compliance API.
 ---
 
-Pelajari bagaimana "Access Transparency" (Transparansi Akses) membuat catatan atas akses manusia terhadap data organisasi Anda oleh personel Anthropic, apa saja yang dicakupnya, dan cara menerima event melalui Compliance API.
+Pelajari bagaimana “Access Transparency” (Transparansi Akses) membuat catatan atas akses manusia terhadap data organisasi Anda oleh personel Anthropic, apa saja yang dicakupnya, dan cara menerima event melalui Compliance API.
 
 <Note>
   Ketika Access Transparency diaktifkan untuk organisasi Anda:

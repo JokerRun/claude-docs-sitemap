@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 15a8853c367f1603072cb23156c4191de2b7905aa6d98ac57bdcf04be5af8376
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 27d392efad51ba1024e8301ddd110df96e795d1e771e06d6bcd978d66322f8b3
 ---
 
 ---
@@ -1046,10 +1046,10 @@ You review contracts. When you're asked to review more than a few contracts, sta
 
 Untuk menyesuaikannya, sebutkan tugas-tugas dalam domain agen Anda yang memerlukan eksekusi, serta tugas-tugas kecil yang harus dikerjakan sendiri oleh agen. Anda juga dapat memandu cara eksekusi mengerjakan pekerjaan, seperti dalam contoh-contoh berikut:
 
-* **Cara membagi pekerjaan:** "Dalam sebuah eksekusi, gunakan satu agen per kontrak. Kemudian minta agen kedua meninjau setiap kontrak, bukan hanya kontrak yang menurut agen pertama bermasalah, dan mencari apa yang terlewat oleh agen pertama. Apa pun yang gagal dalam peninjauan dikerjakan ulang dan ditinjau kembali."
-* **Apa yang harus dilakukan saat agen gagal:** "Satu agen yang gagal tidak boleh membuat eksekusi gagal. Jika agen gagal membaca kontrak, cantumkan kontrak tersebut sebagai tidak tercakup. Saat eksekusi berakhir, beri tahu saya kontrak mana yang tidak tercakup."
-* **Batas waktu:** "Berikan eksekusi batas waktu satu jam."
-* **Rencanakan terlebih dahulu:** "Sebelum Anda memulai eksekusi, jelaskan fase-fasenya dan berapa banyak agen yang dijalankan di setiap fase. Kemudian tunggu persetujuan saya." Tidak ada langkah persetujuan sebelum eksekusi dimulai, sehingga tidak ada yang memberlakukan hal ini.
+* **Cara membagi pekerjaan:** “Dalam sebuah eksekusi, gunakan satu agen per kontrak. Kemudian minta agen kedua meninjau setiap kontrak, bukan hanya kontrak yang menurut agen pertama bermasalah, dan mencari apa yang terlewat oleh agen pertama. Apa pun yang gagal dalam peninjauan dikerjakan ulang dan ditinjau kembali.”
+* **Apa yang harus dilakukan saat agen gagal:** “Satu agen yang gagal tidak boleh membuat eksekusi gagal. Jika agen gagal membaca kontrak, cantumkan kontrak tersebut sebagai tidak tercakup. Saat eksekusi berakhir, beri tahu saya kontrak mana yang tidak tercakup.”
+* **Batas waktu:** “Berikan eksekusi batas waktu satu jam.”
+* **Rencanakan terlebih dahulu:** “Sebelum Anda memulai eksekusi, jelaskan fase-fasenya dan berapa banyak agen yang dijalankan di setiap fase. Kemudian tunggu persetujuan saya.” Tidak ada langkah persetujuan sebelum eksekusi dimulai, sehingga tidak ada yang memberlakukan hal ini.
 
 Batasi eksekusi hanya untuk tugas-tugas yang memerlukannya, karena setiap agen dalam eksekusi menggunakan token.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: c078f4e9b6d4808da33f99b8109b037940dc052ad9a2a4ed81a5f2a44e0359bc
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 12cdd29e81b870efa366fc8d945f15870b4df6fd8df6859da063b890f4bc8b79
 ---
 
 ---
@@ -39,7 +39,7 @@ featureMetadata:
     - Claude Haiku 4.5 menerima versi alat `code_execution_20260120` dan yang lebih baru, tetapi tidak mendukung pemanggilan alat terprogram.
 ---
 
-Pemanggilan alat terprogram memungkinkan Claude menulis kode yang memanggil alat Anda secara terprogram di dalam container [eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), alih-alih memerlukan "round trip" (perjalanan bolak-balik) melalui model untuk setiap pemanggilan alat. Hal ini mengurangi "latency" (latensi) untuk alur kerja multi-alat dan menurunkan konsumsi token dengan memungkinkan Claude memfilter atau memproses data sebelum data tersebut mencapai "context window" (jendela konteks) model. Pada benchmark pencarian agentik seperti [BrowseComp](https://arxiv.org/abs/2504.12516) dan [DeepSearchQA](https://github.com/google-deepmind/deepsearchqa), yang menguji riset web multilangkah dan pengambilan informasi yang kompleks, menambahkan pemanggilan alat terprogram di atas alat pencarian dasar meningkatkan kinerja rata-rata sebesar 11 persen sambil menggunakan 24 persen lebih sedikit token input (lihat [Improved web search with dynamic filtering](https://claude.com/blog/improved-web-search-with-dynamic-filtering)).
+Pemanggilan alat terprogram memungkinkan Claude menulis kode yang memanggil alat Anda secara terprogram di dalam container [eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), alih-alih memerlukan “round trip” (perjalanan bolak-balik) melalui model untuk setiap pemanggilan alat. Hal ini mengurangi “latency” (latensi) untuk alur kerja multi-alat dan menurunkan konsumsi token dengan memungkinkan Claude memfilter atau memproses data sebelum data tersebut mencapai “context window” (jendela konteks) model. Pada benchmark pencarian agentik seperti [BrowseComp](https://arxiv.org/abs/2504.12516) dan [DeepSearchQA](https://github.com/google-deepmind/deepsearchqa), yang menguji riset web multilangkah dan pengambilan informasi yang kompleks, menambahkan pemanggilan alat terprogram di atas alat pencarian dasar meningkatkan kinerja rata-rata sebesar 11 persen sambil menggunakan 24 persen lebih sedikit token input (lihat [Improved web search with dynamic filtering](https://claude.com/blog/improved-web-search-with-dynamic-filtering)).
 
 Bayangkan memeriksa kepatuhan anggaran untuk 20 karyawan: pendekatan tradisional memerlukan 20 round trip model yang terpisah, sambil menarik ribuan item pengeluaran ke dalam konteks. Dengan pemanggilan alat terprogram, satu skrip menjalankan ke-20 pencarian tersebut, memfilter hasilnya, dan hanya mengembalikan karyawan yang melampaui batasnya, sehingga apa yang perlu dianalisis Claude menyusut dari ratusan kilobyte menjadi hanya beberapa baris.
 
@@ -1407,7 +1407,7 @@ Pembatasan ini hanya berlaku saat merespons pemanggilan alat programatik (ekseku
 
 ### Batas laju
 
-Pemanggilan alat terprogram tunduk pada "rate limit" (batas laju) yang sama dengan pemanggilan alat biasa. Setiap pemanggilan alat dari eksekusi kode dihitung secara individual terhadap batas tersebut.
+Pemanggilan alat terprogram tunduk pada “rate limit” (batas laju) yang sama dengan pemanggilan alat biasa. Setiap pemanggilan alat dari eksekusi kode dihitung secara individual terhadap batas tersebut.
 
 ### Validasi hasil alat sebelum digunakan
 

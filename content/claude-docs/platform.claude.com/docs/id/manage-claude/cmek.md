@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 4f092ffd3690ac5ad2f54e37253a1ce34556d673462ee1bbdd78fad208e23186
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 6016d098096f2a518ca3337763a95d6471423e130679f570d06810726d0a58b5
 ---
 
 ---
@@ -17,7 +17,7 @@ Tanyakan Claude Code tentang fitur ini
 /claude-api ceritakan tentang kunci enkripsi yang dikelola pelanggan
 ```
 
-Dengan "customer-managed encryption keys" (kunci enkripsi yang dikelola pelanggan), atau CMEK, Anda membuat kunci di AWS KMS, Google Cloud KMS, atau Azure Key Vault milik Anda sendiri. Anthropic menggunakannya untuk mengenkripsi data tertentu saat diam (at rest). Kunci tersebut tetap berada di bawah kendali Anda, sehingga Anda dapat merotasinya, mengaudit penggunaannya, dan mencabut akses Anthropic.
+Dengan “customer-managed encryption keys” (kunci enkripsi yang dikelola pelanggan), atau CMEK, Anda membuat kunci di AWS KMS, Google Cloud KMS, atau Azure Key Vault milik Anda sendiri. Anthropic menggunakannya untuk mengenkripsi data tertentu saat diam (at rest). Kunci tersebut tetap berada di bawah kendali Anda, sehingga Anda dapat merotasinya, mengaudit penggunaannya, dan mencabut akses Anthropic.
 
 ## Pilih halaman penyiapan Anda
 

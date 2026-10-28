@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 2fcf3acb37ac06e6fbafc5e2eec90b7b3e1b9d6cb282d6dc5e463242041b8e1f
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 4711c19f378a6c8e070114f8d388aa4ddeccbef480ded68ccf0c0dcace785851
 ---
 
 ---
@@ -22,7 +22,7 @@ Alat memori beroperasi di sisi klien: Claude meminta operasi file, dan aplikasi 
 </Note>
 
 <Note>
-  Untuk mempelajari bagaimana "zero data retention" (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
 ## Kasus penggunaan
@@ -806,7 +806,7 @@ Membuat file baru:
 
 * **File sudah ada:** `"Error: File {path} already exists"`
 
-Deskripsi alat Claude mengatakan `create` "membuat atau menimpa" sebuah file, jadi harapkan panggilan `create` pada path yang sudah ada. Mengembalikan kesalahan adalah perilaku referensi, dan menimpa sebagai gantinya adalah pilihan implementasi yang valid.
+Deskripsi alat Claude mengatakan `create` “membuat atau menimpa” sebuah file, jadi harapkan panggilan `create` pada path yang sudah ada. Mengembalikan kesalahan adalah perilaku referensi, dan menimpa sebagai gantinya adalah pilihan implementasi yang valid.
 
 ### str\_replace
 
@@ -835,7 +835,7 @@ Mengganti teks dalam file:
 
 #### Penanganan direktori
 
-Jika path adalah direktori, kembalikan kesalahan "file does not exist".
+Jika path adalah direktori, kembalikan kesalahan “file does not exist”.
 
 ### insert
 
@@ -863,7 +863,7 @@ Menyisipkan teks pada baris tertentu:
 
 #### Penanganan direktori
 
-Jika path adalah direktori, kembalikan kesalahan "file does not exist".
+Jika path adalah direktori, kembalikan kesalahan “file does not exist”.
 
 ### delete
 
@@ -932,7 +932,7 @@ Deskripsi alat Claude sudah memberitahunya untuk menjaga direktori memori tetap 
 Note: when editing your memory folder, always try to keep its content up-to-date, coherent and organized. You can rename or delete files that are no longer relevant. Do not create new files unless necessary.
 ```
 
-Anda juga dapat memandu apa yang ditulis Claude ke memori. Misalnya: "Hanya tuliskan informasi yang relevan dengan \<topic> di sistem memori Anda."
+Anda juga dapat memandu apa yang ditulis Claude ke memori. Misalnya: “Hanya tuliskan informasi yang relevan dengan \<topic> di sistem memori Anda.”
 
 ## Pertimbangan keamanan
 

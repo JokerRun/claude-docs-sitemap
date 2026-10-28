@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agents
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 094a1d43e84392dc4953a6cf06484afcfcaaaed09bbce34a484cd3a17e64149e
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: b30a98c711a5faa32de1d84a892a29d0f2953be7a8b76ddcb33030597e8fdc68
 ---
 
 > ## Documentation Index
@@ -39,7 +39,7 @@ A few other features run Claude without you driving each step, but they solve a 
 
 > [!NOTE]
 >
-> Running several sessions or subagents at once multiplies token usage. See [Costs](https://code.claude.com/docs/en/costs.md) for usage and rate-limit details.
+> Running several sessions or subagents at once multiplies token usage. See [Costs](https://code.claude.com/docs/en/costs.md) for usage and rate limit details.
 
 ## Choose an approach
 

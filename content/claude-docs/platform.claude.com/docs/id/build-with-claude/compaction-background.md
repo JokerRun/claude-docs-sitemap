@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-background
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: e10e51816f60cc593b7e87766c1c51ed158388112977e719c32b0eb990b89220
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 785ba62fce82f6dacf68e36664ddf9153caf6e971b98da4a94f143bbdef82ce5
 ---
 
 ---
@@ -34,11 +34,11 @@ featureMetadata:
     Microsoft Foundry: beta
 ---
 
-"Background compaction" (pemadatan latar belakang), yang sering disebut "async compaction" (pemadatan asinkron), mengubah dua hal dalam [loop compaction](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#compact-in-a-loop): permintaan compaction berjalan sementara percakapan berlanjut pada riwayat lengkapnya, dan penukaran menunggu hingga blok tiba. [Melanjutkan dari ringkasan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#continue-from-the-summary) dan [Menangani ringkasan yang tidak ada atau error](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#when-no-summary-comes-back) berlaku tanpa perubahan.
+“Background compaction” (pemadatan latar belakang), yang sering disebut “async compaction” (pemadatan asinkron), mengubah dua hal dalam [loop compaction](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#compact-in-a-loop): permintaan compaction berjalan sementara percakapan berlanjut pada riwayat lengkapnya, dan penukaran menunggu hingga blok tiba. [Melanjutkan dari ringkasan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#continue-from-the-summary) dan [Menangani ringkasan yang tidak ada atau error](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#when-no-summary-comes-back) berlaku tanpa perubahan.
 
 ## Cara kerja penukaran sementara pekerjaan berlanjut
 
-Permintaan compaction dan blok yang dikembalikannya sama seperti dalam loop. Riwayat Anda bertambah antara saat permintaan dikirim dan saat hasilnya digunakan, dan "swap" (penukaran) harus membiarkan pertambahan tersebut tetap di tempatnya.
+Permintaan compaction dan blok yang dikembalikannya sama seperti dalam loop. Riwayat Anda bertambah antara saat permintaan dikirim dan saat hasilnya digunakan, dan “swap” (penukaran) harus membiarkan pertambahan tersebut tetap di tempatnya.
 
 1. Kirim [permintaan compaction](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#request-a-summary) dengan riwayat Anda sebagaimana adanya, dan catat berapa banyak pesan yang dimuatnya.
 2. Selama permintaan tersebut berjalan, teruskan percakapan pada riwayat lengkap. Tambahkan setiap giliran baru, jangan mengedit apa pun yang sudah ada dalam riwayat, dan jangan memulai permintaan compaction lain hingga permintaan ini selesai ditukar atau gagal.
@@ -55,7 +55,7 @@ Jika respons memiliki `stop_reason` lain, tidak ada ringkasan yang dihasilkan, d
 
 ## Meminta ringkasan di latar belakang
 
-Permintaan compaction dihitung terhadap batas laju Anda seperti permintaan lainnya, dan selama permintaan itu berjalan, aplikasi Anda memiliki dua permintaan yang terbuka sekaligus. Percakapan terus bertambah pada riwayat lengkapnya hingga penukaran, jadi mulailah permintaan compaction selagi "context window" (jendela konteks) masih memiliki ruang untuk giliran-giliran yang tiba sementara itu.
+Permintaan compaction dihitung terhadap batas laju Anda seperti permintaan lainnya, dan selama permintaan itu berjalan, aplikasi Anda memiliki dua permintaan yang terbuka sekaligus. Percakapan terus bertambah pada riwayat lengkapnya hingga penukaran, jadi mulailah permintaan compaction selagi “context window” (jendela konteks) masih memiliki ruang untuk giliran-giliran yang tiba sementara itu.
 
 Program berikut adalah loop dari [Compaction dalam loop](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#compact-in-a-loop) dengan permintaan compaction dikeluarkan dari jalur percakapan. Baris yang disorot menunjukkan di mana program ini berbeda dari loop, dan daftar berikut membahasnya sesuai urutan program menjalankannya.
 
@@ -551,4 +551,4 @@ Pemeriksaan `stop_reason` tidak berubah dari loop: respons tanpa blok membiarkan
 
 ## Menjaga thinking tetap valid selama ringkasan dibuat
 
-Giliran yang tiba selama ringkasan sedang ditulis adalah giliran yang dipertahankan. Jika Anda mengirim kembali blok thinking pada model dengan ["preserved thinking" (pemikiran yang dipertahankan)](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking), thinking dalam giliran-giliran tersebut tetap valid hanya selama [syarat agar thinking yang dipertahankan tetap valid](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid) terpenuhi.
+Giliran yang tiba selama ringkasan sedang ditulis adalah giliran yang dipertahankan. Jika Anda mengirim kembali blok thinking pada model dengan [“preserved thinking” (pemikiran yang dipertahankan)](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking), thinking dalam giliran-giliran tersebut tetap valid hanya selama [syarat agar thinking yang dipertahankan tetap valid](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid) terpenuhi.

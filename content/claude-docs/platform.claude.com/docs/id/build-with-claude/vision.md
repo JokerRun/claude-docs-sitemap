@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 3cd3eb56cd3117c128756e5e570db3b256f845b09187943743d53cd9fdaa4004
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 18584ea61556868098d539a90000aeb5e9ff487a1c595afa9359e8c047c078c0
 ---
 
 ---
@@ -541,7 +541,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
 Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghindari overhead pengodean, gunakan [Files API](https://platform.claude.com/docs/id/build-with-claude/files). Unggah gambar sekali, lalu referensikan `file_id` yang dikembalikan dalam pesan-pesan berikutnya alih-alih mengirim ulang data base64.
 
 <Tip>
-  Dalam percakapan multi-giliran dan alur kerja agentik, setiap permintaan mengirim ulang seluruh riwayat percakapan. Jika gambar berenkode base64, seluruh byte gambar disertakan dalam payload pada setiap giliran, yang dapat secara signifikan meningkatkan ukuran permintaan dan "latency" (latensi) seiring bertambahnya percakapan. Mengunggah gambar ke Files API dan mereferensikannya dengan `file_id` menjaga payload permintaan tetap kecil terlepas dari berapa banyak gambar yang terakumulasi dalam riwayat percakapan.
+  Dalam percakapan multi-giliran dan alur kerja agentik, setiap permintaan mengirim ulang seluruh riwayat percakapan. Jika gambar berenkode base64, seluruh byte gambar disertakan dalam payload pada setiap giliran, yang dapat secara signifikan meningkatkan ukuran permintaan dan “latency” (latensi) seiring bertambahnya percakapan. Mengunggah gambar ke Files API dan mereferensikannya dengan `file_id` menjaga payload permintaan tetap kecil terlepas dari berapa banyak gambar yang terakumulasi dalam riwayat percakapan.
 </Tip>
 
 <CodeGroup>
@@ -1231,7 +1231,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
   ```
 </CodeGroup>
 
-Dalam percakapan multi-giliran, tambahkan gambar baru pada giliran `user` berikutnya dengan cara yang sama. Claude memiliki akses ke setiap gambar dari giliran sebelumnya, sehingga pertanyaan lanjutan seperti "Apakah ini mirip dengan dua gambar pertama?" berfungsi tanpa perlu menyertakan kembali gambar sebelumnya dalam konten giliran baru.
+Dalam percakapan multi-giliran, tambahkan gambar baru pada giliran `user` berikutnya dengan cara yang sama. Claude memiliki akses ke setiap gambar dari giliran sebelumnya, sehingga pertanyaan lanjutan seperti “Apakah ini mirip dengan dua gambar pertama?” berfungsi tanpa perlu menyertakan kembali gambar sebelumnya dalam konten giliran baru.
 
 ***
 
@@ -1242,12 +1242,12 @@ Dalam percakapan multi-giliran, tambahkan gambar baru pada giliran `user` beriku
 Jumlah maksimum gambar untuk setiap pesan atau permintaan adalah:
 
 * 20 untuk setiap pesan di [claude.ai](https://claude.ai/)
-* 100 untuk setiap permintaan di API, untuk model dengan "context window" (jendela konteks) 200k token
+* 100 untuk setiap permintaan di API, untuk model dengan “context window” (jendela konteks) 200k token
 * 600 untuk setiap permintaan di API, untuk semua model lainnya
 
 Dimensi maksimum untuk setiap gambar adalah 8000x8000 px.
 
-Jika satu permintaan API berisi lebih dari 20 gambar, batas dimensi per gambar yang lebih ketat berlaku untuk setiap gambar dalam permintaan tersebut. Semua blok `image` dalam permintaan dihitung terhadap ambang batas ini, termasuk gambar dari giliran percakapan sebelumnya yang Anda kirim ulang dan gambar yang bersarang di dalam konten `tool_result` (misalnya, tangkapan layar yang dikembalikan ke alat computer use). Di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), blok dokumen seperti PDF juga dihitung terhadap ambang batas ini. Gambar yang melebihi batas yang lebih ketat akan ditolak dengan `invalid_request_error` yang pesannya merujuk pada "many-image requests" dan menyebutkan batas saat ini dalam piksel. Agar tetap di bawah batas di semua platform, ubah ukuran setiap gambar sehingga tidak ada dimensi yang melebihi 2000 px, atau batasi permintaan hingga 20 blok gambar dan dokumen atau kurang.
+Jika satu permintaan API berisi lebih dari 20 gambar, batas dimensi per gambar yang lebih ketat berlaku untuk setiap gambar dalam permintaan tersebut. Semua blok `image` dalam permintaan dihitung terhadap ambang batas ini, termasuk gambar dari giliran percakapan sebelumnya yang Anda kirim ulang dan gambar yang bersarang di dalam konten `tool_result` (misalnya, tangkapan layar yang dikembalikan ke alat computer use). Di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), blok dokumen seperti PDF juga dihitung terhadap ambang batas ini. Gambar yang melebihi batas yang lebih ketat akan ditolak dengan `invalid_request_error` yang pesannya merujuk pada “many-image requests” dan menyebutkan batas saat ini dalam piksel. Agar tetap di bawah batas di semua platform, ubah ukuran setiap gambar sehingga tidak ada dimensi yang melebihi 2000 px, atau batasi permintaan hingga 20 blok gambar dan dokumen atau kurang.
 
 Ukuran maksimum per gambar adalah:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 393508306dd5f71d51c65266526ce9738a306ef8c2cb7c52c84594b5c22bbd0a
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 2ac97d1cdad1114a5dee08e4553cca2ccb8211f518393f0216e0d22f89eaf106
 ---
 
 ---
@@ -20,10 +20,10 @@ Claude Opus 5 dibangun untuk pekerjaan agentic coding yang kompleks dan pekerjaa
 Dibandingkan dengan Claude Opus 4.8, peningkatan yang paling relevan untuk prompting adalah:
 
 * **Pengodean agentik:** Claude Opus 5 paling kuat pada tugas pengodean yang sulit: fitur multifile, refactor yang lebih besar, dan pengerjaan fitur end-to-end. Model ini menyelesaikan tugas secara penuh alih-alih meninggalkan stub atau placeholder, dan berkinerja terbaik ketika diberi spesifikasi tugas lengkap di awal lalu dibiarkan berjalan. Model ini juga berkinerja baik pada tugas yang lebih mudah seperti pengeditan satu giliran, di mana perbedaannya dengan model sebelumnya lebih kecil.
-* **Tinjauan kode dan pencarian bug:** Claude Opus 5 meninjau kode dengan "precision" (presisi) dan "recall" (daya ingat) yang tinggi: model ini menemukan bug nyata dengan tingkat yang tinggi per putaran, dan temuan tambahannya sebagian besar merupakan masalah nyata, bukan positif palsu. Akurasi tetap terjaga pada pengaturan effort yang lebih rendah, yang mendukung putaran cepat saat waktu tinjauan dan putaran yang lebih menyeluruh kemudian. Jika prompt tinjauan Anda mengatakan "hanya laporkan masalah dengan tingkat keparahan tinggi" atau "bersikaplah konservatif," model mungkin mengikuti instruksi itu secara harfiah dan melaporkan lebih sedikit; sebagai gantinya, mintalah model untuk melaporkan semuanya dan lakukan penyaringan dalam putaran terpisah.
-* **Efisiensi pada effort yang lebih rendah:** [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `low` dan `medium` menghasilkan kualitas yang kuat dengan sebagian kecil token dan "latency" (latensi) dari pengaturan yang lebih tinggi. Mulailah dengan default (`high`) dan sesuaikan berdasarkan eval Anda: gunakan `low` dan `medium` secara leluasa sebagai kontrol utama Anda untuk biaya token dan waktu respons di mana pun kualitas tetap terjaga, dan naikkan ke `xhigh` untuk pekerjaan pengodean dan agentik yang menuntut. Jika Anda membawa default effort dari model sebelumnya, jalankan ulang sapuan effort pada eval Anda sendiri. Lihat [tingkat effort yang direkomendasikan](https://platform.claude.com/docs/id/build-with-claude/effort#recommended-effort-levels-for-claude-opus-5) untuk panduan lengkapnya.
-* **Vision:** Claude Opus 5 kuat dalam memahami grafik, dokumen, dan diagram, serta dalam replikasi visual UI dan frontend. Validasi ulang setiap solusi vision sisi prompt yang Anda sesuaikan untuk model sebelumnya; solusi tersebut mungkin tidak lagi diperlukan. Kinerja vision paling kuat ketika model memiliki alat untuk menganalisis, memotong, dan memverifikasi pekerjaannya secara visual secara iteratif, dan "tool use" (penggunaan alat) merupakan pengungkit yang lebih hemat biaya daripada thinking saja.
-* **Pekerjaan konteks panjang:** Claude Opus 5 memiliki ["context window" (jendela konteks) 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) sebagai default sekaligus maksimum, dan kepatuhan instruksi, pemanggilan alat, serta penalarannya tetap konsisten di seluruh jendela tersebut.
+* **Tinjauan kode dan pencarian bug:** Claude Opus 5 meninjau kode dengan “precision” (presisi) dan “recall” (daya ingat) yang tinggi: model ini menemukan bug nyata dengan tingkat yang tinggi per putaran, dan temuan tambahannya sebagian besar merupakan masalah nyata, bukan positif palsu. Akurasi tetap terjaga pada pengaturan effort yang lebih rendah, yang mendukung putaran cepat saat waktu tinjauan dan putaran yang lebih menyeluruh kemudian. Jika prompt tinjauan Anda mengatakan “hanya laporkan masalah dengan tingkat keparahan tinggi” atau “bersikaplah konservatif,” model mungkin mengikuti instruksi itu secara harfiah dan melaporkan lebih sedikit; sebagai gantinya, mintalah model untuk melaporkan semuanya dan lakukan penyaringan dalam putaran terpisah.
+* **Efisiensi pada effort yang lebih rendah:** [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `low` dan `medium` menghasilkan kualitas yang kuat dengan sebagian kecil token dan “latency” (latensi) dari pengaturan yang lebih tinggi. Mulailah dengan default (`high`) dan sesuaikan berdasarkan eval Anda: gunakan `low` dan `medium` secara leluasa sebagai kontrol utama Anda untuk biaya token dan waktu respons di mana pun kualitas tetap terjaga, dan naikkan ke `xhigh` untuk pekerjaan pengodean dan agentik yang menuntut. Jika Anda membawa default effort dari model sebelumnya, jalankan ulang sapuan effort pada eval Anda sendiri. Lihat [tingkat effort yang direkomendasikan](https://platform.claude.com/docs/id/build-with-claude/effort#recommended-effort-levels-for-claude-opus-5) untuk panduan lengkapnya.
+* **Vision:** Claude Opus 5 kuat dalam memahami grafik, dokumen, dan diagram, serta dalam replikasi visual UI dan frontend. Validasi ulang setiap solusi vision sisi prompt yang Anda sesuaikan untuk model sebelumnya; solusi tersebut mungkin tidak lagi diperlukan. Kinerja vision paling kuat ketika model memiliki alat untuk menganalisis, memotong, dan memverifikasi pekerjaannya secara visual secara iteratif, dan “tool use” (penggunaan alat) merupakan pengungkit yang lebih hemat biaya daripada thinking saja.
+* **Pekerjaan konteks panjang:** Claude Opus 5 memiliki [“context window” (jendela konteks) 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) sebagai default sekaligus maksimum, dan kepatuhan instruksi, pemanggilan alat, serta penalarannya tetap konsisten di seluruh jendela tersebut.
 * **Tugas kantor dan dokumen:** Claude Opus 5 menghasilkan dan bekerja dengan spreadsheet multisheet yang kompleks dengan formula yang tidak sederhana, dan menghasilkan slide deck yang terstruktur dengan baik. Berikan prompt berisi gaya atau template spesifik yang perlu diikutinya.
 * **Koordinasi multiagen:** Claude Opus 5 mengoordinasikan tim subagen dengan baik, dengan pola penulis-pemverifikasi yang efektif dan sedikit kasus agen saling menimpa pekerjaan satu sama lain. Untuk beban kerja yang sensitif terhadap biaya, batasi delegasi; lihat [Mengontrol pembuatan subagen](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5#controlling-subagent-spawning).
 
@@ -37,7 +37,7 @@ Instruksi keringkasan yang singkat sudah efektif. Misalnya, untuk produk multi-g
 Keep responses focused, brief, and concise. Keep disclaimers and caveats short, and spend most of the response on the main answer. When asked to explain something, give a high-level summary unless an in-depth explanation is specifically requested.
 ```
 
-Dalam "system prompt" (prompt sistem) yang panjang, pasangkan instruksi tersebut dengan pengingat singkat di dekat akhir prompt:
+Dalam “system prompt” (prompt sistem) yang panjang, pasangkan instruksi tersebut dengan pengingat singkat di dekat akhir prompt:
 
 ```text wrap
 <tone_preference>
@@ -65,7 +65,7 @@ Match the length of written documents to what the task needs: cover the substanc
 
 ## Cakupan tugas dan verifikasi berlebihan
 
-Claude Opus 5 memverifikasi pekerjaannya sendiri tanpa diminta. Jika prompt Anda berisi instruksi verifikasi eksplisit ("sertakan langkah verifikasi akhir untuk setiap tugas yang tidak sederhana," "gunakan subagen untuk memverifikasi"), hapuslah: instruksi seperti ini menyebabkan verifikasi berlebihan pada Claude Opus 5, dan menghapusnya mengurangi token yang terbuang tanpa kehilangan kualitas. Hal yang sama berlaku untuk scaffolding harness lama yang menambahkan langkah verifikasi terpisah.
+Claude Opus 5 memverifikasi pekerjaannya sendiri tanpa diminta. Jika prompt Anda berisi instruksi verifikasi eksplisit (“sertakan langkah verifikasi akhir untuk setiap tugas yang tidak sederhana,” “gunakan subagen untuk memverifikasi”), hapuslah: instruksi seperti ini menyebabkan verifikasi berlebihan pada Claude Opus 5, dan menghapusnya mengurangi token yang terbuang tanpa kehilangan kualitas. Hal yang sama berlaku untuk scaffolding harness lama yang menambahkan langkah verifikasi terpisah.
 
 Claude Opus 5 juga dapat memperluas cakupan tugas, menambahkan langkah yang tidak diminta atau menerapkan penilaiannya sendiri tentang apa seharusnya tugas tersebut. Untuk tugas yang sempit, batasi cakupan secara eksplisit:
 
@@ -85,7 +85,7 @@ Jika harness Anda adalah Claude Code atau Claude Agent SDK, batas deterministikn
 
 ## Koreksi diri
 
-Claude Opus 5 menangkap dan memperbaiki kesalahannya sendiri dengan baik tanpa prompting. Hindari menginstruksikan pemeriksaan ulang yang sudah dilakukannya ("periksa kembali jawaban Anda," "verifikasi ulang sebelum merespons"); seperti instruksi verifikasi, instruksi ini bertumpuk dengan perilaku model sendiri dan menambah biaya tanpa meningkatkan hasil.
+Claude Opus 5 menangkap dan memperbaiki kesalahannya sendiri dengan baik tanpa prompting. Hindari menginstruksikan pemeriksaan ulang yang sudah dilakukannya (“periksa kembali jawaban Anda,” “verifikasi ulang sebelum merespons”); seperti instruksi verifikasi, instruksi ini bertumpuk dengan perilaku model sendiri dan menambah biaya tanpa meningkatkan hasil.
 
 Model ini juga menarasikan koreksi terhadap pernyataan sebelumnya lebih sering daripada model sebelumnya, yang bisa jadi tidak diinginkan dalam produk yang ditujukan kepada pengguna. Untuk membatasi narasi koreksi hanya pada koreksi yang penting:
 

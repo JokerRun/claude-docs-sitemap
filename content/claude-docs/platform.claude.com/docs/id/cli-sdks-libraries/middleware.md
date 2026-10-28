@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/middleware
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 9b73e0d92e86415a102c86bc3508640e7c16f7157097a41b1aa6d0242801e466
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 55ed29b02b5cc21d58fda0088db2e8ae684672a8b0f06aaf19ce88567aa98025
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/cli-sdks-libraries/middleware
 description: Mencegat dan memodifikasi permintaan dan respons SDK.
 ---
 
-Claude SDK menyediakan hook "middleware" (perantara), atau interceptor, yang memungkinkan Anda menjalankan kode sebelum permintaan dikirim dan setelah respons diterima. Gunakan middleware untuk kebutuhan lintas bagian seperti logging, percobaan ulang kustom, anotasi permintaan, dan penanganan fallback penolakan.
+Claude SDK menyediakan hook “middleware” (perantara), atau interceptor, yang memungkinkan Anda menjalankan kode sebelum permintaan dikirim dan setelah respons diterima. Gunakan middleware untuk kebutuhan lintas bagian seperti logging, percobaan ulang kustom, anotasi permintaan, dan penanganan fallback penolakan.
 
 ```mermaid
 sequenceDiagram
@@ -174,13 +174,13 @@ Setiap middleware adalah fungsi yang menerima permintaan keluar dan handler beri
 
 ## Urutan middleware
 
-Ketika Anda mendaftarkan beberapa middleware, middleware tersebut diterapkan sesuai urutan yang diberikan: kode "sebelum" dari middleware pertama dijalankan paling awal, dan kode "setelah"-nya dijalankan paling akhir. Middleware yang didaftarkan pada klien dijalankan sebelum middleware yang diteruskan sebagai opsi per permintaan.
+Ketika Anda mendaftarkan beberapa middleware, middleware tersebut diterapkan sesuai urutan yang diberikan: kode “sebelum” dari middleware pertama dijalankan paling awal, dan kode “setelah”-nya dijalankan paling akhir. Middleware yang didaftarkan pada klien dijalankan sebelum middleware yang diteruskan sebagai opsi per permintaan.
 
 Di SDK Go, pemanggilan `option.WithMiddleware` yang berulang akan digabungkan (klien terlebih dahulu, lalu metode). Di SDK lainnya, teruskan sebuah array; entri yang lebih akhir membungkus bagian dalam.
 
 ## Mengganti klien HTTP
 
-SDK juga menerima klien HTTP kustom (untuk konfigurasi proxy, TLS kustom, atau "connection pooling" (pengumpulan koneksi)). Hanya satu klien HTTP yang digunakan untuk setiap klien SDK; mengaturnya akan menggantikan yang default. Klien HTTP kustom menerima permintaan setelah semua middleware selesai dijalankan.
+SDK juga menerima klien HTTP kustom (untuk konfigurasi proxy, TLS kustom, atau “connection pooling” (pengumpulan koneksi)). Hanya satu klien HTTP yang digunakan untuk setiap klien SDK; mengaturnya akan menggantikan yang default. Klien HTTP kustom menerima permintaan setelah semua middleware selesai dijalankan.
 
 ## Middleware bawaan
 

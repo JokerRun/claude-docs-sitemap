@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-data-retention
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 42d0ca09ea05fd097761d6d79a290a803df9c271109a8abffd3dc56f909a7350
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 2dce8838fcbd7ad9874cb46fbabdd79c5cd0260934b62adffaf693a913e00f01
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/manage-claude/cmek-data-retention
 description: Mengapa workspace dengan kunci menyimpan data, apa artinya bagi ZDR, dan apa yang dapat dipreservasi Anthropic di luar kunci Anda.
 ---
 
-Di Claude Platform, "customer-managed encryption keys" (kunci enkripsi yang dikelola pelanggan), atau CMEK, dan [retensi data nol (ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention) tidak dapat berbagi workspace. Di Claude Enterprise, organisasi dapat menggunakan CMEK dan ZDR bersama-sama, tetapi organisasi tersebut kemudian [tidak dapat mengaktifkan artifact](https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise#turned-off-or-changed).
+Di Claude Platform, “customer-managed encryption keys” (kunci enkripsi yang dikelola pelanggan), atau CMEK, dan [retensi data nol (ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention) tidak dapat berbagi workspace. Di Claude Enterprise, organisasi dapat menggunakan CMEK dan ZDR bersama-sama, tetapi organisasi tersebut kemudian [tidak dapat mengaktifkan artifact](https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise#turned-off-or-changed).
 
 ## Kunci memerlukan workspace yang menyimpan data
 

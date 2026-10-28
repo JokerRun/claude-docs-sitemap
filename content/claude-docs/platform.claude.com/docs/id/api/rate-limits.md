@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/rate-limits
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 3d3d373ead09310c5790243e806fa426894ccd4ef22b9232b64d679208ebcc18
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 92aeab52474a8139e45a4d97672957678acfd27382ec48aad6cbe972a921764d
 ---
 
 ---
@@ -17,15 +17,15 @@ description: Untuk memitigasi penyalahgunaan dan mengelola kapasitas pada API, t
 
 Ada dua jenis batas:
 
-1. **Batas pengeluaran** ("spend limits") menetapkan biaya bulanan maksimum yang dapat dikeluarkan sebuah organisasi untuk penggunaan API.
-2. **Batas laju** ("rate limits") menetapkan jumlah maksimum permintaan API yang dapat dibuat sebuah organisasi dalam periode waktu tertentu.
+1. **Batas pengeluaran** (“spend limits”) menetapkan biaya bulanan maksimum yang dapat dikeluarkan sebuah organisasi untuk penggunaan API.
+2. **Batas laju** (“rate limits”) menetapkan jumlah maksimum permintaan API yang dapat dibuat sebuah organisasi dalam periode waktu tertentu.
 
 API menerapkan batas yang dikonfigurasi oleh layanan di tingkat organisasi, tetapi Anda juga dapat menetapkan batas yang dapat dikonfigurasi pengguna untuk workspace organisasi Anda.
 
 ## Tentang batas laju
 
 * Batas dirancang untuk mencegah penyalahgunaan API, sekaligus meminimalkan dampak pada pola penggunaan pelanggan yang umum.
-* Batas ditentukan berdasarkan **tingkat penggunaan** ("usage tier"). Organisasi ditempatkan pada suatu tingkat secara otomatis berdasarkan riwayat penggunaan dan status akun, serta dapat berpindah ke tingkat yang lebih tinggi seiring waktu saat mereka menggunakan API.
+* Batas ditentukan berdasarkan **tingkat penggunaan** (“usage tier”). Organisasi ditempatkan pada suatu tingkat secara otomatis berdasarkan riwayat penggunaan dan status akun, serta dapat berpindah ke tingkat yang lebih tinggi seiring waktu saat mereka menggunakan API.
 * Organisasi baru dan organisasi dengan riwayat penggunaan terbatas mungkin memulai di tingkat Evaluation, dengan batas di bawah batas standar yang ditampilkan di halaman ini selagi riwayat akun dibangun. Batas awal ini merupakan bagian dari cara Anthropic mencegah penipuan dan penyalahgunaan, dan batas tersebut meningkat secara otomatis seiring organisasi Anda membangun riwayat penggunaan.
 * Batas ditetapkan di tingkat organisasi. Anda dapat melihat tingkat dan batas organisasi Anda saat ini di halaman [Rate limits](https://platform.claude.com/usage/limits) (`platform.claude.com/usage/limits`) di [Claude Console](https://platform.claude.com/).
 * Anda mungkin mencapai batas laju dalam interval waktu yang lebih pendek. Misalnya, laju 60 permintaan per menit (RPM) mungkin diberlakukan sebagai 1 permintaan per detik. Lonjakan permintaan singkat dapat melampaui batas dan memicu error batas laju.
@@ -39,7 +39,7 @@ API menerapkan batas yang dikonfigurasi oleh layanan di tingkat organisasi, teta
   **[Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws):** Batas pengeluaran bulanan yang sama berlaku, dan permintaan berhenti pada batas tersebut dengan cara yang sama. Penagihan dan kenaikan tingkat bekerja secara berbeda; lihat [Batas pengeluaran di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#spend-limits).
 </Note>
 
-Masing-masing tingkat Start, Build, dan Scale memiliki batas pengeluaran bulanan ("monthly spend cap"), yaitu jumlah maksimum yang dapat dibelanjakan organisasi Anda untuk API setiap bulan kalender. Anda dapat melihat batas pengeluaran bulanan organisasi Anda dan menetapkan batas Anda sendiri di halaman [Billing](https://platform.claude.com/settings/billing) di Claude Console.
+Masing-masing tingkat Start, Build, dan Scale memiliki batas pengeluaran bulanan (“monthly spend cap”), yaitu jumlah maksimum yang dapat dibelanjakan organisasi Anda untuk API setiap bulan kalender. Anda dapat melihat batas pengeluaran bulanan organisasi Anda dan menetapkan batas Anda sendiri di halaman [Billing](https://platform.claude.com/settings/billing) di Claude Console.
 
 | Tingkat penggunaan | Batas pengeluaran bulanan |
 | ------------------ | ------------------------- |
@@ -101,7 +101,7 @@ Batas laju untuk Messages API diukur dalam permintaan per menit (RPM), token inp
 
 ### ITPM yang sadar cache
 
-Banyak penyedia API menggunakan batas gabungan "token per menit" (TPM) yang mungkin mencakup semua token, baik yang di-cache maupun tidak, input maupun output. **Untuk sebagian besar model Claude, hanya token input yang tidak di-cache yang dihitung terhadap batas laju ITPM Anda.** Ini adalah keunggulan utama yang membuat batas laju secara efektif lebih tinggi daripada yang mungkin terlihat pada awalnya.
+Banyak penyedia API menggunakan batas gabungan “token per menit” (TPM) yang mungkin mencakup semua token, baik yang di-cache maupun tidak, input maupun output. **Untuk sebagian besar model Claude, hanya token input yang tidak di-cache yang dihitung terhadap batas laju ITPM Anda.** Ini adalah keunggulan utama yang membuat batas laju secara efektif lebih tinggi daripada yang mungkin terlihat pada awalnya.
 
 Batas laju ITPM diperkirakan di awal setiap permintaan, dan perkiraan tersebut disesuaikan selama permintaan untuk mencerminkan jumlah token input aktual yang digunakan.
 
@@ -120,7 +120,7 @@ Berikut yang dihitung terhadap ITPM:
 
   Ini berarti ketika Anda memiliki konten yang di-cache, `input_tokens` biasanya akan jauh lebih kecil daripada total input Anda. Misalnya, dengan dokumen yang di-cache sebesar 200 ribu token dan pertanyaan pengguna sebesar 50 token, Anda akan melihat `input_tokens: 50` meskipun total inputnya adalah 200.050 token.
 
-  Untuk keperluan batas laju pada sebagian besar model, hanya `input_tokens` + `cache_creation_input_tokens` yang dihitung terhadap batas ITPM Anda, menjadikan ["prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) cara yang efektif untuk meningkatkan throughput efektif Anda.
+  Untuk keperluan batas laju pada sebagian besar model, hanya `input_tokens` + `cache_creation_input_tokens` yang dihitung terhadap batas ITPM Anda, menjadikan [“prompt caching” (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) cara yang efektif untuk meningkatkan throughput efektif Anda.
 </Note>
 
 **Contoh:** Dengan batas ITPM 2.000.000 dan tingkat cache hit 80 persen, Anda secara efektif dapat memproses total 10.000.000 token input per menit (2 juta tidak di-cache + 8 juta di-cache), karena token yang di-cache tidak dihitung terhadap batas laju Anda.
@@ -202,7 +202,7 @@ Setiap baris pada tabel berikut memiliki batas RPM, ITPM, dan OTPM sendiri. Seba
 
 ### Message Batches API
 
-Message Batches API memiliki set batas lajunya sendiri, yang dibagikan di semua model. Ini mencakup batas permintaan per menit (RPM) untuk semua endpoint API dan batas jumlah permintaan batch yang dapat berada dalam antrean pemrosesan pada saat yang sama. "Permintaan batch" di sini mengacu pada bagian dari sebuah Message Batch. Anda dapat membuat Message Batch yang berisi ribuan permintaan batch, yang masing-masing dihitung terhadap batas ini. Sebuah permintaan batch dianggap sebagai bagian dari antrean pemrosesan ketika belum berhasil diproses oleh model.
+Message Batches API memiliki set batas lajunya sendiri, yang dibagikan di semua model. Ini mencakup batas permintaan per menit (RPM) untuk semua endpoint API dan batas jumlah permintaan batch yang dapat berada dalam antrean pemrosesan pada saat yang sama. “Permintaan batch” di sini mengacu pada bagian dari sebuah Message Batch. Anda dapat membuat Message Batch yang berisi ribuan permintaan batch, yang masing-masing dihitung terhadap batas ini. Sebuah permintaan batch dianggap sebagai bagian dari antrean pemrosesan ketika belum berhasil diproses oleh model.
 
 <Tabs>
   <Tab title="Tingkat Start">

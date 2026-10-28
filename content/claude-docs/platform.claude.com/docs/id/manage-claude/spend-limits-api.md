@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/spend-limits-api
-fetched_at: 2026-10-17T02:19:22.559852Z
-sha256: 21ef30207c6c755649f7e01cf898ed99d7eccabc9640e29212b95898e32a3bee
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: bca87973e56870ba3faea200fe33698f1f4e1d5736a9dd4d45feeabec7331cfa
 ---
 
 ---
@@ -11,14 +11,14 @@ url: https://platform.claude.com/docs/id/manage-claude/spend-limits-api
 description: Tetapkan batas pengeluaran pada setiap anggota Claude Enterprise, lihat dari mana batas pengeluaran setiap anggota diwarisi, dan tinjau atau tindak lanjuti permintaan anggota untuk batas yang lebih tinggi.
 ---
 
-Spend Limits API memungkinkan Anda menetapkan "spend limit" (batas pengeluaran) pada setiap anggota Claude Enterprise, melihat dari mana batas pengeluaran setiap anggota diwarisi, dan meninjau atau menindaklanjuti permintaan anggota untuk batas yang lebih tinggi.
+Spend Limits API memungkinkan Anda menetapkan “spend limit” (batas pengeluaran) pada setiap anggota Claude Enterprise, melihat dari mana batas pengeluaran setiap anggota diwarisi, dan meninjau atau menindaklanjuti permintaan anggota untuk batas yang lebih tinggi.
 
 Untuk *pelaporan* penggunaan dan biaya per pengguna dan per rentang waktu, lihat [Analytics APIs](https://platform.claude.com/docs/id/manage-claude/analytics-api).
 
 <Check>
   **Diperlukan kunci Admin API dengan cakupan**
 
-  Endpoint ini memerlukan kunci Admin API dengan "scope" (cakupan) `read:spend_limits` (untuk endpoint `GET`) atau cakupan `write:spend_limits` (untuk endpoint `POST` dan `DELETE`). Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization) untuk mengetahui di mana pemilik utama Anda membuatnya dan cakupan mana yang harus dipilih. Sertakan kunci tersebut di header `x-api-key` pada setiap permintaan, bersama dengan header [`anthropic-version`](https://platform.claude.com/docs/id/api/versioning).
+  Endpoint ini memerlukan kunci Admin API dengan “scope” (cakupan) `read:spend_limits` (untuk endpoint `GET`) atau cakupan `write:spend_limits` (untuk endpoint `POST` dan `DELETE`). Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization) untuk mengetahui di mana pemilik utama Anda membuatnya dan cakupan mana yang harus dipilih. Sertakan kunci tersebut di header `x-api-key` pada setiap permintaan, bersama dengan header [`anthropic-version`](https://platform.claude.com/docs/id/api/versioning).
 </Check>
 
 <Note>
@@ -34,7 +34,7 @@ API ini menyediakan delapan endpoint pada dua sumber daya:
 | **Batas pengeluaran**                     | `GET /v1/organizations/spend_limits/effective`<br />`GET /v1/organizations/spend_limits/{spend_limit_id}`<br />`POST /v1/organizations/spend_limits`<br />`DELETE /v1/organizations/spend_limits/{spend_limit_id}`                                                   | Membaca batas pengeluaran efektif setiap anggota dan pengeluaran periode berjalan; menetapkan atau menghapus override per pengguna.                                  |
 | **Permintaan kenaikan batas pengeluaran** | `GET /v1/organizations/spend_limit_increase_requests`<br />`GET /v1/organizations/spend_limit_increase_requests/{id}`<br />`POST /v1/organizations/spend_limit_increase_requests/{id}/approve`<br />`POST /v1/organizations/spend_limit_increase_requests/{id}/deny` | Mendaftar permintaan anggota untuk batas pengeluaran yang lebih tinggi, beserta konteks yang diperlukan untuk memutuskan; menyetujui atau menolak setiap permintaan. |
 
-Gunakan endpoint **spend limits** untuk menjawab "batas pengeluaran apa yang berlaku untuk setiap anggota, dari mana asalnya, dan seberapa dekat mereka dengan batas tersebut?" serta untuk menetapkan override per pengguna. Gunakan endpoint **spend limit increase requests** untuk memproses antrean permintaan yang diajukan anggota.
+Gunakan endpoint **spend limits** untuk menjawab “batas pengeluaran apa yang berlaku untuk setiap anggota, dari mana asalnya, dan seberapa dekat mereka dengan batas tersebut?” serta untuk menetapkan override per pengguna. Gunakan endpoint **spend limit increase requests** untuk memproses antrean permintaan yang diajukan anggota.
 
 ## Prasyarat
 
@@ -221,13 +221,13 @@ Kirim header `anthropic-version` pada setiap permintaan; lihat [Versi API](https
 
 ## Pembatasan laju
 
-Kedelapan endpoint berbagi satu "rate limit" (batas laju) per organisasi sebesar **60 permintaan per menit**. Permintaan yang melebihi batas mengembalikan **429 Too Many Requests**.
+Kedelapan endpoint berbagi satu “rate limit” (batas laju) per organisasi sebesar **60 permintaan per menit**. Permintaan yang melebihi batas mengembalikan **429 Too Many Requests**.
 
 ## Paginasi
 
 `GET /v1/organizations/spend_limits/effective` dan `GET /v1/organizations/spend_limit_increase_requests` dipaginasi dengan **cursor opaque**. Permintaan pertama mengembalikan hingga `limit` baris ditambah cursor `next_page`; teruskan cursor tersebut tanpa perubahan sebagai parameter `page` pada permintaan berikutnya, dan ulangi hingga `next_page` bernilai `null`.
 
-**Jangan mengubah parameter query di tengah urutan.** Cursor terikat pada filter yang menerbitkannya. Jika Anda mengubah `user_ids[]`, `period[]`, `status[]`, atau `actor_ids[]` dan meneruskan cursor lama, Anda akan mendapatkan 400 dengan *"cursor does not match current query parameters"*. Mulailah urutan baru dari halaman pertama.
+**Jangan mengubah parameter query di tengah urutan.** Cursor terikat pada filter yang menerbitkannya. Jika Anda mengubah `user_ids[]`, `period[]`, `status[]`, atau `actor_ids[]` dan meneruskan cursor lama, Anda akan mendapatkan 400 dengan *“cursor does not match current query parameters”*. Mulailah urutan baru dari halaman pertama.
 
 ## Serialisasi parameter list
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: d73f2f740756adbab11fb0ef17f47a58a8b3a7c7517e3b94bf499cf3d5cb65ac
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 3a8af753b0567d0ea357b87e3541b0f10f3ec525cec189fd605b0fc8e987c2b0
 ---
 
 ---
@@ -388,7 +388,7 @@ Maksimal **8 memory store** didukung untuk setiap sesi. Lampirkan beberapa store
 
 ### Bagaimana agen mengakses memori
 
-Setiap store yang dilampirkan di-mount di dalam sandbox sesi sebagai direktori di bawah `/mnt/memory/`. Nama direktori adalah nama tampilan store yang disanitasi menjadi slug yang aman untuk filesystem (huruf kecil, dengan setiap rangkaian karakter non-alfanumerik diganti dengan satu tanda hubung), sehingga store bernama "Demo Memory" di-mount di `/mnt/memory/demo-memory/`. Path yang tepat dikembalikan dalam field `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`) pada resource memory-store sesi; bacalah dari sana alih-alih menyusunnya sendiri. Agen membaca dan menulis store dengan [agent toolset](https://platform.claude.com/docs/id/managed-agents/tools) standar. Penulisan di bawah mount path disimpan kembali ke store dan tetap sinkron di seluruh sesi yang berbagi store tersebut; penulisan ke path lain mana pun di bawah `/mnt/memory/` akan gagal, karena sandbox me-mount direktori induk tersebut sebagai read-only. Deskripsi singkat dari setiap mount (nama tampilan, mount path, mode akses, `description` (csharp, go: `Description`) store, dan `instructions` (csharp, go: `Instructions`) apa pun) secara otomatis ditambahkan ke prompt sistem.
+Setiap store yang dilampirkan di-mount di dalam sandbox sesi sebagai direktori di bawah `/mnt/memory/`. Nama direktori adalah nama tampilan store yang disanitasi menjadi slug yang aman untuk filesystem (huruf kecil, dengan setiap rangkaian karakter non-alfanumerik diganti dengan satu tanda hubung), sehingga store bernama “Demo Memory” di-mount di `/mnt/memory/demo-memory/`. Path yang tepat dikembalikan dalam field `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`) pada resource memory-store sesi; bacalah dari sana alih-alih menyusunnya sendiri. Agen membaca dan menulis store dengan [agent toolset](https://platform.claude.com/docs/id/managed-agents/tools) standar. Penulisan di bawah mount path disimpan kembali ke store dan tetap sinkron di seluruh sesi yang berbagi store tersebut; penulisan ke path lain mana pun di bawah `/mnt/memory/` akan gagal, karena sandbox me-mount direktori induk tersebut sebagai read-only. Deskripsi singkat dari setiap mount (nama tampilan, mount path, mode akses, `description` (csharp, go: `Description`) store, dan `instructions` (csharp, go: `Instructions`) apa pun) secara otomatis ditambahkan ke prompt sistem.
 
 `access` (csharp, go: `Access`) diberlakukan di tingkat filesystem: mount `read_only` menolak penulisan, sedangkan penulisan ke mount `read_write` menghasilkan [versi memori](https://platform.claude.com/docs/id/managed-agents/memory#audit-memory-changes) yang diatribusikan ke sesi.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/task-budgets
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: c8033728262f7749c5657dc26601824adc14a22587de1bb7ceaa57fc2d21bdd8
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 27a50084289a9a5e17eb074723f345ba8181c9d99e1b3f295039f13834fd1aaa
 ---
 
 ---
@@ -25,7 +25,7 @@ featureMetadata:
     - claude-haiku-5-5
 ---
 
-"Task budgets" (anggaran tugas) memungkinkan Anda memberi tahu Claude berapa banyak token yang dimilikinya untuk seluruh loop agentik, termasuk pemikiran, pemanggilan alat, hasil alat, dan output. Model menerima hitung mundur yang terus berjalan dan menggunakannya untuk memprioritaskan pekerjaan serta menyelesaikan tugas dengan baik seiring anggaran terpakai.
+“Task budgets” (anggaran tugas) memungkinkan Anda memberi tahu Claude berapa banyak token yang dimilikinya untuk seluruh loop agentik, termasuk pemikiran, pemanggilan alat, hasil alat, dan output. Model menerima hitung mundur yang terus berjalan dan menggunakannya untuk memprioritaskan pekerjaan serta menyelesaikan tugas dengan baik seiring anggaran terpakai.
 
 ## Kapan menggunakan anggaran tugas
 
@@ -660,8 +660,8 @@ Nilai minimum `task_budget.total` yang diterima adalah **20.000 token** pada set
 
 * **`max_tokens`:** Ortogonal terhadap anggaran tugas. `max_tokens` adalah batas keras per permintaan untuk token yang dihasilkan, sedangkan `task_budget` adalah batas anjuran di seluruh loop agentik (berpotensi mencakup banyak permintaan). Pada effort `xhigh` atau `max`, tetapkan `max_tokens` setidaknya 64k untuk memberi Claude ruang untuk berpikir dan bertindak pada setiap permintaan.
 * **[Effort](https://platform.claude.com/docs/id/build-with-claude/effort):** Effort mengontrol seberapa dalam Claude bernalar tentang setiap langkah. Anggaran tugas mengontrol seberapa banyak total pekerjaan yang dilakukan Claude di seluruh loop agentik. Keduanya saling melengkapi: effort menyetel kedalaman, dan anggaran tugas menyetel keluasan.
-* **["Adaptive thinking" (pemikiran adaptif)](https://platform.claude.com/docs/id/build-with-claude/thinking):** Anggaran tugas menyertakan token pemikiran dalam penghitungan, sehingga pemikiran adaptif akan berkurang seiring anggaran menipis.
-* **["Prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching):** Penanda hitung mundur anggaran disisipkan di sisi server pada setiap permintaan, sehingga tidak cocok di antara permintaan. Jika klien Anda mengurangi `task_budget.remaining` pada setiap permintaan lanjutan, nilai yang berubah akan membatalkan prefiks cache apa pun yang memuatnya. Untuk mempertahankan caching, tetapkan anggaran sekali pada permintaan awal dan biarkan model mengatur dirinya sendiri berdasarkan hitung mundur di sisi server, alih-alih mengubah anggaran di sisi klien.
+* **[“Adaptive thinking” (pemikiran adaptif)](https://platform.claude.com/docs/id/build-with-claude/thinking):** Anggaran tugas menyertakan token pemikiran dalam penghitungan, sehingga pemikiran adaptif akan berkurang seiring anggaran menipis.
+* **[“Prompt caching” (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching):** Penanda hitung mundur anggaran disisipkan di sisi server pada setiap permintaan, sehingga tidak cocok di antara permintaan. Jika klien Anda mengurangi `task_budget.remaining` pada setiap permintaan lanjutan, nilai yang berubah akan membatalkan prefiks cache apa pun yang memuatnya. Untuk mempertahankan caching, tetapkan anggaran sekali pada permintaan awal dan biarkan model mengatur dirinya sendiri berdasarkan hitung mundur di sisi server, alih-alih mengubah anggaran di sisi klien.
 
 ## Dukungan fitur
 

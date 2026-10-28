@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: ff212854bd512c05f76a3d0f793bcaedc3ca16e5c68b094b9ea3cec4ea3d12a2
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 083feb86692f24ff8265a566b204abe0f76511bb750b2ba8c8e448718f442337
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effo
 description: Bangun mode tingkat sesi yang memberikan persetujuan tetap untuk fan-out multiagen, yang diaktifkan dan dinonaktifkan dengan pesan sistem di tengah percakapan.
 ---
 
-Mode orkestrasi adalah sakelar tingkat sesi: ketika aktif, model mengerahkan ketelitian maksimum untuk setiap permintaan substantif, menelusuri tugas itu sendiri lalu secara default menyebarkan pekerjaan ("fan-out") ke subagen paralel. Ketika nonaktif, alat orkestrasi yang sama kembali ke opt-in per permintaan.
+Mode orkestrasi adalah sakelar tingkat sesi: ketika aktif, model mengerahkan ketelitian maksimum untuk setiap permintaan substantif, menelusuri tugas itu sendiri lalu secara default menyebarkan pekerjaan (“fan-out”) ke subagen paralel. Ketika nonaktif, alat orkestrasi yang sama kembali ke opt-in per permintaan.
 
 Mode ini bukan parameter API. Mode ini dibangun sepenuhnya dari komponen yang terdokumentasi:
 
@@ -876,7 +876,7 @@ Alat Workflow memuat kontrak perilaku yang sebenarnya: aturan opt-in, persetujua
 
 ## Menjalankan alat bash secara lokal
 
-Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gabungan stdout dan stderr, dan memotong hasilnya sehingga perintah yang lepas kendali tidak dapat membanjiri "context window" (jendela konteks). Perintah berjalan di direktori tempat Anda meluncurkan contoh ini, jadi mengarahkannya ke sebuah proyek berarti memulainya di sana; ketika `DOC_TEST_MODE` disetel, harness justru memberi bash sebuah direktori fixture kecil sekali pakai yang dihapus saat keluar. Tidak ada sandbox di sini: perintah berjalan dengan izin proses yang meluncurkan contoh ini. Demi kejelasan, contoh ini menjalankan setiap panggilan dalam subshell baru alih-alih mempertahankan sesi persisten yang dijelaskan oleh kontrak `bash_20250124`; agen produksi sebaiknya mendukung alat ini dengan shell berumur panjang sehingga direktori kerja, lingkungan, dan aksi `restart` berperilaku sesuai dokumentasi.
+Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gabungan stdout dan stderr, dan memotong hasilnya sehingga perintah yang lepas kendali tidak dapat membanjiri “context window” (jendela konteks). Perintah berjalan di direktori tempat Anda meluncurkan contoh ini, jadi mengarahkannya ke sebuah proyek berarti memulainya di sana; ketika `DOC_TEST_MODE` disetel, harness justru memberi bash sebuah direktori fixture kecil sekali pakai yang dihapus saat keluar. Tidak ada sandbox di sini: perintah berjalan dengan izin proses yang meluncurkan contoh ini. Demi kejelasan, contoh ini menjalankan setiap panggilan dalam subshell baru alih-alih mempertahankan sesi persisten yang dijelaskan oleh kontrak `bash_20250124`; agen produksi sebaiknya mendukung alat ini dengan shell berumur panjang sehingga direktori kerja, lingkungan, dan aksi `restart` berperilaku sesuai dokumentasi.
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python

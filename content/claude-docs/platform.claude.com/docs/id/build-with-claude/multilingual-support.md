@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/multilingual-support
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 4b2593074797f86e5527f518b62586ddafa2227b74cf46db4743fdd9ad7a6c00
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: cbbd1f47e15b001a4595f485307b4273111ef97b93c439816b08d399c68101ee
 ---
 
 ---
@@ -13,13 +13,13 @@ description: Claude unggul dalam tugas-tugas di berbagai bahasa, mempertahankan 
 
 ## Ikhtisar
 
-Claude menunjukkan kemampuan multibahasa yang tangguh, dengan kinerja yang sangat kuat terutama dalam tugas "zero-shot" (tanpa contoh) di berbagai bahasa. Model ini mempertahankan kinerja relatif yang konsisten baik pada bahasa yang digunakan secara luas maupun bahasa dengan sumber daya yang lebih terbatas, menjadikannya pilihan yang andal untuk aplikasi multibahasa.
+Claude menunjukkan kemampuan multibahasa yang tangguh, dengan kinerja yang sangat kuat terutama dalam tugas “zero-shot” (tanpa contoh) di berbagai bahasa. Model ini mempertahankan kinerja relatif yang konsisten baik pada bahasa yang digunakan secara luas maupun bahasa dengan sumber daya yang lebih terbatas, menjadikannya pilihan yang andal untuk aplikasi multibahasa.
 
 Claude mampu bekerja dalam banyak bahasa di luar yang diuji dalam tabel berikut. Ujilah dengan bahasa apa pun yang relevan dengan kasus penggunaan spesifik Anda.
 
 ## Data kinerja
 
-Tabel berikut menunjukkan skor evaluasi "zero-shot chain-of-thought" (rantai pemikiran tanpa contoh) untuk model Claude di berbagai bahasa, dinyatakan sebagai persentase relatif terhadap kinerja bahasa Inggris (100%):
+Tabel berikut menunjukkan skor evaluasi “zero-shot chain-of-thought” (rantai pemikiran tanpa contoh) untuk model Claude di berbagai bahasa, dinyatakan sebagai persentase relatif terhadap kinerja bahasa Inggris (100%):
 
 | Bahasa                                 | Claude Sonnet 4.5 (deprecated)1 | Claude Haiku 4.51 |
 | -------------------------------------- | ------------------------------- | ----------------- |
@@ -49,7 +49,7 @@ Tabel berikut menunjukkan skor evaluasi "zero-shot chain-of-thought" (rantai pem
 
 ## Menetapkan bahasa respons
 
-Claude menyimpulkan bahasa respons dari percakapan, tetapi untuk aplikasi produksi Anda sebaiknya menyatakan bahasa target secara eksplisit. Tempat paling andal untuk melakukannya adalah "system prompt" (prompt sistem), yang menjaga instruksi tetap stabil di setiap giliran percakapan.
+Claude menyimpulkan bahasa respons dari percakapan, tetapi untuk aplikasi produksi Anda sebaiknya menyatakan bahasa target secara eksplisit. Tempat paling andal untuk melakukannya adalah “system prompt” (prompt sistem), yang menjaga instruksi tetap stabil di setiap giliran percakapan.
 
 <CodeGroup>
   ```bash cURL
@@ -188,7 +188,7 @@ Jika aplikasi Anda memungkinkan pengguna memilih bahasa saat runtime, sisipkan p
 
 Saat bekerja dengan konten multibahasa:
 
-1. **Berikan konteks bahasa yang jelas:** Meskipun Claude dapat mendeteksi bahasa target secara otomatis, menyatakan bahasa input dan output yang diinginkan secara eksplisit akan meningkatkan keandalan. Untuk kefasihan yang lebih baik, Anda dapat meminta Claude untuk menggunakan "tuturan idiomatis seolah-olah ia adalah penutur asli."
+1. **Berikan konteks bahasa yang jelas:** Meskipun Claude dapat mendeteksi bahasa target secara otomatis, menyatakan bahasa input dan output yang diinginkan secara eksplisit akan meningkatkan keandalan. Untuk kefasihan yang lebih baik, Anda dapat meminta Claude untuk menggunakan “tuturan idiomatis seolah-olah ia adalah penutur asli.”
 2. **Gunakan aksara asli:** Kirimkan teks dalam aksara aslinya, bukan transliterasi, untuk hasil yang optimal.
 3. **Pertimbangkan konteks budaya:** Komunikasi yang efektif sering kali memerlukan kesadaran budaya dan regional di luar penerjemahan semata.
 

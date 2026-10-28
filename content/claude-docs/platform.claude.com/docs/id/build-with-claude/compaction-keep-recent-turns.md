@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-keep-recent-turns
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 96ea5d893863ebcf2bc5e77e35b1570789805e79f8097943f1625ac302bae2be
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 84f438c96b74bc3cc1e02e6cbc7359a31e89d55c5de031f9bb8edf676d7328c6
 ---
 
 ---
@@ -34,7 +34,7 @@ featureMetadata:
     Microsoft Foundry: beta
 ---
 
-"Keep-tail compaction" (compaction yang mempertahankan ekor percakapan) mempertahankan beberapa giliran terakhir dari sebuah percakapan kata demi kata setelah ringkasan. Fitur ini mengubah dua hal dalam [loop compaction](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#compact-in-a-loop): pesan mana yang masuk ke dalam permintaan compaction, dan apa yang Anda kirim setelah blok. Semua yang ada di [Melanjutkan dari ringkasan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#continue-from-the-summary) tetap berlaku tanpa perubahan.
+“Keep-tail compaction” (compaction yang mempertahankan ekor percakapan) mempertahankan beberapa giliran terakhir dari sebuah percakapan kata demi kata setelah ringkasan. Fitur ini mengubah dua hal dalam [loop compaction](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#compact-in-a-loop): pesan mana yang masuk ke dalam permintaan compaction, dan apa yang Anda kirim setelah blok. Semua yang ada di [Melanjutkan dari ringkasan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#continue-from-the-summary) tetap berlaku tanpa perubahan.
 
 ## Memilih giliran yang dipertahankan
 
@@ -48,7 +48,7 @@ Letakkan titik potong di tempat yang tidak menyisakan panggilan alat yang masih 
 
 Untuk mempertahankan ekor berupa giliran-giliran terbaru kata demi kata, jangan sertakan giliran-giliran tersebut dalam permintaan compaction. API meringkas setiap pesan yang dikirimkan kepadanya, jadi kirim hanya giliran-giliran lama, lalu letakkan blok di depan giliran-giliran yang Anda pertahankan.
 
-Kirim giliran yang dipertahankan persis seperti yang ada di riwayat Anda, termasuk "thinking blocks" (blok pemikiran). Kedua permintaan membawa header beta, seperti pada [Meminta ringkasan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#request-a-summary).
+Kirim giliran yang dipertahankan persis seperti yang ada di riwayat Anda, termasuk “thinking blocks” (blok pemikiran). Kedua permintaan membawa header beta, seperti pada [Meminta ringkasan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#request-a-summary).
 
 Dalam contoh berikut, riwayat berisi dua giliran, dan titik potong mempertahankan giliran kedua. Permintaan compaction membawa giliran pertama:
 
@@ -504,6 +504,6 @@ Pemeriksaan `stop_reason` dan setiap permintaan setelah penukaran tidak berubah 
 
 ## Menjaga validitas thinking dalam giliran yang dipertahankan
 
-Jika Anda mengirim kembali blok thinking pada model dengan ["preserved thinking" (pemikiran yang dipertahankan)](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking), thinking dalam giliran yang dipertahankan hanya tetap valid selama [syarat agar thinking yang dipertahankan tetap valid](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid) terpenuhi, dan salah satu syarat tersebut membatasi di mana titik potong dapat diletakkan.
+Jika Anda mengirim kembali blok thinking pada model dengan [“preserved thinking” (pemikiran yang dipertahankan)](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking), thinking dalam giliran yang dipertahankan hanya tetap valid selama [syarat agar thinking yang dipertahankan tetap valid](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid) terpenuhi, dan salah satu syarat tersebut membatasi di mana titik potong dapat diletakkan.
 
 Titik potong program, yaitu di antara sebuah balasan dan pesan `user` berikutnya, memenuhi syarat tersebut. Begitu pula titik potong di akhir permintaan yang sudah Anda buat: lakukan compaction tepat pada `messages` dari permintaan tersebut, dan pertahankan semua yang telah ditambahkan ke riwayat Anda sejak saat itu.

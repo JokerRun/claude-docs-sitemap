@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/citations
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 793eb391d36dd9c8d423da0e9f7eefc9e64f1772721044a7b1685a876c2afdbb
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 87b11f6e69167a9f2a270f83db666e30ac0f0f53b1f31447c4ae415bfe46a814
 ---
 
 ---
@@ -339,7 +339,7 @@ Integrasikan kutipan dengan Claude dalam langkah-langkah berikut:
   </Step>
 
   <Step title="Dokumen diproses">
-    * Konten dokumen "dipotong" (chunked) untuk menentukan granularitas minimum dari kutipan yang mungkin. Misalnya, pemotongan kalimat memungkinkan Claude mengutip satu kalimat atau merangkai beberapa kalimat berurutan untuk mengutip paragraf atau bagian yang lebih panjang.
+    * Konten dokumen “dipotong” (chunked) untuk menentukan granularitas minimum dari kutipan yang mungkin. Misalnya, pemotongan kalimat memungkinkan Claude mengutip satu kalimat atau merangkai beberapa kalimat berurutan untuk mengutip paragraf atau bagian yang lebih panjang.
 
       * **Untuk PDF:** Teks diekstrak seperti yang dijelaskan dalam [dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support) dan konten dipotong menjadi kalimat. Mengutip gambar dari PDF saat ini tidak didukung.
       * **Untuk dokumen teks biasa:** Konten dipotong menjadi kalimat yang dapat dikutip.

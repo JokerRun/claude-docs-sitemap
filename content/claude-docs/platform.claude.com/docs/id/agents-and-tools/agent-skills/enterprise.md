@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 2c06e4251d0d0d4b1df1b88e5264b5609c40720af7917131955849907a2ae59a
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 35cd68d81670e19073d852cd20ef4328ea77eb8dcc820293ab2fc2b93dd1ed2b
 ---
 
 ---
@@ -30,7 +30,7 @@ Evaluasi setiap Skill terhadap indikator risiko berikut sebelum menyetujui pener
 | Manipulasi instruksi        | Arahan untuk mengabaikan aturan keselamatan, menyembunyikan tindakan dari pengguna, atau mengubah perilaku Claude secara bersyarat | Tinggi: dapat melewati kontrol keamanan                                            |
 | Referensi server MCP        | Instruksi yang mereferensikan alat MCP (`ServerName:tool_name`)                                                                    | Tinggi: memperluas akses melampaui Skill itu sendiri                               |
 | Pola akses jaringan         | URL, endpoint API, panggilan `fetch`, `curl`, atau `requests`                                                                      | Tinggi: potensi vektor eksfiltrasi data                                            |
-| Kredensial yang di-hardcode | Kunci API, token, atau kata sandi dalam file atau skrip Skill                                                                      | Tinggi: rahasia terekspos dalam riwayat Git dan "context window" (jendela konteks) |
+| Kredensial yang di-hardcode | Kunci API, token, atau kata sandi dalam file atau skrip Skill                                                                      | Tinggi: rahasia terekspos dalam riwayat Git dan “context window” (jendela konteks) |
 | Cakupan akses sistem file   | Path di luar direktori Skill, pola glob yang luas, path traversal (`../`)                                                          | Sedang: mungkin mengakses data yang tidak dimaksudkan                              |
 | Panggilan alat              | Instruksi yang mengarahkan Claude untuk menggunakan bash, operasi file, atau alat lainnya                                          | Sedang: tinjau operasi apa yang dilakukan                                          |
 
@@ -120,7 +120,7 @@ Hasil evaluasi memberi sinyal kapan harus bertindak:
 
 ### Batas recall
 
-Sebagai pedoman umum, batasi jumlah Skills yang dimuat secara bersamaan untuk mempertahankan akurasi "recall" (pemanggilan kembali) yang andal. Metadata setiap Skill (nama dan deskripsi) bersaing untuk mendapatkan perhatian dalam prompt sistem. Dengan terlalu banyak Skills yang aktif, Claude mungkin gagal memilih Skill yang tepat atau sama sekali melewatkan Skill yang relevan. Gunakan rangkaian evaluasi Anda untuk mengukur akurasi recall saat Anda menambahkan Skills, dan berhenti menambahkan ketika kinerja menurun.
+Sebagai pedoman umum, batasi jumlah Skills yang dimuat secara bersamaan untuk mempertahankan akurasi “recall” (pemanggilan kembali) yang andal. Metadata setiap Skill (nama dan deskripsi) bersaing untuk mendapatkan perhatian dalam prompt sistem. Dengan terlalu banyak Skills yang aktif, Claude mungkin gagal memilih Skill yang tepat atau sama sekali melewatkan Skill yang relevan. Gunakan rangkaian evaluasi Anda untuk mengukur akurasi recall saat Anda menambahkan Skills, dan berhenti menambahkan ketika kinerja menurun.
 
 Perhatikan bahwa permintaan API mendukung maksimal 20 Skills untuk setiap permintaan (lihat [Menggunakan Agent Skills dengan API](https://platform.claude.com/docs/id/build-with-claude/skills-guide)). Jika suatu peran memerlukan lebih banyak Skills daripada yang didukung oleh satu permintaan, pertimbangkan untuk menggabungkan Skills yang sempit menjadi Skills yang lebih luas atau merutekan permintaan ke rangkaian Skill yang berbeda berdasarkan jenis tugas.
 

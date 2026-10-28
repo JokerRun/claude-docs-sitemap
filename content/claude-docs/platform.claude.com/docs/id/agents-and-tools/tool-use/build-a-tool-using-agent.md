@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 8f893b4bdaf525a6e293d986e3845c2f8a655bc96f132f87b9a16090b174e36a
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: af4f348889143578da36ee4a013a5513283b50d5024fa8907f86150d2f3b2873
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-
 description: Panduan langkah demi langkah dari satu panggilan alat hingga loop agentik yang siap produksi.
 ---
 
-Tutorial ini membangun agen pengelola kalender dalam lima lingkaran konsentris. Setiap lingkaran adalah program lengkap yang dapat dijalankan dan menambahkan tepat satu konsep ke lingkaran sebelumnya. Di akhir, Anda akan telah menulis "agentic loop" (loop agentik) secara manual, lalu menggantinya dengan abstraksi SDK "tool runner" (pelari alat).
+Tutorial ini membangun agen pengelola kalender dalam lima lingkaran konsentris. Setiap lingkaran adalah program lengkap yang dapat dijalankan dan menambahkan tepat satu konsep ke lingkaran sebelumnya. Di akhir, Anda akan telah menulis “agentic loop” (loop agentik) secara manual, lalu menggantinya dengan abstraksi SDK “tool runner” (pelari alat).
 
 Alat contohnya adalah `create_calendar_event`. Skemanya menggunakan objek bersarang, array, dan field opsional, sehingga Anda akan melihat bagaimana Claude menangani bentuk input yang realistis, bukan hanya satu string datar.
 

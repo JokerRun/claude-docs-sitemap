@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/onboarding
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: ecc40eb5e85bf27ccb7910232300c599020d362875dcbda08e104a99af3ec4b8
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 46567f24d34f974ee645c72ea157f185ccd8b73d9a5e55a666e92391cfee7fa5
 ---
 
 ---
@@ -25,10 +25,10 @@ The [visual interface](https://platform.claude.com/workspaces/default/agent-quic
 
 * **Model and system prompt:** Pick a model and write the system prompt in a full-width editor.
 * **MCP servers:** Add remote MCP servers by URL and authenticate your agent to take action on your behalf.
-* **Tools:** Extend your agent's capabilities using a pre-built agent toolset and MCP tools.
-* **Skills:** Attach Anthropic or custom skills from your organization's library.
+* **Tools:** Extend your agent’s capabilities using a pre-built agent toolset and MCP tools.
+* **Skills:** Attach Anthropic or custom skills from your organization’s library.
 
-As you configure, Console shows the equivalent API request so you can copy it into your code once you're satisfied.
+As you configure, Console shows the equivalent API request so you can copy it into your code once you’re satisfied.
 
 ## Testing an agent
 

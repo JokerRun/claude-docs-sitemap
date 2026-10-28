@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-key-lifecycle
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: d78b1c6336e807b24a98691262e1cbaee6cc38617f928875a23260ee877a70bf
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 7b5d8edb3a028c042459ac118d66f5b53a97d8406279f175a3a7e7f5c7db9c5a
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/manage-claude/cmek-key-lifecycle
 description: Apa dampak setiap tindakan pada kunci Anda terhadap data Anda, seberapa cepat dampaknya terjadi, dan apakah Anda dapat membatalkannya.
 ---
 
-Dengan "customer-managed encryption keys" (kunci enkripsi yang dikelola pelanggan), atau CMEK, kunci Anda berada di "key management service" (layanan manajemen kunci), atau KMS, milik Anda, dan Claude menyimpan catatan yang merujuk ke kunci tersebut. Menghapus kunci dan menghapus catatannya adalah dua tindakan yang berbeda.
+Dengan “customer-managed encryption keys” (kunci enkripsi yang dikelola pelanggan), atau CMEK, kunci Anda berada di “key management service” (layanan manajemen kunci), atau KMS, milik Anda, dan Claude menyimpan catatan yang merujuk ke kunci tersebut. Menghapus kunci dan menghapus catatannya adalah dua tindakan yang berbeda.
 
 ## Apa yang dilakukan setiap tindakan
 

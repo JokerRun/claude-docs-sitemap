@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: c3b71918e25b388eee993f771cffea16c33ad825f3fdb39852cd01c464a768cb
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 6a0517e1259b3f888a49ded2806f80e2248a8b6d802451bd1793d08e693db82a
 ---
 
 ---
@@ -32,7 +32,7 @@ String jenis event ini mengikuti konvensi penamaan `{domain}.{action}`. Lihat [J
 
 ## Streaming event
 
-Lakukan "streaming" (streaming) event dari sesi untuk menerima pembaruan real-time saat agen bekerja. Sebuah aliran hanya mengirimkan event yang dipancarkan setelah aliran dibuka, jadi buka aliran sebelum Anda mengirim event untuk menghindari "race condition" (kondisi balapan).
+Lakukan “streaming” (streaming) event dari sesi untuk menerima pembaruan real-time saat agen bekerja. Sebuah aliran hanya mengirimkan event yang dipancarkan setelah aliran dibuka, jadi buka aliran sebelum Anda mengirim event untuk menghindari “race condition” (kondisi balapan).
 
 <CodeGroup>
   ```bash cURL
@@ -1600,7 +1600,7 @@ Teruskan filter `types` (curl: `types[]`; cli: `--type`; csharp, go: `Types`) un
 
 Pada [model yang didukung](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#supported-models), kirim event `system.message` untuk memberikan konteks tingkat sistem yang istimewa kepada agen. Konteks tersebut berlaku untuk giliran yang menyertainya dan semua giliran berikutnya. Gunakan ini ketika agen memerlukan panduan tingkat sistem yang diperbarui di tengah sesi, misalnya persona yang berbeda, batasan yang direvisi, atau konteks yang diambil saat runtime.
 
-`content` (csharp, go: `Content`) dari event menerima 1–1.000 item teks. Konten tersebut ditambahkan ke konteks sistem sesi sebagai giliran `role: "system"`. Konten ini tidak menggantikan "system prompt" (prompt sistem) tingkat atas, yang ditetapkan oleh field `system` (csharp, go: `System`; ruby: `system_`) pada definisi agen.
+`content` (csharp, go: `Content`) dari event menerima 1–1.000 item teks. Konten tersebut ditambahkan ke konteks sistem sesi sebagai giliran `role: "system"`. Konten ini tidak menggantikan “system prompt” (prompt sistem) tingkat atas, yang ditetapkan oleh field `system` (csharp, go: `System`; ruby: `system_`) pada definisi agen.
 
 <CodeGroup>
   ```bash cURL

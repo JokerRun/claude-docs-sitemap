@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/security
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 8b259c89d8532ab0c94af32b2834feccb8dc6614f16bb1b417a5645dcf4e5620
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: d24be2f4473e7aab0981c657cf6e97bc859685a3997a1fcb537fe3019d1692f1
 ---
 
 ---
@@ -19,15 +19,15 @@ The tunnel architecture provides strong defaults (outbound-only connectivity, en
 
 ## Best practices
 
-* **Require OAuth on every MCP server.** Configure each [upstream MCP server](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#components) to require OAuth as described in the [MCP authorization spec](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization). OAuth provides defense in depth on top of the tunnel's transport authentication and allows user-level authorization at the data layer.
-* **Enable SSO for your organization.** Tunnels, federation rules, and service accounts are managed in the Claude Console. SSO enforces your identity provider's session controls on the admins who can change them.
-* **Restrict `upstream.allowed_ips`.** Use the smallest CIDR ranges that cover your MCP servers. This is the [proxy](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#components)'s primary SSRF defense.
+* **Require OAuth on every MCP server.** Configure each [upstream MCP server](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#components) to require OAuth as described in the [MCP authorization spec](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization). OAuth provides defense in depth on top of the tunnel’s transport authentication and allows user-level authorization at the data layer.
+* **Enable SSO for your organization.** Tunnels, federation rules, and service accounts are managed in the Claude Console. SSO enforces your identity provider’s session controls on the admins who can change them.
+* **Restrict `upstream.allowed_ips`.** Use the smallest CIDR ranges that cover your MCP servers. This is the [proxy](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#components)’s primary SSRF defense.
 * **Monitor logs.** Alert on warnings, errors, and unusual traffic patterns from the tunnel stack.
 * **Rotate credentials.** Rotate the server certificate and tunnel token on a regular schedule, and immediately if you suspect compromise.
 * **Keep images updated.** Track new proxy releases and pin images by SHA-256 digest.
 * **Limit network reach.** The proxy and [cloudflared](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#components) should only be able to reach the destinations listed in the [network requirements](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview#network-requirements). Use NetworkPolicy (Kubernetes) or host firewall rules (Compose).
 * **Limit MCP server scope.** Each server should expose only the tools and data required for its purpose.
-* **Protect credentials at rest.** Apply your organization's secrets-management practices to private keys and tunnel tokens.
+* **Protect credentials at rest.** Apply your organization’s secrets-management practices to private keys and tunnel tokens.
 
 ## Respond to a suspected breach
 

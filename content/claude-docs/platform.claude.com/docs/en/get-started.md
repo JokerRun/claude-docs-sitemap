@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 62eeff090cd463d150948f70ed876bfedc54398f3296b6d81388ea9ecf44c295
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: ceadc7e0e279888bd9cedeaf10051c82d10b9d08562598010adb45d94aeca845
 ---
 
 ---
@@ -49,7 +49,7 @@ description: Make your first API call to Claude and build a simple web search as
           }'
         ```
 
-        Claude returns a JSON response containing the assistant's message:
+        Claude returns a JSON response containing the assistant’s message:
 
         ```json Output
         {
@@ -478,7 +478,7 @@ description: Make your first API call to Claude and build a simple web search as
       </Step>
 
       <Step title="Create your code">
-        Save this as `QuickStart.java` in your project's Java source directory (usually `src/main/java/`):
+        Save this as `QuickStart.java` in your project’s Java source directory (usually `src/main/java/`):
 
         ```java Java
         import com.anthropic.client.okhttp.AnthropicOkHttpClient;
@@ -658,13 +658,13 @@ description: Make your first API call to Claude and build a simple web search as
 
 ## Next steps
 
-You made your first API call. Next, learn the Messages API patterns you'll use in every Claude integration.
+You made your first API call. Next, learn the Messages API patterns you’ll use in every Claude integration.
 
 <Card title="Working with the Messages API" icon="messages" href="https://platform.claude.com/docs/en/build-with-claude/working-with-messages">
   Learn multi-turn conversations, system prompts, stop reasons, and other core patterns.
 </Card>
 
-Once you're comfortable with the basics, explore further:
+Once you’re comfortable with the basics, explore further:
 
 <CardGroup cols={2}>
   <Card title="Models overview" icon="brain" href="https://platform.claude.com/docs/en/models/overview">

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-10-27T02:22:08.565782Z
-sha256: c10a29de17dfd3b4cffdd5c84d7c39b90b3d584d8e1958b387c026e6cad8dc92
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 76e1ef060a7b74d492b34357dfe7caf4211dc9e140c0e385267d0009e224a0d2
 ---
 
 > ## Documentation Index
@@ -271,13 +271,22 @@ These steps are covered elsewhere:
 * **The full walkthrough, including PR creation**: see [Review and iterate](https://code.claude.com/docs/en/web-quickstart.md#review-and-iterate)
 * **Having Claude monitor the PR for CI failures and review comments automatically**: see [Auto-fix pull requests](#auto-fix-pull-requests)
 
+#### Troubleshoot a missing file in the diff view
+
+A file you expected can be missing from the diff view's file list when it compares against the base branch, whether or not the session has pushed changes:
+
+* **No changes pushed yet**: the list has Claude's own edits, but not changes made by commands Claude ran, such as a formatter
+* **Changes pushed**: the list has pushed commits, but not changes made after the last push
+
+To add a missing change to the list, ask Claude to commit and push.
+
 ### Manage context
 
 Cloud sessions support [built-in commands](https://code.claude.com/docs/en/commands.md) that produce text output. Commands that only run in the terminal interface, such as `/plugin` or `/resume`, aren't available. Commands that open a picker or panel in the terminal behave differently in cloud sessions:
 
 * **`/model`, `/effort`, `/color`, and `/rename`**: pass the value as an argument, for example `/model sonnet`, instead of opening the terminal picker or slider. The argument forms follow each command's [availability notes](https://code.claude.com/docs/en/commands.md#all-commands).
 * **`/fast`**: toggles [fast mode](https://code.claude.com/docs/en/fast-mode.md#use-fast-mode-in-cloud-sessions) for the session when fast mode is [available on your account](https://code.claude.com/docs/en/fast-mode.md#requirements). Requires Claude Code v2.1.271 or later in the session's environment.
-* **`/config`**: in your browser at claude.ai/code, opens the Claude Code section of your settings instead of setting a value. To change a setting for a cloud session, set an [environment variable](https://code.claude.com/docs/en/cloud-environments.md#set-environment-variables) on the environment. In a session with one repository outside a [project](https://code.claude.com/docs/en/claude-projects.md)'s threads, commit the key to that repository's `.claude/settings.json` instead. [Settings in cloud sessions](https://code.claude.com/docs/en/settings.md#settings-in-cloud-sessions) lists what each session reads.
+* **`/config`**: in your browser at claude.ai/code, opens **Settings > Code** or **Settings > Claude Code** instead of setting a value. To change a setting for a cloud session, set an [environment variable](https://code.claude.com/docs/en/cloud-environments.md#set-environment-variables) on the environment. In a session with one repository outside a [project](https://code.claude.com/docs/en/claude-projects.md)'s threads, commit the key to that repository's `.claude/settings.json` instead. [Settings in cloud sessions](https://code.claude.com/docs/en/settings.md#settings-in-cloud-sessions) lists what each session reads.
 
 For context management in a cloud session outside a [project's threads](https://code.claude.com/docs/en/claude-projects.md#choose-models-and-let-claude-manage-context):
 
@@ -344,7 +353,10 @@ Sharing works as follows for Max and Pro accounts:
 * **Repository access**: verification isn't enabled by default
 * **Sensitive content**: check your session before sharing. Sessions may contain code and credentials from private GitHub repositories
 
-To require recipients to have repository access, or to hide your name from shared sessions, go to [**Settings > Claude Code > Sharing settings**](https://claude.ai/settings/claude-code).
+To require recipients to have repository access, or to hide your name from shared sessions, open Settings on claude.ai, then:
+
+* **If the Settings menu shows Code instead of Claude Code**: go to [**Privacy**](https://claude.ai/settings/data-privacy-controls), which has these settings
+* **Otherwise**: go to [**Claude Code > Sharing settings**](https://claude.ai/settings/claude-code)
 
 ### Archive sessions
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: da18306feaeb011851d5f2a68a666df474b609e91299bec74e20ff0a5ba3c390
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 6a65e799243ada2a76e38f11a3c0982c14b3123cd3e09c52a96aadd64a40bbe2
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/build-with-claude/compaction
 description: Pelajari apa yang dilakukan compaction, perbedaan antara compaction sesuai permintaan dan compaction pada ambang batas token, serta halaman mana yang membahas tugas Anda.
 ---
 
-"Compaction" (pemadatan) menggantikan giliran-giliran lama dalam percakapan dengan ringkasan yang ditulis Claude di server, sehingga Anda tidak memerlukan kode peringkasan sendiri. Compaction menjaga percakapan panjang atau tugas agen tetap berada di dalam "context window" (jendela konteks), dan menjaga konteks aktif tetap kecil, karena kualitas respons menurun seiring bertambah panjangnya percakapan.
+“Compaction” (pemadatan) menggantikan giliran-giliran lama dalam percakapan dengan ringkasan yang ditulis Claude di server, sehingga Anda tidak memerlukan kode peringkasan sendiri. Compaction menjaga percakapan panjang atau tugas agen tetap berada di dalam “context window” (jendela konteks), dan menjaga konteks aktif tetap kecil, karena kualitas respons menurun seiring bertambah panjangnya percakapan.
 
 Jika Anda ingin melewati ikhtisar ini, mulailah dengan [Compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand) untuk menambahkan compaction ke aplikasi Anda. Meskipun fitur tersebut dan [Compaction pada ambang batas token](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold) sama-sama masih dalam beta, Compaction sesuai permintaan mencakup lebih banyak kasus penggunaan umum. Untuk menghapus hasil alat lama atau blok pemikiran lama berdasarkan aturan alih-alih meringkasnya, lihat [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing).
 

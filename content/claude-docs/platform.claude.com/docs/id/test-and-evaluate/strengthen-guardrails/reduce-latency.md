@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-latency
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 9d536df1a47efc956e8a95959434a83bdd6b510d096e4e7843120fbfc75a8afc
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: daebfec80ea77b62234f0d48a5df945a0d0c1d8c01239af1c39c923bd2826211
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails
 description: Kurangi latensi respons Claude dengan memilih model yang lebih cepat seperti Claude Haiku 5.5, memangkas token prompt dan output, serta melakukan streaming respons.
 ---
 
-"Latency" (latensi) mengacu pada waktu yang diperlukan model untuk memproses prompt dan menghasilkan output. Latensi dapat dipengaruhi oleh berbagai faktor, seperti ukuran model, kompleksitas prompt, serta infrastruktur dasar yang mendukung model dan titik interaksi.
+“Latency” (latensi) mengacu pada waktu yang diperlukan model untuk memproses prompt dan menghasilkan output. Latensi dapat dipengaruhi oleh berbagai faktor, seperti ukuran model, kompleksitas prompt, serta infrastruktur dasar yang mendukung model dan titik interaksi.
 
 <Note>
   Selalu lebih baik untuk terlebih dahulu merancang prompt yang berfungsi dengan baik tanpa batasan model atau prompt, lalu mencoba strategi pengurangan latensi setelahnya. Mencoba mengurangi latensi terlalu dini dapat menghalangi Anda menemukan seperti apa kinerja terbaik itu.
@@ -24,7 +24,7 @@ description: Kurangi latensi respons Claude dengan memilih model yang lebih cepa
 Saat membahas latensi, Anda mungkin menemukan beberapa istilah dan ukuran:
 
 * **Latensi dasar (baseline latency):** Ini adalah waktu yang dibutuhkan model untuk memproses prompt dan menghasilkan respons, tanpa mempertimbangkan token input dan output per detik. Ini memberikan gambaran umum tentang kecepatan model.
-* **"Time to first token" (waktu hingga token pertama), atau TTFT:** Metrik ini mengukur waktu yang diperlukan model untuk menghasilkan token pertama dari respons, sejak prompt dikirim. Ini sangat relevan ketika Anda menggunakan streaming (lebih lanjut tentang itu nanti) dan ingin memberikan pengalaman yang responsif kepada pengguna Anda.
+* **“Time to first token” (waktu hingga token pertama), atau TTFT:** Metrik ini mengukur waktu yang diperlukan model untuk menghasilkan token pertama dari respons, sejak prompt dikirim. Ini sangat relevan ketika Anda menggunakan streaming (lebih lanjut tentang itu nanti) dan ingin memberikan pengalaman yang responsif kepada pengguna Anda.
 
 Untuk pemahaman yang lebih mendalam tentang istilah-istilah ini, lihat [glosarium](https://platform.claude.com/docs/id/about-claude/glossary).
 

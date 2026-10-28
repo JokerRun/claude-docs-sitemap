@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-10-27T02:22:08.565782Z
-sha256: c0bc0c713d2e67de9418ea4c6a62d071236bfa0c21f1c69fd5e3523e05b2f5d6
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 9df0302f9d25ce6edf65c71e55f69d6bc879a489b760df5286d2d31ac35f7b82
 ---
 
 > ## Documentation Index
@@ -99,7 +99,7 @@ You can't remap these shortcuts in the [keybindings configuration file](https://
 | `/` at start | Command or skill | See [commands](#commands) and [skills](https://code.claude.com/docs/en/skills.md) |
 | `!` at start | Shell mode | Run a command directly, add its output to the session, and have Claude respond to it |
 | `@` | File path mention | Trigger file path autocomplete. In sessions with [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging.md#message-another-session), when you type at least one letter after the `@`, Claude Code also suggests your other live sessions on this machine, so you can tell Claude to message the one you pick. Requires Claude Code v2.1.232 or later |
-| `:` | Emoji shortcode | Type a full `:name:` to insert the emoji, or two or more characters for suggestions. See [Emoji shortcodes](#emoji-shortcodes). Requires Claude Code v2.1.217 or later |
+| `:` | Emoji shortcode | Type a full `:name:` to insert the emoji, or two or more characters for suggestions. See [Emoji shortcodes](#emoji-shortcodes) |
 | `?` on empty input | Toggle the shortcut help panel | Typing `?` when the input already contains text inserts the character |
 
 ### Transcript viewer
@@ -204,7 +204,7 @@ Claude Code reads this setting from your user settings file, the `--settings` fl
 
 > [!NOTE]
 >
-> In vim NORMAL mode, if the cursor is at the beginning or end of input and can't move further, `j`/`k` and `↑`/`↓` navigate command history instead. `←` on an empty prompt opens [agent view](https://code.claude.com/docs/en/agent-view.md) from NORMAL mode as well as INSERT; before v2.1.219, `←` on an empty prompt did nothing in NORMAL mode.
+> In vim NORMAL mode, if the cursor is at the beginning or end of input and can't move further, `j`/`k` and `↑`/`↓` navigate command history instead. `←` on an empty prompt opens [agent view](https://code.claude.com/docs/en/agent-view.md) from NORMAL mode as well as INSERT.
 
 ### Editing (NORMAL mode)
 
@@ -520,7 +520,7 @@ To turn off You should know, use either of the following:
 
 ## Emoji shortcodes
 
-Type a `:` followed by an emoji shortcode in the prompt input to insert the emoji. Requires Claude Code v2.1.217 or later.
+Type a `:` followed by an emoji shortcode in the prompt input to insert the emoji.
 
 * Type a complete shortcode such as `:heart:` and Claude Code replaces it with ❤️ as soon as you type the closing `:`
 * Type `:` plus at least two characters of a name, such as `:hea`, to open a suggestion popup, then press `Tab` or `Enter` to insert the highlighted emoji

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 6c77be7097df9e1b50db5e78ed2f3b7a7fa41554ac71fc33efd13887e7326bb0
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 36cd00dcaa26c2d3001fe3e2a10403e5fd64800d3b5e1810d48ba836f86f5156
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-referenc
 description: Direktori alat server, alat klien, dan toolset klien yang disediakan Anthropic, beserta referensi untuk properti definisi alat opsional.
 ---
 
-Halaman ini adalah referensi untuk alat-alat yang disediakan Anthropic dan properti opsional yang dapat Anda atur pada definisi alat apa pun. Untuk pengantar konseptual tentang "tool use" (penggunaan alat), lihat [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview). Untuk panduan mengimplementasikan penggunaan alat dalam aplikasi Anda, lihat [Mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools).
+Halaman ini adalah referensi untuk alat-alat yang disediakan Anthropic dan properti opsional yang dapat Anda atur pada definisi alat apa pun. Untuk pengantar konseptual tentang “tool use” (penggunaan alat), lihat [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview). Untuk panduan mengimplementasikan penggunaan alat dalam aplikasi Anda, lihat [Mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools).
 
 ## Alat yang disediakan Anthropic
 
@@ -53,7 +53,7 @@ Tipe `mcp_toolset` tidak diberi versi berdasarkan tanggal; pemversiannya dibawa 
 
 ### Toolset klien
 
-[Alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) adalah "client toolset" (kumpulan alat klien) yang didefinisikan Anthropic: satu entri dalam `tools` mendeklarasikan kumpulan tetap alat anggota yang nama, deskripsi, dan skema inputnya didefinisikan oleh Anthropic, dan aplikasi Anda menjalankan setiap panggilan. Entri tersebut tidak menerima `name`, karena `type` bertanggal sudah menetapkan nama-nama anggotanya. `configs`, `cache_control`, dan `allowed_callers` (yang hanya menerima `["direct"]`) bersifat opsional.
+[Alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) adalah “client toolset” (kumpulan alat klien) yang didefinisikan Anthropic: satu entri dalam `tools` mendeklarasikan kumpulan tetap alat anggota yang nama, deskripsi, dan skema inputnya didefinisikan oleh Anthropic, dan aplikasi Anda menjalankan setiap panggilan. Entri tersebut tidak menerima `name`, karena `type` bertanggal sudah menetapkan nama-nama anggotanya. `configs`, `cache_control`, dan `allowed_callers` (yang hanya menerima `["direct"]`) bersifat opsional.
 
 Toolset klien adalah alat Messages API. Saat ini toolset ini tidak tersedia sebagai alat agen di [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/tools), yang menyediakan toolset agen bawaan, toolset MCP, dan alat kustomnya sendiri.
 

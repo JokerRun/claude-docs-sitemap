@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 430ed77945659310dfe51fe64225036ed0415afd5ad41b7e614a064cf9a2a358
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: c8828ac22f691e4eda8d87d2a1d121394b32f1d658a733ca9f1e39cf88787c4f
 ---
 
 ---
@@ -76,8 +76,8 @@ Jika Anda mengalami salah satu masalah berikut saat menyiapkan Claude Models on 
 
 * **`gcloud services enable` tidak dapat menemukan `anthropic-managed-claude.cloudpartnerservices.goog`:** Jalankan perintah sebagai akun yang menyelesaikan pembelian Marketplace, atau hubungi perwakilan akun Anthropic Anda.
 * **Error izin pada panggilan API pertama Anda:** Periksa bahwa `claude.googleapis.com` telah diaktifkan pada proyek yang Anda panggil. Periksa bahwa pemanggil memiliki `roles/claude.user` atau `roles/claude.admin` pada proyek tersebut. Untuk apa yang diizinkan setiap peran, lihat [Peran IAM](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#iam-roles). Pemberian izin baru atau layanan yang baru diaktifkan dapat memerlukan waktu sejenak untuk berlaku.
-* **"Signed in as a different account" setelah mengikuti tautan penyiapan:** Pilih **Log out and continue**. Lalu gunakan alamat email yang Anda masukkan di langkah 3.
-* **Tombol menampilkan "Finish Setup" alih-alih "Open Claude Console":** Organisasi Anthropic Anda sudah ada, tetapi penyiapannya belum selesai. Seorang administrator harus menyelesaikan formulir detail organisasi.
+* **“Signed in as a different account” setelah mengikuti tautan penyiapan:** Pilih **Log out and continue**. Lalu gunakan alamat email yang Anda masukkan di langkah 3.
+* **Tombol menampilkan “Finish Setup” alih-alih “Open Claude Console”:** Organisasi Anthropic Anda sudah ada, tetapi penyiapannya belum selesai. Seorang administrator harus menyelesaikan formulir detail organisasi.
 * **Halaman Usage tidak menampilkan data setelah panggilan API pertama Anda:** Data penggunaan dapat memerlukan beberapa menit untuk muncul di Claude Console.
 
 ## Mengelola akses
@@ -226,7 +226,7 @@ Claude Models on Google Cloud (Anthropic managed) menyajikan endpoint Claude API
 https://claude.googleapis.com/v1/projects/{project}/locations/global/workspaces/{workspace}/invoke
 ```
 
-[Rute tingkat organisasi](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#iam-roles), yang path-nya diawali dengan `/v1/organizations/`, menggunakan base URL tanpa workspace:
+[Rute tingkat organisasi](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#iam-roles), yang path-nya diawali dengan `/v1/organizations/`, dan rute [profil pengguna](https://platform.claude.com/docs/id/manage-claude/user-profiles) di bawah `/v1/user_profiles` menggunakan base URL tanpa workspace:
 
 ```text wrap
 https://claude.googleapis.com/v1/projects/{project}/locations/global/claudeOrganization/invoke
@@ -513,7 +513,7 @@ Fitur-fitur berikut berfungsi di Claude Models on Google Cloud (Anthropic manage
 
 * **Fitur beta:** Jika sebuah beta dibatasi untuk organisasi tertentu di Claude API, organisasi Anthropic yang dibuat oleh penyiapan memerlukan akses yang sama.
 
-* **Alat:** ["Tool use" (penggunaan alat)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk:
+* **Alat:** [“Tool use” (penggunaan alat)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk:
 
   * Web search
   * Web fetch
@@ -526,8 +526,8 @@ Fitur-fitur berikut berfungsi di Claude Models on Google Cloud (Anthropic manage
 
 * **Kemampuan model:**
 
-  * ["Prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
-  * ["Extended thinking" (pemikiran diperpanjang)](https://platform.claude.com/docs/id/build-with-claude/thinking)
+  * [“Prompt caching” (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
+  * [“Extended thinking” (pemikiran diperpanjang)](https://platform.claude.com/docs/id/build-with-claude/thinking)
   * [Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback)
   * [Streaming](https://platform.claude.com/docs/id/build-with-claude/streaming)
   * [Structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
@@ -537,7 +537,7 @@ Fitur-fitur berikut berfungsi di Claude Models on Google Cloud (Anthropic manage
 
 Untuk mengaktifkan atau menonaktifkan [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) untuk organisasi Anthropic yang dibuat oleh penyiapan, [buka Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console), buka **Settings > Compliance**, dan gunakan toggle **Compliance API**.
 
-"Customer-managed encryption keys" (kunci enkripsi yang dikelola pelanggan), atau CMEK, tersedia dengan kunci Google Cloud KMS. Untuk mengaktifkan CMEK untuk organisasi Anthropic yang dibuat oleh penyiapan, lihat [Kunci enkripsi yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/cmek). Untuk menyiapkan kunci, ikuti [Mengonfigurasi Google Cloud KMS untuk CMEK](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms). Kemudian daftarkan, verifikasi, dan lampirkan kunci di [Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console), seperti yang dijelaskan tab **Claude Console** di halaman penyiapan.
+“Customer-managed encryption keys” (kunci enkripsi yang dikelola pelanggan), atau CMEK, tersedia dengan kunci Google Cloud KMS. Untuk mengaktifkan CMEK untuk organisasi Anthropic yang dibuat oleh penyiapan, lihat [Kunci enkripsi yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/cmek). Untuk menyiapkan kunci, ikuti [Mengonfigurasi Google Cloud KMS untuk CMEK](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms). Kemudian daftarkan, verifikasi, dan lampirkan kunci di [Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console), seperti yang dijelaskan tab **Claude Console** di halaman penyiapan.
 
 ### Claude Managed Agents
 
@@ -569,13 +569,13 @@ Hal-hal berikut tidak didukung di Claude Models on Google Cloud (Anthropic manag
 
 ### Jendela konteks
 
-Ukuran "context window" (jendela konteks) di Claude Models on Google Cloud (Anthropic managed) sama dengan di Claude API. Untuk batas setiap model, lihat [Jendela konteks](https://platform.claude.com/docs/id/build-with-claude/context-windows).
+Ukuran “context window” (jendela konteks) di Claude Models on Google Cloud (Anthropic managed) sama dengan di Claude API. Untuk batas setiap model, lihat [Jendela konteks](https://platform.claude.com/docs/id/build-with-claude/context-windows).
 
 ## Penagihan, batas laju, dan logging
 
 ### Batas laju
 
-Anthropic mengelola "rate limit" (batas laju) untuk Claude Models on Google Cloud (Anthropic managed). Untuk meminta batas yang lebih tinggi, hubungi perwakilan akun Anthropic Anda atau [hubungi tim penjualan](https://claude.com/contact-sales). Untuk cara batas laju diukur dan dilaporkan, lihat [Batas laju](https://platform.claude.com/docs/id/api/rate-limits).
+Anthropic mengelola “rate limit” (batas laju) untuk Claude Models on Google Cloud (Anthropic managed). Untuk meminta batas yang lebih tinggi, hubungi perwakilan akun Anthropic Anda atau [hubungi tim penjualan](https://claude.com/contact-sales). Untuk cara batas laju diukur dan dilaporkan, lihat [Batas laju](https://platform.claude.com/docs/id/api/rate-limits).
 
 ### Penagihan
 
@@ -589,7 +589,7 @@ Jika Anda memiliki komitmen pembelanjaan Google Cloud, penggunaan dihitung terha
 
 Anthropic adalah pemroses data untuk Claude Models on Google Cloud (Anthropic managed). Beberapa layanan pendukung, seperti sistem trust and safety Anthropic, memproses data di luar Google Cloud.
 
-Claude Models on Google Cloud (Anthropic managed) mengikuti kebijakan retensi data yang sama dengan Claude API. Lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention). "Zero Data Retention" (retensi data nol), atau ZDR, tersedia berdasarkan permintaan. Hubungi perwakilan akun Anthropic Anda.
+Claude Models on Google Cloud (Anthropic managed) mengikuti kebijakan retensi data yang sama dengan Claude API. Lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention). “Zero Data Retention” (retensi data nol), atau ZDR, tersedia berdasarkan permintaan. Hubungi perwakilan akun Anthropic Anda.
 
 Pengaturan ZDR pada organisasi Anthropic lain tidak berlaku untuk organisasi Anda untuk Claude Models on Google Cloud (Anthropic managed).
 

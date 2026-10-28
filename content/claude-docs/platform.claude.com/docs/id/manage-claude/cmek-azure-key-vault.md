@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 92834dcdf2f67e9bd87928df1c40b2d300a75684ac5022ac47921a1b28f794db
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: f7c4db25ef13e0fba1f946c37943f72746ee6ef8236519f85ecf7b35dbe28ffc
 ---
 
 ---
@@ -149,7 +149,7 @@ Di halaman ini, `<ORGANIZATION_UUID>` adalah [ID organisasi Anthropic](https://p
 
         Salin bidang `id` dari output.
 
-        Jika perintah berhenti dengan galat "already exists", dapatkan `id` dengan perintah ini sebagai gantinya:
+        Jika perintah berhenti dengan galat “already exists”, dapatkan `id` dengan perintah ini sebagai gantinya:
 
         ```bash
         az ad sp show --id 8635ae1a-3e5d-44e8-a4ed-e0f614466f87 --query id -o tsv

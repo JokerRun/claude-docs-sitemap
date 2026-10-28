@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: d93fa7817124ef3b3d4a4b4608da7facf52323fd3216af4c0513414327ca6ee8
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: c3e8b77fbe1193cd3446f109630aa29eda13f0470613a9426155d817f4b210c9
 ---
 
 ---
@@ -97,7 +97,7 @@ Ketika Anda menerima respons penggunaan alat untuk alat klien, Anda harus:
   }
   ```
 
-  Jika Anda menerima kesalahan seperti "tool\_use ids were found without tool\_result blocks immediately after", periksa apakah hasil alat Anda diformat dengan benar.
+  Jika Anda menerima kesalahan seperti “tool\_use ids were found without tool\_result blocks immediately after”, periksa apakah hasil alat Anda diformat dengan benar.
 </Note>
 
 <Warning>
@@ -225,7 +225,7 @@ Ada beberapa jenis error berbeda yang dapat terjadi saat menggunakan alat dengan
     }
     ```
 
-    Claude kemudian akan menggabungkan error ini ke dalam responsnya kepada pengguna. Misalnya: "Maaf, saya tidak dapat mengambil cuaca saat ini karena API layanan cuaca tidak tersedia. Silakan coba lagi nanti."
+    Claude kemudian akan menggabungkan error ini ke dalam responsnya kepada pengguna. Misalnya: “Maaf, saya tidak dapat mengambil cuaca saat ini karena API layanan cuaca tidak tersedia. Silakan coba lagi nanti.”
 
     <Tip>
       Tulis pesan kesalahan yang instruktif. Alih-alih kesalahan generik seperti `"failed"`, sertakan apa yang salah dan apa yang harus dicoba Claude selanjutnya (misalnya, `"Rate limit exceeded. Retry after 60 seconds."`). Ini memberi Claude konteks yang dibutuhkan untuk pulih atau beradaptasi tanpa menebak.

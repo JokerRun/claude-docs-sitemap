@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide
-fetched_at: 2026-10-27T02:22:08.565782Z
-sha256: 993e378cdad637f3c2a337f6f259e7f081d35114d16eb31785659f6cd0220c24
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: e4ea5aeb3aab403e80595ba7d8aca8546b1e1329a1a1200ac8b786880fbd3dad
 ---
 
 ---
@@ -23,7 +23,7 @@ Biarkan Claude Code memigrasikan kode Anda
 /claude-api migrate proyek ini ke claude-sonnet-5-5
 ```
 
-Claude Sonnet 5.5 memiliki harga yang sama dengan Claude Sonnet 5, kecuali untuk pembacaan cache prompt, yang berbiaya $0,10 USD per juta token, setengah dari tarif Claude Sonnet 5. Lihat [harga Claude](https://platform.claude.com/docs/id/about-claude/pricing). Untuk "context window" (jendela konteks) dan batas output-nya, lihat [halaman model Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview). Untuk fitur dan prompting, lihat [Yang baru di Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#feature-support) dan [Prompting Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5).
+Claude Sonnet 5.5 memiliki harga yang sama dengan Claude Sonnet 5, kecuali untuk pembacaan cache prompt, yang berbiaya $0,10 USD per juta token, setengah dari tarif Claude Sonnet 5. Lihat [harga Claude](https://platform.claude.com/docs/id/about-claude/pricing). Untuk “context window” (jendela konteks) dan batas output-nya, lihat [halaman model Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview). Untuk fitur dan prompting, lihat [Yang baru di Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#feature-support) dan [Prompting Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5).
 
 ## Mengirim permintaan ke Claude Sonnet 5.5
 
@@ -218,7 +218,7 @@ Permintaan ini berfungsi di Claude Sonnet 5.5 sebagaimana tertulis. Permintaan i
 
 ## Pemikiran berjalan secara default
 
-Di Claude Sonnet 5.5, permintaan tanpa field `thinking` berjalan dengan ["adaptive thinking" (pemikiran adaptif)](https://platform.claude.com/docs/id/build-with-claude/thinking), sama seperti `thinking: {"type": "adaptive"}`. Di Claude Sonnet 4.6 dan model sebelumnya serta di Claude Haiku 4.5, permintaan tersebut berjalan tanpa pemikiran. Agar tetap berjalan tanpa pemikiran di awal, lihat [Menonaktifkan pemikiran di awal](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#turn-off-up-front-thinking).
+Di Claude Sonnet 5.5, permintaan tanpa field `thinking` berjalan dengan [“adaptive thinking” (pemikiran adaptif)](https://platform.claude.com/docs/id/build-with-claude/thinking), sama seperti `thinking: {"type": "adaptive"}`. Di Claude Sonnet 4.6 dan model sebelumnya serta di Claude Haiku 4.5, permintaan tersebut berjalan tanpa pemikiran. Agar tetap berjalan tanpa pemikiran di awal, lihat [Menonaktifkan pemikiran di awal](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#turn-off-up-front-thinking).
 
 | Model                                  | Pemikiran tanpa field `thinking` | Nilai `thinking.type` yang diterima             | `display` default |
 | -------------------------------------- | -------------------------------- | ----------------------------------------------- | ----------------- |
@@ -467,7 +467,7 @@ Sesudah (Claude Sonnet 5.5):
 
 ## Daftar periksa migrasi berdasarkan model awal
 
-Kerjakan grup-grup berikut secara berurutan dan berhenti setelah grup yang menyebutkan model Anda. Di Claude Haiku 4.5, terapkan setiap grup kecuali "Claude Sonnet 4 atau sebelumnya", dan akhiri dengan "Hanya Claude Haiku 4.5".
+Kerjakan grup-grup berikut secara berurutan dan berhenti setelah grup yang menyebutkan model Anda. Di Claude Haiku 4.5, terapkan setiap grup kecuali “Claude Sonnet 4 atau sebelumnya”, dan akhiri dengan “Hanya Claude Haiku 4.5”.
 
 ### Setiap model awal
 
@@ -886,12 +886,12 @@ Perlindungan siber real-time merupakan hal baru bagi kode dari Claude Sonnet 4.6
 
 ### Perubahan lainnya
 
-* **"Prompt caching" (caching prompt):** Prompt minimum yang dapat di-cache adalah 512 token, turun dari 1.024 di Claude Sonnet 5, Claude Sonnet 4.6, dan Claude Sonnet 4.5. Lihat [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations).
+* **“Prompt caching” (caching prompt):** Prompt minimum yang dapat di-cache adalah 512 token, turun dari 1.024 di Claude Sonnet 5, Claude Sonnet 4.6, dan Claude Sonnet 4.5. Lihat [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations).
 * **Fitur baru:** Untuk pesan sistem di tengah percakapan, perubahan alat di tengah percakapan, dan effort per pesan, lihat [Yang baru di Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#feature-support). Dengan [`between_tools`](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#turn-off-up-front-thinking), effort tidak dapat berubah di tengah percakapan.
 
 ### Perubahan yang direkomendasikan
 
-Jalankan ulang pengujian effort Anda. Claude Sonnet 5.5 memiliki lima tingkat effort: `low`, `medium`, `high`, `xhigh`, dan `max`. Default di Claude API adalah `high`. Tingkat-tingkat ini telah dikalibrasi ulang, sehingga suatu tingkat tidak menghasilkan jumlah pemikiran yang sama seperti di Claude Sonnet 5. Mulailah dari `high` kecuali beban kerja Anda bersifat agentik atau sensitif terhadap "latency" (latensi). Untuk coding agentik dan penggunaan alat multilangkah, mulailah dari `medium` untuk tugas yang terdefinisi dengan baik dan naikkan ke `high` untuk tugas yang lebih sulit atau lebih panjang. Untuk chat dan pekerjaan lain yang sensitif terhadap latensi, mulailah dari `medium` atau `low`. Tetapkan tingkat tersebut di `output_config.effort`. Lihat [Tingkat effort yang direkomendasikan untuk Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/effort#recommended-effort-levels-for-claude-sonnet-5-5). Kemudian evaluasi ulang instruksi prompt khusus model berdasarkan [Prompting Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5).
+Jalankan ulang pengujian effort Anda. Claude Sonnet 5.5 memiliki lima tingkat effort: `low`, `medium`, `high`, `xhigh`, dan `max`. Default di Claude API adalah `high`. Tingkat-tingkat ini telah dikalibrasi ulang, sehingga suatu tingkat tidak menghasilkan jumlah pemikiran yang sama seperti di Claude Sonnet 5. Mulailah dari `high` kecuali beban kerja Anda bersifat agentik atau sensitif terhadap “latency” (latensi). Untuk coding agentik dan penggunaan alat multilangkah, mulailah dari `medium` untuk tugas yang terdefinisi dengan baik dan naikkan ke `high` untuk tugas yang lebih sulit atau lebih panjang. Untuk chat dan pekerjaan lain yang sensitif terhadap latensi, mulailah dari `medium` atau `low`. Tetapkan tingkat tersebut di `output_config.effort`. Lihat [Tingkat effort yang direkomendasikan untuk Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/effort#recommended-effort-levels-for-claude-sonnet-5-5). Kemudian evaluasi ulang instruksi prompt khusus model berdasarkan [Prompting Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5).
 
 ## Migrasi ke Claude Sonnet 5.5 dari Claude Sonnet 4.6 dan model Sonnet sebelumnya
 
@@ -1215,7 +1215,7 @@ Ganti setiap prefill sesuai dengan tujuannya:
 * **Format output:** gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), atau alat dengan field enum untuk klasifikasi.
 * **Pembukaan:** minta jawaban langsung dalam prompt sistem.
 * **Penolakan yang tidak diinginkan:** instruksi yang jelas dalam pesan pengguna biasanya sudah cukup.
-* **Kelanjutan:** pindahkan ke pesan pengguna, misalnya "Respons Anda sebelumnya terputus dan berakhir dengan `[previous_response]`. Lanjutkan dari bagian terakhir."
+* **Kelanjutan:** pindahkan ke pesan pengguna, misalnya “Respons Anda sebelumnya terputus dan berakhir dengan `[previous_response]`. Lanjutkan dari bagian terakhir.”
 * **Pengingat konteks:** letakkan di giliran pengguna.
 
 **Escaping input alat.** Escaping dalam argumen pemanggilan alat dapat berbeda. Parse `input` dengan parser JSON standar.

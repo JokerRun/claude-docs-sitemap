@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 415843c22b82ea85d270685c4189bb01dbf055ed541838375e342904f6f64b1b
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: bfe9d0d6e83e2c8b1bfc6121a2a30ff19463e03efde0ee86e394dc5dc4fb760a
 ---
 
 ---
@@ -214,7 +214,7 @@ Fast mode is available only on the following models. If you were using fast mode
 
 ### Claude Opus 5.5
 
-Fast mode is available on Claude Opus 5.5. It doesn't need a beta header or an access request.
+Fast mode is available on Claude Opus 5.5. It doesn’t need a beta header or an access request.
 
 ### Claude Opus 5 and Claude Opus 4.8
 
@@ -240,7 +240,7 @@ For complete pricing details, see the [Pricing](https://platform.claude.com/docs
 
 Fast mode has a dedicated rate limit that is separate from standard Opus rate limits. When your fast mode rate limit is exceeded, the API returns a `429` error with a `retry-after` header indicating when capacity will be available.
 
-Claude Opus 5.5 has a default fast mode rate limit in the Start, Build, and Scale [usage tiers](https://platform.claude.com/docs/en/api/rate-limits), so you don't need to request access to use fast mode with it. Organizations in the Evaluation tier can use fast mode with Claude Opus 5.5 once they move to the Start, Build, or Scale tier.
+Claude Opus 5.5 has a default fast mode rate limit in the Start, Build, and Scale [usage tiers](https://platform.claude.com/docs/en/api/rate-limits), so you don’t need to request access to use fast mode with it. Organizations in the Evaluation tier can use fast mode with Claude Opus 5.5 once they move to the Start, Build, or Scale tier.
 
 The response includes headers that indicate your fast mode rate limit status:
 
@@ -257,7 +257,7 @@ To see your fast mode rate limits, go to the [Rate limits](https://platform.clau
 
 ## Checking which speed was used
 
-The response `usage` object includes a `speed` field that indicates which speed was used, either `"fast"` or `"standard"`. Requesting `speed: "fast"` on a [model that doesn't support fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode#supported-models) returns an error, and so does exceeding fast mode's rate limits or capacity (a `429` or `529`). When a request with `speed: "fast"` succeeds, `usage.speed` is `"fast"`. Claude Opus 4.6 is an exception: instead of returning an error, a request with `speed: "fast"` and the `fast-mode-2026-02-01` beta header succeeds, but runs at standard speed. This behavior is correctly reflected in `usage.speed`, which shows `"standard"` in this situation. On Claude Models on Google Cloud (Anthropic managed), a Claude Opus 4.6 request with `speed: "fast"` returns a `400` error even with the header.
+The response `usage` object includes a `speed` field that indicates which speed was used, either `"fast"` or `"standard"`. Requesting `speed: "fast"` on a [model that doesn’t support fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode#supported-models) returns an error, and so does exceeding fast mode’s rate limits or capacity (a `429` or `529`). When a request with `speed: "fast"` succeeds, `usage.speed` is `"fast"`. Claude Opus 4.6 is an exception: instead of returning an error, a request with `speed: "fast"` and the `fast-mode-2026-02-01` beta header succeeds, but runs at standard speed. This behavior is correctly reflected in `usage.speed`, which shows `"standard"` in this situation. On Claude Models on Google Cloud (Anthropic managed), a Claude Opus 4.6 request with `speed: "fast"` returns a `400` error even with the header.
 
 <CodeGroup>
   ```bash cURL
@@ -406,7 +406,7 @@ The SDK automatically retries fast mode `429` errors up to 2 times by default (c
 
 ### Falling back to standard speed
 
-If you'd prefer to fall back to standard speed rather than wait for fast mode capacity, catch the rate limit error and retry without `speed: "fast"`. Set `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries()`; csharp: `MaxRetries`; go: `option.WithMaxRetries()`) to `0` on the initial fast request to skip automatic retries and fail immediately on rate limit errors.
+If you’d prefer to fall back to standard speed rather than wait for fast mode capacity, catch the rate limit error and retry without `speed: "fast"`. Set `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries()`; csharp: `MaxRetries`; go: `option.WithMaxRetries()`) to `0` on the initial fast request to skip automatic retries and fail immediately on rate limit errors.
 
 <Note>
   Falling back from fast to standard speed results in a [prompt cache](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) miss. Requests at different speeds do not share cached prefixes.
@@ -712,7 +712,7 @@ Because setting `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries
   </Card>
 
   <Card title="Pricing" icon="calculator" href="https://platform.claude.com/docs/en/about-claude/pricing#fast-mode-pricing">
-    Learn about Anthropic's pricing structure for models and features.
+    Learn about Anthropic’s pricing structure for models and features.
   </Card>
 
   <Card title="Effort" icon="gauge" href="https://platform.claude.com/docs/en/build-with-claude/effort">

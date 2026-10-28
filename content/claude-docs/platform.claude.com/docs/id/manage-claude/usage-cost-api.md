@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/usage-cost-api
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 8beed39347bcbef465f7e5ba9282fc458bcac24ca9fdf88b5c6afcb4ccbe2e2b
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 7a160224028f43b09d1013f3ae6981f959a5395a012510b67c4b16ab0f2e86c9
 ---
 
 ---
@@ -22,7 +22,7 @@ API ini memungkinkan Anda untuk memantau, menganalisis, dan mengoptimalkan imple
 * **Pelacakan penggunaan yang akurat:** Dapatkan jumlah token dan pola penggunaan yang presisi alih-alih hanya mengandalkan penghitungan token respons
 * **Rekonsiliasi biaya:** Cocokkan catatan internal dengan penagihan Anthropic untuk tim keuangan dan akuntansi
 * **Kinerja dan peningkatan produk:** Pantau kinerja produk sambil mengukur apakah perubahan pada sistem telah meningkatkannya, atau siapkan peringatan
-* **Optimasi ["rate limit" (batas laju)](https://platform.claude.com/docs/id/api/rate-limits):** Optimalkan fitur seperti ["prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) atau prompt tertentu untuk memaksimalkan kapasitas yang dialokasikan kepada Anda.
+* **Optimasi [“rate limit” (batas laju)](https://platform.claude.com/docs/id/api/rate-limits):** Optimalkan fitur seperti [“prompt caching” (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) atau prompt tertentu untuk memaksimalkan kapasitas yang dialokasikan kepada Anda.
 * **Analisis lanjutan:** Lakukan analisis data yang lebih mendalam daripada yang tersedia di Console
 
 <Check>
@@ -115,7 +115,7 @@ Lacak konsumsi token di seluruh organisasi Anda dengan rincian terperinci berdas
 
 * **Bucket waktu:** Agregasikan data penggunaan dalam interval tetap (`1m`, `1h`, atau `1d`)
 * **Pelacakan token:** Ukur token input yang tidak di-cache, input yang di-cache, pembuatan cache, dan token output
-* **Pemfilteran & pengelompokan:** Filter berdasarkan kunci API, workspace, model, tingkat layanan, "context window" (jendela konteks), [residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency), atau kecepatan, dan kelompokkan hasil berdasarkan dimensi-dimensi ini
+* **Pemfilteran & pengelompokan:** Filter berdasarkan kunci API, workspace, model, tingkat layanan, “context window” (jendela konteks), [residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency), atau kecepatan, dan kelompokkan hasil berdasarkan dimensi-dimensi ini
 * **Penggunaan alat server:** Lacak penggunaan alat sisi server seperti pencarian web
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi Usage API](https://platform.claude.com/docs/id/api/beta/organization/usage_report/retrieve_messages).

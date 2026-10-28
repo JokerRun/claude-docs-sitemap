@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: a3951b134f11ab24067d17784be031d09f897569ece3ac3f442c5212a4988f48
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 6c80dd962212228ec9d999d7e4eefcad3978a70ba542d0add2455d2a83eead19
 ---
 
 ---
@@ -19,7 +19,7 @@ featureMetadata:
     Microsoft Foundry: beta
 ---
 
-Fitur konektor "Model Context Protocol", atau MCP, milik Claude memungkinkan Anda terhubung ke server MCP jarak jauh langsung dari Messages API tanpa klien MCP terpisah.
+Fitur konektor “Model Context Protocol”, atau MCP, milik Claude memungkinkan Anda terhubung ke server MCP jarak jauh langsung dari Messages API tanpa klien MCP terpisah.
 
 <Note>
   Versi sebelumnya dari fitur ini (`mcp-client-2025-04-04`) sudah tidak digunakan lagi (deprecated). Lihat [Versi deprecated: mcp-client-2025-04-04](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#deprecated-version-mcp-client-2025-04-04).
@@ -36,11 +36,11 @@ Fitur konektor "Model Context Protocol", atau MCP, milik Claude memungkinkan And
 
 ## Kapan Claude menggunakan alat MCP
 
-Setelah server MCP terhubung, Claude memanggil alat-alatnya ketika permintaan pengguna sesuai dengan kemampuan yang dideskripsikan oleh suatu alat, baik secara eksplisit ("cari bug yang masih terbuka di Jira") maupun implisit ("apa yang menghambat rilis?" dengan server Jira terpasang).
+Setelah server MCP terhubung, Claude memanggil alat-alatnya ketika permintaan pengguna sesuai dengan kemampuan yang dideskripsikan oleh suatu alat, baik secara eksplisit (“cari bug yang masih terbuka di Jira”) maupun implisit (“apa yang menghambat rilis?” dengan server Jira terpasang).
 
-Claude **tidak** memanggil alat MCP untuk pertanyaan pengetahuan umum tentang layanan yang terhubung. Pertanyaan "bagaimana cara kerja database Notion?" dengan server Notion terpasang akan dijawab secara langsung; pertanyaan "apa isi database Projects saya?" akan memicu alat tersebut.
+Claude **tidak** memanggil alat MCP untuk pertanyaan pengetahuan umum tentang layanan yang terhubung. Pertanyaan “bagaimana cara kerja database Notion?” dengan server Notion terpasang akan dijawab secara langsung; pertanyaan “apa isi database Projects saya?” akan memicu alat tersebut.
 
-Anda dapat mengarahkan seberapa mudah Claude memanggil alat MCP melalui "system prompt" (prompt sistem) Anda. Lihat [Kapan Claude menggunakan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#when-claude-uses-tools) untuk panduan umum dan contoh frasa.
+Anda dapat mengarahkan seberapa mudah Claude memanggil alat MCP melalui “system prompt” (prompt sistem) Anda. Lihat [Kapan Claude menggunakan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#when-claude-uses-tools) untuk panduan umum dan contoh frasa.
 
 ## Keterbatasan
 
@@ -325,7 +325,7 @@ Setiap server MCP dalam array `mcp_servers` mendefinisikan detail koneksi:
 
 | Properti              | Tipe   | Wajib | Deskripsi                                                                                                                                                                                                                                                                                                            |
 | --------------------- | ------ | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`                | string | Ya    | Saat ini hanya "url" yang didukung.                                                                                                                                                                                                                                                                                  |
+| `type`                | string | Ya    | Saat ini hanya `url` yang didukung.                                                                                                                                                                                                                                                                                  |
 | `url`                 | string | Ya    | URL server MCP. Harus diawali dengan `https://`.                                                                                                                                                                                                                                                                     |
 | `name`                | string | Ya    | Pengenal unik untuk server MCP ini. Harus direferensikan oleh tepat satu MCPToolset dalam array `tools`.                                                                                                                                                                                                             |
 | `authorization_token` | string | Tidak | Token otorisasi OAuth jika diperlukan oleh server MCP. Lihat [Autentikasi](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#authentication) untuk cara mendapatkannya, atau [spesifikasi MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) untuk detail protokol. |
@@ -357,7 +357,7 @@ MCPToolset berada dalam array `tools` dan mengonfigurasi alat mana dari server M
 
 | Properti          | Tipe   | Wajib | Deskripsi                                                                                                                              |
 | ----------------- | ------ | ----- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`            | string | Ya    | Harus berupa "mcp\_toolset".                                                                                                           |
+| `type`            | string | Ya    | Harus berupa `mcp_toolset`.                                                                                                            |
 | `mcp_server_name` | string | Ya    | Harus cocok dengan nama server yang didefinisikan dalam array `mcp_servers`.                                                           |
 | `default_config`  | object | Tidak | Konfigurasi default yang diterapkan ke semua alat dalam set ini. Konfigurasi alat individual dalam `configs` akan menimpa default ini. |
 | `configs`         | object | Tidak | Penimpaan konfigurasi per alat. Key berupa nama alat; value berupa objek konfigurasi.                                                  |

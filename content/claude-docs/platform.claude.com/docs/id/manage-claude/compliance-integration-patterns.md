@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: ea3029e25df023136645ce4996e174dc17f656b35f375336fed61ec5c518cde1
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: dec3e852dafeb345af83e76f152d9bc0c4418b7c3ac900b726f5a571ee30b012
 ---
 
 ---
@@ -19,7 +19,7 @@ description: Pilih antara polling dan konsumsi Activity Feed berbasis kursor, ko
   **Scope yang diperlukan:** `read:compliance_activities` pada Compliance Access Key atau kunci Admin API.
 </Check>
 
-Integrasi Compliance API produksi membuat tiga pilihan desain: bagaimana ia mengonsumsi Activity Feed, bagaimana outputnya berkorelasi dengan sistem "security information and event management" (manajemen informasi dan event keamanan), atau SIEM, Anda, dan di mana salinan jangka panjang aktivitas dan konten disimpan. Pilihan-pilihan ini tidak bergantung pada endpoint itu sendiri; halaman ini membantu Anda mengevaluasi tradeoff-nya.
+Integrasi Compliance API produksi membuat tiga pilihan desain: bagaimana ia mengonsumsi Activity Feed, bagaimana outputnya berkorelasi dengan sistem “security information and event management” (manajemen informasi dan event keamanan), atau SIEM, Anda, dan di mana salinan jangka panjang aktivitas dan konten disimpan. Pilihan-pilihan ini tidak bergantung pada endpoint itu sendiri; halaman ini membantu Anda mengevaluasi tradeoff-nya.
 
 Halaman ini mengasumsikan Anda telah membaca halaman-halaman berikut:
 
@@ -29,7 +29,7 @@ Halaman ini mengasumsikan Anda telah membaca halaman-halaman berikut:
 
 ## Pilih pola konsumsi feed
 
-Activity Feed mendukung dua pola konsumsi: "window polling" (polling jendela) periodik yang dibatasi oleh `created_at.gte` dan `created_at.lt`, serta pembacaan inkremental berbasis kursor yang menyimpan kursor dari satu respons dan meneruskannya pada permintaan berikutnya. Keduanya mengembalikan objek `Activity` yang identik; perbedaannya adalah state yang disimpan klien Anda di antara panggilan.
+Activity Feed mendukung dua pola konsumsi: “window polling” (polling jendela) periodik yang dibatasi oleh `created_at.gte` dan `created_at.lt`, serta pembacaan inkremental berbasis kursor yang menyimpan kursor dari satu respons dan meneruskannya pada permintaan berikutnya. Keduanya mengembalikan objek `Activity` yang identik; perbedaannya adalah state yang disimpan klien Anda di antara panggilan.
 
 Kedua pola berbagi batasan berikut:
 
@@ -130,10 +130,10 @@ Untuk mempelajari bagaimana bagian lain Claude Platform menangani retensi, lihat
 
 Putuskan antara ekspor-dan-arsip dan pengambilan API sesuai permintaan sebagai berikut:
 
-* Jika horizon "legal hold" (penahanan hukum) atau audit Anda melebihi 6 tahun untuk metadata aktivitas atau transkrip sesi, ekspor halaman Activity Feed dan transkrip sesi ke arsip Anda sendiri saat Anda menyerapnya.
-* Jika kebijakan retensi konten Anda lebih pendek dari horizon "eDiscovery" (penemuan elektronik) Anda, ekspor konten chat dan file sebelum jendela retensi berakhir; Compliance API tidak dapat mengembalikan konten yang sudah dihapus oleh retensi. Hal yang sama berlaku untuk transkrip sesi lokal, yang mengikuti periode retensi percakapan kustom organisasi Anda ketika periode terbatas ditetapkan, bahkan ketika periode tersebut lebih pendek dari 6 tahun. Endpoint sesi lokal berhenti mengembalikan pesan yang lebih lama dari periode organisasi Anda saat ini segera setelah pengaturan berubah, dan memperpanjang periode di kemudian hari tidak memulihkan transkrip yang sudah kedaluwarsa, jadi ekspor setiap transkrip yang harus Anda simpan melampaui periode tersebut.
+* Jika horizon “legal hold” (penahanan hukum) atau audit Anda melebihi 6 tahun untuk metadata aktivitas atau transkrip sesi, ekspor halaman Activity Feed dan transkrip sesi ke arsip Anda sendiri saat Anda menyerapnya.
+* Jika kebijakan retensi konten Anda lebih pendek dari horizon “eDiscovery” (penemuan elektronik) Anda, ekspor konten chat dan file sebelum jendela retensi berakhir; Compliance API tidak dapat mengembalikan konten yang sudah dihapus oleh retensi. Hal yang sama berlaku untuk transkrip sesi lokal, yang mengikuti periode retensi percakapan kustom organisasi Anda ketika periode terbatas ditetapkan, bahkan ketika periode tersebut lebih pendek dari 6 tahun. Endpoint sesi lokal berhenti mengembalikan pesan yang lebih lama dari periode organisasi Anda saat ini segera setelah pengaturan berubah, dan memperpanjang periode di kemudian hari tidak memulihkan transkrip yang sudah kedaluwarsa, jadi ekspor setiap transkrip yang harus Anda simpan melampaui periode tersebut.
 * Jika Anda harus menyimpan konten chat atau transkrip sesi jarak jauh setelah pengguna menghapusnya di claude.ai (misalnya, di bawah legal hold), ekspor konten chat, file, artifact, dan sesi jarak jauh ke arsip Anda sendiri saat Anda menyerapnya; Compliance API tidak dapat mengembalikan konten yang sudah dihapus oleh pengguna.
-* Jika suatu alur kerja mungkin menjalankan "hard-delete" (penghapusan permanen) melalui Compliance API (misalnya, penegakan "data loss prevention" (pencegahan kehilangan data), atau DLP), ambil dan arsipkan konten target terlebih dahulu. Tidak ada jendela pemulihan setelah hard-delete.
+* Jika suatu alur kerja mungkin menjalankan “hard-delete” (penghapusan permanen) melalui Compliance API (misalnya, penegakan “data loss prevention” (pencegahan kehilangan data), atau DLP), ambil dan arsipkan konten target terlebih dahulu. Tidak ada jendela pemulihan setelah hard-delete.
 
 Dalam semua kasus lainnya, andalkan pengambilan API langsung dan hindari memelihara salinan paralel.
 
@@ -158,7 +158,7 @@ Endpoint konten (chat, file, proyek, lampiran proyek, serta transkrip sesi lokal
 * Blok thinking, serta gambar atau konten biner lainnya, di dalam transkrip sesi (transkrip hanya memuat prompt pengguna, respons asisten, dan aktivitas alat; transkrip sesi lokal menampilkan blok `text` placeholder di tempat konten biner dihilangkan).
 * File asli untuk lampiran chat yang disimpan claude.ai sebagai teks hasil ekstraksi, seperti beberapa unggahan Word, PowerPoint, dan PDF (endpoint konten file mengembalikan teks hasil ekstraksi; lihat [Mengambil file dan artifact](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-files-and-artifacts)).
 * Prompt sistem dari sesi lokal (pesan penanda menggantikannya).
-* Definisi alat dan konfigurasi server "Model Context Protocol", atau MCP, dalam transkrip sesi (lokal atau jarak jauh), serta metadata sitasi pada blok `text` dalam transkrip sesi lokal.
+* Definisi alat dan konfigurasi server “Model Context Protocol”, atau MCP, dalam transkrip sesi (lokal atau jarak jauh), serta metadata sitasi pada blok `text` dalam transkrip sesi lokal.
 * Konten transkrip sesi lokal di organisasi yang [kunci enkripsi yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/cmek)-nya saat ini tidak dapat digunakan. Permintaan tersebut mengembalikan [503 Service Unavailable](https://platform.claude.com/docs/id/manage-claude/compliance-errors#local-sessions-temporarily-unavailable), dan metadata sesi tetap dicantumkan.
 * Konten yang dihapus oleh kebijakan retensi organisasi Anda.
 * Konten chat yang dihapus pengguna di claude.ai (chat tersebut tetap dicantumkan, dengan `deleted_at` terisi).

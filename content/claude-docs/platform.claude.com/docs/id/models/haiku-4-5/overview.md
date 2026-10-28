@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-4-5/overview
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 173c5c997e37135dd84a71a0308f7e78dbc76ee5be26426776b8a77323c1f962
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 8b77fc2def47632d48dde240c77552486d3a771a4726d510b66896653e10853f
 ---
 
 ---
@@ -90,7 +90,7 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $1 / MTo
 ## Perlu diketahui
 
 * `claude-haiku-4-5` adalah alias praktis yang mengarah ke snapshot tetap `claude-haiku-4-5-20251001`. Lihat [ID model dan pembuatan versi](https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions).
-* Claude Haiku 4.5 menggunakan "extended thinking" (pemikiran diperpanjang) manual (`thinking.type: "enabled"`), bukan pemikiran adaptif.
+* Claude Haiku 4.5 menggunakan “extended thinking” (pemikiran diperpanjang) manual (`thinking.type: "enabled"`), bukan pemikiran adaptif.
 * Kueri batas dan kemampuan secara terprogram dengan [Models API](https://platform.claude.com/docs/id/api/models/list).
 
 ## Sumber daya

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/migration-guide
-fetched_at: 2026-10-27T02:22:08.565782Z
-sha256: fd9fdb5d4733666b483798353c58ee730e7a43860ed323d969addd9d60cb559e
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 396a5da3d36e704c5ccc728743edc935b3034a365e03db44e66467a63115d3d6
 ---
 
 ---
@@ -1513,7 +1513,7 @@ Bagian ini menambahkan apa yang berubah di Claude Opus 4.7, dengan `claude-opus-
 
 Claude Opus 4.7 memperkenalkan perbedaan perilaku dari Claude Opus 4.6 yang bukan merupakan perubahan API yang merusak kompatibilitas. Tiga hal berikut memengaruhi kode atau scaffolding:
 
-1. **Pembaruan progres bawaan dalam trace agentik:** Claude Opus 4.7 memberikan pembaruan yang lebih teratur dan berkualitas lebih tinggi kepada pengguna sepanjang trace agentik yang panjang. Jika Anda telah menambahkan scaffolding untuk memaksa pesan status sementara ("Setelah setiap 3 panggilan alat, ringkas progres"), coba hapus. Pada Claude Opus 5.5, pembaruan ini tiba dalam blok `thinking`, yang kosong pada `thinking.display` default. Untuk menerimanya, lihat [Teks di antara panggilan alat dikembalikan dalam blok thinking](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#text-between-tool-calls). Untuk membentuk panjang dan isinya, lihat [Pembaruan progres yang ditampilkan kepada pengguna](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#user-facing-progress-updates).
+1. **Pembaruan progres bawaan dalam trace agentik:** Claude Opus 4.7 memberikan pembaruan yang lebih teratur dan berkualitas lebih tinggi kepada pengguna sepanjang trace agentik yang panjang. Jika Anda telah menambahkan scaffolding untuk memaksa pesan status sementara (“Setelah setiap 3 panggilan alat, ringkas progres”), coba hapus. Pada Claude Opus 5.5, pembaruan ini tiba dalam blok `thinking`, yang kosong pada `thinking.display` default. Untuk menerimanya, lihat [Teks di antara panggilan alat dikembalikan dalam blok thinking](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#text-between-tool-calls). Untuk membentuk panjang dan isinya, lihat [Pembaruan progres yang ditampilkan kepada pengguna](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#user-facing-progress-updates).
 
 2. **Pengamanan keamanan siber real-time:** Baru ditambahkan di Claude Opus 4.7, permintaan yang melibatkan topik terlarang atau berisiko tinggi dapat menyebabkan penolakan. Untuk pekerjaan keamanan yang sah seperti penetration testing, riset kerentanan, atau red-teaming, ajukan permohonan ke [Cyber Verification Program](https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet) untuk meminta pengurangan pembatasan. Jalur pengajuan bergantung pada cara Anda mengakses Claude.
 

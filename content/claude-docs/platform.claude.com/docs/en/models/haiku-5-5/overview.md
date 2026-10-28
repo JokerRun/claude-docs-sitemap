@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/haiku-5-5/overview
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 6df3648758680851b002f1135d3889c808a24141a4c92e03a25ed5d902d54581
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 07e630ee67bb9f1344b09d9c2d0557d5e4ed89ac9b756a4b9716f92ec9398a4c
 ---
 
 ---
@@ -27,7 +27,7 @@ Claude Haiku 5.5 is built for high-volume, latency-sensitive work such as classi
 
 For code changes, see the [migration guide](https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide). For model IDs, pricing, and limits, see the [Claude Haiku 5.5 overview](https://platform.claude.com/docs/en/models/haiku-5-5/overview). For prompting guidance, see [Prompting Claude Haiku 5.5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5).
 
-[What's new in Claude Haiku 5.5](https://platform.claude.com/docs/en/models/haiku-5-5/whats-new-haiku-5-5)
+[What’s new in Claude Haiku 5.5](https://platform.claude.com/docs/en/models/haiku-5-5/whats-new-haiku-5-5)
 
 ## How it compares
 

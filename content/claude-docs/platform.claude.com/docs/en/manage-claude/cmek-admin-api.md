@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-admin-api
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 36fc4a6f853d0308f899b371649e99f64b3c08af57c0ab803b6370f85f33dbf3
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 41865124cd3084750e1301801fc9c4961f9fcce39d5efeff16f4a8f9e266c62f
 ---
 
 ---
@@ -19,8 +19,8 @@ Creating an external key is what **Add key** does in the Claude Console, and val
 
 * Customer-managed encryption keys (CMEK) are [turned on for your organization](https://platform.claude.com/docs/en/manage-claude/cmek#availability).
 * You have an [Admin API key](https://platform.claude.com/docs/en/manage-claude/admin-api-keys). The samples read it from `ANTHROPIC_API_KEY`.
-* You've created your key in [AWS KMS](https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms#encryption-key-setup), [Google Cloud KMS](https://platform.claude.com/docs/en/manage-claude/cmek-google-cloud-kms#encryption-key-setup), or [Azure Key Vault](https://platform.claude.com/docs/en/manage-claude/cmek-azure-key-vault#encryption-key-setup), and kept the values the setup steps tell you to copy.
-* You have a workspace that [retains data](https://platform.claude.com/docs/en/manage-claude/cmek-data-retention#data-retention), ideally a new one, because [existing data stays under Anthropic's key](https://platform.claude.com/docs/en/manage-claude/cmek-how-it-works#when-your-key-takes-effect).
+* You’ve created your key in [AWS KMS](https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms#encryption-key-setup), [Google Cloud KMS](https://platform.claude.com/docs/en/manage-claude/cmek-google-cloud-kms#encryption-key-setup), or [Azure Key Vault](https://platform.claude.com/docs/en/manage-claude/cmek-azure-key-vault#encryption-key-setup), and kept the values the setup steps tell you to copy.
+* You have a workspace that [retains data](https://platform.claude.com/docs/en/manage-claude/cmek-data-retention#data-retention), ideally a new one, because [existing data stays under Anthropic’s key](https://platform.claude.com/docs/en/manage-claude/cmek-how-it-works#when-your-key-takes-effect).
 
 ## Create, validate, and attach the key
 
@@ -344,7 +344,7 @@ Creating an external key is what **Add key** does in the Claude Console, and val
         * `<friendly-name>`: a display name
         * `https://<your-vault-name>.vault.azure.net/`: the vault URI
         * `<your-key-name>`: the key name
-        * `<your-tenant-id>`: the vault's tenant ID
+        * `<your-tenant-id>`: the vault’s tenant ID
 
         <CodeGroup>
           ```bash cURL
@@ -626,7 +626,7 @@ Creating an external key is what **Add key** does in the Claude Console, and val
 
   <Step title="Attach the key to a workspace">
     <Warning>
-      Attaching a key [can't be undone](https://platform.claude.com/docs/en/manage-claude/cmek-key-lifecycle#what-each-action-does). If the key is deleted, Anthropic can't recover the data it protects.
+      Attaching a key [can’t be undone](https://platform.claude.com/docs/en/manage-claude/cmek-key-lifecycle#what-each-action-does). If the key is deleted, Anthropic can’t recover the data it protects.
     </Warning>
 
     Replace `<workspace-id>` with the workspace ID, which starts with `wrkspc_`, and `ekey_<id>` with the external key ID.
@@ -742,6 +742,6 @@ Creating an external key is what **Add key** does in the Claude Console, and val
       ```
     </CodeGroup>
 
-    The response shows the attached key's ID in `external_key_id`. If the request is refused, [look up the error](https://platform.claude.com/docs/en/manage-claude/cmek-troubleshooting#refused).
+    The response shows the attached key’s ID in `external_key_id`. If the request is refused, [look up the error](https://platform.claude.com/docs/en/manage-claude/cmek-troubleshooting#refused).
   </Step>
 </Steps>

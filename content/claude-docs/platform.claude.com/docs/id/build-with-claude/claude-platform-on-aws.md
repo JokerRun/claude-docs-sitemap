@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-10-27T02:22:08.565782Z
-sha256: 45cbe7e56652e643b1383703f73666c23ff6e9acd98412762ac394e970c4cc3c
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 11cb52e6edfe0da08b928a5b831c65da948c36cd6dfe2fa6b05b4495ddc37a44
 ---
 
 ---
@@ -23,7 +23,7 @@ Model Claude berjalan di infrastruktur yang dikelola Anthropic. Ini adalah integ
 
 Anthropic menggunakan infrastruktur AWS untuk memproses permintaan API Anda, menjalankan inferensi model, dan menyimpan konten workspace Anda (seperti prompt, output, file, Skills, dan batch). Untuk workspace yang dibuat sebelum 18 September 2026, 00:00 UTC, Anthropic mungkin memproses permintaan, menyimpan data, dan menjalankan inferensi di luar AWS. Dalam kedua kasus, sublayanan dapat berubah tanpa pemberitahuan. Atur parameter [`inference_geo`](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#data-residency) per permintaan untuk mengunci inferensi ke geografi tertentu.
 
-Claude Platform on AWS mengikuti kebijakan retensi data yang sama dengan Claude API pihak pertama. "Zero Data Retention" (Retensi Data Nol), atau ZDR, tersedia berdasarkan permintaan. Hubungi perwakilan akun Anthropic Anda untuk mengaktifkannya bagi organisasi Anda.
+Claude Platform on AWS mengikuti kebijakan retensi data yang sama dengan Claude API pihak pertama. “Zero Data Retention” (Retensi Data Nol), atau ZDR, tersedia berdasarkan permintaan. Hubungi perwakilan akun Anthropic Anda untuk mengaktifkannya bagi organisasi Anda.
 
 ## Claude Platform on AWS versus Amazon Bedrock
 
@@ -131,12 +131,12 @@ Untuk organisasi Claude Enterprise (claude.ai), yang berperilaku berbeda, lihat 
 
 ### Pemecahan masalah penyiapan akun
 
-* **"Sign-up failed: Failed to enable OutboundWebIdentityFederation":** Jika Anda melihat banner ini saat pengiriman pertama, pilih **Continue** lagi. Pengaktifan IAM dapat memerlukan waktu sejenak untuk berlaku.
+* **“Sign-up failed: Failed to enable OutboundWebIdentityFederation”:** Jika Anda melihat banner ini saat pengiriman pertama, pilih **Continue** lagi. Pengaktifan IAM dapat memerlukan waktu sejenak untuk berlaku.
 * **Tidak ada indikator kemajuan selama pendaftaran:** Pendaftaran memerlukan beberapa menit. Halaman menampilkan banner statis **Sign-up in progress** tanpa bilah kemajuan sementara AWS menyediakan akun Anda.
-* **"Signed in as a different account" setelah mengikuti tautan penyiapan:** Pilih **Log out and continue**. Halaman akan mengautentikasi ulang Anda dengan alamat email yang Anda masukkan.
-* **Pesan "Not found" saat masuk:** Pesan ini mungkin muncul sebentar selama pengalihan. Anda dapat mengabaikannya.
+* **“Signed in as a different account” setelah mengikuti tautan penyiapan:** Pilih **Log out and continue**. Halaman akan mengautentikasi ulang Anda dengan alamat email yang Anda masukkan.
+* **Pesan “Not found” saat masuk:** Pesan ini mungkin muncul sebentar selama pengalihan. Anda dapat mengabaikannya.
 * **Halaman Usage tidak menampilkan data setelah panggilan API pertama Anda:** Data penggunaan dapat memerlukan beberapa menit untuk muncul di Claude Console.
-* **"Outbound web identity federation is disabled" pada panggilan API pertama Anda:** Aktifkan federasi sekali per akun. Lihat [Mengaktifkan outbound web identity federation](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#enable-outbound-web-identity-federation).
+* **“Outbound web identity federation is disabled” pada panggilan API pertama Anda:** Aktifkan federasi sekali per akun. Lihat [Mengaktifkan outbound web identity federation](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#enable-outbound-web-identity-federation).
 
 ## Sebelum melakukan panggilan API
 
@@ -544,7 +544,7 @@ Nilai `--aws-sigv4` mengikuti format `aws:amz:<region>:<service>`. Nama layanan 
 
 ### Jendela konteks
 
-Ukuran "context window" (jendela konteks) di Claude Platform on AWS identik dengan Claude API pihak pertama. Lihat [Jendela konteks](https://platform.claude.com/docs/id/build-with-claude/context-windows) untuk batas per model.
+Ukuran “context window” (jendela konteks) di Claude Platform on AWS identik dengan Claude API pihak pertama. Lihat [Jendela konteks](https://platform.claude.com/docs/id/build-with-claude/context-windows) untuk batas per model.
 
 ## Dukungan fitur
 
@@ -554,13 +554,13 @@ Claude Platform on AWS menggunakan endpoint Claude API secara langsung, yang ber
 * **Fitur beta:** Berikan header `anthropic-beta` standar untuk mengakses fitur beta, sama seperti yang Anda lakukan dengan Claude API.
 * **Agent Skills:** Gunakan [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview) bawaan dan kustom dengan parameter `container.skills` yang sama seperti Claude API. Semua Skills bawaan (PowerPoint, Excel, Word, PDF) langsung berfungsi.
 * **Eksekusi kode:** Jalankan kode di sandbox terkelola Anthropic menggunakan [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool).
-* **Penggunaan alat:** Semua [kemampuan "tool use" (penggunaan alat)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) tersedia kecuali toolset computer use dan browser use; lihat [Fitur yang tidak didukung](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#features-not-supported).
-* **Thinking:** [Adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking), [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort), dan, pada model yang mendukungnya, ["extended thinking" (pemikiran diperpanjang)](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) berfungsi dengan parameter yang sama seperti Claude API.
+* **Penggunaan alat:** Semua [kemampuan “tool use” (penggunaan alat)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) tersedia kecuali toolset computer use dan browser use; lihat [Fitur yang tidak didukung](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#features-not-supported).
+* **Thinking:** [Adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking), [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort), dan, pada model yang mendukungnya, [“extended thinking” (pemikiran diperpanjang)](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) berfungsi dengan parameter yang sama seperti Claude API.
 * **Streaming:** Dukungan streaming SSE penuh untuk respons real-time.
 * **Pemrosesan batch:** Kirim permintaan batch untuk beban kerja dengan throughput tinggi.
-* **Caching prompt:** Cache alat, prompt sistem, dan riwayat pesan untuk mengurangi latensi dan biaya. Semua kemampuan "prompt caching" (caching prompt) (TTL 5 menit, TTL 1 jam, dan caching otomatis) tersedia.
+* **Caching prompt:** Cache alat, prompt sistem, dan riwayat pesan untuk mengurangi latensi dan biaya. Semua kemampuan “prompt caching” (caching prompt) (TTL 5 menit, TTL 1 jam, dan caching otomatis) tersedia.
 * **Files API:** Unggah dan rujuk file di berbagai permintaan.
-* **"Customer-managed encryption keys" (kunci enkripsi yang dikelola pelanggan), atau CMEK:** [CMEK](https://platform.claude.com/docs/id/manage-claude/cmek) hanya tersedia dengan kunci [AWS KMS](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms). Kunci Google Cloud KMS dan Azure Key Vault tidak dapat didaftarkan. Kunci harus berupa kunci KMS single-region di akun AWS dan region yang sama dengan workspace tempat kunci tersebut dilampirkan, dan kebijakan kuncinya harus memberikan akses ke service principal `aws-external-anthropic.amazonaws.com`; lihat [Menyiapkan CMEK di Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws). Daftarkan dan lampirkan kunci di [Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#using-the-claude-console); endpoint kunci eksternal juga tersedia, diotorisasi melalui [aksi IAM](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#encryption-keys). Tidak ada langkah validasi terpisah: kunci divalidasi secara implisit saat Anda melampirkannya ke workspace (panggilan attach melakukan satu putaran enkripsi/dekripsi), sehingga masalah kebijakan kunci muncul saat attach, bukan saat pendaftaran.
+* **“Customer-managed encryption keys” (kunci enkripsi yang dikelola pelanggan), atau CMEK:** [CMEK](https://platform.claude.com/docs/id/manage-claude/cmek) hanya tersedia dengan kunci [AWS KMS](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms). Kunci Google Cloud KMS dan Azure Key Vault tidak dapat didaftarkan. Kunci harus berupa kunci KMS single-region di akun AWS dan region yang sama dengan workspace tempat kunci tersebut dilampirkan, dan kebijakan kuncinya harus memberikan akses ke service principal `aws-external-anthropic.amazonaws.com`; lihat [Menyiapkan CMEK di Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws). Daftarkan dan lampirkan kunci di [Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#using-the-claude-console); endpoint kunci eksternal juga tersedia, diotorisasi melalui [aksi IAM](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#encryption-keys). Tidak ada langkah validasi terpisah: kunci divalidasi secara implisit saat Anda melampirkannya ke workspace (panggilan attach melakukan satu putaran enkripsi/dekripsi), sehingga masalah kebijakan kunci muncul saat attach, bukan saat pendaftaran.
 * **Compliance API:** [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) tersedia. Akses diotorisasi melalui [aksi `ListComplianceActivities`](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#compliance) AWS IAM.
 
 Lihat [tabel perbandingan](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#claude-platform-on-aws-vs-amazon-bedrock) untuk perbedaan ketersediaan fitur dari Amazon Bedrock.

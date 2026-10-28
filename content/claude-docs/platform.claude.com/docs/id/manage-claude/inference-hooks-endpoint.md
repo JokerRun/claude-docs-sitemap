@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: eb088a0d736017b52c5ea6c6e58c2e696208a109800fb6d17e6776810ff3a2c8
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 77d8cb1195d3edf12bc9bad7ab215581a8fc2b18b472271e28fbf7a7185f131b
 ---
 
 ---
@@ -15,7 +15,7 @@ description: Bangun server keamanan AI yang menerima permintaan Inference hooks 
   Inference hooks hanya tersedia untuk organisasi Claude Enterprise.
 </Note>
 
-Integrasi Inference hooks adalah server keamanan AI, yaitu layanan HTTPS yang dipanggil oleh Anthropic. Untuk setiap permintaan yang diatur, server Anda menerima `POST` bertanda tangan yang berisi transkrip percakapan, lalu merespons dengan "verdict" (putusan) allow atau deny. Halaman ini mendokumentasikan protokol untuk membangun server tersebut: skema permintaan dan putusan, verifikasi tanda tangan, serta kontrak operasional.
+Integrasi Inference hooks adalah server keamanan AI, yaitu layanan HTTPS yang dipanggil oleh Anthropic. Untuk setiap permintaan yang diatur, server Anda menerima `POST` bertanda tangan yang berisi transkrip percakapan, lalu merespons dengan “verdict” (putusan) allow atau deny. Halaman ini mendokumentasikan protokol untuk membangun server tersebut: skema permintaan dan putusan, verifikasi tanda tangan, serta kontrak operasional.
 
 Untuk mengaktifkan Inference hooks dan mengarahkannya ke endpoint Anda, lihat [Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration). Untuk mempelajari apa itu Inference hooks dan kapan menggunakannya, lihat [ikhtisar Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks).
 
@@ -239,11 +239,11 @@ Blok dengan `type` yang tidak Anda kenali adalah tambahan yang kompatibel ke dep
 
 ### Isi transkrip
 
-Transkrip adalah percakapan sebagaimana dilihat oleh pengguna akhir, hingga titik inferensi. Isinya meliputi teks transkrip, panggilan alat beserta hasilnya, teks lampiran yang diekstrak, dan giliran sebelumnya. Transkrip tidak pernah menyertakan "system prompt" (prompt sistem), definisi alat, konteks internal Anthropic, penalaran tersembunyi Claude, atau byte file mentah.
+Transkrip adalah percakapan sebagaimana dilihat oleh pengguna akhir, hingga titik inferensi. Isinya meliputi teks transkrip, panggilan alat beserta hasilnya, teks lampiran yang diekstrak, dan giliran sebelumnya. Transkrip tidak pernah menyertakan “system prompt” (prompt sistem), definisi alat, konteks internal Anthropic, penalaran tersembunyi Claude, atau byte file mentah.
 
 Giliran yang seluruh bloknya dikecualikan akan dihilangkan sepenuhnya. Karena itu, jangan berasumsi bahwa giliran user dan assistant selalu bergantian secara ketat.
 
-Transkrip dikirim tanpa dipotong, sehingga percakapan panjang dengan lampiran besar menghasilkan body permintaan yang besar. Dalam praktiknya, "context window" (jendela konteks) model menjaga body di bawah sekitar 10 MB, tetapi protokol mengizinkan hingga 64 MiB. Beberapa default umum jauh lebih kecil, termasuk nginx `client_max_body_size` sebesar 1 MB dan Express `express.json()` sebesar 100 kB, dan body yang ditolak dihitung sebagai kegagalan webhook, sehingga dengan penanganan kegagalan **Allow the request**, prompt yang terlalu besar akan mencapai model tanpa diperiksa.
+Transkrip dikirim tanpa dipotong, sehingga percakapan panjang dengan lampiran besar menghasilkan body permintaan yang besar. Dalam praktiknya, “context window” (jendela konteks) model menjaga body di bawah sekitar 10 MB, tetapi protokol mengizinkan hingga 64 MiB. Beberapa default umum jauh lebih kecil, termasuk nginx `client_max_body_size` sebesar 1 MB dan Express `express.json()` sebesar 100 kB, dan body yang ditolak dihitung sebagai kegagalan webhook, sehingga dengan penanganan kegagalan **Allow the request**, prompt yang terlalu besar akan mencapai model tanpa diperiksa.
 
 ### Nilai source
 
@@ -447,14 +447,14 @@ Permintaan ditandatangani sesuai dengan spesifikasi [Standard Webhooks](https://
 
 | Header              | Isi                                                                                                                                                                                                                                                            |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `webhook-id`        | Pengidentifikasi unik untuk pengiriman ini. Nilainya sama dengan `request_id` pada body. Gunakan sebagai "idempotency key" (kunci idempotensi) dan sebagai komponen pertama dari payload yang ditandatangani.                                                  |
+| `webhook-id`        | Pengidentifikasi unik untuk pengiriman ini. Nilainya sama dengan `request_id` pada body. Gunakan sebagai “idempotency key” (kunci idempotensi) dan sebagai komponen pertama dari payload yang ditandatangani.                                                  |
 | `webhook-timestamp` | Waktu Unix dalam detik, sebagai string desimal, saat permintaan ditandatangani. Tolak timestamp yang berselisih lebih dari 5 menit dari jam server Anda, ke arah mana pun.                                                                                     |
 | `webhook-signature` | Satu atau beberapa nilai `v1,<base64>` yang dipisahkan spasi. Setiap nilai adalah HMAC-SHA256 atas `{webhook-id}.{webhook-timestamp}.{raw body bytes}`. Terima permintaan jika ada nilai yang cocok dengan milik Anda, menggunakan perbandingan waktu-konstan. |
 
 Dua detail berikut menjadi penyebab sebagian besar bug verifikasi:
 
 * **Verifikasi byte mentah.** Hitung HMAC atas body persis seperti yang diterima, sebelum parsing JSON atau pengodean ulang apa pun.
-* **Dekode secret dengan dekoder base64 standar.** "Signing secret" (rahasia penandatanganan) adalah nilai setelah prefiks `whsec_`. Nilai ini dikodekan dengan alfabet base64 standar (`+` dan `/`), sama seperti tanda tangan di header. Dekoder yang aman untuk URL akan menghasilkan byte kunci yang salah setiap kali secret mengandung `+` atau `/`, dan hal ini hampir selalu terjadi.
+* **Dekode secret dengan dekoder base64 standar.** “Signing secret” (rahasia penandatanganan) adalah nilai setelah prefiks `whsec_`. Nilai ini dikodekan dengan alfabet base64 standar (`+` dan `/`), sama seperti tanda tangan di header. Dekoder yang aman untuk URL akan menghasilkan byte kunci yang salah setiap kali secret mengandung `+` atau `/`, dan hal ini hampir selalu terjadi.
 
 Setelah organisasi Anda memiliki rahasia penandatanganan, setiap permintaan yang dikirim Anthropic akan ditandatangani, termasuk uji koneksi. Hal ini karena alur penyiapan membuat secret sebelum uji pertama dijalankan. [Mengaktifkan Inference hooks memerlukan secret](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration), jadi tolak setiap permintaan yang datang tanpa tanda tangan.
 
@@ -859,7 +859,7 @@ Setiap pemicuan dicatat sebagai aktivitas `inference_hooks_circuit_breaker_tripp
 
 ### Latensi
 
-Penegakan menambahkan waktu bolak-balik server keamanan AI Anda ke "latency" (latensi) setiap permintaan yang diatur di organisasi Anda. Dengan **Validate tool calls** aktif, respons yang menghasilkan frame tool call juga menunggu putusannya, termasuk dalam shadow mode. Jaga agar putusan tetap cepat, dan lakukan uji beban pada server Anda sebelum meluncurkannya ke organisasi besar.
+Penegakan menambahkan waktu bolak-balik server keamanan AI Anda ke “latency” (latensi) setiap permintaan yang diatur di organisasi Anda. Dengan **Validate tool calls** aktif, respons yang menghasilkan frame tool call juga menunggu putusannya, termasuk dalam shadow mode. Jaga agar putusan tetap cepat, dan lakukan uji beban pada server Anda sebelum meluncurkannya ke organisasi besar.
 
 ### Alamat IP sumber
 

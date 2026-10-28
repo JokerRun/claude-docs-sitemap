@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/claude-models-on-google-cloud-anthropic-managed-iam-permissions
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: a8b900bf61ad75c59c0a262d4f7c7311912324330b39aca3d6044b44a8cf3eaf
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: ba17ab8fe31ad5f39e2557e80db16ec3c5e650f45f9260c4c23c69ad5dbc0c63
 ---
 
 ---
@@ -29,7 +29,7 @@ Izin di halaman ini ditulis dalam bentuk singkat `resource.verb`, seperti `messa
 
 ## Peran bawaan
 
-Tabel berikut mencantumkan peran bawaan ("predefined roles") untuk Claude Models on Google Cloud (Anthropic managed).
+Tabel berikut mencantumkan peran bawaan (“predefined roles”) untuk Claude Models on Google Cloud (Anthropic managed).
 
 | Peran                 | Nama tampilan | Izin                                                                                                                                                                                     |
 | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/overview
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 3b142a6b0b07bd517b6dabefadfa227bcde2013d01bb2d2b5caf31c25fba22b0
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 6479cf7e83993a2235bc69573c0504f9f7a7f2aae046d92c103917e31ba19a53
 ---
 
 ---
@@ -23,7 +23,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $2 / MTok
 
 ## Ikhtisar
 
-Claude Sonnet 5.5 menawarkan kombinasi terbaik antara kecepatan dan kecerdasan. Lima "breaking change" (perubahan yang merusak kompatibilitas) memengaruhi kode yang sudah berjalan di Claude Sonnet 5:
+Claude Sonnet 5.5 menawarkan kombinasi terbaik antara kecepatan dan kecerdasan. Lima “breaking change” (perubahan yang merusak kompatibilitas) memengaruhi kode yang sudah berjalan di Claude Sonnet 5:
 
 * [Matikan pemikiran di awal dengan `between_tools`](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#turn-off-up-front-thinking).
 * [Penggunaan alat paksa mengembalikan error](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#forced-tool-use-is-not-supported).
@@ -103,7 +103,7 @@ Satu perubahan lagi mengubah bentuk respons tanpa menggagalkan permintaan apa pu
 
 ## Hal yang perlu diketahui
 
-* "Adaptive thinking" (pemikiran adaptif) aktif secara default. Pengaturan pemikiran terendah adalah `between_tools`, yang menonaktifkan pemikiran di awal. Pengaturan ini berfungsi pada tingkat effort `high` atau lebih rendah. Lihat [Yang baru di Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#turn-off-up-front-thinking).
+* “Adaptive thinking” (pemikiran adaptif) aktif secara default. Pengaturan pemikiran terendah adalah `between_tools`, yang menonaktifkan pemikiran di awal. Pengaturan ini berfungsi pada tingkat effort `high` atau lebih rendah. Lihat [Yang baru di Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#turn-off-up-front-thinking).
 * Mengatur `temperature`, `top_p`, atau `top_k` akan menghasilkan error 400.
 * Panjang prompt minimum yang dapat di-cache adalah 512 token. Lihat [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations).
 * Pada [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing#extended-output-beta), Claude Sonnet 5.5 mendukung hingga 300k token output dengan beta header `output-300k-2026-03-24`.

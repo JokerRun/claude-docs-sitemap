@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 3a5ba852ed0dabb55858db71ce4eeee1ea913627f80c531b270f6bc355bb30ca
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 0926cca04a87bd45d52dcf0040ce0799b4a20dffa463440926cd44fc26540539
 ---
 
 ---
@@ -34,7 +34,7 @@ featureMetadata:
     Microsoft Foundry: beta
 ---
 
-Lewati halaman ini kecuali Anda mengirim "thinking blocks" (blok pemikiran) kembali ke model dengan ["preserved thinking" (pemikiran yang dipertahankan)](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking) dan mempertahankan giliran setelah blok "compaction" (pemadatan). "Kept turns" (giliran yang dipertahankan) adalah giliran yang mengikuti blok tersebut: giliran terbaru yang Anda keluarkan dari permintaan compaction, seperti dalam [Compaction yang mempertahankan giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/compaction-keep-recent-turns), atau giliran yang tiba saat ringkasan sedang ditulis, seperti dalam [Compaction di latar belakang](https://platform.claude.com/docs/id/build-with-claude/compaction-background).
+Lewati halaman ini kecuali Anda mengirim “thinking blocks” (blok pemikiran) kembali ke model dengan [“preserved thinking” (pemikiran yang dipertahankan)](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking) dan mempertahankan giliran setelah blok “compaction” (pemadatan). “Kept turns” (giliran yang dipertahankan) adalah giliran yang mengikuti blok tersebut: giliran terbaru yang Anda keluarkan dari permintaan compaction, seperti dalam [Compaction yang mempertahankan giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/compaction-keep-recent-turns), atau giliran yang tiba saat ringkasan sedang ditulis, seperti dalam [Compaction di latar belakang](https://platform.claude.com/docs/id/build-with-claude/compaction-background).
 
 Model dengan pemikiran yang dipertahankan memeriksa blok thinking sebelumnya terhadap percakapan yang menghasilkannya. Ringkasan menggantikan sebagian percakapan tersebut, tetapi pemeriksaan menerima pertukaran itu ketika API yang menulis ringkasannya, sehingga thinking dalam giliran yang dipertahankan dapat tetap valid.
 

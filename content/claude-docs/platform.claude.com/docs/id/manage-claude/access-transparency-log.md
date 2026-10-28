@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/access-transparency-log
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 0f92baddeb6a69e4475a64afac06f1d360fd89e19c736d27e65f4e7cfded2f54
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: eabafb70f2c310f6b5d1b597ad39d6018057585e4585a3202f753447fe0d990a
 ---
 
 ---
@@ -25,7 +25,7 @@ Pelajari cara memverifikasi secara kriptografis bahwa tidak ada event [Access Tr
 
 ## Cara kerja log transparansi
 
-"Transparency log" (log transparansi) adalah teknik untuk membuat suatu catatan bersifat tamper-evident (menunjukkan bukti jika dirusak). Entri hanya pernah ditambahkan di akhir. Setiap kali log bertambah, operatornya menandatangani pernyataan singkat, yang disebut checkpoint, yang mengikat setiap entri sejauh ini melalui hash pohon Merkle. Siapa pun yang menyimpan checkpoint nantinya dapat meminta bukti bahwa log saat ini masih berisi semua yang dicakup checkpoint tersebut, tanpa perubahan dan dalam urutan yang sama. Oleh karena itu, penghapusan atau penulisan ulang sebuah entri tidak dapat luput dari perhatian verifier yang menyimpan checkpoint yang mencakup entri tersebut. Certificate Transparency dan Go module checksum database dibangun di atas teknik yang sama. [C2SP tlog-tiles](https://c2sp.org/tlog-tiles) adalah spesifikasi terbuka untuk menyajikan log semacam itu sebagai checkpoint bertanda tangan ditambah tile statis yang dapat di-cache berisi hash dan entri, sehingga klien dapat mengambil hash dan menghitung setiap bukti sendiri.
+“Transparency log” (log transparansi) adalah teknik untuk membuat suatu catatan bersifat tamper-evident (menunjukkan bukti jika dirusak). Entri hanya pernah ditambahkan di akhir. Setiap kali log bertambah, operatornya menandatangani pernyataan singkat, yang disebut checkpoint, yang mengikat setiap entri sejauh ini melalui hash pohon Merkle. Siapa pun yang menyimpan checkpoint nantinya dapat meminta bukti bahwa log saat ini masih berisi semua yang dicakup checkpoint tersebut, tanpa perubahan dan dalam urutan yang sama. Oleh karena itu, penghapusan atau penulisan ulang sebuah entri tidak dapat luput dari perhatian verifier yang menyimpan checkpoint yang mencakup entri tersebut. Certificate Transparency dan Go module checksum database dibangun di atas teknik yang sama. [C2SP tlog-tiles](https://c2sp.org/tlog-tiles) adalah spesifikasi terbuka untuk menyajikan log semacam itu sebagai checkpoint bertanda tangan ditambah tile statis yang dapat di-cache berisi hash dan entri, sehingga klien dapat mengambil hash dan menghitung setiap bukti sendiri.
 
 Ketika Access Transparency diaktifkan, Anthropic memelihara log transparansi untuk organisasi Anda. Log ini adalah catatan append-only yang ditandatangani secara kriptografis atas event Access Transparency (`anthropic_access` dan `cmek_preserve`). Setiap event semacam itu yang dicatat untuk organisasi Anda setelah log dibuat akan ditambahkan ke dalamnya. Log ini mengikuti format C2SP tlog-tiles, sehingga tooling yang dibangun untuk standar tersebut memahami checkpoint, tile, dan buktinya.
 
@@ -56,7 +56,7 @@ Anda memerlukan:
 
 * Compliance Access Key dengan scope `read:compliance_activities`, kunci dan scope yang sama dengan yang Anda gunakan untuk [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed). Kunci organisasi induk dapat membaca log setiap organisasi anak yang terdaftar dengan menyebutkan organisasi anak tersebut pada setiap permintaan.
 * UUID organisasi Anda. Temukan di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console. Nilainya sama dengan yang disajikan Activity Feed sebagai `organization_uuid`, tetapi ambillah dari Console. Nilai inilah yang menjadikan sebuah checkpoint milik Anda, sehingga nilai ini tidak boleh berasal dari API yang sedang Anda verifikasi. Anda menurunkan origin log Anda darinya sebagai `axt.anthropic.com/<organization UUID>`. Turunkan string ini sendiri. Jangan membacanya dari respons API.
-* Tempat penyimpanan yang tahan lama untuk menyimpan checkpoint terakhir yang Anda verifikasi. Checkpoint tersimpan itulah yang mengubah "log konsisten hari ini" menjadi "log telah konsisten sejak Anda mulai memantau."
+* Tempat penyimpanan yang tahan lama untuk menyimpan checkpoint terakhir yang Anda verifikasi. Checkpoint tersimpan itulah yang mengubah “log konsisten hari ini” menjadi “log telah konsisten sejak Anda mulai memantau.”
 
 ## Waktu
 
@@ -110,7 +110,7 @@ Error menggunakan envelope error JSON standar Compliance API di setiap endpoint,
 | `400`  | `organization_id` salah format atau dihilangkan saat menggunakan kunci organisasi induk, Compliance API tidak diaktifkan, parameter query tidak dikenal, atau validasi per-endpoint gagal |
 | `401`  | Kunci API tidak ada atau tidak valid                                                                                                                                                      |
 | `403`  | Kunci tidak memiliki scope yang diperlukan                                                                                                                                                |
-| `404`  | Tidak ada log yang dapat dibaca oleh kunci ini, atau kasus per-endpoint "tidak tercakup" dan "di luar pohon"                                                                              |
+| `404`  | Tidak ada log yang dapat dibaca oleh kunci ini, atau kasus per-endpoint “tidak tercakup” dan “di luar pohon”                                                                              |
 | `429`  | Terkena batas laju. Endpoint ini berbagi [batas laju](https://platform.claude.com/docs/id/manage-claude/compliance-api) per-organisasi-induk milik Compliance API. Patuhi `retry-after`   |
 | `503`  | Log untuk sementara tidak tersedia. Coba lagi dengan backoff                                                                                                                              |
 

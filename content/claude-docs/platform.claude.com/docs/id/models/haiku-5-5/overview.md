@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/overview
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: d9c176fe3ce5bfb81ac1059a44b2c30d031833ae3b5b054d27e8a894e3da502d
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: d65c2f2887d65d61beef11068e45cce1b8b9a8738d6fa613834c53b11f3324ec
 ---
 
 ---
@@ -23,7 +23,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: From $0.1
 
 ## Ikhtisar
 
-Claude Haiku 5.5 dirancang untuk pekerjaan bervolume tinggi yang sensitif terhadap latensi seperti klasifikasi, routing, ekstraksi, dan tugas subagen. Model ini mendukung "adaptive thinking" (pemikiran adaptif) dengan parameter effort, "context window" (jendela konteks) sebesar 1M token, dan hingga 128k token output. Model ini menggunakan tokenizer baru yang sama dengan Claude 4.7 dan model-model setelahnya, sehingga teks yang sama dihitung sebagai sekitar 30 persen lebih banyak token dibandingkan pada Claude Haiku 4.5. Blok pemikirannya hanya berfungsi di akun yang menghasilkannya, atau di akun yang terhubung dengannya.
+Claude Haiku 5.5 dirancang untuk pekerjaan bervolume tinggi yang sensitif terhadap latensi seperti klasifikasi, routing, ekstraksi, dan tugas subagen. Model ini mendukung “adaptive thinking” (pemikiran adaptif) dengan parameter effort, “context window” (jendela konteks) sebesar 1M token, dan hingga 128k token output. Model ini menggunakan tokenizer baru yang sama dengan Claude 4.7 dan model-model setelahnya, sehingga teks yang sama dihitung sebagai sekitar 30 persen lebih banyak token dibandingkan pada Claude Haiku 4.5. Blok pemikirannya hanya berfungsi di akun yang menghasilkannya, atau di akun yang terhubung dengannya.
 
 Untuk perubahan kode, lihat [panduan migrasi](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide). Untuk ID model, harga, dan batasan, lihat [ikhtisar Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview). Untuk panduan prompting, lihat [Prompting Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5).
 
@@ -97,7 +97,7 @@ Untuk perubahan kode, lihat [panduan migrasi](https://platform.claude.com/docs/i
 
 ## Yang perlu diketahui
 
-* "Adaptive thinking" (pemikiran adaptif) aktif secara default. Kendalikan kedalaman pemikiran dengan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort).
+* “Adaptive thinking” (pemikiran adaptif) aktif secara default. Kendalikan kedalaman pemikiran dengan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort).
 * Hilangkan `temperature`, `top_p`, dan `top_k`.
 * Pada [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing#extended-output-beta), Claude Haiku 5.5 mendukung hingga 300k token output dengan header beta `output-300k-2026-03-24`.
 * Panjang prompt minimum yang dapat di-cache adalah 512 token. Lihat [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations).

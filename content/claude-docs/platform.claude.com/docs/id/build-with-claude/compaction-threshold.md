@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-threshold
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: f6153392fe07d7f75c117e59f4f14ecdef87ba86049a03dadabff665acfcaf68
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 05cfa15441dbf8722bae47f65a11ec157d9095658d5c3c198cead596def9855d
 ---
 
 ---
@@ -38,9 +38,9 @@ featureMetadata:
     Microsoft Foundry: beta
 ---
 
-"Threshold compaction" (pemadatan berbasis ambang batas) adalah jenis "compaction" (pemadatan) yang otomatis: Anda menetapkan "token threshold" (ambang batas token) pada permintaan biasa Anda, dan API meringkas konteks lama di tengah permintaan begitu ambang batas tersebut tercapai. Fitur ini didukung bersama compaction sesuai permintaan, di mana Anda yang memutuskan kapan ringkasan ditulis (lihat [Compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand)). Untuk memilih di antara keduanya, lihat [Pilih cara melakukan compaction](https://platform.claude.com/docs/id/build-with-claude/compaction#choose-how-to-compact).
+“Threshold compaction” (pemadatan berbasis ambang batas) adalah jenis “compaction” (pemadatan) yang otomatis: Anda menetapkan “token threshold” (ambang batas token) pada permintaan biasa Anda, dan API meringkas konteks lama di tengah permintaan begitu ambang batas tersebut tercapai. Fitur ini didukung bersama compaction sesuai permintaan, di mana Anda yang memutuskan kapan ringkasan ditulis (lihat [Compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand)). Untuk memilih di antara keduanya, lihat [Pilih cara melakukan compaction](https://platform.claude.com/docs/id/build-with-claude/compaction#choose-how-to-compact).
 
-Compaction memperluas panjang konteks efektif untuk percakapan dan tugas yang berjalan lama dengan meringkas konteks lama secara otomatis saat mendekati batas "context window" (jendela konteks). Compaction juga menjaga konteks aktif tetap kecil: seiring percakapan bertambah panjang, kualitas respons menurun, sehingga compaction menggantikan konten lama dengan ringkasan yang padat.
+Compaction memperluas panjang konteks efektif untuk percakapan dan tugas yang berjalan lama dengan meringkas konteks lama secara otomatis saat mendekati batas “context window” (jendela konteks). Compaction juga menjaga konteks aktif tetap kecil: seiring percakapan bertambah panjang, kualitas respons menurun, sehingga compaction menggantikan konten lama dengan ringkasan yang padat.
 
 <Tip>
   Untuk penjelasan lebih mendalam tentang mengapa konteks panjang menurunkan kualitas dan bagaimana compaction membantu, lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
@@ -49,7 +49,7 @@ Compaction memperluas panjang konteks efektif untuk percakapan dan tugas yang be
 Ini ideal untuk:
 
 * Percakapan multi-giliran berbasis chat di mana Anda ingin pengguna menggunakan satu chat dalam jangka waktu yang lama
-* Prompt berorientasi tugas yang memerlukan banyak pekerjaan lanjutan (sering kali berupa "tool use" (penggunaan alat)) yang mungkin melebihi jendela konteks
+* Prompt berorientasi tugas yang memerlukan banyak pekerjaan lanjutan (sering kali berupa “tool use” (penggunaan alat)) yang mungkin melebihi jendela konteks
 
 ## Cara kerja compaction
 
@@ -1999,7 +1999,7 @@ Blok compaction di-stream secara berbeda dari blok teks. Anda menerima event `co
 
 ### Caching prompt
 
-Compaction bekerja dengan baik bersama ["prompt caching" (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching). Anda dapat menambahkan breakpoint `cache_control` pada blok compaction untuk melakukan cache terhadap konten yang telah diringkas.
+Compaction bekerja dengan baik bersama [“prompt caching” (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching). Anda dapat menambahkan breakpoint `cache_control` pada blok compaction untuk melakukan cache terhadap konten yang telah diringkas.
 
 ```json
 {
@@ -2020,7 +2020,7 @@ Compaction bekerja dengan baik bersama ["prompt caching" (caching prompt)](https
 
 #### Memaksimalkan cache hit dengan prompt sistem
 
-Ketika compaction terjadi, ringkasan menjadi konten baru yang perlu ditulis ke cache. Tanpa breakpoint cache tambahan, hal ini juga akan membatalkan "system prompt" (prompt sistem) yang telah di-cache, sehingga prompt tersebut harus di-cache ulang bersama ringkasan compaction.
+Ketika compaction terjadi, ringkasan menjadi konten baru yang perlu ditulis ke cache. Tanpa breakpoint cache tambahan, hal ini juga akan membatalkan “system prompt” (prompt sistem) yang telah di-cache, sehingga prompt tersebut harus di-cache ulang bersama ringkasan compaction.
 
 Untuk memaksimalkan tingkat cache hit, tambahkan breakpoint `cache_control` di akhir prompt sistem Anda. Ini menjaga prompt sistem tetap di-cache secara terpisah dari percakapan, sehingga ketika compaction terjadi:
 
@@ -2261,7 +2261,7 @@ Ini menjaga prompt sistem yang panjang tetap di-cache di sepanjang beberapa even
 
 ## Memahami penggunaan
 
-Compaction memerlukan langkah sampling tambahan, yang turut diperhitungkan dalam "rate limit" (batas laju) dan penagihan. API mengembalikan informasi penggunaan yang terperinci dalam respons:
+Compaction memerlukan langkah sampling tambahan, yang turut diperhitungkan dalam “rate limit” (batas laju) dan penagihan. API mengembalikan informasi penggunaan yang terperinci dalam respons:
 
 ```json Output
 {

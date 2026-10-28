@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 94f71e44a4201213cb511b1324a772ed74a210e0a9fb1dfd9e0f6792c92541ab
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: c2175186e5da2f20f2d02ad9833e8f94c7a6e5a8238cf736926436eda79876ac
 ---
 
 ---
@@ -20,7 +20,7 @@ CLI `ant` menyediakan akses ke Claude API dari terminal Anda. Setiap sumber daya
   </video>
 </Frame>
 
-Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe atau YAML yang di-pipe alih-alih JSON yang ditulis tangan, dan menyisipkan isi file ke dalam field string dengan referensi `@path`. Alat ini mengekstrak field respons dengan kueri `--transform` bawaan, sehingga Anda tidak memerlukan alat terpisah seperti `jq`, dan melakukan "pagination" (paginasi) pada endpoint daftar secara otomatis.
+Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe atau YAML yang di-pipe alih-alih JSON yang ditulis tangan, dan menyisipkan isi file ke dalam field string dengan referensi `@path`. Alat ini mengekstrak field respons dengan kueri `--transform` bawaan, sehingga Anda tidak memerlukan alat terpisah seperti `jq`, dan melakukan “pagination” (paginasi) pada endpoint daftar secara otomatis.
 
 <Info>
   Untuk parameter khusus endpoint dan skema respons, lihat [referensi API](https://platform.claude.com/docs/id/api/cli/messages/create). Halaman ini membantu Anda mendapatkan perintah yang berfungsi. Untuk semua hal lain yang dapat dilakukan CLI, lihat [Menggunakan CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using) dan [Scripting dan otomatisasi CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting).
@@ -39,7 +39,7 @@ Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe at
     Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=2.3.0
+    VERSION=2.4.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -117,7 +117,7 @@ Responsnya adalah objek API lengkap, dicetak dengan format rapi karena stdout ad
 
 ## Penyelesaian shell
 
-CLI menyertakan skrip "shell completion" (penyelesaian shell) untuk bash, zsh, fish, dan PowerShell. Buat dan instal satu untuk shell Anda:
+CLI menyertakan skrip “shell completion” (penyelesaian shell) untuk bash, zsh, fish, dan PowerShell. Buat dan instal satu untuk shell Anda:
 
 <Tabs>
   <Tab title="zsh">
@@ -160,6 +160,6 @@ CLI menyertakan skrip "shell completion" (penyelesaian shell) untuk bash, zsh, f
   </Card>
 
   <Card title="Scripting dan otomatisasi CLI" icon="code" href="https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting">
-    Kontrol versi sumber daya API, pola scripting, dan penggunaan dari Claude Code
+    Kontrol versi untuk sumber daya API, pola scripting, dan penggunaan dari Claude Code
   </Card>
 </CardGroup>

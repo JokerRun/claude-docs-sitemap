@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 691fc9161b3a587dc89615dc2e5025096d150716694deeda9ca9117f08a67390
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 72808047561a197004a6b07f9567254192790babb6d9a62e478e0c4b64c0666e
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby
 description: Instal dan konfigurasikan Anthropic Ruby SDK dengan tipe Sorbet, helper streaming, dan connection pooling
 ---
 
-Library Ruby Anthropic menyediakan akses yang mudah ke Claude API dari aplikasi Ruby 3.2.0+ mana pun. Library ini dilengkapi dengan tipe dan docstring yang komprehensif dalam YARD, RBS, dan RBI. `net/http` dari library standar digunakan sebagai transport HTTP, dengan "connection pooling" (penggabungan koneksi) melalui gem `connection_pool`.
+Library Ruby Anthropic menyediakan akses yang mudah ke Claude API dari aplikasi Ruby 3.2.0+ mana pun. Library ini dilengkapi dengan tipe dan docstring yang komprehensif dalam YARD, RBS, dan RBI. `net/http` dari library standar digunakan sebagai transport HTTP, dengan “connection pooling” (penggabungan koneksi) melalui gem `connection_pool`.
 
 <Info>
   Untuk dokumentasi fitur API dengan contoh kode, lihat [referensi API](https://platform.claude.com/docs/id/api/overview). Halaman ini membahas fitur dan konfigurasi SDK yang khusus untuk Ruby.
@@ -47,11 +47,11 @@ message.content.each do |block|
 end
 ```
 
-Untuk opsi autentikasi termasuk "Workload Identity Federation" (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
+Untuk opsi autentikasi termasuk “Workload Identity Federation” (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
 
 ## Streaming
 
-SDK menyediakan dukungan untuk respons streaming menggunakan "Server-Sent Events" (peristiwa yang dikirim server), atau SSE.
+SDK menyediakan dukungan untuk respons streaming menggunakan “Server-Sent Events” (peristiwa yang dikirim server), atau SSE.
 
 ```ruby
 anthropic = Anthropic::Client.new
@@ -159,7 +159,7 @@ Kode error adalah sebagai berikut:
 
 ## Percobaan ulang
 
-Error tertentu akan dicoba ulang secara otomatis sebanyak 2 kali secara default, dengan "exponential backoff" (penundaan eksponensial) yang singkat.
+Error tertentu akan dicoba ulang secara otomatis sebanyak 2 kali secara default, dengan “exponential backoff” (penundaan eksponensial) yang singkat.
 
 Error koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, error Internal >=500, dan timeout semuanya dicoba ulang secara default.
 
@@ -295,7 +295,7 @@ anthropic.messages.create(**params)
 
 ### Enum
 
-Karena library ini tidak bergantung pada `sorbet-runtime`, library ini tidak dapat menyediakan instance [`T::Enum`](https://sorbet.org/docs/tenum). Sebagai gantinya, SDK menyediakan "tagged symbols" (simbol bertag), yang selalu berupa primitif saat runtime:
+Karena library ini tidak bergantung pada `sorbet-runtime`, library ini tidak dapat menyediakan instance [`T::Enum`](https://sorbet.org/docs/tenum). Sebagai gantinya, SDK menyediakan “tagged symbols” (simbol bertag), yang selalu berupa primitif saat runtime:
 
 ```ruby
 # :auto
@@ -305,7 +305,7 @@ puts(Anthropic::MessageCreateParams::ServiceTier::AUTO)
 T.reveal_type(Anthropic::MessageCreateParams::ServiceTier::AUTO)
 ```
 
-Parameter enum memiliki tipe yang "longgar", sehingga Anda dapat meneruskan konstanta enum atau nilai literalnya:
+Parameter enum memiliki tipe yang “longgar”, sehingga Anda dapat meneruskan konstanta enum atau nilai literalnya:
 
 ```ruby
 anthropic = Anthropic::Client.new

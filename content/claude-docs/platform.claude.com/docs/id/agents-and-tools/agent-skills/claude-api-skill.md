@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 65cf4a9cfd7c331f91ba650dd51fd6f389445dc44a1ed2f4adfc16f1aa622312
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 7482a4bb658464ef02c08a145236954db7680877ca01940eadbacf437aa28d19
 ---
 
 ---
@@ -13,7 +13,7 @@ description: Agent Skill open-source yang menyediakan materi referensi API terki
 
 Skill `claude-api` adalah [Agent Skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview) open-source yang menyediakan materi referensi yang terperinci dan terkini bagi Claude untuk membangun aplikasi di dua surface Anthropic:
 
-* **Messages API:** Permukaan utama untuk permintaan tunggal, chat "streaming", "tool use" (penggunaan alat), pemrosesan batch, "prompt caching" (caching prompt), "structured outputs" (output terstruktur), dan loop agen kustom
+* **Messages API:** Permukaan utama untuk permintaan tunggal, chat “streaming”, “tool use” (penggunaan alat), pemrosesan batch, “prompt caching” (caching prompt), “structured outputs” (output terstruktur), dan loop agen kustom
 * **Claude Managed Agents (beta):** Permukaan yang di-host oleh Anthropic untuk agen stateful yang dikelola server dengan eksekusi alat yang di-host oleh Anthropic, konfigurasi agen persisten, dan sandbox per sesi
 
 Skill ini mencakup delapan bahasa pemrograman untuk Messages API maupun Managed Agents: Python, TypeScript, C#, Go, Java, PHP, Ruby, dan cURL.
@@ -29,13 +29,13 @@ Saat dipicu, skill ini membekali Claude dengan:
 **Untuk Messages API:**
 
 * **Dokumentasi SDK khusus bahasa:** Instalasi, panduan memulai cepat, pola umum, dan penanganan error untuk bahasa proyek Anda
-* **Panduan penggunaan alat:** Contoh khusus bahasa dan [dasar-dasar konseptual](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) untuk "function calling" (pemanggilan fungsi), termasuk tool runner beta jika tersedia
+* **Panduan penggunaan alat:** Contoh khusus bahasa dan [dasar-dasar konseptual](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) untuk “function calling” (pemanggilan fungsi), termasuk tool runner beta jika tersedia
 * **Pola streaming:** Detail implementasi untuk membangun UI chat dan menangani tampilan inkremental
 * **Pemrosesan batch:** Pemrosesan batch offline dengan biaya 50 persen
 * **Caching prompt:** Desain stabilitas prefiks, penempatan breakpoint, dan audit terhadap penyebab invalidasi diam-diam
 * **Migrasi model:** Panduan langkah demi langkah untuk bermigrasi ke model Claude yang lebih baru (termasuk perubahan yang merusak kompatibilitas dan pergeseran perilaku pada [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-5), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide), dan [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide))
 * **Migrasi preserved thinking:** Menemukan, mengukur, dan memperbaiki pengeditan riwayat yang membuat blok `thinking` tidak valid, tersedia melalui subperintah `/claude-api preserved-thinking-migration`
-* **Informasi model terkini:** ID model, ukuran "context window" (jendela konteks), dan harga
+* **Informasi model terkini:** ID model, ukuran “context window” (jendela konteks), dan harga
 * **Kesalahan umum:** Panduan terperinci untuk menghindari kesalahan yang sering terjadi saat berintegrasi dengan API
 
 **Untuk Managed Agents (beta):**
@@ -154,7 +154,7 @@ Skill ini menangani:
 * **Penanganan default yang berubah diam-diam**, mengaktifkan kembali ringkasan pemikiran (`thinking.display: "summarized"`) ketika penalaran ditampilkan kepada pengguna pada Claude Opus 4.8 dan Claude Opus 4.7
 * **Konfigurasi fallback penolakan**, menambahkan penanganan `stop_reason: "refusal"` sebelum membaca konten respons dan menyiapkan [jalur percobaan ulang fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) ketika targetnya adalah Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, atau Claude Sonnet 5.5 (parameter `fallbacks` sisi server, biasanya dalam mode `"default"`, middleware fallback penolakan SDK, atau percobaan ulang dengan kredit fallback), serta memperbarui kode fallback yang ditulis berdasarkan bentuk pratinjau sebelumnya
 
-Saat mengedit, skill ini menjelaskan setiap perubahan dan motivasinya secara inline. Setelah selesai, skill ini menghasilkan daftar periksa item yang memerlukan verifikasi manual (biasanya tes integrasi, penyetelan prompt kontrol panjang, dan penetapan ulang baseline biaya/"rate limit" (batas laju)).
+Saat mengedit, skill ini menjelaskan setiap perubahan dan motivasinya secara inline. Setelah selesai, skill ini menghasilkan daftar periksa item yang memerlukan verifikasi manual (biasanya tes integrasi, penyetelan prompt kontrol panjang, dan penetapan ulang baseline biaya/”rate limit” (batas laju)).
 
 Untuk daftar lengkap perubahan khusus model yang diterapkan skill ini, lihat [Migrasi ke Claude Opus 5.5 dari Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Migrasi ke Claude Opus 5.5 dari Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8), [Migrasi ke Claude Sonnet 5.5 dari Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-5), [panduan migrasi Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide), dan [panduan migrasi Claude Fable 5.1 dan Claude Mythos 5.1](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide).
 

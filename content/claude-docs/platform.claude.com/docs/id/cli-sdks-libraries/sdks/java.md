@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 69178f5d2bbf7ca39fc932f88fdbc9ba9ab9a967991850da4b450a7ba2a9b541
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: 9252b8c90f49464b1b9bc8b6180348fccb673e65fcf584b84e0af2960f9e49a8
 ---
 
 ---
@@ -106,7 +106,7 @@ AnthropicClient client = AnthropicOkHttpClient.builder()
   .build();
 ```
 
-Untuk opsi autentikasi termasuk "Workload Identity Federation" (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
+Untuk opsi autentikasi termasuk “Workload Identity Federation” (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
 
 ### Opsi konfigurasi
 
@@ -183,7 +183,7 @@ Klien asinkron mendukung opsi yang sama dengan klien sinkron, kecuali sebagian b
 
 ## Streaming
 
-SDK mendefinisikan metode yang mengembalikan stream "chunk" respons, di mana setiap chunk dapat diproses secara individual segera setelah tiba alih-alih menunggu respons lengkap.
+SDK mendefinisikan metode yang mengembalikan stream “chunk” respons, di mana setiap chunk dapat diproses secara individual segera setelah tiba alih-alih menunggu respons lengkap.
 
 ### Streaming sinkron
 
@@ -317,13 +317,13 @@ Message message = messageAccumulator.message();
 
 ## Structured outputs
 
-Untuk dokumentasi lengkap "structured outputs" (output terstruktur) termasuk contoh Java, lihat [Structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs).
+Untuk dokumentasi lengkap “structured outputs” (output terstruktur) termasuk contoh Java, lihat [Structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs).
 
 ## Penggunaan alat
 
-["Tool use" (penggunaan alat) dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) memungkinkan Anda mengintegrasikan alat dan fungsi eksternal langsung ke dalam respons model AI. Alih-alih menghasilkan teks biasa, model dapat mengeluarkan instruksi (beserta parameter) untuk memanggil alat atau fungsi bila sesuai. Anda mendefinisikan skema JSON untuk alat, dan model menggunakan skema tersebut untuk menentukan kapan dan bagaimana menggunakan alat-alat ini.
+[“Tool use” (penggunaan alat) dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) memungkinkan Anda mengintegrasikan alat dan fungsi eksternal langsung ke dalam respons model AI. Alih-alih menghasilkan teks biasa, model dapat mengeluarkan instruksi (beserta parameter) untuk memanggil alat atau fungsi bila sesuai. Anda mendefinisikan skema JSON untuk alat, dan model menggunakan skema tersebut untuk menentukan kapan dan bagaimana menggunakan alat-alat ini.
 
-Fitur penggunaan alat mendukung mode "strict" yang menjamin bahwa output JSON dari model AI akan sesuai dengan skema JSON yang Anda berikan dalam parameter input.
+Fitur penggunaan alat mendukung mode “strict” yang menjamin bahwa output JSON dari model AI akan sesuai dengan skema JSON yang Anda berikan dalam parameter input.
 
 SDK dapat menurunkan alat dan parameternya secara otomatis dari struktur kelas Java apa pun: nama kelas (dikonversi ke snake case) menjadi nama alat, dan field kelas mendefinisikan parameter alat.
 

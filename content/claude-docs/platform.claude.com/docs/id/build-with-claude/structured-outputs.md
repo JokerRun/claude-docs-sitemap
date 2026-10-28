@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 4b1e0710018cef08bdf3f730c1e3af930fb6fa2e588f83c981a6aa770d61ed35
+fetched_at: 2026-10-28T02:15:32.412922Z
+sha256: ac828837e40a0a586dfc24432a7eb7285596f77c999dabd19daae6d490b1d200
 ---
 
 ---
@@ -40,10 +40,10 @@ featureMetadata:
     Microsoft Foundry: ga
 ---
 
-"Structured outputs" (output terstruktur) membatasi respons Claude agar mengikuti skema tertentu, memastikan output yang valid dan dapat di-parse untuk pemrosesan lanjutan. Output terstruktur menyediakan dua fitur yang saling melengkapi:
+“Structured outputs” (output terstruktur) membatasi respons Claude agar mengikuti skema tertentu, memastikan output yang valid dan dapat di-parse untuk pemrosesan lanjutan. Output terstruktur menyediakan dua fitur yang saling melengkapi:
 
 * **Output JSON** (`output_config.format`): Dapatkan respons Claude dalam format JSON tertentu, misalnya untuk mengekstrak data dari gambar atau teks, menghasilkan laporan terstruktur, atau memformat respons API. Halaman ini membahas output JSON.
-* **"Strict tool use" (penggunaan alat ketat)** (`strict: true`): Menjamin validasi skema pada nama dan input alat. Lihat [Penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use).
+* **“Strict tool use” (penggunaan alat ketat)** (`strict: true`): Menjamin validasi skema pada nama dan input alat. Lihat [Penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use).
 
 Anda dapat menggunakan fitur-fitur ini secara terpisah atau [bersama-sama dalam permintaan yang sama](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#using-both-features-together).
 
@@ -56,7 +56,7 @@ Tanpa output terstruktur, Claude dapat menghasilkan respons JSON yang salah bent
 * Tipe data yang tidak konsisten
 * Pelanggaran skema yang memerlukan penanganan error dan percobaan ulang
 
-Output terstruktur menjamin respons yang sesuai skema melalui "constrained decoding" (decoding terbatas):
+Output terstruktur menjamin respons yang sesuai skema melalui “constrained decoding” (decoding terbatas):
 
 * **Selalu valid:** Tidak ada lagi error `JSON.parse()`
 * **Aman secara tipe:** Tipe field dan field wajib terjamin
@@ -2738,7 +2738,7 @@ Output terstruktur tidak menjamin kapitalisasi nilai `enum` dan `const` string: 
 }
 ```
 
-Output mungkin berisi `"Conversation Topic 3"` (huruf "T" kapital) meskipun nilai persis tersebut tidak ada dalam enum. Respons selesai secara normal, tanpa error dan tanpa `stop_reason` khusus. Ini berlaku untuk output JSON maupun penggunaan alat ketat. Bandingkan nilai enum tanpa membedakan huruf besar-kecil, dan hindari nilai enum yang hanya berbeda dalam kapitalisasi.
+Output mungkin berisi `"Conversation Topic 3"` (huruf “T” kapital) meskipun nilai persis tersebut tidak ada dalam enum. Respons selesai secara normal, tanpa error dan tanpa `stop_reason` khusus. Ini berlaku untuk output JSON maupun penggunaan alat ketat. Bandingkan nilai enum tanpa membedakan huruf besar-kecil, dan hindari nilai enum yang hanya berbeda dalam kapitalisasi.
 
 ### Batas kompleksitas skema
 
@@ -2762,7 +2762,7 @@ Batas berikut berlaku untuk semua permintaan dengan `output_config.format` atau 
 
 Di luar batas eksplisit dalam tabel sebelumnya, ada batas internal tambahan pada ukuran grammar yang dikompilasi. Batas ini ada karena kompleksitas skema tidak dapat direduksi menjadi satu dimensi: fitur seperti parameter opsional, tipe union, objek bersarang, dan jumlah alat saling berinteraksi dengan cara yang dapat membuat grammar yang dikompilasi menjadi sangat besar secara tidak proporsional.
 
-Ketika batas ini terlampaui, Anda akan menerima error 400 dengan pesan "Schema is too complex for compilation." Error ini berarti kompleksitas gabungan skema Anda melebihi apa yang dapat dikompilasi secara efisien, meskipun setiap batas individual dalam tabel sebelumnya terpenuhi. Sebagai pengaman terakhir, API juga menegakkan **batas waktu kompilasi 180 detik**. Skema yang lolos semua pemeriksaan eksplisit tetapi menghasilkan grammar terkompilasi yang sangat besar mungkin mencapai batas waktu ini.
+Ketika batas ini terlampaui, Anda akan menerima error 400 dengan pesan “Schema is too complex for compilation.” Error ini berarti kompleksitas gabungan skema Anda melebihi apa yang dapat dikompilasi secara efisien, meskipun setiap batas individual dalam tabel sebelumnya terpenuhi. Sebagai pengaman terakhir, API juga menegakkan **batas waktu kompilasi 180 detik**. Skema yang lolos semua pemeriksaan eksplisit tetapi menghasilkan grammar terkompilasi yang sangat besar mungkin mencapai batas waktu ini.
 
 #### Tips untuk mengurangi kompleksitas skema
 
