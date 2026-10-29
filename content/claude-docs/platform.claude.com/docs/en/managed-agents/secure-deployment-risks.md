@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/secure-deployment-risks
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: dac03bfb806cd65a687c22ea15b4c69eb5b80221c2889629a00656ce351c092c
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 0c26aab431cfe3a188933e61d73e95a48778e8535708985965489d138817ae16
 ---
 
 ---
@@ -15,6 +15,31 @@ featureMetadata:
     url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
+  zdr:
+    eligibility: not-eligible
+    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Claude Models on Google Cloud (Anthropic managed): beta
 ---
 
 This page explains why the settings in [Secure your Managed Agents deployment](https://platform.claude.com/docs/en/managed-agents/secure-deployment) matter, and what the sandbox can and cannot do.

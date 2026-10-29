@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: e55e19f51d3a396a6fde8ac06c62ff906e362ed9a2f3ae9abfc6112ef3710ddd
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: e0f7a6ca3d4f6d4081741cb8875e3401228f04d2a38ecfa6a0cdcd96a9260a61
 ---
 
 ---
@@ -15,6 +15,31 @@ featureMetadata:
     url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
+  zdr:
+    eligibility: not-eligible
+    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Claude Models on Google Cloud (Anthropic managed): beta
 ---
 
 Sesi adalah instans agen di dalam sebuah lingkungan. Setiap sesi mereferensikan sebuah [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan sebuah [lingkungan](https://platform.claude.com/docs/id/managed-agents/environments) (keduanya dibuat secara terpisah), serta mempertahankan riwayat percakapan di berbagai interaksi. Sesi mengikuti siklus hidup dua langkah: pertama [buat sesi](https://platform.claude.com/docs/id/managed-agents/sessions#creating-a-session), lalu [kirim event pengguna](https://platform.claude.com/docs/id/managed-agents/sessions#starting-the-session) untuk memulai pekerjaan. Anda juga dapat menggabungkan kedua langkah tersebut menjadi satu panggilan dengan [`initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`)](https://platform.claude.com/docs/id/managed-agents/sessions#seed-the-session-with-initial-events).

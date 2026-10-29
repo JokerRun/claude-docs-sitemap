@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 180e366e5649fda76102425b6ba1806762d5cd720c4efa0bbb4ad66e1a1b2ad0
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 53ff02ba9a2ebff2f2e81be1f12b9aab2dbb25eaaaa78761595096af6f7548ab
 ---
 
 ---
@@ -114,9 +114,23 @@ Untuk menggunakan shadow mode, atur **Mode** ke **Shadow mode** di bawah **Failu
 
 ## Pengecualian
 
-Di bawah **Exclusions**, pilih peran yang anggotanya tidak dicakup oleh Inference hooks: prompt mereka tidak pernah dikirim ke server keamanan AI Anda. Hanya peran kustom yang dibuat oleh organisasi Anda yang dapat dikecualikan; peran bawaan tidak ditawarkan. Pilih peran tersebut di pemilih peran, yang placeholder-nya berbunyi **Select roles to exclude**, dan kelola siapa yang memegang setiap peran dari halaman admin peran (**Manage roles**); mengubah pengecualian memerlukan izin manajemen identitas. Daftar ini kosong secara default, dan tanpa peran yang dikecualikan, setiap permintaan yang diatur akan diperiksa.
+Di bawah **Who is inspected**, dengan **Limit by role** diaktifkan, pilih peran yang anggotanya tidak dicakup oleh Inference hooks: prompt mereka tidak pernah dikirim ke server keamanan AI Anda. Hanya peran kustom yang dibuat oleh organisasi Anda yang dapat dikecualikan; peran bawaan tidak ditawarkan. Pilih peran tersebut di pemilih peran, yang placeholder-nya berbunyi **Select roles to exclude**, dan kelola siapa yang memegang setiap peran dari halaman admin peran (**Manage roles**); mengubah pengecualian memerlukan izin manajemen identitas. Daftar ini kosong secara default, dan tanpa peran yang dikecualikan, setiap permintaan yang diatur akan diperiksa, kecuali **Inspect** disetel ke **Only selected roles**.
 
 Pengecualian berlaku untuk sesi interaktif pengguna. Perubahan pada daftar pengecualian dicatat di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) organisasi Anda sebagai perubahan izin peran (`rbac_role_permission_added` dan `rbac_role_permission_removed`).
+
+### Periksa hanya peran yang dipilih
+
+Semua yang ada di bagian **Who is inspected** berada di balik satu sakelar, **Limit by role**. Saat Anda mengaktifkan sakelar tersebut, **Inspect** dimulai pada **Everyone except excluded roles**, dan peran yang dikecualikan dipilih di bawahnya seperti dijelaskan di atas.
+
+Untuk mencoba Inference hooks pada sebagian organisasi Anda terlebih dahulu, aktifkan **Limit by role**, setel **Inspect** ke **Only selected roles**, lalu pilih peran di kotak dialog yang terbuka. Sejak saat itu, hanya anggota yang disetel ke **Custom roles** dan diberi peran yang dipilih yang akan diperiksa. Anggota yang disetel ke peran lain, seperti **User** atau **Owner**, tidak diperiksa, meskipun mereka diberi peran yang dipilih. Hal ini termasuk Anda jika Anda disetel ke **Owner** atau **Primary owner**. Hapus setiap peran yang dikecualikan sebelum Anda beralih: suatu organisasi menggunakan pengecualian atau peran yang dipilih, bukan keduanya. Setelah beralih, tambahkan atau hapus peran di pemilih peran di bawah **Inspect**. Untuk kembali memeriksa semua anggota, nonaktifkan **Limit by role**: setelah Anda mengonfirmasi, tindakan ini menghapus setiap peran yang dikecualikan dan menonaktifkan **Only selected roles**.
+
+Selama **Only selected roles** disetel:
+
+* Peran kustom yang **Capability access**-nya adalah **All capabilities** atau **All generally available** hanya diperhitungkan jika Anda memilihnya, sama seperti peran lainnya.
+* Jika tidak ada anggota yang disetel ke **Custom roles** yang diberi peran yang dipilih, tidak ada anggota yang diperiksa.
+* Permintaan yang tidak berasal dari anggota tidak diperiksa, seperti permintaan yang dibuat dengan kunci API, dan percakapan Claude Tag di Slack.
+
+Sakelar tersebut dan perubahan pada peran yang diperiksa dicatat di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) organisasi Anda.
 
 ## Pesan kustom untuk prompt yang diblokir
 

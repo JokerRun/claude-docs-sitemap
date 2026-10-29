@@ -1,15 +1,50 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: d5ba3ae11f3fcd7f7c7811b6ea5dad6a539e9fdcefcc727cc836919f252181cb
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 76539d8bc6c20a1bb528d79eaf752dde598be8c3f9ea59c7a576dd691f7788b1
 ---
 
 ---
 title: Caching prompt
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
 description: Simpan prefix prompt ke cache dengan `cache_control` untuk memangkas biaya dan latensi, menggunakan caching otomatis atau breakpoint eksplisit dengan TTL 5 menit atau 1 jam.
+featureMetadata:
+  zdr:
+    eligibility: eligible
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Your prompts and Claude's outputs are not stored. KV cache representations and cryptographic hashes are held in memory for the cache TTL and promptly deleted after expiry.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: ga
+    Claude Models on Google Cloud (Anthropic managed): ga
+    Amazon Bedrock: ga
+    Amazon Bedrock (InvokeModel): ga
+    Claude Models on Google Cloud (Google managed): ga
+    Microsoft Foundry: ga
 ---
+
+**API support**: Usage differs by product.
+
+* **Messages API**: Opt in with `cache_control`, at the top level or on blocks.
+* **Managed Agents**: Always on. Cache entries use a 5-minute lifetime by default, and cache reads and writes show up in the session’s usage.
 
 “Prompt caching” (caching prompt) mengoptimalkan penggunaan API Anda dengan memungkinkan pemrosesan dilanjutkan dari “prefix” (awalan) tertentu dalam prompt Anda. Ini secara signifikan mengurangi waktu pemrosesan dan biaya untuk tugas berulang atau prompt dengan elemen yang konsisten.
 
@@ -3333,3 +3368,40 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platfor
     ```
   </Accordion>
 </AccordionGroup>
+
+## Availability
+
+Prompt caching is available or in beta, depending on the API, and eligible for zero data retention and HIPAA readiness.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+* Usage: Opt in with `cache_control`, at the top level or on blocks.
+
+| Status    | Cloud platforms         | Models                                                            |
+| --------- | ----------------------- | ----------------------------------------------------------------- |
+| Available | All supported platforms | [All models](https://platform.claude.com/docs/id/models/overview) |
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Always on
+* Usage: Cache entries use a 5-minute lifetime by default, and cache reads and writes show up in the session’s usage.
+
+| Status | Cloud platforms         | Models                                                            |
+| ------ | ----------------------- | ----------------------------------------------------------------- |
+| Beta   | All supported platforms | [All models](https://platform.claude.com/docs/id/models/overview) |
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                                                                                                                                                           | HIPAA    |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| Status  | Eligible (excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                                                                                                                     | Eligible |
+| Details | Your prompts and Claude’s outputs are not stored. KV cache representations and cryptographic hashes are held in memory for the cache TTL and promptly deleted after expiry. [Learn more](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#data-retention) | —        |
+
+Applicable endpoints:
+
+* `/v1/messages`

@@ -1,15 +1,46 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: e01dfe9ca7d651ca2f504ef6142ed36a7d630e9d9106b825f05c92c72b1a5bf4
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: a0bfda286e88536703c8127417bb1e068954f2fef0161f114c879a291c00b971
 ---
 
 ---
 title: Alat advisor
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool
 description: Pasangkan model executor yang lebih cepat dengan model advisor berkecerdasan lebih tinggi yang memberikan panduan strategis di tengah proses generasi.
+featureMetadata:
+  status: beta
+  betaHeader: advisor-tool-2026-03-01
+  zdr:
+    eligibility: eligible
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Advisor model output is returned in the API response; nothing is stored server-side after the response.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Claude Models on Google Cloud (Anthropic managed): beta
 ---
+
+**API support**: Usage differs by product.
+
+* **Messages API**: Add an advisor tool (type `advisor_20260301`) to the request’s `tools`.
+* **Managed Agents**: Set `advisor` in the agent’s `multiagent` block; there are no `max_uses` or `max_tokens` options.
 
 Alat advisor memungkinkan **model eksekutor** yang lebih cepat dan lebih murah berkonsultasi dengan **model advisor** berkecerdasan lebih tinggi di tengah proses generasi untuk mendapatkan panduan strategis. Advisor membaca seluruh percakapan dan menghasilkan rencana atau koreksi arah, lalu eksekutor melanjutkan tugasnya.
 
@@ -1859,3 +1890,50 @@ Sesi [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/
     Kendalikan berapa banyak token yang digunakan Claude saat merespons dengan parameter `effort`, menyeimbangkan antara ketelitian respons dan efisiensi token.
   </Card>
 </CardGroup>
+
+## Availability
+
+Advisor tool is in beta on select models and eligible for zero data retention.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+* Usage: Add an advisor tool (type `advisor_20260301`) with the advisor model to the request’s `tools`. It takes `max_uses`, `max_tokens` and caching options.
+
+| Status | Cloud platforms                                                                                                                                                                                                                                                                | Models                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview) |
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Available
+* Usage: Set `advisor` to `{"type": "enabled", "model": …}` in the agent’s `multiagent` block. There are no `max_uses`, `max_tokens` or caching options, and advice arrives as thread events on the session’s event stream.
+
+| Status | Cloud platforms                                                                                                    | Models                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------ | ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview) |
+
+### Required beta headers
+
+[Beta headers overview](https://platform.claude.com/docs/id/api/beta-headers)
+
+Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
+
+| Header                    | APIs                                                                                        |
+| ------------------------- | ------------------------------------------------------------------------------------------- |
+| `advisor-tool-2026-03-01` | [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) |
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                                       | HIPAA        |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| Status  | Eligible (excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Not eligible |
+| Details | Advisor model output is returned in the API response; nothing is stored server-side after the response.                                                   | —            |
+
+Applicable endpoints:
+
+* `/v1/messages` with `advisor` tool

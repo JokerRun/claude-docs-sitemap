@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: e0d29320f6354cb9c75b2b8ccad1929a83cbdf3497124dc4d46ce7635f7982ee
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: ef147ddd2e99213419872acd52bfc774dbae40c0bb109cbe84e92df6d735ae34
 ---
 
 ---
@@ -134,7 +134,7 @@ Pada Claude Haiku 5.5, hilangkan `temperature`, `top_p`, dan `top_k` dan gunakan
 
 Claude Haiku 4.5 mendukung [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) melalui alat `computer_20250124`, dengan beta header `computer-use-2025-01-24`. Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Haiku 5.5 mendukung computer use hanya melalui toolset `computer_toolset_20260801`, dan permintaan yang mendeklarasikan `computer_20250124` mengembalikan error 400. Di Amazon Bedrock, Claude Haiku 5.5 juga tidak menerima `computer_20250124`; gunakan versi alat `computer_20251124` dengan beta header `computer-use-2025-11-24`.
 
-Untuk memindahkan integrasi ke toolset, hapus beta header `computer-use-2025-01-24` dan ganti entri `tools` dengan `{"type": "computer_toolset_20260801"}`. Kemudian lakukan perubahan permintaan dan agent loop lainnya di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124): lakukan dispatch berdasarkan `name` dan `toolset_name` dari setiap blok `tool_use` anggota, bukan berdasarkan `input.action`, tangani setiap blok tersebut dalam satu giliran, dan sertakan kembali `toolset_name` pada hasil. Zoom aktif secara default di toolset; jika lingkungan Anda tidak mengimplementasikannya, tambahkan `"configs": {"zoom": {"enabled": false}}`. Jika Anda mengirim beta header `fine-grained-tool-streaming-2025-05-14`, hapus header tersebut. Jika digunakan bersama entri toolset, header itu mengembalikan error 400. Untuk platform lain, lihat bagian [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#compatibility) pada alat computer use.
+Untuk memindahkan integrasi ke toolset, hapus beta header `computer-use-2025-01-24` dan ganti entri `tools` dengan `{"type": "computer_toolset_20260801"}`. Kemudian lakukan perubahan permintaan dan agent loop lainnya di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124): lakukan dispatch berdasarkan `name` dan `toolset_name` dari setiap blok `tool_use` anggota, bukan berdasarkan `input.action`, tangani setiap blok tersebut dalam satu giliran, dan sertakan kembali `toolset_name` pada hasil. Zoom aktif secara default di toolset; jika lingkungan Anda tidak mengimplementasikannya, tambahkan `"configs": {"zoom": {"enabled": false}}`. Jika Anda mengirim beta header `fine-grained-tool-streaming-2025-05-14`, hapus header tersebut. Jika digunakan bersama entri toolset, header itu mengembalikan error 400. Untuk platform lain, lihat bagian [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#availability-feature-support) pada alat computer use.
 
 Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Haiku 5.5 juga mendukung [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`) untuk tugas di dalam halaman web. Claude Haiku 4.5 tidak mendukungnya.
 

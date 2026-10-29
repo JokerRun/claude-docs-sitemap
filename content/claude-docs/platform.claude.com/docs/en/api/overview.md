@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/overview
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: a20b2f1d1e2d66c98707eb732a463bcc083fb608a8d7836ae00868142db5ed85
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 99fb4877823260f12cd7a18ffc6891f00ae2a8df4e84cade7bc1d1c14ee65596
 ---
 
 ---
@@ -81,7 +81,7 @@ For a list of client SDKs, see [SDKs, CLI, and libraries](https://platform.claud
 
 ## Claude API versus cloud platforms
 
-Claude is available through the direct Claude API and through cloud platforms. Choose based on your infrastructure, feature availability, compliance requirements, and pricing preferences.
+Claude is available through the first-party Claude API and through cloud platforms. Choose based on your infrastructure, feature availability, compliance requirements, and pricing preferences.
 
 ### Claude API
 
@@ -106,16 +106,18 @@ Access Claude through AWS, Google Cloud, or Microsoft Azure:
 | Microsoft Foundry                                 | Microsoft Azure (Anthropic-operated) | [Claude in Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry)                                           |
 
 <Note>
-  Claude Managed Agents is available through the direct Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), and [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed). For feature availability across platforms, see the [Features overview](https://platform.claude.com/docs/en/build-with-claude/overview).
+  Claude Managed Agents is available through the first-party Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), and [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed). For feature availability across platforms, see the [Features overview](https://platform.claude.com/docs/en/build-with-claude/overview).
 </Note>
 
 ## Request and response format
 
 ### Request size limits
 
+The first-party Claude API enforces these request size limits:
+
 | Endpoint                                                                                                             | Maximum request size |
 | -------------------------------------------------------------------------------------------------------------------- | -------------------- |
-| Messages, Token Counting                                                                                             | 32 MB                |
+| Messages, Token Counting                                                                                             | 128 MB               |
 | Message Batches API (see [Batch processing](https://platform.claude.com/docs/en/build-with-claude/batch-processing)) | 256 MB               |
 | [Files API](https://platform.claude.com/docs/en/build-with-claude/files)                                             | 500 MB               |
 | Sessions, Agents, Environments                                                                                       | 32 MB                |
@@ -123,7 +125,7 @@ Access Claude through AWS, Google Cloud, or Microsoft Azure:
 If you exceed these limits, you’ll receive a 413 `request_too_large` error.
 
 <Note>
-  Partner-operated platforms have their own request size limits: Bedrock limits requests to 20 MB, and Claude Models on Google Cloud (Google managed) limits requests to 30 MB. Claude Platform on AWS uses the same limits as the direct Claude API. Consult your platform’s documentation for current values.
+  Partner-operated platforms have their own request size limits: Bedrock limits requests to 20 MB, and Claude Models on Google Cloud (Google managed) limits requests to 30 MB. Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), and Microsoft Foundry support Messages and Token Counting requests of up to 32 MB. Consult your platform’s documentation for current values.
 </Note>
 
 ### Response headers

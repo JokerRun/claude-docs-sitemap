@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: fb11f13eae1812b5e1dd4e37df8d606b2ba44208b4f9aaf4d7d2f138f4934a3a
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 86f77b42a149feacbfb6d51846161418efc21c149f86de8a4a491619eeef3690
 ---
 
 ---
@@ -13,18 +13,19 @@ featureMetadata:
   status: ga
   zdr:
     eligibility: eligible
-    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Client-side tool. Anthropic does not run browser actions or retain page content beyond standard API handling.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5
     - claude-mythos-5
+    - claude-mythos-preview
     - claude-opus-5-5
     - claude-opus-5
     - claude-sonnet-5-5
     - claude-sonnet-5
-    - claude-opus-4-8
     - claude-haiku-5-5
+    - claude-opus-4-8
   supportedPlatforms:
     Claude API: ga
     Claude Models on Google Cloud (Google managed): ga
@@ -1564,7 +1565,7 @@ API memvalidasi entri toolset dan setiap blok `tool_use` dan `tool_result` anggo
 | Blok `browser_state` yang melanggar aturan dalam [Melacak tab dengan `browser_state`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#track-tabs-and-page-state), misalnya, blok pada hasil `is_error: true` atau pada hasil yang tidak menjawab panggilan anggota browser, lebih dari satu dalam satu hasil, `tabs` tidak kosong tanpa tepat satu entri `active: true`, `tab_id` duplikat, array `state_changes` kosong, `tab_opened` yang `tab_id`-nya tidak ada di `tabs`, dua perubahan status untuk satu `download_id` atau field perubahan status yang tidak dideklarasikan `type`-nya ([Melaporkan unduhan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#report-downloads)), atau field yang melebihi batasnya                                                                                                                          | Perbaiki blok tersebut. “Tidak ada yang dilaporkan” dinyatakan dengan menghilangkan blok atau field `state_changes`, bukan dengan nilai kosong.                                                                                                                                      |
 | Hasil `new_tab`, `switch_tab`, `close_tab`, atau `list_tabs` yang berhasil yang `content`-nya bukan tepat satu blok `browser_state`, atau hasil `new_tab` tanpa tepat satu `tab_opened` yang cocok dengan tab aktif                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | API merender hasil-hasil ini dari blok dan membutuhkannya dalam bentuk yang persis seperti itu; lihat [Hasil manajemen tab](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#tab-management-results).                                                  |
 | `image` dalam hasil yang melebihi [batas ukuran gambar](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size) model Anda, atau melebihi batas per gambar yang lebih ketat yang berlaku begitu permintaan berisi [lebih dari 20 gambar](https://platform.claude.com/docs/id/build-with-claude/vision#request-limits), termasuk screenshot dan gambar `zoom` dalam hasil sebelumnya                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | API tidak memperkecil gambar toolset. Ubah ukuran screenshot sebelum mengembalikannya ([Menyesuaikan ukuran screenshot agar sesuai batas gambar](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions)). |
-| `model` yang tidak mendukung `browser_toolset_20260801`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Lihat [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#compatibility) untuk model yang didukung.                                                                                                                                      |
+| `model` yang tidak mendukung `browser_toolset_20260801`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Lihat [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#availability-feature-support) untuk model yang didukung.                                                                                                                       |
 
 ## Keterbatasan
 
@@ -1610,3 +1611,34 @@ Sesi browser, unduhan, dan file yang diunggah tetap berada di lingkungan Anda; s
     Jelajahi toolset klien dan setiap alat lain yang disediakan Anthropic, beserta versi dan parameternya.
   </Card>
 </CardGroup>
+
+## Availability
+
+Browser use tool is available on select models and eligible for zero data retention.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+
+| Status    | Cloud platforms                                                                                                                                                  | Models                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Available | Claude API, [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Not available
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                                                                                                       | HIPAA                                                                                          |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| Status  | Eligible (excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                                                                 | Not eligible                                                                                   |
+| Details | Client-side tool. Anthropic does not run browser actions or retain page content beyond standard API handling. [Learn more](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#data-retention) | Not covered under HIPAA readiness; requests that include the browser use tool are not blocked. |
+
+Applicable endpoints:
+
+* `/v1/messages` with `browser` toolset

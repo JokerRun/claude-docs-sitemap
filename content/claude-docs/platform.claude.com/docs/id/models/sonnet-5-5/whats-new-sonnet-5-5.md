@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 33ab71aed3ba947bb398d230cabecd964a28bb92b2bfd6fd0177a87b455adf9c
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 8b20ca9c6a4aeb3b6714497ebb8a4cef829f056362de6ba98b71d3a308af12e2
 ---
 
 ---
@@ -73,7 +73,7 @@ Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Sonnet 
 
 Di Amazon Bedrock, Claude Sonnet 5.5 menerima alat `computer_20251124` yang lebih lama.
 
-Untuk memindahkan integrasi yang sudah ada di Claude API atau Claude Models on Google Cloud (Google managed), ikuti [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124), yang menunjukkan permintaan sebelum dan sesudahnya. Hapus beta header, ganti entri `tools` dengan `{"type": "computer_toolset_20260801"}`, dan perbarui loop agen Anda untuk blok `tool_use` anggota, aksi batch, dan `toolset_name` pada hasil. Toolset ini tersedia di Claude API maupun Claude Models on Google Cloud (Google managed). Untuk platform lain, lihat bagian [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#compatibility) pada alat computer use. Integrasi yang sudah menggunakan toolset tersebut, serta [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool), tidak memerlukan perubahan.
+Untuk memindahkan integrasi yang sudah ada di Claude API atau Claude Models on Google Cloud (Google managed), ikuti [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124), yang menunjukkan permintaan sebelum dan sesudahnya. Hapus beta header, ganti entri `tools` dengan `{"type": "computer_toolset_20260801"}`, dan perbarui loop agen Anda untuk blok `tool_use` anggota, aksi batch, dan `toolset_name` pada hasil. Toolset ini tersedia di Claude API maupun Claude Models on Google Cloud (Google managed). Untuk platform lain, lihat bagian [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#availability-feature-support) pada alat computer use. Integrasi yang sudah menggunakan toolset tersebut, serta [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool), tidak memerlukan perubahan.
 
 ### Beberapa pasangan alat advisor tidak didukung
 

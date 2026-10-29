@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 3e851ac2eea728be6543eae3cede40f5c89db7bd0d07aed5f37ac244cb1bdee0
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: ebd6c94c24dc508ba073c7e5e6a3add803f44e7f94987dc32346f179e56920b2
 ---
 
 ---
@@ -67,7 +67,7 @@ Untuk menggunakan Skills, Anda memerlukan:
 1. **Kunci API Claude** dari [Claude Console](https://platform.claude.com/settings/keys)
 2. **[Alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool)** diaktifkan dalam permintaan Anda
 
-Skills memerlukan alat eksekusi kode, jadi gunakan model dari [daftar kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#compatibility) alat tersebut.
+Skills memerlukan alat eksekusi kode, jadi gunakan model dari [daftar kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#availability-feature-support) alat tersebut.
 
 ***
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/security
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: ae33fa661cc9b4a96a088fdfc2389f6c1ee7f9f827732ca61378a7d71b9de8ec
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 9f9b2279ca0b2c2f8d147496189faebe1c4739e1e4c54f98da101f3491d98678
 ---
 
 > ## Documentation Index
@@ -83,7 +83,7 @@ These marketplace names make up the official tier:
 * `first-party-plugins`
 * `claude-tag-plugins`
 
-For how the official, community, and demo marketplaces differ and where to browse what each one lists, see [Anthropic's marketplaces](https://code.claude.com/docs/en/plugins/anthropic-marketplaces.md).
+For how the official and community marketplaces differ and where to browse what each one lists, see [Anthropic's marketplaces](https://code.claude.com/docs/en/plugins/anthropic-marketplaces.md).
 
 ## Review a plugin before you install
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 33360a07273dee6de925d43557de4fe064da065859815a7fe05334d265c10e40
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: ae321002b0970c3f11b62cb244eef85f1a7782390fe08969c48bd41130604588
 ---
 
 ---
@@ -14,6 +14,32 @@ featureMetadata:
     title: OpenTelemetry
     url: https://platform.claude.com/docs/en/manage-claude/opentelemetry
   status: beta
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Claude Models on Google Cloud (Anthropic managed): beta
+    Amazon Bedrock: beta
+    Amazon Bedrock (InvokeModel): beta
+    Claude Models on Google Cloud (Google managed): beta
+    Microsoft Foundry: beta
 ---
 
 <Note>
@@ -244,3 +270,25 @@ Span dapat tiba lebih dari sekali, misalnya ketika pengiriman dicoba ulang. Jika
 <Note>
   Span yang diekspor tidak dijamin merupakan catatan lengkap penggunaan API Anda. Pengirimannya bersifat [upaya terbaik](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#delivery-and-health), sehingga sebuah span dapat hilang. Pemanggil juga dapat mengecualikan span dari sebuah permintaan dengan menonaktifkan flag sampled di [header `traceparent`](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#connect-api-spans-to-your-own-traces) permintaan tersebut. Untuk melacak penggunaan setiap kunci API, misalnya untuk mendeteksi kunci yang bocor, gunakan [Usage API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api#usage-api), yang juga menghitung penggunaan permintaan tanpa span.
 </Note>
+
+## Availability
+
+OpenTelemetry is in beta on every model.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+
+| Status | Cloud platforms         | Models                                                            |
+| ------ | ----------------------- | ----------------------------------------------------------------- |
+| Beta   | All supported platforms | [All models](https://platform.claude.com/docs/id/models/overview) |
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Available
+
+| Status | Cloud platforms         | Models                                                            |
+| ------ | ----------------------- | ----------------------------------------------------------------- |
+| Beta   | All supported platforms | [All models](https://platform.claude.com/docs/id/models/overview) |

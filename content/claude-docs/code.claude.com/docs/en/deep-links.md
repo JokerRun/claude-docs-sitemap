@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/deep-links
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 680819f2dee985f114a5a5bb6eaf1d178755db080e4df6d59c2b3816d49c65f6
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: be2e593fae82a072d79ae95a83c995278c637fc926d20fb9f69115fc7bbe2eb8
 ---
 
 > ## Documentation Index
@@ -15,7 +15,7 @@ sha256: 680819f2dee985f114a5a5bb6eaf1d178755db080e4df6d59c2b3816d49c65f6
 
 A deep link is a `claude-cli://` URL that opens Claude Code in a new terminal window. The URL can carry a working directory and a prompt to pre-fill.
 
-This lets you share a one-click starting point for a task: anyone with Claude Code installed who clicks the link sees a session open with the prompt already typed. The prompt is populated but not sent until you press Enter.
+The prompt is populated but not sent until you press Enter. To make links open on a machine, first send a prompt in an interactive Claude Code session there, so that Claude Code [registers its `claude-cli://` handler](#registration-and-supported-platforms).
 
 Because a deep link is a URL, you can put one anywhere a link can go:
 
@@ -111,7 +111,7 @@ The example below adds an investigation entry point to an incident runbook for a
 3. Post initial findings in #incident.
 ```
 
-To use this in your own runbook, replace `acme/web-gateway` with your service's repository slug. This allows engineers with Claude Code installed and a local clone of that repository to click step 2 and start investigating with the prompt ready to send.
+To use this in your own runbook, replace `acme/web-gateway` with your service's repository slug. Before engineers click step 2, they must have [sent a prompt in an interactive Claude Code session](#registration-and-supported-platforms) on their machine and opened Claude Code in their local clone.
 
 ### Open a link from the shell
 

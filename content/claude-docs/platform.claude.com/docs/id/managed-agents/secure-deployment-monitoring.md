@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/secure-deployment-monitoring
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 13c5078045b33b16961e4af07158a72e5b41c4a2a1c52213b6064d50db52549e
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 8d8a0751692bb20fc6a74a0b0697cac1f39648ff0fc2f4d37d175177215e7440
 ---
 
 ---
@@ -15,6 +15,31 @@ featureMetadata:
     url: https://platform.claude.com/docs/en/managed-agents/overview
   status: beta
   betaHeader: managed-agents-2026-04-01
+  zdr:
+    eligibility: not-eligible
+    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Claude Models on Google Cloud (Anthropic managed): beta
 ---
 
 Secara opsional, tinjau event setiap sesi dengan job offline. Pantau webhook untuk sesi yang memerlukan perhatian, dan hapus sesi yang tidak lagi Anda perlukan. Untuk membatasi apa yang dapat dilakukan agen sebelum dijalankan, lihat [Amankan deployment Managed Agents Anda](https://platform.claude.com/docs/id/managed-agents/secure-deployment).

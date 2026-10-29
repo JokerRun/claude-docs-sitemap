@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: da404ec6b357d5d4d6cfc834b9deae879a6e87b4f436d25510a8382c7b5d3b91
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: e535997627b2b72ff4eec6d98dcd997a959b56b96db75ba0ef15617e06b9f89b
 ---
 
 ---
@@ -63,7 +63,7 @@ Claude Opus 5 menerima [computer use](https://platform.claude.com/docs/id/agents
 'claude-opus-5-5' does not support tool types: computer_20251124.
 ```
 
-Untuk memindahkan integrasi yang ada di Claude API atau Claude Models on Google Cloud (Google managed), ikuti [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124): hapus beta header, ganti entri `tools` dengan `{"type": "computer_toolset_20260801"}`, dan perbarui loop agen Anda untuk blok `tool_use` anggota, aksi batch, dan `toolset_name` pada hasil. Di Amazon Bedrock, alat `computer_20251124` yang lebih lama tetap berfungsi di Claude Opus 5.5 seperti di Claude Opus 5, sehingga tidak diperlukan perubahan di sana. Untuk platform lain, lihat bagian [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#compatibility) pada alat computer use. Integrasi yang sudah menggunakan toolset, serta [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool), tidak memerlukan perubahan. Panduan migrasi menunjukkan permintaan [sebelum dan sesudah](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#computer-use-toolset).
+Untuk memindahkan integrasi yang ada di Claude API atau Claude Models on Google Cloud (Google managed), ikuti [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124): hapus beta header, ganti entri `tools` dengan `{"type": "computer_toolset_20260801"}`, dan perbarui loop agen Anda untuk blok `tool_use` anggota, aksi batch, dan `toolset_name` pada hasil. Di Amazon Bedrock, alat `computer_20251124` yang lebih lama tetap berfungsi di Claude Opus 5.5 seperti di Claude Opus 5, sehingga tidak diperlukan perubahan di sana. Untuk platform lain, lihat bagian [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#availability-feature-support) pada alat computer use. Integrasi yang sudah menggunakan toolset, serta [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool), tidak memerlukan perubahan. Panduan migrasi menunjukkan permintaan [sebelum dan sesudah](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#computer-use-toolset).
 
 ## Dukungan fitur
 

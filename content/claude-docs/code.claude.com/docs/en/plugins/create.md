@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/create
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 1f5f8da4feaf89c26374c2e2f232e16c52d97459e421e8108725e297899e2d75
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: fbddf82076d0132e8a118d71e52b987ffa3f9a93ebaf08e494045dc0f0c00038
 ---
 
 > ## Documentation Index
@@ -383,4 +383,4 @@ After you've confirmed the plugin works, delete the originals from `.claude/` an
 * [Plugin structure and testing](https://claude.com/docs/plugins/build): the same plugin folder installs on claude.ai and in Cowork. Some components are Claude Code-only, and the [component support table](https://claude.com/docs/plugins/platform-support#compare-component-support-by-app) lists which load on each surface
 * [Plugin manifest reference](https://code.claude.com/docs/en/plugins/manifest-reference.md): every `plugin.json` field, path rule, and directory
 * [Skills](https://code.claude.com/docs/en/skills.md): write the skills your plugin provides
-* [Anthropic's plugins in the claude-code repository](https://github.com/anthropics/claude-code/tree/main/plugins): complete worked examples of the layout on this page, such as `feature-dev` and `code-review`
+* [Anthropic's plugins in the claude-plugins-official repository](https://github.com/anthropics/claude-plugins-official/tree/main/plugins): complete worked examples of the layout on this page, such as `feature-dev` and `code-review`

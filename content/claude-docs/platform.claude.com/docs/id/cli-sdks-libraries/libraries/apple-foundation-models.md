@@ -1,14 +1,36 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/apple-foundation-models
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 6738a51ab26d54e3e88bfe4f88197c6e2b4c240c23d62f40568bcfd80a81121a
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 3d00dde6b41918e88b80f75c5ea958719b777453f00d9d4309ec6f5aa37b52c0
 ---
 
 ---
 title: Apple Foundation Models
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/apple-foundation-models
 description: Gunakan Claude di platform Apple melalui framework Foundation Models dengan paket Swift Claude for Foundation Models.
+featureMetadata:
+  status: beta
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: beta
 ---
 
 [Claude for Foundation Models](https://github.com/anthropics/ClaudeForFoundationModels) adalah paket Swift yang membuat Claude tersedia sebagai model bahasa sisi server dalam framework [Foundation Models](https://developer.apple.com/documentation/foundationmodels) milik Apple. Paket ini menyesuaikan Claude dengan protokol `LanguageModel` milik framework tersebut, sehingga Anda mengendalikannya dengan API `LanguageModelSession` yang sama dengan yang Anda gunakan untuk model on-device Apple: `respond(to:)`, streaming, guided generation, dan pemanggilan alat semuanya bekerja dengan cara yang sama.
@@ -270,3 +292,17 @@ Paket menampilkan kapabilitas Messages API yang dapat diekspresikan oleh protoko
 | [Referensi Claude API](https://platform.claude.com/docs/id/api/overview)                          | Messages API yang mendasarinya                                                                       |
 
 Paket ini dilisensikan di bawah Apache 2.0. Laporan bug diterima melalui GitHub issues. Pull request eksternal tidak diterima selama periode beta.
+
+## Availability
+
+Apple Foundation Models are in beta on every model.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+
+| Status | Cloud platforms |
+| ------ | --------------- |
+| Beta   | Claude API      |

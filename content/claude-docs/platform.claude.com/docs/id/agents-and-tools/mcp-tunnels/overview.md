@@ -1,15 +1,49 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 74a7bbc1ec768c38359c89af34f76fd9b5a7eb1d045e5b34ce3c0335576820ec
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 4604d636796b25be4e758e26d9da28aa4ad63f9f4bd5946607cbfb1ea2619885
 ---
 
 ---
 title: Tunnel MCP
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview
 description: Hubungkan Claude secara aman ke server MCP yang berjalan di jaringan privat Anda tanpa membuka port masuk atau mengekspos layanan ke internet publik.
+featureMetadata:
+  status: research-preview
+  betaHeader: mcp-client-2026-09-15, mcp-client-2025-11-20
+  zdr:
+    eligibility: not-eligible
+    note: Research preview. The MCP tunnels security page describes the data-flow boundary and subprocessor details.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: research-preview
 ---
+
+<Note>
+  MCP tunnels are in research preview.
+
+  MCP tunnels are in research preview. They are provided “as-is” without any uptime, support, or continuity commitment, and they depend on a third-party network provider (Cloudflare) that makes no availability commitment for the underlying transport. Anthropic may modify or discontinue MCP tunnels at any time.
+
+  * [Request access](https://claude.com/form/mcp-tunnels)
+</Note>
 
 Tunnel MCP memungkinkan Anda menghubungkan Claude ke server “Model Context Protocol”, atau MCP, yang berjalan di dalam jaringan privat Anda. Lalu lintas mengalir melalui koneksi yang hanya bersifat keluar (outbound-only), sehingga Anda tidak perlu membuka port firewall masuk, mengekspos layanan ke internet publik, atau memasukkan rentang IP Anthropic ke daftar izin (allowlist) pada origin Anda.
 
@@ -403,3 +437,48 @@ Untuk autentikasi ke server MCP upstream (`authorization_token`) dan opsi `mcp_s
     Gunakan server yang di-tunnel dari Messages API.
   </Card>
 </CardGroup>
+
+## Availability
+
+MCP tunnels are in research preview on every model.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+
+| Status           | Cloud platforms |
+| ---------------- | --------------- |
+| Research preview | Claude API      |
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Available
+
+| Status           | Cloud platforms |
+| ---------------- | --------------- |
+| Research preview | Claude API      |
+
+### Required beta headers
+
+[Beta headers overview](https://platform.claude.com/docs/id/api/beta-headers)
+
+Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
+
+| Header                                             | APIs                                                                                        |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `mcp-client-2026-09-15` or `mcp-client-2025-11-20` | [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) |
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                                                                                | HIPAA        |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| Status  | Not eligible                                                                                                                                                                                       | Not eligible |
+| Details | Research preview. The MCP tunnels security page describes the data-flow boundary and subprocessor details. [Learn more](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/security) | —            |
+
+Applicable endpoints:
+
+* `/v1/tunnels`

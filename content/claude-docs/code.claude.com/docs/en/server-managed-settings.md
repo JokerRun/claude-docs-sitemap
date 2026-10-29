@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 817e182eb569ad923f1917823e70aee6aa2804c82d601260d2d4cc763818c01d
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: d7020b6bc747f95f074e1ca51a686143fc5648d704665a8665a765da38be5884
 ---
 
 > ## Documentation Index
@@ -161,6 +161,7 @@ These keys are exceptions to the no-merge rule:
   * **Telemetry unit**: the `OTEL_EXPORTER_OTLP_*` exporter keys, the `OTEL_LOG_*` content-capture toggles, `OTEL_LOGS_EXPORTER`, and the beta tracing variables `ENABLE_BETA_TRACING_DETAILED` and `BETA_TRACING_ENDPOINT` follow the highest source that sets any of them as a unit. A source that delivers the `otelHeadersHelper` credential key claims the unit too, but lands these variables only when it is the selected source: a source that isn't selected but delivers the key contributes none of them and still blocks lower sources from filling them in. Either way, an exporter endpoint from one source can never pair with credentials from another.
   * **Credential-paired routing**: a source that pairs routing variables with a selected-source-only credential key, such as `apiKeyHelper` or `otelHeadersHelper`, contributes those routing variables only when it wins the slot.
 * **`allowedProviders`**: a list set on the machine and a server-managed list combine as [its entry's Scope note](https://code.claude.com/docs/en/settings-reference.md#allowedproviders) states. Requires Claude Code v2.1.285 or later
+* **First-party sign-in keys**: [`forceLoginOrgUUID`](https://code.claude.com/docs/en/settings-reference#forceloginorguuid) and the `"claudeai"` and `"console"` values of [`forceLoginMethod`](https://code.claude.com/docs/en/settings-reference#forceloginmethod). If you also deploy an MDM policy or managed settings file, set them there and in server-managed settings from claude.ai until every client runs v2.1.299 or later. For where to set the keys afterward, and which source's value applies, see [Which managed source supplies login keys](https://code.claude.com/docs/en/managed-settings.md#which-managed-source-supplies-login-keys).
 * **Gateway sign-in keys**: Claude Code never reads [`forceLoginGatewayUrl`](https://code.claude.com/docs/en/settings-reference#forcelogingatewayurl), [`gatewayInternalNetworks`](https://code.claude.com/docs/en/settings-reference#gatewayinternalnetworks), or the `"gateway"` value of [`forceLoginMethod`](https://code.claude.com/docs/en/settings-reference#forceloginmethod) from server-managed settings, so a value there neither applies nor hides one set in an MDM policy or managed settings file. The [`managedSourcesBehavior` entry](https://code.claude.com/docs/en/settings-reference#managedsourcesbehavior) says which admin source on the machine supplies them.
 
 ### Fetch and caching behavior

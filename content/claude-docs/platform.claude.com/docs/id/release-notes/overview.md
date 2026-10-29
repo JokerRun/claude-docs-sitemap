@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 08ed42b0fbfd9d23abdcd6fc414244e316b81cd499fcec83f2a364be13ec8812
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: c42a5b1b35f7b9523cd12f97cd61b9e00b20c5eb87ff46e9474363cb8d6e369a
 ---
 
 ---
@@ -303,7 +303,7 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
 ### 18 Juni 2026
 
-* SDK Python, TypeScript, Go, Java, Ruby, PHP, dan C# kini mendukung `code_execution_20260120`. Versi [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) ini menambahkan persistensi status “read-eval-print loop” (loop baca-evaluasi-cetak), atau REPL, dan merupakan versi minimum untuk [“programmatic tool calling” (pemanggilan alat terprogram)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling). Untuk menggunakannya, tetapkan `type` alat ke `code_execution_20260120`. Header beta tidak diperlukan. Versi ini tersedia di Claude Fable 5, Claude Mythos 5, Claude Opus 4.5 dan yang lebih baru, serta Claude Sonnet 4.5 dan yang lebih baru. Lihat bagian [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#compatibility) pada alat eksekusi kode.
+* SDK Python, TypeScript, Go, Java, Ruby, PHP, dan C# kini mendukung `code_execution_20260120`. Versi [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) ini menambahkan persistensi status “read-eval-print loop” (loop baca-evaluasi-cetak), atau REPL, dan merupakan versi minimum untuk [“programmatic tool calling” (pemanggilan alat terprogram)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling). Untuk menggunakannya, tetapkan `type` alat ke `code_execution_20260120`. Header beta tidak diperlukan. Versi ini tersedia di Claude Fable 5, Claude Mythos 5, Claude Opus 4.5 dan yang lebih baru, serta Claude Sonnet 4.5 dan yang lebih baru. Lihat bagian [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#availability-feature-support) pada alat eksekusi kode.
 
 ### 15 Juni 2026
 

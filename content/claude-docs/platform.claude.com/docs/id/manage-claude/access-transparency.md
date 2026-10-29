@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/access-transparency
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 9d3040f1bb960b8136271142ba0fee6fe43c69cd39e177cf3c478c9a547a640f
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: bdf1cd25a23f4aabf8d697a3f1fe53065ef4ae7b1acfc156b9a4c60bb08024d9
 ---
 
 ---
@@ -99,6 +99,7 @@ Setiap aktivitas `anthropic_access` membawa field Activity standar ditambah yang
 | `workspace_id`                | string atau null | Workspace pemilik konten                                                                                                                                                                                                                                                                                               |
 | `workspace_uuid`              | string           | Workspace pemilik konten. Format UUID. Ada ketika akses dibatasi pada sebuah workspace, dan tidak ada jika sebaliknya. Bukan salah satu [field leaf](https://platform.claude.com/docs/id/manage-claude/access-transparency-log#how-an-event-becomes-a-leaf) log transparansi, sehingga bukti inklusi tidak mencakupnya |
 | `transparency_log_leaf_index` | integer          | Posisi berbasis nol event dalam log transparansi (beta) organisasi Anda. Ada setiap kali event memiliki leaf, dan tidak ada jika sebaliknya. Lihat [Memverifikasi event Access Transparency dengan log transparansi](https://platform.claude.com/docs/id/manage-claude/access-transparency-log)                        |
+| `user_profile_id`             | string           | [Profil pengguna](https://platform.claude.com/docs/id/manage-claude/user-profiles) yang di bawahnya konten yang diakses atau dipreservasi dibuat. Format tagged ID (`uprof_...`). Hanya ada ketika konten dibuat di bawah sebuah profil pengguna                                                                       |
 
 Contoh pesan JSON:
 

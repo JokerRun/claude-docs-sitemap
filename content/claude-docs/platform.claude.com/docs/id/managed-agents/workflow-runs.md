@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/workflow-runs
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: e00f43d9e6b268864f8d08ce9cfd93beb70debd0f028a01b60fee9947362fde6
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: f4a106f9ad7c5a3b4b1a36ce894d86f8aa3aed5b87a69a540050bc8edfbe9689
 ---
 
 ---
@@ -13,8 +13,28 @@ featureMetadata:
   topic:
     title: Managed Agents
     url: https://platform.claude.com/docs/en/managed-agents/overview
-  status: beta
   betaHeader: managed-agents-2026-04-01
+  zdr:
+    eligibility: not-eligible
+    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
 ---
 
 **Workflow** (alur kerja) adalah program yang ditulis agen untuk menjalankan banyak agen dan menggabungkan apa yang mereka kembalikan. **Workflow run** (eksekusi workflow) adalah satu kali jalannya sebuah workflow. **[Dynamic workflows](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#dynamic-workflows)** (alur kerja dinamis) adalah fitur yang memungkinkan agen menulis workflow dan memulai eksekusi. Anda mengaktifkan atau menonaktifkannya dengan pengaturan `workflows` (csharp, go: `Workflows`) di blok `multiagent` (csharp, go: `Multiagent`) milik agen.
@@ -824,3 +844,40 @@ Ketika permintaan model dari salah satu thread eksekusi terkena batas laju, atau
 * Jika nilainya `exhausted`, thread telah gagal. Jika workflow membiarkan kegagalan itu mengakhiri eksekusi, eksekusi berakhir dengan `program_error`, yang tidak menyebutkan penyebabnya. Baca event dari thread yang gagal untuk menemukannya.
 
 Server juga membatasi seberapa banyak yang dilakukan semua sesi organisasi Anda setiap menit. Thread yang mencapai batas ini berhenti, dengan `session.error` di alirannya sendiri yang pesannya menyebutkan batas laju. Tunggu satu menit sebelum Anda meminta agen untuk melanjutkan.
+
+## Availability
+
+Dynamic workflows are available on every model.
+
+### API support
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Available
+
+| Status    | Cloud platforms         |
+| --------- | ----------------------- |
+| Available | All supported platforms |
+
+### Required beta headers
+
+[Beta headers overview](https://platform.claude.com/docs/id/api/beta-headers)
+
+Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
+
+* `managed-agents-2026-04-01`
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                                      | HIPAA                                                                        |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Status  | Not eligible                                                                                                                                             | Not eligible                                                                 |
+| Details | Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes. | Applies to all Managed Agents sub-features, including Self-hosted sandboxes. |
+
+Applicable endpoints:
+
+* `/v1/agents`
+* `/v1/sessions`
+* `/v1/environments`

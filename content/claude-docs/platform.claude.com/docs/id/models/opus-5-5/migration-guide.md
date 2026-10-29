@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/migration-guide
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 396a5da3d36e704c5ccc728743edc935b3034a365e03db44e66467a63115d3d6
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 33d1c2a0de01cc0511c7b6a082186e65f66321e5ac0f1f66e066386cc28d109f
 ---
 
 ---
@@ -285,7 +285,7 @@ Telusuri grup-grup dari atas ke bawah dan berhenti setelah grup yang menyebutkan
 * Hapus `thinking: {"type": "disabled"}` dan `thinking: {"type": "enabled", ...}`; pilih level effort sebagai gantinya.
 * Atur `effort` secara eksplisit: defaultnya adalah `medium`, sedangkan default Claude Opus 5 adalah `high`.
 * Ganti tipe `tool_choice` `any` dan `tool` dengan `auto` ditambah strict tool use atau structured outputs.
-* Jika Anda menggunakan computer use di Claude API atau Claude Models on Google Cloud (Google managed), deklarasikan `computer_toolset_20260801` (tanpa header beta) alih-alih `computer_20251124` dan perbarui loop agen Anda untuk toolset tersebut. Di Amazon Bedrock, tetap gunakan `computer_20251124`; periksa bagian [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#compatibility) pada alat computer use untuk platform lain.
+* Jika Anda menggunakan computer use di Claude API atau Claude Models on Google Cloud (Google managed), deklarasikan `computer_toolset_20260801` (tanpa header beta) alih-alih `computer_20251124` dan perbarui loop agen Anda untuk toolset tersebut. Di Amazon Bedrock, tetap gunakan `computer_20251124`; periksa bagian [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#availability-feature-support) pada alat computer use untuk platform lain.
 * Jika router atau fallback dapat memindahkan percakapan dari Claude Opus 5.5 ke model lain, perkirakan model tersebut berjalan tanpa blok thinking Claude Opus 5.5 (Claude Fable 5.1 dan Claude Mythos 5.1 di Claude API adalah pengecualian dan mempertahankannya). Claude Opus 5.5 sendiri membaca thinking dari Claude Opus 5, dari model Opus, Sonnet, dan Haiku sebelumnya, dan, di Claude API dan Claude Models on Google Cloud (Google managed), dari Claude Sonnet 5.5 dan Claude Haiku 5.5, tetapi tidak dari model Claude Fable atau Claude Mythos.
 * Baca blok konten berdasarkan `type`, dan kirimkan kembali blok `thinking` tanpa modifikasi dalam loop penggunaan alat.
 * Jika antarmuka Anda menampilkan teks di antara pemanggilan alat, atur `display: "updates"` (beta) atau `"summarized"` dan tampilkan blok `thinking` yang tidak kosong.
@@ -884,7 +884,7 @@ Di Claude API, Claude Fable 5.1 dan Claude Mythos 5.1 membaca blok thinking Clau
 
 #### Alat computer use `computer_20251124` tidak didukung di Claude API dan Claude Models on Google Cloud (Google managed)
 
-Di Claude API dan Claude Models on Google Cloud (Google managed), entri `tools` bertipe `computer_20251124` mengembalikan error 400 (`'claude-opus-5-5' does not support tool types: computer_20251124.`, diikuti oleh tipe alat yang diterima model). Deklarasikan toolset `computer_toolset_20260801` sebagai gantinya: hapus header beta dan kirim entri tanpa `name` atau dimensi tampilan. Dalam loop agen Anda, tangani blok `tool_use` anggota (aksinya adalah `name` blok, bukan `input.action`), beberapa di antaranya per giliran, dan kirim ulang `toolset_name` pada setiap hasil. Perubahan permintaan ditunjukkan di bawah; perubahan loop agen tercantum di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Di Amazon Bedrock, alat `computer_20251124` yang lebih lama tetap berfungsi pada Claude Opus 5.5 seperti pada Claude Opus 5, sehingga tidak diperlukan perubahan di sana; untuk platform lain, lihat bagian [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#compatibility) pada alat computer use. Lihat [Alat computer use `computer_20251124` tidak didukung di Claude API dan Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#computer-20251124-is-not-supported).
+Di Claude API dan Claude Models on Google Cloud (Google managed), entri `tools` bertipe `computer_20251124` mengembalikan error 400 (`'claude-opus-5-5' does not support tool types: computer_20251124.`, diikuti oleh tipe alat yang diterima model). Deklarasikan toolset `computer_toolset_20260801` sebagai gantinya: hapus header beta dan kirim entri tanpa `name` atau dimensi tampilan. Dalam loop agen Anda, tangani blok `tool_use` anggota (aksinya adalah `name` blok, bukan `input.action`), beberapa di antaranya per giliran, dan kirim ulang `toolset_name` pada setiap hasil. Perubahan permintaan ditunjukkan di bawah; perubahan loop agen tercantum di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Di Amazon Bedrock, alat `computer_20251124` yang lebih lama tetap berfungsi pada Claude Opus 5.5 seperti pada Claude Opus 5, sehingga tidak diperlukan perubahan di sana; untuk platform lain, lihat bagian [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#availability-feature-support) pada alat computer use. Lihat [Alat computer use `computer_20251124` tidak didukung di Claude API dan Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#computer-20251124-is-not-supported).
 
 Sebelum. Claude Opus 5 menerima permintaan ini, dan di Claude API dan Claude Models on Google Cloud (Google managed), Claude Opus 5.5 menolaknya dengan error 400:
 

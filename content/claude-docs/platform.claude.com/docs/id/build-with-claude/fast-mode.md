@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 0e9d3db1fbc5bd4ee2b9c03a0b9b2c4bccabf450aa0da72c4ba3d8589dd178e9
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 7517b79fd8516677c4d95802aa73b9b25e0aa7ed93ec99c6b086b4baa6d27e29
 ---
 
 ---
@@ -10,23 +10,26 @@ title: Mode cepat
 url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
 description: Dapatkan token output per detik hingga 2,5x lebih tinggi dari model Claude yang didukung.
 featureMetadata:
+  betaHeader: fast-mode-2026-02-01
   zdr:
     eligibility: eligible
-    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Same Messages API endpoint with faster inference. ZDR applies regardless of speed setting.
   supportedModels:
     - claude-opus-5-5
     - claude-opus-5
     - claude-opus-4-8
   supportedPlatforms:
-    Claude API:
-      availability: ga
-      note: Termasuk [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview).
-    Microsoft Foundry:
-      availability: ga
-      note: Tersedia untuk Claude Opus 5.5 pada deployment yang di-hosting di Azure, bukan pada deployment yang [di-hosting di Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#hosting-options).
+    Claude API: ga
+    Claude Models on Google Cloud (Anthropic managed): ga
+    Microsoft Foundry (hosted on Azure): ga
   details:
     - Mode cepat pada Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset dan memerlukan header beta `fast-mode-2026-02-01`.
 ---
+
+**API support**: Usage differs by product.
+
+* **Messages API**: Set `speed: "fast"` on the request.
+* **Managed Agents**: Set `speed` on the agent’s model object, for example `{"id": "claude-opus-5-5", "speed": "fast"}`.
 
 “Fast mode” (mode cepat) memberikan token output per detik hingga 2,5x lebih tinggi dengan harga premium. Atur `speed: "fast"` pada permintaan Anda untuk ikut serta. Mode cepat tersedia pada Claude Opus 5.5 dan dalam pratinjau riset pada Claude Opus 5 dan Claude Opus 4.8.
 
@@ -720,3 +723,52 @@ Karena mengatur `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries
     Lakukan streaming respons Messages API secara bertahap dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran diperpanjang.
   </Card>
 </CardGroup>
+
+## Availability
+
+Fast mode is available or in research preview on select models and eligible for zero data retention and HIPAA readiness.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+* Usage: Set `speed: "fast"` on the request.
+
+| Status           | Cloud platforms                                                                                                                                                                                                                                                                                  | Models                                                                                                                                                       |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Available        | Claude API, [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry (hosted on Azure)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)                                                                              |
+| Research preview | Claude API                                                                                                                                                                                                                                                                                       | [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Available
+* Usage: Set `speed` on the agent’s model object, for example `{"id": "claude-opus-5-5", "speed": "fast"}`.
+
+| Status           | Cloud platforms | Models                                                                                                                                                       |
+| ---------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Available        | Claude API      | [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)                                                                              |
+| Research preview | Claude API      | [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
+
+### Required beta headers
+
+[Beta headers overview](https://platform.claude.com/docs/id/api/beta-headers)
+
+Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
+
+| Header                 | Models                                                                                                                                                       |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `fast-mode-2026-02-01` | [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                                       | HIPAA    |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| Status  | Eligible (excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Eligible |
+| Details | Same Messages API endpoint with faster inference. ZDR applies regardless of speed setting.                                                                | —        |
+
+Applicable endpoints:
+
+* `/v1/messages` with `speed: "fast"`

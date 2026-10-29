@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 34f3ae0afccd1a3eb2ad910dfc9f133ef11afd70ae3c10ea942fb820ab0cc2b9
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 0ee3fbc43270a8a0ce4dfa221568358b2447a00401bace0c4fe435d0e15a4873
 ---
 
 ---
@@ -14,12 +14,40 @@ featureMetadata:
   zdr:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: ga
     Claude Platform on AWS: ga
-    Amazon Bedrock: ga
-    Claude Models on Google Cloud (Google managed): ga
-    Microsoft Foundry: ga
+    Claude Models on Google Cloud (Anthropic managed): ga
+    Amazon Bedrock:
+      availability: ga
+      note: Base64 sources only.
+    Amazon Bedrock (InvokeModel):
+      availability: ga
+      note: Base64 sources only. With the Converse API, visual PDF analysis needs citations turned on.
+    Claude Models on Google Cloud (Google managed):
+      availability: ga
+      note: Base64 sources only.
+    Microsoft Foundry:
+      availability: ga
+      note: "`file_id` sources need a Hosted on Anthropic deployment."
 ---
 
 Anda dapat bertanya kepada Claude tentang teks, gambar, grafik, dan tabel apa pun dalam PDF yang Anda berikan. Beberapa contoh kasus penggunaan:
@@ -35,11 +63,11 @@ Anda dapat bertanya kepada Claude tentang teks, gambar, grafik, dan tabel apa pu
 
 Claude bekerja dengan PDF standar apa pun. Pastikan ukuran permintaan Anda memenuhi persyaratan berikut:
 
-| Persyaratan                     | Batas                                                                                                                                      |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| Ukuran permintaan maksimum      | 32 MB (bervariasi menurut platform; lihat [batas ukuran permintaan](https://platform.claude.com/docs/id/api/overview#request-size-limits)) |
-| Halaman maksimum per permintaan | 600 (100 jika jendela konteks permintaan di bawah 1 juta token)                                                                            |
-| Format                          | PDF standar (tanpa kata sandi/enkripsi)                                                                                                    |
+| Persyaratan                     | Batas                                                                                                                                                                     |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Ukuran permintaan maksimum      | 128 MB pada Claude API pihak pertama (bervariasi menurut platform; lihat [batas ukuran permintaan](https://platform.claude.com/docs/id/api/overview#request-size-limits)) |
+| Halaman maksimum per permintaan | 600 (100 jika jendela konteks permintaan di bawah 1 juta token)                                                                                                           |
+| Format                          | PDF standar (tanpa kata sandi/enkripsi)                                                                                                                                   |
 
 Kedua batas tersebut berlaku untuk seluruh payload permintaan, termasuk konten lain apa pun yang dikirim bersama PDF. Untuk PDF berukuran besar, pertimbangkan untuk mengunggahnya dengan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dan mereferensikannya melalui `file_id` agar payload permintaan tetap kecil.
 
@@ -1995,3 +2023,45 @@ Batch diproses secara asinkron. Untuk memeriksa progres dan mengambil hasil sete
     Lihat dokumentasi API lengkap untuk dukungan PDF.
   </Card>
 </CardGroup>
+
+## Availability
+
+PDF support is available on every model and eligible for zero data retention and HIPAA readiness.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Always on
+
+| Status                | Cloud platforms                                                                                                                                                                                                                                                                |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Available             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
+| Available<sup>1</sup> | [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                                                                                                                                                                         |
+| Available<sup>2</sup> | [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)                                                                                                                                                          |
+| Available<sup>3</sup> | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)                         |
+
+1. `file_id` sources need a Hosted on Anthropic deployment.
+2. Base64 sources only. With the Converse API, visual PDF analysis needs citations turned on.
+3. Base64 sources only.
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Always on
+
+| Status    | Cloud platforms         |
+| --------- | ----------------------- |
+| Available | All supported platforms |
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                                       | HIPAA                                                                                              |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Status  | Eligible (excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Eligible                                                                                           |
+| Details | —                                                                                                                                                         | HIPAA eligibility applies to PDFs sent inline through the Messages API, not through the Files API. |
+
+Applicable endpoints:
+
+* `/v1/messages`

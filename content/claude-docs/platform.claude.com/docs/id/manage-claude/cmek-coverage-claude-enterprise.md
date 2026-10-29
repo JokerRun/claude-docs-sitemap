@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 2512f9bef798c5102e4a7abcc2e98e8c2e14bf96a38483fdcea3286c7e0259f7
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 85126e65d3e7ae129fccd16f8b3722ad1c02e5a84056c6b4659b39988e0037bc
 ---
 
 ---
@@ -39,7 +39,7 @@ Daftar ini tidak lengkap. Tinjau daftar ini bersama tim Anda sebelum Anda menyia
 | Artifacts                                                                                                                                   | Berubah. Artifacts, termasuk Claude Design, Claude Slides, dan Claude Docs dalam percakapan dan tab **Artifacts**, tidak dapat diaktifkan di organisasi yang juga menggunakan ZDR. Di organisasi dengan HIPAA readiness, Owner harus terlebih dahulu menerima ketentuan penggunaan Artifacts. |
 | Publikasi dan berbagi artifact                                                                                                              | Berubah. Claude Code tidak dapat [memublikasikan artifact](https://code.claude.com/docs/id/artifacts#availability). Namun, artifact yang dibuat di chat atau Cowork dapat dibagikan di dalam organisasi Anda, tetapi tidak secara publik.                                                     |
 | Aplikasi Claude Design mandiri                                                                                                              | Tidak didukung. Lihat [Dienkripsi dengan kunci Anthropic](https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise#encrypted-with-anthropics-key).                                                                                                                   |
-| Analitik: smart reports dan metrik kontribusi                                                                                               | Nonaktif. Analitik tertentu dinonaktifkan, terlepas dari pengaturan admin: Claude smart reports (beta, di claude.ai/analytics/insights) dan metrik kontribusi Claude Code dari GitHub (beta, di claude.ai/analytics/claude-code).                                                             |
+| Analitik: smart reports dan metrik kontribusi                                                                                               | Nonaktif. Analitik tertentu dinonaktifkan, terlepas dari pengaturan admin: Claude smart reports (di claude.ai/analytics/insights) dan metrik kontribusi Claude Code dari GitHub (beta, di claude.ai/analytics/claude-code).                                                                   |
 | Analitik: skill dan konektor                                                                                                                | Berubah. Analitik admin untuk skill dan konektor, di dasbor analitik claude.ai dan melalui [Claude Enterprise Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api), tidak mencakup penggunaan di chat, dan menyembunyikan nama skill, plugin, dan konektor kustom. |
 | Penilaian respons (jempol ke atas dan jempol ke bawah)                                                                                      | Nonaktif. Anggota tidak dapat menilai respons Claude.                                                                                                                                                                                                                                         |
 | [Pemindaian keamanan skill dan plugin](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise#skill-content-scanning) | Nonaktif. Pengaturan ini tidak dapat diaktifkan, dan skill serta plugin diinstal tanpa pemindaian.                                                                                                                                                                                            |

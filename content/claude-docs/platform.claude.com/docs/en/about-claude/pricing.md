@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/pricing
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 31ba8ce4d0f3b4b6a4e96e53e6edb58ccd3cb1ccea5916576e0e230549b72670
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 79f8d09b6562f37f5edba5108b871cdd13dba26603efbd748e77a40f18c5ff53
 ---
 
 ---
@@ -524,7 +524,7 @@ Contact the sales team at [sales@anthropic.com](mailto:sales@anthropic.com) or t
 
 ### How is token usage calculated?
 
-Tokens are pieces of text that models process. How many tokens the same text produces depends on the model’s tokenizer, the language, and the type of content. Claude 4.7 and later models and Claude Mythos Preview use a newer tokenizer that produces approximately 30 percent more tokens for the same text than earlier models. To see how many tokens a request uses on a specific model, count it with [token counting](https://platform.claude.com/docs/en/build-with-claude/token-counting) and that model’s ID.
+Tokens are pieces of text that models process. How many tokens the same text produces depends on the model’s tokenizer, the language, and the type of content. Claude 4.7 and later models and Claude Mythos Preview (`claude-mythos-preview`) use a newer tokenizer that produces approximately 30 percent more tokens for the same text than earlier models. To see how many tokens a request uses on a specific model, count it with [Token counting](https://platform.claude.com/docs/en/build-with-claude/token-counting) and that model’s ID.
 
 ### Are there free tiers or trials?
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-actions
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: c0596fead65466e68b6a95e1b9c2ca4db746f9546e87e5f6b6e801f590895690
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 1a73541e6edc6e63ac28ab57c2f49d5da4b3e9f1ceb252453055ac7e0192c174
 ---
 
 > ## Documentation Index
@@ -248,8 +248,8 @@ jobs:
       - uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          plugin_marketplaces: "https://github.com/anthropics/claude-code.git"
-          plugins: "code-review@claude-code-plugins"
+          plugin_marketplaces: "https://github.com/anthropics/claude-plugins-official.git"
+          plugins: "code-review@claude-plugins-official"
           prompt: "/code-review:code-review --comment ${{ github.repository }}/pull/${{ github.event.pull_request.number }}"
           claude_args: '--allowedTools "mcp__github_inline_comment__create_inline_comment"'
 ```

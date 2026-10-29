@@ -1,14 +1,45 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 4711c19f378a6c8e070114f8d388aa4ddeccbef480ded68ccf0c0dcace785851
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: d09bdc8b6464cf500151e17fb921f0e85f60caf01bc1bb641844a0828d22de96
 ---
 
 ---
 title: Alat memori
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
 description: Biarkan Claude menyimpan dan mengambil informasi di seluruh percakapan dengan mengimplementasikan operasi file dari memory tool di aplikasi Anda.
+featureMetadata:
+  status: ga
+  zdr:
+    eligibility: eligible
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Client-side memory storage where you control data retention.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: ga
+    Claude Models on Google Cloud (Anthropic managed): ga
+    Amazon Bedrock: ga
+    Amazon Bedrock (InvokeModel): ga
+    Claude Models on Google Cloud (Google managed): ga
+    Microsoft Foundry: ga
 ---
 
 Memory tool memungkinkan Claude menyimpan dan mengambil informasi di seluruh percakapan dalam sebuah direktori file memori. Claude dapat membuat, membaca, memperbarui, dan menghapus file yang bertahan antar sesi, membangun pengetahuan dari waktu ke waktu tanpa menyimpan semuanya di jendela konteks.
@@ -1026,3 +1057,30 @@ Kerjakan satu fitur pada satu waktu. Tandai fitur sebagai selesai hanya setelah 
     Direktori alat yang disediakan Anthropic dan referensi untuk properti definisi alat opsional.
   </Card>
 </CardGroup>
+
+## Availability
+
+Memory tool is available on every model and eligible for zero data retention and HIPAA readiness.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+
+| Status    | Models                                                            |
+| --------- | ----------------------------------------------------------------- |
+| Available | [All models](https://platform.claude.com/docs/id/models/overview) |
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                                       | HIPAA    |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| Status  | Eligible (excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Eligible |
+| Details | Client-side memory storage where you control data retention.                                                                                              | —        |
+
+Applicable endpoints:
+
+* `/v1/messages` with `memory` tool

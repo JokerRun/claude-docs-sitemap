@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/overview
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 329b2ef769de29cc526a6b147bd2a63419da30431c050289a7c5cae99a613df9
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 63999f10f476dc4a8838f1b56fc2cb9ece0334a4879913d68d8475cb739d6bc8
 ---
 
 ---
@@ -81,7 +81,7 @@ Untuk daftar SDK klien, lihat [SDK Klien](https://platform.claude.com/docs/id/cl
 
 ## Claude API vs platform cloud
 
-Claude tersedia melalui Claude API langsung dan melalui platform cloud. Pilih berdasarkan infrastruktur, ketersediaan fitur, persyaratan kepatuhan, dan preferensi harga Anda.
+Claude tersedia melalui Claude API pihak pertama dan melalui platform cloud. Pilih berdasarkan infrastruktur, ketersediaan fitur, persyaratan kepatuhan, dan preferensi harga Anda.
 
 ### Claude API
 
@@ -106,16 +106,18 @@ Akses Claude melalui AWS, Google Cloud, atau Microsoft Azure:
 | Microsoft Foundry                                 | Microsoft Azure (dioperasikan Anthropic) | [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                                           |
 
 <Note>
-  Claude Managed Agents tersedia melalui Claude API langsung, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed). Untuk ketersediaan fitur di seluruh platform, lihat [Ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview).
+  Claude Managed Agents tersedia melalui Claude API pihak pertama, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed). Untuk ketersediaan fitur di seluruh platform, lihat [Ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview).
 </Note>
 
 ## Format permintaan dan respons
 
 ### Batas ukuran permintaan
 
+Claude API pihak pertama menerapkan batas ukuran permintaan berikut:
+
 | Endpoint                                                                                      | Ukuran permintaan maksimum |
 | --------------------------------------------------------------------------------------------- | -------------------------- |
-| Messages, Token Counting                                                                      | 32 MB                      |
+| Messages, Token Counting                                                                      | 128 MB                     |
 | [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing) | 256 MB                     |
 | [Files API](https://platform.claude.com/docs/id/build-with-claude/files)                      | 500 MB                     |
 | Sessions, Agents, Environments                                                                | 32 MB                      |
@@ -123,7 +125,7 @@ Akses Claude melalui AWS, Google Cloud, atau Microsoft Azure:
 Jika Anda melampaui batas ini, Anda akan menerima kesalahan 413 `request_too_large`.
 
 <Note>
-  Platform yang dioperasikan mitra memiliki batas ukuran permintaan mereka sendiri: Bedrock membatasi permintaan hingga 20 MB, dan Claude Models on Google Cloud (Google managed) membatasi permintaan hingga 30 MB. Claude Platform on AWS menggunakan batas yang sama dengan Claude API langsung. Konsultasikan dokumentasi platform Anda untuk nilai saat ini.
+  Platform yang dioperasikan mitra memiliki batas ukuran permintaan mereka sendiri: Bedrock membatasi permintaan hingga 20 MB, dan Claude Models on Google Cloud (Google managed) membatasi permintaan hingga 30 MB. Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), dan Microsoft Foundry mendukung permintaan Messages dan Token Counting hingga 32 MB. Konsultasikan dokumentasi platform Anda untuk nilai saat ini.
 </Note>
 
 ### Header respons

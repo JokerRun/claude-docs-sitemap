@@ -1,14 +1,45 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 1785a91681e96b635321e51d1177ae22f50c1b07158216bac70b024e7ec0d6f6
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 1e3c50c857172df2144186f427564d52403e4e5b76499465e21b0928bfbe4957
 ---
 
 ---
 title: Menggunakan Messages API
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
 description: Pola praktis dan contoh untuk menggunakan Messages API secara efektif
+featureMetadata:
+  status: ga
+  zdr:
+    eligibility: eligible
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Standard API calls for generating Claude responses.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: ga
+    Claude Models on Google Cloud (Anthropic managed): ga
+    Amazon Bedrock: ga
+    Amazon Bedrock (InvokeModel): ga
+    Claude Models on Google Cloud (Google managed): ga
+    Microsoft Foundry: ga
 ---
 
 Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok untuk kasus penggunaan yang berbeda:
@@ -1059,3 +1090,24 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
     Tetapkan anggaran token yang bersifat anjuran di seluruh loop agentik penuh dengan `output_config.task_budget`.
   </Card>
 </CardGroup>
+
+## Availability
+
+The Messages API is available on every model and eligible for zero data retention and HIPAA readiness.
+
+### API support
+
+Available
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                                       | HIPAA    |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| Status  | Eligible (excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Eligible |
+| Details | Standard API calls for generating Claude responses.                                                                                                       | —        |
+
+Applicable endpoints:
+
+* `/v1/messages`

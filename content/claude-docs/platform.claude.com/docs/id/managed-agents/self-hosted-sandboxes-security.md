@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 6d2391c84f8d41ea83fd8336940cb7818e9adabde373de5394b1edd42f35a280
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: da8d08a3ed8a1034f783512a261fa79d177455faf30d511f6a0083060a207c02
 ---
 
 ---
@@ -13,8 +13,28 @@ featureMetadata:
   topic:
     title: Managed Agents
     url: https://platform.claude.com/docs/en/managed-agents/overview
-  status: beta
   betaHeader: managed-agents-2026-04-01
+  zdr:
+    eligibility: not-eligible
+    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
 ---
 
 Anthropic mengamankan control plane di seluruh lingkungan: integritas sesi dan antrean kerja, isolasi multitenant, dan minimisasi konteks agen. Ketika Anda melakukan self-hosting, tanggung jawab berikut berada di tangan Anda.

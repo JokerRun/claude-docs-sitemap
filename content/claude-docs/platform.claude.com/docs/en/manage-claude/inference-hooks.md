@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 4209b1fbe0763572e32ce82e158334e9cf9e1299b4b364b13b1e5a4a2cf70f26
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 6acb75c54a13fcd1cc2bcd9e830bd19e507415a277368183dcb65f1eaab6ad6f
 ---
 
 ---
@@ -104,7 +104,7 @@ Some features that Anthropic runs for your organization make model calls of thei
 
 * **Claude Security scans (beta).** [Claude Security](https://claude.com/product/claude-security) runs hosted scans on your connected repositories. A session a user opens to fix a finding, and the Claude Security plugin in Claude Code, are governed.
 * **Code Review (research preview).** [Code Review](https://code.claude.com/docs/en/code-review) runs reviews on your GitHub pull requests. A review a user runs locally in Claude Code with `/code-review` is governed.
-* **Smart reports (beta).** Anthropic makes model calls to build your organization’s [smart reports](https://support.claude.com/en/articles/16893491-get-started-with-smart-reports). What a user types or uploads when creating a report is governed.
+* **Smart reports.** Anthropic makes model calls to build your organization’s [smart reports](https://support.claude.com/en/articles/16893491-get-started-with-smart-reports). What a user types or uploads when creating a report is governed.
 
 ***
 

@@ -1,14 +1,41 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: bd56df2eb3501076cb9b31338171341903db8414d010752f3362e1111baf6f9f
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: f5c2189aa7463dc04d1f43d507a835f17d76eb3e34b8f4680d90655a570a7d6c
 ---
 
 ---
 title: Pemrosesan batch
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
 description: Proses permintaan Messages dalam volume besar secara asinkron dengan Message Batches API, memangkas biaya sebesar 50% dan meningkatkan throughput.
+featureMetadata:
+  status: ga
+  zdr:
+    eligibility: not-eligible
+    note: 29-day retention; async storage required.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: ga
+    Claude Models on Google Cloud (Anthropic managed): ga
 ---
 
 “Batch processing” (pemrosesan batch) adalah pendekatan yang ampuh untuk menangani permintaan dalam volume besar secara efisien. Alih-alih memproses permintaan satu per satu dengan respons langsung, pemrosesan batch memungkinkan Anda mengirimkan banyak permintaan sekaligus untuk diproses secara asinkron. Pola ini sangat berguna ketika:
@@ -1882,3 +1909,34 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platfor
     Kurangi biaya dan latensi dengan melakukan caching prefiks prompt yang digunakan bersama di seluruh permintaan dalam batch.
   </Card>
 </CardGroup>
+
+## Availability
+
+Batch processing is available on every model.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+
+| Status    | Cloud platforms                                                                                                                                                                                                                                                                |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Not available
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                           | HIPAA        |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| Status  | Not eligible                                                                                                                                  | Not eligible |
+| Details | 29-day retention; async storage required. [Learn more](https://platform.claude.com/docs/id/build-with-claude/batch-processing#data-retention) | —            |
+
+Applicable endpoints:
+
+* `/v1/messages/batches`

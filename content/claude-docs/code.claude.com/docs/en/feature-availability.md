@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/feature-availability
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: f747c45b3d614ab543a02c86298925ac544746c9c8feb5972dc2c5142f04ef2a
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 5164b9dfded3773c2ceeb32344e6d56422111f62afce0cad2bddef456dad9369
 ---
 
 > ## Documentation Index
@@ -97,7 +97,7 @@ These features work in the local CLI but depend on a server-side capability that
     <tr>
       <td>[Fast mode](https://code.claude.com/docs/en/fast-mode.md)</td>
       <td>✓ ([Owner-enabled](https://code.claude.com/docs/en/fast-mode.md#enable-fast-mode-for-your-organization) on Team and Enterprise)</td>
-      <td>✓ (provisioned organizations)</td>
+      <td>✓ (Opus 5 and 4.8 need provisioning)</td>
       <td>✗</td>
       <td>✗</td>
       <td>✗</td>
@@ -292,7 +292,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
 
 **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription).
 
-Everything in [CLI capabilities that vary by provider](#cli-capabilities-that-vary-by-provider) is available, except that [fast mode](https://code.claude.com/docs/en/fast-mode.md) requires [provisioned access](https://code.claude.com/docs/en/fast-mode.md#enable-fast-mode-for-your-organization). [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md) that you configure in a claude.ai Team or Enterprise organization don't reach a session that authenticates with a Console API key. See [Platform availability](https://code.claude.com/docs/en/server-managed-settings.md#platform-availability) for how to cover those sessions.
+Everything in [CLI capabilities that vary by provider](#cli-capabilities-that-vary-by-provider) is available, except that [fast mode](https://code.claude.com/docs/en/fast-mode.md) with Claude Opus 5 or Claude Opus 4.8 requires [provisioned access](https://code.claude.com/docs/en/fast-mode.md#enable-fast-mode-for-your-organization). [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md) that you configure in a claude.ai Team or Enterprise organization don't reach a session that authenticates with a Console API key. See [Platform availability](https://code.claude.com/docs/en/server-managed-settings.md#platform-availability) for how to cover those sessions.
 
 **Partial support:**
 

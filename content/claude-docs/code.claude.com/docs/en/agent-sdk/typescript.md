@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: b6a3c9c11a48e58cbadb6e1f9144b2f88ccbc0f252c35682836f8d7e5935d8f7
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 1153044d62625a791f34279ce3db54587c2dd51aed2fc61a3f984c80bb329913
 ---
 
 > ## Documentation Index
@@ -1412,7 +1412,7 @@ type PermissionResult =
     };
 ```
 
-If you return `allow` with more than 4,096 items in `updatedPermissions`, Claude Code treats the result as invalid and denies the tool call. Each update counts as one item, and so does each entry in its `rules` or `directories` list. The denial message ends with `updatedPermissions may hold at most 4096 updates, rules and directories in all`. To have the call allowed, return 4,096 items or fewer.
+If you return `allow` with more than 4,096 items in `updatedPermissions`, Claude Code treats the result as invalid and denies the tool call. Each update counts as one item, and so does each entry in its `rules` or `directories` list. The denial message ends with `updatedPermissions may hold at most 4096 updates, rules and directories in all.` To have the call allowed, return 4,096 items or fewer.
 
 ### `ToolConfig`
 
@@ -4713,10 +4713,11 @@ type CronCreateOutput = {
   humanSchedule: string;
   recurring: boolean;
   durable?: boolean; // true when persisted to .claude/scheduled_tasks.json; false when session-only
+  nextFireAt?: number;
 };
 ```
 
-Returns the job ID and a human-readable description of the schedule.
+Returns the job ID, a human-readable schedule, and the next run time. `nextFireAt` gives it in epoch milliseconds, with [jitter](https://code.claude.com/docs/en/scheduled-tasks.md#jitter) already applied, so it's when the job is set to run. The field requires TypeScript Agent SDK v0.3.299 or later and Claude Code v2.1.299 or later.
 
 ### CronDelete
 
@@ -4743,11 +4744,14 @@ type CronListOutput = {
     prompt: string;
     recurring?: boolean;
     durable?: boolean;
+    nextFireAt?: number;
   }[];
 };
 ```
 
 Returns the scheduled cron jobs: durable jobs from `.claude/scheduled_tasks.json` and session-only jobs from the current session. A session-only job carries `durable: false`; jobs read from disk omit the field.
+
+`nextFireAt` is the job's next run time in epoch milliseconds, [jitter](https://code.claude.com/docs/en/scheduled-tasks.md#jitter) included. No value is earlier than the `CronList` call: a job whose time [passed without a run](https://code.claude.com/docs/en/scheduled-tasks.md#how-scheduled-tasks-run) carries the call's time. The field requires TypeScript Agent SDK v0.3.299 or later and Claude Code v2.1.299 or later.
 
 ### ScheduleWakeup
 
@@ -5466,6 +5470,8 @@ type McpSetServersResult = {
 };
 ```
 
+The `setMcpServers()` promise resolves after newly added stdio, HTTP, and SSE servers connect or fail, so tools from servers that connected are available on the next turn.
+
 When you call `setMcpServers()`, Claude Code applies these rules:
 
 * **Servers the call doesn't name**: outside a [cloud session](https://code.claude.com/docs/en/claude-code-on-the-web.md), Claude Code disconnects the servers an earlier `setMcpServers()` call added and the in-process SDK servers, and lists them in `removed`. Other servers keep running and aren't listed in `removed`, among them the stdio, HTTP, and SSE servers from the [`mcpServers`](#options) option, servers from settings files, and plugin-provided servers.
@@ -5475,9 +5481,12 @@ When you call `setMcpServers()`, Claude Code applies these rules:
 * **Built-in servers the CLI started at startup**: if the call names one, Claude Code drops that entry and reports it in `errors`.
 * **Stdio, HTTP, or SSE servers that share a name with one from an MCP installation scope such as `.mcp.json`**: under that name the session uses your server's tools rather than the [installation-scope server's](https://code.claude.com/docs/en/mcp.md#mcp-installation-scopes). Before Claude Code v2.1.305, Claude Code could disconnect your server and connect the installation-scope server when your app [reloaded plugins](#query-object).
 
-The promise resolves after newly added stdio, HTTP, and SSE servers connect or fail, so tools from servers that connected are available on the next turn.
-
 `added` lists the servers Claude Code added or replaced, whether or not they connected. A server that failed to connect appears in both `added` and `errors`, with the failure text under `errors` and a `failed` row in [`mcpServerStatus()`](#methods). Before Claude Code v2.1.257, a server whose connection attempt threw was reported only under `errors`.
+
+An `errors` value starting `Blocked by enterprise` means policy refused the server, not that connecting failed:
+
+* `Blocked by enterprise policy (allowedMcpServers/deniedMcpServers)`: the server isn't in `added`. A [`deniedMcpServers`](https://code.claude.com/docs/en/managed-mcp#policy-based-control-with-allowlists-and-denylists) entry matches it, or an `allowedMcpServers` list is set and omits it. If that list is in a settings file you load through [`settingSources`](#options), edit the file. If it's in managed settings, ask your administrators to change it.
+* `Blocked by enterprise managed policy`: the server is in `added`, with a `failed` row in `mcpServerStatus()`. Ask an administrator which policy blocks it.
 
 ### `RewindFilesResult`
 

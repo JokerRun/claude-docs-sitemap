@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 59ee786c48d555e50d8d9a1817540b39a6e68214a5e9edad768055921d2ba835
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 40f6a18aec9a495ea2cb0ea6a62d4c77b3d465b9175bdbd040f9fb2b4f10bee8
 ---
 
 ---
@@ -104,7 +104,7 @@ Beberapa fitur yang dijalankan Anthropic untuk organisasi Anda melakukan pemangg
 
 * **Pemindaian Claude Security (beta).** [Claude Security](https://claude.com/product/claude-security) menjalankan pemindaian yang di-host pada repositori Anda yang terhubung. Sesi yang dibuka pengguna untuk memperbaiki temuan, serta plugin Claude Security di Claude Code, termasuk yang diatur.
 * **Code Review (pratinjau riset).** [Code Review](https://code.claude.com/docs/en/code-review) menjalankan tinjauan pada pull request GitHub Anda. Tinjauan yang dijalankan pengguna secara lokal di Claude Code dengan `/code-review` termasuk yang diatur.
-* **Smart reports (beta).** Anthropic melakukan pemanggilan model untuk membangun [smart reports](https://support.claude.com/en/articles/16893491-get-started-with-smart-reports) organisasi Anda. Apa yang diketik atau diunggah pengguna saat membuat laporan termasuk yang diatur.
+* **Smart reports.** Anthropic melakukan pemanggilan model untuk membangun [smart reports](https://support.claude.com/en/articles/16893491-get-started-with-smart-reports) organisasi Anda. Apa yang diketik atau diunggah pengguna saat membuat laporan termasuk yang diatur.
 
 ***
 

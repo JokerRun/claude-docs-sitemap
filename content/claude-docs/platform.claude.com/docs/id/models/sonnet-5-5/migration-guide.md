@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: e4ea5aeb3aab403e80595ba7d8aca8546b1e1329a1a1200ac8b786880fbd3dad
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: da7cb8814cdcd5b016a3c0d2aec748630e6fcd853097c3903837cbd3f4408d97
 ---
 
 ---
@@ -858,7 +858,7 @@ Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Sonnet 
 
 Jika Anda mengirimkan beta header `fine-grained-tool-streaming-2025-05-14`, hapus header tersebut saat Anda berpindah ke toolset. Bersama entri toolset, header ini mengembalikan error 400. Sebagai gantinya, tetapkan `eager_input_streaming: true` pada setiap alat yang memerlukannya.
 
-Kode yang sudah mengirimkan toolset tidak memerlukan perubahan. [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124) mencantumkan perubahan pada permintaan dan loop agen. Untuk platform lain, lihat [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#compatibility).
+Kode yang sudah mengirimkan toolset tidak memerlukan perubahan. [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124) mencantumkan perubahan pada permintaan dan loop agen. Untuk platform lain, lihat [Kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#availability-feature-support).
 
 ### Alat advisor menerima lebih sedikit advisor
 

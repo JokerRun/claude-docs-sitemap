@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-quickstart
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 6ca66807b60f40505bce01a26d683a59067898dc10aa7cd22f6acb672f0463eb
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: cdb973b35246cf1e74b05ac02fcb75a20a5f5b156c6e8c27727ffaad09391256
 ---
 
 > ## Documentation Index
@@ -64,7 +64,7 @@ With the Code tab open, choose a project and give Claude something to do.
 
 In the [row under the prompt box](https://code.claude.com/docs/en/desktop.md#start-a-session), click the first control, the environment selector, and select the top entry in the **Local** group. Then click the project folder control beside the environment selector, select **Open folder…**, and choose your project's directory.
 
-If no environment selector appears under your prompt box, you have the earlier layout. See [Check which layout you have](https://code.claude.com/docs/en/desktop.md#check-which-layout-you-have).
+If a new session shows no environment under your prompt box, you have the earlier layout. See [Check which layout you have](https://code.claude.com/docs/en/desktop.md#check-which-layout-you-have).
 
 > [!TIP]
 >

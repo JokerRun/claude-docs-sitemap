@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 8bbc99cc99da7365a61d81312bf1613519b49e141932f30a1c32ac52b0217621
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: c4e920c2e24b16caf808f449a1383dd70f8e74a5e3c4b3bb68592b5fbaa11239
 ---
 
 ---
@@ -577,7 +577,7 @@ Diagram berikut juga memetakan sebuah tim, yang agen utamanya jarang memulai age
 
 ## Menggabungkan model
 
-Sesuaikan satu model sebelum Anda menambahkan model kedua: lakukan sapuan effort pada model Anda saat ini terlebih dahulu, karena sebagian besar beban kerja berakhir di sana, dan jika sapuan menunjukkan adanya kesenjangan, hitung harga model yang lebih kuat saja pada effort rendah. Bangun pasangan model hanya jika pasangan tersebut mengalahkan seluruh kurva skor terhadap pengeluaran dari model tunggal. Hasil multi-model di halaman ini dinilai terhadap model yang sama pada effort yang lebih rendah dan terhadap model satu tingkat di bawahnya yang berjalan sendiri, yang merupakan perbandingan yang perlu dijalankan pada beban kerja Anda sendiri.
+Sesuaikan satu model sebelum Anda menambahkan model kedua: lakukan sapuan effort pada model Anda saat ini terlebih dahulu, karena sebagian besar beban kerja berakhir di sana, dan jika sapuan menunjukkan adanya kesenjangan, hitung harga model yang lebih kuat saja pada effort rendah. Bangun pasangan model hanya jika pasangan tersebut mengalahkan seluruh kurva skor terhadap pengeluaran dari model tunggal. Pada beban kerja Anda sendiri, nilai pasangan model terhadap model yang sama pada effort yang lebih rendah dan terhadap model satu tingkat di bawahnya yang berjalan sendiri.
 
 Tabel berikut membandingkan kedua strategi:
 
@@ -632,15 +632,13 @@ Delegasi menghemat biaya hanya dalam dua situasi, dalam pengukuran dengan worker
 * Pekerjaan rutin dengan ekor biaya yang panjang (bagian mudah dari BrowseComp[4](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs))
 * Pekerjaan yang lebih besar dari satu jendela konteks (benchmark pencarian cacat internal[8](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs))
 
-Ketika pekerjaan berupa satu rantai yang saling bergantung, atau muat dalam satu konteks tanpa ekor biaya yang panjang, model orchestrator saja pada effort yang lebih rendah lebih unggul dalam setiap kasus yang diukur, juga pada model-model sebelumnya (kumpulan BrowseComp yang lebih sulit dan DeepWideSearch[6](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs)); penelitian eksternal independen melaporkan pola yang sama[5](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs).
+Ketika pekerjaan berupa satu rantai yang saling bergantung, atau muat dalam satu konteks tanpa ekor biaya yang panjang, model orchestrator saja pada effort yang lebih rendah lebih unggul dalam setiap kasus yang diukur pada model-model sebelumnya (kumpulan BrowseComp yang lebih sulit dan DeepWideSearch[6](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs)); penelitian eksternal independen melaporkan pola yang sama[5](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs).
 
 Untuk membangun orchestrator, gunakan [orkestrasi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration) di Claude Managed Agents: konfigurasikan agen orchestrator dan agen worker yang dapat dipanggilnya, masing-masing dengan modelnya sendiri.
 
 <Frame>
   ![Diagram strategi orchestrator: model frontier menyebarkan subtugas ke tiga model worker berbiaya lebih rendah](https://platform.claude.com/docs/id/images/model-routing-orchestrator-strategy.svg)
 </Frame>
-
-[Matriks pemilihan model](https://platform.claude.com/docs/id/about-claude/models/choosing-a-model#model-selection-matrix) mencantumkan Claude Haiku 5.5 untuk tugas sub-agen; sebelum Anda menggunakannya sebagai worker, [ukur pada beban kerja Anda sendiri](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#measure-on-your-own-workload).
 
 Diagram berikut memetakan konfigurasi benchmark pencarian cacat berdasarkan biaya dan skor:
 
@@ -652,6 +650,7 @@ Diagram berikut memetakan konfigurasi benchmark pencarian cacat berdasarkan biay
 
 * **Pekerjaan rutin dengan ekor biaya yang panjang:** ukur kasus ini terlebih dahulu, untuk akurasi maupun biaya. Pengukuran yang mendasarinya hanya mencakup soal-soal yang dijawab dengan benar oleh konfigurasi yang didelegasikan di setiap run (referensi 4).
 * **Pekerjaan yang lebih besar dari satu jendela konteks:** delegasikan partisi kepada worker. Menurunkan effort tidak dapat membantu, karena tagihannya adalah pembacaan itu sendiri: pada benchmark pencarian cacat[8](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs), Claude Fable 5.1 saja berbiaya $468 USD hingga $552 USD per run di ketiga pengaturan effort-nya dan memakan waktu 15 hingga 20 jam. Dengan worker dari model sebelumnya, delegasi lebih murah dan selesai lebih cepat, dengan skor yang lebih rendah.
+* **Subagen Claude Haiku 5.5 pada tugas coding:** bandingkan terlebih dahulu dengan effort yang lebih rendah. Pada benchmark coding internal di Claude Managed Agents, subagen tersebut merupakan alternatif untuk menurunkan effort, bukan yang lebih baik. Menambahkannya ke Claude Opus 5.5 pada `medium`, dengan prompt delegasi singkat, memangkas biaya per percobaan sebesar 32% dan tingkat kelulusan sekitar 4 poin persentase (interval 95% 1,3 hingga 7,1), kurang lebih sama dengan yang akan dihasilkan campuran `low` dan `medium` tanpa subagen pada biaya tersebut[29](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#refs).
 
 ## Ukur pada beban kerja Anda sendiri
 
@@ -1129,6 +1128,17 @@ Kecuali jika suatu referensi menyatakan lain, pengukuran merupakan eksekusi inte
     * **Hasil, eksekusi 20 issue:** Pada eksekusi 20 issue, di mana pekerjaan tanpa tuas berbiaya $0,42 USD per eksekusi, context editing berbiaya 73% lebih tinggi, compaction berjalan sekali menjelang akhir setiap eksekusi dan berbiaya 7% lebih rendah, dan prune tidak menulis ulang apa pun, karena tidak ada hasil pencarian yang melebihi ambang 2.000 karakternya.
     * **Hasil, eksekusi panjang:** Pada eksekusi panjang, di mana pekerjaan tanpa tuas berbiaya $1,09 USD per eksekusi, prune berbiaya 39% lebih rendah, compaction 32% lebih rendah, dan context editing 4% lebih tinggi.
     * **Cache read, eksekusi panjang:** Dalam eksekusi panjang dengan prune, 89% token prompt dibaca dari cache pada permintaan pertama setelah batas tugas dan 81% pada permintaan lainnya. Di seluruh eksekusi panjang, 85% token prompt dibaca dari cache dengan prune dan 85% dengan context editing, berbanding 95% tanpa tuas.
+
+29. **Benchmark coding internal (pengukuran subagen):**
+
+    * **Apa yang diukur:** 134 tugas coding repositori, masing-masing dinilai lulus atau gagal oleh pengujian yang tidak dapat dilihat agen, lima percobaan per tugas di setiap dari tiga eksekusi, 21 hingga 23 Oktober 2026, pada [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) dengan [orkestrasi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration) miliknya sendiri (tipe `multiagent_20261001`): satu agen predefined sebagai subagen, dengan agen inline dan alur kerja dinamis dinonaktifkan.
+    * **Konfigurasi:** Claude Opus 5.5 saja pada `medium`, default-nya, dan pada `low`; serta Claude Opus 5.5 pada `medium` dengan subagen Claude Haiku 5.5 pada `medium`, sekali tanpa prompt tambahan dan sekali dengan prompt delegasi 113 kata sebagai prompt sistem orchestrator. Konfigurasi kelima, dengan prompt yang lebih panjang, tidak dilaporkan. Evaluasi tidak menetapkan opsi thinking, sehingga thinking berjalan pada default-nya: aktif, dengan model memilih kapan harus berpikir.
+    * **Alat:** Setiap agen menggunakan dua alat kustom, sebuah shell dan sebuah editor file yang dijalankan evaluasi di sandbox milik masing-masing percobaan, sebagai pengganti alat bawaan platform. Sebagai bagian dari pengaturan keamanan evaluasi, panggilan alat tersebut melewati pemeriksaan tambahan. Dalam pengaturan yang terdokumentasi, [kebijakan izin tidak berlaku untuk alat kustom](https://platform.claude.com/docs/id/managed-agents/permission-policies#custom-tools).
+    * **Hasil:** Percobaan yang lulus dan biaya per percobaan adalah 72,1% dan $4,78 USD untuk Claude Opus 5.5 saja pada `medium`; 68,8% dan $3,35 USD dengan subagen dan tanpa prompt tambahan; 67,9% dan $3,27 USD dengan subagen dan prompt; serta 63,0% dan $1,84 USD untuk Claude Opus 5.5 saja pada `low`.
+    * **Dibandingkan dengan Claude Opus 5.5 saja pada `medium`:** Dengan prompt, biaya 32% lebih rendah (interval 95% 29% hingga 35%) dan 4,2 poin persentase lebih sedikit yang lulus (1,3 hingga 7,1). Tanpa prompt tambahan, 30% lebih rendah (27% hingga 33%) dan 3,3 lebih sedikit (0,8 hingga 5,8). Claude Opus 5.5 saja pada `low`, 62% lebih rendah (59% hingga 64%) dan 9,1 lebih sedikit (5,0 hingga 13,3), perbandingan yang ditambahkan setelah eksekusi. Perbedaan dipasangkan per tugas dalam setiap eksekusi, dan intervalnya adalah interval bootstrap atas 134 tugas.
+    * **Dibandingkan dengan effort yang lebih rendah:** Mengirim sebagian tugas ke `low` dan sisanya ke `medium` menghasilkan garis lurus di antara kedua hasil tersebut, sebuah perhitungan dan bukan eksekusi. Pada biayanya sendiri, konfigurasi dengan subagen lulus 0,5 poin persentase lebih banyak daripada garis tersebut dengan prompt (2,3 lebih sedikit hingga 3,2 lebih banyak) dan 1,1 lebih banyak tanpa prompt tambahan (1,2 lebih sedikit hingga 3,3 lebih banyak): tidak di atas maupun di bawahnya. Biaya per percobaan yang lulus adalah $6,63 USD untuk Claude Opus 5.5 saja pada `medium`, $4,86 USD dengan subagen dan tanpa prompt tambahan, $4,81 USD dengan prompt, dan $2,92 USD pada `low`.
+    * **Cara penetapan harga:** Biaya adalah biaya token pada harga daftar dengan caching prompt 5 menit, setiap permintaan dihargai sesuai panjang prompt-nya sendiri ([Harga konteks panjang](https://platform.claude.com/docs/id/about-claude/pricing#long-context-pricing)), dan tidak termasuk runtime sesi. Biaya tersebut tidak mencakup pemeriksaan tambahan evaluasi pada panggilan alat; jika pemeriksaan itu dihitung, penghematan dengan prompt adalah 27% (25% hingga 30%).
+    * **Apa yang dihitung sebagai kegagalan:** Suatu percobaan dihitung sebagai kegagalan jika pemeriksaan keamanan menghentikannya, jika safeguard platform menolak suatu giliran, atau jika evaluasi membatalkannya karena tidak dapat memastikan bahwa pemeriksaan keamanannya melihat setiap langkah. Percobaan yang dibatalkan hanya terjadi pada konfigurasi dengan subagen: 72 dari 2.010 dengan prompt, 57 di antaranya dalam satu eksekusi. Ketika bagian eksekusi dari konfigurasi tersebut dijalankan ulang, konfigurasi itu lulus 3,6 poin persentase lebih sedikit daripada Claude Opus 5.5 saja (1,0 hingga 6,3). Jika setiap percobaan yang dihentikan oleh pemeriksaan keamanan atau dibatalkan oleh evaluasi dikeluarkan di kedua sisi, konfigurasi itu lulus 1,7 lebih sedikit (4,4 lebih sedikit hingga 1,1 lebih banyak). Jadi sebagian dari penurunan tersebut, tetapi tidak seluruhnya, berasal dari aturan evaluasi itu sendiri. Satu percobaan Claude Opus 5.5 saja pada `medium`, yang terpotong pada batas tiga jam, tidak memiliki hasil dan dikeluarkan; dengan subagen, pemotongan yang sama dihitung sebagai kegagalan.
 
 ## Langkah selanjutnya
 

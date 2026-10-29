@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 5039dd811bf24f377597433274385f4c492403c540d4a1213a8203c0c82e3c80
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: c5384371e5d142075013cdb0a2fabc5329c80b1a0c6d4931de6b719933d0dd32
 ---
 
 ---
@@ -346,7 +346,7 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
 
 Permintaan ini mencakup bagian-bagian berikut:
 
-* **`model`:** Sebuah [model yang mendukung alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#compatibility)
+* **`model`:** Sebuah [model yang mendukung alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#availability-feature-support)
 * **`container.skills`:** Menentukan Skills mana yang dapat digunakan Claude
 * **`type: "anthropic"`:** Menunjukkan bahwa ini adalah Skill yang dikelola Anthropic
 * **`skill_id: "pptx"`:** Pengidentifikasi Skill PowerPoint

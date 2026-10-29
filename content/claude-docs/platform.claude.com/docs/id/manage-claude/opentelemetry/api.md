@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/api
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: aa6162e07fd32ba74a6a4293314c9dc0470daebc75eb3e946c6e3f21e9113ff2
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 231ce54ad801cffa18d7c261ad0f11962c2581271e820c702b5e31148b12b007
 ---
 
 ---
@@ -16,15 +16,28 @@ featureMetadata:
   status: beta
   zdr:
     eligibility: eligible
-    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Hanya untuk fitur yang memang memenuhi syarat ZDR, seperti Messages API. Claude Managed Agents tidak memenuhi syarat ZDR.
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Beta. Spans have the same ZDR eligibility as the feature that produces them. HIPAA organizations can export metadata. SDK spans go directly from your environment to your exporter. After delivery, the data is held by the service that you chose, outside Anthropic, under that service's retention and access controls.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: beta
     Claude Platform on AWS: beta
-  rows:
-    - label: Berfungsi dengan
-      value: Messages API, Claude Managed Agents
-  details:
-    - Setelah dikirimkan, data disimpan oleh layanan yang Anda pilih, di luar Anthropic, di bawah kontrol retensi dan akses layanan tersebut.
 ---
 
 Dengan OpenTelemetry, Claude API dapat memancarkan *Span* (rentang) untuk setiap permintaan model dan setiap penggunaan alat yang dijalankannya. Anda dapat melihat span ini di platform observabilitas Anda tanpa mengubah kode Anda.
@@ -69,16 +82,6 @@ API memancarkan span untuk permintaan Messages API dan sesi Managed Agents Anda.
 Anda juga dapat menambahkan tujuan melalui [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) sebagai pengganti Console. Masuk ke CLI sebagai admin, atau gunakan [kredensial Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api#authentication) lain, seperti [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys) atau kunci service account di `ANTHROPIC_API_KEY`. Di Claude Platform on AWS, kirim permintaan ke `https://aws-external-anthropic.{region}.api.aws` sebagai gantinya, ditandatangani dengan kredensial AWS Anda seperti di [Membuat permintaan](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#making-requests). Di sana, [kebijakan IAM](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions) Anda menentukan siapa yang dapat mengelola tujuan. Sebuah permintaan hanya dapat menyertakan workspace dari akun AWS Anda di Region tersebut.
 
 <CodeGroup>
-  ```bash CLI
-  # Masuk sekali sebagai admin, yang akan membuka browser.
-  ant auth login --profile admin --scope "org:admin"
-  ant --profile admin beta:organization:telemetry-destinations create \
-    --endpoint-url https://gateway.example.com/otlp \
-    --headers '{authorization: "Bearer YOUR_OBSERVABILITY_API_KEY"}' \
-    --traces.content-mode metadata_only \
-    --workspaces.type all
-  ```
-
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/organizations/telemetry_destinations" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -91,6 +94,16 @@ Anda juga dapat menambahkan tujuan melalui [Admin API](https://platform.claude.c
       "traces": {"content_mode": "metadata_only"},
       "workspaces": {"type": "all"}
     }'
+  ```
+
+  ```bash CLI
+  # Masuk sekali sebagai admin, yang akan membuka browser.
+  ant auth login --profile admin --scope "org:admin"
+  ant --profile admin beta:organization:telemetry-destinations create \
+    --endpoint-url https://gateway.example.com/otlp \
+    --headers '{authorization: "Bearer YOUR_OBSERVABILITY_API_KEY"}' \
+    --traces.content-mode metadata_only \
+    --workspaces.type all
   ```
 
   ```python Python
@@ -684,12 +697,12 @@ Untuk mengubah sebuah tujuan, buka menu **More actions** miliknya saat filter **
 
 ## Pemecahan masalah
 
-| Masalah                                                                           | Yang perlu diperiksa                                                                                                                                                                                                                                                                                                          |
-| --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tidak ada span API                                                                | Workspace memerlukan tujuan aktif yang mencakupnya. Lihat [Pilih workspace untuk tujuan](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#choose-workspaces-for-a-destination). Setelah tujuan mulai mencakup workspace, span dari workspace tersebut dapat memerlukan waktu hingga satu menit untuk tiba. |
-| Kolom **Delivery** menampilkan **Failing**                                        | Arahkan pointer ke atasnya untuk melihat error terakhir. Untuk menemukan kemungkinan penyebabnya, lihat [Error pengiriman](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#delivery-errors).                                                                                                              |
-| Kolom **Delivery** menampilkan **Disabled**                                       | Arahkan pointer ke atasnya untuk melihat alasannya. Untuk alasan-alasannya, lihat [kapan API menonaktifkan tujuan](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#delivery-and-health).                                                                                                                  |
-| Span tidak memiliki prompt atau respons, tetapi tujuan diatur ke **Full content** | Organisasi Anda mungkin memiliki pembatasan penanganan data HIPAA, FERPA, atau K-12 dengan Anthropic. Lihat [Mode konten](https://platform.claude.com/docs/id/manage-claude/opentelemetry#choose-a-content-mode).                                                                                                             |
+| Masalah                                                                           | Yang perlu diperiksa                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tidak ada span API                                                                | Workspace memerlukan tujuan aktif yang mencakupnya. Lihat [Pilih workspace untuk tujuan](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#choose-workspaces-for-a-destination). Setelah tujuan mulai mencakup workspace, span dari workspace tersebut dapat memerlukan waktu hingga satu menit untuk tiba. API tidak memancarkan span untuk permintaan yang header `traceparent`-nya memiliki flag sampled dalam keadaan nonaktif, atau untuk permintaan ke [endpoint yang kompatibel dengan OpenAI](https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk). |
+| Kolom **Delivery** menampilkan **Failing**                                        | Arahkan pointer ke atasnya untuk melihat error terakhir. Untuk menemukan kemungkinan penyebabnya, lihat [Error pengiriman](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#delivery-errors).                                                                                                                                                                                                                                                                                                                                                                                      |
+| Kolom **Delivery** menampilkan **Disabled**                                       | Arahkan pointer ke atasnya untuk melihat alasannya. Untuk alasan-alasannya, lihat [kapan API menonaktifkan tujuan](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#delivery-and-health).                                                                                                                                                                                                                                                                                                                                                                                          |
+| Span tidak memiliki prompt atau respons, tetapi tujuan diatur ke **Full content** | Organisasi Anda mungkin memiliki pembatasan penanganan data HIPAA, FERPA, atau K-12 dengan Anthropic. Lihat [Mode konten](https://platform.claude.com/docs/id/manage-claude/opentelemetry#choose-a-content-mode).                                                                                                                                                                                                                                                                                                                                                                                     |
 
 ### Error pengiriman
 
@@ -707,3 +720,38 @@ Ketika pengiriman gagal, kolom **Delivery** menampilkan **Failing**. Arahkan poi
 | Redirect (status 3xx)                                | Endpoint me-redirect permintaan. API tidak mengikuti redirect, jadi gunakan URL tujuan redirect tersebut                                                      |
 | HTTP error (status 408, 429, atau 5xx)               | Endpoint kelebihan beban, membatasi laju permintaan, atau mengalami error                                                                                     |
 | HTTP error (status 4xx lainnya)                      | Endpoint menolak permintaan, misalnya karena ukuran atau formatnya                                                                                            |
+
+## Availability
+
+API tracing is in beta on every model and eligible for zero data retention.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+
+| Status | Cloud platforms                                                                                                    |
+| ------ | ------------------------------------------------------------------------------------------------------------------ |
+| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Available
+
+| Status | Cloud platforms                                                                                                    |
+| ------ | ------------------------------------------------------------------------------------------------------------------ |
+| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                                                                                                                                                                                                        | HIPAA                                    |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| Status  | Eligible (excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                                                                                                                                                                  | Not eligible                             |
+| Details | Beta. Spans have the same ZDR eligibility as the feature that produces them. HIPAA organizations can export metadata. SDK spans go directly from your environment to your exporter. After delivery, the data is held by the service that you chose, outside Anthropic, under that service’s retention and access controls. | HIPAA organizations can export metadata. |
+
+Applicable endpoints:
+
+* `/v1/organizations/telemetry_destinations`

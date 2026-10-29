@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/fable-5-1/migration-guide
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 966c945d99b33322dc92aaf104a5136bed46ad3a53c1df792a4f7a36179f9768
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 2dbf43dac5dec441d26839c03ca4bf48a0bd12b5783373052a3d36a3e4f80a61
 ---
 
 ---
@@ -1214,7 +1214,7 @@ model = "claude-mythos-5-1"  # After
 
    Dropping thinking blocks once, at a compaction boundary for example, has little effect. An integration that invalidates prior thinking on every request restarts the prompt cache each time, which can raise cost per task (see [Keep the conversation history append-only](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#keep-the-conversation-history-append-only)).
 
-4. **The advisor tool accepts fewer advisors:** With the [advisor tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool) (beta), the advisor must be at least as capable as the executor. With a `claude-fable-5-1` executor, a less capable advisor, such as `claude-fable-5` or `claude-opus-5-5`, returns a 400 `invalid_request_error`. Choose an advisor from the executor’s row in the [compatibility table](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool#model-compatibility).
+4. **The advisor tool accepts fewer advisors:** With the [advisor tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool) (beta), the advisor must be at least as capable as the executor. With a `claude-fable-5-1` executor, a less capable advisor, such as `claude-fable-5` or `claude-opus-5-5`, returns a 400 `invalid_request_error`. Choose an advisor that [Model compatibility](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool#model-compatibility) lists for the executor.
 
 ### Behavior changes
 

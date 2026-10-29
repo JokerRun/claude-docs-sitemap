@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: e688c72fd17251311d080fd7c2bd6d727044662f998f1374b495dab9cc2dba28
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: a0473752f2712fa11515466d798e5d16b879d0055bdbd686d39bfeaefc1ebb5a
 ---
 
 > ## Documentation Index
@@ -868,6 +868,7 @@ Logged for each API request to Claude.
 * `output_tokens`: Number of output tokens
 * `cache_read_tokens`: Number of tokens read from cache
 * `cache_creation_tokens`: Number of tokens used for cache creation
+* `cache_creation_5m_tokens`, `cache_creation_1h_tokens`: the number of tokens the API response reports as written to the cache with a five-minute [cache lifetime](https://code.claude.com/docs/en/prompt-caching.md#cache-lifetime) and the number written with a one-hour lifetime. Both are `0` when the API response doesn't report them, even when `cache_creation_tokens` is above zero. Requires Claude Code v2.1.300 or later
 * `request_id`: API request ID, such as `"req_011..."`, described under [Event correlation attributes](#event-correlation-attributes).
 * `client_request_id`: Client-generated UUID sent as the `x-client-request-id` request header; see the [event correlation attributes](#event-correlation-attributes) table for when it's present
 * `speed`: `"fast"` or `"normal"`, indicating whether fast mode was active

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-reference
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: ad0b9e912ce92f9a3f63380cf2da8e15946774871a5e0c973be4db181dc88cfc
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 06934d7d4da96b15788a340e734d78cfd96adcf2a780bd8584e286b38bda1167
 ---
 
 ---
@@ -13,8 +13,28 @@ featureMetadata:
   topic:
     title: Managed Agents
     url: https://platform.claude.com/docs/en/managed-agents/overview
-  status: beta
   betaHeader: managed-agents-2026-04-01
+  zdr:
+    eligibility: not-eligible
+    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
 ---
 
 Halaman ini mendokumentasikan worker siap pakai yang melayani environment `self_hosted`. Untuk panduan berorientasi tugas, mulailah dengan [Sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) dan [Menerapkan worker self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers).

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/skills-guide
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 577a267cec943e052594c7c697973a3847be0aac951ca94c05e4e963b584470d
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: f6864997f7d27c3651892f9b1be50fc75f866813d18c1f13915453bc2534294b
 ---
 
 ---
@@ -67,7 +67,7 @@ To use Skills, you need:
 1. **Claude API key** from the [Claude Console](https://platform.claude.com/settings/keys)
 2. **[Code execution tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool)** enabled in your requests
 
-Skills require the code execution tool, so use a model from its [model compatibility list](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#compatibility).
+Skills require the code execution tool, so use a model listed in its [API support section](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#availability-feature-support).
 
 ***
 

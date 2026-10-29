@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: ad3e623742796e90d7b549f6a99f6acefedbeaf271a159bf3c23eaa7226fd721
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: abbdf39bcadba0d1301a45d16c915b9bf08fd34e2c0b9c823072eed12c3bd680
 ---
 
 ---
@@ -861,7 +861,7 @@ On the Claude API and Claude Models on Google Cloud (Google managed), Claude Son
 
 If you send the `fine-grained-tool-streaming-2025-05-14` beta header, remove it when you move to the toolset. Alongside a toolset entry, it returns a 400 error. Set `eager_input_streaming: true` on each tool that needs it instead.
 
-Code that already sends the toolset needs no change. [Migrate from `computer_20251124`](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124) lists the request and agent-loop changes. For other platforms, see [Compatibility](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#compatibility).
+Code that already sends the toolset needs no change. [Migrate from `computer_20251124`](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124) lists the request and agent-loop changes. For other platforms, see [API support](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#availability-feature-support).
 
 ### The advisor tool accepts fewer advisors
 

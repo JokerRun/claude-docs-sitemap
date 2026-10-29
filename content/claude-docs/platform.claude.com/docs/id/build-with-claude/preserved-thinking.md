@@ -1,15 +1,34 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/preserved-thinking
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 2662a6f642305e4616d82d1839a2e2ad177c7ac47a599dfeb68f4bb75d6e6d02
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 25b54728d91352af0b8057fcfc0f639d5c3cdd8f6b6716f1e380e980a2f5c4f9
 ---
 
 ---
 title: Pemikiran yang dipertahankan
 url: https://platform.claude.com/docs/id/build-with-claude/preserved-thinking
 description: Pemikiran yang dipertahankan memungkinkan model menggunakan blok pemikiran dari giliran sebelumnya hanya jika model tersebut atau salah satu dari sekumpulan model lain yang sudah ditetapkan menghasilkannya dan tidak ada yang berubah sebelum blok tersebut.
+featureMetadata:
+  status: ga
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-opus-5-5
+    - claude-sonnet-5-5
+    - claude-haiku-5-5
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: ga
+    Claude Models on Google Cloud (Anthropic managed): ga
+    Claude Models on Google Cloud (Google managed): ga
+    Microsoft Foundry: ga
 ---
+
+**API support**: Usage differs by product.
+
+* **Messages API**: Always on. Keep requests append-only: send earlier turns back exactly as returned, and do not change `system`, `tools` or earlier messages.
+* **Managed Agents**: Always on. Managed Agents builds the requests.
 
 “Preserved thinking” (pemikiran yang dipertahankan) adalah properti model Claude yang lebih baru yang melindungi dari “distillation” (distilasi). Properti ini menentukan apakah model dapat menggunakan “thinking block” (blok pemikiran) yang Anda kirim kembali dari giliran sebelumnya. Mulai dari Claude Fable 5.1, ketika blok `thinking` atau `redacted_thinking` dikirim kembali dalam sebuah permintaan, API memeriksa `signature` blok tersebut untuk dua hal:
 
@@ -1586,3 +1605,27 @@ Library, proxy, atau gateway berada di antara riwayat milik pihak lain dan API, 
     Cache prefiks prompt dengan `cache_control` untuk memangkas biaya dan latensi, menggunakan caching otomatis atau breakpoint eksplisit dengan TTL 5 menit atau 1 jam.
   </Card>
 </CardGroup>
+
+## Availability
+
+Preserved thinking is available on select models.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Always on
+* Usage: Keep requests append-only: send earlier turns back exactly as returned, and do not change `system`, `tools` or earlier messages.
+
+| Status    | Cloud platforms                                                                                                                                                                                                                                                                                                                                                                  | Models                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) |
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Always on
+* Usage: Managed Agents builds the requests.
+
+| Status    | Cloud platforms                                                                                                                                                                                                                                                                | Models                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) |

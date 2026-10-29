@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 7f82280fa292c47f2555c3f4fdcf0a05d606a714acacd439f133b2a88701a2f2
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 251b310935ff4945787f1aae93a35fd018169e0cc30fa39b77428cc5c5b649d4
 ---
 
 ---
@@ -13,9 +13,35 @@ featureMetadata:
   topic:
     title: Managed Agents
     url: https://platform.claude.com/docs/en/managed-agents/overview
-  status: beta
   betaHeader: managed-agents-2026-04-01
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: beta
+    Claude Models on Google Cloud (Anthropic managed): beta
 ---
+
+**API support**: Usage differs by product.
+
+* **Messages API**: Set `allowed_domains` or `blocked_domains` on the `web_search` or `web_fetch` tool in the request.
+* **Managed Agents**: Set the same fields on the agent toolset; each list holds at most 64 domains.
 
 Untuk mengendalikan situs mana yang dapat dijangkau oleh alat web agen, tetapkan daftar domain pada entri `web_search` dan `web_fetch` dari [toolset agen](https://platform.claude.com/docs/id/managed-agents/tools#configuring-the-toolset). Setiap entri `configs` (csharp, go: `Configs`) ini menerima salah satu dari dua daftar:
 
@@ -522,3 +548,37 @@ Pengaturan ini menggunakan field `allowed_domains` (java, php: `allowedDomains`;
     Koordinasikan beberapa agen dalam satu sesi.
   </Card>
 </CardGroup>
+
+## Availability
+
+Web domain restrictions are available or in beta, depending on the API.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+* Usage: Set `allowed_domains` or `blocked_domains` on the `web_search` or `web_fetch` tool in the request.
+
+| Status    | Cloud platforms |
+| --------- | --------------- |
+| Available | Claude API      |
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Available
+* Usage: Set the same fields on the `web_search` and `web_fetch` entries of the agent toolset. Unlike the Messages API, each list holds at most 64 ASCII domains, and `web_fetch` domains cannot include a path.
+
+| Status | Cloud platforms         | Models                                                            |
+| ------ | ----------------------- | ----------------------------------------------------------------- |
+| Beta   | All supported platforms | [All models](https://platform.claude.com/docs/id/models/overview) |
+
+### Required beta headers
+
+[Beta headers overview](https://platform.claude.com/docs/id/api/beta-headers)
+
+Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
+
+| Header                      | APIs                                                                          |
+| --------------------------- | ----------------------------------------------------------------------------- |
+| `managed-agents-2026-04-01` | [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) |

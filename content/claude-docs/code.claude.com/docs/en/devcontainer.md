@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/devcontainer
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 004d441e6b81aa54b329e060dc3a05dc1fe4766fce705c46053ba4e3850dda8c
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 4cf840a02b3949fc5c59fbd56880aaf644a5d184b60a92d14a1a21563ac12273
 ---
 
 > ## Documentation Index
@@ -86,7 +86,7 @@ See [Choose your API provider](https://code.claude.com/docs/en/admin-setup.md#ch
 
 > [!NOTE]
 >
-> If the browser sign-in completes but the callback never reaches the container, copy the code shown in the browser and paste it at the `Paste code here if prompted` prompt in the terminal. This can happen when the editor's port forwarding doesn't route the localhost callback.
+> For the Anthropic sign-in: if no browser opens, or it signs you in and then shows a `localhost` connection error, use the login URL shown above the terminal's paste prompt. Copy it into your browser, sign in there, then paste the code the browser shows into that prompt. If pasting does nothing, see [OAuth login fails in WSL2, SSH, or containers](https://code.claude.com/docs/en/troubleshoot-install.md#oauth-login-fails-in-wsl2-ssh-or-containers).
 
 ## Persist authentication and settings across rebuilds
 

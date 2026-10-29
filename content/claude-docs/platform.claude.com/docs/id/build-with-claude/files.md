@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 3218f08dba760e4fbb9ad111b73662f6b763168f59a852b64f79cd75d6083fef
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 764600827b46e20f00a28c2e550d6fa59a67a37a69727b1575e5976a44ed398a
 ---
 
 ---
@@ -11,20 +11,44 @@ url: https://platform.claude.com/docs/id/build-with-claude/files
 description: Unggah file sekali, rujuk file tersebut dengan file_id dalam permintaan Messages, dan unduh output yang dibuat oleh skills atau alat eksekusi kode.
 featureMetadata:
   status: ga
-  zdr: not-eligible
+  zdr:
+    eligibility: not-eligible
+    note: Files retained until explicitly deleted or they reach their configured expiration.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: ga
     Claude Platform on AWS: ga
-    Microsoft Foundry:
-      availability: ga
-      note: Di [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), Files API memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
+    Claude Models on Google Cloud (Anthropic managed): ga
+    Microsoft Foundry (hosted on Anthropic): ga
 ---
+
+**API support**: Usage differs by product.
+
+* **Messages API**: Refer to an uploaded file by its `file_id` in a `document`, `image` or `container_upload` block.
+* **Managed Agents**: Mount files in the session’s sandbox, or refer to a `file_id` in a `user.message` event.
 
 Files API memungkinkan Anda mengunggah dan mengelola file untuk digunakan dengan Claude API tanpa perlu mengunggah ulang konten pada setiap permintaan. Ini sangat berguna saat menggunakan [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk menyediakan input (misalnya, dataset dan dokumen) lalu mengunduh output (misalnya, grafik). Anda dapat [menjelajahi referensi API secara langsung](https://platform.claude.com/docs/id/api/files/upload), selain panduan ini.
 
 ## Dukungan jenis file
 
-Mereferensikan `file_id` dalam permintaan Messages didukung pada semua model yang mendukung jenis file tersebut. [Gambar](https://platform.claude.com/docs/id/build-with-claude/vision) didukung pada semua model Claude saat ini. Untuk [PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support) dan [jenis file lain dengan alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#compatibility), lihat halaman tertaut untuk dukungan model.
+Mereferensikan `file_id` dalam permintaan Messages didukung pada semua model yang mendukung jenis file tersebut. [Gambar](https://platform.claude.com/docs/id/build-with-claude/vision) didukung pada semua model Claude saat ini. Untuk [PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support) dan [jenis file lain dengan alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#availability-feature-support), lihat halaman tertaut untuk dukungan model.
 
 ## Cara kerja Files API
 
@@ -1046,3 +1070,40 @@ Panggilan API terkait file dibatasi hingga sekitar 500 permintaan per menit (“
     Proses dan analisis input visual serta hasilkan teks dan kode dari gambar.
   </Card>
 </CardGroup>
+
+## Availability
+
+The Files API is available on every model.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+* Usage: Refer to an uploaded file by its `file_id` in a `document`, `image` or `container_upload` block.
+
+| Status    | Cloud platforms                                                                                                                                                                                                                                                                                                                                                                                              |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry (hosted on Anthropic)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Available
+* Usage: Mount uploaded files in the session’s sandbox as session resources (read-only, under `/mnt/session/uploads`), or refer to a `file_id` in an `image` or `document` block of a `user.message` event. Files the agent writes to `/mnt/session/outputs/` can be downloaded with the Files API.
+
+| Status    | Cloud platforms         |
+| --------- | ----------------------- |
+| Available | All supported platforms |
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                                                         | HIPAA        |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| Status  | Not eligible                                                                                                                                                                | Not eligible |
+| Details | Files retained until explicitly deleted or they reach their configured expiration. [Learn more](https://platform.claude.com/docs/id/build-with-claude/files#data-retention) | —            |
+
+Applicable endpoints:
+
+* `/v1/files`

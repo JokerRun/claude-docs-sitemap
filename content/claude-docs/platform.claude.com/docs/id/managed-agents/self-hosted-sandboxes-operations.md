@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: a6dc70a7e2e0bd9fa1293c35e2fa59be809072c14813fad2fdb635d6b41d5699
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: ebf1d4ed3abfb45aeb4965decb16e5c6f8043cb6b29c45489fe8cc045c0808d1
 ---
 
 ---
@@ -13,8 +13,28 @@ featureMetadata:
   topic:
     title: Managed Agents
     url: https://platform.claude.com/docs/en/managed-agents/overview
-  status: beta
   betaHeader: managed-agents-2026-04-01
+  zdr:
+    eligibility: not-eligible
+    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
 ---
 
 Panggilan pemantauan di halaman ini dijalankan dari alat pemantauan atau operasional Anda, diautentikasi dengan kunci API Claude Anda. Helper worker menangani loop klaim dan keep-alive, sehingga Anda tidak memanggil endpoint tersebut secara langsung.

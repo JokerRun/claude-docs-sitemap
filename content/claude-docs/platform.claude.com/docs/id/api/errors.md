@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: ff935c9ee19f6613cd0e85c30c1d34b86d813dd374f324f1971ea213fd871d9e
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: aa81051ff1b7fc1c4239626f6188c099db096b37cecc3ca4b413bbe196a0619a
 ---
 
 ---
@@ -49,16 +49,16 @@ Saat menerima respons [streaming](https://platform.claude.com/docs/id/build-with
 
 ## Batas ukuran permintaan
 
-API memberlakukan batas ukuran permintaan:
+Claude API pihak pertama menerapkan batas ukuran permintaan berikut. Untuk platform lain, lihat [ikhtisar API](https://platform.claude.com/docs/id/api/overview#request-size-limits).
 
 | Tipe endpoint                                                                       | Ukuran permintaan maksimum |
 | ----------------------------------------------------------------------------------- | -------------------------- |
-| Messages API                                                                        | 32 MB                      |
-| Token Counting API                                                                  | 32 MB                      |
+| Messages API                                                                        | 128 MB                     |
+| Token Counting API                                                                  | 128 MB                     |
 | [Batch API](https://platform.claude.com/docs/id/build-with-claude/batch-processing) | 256 MB                     |
 | [Files API](https://platform.claude.com/docs/id/build-with-claude/files)            | 500 MB                     |
 
-Jika Anda melebihi batas ini, Anda akan menerima error 413 `request_too_large`. Pada Claude API langsung, Cloudflare mengembalikan error ini sebelum permintaan mencapai server API.
+Jika Anda melebihi batas ini, Anda akan menerima error 413 `request_too_large`. Pada Claude API pihak pertama, Cloudflare mengembalikan error ini sebelum permintaan mencapai server API.
 
 ## Bentuk error
 

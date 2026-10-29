@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshoot-install
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 10ab4b6ff094c5f7397aa354f6f9e3aa49db77676330a7fca6e3c6660cce4bb3
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 4178497a5234fd06411624face6bad334991373314e71012e8fa89c7d7a1f8b4
 ---
 
 > ## Documentation Index
@@ -1176,16 +1176,19 @@ Check `~/.zshrc`, `~/.bashrc`, or `~/.profile` for `export ANTHROPIC_API_KEY=...
 
 ### OAuth login fails in WSL2, SSH, or containers
 
-When Claude Code runs in WSL2, on a remote machine over SSH, or inside a container, the browser usually opens on a different host and its redirect can't reach Claude Code's local callback server. After you sign in, the browser shows a login code instead of redirecting back automatically. Paste that code into the terminal at the `Paste code here if prompted` prompt to complete login.
+If no browser opens, or the browser signs you in and then shows a connection error for a `localhost` address, you can finish signing in without fixing either problem. Sign in through the separate login URL that the terminal shows above its paste prompt instead:
 
-If the browser doesn't open at all from WSL2, set the `BROWSER` environment variable to your Windows browser path:
+**1. Copy the login URL**
 
-```bash theme={null}
-export BROWSER="/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"
-claude
-```
+At the interactive login prompt, press `c` to copy the URL, or select it in the terminal. With `claude auth login`, copy the URL that it prints.
 
-Alternatively, press `c` at the interactive login prompt to copy the OAuth URL, or copy the URL that `claude auth login` prints, and open it in a browser on your local machine.
+**2. Sign in through that URL**
+
+Open the URL in a browser on your local machine and sign in. The browser then shows a code instead of returning to `localhost`.
+
+**3. Paste the code**
+
+Paste that code into the terminal at the prompt that begins `Paste code here`.
 
 If pasting the code into the interactive prompt does nothing, your terminal's paste binding likely isn't reaching the input field. Try your terminal's alternate paste shortcut, often right-click or Shift+Insert in Windows Terminal, or use `claude auth login` instead, which reads the pasted code from standard input:
 
@@ -1194,6 +1197,13 @@ claude auth login
 ```
 
 This fallback also applies on native Windows or any terminal where pasting into the interactive prompt fails.
+
+On WSL2, if no browser opened, you can also let Claude Code open your Windows browser next time by setting the `BROWSER` environment variable to that browser's path:
+
+```bash theme={null}
+export BROWSER="/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"
+claude
+```
 
 ### Not logged in or token expired
 

@@ -1,14 +1,45 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-editing
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: fffbe7165ba50ccb59fe65516b75461db4c04be1b4ae19fae99b66de72194a6c
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 1629f708c8bffc9956662fb3f5807d93e143a23b0baa503d3645de3e9f8a1bef
 ---
 
 ---
 title: Pengeditan konteks
 url: https://platform.claude.com/docs/id/build-with-claude/context-editing
 description: Kelola konteks percakapan secara otomatis seiring pertumbuhannya dengan pengeditan konteks.
+featureMetadata:
+  status: beta
+  betaHeader: context-management-2025-06-27
+  zdr:
+    eligibility: eligible
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Context edits (tool use clearing and thinking clearing) are applied in real time.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Amazon Bedrock: beta
+    Amazon Bedrock (InvokeModel): beta
+    Claude Models on Google Cloud (Google managed): beta
+    Microsoft Foundry: beta
 ---
 
 <Note>
@@ -2943,3 +2974,38 @@ Memahami kapan kompaksi dipicu membantu Anda menyetel ambang batas dan memverifi
     Kurangi biaya dan latensi dengan melakukan caching prefiks prompt, dan pelajari bagaimana pengeditan konteks berinteraksi dengan cache.
   </Card>
 </CardGroup>
+
+## Availability
+
+Context editing is in beta on every model and eligible for zero data retention.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+
+| Status | Cloud platforms                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+
+### Required beta headers
+
+[Beta headers overview](https://platform.claude.com/docs/id/api/beta-headers)
+
+Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
+
+* `context-management-2025-06-27`
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                                       | HIPAA        |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| Status  | Eligible (excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Not eligible |
+| Details | Context edits (tool use clearing and thinking clearing) are applied in real time.                                                                         | —            |
+
+Applicable endpoints:
+
+* `/v1/messages` with `context_management`

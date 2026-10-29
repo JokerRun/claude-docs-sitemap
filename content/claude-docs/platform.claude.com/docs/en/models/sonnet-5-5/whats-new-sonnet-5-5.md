@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/sonnet-5-5/whats-new-sonnet-5-5
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 1cbc26ee357ef39ac2f57845096268da80368bb44c01ad800ae76bddb40a9975
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: f61ee7c295ee3a60d02a436f7b6077463cb0c77c918db4f436c90bc9c7860da1
 ---
 
 ---
@@ -73,7 +73,7 @@ On the Claude API and Claude Models on Google Cloud (Google managed), Claude Son
 
 On Amazon Bedrock, Claude Sonnet 5.5 accepts the earlier `computer_20251124` tool.
 
-To move an existing integration on the Claude API or Claude Models on Google Cloud (Google managed), follow [Migrate from `computer_20251124`](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124), which shows the request before and after. Drop the beta header, replace the `tools` entry with `{"type": "computer_toolset_20260801"}`, and update your agent loop for member `tool_use` blocks, batch actions, and `toolset_name` on results. The toolset is available on both the Claude API and Claude Models on Google Cloud (Google managed). For other platforms, see the computer use tool’s [Compatibility](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#compatibility) section. Integrations that already use the toolset, and the [browser use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool), need no change.
+To move an existing integration on the Claude API or Claude Models on Google Cloud (Google managed), follow [Migrate from `computer_20251124`](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124), which shows the request before and after. Drop the beta header, replace the `tools` entry with `{"type": "computer_toolset_20260801"}`, and update your agent loop for member `tool_use` blocks, batch actions, and `toolset_name` on results. The toolset is available on both the Claude API and Claude Models on Google Cloud (Google managed). For other platforms, see the computer use tool’s [API support](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#availability-feature-support) section. Integrations that already use the toolset, and the [browser use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool), need no change.
 
 ### Some advisor tool pairings are not supported
 

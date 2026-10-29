@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-management
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: d789ccd00c3acb8fe265fcde526d39a405cfb7ee0ff7753d2b8ccaf8775df3a1
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: fcb66b886a4f0a5224a06b4f202235e25931e5526dc7a8b45a5e0134f17d445d
 ---
 
 ---
@@ -2210,7 +2210,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [Get role](https://platf
 
 `GET /v1/organizations/rbac_roles/{rbac_role_id}/permissions` mengembalikan izin peran. Setiap izin memasangkan `resource` (tempat izin berlaku: fitur produk organisasi, alat konektor, scope OAuth konektor, satu konektor, atau setiap konektor) dengan `action` (apa yang diberikan pada sumber daya tersebut). Baris untuk fitur yang tidak diaktifkan untuk organisasi Anda dihilangkan, sehingga satu halaman mungkin berisi lebih sedikit dari `limit` baris sementara `has_more` bernilai `true`. Memerlukan scope `read:members`.
 
-Dua nilai `action` memerlukan perhatian khusus: izin `organization` yang action-nya adalah `capability_access_all` (setiap fitur produk) atau `capability_access_all_ga` (setiap fitur produk yang stabil, yaitu setiap fitur yang tidak berlabel beta atau research preview) merupakan pemberian menyeluruh (yang tidak mencakup akses model maupun izin panel admin berawalan `permission_`) dan dicantumkan sebagai satu baris tersebut alih-alih diuraikan. Saat Anda menghitung apa yang diberikan suatu peran, perlakukan baris menyeluruh sebagai mencakup semua yang dijelaskan variannya, bukan hanya fitur yang disebutkan di baris lain.
+Dua nilai `action` memerlukan perhatian khusus: izin `organization` yang action-nya adalah `capability_access_all` (setiap fitur produk) atau `capability_access_all_ga` (setiap fitur produk yang stabil, yaitu setiap fitur yang tidak berlabel beta atau research preview) merupakan pemberian menyeluruh (yang tidak mencakup akses model maupun izin panel admin berawalan `permission_`, maupun `inference_hooks_inspection`, yang hanya dimiliki suatu peran melalui baris yang menyebutkannya) dan dicantumkan sebagai satu baris tersebut alih-alih diuraikan. Saat Anda menghitung apa yang diberikan suatu peran, perlakukan baris menyeluruh sebagai mencakup semua yang dijelaskan variannya, bukan hanya fitur yang disebutkan di baris lain.
 
 Untuk detail parameter lengkap dan skema respons, lihat [List role permissions](https://platform.claude.com/docs/id/api/beta/organization/rbac_roles/permissions/list) di referensi API.
 

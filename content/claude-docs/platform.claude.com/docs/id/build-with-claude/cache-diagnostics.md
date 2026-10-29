@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 52a5f4436a2d1a6851573ab4c0630d7219f6f8c9e12a8cf89ab55d7df932c583
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 978b93132117227d18ae22a0deba03819c5330302378e1e80eb7348dadf64f17
 ---
 
 ---
@@ -12,8 +12,26 @@ description: Diagnosis cache miss prompt yang tidak terduga dengan membandingkan
 featureMetadata:
   status: ga
   zdr:
-    eligibility: eligible
-    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+    eligibility: qualified
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Your prompts and Claude's outputs are not stored. A fingerprint of cryptographic hashes and token-count estimates is retained briefly to allow comparison against the next request.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: ga
 ---
@@ -1051,3 +1069,34 @@ Untuk kelayakan ZDR di seluruh fitur, lihat [API dan retensi data](https://platf
 
 * [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
 * [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting)
+
+## Availability
+
+Cache diagnostics are available on every model.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+
+| Status    | Cloud platforms |
+| --------- | --------------- |
+| Available | Claude API      |
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Not available
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                                                                                                                                                                      | HIPAA        |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| Status  | Eligible (qualified; excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                                                                                                                     | Not eligible |
+| Details | Your prompts and Claude’s outputs are not stored. A fingerprint of cryptographic hashes and token-count estimates is retained briefly to allow comparison against the next request. [Learn more](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics#data-retention) | —            |
+
+Applicable endpoints:
+
+* `/v1/messages` with `diagnostics`

@@ -1,14 +1,34 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fallback-credit
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: b274c5da09b9d7c8d1522042736e9664f32afe7fc8f3b8913880274ddbd43a86
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 729570e4288a6d76fccb05dc771ee99ce1e22f5b54951cd4d7fd714e0eeb9b8c
 ---
 
 ---
 title: Kredit fallback
 url: https://platform.claude.com/docs/id/build-with-claude/fallback-credit
 description: Hindari membayar biaya prompt-cache dua kali saat Anda mencoba ulang permintaan yang ditolak pada model lain.
+featureMetadata:
+  status: beta
+  betaHeader: fallback-credit-2026-07-01, server-side-fallback-2026-07-01, fallback-credit-2026-06-01
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Amazon Bedrock:
+      availability: beta
+      note: On Amazon Bedrock and Google Cloud the token is bound to your caller identity (there are no workspaces), and `allowed_fallback_models` is not exposed.
+    Claude Models on Google Cloud (Google managed):
+      availability: beta
+      note: On Amazon Bedrock and Google Cloud the token is bound to your caller identity (there are no workspaces), and `allowed_fallback_models` is not exposed.
+    Microsoft Foundry: beta
 ---
 
 Prompt cache bersifat per-model. Ketika sebuah model menolak permintaan dan Anda mencoba ulang pada model lain, prefiks percakapan yang sudah di-cache untuk model pertama harus ditulis ke dalam cache model baru dari awal. Penulisan cache (cache write) lebih mahal daripada pembacaan cache (cache read). “Fallback credit” (kredit fallback) menghilangkan biaya tambahan tersebut. Penolakan membawa token kredit, Anda mengirimkan kembali token tersebut pada percobaan ulang, dan percobaan ulang ditagih seolah-olah percakapan telah berada pada model baru sejak awal.
@@ -626,3 +646,36 @@ Bagian-bagian berikut membahas kasus tepi dan aturan penukaran lengkap. Sebagian
     Helper SDK yang menerapkan kredit fallback secara otomatis.
   </Card>
 </CardGroup>
+
+## Availability
+
+Fallback credit is in beta on select models.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+* Usage: Needed only when you write the retry yourself: send the `fallback-credit-2026-07-01` beta header and put the refusal’s `fallback_credit_token` on the retry.
+
+| Status           | Cloud platforms                                                                                                                                                                                                                                        | Models                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Beta             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                             | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) |
+| Beta<sup>1</sup> | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) |
+
+1. On Amazon Bedrock and Google Cloud the token is bound to your caller identity (there are no workspaces), and `allowed_fallback_models` is not exposed.
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Not available
+
+### Required beta headers
+
+[Beta headers overview](https://platform.claude.com/docs/id/api/beta-headers)
+
+Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
+
+| Header                                                                                            | Cloud platforms                                                                                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `fallback-credit-2026-07-01` or `server-side-fallback-2026-07-01` or `fallback-credit-2026-06-01` | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                             |
+| `fallback-credit-2026-07-01` or `fallback-credit-2026-06-01`                                      | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 8568d0bdc44af453da44148f36f60e5702b31332be38a1a600c14c799ef570aa
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: ab40fa658ea4828abe1faa9a0e202fd29819413db1adc45ea4884b9d95f47b3e
 ---
 
 ---
@@ -12,8 +12,8 @@ description: Get validated JSON results from agent workflows
 featureMetadata:
   status: ga
   zdr:
-    eligibility: eligible
-    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+    eligibility: qualified
+    note: "Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Your prompts and Claude's outputs are not stored. Only the JSON schema is cached, for up to 24 hours since last use. This also covers strict tool use (`strict: true` on tools), which uses the same grammar pipeline."
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -22,20 +22,22 @@ featureMetadata:
     - claude-mythos-preview
     - claude-opus-5-5
     - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
     - claude-opus-4-8
     - claude-opus-4-7
     - claude-opus-4-6
-    - claude-sonnet-5-5
-    - claude-sonnet-5
     - claude-sonnet-4-6
-    - claude-sonnet-4-5-20250929
     - claude-opus-4-5-20251101
-    - claude-haiku-5-5
-    - claude-haiku-4-5-20251001
+    - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: ga
     Claude Platform on AWS: ga
+    Claude Models on Google Cloud (Anthropic managed): ga
     Amazon Bedrock: ga
+    Amazon Bedrock (InvokeModel): ga
     Claude Models on Google Cloud (Google managed): ga
     Microsoft Foundry: ga
 ---
@@ -2792,14 +2794,6 @@ The `output_format` parameter has moved to `output_config.format`, and beta head
 
 The Python SDK (v1.0 and later) does not accept `output_format={...}` on `client.beta.messages.create()` or `count_tokens()` and raises a `TypeError`. Use `output_config` instead. See [Using a raw JSON schema](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#using-a-raw-json-schema) for the updated API shape.
 
-## Data retention
-
-Prompts and responses are processed with ZDR when using structured outputs. However, the JSON schema itself is temporarily cached for up to 24 hours since last use for optimization purposes. No prompt or response data is retained beyond the API response.
-
-Structured outputs are HIPAA eligible, but **PHI must not be included in JSON schema definitions**. The API compiles JSON schemas into grammars that are cached separately from message content, and these cached schemas do not receive the same PHI protections as prompts and responses. Do not include PHI in schema property names, `enum` values, `const` values, or `pattern` regular expressions. PHI should only appear in message content (prompts and responses), where it is protected under HIPAA safeguards.
-
-For ZDR and HIPAA eligibility across all features, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
-
 ## Feature compatibility
 
 **Works with:**
@@ -2817,6 +2811,41 @@ For ZDR and HIPAA eligibility across all features, see [API and data retention](
 <Tip>
   **Grammar scope:** Grammars apply only to Claude’s direct output, not to tool use calls, tool results, or thinking tags (when using [thinking](https://platform.claude.com/docs/en/build-with-claude/thinking)). Grammar state resets between sections, allowing Claude to think freely while still producing structured output in the final response.
 </Tip>
+
+## Availability
+
+Structured outputs are available on every model and eligible for HIPAA readiness.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages)
+
+* Availability: Available
+
+| Status    | Cloud platforms         | Models                                                            |
+| --------- | ----------------------- | ----------------------------------------------------------------- |
+| Available | All supported platforms | [All models](https://platform.claude.com/docs/en/models/overview) |
+
+#### [Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview)
+
+* Availability: Not available
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                                                                                                                                                                                                          | HIPAA                                                                                                                                                                                            |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Status  | Eligible (qualified; excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                                                                                                                                                         | Eligible                                                                                                                                                                                         |
+| Details | Your prompts and Claude’s outputs are not stored. Only the JSON schema is cached, for up to 24 hours since last use. This also covers strict tool use (`strict: true` on tools), which uses the same grammar pipeline. [Learn more](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#data-retention) | PHI must not be included in JSON schema definitions; see PHI handling guidelines. [Learn more](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#phi-handling-guidelines) |
+
+Applicable endpoints:
+
+* `/v1/messages`
+
+Prompts and responses are processed with ZDR when using structured outputs. However, the JSON schema itself is temporarily cached for up to 24 hours since last use for optimization purposes. No prompt or response data is retained beyond the API response.
+
+Structured outputs are HIPAA eligible, but **PHI must not be included in JSON schema definitions**. The API compiles JSON schemas into grammars that are cached separately from message content, and these cached schemas do not receive the same PHI protections as prompts and responses. Do not include PHI in schema property names, `enum` values, `const` values, or `pattern` regular expressions. PHI should only appear in message content (prompts and responses), where it is protected under HIPAA safeguards.
 
 ## Next steps
 

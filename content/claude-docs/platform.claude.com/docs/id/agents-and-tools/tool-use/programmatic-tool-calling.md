@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 12cdd29e81b870efa366fc8d945f15870b4df6fd8df6859da063b890f4bc8b79
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: b8769d8c41c8b3c9649390708a85b5cdc66fdd57de499a0336066596cb3ed8e5
 ---
 
 ---
@@ -11,29 +11,30 @@ url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-
 description: Biarkan Claude memanggil alat Anda dari kode di dalam kontainer eksekusi kode, sehingga mengurangi round trip model dan penggunaan token dalam alur kerja multi-alat.
 featureMetadata:
   status: ga
-  zdr: not-eligible
+  zdr:
+    eligibility: not-eligible
+    note: Built on code execution containers; data retained up to 30 days.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5
     - claude-mythos-5
+    - claude-mythos-preview
     - claude-opus-5-5
     - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
     - claude-opus-4-8
     - claude-opus-4-7
     - claude-opus-4-6
-    - claude-opus-4-5-20251101
-    - claude-sonnet-5-5
-    - claude-sonnet-5
     - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
-    - claude-haiku-5-5
   supportedPlatforms:
     Claude API: ga
     Claude Platform on AWS: ga
-    Microsoft Foundry:
-      availability: ga
-      note: Di [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), pemanggilan alat terprogram memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
+    Microsoft Foundry (hosted on Anthropic): ga
   details:
     - Pemanggilan alat terprogram memerlukan alat eksekusi kode dengan [versi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#tool-versions) `code_execution_20260120` atau yang lebih baru.
     - Claude Haiku 4.5 menerima versi alat `code_execution_20260120` dan yang lebih baru, tetapi tidak mendukung pemanggilan alat terprogram.
@@ -1579,3 +1580,34 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platfor
     Tentukan skema alat, tulis deskripsi yang efektif, dan kontrol kapan Claude memanggil alat Anda.
   </Card>
 </CardGroup>
+
+## Availability
+
+Programmatic tool calling is available on select models.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+
+| Status    | Cloud platforms                                                                                                                                                                                                                                  | Models                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Microsoft Foundry (hosted on Anthropic)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview), [Claude Opus 4.5](https://platform.claude.com/docs/id/models/opus-4-5/overview), [Claude Sonnet 4.5](https://platform.claude.com/docs/id/models/sonnet-4-5/overview) |
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Not available
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                                                                   | HIPAA        |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| Status  | Not eligible                                                                                                                                                                          | Not eligible |
+| Details | Built on code execution containers; data retained up to 30 days. [Learn more](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling#data-retention) | —            |
+
+Applicable endpoints:
+
+* `/v1/messages` with `code_execution` tool

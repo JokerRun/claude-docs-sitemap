@@ -1,15 +1,41 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/service-tiers
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: c24816a1fd558e08275e5b00de453b0eb878cb5197ffa27fcd033cc942bfe17d
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 9cc3e2fd52e986d0d44e073a9e00f4974049a089db27480693e14d760dab177f
 ---
 
 ---
 title: Tingkat layanan
 url: https://platform.claude.com/docs/id/api/service-tiers
 description: Berbagai tingkat layanan memungkinkan Anda menyeimbangkan ketersediaan, performa, dan biaya yang dapat diprediksi berdasarkan kebutuhan aplikasi Anda.
+featureMetadata:
+  status: ga
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: ga
 ---
+
+<Warning>
+  Service tiers are legacy.
+</Warning>
 
 <Warning>
   Komitmen kapasitas Priority Tier tidak lagi tersedia untuk dibeli. Organisasi yang memiliki komitmen yang sudah ada dapat terus menggunakan Priority Tier hingga tanggal berakhirnya kontrak mereka, dan halaman ini tetap tersedia sebagai referensi bagi mereka. Jika Anda memerlukan kapasitas yang terjamin, [hubungi tim penjualan](https://claude.com/contact-sales).
@@ -237,3 +263,22 @@ Priority Tier menargetkan uptime 99,5 persen dengan sumber daya komputasi yang d
 Priority Tier didukung pada semua model Claude yang tersedia kecuali Claude Fable 5.1, Claude Haiku 5.5, Claude Mythos 5.1, Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Sonnet 5.
 
 Lihat [Ikhtisar model](https://platform.claude.com/docs/id/models/overview) untuk detail lebih lanjut tentang model yang tersedia.
+
+## Availability
+
+Service tiers are available on every model.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+* Usage: Needs a Priority Tier commitment, which is no longer sold. With one, requests use Priority Tier by default; set `service_tier` to `"standard_only"` to use only standard capacity.
+
+| Status    | Cloud platforms |
+| --------- | --------------- |
+| Available | Claude API      |
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Not available

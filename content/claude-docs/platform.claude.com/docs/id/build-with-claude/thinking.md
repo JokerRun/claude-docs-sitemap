@@ -1,15 +1,51 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 8b2d79fa5fe7d85f5ad0dd588d15f3f465303e25919cb675b5eb6255287f0371
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 6c245edc3c03cd59060a5b9fbaad5ae89793a09e44b69ff4e05f95b0bfacadab
 ---
 
 ---
 title: Pemikiran
 url: https://platform.claude.com/docs/id/build-with-claude/thinking
 description: "Pahami cara kerja pemikiran Claude: mengaktifkannya, membaca output pemikiran, mengarahkan kedalaman pemikiran dengan effort, dan menggunakan pemikiran dengan alat, caching, dan streaming."
+featureMetadata:
+  status: ga
+  zdr:
+    eligibility: eligible
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: ga
+    Claude Models on Google Cloud (Anthropic managed): ga
+    Amazon Bedrock: ga
+    Amazon Bedrock (InvokeModel): ga
+    Claude Models on Google Cloud (Google managed): ga
+    Microsoft Foundry: ga
 ---
+
+**API support**: Usage differs by product.
+
+* **Messages API**: On by default. Turn it off with `thinking: {"type": "disabled"}`. Where it is off by default, set `thinking` to turn it on.
+* **Managed Agents**: Always on. Managed Agents sets the thinking configuration; the agent definition has no `thinking` field.
 
 <Note>
   Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
@@ -1253,3 +1289,39 @@ SDK mewajibkan streaming ketika `max_tokens` lebih besar dari 21.333, untuk meng
     Kendalikan berapa banyak token yang digunakan Claude saat merespons dengan parameter effort, dengan menyeimbangkan antara ketelitian respons dan efisiensi token.
   </Card>
 </CardGroup>
+
+## Availability
+
+Thinking is available on every model and eligible for zero data retention and HIPAA readiness.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: On by default
+* Usage: Turn it off with `thinking: {"type": "disabled"}`. Where it is off by default, set `thinking` to turn it on.
+
+| Status    | Cloud platforms         |
+| --------- | ----------------------- |
+| Available | All supported platforms |
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Always on
+* Usage: Managed Agents sets the thinking configuration; the agent definition has no `thinking` field.
+
+| Status    | Cloud platforms         |
+| --------- | ----------------------- |
+| Available | All supported platforms |
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item   | Zero data retention                                                                                                                                       | HIPAA    |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| Status | Eligible (excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Eligible |
+
+Applicable endpoints:
+
+* `/v1/messages` with `thinking`

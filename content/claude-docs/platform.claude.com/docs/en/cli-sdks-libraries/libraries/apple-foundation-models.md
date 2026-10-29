@@ -1,14 +1,36 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/apple-foundation-models
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 3582aacf3adf8ed49413bece227b2ea6ecdb6d1684b026e51d4fd77144c16c83
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: a0060b7bcf7a978f49b7182c3976bfc48230f08288dc6a8d34cc106fb99c6923
 ---
 
 ---
 title: Apple Foundation Models
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/apple-foundation-models
 description: Use Claude on Apple platforms through the Foundation Models framework with the Claude for Foundation Models Swift package.
+featureMetadata:
+  status: beta
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: beta
 ---
 
 [Claude for Foundation Models](https://github.com/anthropics/ClaudeForFoundationModels) is a Swift package that makes Claude available as a server-side language model in Apple’s [Foundation Models](https://developer.apple.com/documentation/foundationmodels) framework. The package conforms Claude to the framework’s `LanguageModel` protocol, so you drive it with the same `LanguageModelSession` API you use for Apple’s on-device model: `respond(to:)`, streaming, guided generation, and tool calling all work the same way.
@@ -270,3 +292,17 @@ The package surfaces the Messages API capabilities that the Foundation Models pr
 | [Claude API reference](https://platform.claude.com/docs/en/api/overview)                            | The underlying Messages API                                                                       |
 
 The package is licensed under Apache 2.0. Bug reports are welcome through GitHub issues. External pull requests are not being accepted during the beta period.
+
+## Availability
+
+Apple Foundation Models are in beta on every model.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages)
+
+* Availability: Available
+
+| Status | Cloud platforms |
+| ------ | --------------- |
+| Beta   | Claude API      |

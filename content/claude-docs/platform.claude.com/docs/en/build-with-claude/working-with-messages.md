@@ -1,14 +1,45 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/working-with-messages
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 5c968807fc980bae7efa5927fbdd2172fb30bfd16fda15efb9854067e877e6cb
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 6aa8512f6e598bd1753dc853bb42665f7bac7dd8b636976b667148951a7584da
 ---
 
 ---
 title: Using the Messages API
 url: https://platform.claude.com/docs/en/build-with-claude/working-with-messages
 description: Practical patterns and examples for using the Messages API effectively
+featureMetadata:
+  status: ga
+  zdr:
+    eligibility: eligible
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Standard API calls for generating Claude responses.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: ga
+    Claude Models on Google Cloud (Anthropic managed): ga
+    Amazon Bedrock: ga
+    Amazon Bedrock (InvokeModel): ga
+    Claude Models on Google Cloud (Google managed): ga
+    Microsoft Foundry: ga
 ---
 
 Anthropic offers two ways to build with Claude, each suited to different use cases:
@@ -19,10 +50,6 @@ Anthropic offers two ways to build with Claude, each suited to different use cas
 | **Best for**   | Custom agent loops and fine-grained control | Long-running tasks and asynchronous work                                  |
 
 This guide covers common patterns for working with the Messages API, including basic requests, multi-turn conversations, prefill techniques, and vision capabilities. For complete API specifications, see the [Messages API reference](https://platform.claude.com/docs/en/api/messages/create). For the managed agent harness instead, see the [Claude Managed Agents overview](https://platform.claude.com/docs/en/managed-agents/overview).
-
-<Note>
-  To learn how zero data retention (ZDR) applies to this feature, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
-</Note>
 
 ## Basic request and response
 
@@ -1062,3 +1089,24 @@ Claude can read both text and images in requests. You can supply images using th
     Set an advisory token budget across a full agentic loop with `output_config.task_budget`.
   </Card>
 </CardGroup>
+
+## Availability
+
+The Messages API is available on every model and eligible for zero data retention and HIPAA readiness.
+
+### API support
+
+Available
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                                       | HIPAA    |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| Status  | Eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Eligible |
+| Details | Standard API calls for generating Claude responses.                                                                                                       | —        |
+
+Applicable endpoints:
+
+* `/v1/messages`

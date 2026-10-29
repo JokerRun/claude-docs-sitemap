@@ -1,19 +1,50 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: ef523fad49b8572250da5c5a39f4568b3cb2a593d48a83133dbbb326844b6e8f
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: c024d320202b7642c7293e0b064480469fb52a76a144361e6b2a85c8d7973254
 ---
 
 ---
 title: Web fetch tool
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
 description: Fetch and read content from specific URLs to augment Claude's context with live web content.
+featureMetadata:
+  status: ga
+  zdr:
+    eligibility: eligible
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Fetched web content returned in the API response. Dynamic filtering for web fetch is not eligible for ZDR or HIPAA. Website publishers might retain request data (such as fetched URLs and request metadata) according to their own policies.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: ga
+    Claude Models on Google Cloud (Anthropic managed): ga
+    Microsoft Foundry:
+      availability: ga
+      note: "Deployments hosted on Azure support only `web_fetch_20250910`: no dynamic filtering, response inclusion or cache bypass."
 ---
 
-<Note>
-  To learn how zero data retention (ZDR) applies to this feature, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
-</Note>
+**API support**: Usage differs by product.
+
+* **Messages API**: Add a `web_fetch` tool to the request’s `tools`.
+* **Managed Agents**: On by default in the agent toolset, without `max_uses`, `citations` or `cache_control`.
 
 The web fetch tool allows Claude to retrieve full content from specified webpages and PDF documents.
 
@@ -1041,3 +1072,43 @@ Example token usage for typical content:
     Directory of Anthropic-provided tools and reference for optional tool definition properties.
   </Card>
 </CardGroup>
+
+## Availability
+
+Web fetch tool is available on every model and eligible for zero data retention.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages)
+
+* Availability: Available
+* Usage: Add a `web_fetch` tool to the request’s `tools`. Settings such as `max_uses`, domain lists, `citations` and `max_content_tokens` go on that tool.
+
+| Status                | Cloud platforms                                                                                                                                                                                                                                                                                                                                                                                              |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Available             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry (hosted on Anthropic)](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry) |
+| Available<sup>1</sup> | [Microsoft Foundry (hosted on Azure)](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry)                                                                                                                                                                                                                                                                                     |
+
+1. Deployments hosted on Azure support only `web_fetch_20250910`: no dynamic filtering, response inclusion or cache bypass.
+
+#### [Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview)
+
+* Availability: Available
+* Usage: Part of the agent toolset, and on by default once the toolset is added. Domain lists (with no paths) and `max_content_tokens` go on the toolset’s `web_fetch` entry; `max_uses`, `citations` and `cache_control` are not available.
+
+| Status    | Cloud platforms                                                                                                    |
+| --------- | ------------------------------------------------------------------------------------------------------------------ |
+| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) |
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                                                                                                                           | HIPAA        |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| Status  | Eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                                                                                     | Not eligible |
+| Details | Fetched web content returned in the API response. Dynamic filtering for web fetch is not eligible for ZDR or HIPAA. Website publishers might retain request data (such as fetched URLs and request metadata) according to their own policies. | —            |
+
+Applicable endpoints:
+
+* `/v1/messages` with `web_fetch` tool

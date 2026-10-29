@@ -1,19 +1,51 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/thinking
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 999a168615c77da125db10a4140da9501ba92b5691af410aa783c57d00581117
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 5fd46d0b2b0385ccad039168e5a6f9da3a38c84db71d2b49cd788775c5d6a552
 ---
 
 ---
 title: Thinking
 url: https://platform.claude.com/docs/en/build-with-claude/thinking
 description: "Understand how Claude's thinking works: turn it on, read thinking output, steer thinking depth with effort, and use thinking with tools, caching, and streaming."
+featureMetadata:
+  status: ga
+  zdr:
+    eligibility: eligible
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: ga
+    Claude Models on Google Cloud (Anthropic managed): ga
+    Amazon Bedrock: ga
+    Amazon Bedrock (InvokeModel): ga
+    Claude Models on Google Cloud (Google managed): ga
+    Microsoft Foundry: ga
 ---
 
-<Note>
-  To learn how zero data retention (ZDR) applies to this feature, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention).
-</Note>
+**API support**: Usage differs by product.
+
+* **Messages API**: On by default. Turn it off with `thinking: {"type": "disabled"}`. Where it is off by default, set `thinking` to turn it on.
+* **Managed Agents**: Always on. Managed Agents sets the thinking configuration; the agent definition has no `thinking` field.
 
 A model that answers in a single pass has to get everything right on the first try: no scratch work, no checking, no changing approach halfway through. For a proof, a tricky bug, or a long agentic task, the first approach is often not the best one.
 
@@ -1255,3 +1287,39 @@ The SDK requires streaming when `max_tokens` is greater than 21,333, to avoid HT
     Control how many tokens Claude uses when responding with the effort parameter, trading off between response thoroughness and token efficiency.
   </Card>
 </CardGroup>
+
+## Availability
+
+Thinking is available on every model and eligible for zero data retention and HIPAA readiness.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages)
+
+* Availability: On by default
+* Usage: Turn it off with `thinking: {"type": "disabled"}`. Where it is off by default, set `thinking` to turn it on.
+
+| Status    | Cloud platforms         |
+| --------- | ----------------------- |
+| Available | All supported platforms |
+
+#### [Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview)
+
+* Availability: Always on
+* Usage: Managed Agents sets the thinking configuration; the agent definition has no `thinking` field.
+
+| Status    | Cloud platforms         |
+| --------- | ----------------------- |
+| Available | All supported platforms |
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item   | Zero data retention                                                                                                                                       | HIPAA    |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| Status | Eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Eligible |
+
+Applicable endpoints:
+
+* `/v1/messages` with `thinking`

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-threads
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 276cb577c61529ed8d272d7881aa3be0f547edc279f73c4a46819bcb0f161450
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: b4384f402022193aec4252ab51f0a2d24d475a79bdf694fc4dbc197486ee5cd0
 ---
 
 ---
@@ -13,8 +13,28 @@ featureMetadata:
   topic:
     title: Managed Agents
     url: https://platform.claude.com/docs/en/managed-agents/overview
-  status: beta
   betaHeader: managed-agents-2026-04-01
+  zdr:
+    eligibility: not-eligible
+    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
 ---
 
 Dalam [sesi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), setiap agen bekerja di **session thread** (thread sesi) miliknya sendiri. Halaman ini membahas cara mencantumkan, menginterupsi, dan mengarsipkan thread, event yang dikirimkannya, serta cara kerja izin alat di seluruh thread tersebut. Sebuah [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs) juga membuat thread sesi.
@@ -787,3 +807,40 @@ Contoh berikut ditempatkan di dalam loop event dari [handler konfirmasi alat](ht
 </CodeGroup>
 
 Pola sebelumnya menjawab panggilan yang dicantumkan oleh event idle. Pada aliran utama, event `session.thread_status_idle` milik subagen dapat tiba sebelum event `agent.tool_use` atau `agent.mcp_tool_use` yang dicantumkan oleh `stop_reason.event_ids`-nya. `user.tool_confirmation` untuk panggilan yang event-nya belum tiba dapat mengembalikan 400. Untuk menghindarinya, jawab setiap panggilan yang [`evaluated_permission` (java, php: `evaluatedPermission`; csharp, go: `EvaluatedPermission`)](https://platform.claude.com/docs/id/managed-agents/permission-policies#see-how-each-call-was-evaluated)-nya bernilai `ask` ketika event-nya sendiri tiba di aliran utama.
+
+## Availability
+
+Session threads are available on every model.
+
+### API support
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Always on
+
+| Status    | Cloud platforms         |
+| --------- | ----------------------- |
+| Available | All supported platforms |
+
+### Required beta headers
+
+[Beta headers overview](https://platform.claude.com/docs/id/api/beta-headers)
+
+Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
+
+* `managed-agents-2026-04-01`
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                                      | HIPAA                                                                        |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Status  | Not eligible                                                                                                                                             | Not eligible                                                                 |
+| Details | Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes. | Applies to all Managed Agents sub-features, including Self-hosted sandboxes. |
+
+Applicable endpoints:
+
+* `/v1/agents`
+* `/v1/sessions`
+* `/v1/environments`

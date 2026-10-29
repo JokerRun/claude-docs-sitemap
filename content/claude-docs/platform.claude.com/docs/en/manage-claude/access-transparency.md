@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/access-transparency
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 8574fe2d265b55a24a92b9b4099e901210f32bc45fb36ce587b9fbc8a51da4f8
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 47f2f38fd0e3accd4987239fe2a11a950410ad807f580f008535ae37a996e6ef
 ---
 
 ---
@@ -101,6 +101,7 @@ Each `anthropic_access` activity carries the standard Activity fields plus the f
 | `workspace_id`                | string or null  | The workspace the content belongs to                                                                                                                                                                                                                                                                                        |
 | `workspace_uuid`              | string          | The workspace the content belongs to. UUID format. Present when the access was scoped to a workspace, and absent otherwise. Not one of the transparency log’s [leaf fields](https://platform.claude.com/docs/en/manage-claude/access-transparency-log#how-an-event-becomes-a-leaf), so an inclusion proof does not cover it |
 | `transparency_log_leaf_index` | integer         | The event’s zero-based position in your organization’s transparency log (beta). Present whenever the event has a leaf, and absent otherwise. See [Verify Access Transparency events with the transparency log](https://platform.claude.com/docs/en/manage-claude/access-transparency-log)                                   |
+| `user_profile_id`             | string          | The [user profile](https://platform.claude.com/docs/en/manage-claude/user-profiles) the accessed or preserved content was created under. Tagged ID format (`uprof_...`). Present only when the content was created under a user profile                                                                                     |
 
 Example JSON message:
 

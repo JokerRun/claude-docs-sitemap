@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: e1d314f0d2952a916f81c9ea350ca341054ce19abe6d53f89c025d939b4312ed
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: f50d1973fcfc8a83c45550022d5ff0a087ec74e662f0a95cd95712be81cbc4fa
 ---
 
 ---
@@ -14,15 +14,31 @@ featureMetadata:
     title: OpenTelemetry
     url: https://platform.claude.com/docs/en/manage-claude/opentelemetry
   status: beta
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: beta
     Claude Platform on AWS: beta
     Amazon Bedrock: beta
+    Amazon Bedrock (InvokeModel): beta
     Claude Models on Google Cloud (Google managed): beta
     Microsoft Foundry: beta
-  rows:
-    - label: Berfungsi dengan
-      value: Messages API, Claude Managed Agents
 ---
 
 Dengan OpenTelemetry, Claude SDK dapat memancarkan “span” (rentang) untuk setiap permintaan yang dikirimnya dan setiap penggunaan alat yang dijalankan oleh [tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner). Anda dapat melihat span ini di platform observabilitas Anda, bersarang di dalam trace Anda sendiri.
@@ -657,3 +673,26 @@ Saat SDK memanggil [alat MCP](https://platform.claude.com/docs/id/agents-and-too
 | Permintaan dari SDK tidak memiliki header `traceparent`                                                         | Daftarkan propagator W3C trace context dengan OpenTelemetry. SDK menulis header dengan propagator aplikasi Anda.                                                                                                                                                                                                                      |
 | Span SDK dari sebuah stream tidak berakhir atau tidak berisi respons                                            | Lihat [Penelusuran stream](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk#trace-a-stream).                                                                                                                                                                                                                       |
 | Setiap permintaan muncul dua kali                                                                               | Span SDK dan span API dari sebuah permintaan memiliki nama yang sama. Gunakan span kind atau `service.name` untuk membedakannya. Jika pustaka lain juga melacak SDK, nonaktifkan salah satu dari keduanya.                                                                                                                            |
+
+## Availability
+
+SDK tracing is in beta on every model.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+
+| Status | Cloud platforms                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Available
+* Usage: The SDK traces the requests that your code sends, such as the events you send to a session; spans for the agent’s model requests and tool calls come from API tracing. In a self-hosted sandbox, the SDK’s environment worker also traces each tool it runs.
+
+| Status | Cloud platforms                                                                                                    |
+| ------ | ------------------------------------------------------------------------------------------------------------------ |
+| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |

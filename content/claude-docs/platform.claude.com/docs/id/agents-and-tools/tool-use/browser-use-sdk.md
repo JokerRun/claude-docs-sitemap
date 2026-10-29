@@ -1,14 +1,31 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 8ed9ce441ec920bd103e28a13712f08a6b607eea5996ec0e6ff5cef028c1d6c0
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: b5ff94c39edb03b0a3c03cec5ec05335fa2eb0d0c389381f8aaa72929280cb5d
 ---
 
 ---
 title: Penggunaan browser dan komputer dengan toolset SDK
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk
 description: Jalankan alat penggunaan browser atau alat penggunaan komputer dari SDK Python atau TypeScript. SDK menjalankan loop dan pemeriksaan yang Anda konfigurasikan, dan Anda menyediakan browser atau desktopnya.
+featureMetadata:
+  status: beta
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-opus-4-8
+  supportedPlatforms:
+    Claude API: beta
+    Claude Models on Google Cloud (Google managed): beta
 ---
 
 Dengan toolset browser dan komputer di SDK Python dan TypeScript, Anda dapat membangun agen yang bekerja di browser web atau di desktop. Agen tersebut dapat menggunakan aplikasi yang tidak memiliki antarmuka terprogram. Melalui [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool), Claude bernavigasi, membaca, dan berinteraksi dengan halaman web. Melalui [alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), Claude menerima tangkapan layar desktop dan menggunakan mouse serta keyboard.
@@ -1365,3 +1382,21 @@ Anda tidak dapat mengubah opsi setelah konstruksi. [Panduan browser toolset Pyth
     Guardrail untuk aplikasi apa pun yang membaca konten tidak tepercaya.
   </Card>
 </CardGroup>
+
+## Availability
+
+Browser and computer use SDK toolsets are in beta on select models.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+
+| Status | Cloud platforms                                                                                                                                                  | Models                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Beta   | Claude API, [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Not available

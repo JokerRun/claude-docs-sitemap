@@ -1,15 +1,40 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: fc60b90a6cb0a327c9cbdfebb4664e91144853b25b65c8a5d49fc7bd2cd9e900
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: d1331a77128529c2219b436b909f3b9844f66067c915cb2c0f8cd2f7195ed7d1
 ---
 
 ---
 title: Dreams
 url: https://platform.claude.com/docs/id/managed-agents/dreams
 description: Biarkan Claude meninjau sesi-sesi sebelumnya untuk mengkurasi memori agen dan memunculkan wawasan baru.
+featureMetadata:
+  status: research-preview
+  betaHeader: managed-agents-2026-04-01, dreaming-2026-04-21
+  zdr:
+    eligibility: not-eligible
+    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+  supportedModels:
+    - claude-fable-5-1
+    - claude-fable-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-sonnet-4-6
+  supportedPlatforms:
+    Claude API: research-preview
 ---
+
+<Note>
+  Dreams are in research preview.
+
+  * [Request access](https://claude.com/form/claude-managed-agents)
+</Note>
 
 <Tip>
   Dreaming adalah fitur pratinjau riset. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
@@ -642,3 +667,41 @@ Dreams ditagih dengan tarif token API standar untuk model yang Anda pilih; `usag
 | Model yang didukung                                 | `claude-opus-5-5`, `claude-fable-5-1`, `claude-opus-5`, `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5-5`, `claude-sonnet-5`, `claude-sonnet-4-6` |
 
 Batas laju default berlaku untuk pembuatan dream selama fitur ini dalam pratinjau riset. [Hubungi dukungan](https://support.claude.com) jika Anda memerlukan batas yang lebih tinggi.
+
+## Availability
+
+Dreams are in research preview on select models.
+
+### API support
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Available
+
+| Status           | Cloud platforms | Models                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ---------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Research preview | Claude API      | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview) |
+
+### Required beta headers
+
+[Beta headers overview](https://platform.claude.com/docs/id/api/beta-headers)
+
+Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
+
+* `managed-agents-2026-04-01`
+* `dreaming-2026-04-21`
+
+### Data handling
+
+[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+
+| Item    | Zero data retention                                                                                                                                      | HIPAA                                                                        |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Status  | Not eligible                                                                                                                                             | Not eligible                                                                 |
+| Details | Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes. | Applies to all Managed Agents sub-features, including Self-hosted sandboxes. |
+
+Applicable endpoints:
+
+* `/v1/agents`
+* `/v1/sessions`
+* `/v1/environments`

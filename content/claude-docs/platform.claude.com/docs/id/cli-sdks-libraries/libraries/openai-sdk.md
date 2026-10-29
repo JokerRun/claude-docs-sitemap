@@ -1,14 +1,36 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 4b26cdd67e681196e47429631858133392f4e411ad1bb8b8300f39139b42ea55
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 58d079917e5db0f3c4f86a3d47f5ce38ae619421d718b77f57c91e46dd274630
 ---
 
 ---
 title: Kompatibilitas OpenAI SDK
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk
 description: Anthropic menyediakan lapisan kompatibilitas yang memungkinkan Anda menggunakan OpenAI SDK untuk menguji Claude API. Dengan beberapa perubahan kode, Anda dapat mengevaluasi kemampuan model Anthropic.
+featureMetadata:
+  status: ga
+  supportedModels:
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: ga
 ---
 
 <Note>
@@ -481,3 +503,17 @@ Meskipun OpenAI SDK secara otomatis mengelola header, berikut adalah daftar leng
 | `openai-version`                 | Selalu `2020-10-01` |
 | `authorization`                  | Didukung penuh      |
 | `openai-processing-ms`           | Selalu kosong       |
+
+## Availability
+
+OpenAI SDK compatibility is available on every model.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+
+| Status    | Cloud platforms |
+| --------- | --------------- |
+| Available | Claude API      |

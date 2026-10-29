@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 4977aa56160f8e04d636fea7806c42b3dc34981b79b0d66fa0d7c7eaaf398470
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: f12d5b2c5923e25f1569bfcaa2c3c598902a5912e9f52471c89b4416213b117f
 ---
 
 > ## Documentation Index
@@ -1280,6 +1280,8 @@ class PermissionResultAllow:
 | `behavior` | `Literal["allow"]` | `"allow"` | Must be "allow" |
 | `updated_input` | `dict[str, Any] \| None` | `None` | Modified input to use instead of original |
 | `updated_permissions` | `list[PermissionUpdate] \| None` | `None` | Permission updates to apply |
+
+If you return `PermissionResultAllow` with more than 4,096 items in `updated_permissions`, Claude Code treats the result as invalid and denies the tool call. Each [`PermissionUpdate`](#permissionupdate) counts as one item, and so does each entry in its `rules` or `directories` list. The denial message ends with `updatedPermissions may hold at most 4096 updates, rules and directories in all.` To avoid the denial, return 4,096 items or fewer.
 
 ### `PermissionResultDeny`
 

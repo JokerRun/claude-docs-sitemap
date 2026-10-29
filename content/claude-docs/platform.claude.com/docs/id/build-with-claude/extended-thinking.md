@@ -1,15 +1,40 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 6ba01c884bbba0f84affc07399ebdd52e1274973b2e2fef7d0d166553adb1076
+fetched_at: 2026-10-29T02:15:48.406163Z
+sha256: 4a5e8f3cddc12ade9c7f9c7e209986000fa006d4f57b7b64141aa4634e971a14
 ---
 
 ---
 title: Pemikiran diperpanjang
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
 description: Konfigurasikan pemikiran diperpanjang manual dengan anggaran budget_tokens tetap pada model Claude yang mendukungnya, lalu bermigrasi ke pemikiran adaptif.
+featureMetadata:
+  supportedModels:
+    - claude-mythos-preview
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: ga
+    Claude Platform on AWS: ga
+    Claude Models on Google Cloud (Anthropic managed): ga
+    Amazon Bedrock: ga
+    Amazon Bedrock (InvokeModel): ga
+    Claude Models on Google Cloud (Google managed): ga
+    Microsoft Foundry: ga
 ---
+
+<Warning>
+  Extended thinking is a legacy feature.
+
+  Extended thinking (`thinking.type: "enabled"` with `budget_tokens`) is deprecated. Claude 4.7 and later models do not support it and reject requests that use it, returning a 400 error.
+
+  * Recommended alternative: [Adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost)
+  * Migration guide: [Migrating to adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#migrating-to-adaptive-thinking)
+</Warning>
 
 <Note>
   Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
@@ -412,3 +437,23 @@ Untuk panduan lengkap, lihat [pemikiran adaptif](https://platform.claude.com/doc
     Pertahankan blok pemikiran dan kelola pemikiran di seluruh pemanggilan alat dan giliran.
   </Card>
 </CardGroup>
+
+## Availability
+
+Extended thinking is available or deprecated on select models.
+
+### API support
+
+#### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
+
+* Availability: Available
+
+| Status     | Models                                                                                                                                                                                                                                                                         |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Available  | Claude Mythos Preview, [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview), [Claude Opus 4.5](https://platform.claude.com/docs/id/models/opus-4-5/overview), [Claude Sonnet 4.5](https://platform.claude.com/docs/id/models/sonnet-4-5/overview) |
+| Deprecated | [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview)                                                                                                           |
+
+#### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+
+* Availability: Not available
+* Usage: On Claude 4.5 models, Managed Agents turns on manual thinking itself with a fixed budget you can’t change. On newer models it uses adaptive thinking. Use [Effort](https://platform.claude.com/docs/id/build-with-claude/effort) instead.
