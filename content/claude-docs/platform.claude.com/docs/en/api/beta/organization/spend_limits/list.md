@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: d00d521d5146dc6345e026b7813b572f627df9cc8e0d50968d2527cc916c30ea
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: fcdeedf2a4a79f0192f58d0d3f17c549f6d7253c2ff2fc7c50cfb91b6e51683f
 ---
 
 ---
@@ -176,6 +176,10 @@ come in a fixed order that is not creation order.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ## Returns
 

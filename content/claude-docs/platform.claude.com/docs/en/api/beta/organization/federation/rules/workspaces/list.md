@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 367fbc6d712f8ba3133341af8fe711dfe291396dadb567d3613ae8ec6bc74824
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: b9c91c1173841bc668956dc5e7f17e148d06cd291c40595498bd51ff1382ba18
 ---
 
 ---
@@ -159,6 +159,10 @@ rules with `applies_to_all_workspaces` or a legacy single
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ## Returns
 

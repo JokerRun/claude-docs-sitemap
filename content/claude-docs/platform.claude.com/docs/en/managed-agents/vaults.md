@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/vaults
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: d05c0aa2c37bc634799eb9eaba32018e8bb02d74701f67efc3539de5f8c4cbb4
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 15cf3dac457b5ff2e5b6b4195737d1d0b8e6a974aa2ad18f1b57b61b13c005b4
 ---
 
 ---
@@ -712,7 +712,7 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
 
     Request payloads are often assembled from content the agent is working with, so the request body is the broader exposure surface. Most services read an API key from a request header, so enabling only `header` (csharp, go: `Header`) is the narrower configuration. It scopes substitution to request header values for that credential.
 
-    The credential’s `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) controls which parts of an outbound request the secret is substituted into. It is an optional object, a sibling of `networking` (csharp, go: `Networking`), with two Boolean fields: `header` (csharp, go: `Header`) (request headers) and `body` (csharp, go: `Body`) (request body). `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) is independent of `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) in `networking` (csharp, go: `Networking`): `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) scopes which hosts the secret is substituted for, and `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) scopes which parts of the request it is substituted into.
+    The credential’s `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) controls which parts of an outbound request the secret is substituted into. It is an optional object, a sibling of `networking` (csharp, go: `Networking`), with two boolean fields: `header` (csharp, go: `Header`) (request headers) and `body` (csharp, go: `Body`) (request body). `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) is independent of `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) in `networking` (csharp, go: `Networking`): `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) scopes which hosts the secret is substituted for, and `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) scopes which parts of the request it is substituted into.
 
     `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) behaves differently on create and on update:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 38b7bda6a9a31696b86587bb55bd5fd20a0f4057f1ab8e9c3675bc2fff64135c
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 63aca5efda284f641b62850d2c34f7b866f03e3733e2ed99b9705e2347f6b22a
 ---
 
 ---
@@ -143,6 +143,10 @@ Retrieve a Credential
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

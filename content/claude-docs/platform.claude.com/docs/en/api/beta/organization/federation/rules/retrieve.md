@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/retrieve
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 47302ac2b6c4295905a397317937c29662d7c83f10e398d099f1b2b30b2b862c
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: e95cddf84d4acf8c2aa8986165ae268abbdde0c36ea0c1b9582f8031ace9bd72
 ---
 
 ---
@@ -141,6 +141,10 @@ Retrieve a federation rule by its ID (`fdrl_...`).
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ## Returns
 

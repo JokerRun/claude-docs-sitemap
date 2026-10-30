@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 541ca92c394ba3d50b86e9bf457dce453c7bf5e5d59a3dc1f21728ececbfe26d
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 648f0e591e2655e99dd215e24fc40926bafba42f47f13bc4de62b3148c07ac21
 ---
 
 ---
@@ -166,6 +166,10 @@ archived tunnels are excluded unless `include_archived` is set.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ## Returns
 

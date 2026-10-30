@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: dec3e852dafeb345af83e76f152d9bc0c4418b7c3ac900b726f5a571ee30b012
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 744582f9cf957b735eb9956c9b47ed6791384cac51316ec550d7e4c406358be4
 ---
 
 ---
@@ -74,7 +74,7 @@ curl --fail-with-body -sS -G \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   -H "anthropic-version: 2023-06-01" \
   --data-urlencode "limit=5000" \
-  --data-urlencode "before_id=activity_01XyDMpzjS89pFZXqSFUBDr6"
+  --data-urlencode "before_id=activity_01DeFgHjKmNpQrStUvWxYzAb"
 ```
 
 Lakukan paginasi hingga `has_more` bernilai `false`, lalu simpan `first_id` dari respons terakhir dan teruskan tanpa diubah sebagai `before_id` pada eksekusi berikutnya untuk mengambil aktivitas yang lebih baru dari cursor yang disimpan. Untuk berjalan ke arah sebaliknya untuk backfill, simpan `last_id` dan teruskan sebagai `after_id`. Untuk referensi lengkap cursor versus page token dan semantik retry, lihat [Paginasi hasil](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#paginate-results).

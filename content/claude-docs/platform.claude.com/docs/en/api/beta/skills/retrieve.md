@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/retrieve
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: d08fa16eca763c3c927698f3e90f91a0611d49f489b5f864c4021a5bba11f642
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 27f8a98b44597700ec43f7be39c30d3fe9a27738925b3815f1c7558066838f2c
 ---
 
 ---
@@ -141,6 +141,10 @@ Get Skill
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

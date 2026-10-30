@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: c42a5b1b35f7b9523cd12f97cd61b9e00b20c5eb87ff46e9474363cb8d6e369a
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 98ba3a10338db1805f720c3cd32a15b02a2839554d22d19ac44d702fda54a5d7
 ---
 
 ---
@@ -18,6 +18,15 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
   Untuk pembaruan Claude Code, lihat [CHANGELOG.md lengkap](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) di repositori `claude-code`.
 </Tip>
+
+### 29 Oktober 2026
+
+* Kami telah meluncurkan [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) dalam versi beta dengan header beta `analytics-usage-cost-2026-08-24`. Endpoint `/v1/organizations/analytics/usage` dan `/v1/organizations/analytics/cost` miliknya melaporkan penggunaan token dan biaya untuk organisasi Claude Console dan Claude Enterprise. Anda dapat memfilter dan mengelompokkan hasil berdasarkan dimensi seperti model, workspace, kunci API, serta pengguna atau akun layanan di balik setiap permintaan.
+* [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) kini menjadi API lama (legacy), begitu pula endpoint `usage_report`, `cost_report`, `user_usage_report`, dan `user_cost_report` dari [Claude Enterprise Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api). Semuanya tetap didukung. Untuk memindahkan integrasi yang sudah ada, lihat [Migrasi dari Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api#migrate-from-usage-cost-api) atau [Migrasi dari laporan penggunaan dan biaya Claude Enterprise](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api#migrate-from-enterprise-analytics-reports).
+
+### 28 Oktober 2026
+
+* Kami telah menaikkan [ukuran permintaan maksimum](https://platform.claude.com/docs/id/api/overview#request-size-limits) untuk Messages API dan Token Counting API dari 32 MB menjadi 128 MB di Claude API pihak pertama.
 
 ### 23 Oktober 2026
 

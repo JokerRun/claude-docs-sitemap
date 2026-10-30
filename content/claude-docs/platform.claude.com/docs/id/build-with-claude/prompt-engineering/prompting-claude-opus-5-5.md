@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 39b7591f51a9f43440d4720c65a3f679d3ab6da0c5053186ade16d2b15e12857
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 24291927945933aa6d35080ba25a51fcdbc486336821d07767adbf67b2c1d6aa
 ---
 
 ---
@@ -54,7 +54,7 @@ Mengubah nilai `effort` tingkat atas di antara permintaan akan membatalkan cache
 
 ## Prompt yang ditulis untuk thinking yang dinonaktifkan
 
-Claude Opus 5 menerima `thinking: {"type": "disabled"}` pada effort `high` atau lebih rendah; Claude Opus 5.5 tidak, dan [panduan migrasi](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5) membahas perubahan permintaannya. Jika integrasi Claude Opus 5 Anda berjalan dengan thinking dinonaktifkan, ada empat perubahan yang menyertainya:
+Claude Opus 5 menerima `thinking: {"type": "disabled"}` pada effort `high` atau lebih rendah. Claude Opus 5.5 mengembalikan error 400 untuknya (lihat [Mengonfigurasi thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#configuring-thinking)). Jika integrasi Claude Opus 5 Anda berjalan dengan thinking dinonaktifkan, ada empat perubahan yang menyertainya:
 
 * **Mulai dari effort `low` dan ukur.** Pada `low`, model menjaga thinking-nya tetap singkat. Seberapa sering model melewatkan thinking sama sekali bergantung pada prompt Anda, jadi ukur latensi dan kualitas pada lalu lintas Anda sendiri dan pindah ke `medium` jika kualitas menurun. Jika waktu hingga token pertama masih penting setelah itu, baris prompt sistem seperti “Answer directly without deliberating.” dapat mengurangi thinking lebih lanjut; ukur kualitas saat Anda menambahkannya, karena thinking yang lebih sedikit dapat menurunkannya.
 * **Hapus instruksi yang menggantikan thinking.** Jika prompt Anda meminta model menulis penalarannya dalam respons sebagai pengganti thinking, hapus instruksi tersebut. Baca penalaran dari blok [thinking yang diringkas](https://platform.claude.com/docs/id/build-with-claude/thinking#summarized-thinking) sebagai gantinya (`display: "summarized"`). Prompt yang mendorong model untuk mereproduksi penalarannya dalam teks respons mungkin ditolak dengan [kategori penolakan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) `reasoning_extraction`.
@@ -89,13 +89,13 @@ Claude Opus 5.5 menjalankan classifier keamanan, termasuk untuk biologi, keamana
 * **Keamanan siber:** Menemukan kerentanan dalam kode sumber diizinkan. Aktivitas keamanan siber dual-use berisiko tinggi tidak diizinkan. Jika classifier keamanan siber memblokir pekerjaan keamanan yang sah dari organisasi Anda, ajukan ke [Cyber Verification Program](https://support.claude.com/en/articles/14604842).
 * **Ekstraksi penalaran:** Permintaan yang mendorong model untuk mereproduksi penalaran internalnya dalam teks respons mungkin ditolak dengan kategori `reasoning_extraction`. Jika prompt Anda meminta model menulis penalarannya dalam respons, hapus instruksi tersebut, atur `display: "summarized"`, dan baca penalaran yang diringkas dari blok thinking sebagai gantinya; lihat [Prompt yang ditulis untuk thinking dinonaktifkan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#prompts-written-for-thinking-disabled). Anda masih dapat meminta penjelasan singkat tentang jawaban atau ringkasan tindakan yang diambil; lihat [Simpan penalaran dalam blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).
 
-Penolakan oleh classifier tiba sebagai respons normal dengan `stop_reason: "refusal"` dan objek `stop_details` yang menyebutkan kategorinya. Anda dapat membuat permintaan dicoba ulang secara otomatis pada model fallback, kecuali untuk penolakan `reasoning_extraction`, yang dikembalikan kepada Anda oleh fallback sisi server alih-alih dicoba ulang; lihat [Penolakan dan fallback](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#refusals-and-fallback).
+Penolakan oleh classifier tiba sebagai respons normal dengan `stop_reason: "refusal"` dan objek `stop_details` yang menyebutkan kategorinya. Anda dapat membuat permintaan dicoba ulang secara otomatis pada model fallback, kecuali untuk penolakan `reasoning_extraction`, yang dikembalikan kepada Anda oleh fallback sisi server alih-alih dicoba ulang; lihat [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback).
 
 ## Pembaruan progres untuk pengguna
 
 Di antara pemanggilan alat, Claude Opus 5.5 menulis pembaruan progres singkat untuk pengguna: apa yang baru saja ditemukannya dan apa yang akan dilakukannya selanjutnya. Empat pengungkit mengontrol apa yang dilihat pengguna Anda.
 
-Pertama, periksa apakah klien Anda menerimanya. Pada Claude Opus 5.5, catatan ini kembali sebagai [blok `thinking` pembaruan progres](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates) alih-alih blok `text`, dan teksnya kosong pada `thinking.display` default. Akibatnya, klien yang hanya merender blok `text` dapat tampak senyap selama giliran agentik yang panjang. Atur `display: "updates"` (beta, header `thinking-display-updates-2026-08-18`) untuk menerima ringkasan singkat setiap catatan; lihat [Teks di antara pemanggilan alat dikembalikan dalam blok thinking](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#text-between-tool-calls) untuk cara merendernya.
+Pertama, periksa apakah klien Anda menerimanya. Pada Claude Opus 5.5, catatan ini kembali sebagai [blok `thinking` pembaruan progres](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates) alih-alih blok `text`, dan teksnya kosong pada `thinking.display` default. Akibatnya, klien yang hanya merender blok `text` dapat tampak senyap selama giliran agentik yang panjang. Atur `display: "updates"` (beta, header `thinking-display-updates-2026-08-18`) untuk menerima ringkasan singkat setiap catatan; lihat [Pembaruan progres di antara pemanggilan alat](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates) untuk cara merendernya.
 
 Kedua, jika model mungkin perlu menyerahkan sesuatu secara verbatim kepada pengguna di tengah giliran panjang, seperti cuplikan kode, berikan alat sederhana untuk mengirim pesan kepada pengguna dan suruh model menyisihkan alat tersebut untuk konten itu. Deklarasikan alat tersebut dalam `tools` sejak permintaan pertama sesi: menambahkannya ke `tools` nanti mengedit prefiks percakapan dan membatalkan blok thinking sebelumnya (lihat [perubahan alat dalam Preserved thinking](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#tool-changes)).
 

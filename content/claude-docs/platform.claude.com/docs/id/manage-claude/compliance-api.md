@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-api
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 51c582a951d7bfc1c85bde5ad2bbf553d1a0522d33f542859053ce67c9a05ca6
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: c7a1d502c8395ed0377ff77d79be11135b13a24371ef8b86e5361ef6e9de073d
 ---
 
 ---
@@ -32,7 +32,7 @@ Respons yang berhasil mengembalikan objek JSON yang berisi `data` (array berisi 
 {
   "data": [
     {
-      "id": "activity_01XyDMpzjS89pFZXqSFUBDr6",
+      "id": "activity_01DeFgHjKmNpQrStUvWxYzAb",
       "created_at": "2026-04-10T08:09:10Z",
       "organization_id": "org_01Wv6QeBcDfGhJkLmNpQrSt8",
       "organization_uuid": "abcdef01-2345-6789-abcd-ef0123456789",
@@ -44,13 +44,13 @@ Respons yang berhasil mengembalikan objek JSON yang berisi `data` (array berisi 
         "user_agent": "Mozilla/5.0..."
       },
       "type": "claude_chat_created",
-      "claude_chat_id": "claude_chat_01XyDMpzjS89pFZXqSFUBDr6",
+      "claude_chat_id": "claude_chat_01CdEfGhJkMnPqRsTuVwXyZa",
       "claude_project_id": "claude_proj_01KGp4eZNug9ri4kE35RSppq"
     }
   ],
   "has_more": true,
-  "first_id": "activity_01XyDMpzjS89pFZXqSFUBDr6",
-  "last_id": "activity_01XyDMpzjS89pFZXqSFUBDr6"
+  "first_id": "activity_01DeFgHjKmNpQrStUvWxYzAb",
+  "last_id": "activity_01DeFgHjKmNpQrStUvWxYzAb"
 }
 ```
 

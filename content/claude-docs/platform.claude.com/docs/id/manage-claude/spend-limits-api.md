@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/spend-limits-api
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: bca87973e56870ba3faea200fe33698f1f4e1d5736a9dd4d45feeabec7331cfa
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 760853deac064d3dd3876e3ebbc60291652fc3aac91ed44df4b7db3233775492
 ---
 
 ---
@@ -13,7 +13,7 @@ description: Tetapkan batas pengeluaran pada setiap anggota Claude Enterprise, l
 
 Spend Limits API memungkinkan Anda menetapkan “spend limit” (batas pengeluaran) pada setiap anggota Claude Enterprise, melihat dari mana batas pengeluaran setiap anggota diwarisi, dan meninjau atau menindaklanjuti permintaan anggota untuk batas yang lebih tinggi.
 
-Untuk *pelaporan* penggunaan dan biaya per pengguna dan per rentang waktu, lihat [Analytics APIs](https://platform.claude.com/docs/id/manage-claude/analytics-api).
+Untuk *pelaporan* penggunaan dan biaya per pengguna dan per rentang waktu, lihat [Analytics APIs](https://platform.claude.com/docs/id/manage-claude/analytics-api) atau [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api).
 
 <Check>
   **Diperlukan kunci Admin API dengan cakupan**
@@ -1189,9 +1189,9 @@ Untuk detail parameter lengkap dan skema respons, lihat [Deny a spend limit incr
 
 ## Contoh alur kerja
 
-Beberapa alur kerja ini menggabungkan Spend Limits API dengan endpoint biaya [Analytics APIs](https://platform.claude.com/docs/id/manage-claude/analytics-api). Endpoint biaya Analytics dirancang untuk pelaporan pengeluaran seluruh organisasi dalam rentang tanggal. `GET /spend_limits/effective` mengembalikan batas yang saat ini berlaku untuk setiap anggota. Mulailah penyisiran dengan Analytics untuk menemukan anggota mana yang perlu dilihat, lalu baca batas mereka saat ini dengan `/effective`.
+Beberapa alur kerja ini menggabungkan Spend Limits API dengan endpoint biaya dari [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api). Endpoint biaya dirancang untuk pelaporan pengeluaran seluruh organisasi dalam rentang tanggal. `GET /spend_limits/effective` mengembalikan batas yang saat ini berlaku untuk setiap anggota. Mulailah penyisiran dengan endpoint biaya untuk menemukan anggota mana yang perlu dilihat, lalu baca batas mereka saat ini dengan `/effective`.
 
-Endpoint Spend Limits memerlukan cakupan `spend_limits` dan endpoint biaya Analytics memerlukan `read:analytics`; lihat [Analytics APIs](https://platform.claude.com/docs/id/manage-claude/analytics-api) untuk cara menyediakan akses. Contoh-contoh menggunakan satu kunci Admin API yang memiliki cakupan dari setiap API yang dipanggil. Pemilik utama [memilih cakupan ini saat membuat kunci](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#choose-scopes-for-a-claude-enterprise-key). Semua nilai moneter pada keduanya adalah string desimal dalam satuan minor (sen). Kedua API dipaginasi dengan cursor opaque. Tetapkan `limit` secara eksplisit dan telusuri `next_page` hingga bernilai `null` untuk mencakup seluruh organisasi.
+Endpoint Spend Limits memerlukan cakupan `spend_limits` dan endpoint biaya memerlukan `read:analytics`. Contoh-contoh menggunakan satu kunci Admin API yang memiliki cakupan dari setiap API yang dipanggil. Pemilik utama [memilih cakupan ini saat membuat kunci](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#choose-scopes-for-a-claude-enterprise-key). Semua nilai moneter pada keduanya adalah string desimal dalam satuan minor (sen). Kedua API dipaginasi dengan cursor opaque. Tetapkan `limit` secara eksplisit dan telusuri `next_page` hingga bernilai `null` untuk mencakup seluruh organisasi.
 
 ### Mengotomatiskan alur peninjauan permintaan kenaikan
 
@@ -1441,73 +1441,102 @@ Jalankan job terjadwal yang mengambil permintaan pending, menerapkan kebijakan p
 
 Temukan anggota yang mendekati batas mereka sehingga Anda dapat menaikkannya sebelum mereka terblokir.
 
-1. Ambil pengeluaran bulan berjalan setiap anggota dari Analytics API (satu baris per anggota, pengeluaran tertinggi lebih dulu secara default):
+1. Ambil pengeluaran bulan berjalan setiap anggota dari Usage and Cost Analytics API (satu baris per anggota, pengeluaran tertinggi lebih dulu secara default):
 
    <CodeGroup>
      ```bash cURL
-     curl "https://api.anthropic.com/v1/organizations/analytics/user_cost_report?starting_at=2026-06-01T00:00:00Z&limit=1000" \
-       -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01"
+     curl -g "https://api.anthropic.com/v1/organizations/analytics/cost?\
+     starting_at=2026-06-01T00:00:00Z&\
+     group_by[]=actor&\
+     actor_types[]=user_actor&\
+     limit=1000" \
+       -H "anthropic-version: 2023-06-01" \
+       -H "anthropic-beta: analytics-usage-cost-2026-08-24" \
+       -H "x-api-key: $ANTHROPIC_API_KEY"
      ```
 
      ```bash CLI
-     ant beta:organization:analytics:user-cost-report list \
+     ant beta:organization:analytics:cost list \
        --starting-at 2026-06-01T00:00:00Z \
+       --actor-type user_actor \
+       --group-by actor \
        --limit 1000
      ```
 
      ```python Python
      client = anthropic.Anthropic()
 
-     cost_rows = client.beta.organization.analytics.user_cost_report.list(
-         starting_at="2026-06-01T00:00:00Z", limit=1000
+     cost_rows = client.beta.organization.analytics.cost.list(
+         starting_at="2026-06-01T00:00:00Z",
+         actor_types=["user_actor"],
+         group_by=["actor"],
+         limit=1000,
      )
 
      for cost_row in cost_rows:
-         print(f"{cost_row.actor.user_id}: {cost_row.amount}")
+         actor = cost_row.group.actor
+         if actor is not None and actor.type == "user_actor":
+             print(f"{actor.user_id}: {cost_row.cost.amount}")
      ```
 
      ```typescript TypeScript
      const client = new Anthropic();
 
-     const costRows = await client.beta.organization.analytics.userCostReport.list({
+     const costRows = await client.beta.organization.analytics.cost.list({
        starting_at: "2026-06-01T00:00:00Z",
+       actor_types: ["user_actor"],
+       group_by: ["actor"],
        limit: 1000
      });
 
      for await (const costRow of costRows) {
-       console.log(`${costRow.actor.user_id}: ${costRow.amount}`);
+       const { actor } = costRow.group;
+       if (actor?.type === "user_actor") {
+         console.log(`${actor.user_id}: ${costRow.cost.amount}`);
+       }
      }
      ```
 
      ```csharp C#
+     using Anthropic.Models.Beta.Organization.Analytics;
+     using Anthropic.Models.Beta.Organization.Analytics.Cost;
+
      AnthropicClient client = new();
 
-     var page = await client.Beta.Organization.Analytics.UserCostReport.List(
+     var page = await client.Beta.Organization.Analytics.Cost.List(
          new()
          {
              StartingAt = DateTimeOffset.Parse("2026-06-01T00:00:00Z"),
+             ActorTypes = [BetaAnalyticsActorType.UserActor],
+             GroupBy = [BetaAnalyticsCostGroupBy.Actor],
              Limit = 1000,
          }
      );
 
      await foreach (var costRow in page.Paginate())
      {
-         Console.WriteLine($"{costRow.Actor.UserID}: {costRow.Amount}");
+         if (costRow.Group.Actor is { } actor && actor.TryPickReportUser(out var user))
+         {
+             Console.WriteLine($"{user.UserID}: {costRow.Cost.Amount}");
+         }
      }
      ```
 
      ```go Go
      client := anthropic.NewClient()
 
-     costRows := client.Beta.Organization.Analytics.UserCostReport.ListAutoPaging(context.Background(), anthropic.BetaOrganizationAnalyticsUserCostReportListParams{
+     costRows := client.Beta.Organization.Analytics.Cost.ListAutoPaging(context.Background(), anthropic.BetaOrganizationAnalyticsCostListParams{
      	StartingAt: time.Date(2026, time.June, 1, 0, 0, 0, 0, time.UTC),
+     	ActorTypes: []anthropic.BetaAnalyticsActorType{anthropic.BetaAnalyticsActorTypeUserActor},
+     	GroupBy:    []anthropic.BetaAnalyticsCostGroupBy{anthropic.BetaAnalyticsCostGroupByActor},
      	Limit:      anthropic.Int(1000),
      })
 
      for costRows.Next() {
      	costRow := costRows.Current()
-     	fmt.Printf("%s: %s\n", costRow.Actor.UserID, costRow.Amount)
+     	if user, ok := costRow.Group.Actor.AsAny().(anthropic.BetaAnalyticsReportUserActor); ok {
+     		fmt.Printf("%s: %s\n", user.UserID, costRow.Cost.Amount)
+     	}
      }
      if err := costRows.Err(); err != nil {
      	log.Fatal(err)
@@ -1515,52 +1544,71 @@ Temukan anggota yang mendekati batas mereka sehingga Anda dapat menaikkannya seb
      ```
 
      ```java Java
-     import com.anthropic.models.beta.organization.analytics.usercostreport.UserCostReportListParams;
+     import com.anthropic.models.beta.organization.analytics.BetaAnalyticsActorType;
+     import com.anthropic.models.beta.organization.analytics.cost.BetaAnalyticsCostGroupBy;
+     import com.anthropic.models.beta.organization.analytics.cost.CostListParams;
      import java.time.OffsetDateTime;
 
      void main() {
          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-         var params = UserCostReportListParams.builder()
+         var params = CostListParams.builder()
              .startingAt(OffsetDateTime.parse("2026-06-01T00:00:00Z"))
+             .addActorType(BetaAnalyticsActorType.USER_ACTOR)
+             .addGroupBy(BetaAnalyticsCostGroupBy.ACTOR)
              .limit(1000)
              .build();
-         var costRows = client.beta().organization().analytics().userCostReport().list(params);
+         var costRows = client.beta().organization().analytics().cost().list(params);
 
          for (var costRow : costRows.autoPager()) {
-             IO.println(costRow.actor().userId() + ": " + costRow.amount());
+             costRow.group().actor().flatMap(actor -> actor.user()).ifPresent(user ->
+                 IO.println(user.userId() + ": " + costRow.cost().amount())
+             );
          }
      }
      ```
 
      ```php PHP
+     use Anthropic\Beta\Organization\Analytics\AnalyticsReportUserActor;
+     // ...
+
      $client = new Client();
 
-     $costRows = $client->beta->organization->analytics->userCostReport->list(
+     $costRows = $client->beta->organization->analytics->cost->list(
          startingAt: new \DateTimeImmutable('2026-06-01T00:00:00Z'),
+         actorTypes: ['user_actor'],
+         groupBy: ['actor'],
          limit: 1000,
      );
 
      foreach ($costRows->pagingEachItem() as $costRow) {
-         echo "{$costRow->actor->userID}: {$costRow->amount}\n";
+         $actor = $costRow->group->actor;
+         if ($actor instanceof AnalyticsReportUserActor) {
+             echo "{$actor->userID}: {$costRow->cost->amount}\n";
+         }
      }
      ```
 
      ```ruby Ruby
      client = Anthropic::Client.new
 
-     page = client.beta.organization.analytics.user_cost_report.list(
+     page = client.beta.organization.analytics.cost.list(
        starting_at: Time.utc(2026, 6, 1),
+       actor_types: [:user_actor],
+       group_by: [:actor],
        limit: 1000
      )
 
      page.auto_paging_each do |cost_row|
-       puts "#{cost_row.actor.user_id}: #{cost_row.amount}"
+       actor = cost_row.group.actor
+       if actor.is_a?(Anthropic::Models::Beta::Organization::BetaAnalyticsReportUserActor)
+         puts "#{actor.user_id}: #{cost_row.cost.amount}"
+       end
      end
      ```
    </CodeGroup>
 
-   Setiap baris berisi `actor.user_id`, `actor.email_address`, dan `amount` (pengeluaran anggota dalam sen). Telusuri `next_page` untuk mencakup seluruh organisasi.
+   Setiap baris berisi `group.actor.user_id`, `group.actor.email_address`, dan `cost.amount` (pengeluaran anggota dalam sen). Telusuri `next_page` untuk mencakup seluruh organisasi.
 
 2. Untuk pembelanja teratas (atau semua orang di atas ambang dolar), ambil batas efektif dalam batch:
 
@@ -1719,86 +1767,114 @@ Temukan anggota yang mendekati batas mereka sehingga Anda dapat menaikkannya seb
 
 Munculkan anggota yang pengeluarannya melonjak dari minggu ke minggu.
 
-1. Ambil biaya harian per anggota untuk dua minggu terakhir dari Analytics API:
+1. Ambil biaya harian per anggota untuk dua minggu terakhir dari Usage and Cost Analytics API:
 
    <CodeGroup>
      ```bash cURL
-     curl "https://api.anthropic.com/v1/organizations/analytics/user_cost_report?starting_at=2026-06-09T00:00:00Z&ending_at=2026-06-23T00:00:00Z&bucket_width=1d&limit=1000" \
-       -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01"
+     curl -g "https://api.anthropic.com/v1/organizations/analytics/cost?\
+     starting_at=2026-06-09T00:00:00Z&\
+     ending_at=2026-06-23T00:00:00Z&\
+     time_bucket_width=1d&\
+     group_by[]=actor&\
+     actor_types[]=user_actor&\
+     limit=1000" \
+       -H "anthropic-version: 2023-06-01" \
+       -H "anthropic-beta: analytics-usage-cost-2026-08-24" \
+       -H "x-api-key: $ANTHROPIC_API_KEY"
      ```
 
      ```bash CLI
-     ant beta:organization:analytics:user-cost-report list \
+     ant beta:organization:analytics:cost list \
        --starting-at 2026-06-09T00:00:00Z \
        --ending-at 2026-06-23T00:00:00Z \
-       --bucket-width 1d \
+       --time-bucket-width 1d \
+       --actor-type user_actor \
+       --group-by actor \
        --limit 1000
      ```
 
      ```python Python
      client = anthropic.Anthropic()
 
-     cost_rows = client.beta.organization.analytics.user_cost_report.list(
+     cost_rows = client.beta.organization.analytics.cost.list(
          starting_at="2026-06-09T00:00:00Z",
          ending_at="2026-06-23T00:00:00Z",
-         bucket_width="1d",
+         time_bucket_width="1d",
+         actor_types=["user_actor"],
+         group_by=["actor"],
          limit=1000,
      )
 
      for cost_row in cost_rows:
-         print(f"{cost_row.actor.user_id} {cost_row.starting_at}: {cost_row.amount}")
+         actor = cost_row.group.actor
+         if actor is not None and actor.type == "user_actor":
+             print(f"{actor.user_id} {cost_row.starting_at}: {cost_row.cost.amount}")
      ```
 
      ```typescript TypeScript
      const client = new Anthropic();
 
-     const costRows = await client.beta.organization.analytics.userCostReport.list({
+     const costRows = await client.beta.organization.analytics.cost.list({
        starting_at: "2026-06-09T00:00:00Z",
        ending_at: "2026-06-23T00:00:00Z",
-       bucket_width: "1d",
+       time_bucket_width: "1d",
+       actor_types: ["user_actor"],
+       group_by: ["actor"],
        limit: 1000
      });
 
      for await (const costRow of costRows) {
-       console.log(`${costRow.actor.user_id} ${costRow.starting_at}: ${costRow.amount}`);
+       const { actor } = costRow.group;
+       if (actor?.type === "user_actor") {
+         console.log(`${actor.user_id} ${costRow.starting_at}: ${costRow.cost.amount}`);
+       }
      }
      ```
 
      ```csharp C#
-     using Anthropic.Models.Beta.Organization.Analytics.UserCostReport;
+     using Anthropic.Models.Beta.Organization.Analytics;
+     using Anthropic.Models.Beta.Organization.Analytics.Cost;
 
      AnthropicClient client = new();
 
-     var page = await client.Beta.Organization.Analytics.UserCostReport.List(
+     var page = await client.Beta.Organization.Analytics.Cost.List(
          new()
          {
              StartingAt = DateTimeOffset.Parse("2026-06-09T00:00:00Z"),
              EndingAt = DateTimeOffset.Parse("2026-06-23T00:00:00Z"),
-             BucketWidth = BucketWidth.Day,
+             TimeBucketWidth = BetaAnalyticsTimeBucketWidth.Day,
+             ActorTypes = [BetaAnalyticsActorType.UserActor],
+             GroupBy = [BetaAnalyticsCostGroupBy.Actor],
              Limit = 1000,
          }
      );
 
      await foreach (var costRow in page.Paginate())
      {
-         Console.WriteLine($"{costRow.Actor.UserID} {costRow.StartingAt}: {costRow.Amount}");
+         if (costRow.Group.Actor is { } actor && actor.TryPickReportUser(out var user))
+         {
+             Console.WriteLine($"{user.UserID} {costRow.StartingAt}: {costRow.Cost.Amount}");
+         }
      }
      ```
 
      ```go Go
      client := anthropic.NewClient()
 
-     costRows := client.Beta.Organization.Analytics.UserCostReport.ListAutoPaging(context.Background(), anthropic.BetaOrganizationAnalyticsUserCostReportListParams{
-     	StartingAt:  time.Date(2026, time.June, 9, 0, 0, 0, 0, time.UTC),
-     	EndingAt:    anthropic.Time(time.Date(2026, time.June, 23, 0, 0, 0, 0, time.UTC)),
-     	BucketWidth: anthropic.BetaOrganizationAnalyticsUserCostReportListParamsBucketWidthDay,
-     	Limit:       anthropic.Int(1000),
+     costRows := client.Beta.Organization.Analytics.Cost.ListAutoPaging(context.Background(), anthropic.BetaOrganizationAnalyticsCostListParams{
+     	StartingAt:      time.Date(2026, time.June, 9, 0, 0, 0, 0, time.UTC),
+     	EndingAt:        anthropic.Time(time.Date(2026, time.June, 23, 0, 0, 0, 0, time.UTC)),
+     	TimeBucketWidth: anthropic.BetaAnalyticsTimeBucketWidthDay,
+     	ActorTypes:      []anthropic.BetaAnalyticsActorType{anthropic.BetaAnalyticsActorTypeUserActor},
+     	GroupBy:         []anthropic.BetaAnalyticsCostGroupBy{anthropic.BetaAnalyticsCostGroupByActor},
+     	Limit:           anthropic.Int(1000),
      })
 
      for costRows.Next() {
      	costRow := costRows.Current()
-     	fmt.Printf("%s %s: %s\n", costRow.Actor.UserID, costRow.StartingAt, costRow.Amount)
+     	if user, ok := costRow.Group.Actor.AsAny().(anthropic.BetaAnalyticsReportUserActor); ok {
+     		fmt.Printf("%s %s: %s\n", user.UserID, costRow.StartingAt.Format(time.RFC3339), costRow.Cost.Amount)
+     	}
      }
      if err := costRows.Err(); err != nil {
      	log.Fatal(err)
@@ -1806,61 +1882,81 @@ Munculkan anggota yang pengeluarannya melonjak dari minggu ke minggu.
      ```
 
      ```java Java
-     import com.anthropic.models.beta.organization.analytics.usercostreport.UserCostReportListParams;
+     import com.anthropic.models.beta.organization.analytics.BetaAnalyticsActorType;
+     import com.anthropic.models.beta.organization.analytics.BetaAnalyticsTimeBucketWidth;
+     import com.anthropic.models.beta.organization.analytics.cost.BetaAnalyticsCostGroupBy;
+     import com.anthropic.models.beta.organization.analytics.cost.CostListParams;
      import java.time.OffsetDateTime;
 
      void main() {
          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-         var params = UserCostReportListParams.builder()
+         var params = CostListParams.builder()
              .startingAt(OffsetDateTime.parse("2026-06-09T00:00:00Z"))
              .endingAt(OffsetDateTime.parse("2026-06-23T00:00:00Z"))
-             .bucketWidth(UserCostReportListParams.BucketWidth.DAY)
+             .timeBucketWidth(BetaAnalyticsTimeBucketWidth.DAY)
+             .addActorType(BetaAnalyticsActorType.USER_ACTOR)
+             .addGroupBy(BetaAnalyticsCostGroupBy.ACTOR)
              .limit(1000)
              .build();
-         var costRows = client.beta().organization().analytics().userCostReport().list(params);
+         var costRows = client.beta().organization().analytics().cost().list(params);
 
          for (var costRow : costRows.autoPager()) {
-             IO.println(costRow.actor().userId() + " " + costRow.startingAt().orElseThrow() + ": " + costRow.amount());
+             costRow.group().actor().flatMap(actor -> actor.user()).ifPresent(user ->
+                 IO.println(user.userId() + " " + costRow.startingAt() + ": " + costRow.cost().amount())
+             );
          }
      }
      ```
 
      ```php PHP
+     use Anthropic\Beta\Organization\Analytics\AnalyticsReportUserActor;
+     // ...
+
      $client = new Client();
 
-     $costRows = $client->beta->organization->analytics->userCostReport->list(
+     $costRows = $client->beta->organization->analytics->cost->list(
          startingAt: new \DateTimeImmutable('2026-06-09T00:00:00Z'),
          endingAt: new \DateTimeImmutable('2026-06-23T00:00:00Z'),
-         bucketWidth: '1d',
+         timeBucketWidth: '1d',
+         actorTypes: ['user_actor'],
+         groupBy: ['actor'],
          limit: 1000,
      );
 
      foreach ($costRows->pagingEachItem() as $costRow) {
-         $startingAt = $costRow->startingAt?->format(\DateTimeInterface::ATOM);
-         echo "{$costRow->actor->userID} {$startingAt}: {$costRow->amount}\n";
+         $actor = $costRow->group->actor;
+         if ($actor instanceof AnalyticsReportUserActor) {
+             $startingAt = $costRow->startingAt->format(\DateTimeInterface::ATOM);
+             echo "{$actor->userID} {$startingAt}: {$costRow->cost->amount}\n";
+         }
      }
      ```
 
      ```ruby Ruby
      client = Anthropic::Client.new
 
-     page = client.beta.organization.analytics.user_cost_report.list(
+     page = client.beta.organization.analytics.cost.list(
        starting_at: Time.utc(2026, 6, 9),
        ending_at: Time.utc(2026, 6, 23),
-       bucket_width: :"1d",
+       time_bucket_width: :"1d",
+       actor_types: [:user_actor],
+       group_by: [:actor],
        limit: 1000
      )
 
      page.auto_paging_each do |cost_row|
-       puts "#{cost_row.actor.user_id} #{cost_row.starting_at}: #{cost_row.amount}"
+       actor = cost_row.group.actor
+       if actor.is_a?(Anthropic::Models::Beta::Organization::BetaAnalyticsReportUserActor)
+         puts "#{actor.user_id} #{cost_row.starting_at}: #{cost_row.cost.amount}"
+       end
      end
      ```
    </CodeGroup>
 
-   Dengan `bucket_width` ditetapkan, setiap anggota mencakup satu baris per hari yang memiliki penggunaan. Telusuri `next_page` untuk mengumpulkan seluruh rangkaian data setiap anggota.
+   Dengan `time_bucket_width` ditetapkan, setiap anggota mencakup satu baris per hari yang memiliki penggunaan. Telusuri `next_page` untuk mengumpulkan seluruh rangkaian data setiap anggota.
 
-2. Kelompokkan baris berdasarkan `actor.user_id`. Untuk setiap anggota, jumlahkan tujuh hari terakhir dan tujuh hari sebelumnya. Tandai anggota yang minggu terakhirnya melebihi minggu sebelumnya dengan kelipatan pilihan Anda (misalnya, tiga). Biaya hari-hari terakhir bersifat sementara dan dapat direvisi naik; untuk perbandingan yang dapat diulang, tetapkan `ending_at` pada atau sebelum `data_refreshed_at` yang dikembalikan sebelumnya (lihat [Ketersediaan dan kesegaran data](https://platform.claude.com/docs/id/manage-claude/analytics-api#data-availability-and-freshness)).
+2. Kelompokkan baris berdasarkan `group.actor.user_id`. Untuk setiap anggota, jumlahkan tujuh hari terakhir dan tujuh hari sebelumnya. Tandai anggota yang minggu terakhirnya melebihi minggu sebelumnya dengan kelipatan pilihan Anda (misalnya, tiga). Biaya untuk hari-hari terakhir masih dapat berubah. Untuk perbandingan yang dapat diulang, tetapkan `ending_at` pada atau sebelum `data_refreshed_at` yang sudah Anda lihat (lihat [Kesegaran data](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api#data-freshness)).
 
 3. Tindak lanjuti anggota yang ditandai: sesuaikan batas dengan `POST /v1/organizations/spend_limits`, atau hubungi mereka.
 
@@ -2291,7 +2387,7 @@ Pembacaan pengeluaran dapat sementara tidak tersedia, dalam hal ini field terbac
     Skema permintaan dan respons yang dihasilkan untuk endpoint permintaan kenaikan.
   </Card>
 
-  <Card title="Analytics APIs" href="https://platform.claude.com/docs/id/manage-claude/analytics-api">
-    Pelaporan penggunaan dan biaya per pengguna dan per rentang waktu untuk Claude Enterprise.
+  <Card title="Usage and Cost Analytics API" href="https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api">
+    Lacak penggunaan token dan biaya untuk organisasi Anda.
   </Card>
 </CardGroup>

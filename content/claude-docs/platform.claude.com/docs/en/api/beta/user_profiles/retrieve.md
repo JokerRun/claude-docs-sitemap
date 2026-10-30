@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/retrieve
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 5cc2fd6f14958487e5ab1f85f4f45d53c3588661f8198d8a2624d68ed39f85ba
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 4e25a245f19af93aeb2b7209fc54332ded2dd2e5ac9b800f10d2ce032bcf15e1
 ---
 
 ---
@@ -139,6 +139,10 @@ Get User Profile
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: b151816192fb184e8862106cae037792589fd078280d59779b3b5fec399b3b24
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: ed20dd5f661ef7884d4664f7ce10790157eb4c8c54596565fd23275bcf34820a
 ---
 
 ---
@@ -139,6 +139,10 @@ Create Enrollment URL
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

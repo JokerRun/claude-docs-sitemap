@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/claude-models-on-google-cloud-anthropic-managed-iam-permissions
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 27e23467b5ed73f883499a7e2b9af3b9e750ee9bddb70b74ecb572cf699ebeeb
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: ca9b81d81e274271b1ad1df74db3db8584634a3addde50cfdb1485a0a79f6243
 ---
 
 ---
@@ -41,7 +41,7 @@ In the following tables, **Admin**, **User**, and **Viewer** stand for these thr
 
 ## Permissions
 
-The following tables list 68 permissions across 111 routes.
+The following tables list 69 permissions across 113 routes.
 
 The `get` and `list` permissions are the read-only ones.
 
@@ -238,11 +238,12 @@ These permissions manage your organization’s encryption key registrations. Of 
 
 ### Usage reports
 
-| Permission            | Roles | Routes authorized                             |
-| --------------------- | ----- | --------------------------------------------- |
-| `usageAnalytics.list` | Admin | `GET /v1/organizations/usage_report/messages` |
+| Permission            | Roles | Routes authorized                                                                          |
+| --------------------- | ----- | ------------------------------------------------------------------------------------------ |
+| `usageAnalytics.list` | Admin | `GET /v1/organizations/usage_report/messages`<br />`GET /v1/organizations/analytics/usage` |
+| `costAnalytics.list`  | Admin | `GET /v1/organizations/analytics/cost`                                                     |
 
-Of the three predefined roles, only `roles/claude.admin` includes `usageAnalytics.list`.
+Of the three predefined roles, only `roles/claude.admin` includes `usageAnalytics.list` and `costAnalytics.list`.
 
 ## See also
 

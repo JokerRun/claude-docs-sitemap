@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/artifacts
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: a6b62bbc91be9877556afa51087d3232f3e2030370618363e49c5e5d5d26106b
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 7bc552ef72dcea1d0a73f94527a28fd8963adcb1209a03d9969e1a4703ba9771
 ---
 
 > ## Documentation Index
@@ -376,7 +376,7 @@ Artifacts require every condition below. When one is not met, Claude writes a lo
 | Requirement | Available when |
 | :- | :- |
 | Plan | Pro, Max, Team, or Enterprise. On Pro and Max plans, artifacts are private to you until you share them, and no admin management applies. On Team and Enterprise plans, artifacts are on by default, and an Owner can [turn them off for the organization](#manage-artifacts-for-your-organization) in claude.ai admin settings. |
-| Authentication | The session is backed by a claude.ai account: sign in with `/login` in the CLI or desktop app. Claude Tag sessions are signed in through the agent's identity, so no step is needed there. Sessions using an API key, [gateway token](https://code.claude.com/docs/en/llm-gateway), or cloud-provider credential cannot publish. |
+| Authentication | The session is backed by a claude.ai account: sign in with `/login` in the CLI or desktop app. Claude Tag sessions need no sign-in step. Sessions using an API key, [gateway token](https://code.claude.com/docs/en/llm-gateway), or cloud-provider credential cannot publish. |
 | Model provider | Anthropic API. Not available on [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock.md), [Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai.md), or [Microsoft Foundry](https://code.claude.com/docs/en/microsoft-foundry.md). |
 | Organization policy | Customer-managed encryption keys (CMEK), HIPAA, and [Zero Data Retention](https://code.claude.com/docs/en/zero-data-retention.md) are not enabled for the organization. |
 | Surface | Claude Code CLI, or the Claude desktop app version 1.13576.0 or later. [Claude Tag](https://claude.com/docs/claude-tag/overview) sessions can also publish artifacts when both Claude Tag and artifacts are enabled for the organization. Sessions served by [`claude remote-control`](https://code.claude.com/docs/en/remote-control) can publish artifacts when you started the session yourself. Requires Claude Code v2.1.281 or later. Off by default in the [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview.md), the GitHub Action, and MCP-server contexts, when you run Claude Code with [`-p`](https://code.claude.com/docs/en/headless) from your own terminal or scripts, and when [`CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`](https://code.claude.com/docs/en/env-vars) is set. |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/delete
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 30e40db016eaf372166feb48bdfc8eec446637a0b6c0cc9706c91931b3ef07bd
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: ab5f3f619f1fcc36bea2e4138ab1e3c861deb2a9f1581acce0b9ac3c95f0575a
 ---
 
 ---
@@ -147,6 +147,10 @@ Delete Skill Version
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

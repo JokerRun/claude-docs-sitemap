@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: e1a3946fe9342abf38f55c8be613f4e8b4865107d221f207de5597b6d5cbb390
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 4b28979d4d5743710cc79bb6a539648dad0a4de2c68b4e484ebc61d74ce55732
 ---
 
 ---
@@ -162,6 +162,10 @@ omitted from the results.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ### Returns
 
@@ -371,6 +375,10 @@ accounts cannot be added and are rejected.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ### Body parameters
 
@@ -597,6 +605,10 @@ account returns 404.
 
   - `"webhooks-2026-10-07"`
 
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
+
 ### Returns
 
 - `BetaServiceAccountWorkspaceMember object`
@@ -798,6 +810,10 @@ rejected.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ### Body parameters
 
@@ -1017,6 +1033,10 @@ membership. Archived workspaces return 400.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ### Returns
 

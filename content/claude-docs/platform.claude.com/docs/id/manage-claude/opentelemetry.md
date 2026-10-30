@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: ae321002b0970c3f11b62cb244eef85f1a7782390fe08969c48bd41130604588
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 337dd46dff436ca9d798da98d6c3dd70eb04f5878e3667cc1c5951cc189fe19d
 ---
 
 ---
@@ -268,7 +268,7 @@ Span dapat tiba lebih dari sekali, misalnya ketika pengiriman dicoba ulang. Jika
 `gen_ai.usage.input_tokens` sudah mencakup token yang dibaca dari dan ditulis ke cache prompt, jadi jangan tambahkan atribut cache ke dalamnya. Untuk semua atribut penggunaan, lihat [Penggunaan token](https://platform.claude.com/docs/id/api/opentelemetry/spans#token-usage).
 
 <Note>
-  Span yang diekspor tidak dijamin merupakan catatan lengkap penggunaan API Anda. Pengirimannya bersifat [upaya terbaik](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#delivery-and-health), sehingga sebuah span dapat hilang. Pemanggil juga dapat mengecualikan span dari sebuah permintaan dengan menonaktifkan flag sampled di [header `traceparent`](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#connect-api-spans-to-your-own-traces) permintaan tersebut. Untuk melacak penggunaan setiap kunci API, misalnya untuk mendeteksi kunci yang bocor, gunakan [Usage API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api#usage-api), yang juga menghitung penggunaan permintaan tanpa span.
+  Span yang diekspor tidak dijamin merupakan catatan lengkap penggunaan API Anda. Pengirimannya bersifat [upaya terbaik](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#delivery-and-health), sehingga sebuah span dapat hilang. Pemanggil juga dapat mengecualikan span dari sebuah permintaan dengan menonaktifkan flag sampled di [header `traceparent`](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#connect-api-spans-to-your-own-traces) permintaan tersebut. Untuk melacak penggunaan setiap kunci API, misalnya untuk mendeteksi kunci yang bocor, gunakan [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) dan kelompokkan berdasarkan `api_key_id`. API ini juga menghitung penggunaan permintaan tanpa span. Penggunaan biasanya muncul di sana dalam 4 jam (lihat [Kesegaran data](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api#data-freshness)).
 </Note>
 
 ## Availability

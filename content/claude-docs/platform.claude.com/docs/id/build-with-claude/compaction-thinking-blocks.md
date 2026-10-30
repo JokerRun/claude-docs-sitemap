@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: caa93cea2b14c2abbf598905e7311060fffc11870cad7c23543921e8bbb856a2
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 9944020377a170d50b21cb6dd8444fc3e2e30ce4797bc003f4a56b47ad570e60
 ---
 
 ---
@@ -46,7 +46,7 @@ Blok thinking dalam giliran yang dipertahankan tetap valid selama semua hal beri
 * **Giliran yang dipertahankan langsung mengikuti pesan yang diringkas, dan Anda mengirimnya tanpa perubahan.** Kirim setiap pesan yang dipertahankan persis seperti yang ada dalam riwayat Anda. Jangan melewatkan atau menambahkan pesan di antara pesan terakhir yang diringkas dan pesan pertama yang dipertahankan. Pesan pertama yang dipertahankan juga harus memiliki peran yang berbeda dari pesan terakhir yang diringkas, dan tidak boleh berupa pesan `role: "system"` di tengah percakapan. Jika tidak, API akan menggabungkannya ke dalam pesan terakhir yang diringkas. Salah satu cara untuk mendapatkan pesan pertama yang dipertahankan dengan benar adalah melakukan compaction tepat pada `messages` dari permintaan yang sudah Anda kirim. Giliran yang dipertahankan kemudian dimulai dengan balasan Claude terhadap permintaan tersebut.
 * **`system` dan `tools` yang tidak ditandai `defer_loading: true` tidak berubah.** Keduanya sama pada permintaan compaction seperti pada permintaan yang menghasilkan thinking yang dipertahankan, dan tetap sama pada permintaan-permintaan berikutnya. [Mengubah prompt sistem atau alat](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#change-the-system-prompt-or-tools) menjelaskan cara mengubahnya dengan aman.
 
-Jika suatu syarat tidak terpenuhi, tidak ada yang gagal saat Anda melakukan compaction, dan API tetap menerima blok tersebut pada permintaan berikutnya. Kegagalan muncul pada permintaan berikutnya yang pertama kali mengirim thinking yang dipertahankan di tempat API memberlakukan pemeriksaan: error 400 secara default, atau blok thinking dibuang jika permintaan menetapkan `thinking.block_binding.prefix_mismatch_behavior` ke `"drop_block"`. Di Message Batches API, item yang tidak menetapkan field tersebut tidak gagal. Di tempat pemeriksaan berlaku secara default, API justru membuang blok tersebut. [Apa yang dilakukan API dengan blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior) menjelaskan kedua hasil tersebut, dan [Kapan API memberlakukan pemeriksaan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement) menyebutkan permintaan mana yang diperiksa.
+Jika suatu kondisi tidak terpenuhi, tidak ada yang gagal saat Anda melakukan compaction, dan API tetap menerima blok compaction pada permintaan berikutnya. Yang gagal adalah pemikiran yang dipertahankan, pada permintaan berikutnya yang pertama kali mengirimkannya. [Apa yang dilakukan API terhadap blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior) menjelaskan apa yang terjadi saat itu, dan [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement) membahas permintaan yang tidak mengatur field tersebut, termasuk item Message Batches.
 
 ## Melakukan compaction lagi tanpa merusak thinking yang lebih lama
 
@@ -70,12 +70,12 @@ Pesan sistem di tengah percakapan di dalam giliran yang diringkas juga ikut diri
 
 Respons compaction tidak menyatakan apakah thinking yang dipertahankan tetap valid. Permintaan pertama setelah pertukaranlah yang menyatakannya. Untuk memeriksanya dalam pengujian Anda:
 
-1. Lakukan percakapan singkat dengan thinking diaktifkan. Gunakan model tempat API menjalankan pemeriksaan (lihat [Kapan API memberlakukan pemeriksaan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement)), dan gunakan model tersebut untuk setiap langkah, karena model yang tidak dapat membaca blok thinking akan membuangnya tanpa error.
+1. Lakukan percakapan singkat dengan thinking diaktifkan. Gunakan model yang menjalankan pemeriksaan prefiks (lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check)), dan gunakan model tersebut untuk setiap langkah, karena model yang tidak dapat membaca blok thinking akan membuangnya tanpa error.
 2. Lakukan compaction pada giliran yang lebih lama, dan pertahankan setidaknya satu giliran yang berisi blok thinking.
 3. Kirim permintaan berikutnya, dengan blok terlebih dahulu, lalu giliran yang dipertahankan, lalu pesan `user` baru, dan dengan `thinking.block_binding.prefix_mismatch_behavior` ditetapkan ke `"error"`.
 4. Baca hasilnya. Respons 200 yang array `input_transformations`-nya kosong berarti tidak ada blok thinking yang gagal dalam pemeriksaan atau dibuang. Error 400 yang menyatakan bahwa blok terikat pada percakapan yang berbeda berarti ada yang gagal. Pesan tersebut dimulai dengan path dari blok pertama yang gagal, dan [Apa yang dilakukan API dengan blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior) menampilkannya secara lengkap.
 
-Field `prefix_mismatch_behavior` memerlukan beta header `thinking-binding-controls-2026-08-01` selain [beta header `compact-2026-09-04`](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#request-a-summary). Menetapkan field tersebut juga mengikutsertakan permintaan dalam pemeriksaan pada akun yang pemeriksaannya tidak aktif secara default.
+Field `prefix_mismatch_behavior` memerlukan beta header `thinking-binding-controls-2026-08-01` selain [beta header `compact-2026-09-04`](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#request-a-summary). Nilai yang ditetapkan oleh sebuah permintaan berlaku di akun mana pun.
 
 Program berikut menjalankan keempat langkah tersebut. Program ini mencetak berapa banyak blok thinking yang ada dalam giliran yang dipertahankan dan berapa banyak entri yang dimiliki `input_transformations`; tidak adanya entri berarti thinking yang dipertahankan tetap valid:
 
@@ -697,7 +697,7 @@ Thinking blocks in the kept turn: 1
 Dropped thinking blocks: 0
 ```
 
-Di produksi, `"drop_block"` membuat permintaan tetap berhasil ketika suatu syarat tidak terpenuhi, dan melaporkan setiap blok yang dibuang dalam `input_transformations` dengan `reason: "prefix_binding_mismatch"`. Entri yang `path`-nya berada dalam giliran yang dipertahankan berarti thinking giliran tersebut tidak lagi valid. [Apa yang dilakukan API dengan blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior) menjelaskan apa yang dibuang dan cara membuat peringatan untuknya. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Permintaan yang menetapkannya dengan `thinking: {"type": "between_tools"}` pada Claude Sonnet 5.5, atau dengan `thinking: {"type": "disabled"}` pada Claude Haiku 5.5, mengembalikan error 400. Pada permintaan tersebut, pastikan setiap syarat terpenuhi, atau hapus blok `thinking` dan `redacted_thinking` dari giliran yang dipertahankan.
+Di lingkungan produksi, `"drop_block"` menjaga agar permintaan tetap berhasil ketika suatu kondisi tidak terpenuhi. Respons mencantumkan setiap blok yang dihapus dalam `input_transformations` dengan `reason: "prefix_binding_mismatch"`. Entri yang `path`-nya berada dalam giliran yang disimpan berarti suatu kondisi tidak terpenuhi untuk pemikiran pada giliran tersebut. [Apa yang dilakukan API terhadap blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior) menjelaskan apa yang dihapus dan bagaimana cara membuat peringatan untuk hal tersebut. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan pengaturan pemikiran lainnya pada model-model tersebut, Anda tidak dapat mengirim `block_binding`, jadi pastikan setiap kondisi terpenuhi atau hapus blok `thinking` dan `redacted_thinking` dari giliran yang disimpan.
 
 ## Availability
 

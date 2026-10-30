@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 58ef3acc2e383eef15f013e8150a0dd2d649efc79b20dfe197ec2015cc23f1d3
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 652b649774230f6bf6a9f56f006aed886fd3f4a46d35a066b04677db147df6ab
 ---
 
 ---
@@ -143,6 +143,10 @@ Retrieve detailed information about a specific work item.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -410,6 +414,10 @@ Long poll for work items in the queue.
 
   - `"webhooks-2026-10-07"`
 
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
+
 - `"Anthropic-Worker-ID": optional string`
 
   Unique identifier for the specific worker polling, used to track aggregated environment-level work metrics in Console
@@ -661,6 +669,10 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ### Returns
 
@@ -921,6 +933,10 @@ Record a heartbeat for a work item to maintain the lease.
 
   - `"webhooks-2026-10-07"`
 
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
+
 ### Returns
 
 - `BetaSelfHostedWorkHeartbeatResponse object`
@@ -1112,6 +1128,10 @@ Stop a work item, initiating graceful or forced shutdown.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -1387,6 +1407,10 @@ List work items in an environment.
 
   - `"webhooks-2026-10-07"`
 
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
+
 ### Returns
 
 - `BetaSelfHostedWorkListResponse object`
@@ -1643,6 +1667,10 @@ Update work item metadata with merge semantics.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -1905,6 +1933,10 @@ Get statistics about the work queue for an environment.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

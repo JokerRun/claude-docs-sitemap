@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/update
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: e3111e6dfbd87fafa4864c1ecfca2f505d9df1ca2c6435c1af90595cefa77dfe
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 185e49040c2357cbc939ab53f09f7ed83f1964e6dfc5bd84b30e83c66c8e9e3c
 ---
 
 ---
@@ -159,6 +159,10 @@ Update a Memory
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

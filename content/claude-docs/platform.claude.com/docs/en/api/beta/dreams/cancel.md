@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/cancel
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 836260196c973b354ce11ca45020fac8ad80cf77f0d9569e354d4676cf073869
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 9e3e8ca59c363a44a882be3b23de1b204babc6d9584f30b1999c30407e2dfb34
 ---
 
 ---
@@ -143,6 +143,10 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

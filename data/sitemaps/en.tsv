@@ -3,7 +3,7 @@ code	https://code.claude.com/docs/en/accessibility	2026-10-27T19:25:38.856Z
 code	https://code.claude.com/docs/en/admin-setup	2026-10-27T19:26:03.707Z
 code	https://code.claude.com/docs/en/advisor	2026-10-21T01:33:34.753Z
 code	https://code.claude.com/docs/en/agent-sdk/agent-loop	2026-10-28T18:03:55.781Z
-code	https://code.claude.com/docs/en/agent-sdk/claude-code-features	2026-10-06T01:07:24.690Z
+code	https://code.claude.com/docs/en/agent-sdk/claude-code-features	2026-10-29T19:28:07.489Z
 code	https://code.claude.com/docs/en/agent-sdk/configuration	2026-10-27T20:59:18.064Z
 code	https://code.claude.com/docs/en/agent-sdk/cost-tracking	2026-10-05T22:11:33.773Z
 code	https://code.claude.com/docs/en/agent-sdk/custom-tools	2026-10-26T18:49:58.394Z
@@ -18,10 +18,10 @@ code	https://code.claude.com/docs/en/agent-sdk/observability	2026-10-23T02:37:59
 code	https://code.claude.com/docs/en/agent-sdk/overview	2026-09-21T22:47:12.347Z
 code	https://code.claude.com/docs/en/agent-sdk/permissions	2026-10-27T16:49:04.640Z
 code	https://code.claude.com/docs/en/agent-sdk/plugins	2026-10-26T18:49:58.369Z
-code	https://code.claude.com/docs/en/agent-sdk/python	2026-10-28T20:31:39.351Z
+code	https://code.claude.com/docs/en/agent-sdk/python	2026-10-29T19:28:07.507Z
 code	https://code.claude.com/docs/en/agent-sdk/quickstart	2026-10-27T20:44:50.901Z
 code	https://code.claude.com/docs/en/agent-sdk/secure-deployment	2026-10-06T03:21:56.667Z
-code	https://code.claude.com/docs/en/agent-sdk/session-storage	2026-10-10T17:34:56.131Z
+code	https://code.claude.com/docs/en/agent-sdk/session-storage	2026-10-29T19:05:59.679Z
 code	https://code.claude.com/docs/en/agent-sdk/sessions	2026-10-10T18:00:14.623Z
 code	https://code.claude.com/docs/en/agent-sdk/skills	2026-10-23T00:36:20.123Z
 code	https://code.claude.com/docs/en/agent-sdk/streaming-output	2026-10-27T20:59:18.054Z
@@ -31,7 +31,7 @@ code	https://code.claude.com/docs/en/agent-sdk/subagents	2026-10-21T14:49:19.220
 code	https://code.claude.com/docs/en/agent-sdk/todo-tracking	2026-10-13T04:17:14.991Z
 code	https://code.claude.com/docs/en/agent-sdk/tool-search	2026-10-21T06:28:20.513Z
 code	https://code.claude.com/docs/en/agent-sdk/troubleshooting	2026-10-20T18:25:51.864Z
-code	https://code.claude.com/docs/en/agent-sdk/typescript	2026-10-28T20:31:39.380Z
+code	https://code.claude.com/docs/en/agent-sdk/typescript	2026-10-29T19:24:06.150Z
 code	https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview	2026-09-15T21:21:29.917Z
 code	https://code.claude.com/docs/en/agent-sdk/user-input	2026-10-09T03:28:51.056Z
 code	https://code.claude.com/docs/en/agent-teams	2026-10-26T21:20:47.499Z
@@ -39,57 +39,57 @@ code	https://code.claude.com/docs/en/agent-view	2026-10-27T19:25:38.879Z
 code	https://code.claude.com/docs/en/agents	2026-10-27T16:49:25.007Z
 code	https://code.claude.com/docs/en/amazon-bedrock	2026-10-27T19:25:38.854Z
 code	https://code.claude.com/docs/en/analytics	2026-10-15T19:23:33.602Z
-code	https://code.claude.com/docs/en/artifacts	2026-10-27T19:25:38.838Z
+code	https://code.claude.com/docs/en/artifacts	2026-10-29T18:56:20.926Z
 code	https://code.claude.com/docs/en/authentication	2026-10-28T19:51:18.285Z
 code	https://code.claude.com/docs/en/auto-mode-classifier-billing	2026-10-16T20:20:52.682Z
 code	https://code.claude.com/docs/en/auto-mode-config	2026-10-22T00:44:21.587Z
 code	https://code.claude.com/docs/en/best-practices	2026-10-27T01:12:56.752Z
 code	https://code.claude.com/docs/en/champion-kit	2026-10-03T01:14:45.816Z
-code	https://code.claude.com/docs/en/changelog	2026-10-27T20:35:17.539Z
+code	https://code.claude.com/docs/en/changelog	2026-10-30T01:17:08.485Z
 code	https://code.claude.com/docs/en/channels	2026-10-20T02:25:04.226Z
 code	https://code.claude.com/docs/en/channels-reference	2026-10-24T23:10:37.380Z
 code	https://code.claude.com/docs/en/checkpointing	2026-10-24T23:10:37.368Z
-code	https://code.claude.com/docs/en/chrome	2026-10-27T19:25:38.831Z
-code	https://code.claude.com/docs/en/claude-apps-gateway	2026-10-28T19:51:18.287Z
+code	https://code.claude.com/docs/en/chrome	2026-10-29T19:44:04.328Z
+code	https://code.claude.com/docs/en/claude-apps-gateway	2026-10-29T20:36:22.188Z
 code	https://code.claude.com/docs/en/claude-apps-gateway-config	2026-10-28T19:51:18.294Z
 code	https://code.claude.com/docs/en/claude-apps-gateway-deploy	2026-10-26T21:17:00.263Z
 code	https://code.claude.com/docs/en/claude-apps-gateway-on-aws	2026-10-21T23:58:06.555Z
 code	https://code.claude.com/docs/en/claude-apps-gateway-on-gcp	2026-10-21T23:58:06.554Z
 code	https://code.claude.com/docs/en/claude-apps-gateway-spend-limits	2026-10-25T15:35:20.393Z
-code	https://code.claude.com/docs/en/claude-code-on-the-web	2026-10-28T19:31:55.844Z
-code	https://code.claude.com/docs/en/claude-directory	2026-10-26T20:56:59.974Z
+code	https://code.claude.com/docs/en/claude-code-on-the-web	2026-10-29T19:25:49.056Z
+code	https://code.claude.com/docs/en/claude-directory	2026-10-29T03:07:21.044Z
 code	https://code.claude.com/docs/en/claude-platform-on-aws	2026-10-27T19:25:38.830Z
-code	https://code.claude.com/docs/en/claude-projects	2026-10-27T20:41:15.403Z
+code	https://code.claude.com/docs/en/claude-projects	2026-10-29T19:29:52.429Z
 code	https://code.claude.com/docs/en/claude-security	2026-10-26T21:16:36.998Z
 code	https://code.claude.com/docs/en/cli-reference	2026-10-19T19:45:23.789Z
-code	https://code.claude.com/docs/en/cloud-environments	2026-10-28T16:33:22.373Z
+code	https://code.claude.com/docs/en/cloud-environments	2026-10-29T18:56:20.921Z
 code	https://code.claude.com/docs/en/code-review	2026-10-24T23:12:37.659Z
-code	https://code.claude.com/docs/en/code-review-costs	2026-10-15T19:23:33.605Z
+code	https://code.claude.com/docs/en/code-review-costs	2026-10-29T20:03:42.610Z
 code	https://code.claude.com/docs/en/code-review-customize	2026-10-24T17:20:19.884Z
 code	https://code.claude.com/docs/en/code-review-local	2026-10-27T19:25:38.853Z
 code	https://code.claude.com/docs/en/code-review-pull-requests	2026-10-24T23:12:37.660Z
 code	https://code.claude.com/docs/en/code-review-setup	2026-10-19T19:47:44.227Z
 code	https://code.claude.com/docs/en/code-review-troubleshooting	2026-10-24T23:12:37.661Z
-code	https://code.claude.com/docs/en/commands	2026-10-27T19:25:38.871Z
+code	https://code.claude.com/docs/en/commands	2026-10-29T19:44:04.339Z
 code	https://code.claude.com/docs/en/common-workflows	2026-10-22T00:01:44.246Z
 code	https://code.claude.com/docs/en/communications-kit	2026-10-03T01:14:45.815Z
 code	https://code.claude.com/docs/en/computer-use	2026-10-27T17:34:35.768Z
 code	https://code.claude.com/docs/en/context-window	2026-10-27T01:12:56.757Z
 code	https://code.claude.com/docs/en/corporate-launcher	2026-10-28T18:29:18.066Z
-code	https://code.claude.com/docs/en/costs	2026-10-23T02:30:48.313Z
+code	https://code.claude.com/docs/en/costs	2026-10-29T19:28:29.241Z
 code	https://code.claude.com/docs/en/cross-session-messaging	2026-10-27T20:51:17.462Z
 code	https://code.claude.com/docs/en/data-usage	2026-09-28T00:07:53.024Z
 code	https://code.claude.com/docs/en/debug-your-config	2026-10-22T00:14:50.144Z
-code	https://code.claude.com/docs/en/deep-links	2026-10-28T18:28:45.434Z
-code	https://code.claude.com/docs/en/desktop	2026-10-28T18:06:54.637Z
+code	https://code.claude.com/docs/en/deep-links	2026-10-29T19:47:38.851Z
+code	https://code.claude.com/docs/en/desktop	2026-10-29T20:15:35.080Z
 code	https://code.claude.com/docs/en/desktop-ios-simulator	2026-10-19T19:44:55.663Z
 code	https://code.claude.com/docs/en/desktop-linux	2026-10-21T14:48:00.058Z
 code	https://code.claude.com/docs/en/desktop-quickstart	2026-10-28T18:06:54.611Z
 code	https://code.claude.com/docs/en/desktop-scheduled-tasks	2026-10-27T17:34:35.783Z
 code	https://code.claude.com/docs/en/desktop-wsl	2026-10-19T19:44:55.657Z
 code	https://code.claude.com/docs/en/devcontainer	2026-10-28T18:37:35.187Z
-code	https://code.claude.com/docs/en/env-vars	2026-10-28T19:44:13.283Z
-code	https://code.claude.com/docs/en/errors	2026-10-28T19:31:55.887Z
+code	https://code.claude.com/docs/en/env-vars	2026-10-29T19:44:04.380Z
+code	https://code.claude.com/docs/en/errors	2026-10-29T19:44:04.404Z
 code	https://code.claude.com/docs/en/fast-mode	2026-10-28T16:55:19.983Z
 code	https://code.claude.com/docs/en/feature-availability	2026-10-28T16:55:19.984Z
 code	https://code.claude.com/docs/en/features-overview	2026-10-25T14:30:46.633Z
@@ -100,14 +100,14 @@ code	https://code.claude.com/docs/en/github-actions-cloud-providers	2026-09-15T2
 code	https://code.claude.com/docs/en/github-enterprise-server	2026-10-28T18:04:40.811Z
 code	https://code.claude.com/docs/en/gitlab-ci-cd	2026-08-29T04:34:32.627Z
 code	https://code.claude.com/docs/en/glossary	2026-10-27T01:12:56.752Z
-code	https://code.claude.com/docs/en/goal	2026-10-20T02:25:04.240Z
+code	https://code.claude.com/docs/en/goal	2026-10-29T19:28:29.236Z
 code	https://code.claude.com/docs/en/google-vertex-ai	2026-10-27T19:25:38.842Z
 code	https://code.claude.com/docs/en/headless	2026-10-27T19:25:38.863Z
-code	https://code.claude.com/docs/en/hipaa-setup	2026-10-20T21:32:00.852Z
-code	https://code.claude.com/docs/en/hooks	2026-10-27T19:25:38.896Z
+code	https://code.claude.com/docs/en/hipaa-setup	2026-10-29T20:15:35.066Z
+code	https://code.claude.com/docs/en/hooks	2026-10-29T19:44:04.378Z
 code	https://code.claude.com/docs/en/hooks-guide	2026-10-26T18:49:58.381Z
 code	https://code.claude.com/docs/en/how-claude-code-works	2026-10-27T01:12:56.750Z
-code	https://code.claude.com/docs/en/interactive-mode	2026-10-28T19:31:55.863Z
+code	https://code.claude.com/docs/en/interactive-mode	2026-10-29T19:44:04.356Z
 code	https://code.claude.com/docs/en/jetbrains	2026-10-24T03:06:23.675Z
 code	https://code.claude.com/docs/en/keybindings	2026-10-24T23:10:37.378Z
 code	https://code.claude.com/docs/en/large-codebases	2026-10-27T19:25:38.848Z
@@ -123,8 +123,8 @@ code	https://code.claude.com/docs/en/mcp-quickstart	2026-10-28T19:51:18.251Z
 code	https://code.claude.com/docs/en/memory	2026-10-27T19:25:38.832Z
 code	https://code.claude.com/docs/en/microsoft-foundry	2026-10-14T02:36:06.980Z
 code	https://code.claude.com/docs/en/mobile	2026-10-07T21:23:17.370Z
-code	https://code.claude.com/docs/en/model-config	2026-10-28T19:44:13.274Z
-code	https://code.claude.com/docs/en/monitoring-usage	2026-10-28T19:51:18.290Z
+code	https://code.claude.com/docs/en/model-config	2026-10-29T19:44:04.355Z
+code	https://code.claude.com/docs/en/monitoring-usage	2026-10-29T19:45:19.306Z
 code	https://code.claude.com/docs/en/network-config	2026-10-24T17:18:23.743Z
 code	https://code.claude.com/docs/en/output-styles	2026-10-27T17:34:35.781Z
 code	https://code.claude.com/docs/en/overview	2026-10-20T02:34:53.597Z
@@ -147,7 +147,7 @@ code	https://code.claude.com/docs/en/plugins/manifest-reference	2026-10-25T14:15
 code	https://code.claude.com/docs/en/plugins/marketplace-reference	2026-10-25T15:01:33.582Z
 code	https://code.claude.com/docs/en/plugins/measure	2026-09-25T18:09:17.576Z
 code	https://code.claude.com/docs/en/plugins/mods/admin	2026-10-26T16:46:58.347Z
-code	https://code.claude.com/docs/en/plugins/mods/api	2026-10-25T14:35:53.013Z
+code	https://code.claude.com/docs/en/plugins/mods/api	2026-10-29T12:27:48.976Z
 code	https://code.claude.com/docs/en/plugins/mods/create	2026-10-25T14:30:21.732Z
 code	https://code.claude.com/docs/en/plugins/mods/events	2026-10-27T20:51:17.460Z
 code	https://code.claude.com/docs/en/plugins/mods/gallery	2026-10-27T20:08:26.462Z
@@ -162,39 +162,39 @@ code	https://code.claude.com/docs/en/plugins/publish	2026-10-28T20:23:52.248Z
 code	https://code.claude.com/docs/en/plugins/relevance	2026-10-26T21:16:36.997Z
 code	https://code.claude.com/docs/en/plugins/security	2026-10-28T20:23:32.553Z
 code	https://code.claude.com/docs/en/plugins/troubleshooting	2026-10-25T15:01:33.588Z
-code	https://code.claude.com/docs/en/prompt-caching	2026-10-25T14:47:17.204Z
+code	https://code.claude.com/docs/en/prompt-caching	2026-10-29T19:24:06.107Z
 code	https://code.claude.com/docs/en/prompt-library	2026-10-07T17:14:22.817Z
 code	https://code.claude.com/docs/en/quickstart	2026-10-08T03:42:07.641Z
 code	https://code.claude.com/docs/en/remote-control	2026-10-27T17:34:35.788Z
 code	https://code.claude.com/docs/en/routines	2026-10-27T19:25:38.850Z
 code	https://code.claude.com/docs/en/sandbox-environments	2026-10-19T16:44:07.465Z
-code	https://code.claude.com/docs/en/sandboxing	2026-10-27T19:24:24.292Z
+code	https://code.claude.com/docs/en/sandboxing	2026-10-29T19:37:06.897Z
 code	https://code.claude.com/docs/en/scheduled-tasks	2026-10-22T18:20:19.446Z
 code	https://code.claude.com/docs/en/security	2026-10-16T20:11:39.043Z
 code	https://code.claude.com/docs/en/security-guidance	2026-10-23T13:44:40.129Z
-code	https://code.claude.com/docs/en/self-hosted-environments	2026-10-24T17:33:44.515Z
-code	https://code.claude.com/docs/en/self-hosted-environments-configuration	2026-10-28T19:26:12.066Z
-code	https://code.claude.com/docs/en/self-hosted-environments-deploy	2026-10-28T19:51:18.284Z
-code	https://code.claude.com/docs/en/self-hosted-environments-identity	2026-10-22T17:46:04.127Z
+code	https://code.claude.com/docs/en/self-hosted-environments	2026-10-29T19:25:49.054Z
+code	https://code.claude.com/docs/en/self-hosted-environments-configuration	2026-10-29T19:31:44.794Z
+code	https://code.claude.com/docs/en/self-hosted-environments-deploy	2026-10-29T19:31:44.792Z
+code	https://code.claude.com/docs/en/self-hosted-environments-identity	2026-10-29T18:56:20.913Z
 code	https://code.claude.com/docs/en/self-hosted-environments-quickstart	2026-10-28T19:26:12.058Z
-code	https://code.claude.com/docs/en/self-hosted-environments-reference	2026-10-28T19:20:46.624Z
+code	https://code.claude.com/docs/en/self-hosted-environments-reference	2026-10-29T19:31:44.791Z
 code	https://code.claude.com/docs/en/self-hosted-environments-testing	2026-10-09T23:38:20.106Z
 code	https://code.claude.com/docs/en/server-managed-settings	2026-10-28T19:51:18.254Z
 code	https://code.claude.com/docs/en/sessions	2026-10-27T20:51:17.461Z
 code	https://code.claude.com/docs/en/settings	2026-10-27T17:34:35.784Z
 code	https://code.claude.com/docs/en/settings-example	2026-10-22T00:03:18.172Z
-code	https://code.claude.com/docs/en/settings-reference	2026-10-28T19:51:18.293Z
-code	https://code.claude.com/docs/en/setup	2026-10-21T06:28:20.251Z
-code	https://code.claude.com/docs/en/skills	2026-10-28T19:31:55.863Z
-code	https://code.claude.com/docs/en/slack	2026-10-06T01:49:06.013Z
-code	https://code.claude.com/docs/en/statusline	2026-10-25T15:35:20.376Z
+code	https://code.claude.com/docs/en/settings-reference	2026-10-29T19:47:38.871Z
+code	https://code.claude.com/docs/en/setup	2026-10-29T20:03:59.287Z
+code	https://code.claude.com/docs/en/skills	2026-10-29T19:24:06.108Z
+code	https://code.claude.com/docs/en/slack	2026-10-29T18:56:20.912Z
+code	https://code.claude.com/docs/en/statusline	2026-10-29T19:24:06.114Z
 code	https://code.claude.com/docs/en/sub-agents	2026-10-28T19:31:55.865Z
-code	https://code.claude.com/docs/en/terminal-config	2026-10-27T04:06:17.652Z
+code	https://code.claude.com/docs/en/terminal-config	2026-10-29T19:39:20.589Z
 code	https://code.claude.com/docs/en/third-party-integrations	2026-10-06T03:21:56.638Z
 code	https://code.claude.com/docs/en/tools-reference	2026-10-24T23:10:37.380Z
-code	https://code.claude.com/docs/en/troubleshoot-install	2026-10-28T18:37:35.185Z
+code	https://code.claude.com/docs/en/troubleshoot-install	2026-10-29T20:03:59.290Z
 code	https://code.claude.com/docs/en/troubleshooting	2026-10-23T00:36:20.124Z
-code	https://code.claude.com/docs/en/ultrareview	2026-10-27T19:25:38.810Z
+code	https://code.claude.com/docs/en/ultrareview	2026-10-29T18:52:28.126Z
 code	https://code.claude.com/docs/en/voice-dictation	2026-10-22T17:41:17.138Z
 code	https://code.claude.com/docs/en/vs-code	2026-10-28T19:51:18.286Z
 code	https://code.claude.com/docs/en/web-quickstart	2026-10-27T19:26:35.349Z
@@ -382,6 +382,8 @@ platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/art
 platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/artifacts/list	
 platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/connectors	
 platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/connectors/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/cost	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/cost/list	
 platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/cost_report	
 platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/cost_report/list	
 platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/plugins	
@@ -390,6 +392,8 @@ platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/ski
 platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/skills/list	
 platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/summaries	
 platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/summaries/list	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/usage	
+platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/usage/list	
 platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/usage_report	
 platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/usage_report/list	
 platform	https://platform.claude.com/docs/en/api/beta/organization/analytics/user_cost_report	
@@ -942,6 +946,7 @@ platform	https://platform.claude.com/docs/en/manage-claude/organization-webhooks
 platform	https://platform.claude.com/docs/en/manage-claude/plugins-api	
 platform	https://platform.claude.com/docs/en/manage-claude/rate-limits-api	
 platform	https://platform.claude.com/docs/en/manage-claude/spend-limits-api	
+platform	https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api	
 platform	https://platform.claude.com/docs/en/manage-claude/usage-cost-api	
 platform	https://platform.claude.com/docs/en/manage-claude/user-management	
 platform	https://platform.claude.com/docs/en/manage-claude/user-profiles	
@@ -1247,6 +1252,7 @@ platform	https://platform.claude.com/docs/id/manage-claude/organization-webhooks
 platform	https://platform.claude.com/docs/id/manage-claude/plugins-api	
 platform	https://platform.claude.com/docs/id/manage-claude/rate-limits-api	
 platform	https://platform.claude.com/docs/id/manage-claude/spend-limits-api	
+platform	https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api	
 platform	https://platform.claude.com/docs/id/manage-claude/usage-cost-api	
 platform	https://platform.claude.com/docs/id/manage-claude/user-management	
 platform	https://platform.claude.com/docs/id/manage-claude/user-profiles	

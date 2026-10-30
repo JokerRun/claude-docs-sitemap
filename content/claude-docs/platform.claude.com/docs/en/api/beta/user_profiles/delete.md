@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/delete
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: c5b5ed88d962c3edd0968ceabbb53cd22dd817b2a9c19c690300fa8e58bf897a
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 41607e4dbeaceb43b91d98feaa5d7c25381602eff972d08394cbfd98d8551884
 ---
 
 ---
@@ -139,6 +139,10 @@ Delete User Profile
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

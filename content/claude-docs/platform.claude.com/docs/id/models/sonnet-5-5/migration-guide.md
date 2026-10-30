@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: da7cb8814cdcd5b016a3c0d2aec748630e6fcd853097c3903837cbd3f4408d97
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: a7a5d379ac947da316e21f0d08bfe7b9260aefb9eaa9a9aa5aba95f7204d04b7
 ---
 
 ---
@@ -845,7 +845,7 @@ Contoh ini menandai setiap alat dalam daftar sebagai strict. Sebuah permintaan d
 
 Claude Sonnet 5.5 membaca blok thinking dari Claude Sonnet 5, Claude Opus 4.8, Claude Haiku 4.5, dan model sebelumnya, serta, di Claude API dan Claude Models on Google Cloud (Google managed), dari Claude Haiku 5.5. Model ini tidak membaca blok dari Claude Opus 5, Claude Opus 5.5, atau model Claude Fable maupun Claude Mythos mana pun. API membuang blok yang tidak dapat dibaca model. Permintaan tetap mengembalikan 200, dan blok yang dibuang tidak ditagih. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
 
-Setiap blok thinking Claude Sonnet 5.5 juga ditandatangani atas percakapan sebelumnya. Untuk akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC, API memberlakukan hal ini secara default, di Claude API, Amazon Bedrock, dan Claude Models on Google Cloud (Google managed). Pada akun tersebut, permintaan yang memutar ulang blok setelah pengeditan riwayat sebelumnya mengembalikan error 400. Pertahankan percakapan agar hanya ditambahkan, dan ubah instruksi atau alat dengan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages). Blok thinking yang dihasilkan Claude Sonnet 5.5 hanya berfungsi di akun yang menghasilkannya, atau di akun yang terhubung dengannya. Lihat [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking).
+Setiap blok thinking Claude Sonnet 5.5 juga ditandatangani atas percakapan sebelumnya. Pertahankan percakapan bersifat append-only (hanya ditambahkan), dan ubah instruksi atau alat dengan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages). Permintaan yang memutar ulang sebuah blok setelah pengeditan pada riwayat sebelumnya dan membiarkan `thinking.block_binding.prefix_mismatch_behavior` tidak diatur akan mendapatkan error 400 pada akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC. Hal ini berlaku pada Claude API, Amazon Bedrock, dan Claude Models on Google Cloud (Google managed). Blok thinking yang dihasilkan Claude Sonnet 5.5 hanya berfungsi di akun yang menghasilkannya atau di akun yang ditautkan dengannya. Lihat [Preserved thinking](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking).
 
 ### Computer use memerlukan toolset di Claude API dan Claude Models on Google Cloud (Google managed)
 

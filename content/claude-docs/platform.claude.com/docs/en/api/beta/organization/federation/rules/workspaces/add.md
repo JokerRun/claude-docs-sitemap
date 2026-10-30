@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/add
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: b9a0b5130a72f67c9479d5f4561679dcc3be08caa9871b3ac1bfc71dffb0090d
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: d3e1deb7d4c78326fa66a800c7a8a13ce0d1938baf9f408724dae9266a8ed20a
 ---
 
 ---
@@ -150,6 +150,10 @@ other scopes require a Console session.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ## Body parameters
 

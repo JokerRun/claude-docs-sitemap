@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/update
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 02128c0c9d44d33ba12b29b02839e6433fcb4968c74090bc35363a37fdbc79f0
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 81d9aad3c47c7e524b371ce0e8613e0e0ff2a124577bbb3d1f535536fe199cf9
 ---
 
 ---
@@ -160,6 +160,10 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ## Body parameters
 

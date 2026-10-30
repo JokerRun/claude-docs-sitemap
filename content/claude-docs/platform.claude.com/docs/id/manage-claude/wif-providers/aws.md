@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/aws
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: d0a63ce5779aed8e894dd761e05727d2ed7848d88e3e00d55426a4f4fc49ff06
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: d69e247ba593312cbf0650008c399e17fc5f35c38c03e0969730727e45fc410a
 ---
 
 ---
@@ -29,18 +29,18 @@ API AWS STS `GetWebIdentityToken` mengembalikan token OIDC yang ditandatangani o
 ### Mengonfigurasi AWS
 
 <Steps>
-  <Step title="Aktifkan outbound web identity federation untuk akun">
-    Ini adalah flag tingkat akun, nonaktif secara default. Di konsol AWS, buka **IAM**, pilih **Account settings**, dan aktifkan **Outbound web identity federation**. Untuk mengaktifkannya secara terprogram:
+  <Step title="Aktifkan federasi identitas web keluar untuk akun">
+    Ini adalah flag tingkat akun yang nonaktif secara default. Di konsol AWS, buka **IAM**, pilih **Account settings**, lalu aktifkan **Outbound web identity federation**. Untuk mengaktifkannya secara terprogram:
 
     ```bash
     python3 -c "import boto3; boto3.client('iam').enable_outbound_web_identity_federation()"
     ```
 
-    Jika ini tidak diaktifkan, panggilan ke `GetWebIdentityToken` gagal dengan `OutboundWebIdentityFederationDisabledException`.
+    Jika ini tidak diaktifkan, panggilan ke `GetWebIdentityToken` akan gagal dengan `OutboundWebIdentityFederationDisabledException`.
   </Step>
 
-  <Step title="Berikan izin kepada IAM role beban kerja untuk memanggil API">
-    Lampirkan kebijakan ini ke IAM role yang digunakan oleh fungsi Lambda, instance EC2, atau task ECS Anda:
+  <Step title="Berikan izin kepada peran IAM workload untuk memanggil API">
+    Lampirkan kebijakan ini ke peran IAM yang digunakan untuk menjalankan fungsi Lambda, instans EC2, atau tugas ECS Anda:
 
     ```json
     {
@@ -57,7 +57,7 @@ API AWS STS `GetWebIdentityToken` mengembalikan token OIDC yang ditandatangani o
   </Step>
 
   <Step title="Temukan URL issuer STS akun Anda">
-    Setelah mengaktifkan outbound federation, halaman **IAM > Account settings** menampilkan kolom **Get Token Issuer URL** dengan nilai berbentuk `https://<uuid>.tokens.sts.global.api.aws`. URL ini unik untuk akun AWS Anda; salin untuk langkah berikutnya. Untuk mengambilnya secara terprogram:
+    Setelah Anda mengaktifkan federasi keluar, halaman **IAM > Account settings** menampilkan bidang **Get Token Issuer URL** dengan nilai berbentuk `https://<uuid>.tokens.sts.global.api.aws`. URL ini unik untuk akun AWS Anda; salin URL tersebut untuk langkah berikutnya. Untuk mengambilnya secara terprogram:
 
     ```bash
     python3 -c "import boto3; print(boto3.client('iam').get_outbound_web_identity_federation_info())"
@@ -102,7 +102,7 @@ Buatlah sespesifik mungkin sesuai yang diizinkan beban kerja. Cocokkan ARN role 
 
 ### Memperoleh dan menggunakan token
 
-Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audience, lalu berikan hasilnya ke kredensial federasi SDK melalui `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider()`; java: `IdentityTokenConfig`). Kecuali di Java (lihat komentar dalam contoh tersebut), opsi itu menerima penyedia token, sehingga SDK akan memanggil ulang STS pada setiap refresh.
+Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audience, lalu teruskan hasilnya ke kredensial federasi SDK melalui `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider()`; java: `IdentityTokenConfig`). Kecuali di Java (lihat komentar dalam contoh tersebut), opsi tersebut menerima token provider, sehingga SDK memanggil STS lagi pada setiap penyegaran.
 
 <Note>
   `GetWebIdentityToken` hanya tersedia di endpoint STS regional. Jika Anda menerima `'STS' object has no attribute 'get_web_identity_token'` atau error serupa, sematkan klien STS Anda ke suatu region (misalnya, `boto3.client("sts", region_name="us-east-1")`) dan pastikan AWS SDK Anda cukup baru untuk menyertakan API tersebut.
@@ -119,7 +119,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
 
   ACCESS_TOKEN=$(curl -sS https://api.anthropic.com/v1/oauth/token \
     -H "content-type: application/json" \
-    --data @- <<JSON | jq -r .access_token
+    -d @- <<JSON | jq -r .access_token
   {
     "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
     "assertion": "$JWT",
@@ -140,6 +140,23 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello from AWS"}]
     }'
+  ```
+
+  ```bash CLI
+  export ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
+  aws sts get-web-identity-token \
+    --region us-east-1 \
+    --audience "https://api.anthropic.com" \
+    --signing-algorithm RS256 \
+    --duration-seconds 900 \
+    --query WebIdentityToken --output text > "$ANTHROPIC_IDENTITY_TOKEN_FILE"
+
+  # ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
+  # ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID dibaca dari environment
+  ant messages create \
+    --model claude-opus-5-5 \
+    --max-tokens 1024 \
+    --message '{role: user, content: "Hello from AWS"}'
   ```
 
   ```python Python
@@ -220,6 +237,54 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   }
   ```
 
+  ```csharp C#
+  using Amazon.SecurityToken;
+  using Amazon.SecurityToken.Model;
+  // ...
+  using Anthropic.Credentials;
+  // ...
+
+  var credentials = new WorkloadIdentityCredentials(new WorkloadIdentityOptions
+  {
+      FederationRuleId = Environment.GetEnvironmentVariable("ANTHROPIC_FEDERATION_RULE_ID")!,
+      OrganizationId = Environment.GetEnvironmentVariable("ANTHROPIC_ORGANIZATION_ID"),
+      ServiceAccountId = Environment.GetEnvironmentVariable("ANTHROPIC_SERVICE_ACCOUNT_ID"),
+      WorkspaceId = Environment.GetEnvironmentVariable("ANTHROPIC_WORKSPACE_ID"),
+      IdentityTokenProvider = new StsTokenProvider(),
+  });
+  using var client = new AnthropicClient(new ClientOptions { Credentials = credentials });
+
+  var message = await client.Messages.Create(new()
+  {
+      Model = Model.ClaudeOpus5_5,
+      MaxTokens = 1024,
+      Messages = [new UserMessageParam { Content = "Hello from AWS" }],
+  });
+  foreach (var block in message.Content)
+  {
+      if (block.Value is TextBlock textBlock)
+      {
+          Console.WriteLine(textBlock.Text);
+      }
+  }
+
+  class StsTokenProvider : IIdentityTokenProvider
+  {
+      private readonly AmazonSecurityTokenServiceClient _sts = new(Amazon.RegionEndpoint.USEast1);
+
+      public async Task<string> GetIdentityTokenAsync(CancellationToken ct = default)
+      {
+          var resp = await _sts.GetWebIdentityTokenAsync(new GetWebIdentityTokenRequest
+          {
+              Audience = ["https://api.anthropic.com"],
+              SigningAlgorithm = "RS256",
+              DurationSeconds = 900,
+          }, ct);
+          return resp.WebIdentityToken;
+      }
+  }
+  ```
+
   ```go Go
   ctx := context.TODO()
   cfg, err := config.LoadDefaultConfig(ctx, config.WithRegion("us-east-1"))
@@ -279,111 +344,48 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   import software.amazon.awssdk.services.sts.model.GetWebIdentityTokenRequest;
 
   void main() {
-      StsClient sts = StsClient.builder().region(Region.US_EAST_1).build();
+      StsClient sts = StsClient.builder()
+          .region(Region.US_EAST_1)
+          .build();
 
-      // Java SDK menerima token itu sendiri atau path file, bukan fungsi; dengan
-      // source("value"), path(...) berisi token. SDK mengirim token yang sama
-      // pada setiap refresh token akses Anthropic, yang gagal setelah token
+      // SDK Java menerima token itu sendiri atau path file, bukan fungsi; dengan
+      // source("value"), path(...) berisi token. SDK mengirim token yang sama itu
+      // pada setiap refresh access token Anthropic, yang gagal setelah token
       // kedaluwarsa atau, jika memiliki klaim jti, sudah dipakai. Untuk proses
-      // yang berjalan lebih lama, berikan source("file") dan tulis token baru ke file
-      // sebelum setiap refresh.
+      // yang berjalan lebih lama, berikan source("file") dan tulis token baru ke file sebelum
+      // setiap refresh.
       String stsToken = sts.getWebIdentityToken(
-                      GetWebIdentityTokenRequest.builder()
-                              .audience("https://api.anthropic.com")
-                              .signingAlgorithm("RS256")
-                              .durationSeconds(900)
-                              .build())
-              .webIdentityToken();
+              GetWebIdentityTokenRequest.builder()
+                  .audience("https://api.anthropic.com")
+                  .signingAlgorithm("RS256")
+                  .durationSeconds(900)
+                  .build())
+          .webIdentityToken();
 
       AnthropicClient client = AnthropicOkHttpClient.builder()
-              .configurationProvider(InMemoryProfileConfigProvider.of(ProfileConfig.builder()
-                      .organizationId(System.getenv("ANTHROPIC_ORGANIZATION_ID"))
-                      .workspaceId(System.getenv("ANTHROPIC_WORKSPACE_ID"))
-                      .authentication(AuthenticationConfig.builder()
-                              .type(AuthenticationType.OIDC_FEDERATION)
-                              .federationRuleId(System.getenv("ANTHROPIC_FEDERATION_RULE_ID"))
-                              .serviceAccountId(System.getenv("ANTHROPIC_SERVICE_ACCOUNT_ID"))
-                              .identityToken(IdentityTokenConfig.builder()
-                                      .source("value")
-                                      .path(stsToken)
-                                      .build())
-                              .build())
-                      .build()))
-              .build();
+          .configurationProvider(InMemoryProfileConfigProvider.of(ProfileConfig.builder()
+              .organizationId(System.getenv("ANTHROPIC_ORGANIZATION_ID"))
+              .workspaceId(System.getenv("ANTHROPIC_WORKSPACE_ID"))
+              .authentication(AuthenticationConfig.builder()
+                  .type(AuthenticationType.OIDC_FEDERATION)
+                  .federationRuleId(System.getenv("ANTHROPIC_FEDERATION_RULE_ID"))
+                  .serviceAccountId(System.getenv("ANTHROPIC_SERVICE_ACCOUNT_ID"))
+                  .identityToken(IdentityTokenConfig.builder()
+                      .source("value")
+                      .path(stsToken)
+                      .build())
+                  .build())
+              .build()))
+          .build();
 
       var message = client.messages().create(MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(1024)
-              .addUserMessage("Hello from AWS")
-              .build());
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(1024)
+          .addUserMessage("Hello from AWS")
+          .build());
 
       IO.println(message.content());
   }
-  ```
-
-  ```csharp C#
-  using Amazon.SecurityToken;
-  using Amazon.SecurityToken.Model;
-  // ...
-  using Anthropic.Credentials;
-  // ...
-
-  var credentials = new WorkloadIdentityCredentials(new WorkloadIdentityOptions
-  {
-      FederationRuleId = Environment.GetEnvironmentVariable("ANTHROPIC_FEDERATION_RULE_ID")!,
-      OrganizationId = Environment.GetEnvironmentVariable("ANTHROPIC_ORGANIZATION_ID"),
-      ServiceAccountId = Environment.GetEnvironmentVariable("ANTHROPIC_SERVICE_ACCOUNT_ID"),
-      WorkspaceId = Environment.GetEnvironmentVariable("ANTHROPIC_WORKSPACE_ID"),
-      IdentityTokenProvider = new StsTokenProvider(),
-  });
-  using var client = new AnthropicClient(new ClientOptions { Credentials = credentials });
-
-  var message = await client.Messages.Create(new()
-  {
-      Model = Model.ClaudeOpus5_5,
-      MaxTokens = 1024,
-      Messages = [new UserMessageParam { Content = "Hello from AWS" }],
-  });
-  foreach (var block in message.Content)
-  {
-      if (block.Value is TextBlock textBlock)
-      {
-          Console.WriteLine(textBlock.Text);
-      }
-  }
-
-  class StsTokenProvider : IIdentityTokenProvider
-  {
-      private readonly AmazonSecurityTokenServiceClient _sts = new(Amazon.RegionEndpoint.USEast1);
-
-      public async Task<string> GetIdentityTokenAsync(CancellationToken ct = default)
-      {
-          var resp = await _sts.GetWebIdentityTokenAsync(new GetWebIdentityTokenRequest
-          {
-              Audience = ["https://api.anthropic.com"],
-              SigningAlgorithm = "RS256",
-              DurationSeconds = 900,
-          }, ct);
-          return resp.WebIdentityToken;
-      }
-  }
-  ```
-
-  ```bash CLI
-  export ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
-  aws sts get-web-identity-token \
-    --region us-east-1 \
-    --audience "https://api.anthropic.com" \
-    --signing-algorithm RS256 \
-    --duration-seconds 900 \
-    --query WebIdentityToken --output text > "$ANTHROPIC_IDENTITY_TOKEN_FILE"
-
-  # ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID, dan
-  # ANTHROPIC_SERVICE_ACCOUNT_ID, serta ANTHROPIC_WORKSPACE_ID dibaca dari environment
-  ant messages create \
-    --model claude-opus-5-5 \
-    --max-tokens 1024 \
-    --message '{role: user, content: "Hello from AWS"}'
   ```
 
   ```php PHP
@@ -473,7 +475,7 @@ JWT=$(aws sts get-web-identity-token \
 
 curl -sS https://api.anthropic.com/v1/oauth/token \
   -H "content-type: application/json" \
-  --data @- <<JSON
+  -d @- <<JSON
 {
   "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
   "assertion": "$JWT",
@@ -485,11 +487,11 @@ curl -sS https://api.anthropic.com/v1/oauth/token \
 JSON
 ```
 
-Penukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika penukaran gagal dengan respons `401` `authentication_error` yang buram (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console untuk alasan penolakan dan lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi AWS adalah ketidakcocokan `iss` (URL issuer STS per-akun harus sama persis dengan `issuer_url` yang terdaftar).
+Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika pertukaran gagal dengan respons `401` `authentication_error` yang tidak transparan (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console untuk mengetahui alasan penolakan dan lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange). Penyebab paling umum di sisi AWS adalah ketidakcocokan `iss`: URL issuer STS per akun harus sama persis dengan `issuer_url` yang terdaftar.
 
 ## Menggunakan projected service-account token EKS
 
-Jika beban kerja Anda berjalan di pod EKS, Anda dapat melewati panggilan STS dan membaca service-account token yang diproyeksikan Kubernetes langsung dari disk. Kubernetes secara native memproyeksikan token yang kompatibel dengan OIDC ke dalam pod, dan SDK dapat membacanya dari path file, sehingga tidak diperlukan callable penyedia token. Jalur ini memiliki dua langkah konfigurasi AWS lebih sedikit daripada jalur STS tetapi hanya berfungsi di dalam pod; mekanisme yang mendasarinya sama dengan [integrasi Kubernetes generik](https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes).
+Jika workload Anda berjalan di pod EKS, Anda dapat melewati panggilan STS dan membaca token service account yang diproyeksikan Kubernetes langsung dari disk. Kubernetes secara native memproyeksikan token yang kompatibel dengan OIDC ke dalam pod, dan SDK dapat membacanya dari path file. Jalur ini memiliki dua langkah konfigurasi AWS lebih sedikit dibandingkan jalur STS, tetapi hanya berfungsi di dalam pod; mekanisme dasarnya sama dengan [integrasi Kubernetes generik](https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes).
 
 Jalur ini juga memerlukan klaster EKS dengan [IAM OIDC provider yang diaktifkan](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html) dan akses `kubectl` ke klaster.
 
@@ -586,7 +588,7 @@ Di Claude Console, buka halaman [Workload identity](https://platform.claude.com/
 
 Wizard membuat sumber daya ini untuk Anda. Gunakan nilai-nilai berikut, baik Anda memasukkannya di wizard maupun mengirimkannya ke [Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api):
 
-**Federation issuer:** Issuer EKS mengekspos endpoint JWKS publik, jadi gunakan mode discovery. URL issuer harus sama persis dengan klaim `iss` token. Daftarkan satu issuer per klaster.
+**Issuer federasi:** Issuer EKS mengekspos endpoint JWKS publik, jadi gunakan mode discovery. URL issuer harus sama persis dengan klaim `iss` pada token. Daftarkan satu issuer untuk setiap cluster.
 
 ```json
 {
@@ -625,7 +627,7 @@ Di dalam pod, token yang diproyeksikan berada di `/var/run/secrets/anthropic.com
 
   ACCESS_TOKEN=$(curl -sS https://api.anthropic.com/v1/oauth/token \
     -H "content-type: application/json" \
-    --data @- <<JSON | jq -r .access_token
+    -d @- <<JSON | jq -r .access_token
   {
     "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
     "assertion": "$JWT",
@@ -646,6 +648,15 @@ Di dalam pod, token yang diproyeksikan berada di `/var/run/secrets/anthropic.com
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello from EKS"}]
     }'
+  ```
+
+  ```bash CLI
+  # Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
+  # ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
+  ant messages create \
+    --model claude-opus-5-5 \
+    --max-tokens 1024 \
+    --message '{role: user, content: "Hello from EKS"}'
   ```
 
   ```python Python
@@ -703,6 +714,27 @@ Di dalam pod, token yang diproyeksikan berada di `/var/run/secrets/anthropic.com
   }
   ```
 
+  ```csharp C#
+  // Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
+  // ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
+  // dari environment pod.
+  using var client = new AnthropicClient();
+
+  var message = await client.Messages.Create(new()
+  {
+      Model = Model.ClaudeOpus5_5,
+      MaxTokens = 1024,
+      Messages = [new UserMessageParam { Content = "Hello from EKS" }],
+  });
+  foreach (var block in message.Content)
+  {
+      if (block.Value is TextBlock textBlock)
+      {
+          Console.WriteLine(textBlock.Text);
+      }
+  }
+  ```
+
   ```go Go
   tokenPath := os.Getenv("ANTHROPIC_IDENTITY_TOKEN_FILE")
 
@@ -745,42 +777,12 @@ Di dalam pod, token yang diproyeksikan berada di `/var/run/secrets/anthropic.com
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   var message = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5_5)
-          .maxTokens(1024)
-          .addUserMessage("Hello from EKS")
-          .build());
+      .model(Model.CLAUDE_OPUS_5_5)
+      .maxTokens(1024)
+      .addUserMessage("Hello from EKS")
+      .build());
 
   IO.println(message.content());
-  ```
-
-  ```csharp C#
-  // Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
-  // ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
-  // dari environment pod.
-  using var client = new AnthropicClient();
-
-  var message = await client.Messages.Create(new()
-  {
-      Model = Model.ClaudeOpus5_5,
-      MaxTokens = 1024,
-      Messages = [new UserMessageParam { Content = "Hello from EKS" }],
-  });
-  foreach (var block in message.Content)
-  {
-      if (block.Value is TextBlock textBlock)
-      {
-          Console.WriteLine(textBlock.Text);
-      }
-  }
-  ```
-
-  ```bash CLI
-  # Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
-  # ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
-  ant messages create \
-    --model claude-opus-5-5 \
-    --max-tokens 1024 \
-    --message '{role: user, content: "Hello from EKS"}'
   ```
 
   ```php PHP
@@ -828,7 +830,7 @@ JWT=$(cat "$ANTHROPIC_IDENTITY_TOKEN_FILE")
 
 curl -sS https://api.anthropic.com/v1/oauth/token \
   -H "content-type: application/json" \
-  --data @- <<JSON
+  -d @- <<JSON
 {
   "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
   "assertion": "$JWT",
@@ -840,7 +842,7 @@ curl -sS https://api.anthropic.com/v1/oauth/token \
 JSON
 ```
 
-Penukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika penukaran gagal dengan respons `401` `authentication_error` yang buram (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console untuk alasan penolakan dan lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi EKS adalah `aud` token yang diproyeksikan tidak cocok dengan rule (proyeksikan token dengan `audience: https://api.anthropic.com`, bukan default IRSA `sts.amazonaws.com`).
+Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika pertukaran gagal dengan respons `401` `authentication_error` yang tidak transparan (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console untuk mengetahui alasan penolakan dan lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange). Penyebab paling umum di sisi EKS adalah `aud` pada token yang diproyeksikan tidak cocok dengan aturan (proyeksikan token dengan `audience: https://api.anthropic.com`, bukan default IRSA `sts.amazonaws.com`).
 
 ## Membatasi cakupan rule Anda
 
@@ -850,10 +852,10 @@ Penukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant
 
 Kunci blok `match` pada rule ke cakupan tersempit yang sesuai dengan kasus penggunaan Anda:
 
-* **Sematkan ARN role lengkap:** Gunakan `subject_prefix: "arn:aws:iam::<account>:role/<role-name>"` tanpa `*` di akhir sehingga role lain di akun tidak cocok.
-* **Sematkan ID akun:** Cocokkan kolom `aws_account` dari klaim `https://sts.amazonaws.com/` token dengan map `claims` atau `condition` CEL sebagai pemeriksaan defense-in-depth terhadap prefiks yang salah dikonfigurasi.
-* **Sematkan namespace dan service account di EKS:** Gunakan nilai `system:serviceaccount:<namespace>:<name>` yang tepat tanpa `*` setelah prefiks `system:serviceaccount:`.
-* **Gunakan rule terpisah per lingkungan:** Buat rule yang berbeda untuk beban kerja produksi, staging, dan pengembangan daripada memperluas satu prefiks untuk mencakup semuanya.
+* **Kunci ARN peran lengkap:** Gunakan `subject_prefix: "arn:aws:iam::<account>:role/<role-name>"` tanpa `*` di akhir agar peran lain di akun tersebut tidak cocok.
+* **Kunci ID akun:** Cocokkan bidang `aws_account` dari klaim `https://sts.amazonaws.com/` pada token dengan map `claims` atau `condition` CEL sebagai pemeriksaan defense-in-depth terhadap prefix yang salah dikonfigurasi.
+* **Kunci namespace dan service account di EKS:** Gunakan nilai `system:serviceaccount:<namespace>:<name>` yang persis tanpa `*` setelah prefix `system:serviceaccount:`.
+* **Gunakan aturan terpisah untuk setiap lingkungan:** Buat aturan yang berbeda untuk workload produksi, staging, dan pengembangan alih-alih memperluas satu prefix untuk mencakup semuanya.
 
 ## Langkah selanjutnya
 

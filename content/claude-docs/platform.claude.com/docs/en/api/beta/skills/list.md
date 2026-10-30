@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 099caad223a1f45e90e01ddba63bf9358b53d30036fa887ea39da2e223bbc1a7
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 6b987adc4adbfb8c0e8a3e14e085c2b36d6662194ebbca4fa92e37cb9295ec17
 ---
 
 ---
@@ -158,6 +158,10 @@ List Skills
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

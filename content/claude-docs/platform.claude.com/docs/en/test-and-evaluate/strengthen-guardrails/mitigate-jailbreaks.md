@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 364ffd0870cb3b651a610eacbc48e0f3bd7cc8e490d34462269142a870adb65a
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 6cc36ea7cd1429c61fae7b5fc922ef2b0a5da82f1ce631f04b806c7c4c6e596e
 ---
 
 ---
@@ -211,7 +211,7 @@ Combine strategies for robust protection. Here’s an enterprise-grade example w
   Evaluate if this query violates SEC rules, FINRA guidelines, or client privacy.
   ```
 
-  Use [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) to constrain the response to a Boolean classification.
+  Use [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) to constrain the response to a boolean classification.
 </Accordion>
 
 By layering these strategies, you create a robust defense against jailbreaking and prompt injections, ensuring your Claude-powered applications maintain the highest standards of safety and compliance.

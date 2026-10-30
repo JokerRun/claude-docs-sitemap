@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations/test
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: cba556fc86f6272148e00600e0e192f8767c9dbc55a1bf0d1f717e42e2cdef5f
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 45a69f0f0a34dd2aa070ae62a693da9a8c724d7d2920e829787d8ba9d5d5dcbc
 ---
 
 ---
@@ -139,6 +139,10 @@ Send one test span, named `anthropic.test`, to the destination with its register
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ## Returns
 

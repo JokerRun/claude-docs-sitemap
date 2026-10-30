@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/data-residency
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 34be00eebad20f678f8cafa086ae7036749cf519b16d254ec6a15b321a6bf844
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: f9e20afa0e7bcec9b8b66bef2acdc6a94cb7c247fa3142cef6e754fd05cb87ed
 ---
 
 ---
@@ -363,8 +363,8 @@ Model lama tidak terpengaruh oleh migrasi ini. Untuk harga terkini pada model ya
     Pelajari tentang konfigurasi workspace.
   </Card>
 
-  <Card title="Usage and Cost API" icon="chart" href="https://platform.claude.com/docs/id/manage-claude/usage-cost-api">
-    Lacak penggunaan dan biaya berdasarkan residensi data.
+  <Card title="Usage and Cost Analytics API" icon="chart" href="https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api">
+    Lacak penggunaan dan biaya berdasarkan inference geo.
   </Card>
 </CardGroup>
 

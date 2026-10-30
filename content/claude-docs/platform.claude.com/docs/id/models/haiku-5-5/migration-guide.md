@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: ef147ddd2e99213419872acd52bfc774dbae40c0bb109cbe84e92df6d735ae34
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 87f386699c23d05f0ce418fee1b972b3fd0036a76211cf1c63c0604a62383d4f
 ---
 
 ---
@@ -140,11 +140,11 @@ Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Haiku 5
 
 ## Putar ulang blok thinking melalui akun yang menghasilkannya
 
-Blok thinking dari Claude Haiku 5.5 hanya berfungsi di akun yang menghasilkannya, atau di akun yang terhubung dengannya. Ketika akun lain mengirim salah satu blok ini, API membuang blok tersebut sebelum model melihatnya, dan permintaan berhasil tanpa penalaran tersebut. Hal ini memengaruhi kode yang menyimpan percakapan dan memutarnya ulang melalui akun yang berbeda, misalnya layanan yang melayani beberapa pelanggan dari satu penyimpanan percakapan. Putar ulang setiap percakapan melalui akun yang menghasilkannya. Lihat [Blok pemikiran tetap berada di akun yang menghasilkannya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking).
+Blok thinking dari Claude Haiku 5.5 hanya berfungsi di akun yang menghasilkannya atau di akun yang terhubung dengannya. Ketika akun lain mengirim salah satu blok ini, API membuang blok tersebut sebelum model melihatnya, dan permintaan berhasil tanpa penalaran tersebut. Hal ini memengaruhi kode yang menyimpan percakapan dan memutarnya ulang melalui akun yang berbeda, misalnya layanan yang melayani beberapa pelanggan dari satu penyimpanan percakapan. Putar ulang setiap percakapan melalui akun yang menghasilkannya. Lihat [Blok pemikiran tetap berada di akun yang menghasilkannya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking).
 
 ## Pertahankan giliran sebelumnya tidak berubah
 
-Blok thinking Claude Haiku 5.5 tetap valid hanya selama semua yang dikirim sebelumnya tidak berubah: permintaan yang mengirim kembali blok thinking setelah ada perubahan pada `system`, `tools`, atau `messages` sebelumnya mengembalikan error 400. Claude Haiku 4.5 tidak menjalankan pemeriksaan ini. Pertahankan percakapan bersifat append-only. Pada akun yang dibuat sebelum 31 Agustus 2026, 00:00 UTC, error hanya muncul pada permintaan yang mengatur `thinking.block_binding.prefix_mismatch_behavior`. Untuk perubahan yang memicu error dan apa yang harus dilakukan sebagai gantinya, lihat [Siapa yang perlu mengubah sesuatu](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#who-is-affected).
+Blok thinking Claude Haiku 5.5 hanya tetap valid selama semua yang dikirim sebelumnya tidak berubah: prompt `system`, `tools`, dan setiap pesan sebelumnya. Claude Haiku 4.5 tidak menjalankan pemeriksaan prefix. Pertahankan percakapan agar bersifat append-only (hanya ditambahkan). Permintaan yang mengirim kembali blok setelah perubahan semacam itu dan membiarkan `thinking.block_binding.prefix_mismatch_behavior` tidak diatur akan mendapatkan error 400 pada akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC. Pada akun yang dibuat sebelum tanggal tersebut, permintaan hanya mendapatkan error ketika permintaan tersebut mengatur field ke `"error"`. Untuk perubahan yang memicu error dan apa yang harus dilakukan sebagai gantinya, lihat [Siapa yang terpengaruh oleh pemeriksaan prefix](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#who-is-affected).
 
 ## Migrasi ke Claude Haiku 5.5 dari Claude Haiku 3.5 dan model Haiku sebelumnya
 

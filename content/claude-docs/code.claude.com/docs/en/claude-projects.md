@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-projects
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 763cb21e38c24579b88548e5a07b84a686e9131261ec82d0a5627a5148113126
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 44f634dfeea83fb8bebc8a01b87e3447b169b0c7a1eff6600cf29d9ba4ac2539
 ---
 
 > ## Documentation Index
@@ -418,7 +418,7 @@ Work goes past your plan's limits only if you have turned on [usage credits](htt
 
 A project uses your limits faster than a single session does, and on a Pro plan in particular you should expect to reach your limit sooner on days you run one. These are the parts of a project that use your plan:
 
-* **Running threads**: each is a full session, and several can run at once. There's no fixed number; Claude starts as many as the work calls for, and a limit you [ask for](#tune-how-claude-runs-a-project) is a preference rather than a cap. The enforced limit is 200 new threads per day across your projects.
+* **Running threads**: each is a full session, and several can run at once. There's no fixed number; Claude starts as many as the work calls for, and a limit you [ask for](#tune-how-claude-runs-a-project) is a preference rather than a cap. The enforced limit is 500 new threads per day across your projects.
 * **The conversation**: Claude uses tokens of its own reading what threads report and deciding what to do next.
 * **Threads watching a pull request**: an idle thread wakes up and uses your plan again when CI fails or a review comment arrives on its pull request. To stop that, ask in the thread for it to stop watching the pull request.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 6c25fc11dd548eda55a241c8015d12993e4475b513ce1fad623596e76395af07
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: ad3536806b827d1b2073965941e22d48ebb9c668d6b4e238d4c5064608c92ec9
 ---
 
 ---
@@ -150,6 +150,10 @@ holds at most two non-archived certificates.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ### Body parameters
 
@@ -385,6 +389,10 @@ Archived certificates are excluded unless `include_archived` is set.
 
   - `"webhooks-2026-10-07"`
 
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
+
 ### Returns
 
 - `data: array of BetaOrganizationTunnelCertificate`
@@ -597,6 +605,10 @@ Retrieve a single certificate registered on a tunnel by ID.
 
   - `"webhooks-2026-10-07"`
 
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
+
 ### Returns
 
 - `BetaOrganizationTunnelCertificate object`
@@ -803,6 +815,10 @@ certificate is added.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ### Returns
 

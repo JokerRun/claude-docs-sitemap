@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 9e1cdd4ce1e8d4274d926539f812d4fcdd9f4a448e642ba6b9a8a5c158fa8d0d
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 7c7261423712755927a53ee8adae73a8fa28910858f3ea68b05433dcab0f966a
 ---
 
 > ## Documentation Index
@@ -79,7 +79,13 @@ For Ghostty, Kitty, and other terminals, look for an Option-as-Alt or Option-as-
 
 When Claude finishes a task or pauses for a permission prompt, and you appear to be away from the terminal, it fires a notification event. See [when each notification type fires](https://code.claude.com/docs/en/hooks.md#notification) for the exact timing. Surfacing this as a terminal bell or desktop notification lets you switch to other work while a long task runs.
 
-By default Claude Code sends a desktop notification only in Ghostty, Kitty, and iTerm2. In other terminals, set [`preferredNotifChannel`](https://code.claude.com/docs/en/settings-reference#preferrednotifchannel) to `"terminal_bell"` to ring the terminal bell instead, or configure a [Notification hook](#play-a-sound-with-a-notification-hook) for a custom sound or command. The following settings entry turns on the terminal bell:
+By default, Claude Code sends a desktop notification in some terminals, and a bell character or nothing in others:
+
+* **Ghostty, Kitty, and iTerm2**: a desktop notification, which iTerm2 shows only after you turn on its alert settings.
+* **Apple Terminal**: no sound; a silent bell character when Claude Code finds "Audible bell" off in the front Terminal window's profile, otherwise nothing. That bell character shows as a window flash, or a Dock bounce while Terminal is in the background, if that profile's "Visual bell" or Dock bounce option is on.
+* **Other terminals**: nothing.
+
+To make Claude Code send the bell character whatever the terminal or profile, set [`preferredNotifChannel`](https://code.claude.com/docs/en/settings-reference#preferrednotifchannel) to `"terminal_bell"`. In Apple Terminal, also turn on **Audible bell** under **Settings > Profiles > Advanced** to hear it. The following settings entry sets the channel:
 
 ```json ~/.claude/settings.json theme={null}
 {

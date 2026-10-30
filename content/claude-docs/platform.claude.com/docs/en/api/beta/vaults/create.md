@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/create
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 20ea859a07f480dd50931fef0a98860de64083f6afd6f91949c15e5c2feee0ca
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 5fd836cce812d4dd6015730e8e43e314cadfbc79748f9d9dc564d2559a160436
 ---
 
 ---
@@ -133,6 +133,10 @@ Create a Vault
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

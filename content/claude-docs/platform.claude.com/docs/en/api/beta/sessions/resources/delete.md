@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/delete
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 84590540dcc5f73174406b4842db98f66a0fafef2664d8d56d8a0acd9420c53d
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: e358bd3a9f6dada24edb02fb176b888d3b0431e4c4fb7535531f0d6e258e529f
 ---
 
 ---
@@ -139,6 +139,10 @@ Delete Session Resource
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

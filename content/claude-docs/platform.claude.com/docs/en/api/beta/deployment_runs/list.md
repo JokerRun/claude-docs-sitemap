@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployment_runs/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 4f5e716d7fd8da519f3062241d06df0ffd27a7ed874ec8e7ba95fdcae8c01ff9
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 8ffbd1a1afb9f1cf579877b235ffa7e0ca56ca4764caafab39f0db480cde3ce5
 ---
 
 ---
@@ -189,6 +189,10 @@ List Deployment Runs
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

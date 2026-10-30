@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/create
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 85f2d759320adb6e3aa03401d86916a3c6cafa1f7a3795b82c2a877ab4b9b8e0
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 2807d2a4dbe08f6c59348beb2dae62c2bf882064fd3eac034480393a490a6a23
 ---
 
 ---
@@ -133,6 +133,10 @@ Create Deployment
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

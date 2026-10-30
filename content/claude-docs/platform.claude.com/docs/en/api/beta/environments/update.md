@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/update
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: b285cec3d1d99d0d734b95b880c56a1db8332f453bb3682dc9ae0bb3e2ca596b
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 5487cf9a511afeb879b868acede3838b822eaa5e3097d3e1a53cfd0ce490d072
 ---
 
 ---
@@ -137,6 +137,10 @@ Update an existing environment's configuration.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 417bb3907b9debabf2ae0c94c5a2dc97404c29c373d03fb8a69108b596983882
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: e607ecdc44ee7856c800b88b7aa5431007dacd66c12ef19a688a254c921a5d4c
 ---
 
 ---
@@ -165,6 +165,10 @@ The Models API response can be used to determine which models are available for 
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -504,7 +508,7 @@ curl https://api.anthropic.com/v1/models \
       "deprecated_at": "2019-12-27T18:11:19.117Z",
       "display_name": "Claude Opus 5.5",
       "lifecycle": "active",
-      "line": "haiku",
+      "line": "opus",
       "max_input_tokens": 0,
       "max_tokens": 0,
       "retires_at": "2019-12-27T18:11:19.117Z",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/delete
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: fc06b7f869541b55d8a3e7f76d26962322dc4df1b48635f783653f6e9b48a615
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: b75c9b4d219f5a65f70830cf21677f82e0ee0b9161782b1723281c816255a940
 ---
 
 ---
@@ -139,6 +139,10 @@ Delete a Vault
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

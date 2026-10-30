@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/versions
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: ff5ae9426c36050f6a6c2092f5a31803c0c7196d4b20ed8c142be84519cca387
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: c52b9aeef617ba0ce944e8bc99daca84a35cc77d4ed4dbec2cb317466a01a5d6
 ---
 
 ---
@@ -153,6 +153,10 @@ List Agent Versions
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 1fa12c9927d51c778cd08c5333062dae0d08ba5b87cbb82e05837d733b4cf2f0
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 9302ed2217a35d6267747b5aaf6ab580353d8ef590309198bc56a4b5a0b3063f
 ---
 
 ---
@@ -152,6 +152,10 @@ other scopes require a Console session.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ### Body parameters
 
@@ -364,6 +368,10 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   - `"webhooks-2026-10-07"`
 
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
+
 ### Returns
 
 - `data: array of BetaFederationRuleWorkspace`
@@ -564,6 +572,10 @@ Console session.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ### Returns
 

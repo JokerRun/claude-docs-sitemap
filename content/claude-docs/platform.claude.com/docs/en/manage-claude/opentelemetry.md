@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/opentelemetry
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: ec12749e8f6c580adfc57d74fc8f01f5c545763af6c51e93bef0d60b7141429a
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 7e5d104262b8cf26152d16d47319c057c94cecc257430f9beb71a89be6ef5386
 ---
 
 ---
@@ -268,7 +268,7 @@ Spans can arrive more than once, for example when a delivery is retried. If your
 `gen_ai.usage.input_tokens` already includes the tokens read from and written to the prompt cache, so don’t add the cache attributes to it. For all usage attributes, see [Token usage](https://platform.claude.com/docs/en/api/opentelemetry/spans#token-usage).
 
 <Note>
-  Exported spans aren’t guaranteed to be a complete record of your API usage. Their delivery is [best effort](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api#delivery-and-health), so a span can be lost. A caller can also leave out a request’s spans by turning off the sampled flag in the request’s [`traceparent` header](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api#connect-api-spans-to-your-own-traces). To track each API key’s usage, for example to spot a leaked key, use the [Usage API](https://platform.claude.com/docs/en/manage-claude/usage-cost-api#usage-api), which also counts the usage of requests without spans.
+  Exported spans aren’t guaranteed to be a complete record of your API usage. Their delivery is [best effort](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api#delivery-and-health), so a span can be lost. A caller can also leave out a request’s spans by turning off the sampled flag in the request’s [`traceparent` header](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api#connect-api-spans-to-your-own-traces). To track each API key’s usage, for example to spot a leaked key, use the [Usage and Cost Analytics API](https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api) and group by `api_key_id`. It also counts the usage of requests without spans. Usage typically appears there within 4 hours (see [Data freshness](https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api#data-freshness)).
 </Note>
 
 ## Availability

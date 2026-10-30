@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/home
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 75222cc84a0179487083818b20758d8616e0db9a7ea8a9b9a833ac326378fb6f
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 637e4f2a8f9e1f699a20494812ee4fc2f5bedddf5626559d31fc176c57b5178f
 ---
 
 ---
@@ -346,7 +346,7 @@ dengan Claude"
             Kunci API di Claude Console
           </HomeJourneyLink>
 
-          <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/id/manage-claude/usage-cost-api">
+          <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api">
             Pemantauan penggunaan
           </HomeJourneyLink>
 
@@ -404,7 +404,7 @@ dengan Claude"
             Kunci API di Claude Console
           </HomeJourneyLink>
 
-          <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/id/manage-claude/usage-cost-api">
+          <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api">
             Pemantauan penggunaan
           </HomeJourneyLink>
         </HomeJourneyStep>

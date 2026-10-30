@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 64e60e119128e4b4584712e26a5fc0ae39fc7ddd1bfdd48bdfeeadf8c22192c4
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: f4e7cb7adb9df20159b9d1531dec28c843358c945fabf755e2064e0e3d45d45c
 ---
 
 ---
@@ -280,6 +280,17 @@ Tindakan mengikuti konvensi AWS `VerbNoun` dan menggunakan disiplin kata kerja s
   `AddTelemetryDestinationWorkspace` dan `RemoveTelemetryDestinationWorkspace` berlaku untuk workspace dalam rute, dan hanya pada tujuan yang opsi **Workspaces**-nya adalah **Selected**. Untuk mengubah daftar **All except**, gunakan `UpdateAccountTelemetryDestination`. Kebijakan yang menolak `aws-external-anthropic:Create*`, `Update*`, atau `Delete*` tetap mengizinkan penambahan dan penghapusan workspace. Untuk memblokir setiap perubahan pada tujuan, tolak juga `AddTelemetryDestinationWorkspace` dan `RemoveTelemetryDestinationWorkspace`.
 </Note>
 
+### Penggunaan dan biaya
+
+| Tindakan           | Rute yang diotorisasi                   |
+| ------------------ | --------------------------------------- |
+| `ListAccountUsage` | `GET /v1/organizations/analytics/usage` |
+| `ListAccountCost`  | `GET /v1/organizations/analytics/cost`  |
+
+<Note>
+  Tindakan ini mengotorisasi [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api). Keduanya bercakupan akun. Menentukan ARN workspace pada tindakan ini tidak berpengaruh; gunakan `Resource: "*"`.
+</Note>
+
 ### Autentikasi
 
 | Tindakan              | Rute yang diotorisasi |
@@ -298,7 +309,7 @@ Tindakan mengikuti konvensi AWS `VerbNoun` dan menggunakan disiplin kata kerja s
 
 ## Pemetaan rute ke tindakan
 
-Tabel berikut mencantumkan setiap rute pada Claude Platform on AWS dan tindakan IAM yang diperlukan untuk memanggilnya. Setiap tindakan IAM juga mengotorisasi permintaan yang menggunakan header `anthropic-beta`; varian beta dari suatu rute tidak memerlukan tindakan IAM terpisah. CloudTrail mengklasifikasikan setiap tindakan sebagai Data event (operasi data-plane bervolume tinggi) atau Management event (operasi control-plane). Tindakan vault dan webhook diklasifikasikan sebagai Management event karena menyimpan rahasia (kredensial vault dan rahasia penandatanganan webhook) dan mendapat manfaat dari pencatatan audit yang aktif secara default. Tindakan workspace, kunci eksternal, tujuan telemetri, dan kepatuhan juga diklasifikasikan sebagai Management event karena merupakan operasi control-plane bercakupan organisasi. Semua tindakan lainnya, termasuk inferensi, batch, model, file, skill, profil pengguna, dan tindakan Claude Managed Agents lainnya, diklasifikasikan sebagai Data event.
+Tabel-tabel berikut mencantumkan setiap rute pada Claude Platform on AWS dan tindakan IAM yang diperlukan untuk memanggilnya. Setiap tindakan IAM juga mengotorisasi permintaan yang menggunakan header `anthropic-beta`; varian beta dari suatu rute tidak memerlukan tindakan IAM terpisah. CloudTrail mengklasifikasikan setiap tindakan sebagai Data event (operasi data-plane bervolume tinggi) atau Management event (operasi control-plane). Tindakan vault dan webhook diklasifikasikan sebagai Management event karena menyimpan rahasia (kredensial vault dan rahasia penandatanganan webhook) dan mendapat manfaat dari pencatatan audit yang aktif secara default. Tindakan workspace, kunci eksternal, tujuan telemetri, dan kepatuhan juga diklasifikasikan sebagai Management event karena merupakan operasi control-plane bercakupan organisasi. Semua tindakan lainnya, termasuk inferensi, batch, model, file, skill, profil pengguna, penggunaan dan biaya, dan tindakan Claude Managed Agents lainnya, diklasifikasikan sebagai Data event.
 
 | Metode   | Rute                                                                      | Tindakan IAM                                | Tipe event CloudTrail |
 | -------- | ------------------------------------------------------------------------- | ------------------------------------------- | --------------------- |
@@ -419,10 +430,15 @@ Tabel berikut mencantumkan setiap rute pada Claude Platform on AWS dan tindakan 
 | `DELETE` | `/v1/webhooks/{id}`                                                       | `DeleteWebhook`                             | Management            |
 | `POST`   | `/v1/webhooks/{id}/regenerate_signing_secret`                             | `RotateWebhookSecret`                       | Management            |
 
-Rute yang tidak ada dalam tabel ini tidak tersedia di Claude Platform on AWS. Gateway secara default menolak rute apa pun yang tidak tercantum di sini.
+| Metode | Rute                                | Tindakan IAM       | Tipe event CloudTrail |
+| ------ | ----------------------------------- | ------------------ | --------------------- |
+| `GET`  | `/v1/organizations/analytics/usage` | `ListAccountUsage` | Data                  |
+| `GET`  | `/v1/organizations/analytics/cost`  | `ListAccountCost`  | Data                  |
+
+Rute yang tidak ada dalam tabel-tabel ini tidak tersedia di Claude Platform on AWS. Gateway secara default menolak rute apa pun yang tidak tercantum di sini.
 
 <Note>
-  Rute workspace, kunci eksternal, dan tujuan telemetri adalah satu-satunya rute Admin API yang tersedia di Claude Platform on AWS. Anda juga dapat membuat, memperbarui, atau mengarsipkan workspace di AWS Console atau, dengan peran Admin, di Claude Console. Kunci enkripsi juga dapat didaftarkan dan dilampirkan di Claude Console.
+  Rute workspace, kunci eksternal, tujuan telemetri, dan Usage and Cost Analytics API adalah satu-satunya rute Admin API yang tersedia di Claude Platform on AWS. Anda juga dapat membuat, memperbarui, atau mengarsipkan workspace di AWS Console atau, dengan peran Admin, di Claude Console. Kunci enkripsi juga dapat didaftarkan dan dilampirkan di Claude Console.
 </Note>
 
 ## Kebijakan terkelola
@@ -440,7 +456,7 @@ AWS menyediakan lima kebijakan terkelola untuk Claude Platform on AWS. Semua keb
 `AnthropicInferenceAccess` adalah kebijakan terkelola paling sempit yang cukup untuk menjalankan inferensi. Kebijakan ini mencakup inferensi sinkron maupun batch dan, melalui wildcard `Get*` dan `List*`, memberikan akses baca ke setiap sumber daya API dalam namespace, termasuk sumber daya Claude Managed Agents (CMA) (agen, sesi, environment, vault, memory store, dan webhook). Ini mencakup pengunduhan konten file melalui `GetFile` (lihat catatan [File](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#files)), pengunduhan konten skill melalui `GetSkill` (lihat catatan [Skill](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#skills)), dan isi memori melalui `GetMemoryStore`. Rahasia kredensial vault dan rahasia penandatanganan webhook tidak diekspos: field tersebut bersifat hanya-tulis dan tidak pernah dikembalikan oleh `GetVault` atau `GetWebhook` (lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults)). `AnthropicInferenceAccess` tidak memberikan pembuatan atau penghapusan file, manajemen skill, manajemen profil pengguna, mutasi workspace, manajemen kunci enkripsi, manajemen tujuan telemetri, atau tindakan tulis Claude Managed Agents apa pun (create, update, archive, delete, process, atau rotate). Untuk mengecualikan pembacaan CMA, ganti `AnthropicInferenceAccess` dengan kebijakan kustom yang hanya menyebutkan tindakan non-CMA spesifik yang Anda perlukan.
 
 <Note>
-  `AnthropicReadOnlyAccess`, `AnthropicInferenceAccess`, dan `AnthropicLimitedAccess` semuanya membawa wildcard `Get*` dan `List*`, yang memberikan akses baca ke semua konten di workspace: byte file, konten skill, hasil batch, riwayat percakapan sesi, dan isi memori. Wildcard tersebut juga memberikan `GetKey` dan `ListKeys`, yang membaca konfigurasi kunci enkripsi terdaftar milik organisasi (ARN kunci dan metadata, tidak pernah material kunci). Wildcard tersebut juga memberikan `GetUserProfile` dan `ListUserProfiles` yang bercakupan akun, yang membaca profil pengguna. Wildcard `List*` juga memberikan `ListComplianceActivities`, yang membaca [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) kepatuhan organisasi setelah Compliance API diaktifkan untuk organisasi (lihat [Kepatuhan](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#compliance)). Wildcard `Get*` dan `List*` juga memberikan `GetAccountTelemetryDestination`, `ListAccountTelemetryDestinations`, dan `ListAccountTelemetryDestinationWorkspaces`, yang membaca tujuan telemetri organisasi tetapi tidak pernah nilai header-nya. Rahasia kredensial vault dan rahasia penandatanganan webhook tidak diekspos; field tersebut bersifat hanya-tulis dan tidak pernah dikembalikan oleh `GetVault` atau `GetWebhook`. Jika principal Anda tidak boleh membaca konten yang sudah ada, gunakan kebijakan kustom yang hanya menyebutkan tindakan yang Anda perlukan.
+  `AnthropicReadOnlyAccess`, `AnthropicInferenceAccess`, dan `AnthropicLimitedAccess` semuanya membawa wildcard `Get*` dan `List*`, yang memberikan akses baca ke semua konten di workspace: byte file, konten skill, hasil batch, riwayat percakapan sesi, dan isi memori. Wildcard tersebut juga memberikan `GetKey` dan `ListKeys`, yang membaca konfigurasi kunci enkripsi terdaftar milik organisasi (ARN kunci dan metadata, tidak pernah material kunci). Wildcard tersebut juga memberikan `GetUserProfile` dan `ListUserProfiles` yang bercakupan akun, yang membaca profil pengguna. Wildcard `List*` juga memberikan `ListComplianceActivities`, yang membaca [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) kepatuhan organisasi setelah Compliance API diaktifkan untuk organisasi (lihat [Kepatuhan](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#compliance)). Wildcard ini juga memberikan `ListAccountUsage` dan `ListAccountCost`, yang membaca data penggunaan dan biaya organisasi (lihat [Penggunaan dan biaya](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#usage-and-cost)). Wildcard `Get*` dan `List*` juga memberikan `GetAccountTelemetryDestination`, `ListAccountTelemetryDestinations`, dan `ListAccountTelemetryDestinationWorkspaces`, yang membaca tujuan telemetri organisasi tetapi tidak pernah nilai header-nya. Rahasia kredensial vault dan rahasia penandatanganan webhook tidak diekspos; field tersebut bersifat hanya-tulis dan tidak pernah dikembalikan oleh `GetVault` atau `GetWebhook`. Jika principal Anda tidak boleh membaca konten yang sudah ada, gunakan kebijakan kustom yang hanya menyebutkan tindakan yang Anda perlukan.
 </Note>
 
 `AnthropicLimitedAccess` mencakup semua tindakan Claude Managed Agents selain tindakan inferensi.
@@ -510,7 +526,7 @@ Membatasi sebuah role ke satu workspace:
 ```
 
 <Note>
-  Wildcard `aws-external-anthropic:*` dalam pernyataan pertama mencakup tindakan bercakupan akun (`CreateWorkspace`, `ListWorkspaces`, `ListComplianceActivities`, tindakan kunci eksternal, tindakan tujuan telemetri bercakupan akun, dan tindakan profil pengguna) yang secara diam-diam disaring oleh batasan ARN workspace. Hal ini konsisten dengan maksud “isolasi” (role tidak dapat membuat workspace, mengenumerasi workspace, mengelola registrasi kunci enkripsi, membaca Activity Feed kepatuhan, atau membaca maupun mengelola profil pengguna, dan role tidak dapat membuat, membaca, atau mengubah tujuan telemetri; role masih dapat melampirkan kunci yang sudah terdaftar ke workspace-nya sendiri melalui `UpdateWorkspace`, serta menambahkan workspace-nya sendiri ke suatu tujuan, atau menghapusnya dari tujuan, jika diberikan ID tujuan tersebut), tetapi kebijakan tersebut berisi izin yang tidak berpengaruh. Jika role memerlukan profil pengguna, tambahkan pernyataan `Allow` terpisah untuk tindakan profil pengguna dengan `Resource: "*"`. Lihat [Otomatisasi provisioning](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#provisioning-automation) untuk pola bercakupan akun.
+  Wildcard `aws-external-anthropic:*` dalam pernyataan pertama mencakup tindakan bercakupan akun (`CreateWorkspace`, `ListWorkspaces`, `ListComplianceActivities`, tindakan kunci eksternal, tindakan tujuan telemetri bercakupan akun, tindakan profil pengguna, dan tindakan penggunaan dan biaya) yang secara diam-diam disaring oleh batasan ARN workspace. Hal ini konsisten dengan maksud “isolasi” (role tidak dapat membuat workspace, mengenumerasi workspace, mengelola registrasi kunci enkripsi, membaca Activity Feed kepatuhan, membaca laporan penggunaan atau biaya, atau membaca maupun mengelola profil pengguna, dan role tidak dapat membuat, membaca, atau mengubah tujuan telemetri; role masih dapat melampirkan kunci yang sudah terdaftar ke workspace-nya sendiri melalui `UpdateWorkspace`, serta menambahkan workspace-nya sendiri ke suatu tujuan, atau menghapusnya dari tujuan, jika diberikan ID tujuan tersebut), tetapi kebijakan tersebut berisi izin yang tidak berpengaruh. Jika role memerlukan profil pengguna atau laporan penggunaan dan biaya, tambahkan pernyataan `Allow` terpisah untuk tindakan tersebut dengan `Resource: "*"`. Lihat [Otomatisasi provisioning](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#provisioning-automation) untuk pola bercakupan akun.
 
   `CallWithBearerToken` dan `AssumeConsole` adalah tindakan tanpa rute yang tidak terikat ke ARN workspace. Pernyataan kedua memberikannya pada `Resource: "*"` sehingga role dapat melakukan autentikasi dengan kunci API dan membuka Claude Console. Hilangkan pernyataan ini jika role hanya menggunakan SigV4 dan tidak memerlukan akses Claude Console.
 </Note>

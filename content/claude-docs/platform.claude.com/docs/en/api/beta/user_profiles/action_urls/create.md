@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/action_urls/create
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 7c37e49b3ad94125cca8d1ccf0effc44bf24edc65b54a2a52e54461b8afa1eab
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 11e640b268dbc11031f0f31714debc9b15f6a59ae473876746c140d81984f8df
 ---
 
 ---
@@ -139,6 +139,10 @@ Create Action URL
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/create
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: d26dea2809aabc94918eac1e632d00c9534396e7cfc228ff4cb469068a098afb
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: cd4b5acf0e0d54998e8ba8709d58acf86253311caf1f7c38787529f7ae30c2a4
 ---
 
 ---
@@ -143,6 +143,10 @@ accounts.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ## Body parameters
 

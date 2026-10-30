@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: c0c12997bbb0b92172009f7f513d2330493ee373ed23eb24bd86bc6cdd01a9d9
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: fdbee351fa4c5480b0903ccd16030b8d853f2e2a807d6ab89f360f444c6c2224
 ---
 
 ---
@@ -96,7 +96,7 @@ An assistant conversation turn might include multiple content blocks (for exampl
 
 Context editing is applied server-side before the prompt reaches Claude. Your client application maintains the full, unmodified conversation history. You do not need to sync your client state with the edited version. Continue managing your full conversation history locally as you normally would.
 
-On Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, and Claude Haiku 5.5, server-side context management never invalidates thinking blocks. Client-side edits to earlier turns can invalidate the thinking blocks in every later assistant turn. For new accounts created on or after August 31, 2026, a request that replays an invalidated block is rejected unless you opt into dropping it. See [Keeping the prefix unchanged](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking#prefix-check).
+On Claude 5.1 and later models, server-side context management never invalidates thinking blocks. Client-side edits to earlier turns can invalidate the thinking blocks in every later assistant turn. See [Keeping the prefix unchanged](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking#prefix-check).
 
 ### Context editing and prompt caching
 

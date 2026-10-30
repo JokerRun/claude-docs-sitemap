@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-sessions
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 033a01c8b891ccfcd28d7d7cc0ab2c82ffa06d2dc6f68f1d7f88cd4887dcc35f
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 198f5c36085739d75e1ac267f40ea7456282260c9bd73335552ae49cf442315d
 ---
 
 ---
@@ -330,7 +330,7 @@ curl --fail-with-body -sS -G \
       "id": "cse_01WpQrStUvXyZaBcDeFgHjK6",
       "organization_uuid": "91012d09-e48b-438e-a489-1bebfd8fa6f9",
       "user": {
-        "id": "user_01XyDMpzjS89pFZXqSFUBDr6",
+        "id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
         "email_address": "user@example.com"
       },
       "agent_id": null,
@@ -347,7 +347,7 @@ curl --fail-with-body -sS -G \
       "user": null,
       "agent_id": "cagt_01MnPqRsTuVwXyZaBcDeFgH8",
       "started_by_user": {
-        "id": "user_01XyDMpzjS89pFZXqSFUBDr6",
+        "id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
         "email_address": "user@example.com"
       },
       "status": "archived",
@@ -394,7 +394,7 @@ curl --fail-with-body -sS \
     "id": "cse_01WpQrStUvXyZaBcDeFgHjK6",
     "organization_uuid": "91012d09-e48b-438e-a489-1bebfd8fa6f9",
     "user": {
-      "id": "user_01XyDMpzjS89pFZXqSFUBDr6",
+      "id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
       "email_address": null
     },
     "agent_id": null,

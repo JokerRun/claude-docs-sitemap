@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: a0367dd371c16f5c0f748b44ad2e0c5a8f57b2a56428ae2e023212f5e10727e3
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 86100791562be7a50d53b57c7f9f1329119699bae4f531b8f85189cf98f3f90d
 ---
 
 ---
@@ -369,7 +369,7 @@ curl https://api.anthropic.com/v1/models \
       "deprecated_at": "2019-12-27T18:11:19.117Z",
       "display_name": "Claude Opus 5.5",
       "lifecycle": "active",
-      "line": "haiku",
+      "line": "opus",
       "max_input_tokens": 0,
       "max_tokens": 0,
       "retires_at": "2019-12-27T18:11:19.117Z",

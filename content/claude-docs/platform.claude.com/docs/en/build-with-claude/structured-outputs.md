@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: ab40fa658ea4828abe1faa9a0e202fd29819413db1adc45ea4884b9d95f47b3e
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 6041b23aea21021a7272aaf1ea9b1177286b6f83ac9d519a64ee8397e9add9b0
 ---
 
 ---
@@ -2630,7 +2630,7 @@ Structured outputs support standard JSON Schema with some limitations. Both JSON
 
 <Accordion title="Supported features">
   * All basic types: object, array, string, integer, number, boolean, null
-  * `enum` (strings, numbers, Booleans, or nulls only, no complex types). For a capitalization caveat, see [Invalid outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#invalid-outputs).
+  * `enum` (strings, numbers, booleans, or nulls only, no complex types). For a capitalization caveat, see [Invalid outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#invalid-outputs).
   * `const`
   * `anyOf` and `allOf` (with limitations: `allOf` with `$ref` not supported)
   * `$ref`, `$def`, and `definitions` (external `$ref` not supported)

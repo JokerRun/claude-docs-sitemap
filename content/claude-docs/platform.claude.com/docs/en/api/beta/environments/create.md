@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/create
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: ec538cae71f40ffadb85ce3501306d115f953969ad62b3ff3cffb83572091901
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 49683f82eca85077686273dc939e18ceb5505a342e6e6e95eb115a7acfb366c6
 ---
 
 ---
@@ -133,6 +133,10 @@ Create a new environment with the specified configuration.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

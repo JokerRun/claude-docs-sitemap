@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/preserved-thinking
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 25b54728d91352af0b8057fcfc0f639d5c3cdd8f6b6716f1e380e980a2f5c4f9
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 76baa6c0dbeba46a4f117c851aca416a081d14ffe2e26837d405a7c3367aacc0
 ---
 
 ---
@@ -33,15 +33,15 @@ featureMetadata:
 “Preserved thinking” (pemikiran yang dipertahankan) adalah properti model Claude yang lebih baru yang melindungi dari “distillation” (distilasi). Properti ini menentukan apakah model dapat menggunakan “thinking block” (blok pemikiran) yang Anda kirim kembali dari giliran sebelumnya. Mulai dari Claude Fable 5.1, ketika blok `thinking` atau `redacted_thinking` dikirim kembali dalam sebuah permintaan, API memeriksa `signature` blok tersebut untuk dua hal:
 
 * **Model dapat membaca blok tersebut.** Setiap model membaca blok pemikirannya sendiri dan blok pemikiran dari sekumpulan model lain yang sudah ditetapkan. Claude Fable 5.1 membaca blok dari Claude Opus 5 dan, di Claude API, dari Claude Opus 5.5; baik Claude Opus 5 maupun Claude Opus 5.5 tidak membaca blok dari Claude Fable 5.1. Jika model saat ini tidak dapat membaca sebuah blok, API membuangnya dari permintaan tersebut tanpa error. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
-* **Tidak ada yang berubah sebelum blok pemikiran.** Prompt `system` tingkat atas, `tools`, dan `messages` sebelum blok tersebut adalah “prefix” (prefiks) blok itu. Jika prefiks berbeda dari yang Anda kirim saat blok tersebut dihasilkan, blok itu dan setiap blok pemikiran setelahnya menjadi tidak valid, dan API menolak permintaan dengan error 400 atau membuang blok yang tidak valid, sesuai pilihan Anda. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check).
+* **Tidak ada yang berubah sebelum blok pemikiran.** Prompt `system` tingkat atas, `tools`, dan `messages` sebelum blok tersebut adalah “prefix” (prefiks) blok itu. Jika prefiks berbeda dari yang Anda kirim saat blok tersebut dihasilkan, blok itu dan setiap blok pemikiran setelahnya akan gagal dalam pemeriksaan prefiks. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check).
 
-Blok pemikiran dari Claude Sonnet 5.5 dan Claude Haiku 5.5 juga terikat pada akun yang menghasilkannya. Lihat [Blok pemikiran tetap berada di akun yang menghasilkannya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking) untuk mengetahui di mana API memberlakukan hal ini.
+Blok pemikiran dari Claude Sonnet 5.5 dan Claude Haiku 5.5 juga terikat pada akun yang menghasilkannya. Lihat [Blok pemikiran tetap berada di akun yang menghasilkannya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking) untuk mengetahui di mana hal ini berlaku.
 
-Pemeriksaan model berlaku untuk setiap akun. API memberlakukan pemeriksaan prefiks secara default untuk akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC. Pada akun yang lebih lama, API memberlakukan pemeriksaan prefiks hanya pada permintaan yang menetapkan `thinking.block_binding.prefix_mismatch_behavior`. **Buat integrasi Anda bersifat append-only (hanya menambahkan) terlepas dari usia akun Anda**, sehingga kode yang sama berfungsi di setiap akun, termasuk akun yang lebih baru tempat pemeriksaan diberlakukan secara default.
+**Jadikan integrasi Anda “append-only” (hanya-tambah)** agar blok pemikiran yang Anda kirim kembali lolos pemeriksaan prefiks.
 
-## Siapa yang perlu mengubah sesuatu
+## Siapa yang terpengaruh oleh pemeriksaan prefiks
 
-Tidak ada yang berubah bagi Anda jika Claude Code, claude.ai, Claude Managed Agents, atau Claude Agent SDK yang membangun permintaan Anda, atau jika kode Anda menjaga `system` dan `tools` tetap selama satu sesi dan hanya menambahkan ke `messages`. Claude Mythos 5.1 dan model sebelum Claude Fable 5.1 tidak menjalankan pemeriksaan prefiks. Jika Anda tidak pernah mengirim kembali blok pemikiran, pemeriksaan prefiks tidak memiliki apa pun untuk ditolak, dan model tidak mendapatkan penalaran sebelumnya sama sekali.
+Pemeriksaan prefiks berjalan pada model Claude 5.1 dan yang lebih baru. Model lain tidak menjalankannya. Anda tidak perlu melakukan apa pun jika Claude Code, claude.ai, Claude Managed Agents, atau Claude Agent SDK yang membangun permintaan Anda, atau jika kode Anda menjaga `system` dan `tools` tetap sama selama satu sesi dan hanya menambahkan ke `messages`. Jika Anda tidak pernah mengirimkan kembali blok pemikiran, pemeriksaan tidak memiliki apa pun untuk diuji, dan model tidak mendapatkan penalaran sebelumnya sama sekali.
 
 Periksa integrasi Anda jika, di antara dua permintaan dalam satu percakapan, integrasi tersebut melakukan salah satu hal berikut. Setiap item menautkan ke apa yang harus dilakukan sebagai gantinya:
 
@@ -54,7 +54,7 @@ Periksa integrasi Anda jika, di antara dua permintaan dalam satu percakapan, int
 * [Membuang beberapa blok `thinking` dan mempertahankan yang setelahnya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#append-assistant-turns-exactly-as-returned), atau menghapusnya lalu [memasukkannya kembali nanti](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check)
 * [Membangun ulang sesi tersimpan dari template](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#faq) alih-alih memutar ulang apa yang telah dikirim
 
-Pada akun yang lebih lama, tidak satu pun dari hal ini menghasilkan error kecuali permintaan menetapkan `prefix_mismatch_behavior`, sehingga proses yang berjalan tanpa error dengan kunci Anda sendiri tidak menunjukkan apakah kode Anda terpengaruh. Jika orang menjalankan alat Anda dengan kunci API mereka sendiri, mereka yang menggunakan akun lebih baru akan mendapatkan error 400 sebelum Anda. Untuk melihat apa yang mereka lihat tanpa mengubah perilaku permintaan Anda, kirim header beta `thinking-binding-controls-2026-08-01`. Pada akun yang lebih lama, setiap respons kemudian menandai blok yang gagal dalam pemeriksaan, dan model tetap membacanya (lihat [Menetapkan perilaku ketidakcocokan dan membaca `input_transformations`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#preserved-thinking-controls)).
+Eksekusi tanpa error menggunakan kunci API Anda sendiri tidak membuktikan bahwa kode Anda menjaga prefiks tetap utuh. Ketika sebuah permintaan membiarkan `prefix_mismatch_behavior` tidak diatur, blok yang gagal mencapai model tanpa error di mana pun tabel di [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement) tidak menunjukkan error. Orang yang menjalankan alat Anda dengan kunci API mereka sendiri dapat menerima error 400 bahkan ketika Anda tidak menerimanya. Untuk melihat error tersebut dari akun Anda, atur `prefix_mismatch_behavior` ke `"error"` pada permintaan pengujian Anda, seperti yang ditunjukkan di [Periksa apakah kode Anda mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#how-to-tell-whether-your-integration-is-impacted).
 
 Periksa juga integrasi Anda jika integrasi tersebut mengirim blok thinking Claude Sonnet 5.5 atau Claude Haiku 5.5 dari satu akun dalam permintaan yang dibuat oleh akun lain. Lihat [Blok thinking tetap berada pada akun yang menghasilkannya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking).
 
@@ -71,10 +71,10 @@ Claude Haiku 5.5 membaca blok thinking dari Claude Sonnet 5, Claude Opus 4.8, Cl
 * **Percakapan yang berpindah ke Claude Fable 5.1 dari model sebelumnya, atau dari Claude Opus 5.5 di Claude API, mempertahankan penalarannya.** Blok thinking model sebelumnya tetap dapat dibaca, sehingga model berpikir seperti biasa sejak giliran pertama setelah peralihan.
 * **Percakapan yang berpindah dari Claude Fable 5.1 ke model apa pun selain Claude Mythos 5.1 kehilangan penalaran Claude Fable 5.1 untuk permintaan tersebut.** Hal ini terjadi ketika router mengirim giliran ke model yang lebih murah, setelah [fallback penolakan classifier](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback), atau selama [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback). API menghapus blok yang tidak dapat dibaca sebelum prompt mencapai model. Blok tersebut tidak ditagih dan tidak dihitung dalam `input_tokens`.
 
-Tetap kirim riwayat lengkap pada setiap permintaan, termasuk blok thinking, dan biarkan API menghapus apa yang tidak dapat dibaca oleh model saat ini. API tidak pernah mengedit array `messages` Anda, sehingga blok yang dihapus tetap ada dalam riwayat Anda. Ketika riwayat yang sama kembali ke Claude Fable 5.1, bloknya dapat dibaca lagi, bersama dengan thinking model sebelumnya. Penalaran hilang secara permanen hanya jika klien Anda sendiri yang menghapus blok tersebut, misalnya harness yang menghapus thinking saat peralihan model atau membangun ulang riwayat dari apa yang digunakan setiap model.
+Tetap kirim riwayat lengkap pada setiap permintaan, termasuk blok thinking, dan biarkan API menghapus apa yang tidak dapat dibaca oleh model saat ini. API tidak pernah mengedit array `messages` Anda, sehingga blok yang dihapus tetap ada dalam riwayat Anda. Ketika riwayat yang sama kembali ke Claude Fable 5.1, bloknya dapat dibaca lagi. Penalaran hilang secara permanen hanya jika klien Anda sendiri yang menghapus blok tersebut, misalnya harness yang menghapus thinking saat peralihan model atau membangun ulang riwayat dari apa yang digunakan setiap model.
 
 <Frame>
-  ![Animasi: beralih ke Claude Opus melewatkan pemikiran Claude Fable 5.1 untuk giliran tersebut; saat beralih kembali, semuanya dibaca lagi](https://platform.claude.com/docs/id/images/preserved-thinking-model-switch.svg)
+  ![Animasi: beralih ke Claude Opus melewatkan pemikiran Claude Fable 5.1 untuk giliran tersebut; saat beralih kembali, pemikiran tersebut dibaca lagi](https://platform.claude.com/docs/id/images/preserved-thinking-model-switch.svg)
 </Frame>
 
 Dengan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01`, respons mencantumkan setiap blok yang dibuang dalam array `input_transformations` tingkat atas dengan `reason: "model_binding_mismatch"`:
@@ -95,7 +95,7 @@ Tanpa header tersebut, pembuangan terjadi secara diam-diam. Entri ini bukan bug 
 
 ## Blok pemikiran tetap berada di akun yang menghasilkannya
 
-Blok pemikiran yang dihasilkan Claude Sonnet 5.5 atau Claude Haiku 5.5 hanya berfungsi di akun yang menghasilkannya, atau di akun yang terhubung dengannya. Ketika akun lain mengirim salah satu blok ini, API membuang blok tersebut sebelum model melihatnya, dan permintaan berhasil. Model menjawab tanpa penalaran dalam blok yang dibuang. Blok dari model sebelumnya tidak terpengaruh.
+Blok pemikiran yang dihasilkan Claude Sonnet 5.5 atau Claude Haiku 5.5 hanya berfungsi di akun yang menghasilkannya atau di akun yang terhubung dengannya. Ketika akun lain mengirim salah satu blok ini, API membuang blok tersebut sebelum model melihatnya, dan permintaan berhasil. Model menjawab tanpa penalaran dalam blok yang dibuang. Blok dari model sebelumnya tidak terpengaruh.
 
 Di Claude API dan Claude Models on Google Cloud (Google managed), dengan [beta header](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01`, respons mencantumkan setiap blok yang dihapus dalam `input_transformations` sebagai entri `thinking_dropped` dengan `reason: "organization_binding_mismatch"`. Tanpa header tersebut, penghapusan terjadi secara diam-diam.
 
@@ -103,60 +103,78 @@ API juga dapat mengabaikan blok pemikiran yang dihasilkan oleh akun lain, jika a
 
 ## Menjaga prefiks tetap tidak berubah
 
-Pada Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, blok pemikiran tetap valid hanya selama semua yang Anda kirim sebelumnya tidak berubah pada permintaan berikutnya. Prefiks yang diperiksa memiliki tiga bagian:
+Pada model Claude 5.1 dan yang lebih baru, blok pemikiran tetap valid hanya selama semua yang Anda kirim sebelumnya tidak berubah pada permintaan berikutnya. Prefiks yang diperiksa memiliki tiga bagian:
 
 * Prompt `system` tingkat atas
 * Kumpulan `tools`
 * Setiap `message` sebelum blok tersebut
 
-Catatan: Dengan [compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) (pemadatan) sisi server, prefiks yang diperiksa dimulai dari blok compaction terbaru.
+Dengan [compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) (pemadatan) sisi server, prefiks yang diperiksa dimulai dari blok compaction terbaru.
 
 Parameter permintaan di luar ketiga field tersebut, seperti `effort`, `max_tokens`, `output_config`, `tool_choice`, dan `metadata`, bukan bagian dari pemeriksaan prefiks, begitu pula penanda `cache_control`. [Apa yang dihitung sebagai edit](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#what-counts-as-an-edit) memiliki daftar lengkapnya.
 
-Blok pemikiran sebelumnya tidak termasuk dalam prefiks, tetapi setiap blok pemikiran mencatat blok pemikiran mana yang datang sebelumnya, lintas giliran. Anda dapat menghapus blok pemikiran dari awal riwayat (yang terlama terlebih dahulu), dari akhir, atau semuanya. Yang gagal adalah celah: blok pemikiran yang Anda pertahankan harus merupakan rangkaian tak terputus dari urutan aslinya, sehingga menghapus satu blok dari tengah membuat blok pemikiran setelahnya tidak valid. Setelah Anda menghapus sebuah blok, biarkan tetap dihapus. Memasukkannya kembali membuat blok pemikiran yang dihasilkan selama blok itu tidak ada menjadi tidak valid.
+Blok pemikiran sebelumnya tidak termasuk dalam prefiks, tetapi setiap blok pemikiran mencatat blok pemikiran mana yang datang sebelumnya, lintas giliran. Anda dapat menghapus blok pemikiran tertua (dari awal riwayat), yang terbaru (dari akhir), atau semuanya. Yang gagal adalah celah: blok pemikiran yang Anda pertahankan harus merupakan rangkaian tak terputus dari urutan aslinya, sehingga menghapus satu blok dari tengah membuat blok pemikiran setelahnya tidak valid. Setelah Anda menghapus sebuah blok, biarkan tetap dihapus. Memasukkannya kembali membuat blok pemikiran yang dihasilkan selama blok itu tidak ada menjadi tidak valid.
 
 Jaga `system` dan `tools` tetap untuk sesi tersebut dan perlakukan `messages` sebagai append-only. Disiplin yang sama menjaga prefiks tetap stabil untuk [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching): sebagian besar edit yang membuat thinking tidak valid juga memulai ulang cache.
 
-### Apa yang dilakukan API dengan blok yang tidak valid
+### Apa yang dilakukan API terhadap blok yang tidak valid
 
-Anda memilihnya dengan `thinking.block_binding.prefix_mismatch_behavior`:
+Pemeriksaan prefiks selalu berjalan pada model-model ini. Atur `thinking.block_binding.prefix_mismatch_behavior` untuk memilih apa yang terjadi pada blok yang gagal dalam pemeriksaan tersebut. Field ini dan array `input_transformations` memerlukan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01`. [Atur perilaku ketidakcocokan dan baca `input_transformations`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#preserved-thinking-controls) menunjukkan permintaan di setiap SDK.
 
-* **`"error"` (default):** API menolak permintaan dengan 400 `invalid_request_error` yang menyebutkan blok pertama yang gagal.
-* **`"drop_block"`:** API membuang setiap blok yang gagal dan setiap blok pemikiran setelahnya, dan permintaan berhasil. Blok yang dibuang tidak ditagih. Model menjawab giliran tersebut tanpa menggunakan penalaran dari blok yang dibuang, dan cache prompt dimulai ulang pada titik edit. Respons mencantumkan setiap blok yang dibuang dalam `input_transformations` (pada event `message_start` saat streaming) dengan `reason: "prefix_binding_mismatch"`.
+* **`"error"`:** API menolak permintaan dengan 400 `invalid_request_error` yang menyebutkan blok pertama yang gagal.
+* **`"drop_block"`:** API membuang setiap blok yang gagal beserta setiap blok thinking setelahnya, dan permintaan berhasil. Blok yang dibuang tidak ditagih. Model menjawab giliran tersebut tanpa menggunakan penalaran dari blok yang dibuang, dan cache prompt dimulai ulang pada titik pengeditan. Respons mencantumkan setiap blok yang dibuang di `input_transformations` (pada event `message_start` saat streaming) dengan `reason: "prefix_binding_mismatch"`. Ini adalah solusi sementara dengan [biaya token output](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#drop-block-cost).
 
-<Warning>
-  `"drop_block"` menjaga permintaan tetap berhasil, tetapi tidak memperbaiki edit yang menyebabkan ketidakcocokan, dan ada biayanya. Menghapus blok dapat meningkatkan token output yang dihasilkan secara signifikan, terutama ketika blok dihapus pada setiap giliran. Untuk informasi lebih lanjut, lihat [Biaya token output dari `"drop_block"`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#drop-block-cost). Blok yang dihapus tidak ditagih, tetapi Claude membuat ulang penalaran yang tidak dapat lagi dibacanya, sehingga menghasilkan lebih banyak token output. Kualitas output juga dapat berubah pada tugas di mana giliran selanjutnya dibangun di atas penalaran sebelumnya. Gunakan `"drop_block"` sebagai solusi sementara selagi Anda memperbaiki edit tersebut, tetapi bukan sebagai pengaturan jangka panjang.
-</Warning>
+#### Ketika `prefix_mismatch_behavior` tidak diatur
 
-Hitung respons dalam setiap sesi yang `input_transformations`-nya memiliki entri `prefix_binding_mismatch`, buat peringatan untuk respons tersebut, dan ganti setiap edit dengan pola yang sesuai di [Melakukan perubahan tanpa mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#replace-prefix-edits). Di Message Batches API, item yang tidak menetapkan field tersebut tidak gagal. Jika API memberlakukan pemeriksaan secara default, API akan membuang blok yang gagal sebagai gantinya. Tetapkan `"error"` secara eksplisit jika Anda ingin item batch gagal dalam kasus tersebut.
+Permintaan yang tidak mengatur field ini mendapatkan hasil dalam tabel berikut:
 
-Field tersebut dan array `input_transformations` sama-sama memerlukan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01`. [Menetapkan perilaku ketidakcocokan dan membaca `input_transformations`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#preserved-thinking-controls) menunjukkan permintaan tersebut di setiap “software development kit” (kit pengembangan perangkat lunak), atau SDK.
+| Model             | Akun dibuat pada atau setelah 31 Agustus 2026 | Akun dibuat sebelum 31 Agustus 2026              |
+| ----------------- | --------------------------------------------- | ------------------------------------------------ |
+| Claude Fable 5.1  | Error 400                                     | Tidak ada error (blok yang gagal mencapai model) |
+| Claude Mythos 5.1 | Error 400                                     | Error 400                                        |
+| Claude Opus 5.5   | Error 400                                     | Tidak ada error (blok yang gagal mencapai model) |
+| Claude Sonnet 5.5 | Error 400                                     | Tidak ada error (blok yang gagal mencapai model) |
+| Claude Haiku 5.5  | Error 400                                     | Tidak ada error (blok yang gagal mencapai model) |
 
-Pesan 400 dimulai dengan:
+Batas waktunya, 00:00 UTC pada 31 Agustus 2026, sama di Claude API dan di platform cloud. Baris Claude Mythos 5.1 berlaku untuk Claude API, Claude Models on Google Cloud (Google managed), dan Microsoft Foundry. Tabel ini hanya mencakup pemeriksaan prefiks: blok yang tidak dapat dibaca model akan dibuang pada akun di kolom mana pun.
+
+Blok yang gagal yang mencapai model akan dibaca dan ditagih seperti input lainnya. Dengan header beta, respons mencantumkan masing-masing blok tersebut di `input_transformations` sebagai `thinking_mismatch_allowed`.
+
+Di Message Batches API, item yang tidak mengatur field ini tidak gagal: di mana tabel menunjukkan error 400, API membuang blok yang gagal sebagai gantinya. Item yang mengatur field ke `"error"` dan mengirimkan blok yang gagal akan berakhir sebagai `errored`.
+
+Untuk mengetahui kolom mana yang berlaku untuk akun Anda, ambil percakapan Claude Fable 5.1 yang berisi blok thinking dan ubah sesuatu sebelum blok tersebut. Kirimkan ke Claude Fable 5.1 tanpa header beta atau field `block_binding`. Error 400 yang menyebutkan header berarti permintaan Anda mendapatkan hasil di kolom “pada atau setelah 31 Agustus 2026”. Respons 200 berarti permintaan Anda mendapatkan hasil di kolom “sebelum 31 Agustus 2026”. Untuk mengonfirmasi hasil 200, kirim permintaan yang sama lagi dengan header beta dan tanpa `block_binding`: respons mencantumkan setiap blok thinking setelah pengeditan Anda di `input_transformations` sebagai `thinking_mismatch_allowed`.
+
+#### Error 400
+
+Pesannya dimulai dengan:
 
 ```text wrap
 messages.1.content.0: Invalid `signature` in `thinking` block. The block is bound to a different conversation. Remove the block, or set `thinking.block_binding.prefix_mismatch_behavior` to "drop_block".
 ```
 
-Jika permintaan tidak mengirim header beta, pesan berlanjut:
+Jika permintaan tidak mengirimkan header beta, pesannya berlanjut:
 
 ```text wrap
 That setting requires the `thinking-binding-controls-2026-08-01` value in the `anthropic-beta` header.
 ```
 
-Pesan tersebut biasanya diakhiri dengan kalimat yang menyebutkan apa yang berubah, misalnya bahwa prompt `system` atau daftar `tools` berbeda dari saat blok dibuat. Untuk mengetahui apa saja yang dapat disebutkan oleh kalimat tersebut, lihat [Error 400 menyatakan signature blok thinking tidak valid](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-block-signature) di Pemecahan masalah thinking.
+Pesan ini biasanya diakhiri dengan kalimat yang menyebutkan apa yang berubah, misalnya bahwa prompt `system` atau daftar `tools` berbeda dari saat blok dibuat. Untuk hal-hal yang dapat disebutkan oleh kalimat tersebut, lihat [Error 400 menyatakan bahwa signature blok thinking tidak valid](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-block-signature) di Pemecahan masalah thinking.
 
-Signature yang dirusak atau tidak dapat didekripsi adalah kegagalan yang berbeda. Kegagalan ini selalu mengembalikan 400 (``Invalid `signature` in `thinking` block`` tanpa kalimat tentang percakapan), dan `prefix_mismatch_behavior` tidak berlaku untuknya.
+Signature yang dirusak atau tidak dapat didekripsi adalah kegagalan yang berbeda. Hal ini selalu mengembalikan error 400 (``Invalid `signature` in `thinking` block`` tanpa kalimat tentang percakapan), dan `prefix_mismatch_behavior` tidak berlaku untuknya.
 
 #### Biaya token output dari `"drop_block"`
 
-Ketika Claude tidak dapat lagi membaca penalaran dari giliran sebelumnya, Claude membuat ulang penalaran tersebut, sehingga permintaan yang membuang blok pemikiran menghasilkan lebih banyak token output dan dapat membutuhkan waktu lebih lama untuk merespons. Pembuangan pada setiap giliran lebih mahal daripada pembuangan sesekali, dan seberapa besar selisihnya bergantung pada harness Anda: seberapa sering harness mengedit prefiks dan seberapa banyak setiap giliran dibangun di atas penalaran sebelumnya.
+<Warning>
+  `"drop_block"` menjaga permintaan tetap berhasil, tetapi tidak memperbaiki pengeditan yang menyebabkan ketidakcocokan, dan memiliki biaya. Membuang blok dapat meningkatkan token output secara signifikan, terutama ketika blok dibuang di setiap giliran, dan kualitas output mungkin berubah pada tugas di mana giliran selanjutnya dibangun di atas penalaran sebelumnya. Gunakan `"drop_block"` sebagai solusi sementara selagi Anda memperbaiki pengeditan, bukan sebagai pengaturan jangka panjang.
+</Warning>
 
-Sebelum Anda mengandalkan `"drop_block"`, jalankan eval pada beban kerja Anda sendiri untuk mengukur peningkatannya. Jika kecil, `"drop_block"` dapat membuat permintaan tetap berhasil selagi Anda memperbaiki edit. Bagaimanapun juga, memperbaiki edit dengan pola dari [Melakukan perubahan tanpa mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#replace-prefix-edits) adalah solusi jangka panjang yang lebih baik.
+Ketika Claude tidak dapat membaca penalaran dari giliran sebelumnya, Claude membuat ulang penalaran tersebut, sehingga permintaan yang membuang blok thinking menghasilkan lebih banyak token output dan dapat membutuhkan waktu lebih lama untuk merespons. Pembuangan satu kali yang Anda lakukan dengan sengaja, seperti pada batas compaction di sisi klien, hanya memakan sedikit biaya. Pembuangan di setiap giliran memakan biaya lebih besar, dan seberapa besar tergantung pada harness Anda: seberapa sering harness mengedit prefiks dan seberapa banyak setiap giliran dibangun di atas penalaran sebelumnya.
+
+Sebelum Anda mengandalkan `"drop_block"`, jalankan eval pada beban kerja Anda sendiri untuk mengukur peningkatannya. Jika kecil, `"drop_block"` dapat menjaga permintaan tetap berhasil selagi Anda memperbaiki pengeditan. Bagaimanapun juga, perbaikan jangka panjangnya adalah menemukan dan mengganti pengeditan tersebut: hitung respons di setiap sesi yang `input_transformations`-nya memiliki entri `prefix_binding_mismatch`, buat peringatan untuknya, dan ganti setiap pengeditan dengan pola yang sesuai di [Lakukan perubahan tanpa mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#replace-prefix-edits).
 
 #### Menangani error dalam kode
 
-Ini adalah 400 `invalid_request_error` yang ditunjukkan sebelumnya di bagian ini. Jangan mengirim ulang body yang sama: body tersebut akan gagal dengan cara yang sama setiap kali. Coba ulang sekali dengan header beta dan `prefix_mismatch_behavior: "drop_block"`, sebagai solusi sementara ([`"drop_block"` dapat meningkatkan token output](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#drop-block-cost)), dan simpan pilihan tersebut bersama sesi sehingga setiap permintaan berikutnya juga mengirimkannya, termasuk setelah restart. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan `between_tools` pada Claude Sonnet 5.5, atau `thinking: {"type": "disabled"}` pada Claude Haiku 5.5, jaga riwayat tetap append-only, atau hapus blok pemikiran mulai dari giliran yang diedit. Jika Anda tidak dapat mengirim header beta, hapus setiap blok `thinking` dan `redacted_thinking` dari riwayat sekali, biarkan tetap dihapus, dan lanjutkan. Kemudian perbaiki edit yang menyebabkan ketidakcocokan.
+Ketika permintaan mendapatkan [error 400](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-mismatch-error), jangan kirim ulang body yang sama: permintaan tersebut akan gagal dengan cara yang sama setiap kali. Coba ulang sekali dengan header beta dan `prefix_mismatch_behavior: "drop_block"`, sebagai solusi sementara ([`"drop_block"` dapat meningkatkan token output](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#drop-block-cost)), dan simpan pilihan tersebut bersama sesi sehingga setiap permintaan berikutnya juga mengirimkannya, termasuk setelah restart. Jika Anda tidak dapat mengirimkan header beta atau `block_binding` (pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`), hapus blok yang disebutkan oleh error beserta setiap blok `thinking` dan `redacted_thinking` setelahnya, jangan sertakan blok-blok tersebut, dan lanjutkan. Kemudian perbaiki pengeditan yang menyebabkan ketidakcocokan.
 
 ### Menetapkan perilaku ketidakcocokan dan membaca `input_transformations`
 
@@ -165,7 +183,7 @@ Ini adalah 400 `invalid_request_error` yang ditunjukkan sebelumnya di bagian ini
 * Array `input_transformations` tingkat atas pada setiap respons
 * Objek `block_binding` pada konfigurasi `thinking`, yang satu-satunya field-nya adalah `prefix_mismatch_behavior`
 
-`block_binding` diterima bersama `thinking.type: "adaptive"` dan `thinking.type: "enabled"`. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Mengirimkannya dengan `between_tools` pada Claude Sonnet 5.5, atau dengan `thinking: {"type": "disabled"}` pada Claude Haiku 5.5, mengembalikan error 400. Mengirimkannya tanpa header beta mengembalikan error 400 yang pesannya diakhiri dengan `block_binding: Extra inputs are not permitted`. Model yang tidak menjalankan pemeriksaan prefiks menerima objek tersebut dan hanya melaporkan pembuangan dari pemeriksaan model, sehingga satu body permintaan berfungsi di berbagai model. Referensi API menyebut pemeriksaan prefiks sebagai pemeriksaan percakapan.
+`block_binding` diterima bersama `thinking.type: "adaptive"` dan `thinking.type: "enabled"`. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Mengirimkannya dengan `thinking: {"type": "between_tools"}` pada Claude Sonnet 5.5 atau dengan `thinking: {"type": "disabled"}` pada Claude Haiku 5.5 mengembalikan error 400. Mengirimkannya tanpa header beta mengembalikan error 400 yang pesannya diakhiri dengan `block_binding: Extra inputs are not permitted`. Model yang tidak menjalankan pemeriksaan prefiks menerima objek tersebut dan hanya melaporkan blok yang dibuang karena model tidak dapat membacanya, sehingga satu body permintaan berfungsi di berbagai model. Referensi API menyebut pemeriksaan prefiks sebagai pemeriksaan percakapan.
 
 Permintaan berikut memilih untuk membuang alih-alih menolak. Pada giliran pertama tidak ada yang perlu diputar ulang, sehingga `input_transformations` kembali kosong:
 
@@ -423,25 +441,16 @@ Input transformations: 0
 
 Dengan header beta, setiap respons dari model yang mampu berpikir membawa `input_transformations`. Setiap entri menyebutkan satu blok pemikiran berdasarkan `path`-nya (misalnya `messages.1.content.0`) dan memberikan `reason`. Ada dua jenis entri:
 
-* **`thinking_dropped`:** API membuang blok sebelum model membacanya, dan blok tersebut tidak ditagih. `reason`-nya adalah `prefix_binding_mismatch` atau `model_binding_mismatch` (lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models)). `reason` juga dapat berupa `organization_binding_mismatch`, yang berarti blok tersebut berasal dari akun lain (lihat [Blok pemikiran tetap berada di akun yang menghasilkannya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking)).
-* **`thinking_mismatch_allowed`:** blok gagal dalam pemeriksaan prefiks, tetapi API tidak memberlakukan pemeriksaan tersebut untuk permintaan ini, sehingga blok mencapai model tanpa perubahan dan ditagih. `reason`-nya selalu `prefix_binding_mismatch`. Entri ini hanya muncul pada permintaan di mana API tidak memberlakukan pemeriksaan secara default, seperti permintaan dari akun yang lebih lama (lihat [Kapan API memberlakukan pemeriksaan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement)). Menetapkan `prefix_mismatch_behavior` ke salah satu nilai membuat permintaan ikut dalam pemberlakuan, sehingga permintaan yang menetapkannya tidak pernah mendapatkan entri ini.
+* **`thinking_dropped`:** API membuang blok tersebut sebelum model membacanya, dan blok tersebut tidak ditagih. `reason`-nya adalah `prefix_binding_mismatch` atau `model_binding_mismatch` (lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models)). `reason` juga dapat berupa `organization_binding_mismatch`, yang berarti blok tersebut berasal dari akun lain (lihat [Blok pemikiran tetap berada pada akun yang menghasilkannya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking)).
+* **`thinking_mismatch_allowed`:** Blok tersebut gagal dalam pemeriksaan prefiks, tetapi API mengizinkannya lolos untuk permintaan ini, sehingga blok tersebut mencapai model tanpa perubahan dan ditagih. `reason`-nya selalu `prefix_binding_mismatch`. Entri ini hanya muncul pada permintaan yang tidak menetapkan `prefix_mismatch_behavior`, di mana tabel dalam [Ketika `prefix_mismatch_behavior` tidak ditetapkan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement) tidak menunjukkan galat. Permintaan yang menetapkan field tersebut tidak pernah mendapatkan entri ini.
 
 Array kosong ketika tidak ada blok yang dibuang dan tidak ada yang gagal dalam pemeriksaan prefiks. Abaikan entri yang `type` atau `reason`-nya tidak Anda kenali, karena pemeriksaan di masa mendatang akan menambahkan nilai.
 
-Saat [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming), array tiba pada objek `message` dalam event `message_start`. Setelah fallback sisi server di tengah stream, event `message_delta` terakhir membawanya lagi dengan entri dari model yang melayani. Dalam [message batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing), item yang bloknya gagal dalam pemeriksaan prefiks dengan `"error"` eksplisit diselesaikan sebagai `errored`. Item yang tidak menetapkan field tersebut tidak gagal. Di mana API memberlakukan pemeriksaan secara default, API membuang blok yang gagal sebagai gantinya. Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) menjalankan pemeriksaan prefiks yang sama dan mengembalikan 400 yang sama.
-
-### Kapan API memberlakukan pemeriksaan
-
-API memberlakukan pemeriksaan prefiks pada Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 untuk akun baru.
-
-* **Akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC:** API memeriksa permintaan Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 dan menerapkan `"error"` kecuali Anda menetapkan `"drop_block"`. Definisi akun baru yang sama berlaku untuk Claude API dan platform cloud.
-* **Akun yang lebih lama:** API memberlakukan pemeriksaan hanya pada permintaan yang menetapkan `prefix_mismatch_behavior`. Menetapkan field tersebut membuat permintaan ikut serta, sehingga Anda dapat melihat apa yang dilihat akun baru tanpa membuatnya. Pada permintaan yang tidak menetapkannya, API tetap menjalankan pemeriksaan tetapi membiarkan blok yang gagal diteruskan ke model. Dengan header beta, respons mencantumkan masing-masing blok tersebut dalam `input_transformations` sebagai `thinking_mismatch_allowed`, sehingga Anda dapat menemukan edit prefiks tanpa mengubah apa yang diterima model.
-
-Untuk mengetahui grup mana akun Anda berada, ambil percakapan Claude Fable 5.1 yang berisi blok pemikiran, ubah sesuatu sebelum blok tersebut, dan kirimkan ke Claude Fable 5.1 tanpa header beta atau field `block_binding`. Respons 400 yang menyebutkan header berarti pemeriksaan diberlakukan secara default pada akun Anda. Respons 200 berarti tidak. Untuk memastikan, kirim permintaan yang sama lagi dengan header beta, tetap tanpa `block_binding`: respons mencantumkan setiap blok pemikiran setelah edit Anda dalam `input_transformations` sebagai `thinking_mismatch_allowed`.
+Saat [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming), array tersebut tiba pada objek `message` dalam event `message_start`. Setelah terjadi fallback sisi server di tengah stream, event `message_delta` terakhir membawanya lagi dengan entri dari model yang melayani. Untuk [batch pesan](https://platform.claude.com/docs/id/build-with-claude/batch-processing), lihat [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement). Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) menjalankan pemeriksaan prefiks yang sama dan dapat mengembalikan [error 400](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-mismatch-error) yang sama.
 
 ### Apa yang dihitung sebagai edit
 
-Setiap baris membandingkan dua permintaan yang berurutan:
+Setiap baris membandingkan sebuah permintaan dengan permintaan sebelumnya. “Blok pemikiran selanjutnya” berarti blok-blok yang sudah ada dalam riwayat yang muncul setelah konten yang berubah:
 
 | Perubahan di antara permintaan                                                                                                                                                                    | Blok pemikiran berikutnya                                                                                                                                                                                                                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -750,12 +759,12 @@ Catat `input_transformations` pada setiap giliran integrasi Anda sendiri. Ketika
 }
 ```
 
-* **Kosong pada setiap giliran sesi yang berisi blok `thinking`:** integrasi Anda menjaga prefiks tetap utuh.
-* **`reason: "prefix_binding_mismatch"`:** sesuatu sebelum blok di `path` berubah sejak permintaan sebelumnya. Bandingkan `system`, `tools`, dan `messages` hingga giliran tersebut untuk menemukannya, atau kirim ulang permintaan dengan `"error"`: 400 biasanya diakhiri dengan kalimat yang menyebutkan apa yang berubah. Kemudian temukan pengganti yang sesuai di [Melakukan perubahan tanpa mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#replace-prefix-edits).
-* **`reason: "model_binding_mismatch"`:** percakapan berpindah ke model yang tidak dapat membaca blok model sebelumnya. Ini bukan edit prefiks. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
-* **`reason: "organization_binding_mismatch"`:** blok berasal dari akun lain. Lihat [Blok pemikiran tetap berada di akun yang menghasilkannya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking).
+* **Kosong pada setiap giliran sesi yang berisi blok `thinking`:** Integrasi Anda menjaga prefiks tetap utuh.
+* **`reason: "prefix_binding_mismatch"`:** Sesuatu sebelum blok di `path` berubah sejak blok tersebut dihasilkan. Bandingkan `system`, `tools`, dan `messages` hingga giliran tersebut untuk menemukannya, atau kirim ulang permintaan dengan `"error"`: error 400 biasanya diakhiri dengan kalimat yang menyebutkan apa yang berubah. Kemudian temukan pengganti yang sesuai di [Melakukan perubahan tanpa mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#replace-prefix-edits).
+* **`reason: "model_binding_mismatch"`:** Percakapan berpindah ke model yang tidak dapat membaca blok model sebelumnya. Ini bukan edit prefiks. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
+* **`reason: "organization_binding_mismatch"`:** Blok berasal dari akun lain. Lihat [Blok pemikiran tetap berada di akun yang menghasilkannya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking).
 
-Untuk melihat kegagalan secara sengaja, kirim giliran ketiga dari contoh sebelumnya dan tambahkan prompt `system` hanya ke permintaan tersebut, sehingga berbeda dari dua permintaan pertama, yang tidak memilikinya. Dengan `"drop_block"`, jumlah yang dibuang tidak lagi 0: respons memiliki satu entri untuk setiap blok pemikiran dalam riwayat, masing-masing dengan `reason: "prefix_binding_mismatch"`. Dengan `"error"`, permintaan mengembalikan 400 yang dijelaskan di [Apa yang dilakukan API dengan blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior), dan kalimat terakhirnya menyebutkan prompt `system`. Jika jumlahnya masih 0, tidak ada yang perlu diperiksa: pastikan bahwa modelnya adalah claude-fable-5-1, bahwa permintaan menetapkan `block_binding`, bahwa riwayat yang Anda kirim berisi blok `thinking`, dan bahwa dua permintaan pertama tidak memiliki prompt `system`.
+Untuk melihat kegagalan secara sengaja, kirim giliran ketiga dari contoh sebelumnya dan tambahkan prompt `system` hanya ke permintaan tersebut, sehingga berbeda dari dua permintaan pertama, yang tidak memilikinya. Dengan `"drop_block"`, jumlah yang dibuang tidak lagi 0: respons memiliki satu entri untuk setiap blok pemikiran dalam riwayat, masing-masing dengan `reason: "prefix_binding_mismatch"`. Dengan `"error"`, permintaan mengembalikan error 400 yang dijelaskan di [Apa yang dilakukan API dengan blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior), dan kalimat terakhirnya menyebutkan prompt `system`. Jika jumlahnya masih 0, tidak ada yang perlu diperiksa: pastikan bahwa modelnya adalah claude-fable-5-1, bahwa permintaan menetapkan `block_binding`, bahwa riwayat yang Anda kirim berisi blok `thinking`, dan bahwa dua permintaan pertama tidak memiliki prompt `system`.
 
 Dua giliran biasa jarang menunjukkan masalah. Jalankan sesi melalui masing-masing hal berikut, dengan `"error"` ditetapkan sehingga regresi menggagalkan “continuous integration” (integrasi berkelanjutan), atau CI, Anda:
 
@@ -766,7 +775,7 @@ Dua giliran biasa jarang menunjukkan masalah. Jalankan sesi melalui masing-masin
 * Peralihan ke model lain dan kembali
 * Penyimpanan, restart, dan melanjutkan pada tanggal berikutnya
 
-Pada akun yang lebih lama, Anda juga dapat memantau lalu lintas produksi tanpa ikut serta dalam pemberlakuan: kirim header beta, jangan sertakan `block_binding`, dan catat `input_transformations`. Mengirim header saja tidak mengubah apa yang diterima model. Setiap blok pemikiran yang datang setelah konten yang Anda edit gagal dalam pemeriksaan dan mendapatkan entri `thinking_mismatch_allowed` sendiri, dengan field `path` dan `reason` yang sama seperti entri `thinking_dropped`. Blok sebelum edit tetap lolos. Edit pada `system` atau `tools` datang sebelum setiap blok, sehingga menggagalkan setiap blok pemikiran dalam permintaan. Satu entri terlihat seperti ini:
+Jika tabel di [Saat `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement) tidak menunjukkan error, Anda juga dapat memantau lalu lintas produksi: kirim header beta, jangan sertakan `block_binding`, dan catat `input_transformations`. Mengirim header saja tidak mengubah apa yang diterima model. Setiap blok pemikiran yang muncul setelah konten yang Anda edit gagal dalam pemeriksaan dan mendapatkan entri `thinking_mismatch_allowed` sendiri, dengan field `path` dan `reason` yang sama seperti entri `thinking_dropped`. Blok sebelum edit lolos pemeriksaan. Edit pada `system` atau `tools` muncul sebelum setiap blok, sehingga setiap blok pemikiran dalam permintaan gagal dalam pemeriksaan. Satu entri terlihat seperti ini:
 
 ```json
 {
@@ -780,7 +789,7 @@ Pada akun yang lebih lama, Anda juga dapat memantau lalu lintas produksi tanpa i
 }
 ```
 
-Jalankan contoh berikut dari [akun yang lebih lama](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement), karena akun yang lebih baru menolak permintaan ketiganya dengan 400. Contoh ini mengirim header tanpa `block_binding` dan memperluas sesi sebelumnya dengan permintaan ketiga yang menambahkan prompt sistem, yang mengubah prefiks secara sengaja. Setelah setiap giliran, contoh ini mencetak jumlah blok `thinking` dan blok yang ditandai:
+Jalankan contoh berikut dari [akun yang dibuat sebelum 31 Agustus 2026](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement), karena pada akun yang dibuat pada atau setelah tanggal tersebut, API menolak permintaan ketiganya dengan error 400. Contoh ini mengirim header tanpa `block_binding` dan memperluas sesi sebelumnya dengan permintaan ketiga yang menambahkan prompt sistem, yang mengubah prefiks secara sengaja. Setelah setiap giliran, contoh ini mencetak jumlah blok `thinking` dan blok yang ditandai:
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
@@ -1062,7 +1071,7 @@ thinking blocks: 1, flagged: 2
 
 Respons ketiga menandai setiap blok thinking dari giliran sebelumnya, satu untuk setiap giliran dalam proses ini, karena prompt sistem yang baru muncul sebelum semuanya. Model tetap membacanya.
 
-Tangani entri-entri ini seperti Anda menangani penghapusan `prefix_binding_mismatch`. Edit berada sebelum blok pertama yang tercantum: lakukan diff atas `system`, `tools`, dan `messages` hingga `path` blok tersebut terhadap permintaan sebelumnya untuk menemukannya, lalu ganti dengan pola yang sesuai di [Melakukan perubahan tanpa mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#replace-prefix-edits). Pada akun baru, atau pada permintaan apa pun yang mengatur `prefix_mismatch_behavior`, API sebaliknya menolak permintaan atau menghapus blok yang gagal. Entri-entri ini merupakan batas bawah dari apa yang akan dihapus oleh pemberlakuan: dengan `"drop_block"`, blok yang gagal juga ikut membawa sisa blok thinking pada giliran tersebut, dan menghapus satu blok dapat membuat blok berikutnya ikut gagal. Ketika API hanya mencatat pemeriksaan, API mengevaluasi setiap blok secara terpisah dan mencantumkan sebuah blok hanya jika blok tersebut gagal.
+Tangani entri ini seperti Anda menangani pembuangan `prefix_binding_mismatch`. Edit berada sebelum blok pertama yang dicantumkan: bandingkan (diff) `system`, `tools`, dan `messages` hingga `path` blok tersebut dengan permintaan sebelumnya untuk menemukannya, lalu ganti dengan pola yang sesuai di [Melakukan perubahan tanpa mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#replace-prefix-edits). Jika permintaan menetapkan `prefix_mismatch_behavior`, atau jika tabel di [Ketika `prefix_mismatch_behavior` tidak ditetapkan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement) menunjukkan error 400 untuk model dan akun Anda, API justru menolak permintaan atau membuang blok yang gagal. Entri-entri ini merupakan batas bawah dari apa yang akan dihapus oleh `"drop_block"`. Dengan `"drop_block"`, blok yang gagal juga ikut membuang sisa blok pemikiran pada giliran tersebut, dan menghapus satu blok dapat membuat blok berikutnya juga gagal. Ketika API meloloskan blok-blok yang gagal, API mengevaluasi setiap blok secara terpisah dan mencantumkan blok hanya jika blok tersebut gagal.
 
 ## Melakukan perubahan tanpa mengedit prefiks
 
@@ -1093,7 +1102,7 @@ Platform lain yang menawarkan beta ini menggunakan nama yang sama. Untuk mengiri
 
 Simpan array `content` dari setiap respons dan kirim kembali tanpa perubahan sebagai giliran asisten: setiap jenis blok, dalam urutan yang diterima, termasuk blok `thinking` yang field `thinking`-nya kosong. Serializer yang membuang jenis blok yang tidak dikenal, membuang field kosong, atau mengurutkan ulang blok akan mengedit prefiks untuk setiap giliran berikutnya.
 
-Pada Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, field `thinking` kosong secara default dan `signature` membawa penalaran, sehingga serializer yang melewati blok kosong akan menghapus pemikiran. Jika serializer menghapus semuanya, tidak ada yang gagal dan model kehilangan penalaran sebelumnya pada setiap giliran. Jika Anda mem-parsing stream sendiri, pertahankan blok tersebut bahkan ketika tidak ada teks pemikiran yang tiba: blok terbuka, menerima `signature`-nya dalam event `signature_delta`, dan tertutup. Blok yang dikirim kembali dengan `signature` kosong akan gagal.
+Pada model yang menjalankan pemeriksaan prefiks, field `thinking` kosong secara default dan `signature` membawa penalarannya, sehingga serializer yang melewati blok kosong akan menghapus pemikiran. Jika serializer menghapus semuanya, tidak ada yang gagal dan model kehilangan penalaran sebelumnya di setiap giliran. Jika Anda mem-parsing stream sendiri, pertahankan blok tersebut bahkan ketika tidak ada teks pemikiran yang tiba: blok dibuka, menerima `signature`-nya dalam event `signature_delta`, lalu ditutup. Blok yang dikirim kembali dengan `signature` kosong akan gagal.
 
 ### Menambahkan instruksi dengan pesan sistem di tengah percakapan
 
@@ -1269,7 +1278,7 @@ Edit prefiks umum lainnya adalah pemangkasan sisi klien: membuang atau meringkas
 
 ### Lakukan compaction di sisi klien
 
-Anda tetap dapat melakukan compaction di klien. Jika Anda menulis ringkasannya sendiri, jangan kirim kembali blok thinking yang dihasilkan sebelum penulisan ulang. Jika API yang menulisnya dengan compaction sesuai permintaan, [Syarat agar pemikiran yang disimpan tetap valid](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid) menjelaskan kapan thinking yang dipertahankan tetap valid.
+Anda dapat melakukan compaction di klien. Jika Anda menulis ringkasannya sendiri, jangan kirim kembali blok thinking yang dihasilkan sebelum Anda menulis ringkasan tersebut. Jika API yang menulisnya dengan compaction sesuai permintaan, [Syarat agar pemikiran yang disimpan tetap valid](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid) menjelaskan kapan thinking yang dipertahankan tetap valid.
 
 #### Compaction sederhana (direkomendasikan)
 
@@ -1292,7 +1301,7 @@ Model Claude dilatih pada tugas jangka panjang dengan skema ini, dan untuk sebag
 
 #### Compaction keep-tail
 
-Compaction keep-tail meringkas giliran yang lebih lama dan mempertahankan giliran terbaru secara verbatim, sehingga model tetap menerima beberapa pertukaran terakhir kata demi kata. Jika Anda menulis ringkasan sendiri, hal ini melanggar aturan: giliran asisten yang dipertahankan masih membawa blok pemikiran yang dihasilkan ketika giliran asli, bukan ringkasan, mendahuluinya. Blok-blok tersebut gagal.
+Compaction keep-tail meringkas giliran yang lebih lama dan mempertahankan giliran terbaru secara verbatim, sehingga model tetap menerima beberapa pertukaran terakhir kata demi kata. Jika Anda menulis ringkasan sendiri, pemikiran dalam giliran yang dipertahankan akan gagal dalam pemeriksaan prefiks: giliran asisten yang dipertahankan membawa blok pemikiran yang dihasilkan ketika giliran asli, bukan ringkasan, mendahuluinya.
 
 Untuk mempertahankan thinking tersebut, minta API menulis ringkasannya dengan compaction sesuai permintaan. [Compaction yang mempertahankan giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/compaction-keep-recent-turns) menunjukkan caranya, dan [Syarat agar thinking yang dipertahankan tetap valid](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid) mencantumkan kapan thinking yang dipertahankan tetap valid.
 
@@ -1520,7 +1529,7 @@ Terus kirim `"drop_block"` pada permintaan-permintaan berikutnya selama kedua gi
 
 Compaction latar belakang menyusun ringkasan di luar jalur kritis selagi percakapan berlanjut, lalu menggantikannya beberapa permintaan kemudian. Untuk mempertahankan thinking yang dihasilkan selama itu, biarkan API menulis ringkasannya dengan compaction sesuai permintaan. [Compaction di latar belakang](https://platform.claude.com/docs/id/build-with-claude/compaction-background) berisi langkah-langkahnya. Thinking tersebut tetap valid dengan [syarat agar pemikiran yang disimpan tetap valid](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid) yang sama seperti giliran terbaru yang dipertahankan.
 
-Ringkasan yang Anda bangun sendiri melanggar aturan dengan cara yang sama seperti keep-tail, hanya saja tertunda: setiap giliran asisten yang dihasilkan selama ringkasan sedang dibangun membawa thinking yang mendahului penukaran, dan semuanya gagal begitu ringkasan diterapkan. Jika Anda menggunakannya, perlakukan penukaran seperti keep-tail dan kirim `"drop_block"` sejak penukaran dan seterusnya, atau lakukan compaction secara sinkron.
+Jika Anda membangun ringkasan sendiri, pemikiran yang dipertahankan gagal dengan cara yang sama seperti saat berada di belakang ringkasan keep-tail yang Anda tulis sendiri. Setiap giliran asisten yang dihasilkan selama ringkasan sedang dibangun membawa pemikiran yang mendahului penukaran, dan semua pemikiran tersebut gagal begitu ringkasan ditukar masuk. Perlakukan penukaran seperti keep-tail: kirim `"drop_block"` sejak penukaran dan seterusnya, atau lakukan pemadatan secara sinkron.
 
 #### Pola yang tidak berfungsi dengan preserved thinking
 
@@ -1543,12 +1552,12 @@ Library, proxy, atau gateway berada di antara riwayat milik pihak lain dan API, 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="Apakah saya memerlukan akun baru untuk menguji preserved thinking?">
-    Tidak. Kirim header beta `thinking-binding-controls-2026-08-01` dan atur `thinking.block_binding.prefix_mismatch_behavior`. Mengatur field tersebut membuat permintaan itu ikut dalam penegakan aturan terlepas dari usia akun. `"error"` menolak riwayat yang diedit dengan error 400 yang sama seperti yang diterima akun baru, dan `"drop_block"` meloloskan permintaan dan mencantumkan apa yang dibuang di `input_transformations`. Untuk menemukan pengeditan prefiks dari akun lama tanpa menegakkan pemeriksaan, kirim header tersebut dan biarkan field tidak diatur: blok yang gagal tetap sampai ke model, dan `input_transformations` mencantumkannya sebagai `thinking_mismatch_allowed`. Lihat [Periksa apakah kode Anda mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#how-to-tell-whether-your-integration-is-impacted).
+  <Accordion title="Dapatkah saya menguji pemikiran yang dipertahankan dari akun yang dibuat sebelum 31 Agustus 2026?">
+    Ya. Kirim header beta `thinking-binding-controls-2026-08-01` dan atur `thinking.block_binding.prefix_mismatch_behavior`. Pengaturan ini berlaku untuk permintaan tersebut di akun mana pun: `"error"` menolak riwayat yang telah diedit dengan error 400, dan `"drop_block"` meloloskan permintaan dan mencantumkan apa yang dihapus di `input_transformations`. Lihat [Periksa apakah kode Anda mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#how-to-tell-whether-your-integration-is-impacted).
   </Accordion>
 
   <Accordion title="Jika ada sesuatu sebelum blok thinking yang berubah, bahkan satu deskripsi alat, apakah percakapan menjadi tidak dapat digunakan?">
-    Tidak. Yang gagal adalah thinking yang sudah ada dalam riwayat setelah titik yang Anda ubah, dan Anda yang memilih apa yang terjadi padanya. Dengan `prefix_mismatch_behavior: "drop_block"`, API membuang blok-blok tersebut dan permintaan berhasil: model menjawab giliran itu tanpa penalaran tersebut, dan cache prompt dimulai ulang pada titik pengeditan. Dengan default `"error"`, API menolak permintaan dengan error 400 sampai Anda membatalkan pengeditan atau mengirim ulang dengan `"drop_block"`. Lihat [Apa yang dilakukan API dengan blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior). [Apa yang dihitung sebagai edit](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#what-counts-as-an-edit) mencantumkan perubahan mana yang berpengaruh.
+    Tidak. Yang gagal adalah thinking yang sudah ada dalam riwayat setelah titik yang Anda ubah, dan Anda yang memilih apa yang terjadi padanya. Dengan `prefix_mismatch_behavior: "drop_block"`, API membuang blok-blok tersebut dan permintaan berhasil: model menjawab giliran itu tanpa penalaran tersebut, dan cache prompt dimulai ulang pada titik pengeditan. Dengan `"error"`, API menolak permintaan dengan error 400 sampai Anda membatalkan pengeditan atau mengirim ulang dengan `"drop_block"`. Lihat [Apa yang dilakukan API dengan blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior). [Apa yang dihitung sebagai edit](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#what-counts-as-an-edit) mencantumkan perubahan mana yang berpengaruh.
   </Accordion>
 
   <Accordion title="Apakah mengubah effort atau pengaturan thinking lainnya di antara permintaan membuat thinking sebelumnya tidak valid?">
@@ -1573,8 +1582,8 @@ Library, proxy, atau gateway berada di antara riwayat milik pihak lain dan API, 
     Ya. Sesi yang dilanjutkan adalah permintaan lanjutan biasa: `system`, `tools`, dan `messages` sebelumnya harus memiliki konten yang sama dengan yang terakhir Anda kirim. Format JSON dan urutan kunci tidak berpengaruh; nilainya yang berpengaruh. Simpan persis apa yang Anda kirim dan terima, lalu putar ulang itu: prompt sistem yang telah dirender, definisi alat, dan setiap giliran asisten sebagaimana dikembalikan. Jangan render ulang dari input yang mungkin telah berubah sejak saat itu, seperti tanggal, file instruksi yang diperbarui, atau versi alat yang baru. Apa pun yang baru dimasukkan ke dalam pesan yang ditambahkan. Lihat [Kirim kembali giliran asisten persis seperti yang dikembalikan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#append-assistant-turns-exactly-as-returned).
   </Accordion>
 
-  <Accordion title="Sesi yang tersimpan sekarang gagal pada setiap permintaan. Bagaimana cara membuatnya berfungsi lagi?">
-    Riwayat yang tersimpan mengandung pengeditan, sehingga memutarnya ulang tidak akan berhasil. Kirim sesi tersebut dengan `prefix_mismatch_behavior: "drop_block"` mulai sekarang, atau hapus blok `thinking` dan `redacted_thinking`-nya sekali lalu lanjutkan. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan `between_tools` pada Claude Sonnet 5.5, atau `thinking: {"type": "disabled"}` pada Claude Haiku 5.5, pertahankan riwayat hanya-tambah (append-only), atau hapus blok thinking mulai dari giliran yang diedit dan seterusnya. Thinking yang dihasilkan model mulai dari titik itu tetap valid selama tidak ada yang berubah lagi sebelumnya. Kemudian temukan pengeditannya agar sesi baru tidak mengalaminya. Lihat [Menangani error dalam kode](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#handle-the-error-in-code).
+  <Accordion title="Sesi yang tersimpan gagal pada setiap permintaan. Bagaimana cara membuatnya berfungsi kembali?">
+    Riwayat yang tersimpan mengandung suntingan, sehingga mengirimkannya kembali apa adanya akan selalu gagal, bahkan setelah Anda memperbaiki kode yang membuat suntingan tersebut. Untuk melanjutkan sesi, kirimkan header beta dengan `prefix_mismatch_behavior: "drop_block"` pada setiap permintaan berikutnya. Sebagai alternatif, hapus blok yang disebutkan dalam error beserta setiap blok `thinking` dan `redacted_thinking` setelahnya, lalu coba ulang sekali. Jika Anda tidak dapat mengirim `block_binding` (pada Claude Sonnet 5.5 dan Claude Haiku 5.5, ini hanya berfungsi dengan `thinking: {"type": "adaptive"}`), hapus blok-blok tersebut. Pemikiran yang dihasilkan model setelah itu tetap valid selama tidak ada yang berubah lagi sebelumnya. Kemudian perbaiki kode yang membuat suntingan tersebut agar sesi baru tidak mengalaminya. Lihat [Menangani error dalam kode](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#handle-the-error-in-code).
   </Accordion>
 
   <Accordion title="Harness saya dapat mengarahkan suatu giliran ke model non-Claude. Apakah giliran tersebut membuat thinking Claude sebelumnya tidak valid?">

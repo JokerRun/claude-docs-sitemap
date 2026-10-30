@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings-reference
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 53ec552b44d9b9924a08c98e5664ce0f49bb45f1baa82e2d99296b7c4043193d
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 887be2e9ee04bcacd54867f2580a37bf6ef724546fe37cf141e9b9b7278b0c47
 ---
 
 > ## Documentation Index
@@ -4853,7 +4853,7 @@ Use [`enableArtifact`](#enableartifact) instead to turn off the [Artifact](https
 
 ### `disableDeepLinkRegistration`
 
-Stop Claude Code from registering the `claude-cli://` protocol handler with the operating system, which it otherwise does after you send the first prompt of an interactive session. [Deep links](https://code.claude.com/docs/en/deep-links.md) let external tools open a Claude Code session with a pre-filled prompt. Set this in environments where protocol handler registration is restricted or managed separately.
+Stop Claude Code from registering the `claude-cli://` protocol handler with the operating system. [Deep links](https://code.claude.com/docs/en/deep-links.md) let external tools open a Claude Code session with a pre-filled prompt. Set this in environments where protocol handler registration is restricted or managed separately.
 
 * **Scope**: [`Any file`](#scopes)
 * **Type**: the string `"disable"`
@@ -5808,7 +5808,7 @@ Claude Code ignores this key in `settings.json`.
 
 Start every interactive CLI session with [Chrome integration](https://code.claude.com/docs/en/chrome.md) on, without passing `--chrome` each time. If you run [`claude remote-control`](https://code.claude.com/docs/en/remote-control), a session it starts for one of your [project](https://code.claude.com/docs/en/claude-projects.md) threads follows this key too, except in `bypassPermissions` mode. With Claude Code v2.1.287 or later, this key also applies to sessions in the [VS Code extension](https://code.claude.com/docs/en/vs-code.md#automate-browser-tasks-with-chrome): see [Enable Chrome by default](https://code.claude.com/docs/en/chrome.md#enable-chrome-by-default).
 
-Running `/chrome` and selecting **Enabled by default** sets this key for you. Appears in `/config` as **Claude in Chrome enabled by default**.
+Running `/chrome` and selecting **Enabled by default** sets this key for you, as does answering the ["Claude in Chrome extension detected" dialog](https://code.claude.com/docs/en/chrome.md#answer-the-startup-dialog). Appears in `/config` as **Claude in Chrome enabled by default**.
 
 * **Scope**: [`Global config`](#scopes)
 * **Type**: Boolean

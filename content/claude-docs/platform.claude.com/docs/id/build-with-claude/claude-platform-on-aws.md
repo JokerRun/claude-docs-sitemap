@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 11cb52e6edfe0da08b928a5b831c65da948c36cd6dfe2fa6b05b4495ddc37a44
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 1ffcc070f95ac23ea7dfde4de64101d19685075f2c2489b9c91ab94f082d6ca7
 ---
 
 ---
@@ -582,7 +582,7 @@ Kemampuan berikut saat ini tidak tersedia di Claude Platform on AWS:
 * **Kesiapan HIPAA:** Program siap-HIPAA dari Anthropic tidak tersedia. Lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 * **Toolset computer use dan browser use:** `computer_toolset_20260801` dan `browser_toolset_20260801` saat ini tidak tersedia di Claude Platform on AWS. Versi alat computer use beta tetap tersedia untuk model yang tercantum di bawah [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
 
-- **Admin API:** Endpoint workspace (create, get, list, update, dan archive pada `/v1/organizations/workspaces`), endpoint kunci eksternal (register, get, list, update, dan delete pada `/v1/organizations/external_keys`, untuk [CMEK](https://platform.claude.com/docs/id/manage-claude/cmek); kunci divalidasi saat dilampirkan ke workspace, bukan melalui endpoint validasi), dan [endpoint tujuan telemetri](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#telemetry-destinations) tersedia. Endpoint Admin API lainnya (anggota organisasi, anggota workspace, undangan, kunci API, laporan penggunaan, laporan biaya, dan laporan batas laju) saat ini tidak tersedia. Sebagai gantinya, lihat data penggunaan dan biaya di [Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#using-the-claude-console). AWS IAM mengelola keanggotaan organisasi.
+- **Admin API:** Endpoint workspace (create, get, list, update, dan archive pada `/v1/organizations/workspaces`), endpoint kunci eksternal (register, get, list, update, dan delete pada `/v1/organizations/external_keys`, untuk [CMEK](https://platform.claude.com/docs/id/manage-claude/cmek); kunci divalidasi saat dilampirkan ke workspace, bukan melalui endpoint validasi), [endpoint tujuan telemetri](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#telemetry-destinations), dan endpoint [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) tersedia. Endpoint Admin API lainnya (anggota organisasi, anggota workspace, undangan, kunci API, [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) versi lama, dan laporan batas laju) tidak tersedia. AWS IAM mengelola keanggotaan organisasi.
 - **Manajemen anggota workspace:** Menambahkan atau menghapus pengguna dari workspace individual tidak tersedia. Kebijakan AWS IAM pada ARN workspace mengontrol akses.
 - **Workspace Claude Code dan Analytics API:** Workspace Claude Code dengan batas laju otomatis tidak tersedia. Penggunaan Claude Code muncul di tampilan penggunaan umum, bukan di layar khusus.
 - **Autentikasi OAuth:** Tidak didukung. Gunakan autentikasi SigV4 atau kunci API.
@@ -872,7 +872,7 @@ Pengeluaran dihitung berdasarkan harga daftar dan dapat memerlukan sekitar 2 jam
 
 ## Pemantauan dan logging
 
-AWS CloudTrail dapat merekam semua permintaan ke Claude Platform on AWS. Operasi workspace, kunci eksternal, tujuan telemetri, kepatuhan, vault, dan webhook dicatat sebagai Management event secara default. Operasi inferensi, batch, file, skill, model, profil pengguna, dan Claude Managed Agents (selain vault dan webhook) diklasifikasikan sebagai Data event dan memerlukan konfigurasi logging data event secara eksplisit, yang menimbulkan biaya CloudTrail tambahan. Lihat [referensi tindakan IAM](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#route-to-action-mapping) untuk klasifikasi jenis event lengkap dan [dokumentasi AWS CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/) untuk detail konfigurasi.
+AWS CloudTrail dapat merekam semua permintaan ke Claude Platform on AWS. Operasi workspace, kunci eksternal, tujuan telemetri, kepatuhan, vault, dan webhook dicatat sebagai Management event secara default. Operasi inferensi, batch, file, skill, model, profil pengguna, laporan penggunaan dan biaya, dan Claude Managed Agents (selain vault dan webhook) diklasifikasikan sebagai Data event dan memerlukan konfigurasi logging data event secara eksplisit, yang menimbulkan biaya CloudTrail tambahan. Lihat [referensi tindakan IAM](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#route-to-action-mapping) untuk klasifikasi jenis event lengkap dan [dokumentasi AWS CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/) untuk detail konfigurasi.
 
 ### ID permintaan
 

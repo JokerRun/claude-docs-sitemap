@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/events/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: eb159e2f581e5737e6383279b7db272695f4a44119f56bf7c51289ef9ece2412
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 59d4e95d9b07c3f6f793b8e1ef1356e2a7641e3fb506c1a5f2d339ee8b163d5d
 ---
 
 ---
@@ -147,6 +147,10 @@ List Session Thread Events
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

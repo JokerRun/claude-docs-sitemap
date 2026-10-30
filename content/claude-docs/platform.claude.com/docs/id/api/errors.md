@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: aa81051ff1b7fc1c4239626f6188c099db096b37cecc3ca4b413bbe196a0619a
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: eb74c8982bba3989057b571a5394dcc1b0d12720a96768e14e36aac30b178336
 ---
 
 ---
@@ -545,15 +545,15 @@ Pada Claude API dan Claude Models on Google Cloud (Google managed), Claude Opus 
 
 API mengembalikan pesan yang sama untuk tipe alat apa pun yang didefinisikan Anthropic yang tidak didukung oleh model yang diminta. Deklarasikan `{"type": "computer_toolset_20260801"}` tanpa header beta dan perbarui loop agen Anda seperti yang dijelaskan di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Untuk beralih dari `computer_20250124`, lihat [Pindahkan computer use ke toolset](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset) di panduan migrasi Claude Haiku 5.5. Model-model sebelumnya yang mendukung toolset tetap menerima `computer_20251124`, begitu pula Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 di Amazon Bedrock.
 
-### Blok thinking tidak lagi cocok dengan percakapan
+### Blok thinking yang terikat ke percakapan yang berbeda
 
-Pada Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, API menerima blok thinking yang diputar ulang hanya selama prompt `system`, `tools`, dan pesan-pesan yang mendahuluinya tidak berubah. Untuk akun baru yang dibuat pada atau setelah 31 Agustus 2026, dan untuk permintaan apa pun yang mengatur `thinking.block_binding.prefix_mismatch_behavior` ke `"error"`, blok yang diputar ulang dengan riwayat sebelumnya yang telah berubah akan ditolak dengan 400 `invalid_request_error` (dengan `"drop_block"`, API membuang blok tersebut dan permintaan berhasil). Pesannya diawali dengan posisi blok pertama yang gagal:
+Error 400 `invalid_request_error` ini biasanya berarti blok thinking yang Anda kirim kembali gagal dalam pemeriksaan prefiks: sesuatu sebelum blok tersebut berubah setelah blok itu dihasilkan, seperti prompt `system`, `tools`, atau pesan sebelumnya. Model Claude 5.1 dan yang lebih baru menjalankan pemeriksaan ini. Untuk permintaan yang tidak mengatur `prefix_mismatch_behavior`, [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement) menunjukkan permintaan mana yang mendapatkan error ini. Pesan error diawali dengan posisi blok pertama yang gagal:
 
 ```text wrap
 messages.{i}.content.{j}: Invalid `signature` in `thinking` block. The block is bound to a different conversation. Remove the block, or set `thinking.block_binding.prefix_mismatch_behavior` to "drop_block".
 ```
 
-Tanpa beta header `thinking-binding-controls-2026-08-01`, pesan tersebut juga menyebutkan header itu. Pertahankan riwayat percakapan agar hanya bersifat append-only, atau kirim beta header dengan `prefix_mismatch_behavior: "drop_block"` untuk membuang blok dan melanjutkan. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan `between_tools` pada Claude Sonnet 5.5, atau `thinking: {"type": "disabled"}` pada Claude Haiku 5.5, pertahankan riwayat agar append-only, atau hapus blok thinking mulai dari giliran yang diedit dan seterusnya. Blok dari model yang tidak dapat dibaca oleh model target akan dibuang alih-alih ditolak. Lihat [Menjaga prefix tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check) dan [perbaikan untuk tanda tangan blok thinking yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-block-signature) di Pemecahan masalah thinking.
+Tanpa beta header `thinking-binding-controls-2026-08-01`, pesan tersebut juga menyebutkan header itu. Mengirim ulang riwayat yang sama akan gagal dengan cara yang sama, bahkan setelah Anda memperbaiki kode yang melakukan pengeditan. Untuk melanjutkan percakapan, kirim beta header dengan `prefix_mismatch_behavior: "drop_block"` pada percobaan ulang dan pada setiap permintaan berikutnya. Alternatifnya, hapus blok yang disebutkan oleh error tersebut serta setiap blok `thinking` dan `redacted_thinking` setelahnya, lalu coba ulang sekali. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`, jadi dengan pengaturan thinking lainnya, hapus blok-blok tersebut. Untuk mencegah percakapan baru gagal, pertahankan riwayat agar hanya bersifat append-only (hanya ditambahkan). Blok dari model yang tidak dapat dibaca oleh model target akan dibuang alih-alih ditolak. Lihat [Menjaga prefix tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check) dan [perbaikan untuk tanda tangan blok thinking yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-block-signature) di Pemecahan masalah thinking.
 
 Mengirim `thinking.block_binding` tanpa [header beta](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01` akan mengembalikan 400 `invalid_request_error` yang pesannya diakhiri dengan:
 

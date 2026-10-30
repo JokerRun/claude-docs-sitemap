@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/retrieve
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 174dc128f571c56304d30338b439a3aff0858e09823c300e321ff9b93be648b4
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: ccf93a42c902eacd77708b71b803c74307b994534a6fdccf61df3f3839b39ba9
 ---
 
 ---
@@ -139,6 +139,10 @@ Retrieve a Vault
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

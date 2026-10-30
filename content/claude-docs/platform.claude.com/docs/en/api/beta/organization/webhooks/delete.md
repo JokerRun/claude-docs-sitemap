@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/webhooks/delete
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 27f519b8a93aac7f1d834c8a45e9a6395fb885b081b6ae9ab1ff88aa91be9539
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 85e00068fdaedde1b4a20ed9f45c9815df8e13a17735b99fc67c52f1f5798543
 ---
 
 ---
@@ -143,6 +143,10 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ## Returns
 

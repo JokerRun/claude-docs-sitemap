@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/remove
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: d561a607b37a7788d56fbfc6db5b14b2b1856c131e8483dcea84be22699099f8
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 6fa129f0cad18bfb97834f97eb3bcba8b518b2fcf0128bdfcf2dc167dfb1d70f
 ---
 
 ---
@@ -153,6 +153,10 @@ to the implicit `workspace_user` membership. Archived workspaces return
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ## Returns
 

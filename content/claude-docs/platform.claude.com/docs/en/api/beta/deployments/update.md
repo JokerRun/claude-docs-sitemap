@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/update
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: c8b9a4316c95feba0038eef5268ee3d54223d45201a05656c52eb2954c3a00e6
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: b3dd6d209db63faa0285b28e8d61a07b9db102ba899c52cfc7fec0abc53fd648
 ---
 
 ---
@@ -139,6 +139,10 @@ Update Deployment
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

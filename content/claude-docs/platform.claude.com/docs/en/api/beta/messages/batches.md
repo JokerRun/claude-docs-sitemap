@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 18bbe7d8d882f6747821c642b8faad18dd2105e66ac4f22a2c65c6f40aa48005
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 563814cbb2ea01866738ca49ec13fb57f965acc21708cfb187fe379d35b65d2a
 ---
 
 ---
@@ -139,6 +139,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-user-profile-id": optional string`
 
@@ -4097,6 +4101,26 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
       - `BetaThinkingConfigAdaptive object`
 
+    - `thread: optional BetaMessageThreadParam or null`
+
+      Server-held conversation state (a Thread). `{"type": "create"}` asks the server to hold this conversation's state under the response's `id`; `{"type": "continue", "previous_message_id": ...}` resumes from a previous response so only the new turn's messages are sent. The response shape is unchanged.
+
+      - `BetaThreadCreateParams object`
+
+        Start holding conversation state under this response's `id`.
+
+        - `type: "create"`
+
+      - `BetaThreadContinueParams object`
+
+        Resume from the response named by `previous_message_id`.
+
+        - `type: "continue"`
+
+        - `previous_message_id: string`
+
+          The `id` of the previous response in this Thread.
+
     - `tool_choice: optional BetaToolChoice`
 
       How the model should use the provided tools. The model can use a specific tool, any available tool, decide by itself, or not use tools at all.
@@ -4592,6 +4616,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `"webhooks-2026-10-07"`
 
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -4883,6 +4911,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -5185,6 +5217,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `"webhooks-2026-10-07"`
 
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -5468,6 +5504,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `"webhooks-2026-10-07"`
 
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -5642,6 +5682,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

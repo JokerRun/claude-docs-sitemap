@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/chrome
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: c7ee4a6f0c3dc11354ff3a8899524f66a8713e64b7554be55f73602aa38bf757
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 74fe0d34a0704a8406284b04c3417d5824891b95d63b8b0ddf6f0c3cab14d98f
 ---
 
 > ## Documentation Index
@@ -113,6 +113,15 @@ Claude Code starts normally when Chrome isn't running.
 > [!NOTE]
 >
 > Enabling Chrome by default increases context usage since the browser tools and their instructions are always loaded. If you notice increased context consumption, turn the setting off and connect only when needed, with `--chrome` in the CLI or by typing [`@browser`](https://code.claude.com/docs/en/vs-code#automate-browser-tasks-with-chrome) in the VS Code prompt box.
+
+### Answer the startup dialog
+
+If the "Claude in Chrome extension detected" dialog appears when you start `claude`, your answer changes the [**Enabled by default** setting](#enable-chrome-by-default):
+
+* **Yes, use my browser**: turns the setting on and connects this session
+* **No, keep browser tools off**, or Esc: turns the setting off, and Claude Code stops offering to set up Chrome
+
+To change your answer for later sessions, run `/chrome`.
 
 ### Manage site permissions
 

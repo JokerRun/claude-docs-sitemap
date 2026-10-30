@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/versioning
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 6213f5bf7d4d6f89fb5849c2f5117000e385e6a61219445a06f33856ee6df9ae
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 5ce7b399277d244cae7fd6469046835508e3d741a6f50b836198c12b57d0809a
 ---
 
 ---
@@ -54,7 +54,7 @@ Anthropic recommends using the latest API version whenever possible.
     * The per-user [usage](https://platform.claude.com/docs/en/api/beta/organization/analytics/user_usage_report/list) and [cost](https://platform.claude.com/docs/en/api/beta/organization/analytics/user_cost_report/list) reports no longer have `actor.email`. Use `actor.email_address` instead.
     * The [activity summaries](https://platform.claude.com/docs/en/api/beta/organization/analytics/summaries/list) response no longer has `summaries`. Use `data` instead.
 
-- `2023-06-01`
+* `2023-06-01`
 
   * New format for [streaming](https://platform.claude.com/docs/en/build-with-claude/streaming) server-sent events (SSE):
 
@@ -64,4 +64,4 @@ Anthropic recommends using the latest API version whenever possible.
 
   * Removed legacy `exception` and `truncated` values in responses.
 
-- `2023-01-01`: Initial release.
+* `2023-01-01`: Initial release.

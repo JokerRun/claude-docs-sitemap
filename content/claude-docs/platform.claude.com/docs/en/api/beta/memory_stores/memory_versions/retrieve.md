@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/retrieve
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 3186c59e336bbc0fd13e450b93842603f95597009ffdeac26ee1c1c833d86ebf
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 854a6a70322b5b077e2e6e9842bac287f69a2ffd833c81104995fa60e8245d39
 ---
 
 ---
@@ -159,6 +159,10 @@ Retrieve a Memory Version
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

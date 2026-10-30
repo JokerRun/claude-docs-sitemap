@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: a0473752f2712fa11515466d798e5d16b879d0055bdbd686d39bfeaefc1ebb5a
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 3cecb1c69cad694cc313148398ea29581f84e39ad0f98e8f264b13e6f67f5f7f
 ---
 
 > ## Documentation Index
@@ -563,7 +563,7 @@ Anyone who uses an environment can read its variables, so don't put a credential
 Keep these constraints in mind when you configure telemetry for cloud sessions:
 
 * **Let sessions reach the collector**: Claude Code sends the export through the session's network, so whether it reaches the host in your `OTEL_EXPORTER_OTLP_ENDPOINT` depends on the environment's [network access level](https://code.claude.com/docs/en/cloud-environments.md#access-levels). If sessions can't reach the collector's domain at the level you chose, [add the domain to the environment's allowlist](https://code.claude.com/docs/en/cloud-environments.md#allow-specific-domains), because no server-managed setting adds domains to an environment's network allowlist.
-* **Claude Tag channels use organization-level environments**: channel sessions run in organization-level environments rather than members' personal ones, so make the allowlist and any environment-variable changes on the [shared environment](https://code.claude.com/docs/en/cloud-environments.md#organization-shared-environments) set as your organization's default or pinned to the channel.
+* **Claude Tag channels**: make the allowlist and any environment-variable changes on the [shared environment](https://code.claude.com/docs/en/cloud-environments.md#organization-shared-environments) set as your organization's default or pinned to the channel.
 * **Cowork is configured separately**: Cowork sessions don't receive server-managed settings, as the [surface coverage table](https://code.claude.com/docs/en/model-config.md#surface-coverage) shows, so the server-managed `env` block doesn't configure their telemetry.
 
 ### Attribute telemetry to cloud sessions
@@ -1478,6 +1478,7 @@ When Claude Code can't safely determine the retention period, it pauses the swee
   * `"user_source_disabled"`: User settings are excluded, for example by the [`--setting-sources`](https://code.claude.com/docs/en/cli-reference#cli-flags) flag or the SDK's [`settingSources`](https://code.claude.com/docs/en/agent-sdk/typescript#options) option, and no enabled source provides `cleanupPeriodDays`
   * `"settings_unknowable"`: A settings file couldn't be read or parsed, so `cleanupPeriodDays` or `desktopSessionCleanupPeriodDays` may be set to a value Claude Code can't see
   * `"settings_invalid_key_set"`: Settings have validation errors and `cleanupPeriodDays` or `desktopSessionCleanupPeriodDays` is explicitly set, so falling back to the default could delete or keep files against that setting
+  * `"remote_settings_unknowable"`: A session in Claude Desktop's Code tab on a third-party deployment requested [server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md). It received no usable response, so `cleanupPeriodDays` may be set to a value Claude Code can't see
 * `transcripts_deleted`: Number of session transcripts, the top-level `~/.claude/projects/*/*.jsonl` files, that the sweep deleted
 * `transcripts_exempted_desktop`: Number of transcripts past the retention period that the sweep kept under the [Claude Desktop and Cowork rule](https://code.claude.com/docs/en/claude-directory.md#cleaned-up-automatically). These don't count toward `files_past_cutoff`. Requires Claude Code v2.1.248 or later
 * `session_files_deleted`: Number of artifacts the session-files sweep deleted: transcripts plus per-session companion files such as sidecars, recordings, and tool results

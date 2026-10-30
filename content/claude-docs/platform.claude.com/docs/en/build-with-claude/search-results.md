@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: a2c74b0ea9ca767d37cd3f9dc0e39e2dea506837bc46bbb516480c9a3104e017
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 2607ad72fd094ace1cbed3598ac30180c28612645bcded5cf0795515c934589e
 ---
 
 ---
@@ -93,10 +93,10 @@ Search results use the following structure:
 
 ### Optional fields
 
-| Field           | Type   | Description                                                                                                                                                                                                                                                                                                                     |
-| --------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `citations`     | object | Citation configuration with `enabled` Boolean field. Citations are disabled by default; every example on this page sets `"enabled": true` explicitly. All search results in a request must use the same setting (see [Citation control](https://platform.claude.com/docs/en/build-with-claude/search-results#citation-control)) |
-| `cache_control` | object | Cache control settings (for example, `{"type": "ephemeral"}`)                                                                                                                                                                                                                                                                   |
+| Field           | Type   | Description                                                                                                                                                                                                                                                                                                                        |
+| --------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `citations`     | object | Citation configuration with an `enabled` boolean field. Citations are disabled by default; every example on this page sets `"enabled": true` explicitly. All search results in a request must use the same setting (see [Citation control](https://platform.claude.com/docs/en/build-with-claude/search-results#citation-control)) |
+| `cache_control` | object | Cache control settings (for example, `{"type": "ephemeral"}`)                                                                                                                                                                                                                                                                      |
 
 Each item in the `content` array must be a text block with:
 

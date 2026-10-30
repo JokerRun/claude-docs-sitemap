@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/update
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: fbe0af78b1a8f6279f61fba278905036df40c0e26be7d6041acdcedb1e7b7c2e
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 40907fdd596c0e15d8235e7d398ca77716a79e7bc08fb49eb9703bb34be954f8
 ---
 
 ---
@@ -143,6 +143,10 @@ Update a Credential
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

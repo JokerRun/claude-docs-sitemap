@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 82add3427632740f8e66122077dc1a6fe417cfa429b881022a9716825f38a899
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 4d5633688e4d4af4b763f50966e5593921cd136499c152bdd7e498da3e5d4f8f
 ---
 
 ---
@@ -993,7 +993,7 @@ malformed session identifier returns 400.
 
   - `sent_by_user_id: string or null`
 
-    Identifier of the human account that sent this turn on an agent-owned session. Null on user-owned sessions, where every user-role turn was sent by the session's `user`.
+    Identifier of the human account that sent this turn on an agent-owned session. Null on user-owned sessions, where every user-role turn was sent by the session's `user`. Can also be null on an agent-owned session, where several people may take part, when the turn cannot be attributed to one human account (for example, no sender was recorded).
 
 - `next_page: string or null`
 

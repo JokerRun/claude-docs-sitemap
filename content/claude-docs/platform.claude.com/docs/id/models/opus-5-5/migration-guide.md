@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/migration-guide
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 33d1c2a0de01cc0511c7b6a082186e65f66321e5ac0f1f66e066386cc28d109f
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: eaa934a971fa2dbe23888a45060765e9313c34be3a55a70d6f464b08d1ea82df
 ---
 
 ---
@@ -880,7 +880,7 @@ Sesudah:
 
 #### Blok thinking terikat pada model dan percakapan
 
-Di Claude API, Claude Fable 5.1 dan Claude Mythos 5.1 membaca blok thinking Claude Opus 5.5; tidak ada model lain yang melakukannya. Router atau fallback yang memindahkan percakapan dari Claude Opus 5.5 ke model lain mana pun menjalankan giliran tersebut tanpa blok itu. Ke arah sebaliknya, Claude Opus 5.5 membaca blok thinking dari Claude Opus 5, dari model Opus, Sonnet, dan Haiku sebelumnya, dan, di Claude API dan Claude Models on Google Cloud (Google managed), dari Claude Sonnet 5.5 dan Claude Haiku 5.5, tetapi tidak dari model Claude Fable atau Claude Mythos. Pertahankan percakapan agar hanya ditambahkan (append-only, tanpa pengeditan pada prompt `system`, `tools`, atau pesan sebelumnya di tengah percakapan) sehingga blok tetap valid; Claude Code, claude.ai, Claude Managed Agents, dan Claude Agent SDK sudah melakukannya. Penegakan aturan sama dengan Claude Fable 5.1 di setiap platform: untuk akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC, memutar ulang blok thinking setelah pengeditan semacam itu mengembalikan error 400 secara default. Tidak ada perubahan kode untuk integrasi append-only. Lihat [Blok thinking terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them) dan [Preserved thinking](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking).
+Di Claude API, Claude Fable 5.1 dan Claude Mythos 5.1 membaca blok thinking Claude Opus 5.5; tidak ada model lain yang melakukannya. Router atau fallback yang memindahkan percakapan dari Claude Opus 5.5 ke model lain mana pun menjalankan giliran tersebut tanpa blok itu. Ke arah sebaliknya, Claude Opus 5.5 membaca blok thinking dari Claude Opus 5, dari model Opus, Sonnet, dan Haiku sebelumnya, dan, di Claude API dan Claude Models on Google Cloud (Google managed), dari Claude Sonnet 5.5 dan Claude Haiku 5.5, tetapi tidak dari model Claude Fable atau Claude Mythos. Pertahankan percakapan agar hanya ditambahkan (append-only, tanpa pengeditan pada prompt `system`, `tools`, atau pesan sebelumnya di tengah percakapan) sehingga blok tetap valid; Claude Code, claude.ai, Claude Managed Agents, dan Claude Agent SDK sudah melakukannya. Pada akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC, di Claude API dan di platform cloud, permintaan yang memutar ulang blok thinking setelah pengeditan semacam itu dan membiarkan `thinking.block_binding.prefix_mismatch_behavior` tidak diatur akan mendapatkan error 400. Tidak ada perubahan kode untuk integrasi append-only. Lihat [Blok thinking terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them) dan [Preserved thinking](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking).
 
 #### Alat computer use `computer_20251124` tidak didukung di Claude API dan Claude Models on Google Cloud (Google managed)
 

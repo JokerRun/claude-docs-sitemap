@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/home
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: a6a02ea552d0a34ebddb93501585f6af1a4900c21abb653ff8fc3dca78666f8b
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 32b47c3b6d50e1b10c7045839313d27080ad491bccce629e11391670072b5535
 ---
 
 ---
@@ -346,7 +346,7 @@ with Claude"
             API keys in Claude Console
           </HomeJourneyLink>
 
-          <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/en/manage-claude/usage-cost-api">
+          <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api">
             Usage monitoring
           </HomeJourneyLink>
 
@@ -404,7 +404,7 @@ with Claude"
             API keys in Claude Console
           </HomeJourneyLink>
 
-          <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/en/manage-claude/usage-cost-api">
+          <HomeJourneyLink icon="chart" href="https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api">
             Usage monitoring
           </HomeJourneyLink>
         </HomeJourneyStep>

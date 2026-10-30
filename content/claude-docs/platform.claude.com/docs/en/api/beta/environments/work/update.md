@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/update
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: d4aaae86c105faa67c24e4229c81d9da54e590d951ff294f9616b5840435632b
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: fd83e653715805aa7b8512e0e316122ce325f7b24cee57ef556f95ede1c1a4c2
 ---
 
 ---
@@ -141,6 +141,10 @@ Update work item metadata with merge semantics.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

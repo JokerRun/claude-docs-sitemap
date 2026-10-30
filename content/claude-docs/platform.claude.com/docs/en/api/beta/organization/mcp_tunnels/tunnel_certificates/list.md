@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 3a08ac9ed2a9aac89287bebaa5914e932f74bbeb80062f585e2fffa5ad49e148
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 3ba282acb32e852fffb2fd46ffdf456e785962c9f17850efcfae4291cee08699
 ---
 
 ---
@@ -165,6 +165,10 @@ Archived certificates are excluded unless `include_archived` is set.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ## Returns
 

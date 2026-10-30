@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 3ed90c26da31fec0dc712dfa1099342a5dbda6e7bc04dbf23160d142ebd1bd1d
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 8c413fcdda935331c2baa8f4abb01729a9b6de75c08a35663f7f2811454ff3a2
 ---
 
 ---
@@ -151,6 +151,10 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

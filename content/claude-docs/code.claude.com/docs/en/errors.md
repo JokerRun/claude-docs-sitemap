@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/errors
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 94c90e26683748c4297bc95a349430b87e79ac56e33533136dfde8596819d0e3
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 12744692edc820d64807a2e11085a6e288a7e8b6d25ba28fe5418617a5338766
 ---
 
 > ## Documentation Index
@@ -284,6 +284,8 @@ Match the message you see to a section below.
 | `Windows reported an error (EBADF) when Claude Code read this session's transcript file` | [Command-line errors](#windows-reported-an-error-ebadf) |
 | `Cannot switch renderers in this session` | [Command-line errors](#cannot-switch-renderers-in-this-session) |
 | `Cannot switch renderers while work is running in the background` | [Command-line errors](#cannot-switch-renderers-in-this-session) |
+| `Can't restart while work is running in the background — wait for it to finish (or stop it via /tasks), then try again.` | [Command-line errors](#cant-restart-while-work-is-running-or-remote-control-is-connected) |
+| `Can't restart while Remote Control is connected. To use the installed version, exit and start Claude Code again, then run /resume.` | [Command-line errors](#cant-restart-while-work-is-running-or-remote-control-is-connected) |
 | `Claude Code couldn't restart` | [Command-line errors](#claude-code-couldnt-restart) |
 | `Couldn't open Claude Desktop` | [Command-line errors](#couldnt-open-claude-desktop) |
 | `Failed to open Claude Desktop. Please try opening it manually.` | [Command-line errors](#couldnt-open-claude-desktop) |
@@ -865,7 +867,7 @@ Before v2.1.268, the message ended with `run /usage-credits to turn them on, or 
 
 ### The prompt to confirm went unanswered
 
-If your account requires the [Fable usage-credits consent](https://code.claude.com/docs/en/model-config.md#fable-and-usage-credits), Claude Code asks you to confirm before a Fable request bills usage credits. When the consent prompt closes with nobody answering it, Claude Code ends the turn with one of these messages:
+When the [Fable usage-credits consent prompt](https://code.claude.com/docs/en/model-config.md#fable-and-usage-credits) closes with nobody answering it, Claude Code ends the turn with one of these messages:
 
 ```text theme={null}
 Fable limit reached · continuing on Fable 5.1 uses usage credits, and the prompt to confirm went unanswered — nothing was sent · answer it where this session is running, or /model to change
@@ -3980,6 +3982,10 @@ Each reason the message can show in parentheses:
 **What to do:**
 
 * In a session started without those restrictions, run `/tui fullscreen`, or `/tui default` to switch back. Claude Code saves the [`tui` setting](https://code.claude.com/docs/en/settings-reference#tui) there
+
+### Can't restart while work is running or Remote Control is connected
+
+Claude Code didn't restart, and your session keeps running as it was. Follow the fix in the message.
 
 ### Claude Code couldn't restart
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/versioning
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: bbcd1957e135630940b4a48c4af39caa0a71c06d5d21aec2663b049433270411
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 8cace7a83f88f7fc7f771a872853943e8fa0f1913b1e6834527be9d7f30a4e5f
 ---
 
 ---
@@ -54,7 +54,7 @@ Anthropic merekomendasikan penggunaan versi API terbaru bila memungkinkan.
     * Laporan [penggunaan](https://platform.claude.com/docs/id/api/beta/organization/analytics/user_usage_report/list) dan [biaya](https://platform.claude.com/docs/id/api/beta/organization/analytics/user_cost_report/list) per pengguna tidak lagi memiliki `actor.email`. Gunakan `actor.email_address` sebagai gantinya.
     * Respons [ringkasan aktivitas](https://platform.claude.com/docs/id/api/beta/organization/analytics/summaries/list) tidak lagi memiliki `summaries`. Gunakan `data` sebagai gantinya.
 
-- `2023-06-01`
+* `2023-06-01`
 
   * Format baru untuk “server-sent events” (event yang dikirim server), atau SSE, pada [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming):
 
@@ -64,4 +64,4 @@ Anthropic merekomendasikan penggunaan versi API terbaru bila memungkinkan.
 
   * Menghapus nilai lama `exception` dan `truncated` dalam respons.
 
-- `2023-01-01`: Rilis awal.
+* `2023-01-01`: Rilis awal.

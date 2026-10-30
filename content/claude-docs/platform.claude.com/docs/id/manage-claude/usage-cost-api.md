@@ -1,19 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/usage-cost-api
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 7a160224028f43b09d1013f3ae6981f959a5395a012510b67c4b16ab0f2e86c9
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 98d9de4dff21bee0baa3a8d51870995980f348022b65d93d6f4ec999ea3a36ef
 ---
 
 ---
 title: API Penggunaan dan Biaya
 url: https://platform.claude.com/docs/id/manage-claude/usage-cost-api
-description: Akses data penggunaan dan biaya API organisasi Anda secara terprogram dengan Usage and Cost Admin API.
+description: Endpoint laporan penggunaan dan biaya Admin API lama untuk organisasi Claude Console. Untuk integrasi baru, gunakan Usage and Cost Analytics API.
 ---
 
 <Tip>
   **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
 </Tip>
+
+<Note>
+  Usage and Cost API (`/v1/organizations/usage_report/messages` dan `/v1/organizations/cost_report`) adalah API lama (legacy) dan tetap didukung. Untuk integrasi baru, gunakan [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api), yang melaporkan penggunaan dan biaya dengan lebih banyak dimensi pengelompokan dan pemfilteran. Untuk memindahkan integrasi yang sudah ada, lihat [Migrasi dari Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api#migrate-from-usage-cost-api).
+</Note>
 
 Usage and Cost Admin API menyediakan akses terprogram dan terperinci ke data historis penggunaan dan biaya API untuk organisasi Anda. Data ini serupa dengan informasi yang tersedia di halaman [Usage](https://platform.claude.com/usage) (`platform.claude.com/usage`) dan halaman [Cost](https://platform.claude.com/cost) (`platform.claude.com/cost`) di Claude Console.
 
@@ -32,21 +36,21 @@ API ini memungkinkan Anda untuk memantau, menganalisis, dan mengoptimalkan imple
 Organisasi Claude Enterprise menggunakan kunci API Analytics dengan API yang berbeda; lihat [API mana yang Anda butuhkan?](https://platform.claude.com/docs/id/manage-claude/usage-cost-api#which-api-do-you-need).
 
 <Note>
-  **Claude Platform on AWS:** Endpoint API Penggunaan dan Biaya terprogram saat ini belum tersedia. Sebagai gantinya, lihat data penggunaan dan biaya di halaman **Usage** dan **Cost** pada Claude Console.
+  **Claude Platform on AWS:** Endpoint Usage and Cost API tidak tersedia. Gunakan [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api).
 </Note>
 
 <Note>
-  **Claude Models on Google Cloud (Anthropic managed):** Dari endpoint Usage and Cost API, hanya [endpoint penggunaan](https://platform.claude.com/docs/id/manage-claude/usage-cost-api#usage-api) yang tersedia. Panggil endpoint tersebut melalui [base URL tingkat organisasi](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#making-requests) dengan kredensial Google Cloud, bukan dengan kunci Admin API. Satu-satunya [peran IAM](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#iam-roles) bawaan yang mengizinkan panggilan ini adalah `roles/claude.admin`. Lihat data biaya di halaman **Cost** di [Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console).
+  **Claude Models on Google Cloud (Anthropic managed):** Dari endpoint Usage and Cost API, hanya [endpoint penggunaan](https://platform.claude.com/docs/id/manage-claude/usage-cost-api#usage-api) yang tersedia. Panggil endpoint tersebut melalui [base URL tingkat organisasi](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#making-requests) dengan kredensial Google Cloud, bukan dengan kunci Admin API. Satu-satunya [peran IAM](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#iam-roles) bawaan yang mengizinkan panggilan ini adalah `roles/claude.admin`. Untuk data biaya, gunakan [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) atau halaman **Cost** di [Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console).
 </Note>
 
 ## API mana yang Anda butuhkan?
 
-Anthropic menyediakan pelaporan biaya dan penggunaan melalui dua API, tergantung pada produk Claude mana yang dikelola organisasi Anda:
+API yang perlu Anda gunakan bergantung pada produk Claude yang digunakan organisasi Anda:
 
-| Organisasi Anda                  | API                                                                                                                                  | Jenis kunci                                                                                                                                            |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Claude Console (Claude Platform) | Usage and Cost Admin API yang dijelaskan di halaman ini                                                                              | Kunci Admin API (`sk-ant-admin01-...`) atau [kredensial Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api#authentication) lainnya |
-| Claude Enterprise (claude.ai)    | Endpoint biaya dan penggunaan [Claude Enterprise Analytics API](https://platform.claude.com/docs/id/api/beta/organization/analytics) | Kunci API Analytics                                                                                                                                    |
+| Organisasi Anda                  | API                                                                                                                                                                                                                                                                             | Jenis kunci                                                                                                                                            |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Claude Console (Claude Platform) | [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) (direkomendasikan), atau Usage and Cost Admin API lama yang dijelaskan di halaman ini                                                                                | Kunci Admin API (`sk-ant-admin01-...`) atau [kredensial Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api#authentication) lainnya |
+| Claude Enterprise (claude.ai)    | [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) (direkomendasikan), atau endpoint (lama) biaya dan penggunaan [Claude Enterprise Analytics API](https://platform.claude.com/docs/id/api/beta/organization/analytics) | Kunci API Analytics                                                                                                                                    |
 
 Organisasi induk Claude Enterprise tidak muncul di Claude Console dan tidak memiliki kunci Admin API, sehingga bagi mereka kunci API Analytics adalah satu-satunya jalur untuk mengakses data ini. Lihat [Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api) untuk cara membuat setiap jenis kunci dan paket mana yang berlaku untuk data biaya Claude Enterprise.
 
@@ -327,13 +331,17 @@ Filter atau kelompokkan berdasarkan `service_tier` di endpoint penggunaan dan ca
 
 Penggunaan API dari playground di Claude Console (dan dari Workbench lama sebelumnya) tidak dikaitkan dengan kunci API, sehingga `api_key_id` akan bernilai `null` bahkan saat mengelompokkan berdasarkan dimensi tersebut.
 
+### Mengapa laporan penggunaan menampilkan service account yang tidak saya buat?
+
+Penggunaan dari sebagian sesi [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) dilaporkan di bawah service account yang dikelola Anthropic (`svac_...`). Service account ini tidak tercantum bersama service account yang Anda buat. Lihat [Menemukan penggunaan sesi di seluruh organisasi Anda](https://platform.claude.com/docs/id/managed-agents/session-observability#find-session-usage-across-your-organization).
+
 ### Bagaimana workspace default direpresentasikan?
 
 Penggunaan dan biaya yang diatribusikan ke workspace default memiliki nilai `null` untuk `workspace_id`.
 
 ### Bagaimana cara mendapatkan rincian biaya per pengguna untuk Claude Code?
 
-Gunakan [Claude Code Analytics API](https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api), yang menyediakan estimasi biaya per pengguna dan metrik produktivitas tanpa keterbatasan kinerja akibat merinci biaya berdasarkan banyak kunci API. Untuk penggunaan API umum dengan banyak kunci, gunakan [Usage API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api#usage-api) untuk melacak konsumsi token sebagai proksi biaya.
+Panggil endpoint biaya dari [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api#how-do-i-get-per-user-cost-for-claude-code) dengan `products[]=claude_code&group_by[]=actor`. Untuk biaya berdasarkan kunci API, kelompokkan berdasarkan `api_key_id` sebagai gantinya. [Claude Code Analytics API](https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api) juga menyediakan estimasi biaya per pengguna dan metrik produktivitas.
 
 ## Lihat juga
 

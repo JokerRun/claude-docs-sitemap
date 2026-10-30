@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/rotate_token
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 19eed7aebb6197bd8233689aafdbe56fb41e2cdb617646ae493ba72e2d52d40e
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 505b18f7d8ac9531bb23ce6c1cfa0938785ae03d48b7093b90828a9030cc52d6
 ---
 
 ---
@@ -141,6 +141,10 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

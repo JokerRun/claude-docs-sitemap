@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/create
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: a51184fab65958689c7388e88604da6be5df2e08bedbf7e59ff4ec163ea6d030
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 211abe87d39da23ac280980b4f5502fff5fc261532f9b12e08258522fe1cb631
 ---
 
 ---
@@ -141,6 +141,10 @@ Create Skill Version
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

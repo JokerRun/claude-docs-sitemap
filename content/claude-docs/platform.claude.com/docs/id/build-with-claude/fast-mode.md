@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 7517b79fd8516677c4d95802aa73b9b25e0aa7ed93ec99c6b086b4baa6d27e29
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: bbcd26da05e622b3527a1c228470a595167a4edcbc444bd6291cdfe1cdc9c46e
 ---
 
 ---
@@ -399,7 +399,7 @@ Objek `usage` pada respons menyertakan field `speed` yang menunjukkan kecepatan 
 }
 ```
 
-Untuk melacak penggunaan dan biaya mode cepat di seluruh organisasi Anda, lihat [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api).
+Untuk melacak penggunaan dan biaya mode cepat di seluruh organisasi Anda, lihat [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api).
 
 ## Percobaan ulang dan fallback
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/unpause
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 74b8c0e269440ded805166c05461d2985b03b2cca8cd7d5d65042085fa9f2673
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 25e795effcd73163de730e361faa322d29426a14031bfb89e4e6e62a93146873
 ---
 
 ---
@@ -139,6 +139,10 @@ Unpause Deployment
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

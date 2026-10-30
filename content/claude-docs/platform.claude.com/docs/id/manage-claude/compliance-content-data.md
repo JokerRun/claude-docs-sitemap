@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-content-data
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 8f46c4bd25f71c84162f6848f41938404dfd6d0770b9d18140c30404fa533088
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 674d76b0bc2500ff856189b0ad398bb542fe7af26c138ad0debdbe86ff2a17a3
 ---
 
 ---
@@ -59,7 +59,7 @@ curl --fail-with-body -sS -G \
       "organization_uuid": "91012d09-e48b-438e-a489-1bebfd8fa6f9",
       "project_id": "claude_proj_01KGp4eZNug9ri4kE35RSppq",
       "user": {
-        "id": "user_01XyDMpzjS89pFZXqSFUBDr6",
+        "id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
         "email_address": "user@example.com"
       }
     }
@@ -83,7 +83,7 @@ curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/apps/chats" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
   --header "anthropic-version: 2023-06-01" \
-  --data-urlencode "user_ids[]=user_01XyDMpzjS89pFZXqSFUBDr6" \
+  --data-urlencode "user_ids[]=user_01WxYzAbCdEfGhJkMnPqRsTu" \
   --data-urlencode "created_at.gte=2025-06-01T00:00:00Z" \
   --data-urlencode "limit=100"
 ```
@@ -111,7 +111,7 @@ Endpoint pesan mengembalikan metadata chat ditambah array `chat_messages` yang d
   "organization_uuid": "91012d09-e48b-438e-a489-1bebfd8fa6f9",
   "project_id": "claude_proj_01KGp4eZNug9ri4kE35RSppq",
   "user": {
-    "id": "user_01XyDMpzjS89pFZXqSFUBDr6",
+    "id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
     "email_address": "user@example.com"
   },
   "chat_messages": [

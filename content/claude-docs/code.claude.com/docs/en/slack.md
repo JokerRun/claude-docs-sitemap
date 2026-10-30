@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/slack
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 9cd010a59115b4e86476cd9c97313d9b5874786d4db694a0ec9f89ae56a9b44d
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: ae3928e37cfcd38f55eebda7bdcf9bc09a71c053ff12ed4283cf3c591d9c2740
 ---
 
 > ## Documentation Index
@@ -209,7 +209,7 @@ This error means your Claude account has no cloud environment yet. Sign in at [c
 
 ### Sessions from a Claude Tag channel fail to start
 
-This entry applies to workspaces using [Claude Tag](https://claude.com/docs/claude-tag/overview), where Claude works in channels as your organization's shared identity, not as any member's account. If you created the channel's cloud environment at [claude.ai/code](https://claude.ai/code), it belongs to your personal account, and Claude can't start channel sessions in a personal environment. Claude Code fails the session immediately, and retrying doesn't help.
+This entry applies to workspaces using [Claude Tag](https://claude.com/docs/claude-tag/overview). If you created the channel's cloud environment at [claude.ai/code](https://claude.ai/code), it belongs to your personal account, and Claude can't start channel sessions in a personal environment. Claude Code fails the session immediately, and retrying doesn't help.
 
 If you're an Owner and the environment is your own, [share it with the organization](https://code.claude.com/docs/en/cloud-environments.md#organization-shared-environments) from the environment selector. Otherwise, an Owner recreates it as an organization-shared environment from the **Cloud environments** page in [admin settings](https://claude.ai/admin-settings).
 

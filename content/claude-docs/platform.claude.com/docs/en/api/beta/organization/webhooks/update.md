@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/webhooks/update
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: ac698ac8f51fa7773a2579b7329df58426d42afc418e85ee8e5476f39a9d860e
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 16a9a546a658e0b513be73675c14947da49bc0bbe34ec4da9e39980dac3258ce
 ---
 
 ---
@@ -143,6 +143,10 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ## Body parameters
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/update
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 6d5186a561cbc1c708d3a0b9b83e609182e25b5a00adf4324fe2fba1f56bdcf2
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 2b79bc6160f57048d2670e7701bd9539444cd7f1a176f9c657bcdb55d282f64f
 ---
 
 ---
@@ -139,6 +139,10 @@ Update Agent
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

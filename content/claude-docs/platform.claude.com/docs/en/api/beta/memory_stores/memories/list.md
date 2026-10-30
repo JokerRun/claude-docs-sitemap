@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 56bee8df0ed46f4a8cb9f4019744d0646c7e0468f9dab7cf2f519a8e1746fcd2
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 9ee9fddd75dc2bbd108242e5e5b81afb33f55cd8795cbaeb712aab5ccd6cb39b
 ---
 
 ---
@@ -181,6 +181,10 @@ List Memories
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

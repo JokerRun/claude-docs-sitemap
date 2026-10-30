@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 8009b169d74168b56f56e01b8942fbb57d8986bc76afa03b22d9832f73e40b6b
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 932c3eb6c39a7073e32a8b52381f940b04bffbaf951dac1434772e76fd919f8c
 ---
 
 ---
@@ -159,7 +159,7 @@ Gemakan kembali giliran asisten secara verbatim, termasuk blok thinking. Lihat [
 
 ## Error 400 menyatakan signature blok thinking tidak valid
 
-Permintaan ke Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, atau Claude Haiku 5.5 yang memutar ulang blok thinking sebelumnya gagal dengan error 400 `invalid_request_error` yang pesannya berbunyi:
+Permintaan yang memutar ulang blok thinking sebelumnya ke model Claude 5.1 dan yang lebih baru dapat gagal dengan 400 `invalid_request_error` yang pesannya berbunyi:
 
 ```text wrap
 messages.{i}.content.{j}: Invalid `signature` in `thinking` block. The block is bound to a different conversation. Remove the block, or set `thinking.block_binding.prefix_mismatch_behavior` to "drop_block".
@@ -171,9 +171,21 @@ Pesan tersebut biasanya diakhiri dengan kalimat yang menyebutkan apa yang beruba
 
 Jika pesan berhenti setelah ``Invalid `signature` in `thinking` block``, signature itu sendiri tidak terverifikasi: signature terpotong, diubah, atau dikirim kembali dalam keadaan kosong, dan `prefix_mismatch_behavior` tidak berlaku. Teks thinking yang diedit mengembalikan error yang berbeda. Lihat [Error 400 menyatakan blok thinking tidak dapat dimodifikasi](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-blocks-modified).
 
-Pada Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, API menerima blok thinking yang diputar ulang hanya selama prompt `system`, `tools`, dan pesan-pesan yang mendahuluinya tidak berubah. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check). Error ini berarti ada sesuatu yang lebih awal dalam percakapan yang berubah di antara permintaan: giliran yang diedit, diurutkan ulang, atau dihapus, pengingat per giliran yang disisipkan lalu kemudian dihapus, prompt `system` atau array `tools` yang dibangun ulang, atau compaction sisi klien yang mempertahankan giliran terbaru beserta thinking-nya apa adanya. Pemeriksaan ini diberlakukan untuk akun baru yang dibuat pada atau setelah 31 Agustus 2026, dan untuk setiap permintaan yang menetapkan `thinking.block_binding.prefix_mismatch_behavior`. [Compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) sisi server dan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) tidak pernah memicunya.
+Model-model ini hanya menerima blok thinking yang diputar ulang selama prompt `system`, `tools`, dan pesan-pesan yang mendahuluinya tidak berubah. Lihat [Menjaga prefix tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check). Error ini berarti ada sesuatu di bagian awal percakapan yang berubah di antara permintaan. Penyebab umumnya meliputi hal-hal berikut:
 
-Untuk memperbaikinya, jaga riwayat agar hanya ditambahkan (append-only): kirim kembali giliran sebelumnya persis seperti yang dikirim dan diterima, tambahkan instruksi dengan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) alih-alih mengedit `system` atau `tools`, dan biarkan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) atau [compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) sisi server melakukan pemangkasan apa pun. Mencoba ulang body permintaan yang sama tidak menghilangkan error. Untuk melanjutkan permintaan ini tanpa penalaran yang tidak valid, kirim header beta `thinking-binding-controls-2026-08-01` dan atur `thinking.block_binding.prefix_mismatch_behavior` ke `"drop_block"`. Sebagai alternatif, hapus setiap blok `thinking` dan `redacted_thinking` dari riwayat (minimal blok yang disebutkan dan setiap blok setelahnya, dalam giliran tersebut dan semua giliran berikutnya), biarkan blok lain di setiap giliran tetap di tempatnya, dan coba ulang sekali. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan `between_tools` pada Claude Sonnet 5.5, atau `thinking: {"type": "disabled"}` pada Claude Haiku 5.5, jaga riwayat agar append-only, atau hapus blok thinking mulai dari giliran yang diedit dan seterusnya.
+* Giliran yang diedit, diurutkan ulang, atau dihapus
+* Pengingat per giliran yang disisipkan lalu kemudian dihapus
+* Prompt `system` atau array `tools` yang dibangun ulang
+* Pemadatan di sisi klien yang mempertahankan giliran terbaru beserta thinking-nya secara verbatim
+
+[Compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) sisi server dan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) tidak pernah memicu error ini. Untuk permintaan yang tidak menetapkan `thinking.block_binding.prefix_mismatch_behavior`, lihat [Saat `prefix_mismatch_behavior` tidak ditetapkan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement).
+
+Mencoba ulang dengan isi permintaan yang sama tidak akan menghilangkan error tersebut. Begitu pula dengan memperbaiki kode Anda, karena riwayat yang tersimpan masih memuat hasil edit tersebut. Untuk melanjutkan percakapan, lakukan salah satu dari hal berikut:
+
+* Kirimkan header beta `thinking-binding-controls-2026-08-01` dan atur `thinking.block_binding.prefix_mismatch_behavior` ke `"drop_block"` pada percobaan ulang dan setiap permintaan berikutnya. Permintaan kemudian akan berhasil tanpa penalaran yang sudah tidak valid. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan pengaturan thinking lainnya pada model tersebut, Anda tidak dapat mengirim `block_binding`, jadi gunakan opsi berikutnya.
+* Hapus blok yang disebutkan dalam error dan setiap blok `thinking` dan `redacted_thinking` setelahnya, biarkan blok lain di setiap giliran tetap di tempatnya, lalu coba ulang satu kali.
+
+Kemudian perbaiki penyebabnya agar percakapan baru tidak mengalami error tersebut. Pertahankan riwayat agar append-only: kirimkan kembali giliran sebelumnya persis seperti yang dikirim dan diterima, tambahkan instruksi dengan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) alih-alih mengedit `system` atau `tools`, dan biarkan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) atau [compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) di sisi server yang melakukan pemangkasan.
 
 Blok dari model yang tidak dapat dibaca oleh model target tidak pernah menghasilkan error ini: API membuangnya dan, di bawah header beta, melaporkannya dalam `input_transformations`.
 

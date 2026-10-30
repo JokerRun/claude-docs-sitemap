@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/overview
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 5e4ecde1fb7bd7a195c016482671ec93c82de815fcc80ba273dcb2c1f421ec67
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: a326d49cd5ab4972a2641314bd49a15492a4c2e9bad8fa3d52f64bc66b1c05a6
 ---
 
 ---
@@ -21,7 +21,7 @@ Permukaan API Claude diorganisasikan ke dalam lima area:
 
 Jika Anda baru memulai, mulailah dengan [kemampuan model](https://platform.claude.com/docs/id/build-with-claude/overview#model-capabilities) dan [alat](https://platform.claude.com/docs/id/build-with-claude/overview#tools). Kembali ke bagian lainnya ketika Anda siap mengoptimalkan biaya, latensi, atau skala.
 
-Untuk administrasi dan tata kelola, lihat [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api), [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api), dan [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api).
+Untuk administrasi dan tata kelola, lihat [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api), [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api), dan [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api).
 
 ## Ketersediaan fitur
 

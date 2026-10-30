@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 70a1935182ca957da6a43f774b16a19cd3baf2c2a69933c9a8c242cd7b8b0a67
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 276afc9e179e2b6635ec8d5c31024e64159fca6bed1da6cc8f8d799e24e1e9ec
 ---
 
 ---
@@ -155,6 +155,10 @@ List Files
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 567b6245d5eac730b609b1bd42ede29d3dc52eaafc4796c581cede5655cf5d06
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 0ad296a7d95e13044c8bd07f729023eba5c718999e61361d1fe91c92b76d9ceb
 ---
 
 ---
@@ -363,7 +363,7 @@ The response `usage` object includes a `speed` field that indicates which speed 
 }
 ```
 
-To track fast mode usage and costs across your organization, see the [Usage and Cost API](https://platform.claude.com/docs/en/manage-claude/usage-cost-api).
+To track fast mode usage and costs across your organization, see the [Usage and Cost Analytics API](https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api).
 
 ## Retries and fallbacks
 

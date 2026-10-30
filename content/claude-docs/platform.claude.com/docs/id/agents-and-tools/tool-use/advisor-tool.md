@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: a0bfda286e88536703c8127417bb1e068954f2fef0161f114c879a291c00b971
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: d43e35e7bb265ffbf0f559e2a4202643b8cba6639c49b63d9adb77c4c8c9ae9a
 ---
 
 ---
@@ -302,7 +302,7 @@ Advisor kurang cocok untuk tanya jawab satu giliran (tidak ada yang perlu direnc
   ```
 </CodeGroup>
 
-`content` respons menyertakan blok `advisor_tool_result` yang membawa panduan advisor. Dengan `claude-opus-5-5` sebagai advisor, seperti dalam mulai cepat ini, field `content` blok tersebut adalah varian `advisor_redacted_result` (terenkripsi; executor membacanya di sisi server, tetapi klien Anda tidak). Untuk melihat teks saran secara langsung dalam respons Anda, gunakan `claude-opus-4-8` sebagai model advisor, yang mengembalikan varian plaintext `advisor_result`. Lihat [Varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants) untuk kedua bentuk secara berdampingan dan model advisor mana yang mengembalikan yang mana, serta [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) untuk daftar lengkap pasangan yang valid.
+`content` respons menyertakan blok `advisor_tool_result` yang membawa panduan advisor. Dengan model Opus terbaru sebagai advisor, seperti dalam mulai cepat ini, field `content` blok tersebut adalah varian `advisor_redacted_result` (terenkripsi; executor membacanya di sisi server, tetapi klien Anda tidak). Untuk melihat teks saran secara langsung dalam respons Anda, gunakan `claude-opus-4-8` sebagai model advisor, yang mengembalikan varian plaintext `advisor_result`. Lihat [Varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants) untuk kedua bentuk secara berdampingan dan model advisor mana yang mengembalikan yang mana, serta [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) untuk daftar lengkap pasangan yang valid.
 
 ## Cara kerjanya
 
@@ -336,7 +336,7 @@ Alat advisor juga menerima properti generik yang tersedia pada definisi alat apa
 
 ### Panggilan advisor yang berhasil
 
-Saat advisor dipanggil, blok `server_tool_use` diikuti oleh blok `advisor_tool_result` dalam konten asisten. Contoh berikut menunjukkan varian plaintext `advisor_result` yang dikembalikan oleh advisor Claude Opus 4.8. [Mulai cepat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#quick-start) menggunakan Claude Opus 5.5, yang justru mengembalikan varian terenkripsi `advisor_redacted_result`; lihat [Varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants) untuk kedua bentuk secara berdampingan.
+Saat advisor dipanggil, blok `server_tool_use` diikuti oleh blok `advisor_tool_result` dalam konten asisten. Contoh berikut menunjukkan varian plaintext `advisor_result` yang dikembalikan oleh advisor Claude Opus 4.8. [Mulai cepat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#quick-start) menggunakan model Opus terbaru, yang justru mengembalikan varian terenkripsi `advisor_redacted_result`; lihat [Varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants) untuk kedua bentuk secara berdampingan.
 
 ```json
 {
@@ -448,7 +448,7 @@ Eksekutor menerima error tersebut dan melanjutkan tanpa saran lebih lanjut. Perm
 
 ## Percakapan multi-giliran
 
-Kirimkan kembali seluruh konten asisten, termasuk blok `advisor_tool_result`, ke API pada giliran berikutnya. Kirimkan kembali blok hasil apa adanya: dengan advisor Claude Opus 5.5, `content` blok hasil adalah varian terenkripsi `advisor_redacted_result`, dan server mendekripsinya serta merender saran ke dalam prompt executor pada giliran berikutnya (lihat [Varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants)). Mekanismenya identik untuk model advisor apa pun.
+Kirimkan kembali seluruh konten asisten, termasuk blok `advisor_tool_result`, ke API pada giliran berikutnya. Kirimkan kembali blok hasil apa adanya: dengan model Opus terbaru sebagai advisor, seperti dalam contoh ini, `content` blok hasil adalah varian terenkripsi `advisor_redacted_result`, dan server mendekripsinya serta merender saran ke dalam prompt executor pada giliran berikutnya (lihat [Varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants)). Mekanismenya identik untuk model advisor apa pun.
 
 <CodeGroup exclude="shell">
   ```python Python

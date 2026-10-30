@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: c8828ac22f691e4eda8d87d2a1d121394b32f1d658a733ca9f1e39cf88787c4f
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 3d117f0669cf88a61554528c243fea754b6dc53c785d720f8041e5f4f624ac07
 ---
 
 ---
@@ -581,7 +581,7 @@ Anthropic mengelola “rate limit” (batas laju) untuk Claude Models on Google 
 
 Claude Models on Google Cloud (Anthropic managed) ditagih melalui Google Cloud Marketplace. Anthropic mengukur penggunaan Anda. Anthropic melaporkan penggunaan tersebut ke Google Cloud dalam satuan Claude Consumption Unit. Satu Claude Consumption Unit bernilai $0,01 USD. Biaya tersebut muncul pada tagihan Google Cloud Anda. Anthropic tidak mengirimkan faktur terpisah.
 
-Lihat data penggunaan dan biaya di halaman **Usage** dan **Cost** di [Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console).
+Lihat data penggunaan dan biaya di halaman **Usage** dan **Cost** di [Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console), atau kueri data tersebut dengan [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api).
 
 Jika Anda memiliki komitmen pembelanjaan Google Cloud, penggunaan dihitung terhadap komitmen tersebut seperti pembelian Marketplace lainnya.
 

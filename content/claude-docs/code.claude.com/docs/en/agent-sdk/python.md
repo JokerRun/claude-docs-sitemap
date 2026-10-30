@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: f12d5b2c5923e25f1569bfcaa2c3c598902a5912e9f52471c89b4416213b117f
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 0d248b8399168a73f334362a2384b91cbf1691d0cbddd0a73e57f5914268545e
 ---
 
 > ## Documentation Index
@@ -3329,7 +3329,7 @@ A `disallowed_tools` entry or a deny rule that still names either name is ignore
 
 ### TaskStop
 
-**Tool name:** `TaskStop`. The previous names `KillShell` and `KillBash` are still accepted as aliases.
+**Tool name:** `TaskStop`. You can still use the previous names `KillShell` and `KillBash` in permission rules, in hook matchers, and in the `tools`, `allowed_tools`, and `disallowed_tools` options.
 
 **Input:**
 

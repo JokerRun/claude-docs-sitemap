@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workspaces
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 73fb57a62ef36cdcbd246ee26fcab016510f88c670dce0e6ab55718a94b022aa
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 93d38ff32e432e2df4fcbcbd55843475c72fe3d86e7f4a4daea0e06dc1c74642
 ---
 
 ---
@@ -21,7 +21,7 @@ Karakteristik utama:
 
 * **Pengidentifikasi workspace** menggunakan awalan `wrkspc_` (misalnya, `wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ`)
 * **Maksimum 100 workspaces** per organisasi secara default (workspaces yang diarsipkan tidak dihitung); hubungi tim akun Anda jika Anda membutuhkan lebih banyak
-* **Default Workspace** memiliki ID `wrkspc_` seperti workspace lainnya (dikembalikan dalam [header respons `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response) dan diterima oleh [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve)), tetapi hanya muncul dalam hasil [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list) ketika Anda meneruskan `include_default=true`, dan laporan penggunaan dan laporan biaya menampilkan `null` untuk `workspace_id`-nya (field `scope` pada kunci API memuat ID sebenarnya untuk kunci yang terikat ke Default Workspace)
+* **Default Workspace** memiliki ID `wrkspc_` seperti workspace lainnya (dikembalikan dalam [header respons `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response) dan diterima oleh [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve)), tetapi hanya muncul dalam hasil [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list) ketika Anda meneruskan `include_default=true`. [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) melaporkan penggunaan dan biayanya di bawah ID tersebut, sementara laporan [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) lama menampilkan `null` untuk `workspace_id`-nya (field `scope` pada kunci API memuat ID sebenarnya untuk kunci yang terikat ke Default Workspace)
 * **Kunci API** dapat dicakupkan ke satu workspace. Dalam hal ini, kunci tersebut hanya dapat mengakses sumber daya dalam workspace tersebut. Beberapa kunci API dapat diberikan izin di beberapa workspaces, dan menyediakan [header ID workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) untuk mengakses sumber daya dalam workspace tersebut
 
 ### Workspace Claude Code
@@ -460,7 +460,7 @@ Menambahkan anggota ke workspace:
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "user_id": "user_01XyDMpzjS89pFZXqSFUBDr6",
+      "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
       "workspace_role": "workspace_developer"
     }'
   ```
@@ -468,7 +468,7 @@ Menambahkan anggota ke workspace:
   ```bash CLI
   ant organization:workspaces:members add \
     --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ \
-    --user-id user_01XyDMpzjS89pFZXqSFUBDr6 \
+    --user-id user_01WxYzAbCdEfGhJkMnPqRsTu \
     --workspace-role workspace_developer
   ```
 
@@ -477,7 +477,7 @@ Menambahkan anggota ke workspace:
 
   member = client.organization.workspaces.members.add(
       "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
-      user_id="user_01XyDMpzjS89pFZXqSFUBDr6",
+      user_id="user_01WxYzAbCdEfGhJkMnPqRsTu",
       workspace_role="workspace_developer",
   )
 
@@ -491,7 +491,7 @@ Menambahkan anggota ke workspace:
   const member = await client.organization.workspaces.members.add(
     "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
     {
-      user_id: "user_01XyDMpzjS89pFZXqSFUBDr6",
+      user_id: "user_01WxYzAbCdEfGhJkMnPqRsTu",
       workspace_role: "workspace_developer"
     }
   );
@@ -509,7 +509,7 @@ Menambahkan anggota ke workspace:
       "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
       new()
       {
-          UserID = "user_01XyDMpzjS89pFZXqSFUBDr6",
+          UserID = "user_01WxYzAbCdEfGhJkMnPqRsTu",
           WorkspaceRole = NoBillingWorkspaceRole.WorkspaceDeveloper
       }
   );
@@ -525,7 +525,7 @@ Menambahkan anggota ke workspace:
   	context.Background(),
   	"wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
   	anthropic.OrganizationWorkspaceMemberAddParams{
-  		UserID:        "user_01XyDMpzjS89pFZXqSFUBDr6",
+  		UserID:        "user_01WxYzAbCdEfGhJkMnPqRsTu",
   		WorkspaceRole: anthropic.NoBillingWorkspaceRoleWorkspaceDeveloper,
   	},
   )
@@ -545,7 +545,7 @@ Menambahkan anggota ke workspace:
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       var params = MemberAddParams.builder()
-          .userId("user_01XyDMpzjS89pFZXqSFUBDr6")
+          .userId("user_01WxYzAbCdEfGhJkMnPqRsTu")
           .workspaceRole(NoBillingWorkspaceRole.WORKSPACE_DEVELOPER)
           .build();
       var member = client.organization().workspaces().members()
@@ -564,7 +564,7 @@ Menambahkan anggota ke workspace:
 
   $member = $client->organization->workspaces->members->add(
       workspaceID: 'wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ',
-      userID: 'user_01XyDMpzjS89pFZXqSFUBDr6',
+      userID: 'user_01WxYzAbCdEfGhJkMnPqRsTu',
       workspaceRole: NoBillingWorkspaceRole::WORKSPACE_DEVELOPER,
   );
 
@@ -578,7 +578,7 @@ Menambahkan anggota ke workspace:
   workspace_id = "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   member = client.organization.workspaces.members.add(
     workspace_id,
-    user_id: "user_01XyDMpzjS89pFZXqSFUBDr6",
+    user_id: "user_01WxYzAbCdEfGhJkMnPqRsTu",
     workspace_role: :workspace_developer
   )
 
@@ -591,7 +591,7 @@ Memperbarui peran anggota:
 
 <CodeGroup>
   ```bash cURL
-  curl -X POST "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/members/user_01XyDMpzjS89pFZXqSFUBDr6" \
+  curl -X POST "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/members/user_01WxYzAbCdEfGhJkMnPqRsTu" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
@@ -600,7 +600,7 @@ Memperbarui peran anggota:
 
   ```bash CLI
   ant organization:workspaces:members update \
-    --user-id user_01XyDMpzjS89pFZXqSFUBDr6 \
+    --user-id user_01WxYzAbCdEfGhJkMnPqRsTu \
     --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ \
     --workspace-role workspace_admin
   ```
@@ -609,7 +609,7 @@ Memperbarui peran anggota:
   client = anthropic.Anthropic()
 
   member = client.organization.workspaces.members.update(
-      "user_01XyDMpzjS89pFZXqSFUBDr6",
+      "user_01WxYzAbCdEfGhJkMnPqRsTu",
       workspace_id="wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
       workspace_role="workspace_admin",
   )
@@ -622,7 +622,7 @@ Memperbarui peran anggota:
   const client = new Anthropic();
 
   const member = await client.organization.workspaces.members.update(
-    "user_01XyDMpzjS89pFZXqSFUBDr6",
+    "user_01WxYzAbCdEfGhJkMnPqRsTu",
     {
       workspace_id: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
       workspace_role: "workspace_admin"
@@ -639,7 +639,7 @@ Memperbarui peran anggota:
   AnthropicClient client = new();
 
   var member = await client.Organization.Workspaces.Members.Update(
-      "user_01XyDMpzjS89pFZXqSFUBDr6",
+      "user_01WxYzAbCdEfGhJkMnPqRsTu",
       new()
       {
           WorkspaceID = "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
@@ -656,7 +656,7 @@ Memperbarui peran anggota:
 
   member, err := client.Organization.Workspaces.Members.Update(
   	context.Background(),
-  	"user_01XyDMpzjS89pFZXqSFUBDr6",
+  	"user_01WxYzAbCdEfGhJkMnPqRsTu",
   	anthropic.OrganizationWorkspaceMemberUpdateParams{
   		WorkspaceID:   "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
   		WorkspaceRole: anthropic.WorkspaceRoleWorkspaceAdmin,
@@ -682,7 +682,7 @@ Memperbarui peran anggota:
           .workspaceRole(WorkspaceRole.WORKSPACE_ADMIN)
           .build();
       var member = client.organization().workspaces().members()
-          .update("user_01XyDMpzjS89pFZXqSFUBDr6", params);
+          .update("user_01WxYzAbCdEfGhJkMnPqRsTu", params);
 
       IO.println("user_id: " + member.userId());
       IO.println("workspace_role: " + member.workspaceRole().asString());
@@ -696,7 +696,7 @@ Memperbarui peran anggota:
   $client = new Client();
 
   $member = $client->organization->workspaces->members->update(
-      userID: 'user_01XyDMpzjS89pFZXqSFUBDr6',
+      userID: 'user_01WxYzAbCdEfGhJkMnPqRsTu',
       workspaceID: 'wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ',
       workspaceRole: WorkspaceRole::WORKSPACE_ADMIN,
   );
@@ -708,7 +708,7 @@ Memperbarui peran anggota:
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  user_id = "user_01XyDMpzjS89pFZXqSFUBDr6"
+  user_id = "user_01WxYzAbCdEfGhJkMnPqRsTu"
   member = client.organization.workspaces.members.update(
     user_id,
     workspace_id: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
@@ -724,14 +724,14 @@ Menghapus anggota dari workspace:
 
 <CodeGroup>
   ```bash cURL
-  curl -X DELETE "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/members/user_01XyDMpzjS89pFZXqSFUBDr6" \
+  curl -X DELETE "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/members/user_01WxYzAbCdEfGhJkMnPqRsTu" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01"
   ```
 
   ```bash CLI
   ant organization:workspaces:members remove \
-    --user-id user_01XyDMpzjS89pFZXqSFUBDr6 \
+    --user-id user_01WxYzAbCdEfGhJkMnPqRsTu \
     --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ
   ```
 
@@ -739,7 +739,7 @@ Menghapus anggota dari workspace:
   client = anthropic.Anthropic()
 
   removed_member = client.organization.workspaces.members.remove(
-      "user_01XyDMpzjS89pFZXqSFUBDr6",
+      "user_01WxYzAbCdEfGhJkMnPqRsTu",
       workspace_id="wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
   )
 
@@ -750,7 +750,7 @@ Menghapus anggota dari workspace:
   const client = new Anthropic();
 
   const removedMember = await client.organization.workspaces.members.remove(
-    "user_01XyDMpzjS89pFZXqSFUBDr6",
+    "user_01WxYzAbCdEfGhJkMnPqRsTu",
     { workspace_id: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ" }
   );
 
@@ -761,7 +761,7 @@ Menghapus anggota dari workspace:
   AnthropicClient client = new();
 
   var removedMember = await client.Organization.Workspaces.Members.Remove(
-      "user_01XyDMpzjS89pFZXqSFUBDr6",
+      "user_01WxYzAbCdEfGhJkMnPqRsTu",
       new() { WorkspaceID = "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ" }
   );
 
@@ -773,7 +773,7 @@ Menghapus anggota dari workspace:
 
   removedMember, err := client.Organization.Workspaces.Members.Remove(
   	context.Background(),
-  	"user_01XyDMpzjS89pFZXqSFUBDr6",
+  	"user_01WxYzAbCdEfGhJkMnPqRsTu",
   	anthropic.OrganizationWorkspaceMemberRemoveParams{
   		WorkspaceID: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
   	},
@@ -795,7 +795,7 @@ Menghapus anggota dari workspace:
           .workspaceId("wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ")
           .build();
       var removedMember = client.organization().workspaces().members()
-          .remove("user_01XyDMpzjS89pFZXqSFUBDr6", params);
+          .remove("user_01WxYzAbCdEfGhJkMnPqRsTu", params);
 
       IO.println("user_id: " + removedMember.userId());
   }
@@ -805,7 +805,7 @@ Menghapus anggota dari workspace:
   $client = new Client();
 
   $removedMember = $client->organization->workspaces->members->remove(
-      userID: 'user_01XyDMpzjS89pFZXqSFUBDr6',
+      userID: 'user_01WxYzAbCdEfGhJkMnPqRsTu',
       workspaceID: 'wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ',
   );
 
@@ -815,7 +815,7 @@ Menghapus anggota dari workspace:
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  user_id = "user_01XyDMpzjS89pFZXqSFUBDr6"
+  user_id = "user_01WxYzAbCdEfGhJkMnPqRsTu"
   removed_member = client.organization.workspaces.members.remove(
     user_id,
     workspace_id: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
@@ -1016,7 +1016,7 @@ Accessor yang sama membaca header dari endpoint Claude API lainnya juga, termasu
 Dengan ID workspace dari respons, Anda dapat:
 
 * Mengonfirmasi penggunaan, biaya, dan [batas laju](https://platform.claude.com/docs/id/api/rate-limits) workspace mana yang dihitung oleh permintaan tersebut
-* Mencocokkannya dengan bidang `workspace_id` dalam laporan [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api), yang bernilai `null` untuk Default Workspace. Cocokkan juga dengan bidang `scope` pada kunci API di [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api), yang membawa ID sebenarnya dari workspace tempat kunci terikat, termasuk Default Workspace
+* Mencocokkannya dengan field `workspace_id` pada baris [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api), yang memuat ID yang sama ini untuk Default Workspace, dan dengan field `scope` pada kunci API di [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api), yang memuat ID sebenarnya dari workspace tempat kunci terikat, termasuk Default Workspace
 * Memeriksa apakah itu ID Default Workspace Anda dengan meneruskannya ke [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve) menggunakan [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys): Default Workspace dikembalikan dengan `"name": "Default"`, meskipun [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list) menghilangkannya kecuali Anda meneruskan `include_default=true`
 * Membuka workspace tersebut di [Console](https://platform.claude.com/settings/workspaces) untuk menemukan sumber daya permintaan, seperti sesi, file, message batches, dan skills
 
@@ -1041,20 +1041,163 @@ Untuk informasi terperinci tentang batas laju dan cara kerjanya, lihat [Batas la
 
 ## Pelacakan penggunaan dan biaya
 
-Lacak penggunaan dan biaya berdasarkan workspace menggunakan [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api):
+Lacak penggunaan dan biaya berdasarkan workspace menggunakan [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api):
 
-```bash cURL
-curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
-starting_at=2025-01-01T00:00:00Z&\
-ending_at=2025-01-08T00:00:00Z&\
-workspace_ids[]=wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ&\
-group_by[]=workspace_id&\
-bucket_width=1d" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
-```
+<CodeGroup>
+  ```bash cURL
+  curl --globoff "https://api.anthropic.com/v1/organizations/analytics/usage?\
+  starting_at=2026-09-01T00:00:00Z&\
+  ending_at=2026-09-08T00:00:00Z&\
+  workspace_ids[]=wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ&\
+  group_by[]=workspace_id&\
+  time_bucket_width=1d" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: analytics-usage-cost-2026-08-24" \
+    -H "x-api-key: $ANTHROPIC_API_KEY"
+  ```
 
-Penggunaan dan biaya yang diatribusikan ke Default Workspace memiliki nilai `null` untuk `workspace_id`.
+  ```bash CLI
+  ant beta:organization:analytics:usage list \
+    --starting-at 2026-09-01T00:00:00Z \
+    --ending-at 2026-09-08T00:00:00Z \
+    --time-bucket-width 1d \
+    --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ \
+    --group-by workspace_id
+  ```
+
+  ```python Python
+  client = anthropic.Anthropic()
+
+  rows = client.beta.organization.analytics.usage.list(
+      starting_at="2026-09-01T00:00:00Z",
+      ending_at="2026-09-08T00:00:00Z",
+      time_bucket_width="1d",
+      workspace_ids=["wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"],
+      group_by=["workspace_id"],
+  )
+
+  for row in rows:
+      print(f"{row.starting_at} {row.group.workspace_id}: {row.usage.total_tokens}")
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const rows = await client.beta.organization.analytics.usage.list({
+    starting_at: "2026-09-01T00:00:00Z",
+    ending_at: "2026-09-08T00:00:00Z",
+    time_bucket_width: "1d",
+    workspace_ids: ["wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"],
+    group_by: ["workspace_id"]
+  });
+
+  for await (const row of rows) {
+    console.log(`${row.starting_at} ${row.group.workspace_id}: ${row.usage.total_tokens}`);
+  }
+  ```
+
+  ```csharp C#
+  using Anthropic.Models.Beta.Organization.Analytics;
+  using Anthropic.Models.Beta.Organization.Analytics.Usage;
+
+  AnthropicClient client = new();
+
+  var page = await client.Beta.Organization.Analytics.Usage.List(
+      new()
+      {
+          StartingAt = DateTimeOffset.Parse("2026-09-01T00:00:00Z"),
+          EndingAt = DateTimeOffset.Parse("2026-09-08T00:00:00Z"),
+          TimeBucketWidth = BetaAnalyticsTimeBucketWidth.Day,
+          WorkspaceIds = ["wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"],
+          GroupBy = [BetaAnalyticsUsageGroupBy.WorkspaceID],
+      }
+  );
+
+  await foreach (var row in page.Paginate())
+  {
+      Console.WriteLine($"{row.StartingAt} {row.Group.WorkspaceID}: {row.Usage.TotalTokens}");
+  }
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  rows := client.Beta.Organization.Analytics.Usage.ListAutoPaging(context.Background(), anthropic.BetaOrganizationAnalyticsUsageListParams{
+  	StartingAt:      time.Date(2026, time.September, 1, 0, 0, 0, 0, time.UTC),
+  	EndingAt:        anthropic.Time(time.Date(2026, time.September, 8, 0, 0, 0, 0, time.UTC)),
+  	TimeBucketWidth: anthropic.BetaAnalyticsTimeBucketWidthDay,
+  	WorkspaceIDs:    []string{"wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"},
+  	GroupBy:         []anthropic.BetaAnalyticsUsageGroupBy{anthropic.BetaAnalyticsUsageGroupByWorkspaceID},
+  })
+
+  for rows.Next() {
+  	row := rows.Current()
+  	fmt.Printf("%s %s: %d\n", row.StartingAt.Format(time.RFC3339), row.Group.WorkspaceID, row.Usage.TotalTokens)
+  }
+  if err := rows.Err(); err != nil {
+  	log.Fatal(err)
+  }
+  ```
+
+  ```java Java
+  import com.anthropic.models.beta.organization.analytics.BetaAnalyticsTimeBucketWidth;
+  import com.anthropic.models.beta.organization.analytics.usage.BetaAnalyticsUsageGroupBy;
+  import com.anthropic.models.beta.organization.analytics.usage.UsageListParams;
+  import java.time.OffsetDateTime;
+
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      var params = UsageListParams.builder()
+          .startingAt(OffsetDateTime.parse("2026-09-01T00:00:00Z"))
+          .endingAt(OffsetDateTime.parse("2026-09-08T00:00:00Z"))
+          .timeBucketWidth(BetaAnalyticsTimeBucketWidth.DAY)
+          .addWorkspaceId("wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ")
+          .addGroupBy(BetaAnalyticsUsageGroupBy.WORKSPACE_ID)
+          .build();
+      var rows = client.beta().organization().analytics().usage().list(params);
+
+      for (var row : rows.autoPager()) {
+          IO.println(row.startingAt() + " " + row.group().workspaceId().orElse(null) + ": " + row.usage().totalTokens());
+      }
+  }
+  ```
+
+  ```php PHP
+  $client = new Client();
+
+  $rows = $client->beta->organization->analytics->usage->list(
+      startingAt: new \DateTimeImmutable('2026-09-01T00:00:00Z'),
+      endingAt: new \DateTimeImmutable('2026-09-08T00:00:00Z'),
+      timeBucketWidth: '1d',
+      workspaceIDs: ['wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ'],
+      groupBy: ['workspace_id'],
+  );
+
+  foreach ($rows->pagingEachItem() as $row) {
+      $startingAt = $row->startingAt->format(\DateTimeInterface::ATOM);
+      echo "{$startingAt} {$row->group->workspaceID}: {$row->usage->totalTokens}\n";
+  }
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  page = client.beta.organization.analytics.usage.list(
+    starting_at: Time.utc(2026, 9, 1),
+    ending_at: Time.utc(2026, 9, 8),
+    time_bucket_width: :"1d",
+    workspace_ids: ["wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"],
+    group_by: [:workspace_id]
+  )
+
+  page.auto_paging_each do |row|
+    puts "#{row.starting_at} #{row.group.workspace_id}: #{row.usage.total_tokens}"
+  end
+  ```
+</CodeGroup>
+
+Penggunaan dan biaya di Default Workspace dilaporkan di bawah ID milik Default Workspace itu sendiri.
 
 ## Kasus penggunaan umum
 
@@ -1100,7 +1243,7 @@ Buat workspaces untuk proyek atau produk tertentu untuk melacak penggunaan dan b
   </Step>
 
   <Step title="Pantau penggunaan">
-    Gunakan [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) untuk melacak konsumsi di tingkat workspace.
+    Gunakan [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) untuk melacak konsumsi di tingkat workspace.
   </Step>
 </Steps>
 
@@ -1108,7 +1251,7 @@ Buat workspaces untuk proyek atau produk tertentu untuk melacak penggunaan dan b
 
 <AccordionGroup>
   <Accordion title="Apa itu Default Workspace?">
-    Setiap organisasi memiliki “Default Workspace” yang tidak dapat diganti namanya, diarsipkan, atau dihapus. Seperti setiap workspace, workspace ini memiliki ID `wrkspc_`: API mengembalikannya dalam [header respons `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response), dan Anda dapat meneruskannya ke [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve) dan [Update Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/update). Workspace ini tidak memiliki daftar anggota sendiri, karena akses ke workspace ini mengikuti peran organisasi setiap anggota. Workspace ini hanya muncul dalam hasil [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list) ketika Anda meneruskan `include_default=true`, dan laporan penggunaan dan laporan biaya yang dimilikinya menampilkan `null` untuk `workspace_id`. Untuk kunci API yang menjadi miliknya, field `scope` pada kunci tersebut memuat ID sebenarnya dari workspace.
+    Setiap organisasi memiliki “Default Workspace” yang tidak dapat diganti namanya, diarsipkan, atau dihapus. Seperti setiap workspace, workspace ini memiliki ID `wrkspc_`: API mengembalikannya dalam [header respons `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response), dan Anda dapat meneruskannya ke [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve) dan [Update Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/update). Workspace ini tidak memiliki daftar anggota sendiri, karena akses ke workspace ini mengikuti peran organisasi setiap anggota. Workspace ini hanya muncul dalam hasil [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list) ketika Anda meneruskan `include_default=true`. [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) melaporkan penggunaan dan biayanya di bawah ID sebenarnya. Laporan [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) lama menampilkan `null` untuk `workspace_id`. Untuk kunci API yang menjadi miliknya, field `scope` pada kunci tersebut memuat ID sebenarnya dari workspace.
   </Accordion>
 
   <Accordion title="Apa itu workspace Claude Code?">
@@ -1149,4 +1292,4 @@ Buat workspaces untuk proyek atau produk tertentu untuk melacak penggunaan dan b
 * [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api)
 * [Referensi Admin API](https://platform.claude.com/docs/id/api/organization)
 * [Batas laju](https://platform.claude.com/docs/id/api/rate-limits)
-* [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api)
+* [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) dan [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) lama

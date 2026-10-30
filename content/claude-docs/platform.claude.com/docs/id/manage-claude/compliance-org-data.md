@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-org-data
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 5938c21a3fcc912c9386cdb64233ccb8a5eb2295f4868f68fbf7e842cc809eef
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 403e9937b659a041af439c93f67ff916f0970744894243af98061a47ad04997b
 ---
 
 ---
@@ -91,7 +91,7 @@ curl --fail-with-body -sS -G \
 {
   "data": [
     {
-      "id": "user_01XyDMpzjS89pFZXqSFUBDr6",
+      "id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
       "full_name": "Priya Sharma",
       "email": "priya@example.com",
       "organization_role": "admin",
@@ -127,7 +127,7 @@ curl --fail-with-body -sS \
   "data": [
     {
       "user": {
-        "id": "user_01XyDMpzjS89pFZXqSFUBDr6",
+        "id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
         "email_address": "priya@example.com"
       },
       "conversation_preferences": "Keep answers brief and cite sources.",
@@ -218,7 +218,7 @@ curl --fail-with-body -sS -G \
 {
   "data": [
     {
-      "user_id": "user_01XyDMpzjS89pFZXqSFUBDr6",
+      "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
       "email": "priya@example.com",
       "created_at": "2025-06-01T10:00:00Z",
       "updated_at": "2025-06-15T14:30:00Z"

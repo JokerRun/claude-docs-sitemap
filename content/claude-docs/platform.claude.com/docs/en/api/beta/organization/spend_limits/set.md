@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/set
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: c371935066a9031dcfda8d3fef92809a12a3ff84233c04c0a75465a6568414e3
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: cec3288324e3d390e95ca048f493c6a874a95605665a7ff1579eed05c02ec12b
 ---
 
 ---
@@ -141,6 +141,10 @@ Anthropic account team.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ## Body parameters
 

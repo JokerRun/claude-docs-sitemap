@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/send
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: dd45d408c40f5ca2f8c0c59f446fcd64d06f1f6880cc998d8c5224a9701f354d
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 605166f961b84dda54371511a9e921b543bcbb0fafc60939709f5152d2c4791c
 ---
 
 ---
@@ -137,6 +137,10 @@ Send Events
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

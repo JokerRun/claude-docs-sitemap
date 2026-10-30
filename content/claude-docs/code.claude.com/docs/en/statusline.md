@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-10-26T02:24:48.652012Z
-sha256: a2391a0f4b8892bd32c0ea95d3d3d25f319c6891c963895ea0f2dd4c74150aa4
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 1a07ca5f8d4e288099e731c126ede793527d4bb3a195e04a252d87df2ebc5198
 ---
 
 > ## Documentation Index
@@ -195,7 +195,7 @@ Claude Code sends the following JSON fields to your script via stdin:
 | `context_window.current_usage` | Token counts from the last API call, described in [context window fields](#context-window-fields) |
 | `exceeds_200k_tokens` | Whether the total token count (input, cache, and output tokens combined) from the most recent API response exceeds 200k. This is a fixed threshold regardless of actual context window size. |
 | `fast_mode` | Whether [fast mode](https://code.claude.com/docs/en/fast-mode.md) is enabled for the session |
-| `effort.level` | Current reasoning effort (`low`, `medium`, `high`, `xhigh`, or `max`). Reflects the live session value, including mid-session `/effort` changes. Absent when the current model does not support the effort parameter |
+| `effort.level` | Reasoning effort level set for the session (`low`, `medium`, `high`, `xhigh`, or `max`), not one that a skill, a subagent, or `ultrathink` set. If you set a level the model doesn't support, this shows the level Claude Code ran instead. A level you change shows here even before it [starts](https://code.claude.com/docs/en/model-config.md#when-a-new-effort-level-starts). With a level in `CLAUDE_CODE_EFFORT_LEVEL`, this shows that level. Absent when the current model does not support the effort parameter |
 | `thinking.enabled` | Whether extended thinking is enabled for the session |
 | `rate_limits.five_hour.used_percentage`, `rate_limits.seven_day.used_percentage` | Percentage of the 5-hour or 7-day rate limit consumed, from 0 to 100 |
 | `rate_limits.five_hour.resets_at`, `rate_limits.seven_day.resets_at` | Unix epoch seconds when the 5-hour or 7-day rate limit window resets |

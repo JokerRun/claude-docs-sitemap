@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: cf4e191eef29ede9db7b43295b238acbecf75ee12190c2e6ac6eafd3c0bd8cdc
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 487adeb2178a36a911e5708431450bc6f66f190d8287b27711b621c7b83302a6
 ---
 
 ---
@@ -201,6 +201,10 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/create
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: f9d50868b9a0f8cf9d8917edf9dbe910f34921ce33a7bf49d8403e1eb347c621
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 3ca2cde729faf186d437d75b0c6741200ce98abffdf321bb7604f2ba63888e6d
 ---
 
 ---
@@ -155,6 +155,10 @@ Create a Memory
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

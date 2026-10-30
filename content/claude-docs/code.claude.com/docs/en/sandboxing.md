@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: e331b3b786e52fa028a68cc1dab76049ce8ee8c79e7907d7b43f58e039b9bc68
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: c5b762473f755a35ff42eef741ba557605d74d091b86ac53f6a46941c2456c21
 ---
 
 > ## Documentation Index
@@ -571,6 +571,8 @@ A newer `objects` or `refs` folder with contents is deleted too, with its conten
 #### Denied paths that pass through a symlink
 
 On macOS, when a denied path passes through a symlink, such as a `~/.claude` that is a link into a dotfiles repository, the sandbox also denies the path's real location. This covers the sandbox's own denials and your literal `denyWrite` and `denyRead` entries.
+
+A `denyWrite` entry that contains `*`, `?`, or `[` is also covered when a folder before the first of those characters is a symlink. For example, `~/.claude/*.json` is also denied under the real location of `~/.claude`.
 
 ### Network isolation
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-observability
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 277bc194729d62c6f484bd1e086bc681a253116e610ccc96c395b7eff517a551
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 65f567bae47671f81d8dcdc6cd7467926e8b6f8ebc9d29d19a097a1088ead335
 ---
 
 ---
@@ -45,7 +45,7 @@ Gunakan penampil sesi di Claude Console untuk memeriksa apa yang dilakukan agen 
 
 ## Memeriksa sesi di Console
 
-Penampil sesi hanya dapat diakses oleh Developer dan Admin. Untuk membukanya, buka halaman [Sessions](https://platform.claude.com/sessions) (`platform.claude.com/sessions`) di Claude Console. Daftar tersebut menampilkan setiap sesi di workspace beserta status, agen, penggunaan token, biaya, dan waktu pembuatannya. Pilih sebuah sesi untuk membukanya.
+Penampil sesi hanya dapat diakses oleh Developer dan Admin. Untuk membukanya, buka halaman [Sessions](https://platform.claude.com/sessions) (`platform.claude.com/sessions`) di Claude Console. Daftar tersebut menampilkan setiap sesi di workspace beserta status, agen, penggunaan token, biaya, pembuat, dan waktu pembuatannya. Pilih sebuah sesi untuk membukanya.
 
 Penampil sesi menampilkan:
 
@@ -124,6 +124,19 @@ Event ini dipancarkan pada transisi idle, bukan berdasarkan timer:
 ### Menerapkan batas pengeluaran
 
 Untuk menerapkan batas pengeluaran, tetapkan anggaran sesi alih-alih melakukan polling penggunaan dan menghentikan sesi sendiri. Platform menghitung harga konsumsi sesi secara terus-menerus, dan menjeda setiap thread sebelum permintaan model berikutnya setelah biaya daftar mencapai batas. Lihat [Ketika sesi mencapai anggarannya](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget) untuk melihat seperti apa hal tersebut pada stream.
+
+### Menemukan penggunaan sesi di seluruh organisasi Anda
+
+Penggunaan sesi dihitung ke dalam total organisasi Anda di halaman [Usage](https://platform.claude.com/usage) (`platform.claude.com/usage`) dan halaman [Cost](https://platform.claude.com/cost) (`platform.claude.com/cost`) di Claude Console. Untuk melihat penggunaan token per agen, atur **Group by** ke **Agent** di halaman **Usage**.
+
+Penggunaan sesi juga muncul di [laporan penggunaan](https://platform.claude.com/docs/id/api/beta/organization/usage_report/retrieve_messages) dari [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api). Untuk melihat akun mana yang menjadi tempat penggunaan tersebut dilaporkan, kelompokkan laporan berdasarkan salah satu field berikut:
+
+* **`account_id`:** Anggota yang memulai sesi. Ini mencakup sesi yang dimulai di Console atau dengan [kunci pribadi](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang dibatasi pada satu workspace.
+* **`service_account_id`:** Service account yang dikelola Anthropic (`svac_...`). Ini mencakup sesi yang dimulai dengan kunci workspace atau oleh sebuah [deployment](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments). Untuk penggunaan ini, `api_key_id` dan `account_id` bernilai `null`.
+
+Anthropic membuat satu service account seperti ini di setiap workspace tempat sesi berjalan. Service account ini tidak tercantum bersama service account yang Anda buat, dan endpoint service account pada Admin API tidak mengembalikannya. Di halaman **Usage**, filter **Account** mencantumkannya berdasarkan ID-nya. Ketika Anda mengatur **Group by** ke **API key**, penggunaannya diberi label **Managed Agents**.
+
+Untuk melihat siapa yang memulai sebuah sesi, periksa kolom **Created by** di halaman [Sessions](https://platform.claude.com/sessions).
 
 ## Tips debugging
 

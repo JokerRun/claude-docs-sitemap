@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/create
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 2bff1f5eb8a7f2c492ee6e52eda057f5571969a3f26b2b6d939dffff2a202888
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: c6e8754e1056324cb0dbb5220d7a16ccabd60cf9fa3d3b4b8964a4fd13796acb
 ---
 
 ---
@@ -133,6 +133,10 @@ Create Session
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

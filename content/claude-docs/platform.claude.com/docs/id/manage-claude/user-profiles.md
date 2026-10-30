@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-profiles
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 0dc2db7ee4c023eb6acbde9d1a030232e671eb92c2d9224294586199e0322c13
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 7fd45819fa33e331aec79800eaa1b90a0fa85008e690b6f2ba06baf1481843f9
 ---
 
 ---
@@ -695,8 +695,8 @@ Untuk mendapatkan event saat Anthropic membatasi atau memblokir salah satu pelan
     Pilih cara layanan Anda melakukan autentikasi ke Claude API.
   </Card>
 
-  <Card title="API Penggunaan dan Biaya" href="https://platform.claude.com/docs/id/manage-claude/usage-cost-api">
-    Lacak penggunaan token API dan biaya untuk organisasi Anda.
+  <Card title="Usage and Cost Analytics API" href="https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api">
+    Lacak penggunaan token dan biaya untuk organisasi Anda.
   </Card>
 
   <Card title="Residensi data" href="https://platform.claude.com/docs/id/manage-claude/data-residency">

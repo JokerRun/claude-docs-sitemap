@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 0ce0823029617a33530a0c888a9b3d1165447b5e41f9d3ddd3e6d1824a1a7de4
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 45c65a683d5f5e5726e5c14c0a0431bd9101041216a7afb9decd17aab1687601
 ---
 
 ---
@@ -1134,7 +1134,7 @@ Saat bermigrasi ke model Claude saat ini dari generasi sebelumnya:
 
 6. **Sesuaikan prompting anti-kemalasan:** Jika prompt Anda sebelumnya mendorong model untuk lebih teliti atau menggunakan alat secara lebih agresif, kurangi panduan tersebut. Model Claude 4.6 lebih proaktif dan mungkin bereaksi berlebihan terhadap instruksi yang diperlukan untuk model sebelumnya.
 
-7. **Kirim kembali blok thinking tanpa perubahan dan jaga riwayat tetap append-only:** Tambahkan setiap giliran asisten persis seperti yang dikembalikan API, termasuk blok thinking. Pada Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, [memodifikasi percakapan sebelum blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation) menghasilkan error, atau blok tersebut dibuang jika Anda memilih opsi itu: mengedit pesan sebelumnya, membangun ulang `system` atau `tools`, atau meringkas giliran lama di tempat di antara permintaan akan membatalkan setiap blok thinking berikutnya, jadi pindahkan perubahan tersebut ke pesan sistem di tengah percakapan dan manajemen konteks sisi server. Lihat [Jaga riwayat percakapan agar hanya ditambahkan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#keep-the-conversation-history-append-only).
+7. **Kirimkan kembali thinking block tanpa perubahan dan jaga riwayat tetap append-only:** Tambahkan setiap giliran asisten persis seperti yang dikembalikan oleh API, termasuk thinking block. Pada model Claude 5.1 dan yang lebih baru, mengedit pesan-pesan sebelumnya, membangun ulang `system` atau `tools`, atau meringkas giliran-giliran lama di tempat di antara permintaan [membatalkan validitas setiap thinking block setelahnya](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation). Pindahkan perubahan tersebut ke pesan sistem di tengah percakapan dan manajemen konteks di sisi server. Lihat [Jaga riwayat percakapan tetap append-only](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#keep-the-conversation-history-append-only).
 
 Untuk langkah-langkah migrasi terperinci, lihat [Panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide).
 

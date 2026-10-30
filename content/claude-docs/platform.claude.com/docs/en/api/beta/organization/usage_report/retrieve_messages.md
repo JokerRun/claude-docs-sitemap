@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_messages
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 19246d94c719a2f5ca98947b44a0035a9b4571d9aeb355dc773069d95168748c
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 47848903d6974be6432af044162115e3cb336fcd17363b5ab4b176519aea0463
 ---
 
 ---
@@ -14,7 +14,9 @@ url: https://platform.claude.com/docs/en/api/beta/organization/usage_report/retr
 
 **GET** `/v1/organizations/usage_report/messages`
 
-Get Messages Usage Report
+[Legacy] Get a report of your organization's Messages API usage, aggregated into time buckets.
+
+This endpoint is part of the legacy Usage and Cost API. For new integrations, use [`GET /v1/organizations/analytics/usage`](https://platform.claude.com/docs/en/api/beta/organization/analytics/usage/list?sdk_languages=http) in the Usage and Cost Analytics API instead. To move an existing integration, see [Migrate from the Usage and Cost API](https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api?sdk_languages=http#migrate-from-usage-cost-api).
 
 ## Query parameters
 
@@ -112,7 +114,7 @@ Get Messages Usage Report
 
   Restrict usage returned to the specified service account ID(s).
 
-- `service_tiers: optional array of "batch" or "flex" or "flex_discount" or 3 more`
+- `service_tiers: optional array of BetaAnalyticsServiceTier`
 
   Restrict usage returned to the specified service tier(s).
 
@@ -258,6 +260,10 @@ Get Messages Usage Report
 
   - `"webhooks-2026-10-07"`
 
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
+
 ## Returns
 
 - `BetaMessagesUsageReport object`
@@ -343,7 +349,7 @@ Get Messages Usage Report
 
         ID of the service account that made the request. `null` if not grouping by service account or for non-OIDC-federation requests.
 
-      - `service_tier: "batch" or "flex" or "flex_discount" or 3 more or null`
+      - `service_tier: BetaAnalyticsServiceTier or null`
 
         Service tier used. `null` if not grouping by service tier.
 

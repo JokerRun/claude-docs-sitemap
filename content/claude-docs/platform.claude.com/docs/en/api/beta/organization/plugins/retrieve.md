@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/retrieve
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 17fc366999a763aeb7bb60bb707dae1e1e79032e36fbc8074c08a399e2cc99df
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: a7102482b25951c8538979845513bc07304c87f6bd5ef596ea7a7c0ad3328bde
 ---
 
 ---
@@ -143,6 +143,10 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/claude-tag-api
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: d5ecafd80b51e5ed776d1bad81d9a5013cc9b0e360999cf05c7b0446bd4d2244
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 1e841031717938cc42839dba794f459c300b9bdb675f8e9e581c225fe49c3014
 ---
 
 ---
@@ -266,7 +266,7 @@ If an organization owner has put a settings level on a self-hosted runner pool i
 Settings exist at three levels: the channel, the workspace the channel is in, and your organization’s Slack defaults, which an organization owner sets in claude.ai. Each level stores only what was set on it. The `settings` of a channel or workspace object can hold either of two things:
 
 * **What it stores.** This is what a response holds unless you ask otherwise. A setting that is not set on the channel or workspace is `null`. Use it to compare against configuration you keep elsewhere.
-* **What applies in it**, once every level is taken into account. To get this, add the query parameter `include_inherited=true` to any `GET` request that returns a channel or a workspace, the two lists included. Use it to audit, or to find out why Claude behaves as it does in one channel. The parameter defaults to `false`, and a value that is not a Boolean returns `400`. A request that sets a channel up or changes settings does not take the parameter and returns `400` if you send it; its response holds what is stored.
+* **What applies in it**, once every level is taken into account. To get this, add the query parameter `include_inherited=true` to any `GET` request that returns a channel or a workspace, the two lists included. Use it to audit, or to find out why Claude behaves as it does in one channel. The parameter defaults to `false`, and a value that is not a boolean returns `400`. A request that sets a channel up or changes settings does not take the parameter and returns `400` if you send it; its response holds what is stored.
 
 In both cases `sources` names, for each setting, the level that the value in `settings` comes from. Without `include_inherited`, the source of a setting that the channel or workspace stores names the channel or workspace itself, and a setting it does not store has no source: `null`, or an empty list for `instructions`. With `include_inherited=true`, every setting except `instructions` has a source, and a setting that no level sets has the source `{"type": "default"}`; when no level sets `instructions`, it is `null` and its source list is empty. So to tell a value the channel or workspace sets itself from one it inherits, look at its source, not at whether the value is `null`.
 

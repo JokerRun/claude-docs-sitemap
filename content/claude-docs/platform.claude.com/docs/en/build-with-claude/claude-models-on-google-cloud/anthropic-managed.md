@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 6cc83455707dde955f6db99b0f0ef8de30f54a6a44070a49556701fc0fe42472
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 9f9e0da919f188a550e620cddb47b8712a7956d4a245be9802eff2574a3e55f0
 ---
 
 ---
@@ -581,7 +581,7 @@ Anthropic manages rate limits for Claude Models on Google Cloud (Anthropic manag
 
 Claude Models on Google Cloud (Anthropic managed) bills through Google Cloud Marketplace. Anthropic meters your usage. It reports the usage to Google Cloud in Claude Consumption Units. One Claude Consumption Unit is $0.01 USD. The charges appear on your Google Cloud bill. Anthropic doesn’t send a separate invoice.
 
-View usage and cost data on the **Usage** and **Cost** pages in the [Claude Console](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console).
+View usage and cost data on the **Usage** and **Cost** pages in the [Claude Console](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console), or query it with the [Usage and Cost Analytics API](https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api).
 
 If you have a Google Cloud spend commitment, usage counts toward it the way other Marketplace purchases do.
 

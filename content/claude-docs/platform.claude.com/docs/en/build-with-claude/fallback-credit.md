@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fallback-credit
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: f9832cfbc5a64e4d0c93870692cae90a53774037af8a52b32a92c4809b297b68
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: cb419a76995029a1c7af32f1d4659f271c453976ccda388217628560c2b370e9
 ---
 
 ---
@@ -48,7 +48,7 @@ You need this page only when you build the retry yourself: over raw HTTP or with
     On a refusal, `stop_details` includes two fields:
 
     * **`fallback_credit_token`:** an opaque string that represents the credit
-    * **`fallback_has_prefill_claim`:** a Boolean that tells you which retry body shape to use
+    * **`fallback_has_prefill_claim`:** a boolean that tells you which retry body shape to use
 
     Both are `null` when no credit is available for the refusal.
   </Step>

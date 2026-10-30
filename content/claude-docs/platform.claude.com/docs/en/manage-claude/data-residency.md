@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/data-residency
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 79ff32fe207677083342ff4e4c44b834248df2062b04c74d01797cf14e657bb4
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 51591c5c8d4cbfbe1b4fbf809a55983f0d6346f193893e6e97e5deb281ddc9ee
 ---
 
 ---
@@ -359,8 +359,8 @@ Legacy models are unaffected by this migration. For current pricing on newer mod
     Learn about workspace configuration.
   </Card>
 
-  <Card title="Usage and Cost API" icon="chart" href="https://platform.claude.com/docs/en/manage-claude/usage-cost-api">
-    Track usage and costs by data residency.
+  <Card title="Usage and Cost Analytics API" icon="chart" href="https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api">
+    Track usage and costs by inference geo.
   </Card>
 </CardGroup>
 

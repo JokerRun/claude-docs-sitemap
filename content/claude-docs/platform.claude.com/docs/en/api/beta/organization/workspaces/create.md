@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/create
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 048c7723a09e0544caffc9618d0ffb33271404279c7d5ea688bfdb3298ed7e14
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 9cf19ddefc428575e6cc3b7706dda466594e53701ffeedf5ff9465617f4e13ee
 ---
 
 ---
@@ -133,6 +133,10 @@ Create Workspace
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 ## Body parameters
 

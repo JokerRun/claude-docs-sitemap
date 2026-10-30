@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/rate-limits-api
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 9eb4f9e90a154f244c209406b9bc8ae3a2dff5c822227542717c6c40d4bf4d16
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 7ee9d29fccb0da3e0d22dc9f3f173e35ac2dc73223feea6ec4d676dce17af89d
 ---
 
 ---
@@ -20,7 +20,7 @@ Rate Limits API menyediakan akses terprogram ke “rate limit” (batas laju) ya
 Gunakan API ini untuk:
 
 * **Menjaga gateway dan proxy tetap sinkron:** Baca batas Anda saat ini ketika startup dan secara terjadwal alih-alih melakukan hardcode nilai yang akan menyimpang ketika Anthropic menyesuaikannya.
-* **Mendukung peringatan internal:** Bandingkan data penggunaan dari [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) dengan batas yang telah Anda konfigurasi.
+* **Mendukung peringatan internal:** Bandingkan data penggunaan dari [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) dengan batas yang telah Anda konfigurasi.
 * **Mengaudit konfigurasi workspace:** Verifikasi bahwa override workspace sesuai dengan yang diharapkan oleh otomatisasi provisioning Anda.
 
 <Check>
@@ -1126,4 +1126,4 @@ Secara default, respons workspace hanya mencantumkan override, sehingga grup yan
 * [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api)
 * [Referensi Admin API](https://platform.claude.com/docs/id/api/organization)
 * [Workspace](https://platform.claude.com/docs/id/manage-claude/workspaces)
-* [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api)
+* [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api)

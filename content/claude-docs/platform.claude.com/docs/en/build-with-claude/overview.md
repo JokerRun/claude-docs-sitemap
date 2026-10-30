@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/overview
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 54fef211436a1418d4431ce99fa4c81af9bff550c1ba57e2f4f27ba72cd6f687
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 10a016a7a96fb3afec5d2eeea38c8f6cad4de015a9aff6e15f804295af8d05c9
 ---
 
 ---
@@ -13,7 +13,7 @@ description: Explore Claude's advanced features and capabilities.
 
 For each feature’s eligibility under zero data retention (ZDR) and HIPAA readiness, see [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#feature-eligibility).
 
-For administration and governance, see the [Admin API](https://platform.claude.com/docs/en/manage-claude/admin-api), the [Usage and Cost API](https://platform.claude.com/docs/en/manage-claude/usage-cost-api), and the [Compliance API](https://platform.claude.com/docs/en/manage-claude/compliance-api).
+For administration and governance, see the [Admin API](https://platform.claude.com/docs/en/manage-claude/admin-api), the [Usage and Cost Analytics API](https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api), and the [Compliance API](https://platform.claude.com/docs/en/manage-claude/compliance-api).
 
 ## Platform features
 

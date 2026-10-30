@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 457e58f6d6894b920a77cefea9c01bbf0bf3456b4c202583ffd8e4207b692194
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 2c09ae488ab185cd6fa5035e61711e091f5fd3ffc4007900012a47b21e762fc5
 ---
 
 ---
@@ -58,8 +58,6 @@ ant models retrieve --model-id claude-opus-5-5 --format yaml
 ```yaml Output
 type: model
 id: claude-opus-5-5
-display_name: Claude Opus 5.5
-created_at: "2026-09-22T00:00:00Z"
 ...
 ```
 

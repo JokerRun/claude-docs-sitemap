@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/claude-models-on-google-cloud-anthropic-managed-iam-permissions
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: ba17ab8fe31ad5f39e2557e80db16ec3c5e650f45f9260c4c23c69ad5dbc0c63
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 9242d841b811f3f368f61643ce88bef60cafb18f1fce39dd5901ef2fbc9ddedd
 ---
 
 ---
@@ -41,7 +41,7 @@ Dalam tabel-tabel berikut, **Admin**, **User**, dan **Viewer** mewakili ketiga p
 
 ## Izin
 
-Tabel-tabel berikut mencantumkan 68 izin di 111 rute.
+Tabel-tabel berikut mencantumkan 69 izin di 113 rute.
 
 Izin `get` dan `list` adalah izin yang bersifat hanya-baca.
 
@@ -238,11 +238,12 @@ Izin-izin ini mengelola pendaftaran kunci enkripsi organisasi Anda. Dari ketiga 
 
 ### Laporan penggunaan
 
-| Izin                  | Peran | Rute yang diotorisasi                         |
-| --------------------- | ----- | --------------------------------------------- |
-| `usageAnalytics.list` | Admin | `GET /v1/organizations/usage_report/messages` |
+| Izin                  | Peran | Rute yang diotorisasi                                                                      |
+| --------------------- | ----- | ------------------------------------------------------------------------------------------ |
+| `usageAnalytics.list` | Admin | `GET /v1/organizations/usage_report/messages`<br />`GET /v1/organizations/analytics/usage` |
+| `costAnalytics.list`  | Admin | `GET /v1/organizations/analytics/cost`                                                     |
 
-Dari ketiga peran bawaan, hanya `roles/claude.admin` yang menyertakan `usageAnalytics.list`.
+Dari ketiga peran bawaan, hanya `roles/claude.admin` yang menyertakan `usageAnalytics.list` dan `costAnalytics.list`.
 
 ## Lihat juga
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/create
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 1122368b1c25694de74f6c3d1590070a931a46020bd5c25f03a4d06d10852520
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 309032523895657cd285ce0196b1148d922b4e6aec4e57bfff6d07fdabac1487
 ---
 
 ---
@@ -137,6 +137,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-user-profile-id": optional string`
 
@@ -4074,6 +4078,26 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
   - `BetaThinkingConfigBetweenTools object`
 
   - `BetaThinkingConfigAdaptive object`
+
+- `thread: optional BetaMessageThreadParam or null`
+
+  Server-held conversation state (a Thread). `{"type": "create"}` asks the server to hold this conversation's state under the response's `id`; `{"type": "continue", "previous_message_id": ...}` resumes from a previous response so only the new turn's messages are sent. The response shape is unchanged.
+
+  - `BetaThreadCreateParams object`
+
+    Start holding conversation state under this response's `id`.
+
+    - `type: "create"`
+
+  - `BetaThreadContinueParams object`
+
+    Resume from the response named by `previous_message_id`.
+
+    - `type: "continue"`
+
+    - `previous_message_id: string`
+
+      The `id` of the previous response in this Thread.
 
 - `tool_choice: optional BetaToolChoice`
 

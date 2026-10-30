@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/user-profiles
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 0d97794f91eeeb8a57c57a7e31837c8f447450454201cefa561e6ac4e6f9e75c
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: aae63dd1b74a098d565e5ab5c06093c89e6745236ac2cfa596887f5a6adc0772
 ---
 
 ---
@@ -695,8 +695,8 @@ To get an event when Anthropic restricts or bans one of your end customers, or w
     Choose how your services authenticate to the Claude API.
   </Card>
 
-  <Card title="Usage and Cost API" href="https://platform.claude.com/docs/en/manage-claude/usage-cost-api">
-    Track API token usage and costs for your organization.
+  <Card title="Usage and Cost Analytics API" href="https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api">
+    Track token usage and costs for your organization.
   </Card>
 
   <Card title="Data residency" href="https://platform.claude.com/docs/en/manage-claude/data-residency">

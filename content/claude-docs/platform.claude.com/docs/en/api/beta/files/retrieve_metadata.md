@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/retrieve_metadata
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 74d214410ffacdd08128f9fd8159b305df9c55750edcc399e28b7d5bde8fda3c
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 602513c4d9fbb6ca881e31642e640e30da9f97120e5c68b9e1587efdfd1677bf
 ---
 
 ---
@@ -139,6 +139,10 @@ Get File Metadata
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

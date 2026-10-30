@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/archive
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 280d5ec4e1c1417292c30abca9539057a9d010277d80b17029cf7a4cadb12f95
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 6d3bbb7ebad5a3e5f2880f9bb66f407faefc28da16314a3084b1510b483fd81f
 ---
 
 ---
@@ -137,6 +137,10 @@ Archive Session
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
 
 - `"anthropic-workspace-id": optional string`
 

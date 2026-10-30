@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: c64ec175e860122bf292a793a6c8141ebc6dd672402089642072219f37a897b7
+fetched_at: 2026-10-30T02:15:26.914079Z
+sha256: 4bfdf8dd10dece2119524dab89bd8503a33684bab61b413e88d0ddb9e5b44ee5
 ---
 
 ---
@@ -17,15 +17,16 @@ description: Kelola anggota organisasi, workspace, undangan, dan kunci API secar
 
 Admin API tidak tersedia untuk akun individu. Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
 
-Organisasi Claude Enterprise (claude.ai) memanggil Admin API dengan kunci API ber-scope yang dibuat di claude.ai. Dari halaman ini, hanya endpoint anggota dan undangan yang berlaku untuk mereka. Mereka juga mendapatkan endpoint khusus Enterprise: pembacaan grup dan peran kustom, serta [batas pengeluaran](https://platform.claude.com/docs/id/manage-claude/spend-limits-api). [Plugins API](https://platform.claude.com/docs/id/manage-claude/plugins-api), yang juga khusus Enterprise, masih dalam tahap beta. Begitu pula [Claude Tag API](https://platform.claude.com/docs/id/manage-claude/claude-tag-api). Lihat [Manajemen pengguna](https://platform.claude.com/docs/id/manage-claude/user-management).
+Organisasi Claude Enterprise (claude.ai) memanggil Admin API dengan kunci API ber-scope yang dibuat di claude.ai. Dari halaman ini, hanya endpoint anggota dan undangan yang berlaku untuk mereka. Mereka juga dapat memanggil [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api), yang masih dalam tahap beta dan memerlukan kunci dengan scope `read:analytics`. Mereka juga mendapatkan endpoint khusus Enterprise: pembacaan grup dan peran kustom, serta [batas pengeluaran](https://platform.claude.com/docs/id/manage-claude/spend-limits-api). [Plugins API](https://platform.claude.com/docs/id/manage-claude/plugins-api), yang juga khusus Enterprise, masih dalam tahap beta. Begitu pula [Claude Tag API](https://platform.claude.com/docs/id/manage-claude/claude-tag-api). Lihat [Manajemen pengguna](https://platform.claude.com/docs/id/manage-claude/user-management).
 
 Di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), hanya endpoint Admin API berikut yang tersedia:
 
 * Endpoint workspace: create, get, list, update, dan archive pada `/v1/organizations/workspaces`.
 * Endpoint external key, untuk [CMEK](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws): register, get, list, update, dan delete pada `/v1/organizations/external_keys`. Tidak ada endpoint validate, karena kunci divalidasi saat dilampirkan ke workspace.
 * [Endpoint tujuan telemetri](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#telemetry-destinations).
+* Endpoint [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api): `/v1/organizations/analytics/usage` dan `/v1/organizations/analytics/cost`.
 
-Anggota organisasi, anggota workspace, undangan, kunci API, serta laporan penggunaan, biaya, dan batas laju tidak tersedia di Claude Platform on AWS.
+Anggota organisasi, anggota workspace, undangan, kunci API, [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) versi lama, serta laporan batas laju tidak tersedia di Claude Platform on AWS.
 
 ## Autentikasi
 
@@ -352,7 +353,7 @@ Perbarui peran anggota:
 
 <CodeGroup>
   ```bash cURL
-  curl "https://api.anthropic.com/v1/organizations/users/user_01XyDMpzjS89pFZXqSFUBDr6" \
+  curl "https://api.anthropic.com/v1/organizations/users/user_01WxYzAbCdEfGhJkMnPqRsTu" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
@@ -361,7 +362,7 @@ Perbarui peran anggota:
 
   ```bash CLI
   ant organization:users update \
-    --user-id user_01XyDMpzjS89pFZXqSFUBDr6 \
+    --user-id user_01WxYzAbCdEfGhJkMnPqRsTu \
     --role developer
   ```
 
@@ -369,7 +370,7 @@ Perbarui peran anggota:
   client = anthropic.Anthropic()
 
   user = client.organization.users.update(
-      "user_01XyDMpzjS89pFZXqSFUBDr6", role="developer"
+      "user_01WxYzAbCdEfGhJkMnPqRsTu", role="developer"
   )
 
   print(f"id: {user.id}")
@@ -379,7 +380,7 @@ Perbarui peran anggota:
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const user = await client.organization.users.update("user_01XyDMpzjS89pFZXqSFUBDr6", {
+  const user = await client.organization.users.update("user_01WxYzAbCdEfGhJkMnPqRsTu", {
     role: "developer"
   });
 
@@ -394,7 +395,7 @@ Perbarui peran anggota:
   AnthropicClient client = new();
 
   var user = await client.Organization.Users.Update(
-      "user_01XyDMpzjS89pFZXqSFUBDr6",
+      "user_01WxYzAbCdEfGhJkMnPqRsTu",
       new() { Role = Role.Developer }
   );
 
@@ -407,7 +408,7 @@ Perbarui peran anggota:
 
   user, err := client.Organization.Users.Update(
   	context.Background(),
-  	"user_01XyDMpzjS89pFZXqSFUBDr6",
+  	"user_01WxYzAbCdEfGhJkMnPqRsTu",
   	anthropic.OrganizationUserUpdateParams{
   		Role: anthropic.OrganizationUserUpdateParamsRoleDeveloper,
   	},
@@ -430,7 +431,7 @@ Perbarui peran anggota:
           .role(UserUpdateParams.Role.DEVELOPER)
           .build();
       var user = client.organization().users()
-          .update("user_01XyDMpzjS89pFZXqSFUBDr6", params);
+          .update("user_01WxYzAbCdEfGhJkMnPqRsTu", params);
 
       IO.println("id: " + user.id());
       IO.println("role: " + user.role().asString());
@@ -444,7 +445,7 @@ Perbarui peran anggota:
   $client = new Client();
 
   $user = $client->organization->users->update(
-      userID: 'user_01XyDMpzjS89pFZXqSFUBDr6',
+      userID: 'user_01WxYzAbCdEfGhJkMnPqRsTu',
       role: Role::DEVELOPER,
   );
 
@@ -455,7 +456,7 @@ Perbarui peran anggota:
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  user_id = "user_01XyDMpzjS89pFZXqSFUBDr6"
+  user_id = "user_01WxYzAbCdEfGhJkMnPqRsTu"
   user = client.organization.users.update(user_id, role: :developer)
 
   puts "id: #{user.id}"
@@ -467,19 +468,19 @@ Hapus anggota dari organisasi:
 
 <CodeGroup>
   ```bash cURL
-  curl -X DELETE "https://api.anthropic.com/v1/organizations/users/user_01XyDMpzjS89pFZXqSFUBDr6" \
+  curl -X DELETE "https://api.anthropic.com/v1/organizations/users/user_01WxYzAbCdEfGhJkMnPqRsTu" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01"
   ```
 
   ```bash CLI
-  ant organization:users remove --user-id user_01XyDMpzjS89pFZXqSFUBDr6
+  ant organization:users remove --user-id user_01WxYzAbCdEfGhJkMnPqRsTu
   ```
 
   ```python Python
   client = anthropic.Anthropic()
 
-  removed_user = client.organization.users.remove("user_01XyDMpzjS89pFZXqSFUBDr6")
+  removed_user = client.organization.users.remove("user_01WxYzAbCdEfGhJkMnPqRsTu")
 
   print(f"id: {removed_user.id}")
   ```
@@ -487,7 +488,7 @@ Hapus anggota dari organisasi:
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const removedUser = await client.organization.users.remove("user_01XyDMpzjS89pFZXqSFUBDr6");
+  const removedUser = await client.organization.users.remove("user_01WxYzAbCdEfGhJkMnPqRsTu");
 
   console.log(`id: ${removedUser.id}`);
   ```
@@ -495,7 +496,7 @@ Hapus anggota dari organisasi:
   ```csharp C#
   AnthropicClient client = new();
 
-  var removedUser = await client.Organization.Users.Remove("user_01XyDMpzjS89pFZXqSFUBDr6");
+  var removedUser = await client.Organization.Users.Remove("user_01WxYzAbCdEfGhJkMnPqRsTu");
 
   Console.WriteLine($"id: {removedUser.ID}");
   ```
@@ -503,7 +504,7 @@ Hapus anggota dari organisasi:
   ```go Go
   client := anthropic.NewClient()
 
-  removedUser, err := client.Organization.Users.Remove(context.Background(), "user_01XyDMpzjS89pFZXqSFUBDr6")
+  removedUser, err := client.Organization.Users.Remove(context.Background(), "user_01WxYzAbCdEfGhJkMnPqRsTu")
   if err != nil {
   	log.Fatal(err)
   }
@@ -515,7 +516,7 @@ Hapus anggota dari organisasi:
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   var removedUser = client.organization().users()
-      .remove("user_01XyDMpzjS89pFZXqSFUBDr6");
+      .remove("user_01WxYzAbCdEfGhJkMnPqRsTu");
 
   IO.println("id: " + removedUser.id());
   ```
@@ -524,7 +525,7 @@ Hapus anggota dari organisasi:
   $client = new Client();
 
   $removedUser = $client->organization->users->remove(
-      userID: 'user_01XyDMpzjS89pFZXqSFUBDr6',
+      userID: 'user_01WxYzAbCdEfGhJkMnPqRsTu',
   );
 
   echo "id: {$removedUser->id}\n";
@@ -533,7 +534,7 @@ Hapus anggota dari organisasi:
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  user_id = "user_01XyDMpzjS89pFZXqSFUBDr6"
+  user_id = "user_01WxYzAbCdEfGhJkMnPqRsTu"
   removed_user = client.organization.users.remove(user_id)
 
   puts "id: #{removed_user.id}"
@@ -866,7 +867,7 @@ Tambahkan anggota ke workspace:
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "user_id": "user_01XyDMpzjS89pFZXqSFUBDr6",
+      "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
       "workspace_role": "workspace_developer"
     }'
   ```
@@ -874,7 +875,7 @@ Tambahkan anggota ke workspace:
   ```bash CLI
   ant organization:workspaces:members add \
     --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ \
-    --user-id user_01XyDMpzjS89pFZXqSFUBDr6 \
+    --user-id user_01WxYzAbCdEfGhJkMnPqRsTu \
     --workspace-role workspace_developer
   ```
 
@@ -883,7 +884,7 @@ Tambahkan anggota ke workspace:
 
   member = client.organization.workspaces.members.add(
       "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
-      user_id="user_01XyDMpzjS89pFZXqSFUBDr6",
+      user_id="user_01WxYzAbCdEfGhJkMnPqRsTu",
       workspace_role="workspace_developer",
   )
 
@@ -897,7 +898,7 @@ Tambahkan anggota ke workspace:
   const member = await client.organization.workspaces.members.add(
     "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
     {
-      user_id: "user_01XyDMpzjS89pFZXqSFUBDr6",
+      user_id: "user_01WxYzAbCdEfGhJkMnPqRsTu",
       workspace_role: "workspace_developer"
     }
   );
@@ -915,7 +916,7 @@ Tambahkan anggota ke workspace:
       "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
       new()
       {
-          UserID = "user_01XyDMpzjS89pFZXqSFUBDr6",
+          UserID = "user_01WxYzAbCdEfGhJkMnPqRsTu",
           WorkspaceRole = NoBillingWorkspaceRole.WorkspaceDeveloper
       }
   );
@@ -931,7 +932,7 @@ Tambahkan anggota ke workspace:
   	context.Background(),
   	"wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
   	anthropic.OrganizationWorkspaceMemberAddParams{
-  		UserID:        "user_01XyDMpzjS89pFZXqSFUBDr6",
+  		UserID:        "user_01WxYzAbCdEfGhJkMnPqRsTu",
   		WorkspaceRole: anthropic.NoBillingWorkspaceRoleWorkspaceDeveloper,
   	},
   )
@@ -951,7 +952,7 @@ Tambahkan anggota ke workspace:
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       var params = MemberAddParams.builder()
-          .userId("user_01XyDMpzjS89pFZXqSFUBDr6")
+          .userId("user_01WxYzAbCdEfGhJkMnPqRsTu")
           .workspaceRole(NoBillingWorkspaceRole.WORKSPACE_DEVELOPER)
           .build();
       var member = client.organization().workspaces().members()
@@ -970,7 +971,7 @@ Tambahkan anggota ke workspace:
 
   $member = $client->organization->workspaces->members->add(
       workspaceID: 'wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ',
-      userID: 'user_01XyDMpzjS89pFZXqSFUBDr6',
+      userID: 'user_01WxYzAbCdEfGhJkMnPqRsTu',
       workspaceRole: NoBillingWorkspaceRole::WORKSPACE_DEVELOPER,
   );
 
@@ -984,7 +985,7 @@ Tambahkan anggota ke workspace:
   workspace_id = "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   member = client.organization.workspaces.members.add(
     workspace_id,
-    user_id: "user_01XyDMpzjS89pFZXqSFUBDr6",
+    user_id: "user_01WxYzAbCdEfGhJkMnPqRsTu",
     workspace_role: :workspace_developer
   )
 
@@ -1114,7 +1115,7 @@ Perbarui peran anggota workspace:
 
 <CodeGroup>
   ```bash cURL
-  curl "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/members/user_01XyDMpzjS89pFZXqSFUBDr6" \
+  curl "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/members/user_01WxYzAbCdEfGhJkMnPqRsTu" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
@@ -1123,7 +1124,7 @@ Perbarui peran anggota workspace:
 
   ```bash CLI
   ant organization:workspaces:members update \
-    --user-id user_01XyDMpzjS89pFZXqSFUBDr6 \
+    --user-id user_01WxYzAbCdEfGhJkMnPqRsTu \
     --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ \
     --workspace-role workspace_admin
   ```
@@ -1132,7 +1133,7 @@ Perbarui peran anggota workspace:
   client = anthropic.Anthropic()
 
   member = client.organization.workspaces.members.update(
-      "user_01XyDMpzjS89pFZXqSFUBDr6",
+      "user_01WxYzAbCdEfGhJkMnPqRsTu",
       workspace_id="wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
       workspace_role="workspace_admin",
   )
@@ -1145,7 +1146,7 @@ Perbarui peran anggota workspace:
   const client = new Anthropic();
 
   const member = await client.organization.workspaces.members.update(
-    "user_01XyDMpzjS89pFZXqSFUBDr6",
+    "user_01WxYzAbCdEfGhJkMnPqRsTu",
     {
       workspace_id: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
       workspace_role: "workspace_admin"
@@ -1162,7 +1163,7 @@ Perbarui peran anggota workspace:
   AnthropicClient client = new();
 
   var member = await client.Organization.Workspaces.Members.Update(
-      "user_01XyDMpzjS89pFZXqSFUBDr6",
+      "user_01WxYzAbCdEfGhJkMnPqRsTu",
       new()
       {
           WorkspaceID = "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
@@ -1179,7 +1180,7 @@ Perbarui peran anggota workspace:
 
   member, err := client.Organization.Workspaces.Members.Update(
   	context.Background(),
-  	"user_01XyDMpzjS89pFZXqSFUBDr6",
+  	"user_01WxYzAbCdEfGhJkMnPqRsTu",
   	anthropic.OrganizationWorkspaceMemberUpdateParams{
   		WorkspaceID:   "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
   		WorkspaceRole: anthropic.WorkspaceRoleWorkspaceAdmin,
@@ -1205,7 +1206,7 @@ Perbarui peran anggota workspace:
           .workspaceRole(WorkspaceRole.WORKSPACE_ADMIN)
           .build();
       var member = client.organization().workspaces().members()
-          .update("user_01XyDMpzjS89pFZXqSFUBDr6", params);
+          .update("user_01WxYzAbCdEfGhJkMnPqRsTu", params);
 
       IO.println("user_id: " + member.userId());
       IO.println("workspace_role: " + member.workspaceRole().asString());
@@ -1219,7 +1220,7 @@ Perbarui peran anggota workspace:
   $client = new Client();
 
   $member = $client->organization->workspaces->members->update(
-      userID: 'user_01XyDMpzjS89pFZXqSFUBDr6',
+      userID: 'user_01WxYzAbCdEfGhJkMnPqRsTu',
       workspaceID: 'wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ',
       workspaceRole: WorkspaceRole::WORKSPACE_ADMIN,
   );
@@ -1231,7 +1232,7 @@ Perbarui peran anggota workspace:
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  user_id = "user_01XyDMpzjS89pFZXqSFUBDr6"
+  user_id = "user_01WxYzAbCdEfGhJkMnPqRsTu"
   member = client.organization.workspaces.members.update(
     user_id,
     workspace_id: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
@@ -1247,14 +1248,14 @@ Hapus anggota dari workspace:
 
 <CodeGroup>
   ```bash cURL
-  curl -X DELETE "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/members/user_01XyDMpzjS89pFZXqSFUBDr6" \
+  curl -X DELETE "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/members/user_01WxYzAbCdEfGhJkMnPqRsTu" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01"
   ```
 
   ```bash CLI
   ant organization:workspaces:members remove \
-    --user-id user_01XyDMpzjS89pFZXqSFUBDr6 \
+    --user-id user_01WxYzAbCdEfGhJkMnPqRsTu \
     --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ
   ```
 
@@ -1262,7 +1263,7 @@ Hapus anggota dari workspace:
   client = anthropic.Anthropic()
 
   removed_member = client.organization.workspaces.members.remove(
-      "user_01XyDMpzjS89pFZXqSFUBDr6", workspace_id="wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
+      "user_01WxYzAbCdEfGhJkMnPqRsTu", workspace_id="wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   )
 
   print(f"user_id: {removed_member.user_id}")
@@ -1272,7 +1273,7 @@ Hapus anggota dari workspace:
   const client = new Anthropic();
 
   const removedMember = await client.organization.workspaces.members.remove(
-    "user_01XyDMpzjS89pFZXqSFUBDr6",
+    "user_01WxYzAbCdEfGhJkMnPqRsTu",
     { workspace_id: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ" }
   );
 
@@ -1283,7 +1284,7 @@ Hapus anggota dari workspace:
   AnthropicClient client = new();
 
   var removedMember = await client.Organization.Workspaces.Members.Remove(
-      "user_01XyDMpzjS89pFZXqSFUBDr6",
+      "user_01WxYzAbCdEfGhJkMnPqRsTu",
       new() { WorkspaceID = "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ" }
   );
 
@@ -1295,7 +1296,7 @@ Hapus anggota dari workspace:
 
   removedMember, err := client.Organization.Workspaces.Members.Remove(
   	context.Background(),
-  	"user_01XyDMpzjS89pFZXqSFUBDr6",
+  	"user_01WxYzAbCdEfGhJkMnPqRsTu",
   	anthropic.OrganizationWorkspaceMemberRemoveParams{
   		WorkspaceID: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
   	},
@@ -1317,7 +1318,7 @@ Hapus anggota dari workspace:
           .workspaceId("wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ")
           .build();
       var removedMember = client.organization().workspaces().members()
-          .remove("user_01XyDMpzjS89pFZXqSFUBDr6", params);
+          .remove("user_01WxYzAbCdEfGhJkMnPqRsTu", params);
 
       IO.println("user_id: " + removedMember.userId());
   }
@@ -1327,7 +1328,7 @@ Hapus anggota dari workspace:
   $client = new Client();
 
   $removedMember = $client->organization->workspaces->members->remove(
-      userID: 'user_01XyDMpzjS89pFZXqSFUBDr6',
+      userID: 'user_01WxYzAbCdEfGhJkMnPqRsTu',
       workspaceID: 'wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ',
   );
 
@@ -1337,7 +1338,7 @@ Hapus anggota dari workspace:
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  user_id = "user_01XyDMpzjS89pFZXqSFUBDr6"
+  user_id = "user_01WxYzAbCdEfGhJkMnPqRsTu"
   removed_member = client.organization.workspaces.members.remove(
     user_id,
     workspace_id: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
@@ -1723,7 +1724,7 @@ Untuk detail parameter dan skema respons, lihat [referensi Organization Info API
 
 ## Laporan penggunaan dan biaya
 
-Lacak penggunaan dan biaya organisasi Anda dengan [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api).
+Lacak penggunaan dan biaya organisasi Anda dengan [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api). [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) adalah API lama untuk data ini.
 
 ## Analitik Claude Code
 
