@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/stream
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 215af871cf07a643459792e655b436480eef28033c39f56d9d63ca0c6af6b050
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 31748ab3f33fbf825ed3866bcd05665a3c8928f30856ff6e8035aee3938ea6b0
 ---
 
 ---
@@ -151,6 +151,8 @@ Stream Events
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

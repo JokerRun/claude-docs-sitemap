@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sessions
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 7f989a108c73825c8459d1e4563f4f2dae9a80e1aed1b0e8602016335d85cd44
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: a1883e35d26fc7bd8b0f0e76a92d9e5a3dfa32b80426ee9d6a5adc58aaf9d04c
 ---
 
 > ## Documentation Index
@@ -102,7 +102,7 @@ A `claude -p --resume` or `claude -p --continue` run resumes in plan mode only w
 
 If you see the "Resume this conversation?" dialog when resuming a session, its estimate is the share of your 5-hour usage limit that the saved conversation alone would use. The estimate doesn't count what you've already used.
 
-On Pro and Max plans, the dialog can appear when you resume a long conversation [after a long break](https://code.claude.com/docs/en/prompt-caching.md#resuming-a-session) or on a different model. The estimated use comes when you send your first message after **Resume**, not when you select it. Choose by whether your next task still needs the saved conversation:
+On Pro, Max, and Ultra plans, the dialog can appear when you resume a long conversation [after a long break](https://code.claude.com/docs/en/prompt-caching.md#resuming-a-session) or on a different model. The estimated use comes when you send your first message after **Resume**, not when you select it. Choose by whether your next task still needs the saved conversation:
 
 * **Resume**: keep working in the saved conversation.
 * **Start a new conversation**: switch to work that doesn't need the saved conversation. To reopen it later, run [`/resume`](#use-the-session-picker) at the prompt. The estimate doesn't apply to your first message in the new conversation. If the option says that Claude can look up this conversation, you can still refer to earlier work in the new conversation.

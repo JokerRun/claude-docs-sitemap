@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 2ba9f31fbca45b29dd8c26daa38f07299441adf566ee1facc93bfcf28ee89a37
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 810b396af25af0e68ef723ceacb342be1f8fe3c956a012ef88728765860c83f3
 ---
 
 ---
@@ -172,6 +172,8 @@ archived tunnels are excluded unless `include_archived` is set.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Returns
 
@@ -385,6 +387,8 @@ Retrieve a single tunnel in the caller's organization by ID.
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 ### Returns
 
 - `BetaOrganizationTunnel object`
@@ -592,6 +596,8 @@ tunnel returns the existing record unchanged.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Returns
 
@@ -802,6 +808,8 @@ access logs.
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 ### Returns
 
 - `BetaOrganizationTunnelToken object`
@@ -982,6 +990,8 @@ restarted after rotation must use the new value. An optional
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Body parameters
 
@@ -1238,6 +1248,8 @@ holds at most two non-archived certificates.
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 #### Body parameters
 
 - `ca_certificate_pem: string`
@@ -1476,6 +1488,8 @@ Archived certificates are excluded unless `include_archived` is set.
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 #### Returns
 
 - `data: array of BetaOrganizationTunnelCertificate`
@@ -1692,6 +1706,8 @@ Retrieve a single certificate registered on a tunnel by ID.
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 #### Returns
 
 - `BetaOrganizationTunnelCertificate object`
@@ -1902,6 +1918,8 @@ certificate is added.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 #### Returns
 

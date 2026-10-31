@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 5f644d84d85f2706f4080fb643e1ad0e05e27d4daa8c3154a09cac435bf9183c
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 90e0d1c229ad92836a01d743e81516ca1b94e1822e3eed5354a91421693ca554
 ---
 
 ---
@@ -123,33 +123,41 @@ Tunnel sudah ada di Console, tetapi tidak ada lalu lintas yang mengalir hingga t
 
 ## Menggunakan tunnel dalam agen
 
-Setelah stack Anda berjalan dan memiliki satu atau lebih server MCP yang dikonfigurasi, lampirkan server MCP upstream ke sesi Managed Agent. Untuk memanggil server yang sama dari Messages API, lihat [Menggunakan server MCP yang di-tunnel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview#use-the-tunneled-mcp-servers).
-
-<Note>
-  Pemilih hanya menampilkan tunnel dengan setidaknya satu sertifikat aktif. Tunnel yang masih menampilkan **Needs certificate** di daftar **MCP tunnels** tidak muncul di menu dropdown; daftarkan sertifikat CA terlebih dahulu. Pemilih juga bercakupan workspace: pemilih mencantumkan tunnel di workspace yang sama dengan sesi, bukan workspace lain.
-</Note>
+Setelah stack Anda berjalan, tambahkan server MCP yang di-tunnel ke agen saat Anda membuat sesi [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview). Untuk memanggil server yang sama dari Messages API, lihat [Menggunakan server MCP yang di-tunnel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview#use-the-tunneled-mcp-servers).
 
 <Steps>
   <Step title="Buka kotak dialog Create session">
-    Di Claude Console, buka halaman [Sessions](https://platform.claude.com/sessions) (`platform.claude.com/sessions`) dan klik **Create session**.
+    Di Claude Console, buka halaman [Sessions](https://platform.claude.com/sessions) (`platform.claude.com/sessions`). Di pemilih workspace pada sidebar, pilih workspace yang menampung tunnel tersebut. Klik **Create session**.
   </Step>
 
-  <Step title="Definisikan agen inline">
-    Di pemilih agen, pilih **Create new agent** agar Anda dapat mengedit daftar server MCP secara langsung.
+  <Step title="Buat agen baru">
+    Dari menu dropdown **Agent**, pilih **Create new agent**, karena kotak dialog hanya dapat menambahkan server MCP ke agen baru. Masukkan nama untuk agen di field **Name**.
   </Step>
 
   <Step title="Tambahkan server MCP">
-    Klik **+ MCP Server** dan buka menu dropdown. Tunnel yang dibuat di workspace saat ini muncul di bagian atas daftar, di atas katalog konektor publik. Pilih tunnel yang berada di depan server yang ingin Anda jangkau.
+    Di bawah **MCP servers**, klik **MCP server**. Pada kartu yang muncul, buka menu dropdown **Select a server** dan pilih tunnel Anda dari bagian atas daftar. Hanya tunnel yang memiliki [sertifikat CA aktif](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate) di workspace yang dipilih yang ditampilkan.
   </Step>
 
-  <Step title="Berikan perutean">
-    Kartu menampilkan dua field opsional: **Subdomain** (ditambahkan di depan domain tunnel) dan **Path** (ditambahkan setelahnya). Isi salah satu atau keduanya, bergantung pada cara rute proxy Anda dikonfigurasi. Baris **Resolves to** menampilkan URL server MCP lengkap yang dihubungi agen.
+  <Step title="Masukkan subdomain dan path">
+    Di field **Subdomain**, masukkan subdomain yang dikirim oleh peta `routes` proxy Anda ke server MCP, seperti `wiki`. Di field **Path**, masukkan path yang diharapkan oleh server MCP, seperti `mcp`. Pastikan baris **Resolves to** menampilkan subdomain dan path Anda di bawah domain tunnel, seperti `https://wiki.abcd1234.tunnel.anthropic.com/mcp`.
+  </Step>
+
+  <Step title="Tambahkan kredensial jika server MCP memerlukannya">
+    Tunnel membawa lalu lintas ke server MCP upstream tetapi tidak melakukan autentikasi ke server tersebut. Jika server memerlukan OAuth atau bearer token, klik **Connect** pada kartu dan simpan kredensial di vault. Jika kartu menampilkan **Needs vault** sebagai gantinya, buka **Credential vaults** dan tambahkan vault yang menyimpan kredensial untuk URL **Resolves to**. Jika server tidak memerlukan autentikasi, abaikan **Connect** atau **Needs vault** pada kartu. Untuk mempelajari cara kerja vault, lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults).
+  </Step>
+
+  <Step title="Pilih environment">
+    Di field **Environment**, di atas **MCP servers**, pilih environment. Jika tidak ada peringatan yang muncul di bawah field tersebut, lanjutkan ke langkah berikutnya. Jika peringatan menyatakan bahwa environment memblokir server MCP, klik **Edit environment**, yang akan membuka environment di tab browser baru. Di bawah **Networking**, tambahkan host dari baris **Resolves to**, seperti `wiki.abcd1234.tunnel.anthropic.com`, ke **Allowed hosts**. Biarkan kotak centang **Allow MCP servers** tidak dicentang, sebagaimana direkomendasikan oleh bagian [Batasi jaringan](https://platform.claude.com/docs/id/managed-agents/secure-deployment#limit-the-network). Klik **Save** dan kembali ke tab browser dengan kotak dialog.
+  </Step>
+
+  <Step title="Buat sesi">
+    Di bawah **Credential vaults**, hapus vault apa pun yang tidak diperlukan oleh sesi. Jika masih ada vault yang tersisa, pilih kotak centang yang mengonfirmasi bahwa Anda berwenang untuk menggunakannya. Di kotak dialog, klik **Create session**. Console menyimpan agen dan membuka sesi.
+  </Step>
+
+  <Step title="Uji koneksi">
+    Minta agen untuk menggunakan salah satu alat dari server MCP. Anda akan melihat panggilan alat diikuti oleh hasilnya. Jika agen tidak dapat menjangkau server, lihat [Memecahkan masalah tunnel MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting).
   </Step>
 </Steps>
-
-<Note>
-  Tunnel membawa lalu lintas; tunnel tidak melakukan autentikasi ke server MCP upstream. Konfigurasikan autentikasi OAuth atau bearer pada server MCP dengan cara yang sama seperti untuk server MCP lainnya.
-</Note>
 
 ## Mengarsipkan tunnel
 

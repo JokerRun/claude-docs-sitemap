@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-key-lifecycle
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 7b5d8edb3a028c042459ac118d66f5b53a97d8406279f175a3a7e7f5c7db9c5a
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: b82beafc305e800582612440b93a3545d9850778ab466da1badb72cb06a8a2c3
 ---
 
 ---
@@ -35,9 +35,9 @@ Mengaktifkan kembali kunci, atau memulihkan akses Anthropic ke kunci Anda, akan 
 
 ## Jika Anthropic tidak dapat menjangkau kunci Anda
 
-Permintaan yang menyimpan data di bawah kunci Anda akan gagal selama Anthropic tidak dapat menjangkau kunci Anda, misalnya saat terjadi gangguan pada KMS Anda. Di Claude Enterprise, permintaan ini mencakup pesan di chat dan di mode suara.
+Gangguan pada KMS Anda, misalnya, dapat menghalangi Anthropic untuk menjangkau kunci Anda. Saat hal itu terjadi, permintaan yang menyimpan data di bawah kunci Anda mungkin masih berhasil hingga 1 jam. Setelah itu, permintaan tersebut gagal hingga Anthropic dapat menjangkau kunci Anda lagi. Di Claude Enterprise, permintaan ini mencakup pesan di chat dan di mode suara.
 
-Di Messages API, permintaan ini mengembalikan error 503 dengan kode `cmek_key_unreachable`, dan Anda dapat mencobanya ulang. Message Batches API mencobanya ulang untuk Anda hingga kunci Anda tersedia atau batch kedaluwarsa.
+Di Messages API, permintaan yang gagal dengan cara ini mengembalikan error 503 dengan kode `cmek_key_unreachable`, dan Anda dapat mencobanya ulang. Message Batches API mencobanya ulang untuk Anda hingga kunci Anda tersedia atau batch kedaluwarsa.
 
 ## Mengganti kunci atau berhenti menggunakan CMEK
 

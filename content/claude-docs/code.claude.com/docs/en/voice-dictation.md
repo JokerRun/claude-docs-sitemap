@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/voice-dictation
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: dd7d3113d5f7c2c085f985c8ca94ead2f7606839fc724f4692c451e8fb36ed70
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 13a3f85496cb4a9b9ff214e692c5fd5d58332cd8c7714afc6010d7a7fb830aa1
 ---
 
 > ## Documentation Index
@@ -112,7 +112,7 @@ Neither key does anything else in the press that cancels: `Esc` doesn't interrup
 
 Voice dictation uses the same [`language` setting](https://code.claude.com/docs/en/settings-reference#language) that controls Claude's response language. If that setting is empty, dictation defaults to English. In the VS Code extension, if `language` is empty, dictation uses VS Code's `accessibility.voice.speechLanguage` setting before defaulting to English.
 
-> **Supported dictation languages**
+> [accordion] Supported dictation languages
 >
 > | Language | Code |
 > | :- | :- |

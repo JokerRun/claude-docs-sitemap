@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/delete
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: e358bd3a9f6dada24edb02fb176b888d3b0431e4c4fb7535531f0d6e258e529f
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 189f3803224dfb6b0e2482361c8db8c1b52dd1800e8ea738a3fd2c5076c13dae
 ---
 
 ---
@@ -143,6 +143,8 @@ Delete Session Resource
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

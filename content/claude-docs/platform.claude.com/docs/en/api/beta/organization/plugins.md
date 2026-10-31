@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 343cb71a134cb20fbd8376ed6c6abd66ead5b0561f10fd51977d3ff7cf7c668a
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 3491e2549c8da1ff6a377d3fb7631a20a08bba37dfb056a9db9758c986200ebc
 ---
 
 ---
@@ -163,6 +163,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Body parameters (form-data)
 
@@ -414,7 +416,7 @@ curl https://api.anthropic.com/v1/organizations/plugins \
   "created_by": {
     "email_address": "user@example.com",
     "type": "user_actor",
-    "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
+    "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu"
   },
   "description": "Reviews pull requests against your team's conventions.",
   "display_name": "Code Review Helper",
@@ -572,6 +574,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Returns
 
@@ -805,7 +809,7 @@ curl https://api.anthropic.com/v1/organizations/plugins/$PLUGIN_ID \
   "created_by": {
     "email_address": "user@example.com",
     "type": "user_actor",
-    "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
+    "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu"
   },
   "description": "Reviews pull requests against your team's conventions.",
   "display_name": "Code Review Helper",
@@ -980,6 +984,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Body parameters
 
@@ -1223,7 +1229,7 @@ curl https://api.anthropic.com/v1/organizations/plugins/$PLUGIN_ID \
   "created_by": {
     "email_address": "user@example.com",
     "type": "user_actor",
-    "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
+    "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu"
   },
   "description": "Reviews pull requests against your team's conventions.",
   "display_name": "Code Review Helper",
@@ -1435,6 +1441,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Returns
 
@@ -1674,7 +1682,7 @@ curl https://api.anthropic.com/v1/organizations/plugins \
       "created_by": {
         "email_address": "user@example.com",
         "type": "user_actor",
-        "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
+        "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu"
       },
       "description": "Reviews pull requests against your team's conventions.",
       "display_name": "Code Review Helper",
@@ -1840,6 +1848,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Returns
 
@@ -2397,6 +2407,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 #### Body parameters (form-data)
 
 - `files: array of file`
@@ -2581,7 +2593,7 @@ curl https://api.anthropic.com/v1/organizations/plugins/$PLUGIN_ID/versions \
   "created_by": {
     "email_address": "user@example.com",
     "type": "user_actor",
-    "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
+    "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu"
   },
   "description": "Reviews pull requests against your team's conventions.",
   "display_name": "Code Review Helper",
@@ -2747,6 +2759,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 #### Returns
 
@@ -2924,7 +2938,7 @@ curl https://api.anthropic.com/v1/organizations/plugins/$PLUGIN_ID/versions \
       "created_by": {
         "email_address": "user@example.com",
         "type": "user_actor",
-        "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
+        "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu"
       },
       "description": "Reviews pull requests against your team's conventions.",
       "display_name": "Code Review Helper",
@@ -3080,6 +3094,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 #### Returns
 
@@ -3251,7 +3267,7 @@ curl https://api.anthropic.com/v1/organizations/plugins/$PLUGIN_ID/versions/$VER
   "created_by": {
     "email_address": "user@example.com",
     "type": "user_actor",
-    "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
+    "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu"
   },
   "description": "Reviews pull requests against your team's conventions.",
   "display_name": "Code Review Helper",
@@ -3420,6 +3436,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 #### Example
 
@@ -3596,6 +3614,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 #### Returns
 
@@ -3851,6 +3871,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 #### Body parameters
 
@@ -4124,6 +4146,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 #### Returns
 
 - `BetaDeletedPluginInstallationSetting object`
@@ -4369,6 +4393,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 #### Returns
 

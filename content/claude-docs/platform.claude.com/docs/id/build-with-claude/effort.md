@@ -1,16 +1,16 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/effort
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 76f8df66198e42f519b9a638a68840fa672eb09a5ffeb5966d2f06f8b5dfe7fd
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 809cf96dd95b1069595587d3548012a511d30e57be976036ac01a67cabc981ab
 ---
 
 ---
 title: Effort
 url: https://platform.claude.com/docs/id/build-with-claude/effort
-description: Kontrol berapa banyak token yang digunakan Claude saat merespons dengan parameter effort, dengan menyeimbangkan antara ketelitian respons dan efisiensi token.
+description: Kendalikan berapa banyak token yang digunakan Claude saat merespons dengan parameter effort, menyeimbangkan antara ketelitian respons dan efisiensi token.
 featureMetadata:
-  status: ga
+  status: stable
   zdr:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
@@ -31,23 +31,23 @@ featureMetadata:
     - claude-sonnet-4-6
     - claude-opus-4-5-20251101
   supportedPlatforms:
-    Claude API: ga
-    Claude Platform on AWS: ga
-    Amazon Bedrock: ga
-    Amazon Bedrock (InvokeModel): ga
-    Claude Models on Google Cloud (Google managed): ga
-    Microsoft Foundry: ga
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (InvokeModel): stable
+    Claude Models on Google Cloud (Google managed): stable
+    Microsoft Foundry: stable
 ---
 
-**API support**: Usage differs by product.
+**Dukungan API**: Penggunaan berbeda menurut produk.
 
-* **Messages API**: Always on. Set `output_config.effort` on the request. With no value, the model’s default level applies.
-* **Managed Agents**: Always on. Set `effort` on the agent’s model object, or in a session’s model override. With no value, Managed Agents fills in the model’s default.
+* **Messages API**: Selalu aktif. Atur `output_config.effort` pada permintaan. Tanpa nilai, level default model yang berlaku.
+* **Managed Agents**: Selalu aktif. Atur `effort` pada objek model agen, atau dalam override model sesi. Tanpa nilai, Managed Agents mengisi default model.
 
-Parameter effort (upaya) memungkinkan Anda mengendalikan berapa banyak token yang dihabiskan Claude saat merespons permintaan. Anda dapat menyeimbangkan antara ketelitian respons dan efisiensi token dengan satu model. Parameter effort tingkat atas tersedia di semua model yang didukung tanpa memerlukan header beta. [Effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) masih dalam versi beta.
+Parameter effort memungkinkan Anda mengendalikan berapa banyak token yang dihabiskan Claude saat merespons permintaan. Anda dapat menyeimbangkan antara ketelitian respons dan efisiensi token dengan satu model. Parameter effort tingkat atas tersedia di semua model yang didukung tanpa memerlukan beta header. [Effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) masih dalam tahap beta.
 
 <Tip>
-  Untuk mempelajari bagaimana effort berinteraksi dengan thinking (pemikiran) dan kontrol mana yang sebaiknya digunakan, lihat [Thinking dan effort](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-effort). Jika adaptive thinking (pemikiran adaptif) tersedia, effort adalah cara yang direkomendasikan untuk mengendalikan kedalaman pemikiran.
+  Untuk mempelajari bagaimana effort berinteraksi dengan pemikiran dan kontrol mana yang sebaiknya digunakan, lihat [Pemikiran dan effort](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-effort). Jika pemikiran adaptif tersedia, effort adalah cara yang direkomendasikan untuk mengendalikan kedalaman pemikiran.
 </Tip>
 
 ## Mengatur tingkat effort
@@ -130,7 +130,8 @@ Atur `output_config.effort` pada permintaan. Contoh berikut menjalankan satu per
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages = [
-          new UserMessageParam {
+          new UserMessageParam
+          {
               Content = "Analyze the trade-offs between microservices and monolithic architectures"
           }
       ],
@@ -212,7 +213,7 @@ Atur `output_config.effort` pada permintaan. Contoh berikut menjalankan satu per
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     messages: [
       { role: "user", content: "Analyze the trade-offs between microservices and monolithic architectures" }
@@ -230,7 +231,7 @@ Atur `output_config.effort` pada permintaan. Contoh berikut menjalankan satu per
 
 ## Cara kerja effort
 
-Sebagian besar model Claude secara default menggunakan effort high, menghabiskan token sebanyak yang diperlukan untuk hasil yang sangat baik; Claude Opus 5.5 dan Claude Haiku 5.5 secara default menggunakan medium. Anda dapat menaikkan tingkat effort ke `max` untuk kemampuan tertinggi mutlak, atau menurunkannya agar lebih hemat dalam penggunaan token, mengoptimalkan kecepatan dan biaya dengan menerima sedikit penurunan kemampuan.
+Sebagian besar model Claude secara default menggunakan effort tinggi, menghabiskan token sebanyak yang diperlukan untuk hasil yang sangat baik; Claude Opus 5.5 dan Claude Haiku 5.5 secara default menggunakan medium. Anda dapat menaikkan tingkat effort ke `max` untuk kemampuan tertinggi mutlak, atau menurunkannya agar lebih hemat dalam penggunaan token, mengoptimalkan kecepatan dan biaya sambil menerima sedikit penurunan kemampuan.
 
 <Tip>
   Mengatur `effort` ke nilai default model (`"medium"` pada Claude Opus 5.5 dan Claude Haiku 5.5, `"high"` pada model lain) menghasilkan perilaku yang persis sama dengan menghilangkan parameter `effort` sepenuhnya.
@@ -240,9 +241,9 @@ Parameter effort memengaruhi **semua token** dalam respons, termasuk:
 
 * Respons teks dan penjelasan
 * Pemanggilan alat dan argumen fungsi
-* Thinking (saat aktif)
+* Pemikiran (saat aktif)
 
-Karena effort berlaku untuk setiap token output, effort berfungsi baik thinking diaktifkan maupun tidak. Effort yang lebih rendah juga berarti pemanggilan alat yang lebih sedikit dan lebih ringkas.
+Karena effort berlaku untuk setiap token output, effort berfungsi dengan atau tanpa pemikiran. Effort yang lebih rendah juga berarti pemanggilan alat yang lebih sedikit dan lebih ringkas.
 
 ### Tingkat effort
 
@@ -251,10 +252,10 @@ Karena effort berlaku untuk setiap token output, effort berfungsi baik thinking 
 | `max`    | Kemampuan maksimum mutlak tanpa batasan pada pengeluaran token. Tersedia di Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, dan Claude Haiku 5.5. | Tugas yang memerlukan penalaran sedalam mungkin dan analisis paling menyeluruh                       |
 | `xhigh`  | Kemampuan yang diperluas untuk pekerjaan jangka panjang. Tersedia di Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5.5, Claude Sonnet 5, dan Claude Haiku 5.5.                                                                   | Tugas agentik dan coding yang berjalan lama (lebih dari 30 menit) dengan anggaran token dalam jutaan |
 | `high`   | Menghabiskan token sebanyak yang dibutuhkan tugas untuk hasil yang sangat baik. Default pada setiap model yang mendukung effort kecuali Claude Opus 5.5 dan Claude Haiku 5.5.                                                                                                                                                            | Penalaran kompleks, masalah coding yang sulit, tugas agentik                                         |
-| `medium` | Pendekatan seimbang dengan penghematan token moderat. Default pada Claude Opus 5.5 dan Claude Haiku 5.5.                                                                                                                                                                                                                                 | Tugas agentik yang memerlukan keseimbangan antara kecepatan, biaya, dan kinerja                      |
-| `low`    | Paling efisien. Penghematan token yang signifikan dengan sedikit penurunan kemampuan.                                                                                                                                                                                                                                                    | Tugas yang lebih sederhana yang membutuhkan kecepatan terbaik dan biaya terendah, seperti subagen    |
+| `medium` | Pendekatan seimbang dengan penghematan token moderat. Default pada Claude Opus 5.5 dan Claude Haiku 5.5.                                                                                                                                                                                                                                 | Tugas agentik yang memerlukan keseimbangan kecepatan, biaya, dan performa                            |
+| `low`    | Paling efisien. Penghematan token signifikan dengan sedikit penurunan kemampuan.                                                                                                                                                                                                                                                         | Tugas yang lebih sederhana yang membutuhkan kecepatan terbaik dan biaya terendah, seperti subagen    |
 
-Tidak setiap model yang mendukung `max` juga mendukung `xhigh`.
+Tidak setiap model yang mendukung `max` mendukung `xhigh`.
 
 <Note>
   Effort adalah sinyal perilaku, bukan anggaran token yang ketat. Pada tingkat effort yang lebih rendah, Claude tetap berpikir pada masalah yang cukup sulit, tetapi berpikir lebih sedikit dibandingkan pada tingkat effort yang lebih tinggi untuk masalah yang sama.
@@ -262,122 +263,142 @@ Tidak setiap model yang mendukung `max` juga mendukung `xhigh`.
 
 Rekomendasi per model berikut menggantikan tabel ini jika terdapat perbedaan.
 
-### Tingkat effort yang direkomendasikan untuk Claude Fable 5.1
+## Tingkat effort yang direkomendasikan
 
-Claude Fable 5.1 mendukung kelima tingkat effort. **Mulailah dengan `high`, nilai default.** Naikkan ke `xhigh` atau `max` untuk pekerjaan agentic dan coding yang paling sensitif terhadap kemampuan, dan turunkan ke `medium` atau `low` untuk pekerjaan rutin atau yang sensitif terhadap latensi setelah evaluasi Anda menunjukkan kualitas tetap terjaga. Pada `high` dan di atasnya, atur `max_tokens` yang besar. Ini adalah batas keras untuk total output (thinking ditambah teks respons). Rekomendasi yang sama berlaku untuk Claude Mythos 5.1. Lihat [Prompting Claude Fable 5.1](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#consider-all-effort-levels).
+**[Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) & [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview)** — *For demanding reasoning and long-horizon agentic work*
+
+Claude Fable 5.1 mendukung kelima tingkat effort. **Mulailah dengan `high`, yang merupakan default.** Naikkan ke `xhigh` atau `max` untuk pekerjaan agentik dan coding yang paling sensitif terhadap kemampuan, dan turunkan ke `medium` atau `low` untuk pekerjaan rutin atau yang sensitif terhadap latensi setelah evaluasi Anda menunjukkan kualitas tetap terjaga. Pada `high` ke atas, atur `max_tokens` yang besar. Ini adalah batas keras pada total output (pemikiran ditambah teks respons).
 
 Claude Fable 5.1 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) dengan `output_config` per pesan, yang mempertahankan cache prompt.
 
-### Tingkat effort yang direkomendasikan untuk Claude Fable 5
+See also: [Prompting Claude Fable 5.1](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#consider-all-effort-levels)
 
-Effort adalah kontrol utama untuk menyeimbangkan kecerdasan, latensi, dan biaya pada Claude Fable 5. **Mulailah dengan `high`, nilai default, untuk sebagian besar tugas**, gunakan `xhigh` untuk beban kerja yang paling sensitif terhadap kemampuan, dan turunkan ke `medium` atau `low` untuk pekerjaan rutin. Pengaturan effort yang lebih rendah pada Claude Fable 5 tetap berkinerja baik dan sering kali melampaui performa `xhigh` pada model sebelumnya. Pada `high` dan `xhigh`, atur `max_tokens` yang besar. Ini adalah batas keras untuk total output (thinking ditambah teks respons). Lihat [Kontrol biaya](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost#cost-control).
+**[Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)** — *For long-running agentic coding and knowledge work*
 
-Kurangi effort jika suatu tugas selesai tetapi memakan waktu lebih lama dari yang diperlukan, atau jika Anda menginginkan gaya kerja yang lebih cepat dan interaktif. Rekomendasi yang sama berlaku untuk Claude Mythos 5. Untuk panduan lebih lengkap, lihat [Prompting Claude Fable 5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5).
+Claude Opus 5.5 mendukung kelima tingkat effort, dan `medium` adalah default-nya (Claude Opus 5 dan model Opus sebelumnya secara default menggunakan `high`, sehingga permintaan yang menghilangkan `effort` berjalan satu tingkat lebih rendah dibandingkan pada Claude Opus 5). Pemikiran adaptif selalu aktif dan tidak dapat dimatikan, sehingga effort adalah kontrol utama untuk seberapa banyak model bernalar dan berapa biaya suatu permintaan. Jalankan sweep effort pada evaluasi Anda sendiri alih-alih membawa pengaturan dari model sebelumnya, dan atur `max_tokens` yang besar pada tingkat yang lebih tinggi: ini adalah batas keras pada total output (pemikiran ditambah teks respons). Permintaan yang mengatur `thinking: {"type": "disabled"}` mengembalikan error 400 pada setiap tingkat effort. Claude Opus 5.5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) dengan `output_config` per pesan, yang mempertahankan cache prompt.
 
-### Tingkat effort yang direkomendasikan untuk Claude Opus 5.5
+See also: [Prompting Claude Opus 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5)
 
-Claude Opus 5.5 mendukung kelima tingkat effort, dan `medium` adalah default-nya (Claude Opus 5 dan model Opus sebelumnya secara default menggunakan `high`, sehingga permintaan yang menghilangkan `effort` berjalan satu tingkat lebih rendah dibandingkan pada Claude Opus 5). Pemikiran adaptif selalu aktif dan tidak dapat dinonaktifkan, sehingga effort adalah kontrol utama untuk seberapa banyak model bernalar dan berapa biaya suatu permintaan. Jalankan sweep effort pada eval Anda sendiri alih-alih membawa pengaturan dari model sebelumnya, dan atur `max_tokens` yang besar pada tingkat yang lebih tinggi: ini adalah batas keras untuk total output (pemikiran ditambah teks respons). Permintaan yang mengatur `thinking: {"type": "disabled"}` mengembalikan error 400 pada setiap tingkat effort. Claude Opus 5.5 juga mendukung [perubahan effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) dengan `output_config` per pesan, yang mempertahankan cache prompt. Lihat [Prompting Claude Opus 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5).
+**[Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview)** — *The best combination of speed and intelligence*
 
-### Tingkat effort yang direkomendasikan untuk Claude Opus 5
+Claude Sonnet 5.5 mendukung kelima tingkat effort, dan `high` adalah default pada Claude API. Tingkatnya dikalibrasi ulang, sehingga suatu tingkat tidak menghasilkan jumlah pemikiran yang sama dengan tingkat yang sama pada Claude Sonnet 5. Jalankan sweep effort baru pada evaluasi Anda alih-alih membawa pengaturan yang Anda gunakan pada Claude Sonnet 5. Mulailah dengan `high` kecuali beban kerja Anda bersifat agentik atau sensitif terhadap latensi. Untuk coding agentik dan penggunaan alat multilangkah, mulailah dengan `medium` untuk tugas yang terdefinisi dengan baik dan beralih ke `high` untuk tugas yang lebih sulit atau lebih panjang. Untuk chat dan pekerjaan lain yang sensitif terhadap latensi, mulailah dengan `medium` atau `low`. Gunakan `xhigh` atau `max` hanya jika evaluasi Anda menunjukkan peningkatan kualitas. Atur `max_tokens` dengan ruang untuk pemikiran dan balasan. Pemikiran dihitung terhadap `max_tokens` bahkan ketika konten pemikiran tidak dikembalikan. Untuk coding agentik, atur `max_tokens` ke 128.000, nilai maksimum model, dan lakukan [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) pada respons.
 
-Claude Opus 5 mendukung kelima tingkat effort. **Mulailah dengan `high`, nilai default**, dan sesuaikan berdasarkan eval Anda: naikkan ke `xhigh` untuk pekerjaan coding dan agentik yang menuntut, atau ke `max` ketika suatu tugas membenarkan pengeluaran token tanpa batas, dan gunakan `low` dan `medium` secara leluasa sebagai kontrol utama Anda untuk biaya token dan waktu respons di mana pun eval Anda menunjukkan kualitas tetap terjaga. Jika Anda membawa pengaturan effort dari model sebelumnya, jalankan sweep effort baru pada eval Anda alih-alih menggunakannya kembali.
+Untuk mematikan pemikiran di awal, kirim `thinking: {"type": "between_tools"}` alih-alih `"disabled"`. Ini adalah pengaturan pemikiran terendah pada Claude Sonnet 5.5, dan berfungsi pada effort `low`, `medium`, dan `high`. Pada `xhigh` atau `max`, permintaan dengan pengaturan ini mengembalikan error 400, jadi gunakan pemikiran adaptif pada tingkat tersebut: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Lihat [Menjalankan tanpa pemikiran di awal](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#running-without-up-front-thinking).
 
-Effort mengendalikan volume thinking, bukan panjang respons yang terlihat: pada Claude Opus 5, mengubah effort tidak secara andal memperpendek respons, jadi [gunakan prompt untuk mengatur panjang](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5#response-length-and-verbosity) sebagai gantinya.
+Claude Sonnet 5.5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) dengan `output_config` per pesan, yang mempertahankan cache prompt. Dengan `between_tools`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari tingkat yang berlaku mengembalikan error 400. Untuk memvariasikan effort di setiap giliran, gunakan pemikiran adaptif.
+
+See also: [Prompting Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#calibrate-effort)
+
+**[Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview)** — *For high-volume, latency-sensitive tasks such as classification, extraction, and routing*
+
+Claude Haiku 5.5 mendukung kelima tingkat effort, dan `medium` adalah default-nya. Effort adalah kontrol utama untuk seberapa banyak model berpikir, dan dengan itu kualitas, latensi, dan biaya. **Mulailah dengan `medium`** untuk sebagian besar pekerjaan, termasuk coding agentik. Gunakan `low`, tingkat termurah dan tercepat, untuk chat, tugas alat singkat, dan permintaan sederhana bervolume tinggi. Dalam prompt agen yang panjang, model lebih mungkin melewatkan pencarian, berhenti lebih awal, atau melewatkan pemeriksaan pada `low`. Gunakan `high` untuk pekerjaan berbasis pengetahuan, tugas agen yang lebih panjang, dan kepatuhan instruksi yang ketat. Gunakan `xhigh` atau `max` hanya jika evaluasi Anda menunjukkan peningkatan kualitas, dan bandingkan dengan Claude Sonnet 5.5 dalam hal performa, biaya, dan kecepatan. Pemikiran aktif secara default dan dihitung terhadap `max_tokens`, jadi sisakan ruang untuknya.
+
+Untuk mendapatkan pemikiran yang lebih sedikit, turunkan tingkat effort. Anda juga dapat mengirim `thinking: {"type": "disabled"}` pada effort `high` atau di bawahnya. Pada `xhigh` atau `max`, ini mengembalikan error 400, jadi gunakan pemikiran adaptif di sana: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`.
+
+Pada Claude API dan Claude Models on Google Cloud (Google managed), Claude Haiku 5.5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) dengan `output_config` per pesan, yang mempertahankan cache prompt. Dengan `thinking: {"type": "disabled"}`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari tingkat yang berlaku mengembalikan error 400. Untuk memvariasikan effort di setiap giliran, gunakan pemikiran adaptif.
+
+See also: [Prompting Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#use-effort-to-control-thinking)
+
+**[Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview) & [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview)**
+
+Effort adalah kontrol utama untuk menyeimbangkan kecerdasan, latensi, dan biaya pada Claude Fable 5. **Mulailah dengan `high`, yang merupakan default, untuk sebagian besar tugas**, gunakan `xhigh` untuk beban kerja yang paling sensitif terhadap kemampuan, dan turunkan ke `medium` atau `low` untuk pekerjaan rutin. Pengaturan effort yang lebih rendah pada Claude Fable 5 tetap berkinerja baik dan sering melampaui performa `xhigh` pada model sebelumnya. Pada `high` dan `xhigh`, atur `max_tokens` yang besar. Ini adalah batas keras pada total output (pemikiran ditambah teks respons). Lihat [Kontrol biaya](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost#cost-control).
+
+Kurangi effort jika suatu tugas selesai tetapi memakan waktu lebih lama dari yang diperlukan, atau jika Anda menginginkan gaya kerja yang lebih cepat dan lebih interaktif.
+
+See also: [Prompting Claude Fable 5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5)
+
+**[Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview)**
+
+Claude Opus 5 mendukung kelima tingkat effort. **Mulailah dengan `high`, yang merupakan default**, dan sesuaikan berdasarkan evaluasi Anda: naikkan ke `xhigh` untuk pekerjaan coding dan agentik yang menuntut, atau ke `max` ketika suatu tugas membenarkan pengeluaran token tanpa batasan. Gunakan `low` dan `medium` secara leluasa sebagai kontrol utama Anda untuk biaya token dan waktu respons di mana pun evaluasi Anda menunjukkan kualitas tetap terjaga. Jika Anda membawa pengaturan effort dari model sebelumnya, jalankan sweep effort baru pada evaluasi Anda alih-alih menggunakannya kembali.
+
+Effort mengendalikan volume pemikiran, bukan panjang respons yang terlihat: pada Claude Opus 5, mengubah effort tidak secara andal memperpendek respons, jadi [gunakan prompt untuk mengatur panjang](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5#response-length-and-verbosity) sebagai gantinya.
 
 Default API adalah `high`. Atur `effort` secara eksplisit untuk menggunakan tingkat yang berbeda. Nilai yang Anda berikan menggantikan default.
 
-Pada Claude Opus 5, thinking tidak dapat dinonaktifkan pada effort `xhigh` atau `max`: permintaan yang mengatur `thinking: {"type": "disabled"}` pada tingkat tersebut mengembalikan error 400. Lihat [Effort dengan thinking](https://platform.claude.com/docs/id/build-with-claude/effort#effort-with-thinking).
+Pada Claude Opus 5, pemikiran tidak dapat dinonaktifkan pada effort `xhigh` atau `max`: permintaan yang mengatur `thinking: {"type": "disabled"}` pada tingkat tersebut mengembalikan error 400. Lihat [Effort dengan pemikiran](https://platform.claude.com/docs/id/build-with-claude/effort#effort-with-thinking).
 
 Saat menjalankan Claude Opus 5 pada effort `xhigh` atau `max`, atur `max_tokens` yang besar agar model memiliki ruang untuk berpikir dan bertindak di seluruh subagen dan pemanggilan alat. Memulai dari 64k token dan menyesuaikan dari sana adalah default yang wajar.
 
 Claude Opus 5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) dengan `output_config` per pesan, yang mempertahankan cache prompt. Effort per pesan tidak tersedia untuk Claude Opus 5 di Amazon Bedrock.
 
-### Tingkat effort yang direkomendasikan untuk Claude Opus 4.8
+See also: [Prompting Claude Opus 5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5)
 
-Panduan untuk Claude Opus 4.7 juga berlaku untuk Claude Opus 4.8. **Mulailah dengan `xhigh` untuk kasus penggunaan coding dan agentic**, gunakan `high` untuk sebagian besar beban kerja lain yang sensitif terhadap kecerdasan, dan turunkan ke `medium` atau `low` hanya ketika Anda telah mengukur bahwa tingkat yang lebih rendah tetap menjaga kualitas pada evaluasi Anda.
+**[Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview)**
+
+Panduan untuk Claude Opus 4.7 juga berlaku untuk Claude Opus 4.8. **Mulailah dengan `xhigh` untuk kasus penggunaan coding dan agentik**, gunakan `high` untuk sebagian besar beban kerja lain yang sensitif terhadap kecerdasan, dan turunkan ke `medium` atau `low` hanya ketika Anda telah mengukur bahwa tingkat yang lebih rendah mempertahankan kualitas pada evaluasi Anda.
 
 Default API adalah `high`. Atur `effort` secara eksplisit untuk menggunakan tingkat yang berbeda. Nilai yang Anda berikan menggantikan default.
 
-Saat menjalankan Claude Opus 4.8 pada effort `xhigh` atau `max`, atur `max_tokens` yang besar agar model memiliki ruang untuk berpikir dan bertindak di seluruh subagen dan pemanggilan alat. Memulai dari 64k token dan menyesuaikannya dari sana adalah default yang wajar.
+Saat menjalankan Claude Opus 4.8 pada effort `xhigh` atau `max`, atur `max_tokens` yang besar agar model memiliki ruang untuk berpikir dan bertindak di seluruh subagen dan pemanggilan alat. Memulai dari 64k token dan menyesuaikan dari sana adalah default yang wajar.
 
-### Tingkat effort yang direkomendasikan untuk Claude Opus 4.7
+See also: [Prompting Claude Opus 4.8](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-4-8)
 
-**Mulailah dengan `xhigh` untuk kasus penggunaan coding dan agentik**, dan gunakan `high` sebagai minimum untuk sebagian besar beban kerja yang sensitif terhadap kecerdasan. Turunkan ke `medium` untuk beban kerja yang sensitif terhadap biaya, atau naikkan ke `max` hanya ketika eval Anda menunjukkan ruang peningkatan yang terukur pada `xhigh`.
+**[Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview)**
+
+**Mulailah dengan `xhigh` untuk kasus penggunaan coding dan agentik**, dan gunakan `high` sebagai minimum untuk sebagian besar beban kerja yang sensitif terhadap kecerdasan. Turunkan ke `medium` untuk beban kerja yang sensitif terhadap biaya, atau naikkan ke `max` hanya ketika evaluasi Anda menunjukkan ruang peningkatan yang terukur pada `xhigh`.
 
 Default API adalah `high`. Untuk menggunakan `xhigh`, atur `effort` secara eksplisit. Nilai yang Anda berikan menggantikan default.
 
-| Effort   | Panduan untuk Claude Opus 4.7                                                                                                                                                                                                                                                            |
-| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `low`    | Efisien, tetapi paling baik untuk tugas singkat dengan cakupan terbatas. Pasangkan `low` dengan daftar periksa eksplisit jika tugas Anda memiliki beberapa bagian.                                                                                                                       |
-| `medium` | Pengganti langsung untuk alur kerja rata-rata di mana Anda menginginkan hasil yang baik sambil mengurangi biaya.                                                                                                                                                                         |
-| `high`   | Kasus penggunaan tingkat lanjut yang tetap membutuhkan keseimbangan antara kecerdasan dan konsumsi token. Ini sering kali merupakan keseimbangan terbaik antara kualitas dan efisiensi token.                                                                                            |
-| `xhigh`  | Titik awal yang direkomendasikan untuk pekerjaan coding dan agentik, serta untuk tugas eksploratif seperti pemanggilan alat berulang, pencarian web terperinci, dan pencarian basis pengetahuan. Perkirakan penggunaan token yang jauh lebih tinggi daripada `high`.                     |
-| `max`    | Simpan untuk masalah frontier. Pada sebagian besar beban kerja, `max` menambah biaya yang signifikan untuk peningkatan kualitas yang relatif kecil, dan pada beberapa tugas output terstruktur atau yang kurang sensitif terhadap kecerdasan, ini dapat menyebabkan berpikir berlebihan. |
+* **Effort rendah:** Efisien, tetapi paling baik untuk tugas singkat dengan cakupan terbatas. Pasangkan `low` dengan daftar periksa eksplisit jika tugas Anda memiliki beberapa bagian.
+* **Effort sedang:** Pengaturan untuk alur kerja rata-rata di mana Anda menginginkan hasil yang baik sambil mengurangi biaya.
+* **Effort tinggi:** Kasus penggunaan lanjutan yang tetap membutuhkan keseimbangan antara kecerdasan dan konsumsi token. Ini sering kali merupakan keseimbangan terbaik antara kualitas dan efisiensi token.
+* **Effort xhigh:** Titik awal yang direkomendasikan untuk pekerjaan coding dan agentik, serta untuk tugas eksploratif seperti pemanggilan alat berulang, pencarian web terperinci, dan pencarian basis pengetahuan. Harapkan penggunaan token yang jauh lebih tinggi daripada `high`.
+* **Effort max:** Simpan untuk masalah di garis depan. Pada sebagian besar beban kerja, `max` menambah biaya signifikan untuk peningkatan kualitas yang relatif kecil, dan pada beberapa tugas structured-output atau yang kurang sensitif terhadap kecerdasan, hal ini dapat menyebabkan overthinking.
 
-Claude Opus 4.7 juga mematuhi tingkat effort secara lebih ketat daripada Claude Opus 4.6, terutama pada `low` dan `medium`. Pada tingkat effort yang lebih rendah, model membatasi pekerjaannya pada apa yang diminta alih-alih melakukan lebih dari yang diminta. Jika Anda mengamati penalaran yang dangkal pada masalah kompleks dengan Claude Opus 4.7, naikkan effort alih-alih mengakalinya dengan prompt. Jika Anda harus mempertahankan effort rendah demi latensi, tambahkan panduan yang terarah seperti “This task involves multistep reasoning. Think carefully before responding.”
+Claude Opus 4.7 juga mematuhi tingkat effort dengan lebih ketat dibandingkan Claude Opus 4.6, terutama pada `low` dan `medium`. Pada tingkat effort yang lebih rendah, model membatasi pekerjaannya pada apa yang diminta alih-alih melakukan lebih dari yang diminta. Jika Anda mengamati penalaran yang dangkal pada masalah kompleks dengan Claude Opus 4.7, naikkan effort alih-alih mengakalinya dengan prompt. Jika Anda harus menjaga effort tetap rendah karena latensi, tambahkan panduan yang terarah seperti “This task involves multistep reasoning. Think carefully before responding.”
 
 Saat menjalankan Claude Opus 4.7 pada effort `xhigh` atau `max`, atur `max_tokens` yang besar agar model memiliki ruang untuk berpikir dan bertindak di seluruh subagen dan pemanggilan alat. Memulai dari 64k token dan menyesuaikan dari sana adalah default yang wajar.
 
-### Tingkat effort yang direkomendasikan untuk Claude Sonnet 5.5
+See also: [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices)
 
-Claude Sonnet 5.5 mendukung kelima tingkat effort, dan `high` adalah default di Claude API. Tingkat-tingkatnya telah dikalibrasi ulang, sehingga suatu tingkat tidak menghasilkan jumlah thinking yang sama dengan tingkat yang sama pada Claude Sonnet 5. Jalankan sweep effort baru pada eval Anda alih-alih membawa pengaturan yang Anda gunakan pada Claude Sonnet 5. Mulailah dengan `high` kecuali beban kerja Anda bersifat agentik atau sensitif terhadap latensi. Untuk coding agentik dan penggunaan alat multilangkah, mulailah dengan `medium` untuk tugas yang terdefinisi dengan baik dan beralih ke `high` untuk tugas yang lebih sulit atau lebih panjang. Untuk chat dan pekerjaan lain yang sensitif terhadap latensi, mulailah dengan `medium` atau `low`. Gunakan `xhigh` atau `max` hanya jika eval Anda menunjukkan peningkatan kualitas. Atur `max_tokens` dengan ruang untuk thinking dan balasan. Thinking dihitung terhadap `max_tokens` bahkan ketika konten thinking tidak dikembalikan. Untuk coding agentik, atur `max_tokens` ke 128.000, nilai maksimum model, dan lakukan [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) pada respons.
+**[Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview)**
 
-Untuk mematikan thinking di awal, kirim `thinking: {"type": "between_tools"}` alih-alih `"disabled"`. Ini adalah pengaturan thinking terendah pada Claude Sonnet 5.5, dan berfungsi pada effort `low`, `medium`, dan `high`. Pada `xhigh` atau `max`, permintaan dengan pengaturan ini mengembalikan error 400, jadi gunakan adaptive thinking pada tingkat tersebut: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Lihat [Menjalankan tanpa thinking di awal](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#running-without-up-front-thinking).
+Claude Sonnet 5 secara default menggunakan effort `high` pada Claude API dan Claude Code.
 
-Claude Sonnet 5.5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) dengan `output_config` per pesan, yang mempertahankan cache prompt. Dengan `between_tools`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari tingkat yang berlaku mengembalikan error 400. Untuk memvariasikan effort per giliran, gunakan adaptive thinking. Lihat [Prompting Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#calibrate-effort).
+* **Effort tinggi (default):** Cocok untuk penalaran kompleks, coding, dan tugas agentik di mana kualitas lebih penting daripada kecepatan atau biaya.
+* **Effort xhigh:** Untuk tugas coding dan agentik yang paling sulit.
+* **Effort sedang:** Penurunan dari default untuk menghemat biaya. Sebanding dengan Claude Sonnet 4.6 pada effort tinggi.
+* **Effort rendah:** Untuk beban kerja bervolume tinggi atau sensitif terhadap latensi. Cocok untuk chat dan kasus penggunaan non-coding di mana penyelesaian yang lebih cepat diprioritaskan.
+* **Effort max:** Untuk tugas yang memerlukan kemampuan tertinggi mutlak tanpa batasan pada pengeluaran token.
 
-### Tingkat effort yang direkomendasikan untuk Claude Sonnet 5
+See also: [Prompting Claude Sonnet 5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5#calibrating-effort-and-thinking-depth)
 
-Claude Sonnet 5 menggunakan effort `high` secara default pada Claude API dan Claude Code.
-
-* **Effort high (default):** Cocok untuk penalaran kompleks, coding, dan tugas agentic di mana kualitas lebih penting daripada kecepatan atau biaya.
-* **Effort xhigh:** Untuk tugas coding dan agentic yang paling sulit. Lihat [Prompting Claude Sonnet 5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5#calibrating-effort-and-thinking-depth).
-* **Effort medium:** Penurunan yang menghemat biaya dari default. Sebanding dengan Claude Sonnet 4.6 pada effort high.
-* **Effort low:** Untuk beban kerja bervolume tinggi atau sensitif terhadap latensi. Cocok untuk chat dan kasus penggunaan non-coding di mana waktu penyelesaian yang lebih cepat diprioritaskan.
-* **Effort max:** Untuk tugas yang memerlukan kemampuan tertinggi secara mutlak tanpa batasan pengeluaran token.
-
-### Tingkat effort yang direkomendasikan untuk Claude Sonnet 4.6
+**[Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview)**
 
 Sonnet 4.6 secara default menggunakan effort `high`. Atur effort secara eksplisit saat menggunakan Sonnet 4.6 untuk menghindari latensi yang tidak terduga:
 
-* **Effort medium** (default yang direkomendasikan): Keseimbangan terbaik antara kecepatan, biaya, dan kinerja untuk sebagian besar aplikasi. Cocok untuk coding agentik, alur kerja yang banyak menggunakan alat, dan pembuatan kode.
-* **Effort low:** Untuk beban kerja bervolume tinggi atau yang sensitif terhadap latensi. Cocok untuk chat dan kasus penggunaan non-coding di mana waktu penyelesaian yang lebih cepat diprioritaskan.
-* **Effort high:** Untuk penalaran kompleks dan tugas di mana kualitas lebih penting daripada kecepatan atau biaya.
+* **Effort sedang (default yang direkomendasikan):** Keseimbangan terbaik antara kecepatan, biaya, dan performa untuk sebagian besar aplikasi. Cocok untuk coding agentik, alur kerja yang banyak menggunakan alat, dan pembuatan kode.
+* **Effort rendah:** Untuk beban kerja bervolume tinggi atau sensitif terhadap latensi. Cocok untuk chat dan kasus penggunaan non-coding di mana penyelesaian yang lebih cepat diprioritaskan.
+* **Effort tinggi:** Untuk penalaran kompleks dan tugas di mana kualitas lebih penting daripada kecepatan atau biaya.
 * **Effort max:** Untuk tugas yang memerlukan kemampuan tertinggi mutlak tanpa batasan pada pengeluaran token.
 
-### Tingkat effort yang direkomendasikan untuk Claude Haiku 5.5
-
-Claude Haiku 5.5 mendukung kelima tingkat effort, dan `medium` adalah default-nya. Effort adalah kontrol utama untuk seberapa banyak model berpikir, dan bersamaan dengan itu kualitas, latensi, dan biaya. **Mulailah dengan `medium`** untuk sebagian besar pekerjaan, termasuk coding agentik. Gunakan `low`, tingkat termurah dan tercepat, untuk chat, tugas alat singkat, dan permintaan sederhana bervolume tinggi. Dalam prompt agen yang panjang, model lebih cenderung melewatkan pencarian, berhenti lebih awal, atau melewatkan pemeriksaan pada `low`. Gunakan `high` untuk pekerjaan pengetahuan, tugas agen yang lebih panjang, dan kepatuhan instruksi yang ketat. Gunakan `xhigh` atau `max` hanya jika eval Anda menunjukkan peningkatan kualitas, dan bandingkan dengan Claude Sonnet 5.5 dalam hal kinerja, biaya, dan kecepatan. Thinking aktif secara default dan dihitung terhadap `max_tokens`, jadi sisakan ruang untuknya. Lihat [Prompting Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#use-effort-to-control-thinking).
-
-Untuk mendapatkan thinking yang lebih sedikit, turunkan tingkat effort. Anda juga dapat mengirim `thinking: {"type": "disabled"}` pada effort `high` atau di bawahnya. Pada `xhigh` atau `max`, ini mengembalikan error 400, jadi gunakan adaptive thinking di sana: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`.
-
-Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Haiku 5.5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) dengan `output_config` per pesan, yang mempertahankan cache prompt. Dengan `thinking: {"type": "disabled"}`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari tingkat yang berlaku mengembalikan error 400. Untuk memvariasikan effort per giliran, gunakan adaptive thinking.
+See also: [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices)
 
 ## Effort dengan penggunaan alat
 
-Saat menggunakan alat, parameter effort memengaruhi baik penjelasan di sekitar pemanggilan alat maupun pemanggilan alat itu sendiri. Tingkat effort yang lebih rendah cenderung:
+Saat menggunakan alat, parameter effort memengaruhi baik penjelasan seputar pemanggilan alat maupun pemanggilan alat itu sendiri. Tingkat effort yang lebih rendah cenderung:
 
-* Menggabungkan beberapa operasi menjadi lebih sedikit pemanggilan alat
+* Menggabungkan beberapa operasi ke dalam lebih sedikit pemanggilan alat
 * Melakukan lebih sedikit pemanggilan alat
-* Langsung bertindak tanpa pendahuluan
-* Menggunakan pesan konfirmasi ringkas setelah selesai
+* Langsung melanjutkan ke tindakan tanpa pembukaan
+* Menggunakan pesan konfirmasi yang ringkas setelah selesai
 
 Tingkat effort yang lebih tinggi mungkin:
 
 * Melakukan lebih banyak pemanggilan alat
-* Menjelaskan rencana sebelum bertindak
-* Memberikan ringkasan perubahan yang mendetail
+* Menjelaskan rencana sebelum mengambil tindakan
+* Memberikan ringkasan perubahan yang terperinci
 * Menyertakan komentar kode yang lebih komprehensif
 
-## Effort dengan thinking
+## Effort dengan pemikiran
 
 Parameter `thinking` mengontrol apakah Claude berpikir dalam [blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) sebelum menjawab; parameter `effort` mengontrol seberapa banyak upaya yang Claude curahkan untuk keseluruhan respons, yang dalam mode adaptif mencakup seberapa sering dan seberapa dalam Claude berpikir. Jangan berikan `adaptive` sebagai nilai `effort`: `adaptive` adalah mode berpikir, bukan tingkat upaya.
 
-Pada tingkat effort yang lebih tinggi, Claude lebih mudah berpikir dan berpikir lebih panjang. Dalam loop penggunaan alat, permintaan lanjutan yang hanya memproses hasil alat tetap dapat melewati thinking pada tingkat mana pun. Pada tingkat yang lebih rendah, Claude dapat melewati thinking sepenuhnya untuk masalah yang lebih sederhana. Lihat [Thinking dan effort](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-effort) untuk panduan lengkap tentang bagaimana kedua kontrol tersebut bekerja bersama.
+Pada tingkat effort yang lebih tinggi, Claude lebih mudah berpikir dan dengan durasi yang lebih panjang. Dalam loop penggunaan alat, permintaan lanjutan yang hanya memproses hasil alat tetap dapat melewatkan pemikiran pada tingkat apa pun. Pada tingkat yang lebih rendah, Claude dapat melewatkan pemikiran sepenuhnya untuk masalah yang lebih sederhana. Lihat [Pemikiran dan effort](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-effort) untuk panduan lengkap tentang bagaimana kedua kontrol ini bekerja bersama.
 
-Pada Claude Opus 4.5, satu-satunya model khusus pemikiran diperpanjang yang mendukung effort, parameter ini bekerja berdampingan dengan [`budget_tokens`](https://platform.claude.com/docs/id/build-with-claude/extended-thinking): atur tingkat effort untuk tugas Anda, lalu atur anggaran token thinking berdasarkan seberapa dalam penalaran yang dibutuhkan tugas tersebut.
+Pada Claude Opus 4.5, satu-satunya model khusus pemikiran diperpanjang yang mendukung effort, effort bekerja bersama [`budget_tokens`](https://platform.claude.com/docs/id/build-with-claude/extended-thinking): atur tingkat effort untuk tugas Anda, lalu atur anggaran token pemikiran berdasarkan seberapa dalam penalaran yang dibutuhkan tugas tersebut.
 
-Untuk ketersediaan thinking per model, lihat [tabel konfigurasi per model](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#supported-models). Effort berfungsi dengan atau tanpa thinking. Lihat [Cara kerja effort](https://platform.claude.com/docs/id/build-with-claude/effort#how-effort-works).
+Untuk ketersediaan pemikiran per model, lihat [tabel konfigurasi per model](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#supported-models). Effort berfungsi dengan atau tanpa pemikiran. Lihat [Cara kerja effort](https://platform.claude.com/docs/id/build-with-claude/effort#how-effort-works).
 
 ## Mengubah effort di tengah percakapan
 
@@ -385,11 +406,11 @@ Anda dapat menjalankan giliran selanjutnya dari suatu percakapan pada tingkat ef
 
 ### Effort per pesan (beta)
 
-Effort per pesan masih dalam tahap beta. Di Claude API dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), fitur ini tersedia di Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5. Di [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), fitur ini tersedia di Claude Fable 5.1, Claude Mythos 5.1, dan Claude Opus 5.5. Fitur ini memerlukan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `mid-conversation-output-config-2026-07-01`. Dengan [InvokeModel API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) Amazon Bedrock, fitur ini tersedia di Claude Fable 5.1 dan Claude Opus 5.5, dan Anda mengirim nilai tersebut dalam array `anthropic_beta` pada body permintaan sebagai gantinya.
+Effort per pesan masih dalam tahap beta. Pada Claude API dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), fitur ini tersedia di Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5. Pada [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), fitur ini tersedia di Claude Fable 5.1, Claude Mythos 5.1, dan Claude Opus 5.5. Fitur ini memerlukan [beta header](https://platform.claude.com/docs/id/api/beta-headers) `mid-conversation-output-config-2026-07-01`. Dengan [InvokeModel API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) Amazon Bedrock, fitur ini tersedia di Claude Fable 5.1 dan Claude Opus 5.5, dan Anda mengirim nilai tersebut dalam array `anthropic_beta` di body permintaan sebagai gantinya.
 
-Tanpa nilai beta, `output_config` per pesan mengembalikan error 400: `messages.N.output_config: Extra inputs are not permitted`, di mana `N` adalah indeks pesan `system` dalam `messages`. Dengan nilai beta, model tanpa effort per pesan, termasuk Claude Fable 5, mengembalikan error 400: `output_config.effort requires a model that supports per-turn effort; this model does not`. Di Amazon Bedrock, model-model tersebut dan Claude Opus 5 mengembalikan error `Extra inputs are not permitted` sebagai gantinya. Pada Claude Sonnet 5.5 dengan `thinking: {"type": "between_tools"}` dan pada Claude Haiku 5.5 dengan `thinking: {"type": "disabled"}`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari tingkat yang berlaku mengembalikan error 400. Untuk memvariasikan effort per giliran, gunakan adaptive thinking.
+Tanpa nilai beta, `output_config` per pesan mengembalikan error 400: `messages.N.output_config: Extra inputs are not permitted`, di mana `N` adalah indeks pesan `system` dalam `messages`. Dengan nilai beta, model tanpa effort per pesan, termasuk Claude Fable 5, mengembalikan error 400: `output_config.effort requires a model that supports per-turn effort; this model does not`. Pada Amazon Bedrock, model-model tersebut dan Claude Opus 5 mengembalikan error `Extra inputs are not permitted` sebagai gantinya. Pada Claude Sonnet 5.5 dengan `thinking: {"type": "between_tools"}` dan pada Claude Haiku 5.5 dengan `thinking: {"type": "disabled"}`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari tingkat yang berlaku mengembalikan error 400. Untuk memvariasikan effort di setiap giliran, gunakan pemikiran adaptif.
 
-Tambahkan pesan `role: "system"` dengan `content` kosong dan tingkat baru dalam `output_config.effort`. Jika ditempatkan langsung setelah giliran `user` dengan input baru, pesan ini mengatur tingkat untuk balasan Claude pada giliran tersebut. Jika ditempatkan di tempat lain, seperti di antara giliran `assistant` dan giliran `user` berikutnya seperti pada contoh berikut, pesan ini berlaku mulai dari giliran `user` berikutnya dengan input baru. Giliran `user` yang hanya berisi blok `tool_result` tidak dihitung sebagai input baru, sehingga perubahan yang ditempatkan setelahnya dalam loop penggunaan alat menunggu giliran `user` berikutnya dengan input baru. Tingkat baru kemudian berlaku hingga pesan selanjutnya mengubahnya. Semua yang ada sebelum pesan tersebut tidak berubah, sehingga prefiks yang di-cache tetap cocok.
+Tambahkan pesan `role: "system"` dengan `content` kosong dan tingkat baru di `output_config.effort`. Jika ditempatkan langsung setelah giliran `user` dengan input baru, pesan ini mengatur tingkat untuk balasan Claude pada giliran tersebut. Jika ditempatkan di tempat lain, seperti di antara giliran `assistant` dan giliran `user` berikutnya seperti pada contoh berikut, pesan ini berlaku mulai dari giliran `user` berikutnya dengan input baru. Giliran `user` yang hanya berisi blok `tool_result` tidak dihitung sebagai input baru, sehingga perubahan yang ditempatkan setelahnya dalam loop penggunaan alat menunggu giliran `user` berikutnya dengan input baru. Tingkat baru kemudian berlaku hingga pesan berikutnya mengubahnya. Semua yang ada sebelum pesan tersebut tidak berubah, sehingga prefix yang di-cache tetap cocok.
 
 Contoh berikut dimulai pada `high`, lalu turun ke `low` untuk tindak lanjut rutin:
 
@@ -415,7 +436,8 @@ Contoh berikut dimulai pada `high`, lalu turun ke `low` untuk tindak lanjut ruti
   ```
 
   ```bash CLI
-  ant beta:messages create --beta mid-conversation-output-config-2026-07-01 <<'YAML'
+  ant beta:messages create \
+    --beta mid-conversation-output-config-2026-07-01 <<'YAML'
   model: claude-fable-5-1
   max_tokens: 4096
   output_config:
@@ -541,10 +563,9 @@ Contoh berikut dimulai pada `high`, lalu turun ke `low` untuk tindak lanjut ruti
   	},
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Plan a migration from SQLite to PostgreSQL in three short steps.")),
-  		{
-  			Role:    anthropic.BetaMessageParamRoleAssistant,
+  		{OfAssistant: &anthropic.BetaAssistantMessageParam{
   			Content: []anthropic.BetaContentBlockParamUnion{anthropic.NewBetaTextBlock("1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts.")},
-  		},
+  		}},
   		// Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
   		anthropic.NewBetaSystemMessage(anthropic.BetaSystemMessageOutputConfigParam{
   			Effort: anthropic.BetaSystemMessageOutputConfigEffortLow,
@@ -640,7 +661,7 @@ Contoh berikut dimulai pada `high`, lalu turun ke `low` untuk tindak lanjut ruti
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-fable-5-1",
+    model: Anthropic::Model::CLAUDE_FABLE_5_1,
     max_tokens: 4096,
     output_config: {effort: :high},
     messages: [
@@ -661,68 +682,68 @@ Contoh berikut dimulai pada `high`, lalu turun ke `low` untuk tindak lanjut ruti
 
 Pesan sistem yang hanya berisi effort tidak membawa teks, sehingga [aturan penempatan untuk pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations) tidak berlaku. Pesan ini dapat muncul di mana saja dalam `messages`, termasuk sebagai entri pertama atau di antara giliran `assistant` dan giliran `user` berikutnya. Nilainya adalah nama tingkat (`low`, `medium`, `high`, `xhigh`, dan `max`).
 
-Utamakan bentuk ini daripada mengubah nilai tingkat atas di antara permintaan. Perubahan tingkat atas memulai ulang cache dan, pada Claude Fable 5.1, juga mengarahkan model dengan kurang andal: balasan sebelumnya ditulis pada tingkat sebelumnya, dan model cenderung tetap konsisten dengannya.
+Utamakan bentuk ini dibandingkan mengubah nilai tingkat atas di antara permintaan. Perubahan tingkat atas memulai ulang cache dan, pada Claude Fable 5.1, juga mengarahkan model dengan kurang andal: balasan sebelumnya ditulis pada tingkat sebelumnya, dan model cenderung tetap konsisten dengannya.
 
 ### Effort tingkat atas pada permintaan berikutnya
 
-`output_config.effort` tingkat atas berlaku untuk seluruh permintaan. Untuk menjalankan bagian percakapan selanjutnya pada tingkat yang berbeda, atur nilai baru pada permintaan berikutnya. Karena effort tingkat atas membentuk prompt yang dirender, mengubahnya di antara permintaan tidak mempertahankan prefiks yang di-cache dari giliran sebelumnya. Jika Anda mengandalkan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) sepanjang sesi yang panjang dan model Anda tidak mendukung effort per pesan, pilih tingkat effort di awal dan pertahankan agar tetap konstan.
+`output_config.effort` tingkat atas berlaku untuk seluruh permintaan. Untuk menjalankan bagian selanjutnya dari suatu percakapan pada tingkat yang berbeda, atur nilai baru pada permintaan berikutnya. Karena effort tingkat atas membentuk prompt yang di-render, mengubahnya di antara permintaan tidak mempertahankan prefix yang di-cache dari giliran sebelumnya. Jika Anda mengandalkan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) di sepanjang sesi yang panjang dan model Anda tidak mendukung effort per pesan, pilih tingkat effort di awal dan pertahankan agar tetap konstan.
 
 ## Praktik terbaik
 
 1. **Atur effort secara eksplisit:** API secara default menggunakan `high` (`medium` pada Claude Opus 5.5 dan Claude Haiku 5.5), tetapi titik awal yang tepat bergantung pada model dan beban kerja Anda.
-2. **Gunakan low untuk tugas yang sensitif terhadap kecepatan atau sederhana:** Ketika latensi penting atau tugas bersifat langsung, effort low dapat secara signifikan mengurangi waktu respons dan biaya.
-3. **Uji kasus penggunaan Anda:** Dampak tingkat effort bervariasi menurut jenis tugas. Evaluasi kinerja pada kasus penggunaan spesifik Anda sebelum melakukan deployment.
-4. **Pertimbangkan effort dinamis:** Sesuaikan effort berdasarkan kompleksitas tugas. Kueri sederhana mungkin cukup dengan effort low, sementara coding agentik dan penalaran kompleks mendapat manfaat dari effort high. Lihat poin berikutnya sebelum memvariasikannya dalam satu percakapan.
-5. **Pertahankan effort tingkat atas tetap konstan dalam percakapan yang di-cache:** Mengubah nilai effort tingkat atas di antara permintaan membatalkan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching), jadi variasikan di antara beban kerja alih-alih di dalam percakapan yang mengandalkan cache hit. Pada model yang mendukungnya, gunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) sebagai gantinya, yang mempertahankan cache. Lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching).
+2. **Gunakan low untuk tugas yang sensitif terhadap kecepatan atau sederhana:** Ketika latensi penting atau tugas bersifat langsung, effort rendah dapat secara signifikan mengurangi waktu respons dan biaya.
+3. **Uji kasus penggunaan Anda:** Dampak tingkat effort bervariasi menurut jenis tugas. Evaluasi performa pada kasus penggunaan spesifik Anda sebelum melakukan deployment.
+4. **Pertimbangkan effort dinamis:** Sesuaikan effort berdasarkan kompleksitas tugas. Kueri sederhana mungkin memerlukan effort rendah, sedangkan coding agentik dan penalaran kompleks mendapat manfaat dari effort tinggi. Lihat poin berikutnya sebelum memvariasikannya dalam satu percakapan.
+5. **Pertahankan effort tingkat atas tetap konstan dalam percakapan yang di-cache:** Mengubah nilai effort tingkat atas di antara permintaan membatalkan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching), jadi variasikan di seluruh beban kerja alih-alih dalam percakapan yang mengandalkan cache hit. Pada model yang mendukungnya, gunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) sebagai gantinya, yang mempertahankan cache. Lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching).
 
 ## Langkah selanjutnya
 
 <CardGroup>
   <Card title="Anggaran tugas" icon="gauge" href="https://platform.claude.com/docs/id/build-with-claude/task-budgets">
-    Berikan Claude anggaran token yang bersifat saran untuk seluruh loop agentik guna membantu model mengatur dirinya sendiri pada tugas agentik yang panjang.
+    Berikan Claude anggaran token bersifat anjuran untuk seluruh loop agentik guna membantu model mengatur dirinya sendiri pada tugas agentik yang panjang.
   </Card>
 
   <Card title="Mengarahkan thinking" icon="compass" href="https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost">
-    Pahami adaptive thinking, di mana Claude menentukan kapan dan seberapa banyak berpikir, dan arahkan dengan effort dan prompting.
+    Pahami pemikiran adaptif, di mana Claude menentukan kapan dan seberapa banyak berpikir, dan arahkan dengan effort dan prompting.
   </Card>
 
   <Card title="Thinking" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
-    Pahami cara kerja thinking, kapan Claude berpikir secara default, dan bagaimana thinking berinteraksi dengan effort.
+    Pahami cara kerja pemikiran, kapan Claude berpikir secara default, dan bagaimana pemikiran berinteraksi dengan effort.
   </Card>
 </CardGroup>
 
-## Availability
+## Ketersediaan
 
-Effort is available on select models and eligible for zero data retention and HIPAA readiness.
+Effort tersedia di model tertentu dan layak untuk retensi data nol dan kesiapan HIPAA.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Always on
-* Usage: Set `output_config.effort` on the request. With no value, the model’s default level applies.
+* Ketersediaan: Selalu aktif
+* Penggunaan: Atur `output_config.effort` pada permintaan. Tanpa nilai, level default model yang berlaku.
 
-| Status    | Cloud platforms                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Models                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview), [Claude Opus 4.5](https://platform.claude.com/docs/id/models/opus-4-5/overview) |
+| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview), [Claude Opus 4.5](https://platform.claude.com/docs/id/models/opus-4-5/overview) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Always on
-* Usage: Set `effort` on the agent’s model object, or in a session’s model override. With no value, Managed Agents fills in the model’s default.
+* Ketersediaan: Selalu aktif
+* Penggunaan: Atur `effort` pada objek model agen, atau dalam override model sesi. Tanpa nilai, Managed Agents mengisi default model.
 
-| Status    | Cloud platforms                                                                                                    | Models                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| --------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview), [Claude Opus 4.5](https://platform.claude.com/docs/id/models/opus-4-5/overview) |
+| Status   | Platform cloud                                                                                                     | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| -------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview), [Claude Opus 4.5](https://platform.claude.com/docs/id/models/opus-4-5/overview) |
 
-### Data handling
+### Penanganan data
 
-[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+[Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Zero data retention                                                                                                                                       | HIPAA    |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| Status | Eligible (excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Eligible |
+| Item   | Retensi data nol                                                                                                                                                 | HIPAA |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak |
 
-Applicable endpoints:
+Endpoint yang berlaku:
 
-* `/v1/messages` with `effort`
+* `/v1/messages` dengan `effort`

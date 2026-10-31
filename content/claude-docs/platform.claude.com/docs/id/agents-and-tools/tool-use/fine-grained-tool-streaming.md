@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: ac5c3186a443cf3821e53a7ebe4fcdf534eca12eda5ef89332ed692192524410
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 8fdb660ba5d5dede8025231d7bf3f3634275e1f0a2ec3b07a384a278e636e0d7
 ---
 
 ---
@@ -10,7 +10,7 @@ title: Streaming alat fine-grained
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
 description: Lakukan streaming input alat tanpa buffering JSON di sisi server untuk aplikasi yang sensitif terhadap latensi.
 featureMetadata:
-  status: ga
+  status: stable
   zdr:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
@@ -33,17 +33,13 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
-    Claude Platform on AWS: ga
-    Amazon Bedrock: ga
-    Amazon Bedrock (InvokeModel): ga
-    Claude Models on Google Cloud (Google managed): ga
-    Microsoft Foundry: ga
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (InvokeModel): stable
+    Claude Models on Google Cloud (Google managed): stable
+    Microsoft Foundry: stable
 ---
-
-<Note>
-  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
-</Note>
 
 “Fine-grained tool streaming” (streaming alat fine-grained) mengirimkan input alat ke klien Anda saat Claude menghasilkannya, tanpa buffering atau validasi JSON di sisi server. Melewati langkah buffering mengurangi waktu hingga fragmen pertama dari parameter besar, seperti dokumen atau blok kode, dan fragmen-fragmen tersebut tiba melalui event [Streaming pesan](https://platform.claude.com/docs/id/build-with-claude/streaming) yang sama seperti penggunaan alat standar.
 
@@ -55,7 +51,7 @@ featureMetadata:
 
 Semua model mendukung streaming alat fine-grained di Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Untuk menggunakannya, atur `eager_input_streaming` ke `true` pada alat buatan pengguna mana pun yang Anda inginkan streaming fine-grained-nya diaktifkan, dan aktifkan streaming pada permintaan Anda.
 
-Field `eager_input_streaming` bersifat opsional. Mengaturnya ke `true` mengaktifkan streaming fine-grained untuk alat tersebut, dan menghilangkannya memberi Anda streaming ter-buffer standar, di mana API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali. Pengecualiannya adalah permintaan yang masih mengirim header beta lama `fine-grained-tool-streaming-2025-05-14`, yang mengaktifkan streaming fine-grained untuk alat yang membiarkan field tersebut tidak diatur. Field per-alat menggantikan header tersebut, dan nilai `false` eksplisit mempertahankan streaming ter-buffer untuk suatu alat bahkan ketika permintaan masih mengirim header itu. Header lama tidak dapat digabungkan dengan entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) atau [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool): API menolak permintaan yang mengirim keduanya, jadi hapus header tersebut dan atur `eager_input_streaming` pada alat buatan pengguna yang membutuhkannya. Lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference) untuk definisi field tersebut.
+Field `eager_input_streaming` bersifat opsional. Mengaturnya ke `true` mengaktifkan streaming fine-grained untuk alat tersebut, dan menghilangkannya memberi Anda streaming ter-buffer standar, di mana API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali. Pengecualiannya adalah permintaan yang masih mengirim header beta lama `fine-grained-tool-streaming-2025-05-14`, yang mengaktifkan streaming fine-grained untuk alat yang membiarkan field tersebut tidak diatur. Field per-alat menggantikan header tersebut, dan nilai `false` eksplisit mempertahankan streaming ter-buffer untuk suatu alat bahkan ketika permintaan masih mengirim header itu. Header lama tidak dapat digabungkan dengan entri toolset [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) atau [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool): API menolak permintaan yang mengirim keduanya, jadi hapus header tersebut dan atur `eager_input_streaming` pada alat buatan pengguna yang membutuhkannya. Lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference) untuk definisi field tersebut.
 
 Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan meminta Claude membuat puisi panjang, sehingga input alat cukup besar untuk diamati saat di-streaming:
 
@@ -976,28 +972,28 @@ Kembalikan pembungkus tersebut, yang diserialisasi menjadi string, sebagai `cont
   </Card>
 </CardGroup>
 
-## Availability
+## Ketersediaan
 
-Fine-grained tool streaming is available on every model and eligible for zero data retention and HIPAA readiness.
+Streaming alat fine-grained tersedia di semua model dan layak untuk retensi data nol dan kesiapan HIPAA.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Available
+* Ketersediaan: Tersedia
 
-| Status    | Cloud platforms                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
-### Data handling
+### Penanganan data
 
-[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+[Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Zero data retention                                                                                                                                       | HIPAA    |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| Status | Eligible (excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Eligible |
+| Item   | Retensi data nol                                                                                                                                                 | HIPAA |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak |
 
-Applicable endpoints:
+Endpoint yang berlaku:
 
 * `/v1/messages`

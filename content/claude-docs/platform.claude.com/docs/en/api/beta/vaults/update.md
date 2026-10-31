@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/update
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: c2a8f066f7cdf0c95804a8d29fb07aa2525c6f5a377f7ea70b76306e8dfe346f
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 884111a08cba2ce9b3bc3b486c2eda9e966a0ff1edec6eaea77035fa7c754d9b
 ---
 
 ---
@@ -143,6 +143,8 @@ Update a Vault
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

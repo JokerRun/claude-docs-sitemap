@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/list
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: fcdeedf2a4a79f0192f58d0d3f17c549f6d7253c2ff2fc7c50cfb91b6e51683f
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 1263e186c0b5e771adab2737a82a33a58e8b5d2eeff7cd4ef24957fae396247d
 ---
 
 ---
@@ -181,6 +181,8 @@ come in a fixed order that is not creation order.
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 ## Returns
 
 - `data: array of BetaSpendLimit`
@@ -330,7 +332,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limits \
       "period": "daily",
       "scope": {
         "type": "user",
-        "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
+        "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu"
       },
       "type": "spend_limit",
       "updated_at": "2019-12-27T18:11:19.117Z"

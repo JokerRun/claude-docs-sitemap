@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/create
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 2807d2a4dbe08f6c59348beb2dae62c2bf882064fd3eac034480393a490a6a23
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: a243efa1b8d537c422a54b65f3cf6925f7811bfe30eaecb01f0d2869d8fb2805
 ---
 
 ---
@@ -137,6 +137,8 @@ Create Deployment
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

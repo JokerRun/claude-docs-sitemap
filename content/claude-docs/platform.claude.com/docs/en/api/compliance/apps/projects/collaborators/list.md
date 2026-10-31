@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: a413ce373087b73d869117c324583747e0d3bdd56460aac5badfa398c000dffe
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 459fd5e413263fc5c5d6f1060f784db94962036323572f1bee50961e81a81a49
 ---
 
 ---
@@ -51,11 +51,11 @@ role.
 
 ## Returns
 
-- `data: array of ComplianceProjectUserCollaborator or ComplianceProjectGroupCollaborator or ComplianceProjectOrganizationCollaborator or ComplianceProjectOrganizationRoleCollaborator`
+- `data: array of User or Group or Organization or OrganizationRole`
 
   List of collaborators sorted chronologically by granted_at, tie break by the underlying role-assignment UUID
 
-  - `ComplianceProjectUserCollaborator object`
+  - `User object`
 
     An individual user granted a role on a project.
 
@@ -87,7 +87,7 @@ role.
 
       Identifier of the user granted access (tagged ID), or null if their account has since been deleted
 
-  - `ComplianceProjectGroupCollaborator object`
+  - `Group object`
 
     An RBAC group granted a role on a project.
 
@@ -119,7 +119,7 @@ role.
 
       - `"viewer"`
 
-  - `ComplianceProjectOrganizationCollaborator object`
+  - `Organization object`
 
     An entire organization granted a role on a project.
 
@@ -151,7 +151,7 @@ role.
 
       - `"viewer"`
 
-  - `ComplianceProjectOrganizationRoleCollaborator object`
+  - `OrganizationRole object`
 
     All holders of an organization-level role granted a role on a project.
 

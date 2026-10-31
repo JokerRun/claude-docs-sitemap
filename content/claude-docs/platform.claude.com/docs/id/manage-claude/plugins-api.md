@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/plugins-api
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 9b047dfe8cf39d4e11324484fe9f829fabe30531f162de19c1a7d5274905f10e
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 5d02341fb7c9367ef3a8c0d4c661ead2818f08aca70cef81aa51a9cd848b5948
 ---
 
 ---
@@ -354,7 +354,7 @@ Unggahan mengikuti aturan yang sama dengan unggahan plugin di claude.ai, sehingg
 * Path file harus relatif, tidak berisi `..`, dan hanya menggunakan huruf, angka, spasi, dan `_ . - / ( ) ,`.
 * Body permintaan dan arsip yang tidak dikompresi masing-masing paling banyak 200 MB; body permintaan yang melebihi batas mengembalikan `413` (`request_too_large`) alih-alih `400`. Sebuah unggahan memiliki paling banyak 5.000 file, kedalaman path 12, path sepanjang 472 karakter, dan nama file atau folder sepanjang 255 karakter.
 * Arsip ZIP harus menggunakan kompresi DEFLATE atau STORE, dan tidak boleh dienkripsi atau berisi tautan simbolik.
-* Marketplace menampung paling banyak 500 item, termasuk plugin-nya dan skill mandiri apa pun yang disimpan anggota di dalamnya. Batas ini dan batas 5.000 file adalah nilai saat ini yang dapat dinaikkan.
+* Unggahan yang membuat plugin ditolak jika marketplace sudah berisi 1.000 item. Total ini mencakup plugin-nya dan skill apa pun yang disimpan anggota di dalamnya. Anthropic dapat menaikkan batas ini dan batas 5.000 file.
 
 ## Contoh alur kerja
 
@@ -1053,7 +1053,7 @@ Selain `400` untuk unggahan yang melanggar [persyaratan unggahan](https://platfo
 | Status                     | Penyebab                                                                                                           | Yang harus dilakukan                                                                                                                                                                                   |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | 404                        | `marketplace_id` bukan marketplace milik organisasi Anda.                                                          | Ambil ID dari [Mencantumkan marketplace](https://platform.claude.com/docs/id/manage-claude/plugins-api#list-marketplaces).                                                                             |
-| 400                        | Marketplace disinkronkan dari Git, atau sudah berisi 500 plugin dan skill.                                         | Unggah ke marketplace `manual`, atau ubah repositorinya.                                                                                                                                               |
+| 400                        | Marketplace disinkronkan dari Git, atau sudah berisi 1.000 plugin dan skill.                                       | Unggah ke marketplace `manual`, atau ubah repositorinya.                                                                                                                                               |
 | 409 `plugin_name_taken`    | Nama tersebut sudah dipakai di marketplace itu.                                                                    | Unggah versi ke `details.plugin_id` hanya jika itu memang plugin yang ingin Anda perbarui, karena mungkin orang lain yang membuatnya. Jika tidak, unggah dengan nama lain (ubah `name` pada manifest). |
 | 409 `skill_name_taken`     | Plugin akan masuk ke marketplace library dan salah satu skill-nya memiliki nama yang sama dengan skill organisasi. | Ganti nama skill tersebut, atau hapus skill organisasi di claude.ai.                                                                                                                                   |
 | 409 (tanpa `error_code`)   | Unggahan lain dengan nama yang sama ke marketplace yang sama masih berlangsung.                                    | Coba lagi sebentar lagi.                                                                                                                                                                               |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/quickstart
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: e6d7623ebdce8058f30d9d2302dc27626d21af7a2805205262fb2edd4af23e3d
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 35c77435f87da9f16d9e8d53f1789086ce2a8f5ba808eed22c40c1e7d62674a7
 ---
 
 ---
@@ -268,7 +268,7 @@ Sebuah [tunnel stack](https://platform.claude.com/docs/id/agents-and-tools/mcp-t
   </Step>
 
   <Step title="Panggil dari Claude">
-    Di Console, buka halaman [Sessions](https://platform.claude.com/sessions) (`platform.claude.com/sessions`) dan buat sesi. Di pemilih agen, pilih **Create new agent**, beri nama agen, dan pertahankan model yang sudah terisi. Klik **+ MCP Server**, pilih tunnel Anda, dan atur **Subdomain** ke `echo` dan **Path** ke `mcp`. Lalu tanyakan:
+    Di Console, buka halaman [Sessions](https://platform.claude.com/sessions) (`platform.claude.com/sessions`) dan klik **Create session**. Dari menu dropdown **Agent**, pilih **Create new agent**, beri nama agen, dan pertahankan model yang sudah terisi. Di bawah **MCP servers**, klik **MCP server**, pilih tunnel Anda, dan atur **Subdomain** ke `echo` dan **Path** ke `mcp`. Server contoh tidak memerlukan autentikasi, jadi abaikan **Connect** atau **Needs vault** pada kartu. Pilih sebuah environment. Jika ada peringatan bahwa environment tersebut memblokir server MCP, lihat [Menggunakan tunnel dalam agen](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#use-the-tunnel-in-an-agent). Klik **Create session**, lalu tanyakan:
 
     > Use the hello tool to greet tunnel.
 

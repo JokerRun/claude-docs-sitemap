@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 932c3eb6c39a7073e32a8b52381f940b04bffbaf951dac1434772e76fd919f8c
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: f6e2df39ad56cec25dfd63344ed96d13a7502fa84b1c77ed019c987b3e0da25e
 ---
 
 ---
@@ -25,29 +25,29 @@ Sebagian besar error konfigurasi thinking adalah ketidakcocokan antara nilai `th
 
 Tabel ini mencantumkan apa yang didukung setiap model, nilai default-nya, dan nilai `thinking.type` mana yang ditolaknya dengan error 400; nilai apa pun yang tidak tercantum sebagai ditolak akan diterima. Hanya Claude Sonnet 5.5 yang menerima `"between_tools"`, dan model ini menerima nilai tersebut sebagai pengganti `"disabled"`.
 
-| Model                 | Jenis thinking                 | Default      | Ditolak dengan 400         |
-| --------------------- | ------------------------------ | ------------ | -------------------------- |
-| Claude Fable 5.1      | Hanya adaptif                  | Selalu aktif | `"enabled"`, `"disabled"`  |
-| Claude Mythos 5.1     | Hanya adaptif                  | Selalu aktif | `"enabled"`, `"disabled"`  |
-| Claude Fable 5        | Hanya adaptif                  | Selalu aktif | `"enabled"`, `"disabled"`  |
-| Claude Mythos 5       | Hanya adaptif                  | Selalu aktif | `"enabled"`, `"disabled"`  |
-| Claude Mythos Preview | Adaptif, diperpanjang          | Selalu aktif | `"disabled"`               |
-| Claude Opus 5.5       | Hanya adaptif                  | Selalu aktif | `"enabled"`, `"disabled"`  |
-| Claude Opus 5         | Hanya adaptif                  | Aktif        | `"enabled"`, `"disabled"`2 |
-| Claude Opus 4.8       | Hanya adaptif                  | Nonaktif     | `"enabled"`                |
-| Claude Opus 4.7       | Hanya adaptif                  | Nonaktif     | `"enabled"`                |
-| Claude Sonnet 5.5     | Adaptif, `between_tools`3      | Aktif        | `"enabled"`, `"disabled"`  |
-| Claude Sonnet 5       | Hanya adaptif                  | Aktif        | `"enabled"`                |
-| Claude Haiku 5.5      | Hanya adaptif                  | Aktif        | `"enabled"`, `"disabled"`2 |
-| Claude Opus 4.6       | Adaptif, diperpanjang (usang)1 | Nonaktif     | Tidak ada                  |
-| Claude Sonnet 4.6     | Adaptif, diperpanjang (usang)1 | Nonaktif     | Tidak ada                  |
-| Claude Opus 4.5       | Hanya diperpanjang             | Nonaktif     | `"adaptive"`               |
-| Claude Haiku 4.5      | Hanya diperpanjang             | Nonaktif     | `"adaptive"`               |
-| Claude Sonnet 4.5     | Hanya diperpanjang             | Nonaktif     | `"adaptive"`               |
+| Model                 | Jenis thinking                            | Default      | Ditolak dengan 400                    |
+| --------------------- | ----------------------------------------- | ------------ | ------------------------------------- |
+| Claude Fable 5.1      | Hanya adaptif                             | Selalu aktif | `"enabled"`, `"disabled"`             |
+| Claude Mythos 5.1     | Hanya adaptif                             | Selalu aktif | `"enabled"`, `"disabled"`             |
+| Claude Fable 5        | Hanya adaptif                             | Selalu aktif | `"enabled"`, `"disabled"`             |
+| Claude Mythos 5       | Hanya adaptif                             | Selalu aktif | `"enabled"`, `"disabled"`             |
+| Claude Mythos Preview | Adaptif, diperpanjang                     | Selalu aktif | `"disabled"`                          |
+| Claude Opus 5.5       | Hanya adaptif                             | Selalu aktif | `"enabled"`, `"disabled"`             |
+| Claude Opus 5         | Hanya adaptif                             | Aktif        | `"enabled"`, `"disabled"`<sup>2</sup> |
+| Claude Opus 4.8       | Hanya adaptif                             | Nonaktif     | `"enabled"`                           |
+| Claude Opus 4.7       | Hanya adaptif                             | Nonaktif     | `"enabled"`                           |
+| Claude Sonnet 5.5     | Adaptif, `between_tools`<sup>3</sup>      | Aktif        | `"enabled"`, `"disabled"`             |
+| Claude Sonnet 5       | Hanya adaptif                             | Aktif        | `"enabled"`                           |
+| Claude Haiku 5.5      | Hanya adaptif                             | Aktif        | `"enabled"`, `"disabled"`<sup>2</sup> |
+| Claude Opus 4.6       | Adaptif, diperpanjang (usang)<sup>1</sup> | Nonaktif     | Tidak ada                             |
+| Claude Sonnet 4.6     | Adaptif, diperpanjang (usang)<sup>1</sup> | Nonaktif     | Tidak ada                             |
+| Claude Opus 4.5       | Hanya diperpanjang                        | Nonaktif     | `"adaptive"`                          |
+| Claude Haiku 4.5      | Hanya diperpanjang                        | Nonaktif     | `"adaptive"`                          |
+| Claude Sonnet 4.5     | Hanya diperpanjang                        | Nonaktif     | `"adaptive"`                          |
 
-*1 `enabled` dan `budget_tokens` masih berfungsi pada model-model ini tetapi sudah usang; gunakan adaptive thinking sebagai gantinya.*\
-*2 Claude Opus 5 dan Claude Haiku 5.5 menerima `"disabled"` pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `high` atau lebih rendah; menggabungkannya dengan effort `xhigh` atau `max` mengembalikan error 400. Pada Claude Opus 5, pembatasan ini diberlakukan pada setiap permintaan. Pada Claude Haiku 5.5, effort per pesan yang berbeda dari level yang sedang berlaku juga mengembalikan error 400.*\
-*3 Claude Sonnet 5.5 menerima `"between_tools"` pada effort `high` atau lebih rendah. Menggabungkannya dengan effort `xhigh` atau `max` mengembalikan error 400, begitu pula effort per pesan yang berbeda dari level yang sedang berlaku.*
+*<sup>1</sup> `enabled` dan `budget_tokens` masih berfungsi pada model-model ini tetapi sudah usang; gunakan adaptive thinking sebagai gantinya.*\
+*<sup>2</sup> Claude Opus 5 dan Claude Haiku 5.5 menerima `"disabled"` pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `high` atau lebih rendah; menggabungkannya dengan effort `xhigh` atau `max` mengembalikan error 400. Pada Claude Opus 5, pembatasan ini diberlakukan pada setiap permintaan. Pada Claude Haiku 5.5, effort per pesan yang berbeda dari level yang sedang berlaku juga mengembalikan error 400.*\
+*<sup>3</sup> Claude Sonnet 5.5 menerima `"between_tools"` pada effort `high` atau lebih rendah. Menggabungkannya dengan effort `xhigh` atau `max` mengembalikan error 400, begitu pula effort per pesan yang berbeda dari level yang sedang berlaku.*
 
 Model yang ditandai `Selalu aktif` tidak dapat menonaktifkan thinking. Model yang ditandai `Aktif` menggunakan thinking secara default. Claude Opus 5, Claude Sonnet 5, dan Claude Haiku 5.5 menerima `thinking: {type: "disabled"}`. Pada Claude Sonnet 5.5, kirim `thinking: {type: "between_tools"}` untuk menonaktifkan thinking di awal.
 

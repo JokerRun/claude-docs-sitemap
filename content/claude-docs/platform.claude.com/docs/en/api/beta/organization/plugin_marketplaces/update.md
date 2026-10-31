@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugin_marketplaces/update
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 1cce60ca7c2868bdd06e74538a2519469dca97b6485239b560a1065256b1e224
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 813bd022dcfc81cb595b547f9ee71ddb95dc8142d11831803da8d72cbe17b03e
 ---
 
 ---
@@ -146,6 +146,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Body parameters
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 978b93132117227d18ae22a0deba03819c5330302378e1e80eb7348dadf64f17
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 365f981f6686cff0c5938f70563a2acdd4a5ed107b2817eee632e05f9cc94fd7
 ---
 
 ---
@@ -10,10 +10,10 @@ title: Diagnostik cache
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
 description: Diagnosis cache miss prompt yang tidak terduga dengan membandingkan permintaan berurutan dan mengidentifikasi secara tepat di mana prefiks prompt menyimpang.
 featureMetadata:
-  status: ga
+  status: stable
   zdr:
     eligibility: qualified
-    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Your prompts and Claude's outputs are not stored. A fingerprint of cryptographic hashes and token-count estimates is retained briefly to allow comparison against the next request.
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Prompt Anda dan output Claude tidak disimpan. Fingerprint berupa hash kriptografis dan estimasi jumlah token disimpan sebentar untuk memungkinkan perbandingan dengan permintaan berikutnya.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -33,7 +33,7 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
+    Claude API: stable
 ---
 
 [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) memangkas latensi dan biaya secara signifikan, tetapi hanya ketika bagian awal prompt Anda identik byte demi byte dengan permintaan terbaru. Alat yang diurutkan ulang, timestamp yang diinterpolasi ke dalam “system prompt” (prompt sistem) Anda, atau pengeditan pada pesan sebelumnya dapat secara diam-diam membatalkan cache. Tanpa diagnostik cache, satu-satunya sinyal adalah `usage.cache_read_input_tokens` yang turun menjadi nol, tanpa indikasi apa pun tentang apa yang berubah.
@@ -1070,33 +1070,33 @@ Untuk kelayakan ZDR di seluruh fitur, lihat [API dan retensi data](https://platf
 * [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
 * [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting)
 
-## Availability
+## Ketersediaan
 
-Cache diagnostics are available on every model.
+Diagnostik cache tersedia di semua model.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Available
+* Ketersediaan: Tersedia
 
-| Status    | Cloud platforms |
-| --------- | --------------- |
-| Available | Claude API      |
+| Status   | Platform cloud |
+| -------- | -------------- |
+| Tersedia | Claude API     |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Not available
+* Ketersediaan: Tidak tersedia
 
-### Data handling
+### Penanganan data
 
-[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+[Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item    | Zero data retention                                                                                                                                                                                                                                                                      | HIPAA        |
-| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| Status  | Eligible (qualified; excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                                                                                                                     | Not eligible |
-| Details | Your prompts and Claude’s outputs are not stored. A fingerprint of cryptographic hashes and token-count estimates is retained briefly to allow comparison against the next request. [Learn more](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics#data-retention) | —            |
+| Item   | Retensi data nol                                                                                                                                                                                                                                                                                             | HIPAA       |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| Status | Layak (bersyarat; tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                                                                                                                                  | Tidak layak |
+| Detail | Prompt Anda dan output Claude tidak disimpan. Fingerprint berupa hash kriptografis dan estimasi jumlah token disimpan sebentar untuk memungkinkan perbandingan dengan permintaan berikutnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics#data-retention) | —           |
 
-Applicable endpoints:
+Endpoint yang berlaku:
 
-* `/v1/messages` with `diagnostics`
+* `/v1/messages` dengan `diagnostics`

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/download
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: e3080e7839e1408b44a7f03262d12a3b3d573dda240e0760116d6b36822d6953
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 26f051c76e495b8fbcd0c3cd9b063959364d285a8a8b83a19c228ba04e48d8b5
 ---
 
 ---
@@ -143,6 +143,8 @@ Download File
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

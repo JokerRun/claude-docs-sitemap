@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/code
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 887e30527eb87ac00da18e00e862a3c42fe624a7515da5871c541922851c90a1
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: ec3d49579f621f2d3948bf05d8863d06a9b1e7618ccefbe07135a659d9a2fb1e
 ---
 
 ---
@@ -206,12 +206,12 @@ curl https://api.anthropic.com/v1/compliance/apps/code/artifacts \
       "id": "cart_01Tu9VwXyZaBcDeFgHiJkLmN",
       "artifact_type": "code",
       "organization_uuid": "a1b2c3d4-e5f6-4789-a012-3456789abcde",
-      "owner_user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+      "owner_user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
       "published_version_id": "1741803761-9f3a",
       "read_mode": "org",
       "updated_at": "2025-03-14T09:05:17.456789Z",
       "user": {
-        "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+        "id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
         "email_address": "jane.doe@example.com"
       },
       "versions": [

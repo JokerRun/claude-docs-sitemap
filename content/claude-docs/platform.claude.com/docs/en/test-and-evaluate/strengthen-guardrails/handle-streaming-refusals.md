@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: cc1ea156305ab909ee82af8211940950d9ee35cfcdb6141bca749068c0cb4a94
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: bb93f6ce532b350c0f08d90023093fc4ef2cb419ef07d60951e34948d21e6825
 ---
 
 ---
@@ -29,12 +29,12 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
-    Claude Platform on AWS: ga
-    Amazon Bedrock: ga
-    Amazon Bedrock (InvokeModel): ga
-    Claude Models on Google Cloud (Google managed): ga
-    Microsoft Foundry: ga
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (InvokeModel): stable
+    Claude Models on Google Cloud (Google managed): stable
+    Microsoft Foundry: stable
 ---
 
 **API support**: Usage differs by product.

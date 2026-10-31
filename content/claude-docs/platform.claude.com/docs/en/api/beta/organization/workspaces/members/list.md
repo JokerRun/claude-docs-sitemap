@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 134cbff88b06c5385e0badd058d169e685710758474df81c894cb62d04d88291
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: b700aa03d5c28989ea24d8f2803e23e4627678577047ea96f76ecca39ee41db5
 ---
 
 ---
@@ -109,7 +109,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members
   "data": [
     {
       "type": "workspace_member",
-      "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+      "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
       "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
       "workspace_role": "workspace_admin"
     }

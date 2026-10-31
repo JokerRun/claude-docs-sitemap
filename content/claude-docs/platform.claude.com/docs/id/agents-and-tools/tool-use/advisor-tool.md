@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: d43e35e7bb265ffbf0f559e2a4202643b8cba6639c49b63d9adb77c4c8c9ae9a
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 148de5d6be377fe3fffd0b4db75797dd178e9021634ff01326fe88c6bfa57d08
 ---
 
 ---
@@ -14,7 +14,7 @@ featureMetadata:
   betaHeader: advisor-tool-2026-03-01
   zdr:
     eligibility: eligible
-    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Advisor model output is returned in the API response; nothing is stored server-side after the response.
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Output model advisor dikembalikan dalam respons API; tidak ada yang disimpan di sisi server setelah respons.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -37,14 +37,14 @@ featureMetadata:
     Claude Models on Google Cloud (Anthropic managed): beta
 ---
 
-**API support**: Usage differs by product.
+**Dukungan API**: Penggunaan berbeda menurut produk.
 
-* **Messages API**: Add an advisor tool (type `advisor_20260301`) to the request’s `tools`.
-* **Managed Agents**: Set `advisor` in the agent’s `multiagent` block; there are no `max_uses` or `max_tokens` options.
+* **Messages API**: Tambahkan alat advisor (tipe `advisor_20260301`) ke `tools` permintaan.
+* **Managed Agents**: Atur `advisor` dalam blok `multiagent` agen; tidak ada opsi `max_uses` atau `max_tokens`.
 
-Alat advisor memungkinkan **model eksekutor** yang lebih cepat dan lebih murah berkonsultasi dengan **model advisor** berkecerdasan lebih tinggi di tengah proses generasi untuk mendapatkan panduan strategis. Advisor membaca seluruh percakapan dan menghasilkan rencana atau koreksi arah, lalu eksekutor melanjutkan tugasnya.
+Alat advisor memungkinkan **model executor** yang lebih cepat dan lebih murah untuk berkonsultasi dengan **model advisor** berkecerdasan lebih tinggi di tengah proses generasi guna mendapatkan panduan strategis. Advisor membaca seluruh percakapan dan menghasilkan rencana atau koreksi arah, lalu executor melanjutkan tugasnya.
 
-Pola ini cocok untuk beban kerja agentik jangka panjang (agen coding, computer use, pipeline riset multilangkah) di mana sebagian besar giliran bersifat mekanis tetapi memiliki rencana yang sangat baik adalah hal yang krusial. Anda mendapatkan kualitas yang mendekati advisor yang bekerja sendiri, sementara sebagian besar generasi token terjadi dengan tarif model eksekutor. Untuk hasil terukur, termasuk bagaimana manfaatnya menyusut saat kemampuan eksekutor sendiri mendekati kemampuan advisor, lihat [Mengoptimalkan biaya dan kecerdasan](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence).
+Pola ini cocok untuk beban kerja agentik jangka panjang (agen coding, penggunaan komputer, pipeline riset multilangkah) di mana sebagian besar giliran bersifat mekanis tetapi memiliki rencana yang sangat baik sangatlah penting. Anda mendapatkan kualitas yang mendekati advisor saat bekerja sendiri, sementara sebagian besar generasi token terjadi dengan tarif model executor. Untuk hasil terukur, termasuk bagaimana manfaatnya menyusut ketika kemampuan executor sendiri mendekati kemampuan advisor, lihat [Mengoptimalkan biaya dan kecerdasan](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence).
 
 ```mermaid
 sequenceDiagram
@@ -63,25 +63,21 @@ sequenceDiagram
   E-->>U: Response
 ```
 
-<Note>
-  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
-</Note>
-
 ## Kapan menggunakannya
 
 Advisor cocok untuk konfigurasi berikut:
 
-* **Anda saat ini menggunakan Sonnet untuk tugas kompleks:** Tambahkan advisor dari tingkat yang lebih tinggi. Opus menjaga total biaya tetap serupa atau lebih rendah; Claude Fable 5.1 memaksimalkan peningkatan kualitas.
-* **Anda saat ini menggunakan Haiku dan menginginkan peningkatan kecerdasan:** Tambahkan advisor Opus atau Fable. Perkirakan biaya yang lebih tinggi daripada Haiku saja, tetapi lebih rendah daripada mengganti eksekutor ke model yang lebih besar.
+* **Anda saat ini menggunakan Sonnet pada tugas kompleks:** Tambahkan advisor dari tingkat yang lebih tinggi. Opus menjaga total biaya tetap serupa atau lebih rendah; Claude Fable 5.1 memaksimalkan peningkatan kualitas.
+* **Anda saat ini menggunakan Haiku dan menginginkan peningkatan kecerdasan:** Tambahkan advisor Opus atau Fable. Perkirakan biaya lebih tinggi daripada Haiku saja, tetapi lebih rendah daripada mengganti executor dengan model yang lebih besar.
 
-Hasilnya bergantung pada tugas. Evaluasi pada beban kerja Anda sendiri.
+Hasilnya bergantung pada tugas. Lakukan evaluasi pada beban kerja Anda sendiri.
 
-Advisor kurang cocok untuk tanya jawab satu giliran (tidak ada yang perlu direncanakan), pemilih model pass-through murni di mana pengguna Anda sudah memilih sendiri tradeoff biaya dan kualitas mereka, atau beban kerja di mana setiap giliran benar-benar memerlukan kemampuan penuh model advisor.
+Advisor kurang cocok untuk tanya-jawab satu giliran (tidak ada yang perlu direncanakan), pemilih model yang murni meneruskan di mana pengguna Anda sudah memilih sendiri pertukaran antara biaya dan kualitas, atau beban kerja di mana setiap giliran benar-benar membutuhkan kemampuan penuh model advisor.
 
 ## Mulai cepat
 
 <Note>
-  Alat advisor masih dalam versi beta. Sertakan header beta `advisor-tool-2026-03-01` dalam permintaan Anda.
+  Alat advisor sedang dalam tahap beta. Sertakan header beta `advisor-tool-2026-03-01` dalam permintaan Anda.
 </Note>
 
 <CodeGroup>
@@ -306,31 +302,31 @@ Advisor kurang cocok untuk tanya jawab satu giliran (tidak ada yang perlu direnc
 
 ## Cara kerjanya
 
-Saat Anda menambahkan alat advisor ke array `tools` Anda, model executor menentukan kapan memanggilnya, seperti alat lainnya. Saat executor memanggil advisor:
+Saat Anda menambahkan alat advisor ke array `tools` Anda, model executor menentukan kapan harus memanggilnya, seperti alat lainnya. Saat executor memanggil advisor:
 
 1. Executor mengeluarkan blok [`server_tool_use`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) dengan `name: "advisor"` dan `input` kosong. Executor memberi sinyal waktu, dan server menyediakan konteks.
-2. Anthropic menjalankan proses inferensi terpisah pada model advisor di sisi server. Advisor berjalan di bawah prompt sistem miliknya sendiri yang disediakan Anthropic dan menerima transkrip lengkap executor sebagai konteks kutipan dalam inputnya. Transkrip tersebut mencakup prompt sistem Anda, definisi alat, giliran sebelumnya dan hasil alat, serta teks yang telah dihasilkan executor sejauh ini dalam giliran ini.
+2. Anthropic menjalankan proses inferensi terpisah pada model advisor di sisi server. Advisor berjalan di bawah prompt sistem miliknya sendiri yang disediakan Anthropic dan menerima transkrip lengkap executor sebagai konteks yang dikutip dalam inputnya. Transkrip tersebut mencakup prompt sistem Anda, definisi alat, giliran sebelumnya dan hasil alat, serta teks yang telah dihasilkan executor sejauh ini dalam giliran ini.
 3. Respons advisor dikembalikan ke executor sebagai blok `advisor_tool_result`.
-4. Executor melanjutkan generasi, dengan informasi dari saran tersebut.
+4. Executor melanjutkan generasi, dengan berbekal saran tersebut.
 
-Semua ini terjadi di dalam satu permintaan `/v1/messages`, tanpa round trip tambahan di sisi Anda. Pengecualiannya adalah giliran yang berhenti sejenak di tengah panggilan, yang Anda lanjutkan dengan permintaan lanjutan (lihat [Melanjutkan giliran yang dijeda](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#resuming-a-paused-turn)).
+Semua ini terjadi di dalam satu permintaan `/v1/messages`, tanpa round trip tambahan di sisi Anda. Pengecualiannya adalah giliran yang dijeda di tengah panggilan, yang Anda lanjutkan dengan permintaan lanjutan (lihat [Melanjutkan giliran yang dijeda](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#resuming-a-paused-turn)).
 
-Advisor itu sendiri berjalan tanpa alat dan tanpa manajemen konteks. Blok thinking-nya dibuang sebelum hasil dikembalikan. Hanya teks saran yang sampai ke executor.
+Advisor sendiri berjalan tanpa alat dan tanpa manajemen konteks. Blok thinking-nya dibuang sebelum hasil dikembalikan. Hanya teks saran yang mencapai executor.
 
 ## Parameter alat
 
-| Parameter    | Tipe           | Default                    | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| ------------ | -------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`       | string         | *wajib*                    | Harus `"advisor_20260301"`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `name`       | string         | *wajib*                    | Harus `"advisor"`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| `model`      | string         | *wajib*                    | ID model advisor, seperti claude-opus-5-5. Ditagih dengan tarif model ini untuk sub-inferensi.                                                                                                                                                                                                                                                                                                                                                                                               |
-| `max_uses`   | integer        | tak terbatas               | Jumlah maksimum panggilan advisor yang diizinkan dalam satu permintaan. Setelah executor mencapai batas ini, panggilan advisor selanjutnya mengembalikan `advisor_tool_result_error` dengan `error_code: "max_uses_exceeded"` dan executor melanjutkan tanpa saran lebih lanjut. Ini adalah batas per permintaan, bukan batas per percakapan. Lihat [Kontrol biaya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#cost-control) untuk batas tingkat percakapan. |
-| `max_tokens` | integer        | batas output model advisor | Membatasi total output advisor (thinking ditambah teks) per panggilan. Minimum 1024. Lihat [Membatasi output advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#capping-advisor-output).                                                                                                                                                                                                                                                                    |
-| `caching`    | object \| null | `null` (nonaktif)          | Mengaktifkan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk transkrip advisor sendiri di seluruh panggilan dalam satu percakapan. Lihat [Caching prompt advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#advisor-prompt-caching).                                                                                                                                                                           |
+| Parameter    | Tipe           | Default                    | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------ | -------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`       | string         | *wajib*                    | Harus `"advisor_20260301"`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `name`       | string         | *wajib*                    | Harus `"advisor"`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `model`      | string         | *wajib*                    | ID model advisor, seperti claude-opus-5-5. Ditagih dengan tarif model ini untuk sub-inferensi.                                                                                                                                                                                                                                                                                                                                                                                              |
+| `max_uses`   | integer        | tidak terbatas             | Jumlah maksimum panggilan advisor yang diizinkan dalam satu permintaan. Setelah executor mencapai batas ini, panggilan advisor berikutnya mengembalikan `advisor_tool_result_error` dengan `error_code: "max_uses_exceeded"` dan executor melanjutkan tanpa saran lebih lanjut. Ini adalah batas per permintaan, bukan batas per percakapan. Lihat [Kontrol biaya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#cost-control) untuk batas tingkat percakapan. |
+| `max_tokens` | integer        | batas output model advisor | Membatasi total output advisor (pemikiran ditambah teks) per panggilan. Minimum 1024. Lihat [Membatasi output advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#capping-advisor-output).                                                                                                                                                                                                                                                                  |
+| `caching`    | object \| null | `null` (mati)              | Mengaktifkan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk transkrip advisor sendiri di seluruh panggilan dalam satu percakapan. Lihat [Caching prompt advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#advisor-prompt-caching).                                                                                                                                                                          |
 
-Objek `caching` memiliki bentuk `{"type": "ephemeral", "ttl": "5m" | "1h"}`. Tidak seperti `cache_control` pada blok konten, ini bukan penanda breakpoint. Ini adalah sakelar aktif/nonaktif. Server menentukan di mana batas cache ditempatkan.
+Objek `caching` memiliki bentuk `{"type": "ephemeral", "ttl": "5m" | "1h"}`. Tidak seperti `cache_control` pada blok konten, ini bukan penanda breakpoint. Ini adalah sakelar hidup/mati. Server yang menentukan di mana batas cache ditempatkan.
 
-Alat advisor juga menerima properti generik yang tersedia pada definisi alat apa pun: `cache_control`, `allowed_callers`, `defer_loading`, dan `strict` (dibahas di [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)). Lihat [Properti definisi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#tool-definition-properties) di Referensi alat untuk semantiknya.
+Alat advisor juga menerima properti generik yang tersedia pada definisi alat apa pun: `cache_control`, `allowed_callers`, `defer_loading`, dan `strict` (dibahas dalam [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)). Lihat [Properti definisi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#tool-definition-properties) dalam Referensi alat untuk semantiknya.
 
 ## Struktur respons
 
@@ -368,7 +364,7 @@ Saat advisor dipanggil, blok `server_tool_use` diikuti oleh blok `advisor_tool_r
 }
 ```
 
-`server_tool_use.input` selalu kosong. Server menyusun tampilan advisor dari transkrip lengkap secara otomatis. Tidak ada yang dimasukkan executor ke dalam `input` yang sampai ke advisor.
+`server_tool_use.input` selalu kosong. Server menyusun pandangan advisor dari transkrip lengkap secara otomatis. Apa pun yang dimasukkan executor ke dalam `input` tidak akan mencapai advisor.
 
 ### Varian hasil
 
@@ -380,12 +376,12 @@ Field `advisor_tool_result.content` adalah discriminated union. Untuk panggilan 
 | `advisor_redacted_result` | `encrypted_content`, `stop_reason` | Model advisor mengembalikan output terenkripsi.                    |
 
 <Note>
-  Advisor Claude Sonnet 5.5, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Opus 5, Claude Fable 5, Claude Mythos 5, dan Claude Haiku 5.5 mengembalikan `advisor_redacted_result` yang terenkripsi. Setiap model advisor lain dalam [tabel kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) mengembalikan `advisor_result` berupa plaintext. Untuk membaca teks saran dalam respons Anda sendiri, gunakan advisor yang mengembalikan plaintext, seperti `claude-opus-4-8`, jika baris executor Anda dalam [tabel kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) mencantumkannya. Executor Claude Sonnet 5.5, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Opus 5, Claude Fable 5, dan Claude Mythos 5 hanya dapat dipasangkan dengan advisor yang mengembalikan bentuk terenkripsi, sehingga pada executor tersebut teks saran tidak dapat dibaca dalam respons.
+  Advisor Claude Sonnet 5.5, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Opus 5, Claude Fable 5, Claude Mythos 5, dan Claude Haiku 5.5 mengembalikan `advisor_redacted_result` yang terenkripsi. Setiap model advisor lain dalam [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) mengembalikan `advisor_result` plaintext. Untuk membaca teks saran dalam respons Anda sendiri, gunakan advisor yang mengembalikan plaintext, seperti `claude-opus-4-8`, jika [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) mencantumkannya untuk executor Anda. Executor Claude Sonnet 5.5, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Opus 5, Claude Fable 5, dan Claude Mythos 5 hanya dapat dipasangkan dengan advisor yang mengembalikan bentuk terenkripsi, sehingga pada executor tersebut teks saran tidak dapat dibaca dalam respons.
 </Note>
 
 Berikut adalah permintaan yang sama yang dikirim dua kali, identik kecuali `model` advisor dalam definisi alat, yang menunjukkan kedua varian.
 
-Dengan `"model": "claude-opus-4-8"`, saran berupa plaintext:
+Dengan `"model": "claude-opus-4-8"`, sarannya berupa plaintext:
 
 ```json
 {
@@ -398,7 +394,7 @@ Dengan `"model": "claude-opus-4-8"`, saran berupa plaintext:
 }
 ```
 
-Dengan `"model": "claude-opus-5-5"`, saran terenkripsi:
+Dengan `"model": "claude-opus-5-5"`, sarannya terenkripsi:
 
 ```json
 {
@@ -411,11 +407,11 @@ Dengan `"model": "claude-opus-5-5"`, saran terenkripsi:
 }
 ```
 
-Kedua varian hasil membawa field `stop_reason` ketika Anda menetapkan [`max_tokens`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#capping-advisor-output) pada definisi alat, dan menghilangkannya ketika Anda tidak menetapkannya. Field ini berisi alasan berhenti dari sub-panggilan advisor, biasanya `"end_turn"`, atau `"max_tokens"` ketika batas tercapai. Nilainya sama dengan [`stop_reason`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons) tingkat atas pada Messages API.
+Kedua varian hasil membawa field `stop_reason` ketika Anda menetapkan [`max_tokens`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#capping-advisor-output) pada definisi alat, dan menghilangkannya jika tidak. Field ini berisi stop reason dari sub-panggilan advisor, biasanya `"end_turn"`, atau `"max_tokens"` ketika batas tercapai. Nilainya sama dengan [`stop_reason`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons) tingkat atas pada Messages API.
 
 Dengan `advisor_result`, field `text` berisi saran yang dapat dibaca manusia. Dengan `advisor_redacted_result`, field `encrypted_content` berisi blob buram yang tidak dapat Anda baca. Pada giliran berikutnya, server mendekripsinya dan merender plaintext ke dalam prompt executor.
 
-Dalam kedua kasus, kirimkan kembali konten tersebut apa adanya pada giliran berikutnya. Jika Anda mengganti model advisor di tengah percakapan, lakukan percabangan berdasarkan `content.type` untuk menangani kedua bentuk.
+Dalam kedua kasus, kirimkan kembali konten apa adanya pada giliran berikutnya. Jika Anda mengganti model advisor di tengah percakapan, lakukan percabangan berdasarkan `content.type` untuk menangani kedua bentuk.
 
 ### Hasil error
 
@@ -432,23 +428,23 @@ Jika panggilan advisor gagal, hasilnya membawa error:
 }
 ```
 
-Eksekutor menerima error tersebut dan melanjutkan tanpa saran lebih lanjut. Permintaan itu sendiri tidak gagal.
+Executor menerima error tersebut dan melanjutkan tanpa saran lebih lanjut. Permintaan itu sendiri tidak gagal.
 
-| `error_code`              | Arti                                                                                                                                                       |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `max_uses_exceeded`       | Permintaan mencapai batas `max_uses` yang ditetapkan pada definisi alat. Panggilan advisor selanjutnya dalam permintaan yang sama mengembalikan error ini. |
-| `too_many_requests`       | Sub-inferensi advisor terkena batas laju.                                                                                                                  |
-| `overloaded`              | Sub-inferensi advisor mencapai batas kapasitas.                                                                                                            |
-| `prompt_too_long`         | Transkrip melebihi jendela konteks model advisor.                                                                                                          |
-| `execution_time_exceeded` | Sub-inferensi advisor kehabisan waktu.                                                                                                                     |
-| `model_not_found`         | Model advisor yang dikonfigurasi tidak tersedia.                                                                                                           |
-| `unavailable`             | Kegagalan advisor lainnya.                                                                                                                                 |
+| `error_code`              | Arti                                                                                                                                                      |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `max_uses_exceeded`       | Permintaan mencapai batas `max_uses` yang ditetapkan pada definisi alat. Panggilan advisor berikutnya dalam permintaan yang sama mengembalikan error ini. |
+| `too_many_requests`       | Sub-inferensi advisor terkena batas laju.                                                                                                                 |
+| `overloaded`              | Sub-inferensi advisor mencapai batas kapasitas.                                                                                                           |
+| `prompt_too_long`         | Transkrip melebihi jendela konteks model advisor.                                                                                                         |
+| `execution_time_exceeded` | Sub-inferensi advisor kehabisan waktu.                                                                                                                    |
+| `model_not_found`         | Model advisor yang dikonfigurasi tidak tersedia.                                                                                                          |
+| `unavailable`             | Kegagalan advisor lainnya.                                                                                                                                |
 
-“Rate limit” (batas laju) advisor diambil dari bucket per model yang sama dengan panggilan langsung ke model advisor. Batas laju pada advisor muncul sebagai `too_many_requests` di dalam hasil alat. Batas laju pada executor menggagalkan seluruh permintaan dengan HTTP 429.
+Batas laju advisor diambil dari bucket per model yang sama dengan panggilan langsung ke model advisor. Batas laju pada advisor muncul sebagai `too_many_requests` di dalam hasil alat. Batas laju pada executor menggagalkan seluruh permintaan dengan HTTP 429.
 
 ## Percakapan multi-giliran
 
-Kirimkan kembali seluruh konten asisten, termasuk blok `advisor_tool_result`, ke API pada giliran berikutnya. Kirimkan kembali blok hasil apa adanya: dengan model Opus terbaru sebagai advisor, seperti dalam contoh ini, `content` blok hasil adalah varian terenkripsi `advisor_redacted_result`, dan server mendekripsinya serta merender saran ke dalam prompt executor pada giliran berikutnya (lihat [Varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants)). Mekanismenya identik untuk model advisor apa pun.
+Kirimkan kembali konten asisten lengkap, termasuk blok `advisor_tool_result`, ke API pada giliran berikutnya. Kirimkan kembali blok hasil apa adanya: dengan model Opus terbaru sebagai advisor, seperti dalam contoh ini, `content` blok hasil adalah varian terenkripsi `advisor_redacted_result`, dan server mendekripsinya serta merender saran ke dalam prompt executor pada giliran berikutnya (lihat [Varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants)). Mekanismenya identik untuk model advisor apa pun.
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -537,8 +533,8 @@ Kirimkan kembali seluruh konten asisten, termasuk blok `advisor_tool_result`, ke
   using Anthropic.Models.Beta.Messages;
   using Messages = Anthropic.Models.Messages;
 
-  // Panggilan advisor menjalankan model kedua di dalam permintaan, jadi beri waktu lebih dari
-  // timeout default non-streaming C# SDK, yang ukurannya ditentukan dari max_tokens.
+  // Panggilan advisor menjalankan model kedua di dalam permintaan, jadi izinkan lebih dari
+  // batas waktu non-streaming default SDK C#, yang ukurannya ditentukan dari max_tokens.
   var client = new AnthropicClient { Timeout = TimeSpan.FromMinutes(5) };
 
   var tools = new BetaToolUnion[]
@@ -737,7 +733,7 @@ Kirimkan kembali seluruh konten asisten, termasuk blok `advisor_tool_result`, ke
     betas: ["advisor-tool-2026-03-01"]
   )
 
-  # Tambahkan konten respons lengkap, termasuk blok advisor_tool_result apa pun
+  # Tambahkan seluruh konten respons, termasuk blok advisor_tool_result apa pun
   messages << { role: "assistant", content: response.content }
 
   # Lanjutkan percakapan
@@ -756,18 +752,18 @@ Kirimkan kembali seluruh konten asisten, termasuk blok `advisor_tool_result`, ke
 Anda dapat menghapus alat advisor dari `tools` pada giliran lanjutan sementara riwayat pesan masih berisi blok `advisor_tool_result`. Permintaan diterima dan blok historis dipertahankan; model tidak dapat memanggil advisor pada giliran tersebut. Anda tetap harus mengirim header beta `advisor-tool-2026-03-01` agar blok riwayat tersebut diterima.
 
 <Note>
-  Alat advisor tidak memiliki batas tingkat percakapan bawaan. Untuk membatasi panggilan advisor di seluruh percakapan, hitung di sisi klien. Saat Anda mencapai batas atas Anda, hapus alat advisor dari array `tools` Anda. Anda tidak perlu menghapus blok `advisor_tool_result` dari riwayat pesan Anda.
+  Alat advisor tidak memiliki batas tingkat percakapan bawaan. Untuk membatasi panggilan advisor di seluruh percakapan, hitung panggilan tersebut di sisi klien. Saat Anda mencapai batas Anda, hapus alat advisor dari array `tools` Anda. Anda tidak perlu menghapus blok `advisor_tool_result` dari riwayat pesan Anda.
 </Note>
 
 ### Melanjutkan giliran yang dijeda
 
-Respons dapat berakhir dengan `stop_reason: "pause_turn"` saat panggilan advisor masih tertunda. Saat itu terjadi, respons berisi blok `server_tool_use` advisor tanpa `advisor_tool_result` untuknya. Untuk melanjutkan, tambahkan pesan asisten tersebut ke `messages` dengan konten yang tidak diubah, pertahankan blok `server_tool_use`, dan kirim permintaan lagi dengan alat advisor dan header beta yang sama. Anda tidak perlu menambahkan pesan pengguna atau blok `tool_result`. API menjalankan panggilan advisor yang tertunda dan melanjutkan giliran executor dalam respons baru. Giliran yang dilanjutkan dapat dijeda lagi. Jika demikian, ulangi langkah yang sama. Menghilangkan alat advisor dari permintaan lanjutan mengembalikan 400 `invalid_request_error`, karena blok `server_tool_use` yang tertunda tidak memiliki definisi alat untuk dijalankan; sertakan alat tersebut setiap kali ada panggilan yang tertunda. Jika sebaliknya executor memanggil salah satu alat Anda dalam giliran yang sama, respons berakhir dengan `stop_reason: "tool_use"` saat panggilan advisor masih tertunda. Kirim blok `tool_result` seperti biasa, dan panggilan advisor yang tertunda berjalan di awal permintaan berikutnya. Lihat [Mencampur alat server dan alat klien dalam satu giliran](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#mixing-server-tools-and-client-tools-in-one-turn).
+Respons dapat berakhir dengan `stop_reason: "pause_turn"` sementara panggilan advisor masih tertunda. Ketika itu terjadi, respons berisi blok `server_tool_use` milik advisor tanpa `advisor_tool_result` untuknya. Untuk melanjutkan, tambahkan pesan asisten tersebut ke `messages` dengan kontennya tidak diubah, pertahankan blok `server_tool_use`, dan kirim ulang permintaan dengan alat advisor dan header beta yang sama. Anda tidak perlu menambahkan pesan pengguna atau blok `tool_result`. API menjalankan panggilan advisor yang tertunda dan melanjutkan giliran executor dalam respons baru. Giliran yang dilanjutkan dapat dijeda lagi. Jika demikian, ulangi langkah yang sama. Menghilangkan alat advisor dari permintaan lanjutan akan mengembalikan 400 `invalid_request_error`, karena blok `server_tool_use` yang tertunda tidak memiliki definisi alat untuk dijalankan; sertakan alat tersebut setiap kali ada panggilan yang tertunda. Jika sebaliknya executor memanggil salah satu alat Anda dalam giliran yang sama, respons berakhir dengan `stop_reason: "tool_use"` sementara panggilan advisor masih tertunda. Kirim blok `tool_result` seperti biasa, dan panggilan advisor yang tertunda berjalan di awal permintaan berikutnya tersebut. Lihat [Mencampur alat server dan alat klien dalam satu giliran](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#mixing-server-tools-and-client-tools-in-one-turn).
 
 ### Dorongan di tengah percakapan untuk executor yang jarang memanggil
 
 Jika executor Haiku belum memanggil advisor pada giliran asisten pertamanya, tambahkan pengingat singkat sebagai pesan pengguna tambahan sebelum giliran asisten kedua. Dalam evaluasi perilaku internal Anthropic pada executor Claude Haiku 4.5, hal ini meningkatkan tingkat kelulusan tugas sekitar 7 poin persentase. Pada executor Sonnet, dorongan teks biasa tidak memiliki efek terukur dalam pengujian Anthropic. Pertimbangan waktu panggilan berikut sangat relevan untuk Sonnet. Jangan terapkan dorongan pada executor Opus: Pada Opus, dorongan sedikit menurunkan tingkat kelulusan.
 
-Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model memahami tugas tetapi sebelum model berkomitmen pada suatu pendekatan.
+Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model memahami tugas tetapi sebelum berkomitmen pada suatu pendekatan.
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -884,7 +880,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
       continue; // server tool pending; re-send to let the API complete it
     }
     if (response.stop_reason !== "tool_use") {
-      // end_turn, atau stop seperti max_tokens yang perlu ditangani
+      // end_turn, atau penghentian seperti max_tokens yang perlu ditangani
       // (dijelaskan setelah contoh ini)
       break;
     }
@@ -976,7 +972,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
       {
           messages.Add(new BetaUserMessageParam { Content = results });
       }
-      // Lewati ini jika prompt sistem Anda sudah meminta model untuk jarang memanggil alat.
+      // Lewati ini jika prompt sistem Anda sudah menyuruh model untuk jarang memanggil.
       if (turn == NudgeTurn - 1 && !advisorCalled)
       {
           messages.Add(new BetaUserMessageParam { Content = NudgeText });
@@ -1044,7 +1040,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
   			continue // server tool pending; re-send to let the API complete it
   		}
   		if response.StopReason != anthropic.BetaStopReasonToolUse {
-  			// end_turn, atau stop seperti max_tokens yang perlu ditangani
+  			// end_turn, atau penghentian seperti max_tokens yang perlu ditangani
   			// (dijelaskan setelah contoh ini)
   			break
   		}
@@ -1258,29 +1254,29 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
 
     results = run_your_tools(response.content) # list of tool_result blocks
     messages << { role: "user", content: results } unless results.empty?
-    # Lewati ini jika prompt sistem Anda sudah meminta model untuk jarang memanggil alat.
+    # Lewati ini jika prompt sistem Anda sudah meminta model memanggil alat seperlunya.
     messages << { role: "user", content: NUDGE_TEXT } if turn == NUDGE_TURN - 1 && !advisor_called
   end
   ```
 </CodeGroup>
 
-Loop berakhir pada alasan berhenti apa pun selain `tool_use` atau `pause_turn`. Jika `max_tokens` memotong respons, hapus giliran asisten yang terpotong dari `messages` dan [coba lagi dengan `max_tokens` yang lebih tinggi](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#max-tokens). Jika giliran tersebut tidak berisi blok `tool_use`, Anda dapat mempertahankannya dan [melanjutkan respons](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#ensuring-complete-responses) dengan pesan pengguna baru. Mengirim ulang giliran asisten yang terpotong sebagai pesan terakhir merupakan [prefill](https://platform.claude.com/docs/id/api/errors#prefill-not-supported), yang ditolak oleh Claude 4.6 dan model yang lebih baru.
+Loop berakhir pada stop reason apa pun selain `tool_use` atau `pause_turn`. Jika `max_tokens` memotong respons, hapus giliran asisten yang terpotong dari `messages` dan [coba lagi dengan `max_tokens` yang lebih tinggi](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#max-tokens). Jika giliran tersebut tidak berisi blok `tool_use`, Anda dapat mempertahankannya dan [melanjutkan respons](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#ensuring-complete-responses) dengan pesan pengguna baru. Mengirim ulang giliran asisten yang terpotong sebagai pesan terakhir merupakan [prefill](https://platform.claude.com/docs/id/api/errors#prefill-not-supported), yang ditolak oleh Claude 4.6 dan model yang lebih baru.
 
-Tambahkan dorongan sebagai pesan pengguna tersendiri setelah hasil alat, bukan sebagai blok saudara dalam pesan yang sama. Pesan pengguna yang berurutan adalah valid. Dalam pengujian Anthropic pada executor Claude Haiku 4.5 dan Sonnet, keduanya berperilaku setara dengan blok saudara. Bentuk pesan terpisah juga menjaga pengingat tetap jelas berbeda dari output alat.
+Tambahkan dorongan sebagai pesan pengguna tersendiri setelah hasil alat, bukan sebagai blok sejajar dalam pesan yang sama. Pesan pengguna berturut-turut adalah valid. Dalam pengujian Anthropic pada executor Claude Haiku 4.5 dan Sonnet, keduanya berperilaku setara dengan blok sejajar. Bentuk pesan terpisah juga menjaga pengingat tetap jelas berbeda dari output alat.
 
-**Kompromi:** Dorongan meningkatkan tingkat panggilan, yang dapat mendorong tugas yang sangat sederhana ke konsultasi yang tidak perlu. Jika beban kerja Anda mencampur tugas sederhana dan kompleks, pertimbangkan untuk menaikkan `NUDGE_TURN` menjadi 3 agar tugas dua giliran selesai sebelum dorongan dipicu, atau batasi dorongan berdasarkan sinyal kompleksitas tugas yang sudah Anda hitung. Jika prompt sistem Anda sudah berisi bahasa pembatasan (“gunakan advisor hanya untuk ketidakpastian yang sesungguhnya”), lewati dorongan sepenuhnya, karena kedua instruksi tersebut saling bertentangan.
+**Pertukaran:** Dorongan meningkatkan tingkat panggilan, yang dapat mendorong tugas yang sangat sederhana ke konsultasi yang tidak perlu. Jika beban kerja Anda mencampur tugas sederhana dan kompleks, pertimbangkan untuk menaikkan `NUDGE_TURN` menjadi 3 agar tugas dua giliran selesai sebelum dorongan dijalankan, atau batasi dorongan berdasarkan sinyal kompleksitas tugas yang sudah Anda hitung. Jika prompt sistem Anda sudah berisi bahasa pengendalian (“reserve the advisor for genuine uncertainty”), lewati dorongan sepenuhnya, karena kedua instruksi tersebut bertentangan.
 
-Dorongan teks biasa sangat menonjol pada executor Claude Haiku 4.5 dan Sonnet: 74 persen (Sonnet) hingga 98 persen (Claude Haiku 4.5) dari percobaan yang didorong dalam pengujian Anthropic langsung memanggil advisor pada giliran 2. Jika hal itu terjadi sebelum executor Anda membaca masalah atau mengumpulkan konteks, panggilan advisor yang dihasilkan memiliki konteks rendah dan dapat menggantikan panggilan selanjutnya yang waktunya lebih tepat. Ukur giliran panggilan pertama baseline executor Anda sebelum menambahkan dorongan. Jika executor sudah memanggil advisor secara andal dan panggilan pertamanya biasanya terjadi pada giliran N, tetapkan `NUDGE_TURN` lebih besar dari N. Dalam pengujian Anthropic, dorongan pada giliran 2 pada beban kerja di mana panggilan pertama baseline terjadi pada giliran 7 atau lebih berkorelasi dengan penurunan kinerja tugas sebesar 3 hingga 4 poin persentase. Pada beban kerja browsing di mana tingkat panggilan baseline adalah 86 persen, dorongan yang sama meningkatkan keterlibatan tanpa mengorbankan kinerja tugas.
+Dorongan teks biasa sangat menonjol pada executor Claude Haiku 4.5 dan Sonnet: 74 persen (Sonnet) hingga 98 persen (Claude Haiku 4.5) dari percobaan yang didorong dalam pengujian Anthropic langsung memanggil advisor pada giliran 2. Jika itu terjadi sebelum executor Anda membaca masalah atau mengumpulkan konteks, panggilan advisor yang dihasilkan memiliki konteks rendah dan dapat menggantikan panggilan berikutnya yang waktunya lebih tepat. Ukur giliran panggilan pertama dasar executor Anda sebelum menambahkan dorongan. Jika executor sudah memanggil advisor secara andal dan panggilan pertamanya biasanya terjadi pada giliran N, tetapkan `NUDGE_TURN` lebih besar dari N. Dalam pengujian Anthropic, dorongan giliran 2 pada beban kerja di mana panggilan pertama dasar terjadi pada giliran 7 atau lebih berkorelasi dengan penurunan kinerja tugas sebesar 3 hingga 4 poin persentase. Pada beban kerja browse di mana tingkat panggilan dasar adalah 86 persen, dorongan yang sama meningkatkan keterlibatan tanpa biaya kinerja tugas.
 
-Untuk memaksa konsultasi pada permintaan tertentu alih-alih memberikan dorongan, tetapkan `tool_choice` ke `{"type": "tool", "name": "advisor"}`, dengan tunduk pada batasan dalam [Memaksa penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use). Memaksa penggunaan alat tidak dapat digabungkan dengan pemikiran diperpanjang manual (`thinking: {type: "enabled"}`): API mengembalikan `400 invalid_request_error` jika Anda mengaktifkan keduanya. Adaptive thinking mendukung penggunaan alat yang dipaksakan. Executor Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1 menolak tipe `tool_choice` `tool` dan `any`, jadi gunakan dorongan prompt pada model-model tersebut.
+Untuk memaksa konsultasi pada permintaan tertentu alih-alih memberi dorongan, tetapkan `tool_choice` ke `{"type": "tool", "name": "advisor"}`, dengan tunduk pada batasan dalam [Memaksa penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use). Memaksa penggunaan alat tidak dapat digabungkan dengan pemikiran diperpanjang manual (`thinking: {type: "enabled"}`): API mengembalikan `400 invalid_request_error` jika Anda mengaktifkan keduanya. Pemikiran adaptif mendukung penggunaan alat yang dipaksa. Executor Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1 menolak tipe `tool_choice` `tool` dan `any`, jadi gunakan dorongan prompt pada model tersebut.
 
 ## Streaming
 
-Sub-inferensi advisor tidak melakukan streaming. Stream executor berhenti sejenak saat advisor berjalan; kemudian hasil lengkap tiba dalam satu event.
+Sub-inferensi advisor tidak melakukan streaming. Stream executor dijeda saat advisor berjalan; kemudian hasil lengkap tiba dalam satu event.
 
-Blok `server_tool_use` dengan `name: "advisor"` menandakan bahwa panggilan advisor sedang dimulai. Jeda dimulai saat blok tersebut ditutup (`content_block_stop`). Selama jeda, stream tidak aktif kecuali keepalive SSE `ping` standar yang dikirim kira-kira setiap 30 detik. Panggilan advisor yang singkat mungkin tidak menampilkan ping.
+Blok `server_tool_use` dengan `name: "advisor"` menandakan bahwa panggilan advisor sedang dimulai. Jeda dimulai saat blok tersebut ditutup (`content_block_stop`). Selama jeda, stream hening kecuali keepalive SSE `ping` standar yang dikirim kira-kira setiap 30 detik. Panggilan advisor yang singkat mungkin tidak menampilkan ping.
 
-Saat panggilan advisor selesai, `advisor_tool_result` tiba dalam bentuk lengkap dalam satu event `content_block_start` (tanpa delta). Output eksekutor kemudian melanjutkan streaming.
+Saat panggilan advisor selesai, `advisor_tool_result` tiba dalam bentuk lengkap dalam satu event `content_block_start` (tanpa delta). Output executor kemudian melanjutkan streaming.
 
 Event `message_delta` menyusul dengan array `usage.iterations` yang diperbarui yang mencerminkan jumlah token advisor.
 
@@ -1323,23 +1319,23 @@ Panggilan advisor berjalan sebagai sub-inferensi terpisah yang ditagih dengan ta
 }
 ```
 
-Field `usage` tingkat atas hanya mencerminkan token executor. Token advisor tidak digabungkan ke dalam total tingkat atas karena ditagih dengan tarif berbeda. Iterasi dengan `type: "advisor_message"` ditagih dengan tarif model advisor, dan iterasi dengan `type: "message"` ditagih dengan tarif model executor.
+Field `usage` tingkat atas hanya mencerminkan token executor. Token advisor tidak digabungkan ke total tingkat atas karena ditagih dengan tarif yang berbeda. Iterasi dengan `type: "advisor_message"` ditagih dengan tarif model advisor, dan iterasi dengan `type: "message"` ditagih dengan tarif model executor.
 
-Setiap field `usage` tingkat atas adalah jumlah field tersebut di seluruh iterasi executor, termasuk `input_tokens`, `output_tokens`, dan `cache_read_input_tokens`. Karena setiap iterasi executor mengirim ulang percakapan yang terus bertambah, input iterasi berikutnya mencakup output iterasi sebelumnya, sehingga jumlah `input_tokens` melebihi ukuran prompt tunggal mana pun. Gunakan `usage.iterations` untuk rincian lengkap per iterasi saat membangun logika pelacakan biaya.
+Setiap field `usage` tingkat atas adalah jumlah field tersebut di seluruh iterasi executor, termasuk `input_tokens`, `output_tokens`, dan `cache_read_input_tokens`. Karena setiap iterasi executor mengirim ulang percakapan yang terus bertambah, input iterasi berikutnya mencakup output iterasi sebelumnya, sehingga total `input_tokens` melebihi ukuran prompt tunggal mana pun. Gunakan `usage.iterations` untuk rincian lengkap per iterasi saat membangun logika pelacakan biaya.
 
-Output advisor biasanya 400 hingga 700 token teks, atau 1.400 hingga 1.800 token total termasuk thinking. Penghematan biaya berasal dari advisor yang tidak menghasilkan output akhir lengkap Anda. Executor melakukannya dengan tarifnya yang lebih rendah.
+Output advisor biasanya 400 hingga 700 token teks, atau total 1.400 hingga 1.800 token termasuk pemikiran. Penghematan biaya berasal dari advisor yang tidak menghasilkan output akhir lengkap Anda. Executor yang melakukannya dengan tarifnya yang lebih rendah.
 
-`max_tokens` tingkat atas hanya berlaku untuk output executor. Ini tidak membatasi token sub-inferensi advisor. Untuk membatasi output advisor secara langsung, tetapkan [`max_tokens` pada definisi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#capping-advisor-output). Token advisor juga tidak diambil dari [task budget](https://platform.claude.com/docs/id/build-with-claude/task-budgets) apa pun yang diterapkan pada executor.
+`max_tokens` tingkat atas hanya berlaku untuk output executor. Parameter ini tidak membatasi token sub-inferensi advisor. Untuk membatasi output advisor secara langsung, tetapkan [`max_tokens` pada definisi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#capping-advisor-output). Token advisor juga tidak diambil dari [anggaran tugas](https://platform.claude.com/docs/id/build-with-claude/task-budgets) apa pun yang diterapkan pada executor.
 
 [Priority Tier](https://platform.claude.com/docs/id/api/service-tiers) berlaku untuk setiap model secara independen. Komitmen Priority Tier pada model executor tidak meluas ke advisor. Panggilan advisor berjalan pada Priority Tier hanya jika organisasi Anda juga memiliki komitmen pada model advisor.
 
 ## Caching prompt advisor
 
-Ada dua lapisan caching yang independen.
+Terdapat dua lapisan caching yang independen.
 
-### Caching sisi executor
+### Caching di sisi executor
 
-Blok `advisor_tool_result` dapat di-cache seperti blok konten lainnya. Breakpoint `cache_control` yang ditempatkan setelahnya pada giliran berikutnya akan hit. Prompt executor selalu berisi saran plaintext terlepas dari apakah klien Anda menerima `text` atau `encrypted_content`, sehingga perilaku caching identik untuk kedua varian hasil.
+Blok `advisor_tool_result` dapat di-cache seperti blok konten lainnya. Breakpoint `cache_control` yang ditempatkan setelahnya pada giliran berikutnya akan mendapatkan cache hit. Prompt executor selalu berisi saran plaintext terlepas dari apakah klien Anda menerima `text` atau `encrypted_content`, sehingga perilaku caching identik untuk kedua varian hasil.
 
 ### Caching di sisi advisor
 
@@ -1431,17 +1427,17 @@ Tetapkan `caching` pada definisi alat untuk mengaktifkan caching prompt untuk tr
 
 Prompt advisor pada panggilan ke-N adalah prompt panggilan ke-(N-1) dengan satu segmen tambahan di akhir, sehingga prefiksnya stabil di seluruh panggilan. Dengan `caching` diaktifkan, setiap panggilan advisor menulis entri cache, dan panggilan berikutnya membaca hingga titik tersebut dan hanya membayar selisihnya. Anda akan melihat `cache_read_input_tokens` menjadi bukan nol pada iterasi `advisor_message` kedua dan seterusnya.
 
-**Kapan mengaktifkannya:** Biaya penulisan cache lebih besar daripada penghematan dari pembacaan jika advisor dipanggil dua kali atau kurang dalam setiap percakapan. Caching mencapai titik impas pada sekitar tiga panggilan advisor dan semakin menguntungkan setelahnya. Aktifkan untuk loop agen yang panjang, dan biarkan nonaktif untuk tugas singkat.
+**Kapan mengaktifkannya:** Biaya penulisan cache lebih besar daripada penghematan dari pembacaan ketika advisor dipanggil dua kali atau kurang dalam setiap percakapan. Caching mencapai titik impas pada sekitar tiga panggilan advisor dan membaik dari sana. Aktifkan untuk loop agen yang panjang, dan matikan untuk tugas pendek.
 
-**Jaga konsistensi:** Tetapkan `caching` sekali dan biarkan untuk seluruh percakapan. Menonaktifkan dan mengaktifkannya kembali di tengah percakapan menyebabkan cache miss.
+**Jaga konsistensi:** Tetapkan `caching` sekali dan biarkan selama seluruh percakapan. Mematikan dan menyalakannya kembali di tengah percakapan menyebabkan cache miss.
 
 <Warning>
-  [`clear_thinking`](https://platform.claude.com/docs/id/build-with-claude/context-editing) dengan nilai `keep` selain `"all"` menggeser transkrip yang dikutip advisor setiap giliran, menyebabkan cache miss di sisi advisor. Ini hanya penurunan dari sisi biaya. Kualitas saran tidak terpengaruh. Saat thinking aktif tanpa konfigurasi `clear_thinking` eksplisit, API secara default menggunakan `keep: {type: "thinking_turns", value: 1}`, yang memicu perilaku ini (default pada model Opus dan Sonnet sebelumnya serta pada model Haiku hingga Claude Haiku 4.5; pada Claude Opus 4.5 dan model Opus yang lebih baru, Claude Sonnet 4.6 dan model Sonnet yang lebih baru, serta Claude Haiku 5.5, defaultnya adalah mempertahankan semua giliran). Tetapkan `keep: "all"` untuk menjaga stabilitas cache advisor.
+  [`clear_thinking`](https://platform.claude.com/docs/id/build-with-claude/context-editing) dengan nilai `keep` selain `"all"` menggeser transkrip yang dikutip advisor setiap giliran, menyebabkan cache miss di sisi advisor. Dampaknya hanya pada biaya (biaya naik). Kualitas saran tidak terpengaruh. Ketika pemikiran aktif tanpa konfigurasi `clear_thinking` eksplisit, API secara default menggunakan `keep: {type: "thinking_turns", value: 1}`, yang memicu perilaku ini (default pada model Opus dan Sonnet sebelumnya serta pada model Haiku hingga Claude Haiku 4.5, sedangkan pada Claude Opus 4.5 dan model Opus yang lebih baru, Claude Sonnet 4.6 dan model Sonnet yang lebih baru, serta Claude Haiku 5.5, defaultnya adalah mempertahankan semua giliran). Tetapkan `keep: "all"` untuk menjaga stabilitas cache advisor.
 </Warning>
 
 ## Menggabungkan dengan alat lain
 
-Alat advisor dapat dikombinasikan dengan alat sisi server dan sisi klien lainnya. Tambahkan semuanya ke array `tools` yang sama:
+Alat advisor dapat dikomposisikan dengan alat sisi server dan sisi klien lainnya. Tambahkan semuanya ke array `tools` yang sama:
 
 <CodeGroup exclude="shell">
   ```python Python
@@ -1608,29 +1604,29 @@ Alat advisor dapat dikombinasikan dengan alat sisi server dan sisi klien lainnya
 
 Executor dapat mencari di web, memanggil advisor, dan menggunakan alat kustom Anda dalam giliran yang sama. Rencana advisor dapat memengaruhi alat mana yang akan digunakan executor selanjutnya.
 
-| Fitur                                                                                       | Interaksi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing)  | Didukung. `usage.iterations` dilaporkan per item.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting)  | Hanya mengembalikan token input iterasi pertama executor. Untuk perkiraan kasar advisor, panggil `client.beta.messages.count_tokens()` (typescript: `client.beta.messages.countTokens()`; go, csharp: `client.Beta.Messages.CountTokens()`; java: `client.beta().messages().countTokens()`; php: `$client->beta->messages->countTokens()`; cli: `ant beta:messages count-tokens`; curl: `POST /v1/messages/count_tokens`) dengan `model` ditetapkan ke model advisor dan pesan yang sama.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) | `clear_tool_uses` tidak sepenuhnya kompatibel dengan blok alat advisor. Untuk `clear_thinking`, lihat peringatan caching sebelumnya.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `pause_turn`                                                                                | Panggilan advisor yang menggantung mengakhiri respons dengan `stop_reason: "pause_turn"` dan blok `server_tool_use` tanpa hasil jika tidak ada blok `tool_use` klien yang menunggu hasil Anda dalam giliran yang sama. Advisor berjalan saat dilanjutkan. Jika eksekutor juga memanggil salah satu alat Anda dalam giliran tersebut, respons berakhir dengan `stop_reason: "tool_use"` sebagai gantinya, dan panggilan advisor yang tertunda berjalan di awal permintaan Anda berikutnya, setelah Anda mengirim blok `tool_result`. Lihat [Melanjutkan giliran yang dijeda](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#resuming-a-paused-turn), [Mencampur alat server dan alat klien dalam satu giliran](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#mixing-server-tools-and-client-tools-in-one-turn), dan [Loop sisi server dan pause\_turn](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn). |
+| Fitur                                                                                       | Interaksi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing)  | Didukung. `usage.iterations` dilaporkan per item.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting)  | Hanya mengembalikan token input iterasi pertama executor. Untuk perkiraan kasar advisor, panggil `client.beta.messages.count_tokens()` (typescript: `client.beta.messages.countTokens()`; go, csharp: `client.Beta.Messages.CountTokens()`; java: `client.beta().messages().countTokens()`; php: `$client->beta->messages->countTokens()`; cli: `ant beta:messages count-tokens`; curl: `POST /v1/messages/count_tokens`) dengan `model` diatur ke model advisor dan pesan yang sama.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) | `clear_tool_uses` tidak sepenuhnya kompatibel dengan blok alat advisor. Untuk `clear_thinking`, lihat peringatan caching sebelumnya.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `pause_turn`                                                                                | Panggilan advisor yang menggantung mengakhiri respons dengan `stop_reason: "pause_turn"` dan blok `server_tool_use` tanpa hasil ketika tidak ada blok `tool_use` klien yang menunggu hasil Anda dalam giliran yang sama. Advisor berjalan saat dilanjutkan. Jika executor juga memanggil salah satu alat Anda dalam giliran tersebut, respons justru berakhir dengan `stop_reason: "tool_use"`, dan panggilan advisor yang tertunda berjalan di awal permintaan berikutnya, setelah Anda mengirim blok `tool_result`. Lihat [Melanjutkan giliran yang dijeda](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#resuming-a-paused-turn), [Mencampur alat server dan alat klien dalam satu giliran](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#mixing-server-tools-and-client-tools-in-one-turn), dan [Loop sisi server dan pause\_turn](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn). |
 
 ## Praktik terbaik
 
 ### Prompting untuk tugas coding dan agen
 
-Alat advisor dilengkapi dengan deskripsi bawaan yang mendorong executor untuk memanggilnya di dekat awal tugas kompleks dan saat menemui kesulitan. Untuk tugas riset, biasanya tidak diperlukan prompting tambahan.
+Alat advisor dilengkapi deskripsi bawaan yang mendorong executor untuk memanggilnya di dekat awal tugas kompleks dan saat menghadapi kesulitan. Untuk tugas riset, biasanya tidak diperlukan prompting tambahan.
 
-Pada tugas coding dan agen, advisor menghasilkan kecerdasan lebih tinggi dengan biaya serupa ketika mengurangi total panggilan alat dan panjang percakapan. Dua waktu pemanggilan mendorong peningkatan ini:
+Pada tugas coding dan agen, advisor menghasilkan kecerdasan lebih tinggi dengan biaya serupa ketika advisor mengurangi total panggilan alat dan panjang percakapan. Dua waktu pemanggilan mendorong peningkatan ini:
 
-1. Panggilan advisor pertama yang lebih awal, setelah beberapa pembacaan eksploratif ada dalam transkrip.
+1. Panggilan advisor pertama yang awal, setelah beberapa pembacaan eksploratif ada dalam transkrip.
 2. Untuk tugas sulit, panggilan advisor terakhir setelah penulisan file dan output pengujian ada dalam transkrip.
 
-Jika agen Anda mengekspos alat lain yang mirip perencana (misalnya, alat daftar todo), arahkan model untuk memanggil advisor sebelum alat-alat tersebut sehingga rencana advisor mengalir ke dalamnya. [Prompt sistem yang disarankan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#suggested-system-prompt-for-coding-tasks) memperkuat pola panggilan awal. Tambahkan kalimat pengarah Anda sendiri yang menunjuk ke alat perencana mana pun yang diekspos agen Anda.
+Jika agen Anda menyediakan alat lain yang mirip perencana (misalnya, alat daftar todo), minta model untuk memanggil advisor sebelum alat tersebut agar rencana advisor tersalurkan ke dalamnya. [Prompt sistem yang disarankan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#suggested-system-prompt-for-coding-tasks) memperkuat pola panggilan awal. Tambahkan kalimat penyalur Anda sendiri yang menunjuk ke alat perencana mana pun yang disediakan agen Anda.
 
 #### Prompt sistem yang disarankan untuk tugas coding
 
-Tanpa pengarahan prompt sistem, executor cenderung kurang memanggil advisor di beberapa domain, khususnya tugas coding. Untuk tugas coding di mana Anda menginginkan waktu advisor yang konsisten dan sekitar dua hingga tiga panggilan untuk setiap tugas, tambahkan blok berikut di awal prompt sistem executor Anda sebelum kalimat lain yang menyebutkan advisor.
+Tanpa pengarahan melalui prompt sistem, executor cenderung jarang memanggil advisor di beberapa domain, terutama tugas coding. Untuk tugas coding di mana Anda menginginkan waktu panggilan advisor yang konsisten dan sekitar dua hingga tiga panggilan untuk setiap tugas, tambahkan blok berikut di awal prompt sistem executor Anda sebelum kalimat lain yang menyebutkan advisor.
 
 Panduan waktu:
 
@@ -1657,9 +1653,9 @@ If you've already retrieved data pointing one way and the advisor points another
 
 #### Prompt sistem alternatif untuk Haiku pada beban kerja coding
 
-Claude Haiku 4.5 menerapkan panduan advisor default secara konservatif. Hal itu menjaga tingkat panggilannya tetap rendah secara tepat pada beban kerja riset dan pencarian, tetapi mengorbankan kualitas pada beban kerja coding, di mana konsultasi advisor awal secara andal sepadan dengan biayanya. Pada benchmark coding internal, varian yang mirip dengan blok berikut (pengecualian read-only dalam Hard rule ditambahkan setelah pengukuran) meningkatkan tingkat kelulusan Haiku sekitar 7,5 poin persentase dibandingkan default bawaan.
+Claude Haiku 4.5 menerapkan panduan advisor default secara konservatif. Hal ini menjaga tingkat panggilannya tetap rendah secara wajar pada beban kerja riset dan pencarian, tetapi mengorbankan kualitas pada beban kerja coding, di mana konsultasi advisor di awal secara andal sepadan dengan biayanya. Pada benchmark coding internal, varian yang mirip dengan blok berikut (pengecualian read-only dalam Hard rule ditambahkan setelah pengukuran) meningkatkan tingkat kelulusan Haiku sekitar 7,5 poin persentase dibandingkan default bawaan.
 
-Gunakan blok ini sebagai pengganti blok waktu dan saran sebelumnya ketika executor Haiku Anda menjalankan beban kerja yang didominasi coding atau tugas penulisan:
+Gunakan blok ini sebagai pengganti blok waktu dan saran sebelumnya ketika executor Haiku Anda terutama menjalankan beban kerja coding atau tugas penulisan:
 
 ```text wrap
 Consult a stronger reviewer who sees your full conversation transcript.
@@ -1684,11 +1680,11 @@ Call advisor for design, architecture, and risk questions where you won't touch 
 Hard rule: your first write_file, edit_file, or state-changing bash call on a task must be preceded by an advisor call in the same or an earlier turn. Read-only orientation commands (ls, cat, grep, find) are not state-changing. This is a checkpoint, not a difficulty judgment. It applies to one-line edits too.
 ```
 
-**Catatan:** Pada benchmark pemahaman browse internal (n = 1.266), varian dekat dari blok ini mengorbankan sekitar 4 poin persentase akurasi relatif terhadap default bawaan. Jika beban kerja Anda mencampur coding dengan pencarian atau pengambilan yang substansial, tetap gunakan [blok yang disarankan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#suggested-system-prompt-for-coding-tasks), atau kondisikan penggantian pada sinyal jenis beban kerja yang sudah Anda hitung.
+**Peringatan:** Pada benchmark pemahaman browse internal (n = 1.266), varian yang mirip dengan blok ini menurunkan akurasi sekitar 4 poin persentase dibandingkan default bawaan. Jika beban kerja Anda mencampur coding dengan pencarian atau pengambilan data yang substansial, tetap gunakan [blok yang disarankan](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#suggested-system-prompt-for-coding-tasks), atau batasi penggantian berdasarkan sinyal jenis beban kerja yang sudah Anda hitung.
 
 #### Meningkatkan panggilan advisor pada executor Opus
 
-Executor Opus biasanya memanggil advisor dengan tingkat yang tepat tanpa prompting tambahan. Jika executor Opus Anda kurang memanggil pada beban kerja Anda, tambahkan checkpoint berikut ke prompt sistem Anda:
+Executor Opus biasanya memanggil advisor pada tingkat yang sesuai tanpa prompting tambahan. Jika executor Opus Anda jarang memanggil pada beban kerja Anda, tambahkan checkpoint berikut ke prompt sistem Anda:
 
 ```text wrap
 Call advisor for design, architecture, and risk questions where you won't touch a file. If your response would be analysis or a recommendation with no other tool calls, call advisor first. That judgment call is exactly where a second opinion is highest-value. (This does not apply to simple factual lookups or arithmetic; those you answer directly.)
@@ -1696,23 +1692,23 @@ Call advisor for design, architecture, and risk questions where you won't touch 
 Hard rule: your first write_file, edit_file, or state-changing bash call on a task must be preceded by an advisor call in the same or an earlier turn. Read-only orientation commands (ls, cat, grep, find) are not state-changing. This is a checkpoint, not a difficulty judgment. It applies to one-line edits too.
 ```
 
-**Catatan:** Dalam pengujian Anthropic, varian dekat dari blok ini (pengecualian read-only dalam Hard rule ditambahkan setelah pengukuran) meningkatkan tingkat kelulusan pada tugas yang kurang memanggil sekitar 7 hingga 10 poin persentase tetapi menyebabkan Opus terlalu sering memanggil pada tugas yang tindakan pertamanya tidak memerlukan perencanaan. Efek bersihnya kira-kira datar pada beban kerja campuran. Hanya tambahkan jika Anda telah mengamati Opus melewatkan advisor pada tugas di mana konsultasi akan membantu. Jangan tambahkan sebagai default.
+**Peringatan:** Dalam pengujian Anthropic, varian yang mirip dengan blok ini (pengecualian read-only dalam Hard rule ditambahkan setelah pengukuran) meningkatkan tingkat kelulusan pada tugas yang jarang memanggil sekitar 7 hingga 10 poin persentase tetapi menyebabkan Opus terlalu sering memanggil pada tugas yang tindakan pertamanya tidak memerlukan perencanaan. Efek bersihnya kurang lebih datar pada beban kerja campuran. Tambahkan hanya jika Anda telah mengamati Opus melewatkan advisor pada tugas di mana konsultasi akan membantu. Jangan menambahkannya sebagai default.
 
 #### Memangkas panjang output advisor
 
-Output advisor adalah pendorong biaya terbesar advisor, dan `max_tokens` tingkat atas tidak membatasinya. Advisor menerima prompt sistem Anda dan pesan pengguna Anda sebagai konteks yang dikutip tentang tugas eksekutor, sehingga instruksi yang ditujukan langsung kepada advisor diikuti jauh lebih andal daripada deskripsi orang ketiga. Penempatan paling efektif yang diuji Anthropic adalah sebuah baris dalam pesan pengguna:
+Output advisor adalah pendorong biaya terbesar advisor, dan `max_tokens` tingkat atas tidak membatasinya. Advisor menerima prompt sistem dan pesan pengguna Anda sebagai konteks yang dikutip tentang tugas executor, sehingga instruksi yang ditujukan langsung kepada advisor diikuti jauh lebih andal daripada deskripsi orang ketiga. Penempatan paling efektif yang diuji Anthropic adalah satu baris dalam pesan pengguna:
 
 ```text wrap
 (Advisor: please keep your guidance under 80 words — I need a focused starting point, not a comprehensive plan.)
 ```
 
-Baris ini dapat ditambahkan di awal secara programatis oleh framework agen Anda sebelum mengirim permintaan. Batas ini adalah batasan lunak. Advisor sesekali melebihinya, jadi mintalah sekitar 80 persen dari batas atas Anda yang sebenarnya.
+Baris ini dapat ditambahkan di awal secara terprogram oleh framework agen Anda sebelum mengirim permintaan. Batas ini merupakan batasan lunak. Advisor sesekali melampauinya, jadi mintalah sekitar 80 persen dari batas sebenarnya Anda.
 
 <Note>
-  Dalam pengujian Anthropic, baris ini juga meningkatkan seberapa sering executor berkonsultasi dengan advisor, tetapi efek bersihnya tetap total biaya yang lebih rendah (lebih banyak konsultasi, masing-masing lebih singkat).
+  Dalam pengujian Anthropic, baris ini juga meningkatkan seberapa sering executor berkonsultasi dengan advisor, tetapi efek bersihnya tetap berupa total biaya yang lebih rendah (lebih banyak konsultasi, masing-masing lebih pendek).
 </Note>
 
-Pasangkan pendekatan ini dengan panduan waktu dalam [Prompt sistem yang disarankan untuk tugas coding](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#suggested-system-prompt-for-coding-tasks) (atau [blok Haiku alternatif](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#alternative-system-prompt-for-haiku-on-coding-workloads) jika Anda menggantinya) untuk tradeoff biaya-versus-kualitas yang paling kuat. Untuk batas atas keras alih-alih permintaan lunak, lihat [Membatasi output advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#capping-advisor-output).
+Pasangkan pendekatan ini dengan panduan waktu dalam [Prompt sistem yang disarankan untuk tugas coding](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#suggested-system-prompt-for-coding-tasks) (atau [blok Haiku alternatif](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#alternative-system-prompt-for-haiku-on-coding-workloads) jika Anda menggantinya) untuk pertukaran biaya-versus-kualitas terkuat. Untuk batas keras alih-alih permintaan lunak, lihat [Membatasi output advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#capping-advisor-output).
 
 ### Membatasi output advisor
 
@@ -1799,21 +1795,21 @@ Atur `max_tokens` pada definisi alat untuk membatasi total output advisor (pemik
   ```
 </CodeGroup>
 
-Nilai minimumnya adalah 1024. Menetapkan `max_tokens` di atas batas output model advisor sendiri mengembalikan error 400. Batas ini berlaku untuk setiap panggilan advisor secara independen dan tidak dibagi di seluruh panggilan dalam permintaan yang sama.
+Nilai minimumnya adalah 1024. Mengatur `max_tokens` di atas batas output milik model advisor itu sendiri akan menghasilkan error 400. Batas ini berlaku untuk setiap panggilan advisor secara independen dan tidak dibagi antar panggilan dalam permintaan yang sama.
 
-Ini bukan sekadar pemotongan keras. Server juga memberikan kepada advisor anggaran token yang tersisa, sehingga advisor membentuk responsnya agar sesuai.
+Ini bukan sekadar pemotongan paksa. Server juga meneruskan sisa anggaran token kepada advisor, sehingga advisor menyesuaikan responsnya agar muat.
 
-**Titik awal yang direkomendasikan:** `max_tokens: 2048`. Dalam pengujian Anthropic pada benchmark penalaran yang sulit (n = 40 untuk setiap konfigurasi), pengaturan ini mengurangi rata-rata output advisor sekitar 7x dibandingkan dengan membiarkan batas tidak diatur, dengan pemotongan mendekati nol dan tanpa penurunan kualitas yang terdeteksi. Nilai minimum 1024 mengurangi output sekitar 10x tetapi memotong sekitar 10 persen panggilan. Perbedaan akurasi di semua konfigurasi masih berada dalam batas noise pada ukuran sampel ini. Validasikan pada beban kerja Anda sendiri.
+**Titik awal yang direkomendasikan:** `max_tokens: 2048`. Dalam pengujian Anthropic pada benchmark penalaran sulit (n = 40 untuk setiap konfigurasi), pengaturan ini mengurangi rata-rata output advisor sekitar 7x dibandingkan dengan membiarkan batas tidak diatur, dengan pemotongan hampir nol dan tanpa penurunan kualitas yang terdeteksi. Nilai minimum 1024 mengurangi output sekitar 10x tetapi memotong sekitar 10 persen panggilan. Perbedaan akurasi di semua konfigurasi berada dalam batas noise pada ukuran sampel ini. Validasikan pada beban kerja Anda sendiri.
 
-| `max_tokens`     | Rata-rata token output advisor | Panggilan terpotong |
-| ---------------- | ------------------------------ | ------------------- |
-| tidak ditetapkan | \~4.200 hingga 5.900           | n/a                 |
-| 2048             | \~630 hingga 840               | \~0%                |
-| 1024             | \~370 hingga 480               | \~10%               |
+| `max_tokens` | Rata-rata token output advisor | Panggilan terpotong |
+| ------------ | ------------------------------ | ------------------- |
+| tidak diatur | \~4.200 hingga 5.900           | n/a                 |
+| 2048         | \~630 hingga 840               | \~0%                |
+| 1024         | \~370 hingga 480               | \~10%               |
 
-Tugas penalaran sulit memunculkan output advisor yang jauh lebih panjang daripada [1.400 hingga 1.800 token tipikal](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#usage-and-billing) yang dikutip sebelumnya untuk beban kerja yang lebih ringan. Gunakan tabel ini untuk mengukur rasio penghematan, bukan sebagai baseline universal untuk output advisor.
+Tugas penalaran sulit memicu output advisor yang jauh lebih panjang daripada [tipikal 1.400 hingga 1.800 token](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#usage-and-billing) yang disebutkan sebelumnya untuk beban kerja yang lebih ringan. Gunakan tabel ini untuk memperkirakan rasio penghematan, bukan sebagai patokan universal untuk output advisor.
 
-Ketika advisor mencapai batas, blok hasil membawa `stop_reason: "max_tokens"` pada kedua [varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants), model advisor mana pun yang Anda gunakan. Gunakan `stop_reason` untuk mendeteksi saran yang terpotong dan memutuskan apakah akan menaikkan batas atau membiarkan executor melanjutkan dengan panduan parsial. API juga menambahkan `[Advisor output truncated at max_tokens=2048.]` (menyebutkan batas Anda) ke teks saran, sehingga executor menerima pemberitahuan pemotongan dalam konteksnya sendiri; dengan advisor `advisor_result` plaintext, penanda tersebut juga terlihat oleh klien Anda. Kedua sinyal ini hanya muncul ketika Anda mengatur `max_tokens` pada definisi alat.
+Ketika advisor mencapai batas, blok hasil membawa `stop_reason: "max_tokens"` pada kedua [varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants), model advisor mana pun yang Anda gunakan. Gunakan `stop_reason` untuk mendeteksi saran yang terpotong dan memutuskan apakah akan menaikkan batas atau membiarkan executor melanjutkan dengan panduan parsial. API juga menambahkan `[Advisor output truncated at max_tokens=2048.]` (menyebutkan batas Anda) ke teks saran, sehingga executor menerima pemberitahuan pemotongan dalam konteksnya sendiri; dengan advisor `advisor_result` plaintext, penanda tersebut juga terlihat oleh klien Anda. Kedua sinyal hanya muncul ketika Anda mengatur `max_tokens` pada definisi alat.
 
 ```json
 {
@@ -1827,55 +1823,203 @@ Ketika advisor mencapai batas, blok hasil membawa `stop_reason: "max_tokens"` pa
 }
 ```
 
-Periksa `output_tokens` pada entri `advisor_message` yang sesuai dalam `usage.iterations` untuk melihat seberapa dekat setiap panggilan dengan batasnya.
+Periksa `output_tokens` pada entri `advisor_message` yang sesuai di `usage.iterations` untuk melihat seberapa dekat setiap panggilan dengan batasnya.
 
-Dibandingkan dengan [pendekatan berbasis prompt](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#trimming-advisor-output-length), `max_tokens` adalah batas atas keras alih-alih permintaan lunak. Gunakan `max_tokens` saat Anda memerlukan batas terjamin untuk biaya atau latensi. Gunakan pendekatan berbasis prompt (atau keduanya bersama-sama) saat Anda ingin condong ke arah keringkasan tanpa risiko terpotong di tengah pemikiran.
+Dibandingkan dengan [pendekatan berbasis prompt](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#trimming-advisor-output-length), `max_tokens` adalah batas atas yang tegas, bukan permintaan yang lunak. Gunakan `max_tokens` ketika Anda memerlukan batas yang terjamin untuk biaya atau “latency” (latensi). Gunakan pendekatan berbasis prompt (atau keduanya bersamaan) ketika Anda ingin condong ke arah keringkasan tanpa risiko terpotong di tengah pemikiran.
 
-### Memadukan dengan pengaturan effort
+### Memasangkan dengan pengaturan effort
 
-Untuk tugas pengodean, memadukan eksekutor Sonnet pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) (upaya) tingkat medium dengan advisor Opus menghasilkan kecerdasan yang sebanding dengan Sonnet pada effort default, dengan biaya lebih rendah. Untuk kecerdasan maksimum, pertahankan eksekutor pada effort default.
+Untuk tugas pemrograman, memasangkan executor Sonnet pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) menengah dengan advisor Opus mencapai kecerdasan yang sebanding dengan Sonnet pada effort default, dengan biaya lebih rendah. Untuk kecerdasan maksimum, pertahankan executor pada effort default.
 
 ### Kontrol biaya
 
 * Untuk anggaran tingkat percakapan, hitung panggilan advisor di sisi klien. Ketika Anda mencapai batas Anda, hapus alat advisor dari `tools`; Anda tidak perlu menghapus blok `advisor_tool_result` dari riwayat pesan Anda (lihat catatan di [Percakapan multi-giliran](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#multi-turn-conversations)).
-* Aktifkan `caching` hanya untuk percakapan di mana Anda memperkirakan tiga panggilan advisor atau lebih.
+* Aktifkan `caching` hanya untuk percakapan di mana Anda mengharapkan tiga panggilan advisor atau lebih.
 
 ## Kompatibilitas model
 
 Model executor (field `model` tingkat atas) dan model advisor (field `model` di dalam definisi alat) harus membentuk pasangan yang valid. Advisor harus berupa Claude Sonnet 4.6 atau model yang lebih mampu, dan harus setidaknya sama mampunya dengan executor. Model dengan kemampuan yang setara (misalnya, Claude Opus 4.7 dan Claude Opus 4.8) dapat saling memberi saran.
 
-| Model executor                        | Model advisor                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Claude Haiku 4.5 (claude-haiku-4-5)   | Claude Mythos 5.1 (claude-mythos-5-1)<br />Claude Fable 5.1 (claude-fable-5-1)<br />Claude Mythos 5 (claude-mythos-5)<br />Claude Fable 5 (claude-fable-5)<br />Claude Opus 5.5 (claude-opus-5-5)<br />Claude Opus 5 (claude-opus-5)<br />Claude Opus 4.8 (claude-opus-4-8)<br />Claude Opus 4.7 (claude-opus-4-7)<br />Claude Opus 4.6 (claude-opus-4-6)<br />Claude Sonnet 5.5 (claude-sonnet-5-5)<br />Claude Sonnet 5 (claude-sonnet-5)<br />Claude Sonnet 4.6 (claude-sonnet-4-6)<br />Claude Haiku 5.5 (claude-haiku-5-5) |
-| Claude Haiku 5.5 (claude-haiku-5-5)   | Claude Mythos 5.1 (claude-mythos-5-1)<br />Claude Fable 5.1 (claude-fable-5-1)<br />Claude Mythos 5 (claude-mythos-5)<br />Claude Fable 5 (claude-fable-5)<br />Claude Opus 5.5 (claude-opus-5-5)<br />Claude Opus 5 (claude-opus-5)<br />Claude Opus 4.8 (claude-opus-4-8)<br />Claude Opus 4.7 (claude-opus-4-7)<br />Claude Sonnet 5.5 (claude-sonnet-5-5)<br />Claude Sonnet 5 (claude-sonnet-5)<br />Claude Haiku 5.5 (claude-haiku-5-5)                                                                                   |
-| Claude Sonnet 4.6 (claude-sonnet-4-6) | Claude Mythos 5.1 (claude-mythos-5-1)<br />Claude Fable 5.1 (claude-fable-5-1)<br />Claude Mythos 5 (claude-mythos-5)<br />Claude Fable 5 (claude-fable-5)<br />Claude Opus 5.5 (claude-opus-5-5)<br />Claude Opus 5 (claude-opus-5)<br />Claude Opus 4.8 (claude-opus-4-8)<br />Claude Opus 4.7 (claude-opus-4-7)<br />Claude Opus 4.6 (claude-opus-4-6)<br />Claude Sonnet 5.5 (claude-sonnet-5-5)<br />Claude Sonnet 5 (claude-sonnet-5)<br />Claude Sonnet 4.6 (claude-sonnet-4-6)<br />Claude Haiku 5.5 (claude-haiku-5-5) |
-| Claude Sonnet 5 (claude-sonnet-5)     | Claude Mythos 5.1 (claude-mythos-5-1)<br />Claude Fable 5.1 (claude-fable-5-1)<br />Claude Mythos 5 (claude-mythos-5)<br />Claude Fable 5 (claude-fable-5)<br />Claude Opus 5.5 (claude-opus-5-5)<br />Claude Opus 5 (claude-opus-5)<br />Claude Opus 4.8 (claude-opus-4-8)<br />Claude Opus 4.7 (claude-opus-4-7)<br />Claude Sonnet 5.5 (claude-sonnet-5-5)<br />Claude Sonnet 5 (claude-sonnet-5)<br />Claude Haiku 5.5 (claude-haiku-5-5)                                                                                   |
-| Claude Sonnet 5.5 (claude-sonnet-5-5) | Claude Mythos 5.1 (claude-mythos-5-1)<br />Claude Fable 5.1 (claude-fable-5-1)<br />Claude Mythos 5 (claude-mythos-5)<br />Claude Fable 5 (claude-fable-5)<br />Claude Opus 5.5 (claude-opus-5-5)<br />Claude Opus 5 (claude-opus-5)<br />Claude Sonnet 5.5 (claude-sonnet-5-5)                                                                                                                                                                                                                                                 |
-| Claude Opus 4.6 (claude-opus-4-6)     | Claude Mythos 5.1 (claude-mythos-5-1)<br />Claude Fable 5.1 (claude-fable-5-1)<br />Claude Mythos 5 (claude-mythos-5)<br />Claude Fable 5 (claude-fable-5)<br />Claude Opus 5.5 (claude-opus-5-5)<br />Claude Opus 5 (claude-opus-5)<br />Claude Opus 4.8 (claude-opus-4-8)<br />Claude Opus 4.7 (claude-opus-4-7)<br />Claude Opus 4.6 (claude-opus-4-6)<br />Claude Sonnet 5.5 (claude-sonnet-5-5)<br />Claude Sonnet 5 (claude-sonnet-5)<br />Claude Haiku 5.5 (claude-haiku-5-5)                                            |
-| Claude Opus 4.7 (claude-opus-4-7)     | Claude Mythos 5.1 (claude-mythos-5-1)<br />Claude Fable 5.1 (claude-fable-5-1)<br />Claude Mythos 5 (claude-mythos-5)<br />Claude Fable 5 (claude-fable-5)<br />Claude Opus 5.5 (claude-opus-5-5)<br />Claude Opus 5 (claude-opus-5)<br />Claude Opus 4.8 (claude-opus-4-8)<br />Claude Opus 4.7 (claude-opus-4-7)<br />Claude Sonnet 5.5 (claude-sonnet-5-5)                                                                                                                                                                   |
-| Claude Opus 4.8 (claude-opus-4-8)     | Claude Mythos 5.1 (claude-mythos-5-1)<br />Claude Fable 5.1 (claude-fable-5-1)<br />Claude Mythos 5 (claude-mythos-5)<br />Claude Fable 5 (claude-fable-5)<br />Claude Opus 5.5 (claude-opus-5-5)<br />Claude Opus 5 (claude-opus-5)<br />Claude Opus 4.8 (claude-opus-4-8)<br />Claude Opus 4.7 (claude-opus-4-7)<br />Claude Sonnet 5.5 (claude-sonnet-5-5)                                                                                                                                                                   |
-| Claude Opus 5 (claude-opus-5)         | Claude Mythos 5.1 (claude-mythos-5-1)<br />Claude Fable 5.1 (claude-fable-5-1)<br />Claude Mythos 5 (claude-mythos-5)<br />Claude Fable 5 (claude-fable-5)<br />Claude Opus 5.5 (claude-opus-5-5)<br />Claude Opus 5 (claude-opus-5)                                                                                                                                                                                                                                                                                            |
-| Claude Opus 5.5 (claude-opus-5-5)     | Claude Mythos 5.1 (claude-mythos-5-1)<br />Claude Fable 5.1 (claude-fable-5-1)<br />Claude Mythos 5 (claude-mythos-5)<br />Claude Fable 5 (claude-fable-5)<br />Claude Opus 5.5 (claude-opus-5-5)<br />Claude Opus 5 (claude-opus-5)                                                                                                                                                                                                                                                                                            |
-| Claude Fable 5 (claude-fable-5)       | Claude Mythos 5.1 (claude-mythos-5-1)<br />Claude Fable 5.1 (claude-fable-5-1)<br />Claude Mythos 5 (claude-mythos-5)<br />Claude Fable 5 (claude-fable-5)<br />Claude Opus 5.5 (claude-opus-5-5)<br />Claude Opus 5 (claude-opus-5)                                                                                                                                                                                                                                                                                            |
-| Claude Mythos 5 (claude-mythos-5)     | Claude Mythos 5.1 (claude-mythos-5-1)<br />Claude Fable 5.1 (claude-fable-5-1)<br />Claude Mythos 5 (claude-mythos-5)<br />Claude Fable 5 (claude-fable-5)<br />Claude Opus 5.5 (claude-opus-5-5)<br />Claude Opus 5 (claude-opus-5)                                                                                                                                                                                                                                                                                            |
-| Claude Fable 5.1 (claude-fable-5-1)   | Claude Mythos 5.1 (claude-mythos-5-1)<br />Claude Fable 5.1 (claude-fable-5-1)                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| Claude Mythos 5.1 (claude-mythos-5-1) | Claude Mythos 5.1 (claude-mythos-5-1)<br />Claude Fable 5.1 (claude-fable-5-1)                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+**[Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) & [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview)** — *For demanding reasoning and long-horizon agentic work*
+
+**Model advisor yang didukung**
+
+* [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) (claude-mythos-5-1)
+* [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) (claude-fable-5-1)
+
+**[Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)** — *For long-running agentic coding and knowledge work*
+
+**Model advisor yang didukung**
+
+* [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) (claude-mythos-5-1)
+* [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) (claude-fable-5-1)
+* [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview) (claude-mythos-5)
+* [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview) (claude-fable-5)
+* [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) (claude-opus-5-5)
+* [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview) (claude-opus-5)
+
+**[Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview)** — *The best combination of speed and intelligence*
+
+**Model advisor yang didukung**
+
+* [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) (claude-mythos-5-1)
+* [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) (claude-fable-5-1)
+* [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview) (claude-mythos-5)
+* [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview) (claude-fable-5)
+* [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) (claude-opus-5-5)
+* [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview) (claude-opus-5)
+* [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) (claude-sonnet-5-5)
+
+**[Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview)** — *For high-volume, latency-sensitive tasks such as classification, extraction, and routing*
+
+**Model advisor yang didukung**
+
+* [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) (claude-mythos-5-1)
+* [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) (claude-fable-5-1)
+* [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview) (claude-mythos-5)
+* [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview) (claude-fable-5)
+* [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) (claude-opus-5-5)
+* [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview) (claude-opus-5)
+* [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) (claude-opus-4-8)
+* [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview) (claude-opus-4-7)
+* [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) (claude-sonnet-5-5)
+* [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview) (claude-sonnet-5)
+* [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) (claude-haiku-5-5)
+
+**[Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview) & [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview)**
+
+**Model advisor yang didukung**
+
+* [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) (claude-mythos-5-1)
+* [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) (claude-fable-5-1)
+* [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview) (claude-mythos-5)
+* [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview) (claude-fable-5)
+* [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) (claude-opus-5-5)
+* [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview) (claude-opus-5)
+
+**[Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview)**
+
+**Model advisor yang didukung**
+
+* [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) (claude-mythos-5-1)
+* [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) (claude-fable-5-1)
+* [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview) (claude-mythos-5)
+* [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview) (claude-fable-5)
+* [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) (claude-opus-5-5)
+* [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview) (claude-opus-5)
+
+**[Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview)**
+
+**Model advisor yang didukung**
+
+* [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) (claude-mythos-5-1)
+* [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) (claude-fable-5-1)
+* [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview) (claude-mythos-5)
+* [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview) (claude-fable-5)
+* [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) (claude-opus-5-5)
+* [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview) (claude-opus-5)
+* [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) (claude-opus-4-8)
+* [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview) (claude-opus-4-7)
+* [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) (claude-sonnet-5-5)
+
+**[Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview)**
+
+**Model advisor yang didukung**
+
+* [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) (claude-mythos-5-1)
+* [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) (claude-fable-5-1)
+* [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview) (claude-mythos-5)
+* [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview) (claude-fable-5)
+* [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) (claude-opus-5-5)
+* [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview) (claude-opus-5)
+* [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) (claude-opus-4-8)
+* [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview) (claude-opus-4-7)
+* [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) (claude-sonnet-5-5)
+
+**[Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview)**
+
+**Model advisor yang didukung**
+
+* [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) (claude-mythos-5-1)
+* [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) (claude-fable-5-1)
+* [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview) (claude-mythos-5)
+* [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview) (claude-fable-5)
+* [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) (claude-opus-5-5)
+* [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview) (claude-opus-5)
+* [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) (claude-opus-4-8)
+* [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview) (claude-opus-4-7)
+* [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview) (claude-opus-4-6)
+* [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) (claude-sonnet-5-5)
+* [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview) (claude-sonnet-5)
+* [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) (claude-haiku-5-5)
+
+**[Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview)**
+
+**Model advisor yang didukung**
+
+* [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) (claude-mythos-5-1)
+* [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) (claude-fable-5-1)
+* [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview) (claude-mythos-5)
+* [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview) (claude-fable-5)
+* [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) (claude-opus-5-5)
+* [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview) (claude-opus-5)
+* [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) (claude-opus-4-8)
+* [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview) (claude-opus-4-7)
+* [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) (claude-sonnet-5-5)
+* [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview) (claude-sonnet-5)
+* [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) (claude-haiku-5-5)
+
+**[Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview)**
+
+**Model advisor yang didukung**
+
+* [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) (claude-mythos-5-1)
+* [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) (claude-fable-5-1)
+* [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview) (claude-mythos-5)
+* [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview) (claude-fable-5)
+* [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) (claude-opus-5-5)
+* [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview) (claude-opus-5)
+* [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) (claude-opus-4-8)
+* [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview) (claude-opus-4-7)
+* [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview) (claude-opus-4-6)
+* [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) (claude-sonnet-5-5)
+* [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview) (claude-sonnet-5)
+* [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview) (claude-sonnet-4-6)
+* [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) (claude-haiku-5-5)
+
+**[Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview)**
+
+**Model advisor yang didukung**
+
+* [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) (claude-mythos-5-1)
+* [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) (claude-fable-5-1)
+* [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview) (claude-mythos-5)
+* [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview) (claude-fable-5)
+* [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) (claude-opus-5-5)
+* [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview) (claude-opus-5)
+* [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) (claude-opus-4-8)
+* [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview) (claude-opus-4-7)
+* [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview) (claude-opus-4-6)
+* [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) (claude-sonnet-5-5)
+* [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview) (claude-sonnet-5)
+* [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview) (claude-sonnet-4-6)
+* [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) (claude-haiku-5-5)
 
 Jika Anda meminta pasangan yang tidak valid, API mengembalikan `400 invalid_request_error` yang menyebutkan kombinasi yang tidak didukung.
 
 ### Ketersediaan platform
 
-Alat advisor tersedia dalam beta di Claude API, di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed). Alat ini saat ini tidak tersedia di Amazon Bedrock, Claude Models on Google Cloud (Google managed), atau Microsoft Foundry.
+Alat advisor tersedia dalam versi beta di Claude API, di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed). Alat ini saat ini tidak tersedia di Amazon Bedrock, Claude Models on Google Cloud (Google managed), atau Microsoft Foundry.
 
 ## Advisor di Claude Managed Agents
 
-Sesi [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) juga mendukung advisor, yang dikonfigurasi sebagai bagian dari agen, bukan sebagai definisi alat: atur `"advisor": {"type": "enabled", "model": ...}` di blok `multiagent` milik agen, dan thread utama sesi dapat berkonsultasi dengan model tersebut di tengah giliran. Pengaturan tersebut tidak menerima opsi `max_uses`, `max_tokens`, atau `caching`, dan saran dikirimkan sebagai event thread pada aliran event sesi, bukan sebagai blok `advisor_tool_result` dalam respons. Lihat [Berikan advisor pada sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor).
+Sesi [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) juga mendukung advisor, yang dikonfigurasi sebagai bagian dari agen, bukan sebagai definisi alat: atur `"advisor": {"type": "enabled", "model": ...}` di blok `multiagent` milik agen, dan thread utama sesi dapat berkonsultasi dengan model tersebut di tengah giliran. Pengaturan ini tidak menerima opsi `max_uses`, `max_tokens`, atau `caching`, dan saran dikirimkan sebagai event thread pada aliran event sesi, bukan sebagai blok `advisor_tool_result` dalam respons. Lihat [Berikan advisor pada sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor).
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
   <Card title="Alat memori" icon="brain" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool">
-    Simpan dan ambil informasi lintas percakapan dengan direktori memori di sisi klien.
+    Simpan dan ambil informasi di seluruh percakapan dengan direktori memori di sisi klien.
   </Card>
 
   <Card title="Alat server" icon="tool" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools">
@@ -1883,7 +2027,7 @@ Sesi [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/
   </Card>
 
   <Card title="Referensi alat" icon="book" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference">
-    Direktori alat yang disediakan Anthropic dan referensi untuk properti definisi alat opsional.
+    Direktori alat yang disediakan Anthropic dan referensi untuk properti opsional definisi alat.
   </Card>
 
   <Card title="Effort" icon="gauge" href="https://platform.claude.com/docs/id/build-with-claude/effort">
@@ -1891,49 +2035,49 @@ Sesi [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/
   </Card>
 </CardGroup>
 
-## Availability
+## Ketersediaan
 
-Advisor tool is in beta on select models and eligible for zero data retention.
+Alat advisor dalam versi beta di model tertentu dan layak untuk retensi data nol.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Available
-* Usage: Add an advisor tool (type `advisor_20260301`) with the advisor model to the request’s `tools`. It takes `max_uses`, `max_tokens` and caching options.
+* Ketersediaan: Tersedia
+* Penggunaan: Tambahkan alat advisor (tipe `advisor_20260301`) beserta model advisor ke `tools` permintaan. Alat ini menerima `max_uses`, `max_tokens`, dan opsi caching.
 
-| Status | Cloud platforms                                                                                                                                                                                                                                                                | Models                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Status | Platform cloud                                                                                                                                                                                                                                                                 | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Available
-* Usage: Set `advisor` to `{"type": "enabled", "model": …}` in the agent’s `multiagent` block. There are no `max_uses`, `max_tokens` or caching options, and advice arrives as thread events on the session’s event stream.
+* Ketersediaan: Tersedia
+* Penggunaan: Atur `advisor` ke `{"type": "enabled", "model": …}` dalam blok `multiagent` agen. Tidak ada opsi `max_uses`, `max_tokens`, atau caching, dan saran tiba sebagai event thread pada stream event sesi.
 
-| Status | Cloud platforms                                                                                                    | Models                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Status | Platform cloud                                                                                                     | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | ------ | ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview) |
 
-### Required beta headers
+### Header beta yang diperlukan
 
-[Beta headers overview](https://platform.claude.com/docs/id/api/beta-headers)
+[Ikhtisar header beta](https://platform.claude.com/docs/id/api/beta-headers)
 
-Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
+Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model baru sebelum menjadi bagian dari API standar.
 
-| Header                    | APIs                                                                                        |
+| Header                    | API                                                                                         |
 | ------------------------- | ------------------------------------------------------------------------------------------- |
 | `advisor-tool-2026-03-01` | [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) |
 
-### Data handling
+### Penanganan data
 
-[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+[Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item    | Zero data retention                                                                                                                                       | HIPAA        |
-| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| Status  | Eligible (excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Not eligible |
-| Details | Advisor model output is returned in the API response; nothing is stored server-side after the response.                                                   | —            |
+| Item   | Retensi data nol                                                                                                                                                 | HIPAA       |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Tidak layak |
+| Detail | Output model advisor dikembalikan dalam respons API; tidak ada yang disimpan di sisi server setelah respons.                                                     | —           |
 
-Applicable endpoints:
+Endpoint yang berlaku:
 
-* `/v1/messages` with `advisor` tool
+* `/v1/messages` dengan alat `advisor`

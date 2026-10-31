@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 0d152d5f95a41c582b2085c3e96da9a6fa27d86aeb567a474832a15fc2437edd
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: fc9fcf4fd2f7034b7fbee4531d576d375c5a17cbe4b6032c037045451baa5c41
 ---
 
 ---
@@ -237,7 +237,7 @@ $response = $client->request(
 
 PHP SDK mendukung platform berikut:
 
-* **Agent Platform:** `Anthropic\Vertex\Client`. Gunakan `::fromEnvironment()`.
+* **Claude Models on Google Cloud (Google managed):** `Anthropic\Vertex\Client`. Gunakan `::fromEnvironment()`.
 * **Bedrock:** `Anthropic\Bedrock\MantleClient`. Gunakan `new MantleClient(awsRegion: ...)`.
 * **Bedrock (lama):** `Anthropic\Bedrock\Client`. Gunakan `::fromEnvironment()` atau `::withCredentials()`.
 * **Claude Platform on AWS:** `Anthropic\Aws\Client` (memerlukan `aws/aws-sdk-php` sebagai dependensi lunak). Gunakan `new Anthropic\Aws\Client(workspaceId: ...)` atau atur `ANTHROPIC_AWS_WORKSPACE_ID`. Tersedia dalam beta.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/list
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 765f028a69b145c4d780e8ac0deb0c3d25c2fefe67054ac41a6aeb3d1cec87bb
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 16ffa7fdae16601074650414e2db4659953ed5e8869fda1f53d3f006fe5eef67
 ---
 
 ---
@@ -159,6 +159,8 @@ List Credentials
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 1e3c50c857172df2144186f427564d52403e4e5b76499465e21b0928bfbe4957
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 31b5d153f84f2cb25a11432e703690137f53f2c44da23f3e24f3f04d7377c858
 ---
 
 ---
@@ -10,10 +10,10 @@ title: Menggunakan Messages API
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
 description: Pola praktis dan contoh untuk menggunakan Messages API secara efektif
 featureMetadata:
-  status: ga
+  status: stable
   zdr:
     eligibility: eligible
-    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Standard API calls for generating Claude responses.
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Panggilan API standar untuk menghasilkan respons Claude.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -33,13 +33,13 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
-    Claude Platform on AWS: ga
-    Claude Models on Google Cloud (Anthropic managed): ga
-    Amazon Bedrock: ga
-    Amazon Bedrock (InvokeModel): ga
-    Claude Models on Google Cloud (Google managed): ga
-    Microsoft Foundry: ga
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Claude Models on Google Cloud (Anthropic managed): stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (InvokeModel): stable
+    Claude Models on Google Cloud (Google managed): stable
+    Microsoft Foundry: stable
 ---
 
 Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok untuk kasus penggunaan yang berbeda:
@@ -49,11 +49,7 @@ Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok
 | **Apa itu**            | Akses langsung untuk memberikan prompt ke model | Harness agen siap pakai yang dapat dikonfigurasi dan berjalan di infrastruktur terkelola |
 | **Paling cocok untuk** | Loop agen kustom dan kontrol yang terperinci    | Tugas yang berjalan lama dan pekerjaan asinkron                                          |
 
-Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permintaan dasar, percakapan multi-giliran, teknik prefill, dan kemampuan vision. Untuk spesifikasi API lengkap, lihat [referensi Messages API](https://platform.claude.com/docs/id/api/messages/create). Untuk harness agen terkelola, lihat [ikhtisar Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview).
-
-<Note>
-  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
-</Note>
+Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permintaan dasar, percakapan multi-giliran, teknik prefill, dan kemampuan vision. Untuk spesifikasi API lengkap, lihat [referensi Messages API](https://platform.claude.com/docs/id/api/messages/create). Untuk harness agen terkelola, lihat [ikhtisar Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview).
 
 ## Permintaan dan respons dasar
 
@@ -152,7 +148,7 @@ Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permi
   $message = $client->messages->create(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
   echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
   ```
@@ -161,7 +157,7 @@ Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permi
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       { role: "user", content: "Hello, Claude" }
@@ -192,11 +188,11 @@ Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permi
 }
 ```
 
-Respons penolakan (`stop_reason: "refusal"`) juga menyertakan objek `stop_details` yang mengidentifikasi kategori kebijakan yang memicu penolakan tersebut, pada setiap model. Lihat [Menangani stop reason](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk referensi field dan contoh kode penanganannya.
+Respons penolakan (`stop_reason: "refusal"`) juga menyertakan objek `stop_details` yang mengidentifikasi kategori kebijakan yang memicu penolakan, pada setiap model. Lihat [Menangani alasan berhenti](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk referensi field dan contoh kode penanganan.
 
 ## Beberapa giliran percakapan
 
-Messages API bersifat stateless (tanpa status), yang berarti Anda selalu mengirimkan riwayat percakapan lengkap ke API. Anda dapat menggunakan pola ini untuk membangun percakapan dari waktu ke waktu. Giliran percakapan sebelumnya tidak harus benar-benar berasal dari Claude. Anda dapat menggunakan pesan `assistant` sintetis.
+Messages API bersifat “stateless” (tanpa status), yang berarti Anda selalu mengirimkan riwayat percakapan lengkap ke API. Anda dapat menggunakan pola ini untuk membangun percakapan dari waktu ke waktu. Giliran percakapan sebelumnya tidak harus benar-benar berasal dari Claude. Anda dapat menggunakan pesan `assistant` sintetis.
 
 <CodeGroup>
   ```bash cURL
@@ -316,7 +312,7 @@ Messages API bersifat stateless (tanpa status), yang berarti Anda selalu mengiri
           ['role' => 'assistant', 'content' => 'Hello!'],
           ['role' => 'user', 'content' => 'Can you describe LLMs to me?'],
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
@@ -326,7 +322,7 @@ Messages API bersifat stateless (tanpa status), yang berarti Anda selalu mengiri
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       { role: "user", content: "Hello, Claude" },
@@ -359,20 +355,20 @@ Messages API bersifat stateless (tanpa status), yang berarti Anda selalu mengiri
 }
 ```
 
-### Role system dalam messages
+### Peran sistem dalam pesan
 
-Pada Claude Fable 5.1, [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), Claude Fable 5, [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Opus 5.5, Claude Opus 4.8, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5, Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran pengguna (dengan mengikuti [aturan penempatan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) untuk menambahkan instruksi sistem baru di tengah percakapan. Pesan `system` yang membawa konten tidak boleh menjadi entri pertama dalam `messages`. Gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
+Pada Claude Fable 5.1, [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), Claude Fable 5, [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Opus 5.5, Claude Opus 4.8, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5, Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran pengguna (dengan tunduk pada [aturan penempatan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) untuk menambahkan instruksi sistem baru di tengah percakapan. Pesan `system` yang membawa konten tidak dapat menjadi entri pertama dalam `messages`. Gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
 
-Pesan sistem di tengah percakapan memiliki otoritas yang sama dengan field `system` tingkat atas, tetapi karena ditambahkan di akhir riwayat pesan, pesan tersebut tidak membatalkan prefiks yang telah di-cache sebelumnya. Gunakan field `system` tingkat atas untuk instruksi yang harus berlaku sejak giliran pertama, dan pesan sistem di tengah percakapan untuk instruksi yang baru menjadi relevan kemudian.
+Pesan sistem di tengah percakapan memiliki otoritas yang sama dengan field `system` tingkat atas, tetapi karena pesan tersebut ditambahkan ke akhir riwayat pesan, pesan tersebut tidak membatalkan prefiks yang di-cache sebelumnya. Gunakan field `system` tingkat atas untuk instruksi yang harus berlaku sejak giliran pertama, dan pesan sistem di tengah percakapan untuk instruksi yang baru menjadi relevan kemudian.
 
-Lihat [Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) untuk panduan lengkapnya, termasuk cara menggabungkannya dengan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
+Lihat [Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) untuk panduan lengkap, termasuk cara menggabungkannya dengan [“prompt caching” (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
 
-## Melakukan prefill pada respons Claude
+## Prefill respons Claude
 
-Anda dapat mengisi sebagian respons Claude terlebih dahulu (prefill) pada posisi terakhir dalam daftar pesan input. Gunakan teknik ini untuk membentuk respons Claude. Contoh berikut menggunakan `"max_tokens": 1` untuk mendapatkan satu jawaban pilihan ganda dari Claude.
+Anda dapat melakukan prefill sebagian respons Claude di posisi terakhir daftar pesan input. Gunakan teknik ini untuk membentuk respons Claude. Contoh berikut menggunakan `"max_tokens": 1` untuk mendapatkan satu jawaban pilihan ganda dari Claude.
 
 <Warning>
-  Prefill tidak didukung pada model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). Permintaan yang menggunakan prefill dengan model-model ini akan mengembalikan error 400. Sebagai gantinya, gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, atau instruksi prompt sistem. Lihat [panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
+  Prefill tidak didukung pada model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). Permintaan yang menggunakan prefill dengan model-model ini akan mengembalikan error 400. Sebagai gantinya, gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, atau instruksi prompt sistem. Lihat [panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
 </Warning>
 
 <CodeGroup>
@@ -502,7 +498,7 @@ Anda dapat mengisi sebagian respons Claude terlebih dahulu (prefill) pada posisi
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-sonnet-4-5",
+    model: Anthropic::Model::CLAUDE_SONNET_4_5,
     max_tokens: 1,
     messages: [
       {
@@ -539,13 +535,13 @@ Anda dapat mengisi sebagian respons Claude terlebih dahulu (prefill) pada posisi
 
 ## Vision
 
-Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan gambar menggunakan tipe sumber `base64`, `url`, atau `file`. Tipe sumber `file` mereferensikan gambar yang diunggah melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files). Tipe media yang didukung adalah `image/jpeg`, `image/png`, `image/gif`, dan `image/webp`. Lihat [panduan vision](https://platform.claude.com/docs/id/build-with-claude/vision) untuk detail lebih lanjut.
+Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan gambar menggunakan tipe sumber `base64`, `url`, atau `file`. Tipe sumber `file` mereferensikan gambar yang diunggah melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files). Tipe media yang didukung adalah `image/jpeg`, `image/png`, `image/gif`, dan `image/webp`. Lihat panduan [Vision](https://platform.claude.com/docs/id/build-with-claude/vision) untuk detail lebih lanjut.
 
 <CodeGroup>
   ```bash cURL
   #!/bin/sh
 
-  # Opsi 1: Gambar yang dienkode Base64
+  # Opsi 1: gambar yang dienkode base64
   IMAGE_BASE64=$(curl "https://platform.claude.com/docs/images/vision-example.jpg" | base64 | tr -d '\n')
 
   curl https://api.anthropic.com/v1/messages \
@@ -569,7 +565,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   }
   EOF
 
-  # Opsi 2: Gambar yang dirujuk melalui URL
+  # Opsi 2: gambar yang dirujuk melalui URL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -590,8 +586,9 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   ```
 
   ```bash CLI
-  # Opsi 1: Gambar yang di-encode Base64 (CLI otomatis meng-encode referensi @file biner)
-  curl -s "https://platform.claude.com/docs/images/vision-example.jpg" -o ./vision-example.jpg
+  # Opsi 1: gambar yang di-encode base64 (CLI otomatis meng-encode referensi @file biner)
+  curl -s "https://platform.claude.com/docs/images/vision-example.jpg" \
+    -o ./vision-example.jpg
 
   ant messages create <<'YAML'
   model: claude-opus-5-5
@@ -608,7 +605,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
           text: What is in the above image?
   YAML
 
-  # Opsi 2: Gambar yang direferensikan melalui URL
+  # Opsi 2: gambar yang direferensikan lewat URL
   ant messages create <<'YAML'
   model: claude-opus-5-5
   max_tokens: 1024
@@ -628,7 +625,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   import base64
   import httpx2
 
-  # Opsi 1: Gambar yang dienkode Base64
+  # Opsi 1: gambar yang dienkode base64
   image_url = "https://platform.claude.com/docs/images/vision-example.jpg"
   image_media_type = "image/jpeg"
   image_data = base64.standard_b64encode(httpx2.get(image_url).content).decode("utf-8")
@@ -655,7 +652,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   )
   print(message)
 
-  # Opsi 2: Gambar yang dirujuk melalui URL
+  # Opsi 2: gambar yang dirujuk melalui URL
   message_from_url = anthropic.Anthropic().messages.create(
       model="claude-opus-5-5",
       max_tokens=1024,
@@ -681,7 +678,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   ```typescript TypeScript
   const anthropic = new Anthropic();
 
-  // Opsi 1: Gambar yang dienkode Base64
+  // Opsi 1: gambar yang dienkode base64
   const imageUrl = "https://platform.claude.com/docs/images/vision-example.jpg";
   const imageMediaType = "image/jpeg";
   const imageArrayBuffer = await (await fetch(imageUrl)).arrayBuffer();
@@ -712,7 +709,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   });
   console.log(message);
 
-  // Opsi 2: Gambar yang dirujuk melalui URL
+  // Opsi 2: gambar yang dirujuk melalui URL
   const messageFromUrl = await anthropic.messages.create({
     model: "claude-opus-5-5",
     max_tokens: 1024,
@@ -746,7 +743,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
 
   AnthropicClient client = new();
 
-  // Opsi 1: Gambar yang dienkode Base64
+  // Opsi 1: gambar yang dienkode base64
   string imageUrl = "https://platform.claude.com/docs/images/vision-example.jpg";
 
   using HttpClient httpClient = new();
@@ -779,7 +776,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   var message = await client.Messages.Create(parameters);
   Console.WriteLine(message);
 
-  // Opsi 2: Gambar yang dirujuk melalui URL
+  // Opsi 2: gambar yang dirujuk melalui URL
   var parametersFromUrl = new MessageCreateParams
   {
       Model = Model.ClaudeOpus5_5,
@@ -809,7 +806,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   ```go Go
   client := anthropic.NewClient()
 
-  // Opsi 1: Gambar yang dienkode Base64
+  // Opsi 1: gambar yang dienkode base64
   imageURL := "https://platform.claude.com/docs/images/vision-example.jpg"
 
   req, err := http.NewRequest("GET", imageURL, nil)
@@ -845,7 +842,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   }
   fmt.Println(message)
 
-  // Opsi 2: Gambar yang dirujuk melalui URL
+  // Opsi 2: gambar yang dirujuk melalui URL
   messageFromURL, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
   	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 1024,
@@ -867,11 +864,13 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  // Opsi 1: Gambar yang dienkode Base64
+  // Opsi 1: gambar yang dienkode base64
   String imageUrl = "https://platform.claude.com/docs/images/vision-example.jpg";
 
   HttpClient httpClient = HttpClient.newHttpClient();
-  HttpRequest request = HttpRequest.newBuilder().uri(URI.create(imageUrl)).build();
+  HttpRequest request = HttpRequest.newBuilder()
+      .uri(URI.create(imageUrl))
+      .build();
   HttpResponse<byte[]> response = httpClient.send(request, HttpResponse.BodyHandlers.ofByteArray());
   String imageData = Base64.getEncoder().encodeToString(response.body());
 
@@ -897,7 +896,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
           .build());
   System.out.println(message);
 
-  // Opsi 2: Gambar yang dirujuk melalui URL
+  // Opsi 2: gambar yang dirujuk melalui URL
   List<ContentBlockParam> urlContent = List.of(
       ContentBlockParam.ofImage(
           ImageBlockParam.builder()
@@ -923,9 +922,9 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   ```php PHP
   $client = new Client();
 
-  // Opsi 1: Gambar yang dienkode Base64
+  // Opsi 1: gambar yang dienkode base64
   $image_url = 'https://platform.claude.com/docs/images/vision-example.jpg';
-  $image_media_type = "image/jpeg";
+  $image_media_type = 'image/jpeg';
   $image_data = base64_encode(file_get_contents($image_url));
 
   $message = $client->messages->create(
@@ -953,7 +952,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   );
   echo $message;
 
-  // Opsi 2: Gambar yang dirujuk melalui URL
+  // Opsi 2: gambar yang dirujuk melalui URL
   $message_from_url = $client->messages->create(
       maxTokens: 1024,
       messages: [
@@ -985,7 +984,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
 
   client = Anthropic::Client.new
 
-  # Opsi 1: Gambar yang dienkode Base64
+  # Opsi 1: gambar yang dienkode base64
   image_url = "https://platform.claude.com/docs/images/vision-example.jpg"
   image_media_type = "image/jpeg"
   image_data = Base64.strict_encode64(Net::HTTP.get(URI(image_url)))
@@ -1015,7 +1014,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
   )
   puts message
 
-  # Opsi 2: Gambar yang dirujuk melalui URL
+  # Opsi 2: gambar yang direferensikan melalui URL
   message_from_url = client.messages.create(
     model: "claude-opus-5-5",
     max_tokens: 1024,
@@ -1066,7 +1065,7 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Stop reason dan fallback" icon="list" href="https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons">
+  <Card title="Alasan berhenti dan fallback" icon="list" href="https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons">
     Tangani setiap nilai `stop_reason` dan tentukan apa yang harus dilakukan ketika respons berakhir.
   </Card>
 
@@ -1082,32 +1081,32 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Anda dapat menyediakan
     Biarkan Claude menavigasi, membaca, dan berinteraksi dengan halaman web di browser yang Anda jalankan.
   </Card>
 
-  <Card title="Output terstruktur" icon="code-brackets" href="https://platform.claude.com/docs/id/build-with-claude/structured-outputs">
+  <Card title="Structured outputs" icon="code-brackets" href="https://platform.claude.com/docs/id/build-with-claude/structured-outputs">
     Dapatkan output JSON yang terjamin dan tervalidasi skema dari Claude.
   </Card>
 
   <Card title="Anggaran tugas" icon="gauge" href="https://platform.claude.com/docs/id/build-with-claude/task-budgets">
-    Tetapkan anggaran token yang bersifat anjuran di seluruh loop agentik penuh dengan `output_config.task_budget`.
+    Tetapkan anggaran token yang bersifat saran di seluruh loop agentik penuh dengan `output_config.task_budget`.
   </Card>
 </CardGroup>
 
-## Availability
+## Ketersediaan
 
-The Messages API is available on every model and eligible for zero data retention and HIPAA readiness.
+Messages API tersedia di semua model dan layak untuk retensi data nol dan kesiapan HIPAA.
 
-### API support
+### Dukungan API
 
-Available
+Tersedia
 
-### Data handling
+### Penanganan data
 
-[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+[Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item    | Zero data retention                                                                                                                                       | HIPAA    |
-| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| Status  | Eligible (excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Eligible |
-| Details | Standard API calls for generating Claude responses.                                                                                                       | —        |
+| Item   | Retensi data nol                                                                                                                                                 | HIPAA |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak |
+| Detail | Panggilan API standar untuk menghasilkan respons Claude.                                                                                                         | —     |
 
-Applicable endpoints:
+Endpoint yang berlaku:
 
 * `/v1/messages`

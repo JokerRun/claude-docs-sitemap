@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/users/retrieve
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 2cbc216ca3149dd7cbe7961fca43264307524bf948d90b99270b14d9785e6037
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: a978fec3ac1e17b7f7d7ac66eae6365ff944151fc5b58fa0d365950480a4c4d4
 ---
 
 ---
@@ -94,7 +94,7 @@ curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
 
 ```json
 {
-  "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+  "id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
   "added_at": "2024-10-30T23:58:27.427722Z",
   "email": "user@emaildomain.com",
   "name": "Jane Doe",

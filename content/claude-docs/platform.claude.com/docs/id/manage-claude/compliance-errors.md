@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-errors
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 0e2e455766cec8e9ec3dc3aba8f16f6cefd16c7a155d22bc2bcd82cf15cae635
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 247d637b6cf6f074f36f002ee576375eb31c0c82fec1fadd233091cd092330a5
 ---
 
 ---
@@ -294,7 +294,7 @@ File not found: 0d3b8f72-6c1e-4a59-b2de-7f4c9a1e5b60
 
 **Penyebab:** ID file tidak ada di organisasi yang dapat dibaca oleh kunci Anda, atau file telah dihapus. Menghapus chat di claude.ai juga menghapus file yang dilampirkan padanya, meskipun chat itu sendiri tetap tercantum. Pesan mengidentifikasi file berdasarkan UUID dasarnya, bukan berdasarkan ID `claude_file_...` yang dikirim dalam permintaan. Endpoint metadata, konten, dan hapus mengembalikan body ini; body ini berlaku untuk file yang dilampirkan ke chat (`claude_file_...`) maupun file proyek.
 
-**Perbaikan:** Rekonsiliasikan dengan aktivitas `claude_file_uploaded` atau `claude_file_deleted` terbaru. File yang dihapus bersama chat tidak memiliki aktivitas `claude_file_deleted`, jadi periksa juga aktivitas `claude_chat_deleted` untuk chat tersebut. Jika file telah dihapus, biner-nya sudah hilang; catatan aktivitas tetap ada di feed selama jangka waktu retensi 6 tahun.
+**Perbaikan:** Lakukan rekonsiliasi terhadap aktivitas `claude_file_uploaded` atau `claude_file_deleted` terbaru. File yang dihapus bersama dengan sebuah chat tidak memiliki aktivitas `claude_file_deleted`, jadi periksa juga aktivitas `claude_chat_deleted` milik chat tersebut. Ketika kebijakan retensi organisasi Anda menghapus sebuah chat, Activity Feed tidak mencatat aktivitas `claude_chat_deleted`. Jika file telah dihapus, binernya sudah hilang; catatan aktivitas tetap ada di feed selama jangka waktu retensi 6 tahun.
 
 ### File yang dihasilkan atau artifact tidak ditemukan
 
@@ -314,7 +314,7 @@ Artifact version not found: 'claude_artifact_version_01KmNpQrSt3UvWxYz5AbCdEfG'
 
 **Penyebab:** ID di path tidak cocok dengan file yang dihasilkan alat atau versi artifact yang dapat dibaca melalui Compliance API. Endpoint metadata file yang dihasilkan mengembalikan body pertama, endpoint konten mengembalikan body kedua, dan kedua endpoint artifact mengembalikan body ketiga. File yang dihasilkan dan artifact dihapus bersama chat tempat keduanya dibuat, termasuk ketika pengguna menghapus chat di claude.ai.
 
-**Perbaikan:** Gunakan [Mendapatkan pesan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/messages/list) untuk mencari chat asal ID tersebut. Jika `deleted_at` chat terisi, atau aktivitas `claude_chat_deleted` menyebutkan chat tersebut, kontennya telah hilang; hapus ID dari antrean Anda. Jika tidak, konfirmasikan ID terhadap array `generated_files` dan `artifacts` pada pesan-pesan chat tersebut.
+**Perbaikan:** Gunakan [Get chat messages](https://platform.claude.com/docs/id/api/compliance/apps/chats/messages/list) untuk mencari chat asal ID tersebut. Jika `deleted_at` milik chat terisi, atau ada aktivitas `claude_chat_deleted` yang menyebutkan chat tersebut, kontennya sudah hilang; hapus ID tersebut dari antrean Anda. Jika tidak, konfirmasikan ID tersebut terhadap array `generated_files` dan `artifacts` pada pesan-pesan chat tersebut. Ketika kebijakan retensi organisasi Anda menghapus sebuah chat, Activity Feed tidak mencatat aktivitas `claude_chat_deleted`.
 
 ### Proyek tidak ditemukan
 
@@ -330,7 +330,7 @@ No project found with provided id, or it has already been deleted.
 
 **Penyebab:** ID proyek tidak ada atau telah dihapus. Endpoint detail proyek, lampiran, dan kolaborator mengembalikan body pertama; `DELETE /v1/compliance/apps/projects/{project_id}` mengembalikan body kedua.
 
-**Perbaikan:** Rekonsiliasikan dengan aktivitas `claude_project_created` atau `claude_project_deleted` terbaru. Activity Feed tetap menampilkan peristiwa siklus hidup proyek bahkan setelah proyek itu sendiri hilang.
+**Perbaikan:** Lakukan rekonsiliasi terhadap aktivitas `claude_project_created` atau `claude_project_deleted` terbaru. Activity Feed tetap menampilkan peristiwa siklus hidup proyek bahkan setelah proyek itu sendiri sudah tidak ada. Ketika kebijakan retensi organisasi Anda menghapus sebuah proyek, Activity Feed tidak mencatat aktivitas `claude_project_deleted`.
 
 ### Dokumen proyek tidak ditemukan
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: b723bbec0980f9129404399d354639a8383f7e57e7ea9a182e535338135e04c6
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: c1727cd44a1fc9f434fb1886919fa086c9a471544ed55404a90da28a57693cdc
 ---
 
 ---
@@ -2333,117 +2333,162 @@ Ketika respons terpotong karena batas token atau jendela konteks, tambahkan pemb
 
 ### Implementasikan logika percobaan ulang untuk pause\_turn
 
-Ketika Anda menggunakan [server tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools), API mungkin mengembalikan `pause_turn` jika loop sampling sisi server mencapai batas iterasinya (default 10). Tangani hal ini dengan melanjutkan percakapan:
+Ketika Anda menggunakan [server tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools), API mungkin mengembalikan `pause_turn` jika loop sampling sisi server mencapai batas iterasinya (default 10). Tangani hal ini dengan menambahkan respons yang dijeda ke pesan Anda tanpa diubah, lalu kirim permintaan tersebut lagi. Jika respons menyertakan `container`, [kirimkan juga ID-nya kembali](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#container-reuse). Tanpa ID tersebut, permintaan berikutnya akan memulai container baru, dan file dari bagian awal giliran tersebut akan hilang.
 
-<CodeGroup exclude="shell">
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
+
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
+
   ```python Python
-  def handle_server_tool_conversation(client, user_query, tools, max_continuations=5):
-      """
-      Handle server tool conversations that might require multiple continuations.
+  client = anthropic.Anthropic()
 
-      The server uses a sampling loop to run server tools. If the loop
-      reaches its iteration limit, the API returns pause_turn. Continue the
-      conversation by sending the response back to let Claude finish.
-      """
+
+  def handle_server_tool_conversation(client, user_query, tools, max_requests=5):
       messages = [{"role": "user", "content": user_query}]
+      container_id = None
 
-      for _ in range(max_continuations):
+      for _ in range(max_requests):
           response = client.messages.create(
               model="claude-opus-5-5",
               max_tokens=4096,
               messages=messages,
               tools=tools,
+              container=container_id,
           )
 
           if response.stop_reason != "pause_turn":
-              # Claude selesai memproses: kembalikan respons akhir
+              # Tidak dijeda: kembalikan respons
               return response
 
-          # pause_turn: ganti seluruh daftar pesan agar peran tetap bergantian
-          messages = [
-              {"role": "user", "content": user_query},
-              {"role": "assistant", "content": response.content},
-          ]
+          # pause_turn: tambahkan respons yang dijeda sebagai pesan assistant, lalu lanjutkan
+          messages.append({"role": "assistant", "content": response.content})
 
-      # Batas maksimum kelanjutan tercapai: kembalikan respons terakhir
+          # Jika alat berjalan di container, kirim kembali ID-nya agar file-nya tetap tersimpan
+          if response.container:
+              container_id = response.container.id
+
+      # Masih dijeda setelah max_requests permintaan: kembalikan respons terakhir
       return response
+
+
+  response = handle_server_tool_conversation(
+      client,
+      "Use the code execution tool to find the 1,000th prime number.",
+      [{"type": "code_execution_20250825", "name": "code_execution"}],
+  )
+  print(response.stop_reason)
   ```
 
   ```typescript TypeScript
+  const client = new Anthropic();
+
   async function handleServerToolConversation(
     client: Anthropic,
     userQuery: string,
     tools: Anthropic.ToolUnion[],
-    maxContinuations = 5
+    maxRequests = 5
   ): Promise<Anthropic.Message> {
-    let messages: Anthropic.MessageParam[] = [{ role: "user", content: userQuery }];
+    const messages: Anthropic.MessageParam[] = [{ role: "user", content: userQuery }];
+    let containerId: string | null = null;
     let response: Anthropic.Message;
+    let requestCount = 0;
 
-    for (let i = 0; i < maxContinuations; i++) {
+    do {
       response = await client.messages.create({
         model: "claude-opus-5-5",
         max_tokens: 4096,
         messages,
-        tools
+        tools,
+        container: containerId
       });
 
       if (response.stop_reason !== "pause_turn") {
-        // Claude selesai memproses: kembalikan respons akhir
+        // Tidak dijeda: kembalikan respons
         return response;
       }
 
-      // pause_turn: ganti seluruh daftar pesan agar peran tetap bergantian
-      messages = [
-        { role: "user", content: userQuery },
-        { role: "assistant", content: response.content }
-      ];
-    }
+      // pause_turn: tambahkan respons yang dijeda sebagai pesan assistant, lalu lanjutkan
+      messages.push({ role: "assistant", content: response.content });
 
-    // Batas maksimum kelanjutan tercapai: kembalikan respons terakhir
-    return response!;
+      // Jika alat berjalan di container, kirim kembali ID-nya agar file-filenya tetap tersimpan
+      if (response.container) {
+        containerId = response.container.id;
+      }
+    } while (++requestCount < maxRequests);
+
+    // Masih dijeda setelah maxRequests permintaan: kembalikan respons terakhir
+    return response;
   }
+
+  const response = await handleServerToolConversation(
+    client,
+    "Use the code execution tool to find the 1,000th prime number.",
+    [{ type: "code_execution_20250825", name: "code_execution" }]
+  );
+  console.log(response.stop_reason);
   ```
 
   ```csharp C#
+  // Giliran server tool dapat berjalan beberapa menit, lebih lama dari timeout default SDK,
+  // yang diatur berdasarkan MaxTokens (sekitar 2 menit pada 4096).
+  AnthropicClient client = new() { Timeout = TimeSpan.FromMinutes(10) };
+
   static async Task<Message> HandleServerToolConversation(
       AnthropicClient client,
       string userQuery,
       List<ToolUnion> tools,
-      int maxContinuations = 5)
+      int maxRequests = 5)
   {
       List<MessageParam> messages = [new UserMessageParam { Content = userQuery }];
-      Message response = null!;
+      MessageCreateParamsContainer? container = null;
+      Message response;
+      var requestCount = 0;
 
-      for (var i = 0; i < maxContinuations; i++)
+      do
       {
           response = await client.Messages.Create(new MessageCreateParams
           {
               Model = Model.ClaudeOpus5_5,
               MaxTokens = 4096,
               Messages = messages,
-              Tools = tools
+              Tools = tools,
+              Container = container
           });
 
-          if (response.StopReason != "pause_turn")
+          if (response.StopReason != StopReason.PauseTurn)
           {
-              // Claude selesai memproses: kembalikan respons akhir
+              // Tidak dijeda: kembalikan respons
               return response;
           }
 
-          // pause_turn: ganti seluruh daftar pesan agar peran tetap bergantian
-          messages =
-          [
-              new UserMessageParam { Content = userQuery },
-              new AssistantMessageParam
-              {
-                  Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList()
-              }
-          ];
-      }
+          // pause_turn: tambahkan respons yang dijeda sebagai pesan assistant, lalu lanjutkan
+          // Blok request dan response adalah tipe terpisah: salin JSON setiap blok apa adanya
+          messages.Add(new AssistantMessageParam
+          {
+              Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList()
+          });
 
-      // Batas maksimum kelanjutan tercapai: kembalikan respons terakhir
+          // Jika alat berjalan di dalam container, kirim kembali ID-nya agar file-nya tetap disimpan
+          if (response.Container is not null)
+          {
+              container = response.Container.ID;
+          }
+      } while (++requestCount < maxRequests);
+
+      // Masih dijeda setelah maxRequests permintaan: kembalikan respons terakhir
       return response;
   }
+
+  var response = await HandleServerToolConversation(
+      client,
+      "Use the code execution tool to find the 1,000th prime number.",
+      [new CodeExecutionTool20250825()]);
+  Console.WriteLine(response.StopReason?.Raw());
   ```
 
   ```go Go
@@ -2451,141 +2496,197 @@ Ketika Anda menggunakan [server tool](https://platform.claude.com/docs/id/agents
   	client anthropic.Client,
   	userQuery string,
   	tools []anthropic.ToolUnionParam,
-  	maxContinuations int,
+  	maxRequests int,
   ) (*anthropic.Message, error) {
-  	messages := []anthropic.MessageParam{anthropic.NewUserMessage(anthropic.NewTextBlock(userQuery))}
+  	messages := []anthropic.MessageParam{
+  		anthropic.NewUserMessage(anthropic.NewTextBlock(userQuery)),
+  	}
+  	var container anthropic.MessageCreateParamsContainerUnion
   	var response *anthropic.Message
   	var err error
 
-  	for range maxContinuations {
+  	for range maxRequests {
   		response, err = client.Messages.New(context.TODO(), anthropic.MessageNewParams{
   			Model:     anthropic.ModelClaudeOpus5_5,
   			MaxTokens: 4096,
   			Messages:  messages,
   			Tools:     tools,
+  			Container: container,
   		})
   		if err != nil {
   			return nil, err
   		}
 
-  		if response.StopReason != "pause_turn" {
-  			// Claude selesai memproses: kembalikan respons akhir
+  		if response.StopReason != anthropic.StopReasonPauseTurn {
+  			// Tidak dijeda: kembalikan respons
   			return response, nil
   		}
 
-  		// pause_turn: ganti seluruh daftar pesan agar peran tetap bergantian
-  		var contentParams []anthropic.ContentBlockParamUnion
-  		for _, block := range response.Content {
-  			contentParams = append(contentParams, block.ToParam())
-  		}
-  		messages = []anthropic.MessageParam{
-  			anthropic.NewUserMessage(anthropic.NewTextBlock(userQuery)),
-  			anthropic.NewAssistantMessage(contentParams...),
+  		// pause_turn: tambahkan respons yang dijeda sebagai pesan assistant, lalu lanjutkan
+  		messages = append(messages, response.ToParam())
+
+  		// Jika alat berjalan di container, kirim kembali ID-nya agar file-nya tetap disimpan
+  		if response.Container.ID != "" {
+  			container.OfString = anthropic.String(response.Container.ID)
   		}
   	}
 
-  	// Batas maksimum kelanjutan tercapai: kembalikan respons terakhir
+  	// Masih dijeda setelah maxRequests permintaan: kembalikan respons terakhir
   	return response, nil
+  }
+
+  func main() {
+  	client := anthropic.NewClient()
+
+  	response, err := handleServerToolConversation(
+  		client,
+  		"Use the code execution tool to find the 1,000th prime number.",
+  		[]anthropic.ToolUnionParam{
+  			{OfCodeExecutionTool20250825: &anthropic.CodeExecutionTool20250825Param{}},
+  		},
+  		5,
+  	)
+  	if err != nil {
+  		log.Fatal(err)
+  	}
+  	fmt.Println(response.StopReason)
   }
   ```
 
   ```java Java
-  static Message handleServerToolConversation(
+  Message handleServerToolConversation(
       AnthropicClient client,
       String userQuery,
-      List<Tool> tools,
-      int maxContinuations
+      List<ToolUnion> tools,
+      int maxRequests
   ) {
+      var params = MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(4096L)
+          .tools(tools)
+          .addUserMessage(userQuery);
       Message response = null;
 
-      for (int i = 0; i < maxContinuations; i++) {
-          // Bangun ulang params di setiap iterasi agar pesan tidak menumpuk
-          MessageCreateParams.Builder params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(4096L)
-              .addUserMessage(userQuery);
-          tools.forEach(params::addTool);
-          if (response != null) {
-              params.addMessage(response);
-          }
-
+      for (int request = 0; request < maxRequests; request++) {
           response = client.messages().create(params.build());
 
-          if (!response.stopReason().map(StopReason.PAUSE_TURN::equals).orElse(false)) {
-              // Claude selesai memproses: kembalikan respons akhir
+          boolean paused = response.stopReason().filter(StopReason.PAUSE_TURN::equals).isPresent();
+          if (!paused) {
+              // Tidak dijeda: kembalikan respons
               return response;
           }
-          // pause_turn: ulangi loop dan kirim kembali responsnya
+
+          // pause_turn: tambahkan respons yang dijeda sebagai pesan assistant, lalu lanjutkan
+          params.addMessage(response);
+
+          // Jika alat berjalan di dalam container, kirim kembali ID-nya agar file-nya tetap tersimpan
+          response.container().ifPresent(container -> params.container(container.id()));
       }
 
-      // Batas maksimum lanjutan tercapai: kembalikan respons terakhir
+      // Masih dijeda setelah maxRequests permintaan: kembalikan respons terakhir
       return response;
+  }
+
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      Message response = handleServerToolConversation(
+          client,
+          "Use the code execution tool to find the 1,000th prime number.",
+          List.of(ToolUnion.ofCodeExecutionTool20250825(CodeExecutionTool20250825.builder().build())),
+          5
+      );
+      response.stopReason().ifPresent(IO::println);
   }
   ```
 
   ```php PHP
+  $client = new Client();
+
   function handle_server_tool_conversation(
       Client $client,
       string $userQuery,
       array $tools,
-      int $maxContinuations = 5
-  ) {
+      int $maxRequests = 5,
+  ): Message {
       $messages = [['role' => 'user', 'content' => $userQuery]];
-      $response = null;
+      $containerId = null;
+      $requestCount = 0;
 
-      for ($i = 0; $i < $maxContinuations; $i++) {
+      do {
           $response = $client->messages->create(
               maxTokens: 4096,
               messages: $messages,
-              model: 'claude-opus-5-5',
+              model: Model::CLAUDE_OPUS_5_5,
               tools: $tools,
+              container: $containerId,
           );
 
-          if ($response->stopReason !== 'pause_turn') {
-              // Claude selesai memproses: kembalikan respons akhir
+          if ($response->stopReason !== StopReason::PAUSE_TURN->value) {
+              // Tidak dijeda: kembalikan respons
               return $response;
           }
 
-          // pause_turn: ganti seluruh daftar pesan agar peran tetap bergantian
-          $messages = [
-              ['role' => 'user', 'content' => $userQuery],
-              ['role' => 'assistant', 'content' => $response->content],
-          ];
-      }
+          // pause_turn: tambahkan respons yang dijeda sebagai pesan assistant, lalu lanjutkan
+          $messages[] = ['role' => 'assistant', 'content' => $response->content];
 
-      // Batas maksimum kelanjutan tercapai: kembalikan respons terakhir
+          // Jika alat berjalan di dalam container, kirim kembali ID-nya agar file-nya tetap tersimpan
+          $containerId = $response->container->id ?? $containerId;
+      } while (++$requestCount < $maxRequests);
+
+      // Masih dijeda setelah $maxRequests permintaan: kembalikan respons terakhir
       return $response;
   }
+
+  $response = handle_server_tool_conversation(
+      $client,
+      'Use the code execution tool to find the 1,000th prime number.',
+      [new CodeExecutionTool20250825()],
+  );
+  echo $response->stopReason, PHP_EOL;
   ```
 
   ```ruby Ruby
-  def handle_server_tool_conversation(client, user_query, tools, max_continuations: 5)
+  client = Anthropic::Client.new
+
+  def handle_server_tool_conversation(client, user_query, tools, max_requests: 5)
     messages = [{ role: "user", content: user_query }]
+    container_id = nil
     response = nil
 
-    max_continuations.times do
+    max_requests.times do
       response = client.messages.create(
-        model: "claude-opus-5-5",
+        model: Anthropic::Model::CLAUDE_OPUS_5_5,
         max_tokens: 4096,
-        messages: messages,
-        tools: tools
+        messages:,
+        tools:,
+        container: container_id
       )
 
-      # Claude selesai memproses: kembalikan respons akhir
+      # Tidak dijeda: kembalikan respons
       return response unless response.stop_reason == :pause_turn
 
-      # pause_turn: ganti seluruh daftar pesan agar peran tetap bergantian
-      messages = [
-        { role: "user", content: user_query },
-        { role: "assistant", content: response.content }
-      ]
+      # pause_turn: tambahkan respons yang dijeda sebagai pesan assistant, lalu lanjutkan
+      messages << { role: "assistant", content: response.content }
+
+      # Jika tool berjalan di container, kirim kembali ID-nya agar file-nya tetap disimpan
+      container_id = response.container&.id || container_id
     end
 
-    # Batas maksimum kelanjutan tercapai: kembalikan respons terakhir
+    # Masih dijeda setelah max_requests permintaan: kembalikan respons terakhir
     response
   end
+
+  response = handle_server_tool_conversation(
+    client,
+    "Use the code execution tool to find the 1,000th prime number.",
+    [Anthropic::CodeExecutionTool20250825.new]
+  )
+  puts response.stop_reason
   ```
 </CodeGroup>
+
+Fungsi ini mengembalikan respons terakhir, yang hanya memuat bagian akhir dari giliran tersebut. Untuk menampilkan seluruh giliran atau untuk melanjutkan percakapan, simpan juga respons-respons yang dijeda.
 
 ## Alasan berhenti vs. error
 

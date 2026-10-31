@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/apple-foundation-models
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 3d00dde6b41918e88b80f75c5ea958719b777453f00d9d4309ec6f5aa37b52c0
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 7cef9e3d0840008ec97ffce143f2a4273fe9ad6b9d58a27435cf21dcc59fa14b
 ---
 
 ---
@@ -293,16 +293,16 @@ Paket menampilkan kapabilitas Messages API yang dapat diekspresikan oleh protoko
 
 Paket ini dilisensikan di bawah Apache 2.0. Laporan bug diterima melalui GitHub issues. Pull request eksternal tidak diterima selama periode beta.
 
-## Availability
+## Ketersediaan
 
-Apple Foundation Models are in beta on every model.
+Apple Foundation Models dalam versi beta di semua model.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Available
+* Ketersediaan: Tersedia
 
-| Status | Cloud platforms |
-| ------ | --------------- |
-| Beta   | Claude API      |
+| Status | Platform cloud |
+| ------ | -------------- |
+| Beta   | Claude API     |

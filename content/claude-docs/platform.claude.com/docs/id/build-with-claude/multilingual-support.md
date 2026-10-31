@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/multilingual-support
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: ee8661c38cfdc50abca32bcd17e417707f9dc9efe2367eb99736e668d49dd553
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 18465f6327337b1eccf62ed65bd48c6d2d87489afcac0050a473caf23e5c8af5
 ---
 
 ---
@@ -10,7 +10,7 @@ title: Dukungan multibahasa
 url: https://platform.claude.com/docs/id/build-with-claude/multilingual-support
 description: Claude unggul dalam tugas-tugas di berbagai bahasa, mempertahankan kinerja lintas bahasa yang kuat relatif terhadap bahasa Inggris.
 featureMetadata:
-  status: ga
+  status: stable
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -30,12 +30,12 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
-    Claude Platform on AWS: ga
-    Amazon Bedrock: ga
-    Amazon Bedrock (InvokeModel): ga
-    Claude Models on Google Cloud (Google managed): ga
-    Microsoft Foundry: ga
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (InvokeModel): stable
+    Claude Models on Google Cloud (Google managed): stable
+    Microsoft Foundry: stable
 ---
 
 ## Ikhtisar
@@ -48,25 +48,25 @@ Claude mampu bekerja dalam banyak bahasa di luar yang diuji dalam tabel berikut.
 
 Tabel berikut menunjukkan skor evaluasi “zero-shot chain-of-thought” (rantai pemikiran tanpa contoh) untuk model Claude di berbagai bahasa, dinyatakan sebagai persentase relatif terhadap kinerja bahasa Inggris (100%):
 
-| Bahasa                                 | Claude Sonnet 4.5 (deprecated)1 | Claude Haiku 4.51 |
-| -------------------------------------- | ------------------------------- | ----------------- |
-| Inggris (acuan dasar, ditetapkan 100%) | 100%                            | 100%              |
-| Spanyol                                | 98,2%                           | 96,4%             |
-| Portugis (Brasil)                      | 97,8%                           | 96,1%             |
-| Italia                                 | 97,9%                           | 96,0%             |
-| Prancis                                | 97,5%                           | 95,7%             |
-| Indonesia                              | 97,3%                           | 94,2%             |
-| Jerman                                 | 97,0%                           | 94,3%             |
-| Arab                                   | 97,2%                           | 92,5%             |
-| Tionghoa (Sederhana)                   | 96,9%                           | 94,2%             |
-| Korea                                  | 96,7%                           | 93,3%             |
-| Jepang                                 | 96,8%                           | 93,5%             |
-| Hindi                                  | 96,7%                           | 92,4%             |
-| Bengali                                | 95,4%                           | 90,4%             |
-| Swahili                                | 91,1%                           | 78,3%             |
-| Yoruba                                 | 79,7%                           | 52,7%             |
+| Bahasa                                 | Claude Sonnet 4.5 (deprecated)<sup>1</sup> | Claude Haiku 4.5<sup>1</sup> |
+| -------------------------------------- | ------------------------------------------ | ---------------------------- |
+| Inggris (acuan dasar, ditetapkan 100%) | 100%                                       | 100%                         |
+| Spanyol                                | 98,2%                                      | 96,4%                        |
+| Portugis (Brasil)                      | 97,8%                                      | 96,1%                        |
+| Italia                                 | 97,9%                                      | 96,0%                        |
+| Prancis                                | 97,5%                                      | 95,7%                        |
+| Indonesia                              | 97,3%                                      | 94,2%                        |
+| Jerman                                 | 97,0%                                      | 94,3%                        |
+| Arab                                   | 97,2%                                      | 92,5%                        |
+| Tionghoa (Sederhana)                   | 96,9%                                      | 94,2%                        |
+| Korea                                  | 96,7%                                      | 93,3%                        |
+| Jepang                                 | 96,8%                                      | 93,5%                        |
+| Hindi                                  | 96,7%                                      | 92,4%                        |
+| Bengali                                | 95,4%                                      | 90,4%                        |
+| Swahili                                | 91,1%                                      | 78,3%                        |
+| Yoruba                                 | 79,7%                                      | 52,7%                        |
 
-1 Dengan [extended thinking](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) (pemikiran diperpanjang).
+<sup>1</sup> Dengan [extended thinking](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) (pemikiran diperpanjang).
 
 <Note>
   Metrik ini didasarkan pada set pengujian bahasa Inggris [MMLU (Massive Multitask Language Understanding)](https://en.wikipedia.org/wiki/MMLU) yang diterjemahkan ke dalam 14 bahasa tambahan oleh penerjemah manusia profesional, seperti yang didokumentasikan dalam [repositori simple-evals milik OpenAI](https://github.com/openai/simple-evals/blob/main/multilingual_mmlu_benchmark_results.md). Penggunaan penerjemah manusia untuk evaluasi ini memastikan terjemahan berkualitas tinggi, yang sangat penting terutama untuk bahasa dengan sumber daya digital yang lebih sedikit.
@@ -249,24 +249,24 @@ Ikuti juga panduan umum dalam [Ikhtisar rekayasa prompt](https://platform.claude
   </Card>
 </CardGroup>
 
-## Availability
+## Ketersediaan
 
-Multilingual support is available on every model.
+Dukungan multibahasa tersedia di semua model.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Always on
+* Ketersediaan: Selalu aktif
 
-| Status    | Cloud platforms                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Always on
+* Ketersediaan: Selalu aktif
 
-| Status    | Cloud platforms                                                                                                    |
-| --------- | ------------------------------------------------------------------------------------------------------------------ |
-| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+| Status   | Platform cloud                                                                                                     |
+| -------- | ------------------------------------------------------------------------------------------------------------------ |
+| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |

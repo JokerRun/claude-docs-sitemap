@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/rotate_token
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: bb912ffc8cc9a5616fb05e711075a9fe24363556cd3eb1be8ff7830bc7b76258
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 9e515b119d8c47189862ea700ce602b3f85514bf7d45bfed9fb142bbc278a84c
 ---
 
 ---
@@ -151,6 +151,8 @@ restarted after rotation must use the new value. An optional
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Body parameters
 

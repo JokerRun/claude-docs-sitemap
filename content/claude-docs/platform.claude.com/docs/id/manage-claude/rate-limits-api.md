@@ -1,27 +1,28 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/rate-limits-api
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 7ee9d29fccb0da3e0d22dc9f3f173e35ac2dc73223feea6ec4d676dce17af89d
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 9c1db395b6b67a0a9180a17d55e67c0837bc8e2319cd394129fed2b1039169c0
 ---
 
 ---
 title: Rate Limits API
 url: https://platform.claude.com/docs/id/manage-claude/rate-limits-api
-description: Kueri batas laju API organisasi Anda secara terprogram dengan Rate Limits API.
+description: Baca batas laju API organisasi Anda secara terprogram dan atur batas laju workspace dengan Rate Limits API.
 ---
 
 <Tip>
   **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
 </Tip>
 
-Rate Limits API menyediakan akses terprogram ke “rate limit” (batas laju) yang dikonfigurasi untuk organisasi Anda dan workspace-nya. Ini adalah informasi yang sama dengan yang ditampilkan di halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console.
+Rate Limits API menyediakan akses terprogram ke “rate limit” (batas laju) yang dikonfigurasi untuk organisasi Anda dan workspace-nya. Ini adalah informasi yang sama dengan yang ditampilkan di halaman [Rate limits](https://platform.claude.com/usage/limits) di Claude Console. Anda juga dapat menggunakannya untuk mengatur dan menghapus batas laju sebuah workspace.
 
 Gunakan API ini untuk:
 
 * **Menjaga gateway dan proxy tetap sinkron:** Baca batas Anda saat ini ketika startup dan secara terjadwal alih-alih melakukan hardcode nilai yang akan menyimpang ketika Anthropic menyesuaikannya.
 * **Mendukung peringatan internal:** Bandingkan data penggunaan dari [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) dengan batas yang telah Anda konfigurasi.
 * **Mengaudit konfigurasi workspace:** Verifikasi bahwa override workspace sesuai dengan yang diharapkan oleh otomatisasi provisioning Anda.
+* **Kelola batas workspace dari kode:** Atur dan hapus batas setiap workspace dari otomatisasi provisioning Anda alih-alih mengeditnya di Console.
 
 <Check>
   **Kredensial Admin API diperlukan.** Endpoint ini merupakan bagian dari Admin API. Anda dapat mengaksesnya menggunakan [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys), token OAuth dengan cakupan `org:admin`, atau kunci akun pribadi maupun akun layanan yang tidak dibatasi pada suatu workspace; kunci API workspace tidak dapat digunakan. Lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/admin-api#authentication) untuk detailnya.
@@ -489,7 +490,7 @@ Jika string model tidak cocok dengan grup mana pun, endpoint mengembalikan error
 
 ## Batas laju workspace
 
-Endpoint `/v1/organizations/workspaces/{workspace_id}/rate_limits` mengembalikan override batas laju yang dikonfigurasi untuk satu workspace. Untuk juga melihat nilai yang diwarisi workspace, teruskan `include_inherited=true` (lihat [Menyertakan nilai yang diwarisi](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#include-inherited-values)).
+Endpoint `/v1/organizations/workspaces/{workspace_id}/rate_limits` mengembalikan override batas laju yang dikonfigurasi untuk satu workspace. Untuk juga melihat nilai yang diwarisi workspace, berikan `include_inherited=true` (lihat [Sertakan nilai yang diwarisi](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#include-inherited-values)). Untuk mengubah override, lihat [Mengatur batas laju workspace](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#set-workspace-rate-limits).
 
 Secara default, respons hanya menyertakan override, sehingga apa pun yang tidak ada di dalamnya diwarisi dari organisasi:
 
@@ -954,9 +955,239 @@ Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan
 }
 ```
 
+### Mengatur batas laju workspace
+
+Untuk menetapkan atau menghapus “rate limit” (batas laju) sebuah workspace untuk satu grup batas laju, kirim permintaan `POST` ke `/v1/organizations/workspaces/{workspace_id}/rate_limits/{rate_limit_id}`. Untuk `rate_limit_id`, berikan `id` dari entri grup tersebut dari endpoint organisasi, atau `rate_limit_id` dari entri grup tersebut dari endpoint daftar workspace. Untuk menemukan ID grup yang belum di-override oleh workspace, panggil endpoint daftar workspace dengan `include_inherited=true`, yang mengembalikan grup-grup yang dapat Anda tetapkan batasnya. ID ini berbeda antar organisasi, jadi cari ID tersebut di setiap organisasi yang Anda kelola.
+
+Badan permintaan memiliki array `limits` berisi satu atau lebih entri `{type, value}`, masing-masing untuk jenis limiter yang berbeda:
+
+* `value` berupa bilangan bulat, nol atau lebih besar, mengatur override workspace untuk jenis limiter tersebut.
+* `value` bernilai `null` menghapus override, sehingga workspace kembali mewarisi nilai organisasi. Menghapus jenis limiter yang tidak memiliki override tidak mengubah apa pun.
+* Jenis limiter yang tidak disebutkan dalam permintaan mempertahankan nilainya saat ini.
+
+Anda dapat mengatur jenis limiter berikut: `requests_per_minute`, `input_tokens_per_minute`, `output_tokens_per_minute`, `input_tokens_per_minute_cache_aware`, `tokens_per_minute`, `tokens_per_day`, `tool_uses_per_second`, dan, jika endpoint daftar menampilkannya untuk organisasi Anda, batas [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) `fast_itpmca` (token input per menit, cache-aware) dan `fast_otpm` (token output per menit). Jenis mana yang diterima oleh sebuah grup bergantung pada `group.type`-nya:
+
+* `model_group`: semua jenis kecuali `tool_uses_per_second`
+* `web_search`: hanya `tool_uses_per_second`
+* `batch`: hanya `requests_per_minute`
+
+Jenis grup lainnya tidak menerima jenis limiter apa pun. Anda dapat menghapus jenis limiter mana pun yang tercantum sebelumnya pada grup mana pun. Endpoint daftar dapat mengembalikan jenis limiter yang tidak dapat Anda atur, seperti `enqueued_batch_requests`; mengirimkan salah satunya akan mengembalikan error 400.
+
+API menyimpan nilai di atas batas organisasi untuk jenis limiter yang sama, tetapi memberlakukan nilai yang lebih rendah dari keduanya. `org_limit` pada respons menampilkan nilai organisasi.
+
+Perubahan berlaku dalam waktu sekitar satu jam. Sampai perubahan berlaku, permintaan workspace masih dibatasi oleh nilai sebelumnya.
+
+API memeriksa seluruh permintaan sebelum mengubah apa pun, sehingga entri yang tidak valid akan menggagalkan permintaan dengan error 400 dan tidak mengubah apa pun. Jika permintaan lolos validasi, API kemudian menerapkan entri satu per satu. Jika penerapan salah satu entri gagal, permintaan mengembalikan error dan entri-entri sebelumnya tetap diterapkan. Setiap entri menetapkan atau menghapus nilai absolut, sehingga Anda dapat dengan aman mengirim permintaan yang sama lagi. Pengiriman ulang akan menggantikan perubahan apa pun yang dibuat orang lain di antaranya pada jenis limiter yang disebutkannya.
+
+<Note>
+  Mengatur batas laju workspace belum tersedia di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
+</Note>
+
+Naikkan request per menit workspace untuk grup Claude Opus 5.5 menjadi 2.000 dan hapus override token input per menitnya:
+
+<CodeGroup>
+  ```bash cURL
+  curl "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/rate_limits/rlt_01NwFawrTvAijwqn8AjKVBPS" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "limits": [
+        {"type": "requests_per_minute", "value": 2000},
+        {"type": "input_tokens_per_minute", "value": null}
+      ]
+    }'
+  ```
+
+  ```bash CLI
+  ant organization:workspaces:rate-limits update \
+    --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ \
+    --rate-limit-id rlt_01NwFawrTvAijwqn8AjKVBPS <<'YAML'
+  limits:
+    - type: requests_per_minute
+      value: 2000
+    - type: input_tokens_per_minute
+      value: null
+  YAML
+  ```
+
+  ```python Python
+  client = anthropic.Anthropic()
+
+  entry = client.organization.workspaces.rate_limits.update(
+      "rlt_01NwFawrTvAijwqn8AjKVBPS",
+      workspace_id="wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+      limits=[
+          {"type": "requests_per_minute", "value": 2000},
+          {"type": "input_tokens_per_minute", "value": None},
+      ],
+  )
+
+  for limit in entry.limits:
+      print(f"{limit.type}: {limit.value}")
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const entry = await client.organization.workspaces.rateLimits.update(
+    "rlt_01NwFawrTvAijwqn8AjKVBPS",
+    {
+      workspace_id: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+      limits: [
+        { type: "requests_per_minute", value: 2000 },
+        { type: "input_tokens_per_minute", value: null }
+      ]
+    }
+  );
+
+  for (const limit of entry.limits) {
+    console.log(`${limit.type}: ${limit.value}`);
+  }
+  ```
+
+  ```csharp C#
+  AnthropicClient client = new();
+
+  var entry = await client.Organization.Workspaces.RateLimits.Update(
+      "rlt_01NwFawrTvAijwqn8AjKVBPS",
+      new()
+      {
+          WorkspaceID = "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+          Limits =
+          [
+              new() { Type = "requests_per_minute", Value = 2000 },
+              new() { Type = "input_tokens_per_minute", Value = null },
+          ],
+      }
+  );
+
+  foreach (var limit in entry.Limits)
+  {
+      Console.WriteLine($"{limit.Type}: {limit.Value}");
+  }
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  entry, err := client.Organization.Workspaces.RateLimits.Update(
+  	context.Background(),
+  	"rlt_01NwFawrTvAijwqn8AjKVBPS",
+  	anthropic.OrganizationWorkspaceRateLimitUpdateParams{
+  		WorkspaceID: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+  		Limits: []anthropic.WorkspaceRateLimitUpdateValueParam{
+  			{Type: "requests_per_minute", Value: anthropic.Int(2000)},
+  			{Type: "input_tokens_per_minute", Value: param.Null[int64]()},
+  		},
+  	},
+  )
+  if err != nil {
+  	log.Fatal(err)
+  }
+
+  for _, limit := range entry.Limits {
+  	fmt.Printf("%s: %d\n", limit.Type, limit.Value)
+  }
+  ```
+
+  ```java Java
+  import com.anthropic.models.organization.workspaces.ratelimits.RateLimitUpdateParams;
+  import com.anthropic.models.organization.workspaces.ratelimits.WorkspaceRateLimitType;
+  import com.anthropic.models.organization.workspaces.ratelimits.WorkspaceRateLimitUpdateValue;
+  import java.util.Optional;
+
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      var entry = client.organization().workspaces().rateLimits().update(
+          "rlt_01NwFawrTvAijwqn8AjKVBPS",
+          RateLimitUpdateParams.builder()
+              .workspaceId("wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ")
+              .addLimit(WorkspaceRateLimitUpdateValue.builder()
+                  .type(WorkspaceRateLimitType.REQUESTS_PER_MINUTE)
+                  .value(2000L)
+                  .build())
+              .addLimit(WorkspaceRateLimitUpdateValue.builder()
+                  .type(WorkspaceRateLimitType.INPUT_TOKENS_PER_MINUTE)
+                  .value(Optional.empty())
+                  .build())
+              .build()
+      );
+
+      for (var limit : entry.limits()) {
+          IO.println(limit.type() + ": " + limit.value());
+      }
+  }
+  ```
+
+  ```php PHP
+  use Anthropic\Organization\Workspaces\RateLimits\WorkspaceRateLimitUpdateValue;
+
+  $client = new Client();
+
+  $entry = $client->organization->workspaces->rateLimits->update(
+      'rlt_01NwFawrTvAijwqn8AjKVBPS',
+      workspaceID: 'wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ',
+      limits: [
+          WorkspaceRateLimitUpdateValue::with(type: 'requests_per_minute', value: 2000),
+          WorkspaceRateLimitUpdateValue::with(type: 'input_tokens_per_minute', value: null),
+      ],
+  );
+
+  foreach ($entry->limits as $limit) {
+      echo "{$limit->type}: {$limit->value}\n";
+  }
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  entry = client.organization.workspaces.rate_limits.update(
+    "rlt_01NwFawrTvAijwqn8AjKVBPS",
+    workspace_id: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+    limits: [
+      { type: :requests_per_minute, value: 2000 },
+      { type: :input_tokens_per_minute, value: nil }
+    ]
+  )
+
+  entry.limits.each do |limit|
+    puts "#{limit.type}: #{limit.value}"
+  end
+  ```
+</CodeGroup>
+
+Respons berupa entri grup tersebut, dalam bentuk satu entri pada daftar `data` endpoint daftar workspace. `limits`-nya mencantumkan override workspace pada grup tersebut setelah perubahan: jenis limiter yang dihapus tidak dicantumkan, dan `limits` kosong ketika tidak ada override yang tersisa. Respons menyertakan perubahan dari permintaan bahkan ketika permintaan daftar yang dibuat segera setelahnya belum menampilkannya.
+
+```json
+{
+  "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+  "rate_limit_id": "rlt_01NwFawrTvAijwqn8AjKVBPS",
+  "type": "workspace_rate_limit",
+  "group_type": "model_group",
+  "group": {
+    "type": "model_group",
+    "id": "rlg_01Hq7YkP3mZ9dTwRx4cVbN2s",
+    "display_name": "Claude Opus 5.5"
+  },
+  "models": ["claude-opus-5-5"],
+  "limits": [
+    {
+      "type": "requests_per_minute",
+      "value": 2000,
+      "org_limit": 4000,
+      "source": { "type": "workspace" }
+    }
+  ]
+}
+```
+
+Endpoint mengembalikan error 400 untuk permintaan yang tidak valid atau workspace yang diarsipkan. Endpoint mengembalikan error 404 ketika workspace tidak ditemukan, atau ketika `rate_limit_id` menunjuk grup yang tidak dapat digunakan oleh workspace.
+
 ## Memfilter berdasarkan tipe grup
 
-Kedua endpoint menerima parameter kueri opsional `group_type` yang membatasi respons ke satu kategori:
+Kedua endpoint daftar menerima parameter query opsional `group_type` yang membatasi respons ke satu kategori:
 
 <CodeGroup>
   ```bash cURL
@@ -1116,7 +1347,7 @@ Secara default, respons workspace hanya mencantumkan override, sehingga grup yan
 
 ### Bisakah saya memperbarui batas laju dengan API ini?
 
-**Untuk workspace:** Ya. Endpoint [Atur Batas Laju Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/update) mengatur atau menghapus override workspace untuk satu grup batas laju. Teruskan `id` tingkat atas dari entri yang cocok dalam [respons endpoint organisasi](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#list-all-organization-rate-limits) sebagai `rate_limit_id`, bukan `id` berawalan `rlg_` di dalam `group` entri tersebut. Yang berlaku adalah nilai yang lebih rendah antara override workspace dan batas tingkat organisasi, dan perubahan mulai berlaku dalam waktu sekitar satu jam. Anda juga dapat mengatur batas laju workspace di halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console: pilih workspace dari menu dropdown **Workspace**, lalu klik **Edit** di samping sebuah model.
+**Untuk workspace:** Ya. Endpoint [Set Workspace Rate Limits](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/update) mengatur atau menghapus override workspace untuk satu grup batas laju. Berikan `id` tingkat atas dari entri yang sesuai dalam [respons endpoint organisasi](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#list-all-organization-rate-limits) sebagai `rate_limit_id`, bukan `id` `rlg_` di dalam `group`-nya. Nilai yang lebih rendah antara override workspace dan batas tingkat organisasi yang berlaku, dan perubahan berlaku dalam waktu sekitar satu jam. Untuk badan permintaan dan contohnya, lihat [bagian halaman ini tentang mengatur batas laju workspace](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#set-workspace-rate-limits). Anda juga dapat mengatur batas laju workspace di halaman [Rate limits](https://platform.claude.com/usage/limits) di Claude Console: pilih workspace dari menu dropdown **Workspace**, lalu klik **Edit** di samping sebuah model.
 
 **Untuk organisasi:** Tidak. Untuk meminta batas yang lebih tinggi, lihat [Meminta batas yang lebih tinggi](https://platform.claude.com/docs/id/api/rate-limits#requesting-higher-limits).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/update
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 185e49040c2357cbc939ab53f09f7ed83f1964e6dfc5bd84b30e83c66c8e9e3c
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 581a7d2dd11328c45589859e3211909a21e434de22cec3c8c6caba2638baf3af
 ---
 
 ---
@@ -163,6 +163,8 @@ Update a Memory
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

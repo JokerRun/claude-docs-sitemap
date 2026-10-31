@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/tools-web-restrictions
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 9107457e4e6f4420504de8852a58df6e4682f80435f5da27532d055840951bbf
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: cbf90f1097b3b963eb3ca57a91eda037205f57e8949cde69d7e5669c07a38930
 ---
 
 ---
@@ -33,7 +33,7 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
+    Claude API: stable
     Claude Platform on AWS: beta
     Claude Models on Google Cloud (Anthropic managed): beta
 ---

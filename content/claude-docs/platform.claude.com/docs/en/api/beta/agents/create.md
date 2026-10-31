@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/create
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: aea4ca00801613c0bed43455111cc24f12e44f5fc98806c4cf0457a998b3509d
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 9351d6c8d9bef2d5c82670e189c909e4c0991262d2bf328b0609a56bd463c118
 ---
 
 ---
@@ -137,6 +137,8 @@ Create Agent
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

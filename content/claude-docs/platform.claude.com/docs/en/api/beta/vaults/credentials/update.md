@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/update
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 40907fdd596c0e15d8235e7d398ca77716a79e7bc08fb49eb9703bb34be954f8
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 00145cd41723218b07e5f6dc52d0261604885866a0acccc3328c1e3aa84287fc
 ---
 
 ---
@@ -147,6 +147,8 @@ Update a Credential
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

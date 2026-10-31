@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 7f2f1e50d5771af656ed7d13b340653020a2ffb4a6b88eb004f5e6012153f1d5
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: a34a8ef6dc35d1f2711c3f08ef01f822b942f4f4e0a04417719020caf81647be
 ---
 
 ---
@@ -10,7 +10,7 @@ title: Streaming messages
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
 description: Stream Messages API responses incrementally with server-sent events, including text, tool use, and thinking deltas.
 featureMetadata:
-  status: ga
+  status: stable
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -30,15 +30,15 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
-    Claude Platform on AWS: ga
-    Claude Models on Google Cloud (Anthropic managed): ga
-    Amazon Bedrock: ga
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Claude Models on Google Cloud (Anthropic managed): stable
+    Amazon Bedrock: stable
     Amazon Bedrock (InvokeModel):
-      availability: ga
+      availability: stable
       note: The older Amazon Bedrock InvokeModel integration does not stream plain server-sent events.
-    Claude Models on Google Cloud (Google managed): ga
-    Microsoft Foundry: ga
+    Claude Models on Google Cloud (Google managed): stable
+    Microsoft Foundry: stable
 ---
 
 When creating a Message, you can set `"stream": true` to incrementally stream the response using [server-sent events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents) (SSE).

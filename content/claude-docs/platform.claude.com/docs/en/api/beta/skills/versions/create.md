@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/create
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 211abe87d39da23ac280980b4f5502fff5fc261532f9b12e08258522fe1cb631
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: d2612340f08703baa5428ea535886eda10f08a07563e48cc9ec94c0c8f35df6f
 ---
 
 ---
@@ -145,6 +145,8 @@ Create Skill Version
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 4c0b7f2a176f2a2dfaa5fb12c99ee8970d925313e73301c1c9ef15b69bbd1ac0
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 725767f77dd73cad71bb244070dec5ce36a7843bf0c4dea3b81e468c1012ec85
 ---
 
 > ## Documentation Index
@@ -1046,44 +1046,44 @@ In v2.1.229, Claude Code sent `http://127.0.0.1:PORT/callback` instead, and serv
 
 The tabs cover both commands: `claude mcp add` takes your client ID and callback port as flags, and `claude mcp add-json` takes them in an `oauth` object. If you registered a redirect URI, set the callback port to the port in that URI.
 
-**claude mcp add**
+> [tab] claude mcp add
+>
+> Use `--client-id` to pass your app's client ID. The `--client-secret` flag prompts for the secret with masked input:
+>
+> ```bash theme={null}
+> claude mcp add --transport http \
+>   --client-id your-client-id --client-secret --callback-port 8080 \
+>   my-server https://mcp.example.com/mcp
+> ```
 
-Use `--client-id` to pass your app's client ID. The `--client-secret` flag prompts for the secret with masked input:
+> [tab] claude mcp add-json
+>
+> Include the `oauth` object in the JSON config and pass `--client-secret` as a separate flag:
+>
+> ```bash theme={null}
+> claude mcp add-json my-server \
+>   '{"type":"http","url":"https://mcp.example.com/mcp","oauth":{"clientId":"your-client-id","callbackPort":8080}}' \
+>   --client-secret
+> ```
 
-```bash theme={null}
-claude mcp add --transport http \
-  --client-id your-client-id --client-secret --callback-port 8080 \
-  my-server https://mcp.example.com/mcp
-```
+> [tab] claude mcp add-json (callback port only)
+>
+> To fix only the callback port and let Claude Code register the client automatically, set `callbackPort` on its own:
+>
+> ```bash theme={null}
+> claude mcp add-json my-server \
+>   '{"type":"http","url":"https://mcp.example.com/mcp","oauth":{"callbackPort":8080}}'
+> ```
 
-**claude mcp add-json**
-
-Include the `oauth` object in the JSON config and pass `--client-secret` as a separate flag:
-
-```bash theme={null}
-claude mcp add-json my-server \
-  '{"type":"http","url":"https://mcp.example.com/mcp","oauth":{"clientId":"your-client-id","callbackPort":8080}}' \
-  --client-secret
-```
-
-**claude mcp add-json (callback port only)**
-
-To fix only the callback port and let Claude Code register the client automatically, set `callbackPort` on its own:
-
-```bash theme={null}
-claude mcp add-json my-server \
-  '{"type":"http","url":"https://mcp.example.com/mcp","oauth":{"callbackPort":8080}}'
-```
-
-**CI / env var**
-
-Set the secret via environment variable to skip the interactive prompt:
-
-```bash theme={null}
-MCP_CLIENT_SECRET=your-secret claude mcp add --transport http \
-  --client-id your-client-id --client-secret --callback-port 8080 \
-  my-server https://mcp.example.com/mcp
-```
+> [tab] CI / env var
+>
+> Set the secret via environment variable to skip the interactive prompt:
+>
+> ```bash theme={null}
+> MCP_CLIENT_SECRET=your-secret claude mcp add --transport http \
+>   --client-id your-client-id --client-secret --callback-port 8080 \
+>   my-server https://mcp.example.com/mcp
+> ```
 
 **3. Authenticate in Claude Code**
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/create
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 8db1e870749f30a1206ae47e12d0a9be1d1eec7da1ffdacb01fd81d4a6ca54d2
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 98e04282bbe774e9f9c110edbb77bcc244aef42a0d79f92f930231fe2f0434b2
 ---
 
 ---
@@ -139,6 +139,8 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

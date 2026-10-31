@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/update
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: fb792c22013ff792789917ab96014971d5b13a026410ba5051a7914df5cf30e8
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 2f6bca26cdfd1cb37d71281cbc96380e6cfef5490ee4e1cfaf7cf4d16ddf94a2
 ---
 
 ---
@@ -143,6 +143,8 @@ Update User Profile
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

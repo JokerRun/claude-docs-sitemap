@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/archive
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: d5685d72c4b1b09271867aca6b0ea6e54750915a995d962d3e0983db3bdc8063
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: a5dcb4e7a1e546814b5146fafc347234ef59002a07923c3b7a8e847ec3f97661
 ---
 
 ---
@@ -141,6 +141,8 @@ Archive an environment by ID. Archived environments cannot be used to create new
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

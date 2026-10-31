@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 5ad9807ce61fc92d6064c9c215c5f97d8c58ba03f00a62f04e12310007e322b3
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 0cd56b662e2591874fc13cdb1fb5fc9d68d8d6830d0da70072f97c0679d22af6
 ---
 
 ---
@@ -170,7 +170,7 @@ Ini berlaku untuk Claude API (first-party), Claude Platform on AWS, dan Claude M
 
 Untuk informasi lebih lanjut, lihat [Residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency).
 
-### Harga fast mode
+### Harga mode cepat
 
 [Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) menyediakan output yang jauh lebih cepat untuk Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8 dengan harga premium. Mode cepat untuk Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset. Harga mode cepat berlaku di seluruh “context window” (jendela konteks), termasuk permintaan di atas 200k token input. Mode cepat tersedia di Claude API (first-party) dan, untuk Claude Opus 5.5, di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#billing) serta di [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Azure.
 
@@ -179,12 +179,12 @@ Untuk informasi lebih lanjut, lihat [Residensi data](https://platform.claude.com
 | Claude Opus 5.5                 | $8 USD / MTok  | $40 USD / MTok |
 | Claude Opus 5 / Claude Opus 4.8 | $10 USD / MTok | $50 USD / MTok |
 
-Harga fast mode dapat digabungkan dengan pengubah harga lainnya:
+Harga mode cepat dapat digabungkan dengan pengubah harga lainnya:
 
 * [Pengali caching prompt](https://platform.claude.com/docs/id/about-claude/pricing#prompt-caching) berlaku di atas harga mode cepat.
 * Pengali [residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency) berlaku di atas harga mode cepat.
 
-Fast mode tidak tersedia dengan [Batch API](https://platform.claude.com/docs/id/about-claude/pricing#batch-processing).
+Mode cepat tidak tersedia dengan [Batch API](https://platform.claude.com/docs/id/about-claude/pricing#batch-processing).
 
 Untuk informasi lebih lanjut, lihat [Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode).
 
@@ -524,7 +524,7 @@ Hubungi tim penjualan di [sales@anthropic.com](mailto:sales@anthropic.com) atau 
 
 ### Bagaimana penggunaan token dihitung?
 
-Token adalah potongan teks yang diproses oleh model. Berapa banyak token yang dihasilkan oleh teks yang sama bergantung pada tokenizer model, bahasa, dan jenis konten. Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview menggunakan tokenizer yang lebih baru yang menghasilkan sekitar 30 persen lebih banyak token untuk teks yang sama dibandingkan model sebelumnya. Untuk melihat berapa banyak token yang digunakan suatu permintaan pada model tertentu, hitunglah dengan [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) dan ID model tersebut.
+Token adalah potongan teks yang diproses oleh model. Berapa banyak token yang dihasilkan oleh teks yang sama bergantung pada “tokenizer” (pemecah token) model, bahasa, dan jenis konten. Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview (`claude-mythos-preview`) menggunakan tokenizer yang lebih baru yang menghasilkan sekitar 30 persen lebih banyak token untuk teks yang sama dibandingkan model sebelumnya. Untuk melihat berapa banyak token yang digunakan oleh sebuah permintaan pada model tertentu, hitunglah dengan [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) dan ID model tersebut.
 
 ### Apakah ada tingkat gratis atau uji coba?
 

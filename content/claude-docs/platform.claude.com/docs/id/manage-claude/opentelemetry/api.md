@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/api
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 231ce54ad801cffa18d7c261ad0f11962c2581271e820c702b5e31148b12b007
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: d3489ab11bd7838d642a80e7a7f984ec442b3ca5a3a05c0b55c8e3eb5fe0a869
 ---
 
 ---
@@ -16,7 +16,7 @@ featureMetadata:
   status: beta
   zdr:
     eligibility: eligible
-    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Beta. Spans have the same ZDR eligibility as the feature that produces them. HIPAA organizations can export metadata. SDK spans go directly from your environment to your exporter. After delivery, the data is held by the service that you chose, outside Anthropic, under that service's retention and access controls.
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Beta. Span memiliki kelayakan ZDR yang sama dengan fitur yang menghasilkannya. Organisasi HIPAA dapat mengekspor metadata. Span SDK dikirim langsung dari environment Anda ke exporter Anda. Setelah dikirim, data disimpan oleh layanan yang Anda pilih, di luar Anthropic, di bawah kontrol retensi dan akses layanan tersebut.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -695,6 +695,10 @@ Untuk mengubah sebuah tujuan, buka menu **More actions** miliknya saat filter **
 | Panjang semua nama dan nilai header secara keseluruhan      | 16.384 byte    |
 | Panjang URL endpoint                                        | 2.048 karakter |
 
+## Zero data retention
+
+Span memiliki kelayakan “zero data retention” (retensi data nol), atau ZDR, yang sama dengan fitur yang menghasilkannya. Claude Managed Agents tidak memenuhi syarat ZDR. Lihat [Kelayakan fitur](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility).
+
 ## Pemecahan masalah
 
 | Masalah                                                                           | Yang perlu diperiksa                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
@@ -721,37 +725,37 @@ Ketika pengiriman gagal, kolom **Delivery** menampilkan **Failing**. Arahkan poi
 | HTTP error (status 408, 429, atau 5xx)               | Endpoint kelebihan beban, membatasi laju permintaan, atau mengalami error                                                                                     |
 | HTTP error (status 4xx lainnya)                      | Endpoint menolak permintaan, misalnya karena ukuran atau formatnya                                                                                            |
 
-## Availability
+## Ketersediaan
 
-API tracing is in beta on every model and eligible for zero data retention.
+Tracing API dalam versi beta di semua model dan layak untuk retensi data nol.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Available
+* Ketersediaan: Tersedia
 
-| Status | Cloud platforms                                                                                                    |
+| Status | Platform cloud                                                                                                     |
 | ------ | ------------------------------------------------------------------------------------------------------------------ |
 | Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Available
+* Ketersediaan: Tersedia
 
-| Status | Cloud platforms                                                                                                    |
+| Status | Platform cloud                                                                                                     |
 | ------ | ------------------------------------------------------------------------------------------------------------------ |
 | Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
 
-### Data handling
+### Penanganan data
 
-[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+[Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item    | Zero data retention                                                                                                                                                                                                                                                                                                        | HIPAA                                    |
-| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| Status  | Eligible (excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                                                                                                                                                                  | Not eligible                             |
-| Details | Beta. Spans have the same ZDR eligibility as the feature that produces them. HIPAA organizations can export metadata. SDK spans go directly from your environment to your exporter. After delivery, the data is held by the service that you chose, outside Anthropic, under that service’s retention and access controls. | HIPAA organizations can export metadata. |
+| Item   | Retensi data nol                                                                                                                                                                                                                                                                                                                  | HIPAA                                       |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                                                                                                                                                                  | Tidak layak                                 |
+| Detail | Beta. Span memiliki kelayakan ZDR yang sama dengan fitur yang menghasilkannya. Organisasi HIPAA dapat mengekspor metadata. Span SDK dikirim langsung dari environment Anda ke exporter Anda. Setelah dikirim, data disimpan oleh layanan yang Anda pilih, di luar Anthropic, di bawah kontrol retensi dan akses layanan tersebut. | Organisasi HIPAA dapat mengekspor metadata. |
 
-Applicable endpoints:
+Endpoint yang berlaku:
 
 * `/v1/organizations/telemetry_destinations`

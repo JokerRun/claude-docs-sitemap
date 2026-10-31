@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations/delete
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: f950f6edca1c0ed3d68f5ca7e2cef074ce4fabd8462066b8ef8238b229bee42f
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 6f8573cb965f841444f16b83804ed222a1d35a0bf3899488bc0ca9d463470c42
 ---
 
 ---
@@ -147,6 +147,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Returns
 

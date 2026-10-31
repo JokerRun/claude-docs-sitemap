@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/service-tiers
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 9cc3e2fd52e986d0d44e073a9e00f4974049a089db27480693e14d760dab177f
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 6e87d03ad9c55107c7ce71294b26c14fe530291b4f7d4b911199ef74633b18cf
 ---
 
 ---
@@ -10,7 +10,7 @@ title: Tingkat layanan
 url: https://platform.claude.com/docs/id/api/service-tiers
 description: Berbagai tingkat layanan memungkinkan Anda menyeimbangkan ketersediaan, performa, dan biaya yang dapat diprediksi berdasarkan kebutuhan aplikasi Anda.
 featureMetadata:
-  status: ga
+  status: stable
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -30,11 +30,11 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
+    Claude API: stable
 ---
 
 <Warning>
-  Service tiers are legacy.
+  Tingkat layanan adalah fitur lama.
 </Warning>
 
 <Warning>
@@ -264,21 +264,21 @@ Priority Tier didukung pada semua model Claude yang tersedia kecuali Claude Fabl
 
 Lihat [Ikhtisar model](https://platform.claude.com/docs/id/models/overview) untuk detail lebih lanjut tentang model yang tersedia.
 
-## Availability
+## Ketersediaan
 
-Service tiers are available on every model.
+Tingkat layanan tersedia di semua model.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Available
-* Usage: Needs a Priority Tier commitment, which is no longer sold. With one, requests use Priority Tier by default; set `service_tier` to `"standard_only"` to use only standard capacity.
+* Ketersediaan: Tersedia
+* Penggunaan: Memerlukan komitmen Priority Tier, yang tidak lagi dijual. Jika memilikinya, permintaan menggunakan Priority Tier secara default; atur `service_tier` ke `"standard_only"` untuk hanya menggunakan kapasitas standar.
 
-| Status    | Cloud platforms |
-| --------- | --------------- |
-| Available | Claude API      |
+| Status   | Platform cloud |
+| -------- | -------------- |
+| Tersedia | Claude API     |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Not available
+* Ketersediaan: Tidak tersedia

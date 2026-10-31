@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/members/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: b8b08e8cff52d695f3ccfafff6559fa331aff1c93ca1429ec2957ec99b5ada86
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 52ca70e5866174a394fca19638bfd48295f3462a2dc1b4013a433a1f8fac34e4
 ---
 
 ---
@@ -102,7 +102,7 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$RBAC_GROUP_ID/membe
       "email": "user@emaildomain.com",
       "rbac_group_id": "rbac_group_012rppKaSVsmTo6NqRDXQXNF",
       "type": "rbac_group_member",
-      "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
+      "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu"
     }
   ],
   "has_more": false,

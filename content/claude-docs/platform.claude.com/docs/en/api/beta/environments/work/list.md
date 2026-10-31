@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/list
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: a21f8b4491a0efd4096102f085308b49d15ebf8a57ef9a43950d17ab951e5703
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: b52141415b8ca44e977ebf8c57c0408a6d9f3ac1b510d1e66b55cb1a219eea44
 ---
 
 ---
@@ -155,6 +155,8 @@ List work items in an environment.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 58d079917e5db0f3c4f86a3d47f5ce38ae619421d718b77f57c91e46dd274630
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: b5e3b2a88e209fce71e8f9398036a7ec0f257d722d0850c5f854225e60a0d053
 ---
 
 ---
@@ -10,7 +10,7 @@ title: Kompatibilitas OpenAI SDK
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk
 description: Anthropic menyediakan lapisan kompatibilitas yang memungkinkan Anda menggunakan OpenAI SDK untuk menguji Claude API. Dengan beberapa perubahan kode, Anda dapat mengevaluasi kemampuan model Anthropic.
 featureMetadata:
-  status: ga
+  status: stable
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -30,7 +30,7 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
+    Claude API: stable
 ---
 
 <Note>
@@ -213,7 +213,8 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
 Berikut adalah perbedaan paling substansial dibandingkan menggunakan OpenAI:
 
 * Parameter `strict` untuk function calling diabaikan, yang berarti JSON penggunaan alat tidak dijamin mengikuti skema yang diberikan. Untuk kesesuaian skema yang terjamin, gunakan [Claude API native dengan structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs).
-* Input audio tidak didukung; input tersebut diabaikan dan dihapus dari input.
+* `response_format` hanya menerima `json_schema` dengan `strict: true`. Permintaan yang menetapkan `json_object` atau `text` mengembalikan error 400.
+* Input audio dan file tidak didukung. Permintaan yang menyertakan bagian konten `input_audio` atau `file` mengembalikan error 400.
 * Caching prompt tidak didukung, tetapi didukung di [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview).
 * Pesan system/developer diangkat (hoisted) dan digabungkan ke dalam field `system` tingkat atas, di mana pun pesan tersebut muncul dalam percakapan. Untuk menambahkan instruksi sistem di tengah percakapan, gunakan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) di Claude API native.
 
@@ -229,7 +230,15 @@ Sebagian besar input ke OpenAI SDK dipetakan secara jelas dan langsung ke parame
 
 ### Dukungan thinking
 
-Anda dapat mengaktifkan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) dengan menambahkan parameter `thinking`. Pada model saat ini, thinking bersifat adaptif, dengan Claude menentukan kapan dan seberapa dalam untuk berpikir, dan pada model Claude 5 fitur ini aktif secara default; “extended thinking” (pemikiran diperpanjang) yang dikonfigurasi secara manual adalah mode lama (legacy). Meskipun thinking meningkatkan penalaran Claude untuk tugas-tugas kompleks, OpenAI SDK tidak mengembalikan thinking Claude. Untuk fitur thinking lengkap, termasuk [thinking yang diringkas](https://platform.claude.com/docs/id/build-with-claude/thinking#summarized-thinking), gunakan Claude API native.
+Pada model Claude 5 dan Claude Mythos Preview, [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) aktif secara default, sehingga Anda dapat menghilangkan field `thinking`. Untuk menggunakan thinking pada model lain melalui lapisan kompatibilitas, tetapkan field `thinking` pada body permintaan ke `{"type": "enabled", "budget_tokens": N}`. `N` harus minimal 1.024 dan kurang dari `max_tokens` atau `max_completion_tokens`, mana pun yang Anda tetapkan.
+
+Lapisan kompatibilitas berbeda dari Claude API native dalam hal-hal berikut:
+
+* Respons tidak menyertakan thinking Claude. Claude API native dapat mengembalikan [thinking yang diringkas](https://platform.claude.com/docs/id/build-with-claude/thinking#summarized-thinking).
+* Menetapkan `thinking` ke `{"type": "adaptive"}` mengembalikan error 400.
+* Pada [model yang menolak `enabled`](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#rejected-configurations) di Claude API native, lapisan kompatibilitas mengonversi `enabled` menjadi thinking adaptif. Pada model-model tersebut, `budget_tokens` wajib diisi tetapi tidak berpengaruh.
+
+OpenAI SDK tidak memiliki parameter `thinking`, sehingga contoh berikut mengirimkannya sebagai field tambahan di body permintaan.
 
 <CodeGroup exclude="shell, php">
   ```python Python
@@ -312,33 +321,34 @@ Anda dapat mengaktifkan [thinking](https://platform.claude.com/docs/id/build-wit
 
 #### Field sederhana
 
-| Field                   | Status dukungan                                                                                                                                                                                                                                                                                                                                                                                             |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `model`                 | Gunakan nama model Claude                                                                                                                                                                                                                                                                                                                                                                                   |
-| `max_tokens`            | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                              |
-| `max_completion_tokens` | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                              |
-| `stream`                | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                              |
-| `stream_options`        | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                              |
-| `top_p`                 | Diteruskan ke model. Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview mengembalikan error 400 untuk nilai apa pun selain `0.99`, yaitu nilai default, jadi hilangkan parameter ini. Permintaan yang menetapkan `temperature` dan `top_p` sekaligus juga mengembalikan error 400. Lihat [Bekerja dengan pesan](https://platform.claude.com/docs/id/build-with-claude/working-with-messages). |
-| `parallel_tool_calls`   | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                              |
-| `stop`                  | Semua stop sequence non-whitespace berfungsi                                                                                                                                                                                                                                                                                                                                                                |
-| `temperature`           | Antara 0 dan 1 (inklusif). Nilai lebih besar dari 1 dibatasi menjadi 1. Pada model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview, nilai apa pun di bawah 1 mengembalikan error 400, jadi hilangkan parameter ini. Lihat [Bekerja dengan pesan](https://platform.claude.com/docs/id/build-with-claude/working-with-messages).                                                                   |
-| `n`                     | Harus tepat 1                                                                                                                                                                                                                                                                                                                                                                                               |
-| `logprobs`              | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `metadata`              | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `response_format`       | Diabaikan. Untuk output JSON, gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) dengan Claude API native.                                                                                                                                                                                                                                              |
-| `prediction`            | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `presence_penalty`      | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `frequency_penalty`     | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `seed`                  | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `service_tier`          | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `audio`                 | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `logit_bias`            | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `store`                 | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `user`                  | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `modalities`            | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `top_logprobs`          | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `reasoning_effort`      | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Field                   | Status dukungan                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `model`                 | Gunakan nama model Claude                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `max_tokens`            | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `max_completion_tokens` | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `stream`                | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `stream_options`        | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `top_p`                 | Diteruskan ke model. Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview mengembalikan error 400 untuk nilai apa pun selain `0.99`, yaitu nilai default, jadi hilangkan parameter ini. Permintaan yang menetapkan `temperature` dan `top_p` sekaligus juga mengembalikan error 400. Lihat [Menggunakan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages).            |
+| `parallel_tool_calls`   | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `tool_choice`           | Didukung dengan batasan. `"required"` dan fungsi bernama memaksa pemanggilan alat. Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1 tidak mendukung penggunaan alat yang dipaksakan dan mengembalikan error 400, jadi gunakan `"auto"` pada model-model tersebut. Lihat [Memaksa penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use). |
+| `stop`                  | Semua stop sequence non-whitespace berfungsi                                                                                                                                                                                                                                                                                                                                                                               |
+| `temperature`           | Antara 0 dan 1 (inklusif). Nilai lebih besar dari 1 dibatasi menjadi 1. Pada model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview, nilai apa pun di bawah 1 mengembalikan error 400, jadi hilangkan parameter ini. Lihat [Menggunakan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages).                                                                              |
+| `n`                     | Harus tepat 1. Nilai lain apa pun mengembalikan error 400.                                                                                                                                                                                                                                                                                                                                                                 |
+| `response_format`       | Didukung dengan batasan. Hanya `json_schema` dengan `strict: true` yang diterima, dan [batasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations) structured outputs berlaku. Nilai lain apa pun, termasuk `json_object` dan `text`, mengembalikan error 400.                                                                                                  |
+| `logprobs`              | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `metadata`              | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `prediction`            | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `presence_penalty`      | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `frequency_penalty`     | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `seed`                  | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `service_tier`          | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `audio`                 | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `logit_bias`            | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `store`                 | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `user`                  | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `modalities`            | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `top_logprobs`          | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `reasoning_effort`      | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 #### Field `tools` / `functions`
 
@@ -405,15 +415,15 @@ Anda dapat mengaktifkan [thinking](https://platform.claude.com/docs/id/build-wit
     <Tab title="Role user">
       Field untuk `messages[n].role == "user"`
 
-      | Field     | Varian                           | Sub-field | Status dukungan |
-      | --------- | -------------------------------- | --------- | --------------- |
-      | `content` | `string`                         |           | Didukung penuh  |
-      |           | `array`, `type == "text"`        |           | Didukung penuh  |
-      |           | `array`, `type == "image_url"`   | `url`     | Didukung penuh  |
-      |           |                                  | `detail`  | Diabaikan       |
-      |           | `array`, `type == "input_audio"` |           | Diabaikan       |
-      |           | `array`, `type == "file"`        |           | Diabaikan       |
-      | `name`    |                                  |           | Diabaikan       |
+      | Field     | Varian                           | Sub-field | Status dukungan         |
+      | --------- | -------------------------------- | --------- | ----------------------- |
+      | `content` | `string`                         |           | Didukung penuh          |
+      |           | `array`, `type == "text"`        |           | Didukung penuh          |
+      |           | `array`, `type == "image_url"`   | `url`     | Didukung penuh          |
+      |           |                                  | `detail`  | Diabaikan               |
+      |           | `array`, `type == "input_audio"` |           | Mengembalikan error 400 |
+      |           | `array`, `type == "file"`        |           | Mengembalikan error 400 |
+      | `name`    |                                  |           | Diabaikan               |
     </Tab>
 
     <Tab title="Role assistant">
@@ -433,24 +443,21 @@ Anda dapat mengaktifkan [thinking](https://platform.claude.com/docs/id/build-wit
     <Tab title="Role tool">
       Field untuk `messages[n].role == "tool"`
 
-      | Field          | Varian                    | Status dukungan                                                                                                                                                                                                                                                                                                                                                                                                     |
-      | -------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-      | `content`      | `string`                  | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                                      |
-      |                | `array`, `type == "text"` | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                                      |
-      | `tool_call_id` |                           | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                                      |
-      | `tool_choice`  |                           | Didukung. Nilai `"required"` dan nilai fungsi bernama memaksa pemanggilan alat; Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1 tidak mendukung penggunaan alat yang dipaksakan dan mengembalikan error, jadi gunakan `"auto"` pada model-model tersebut. Lihat [Memaksa penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use). |
-      | `name`         |                           | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                           |
+      | Field          | Varian                    | Status dukungan |
+      | -------------- | ------------------------- | --------------- |
+      | `content`      | `string`                  | Didukung penuh  |
+      |                | `array`, `type == "text"` | Didukung penuh  |
+      | `tool_call_id` |                           | Didukung penuh  |
+      | `name`         |                           | Diabaikan       |
     </Tab>
 
     <Tab title="Role function">
       Field untuk `messages[n].role == "function"`
 
-      | Field         | Varian                    | Status dukungan                                                                                                                                                                                                                                                                                                                                                                                                     |
-      | ------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-      | `content`     | `string`                  | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                                      |
-      |               | `array`, `type == "text"` | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                                      |
-      | `tool_choice` |                           | Didukung. Nilai `"required"` dan nilai fungsi bernama memaksa pemanggilan alat; Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1 tidak mendukung penggunaan alat yang dipaksakan dan mengembalikan error, jadi gunakan `"auto"` pada model-model tersebut. Lihat [Memaksa penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use). |
-      | `name`        |                           | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                           |
+      | Field     | Varian   | Status dukungan                  |
+      | --------- | -------- | -------------------------------- |
+      | `content` | `string` | Didukung penuh                   |
+      | `name`    |          | Wajib, tetapi nilainya diabaikan |
     </Tab>
   </Tabs>
 </Accordion>
@@ -469,8 +476,6 @@ Anda dapat mengaktifkan [thinking](https://platform.claude.com/docs/id/build-wit
 | `object`                          | Didukung penuh            |
 | `created`                         | Didukung penuh            |
 | `model`                           | Didukung penuh            |
-| `finish_reason`                   | Didukung penuh            |
-| `content`                         | Didukung penuh            |
 | `usage.completion_tokens`         | Didukung penuh            |
 | `usage.prompt_tokens`             | Didukung penuh            |
 | `usage.total_tokens`              | Didukung penuh            |
@@ -488,32 +493,32 @@ Lapisan kompatibilitas mempertahankan format error yang konsisten dengan OpenAI 
 
 ### Kompatibilitas header
 
-Meskipun OpenAI SDK secara otomatis mengelola header, berikut adalah daftar lengkap header yang didukung oleh Claude API untuk developer yang perlu bekerja dengan header tersebut secara langsung.
+Jika kode Anda membaca atau menetapkan header secara langsung, tabel berikut menunjukkan bagaimana Claude API menangani header OpenAI.
 
-| Header                           | Status dukungan     |
-| -------------------------------- | ------------------- |
-| `x-ratelimit-limit-requests`     | Didukung penuh      |
-| `x-ratelimit-limit-tokens`       | Didukung penuh      |
-| `x-ratelimit-remaining-requests` | Didukung penuh      |
-| `x-ratelimit-remaining-tokens`   | Didukung penuh      |
-| `x-ratelimit-reset-requests`     | Didukung penuh      |
-| `x-ratelimit-reset-tokens`       | Didukung penuh      |
-| `retry-after`                    | Didukung penuh      |
-| `request-id`                     | Didukung penuh      |
-| `openai-version`                 | Selalu `2020-10-01` |
-| `authorization`                  | Didukung penuh      |
-| `openai-processing-ms`           | Selalu kosong       |
+| Header                           | Status dukungan                                                                                                                                     |
+| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `x-ratelimit-limit-requests`     | Tidak dikembalikan. Batas permintaan ada di `x-ratelimit-requests`.                                                                                 |
+| `x-ratelimit-limit-tokens`       | Tidak dikembalikan. Batas token ada di `x-ratelimit-tokens`.                                                                                        |
+| `x-ratelimit-remaining-requests` | Didukung penuh                                                                                                                                      |
+| `x-ratelimit-remaining-tokens`   | Didukung penuh                                                                                                                                      |
+| `x-ratelimit-reset-requests`     | Didukung penuh                                                                                                                                      |
+| `x-ratelimit-reset-tokens`       | Didukung penuh                                                                                                                                      |
+| `retry-after`                    | Didukung penuh                                                                                                                                      |
+| `x-request-id`                   | Didukung penuh. Berisi [ID permintaan](https://platform.claude.com/docs/id/api/errors#request-id) Claude API sebagai pengganti header `request-id`. |
+| `openai-version`                 | Tidak dikembalikan                                                                                                                                  |
+| `openai-processing-ms`           | Tidak dikembalikan                                                                                                                                  |
+| `authorization`                  | Didukung penuh                                                                                                                                      |
 
-## Availability
+## Ketersediaan
 
-OpenAI SDK compatibility is available on every model.
+Kompatibilitas OpenAI SDK tersedia di semua model.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Available
+* Ketersediaan: Tersedia
 
-| Status    | Cloud platforms |
-| --------- | --------------- |
-| Available | Claude API      |
+| Status   | Platform cloud |
+| -------- | -------------- |
+| Tersedia | Claude API     |

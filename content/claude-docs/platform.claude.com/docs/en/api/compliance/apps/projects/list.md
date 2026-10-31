@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 1ee583ed70cbc7754d996f69049fd20b3041092a5d65f91a0a76b3545f806e47
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 3944584c7d69e0136fe87b49425b27e77946d2dead90b3fd8c4624b0907d4f29
 ---
 
 ---
@@ -121,6 +121,10 @@ are sorted chronologically (time ascending) by created_at.
 
     format: date-time
 
+  - `href: string or null`
+
+    URL to view this project in claude.ai
+
   - `is_private: boolean`
 
     If false, the project is visible to all organization members; if true the project is accessible only to the creator and specified collaborators
@@ -189,7 +193,8 @@ curl https://api.anthropic.com/v1/compliance/apps/projects \
       "user": {
         "id": "user_xyz456",
         "email_address": "user@example.com"
-      }
+      },
+      "href": "https://claude.ai/project/abcdef01-2345-6789-abcd-ef0123456789"
     }
   ],
   "has_more": true,

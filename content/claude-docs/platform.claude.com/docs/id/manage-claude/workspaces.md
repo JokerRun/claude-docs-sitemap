@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workspaces
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 93d38ff32e432e2df4fcbcbd55843475c72fe3d86e7f4a4daea0e06dc1c74642
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 3fae4cf2abb6eebe51da76f45ffaa87afe12328c38aa821bcd0b7b831ff7acb3
 ---
 
 ---
@@ -1037,7 +1037,7 @@ Anda dapat menetapkan batas workspace lebih rendah dari (tetapi tidak lebih ting
   - Batas di seluruh organisasi selalu berlaku, bahkan jika batas workspace berjumlah lebih banyak
 </Note>
 
-Untuk informasi terperinci tentang batas laju dan cara kerjanya, lihat [Batas laju](https://platform.claude.com/docs/id/api/rate-limits). Anda juga dapat membaca batas laju organisasi dan workspace Anda saat ini secara terprogram dengan [Rate Limits API](https://platform.claude.com/docs/id/manage-claude/rate-limits-api).
+Untuk informasi terperinci tentang “rate limit” (batas laju) dan cara kerjanya, lihat [Batas laju](https://platform.claude.com/docs/id/api/rate-limits). Anda juga dapat membaca batas laju organisasi dan workspace Anda saat ini serta menetapkan batas laju workspace secara terprogram dengan [Rate Limits API](https://platform.claude.com/docs/id/manage-claude/rate-limits-api), yang menyimpan nilai di atas batas organisasi tetapi tetap memberlakukan yang lebih rendah dari keduanya.
 
 ## Pelacakan penggunaan dan biaya
 

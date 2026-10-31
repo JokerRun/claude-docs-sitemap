@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugin_marketplaces
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 1afe703b0abc3ba0083314d0e5033a9c49e2d4337c0be72c63366d3986e5db77
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: cd1307f890a590d6da165559e9c97e2313d10dd7524ec5d7fd57269b7debc0dd
 ---
 
 ---
@@ -185,6 +185,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Returns
 
@@ -461,6 +463,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 ### Returns
 
 - `BetaPluginMarketplace object`
@@ -725,6 +729,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Body parameters
 
@@ -1013,6 +1019,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 ### Body parameters
 
 - `repository_url: string`
@@ -1286,6 +1294,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Body parameters (form-data)
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 5f3d1bc24169fa6341de63f69b6366c44cc1f67390436314d045ee8e34582309
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 6c561b6b14e716b98dccb3e18286f8f66edb202631a4625a0c69a2297b535578
 ---
 
 ---
@@ -53,11 +53,11 @@ role.
 
 ### Returns
 
-- `data: array of ComplianceProjectUserCollaborator or ComplianceProjectGroupCollaborator or ComplianceProjectOrganizationCollaborator or ComplianceProjectOrganizationRoleCollaborator`
+- `data: array of User or Group or Organization or OrganizationRole`
 
   List of collaborators sorted chronologically by granted_at, tie break by the underlying role-assignment UUID
 
-  - `ComplianceProjectUserCollaborator object`
+  - `User object`
 
     An individual user granted a role on a project.
 
@@ -89,7 +89,7 @@ role.
 
       Identifier of the user granted access (tagged ID), or null if their account has since been deleted
 
-  - `ComplianceProjectGroupCollaborator object`
+  - `Group object`
 
     An RBAC group granted a role on a project.
 
@@ -121,7 +121,7 @@ role.
 
       - `"viewer"`
 
-  - `ComplianceProjectOrganizationCollaborator object`
+  - `Organization object`
 
     An entire organization granted a role on a project.
 
@@ -153,7 +153,7 @@ role.
 
       - `"viewer"`
 
-  - `ComplianceProjectOrganizationRoleCollaborator object`
+  - `OrganizationRole object`
 
     All holders of an organization-level role granted a role on a project.
 
@@ -222,9 +222,9 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/collabora
 
 ### Collaborator List Response
 
-- `CollaboratorListResponse = ComplianceProjectUserCollaborator or ComplianceProjectGroupCollaborator or ComplianceProjectOrganizationCollaborator or ComplianceProjectOrganizationRoleCollaborator`
+- `CollaboratorListResponse = User or Group or Organization or OrganizationRole`
 
-  - `ComplianceProjectUserCollaborator object`
+  - `User object`
 
     An individual user granted a role on a project.
 
@@ -256,7 +256,7 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/collabora
 
       Identifier of the user granted access (tagged ID), or null if their account has since been deleted
 
-  - `ComplianceProjectGroupCollaborator object`
+  - `Group object`
 
     An RBAC group granted a role on a project.
 
@@ -288,7 +288,7 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/collabora
 
       - `"viewer"`
 
-  - `ComplianceProjectOrganizationCollaborator object`
+  - `Organization object`
 
     An entire organization granted a role on a project.
 
@@ -320,7 +320,7 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/collabora
 
       - `"viewer"`
 
-  - `ComplianceProjectOrganizationRoleCollaborator object`
+  - `OrganizationRole object`
 
     All holders of an organization-level role granted a role on a project.
 

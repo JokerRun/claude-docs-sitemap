@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/retrieve_metadata
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 602513c4d9fbb6ca881e31642e640e30da9f97120e5c68b9e1587efdfd1677bf
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: f21de56925dce2b9089528802b37a1b541c217dabd6aae986c2e8011020dcf62
 ---
 
 ---
@@ -143,6 +143,8 @@ Get File Metadata
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/remove
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 4d21f77dc776c328f3879e3935f8b0c867a9ce9b445019447bc0e0a572d6da1b
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 0115612209344081c946417fad557480b523d95f53b37fdd0719592cbd191ee0
 ---
 
 ---
@@ -155,6 +155,8 @@ membership. Archived workspaces return 400.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Returns
 

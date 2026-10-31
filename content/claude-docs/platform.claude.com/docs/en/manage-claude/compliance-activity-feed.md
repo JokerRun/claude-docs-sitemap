@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: b692654748626f167853be67131940725bfe35e80dea4bcca49e90c8e1c2906f
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 6f605cac935788100481839d6ec2e1e3a93eb7de353162bd68d7313b3586f464
 ---
 
 ---
@@ -170,6 +170,8 @@ The `actor` field is a discriminated union. The `type` discriminator tells you w
 A `user_actor` activity does not always mean the user took the action. Processes that Anthropic runs on a user’s behalf can currently appear as `user_actor` for the affected user rather than as `system_actor`, and this attribution may change. For example, memory activities from a migration, such as `platform_memory_store_created`, `platform_memory_created`, and `platform_memory_deleted`, are attributed this way. The memory activities `platform_memory_store_created`, `platform_memory_created`, `platform_memory_updated`, and `platform_memory_deleted` currently show an `ip_address` of `0.0.0.0` whoever performed them. As a result, this value does not on its own identify a process that Anthropic runs on the user’s behalf.
 
 A `claude_*_viewed` activity means a Claude app loaded content, not that a person viewed it. Types such as `claude_chat_viewed`, `claude_file_viewed`, and `claude_project_viewed` are recorded each time a Claude app loads the chat, file, or project from Anthropic’s servers. Repeated loads are not deduplicated. The web, desktop, and mobile apps load content at different moments, sometimes in the background, and can display a cached copy without loading it. Counts of these activities vary by platform as a result, and they do not correspond to messages sent or screens viewed.
+
+A missing `*_deleted` activity does not mean the content still exists. When your organization’s retention policy deletes a chat, project, or published artifact, the Activity Feed records no `claude_chat_deleted`, `claude_project_deleted`, or `claude_published_artifact_deleted` activity. An admin’s change to the policy is recorded as a `data_retention_periods` update in `claude_organization_settings_updated`.
 
 Activities about a file, project document, or artifact do not include its name or title. As of September 24, 2026, the `filename` and `title` fields on these activities are always `null`, an empty string, or omitted, including on activities recorded before that date. To look up a name or title, pass the activity’s `claude_file_*`, `claude_proj_doc_*`, or `claude_artifact_version_*` ID to the matching metadata endpoint in [Retrieve files and artifacts](https://platform.claude.com/docs/en/manage-claude/compliance-content-data#retrieve-files-and-artifacts), using a Compliance Access Key with the `read:compliance_user_data` scope. You cannot look up a name or title after the file, document, or artifact is deleted, or when the activity has no such ID.
 

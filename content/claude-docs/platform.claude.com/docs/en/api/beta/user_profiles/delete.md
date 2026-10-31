@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/delete
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 41607e4dbeaceb43b91d98feaa5d7c25381602eff972d08394cbfd98d8551884
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 537e9b8cdb5863d7836093c1c8df2d9791c459a69cc284951b3921bc8231eeef
 ---
 
 ---
@@ -143,6 +143,8 @@ Delete User Profile
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

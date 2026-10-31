@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 337dd46dff436ca9d798da98d6c3dd70eb04f5878e3667cc1c5951cc189fe19d
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 12b98abe82d3059f4ee332d4c119bc2f83df70b047cf7fb8983fae7cf774f5c1
 ---
 
 ---
@@ -271,24 +271,24 @@ Span dapat tiba lebih dari sekali, misalnya ketika pengiriman dicoba ulang. Jika
   Span yang diekspor tidak dijamin merupakan catatan lengkap penggunaan API Anda. Pengirimannya bersifat [upaya terbaik](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#delivery-and-health), sehingga sebuah span dapat hilang. Pemanggil juga dapat mengecualikan span dari sebuah permintaan dengan menonaktifkan flag sampled di [header `traceparent`](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#connect-api-spans-to-your-own-traces) permintaan tersebut. Untuk melacak penggunaan setiap kunci API, misalnya untuk mendeteksi kunci yang bocor, gunakan [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) dan kelompokkan berdasarkan `api_key_id`. API ini juga menghitung penggunaan permintaan tanpa span. Penggunaan biasanya muncul di sana dalam 4 jam (lihat [Kesegaran data](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api#data-freshness)).
 </Note>
 
-## Availability
+## Ketersediaan
 
-OpenTelemetry is in beta on every model.
+OpenTelemetry dalam versi beta di semua model.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Available
+* Ketersediaan: Tersedia
 
-| Status | Cloud platforms         | Models                                                            |
-| ------ | ----------------------- | ----------------------------------------------------------------- |
-| Beta   | All supported platforms | [All models](https://platform.claude.com/docs/id/models/overview) |
+| Status | Platform cloud               | Model                                                              |
+| ------ | ---------------------------- | ------------------------------------------------------------------ |
+| Beta   | Semua platform yang didukung | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Available
+* Ketersediaan: Tersedia
 
-| Status | Cloud platforms         | Models                                                            |
-| ------ | ----------------------- | ----------------------------------------------------------------- |
-| Beta   | All supported platforms | [All models](https://platform.claude.com/docs/id/models/overview) |
+| Status | Platform cloud               | Model                                                              |
+| ------ | ---------------------------- | ------------------------------------------------------------------ |
+| Beta   | Semua platform yang didukung | [Semua model](https://platform.claude.com/docs/id/models/overview) |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/update
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: f47ee158f327abc267b0759bf21aa05c82c5f67c8aefea351b1284f839968965
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: c66ab4bc50ea337b7628f6c347004dc58f3ae9a883f2a8c53523b7e7af78283f
 ---
 
 ---
@@ -150,6 +150,8 @@ interactive credential (a user OAuth token or a Console session).
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Body parameters
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 5154d6d18061fd230fb8186de8d035562bc7303c16b4e1f4103824a514909c1c
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 191b503f5abb077ee9ac82494c743431511f2c1cc34ec0c0607d77e2e6a541ca
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1

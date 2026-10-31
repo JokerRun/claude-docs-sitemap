@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: a19af5a5998b63c6d244ea1429812ef000f4267c9960f64ce5206d9f125ec9c4
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 7e71a2abf035d5af52cf5754886c4af365d10167579c41adc1d575d102bcc924
 ---
 
 ---
@@ -154,6 +154,8 @@ rejected.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Body parameters
 
@@ -399,6 +401,8 @@ page to recover.
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 ### Returns
 
 - `data: array of BetaServiceAccountWorkspaceMember`
@@ -614,6 +618,8 @@ to the implicit `workspace_user` membership. Archived workspaces return
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Returns
 

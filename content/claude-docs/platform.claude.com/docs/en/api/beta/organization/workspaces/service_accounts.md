@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 4b28979d4d5743710cc79bb6a539648dad0a4de2c68b4e484ebc61d74ce55732
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: bef6e93236da7d2ca2f3939e537bd0c95054172c410931ad67cf64dc9dbde8bb
 ---
 
 ---
@@ -166,6 +166,8 @@ omitted from the results.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Returns
 
@@ -379,6 +381,8 @@ accounts cannot be added and are rejected.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Body parameters
 
@@ -609,6 +613,8 @@ account returns 404.
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 ### Returns
 
 - `BetaServiceAccountWorkspaceMember object`
@@ -814,6 +820,8 @@ rejected.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Body parameters
 
@@ -1037,6 +1045,8 @@ membership. Archived workspaces return 400.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Returns
 

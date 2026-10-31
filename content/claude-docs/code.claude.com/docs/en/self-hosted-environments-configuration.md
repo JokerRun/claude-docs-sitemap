@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments-configuration
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: a389712b906443ad54d3cce814d8760a588f3147ddf0413753a015381220cb56
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 852c8fa7c54082023035a8a2af29c9a1e92a838e14e3679d3dd1e0a2c1955f6b
 ---
 
 > ## Documentation Index
@@ -538,28 +538,28 @@ Set exactly one provider's variables where you set the runner's other environmen
 
 Start these runners with [`--confine-repo-settings enforce`](https://code.claude.com/docs/en/self-hosted-environments-deploy#harden-your-deployment). It refuses sessions on repositories whose committed settings it flags, so run in the default `warn` mode first and clear what it logs.
 
-**Amazon Bedrock**
+> [tab] Amazon Bedrock
+>
+> Replace the region with your own:
+>
+> ```bash theme={null}
+> export CLAUDE_CODE_USE_BEDROCK=1
+> export AWS_REGION=us-east-1
+> ```
+>
+> For how Claude Code resolves the region, see [Configure Claude Code](https://code.claude.com/docs/en/amazon-bedrock.md#3-configure-claude-code). For which inference profile prefix Claude Code uses for your region, see [Cross-region inference profile prefixes](https://code.claude.com/docs/en/amazon-bedrock.md#cross-region-inference-profile-prefixes).
 
-Replace the region with your own:
-
-```bash theme={null}
-export CLAUDE_CODE_USE_BEDROCK=1
-export AWS_REGION=us-east-1
-```
-
-For how Claude Code resolves the region, see [Configure Claude Code](https://code.claude.com/docs/en/amazon-bedrock.md#3-configure-claude-code). For which inference profile prefix Claude Code uses for your region, see [Cross-region inference profile prefixes](https://code.claude.com/docs/en/amazon-bedrock.md#cross-region-inference-profile-prefixes).
-
-**Google Cloud's Agent Platform**
-
-Replace the region and project ID with your own:
-
-```bash theme={null}
-export CLAUDE_CODE_USE_VERTEX=1
-export CLOUD_ML_REGION=global
-export ANTHROPIC_VERTEX_PROJECT_ID=YOUR-PROJECT-ID
-```
-
-To choose a region, see [Region configuration](https://code.claude.com/docs/en/google-vertex-ai.md#region-configuration).
+> [tab] Google Cloud's Agent Platform
+>
+> Replace the region and project ID with your own:
+>
+> ```bash theme={null}
+> export CLAUDE_CODE_USE_VERTEX=1
+> export CLOUD_ML_REGION=global
+> export ANTHROPIC_VERTEX_PROJECT_ID=YOUR-PROJECT-ID
+> ```
+>
+> To choose a region, see [Region configuration](https://code.claude.com/docs/en/google-vertex-ai.md#region-configuration).
 
 **4. Check that the variables reached a session**
 

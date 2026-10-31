@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/download
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 2b218d629ef7501a27dbc15905884547ea2e8af3e80ebef8f7f5cb0cd8b1ff6b
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 8d56c676ebfb02add9f1a4baa171d4d85ce47ab75da95fc60503df82f119dcf6
 ---
 
 ---
@@ -151,6 +151,8 @@ Download a skill version's content as a zip archive.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

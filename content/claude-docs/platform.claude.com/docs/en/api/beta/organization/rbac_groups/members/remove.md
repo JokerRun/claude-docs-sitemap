@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/members/remove
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 5b2df14dd6086c899d5ee1e3e25e7e9b3028d6112441c639d82dc049e5bf93e1
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 8c732443022d0daf85835a9571c8ba8bea6e71438b6e13ce1677778706c66f8c
 ---
 
 ---
@@ -67,6 +67,6 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$RBAC_GROUP_ID/membe
 {
   "rbac_group_id": "rbac_group_012rppKaSVsmTo6NqRDXQXNF",
   "type": "rbac_group_member_deleted",
-  "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
+  "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu"
 }
 ```

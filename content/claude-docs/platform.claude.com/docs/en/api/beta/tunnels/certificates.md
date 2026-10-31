@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 9b9227b07ffeb6f13994c0bdb88290ab077cefc94e47b1a91f90d39be9840452
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 0dbf2ba9afe6f4af9bd679666abeae2507274b3e29ba08b0547dbf59c419ac5e
 ---
 
 ---
@@ -147,6 +147,8 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -367,6 +369,8 @@ Fetches a tunnel certificate by ID.
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -586,6 +590,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -801,6 +807,8 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

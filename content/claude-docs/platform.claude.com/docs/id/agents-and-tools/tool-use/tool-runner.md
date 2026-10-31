@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 1ab3eaef9837548c745116d8ece5c5cf3f295d3deb103d798eee1e50a397bf4e
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 01785c0304807a851d05a783541083c27d4ab0f1b50b97e38f409ac47dcc2ac6
 ---
 
 ---
@@ -1818,25 +1818,25 @@ Aktifkan streaming untuk memproses respons setiap giliran secara bertahap. Setia
   </Card>
 </CardGroup>
 
-## Availability
+## Ketersediaan
 
-Tool runner is in beta on every model.
+Tool runner dalam versi beta di semua model.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Available
+* Ketersediaan: Tersedia
 
-| Status | Cloud platforms                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Status | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Available
-* Usage: The Python, TypeScript and Go SDKs have a session tool runner that runs your tools for a session’s custom tool calls. The session itself runs the agent loop.
+* Ketersediaan: Tersedia
+* Penggunaan: SDK Python, TypeScript, dan Go memiliki tool runner sesi yang menjalankan alat Anda untuk panggilan alat kustom sesi. Sesi itu sendiri yang menjalankan loop agen.
 
-| Status | Cloud platforms                                                                                                    |
+| Status | Platform cloud                                                                                                     |
 | ------ | ------------------------------------------------------------------------------------------------------------------ |
 | Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |

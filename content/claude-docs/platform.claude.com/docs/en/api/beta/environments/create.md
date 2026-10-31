@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/create
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 49683f82eca85077686273dc939e18ceb5505a342e6e6e95eb115a7acfb366c6
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 2b260a41c8e12e4da3fca06015ba200b5d8a3db3c4eb8c64bee12f492c1ad9f2
 ---
 
 ---
@@ -137,6 +137,8 @@ Create a new environment with the specified configuration.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

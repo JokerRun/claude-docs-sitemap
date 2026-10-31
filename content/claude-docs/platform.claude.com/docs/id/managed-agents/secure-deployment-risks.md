@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/secure-deployment-risks
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: b0c9697a9bcc19f364f885c131ef8c96319af749474830f26693a63216bb0080
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 34c68b611b4f0bc29494e5958f3aa7ade94569472629bf88ca016525db0cc55b
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1

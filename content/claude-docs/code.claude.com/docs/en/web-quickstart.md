@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-quickstart
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 55569fe515c8a5c64a32c1cd08c8fb5eb32185abc3fbc3e2e92b45189b116767
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 9e9c9c6544d9e4784bc5e454bfa40e26e01127218d9bc628fc8f219bb39f2bb8
 ---
 
 > ## Documentation Index
@@ -15,7 +15,7 @@ sha256: 55569fe515c8a5c64a32c1cd08c8fb5eb32185abc3fbc3e2e92b45189b116767
 
 > [!NOTE]
 >
-> Cloud sessions are available on Pro, Max, and Team plans, and for Enterprise users with premium seats or Chat + Claude Code seats.
+> Cloud sessions are available on Pro, Max, Ultra, and Team plans, and for Enterprise users with premium seats or Chat + Claude Code seats.
 
 A cloud session runs Claude Code on cloud infrastructure instead of your machine, Anthropic-managed by default. This quickstart starts one from [claude.ai/code](https://claude.ai/code) in your browser. You can also start one from the Claude mobile app, the Desktop app, or your terminal with `claude --cloud`.
 
@@ -84,7 +84,7 @@ If onboarding prompts you to install the Claude GitHub App at this point and you
 
 A [cloud environment](https://code.claude.com/docs/en/cloud-environments.md) is the saved configuration that controls what network access Claude has during sessions and what runs when a session starts. What happens after you connect GitHub depends on your plan:
 
-* **Pro and Max**: onboarding creates an environment named **Default** for you.
+* **Pro, Max, and Ultra**: you get an environment named **Default** automatically.
 * **Team and Enterprise**: onboarding shows a **Create your first cloud environment** form. Leave the prefilled name and network access unchanged and click **Create & finish** to create the **Default** environment. If an Owner has turned on [Quick setup](https://code.claude.com/docs/en/claude-code-on-the-web.md#quick-setup-for-team-and-enterprise), onboarding creates **Default** for you instead.
 
 **Default** uses [`Trusted` network access](https://code.claude.com/docs/en/cloud-environments#access-levels): sessions reach [common package registries](https://code.claude.com/docs/en/cloud-environments.md#default-allowed-domains) and other allowlisted domains, and nothing else through the session's network. See [Installed tools](https://code.claude.com/docs/en/cloud-environments.md#installed-tools) for what's available without any configuration.

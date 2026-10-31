@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: c5b762473f755a35ff42eef741ba557605d74d091b86ac53f6a46941c2456c21
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 40c54cdff30768ad1be7a02f4864bead3fe633cdcbfc13878dc5237636df8ac5
 ---
 
 > ## Documentation Index
@@ -126,17 +126,17 @@ On Linux and WSL2, the sandbox relies on these packages:
 
 Install them with your distribution's package manager:
 
-**Ubuntu/Debian**
+> [tab] Ubuntu/Debian
+>
+> ```bash theme={null}
+> sudo apt-get install bubblewrap socat
+> ```
 
-```bash theme={null}
-sudo apt-get install bubblewrap socat
-```
-
-**Fedora**
-
-```bash theme={null}
-sudo dnf install bubblewrap socat
-```
+> [tab] Fedora
+>
+> ```bash theme={null}
+> sudo dnf install bubblewrap socat
+> ```
 
 When a dependency is missing, the Dependencies tab in `/sandbox` lists which of `ripgrep`, `bubblewrap`, `socat`, and the seccomp filter your platform lacks. If you don't see the tab after installing and restarting Claude Code, all dependencies are present.
 
@@ -144,7 +144,7 @@ Ripgrep is bundled with the native Claude Code binary. The seccomp filter is opt
 
 When a required dependency is missing, the Dependencies tab is the only tab shown until you install it. When only the optional seccomp filter is missing, the Dependencies tab appears alongside the other tabs. The dependency check runs at startup, so restart Claude Code after installing packages for `/sandbox` to detect them.
 
-> **Ubuntu 24.04 and later: allow bubblewrap to create user namespaces**
+> [accordion] Ubuntu 24.04 and later: allow bubblewrap to create user namespaces
 >
 > On Ubuntu 24.04 and later, the default AppArmor policy prevents bubblewrap from creating the user namespaces it needs for isolation.
 >
@@ -168,7 +168,7 @@ When a required dependency is missing, the Dependencies tab is the only tab show
 > sudo systemctl reload apparmor
 > ```
 
-> **WSL2 notes**
+> [accordion] WSL2 notes
 >
 > Check your WSL version with `wsl -l -v` from PowerShell. If you see `Sandboxing requires WSL2`, your distribution is running WSL1. Upgrade it to WSL2 or run Claude Code without sandboxing.
 >

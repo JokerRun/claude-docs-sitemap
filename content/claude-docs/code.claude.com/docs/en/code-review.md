@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review
-fetched_at: 2026-10-25T02:20:50.950770Z
-sha256: 7aa52d68d9b983279a89722ccde8bb62c995ee73f56c6fd398ab9244355fd69d
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 78ff48627f8e08e5551e254a963356b6988160a6b0edc873fc8772e3f301e06a
 ---
 
 > ## Documentation Index
@@ -39,23 +39,23 @@ Check that your organization qualifies before you set up Code Review:
 
 Pick the page for what you need to do:
 
-> **[Set up Code Review](https://code.claude.com/docs/en/code-review-setup.md)**
+> [card] [Set up Code Review](https://code.claude.com/docs/en/code-review-setup.md)
 >
 > Check the requirements, install the Claude GitHub App, and choose repositories, a review level, and when reviews run
 
-> **[Customize Code Review](https://code.claude.com/docs/en/code-review-customize.md)**
+> [card] [Customize Code Review](https://code.claude.com/docs/en/code-review-customize.md)
 >
 > Tune what gets flagged with `REVIEW.md` and `CLAUDE.md` files in your repository
 
-> **[Read and request reviews on a pull request](https://code.claude.com/docs/en/code-review-pull-requests.md)**
+> [card] [Read and request reviews on a pull request](https://code.claude.com/docs/en/code-review-pull-requests.md)
 >
 > Read the findings and their severities, and request another review with a comment
 
-> **[Troubleshoot Code Review](https://code.claude.com/docs/en/code-review-troubleshooting.md)**
+> [card] [Troubleshoot Code Review](https://code.claude.com/docs/en/code-review-troubleshooting.md)
 >
 > Fix a review that didn't start, failed, or was skipped for budget
 
-> **[Code Review costs and usage](https://code.claude.com/docs/en/code-review-costs.md)**
+> [card] [Code Review costs and usage](https://code.claude.com/docs/en/code-review-costs.md)
 >
 > See how reviews are billed, estimate spend, set the monthly spend limit, and track review activity
 

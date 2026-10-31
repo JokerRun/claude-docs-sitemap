@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/devcontainer
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 4cf840a02b3949fc5c59fbd56880aaf644a5d184b60a92d14a1a21563ac12273
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 03ccfa8b04a8dd9d6fd12c24dafa976ee026a165f83a2b893dcbce0df4558547
 ---
 
 > ## Documentation Index
@@ -24,7 +24,7 @@ This page covers [installing Claude Code in a dev container](#add-claude-code-to
 > Only use dev containers when developing with trusted repositories, and monitor Claude's activities.
 > Avoid mounting host secrets such as `~/.ssh` or cloud credential files into the container; prefer repository-scoped or short-lived tokens.
 
-> **How dev containers work with your editor**
+> [accordion] How dev containers work with your editor
 >
 > ![Diagram showing an editor on the host connecting to a Docker dev container. Claude Code, the terminal, and build tools run inside the container. The host repository is bind-mounted into the container as the workspace.](https://mintcdn.com/claude-code/YvJyjZfd9yMihr0i/images/devcontainer-architecture.svg?fit=max\&auto=format\&n=YvJyjZfd9yMihr0i\&q=85\&s=9017b1d16a446c6cc37ba562f35b9aae)
 >

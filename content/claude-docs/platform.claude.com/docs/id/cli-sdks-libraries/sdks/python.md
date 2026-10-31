@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 2dcf2a881bff1b5e4d3776c6246071af2e6f5e0c0c0df339e26b930beede076e
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: f736f30cea65b5698ba0833c13b17cae6c241ca2399fc0acb318cea45811c073
 ---
 
 ---
@@ -29,7 +29,7 @@ Untuk integrasi khusus platform atau performa async yang lebih baik, instal deng
 # Untuk dukungan Amazon Bedrock
 pip install "anthropic[bedrock]"
 
-# Untuk dukungan Google Cloud
+# Untuk dukungan Claude Models on Google Cloud (Google managed)
 pip install "anthropic[vertex]"
 
 # Untuk dukungan Claude Platform di AWS
@@ -762,7 +762,7 @@ Keenam kelas klien disertakan dalam paket dasar `anthropic`:
 
 | Penyedia                                          | Klien                                          | Dependensi tambahan                     |
 | ------------------------------------------------- | ---------------------------------------------- | --------------------------------------- |
-| Agent Platform                                    | `from anthropic import AnthropicVertex`        | `pip install "anthropic[vertex]"`       |
+| Claude Models on Google Cloud (Google managed)    | `from anthropic import AnthropicVertex`        | `pip install "anthropic[vertex]"`       |
 | Bedrock                                           | `from anthropic import AnthropicBedrockMantle` | `pip install "anthropic[bedrock]"`      |
 | Bedrock (jalur `bedrock-runtime`)                 | `from anthropic import AnthropicBedrock`       | `pip install "anthropic[bedrock]"`      |
 | Claude Platform on AWS                            | `from anthropic import AnthropicAWS`           | `pip install "anthropic[aws]"`          |

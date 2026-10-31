@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 4604d636796b25be4e758e26d9da28aa4ad63f9f4bd5946607cbfb1ea2619885
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: e424677828d58ca03a2cebbd4036047e4d848b110d979a6d776a14f36f4b54a8
 ---
 
 ---
@@ -14,7 +14,7 @@ featureMetadata:
   betaHeader: mcp-client-2026-09-15, mcp-client-2025-11-20
   zdr:
     eligibility: not-eligible
-    note: Research preview. The MCP tunnels security page describes the data-flow boundary and subprocessor details.
+    note: Research preview. Halaman keamanan Tunnel MCP menjelaskan batas aliran data dan detail subprosesor.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -38,20 +38,14 @@ featureMetadata:
 ---
 
 <Note>
-  MCP tunnels are in research preview.
+  Tunnel MCP dalam pratinjau riset.
 
-  MCP tunnels are in research preview. They are provided “as-is” without any uptime, support, or continuity commitment, and they depend on a third-party network provider (Cloudflare) that makes no availability commitment for the underlying transport. Anthropic may modify or discontinue MCP tunnels at any time.
+  Tunnel MCP masih dalam research preview. Tunnel MCP disediakan “apa adanya” tanpa komitmen uptime, dukungan, atau kesinambungan apa pun, dan bergantung pada penyedia jaringan pihak ketiga (Cloudflare) yang tidak memberikan komitmen ketersediaan untuk transport yang mendasarinya. Anthropic dapat mengubah atau menghentikan Tunnel MCP kapan saja.
 
-  * [Request access](https://claude.com/form/mcp-tunnels)
+  * [Minta akses](https://claude.com/form/mcp-tunnels)
 </Note>
 
 Tunnel MCP memungkinkan Anda menghubungkan Claude ke server “Model Context Protocol”, atau MCP, yang berjalan di dalam jaringan privat Anda. Lalu lintas mengalir melalui koneksi yang hanya bersifat keluar (outbound-only), sehingga Anda tidak perlu membuka port firewall masuk, mengekspos layanan ke internet publik, atau memasukkan rentang IP Anthropic ke daftar izin (allowlist) pada origin Anda.
-
-<Note>
-  Tunnel MCP sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/mcp-tunnels) untuk mencobanya. Tunnel MCP disediakan “apa adanya” tanpa komitmen uptime, dukungan, atau kelangsungan apa pun, dan bergantung pada penyedia jaringan pihak ketiga (Cloudflare) yang tidak memberikan komitmen ketersediaan untuk transport yang mendasarinya. Anthropic dapat mengubah atau menghentikan tunnel MCP kapan saja.
-</Note>
-
-Untuk kelayakan Zero Data Retention dan HIPAA BAA, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility).
 
 ## Cara kerjanya
 
@@ -60,7 +54,7 @@ Untuk kelayakan Zero Data Retention dan HIPAA BAA, lihat [API dan retensi data](
 * **[cloudflared](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components):** Konektor tunnel sumber terbuka milik Cloudflare. Komponen ini memulai koneksi yang hanya bersifat keluar ke [tunnel edge](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) (tepi tunnel) dan membawa lalu lintas terenkripsi dari Anthropic ke proxy Anda.
 * **[Proxy](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components):** Komponen perutean milik Anthropic. Komponen ini mengakhiri [inner TLS](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) (TLS bagian dalam), memvalidasi bahwa IP upstream berada dalam rentang yang diizinkan, dan merutekan setiap permintaan ke [upstream MCP server](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) (server MCP upstream) yang tepat berdasarkan hostname.
 
-Setiap server MCP yang Anda ekspos mendapatkan hostname di bawah domain tunnel Anda (misalnya, `docs.<your-tunnel-domain>`). Anda melampirkan hostname ini ke sesi Managed Agent di Claude Console, atau meneruskannya ke Messages API melalui [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector).
+Setiap server MCP yang Anda ekspos mendapatkan hostname di bawah domain tunnel Anda (misalnya, `docs.<your-tunnel-domain>`). Anda melampirkan hostname ini ke agen di Claude Console, atau meneruskannya ke Messages API melalui [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector).
 
 ## Prasyarat
 
@@ -171,8 +165,10 @@ Dalam kedua kasus, tunnel membawa lalu lintas terenkripsi ke server MCP Anda tet
 ### Managed Agents (Console)
 
 1. Di halaman [Sessions](https://platform.claude.com/sessions) (`platform.claude.com/sessions`) di Claude Console, buat sesi dan pilih **Create new agent** agar Anda dapat mengedit daftar server MCP.
-2. Klik **+ MCP Server** dan buka menu dropdown. Tunnel di workspace sesi yang memiliki setidaknya satu sertifikat aktif muncul di bagian atas daftar, di atas katalog konektor publik.
+2. Di bawah **MCP servers**, klik **MCP server** dan buka menu dropdown. Tunnel di workspace sesi yang memiliki setidaknya satu sertifikat aktif muncul di bagian atas daftar, di atas katalog konektor publik.
 3. Pilih tunnel dan isikan **Subdomain** yang dirutekan proxy Anda ke server MCP tertentu, serta **Path** yang diharapkan oleh server MCP upstream. Baris **Resolves to** menampilkan URL persisnya.
+
+Untuk prosedur lengkapnya, lihat [Menggunakan tunnel dalam agen](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#use-the-tunnel-in-an-agent).
 
 ### Messages API
 
@@ -438,47 +434,47 @@ Untuk autentikasi ke server MCP upstream (`authorization_token`) dan opsi `mcp_s
   </Card>
 </CardGroup>
 
-## Availability
+## Ketersediaan
 
-MCP tunnels are in research preview on every model.
+Tunnel MCP dalam pratinjau riset di semua model.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Available
+* Ketersediaan: Tersedia
 
-| Status           | Cloud platforms |
-| ---------------- | --------------- |
-| Research preview | Claude API      |
+| Status          | Platform cloud |
+| --------------- | -------------- |
+| Pratinjau riset | Claude API     |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Available
+* Ketersediaan: Tersedia
 
-| Status           | Cloud platforms |
-| ---------------- | --------------- |
-| Research preview | Claude API      |
+| Status          | Platform cloud |
+| --------------- | -------------- |
+| Pratinjau riset | Claude API     |
 
-### Required beta headers
+### Header beta yang diperlukan
 
-[Beta headers overview](https://platform.claude.com/docs/id/api/beta-headers)
+[Ikhtisar header beta](https://platform.claude.com/docs/id/api/beta-headers)
 
-Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
+Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model baru sebelum menjadi bagian dari API standar.
 
-| Header                                             | APIs                                                                                        |
-| -------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `mcp-client-2026-09-15` or `mcp-client-2025-11-20` | [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) |
+| Header                                               | API                                                                                         |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `mcp-client-2026-09-15` atau `mcp-client-2025-11-20` | [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) |
 
-### Data handling
+### Penanganan data
 
-[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+[Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item    | Zero data retention                                                                                                                                                                                | HIPAA        |
-| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| Status  | Not eligible                                                                                                                                                                                       | Not eligible |
-| Details | Research preview. The MCP tunnels security page describes the data-flow boundary and subprocessor details. [Learn more](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/security) | —            |
+| Item   | Retensi data nol                                                                                                                                                                                       | HIPAA       |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| Status | Tidak layak                                                                                                                                                                                            | Tidak layak |
+| Detail | Research preview. Halaman keamanan Tunnel MCP menjelaskan batas aliran data dan detail subprosesor. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/security) | —           |
 
-Applicable endpoints:
+Endpoint yang berlaku:
 
 * `/v1/tunnels`

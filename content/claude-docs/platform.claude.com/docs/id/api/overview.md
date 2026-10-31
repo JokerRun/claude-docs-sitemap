@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/overview
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 63999f10f476dc4a8838f1b56fc2cb9ece0334a4879913d68d8475cb739d6bc8
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: faa3b88b2da0eff52aa7e60cc31fce41f2a21c6d443ec00784ea4121c81ce280
 ---
 
 ---
@@ -99,7 +99,7 @@ Akses Claude melalui AWS, Google Cloud, atau Microsoft Azure:
 
 | Platform                                          | Penyedia                                 | Dokumentasi                                                                                                                                                |
 | ------------------------------------------------- | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Agent Platform                                    | Google Cloud                             | [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)       |
+| Claude Models on Google Cloud (Google managed)    | Google Cloud                             | [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)       |
 | Amazon Bedrock                                    | AWS                                      | [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)                                                 |
 | Claude Platform on AWS                            | AWS (dioperasikan Anthropic)             | [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)                                                     |
 | Claude Models on Google Cloud (Anthropic managed) | Google Cloud (dioperasikan Anthropic)    | [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |

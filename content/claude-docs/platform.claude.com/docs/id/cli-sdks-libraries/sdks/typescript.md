@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 2f19fb832843132b4e7dc1b2e4a1bc493989e144f76fd02be5d249e92996cfe8
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: a7978a19ac5fa0bb1fe455cbbc570248cd52f8d5129d33e5f67514d82426ecc4
 ---
 
 ---
@@ -786,7 +786,7 @@ const response = await client.beta.messages.create({
 
 TypeScript SDK mendukung platform berikut:
 
-* **Agent Platform:** `npm install @anthropic-ai/vertex-sdk`: Menyediakan client `AnthropicVertex`
+* **Claude Models on Google Cloud (Google managed):** `npm install @anthropic-ai/vertex-sdk`: Menyediakan client `AnthropicVertex`
 * **Bedrock:** `npm install @anthropic-ai/bedrock-sdk`: Menyediakan client `AnthropicBedrockMantle`, dan `AnthropicBedrock` untuk jalur `bedrock-runtime`
 * **Claude Platform on AWS:** `npm install @anthropic-ai/aws-sdk`: Menyediakan client `AnthropicAws`. Teruskan `workspaceId` ke constructor atau atur variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID`. Tersedia dalam beta.
 * **Foundry:** `npm install @anthropic-ai/foundry-sdk`: Menyediakan client `AnthropicFoundry`

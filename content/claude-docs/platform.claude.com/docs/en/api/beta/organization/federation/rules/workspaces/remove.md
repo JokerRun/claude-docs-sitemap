@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/remove
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: ea1506360d72d91de3efc70ed6cbea4b3eab95eb3c284e48f8005151c3aff8ec
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: bb714c6a7b4d7a4c8fa56bc8d147fb48d8a97d51a3aeecaed8fe4cdec3a9a8a2
 ---
 
 ---
@@ -154,6 +154,8 @@ Console session.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Returns
 

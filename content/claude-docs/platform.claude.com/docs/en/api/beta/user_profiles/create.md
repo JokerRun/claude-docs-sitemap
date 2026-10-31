@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: cbf26ba9ba84457cf0bd9b9ee026496027d4857bf74a5c1b6b4644611f6b3ff1
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 0ccdc7c63a9c50b5fb3fddce68f9490ee0adde21e0eb43210adaa4d8dc91dc06
 ---
 
 ---
@@ -137,6 +137,8 @@ Create User Profile
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

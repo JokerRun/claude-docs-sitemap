@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: f1f2efca402b45a4098faafa50798327d7bab12c3bcf66d8c28e212cdc2b6de7
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: f76421c535e819c5138f0780a60f747ae44cf8012a39021323ad2118c5765d4a
 ---
 
 ---
@@ -10,7 +10,7 @@ title: Tool search tool
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool
 description: Scale to hundreds or thousands of tools by letting Claude search your tool catalog and load only the tools it needs.
 featureMetadata:
-  status: ga
+  status: stable
   zdr:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Server-side tool run by Anthropic; the tool definitions in the request are searched in memory per call and nothing is stored after the response.
@@ -33,14 +33,14 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
-    Claude Platform on AWS: ga
-    Amazon Bedrock: ga
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Amazon Bedrock: stable
     Amazon Bedrock (InvokeModel):
-      availability: ga
+      availability: stable
       note: On Amazon Bedrock it is not available through the Converse API.
-    Claude Models on Google Cloud (Google managed): ga
-    Microsoft Foundry: ga
+    Claude Models on Google Cloud (Google managed): stable
+    Microsoft Foundry: stable
 ---
 
 The tool search tool lets Claude work with hundreds or thousands of tools by discovering and loading them on demand. Instead of loading all tool definitions into the context window up front, Claude searches your tool catalog (including tool names, descriptions, argument names, and argument descriptions) and loads only the tools it needs.
@@ -766,12 +766,12 @@ When a tool search operation fails during execution, the API returns a 200 respo
 }
 ```
 
-The `error_code` field has four possible values:
+The API defines these `error_code` values:
 
 * `invalid_tool_input`: the search input was invalid, for example a malformed regex pattern or a pattern over the 200-character limit
 * `unavailable`: the search couldn’t run, for example because it timed out or the service was unavailable
 * `too_many_requests`: rate limit exceeded for tool search operations
-* `execution_time_exceeded`: the search exceeded its execution time limit
+* `execution_time_exceeded`: not returned by tool search, which reports a timeout as `unavailable`
 
 ### Common mistakes
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: e9f48192e3df36fd2d89b94e2b61573ada2482d8eb4e58781ca8c5dd02b1efcd
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: e3bbf2dceeb70f72efa7bea3d6418d758cc3a13f59ac40714e9c5f74d8170345
 ---
 
 ---
@@ -14,7 +14,7 @@ featureMetadata:
   betaHeader: mcp-client-2026-09-15, mcp-client-2025-11-20
   zdr:
     eligibility: not-eligible
-    note: Data retained according to standard policy.
+    note: Data disimpan sesuai kebijakan standar.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -40,10 +40,10 @@ featureMetadata:
     Microsoft Foundry: beta
 ---
 
-**API support**: Usage differs by product.
+**Dukungan API**: Penggunaan berbeda menurut produk.
 
-* **Messages API**: Pass `mcp_servers` and a matching `mcp_toolset` in `tools` on each request.
-* **Managed Agents**: Declare MCP servers on the agent. Each session supplies credentials by referencing a vault, so secrets stay out of the agent definition.
+* **Messages API**: Teruskan `mcp_servers` dan `mcp_toolset` yang sesuai di `tools` pada setiap permintaan.
+* **Managed Agents**: Deklarasikan server MCP pada agen. Setiap sesi menyediakan kredensial dengan merujuk vault, sehingga secret tidak masuk ke definisi agen.
 
 Fitur konektor “Model Context Protocol”, atau MCP, milik Claude memungkinkan Anda terhubung ke server MCP jarak jauh langsung dari Messages API tanpa klien MCP terpisah.
 
@@ -2137,50 +2137,50 @@ Versi sebelumnya dari konektor MCP menyertakan konfigurasi alat langsung di defi
 | `tool_configuration.enabled`       | boolean | **Deprecated:** Gunakan `default_config.enabled` dalam MCPToolset        |
 | `tool_configuration.allowed_tools` | array   | **Deprecated:** Gunakan pola allowlist dengan `configs` dalam MCPToolset |
 
-## Availability
+## Ketersediaan
 
-MCP connector is in beta on every model.
+Konektor MCP dalam versi beta di semua model.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Available
-* Usage: Pass `mcp_servers` and a matching `mcp_toolset` in `tools` on each request. For OAuth servers you get and refresh the access token yourself and pass it as `authorization_token`.
+* Ketersediaan: Tersedia
+* Penggunaan: Teruskan `mcp_servers` dan `mcp_toolset` yang sesuai di `tools` pada setiap permintaan. Untuk server OAuth, Anda sendiri yang mendapatkan dan memperbarui token akses lalu meneruskannya sebagai `authorization_token`.
 
-| Status | Cloud platforms                                                                                                                                                                                                                                                                                                                                                                        |
+| Status | Platform cloud                                                                                                                                                                                                                                                                                                                                                                         |
 | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Available
-* Usage: Declare MCP servers on the agent. Each session supplies credentials by referencing a vault, so secrets stay out of the agent definition.
+* Ketersediaan: Tersedia
+* Penggunaan: Deklarasikan server MCP pada agen. Setiap sesi menyediakan kredensial dengan merujuk vault, sehingga secret tidak masuk ke definisi agen.
 
-| Status | Cloud platforms         |
-| ------ | ----------------------- |
-| Beta   | All supported platforms |
+| Status | Platform cloud               |
+| ------ | ---------------------------- |
+| Beta   | Semua platform yang didukung |
 
-### Required beta headers
+### Header beta yang diperlukan
 
-[Beta headers overview](https://platform.claude.com/docs/id/api/beta-headers)
+[Ikhtisar header beta](https://platform.claude.com/docs/id/api/beta-headers)
 
-Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
+Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model baru sebelum menjadi bagian dari API standar.
 
-| Header                                             | APIs                                                                                        | Cloud platforms                                                                                                                                                                                                                                                                                                                                                            |
-| -------------------------------------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `mcp-client-2026-09-15` or `mcp-client-2025-11-20` | [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) | Claude API                                                                                                                                                                                                                                                                                                                                                                 |
-| `mcp-client-2025-11-20`                            | [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) | [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Header                                               | API                                                                                         | Platform cloud                                                                                                                                                                                                                                                                                                                                                             |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mcp-client-2026-09-15` atau `mcp-client-2025-11-20` | [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) | Claude API                                                                                                                                                                                                                                                                                                                                                                 |
+| `mcp-client-2025-11-20`                              | [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) | [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
-### Data handling
+### Penanganan data
 
-[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+[Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item    | Zero data retention                                                                                                                         | HIPAA        |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| Status  | Not eligible                                                                                                                                | Not eligible |
-| Details | Data retained according to standard policy. [Learn more](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#data-retention) | —            |
+| Item   | Retensi data nol                                                                                                                                   | HIPAA       |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Status | Tidak layak                                                                                                                                        | Tidak layak |
+| Detail | Data disimpan sesuai kebijakan standar. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#data-retention) | —           |
 
-Applicable endpoints:
+Endpoint yang berlaku:
 
-* `/v1/messages` with `mcp_servers`
+* `/v1/messages` dengan `mcp_servers`

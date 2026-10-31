@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/preserved-thinking
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: df1f5426380c57942b8765514e289854ebba24c836985f741b435eaa6c993723
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 1124ee9ab74274ec427fee310d32657c9e63944f66d6c1e94b53b567587f8c3f
 ---
 
 ---
@@ -10,7 +10,7 @@ title: Preserved thinking
 url: https://platform.claude.com/docs/en/build-with-claude/preserved-thinking
 description: Preserved thinking lets a model use a thinking block from an earlier turn only if that model or one of a fixed set of other models produced it and nothing before the block has changed.
 featureMetadata:
-  status: ga
+  status: stable
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -18,11 +18,11 @@ featureMetadata:
     - claude-sonnet-5-5
     - claude-haiku-5-5
   supportedPlatforms:
-    Claude API: ga
-    Claude Platform on AWS: ga
-    Claude Models on Google Cloud (Anthropic managed): ga
-    Claude Models on Google Cloud (Google managed): ga
-    Microsoft Foundry: ga
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Claude Models on Google Cloud (Anthropic managed): stable
+    Claude Models on Google Cloud (Google managed): stable
+    Microsoft Foundry: stable
 ---
 
 **API support**: Usage differs by product.

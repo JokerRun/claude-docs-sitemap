@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-editing
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 8747279a5fc8478b9b487a3a2e2bad733ff9f8d575c817de71943ca49a523565
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 7abb48e35b7c3701a073d762b4b9a5f9d586701559f90a355ff142f3747f8bd7
 ---
 
 ---
@@ -14,7 +14,7 @@ featureMetadata:
   betaHeader: context-management-2025-06-27
   zdr:
     eligibility: eligible
-    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Context edits (tool use clearing and thinking clearing) are applied in real time.
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Edit konteks (penghapusan penggunaan alat dan penghapusan pemikiran) diterapkan secara real time.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -42,10 +42,6 @@ featureMetadata:
     Microsoft Foundry: beta
 ---
 
-<Note>
-  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
-</Note>
-
 ## Ikhtisar
 
 <Note>
@@ -58,15 +54,15 @@ featureMetadata:
 * **Penghapusan blok pemikiran:** Untuk mengelola blok pemikiran dari giliran sebelumnya, dengan opsi untuk mempertahankan pemikiran terbaru demi kesinambungan konteks
 * **Compaction SDK sisi klien:** Alternatif berbasis SDK untuk manajemen konteks berbasis ringkasan (compaction sisi server umumnya lebih disarankan)
 
-| Pendekatan      | Tempat berjalan | Strategi                                                                                                       | Cara kerjanya                                                                                                                                                                                                                                                                                                                                                                                                          |
-| --------------- | --------------- | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Sisi server** | API             | Pembersihan hasil alat (`clear_tool_uses_20250919`)<br />Pembersihan blok thinking (`clear_thinking_20251015`) | Diterapkan sebelum prompt mencapai Claude. Membersihkan konten tertentu dari riwayat percakapan. Setiap strategi dapat dikonfigurasi secara independen.                                                                                                                                                                                                                                                                |
-| **Sisi klien**  | SDK             | Kompaksi                                                                                                       | Tersedia di [SDK TypeScript dan Ruby](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) saat menggunakan [`tool_runner`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner). Menghasilkan ringkasan dan menggantikan seluruh riwayat percakapan. Lihat [Kompaksi sisi klien](https://platform.claude.com/docs/id/build-with-claude/context-editing#client-side-compaction-sdk). |
+| Pendekatan      | Tempat berjalan | Strategi                                                                                                        | Cara kerjanya                                                                                                                                                                                                                                                                                                                                                                                                          |
+| --------------- | --------------- | --------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Sisi server** | API             | Pembersihan hasil alat (`clear_tool_uses_20250919`)<br />Pembersihan blok pemikiran (`clear_thinking_20251015`) | Diterapkan sebelum prompt mencapai Claude. Membersihkan konten tertentu dari riwayat percakapan. Setiap strategi dapat dikonfigurasi secara independen.                                                                                                                                                                                                                                                                |
+| **Sisi klien**  | SDK             | Kompaksi                                                                                                        | Tersedia di [SDK TypeScript dan Ruby](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) saat menggunakan [`tool_runner`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner). Menghasilkan ringkasan dan menggantikan seluruh riwayat percakapan. Lihat [Kompaksi sisi klien](https://platform.claude.com/docs/id/build-with-claude/context-editing#client-side-compaction-sdk). |
 
 ## Strategi sisi server
 
 <Note>
-  Pengeditan konteks berada dalam versi beta dengan dukungan untuk pembersihan hasil alat dan pembersihan blok thinking. Untuk mengaktifkannya, gunakan header beta `context-management-2025-06-27` dalam permintaan API Anda.
+  Pengeditan konteks berada dalam versi beta dengan dukungan untuk pembersihan hasil alat dan pembersihan blok pemikiran. Untuk mengaktifkannya, gunakan header beta `context-management-2025-06-27` dalam permintaan API Anda.
 
   Bagikan masukan tentang fitur ini melalui [formulir masukan](https://forms.gle/YXC2EKGMhjN1c4L88).
 </Note>
@@ -77,14 +73,14 @@ Strategi `clear_tool_uses_20250919` menghapus hasil alat ketika konteks percakap
 
 Saat diaktifkan, API secara otomatis membersihkan hasil alat terlama dalam urutan kronologis. API mengganti setiap hasil yang dibersihkan dengan teks placeholder yang menunjukkan kepada Claude bahwa hasil tersebut telah dihapus. Secara default, hanya hasil alat yang dibersihkan. Anda dapat secara opsional membersihkan hasil alat dan panggilan alat (parameter penggunaan alat) dengan mengatur `clear_tool_inputs` ke true.
 
-### Pembersihan blok thinking
+### Pembersihan blok pemikiran
 
-Strategi `clear_thinking_20251015` mengelola blok `thinking` dari giliran asisten sebelumnya. Strategi ini memberi Anda kontrol atas pelestarian thinking: Anda dapat memilih untuk menyimpan lebih banyak blok thinking guna mempertahankan kesinambungan penalaran, atau membersihkannya secara lebih agresif untuk menghemat ruang konteks.
+Strategi `clear_thinking_20251015` mengelola blok `thinking` dari giliran asisten sebelumnya. Strategi ini memberi Anda kontrol atas pelestarian pemikiran: Anda dapat memilih untuk menyimpan lebih banyak blok pemikiran guna mempertahankan kesinambungan penalaran, atau membersihkannya secara lebih agresif untuk menghemat ruang konteks.
 
 <Tip>
   **Perilaku default:** Default bervariasi menurut kelas model.
 
-  | Kelas model      | Simpan semua thinking sebelumnya      | Simpan hanya thinking giliran terakhir             |
+  | Kelas model      | Simpan semua pemikiran sebelumnya     | Simpan hanya pemikiran giliran terakhir            |
   | ---------------- | ------------------------------------- | -------------------------------------------------- |
   | Opus             | Claude Opus 4.5 dan yang lebih baru   | Claude Opus 4.1 dan yang lebih lama                |
   | Sonnet           | Claude Sonnet 4.6 dan yang lebih baru | Claude Sonnet 4.5 (deprecated) dan yang lebih lama |
@@ -100,7 +96,7 @@ Satu giliran percakapan asisten dapat mencakup beberapa blok konten (misalnya, s
 
 Pengeditan konteks diterapkan di sisi server sebelum prompt mencapai Claude. Aplikasi klien Anda mempertahankan riwayat percakapan lengkap yang tidak dimodifikasi. Anda tidak perlu menyinkronkan status klien Anda dengan versi yang telah diedit. Lanjutkan mengelola riwayat percakapan lengkap Anda secara lokal seperti biasa.
 
-Pada model Claude 5.1 dan yang lebih baru, manajemen konteks di sisi server tidak pernah membatalkan validitas blok pemikiran. Pengeditan di sisi klien terhadap giliran sebelumnya dapat membatalkan validitas blok pemikiran di setiap giliran asisten berikutnya. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check).
+Pada Claude 5.1 dan model yang lebih baru, manajemen konteks di sisi server tidak pernah membatalkan validitas blok pemikiran. Pengeditan di sisi klien terhadap giliran sebelumnya dapat membatalkan validitas blok pemikiran di setiap giliran asisten berikutnya. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check).
 
 ### Pengeditan konteks dan caching prompt
 
@@ -730,9 +726,9 @@ Anda dapat menyesuaikan perilaku pembersihan hasil alat dengan parameter tambaha
   ```
 </CodeGroup>
 
-## Penggunaan pembersihan blok thinking
+## Penggunaan pembersihan blok pemikiran
 
-Gunakan pembersihan blok thinking untuk mengelola konteks dan caching prompt dalam percakapan yang membawa blok thinking dari giliran sebelumnya:
+Gunakan pembersihan blok pemikiran untuk mengelola konteks dan caching prompt dalam percakapan yang membawa blok pemikiran dari giliran sebelumnya:
 
 <CodeGroup>
   ```bash cURL
@@ -951,17 +947,17 @@ Gunakan pembersihan blok thinking untuk mengelola konteks dan caching prompt dal
   ```
 </CodeGroup>
 
-### Opsi konfigurasi untuk pembersihan blok thinking
+### Opsi konfigurasi untuk pembersihan blok pemikiran
 
 Strategi `clear_thinking_20251015` mendukung konfigurasi berikut:
 
-| Opsi konfigurasi | Default        | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| ---------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `keep`           | Spesifik model | Menentukan berapa banyak giliran asisten terbaru dengan blok thinking yang akan dipertahankan. Gunakan `{type: "thinking_turns", value: N}` di mana N harus > 0 untuk menyimpan N giliran terakhir, atau `"all"` untuk menyimpan semua blok thinking. Opus 4.5+, Sonnet 4.6+, dan Haiku 5.5+: semua giliran. Model Fable dan Mythos: semua giliran. Opus/Sonnet yang lebih lama dan Haiku hingga Claude Haiku 4.5: hanya giliran terakhir. |
+| Opsi konfigurasi | Default        | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ---------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `keep`           | Spesifik model | Menentukan berapa banyak giliran asisten terbaru dengan blok pemikiran yang akan dipertahankan. Gunakan `{type: "thinking_turns", value: N}` di mana N harus > 0 untuk menyimpan N giliran terakhir, atau `"all"` untuk menyimpan semua blok pemikiran. Opus 4.5+, Sonnet 4.6+, dan Haiku 5.5+: semua giliran. Model Fable dan Mythos: semua giliran. Opus/Sonnet yang lebih lama dan Haiku hingga Claude Haiku 4.5: hanya giliran terakhir. |
 
 **Contoh konfigurasi:**
 
-Simpan blok thinking dari 3 giliran asisten terakhir:
+Simpan blok pemikiran dari 3 giliran asisten terakhir:
 
 <CodeGroup>
   ```bash cURL
@@ -1173,7 +1169,7 @@ Simpan blok thinking dari 3 giliran asisten terakhir:
   ```
 </CodeGroup>
 
-Simpan semua blok thinking (memaksimalkan cache hit):
+Simpan semua blok pemikiran (memaksimalkan cache hit):
 
 <CodeGroup>
   ```bash cURL
@@ -1369,7 +1365,7 @@ Simpan semua blok thinking (memaksimalkan cache hit):
 
 ### Menggabungkan strategi
 
-Anda dapat menggunakan pembersihan blok thinking dan pembersihan hasil alat secara bersamaan:
+Anda dapat menggunakan pembersihan blok pemikiran dan pembersihan hasil alat secara bersamaan:
 
 <Note>
   Saat menggunakan beberapa strategi, Anda harus mencantumkan strategi `clear_thinking_20251015` terlebih dahulu dalam array `edits`.
@@ -2975,37 +2971,37 @@ Memahami kapan kompaksi dipicu membantu Anda menyetel ambang batas dan memverifi
   </Card>
 </CardGroup>
 
-## Availability
+## Ketersediaan
 
-Context editing is in beta on every model and eligible for zero data retention.
+Pengeditan konteks dalam versi beta di semua model dan layak untuk retensi data nol.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Available
+* Ketersediaan: Tersedia
 
-| Status | Cloud platforms                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Status | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
-### Required beta headers
+### Header beta yang diperlukan
 
-[Beta headers overview](https://platform.claude.com/docs/id/api/beta-headers)
+[Ikhtisar header beta](https://platform.claude.com/docs/id/api/beta-headers)
 
-Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
+Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model baru sebelum menjadi bagian dari API standar.
 
 * `context-management-2025-06-27`
 
-### Data handling
+### Penanganan data
 
-[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+[Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item    | Zero data retention                                                                                                                                       | HIPAA        |
-| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| Status  | Eligible (excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Not eligible |
-| Details | Context edits (tool use clearing and thinking clearing) are applied in real time.                                                                         | —            |
+| Item   | Retensi data nol                                                                                                                                                 | HIPAA       |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Tidak layak |
+| Detail | Edit konteks (penghapusan penggunaan alat dan penghapusan pemikiran) diterapkan secara real time.                                                                | —           |
 
-Applicable endpoints:
+Endpoint yang berlaku:
 
-* `/v1/messages` with `context_management`
+* `/v1/messages` dengan `context_management`

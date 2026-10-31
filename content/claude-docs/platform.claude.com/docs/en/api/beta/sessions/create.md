@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/create
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: c6e8754e1056324cb0dbb5220d7a16ccabd60cf9fa3d3b4b8964a4fd13796acb
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 210fed34cb3eafaee8856f5525f6ef60cbd8e2a4516a4e22b04b77e465f22795
 ---
 
 ---
@@ -137,6 +137,8 @@ Create Session
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

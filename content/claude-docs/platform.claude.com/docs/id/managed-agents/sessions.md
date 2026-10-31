@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: e0f7a6ca3d4f6d4081741cb8875e3401228f04d2a38ecfa6a0cdcd96a9260a61
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 01abb1cc41b30df72fee9493966f0999d1e6449744799dc2a5bba493303beb45
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1

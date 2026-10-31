@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/cost
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 6ea6de8e9d2431d04f2de89e73122a9be206ae0ec99ab48ca036a7a219f42a97
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: d154f59247b462eb5b4f0280344a1298a5718c97d477654a68ce67800186f25e
 ---
 
 ---
@@ -436,6 +436,8 @@ API key with the `read:analytics` scope, or an Admin API key.
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 ### Returns
 
 - `data: array of BetaAnalyticsCostItem`
@@ -752,7 +754,7 @@ curl https://api.anthropic.com/v1/organizations/analytics/cost \
           "email_address": "user@emaildomain.com",
           "name": "Jane Doe",
           "type": "user_actor",
-          "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
+          "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu"
         },
         "actor_type": "user_actor",
         "agent_id": "agent_01VHd3EAGJ6PLkP9LM7DDu3f",
@@ -778,7 +780,7 @@ curl https://api.anthropic.com/v1/organizations/analytics/cost \
       "starting_at": "2026-09-01T00:00:00Z"
     }
   ],
-  "data_refreshed_at": "2019-12-27T18:11:19.117Z",
+  "data_refreshed_at": "2026-10-01T04:02:11Z",
   "has_more": true,
   "next_page": "next_page"
 }

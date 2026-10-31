@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/list
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 6b987adc4adbfb8c0e8a3e14e085c2b36d6662194ebbca4fa92e37cb9295ec17
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 46983569814b0c7b87fb44820fbad21bf075f92d83bfe285c49fdefbbad4a8ee
 ---
 
 ---
@@ -162,6 +162,8 @@ List Skills
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

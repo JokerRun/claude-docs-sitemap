@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/update
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 5487cf9a511afeb879b868acede3838b822eaa5e3097d3e1a53cfd0ce490d072
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 659b8b3ee9c471feb1b75c7ba2e738cc852cd7ee0f9a3b11d901d150c96aa204
 ---
 
 ---
@@ -141,6 +141,8 @@ Update an existing environment's configuration.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

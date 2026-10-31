@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments/list
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 78c4b5fd338039444b3cd1831197473c8357015e46b87ad2ecde42232815c1e2
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 56782dab4809f754fd50d62a33629f0fa82874a626a3f8c84cf19cefda177ca1
 ---
 
 ---
@@ -55,11 +55,11 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
 ## Returns
 
-- `data: array of ComplianceProjectFileReference or ComplianceProjectDocReference`
+- `data: array of ProjectFile or ProjectDoc`
 
   List of attachments sorted chronologically by created_at, tie break by id
 
-  - `ComplianceProjectFileReference object`
+  - `ProjectFile object`
 
     File attachment reference for compliance responses.
 
@@ -95,7 +95,7 @@ GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
 
       Size in bytes of the file's preferred downloadable variant, when recorded. Null otherwise. Use the per-file `/metadata` endpoint for the authoritative value.
 
-  - `ComplianceProjectDocReference object`
+  - `ProjectDoc object`
 
     Project document attachment reference for compliance responses.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/archive
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 83f4a0c8e5b94d957aa48d490c858e96256e74c6a2bfa843db103744da842508
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 77fe0541a61265f4caab2f6eb45ebc79038c0aeafff5f6a8ce221a3d1829c381
 ---
 
 ---
@@ -150,6 +150,8 @@ those rules first or change their target to another service account.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Returns
 

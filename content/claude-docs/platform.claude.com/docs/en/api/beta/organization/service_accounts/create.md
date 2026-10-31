@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/create
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: cd4b5acf0e0d54998e8ba8709d58acf86253311caf1f7c38787529f7ae30c2a4
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: e5ef7a0726f3b1780ab3679b4d2bae96db8962252f1ee9f7253e251b50950995
 ---
 
 ---
@@ -147,6 +147,8 @@ accounts.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Body parameters
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/retrieve
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 39c32bde821599573324b820dc5f16fd47eaca2b6487d1e1b5677d05013aa48b
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 7885392dc57159b508a4eeb019b2437e681cef274d167ed0bd8651e10cce3917
 ---
 
 ---
@@ -143,6 +143,8 @@ Get Session Resource
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

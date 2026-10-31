@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/list
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 52e65084f630c4471d3a825e7fc738e6a9d7f4480944c21911b81609e5351d1d
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 4aa8bf5f74ff053e61246c1d893cedf5bdfba7f67e97b70ba3ae18201e7019ab
 ---
 
 ---
@@ -175,6 +175,8 @@ List User Profiles
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

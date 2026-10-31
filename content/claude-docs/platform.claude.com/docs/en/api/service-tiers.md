@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/service-tiers
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: dfa91aae308511604fdc6e7b4ea2a718d9562762aeae00f30b64a04d8b47ecc5
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 6fc40845f32f77ebe986fd38bdd6c54a314216c3c72e487c667c32c35ac1e59d
 ---
 
 ---
@@ -10,7 +10,7 @@ title: Service tiers
 url: https://platform.claude.com/docs/en/api/service-tiers
 description: Different tiers of service allow you to balance availability, performance, and predictable costs based on your application's needs.
 featureMetadata:
-  status: ga
+  status: stable
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -30,7 +30,7 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
+    Claude API: stable
 ---
 
 <Warning>

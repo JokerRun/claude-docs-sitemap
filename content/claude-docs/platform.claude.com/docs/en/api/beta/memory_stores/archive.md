@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/archive
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 0ddee4ff064f0cb04917d6fc119ff32020c32c9f8cd909c69671cc7e95aa3a7d
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: d90df591886891627141b229aa5d910a883851ddde99854a2c173168131e5ad5
 ---
 
 ---
@@ -145,6 +145,8 @@ Archive a Memory Store
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

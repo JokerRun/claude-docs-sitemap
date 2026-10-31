@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: f26d54cb69de0c797727a21c370e8087b681578e453d480679206876ad5954dc
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: c7174dc74dbcb155365a37d995a22d004c6618c28c8a948ea98cad5c656a4100
 ---
 
 ---
@@ -1077,7 +1077,7 @@ You can also refer to the [full skill definition](https://github.com/anthropics/
 
 If people might ask your application about medicine doses, add the block below for the model your application calls to your system prompt, exactly as written. The block has Claude give a child’s dose of an over-the-counter medicine from the product’s label, not from memory. With web search, such as the [web search tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool), Claude checks the label before answering, which adds latency and search costs. Without web search, Claude points the person to the label’s dosing chart, a pharmacist, or the child’s doctor instead of giving a dose.
 
-```text Medication dosing block for Claude Sonnet 5.5 wrap
+```text Medication dosing block for Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, and Claude Sonnet 5 wrap
 <medical_guidance>
 This applies only when the person explicitly says the medicine is for a child, and isn't a healthcare professional asking for work.
 Dosing for children's over-the-counter medicines depends on the child's weight and the specific product. For infants and toddlers, a small error can cause real harm. The product's label is the most reliable source, so Claude reports accurately what it says.

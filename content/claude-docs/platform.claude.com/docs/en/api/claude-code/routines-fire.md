@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/claude-code/routines-fire
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 0acd05da33d17a27cc4966ac49c58c9021171c00291e085cca300bd7bb49e356
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 58c3973855dc629a5b28ca23506eaab46c392e68e34ca7d10cd28254a7ba8e6c
 ---
 
 ---
@@ -19,7 +19,7 @@ description: Start a Claude Code routine session on demand by sending an authent
 
 This endpoint is the HTTP entry point. POSTing to it starts a new run of an existing routine and returns the resulting session ID and URL. Typical callers are alerting systems, CI pipelines, and internal tools that need to start a Claude Code session programmatically.
 
-Calling this endpoint requires a claude.ai account on a Pro, Max, Team, or Enterprise plan with [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web) enabled. Authenticate with a per-routine bearer token created in the Claude Code web UI rather than a Claude API key.
+Calling this endpoint requires a claude.ai account on a Pro, Max, Ultra, Team, or Enterprise plan with [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web) enabled. Authenticate with a per-routine bearer token created in the Claude Code web UI rather than a Claude API key.
 
 ## Differences from the Claude Platform
 

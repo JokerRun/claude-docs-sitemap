@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/heartbeat
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: d22dac0ecf55ab39f7cf0968ce9c4cc5e58b24c02c556a7292ce44f839cc20e0
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: c8aced52af8c85aaed374f19346837ee3974a9a378a36f900fd3d9fa89eb8b4d
 ---
 
 ---
@@ -156,6 +156,8 @@ Record a heartbeat for a work item to maintain the lease.
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 ## Returns
 
 - `BetaSelfHostedWorkHeartbeatResponse object`
@@ -170,7 +172,7 @@ Record a heartbeat for a work item to maintain the lease.
 
   - `last_heartbeat: string`
 
-    RFC 3339 timestamp of the actual heartbeat from DB
+    RFC 3339 timestamp of the most recent heartbeat recorded for this work item, or an empty string if none has been recorded
 
   - `lease_extended: boolean`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models/list
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: e607ecdc44ee7856c800b88b7aa5431007dacd66c12ef19a688a254c921a5d4c
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: d27c3ce62f3fa14cc50177caeda4716dc76d5f522eda7ce7c3d5222f9c213768
 ---
 
 ---
@@ -169,6 +169,8 @@ The Models API response can be used to determine which models are available for 
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

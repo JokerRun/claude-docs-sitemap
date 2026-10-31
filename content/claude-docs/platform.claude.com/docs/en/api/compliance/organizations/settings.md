@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/settings
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: d7c9fbe87b66c2db8281cb0d134a611777616dd4220ac55e420742232b66ac42
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: f2d98771caf26045ee6b6072b8078371da437c1548442952dc72bc173500645b
 ---
 
 ---
@@ -128,6 +128,8 @@ unknown organizations and organizations outside the hierarchy return 404.
 
       - `"claude_academy_inference_enabled"`
 
+      - `"claude_ai_ccr_support_sharing_enabled"`
+
       - `"claude_ai_chat_sharing_enabled"`
 
       - `"claude_ai_feedback_collection_enabled"`
@@ -191,8 +193,6 @@ unknown organizations and organizations outside the hierarchy return 404.
       - `"connector_tools_default_always_allow"`
 
       - `"content_redaction_enabled"`
-
-      - `"cowork_trusted_devices_required"`
 
       - `"desktop_extension_allowlist_enabled"`
 
@@ -497,6 +497,8 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/sett
 
         - `"claude_academy_inference_enabled"`
 
+        - `"claude_ai_ccr_support_sharing_enabled"`
+
         - `"claude_ai_chat_sharing_enabled"`
 
         - `"claude_ai_feedback_collection_enabled"`
@@ -560,8 +562,6 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/sett
         - `"connector_tools_default_always_allow"`
 
         - `"content_redaction_enabled"`
-
-        - `"cowork_trusted_devices_required"`
 
         - `"desktop_extension_allowlist_enabled"`
 

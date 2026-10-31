@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 32d07b9f14550226ea50993a9850c081d6f34b43779aeacdb0a09ac85bb2c230
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: c4b0036bccf8efdfe4953bd20d9e77e2acd10a97f8b167aa2243d51ca115ef46
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -545,38 +545,38 @@ Untuk sesi yang berjalan di sandbox self-hosted, environment worker dapat [melay
   </Card>
 </CardGroup>
 
-## Availability
+## Ketersediaan
 
-Agent toolset is in beta on every model.
+Toolset agen dalam versi beta di semua model.
 
-### API support
+### Dukungan API
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Available
+* Ketersediaan: Tersedia
 
-| Status | Cloud platforms                                                                                                    |
+| Status | Platform cloud                                                                                                     |
 | ------ | ------------------------------------------------------------------------------------------------------------------ |
 | Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
 
-### Required beta headers
+### Header beta yang diperlukan
 
-[Beta headers overview](https://platform.claude.com/docs/id/api/beta-headers)
+[Ikhtisar header beta](https://platform.claude.com/docs/id/api/beta-headers)
 
-Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
+Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model baru sebelum menjadi bagian dari API standar.
 
 * `managed-agents-2026-04-01`
 
-### Data handling
+### Penanganan data
 
-[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+[Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item    | Zero data retention                                                                                                                                      | HIPAA                                                                        |
-| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status  | Not eligible                                                                                                                                             | Not eligible                                                                 |
-| Details | Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes. | Applies to all Managed Agents sub-features, including Self-hosted sandboxes. |
+| Item   | Retensi data nol                                                                                                                                                          | HIPAA                                                                               |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Status | Tidak layak                                                                                                                                                               | Tidak layak                                                                         |
+| Detail | Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. | Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. |
 
-Applicable endpoints:
+Endpoint yang berlaku:
 
 * `/v1/agents`
 * `/v1/sessions`

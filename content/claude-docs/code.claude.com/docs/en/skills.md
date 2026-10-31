@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 907a9929f54ad8b730a55088108311acb9bb5677c33b1861fb2664a53ab15688
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: d2a5d07c0d1cef1d1edcf30f38f6b2712ff70ac050e3d50601cd3dadb42f9097
 ---
 
 > ## Documentation Index
@@ -49,7 +49,7 @@ Run `/doctor` at the Claude Code prompt for a setup checkup that diagnoses issue
 * **Extensions**: unused skills, MCP servers, and plugins compared with their context cost, and slow [hooks](https://code.claude.com/docs/en/hooks.md)
 * **`CLAUDE.md` files**: local `CLAUDE.md` files that duplicate checked-in ones, checked-in [`CLAUDE.md` content Claude could derive from the codebase](https://code.claude.com/docs/en/memory#my-claude-md-is-too-large), and the always-loaded guidance that remains, which Claude offers to migrate into skills and nested `CLAUDE.md` files that load on demand
 * **Permissions**: an offer to make [auto mode](https://code.claude.com/docs/en/permissions.md#permission-modes) your default permission mode and to [pre-approve](https://code.claude.com/docs/en/permissions.md) read-only commands that you frequently deny
-* **Usage**: on a Pro, Max, Team, or Enterprise plan, the [changes `/usage` recommends](https://code.claude.com/docs/en/costs#plan-usage-breakdown) to lower your plan usage, measured over the last 7 days. Claude proposes the changes it can make itself and reports the rest as advice, such as a command for you to run. The usage check requires Claude Code v2.1.305 or later, and `/doctor` leaves it out while [Remote Control](https://code.claude.com/docs/en/remote-control.md) is connected.
+* **Usage**: on a Pro, Max, Ultra, Team, or Enterprise plan, the [changes `/usage` recommends](https://code.claude.com/docs/en/costs#plan-usage-breakdown) to lower your plan usage, measured over the last 7 days. Claude proposes the changes it can make itself and reports the rest as advice, such as a command for you to run. The usage check requires Claude Code v2.1.305 or later, and `/doctor` leaves it out while [Remote Control](https://code.claude.com/docs/en/remote-control.md) is connected.
 
 For read-only installation diagnostics without starting a session, run `claude doctor` in your terminal instead.
 

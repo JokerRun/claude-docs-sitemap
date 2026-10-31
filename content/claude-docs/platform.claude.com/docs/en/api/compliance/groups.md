@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: 2a52b417b4317687364b0b9d5fec9f6a6cd2338ca2a7e6f7d0e0935b0e3072ba
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: efd0046defd3c599006a1501c00105bcd2f78ffed5ab5cb1a0796ff8d9da4d39
 ---
 
 ---
@@ -369,7 +369,7 @@ curl https://api.anthropic.com/v1/compliance/groups/$GROUP_ID/members \
       "created_at": "2025-03-12T18:22:41.123456Z",
       "email": "jane.doe@example.com",
       "updated_at": "2025-03-14T09:05:17.456789Z",
-      "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
+      "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu"
     }
   ],
   "has_more": true,

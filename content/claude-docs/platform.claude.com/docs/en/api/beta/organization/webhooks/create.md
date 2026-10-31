@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/webhooks/create
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 33b086619d135d29f54350c8b464d85f7b3476f68ec13c542482dee8ac4bf277
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 6543ca1aa4a77c4c9163720b681b63b5e0a16145921f9742e77460d10c03fc76
 ---
 
 ---
@@ -145,6 +145,8 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Body parameters
 

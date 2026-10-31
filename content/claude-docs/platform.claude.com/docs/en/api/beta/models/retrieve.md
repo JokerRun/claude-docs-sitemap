@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models/retrieve
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 8466664578813080fad4a665e08ed316ed4ac806aa96424ae13c23a42831d774
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 7be63254a4caf591fe035c53da0a006ba7a0d78df0121cfc28ac2fc332c929d3
 ---
 
 ---
@@ -145,6 +145,8 @@ The Models API response can be used to determine information about a specific mo
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

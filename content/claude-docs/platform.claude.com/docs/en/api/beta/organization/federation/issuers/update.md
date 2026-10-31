@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/update
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 3a6df8e5f4ac0c33d00244d3aaad55758aae24f573775460515c3c2a059a5c0f
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 4ee60de329618b02ebb708df693247e3eb398cce0d80c661d1db582c67694ae4
 ---
 
 ---
@@ -152,6 +152,8 @@ session.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Body parameters
 

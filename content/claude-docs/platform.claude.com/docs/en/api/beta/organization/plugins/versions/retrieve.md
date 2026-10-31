@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/versions/retrieve
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: bc2a7dc2df4c49be6e718bcf9b09498434c7aa18ac9e762bef7e4db21ba0c5f5
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 3dbb6f362bbd59b31e57598595b2dc4d5dfe4f50e95f0dbce4e8227d1cb60702
 ---
 
 ---
@@ -151,6 +151,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Returns
 
@@ -322,7 +324,7 @@ curl https://api.anthropic.com/v1/organizations/plugins/$PLUGIN_ID/versions/$VER
   "created_by": {
     "email_address": "user@example.com",
     "type": "user_actor",
-    "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
+    "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu"
   },
   "description": "Reviews pull requests against your team's conventions.",
   "display_name": "Code Review Helper",

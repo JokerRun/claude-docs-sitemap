@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/action_urls
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 11e8fa8dea90644aeb8d2d12116960045fe69c7225304f1442e896b4701ad6fd
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 77ecc22fe0289a417b2d9825cfa995791580f5420493dd4f8d0a2646e2499b23
 ---
 
 ---
@@ -145,6 +145,8 @@ Create Action URL
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

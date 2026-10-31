@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/retrieve
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 60f2ce8653e80b768e124dd2604a06669b1623a5347c8532931edc748f63ba99
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 57a6db1e02059e8692148df8560433334adcee162c55b758963ab5077dd1f103
 ---
 
 ---
@@ -143,6 +143,8 @@ Retrieve a Memory Store
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/citations
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 8441a143fee7810e081ddb4f0ea9fcf57dbbeaa7f0a2e2c4f8f13d3fb40a98a3
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 5ca4bf7ea2617c6e1bb5d6376abcb3108c76e207542c9092dec597dda05829e5
 ---
 
 ---
@@ -10,7 +10,7 @@ title: Kutipan
 url: https://platform.claude.com/docs/id/build-with-claude/citations
 description: Dasarkan respons Claude pada dokumen sumber Anda. Kutipan mengembalikan bagian teks yang tepat yang mendukung setiap klaim, sehingga Anda dapat memverifikasi jawaban dan menampilkan sumber kepada pengguna Anda.
 featureMetadata:
-  status: ga
+  status: stable
   zdr:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
@@ -33,12 +33,12 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
-    Claude Platform on AWS: ga
-    Amazon Bedrock: ga
-    Amazon Bedrock (InvokeModel): ga
-    Claude Models on Google Cloud (Google managed): ga
-    Microsoft Foundry: ga
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (InvokeModel): stable
+    Claude Models on Google Cloud (Google managed): stable
+    Microsoft Foundry: stable
 ---
 
 Claude dapat memberikan kutipan terperinci saat menjawab pertanyaan tentang dokumen, membantu Anda melacak dan memverifikasi sumber di balik setiap respons.
@@ -405,7 +405,7 @@ Integrasikan kutipan dengan Claude dalam langkah-langkah berikut:
 * Namun, fitur sitasi sangat efisien dalam hal token output. Secara internal, model menghasilkan sitasi dalam format standar, dan sitasi tersebut kemudian diurai menjadi teks yang disitasi dan indeks lokasi dokumen. Field `cited_text` disediakan untuk kemudahan dan tidak dihitung sebagai token output.
 * Ketika diteruskan kembali dalam giliran percakapan berikutnya, `cited_text` juga tidak dihitung terhadap token input.
 
-### Kompatibilitas fitur
+## Kompatibilitas fitur
 
 Kutipan bekerja bersama dengan fitur API lainnya termasuk [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching), [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting), dan [pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing).
 
@@ -417,7 +417,66 @@ Kutipan bekerja bersama dengan fitur API lainnya termasuk [caching prompt](https
   Ini karena kutipan memerlukan penyisipan blok kutipan dengan output teks, yang tidak kompatibel dengan batasan skema JSON yang ketat dari output terstruktur.
 </Warning>
 
-#### Menggunakan caching prompt dengan kutipan
+### Mendapatkan data terstruktur dengan kutipan
+
+Untuk mendapatkan kutipan bagi setiap nilai yang diekstrak, minta Claude untuk menjawab dengan satu baris per bidang. Kemudian, uraikan baris-baris tersebut menjadi data terstruktur di kode Anda.
+
+Hindari prompt pengguna atau prompt sistem yang hanya meminta JSON, seperti “Kembalikan hanya objek JSON, tanpa teks lain.” Permintaan dengan prompt seperti itu akan berhasil, tetapi respons mungkin hanya berisi sedikit kutipan atau bahkan tidak ada sama sekali.
+
+Prompt berikut meminta dua bidang dari dokumen teks biasa dalam contoh di bagian atas halaman ini. Kirimkan prompt ini sebagai pengganti pertanyaan dalam contoh tersebut:
+
+```text wrap
+Extract these fields from the document: grass_color, sky_color.
+Answer with one line per field in the form "field: value", and cite the document for each line. After the colon, write only the value, with no explanation or quotation.
+```
+
+Dalam respons berikut, setiap nilai memiliki kutipannya sendiri:
+
+```json
+{
+  "content": [
+    { "type": "text", "text": "grass_color: " },
+    {
+      "type": "text",
+      "text": "green",
+      "citations": [
+        {
+          "type": "char_location",
+          "cited_text": "The grass is green. ",
+          "document_index": 0,
+          "document_title": "My Document",
+          "start_char_index": 0,
+          "end_char_index": 20
+        }
+      ]
+    },
+    { "type": "text", "text": "\nsky_color: " },
+    {
+      "type": "text",
+      "text": "blue",
+      "citations": [
+        {
+          "type": "char_location",
+          "cited_text": "The sky is blue.",
+          "document_index": 0,
+          "document_title": "My Document",
+          "start_char_index": 20,
+          "end_char_index": 36
+        }
+      ]
+    }
+  ]
+}
+```
+
+Untuk mengurai respons, ikuti langkah-langkah berikut:
+
+1. Baca blok `text` secara berurutan, dan tambahkan teks setiap blok ke baris saat ini. Mulai baris baru di setiap karakter baris baru.
+2. Lampirkan `citations` dari setiap blok ke setiap baris yang berisi bagian dari teksnya. Blok yang dikutip dapat berisi hanya sebuah nilai, seperti dalam contoh ini, atau satu baris penuh.
+3. Lewati baris yang tidak memiliki titik dua. Pisahkan setiap baris yang tersisa pada titik dua pertamanya menjadi nama bidang dan nilai, lalu hapus spasi di awal dan akhir keduanya. Lewati baris yang namanya bukan salah satu bidang Anda, seperti catatan penutup.
+4. Periksa bahwa setiap bidang memiliki nilai dan setidaknya satu kutipan. API tidak menjamin satu pun dari keduanya.
+
+### Menggunakan caching prompt dengan kutipan
 
 Kutipan dan caching prompt dapat digunakan bersama secara efektif.
 
@@ -2191,7 +2250,7 @@ Ketika kutipan diaktifkan, respons mencakup beberapa blok teks dengan kutipan:
       "citations": [
         {
           "type": "char_location",
-          "cited_text": "The grass is green.",
+          "cited_text": "The grass is green. ",
           "document_index": 0,
           "document_title": "Example Document",
           "start_char_index": 0,
@@ -2310,32 +2369,32 @@ Untuk respons streaming, kutipan tiba sebagai tipe delta `citations_delta` di da
   </Card>
 </CardGroup>
 
-## Availability
+## Ketersediaan
 
-Citations are available on every model and eligible for zero data retention and HIPAA readiness.
+Kutipan tersedia di semua model dan layak untuk retensi data nol dan kesiapan HIPAA.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Available
+* Ketersediaan: Tersedia
 
-| Status    | Cloud platforms                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Not available
+* Ketersediaan: Tidak tersedia
 
-### Data handling
+### Penanganan data
 
-[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+[Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Zero data retention                                                                                                                                       | HIPAA    |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| Status | Eligible (excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Eligible |
+| Item   | Retensi data nol                                                                                                                                                 | HIPAA |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak |
 
-Applicable endpoints:
+Endpoint yang berlaku:
 
 * `/v1/messages`

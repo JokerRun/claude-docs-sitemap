@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: cd9ae5109f08ee450d2d13333aae13197bc0dbf4705d494dadbdaacb9e87464a
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 972ba1d0293e2474b232f0c6d6eb7f1543f570a6d251b8db496717053e73e24c
 ---
 
 ---
@@ -21,7 +21,7 @@ Sebuah permintaan melalui tunnel dapat gagal di salah satu dari tiga lapisan; di
 
 | Gejala                                                                                                                                                                       | Penyebab                                                                                                  | Perbaikan                                                                                                                                                                      |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Tunnel tidak muncul di pemilih **+ MCP Server** agen                                                                                                                         | Pemilih hanya menampilkan tunnel di workspace sesi yang memiliki setidaknya satu sertifikat aktif.        | Daftarkan sertifikat CA, atau buka sesi di workspace tempat tunnel dibuat.                                                                                                     |
+| Tunnel tidak muncul di pemilih server MCP agen                                                                                                                               | Pemilih hanya menampilkan tunnel di workspace sesi yang memiliki setidaknya satu sertifikat aktif.        | Daftarkan sertifikat CA, atau buka sesi di workspace tempat tunnel dibuat.                                                                                                     |
 | Pemanggil melihat HTTP 500; [cloudflared](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) mencatat log `No ingress rules were defined` | cloudflared tidak memiliki target lokal.                                                                  | Tambahkan `--url http://localhost:8080` dan `network_mode: "service:mcp-proxy"` ke layanan cloudflared.                                                                        |
 | Proxy mencatat log `no route for host`                                                                                                                                       | `tunnel_domain` tidak cocok dengan domain yang ditetapkan, atau `config.yaml` diedit tanpa memulai ulang. | Atur `tunnel_domain` ke domain persis yang ditampilkan di halaman detail tunnel, lalu mulai ulang proxy (`docker compose restart mcp-proxy`).                                  |
 | Proxy mencatat log `IP validation failed: <ip> is not a private address`                                                                                                     | Server MCP upstream ter-resolve di luar RFC1918.                                                          | Lihat [Validasi IP upstream](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting#upstream-ip-validation).                                         |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/access-transparency
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: bdf1cd25a23f4aabf8d697a3f1fe53065ef4ae7b1acfc156b9a4c60bb08024d9
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: c9439b55157be2957044dc24ba255e70df84d210f7df446e437464f9ecc1ff8b
 ---
 
 ---
@@ -42,7 +42,7 @@ Personel Anthropic mengakses konten pelanggan hanya dalam kondisi yang telah dit
 * **Pemrosesan otomatis:** Penyajian model, pengklasifikasi keamanan, dan pipeline deteksi penyalahgunaan memproses konten Anda sebagai bagian dari operasi normal dan tidak menghasilkan event `anthropic_access`. Preservasi yang dipicu oleh pemrosesan otomatis memang menghasilkan event `cmek_preserve` (lihat [Preservasi konten CMEK](https://platform.claude.com/docs/id/manage-claude/access-transparency#cmek-content-preservation)).
 * **Aktivitas organisasi Anda sendiri:** Panggilan API, tindakan admin, dan pembacaan Compliance API Anda dicakup oleh tipe event [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) standar.
 * **Claude for Enterprise dan Claude Apps:** Seat claude.ai Enterprise, Claude for Work, Cowork, dan Claude in Chrome tidak dicakup.
-* **Produk konsumen Claude:** paket Claude Free, Pro, atau Max.
+* **Produk konsumen Claude:** paket Claude Free, Pro, Max, atau Ultra.
 * **Platform yang dioperasikan mitra:** Amazon Bedrock dan Claude Models on Google Cloud (Google managed); lihat kontrol transparansi platform tersebut.
 * **Apa pun yang tidak dicakup ZDR:** Produk yang tidak dicakup oleh ZDR (misalnya, Files API, aplikasi stateful yang di-host Anthropic, dan Batch API) tidak dicakup oleh Access Transparency. Lihat [dokumentasi ZDR](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) untuk detail tambahan.
 
@@ -181,7 +181,7 @@ Tabel berikut mencantumkan surface mana yang dicakup oleh Access Transparency. C
 | Claude API (`api.anthropic.com`) (Batch, Files)                | Tidak   | Batch API dan Files API pada Claude API tidak dicakup, sama seperti keduanya tidak dicakup oleh ZDR          |
 | Claude for Enterprise (seat claude.ai)                         | Tidak   | Tidak dicakup                                                                                                |
 | Claude for Work                                                | Tidak   | Tidak dicakup                                                                                                |
-| Claude Free, Pro, Max                                          | Tidak   | Paket konsumen tidak memenuhi syarat                                                                         |
+| Claude Free, Pro, Max, Ultra                                   | Tidak   | Paket konsumen tidak memenuhi syarat                                                                         |
 | Playground (Claude Console)                                    | Tidak   | Tidak dicakup                                                                                                |
 | Microsoft Foundry                                              | Tidak   | Tidak tersedia                                                                                               |
 | Amazon Bedrock, Claude Models on Google Cloud (Google managed) | Tidak   | Platform yang dioperasikan mitra; lihat kontrol transparansi platform tersebut                               |

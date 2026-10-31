@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/skills
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: ac62c2dff61ef07bb778e5d115060e22f3f061fa3eca402be9b886946f01e5a2
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: d7419fbd6d6ce9163e3245928529ac6725a4b689c1d2e5cf520580d65fb7f3a9
 ---
 
 > ## Documentation Index
@@ -477,29 +477,29 @@ When a name in your `skills` list can't work as an exact skill name, `query()` r
 
 Each SDK surfaces the rejection differently:
 
-**TypeScript**
+> [tab] TypeScript
+>
+> The TypeScript SDK throws an `Error` stating the rule the entry broke. For example, `skills: ["docs:*"]` throws:
+>
+> ```text theme={null}
+> Invalid skill name "docs:*": wildcard-suffix names are not allowed; list each skill by its exact name.
+> ```
+>
+> An empty name reports `Skill names must be non-empty strings.`
+>
+> Before TypeScript Agent SDK 0.3.221, the SDK didn't run this check.
 
-The TypeScript SDK throws an `Error` stating the rule the entry broke. For example, `skills: ["docs:*"]` throws:
-
-```text theme={null}
-Invalid skill name "docs:*": wildcard-suffix names are not allowed; list each skill by its exact name.
-```
-
-An empty name reports `Skill names must be non-empty strings.`
-
-Before TypeScript Agent SDK 0.3.221, the SDK didn't run this check.
-
-**Python**
-
-The Python SDK raises `ValueError` stating the rule the entry broke. For example, `skills=["docs:*"]` raises:
-
-```text theme={null}
-ValueError: Invalid skill name 'docs:*': wildcard-suffix names are not allowed; list each skill by its exact name.
-```
-
-An empty name reports `Skill names must be non-empty strings`.
-
-Before Python Agent SDK 0.2.129, the SDK didn't run this check.
+> [tab] Python
+>
+> The Python SDK raises `ValueError` stating the rule the entry broke. For example, `skills=["docs:*"]` raises:
+>
+> ```text theme={null}
+> ValueError: Invalid skill name 'docs:*': wildcard-suffix names are not allowed; list each skill by its exact name.
+> ```
+>
+> An empty name reports `Skill names must be non-empty strings`.
+>
+> Before Python Agent SDK 0.2.129, the SDK didn't run this check.
 
 ### Additional troubleshooting
 

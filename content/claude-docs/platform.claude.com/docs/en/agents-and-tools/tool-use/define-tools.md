@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 76d57e208a7b221e04fb363cf4a997e0a2990d43235ba523ac999919fb9276ae
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 862beaba97d0fb225aeea7f1cb2b77c525116b81eac95ab525002b8c970800a6
 ---
 
 ---
@@ -10,7 +10,7 @@ title: Define tools
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
 description: Specify tool schemas, write effective descriptions, and control when Claude calls your tools.
 featureMetadata:
-  status: ga
+  status: stable
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -30,13 +30,13 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
-    Claude Platform on AWS: ga
-    Claude Models on Google Cloud (Anthropic managed): ga
-    Amazon Bedrock: ga
-    Amazon Bedrock (InvokeModel): ga
-    Claude Models on Google Cloud (Google managed): ga
-    Microsoft Foundry: ga
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Claude Models on Google Cloud (Anthropic managed): stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (InvokeModel): stable
+    Claude Models on Google Cloud (Google managed): stable
+    Microsoft Foundry: stable
 ---
 
 **API support**: Usage differs by product.

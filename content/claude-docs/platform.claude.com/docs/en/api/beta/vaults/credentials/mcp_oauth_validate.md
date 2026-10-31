@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 82560d47e4703779a90f7c54903de9ff571918f7208ba30d5654d7b8fd2c9872
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: fc5050c55ef310896cedfc5eaf6faed740696c91f95fc902dada0d97d8337686
 ---
 
 ---
@@ -147,6 +147,8 @@ Validate an MCP OAuth Credential
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

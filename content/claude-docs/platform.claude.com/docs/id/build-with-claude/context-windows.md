@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-windows
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: e2316dc424ee8bb9adb70562a59dc5cfe9b7f9110f693e99165b8ef8eb3e2cf6
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 9e562dd2ba2d0e7f392ffd203aeda7186a05f2c88a66a0833ec0fb1e7960b571
 ---
 
 ---
@@ -21,13 +21,13 @@ Seiring percakapan bertambah panjang, Anda pada akhirnya akan mendekati batas je
   Untuk informasi lebih lanjut tentang mengapa konteks panjang menurun kualitasnya dan cara merekayasa solusinya, lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
 </Tip>
 
-Diagram berikut mengilustrasikan perilaku jendela konteks standar untuk permintaan API1:
+Diagram berikut mengilustrasikan perilaku jendela konteks standar untuk permintaan API<sup>1</sup>:
 
 <Frame>
   ![Diagram giliran yang terakumulasi dalam "context window" (jendela konteks) hingga percakapan mendekati batas token](https://platform.claude.com/docs/id/images/context-window.svg)
 </Frame>
 
-*1 Antarmuka chat seperti [claude.ai](https://claude.ai/) juga dapat mengelola jendela konteks secara bergulir dengan prinsip “first in, first out” (masuk pertama, keluar pertama).*
+*<sup>1</sup> Antarmuka chat seperti [claude.ai](https://claude.ai/) juga dapat mengelola jendela konteks secara bergulir dengan prinsip “first in, first out” (masuk pertama, keluar pertama).*
 
 * **Akumulasi token progresif:** Seiring percakapan berlanjut melalui giliran-giliran, setiap pesan pengguna dan respons asisten terakumulasi dalam jendela konteks, dan giliran sebelumnya dipertahankan sepenuhnya.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: d66eef7f44c088ebbc39b8d0213450544496ba1f3b80283db3d548d0cd1e0017
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: a970c4960922f32dcb6b47dfdf9dc4c1b718a859d3b3df48b4350ae7b1dbd4db
 ---
 
 ---
@@ -10,10 +10,10 @@ title: Pesan sistem dan perubahan alat di tengah percakapan
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages
 description: Ubah instruksi sistem atau ketersediaan alat di tengah percakapan tanpa membatalkan prefiks yang di-cache sebelumnya.
 featureMetadata:
-  status: ga
+  status: stable
   zdr:
     eligibility: eligible
-    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Request-shape capability of the Messages API; mid-conversation system messages flow through the standard inference path and nothing is stored server-side after the response.
+    note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Kapabilitas bentuk permintaan dari Messages API; pesan sistem di tengah percakapan mengalir melalui jalur inferensi standar dan tidak ada yang disimpan di sisi server setelah respons.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -26,20 +26,16 @@ featureMetadata:
     - claude-haiku-5-5
     - claude-opus-4-8
   supportedPlatforms:
-    Claude API: ga
-    Claude Platform on AWS: ga
-    Amazon Bedrock: ga
-    Claude Models on Google Cloud (Google managed): ga
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Amazon Bedrock: stable
+    Claude Models on Google Cloud (Google managed): stable
 ---
 
-**API support**: Usage differs by product.
+**Dukungan API**: Penggunaan berbeda menurut produk.
 
-* **Messages API**: Append a message with `role` `"system"` to `messages` at the point where the instruction starts to apply.
-* **Managed Agents**: Send a `system.message` event. It applies to that turn and all later turns; the agent’s own `system` field cannot change during a session.
-
-<Note>
-  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
-</Note>
+* **Messages API**: Tambahkan pesan dengan `role` `"system"` ke `messages` pada titik di mana instruksi mulai berlaku.
+* **Managed Agents**: Kirim event `system.message`. Event ini berlaku untuk giliran tersebut dan semua giliran berikutnya; field `system` milik agen sendiri tidak dapat berubah selama sesi.
 
 Instruksi sistem biasanya berada di field `system` tingkat atas, sebelum setiap pesan dalam percakapan. Posisi tersebut sangat baik untuk “prompt caching” ([caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)): “system prompt” (prompt sistem) merupakan bagian dari prefiks yang stabil, sehingga giliran berikutnya mengenai cache. Namun, posisi itu kurang tepat untuk instruksi yang baru Anda sadari diperlukan di tengah sesi, karena mengedit field `system` tingkat atas mengubah bagian paling awal dari prompt dan membatalkan cache untuk semua yang mengikutinya.
 
@@ -485,7 +481,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
 
 Dengan header beta `inline-tools-2026-09-15`, blok `tool_addition` dapat mendefinisikan alat berdasarkan nilai, yaitu dengan membawa definisi lengkapnya, alih-alih menyebutnya berdasarkan referensi. Dengan begitu, Anda dapat memperkenalkan alat yang belum diketahui di awal percakapan, atau alat yang skemanya berubah kemudian, cukup dengan menambahkan pesan `role: "system"`. Array `tools` dan setiap pesan sebelumnya tetap persis seperti yang dikirim. Akibatnya, cache prompt tetap mengenai dan hanya pesan yang ditambahkan yang diproses sebagai input baru. Satu-satunya pengecualian, yaitu array `tools` tanpa alat yang tidak ditangguhkan, dibahas dalam aturan berikut. Header ini juga mencakup penambahan dan penghapusan alat berdasarkan referensi, sehingga Anda tidak perlu mengirim `mid-conversation-tool-changes-2026-07-01` juga.
 
-Bungkus definisi dalam objek `tool` bertipe `tool_definition`. `definition` adalah entri `tools` dengan konfigurasi biasanya, termasuk `cache_control` dan `defer_loading`. Contohnya adalah alat kustom, atau alat klien maupun alat server yang didefinisikan Anthropic. Selama beta, beberapa tipe alat (termasuk alat computer use) belum dapat didefinisikan dalam pesan. Alat tersebut menghasilkan error 400 yang menyatakan hal itu. Deklarasikan alat tersebut di `tools` dan tambahkan berdasarkan referensi. Misalnya, untuk mendefinisikan alat kustom di tengah percakapan:
+Bungkus definisi dalam objek `tool` bertipe `tool_definition`. `definition` adalah entri `tools` dengan konfigurasi biasanya, termasuk `cache_control` dan `defer_loading`. Contohnya adalah alat kustom, atau alat klien maupun alat server yang didefinisikan Anthropic. Selama beta, beberapa tipe alat (termasuk alat penggunaan komputer) belum dapat didefinisikan dalam pesan. Alat tersebut menghasilkan error 400 yang menyatakan hal itu. Deklarasikan alat tersebut di `tools` dan tambahkan berdasarkan referensi. Misalnya, untuk mendefinisikan alat kustom di tengah percakapan:
 
 ```json
 {
@@ -2031,9 +2027,9 @@ Pesan sistem berlingkup giliran berstatus beta. Sertakan [header beta](https://p
 }
 ```
 
-Penggunaan utamanya adalah pengingat per giliran dalam loop alat. Setiap kali Anda ingin model melihat pengingat tersebut, tambahkan pengingat itu setelah pesan `tool_result`. Biarkan setiap salinan sebelumnya tetap di tempatnya. Model hanya melihat salinan yang muncul setelah pesan pengguna terakhir, sehingga pengingat tidak pernah menumpuk. Tidak ada yang berubah sebelumnya di `messages`, sehingga [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) tetap cocok. Pada model Claude 5.1 dan yang lebih baru, hal ini juga menjaga [blok thinking berikutnya tetap valid](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation). Menghapus pengingat sebelumnya akan mengubah percakapan sebelum blok-blok tersebut, sehingga blok-blok itu akan gagal dalam pemeriksaan prefiks. Pesan yang dibersihkan tetap berada di dalam array dan membiarkan percakapan sebelum blok-blok tersebut tidak berubah.
+Kegunaan utamanya adalah sebagai pengingat per giliran dalam loop alat. Setiap kali Anda ingin model melihat pengingat tersebut, tambahkan pengingat itu setelah pesan `tool_result`. Biarkan setiap salinan sebelumnya tetap di tempatnya. Model hanya melihat salinan yang muncul setelah pesan pengguna terakhir, sehingga pengingat tidak pernah menumpuk. Tidak ada yang berubah di bagian awal `messages`, sehingga [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) tetap cocok. Pada Claude 5.1 dan model yang lebih baru, hal ini juga menjaga [blok pemikiran tetap valid](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation) di giliran berikutnya. Menghapus pengingat sebelumnya akan mengubah percakapan sebelum blok-blok tersebut, sehingga blok-blok itu akan gagal dalam pemeriksaan prefiks. Pesan yang telah dibersihkan tetap berada di dalam array dan membiarkan percakapan sebelum blok-blok tersebut tidak berubah.
 
-Permintaan berikut adalah langkah selanjutnya dari sebuah loop agen. `messages[3]` dirender pada permintaan sebelumnya, ketika ia merupakan pesan terakhir dalam array. Begitu `messages[5]` (pesan pengguna berikutnya) ada, `messages[3]` dibersihkan: pesan yang dibersihkan tetap berada di array, sehingga percakapan sebelum blok thinking di `messages[4]` tidak berubah, tetapi model tidak lagi menerima teksnya. `messages[6]` dan `messages[7]` keduanya dirender, secara berurutan.
+Permintaan berikut adalah langkah selanjutnya dari sebuah loop agen. `messages[3]` dirender pada permintaan sebelumnya, ketika ia merupakan pesan terakhir dalam array. Begitu `messages[5]` (pesan pengguna berikutnya) ada, `messages[3]` dibersihkan: pesan yang dibersihkan tetap berada di array, sehingga percakapan sebelum blok pemikiran di `messages[4]` tidak berubah, tetapi model tidak lagi menerima teksnya. `messages[6]` dan `messages[7]` keduanya dirender, secara berurutan.
 
 ```json
 {
@@ -2108,7 +2104,7 @@ Permintaan berikut adalah langkah selanjutnya dari sebuah loop agen. `messages[3
 
 Aturan untuk pesan berlingkup giliran:
 
-* **Kirim ulang pesan yang dibersihkan apa adanya.** Pesan yang dibersihkan tetap merupakan bagian dari riwayat percakapan. Membangunnya kembali dari status saat ini (jumlah token baru, stempel waktu), membuangnya karena dianggap berlebihan, atau mengubah nilai `clear_at`-nya merupakan pengeditan terhadap pesan sebelumnya. Pada model Claude 5.1 dan yang lebih baru, setiap blok thinking yang dihasilkan setelahnya akan gagal dalam [pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation).
+* **Kirim ulang pesan yang telah dibersihkan apa adanya.** Pesan yang telah dibersihkan tetap merupakan bagian dari riwayat percakapan. Membangunnya ulang dari status saat ini (jumlah token baru, stempel waktu), membuangnya karena dianggap berlebihan, atau mengubah nilai `clear_at`-nya merupakan pengeditan terhadap pesan sebelumnya. Pada Claude 5.1 dan model yang lebih baru, setiap blok pemikiran yang dihasilkan setelahnya akan gagal dalam [pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation).
 * **Hanya teks.** `content` berupa satu atau lebih blok `text` (atau string). Blok `tool_addition` dan `tool_removal` mengembalikan error 400 pada pesan berlingkup giliran, begitu pula `output_config`. Gunakan pesan `role: "system"` terpisah tanpa `clear_at` untuk hal-hal tersebut.
 * **Tidak ada `cache_control` pada bloknya.** Pesan yang dibersihkan tidak pernah menjadi bagian dari kunci cache, sehingga breakpoint padanya tidak akan pernah cocok. Tempatkan breakpoint pada blok terakhir dari giliran pengguna sebelumnya, seperti yang dilakukan contoh. Field [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) tingkat atas melewati pesan berlingkup giliran saat memilih breakpoint. Pada permintaan yang membersihkan sebuah pesan, prefiks cache yang dapat digunakan kembali berakhir pada giliran pengguna sebelumnya, sehingga hanya satu giliran asisten di antara pesan tersebut dan pesan pengguna baru yang diproses ulang.
 * **Aturan penempatan tetap berlaku**, baik dibersihkan maupun tidak. Pesan berlingkup giliran harus mengikuti giliran `user` (atau giliran `assistant` yang diakhiri dengan hasil alat server) dan mendahului giliran `assistant` atau mengakhiri array, seperti pesan sistem di tengah percakapan lainnya. Pesan yang mengakhiri array selalu dirender. Pesan yang langsung diikuti oleh pesan `user` lain merupakan error 400, bukan pesan yang dibersihkan: tempatkan semua hasil dari satu putaran alat dalam satu pesan pengguna dan pengingat setelahnya.
@@ -2364,7 +2360,7 @@ Pesan sistem di tengah percakapan dan [caching prompt](https://platform.claude.c
 * **Tambahkan pesan sistem setelah breakpoint.** Karena pesan tersebut muncul setelah prefiks yang di-cache, pesan tersebut tidak mengubah hash prefiks dan cache tetap mengenai.
 * **Pesan sistem di tengah percakapan itu sendiri dapat di-cache.** Begitu berada dalam percakapan, pesan tersebut menjadi bagian dari riwayat yang stabil. Pada giliran berikutnya Anda dapat memindahkan breakpoint cache melewatinya (atau mengandalkan [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) untuk melakukannya) dan pesan sistem dibaca dari cache seperti giliran lainnya.
 
-Hindari mengedit atau menghapus pesan sistem di tengah percakapan yang sudah dikirim. Seperti perubahan lain pada pesan sebelumnya, mengedit atau menghapusnya akan membatalkan cache sejak titik tersebut dan seterusnya. Pada model Claude 5.1 dan yang lebih baru, hal itu juga membatalkan [blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation) di setiap giliran asisten berikutnya. Untuk panduan yang hanya berlaku untuk satu giliran, gunakan [pesan sistem dengan cakupan giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) dan biarkan tetap di tempatnya. Jika instruksi perlu berkembang, tambahkan pesan sistem baru alih-alih menulis ulang pesan yang lama. Pesan sistem yang berurutan diterima dan diperlakukan sebagai satu bagian sistem, yang secara keseluruhan mengikuti aturan penempatan yang sama.
+Hindari mengedit atau menghapus pesan sistem di tengah percakapan yang sudah dikirim. Seperti perubahan lain pada pesan sebelumnya, mengedit atau menghapusnya akan membatalkan cache mulai dari titik tersebut. Pada Claude 5.1 dan model yang lebih baru, hal itu juga membatalkan [blok pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation) di setiap giliran asisten berikutnya. Untuk panduan yang hanya berlaku pada satu giliran, gunakan [pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) dan biarkan tetap di tempatnya. Jika instruksi perlu berkembang, tambahkan pesan sistem baru alih-alih menulis ulang yang lama. Pesan sistem yang berurutan diterima dan diperlakukan sebagai satu bagian sistem, yang secara keseluruhan mengikuti aturan penempatan yang sama.
 
 ## Keterbatasan
 
@@ -2412,39 +2408,39 @@ Hindari mengedit atau menghapus pesan sistem di tengah percakapan yang sudah dik
   </Card>
 </CardGroup>
 
-## Availability
+## Ketersediaan
 
-Mid-conversation system messages are available on select models and eligible for zero data retention and HIPAA readiness.
+Pesan sistem di tengah percakapan tersedia di model tertentu dan layak untuk retensi data nol dan kesiapan HIPAA.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Available
-* Usage: Append a message with `role` `"system"` to `messages` at the point where the instruction starts to apply.
+* Ketersediaan: Tersedia
+* Penggunaan: Tambahkan pesan dengan `role` `"system"` ke `messages` pada titik di mana instruksi mulai berlaku.
 
-| Status    | Cloud platforms                                                                                                                                                                                                                                                                                                                                                            | Models                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
+| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                             | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Available
-* Usage: Send a `system.message` event. It applies to that turn and all later turns; the agent’s own `system` field cannot change during a session.
+* Ketersediaan: Tersedia
+* Penggunaan: Kirim event `system.message`. Event ini berlaku untuk giliran tersebut dan semua giliran berikutnya; field `system` milik agen sendiri tidak dapat berubah selama sesi.
 
-| Status    | Cloud platforms                                                                                                    | Models                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| --------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
+| Status   | Platform cloud                                                                                                     | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| -------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
 
-### Data handling
+### Penanganan data
 
-[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+[Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item    | Zero data retention                                                                                                                                                           | HIPAA    |
-| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| Status  | Eligible (excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                     | Eligible |
-| Details | Request-shape capability of the Messages API; mid-conversation system messages flow through the standard inference path and nothing is stored server-side after the response. | —        |
+| Item   | Retensi data nol                                                                                                                                                                        | HIPAA |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                        | Layak |
+| Detail | Kapabilitas bentuk permintaan dari Messages API; pesan sistem di tengah percakapan mengalir melalui jalur inferensi standar dan tidak ada yang disimpan di sisi server setelah respons. | —     |
 
-Applicable endpoints:
+Endpoint yang berlaku:
 
-* `/v1/messages` with `role: "system"` messages
+* `/v1/messages` dengan pesan `role: "system"`

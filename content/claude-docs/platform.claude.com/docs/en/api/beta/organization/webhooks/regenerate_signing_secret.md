@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/webhooks/regenerate_signing_secret
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 3954fdb8ec046f522fb42a96175db93dfd1a2e8e9b93dc8b079dda20170c6dfe
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: d8a9c962dd72b46cd91223d3775bb5ed3ddd35dc408d8af7391e58a7a788b050
 ---
 
 ---
@@ -148,6 +148,8 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Returns
 

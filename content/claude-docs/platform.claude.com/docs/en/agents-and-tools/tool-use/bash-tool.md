@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: b18f6b7c44d8df6d2110c84b3ded777cb486299f0068f30b403513f6bb7addc4
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 344f222746352ec8ed0937f2bc5e663208f3bb864a8dde86ebfa83e5e8b17023
 ---
 
 ---
@@ -10,7 +10,7 @@ title: Bash tool
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool
 description: Let Claude request shell commands that your application runs in a persistent bash session and returns as tool results.
 featureMetadata:
-  status: ga
+  status: stable
   zdr:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Client-side tool run in your environment.
@@ -33,12 +33,12 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
-    Claude Platform on AWS: ga
-    Amazon Bedrock: ga
-    Amazon Bedrock (InvokeModel): ga
-    Claude Models on Google Cloud (Google managed): ga
-    Microsoft Foundry: ga
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (InvokeModel): stable
+    Claude Models on Google Cloud (Google managed): stable
+    Microsoft Foundry: stable
 ---
 
 The bash tool is a [client tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works): Claude doesn’t run commands itself. When you include the tool in a request, Claude replies with a `tool_use` block that names the command to run. Your application runs that command in a bash session it owns and returns the output in a `tool_result` block.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/delete
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: ab5f3f619f1fcc36bea2e4138ab1e3c861deb2a9f1581acce0b9ac3c95f0575a
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 6f5e23ca8f7fec2aa82b315a38efdccac356f1227e0291dad5ad71d446219cdb
 ---
 
 ---
@@ -151,6 +151,8 @@ Delete Skill Version
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

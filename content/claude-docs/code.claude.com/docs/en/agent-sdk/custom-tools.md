@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/custom-tools
-fetched_at: 2026-10-27T02:22:08.565782Z
-sha256: 946948f5a92b2f387aafa39924dfcec651db257572d98898c07387b07366edcf
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: f6b169b9e022cc73fef4c079e6bef25aab0d3c003815fab80b9a3cc58518f5bc
 ---
 
 > ## Documentation Index
@@ -49,17 +49,17 @@ After defining a tool, wrap it in a server with [`createSdkMcpServer`](https://c
 
 Python examples on this page that make HTTP requests use [httpx](https://www.python-httpx.org/). Add it with the package manager your project uses:
 
-**Python (uv)**
+> [tab] Python (uv)
+>
+> ```bash theme={null}
+> uv add httpx
+> ```
 
-```bash theme={null}
-uv add httpx
-```
-
-**Python (pip)**
-
-```bash theme={null}
-pip install httpx
-```
+> [tab] Python (pip)
+>
+> ```bash theme={null}
+> pip install httpx
+> ```
 
 ### Weather tool example
 
@@ -205,25 +205,25 @@ for await (const message of query({
 
 Combine this snippet with the tool and server definitions from the [weather tool example](#weather-tool-example) in one file, `weather.py` or `weather.ts`, then run it from your terminal:
 
-**TypeScript**
+> [tab] TypeScript
+>
+> ```bash theme={null}
+> npx tsx weather.ts
+> ```
 
-```bash theme={null}
-npx tsx weather.ts
-```
+> [tab] Python (uv)
+>
+> ```bash theme={null}
+> uv run weather.py
+> ```
 
-**Python (uv)**
-
-```bash theme={null}
-uv run weather.py
-```
-
-**Python (pip)**
-
-Activate the virtual environment where you installed the SDK, then run:
-
-```bash theme={null}
-python weather.py
-```
+> [tab] Python (pip)
+>
+> Activate the virtual environment where you installed the SDK, then run:
+>
+> ```bash theme={null}
+> python weather.py
+> ```
 
 Claude calls `get_temperature` and the script prints a one-line answer with the current temperature in San Francisco.
 

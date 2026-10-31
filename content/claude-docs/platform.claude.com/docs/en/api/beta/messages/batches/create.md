@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/create
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: b7d0a0b1717e383e09541818bd98877c8d911880c7c9a00bb8081b27d8d06ce7
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 14307057b631a5bc118185076507c4bfd0c5001c6fcabd0d9cc4769e93b5789d
 ---
 
 ---
@@ -141,6 +141,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-user-profile-id": optional string`
 
@@ -1061,7 +1063,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                 - `BetaEncryptedCodeExecutionResultBlockParam object`
 
-                  Code execution result with encrypted stdout for PFC + web_search results.
+                  The output and exit code of Python code that Claude ran with the code execution tool, with standard output in encrypted form, sent back in a later request.
 
                   - `type: "encrypted_code_execution_result"`
 
@@ -1597,7 +1599,11 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                         - `BetaCodeExecutionTool20260120 object`
 
-                          Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
+                          A `tools` entry for the code execution tool, version `code_execution_20260120`. It adds REPL state persistence to version `code_execution_20250825`.
+
+                          REPL state persistence applies with programmatic tool calling. With it, the Python interpreter state, such as variable bindings, persists across requests that reuse the container.
+
+                          See the [code execution tool guide](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool?sdk_languages=http#tool-versions) to learn what each tool version adds.
 
                           - `type: "code_execution_20260120"`
 
@@ -4245,7 +4251,11 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
       - `BetaCodeExecutionTool20260120 object`
 
-        Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
+        A `tools` entry for the code execution tool, version `code_execution_20260120`. It adds REPL state persistence to version `code_execution_20250825`.
+
+        REPL state persistence applies with programmatic tool calling. With it, the Python interpreter state, such as variable bindings, persists across requests that reuse the container.
+
+        See the [code execution tool guide](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool?sdk_languages=http#tool-versions) to learn what each tool version adds.
 
       - `BetaCodeExecutionTool20260521 object`
 

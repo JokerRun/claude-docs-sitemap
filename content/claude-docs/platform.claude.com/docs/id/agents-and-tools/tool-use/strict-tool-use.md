@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 8b47f9835a161ba106cc043850ff8290cbac2d0006012c2587f282cc42240c22
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 3f9d797431f9f5f59a56b9d1ac20e79f7695e248d4414beaa48075f5ec8412f2
 ---
 
 ---
 title: Penggunaan alat ketat
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use
-description: Terapkan kepatuhan JSON Schema pada input alat Claude dengan grammar-constrained sampling.
+description: Terapkan kepatuhan JSON Schema pada input alat Claude dengan sampling yang dibatasi tata bahasa.
 featureMetadata:
-  status: ga
+  status: stable
   zdr:
     eligibility: qualified
-    note: "Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Your prompts and Claude's outputs are not stored. Only the JSON schema is cached, for up to 24 hours since last use. This also covers strict tool use (`strict: true` on tools), which uses the same grammar pipeline."
+    note: "Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Prompt Anda dan output Claude tidak disimpan. Hanya JSON schema yang di-cache, hingga 24 jam sejak terakhir digunakan. Ini juga mencakup penggunaan alat ketat (`strict: true` pada alat), yang menggunakan pipeline grammar yang sama."
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -33,26 +33,26 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
-    Claude Platform on AWS: ga
-    Amazon Bedrock: ga
-    Amazon Bedrock (InvokeModel): ga
-    Claude Models on Google Cloud (Google managed): ga
-    Microsoft Foundry: ga
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (InvokeModel): stable
+    Claude Models on Google Cloud (Google managed): stable
+    Microsoft Foundry: stable
 ---
 
-Menetapkan `strict: true` pada definisi alat menjamin input alat Claude sesuai dengan JSON Schema Anda dengan membatasi sampling token model hanya pada output yang valid menurut skema (sebuah teknik yang disebut “grammar-constrained sampling” (sampling yang dibatasi tata bahasa)). Halaman ini membahas mengapa mode ketat penting untuk agen, cara mengaktifkannya, dan kasus penggunaan umum. Untuk subset JSON Schema yang didukung, lihat [Keterbatasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Untuk panduan skema non-ketat, lihat [Mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools).
+Mengatur `strict: true` pada definisi alat menjamin input alat Claude sesuai dengan JSON Schema Anda dengan membatasi sampling token model ke output yang valid menurut skema (teknik yang disebut “grammar-constrained sampling” (sampling yang dibatasi tata bahasa)). Halaman ini membahas mengapa mode ketat penting bagi agen, cara mengaktifkannya, dan kasus penggunaan umum. Untuk subset JSON Schema yang didukung, lihat [Batasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Untuk panduan skema non-ketat, lihat [Mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools).
 
-“Strict tool use” (penggunaan alat strict) memvalidasi parameter alat, memastikan Claude memanggil fungsi Anda dengan argumen yang bertipe benar. Gunakan penggunaan alat strict ketika Anda perlu:
+Penggunaan alat ketat memvalidasi parameter alat, memastikan Claude memanggil fungsi Anda dengan argumen yang bertipe benar. Gunakan penggunaan alat ketat ketika Anda perlu:
 
 * Memvalidasi parameter alat
 * Membangun alur kerja agentik
 * Memastikan pemanggilan fungsi yang type-safe
 * Menangani alat kompleks dengan properti bersarang
 
-## Mengapa penggunaan alat ketat penting untuk agen
+## Mengapa penggunaan alat ketat penting bagi agen
 
-Membangun sistem agentik yang andal memerlukan jaminan kesesuaian skema. Tanpa mode ketat, Claude mungkin mengembalikan tipe yang tidak kompatibel (`"2"` alih-alih `2`) atau menghilangkan field yang wajib, sehingga merusak fungsi Anda dan menyebabkan error runtime.
+Membangun sistem agentik yang andal memerlukan kesesuaian skema yang terjamin. Tanpa mode ketat, Claude mungkin mengembalikan tipe yang tidak kompatibel (`"2"` alih-alih `2`) atau menghilangkan field wajib, sehingga merusak fungsi Anda dan menyebabkan error runtime.
 
 Penggunaan alat ketat menjamin parameter yang type-safe:
 
@@ -60,7 +60,7 @@ Penggunaan alat ketat menjamin parameter yang type-safe:
 * Tidak perlu memvalidasi dan mencoba ulang pemanggilan alat
 * Agen siap produksi yang bekerja secara konsisten dalam skala besar
 
-Sebagai contoh, misalkan sebuah sistem pemesanan membutuhkan `passengers: int`. Tanpa mode ketat, Claude mungkin memberikan `passengers: "two"` atau `passengers: "2"`. Dengan `strict: true`, respons selalu berisi `passengers: 2`.
+Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mode ketat, Claude mungkin memberikan `passengers: "two"` atau `passengers: "2"`. Dengan `strict: true`, respons selalu berisi `passengers: 2`.
 
 ## Mulai cepat
 
@@ -384,7 +384,7 @@ Sebagai contoh, misalkan sebuah sistem pemesanan membutuhkan `passengers: int`. 
   ```
 </CodeGroup>
 
-**Format respons:** Blok penggunaan alat dengan input tervalidasi di `response.content[x].input`
+**Format respons:** Blok penggunaan alat dengan input yang tervalidasi di `response.content[x].input`
 
 ```json Output
 {
@@ -405,24 +405,24 @@ Sebagai contoh, misalkan sebuah sistem pemesanan membutuhkan `passengers: int`. 
 
 <Steps>
   <Step title="Definisikan skema alat Anda">
-    Buat skema JSON untuk `input_schema` alat Anda. Skema ini menggunakan format JSON Schema standar dengan beberapa keterbatasan (lihat [Keterbatasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations)).
+    Buat skema JSON untuk `input_schema` alat Anda. Skema menggunakan format JSON Schema standar dengan beberapa batasan (lihat [Batasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations)).
   </Step>
 
   <Step title="Tambahkan strict: true">
-    Tetapkan `"strict": true` sebagai properti tingkat atas dalam definisi alat Anda, bersama `name`, `description`, dan `input_schema`.
+    Atur `"strict": true` sebagai properti tingkat atas dalam definisi alat Anda, bersama dengan `name`, `description`, dan `input_schema`.
   </Step>
 
   <Step title="Tangani pemanggilan alat">
-    Ketika Claude menggunakan alat tersebut, field `input` dalam blok `tool_use` secara ketat mengikuti `input_schema` Anda, dan `name` selalu valid.
+    Ketika Claude menggunakan alat, field `input` dalam blok `tool_use` secara ketat mengikuti `input_schema` Anda, dan `name` selalu valid.
   </Step>
 </Steps>
 
-Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`computer_toolset_20260801` dan `browser_toolset_20260801`) tidak menerima `strict: true`; permintaan yang menetapkannya pada salah satu entri tersebut akan ditolak.
+Entri toolset [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`computer_toolset_20260801` dan `browser_toolset_20260801`) tidak menerima `strict: true`; permintaan yang mengaturnya pada salah satu entri tersebut akan ditolak.
 
 ## Kasus penggunaan umum
 
 <AccordionGroup>
-  <Accordion title="Input alat tervalidasi">
+  <Accordion title="Input alat yang tervalidasi">
     Pastikan parameter alat sama persis dengan skema Anda:
 
     <CodeGroup>
@@ -1154,11 +1154,9 @@ Entri toolset [computer use](https://platform.claude.com/docs/id/agents-and-tool
 
 ## Retensi data
 
-Penggunaan alat ketat mengompilasi definisi `input_schema` alat menjadi grammar menggunakan pipeline yang sama dengan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs). Skema alat di-cache sementara hingga 24 jam sejak penggunaan terakhir. Prompt dan respons tidak disimpan di luar respons API.
+Penggunaan alat ketat mengompilasi definisi `input_schema` alat menjadi tata bahasa menggunakan pipeline yang sama dengan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs). Skema alat di-cache sementara hingga 24 jam sejak penggunaan terakhir. Prompt dan respons tidak disimpan melampaui respons API.
 
-Penggunaan alat ketat memenuhi syarat HIPAA, tetapi **“protected health information” (informasi kesehatan yang dilindungi), atau PHI, tidak boleh disertakan dalam definisi skema alat**. API menyimpan cache skema yang telah dikompilasi secara terpisah dari konten pesan, dan skema yang di-cache ini tidak menerima perlindungan PHI yang sama seperti prompt dan respons. Jangan sertakan PHI dalam nama properti `input_schema`, nilai `enum`, nilai `const`, atau ekspresi reguler `pattern`. PHI hanya boleh muncul dalam konten pesan (prompt dan respons), di mana PHI dilindungi berdasarkan pengamanan HIPAA.
-
-Untuk kelayakan ZDR dan HIPAA di seluruh fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+Penggunaan alat ketat memenuhi syarat HIPAA, tetapi **informasi kesehatan yang dilindungi (PHI) tidak boleh disertakan dalam definisi skema alat**. API menyimpan cache skema yang dikompilasi secara terpisah dari konten pesan, dan skema yang di-cache ini tidak menerima perlindungan PHI yang sama seperti prompt dan respons. Jangan sertakan PHI dalam nama properti `input_schema`, nilai `enum`, nilai `const`, atau ekspresi reguler `pattern`. PHI hanya boleh muncul dalam konten pesan (prompt dan respons), di mana PHI dilindungi di bawah perlindungan HIPAA.
 
 ## Langkah selanjutnya
 
@@ -1172,7 +1170,7 @@ Untuk kelayakan ZDR dan HIPAA di seluruh fitur, lihat [API dan retensi data](htt
   </Card>
 
   <Card title="Structured outputs" icon="code-brackets" href="https://platform.claude.com/docs/id/build-with-claude/structured-outputs">
-    Dapatkan respons JSON tervalidasi menggunakan grammar-constrained sampling yang sama.
+    Dapatkan respons JSON yang tervalidasi menggunakan sampling yang dibatasi tata bahasa yang sama.
   </Card>
 
   <Card title="Mendefinisikan alat" icon="hammer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools">
@@ -1180,29 +1178,29 @@ Untuk kelayakan ZDR dan HIPAA di seluruh fitur, lihat [API dan retensi data](htt
   </Card>
 </CardGroup>
 
-## Availability
+## Ketersediaan
 
-Strict tool use is available on every model and eligible for HIPAA readiness.
+Penggunaan alat ketat tersedia di semua model dan layak untuk kesiapan HIPAA.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Available
+* Ketersediaan: Tersedia
 
-| Status    | Cloud platforms                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Models                                                            |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [All models](https://platform.claude.com/docs/id/models/overview) |
+| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Model                                                              |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
-### Data handling
+### Penanganan data
 
-[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+[Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item    | Zero data retention                                                                                                                                                                                                                                                                                                          | HIPAA                                                                                                                                                                                            |
-| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Status  | Eligible (qualified; excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                                                                                                                                                         | Eligible                                                                                                                                                                                         |
-| Details | Your prompts and Claude’s outputs are not stored. Only the JSON schema is cached, for up to 24 hours since last use. This also covers strict tool use (`strict: true` on tools), which uses the same grammar pipeline. [Learn more](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#data-retention) | PHI must not be included in JSON schema definitions; see PHI handling guidelines. [Learn more](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#phi-handling-guidelines) |
+| Item   | Retensi data nol                                                                                                                                                                                                                                                                                                                                         | HIPAA                                                                                                                                                                                                          |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status | Layak (bersyarat; tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                                                                                                                                                                              | Layak                                                                                                                                                                                                          |
+| Detail | Prompt Anda dan output Claude tidak disimpan. Hanya JSON schema yang di-cache, hingga 24 jam sejak terakhir digunakan. Ini juga mencakup penggunaan alat ketat (`strict: true` pada alat), yang menggunakan pipeline grammar yang sama. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#data-retention) | PHI tidak boleh disertakan dalam definisi JSON schema; lihat panduan penanganan PHI. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#phi-handling-guidelines) |
 
-Applicable endpoints:
+Endpoint yang berlaku:
 
 * `/v1/messages`

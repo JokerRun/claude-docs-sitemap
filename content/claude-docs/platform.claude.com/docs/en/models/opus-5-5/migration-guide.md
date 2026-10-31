@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/opus-5-5/migration-guide
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: e04220bd1f3b94f2b85a7701a70782dc2a39576cd60a1d4b6e82a997b59a1dcd
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 6a1bff4d8f06ec1304752324f7d4469665f73fe179254daf7e45e0c1764cc5ed
 ---
 
 ---
@@ -29,7 +29,7 @@ Claude Opus 5.5 costs less than Claude Opus 5 ($4 / $20 USD per million input / 
 
 Whichever model you are coming from, a request to `claude-opus-5-5` must meet the following. Where an item says a setting is rejected, the API returns a 400 error.
 
-* **Model ID:** Use `claude-opus-5-5`, a fixed model ID with no date suffix. On Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Google managed), and Microsoft Foundry, use that platform’s model ID; see [Availability](https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5#availability).
+* **Model ID:** Use `claude-opus-5-5`, a fixed model ID with no date suffix. On Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), Claude Models on Google Cloud (Google managed), and Microsoft Foundry, use that platform’s model ID; see [Availability](https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5#availability).
 * **Thinking:** Send no `thinking` field, or send `thinking: {"type": "adaptive"}`, which is equivalent: [adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) is always on. `thinking: {"type": "disabled"}` and manual thinking budgets (`thinking: {"type": "enabled", "budget_tokens": N}`) are rejected. See the [before and after for thinking](https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#thinking-cant-be-disabled).
 * **Effort:** Control thinking depth with the [effort parameter](https://platform.claude.com/docs/en/build-with-claude/effort), the only request parameter that controls it. All five levels (`low`, `medium`, `high`, `xhigh`, `max`) are supported, and the default is `medium`. See [Recommended effort levels for Claude Opus 5.5](https://platform.claude.com/docs/en/build-with-claude/effort#recommended-effort-levels-for-claude-opus-5-5).
 * **Tool choice:** Use `tool_choice` `{"type": "auto"}` (the default) or `{"type": "none"}`. Forcing a tool call with `{"type": "any"}` or `{"type": "tool", "name": "..."}` is rejected. See the [before and after for tool choice](https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#forced-tool-use).
@@ -360,7 +360,7 @@ model = "claude-opus-5"  # Before
 model = "claude-opus-5-5"  # After
 ```
 
-`claude-opus-5-5` is a fixed model ID with no date suffix, the same scheme as `claude-opus-5`. On Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Google managed), and Microsoft Foundry, use that platform’s model ID; see [Availability](https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5#availability).
+`claude-opus-5-5` is a fixed model ID with no date suffix, the same scheme as `claude-opus-5`. On Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), Claude Models on Google Cloud (Google managed), and Microsoft Foundry, use that platform’s model ID; see [Availability](https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5#availability).
 
 ### Breaking changes
 

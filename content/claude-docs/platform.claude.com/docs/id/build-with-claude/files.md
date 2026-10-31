@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 764600827b46e20f00a28c2e550d6fa59a67a37a69727b1575e5976a44ed398a
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: e9a46ed4c8ae5f5e49f64673caa3fae4d6372c9690f828161c5fb72919cd52ee
 ---
 
 ---
 title: Files API
 url: https://platform.claude.com/docs/id/build-with-claude/files
-description: Unggah file sekali, rujuk file tersebut dengan file_id dalam permintaan Messages, dan unduh output yang dibuat oleh skills atau alat eksekusi kode.
+description: Unggah file sekali, referensikan file tersebut dengan file_id dalam permintaan Messages, dan unduh output yang dibuat oleh skills atau alat eksekusi kode.
 featureMetadata:
-  status: ga
+  status: stable
   zdr:
     eligibility: not-eligible
-    note: Files retained until explicitly deleted or they reach their configured expiration.
+    note: File disimpan hingga dihapus secara eksplisit atau mencapai masa kedaluwarsa yang dikonfigurasi.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -33,22 +33,22 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
-    Claude Platform on AWS: ga
-    Claude Models on Google Cloud (Anthropic managed): ga
-    Microsoft Foundry (hosted on Anthropic): ga
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Claude Models on Google Cloud (Anthropic managed): stable
+    Microsoft Foundry (hosted on Anthropic): stable
 ---
 
-**API support**: Usage differs by product.
+**Dukungan API**: Penggunaan berbeda menurut produk.
 
-* **Messages API**: Refer to an uploaded file by its `file_id` in a `document`, `image` or `container_upload` block.
-* **Managed Agents**: Mount files in the session’s sandbox, or refer to a `file_id` in a `user.message` event.
+* **Messages API**: Rujuk file yang diunggah dengan `file_id`-nya dalam blok `document`, `image`, atau `container_upload`.
+* **Managed Agents**: Mount file di sandbox sesi, atau rujuk `file_id` dalam event `user.message`.
 
 Files API memungkinkan Anda mengunggah dan mengelola file untuk digunakan dengan Claude API tanpa perlu mengunggah ulang konten pada setiap permintaan. Ini sangat berguna saat menggunakan [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk menyediakan input (misalnya, dataset dan dokumen) lalu mengunduh output (misalnya, grafik). Anda dapat [menjelajahi referensi API secara langsung](https://platform.claude.com/docs/id/api/files/upload), selain panduan ini.
 
 ## Dukungan jenis file
 
-Mereferensikan `file_id` dalam permintaan Messages didukung pada semua model yang mendukung jenis file tersebut. [Gambar](https://platform.claude.com/docs/id/build-with-claude/vision) didukung pada semua model Claude saat ini. Untuk [PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support) dan [jenis file lain dengan alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#availability-feature-support), lihat halaman tertaut untuk dukungan model.
+Mereferensikan `file_id` dalam permintaan Messages didukung pada semua model yang mendukung jenis file yang bersangkutan. [Gambar](https://platform.claude.com/docs/id/build-with-claude/vision) didukung pada semua model Claude saat ini. Untuk [PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support) dan [jenis file lain dengan alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#availability-feature-support), lihat halaman yang ditautkan untuk dukungan model.
 
 ## Cara kerja Files API
 
@@ -59,10 +59,10 @@ Files API menyediakan pendekatan buat-sekali, gunakan-berkali-kali untuk bekerja
 * **Referensikan file** dalam permintaan [Messages](https://platform.claude.com/docs/id/api/messages/create) menggunakan `file_id` alih-alih mengunggah ulang konten
 * **Kelola file Anda** dengan operasi list, retrieve, dan delete
 
-<Warning id="workspace-scoped-access">
-  **File yang diunggah dapat diakses oleh seluruh workspace Anda, tidak dibatasi pada satu pengguna akhir, percakapan, atau sesi.** Kunci API apa pun yang memiliki akses ke sebuah workspace dapat mengakses file apa pun yang diunggah ke workspace tersebut. Setiap akun layanan, dan setiap pengguna yang peran organisasinya mengizinkan akses API, dapat menggunakan Default Workspace selain workspace mana pun tempat Anda menambahkan mereka, jadi simpan file yang harus tetap terpisah di workspace-nya sendiri dan akses file tersebut hanya dengan [kunci yang dibatasi pada workspace tersebut](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping). Jangan pernah menerima nilai `file_id` dari pengguna akhir atau sumber tidak tepercaya lainnya: ID file yang diberikan pengguna akan memungkinkan satu pengguna aplikasi Anda membaca konten yang diunggah oleh pengguna lain. Perlakukan ID file sebagai referensi sisi server, dan simpan pemetaan antara pengguna Anda dan file mereka di aplikasi Anda.
+<Warning id="workspace-scoped-access" title="File yang diunggah dapat diakses oleh seluruh workspace Anda">
+  File tidak dibatasi pada pengguna akhir, percakapan, atau sesi tertentu. Kunci API apa pun yang memiliki akses ke sebuah workspace dapat mengakses file apa pun yang diunggah ke workspace tersebut. Setiap akun layanan, dan setiap pengguna yang peran organisasinya mengizinkan akses API, dapat menggunakan Default Workspace selain workspace mana pun tempat Anda menambahkan mereka, jadi simpan file yang harus tetap terpisah di workspace tersendiri dan akses file tersebut hanya dengan [kunci yang dibatasi pada workspace tersebut](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping). Jangan pernah menerima nilai `file_id` dari pengguna akhir atau sumber tidak tepercaya lainnya: ID file yang diberikan pengguna dapat memungkinkan satu pengguna aplikasi Anda membaca konten yang diunggah oleh pengguna lain. Perlakukan ID file sebagai referensi sisi server, dan simpan pemetaan antara pengguna Anda dan file mereka di aplikasi Anda.
 
-  Jika Anda membangun aplikasi multitenant di atas Files API, buat [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) terpisah untuk setiap tenant. Workspace adalah batas isolasi untuk file, sehingga workspace untuk setiap tenant memberikan isolasi ketat bagi data tenant tersebut dari setiap tenant lainnya. Setiap organisasi dapat memiliki hingga 100 workspace; hubungi tim akun Anda jika Anda membutuhkan lebih banyak.
+  Jika Anda membangun aplikasi “multitenant” (multi-penyewa) di atas Files API, buat [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) terpisah untuk setiap tenant. Workspace adalah batas isolasi untuk file, sehingga satu workspace untuk setiap tenant memberikan isolasi ketat bagi data tenant tersebut dari setiap tenant lainnya. Setiap organisasi dapat memiliki hingga 100 workspace; hubungi tim akun Anda jika Anda membutuhkan lebih banyak.
 </Warning>
 
 ## Cara menggunakan Files API
@@ -187,7 +187,11 @@ Respons dari pengunggahan file mencakup:
 }
 ```
 
-`downloadable` bernilai `false` untuk file yang Anda unggah. Hanya file yang dibuat oleh [skills](https://platform.claude.com/docs/id/build-with-claude/skills-guide) atau [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) yang dapat diunduh. Lihat [Mengunduh file](https://platform.claude.com/docs/id/build-with-claude/files#downloading-a-file).
+[`downloadable`](https://platform.claude.com/docs/id/api/files#file_metadata.downloadable) bernilai `false` untuk file yang Anda unggah. Hanya file yang dibuat oleh [skills](https://platform.claude.com/docs/id/build-with-claude/skills-guide) atau [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) yang dapat diunduh. Lihat [Mengunduh file](https://platform.claude.com/docs/id/build-with-claude/files#downloading-a-file).
+
+Referensi API menjelaskan setiap field dari objek file.
+
+(See `file_metadata` on `files` in [the API reference](https://platform.claude.com/docs/id/api/files#file_metadata).)
 
 ### Menggunakan file dalam pesan
 
@@ -699,7 +703,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
 
 #### Daftar file
 
-Ambil daftar file yang telah Anda unggah. Endpoint ini menggunakan “pagination” (paginasi): setiap permintaan mengembalikan hingga `limit` file (20 secara default, dan paling banyak 1.000), dan kursor `next_page` pada respons mengambil halaman berikutnya saat diteruskan kembali sebagai parameter `page`. File diurutkan dari yang terbaru. Lihat [referensi List Files API](https://platform.claude.com/docs/id/api/files/list). SDK mengembalikan halaman pertama dan menyediakan helper [auto-pagination](https://platform.claude.com/docs/id/api/overview#pagination).
+Ambil daftar file yang telah Anda unggah. Endpoint ini menggunakan “pagination” (paginasi): setiap permintaan mengembalikan hingga [`limit`](https://platform.claude.com/docs/id/api/files/list#list.limit) file (20 secara default, dan paling banyak 1.000), dan kursor [`next_page`](https://platform.claude.com/docs/id/api/files/list#list.response.next_page) pada respons mengambil halaman berikutnya ketika diteruskan kembali sebagai parameter [`page`](https://platform.claude.com/docs/id/api/files/list#list.page). File diurutkan dari yang terbaru. Lihat [referensi API List Files](https://platform.claude.com/docs/id/api/files/list). SDK mengembalikan halaman pertama dan menyediakan helper [paginasi otomatis](https://platform.claude.com/docs/id/api/overview#pagination).
 
 <CodeGroup>
   ```bash cURL
@@ -965,16 +969,16 @@ Di Claude API, file gambar, video, dan audio yang didukung yang dihasilkan Claud
 
 ### Siklus hidup file
 
-* File dibatasi pada workspace tempat file tersebut diunggah. Permintaan apa pun di workspace yang sama dapat merujuknya; jangan pernah menerima ID file dari sumber yang tidak tepercaya (lihat [peringatan akses workspace](https://platform.claude.com/docs/id/build-with-claude/files#workspace-scoped-access)).
+* File dibatasi pada workspace tempat file tersebut diunggah. Permintaan apa pun di workspace yang sama dapat mereferensikannya; jangan pernah menerima ID file dari sumber tidak tepercaya (lihat [peringatan akses workspace](https://platform.claude.com/docs/id/build-with-claude/files#workspace-scoped-access)).
 * File tidak dapat diubah atau diganti namanya setelah diunggah. Untuk mengubah konten file, unggah file baru dan hapus file lama.
-* File tetap tersimpan hingga Anda menghapusnya dengan endpoint `DELETE /v1/files/{file_id}` atau file mencapai `expires_at`-nya.
+* File tetap tersimpan hingga Anda menghapusnya dengan endpoint `DELETE /v1/files/{file_id}` atau hingga mencapai `expires_at`-nya.
 * File yang dihapus tidak dapat dipulihkan.
-* File tidak dapat diakses melalui API sesaat setelah dihapus, tetapi file tersebut mungkin tetap ada dalam panggilan Messages API yang aktif dan penggunaan alat terkait.
-* File yang dihapus pengguna akan dihapus sesuai dengan [kebijakan retensi data](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data) Anthropic. Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
+* File tidak dapat diakses melalui API sesaat setelah penghapusan, tetapi file tersebut mungkin tetap ada dalam panggilan Messages API yang aktif dan penggunaan alat terkait.
+* File yang dihapus oleh pengguna akan dihapus sesuai dengan [kebijakan retensi data](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data) Anthropic.
 
 ### Kedaluwarsa file
 
-Agar file kedaluwarsa secara otomatis, sertakan field form `expires_in_seconds` saat Anda mengunggahnya. Nilainya adalah bilangan bulat dalam detik antara 3.600 (1 jam) dan 7.776.000 (90 hari). Timestamp `expires_at` yang dihasilkan (RFC 3339) muncul pada setiap respons file dan bernilai `null` untuk file yang diunggah tanpa kedaluwarsa. Kedaluwarsa ditetapkan sekali saat unggah dan tidak dapat diubah.
+Agar file kedaluwarsa secara otomatis, sertakan field formulir [`expires_in_seconds`](https://platform.claude.com/docs/id/api/files/upload#upload.expires_in_seconds) saat Anda mengunggahnya. Nilainya adalah bilangan bulat dalam detik antara 3.600 (1 jam) dan 7.776.000 (90 hari). Timestamp [`expires_at`](https://platform.claude.com/docs/id/api/files#file_metadata.expires_at) yang dihasilkan (RFC 3339) muncul pada setiap respons file dan bernilai `null` untuk file yang diunggah tanpa masa kedaluwarsa. Masa kedaluwarsa ditetapkan sekali saat pengunggahan dan tidak dapat diubah.
 
 Ketika file mencapai `expires_at`:
 
@@ -1071,39 +1075,39 @@ Panggilan API terkait file dibatasi hingga sekitar 500 permintaan per menit (“
   </Card>
 </CardGroup>
 
-## Availability
+## Ketersediaan
 
-The Files API is available on every model.
+Files API tersedia di semua model.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Available
-* Usage: Refer to an uploaded file by its `file_id` in a `document`, `image` or `container_upload` block.
+* Ketersediaan: Tersedia
+* Penggunaan: Rujuk file yang diunggah dengan `file_id`-nya dalam blok `document`, `image`, atau `container_upload`.
 
-| Status    | Cloud platforms                                                                                                                                                                                                                                                                                                                                                                                              |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry (hosted on Anthropic)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                               |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry (hosted on Anthropic)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Available
-* Usage: Mount uploaded files in the session’s sandbox as session resources (read-only, under `/mnt/session/uploads`), or refer to a `file_id` in an `image` or `document` block of a `user.message` event. Files the agent writes to `/mnt/session/outputs/` can be downloaded with the Files API.
+* Ketersediaan: Tersedia
+* Penggunaan: Mount file yang diunggah di sandbox sesi sebagai sumber daya sesi (hanya baca, di bawah `/mnt/session/uploads`), atau rujuk `file_id` dalam blok `image` atau `document` pada event `user.message`. File yang ditulis agen ke `/mnt/session/outputs/` dapat diunduh dengan Files API.
 
-| Status    | Cloud platforms         |
-| --------- | ----------------------- |
-| Available | All supported platforms |
+| Status   | Platform cloud               |
+| -------- | ---------------------------- |
+| Tersedia | Semua platform yang didukung |
 
-### Data handling
+### Penanganan data
 
-[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+[Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item    | Zero data retention                                                                                                                                                         | HIPAA        |
-| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| Status  | Not eligible                                                                                                                                                                | Not eligible |
-| Details | Files retained until explicitly deleted or they reach their configured expiration. [Learn more](https://platform.claude.com/docs/id/build-with-claude/files#data-retention) | —            |
+| Item   | Retensi data nol                                                                                                                                                                                     | HIPAA       |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Status | Tidak layak                                                                                                                                                                                          | Tidak layak |
+| Detail | File disimpan hingga dihapus secara eksplisit atau mencapai masa kedaluwarsa yang dikonfigurasi. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/build-with-claude/files#data-retention) | —           |
 
-Applicable endpoints:
+Endpoint yang berlaku:
 
 * `/v1/files`

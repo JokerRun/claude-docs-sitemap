@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: ebf1d4ed3abfb45aeb4965decb16e5c6f8043cb6b29c45489fe8cc045c0808d1
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 9bff5930a98271a5d1452a5076d9105f4d46315c6b8d0ec7a01ab9192c53d64e
 ---
 
 ---
@@ -16,7 +16,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -181,9 +181,9 @@ Panggilan pemantauan di halaman ini dijalankan dari alat pemantauan atau operasi
 
 Gunakan `POST /v1/environments/{environment_id}/work/{work_id}/stop` (python, typescript, ruby: `client.beta.environments.work.stop()`; go, csharp: `client.Beta.Environments.Work.Stop()`; java: `client.beta().environments().work().stop()`; php: `$client->beta->environments->work->stop()`; cli: `ant beta:environments:work stop`) untuk meminta worker yang menangani sesi tertentu agar mematikannya.
 
-Secara default, work item berpindah ke `stopping`. Worker menyadarinya pada heartbeat lease berikutnya, membatalkan panggilan alat sesi yang sedang berjalan, dan mengonfirmasi penghentian. Work item kemudian menjadi `stopped`.
+Secara default, work item berpindah ke `stopping`. Worker menyadarinya pada heartbeat lease berikutnya, membatalkan panggilan alat sesi yang sedang berjalan, dan mengonfirmasi penghentian. Work item kemudian menjadi `stopped`. Worker Python SDK justru membiarkan panggilan alat yang sedang berjalan selesai terlebih dahulu, yang dapat memakan waktu hingga 2,5 menit.
 
-Berikan `force: true` (python: `force=True`; cli: `--force`) untuk menandai work item sebagai `stopped` secara langsung alih-alih menunggu konfirmasi dari worker.
+Berikan `force: true` (python: `force=True`; cli: `--force`) untuk menandai work item sebagai `stopped` secara langsung alih-alih menunggu konfirmasi dari worker. Penghentian paksa tidak membuat panggilan alat yang sedang berjalan berakhir lebih cepat, karena worker tetap mendeteksi penghentian pada heartbeat berikutnya.
 
 Karena panggilan ini dijalankan dari alat operasional Anda, bukan dari host worker, `ANTHROPIC_WORK_ID` tidak ditetapkan secara otomatis. Tetapkan ke ID work item target sebelum menjalankan contoh berikut. Untuk menemukan ID work item, ambil daftar work item environment melalui [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
 
@@ -326,19 +326,19 @@ Karena panggilan ini dijalankan dari alat operasional Anda, bukan dari host work
 
 ## Menghentikan worker dengan baik
 
-Worker yang dibatalkan saat sebuah sesi berjalan akan menghentikan pekerjaan yang sedang berlangsung sebelum keluar. Jika sesi memiliki [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory) yang terlampir, worker melewati sinkronisasi akhir tetapi tetap mengunggah file yang berubah dan menghapus direktori store.
+Worker yang dibatalkan saat sebuah sesi berjalan akan mematikan sesi tersebut sebelum keluar, sama seperti saat Anda [menghentikan sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations#stop-a-session-gracefully). Jika sesi memiliki [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory) yang terlampir, worker melewati sinkronisasi akhir tetapi tetap mengunggah file yang berubah dan menghapus direktori store.
 
 Proses yang di-kill tidak menjalankan teardown. Untuk menghentikan worker dengan bersih:
 
 1. **Pastikan SIGTERM dan SIGINT membatalkan worker.** Caranya bergantung pada worker:
 
-   | Worker                                      | Yang harus dilakukan                                                                                                                                           |
-   | ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-   | CLI `ant`                                   | Tidak ada. CLI menangani kedua sinyal itu sendiri: CLI membatalkan panggilan alat yang sedang berjalan, mengirimkan hasil error-nya, dan melepaskan work item. |
-   | Worker SDK yang merupakan prosesnya sendiri | `EnvironmentWorker` tidak memasang signal handler. Batalkan worker dari signal handler, seperti yang dilakukan contoh worker mandiri.                          |
-   | Worker SDK di dalam server webhook          | Batalkan worker dari shutdown hook milik server itu sendiri, seperti yang dilakukan contoh webhook. Worker tidak boleh mengambil alih sinyal server.           |
+   | Worker                                      | Yang harus dilakukan                                                                                                                                                           |
+   | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+   | CLI `ant`                                   | Tidak ada. CLI menangani kedua sinyal itu sendiri: CLI membatalkan panggilan alat yang sedang berjalan, mengirimkan hasil error-nya, dan menandai work item sebagai `stopped`. |
+   | Worker SDK yang merupakan prosesnya sendiri | `EnvironmentWorker` tidak memasang signal handler. Batalkan worker dari signal handler, seperti yang dilakukan contoh worker mandiri.                                          |
+   | Worker SDK di dalam server webhook          | Batalkan worker dari shutdown hook milik server itu sendiri, seperti yang dilakukan contoh webhook. Worker tidak boleh mengambil alih sinyal server.                           |
 
-2. **Hentikan worker dengan SIGTERM, dan beri waktu setidaknya 30 detik sebelum hard kill apa pun.** Unggahan akhir dapat memakan waktu selama itu. Docker mengirim SIGKILL 10 detik setelah sinyal stop secara default. Naikkan batas tersebut dengan `--stop-timeout` pada `docker run`, atau dengan termination grace period dari orchestrator Anda.
+2. **Hentikan worker dengan SIGTERM, dan beri waktu setidaknya 30 detik (3 menit untuk worker Python SDK) sebelum hard kill apa pun.** Mengunggah file yang berubah ke memory store dapat memakan waktu hingga 30 detik, dan worker Python SDK terlebih dahulu membiarkan panggilan alat yang sedang berjalan selesai. Docker mengirim SIGKILL 10 detik setelah sinyal stop secara default. Naikkan batas tersebut dengan `--stop-timeout` pada `docker run`, atau dengan termination grace period dari orchestrator Anda.
 
 Jika worker di-kill sebelum teardown-nya berjalan, setiap suntingan memori yang belum tersinkronisasi akan hilang. Pada host yang berumur panjang, hapus juga direktori store sisa di bawah `/mnt/memory/` sebelum sesi berikutnya yang melampirkan store tersebut. Sandbox yang melayani satu sesi lalu dibuang tidak memerlukan pembersihan.
 

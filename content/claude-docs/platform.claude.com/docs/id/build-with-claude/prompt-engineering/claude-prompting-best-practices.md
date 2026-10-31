@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 45c65a683d5f5e5726e5c14c0a0431bd9101041216a7afb9decd17aab1687601
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 0fa94807cf868b559be78f8f4d91f197062ad962cd198009fceaeb85c961da64
 ---
 
 ---
@@ -1077,7 +1077,7 @@ Anda juga dapat merujuk ke [definisi skill lengkap](https://github.com/anthropic
 
 Jika orang mungkin bertanya kepada aplikasi Anda tentang dosis obat, tambahkan blok di bawah ini untuk model yang dipanggil aplikasi Anda ke prompt sistem Anda, persis seperti yang tertulis. Blok ini membuat Claude memberikan dosis anak untuk obat bebas berdasarkan label produk, bukan dari ingatan. Dengan pencarian web, seperti [alat pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool), Claude memeriksa label sebelum menjawab, yang menambah “latency” (latensi) dan biaya pencarian. Tanpa pencarian web, Claude mengarahkan orang tersebut ke tabel dosis pada label, apoteker, atau dokter anak tersebut alih-alih memberikan dosis.
 
-```text Medication dosing block for Claude Sonnet 5.5 wrap
+```text Medication dosing block for Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, and Claude Sonnet 5 wrap
 <medical_guidance>
 This applies only when the person explicitly says the medicine is for a child, and isn't a healthcare professional asking for work.
 Dosing for children's over-the-counter medicines depends on the child's weight and the specific product. For infants and toddlers, a small error can cause real harm. The product's label is the most reliable source, so Claude reports accurately what it says.

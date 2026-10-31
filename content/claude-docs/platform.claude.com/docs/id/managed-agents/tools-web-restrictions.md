@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: a7dbd3f166b366af6224d07541aad9ace90e0e4c485ead3a31fe376531658bc6
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: e3b33706d56be5f97e5f53a486956642e431dbeeadcb94f51e89c1373fb4c7c0
 ---
 
 ---
@@ -33,15 +33,15 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
+    Claude API: stable
     Claude Platform on AWS: beta
     Claude Models on Google Cloud (Anthropic managed): beta
 ---
 
-**API support**: Usage differs by product.
+**Dukungan API**: Penggunaan berbeda menurut produk.
 
-* **Messages API**: Set `allowed_domains` or `blocked_domains` on the `web_search` or `web_fetch` tool in the request.
-* **Managed Agents**: Set the same fields on the agent toolset; each list holds at most 64 domains.
+* **Messages API**: Atur `allowed_domains` atau `blocked_domains` pada alat `web_search` atau `web_fetch` dalam permintaan.
+* **Managed Agents**: Atur field yang sama pada toolset agen; setiap daftar memuat paling banyak 64 domain.
 
 Untuk mengendalikan situs mana yang dapat dijangkau oleh alat web agen, tetapkan daftar domain pada entri `web_search` dan `web_fetch` dari [toolset agen](https://platform.claude.com/docs/id/managed-agents/tools#configuring-the-toolset). Setiap entri `configs` (csharp, go: `Configs`) ini menerima salah satu dari dua daftar:
 
@@ -552,36 +552,36 @@ Pengaturan ini menggunakan field `allowed_domains` (java, php: `allowedDomains`;
   </Card>
 </CardGroup>
 
-## Availability
+## Ketersediaan
 
-Web domain restrictions are available or in beta, depending on the API.
+Pembatasan domain web tersedia atau dalam versi beta, tergantung pada API.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Available
-* Usage: Set `allowed_domains` or `blocked_domains` on the `web_search` or `web_fetch` tool in the request.
+* Ketersediaan: Tersedia
+* Penggunaan: Atur `allowed_domains` atau `blocked_domains` pada alat `web_search` atau `web_fetch` dalam permintaan.
 
-| Status    | Cloud platforms |
-| --------- | --------------- |
-| Available | Claude API      |
+| Status   | Platform cloud |
+| -------- | -------------- |
+| Tersedia | Claude API     |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Available
-* Usage: Set the same fields on the `web_search` and `web_fetch` entries of the agent toolset. Unlike the Messages API, each list holds at most 64 ASCII domains, and `web_fetch` domains cannot include a path.
+* Ketersediaan: Tersedia
+* Penggunaan: Atur field yang sama pada entri `web_search` dan `web_fetch` di toolset agen. Berbeda dengan Messages API, setiap daftar memuat paling banyak 64 domain ASCII, dan domain `web_fetch` tidak boleh menyertakan path.
 
-| Status | Cloud platforms         | Models                                                            |
-| ------ | ----------------------- | ----------------------------------------------------------------- |
-| Beta   | All supported platforms | [All models](https://platform.claude.com/docs/id/models/overview) |
+| Status | Platform cloud               | Model                                                              |
+| ------ | ---------------------------- | ------------------------------------------------------------------ |
+| Beta   | Semua platform yang didukung | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
-### Required beta headers
+### Header beta yang diperlukan
 
-[Beta headers overview](https://platform.claude.com/docs/id/api/beta-headers)
+[Ikhtisar header beta](https://platform.claude.com/docs/id/api/beta-headers)
 
-Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
+Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model baru sebelum menjadi bagian dari API standar.
 
-| Header                      | APIs                                                                          |
+| Header                      | API                                                                           |
 | --------------------------- | ----------------------------------------------------------------------------- |
 | `managed-agents-2026-04-01` | [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) |

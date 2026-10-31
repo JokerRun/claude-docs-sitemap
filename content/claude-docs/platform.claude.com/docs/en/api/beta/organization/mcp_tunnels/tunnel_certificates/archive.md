@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/archive
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: beba7cce78ad864f5269b6d381f164dbee33c2936787069b5df372d771c91ee8
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 1b46eb9a8eb3bbd1dd0b31caf494773328f3ea1923d8a305b697ee9d63e243de
 ---
 
 ---
@@ -155,6 +155,8 @@ certificate is added.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Returns
 

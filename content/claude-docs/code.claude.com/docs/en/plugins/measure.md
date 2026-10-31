@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/measure
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 3a9e9eb30930b66d172286b4dd17b49e611cf016df7289357f1873975c2ab20f
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 1e0cf55fe11821a000881da313832b961ee7394ab5eea129d79647aa620a3ef9
 ---
 
 > ## Documentation Index
@@ -123,7 +123,7 @@ The `/doctor` checkup lists each user-installed skill, MCP server, and plugin, a
 
 ### Usage share in `/usage`
 
-On a Pro, Max, Team, or Enterprise plan, the `/usage` breakdown attributes recent usage to skills, subagents, plugins, and MCP servers as a share of the total. See [Using the `/usage` command](https://code.claude.com/docs/en/costs#using-the-/usage-command).
+On a Pro, Max, Ultra, Team, or Enterprise plan, the `/usage` breakdown attributes recent usage to skills, subagents, plugins, and MCP servers as a share of the total. See [Using the `/usage` command](https://code.claude.com/docs/en/costs#using-the-/usage-command).
 
 ## Measure across a fleet
 

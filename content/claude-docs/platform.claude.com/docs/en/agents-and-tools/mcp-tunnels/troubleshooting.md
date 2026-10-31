@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/troubleshooting
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 8e2739a3949eb5259bfcec6866b3d3401eb2b377eb46b0cd161dd1a81df56cee
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 0bd10c9e91b51c42ce9449e050cbafa789bd6cf3146abf34f41248fcb3a4e5c0
 ---
 
 ---
@@ -21,7 +21,7 @@ A request through the tunnel can fail at one of three layers; diagnose them in o
 
 | Symptom                                                                                                                                                        | Cause                                                                                               | Fix                                                                                                                                                                   |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tunnel doesn’t appear in the agent **+ MCP Server** picker                                                                                                     | The picker only lists tunnels in the session’s workspace that have at least one active certificate. | Register a CA certificate, or open the session in the workspace the tunnel was created in.                                                                            |
+| Tunnel doesn’t appear in the agent MCP server picker                                                                                                           | The picker only lists tunnels in the session’s workspace that have at least one active certificate. | Register a CA certificate, or open the session in the workspace the tunnel was created in.                                                                            |
 | Caller sees HTTP 500; [cloudflared](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#components) logs `No ingress rules were defined` | cloudflared has no local target.                                                                    | Add `--url http://localhost:8080` and `network_mode: "service:mcp-proxy"` to the cloudflared service.                                                                 |
 | Proxy logs `no route for host`                                                                                                                                 | `tunnel_domain` doesn’t match the assigned domain, or `config.yaml` was edited without restarting.  | Set `tunnel_domain` to the exact domain shown on the tunnel detail page, then restart the proxy (`docker compose restart mcp-proxy`).                                 |
 | Proxy logs `IP validation failed: <ip> is not a private address`                                                                                               | Upstream MCP server resolves outside RFC1918.                                                       | See [Upstream IP validation](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/troubleshooting#upstream-ip-validation).                                |

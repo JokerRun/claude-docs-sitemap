@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 4a5e8f3cddc12ade9c7f9c7e209986000fa006d4f57b7b64141aa4634e971a14
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: a3f482025417c4b1a17b4083de37a43091792b182b21932ff8a454816cc69ef6
 ---
 
 ---
@@ -18,37 +18,23 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
-    Claude Platform on AWS: ga
-    Claude Models on Google Cloud (Anthropic managed): ga
-    Amazon Bedrock: ga
-    Amazon Bedrock (InvokeModel): ga
-    Claude Models on Google Cloud (Google managed): ga
-    Microsoft Foundry: ga
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Claude Models on Google Cloud (Anthropic managed): stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (InvokeModel): stable
+    Claude Models on Google Cloud (Google managed): stable
+    Microsoft Foundry: stable
 ---
 
 <Warning>
-  Extended thinking is a legacy feature.
+  Pemikiran diperpanjang adalah fitur lama.
 
-  Extended thinking (`thinking.type: "enabled"` with `budget_tokens`) is deprecated. Claude 4.7 and later models do not support it and reject requests that use it, returning a 400 error.
+  Pemikiran diperpanjang (`thinking.type: "enabled"` dengan `budget_tokens`) sudah deprecated. Model Claude 4.7 dan yang lebih baru tidak mendukungnya dan menolak permintaan yang menggunakannya dengan mengembalikan error 400.
 
-  * Recommended alternative: [Adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost)
-  * Migration guide: [Migrating to adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#migrating-to-adaptive-thinking)
+  * Alternatif yang direkomendasikan: [Pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost)
+  * Panduan migrasi: [Bermigrasi ke pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#migrating-to-adaptive-thinking)
 </Warning>
-
-<Note>
-  Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
-</Note>
-
-<Warning>
-  “Extended thinking” (pemikiran diperpanjang) (`thinking.type: "enabled"` dengan `budget_tokens`) sudah tidak digunakan lagi (deprecated) pada model Claude 4.6 (permintaan yang menggunakannya masih berhasil). Claude 4.7 dan model yang lebih baru tidak mendukungnya dan menolak permintaan yang menggunakannya, dengan mengembalikan error 400. Pada Claude 4.5 dan model sebelumnya yang mendukung thinking, pemikiran diperpanjang adalah satu-satunya mode thinking yang tersedia. Claude Mythos Preview mendukung kedua mode tersebut. Jika kedua mode tersedia, gunakan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (pemikiran adaptif) sebagai gantinya.
-
-  Lihat [Bermigrasi ke pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#migrating-to-adaptive-thinking) untuk beralih ke pemikiran adaptif. Jika model Anda hanya mendukung pemikiran diperpanjang, halaman ini menjelaskan konfigurasi yang didukung. Anda tidak perlu mengubah apa pun sampai Anda beralih ke model yang lebih baru.
-</Warning>
-
-<Note>
-  Jika permintaan gagal dengan error 400 yang pesannya diawali dengan `"thinking.type.enabled" is not supported`, berarti model Anda menggunakan pemikiran adaptif. Lihat [Pemecahan masalah pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-enabled), atau langsung ke [Bermigrasi ke pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#migrating-to-adaptive-thinking).
-</Note>
 
 “Extended thinking” (pemikiran diperpanjang) dalam mode manual memberi Anda kendali langsung atas seberapa banyak Claude berpikir. Anda menetapkan anggaran token pemikiran pada setiap permintaan dengan `thinking: {type: "enabled", budget_tokens: N}`, dan Claude berpikir dalam batas anggaran tersebut sebelum mulai menyusun jawaban akhirnya. Mode manual tetap berguna ketika beban kerja Anda memerlukan “latency” (latensi) yang dapat diprediksi atau kendali yang presisi atas biaya pemikiran. Halaman ini membahas cara menetapkan dan menyetel anggaran, interaksi mode manual dengan “interleaved thinking” (pemikiran berselang-seling) dan “prompt caching” (caching prompt), serta cara bermigrasi ke “adaptive thinking” (pemikiran adaptif).
 
@@ -438,22 +424,22 @@ Untuk panduan lengkap, lihat [pemikiran adaptif](https://platform.claude.com/doc
   </Card>
 </CardGroup>
 
-## Availability
+## Ketersediaan
 
-Extended thinking is available or deprecated on select models.
+Pemikiran diperpanjang tersedia atau tidak digunakan lagi di model tertentu.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Available
+* Ketersediaan: Tersedia
 
-| Status     | Models                                                                                                                                                                                                                                                                         |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Available  | Claude Mythos Preview, [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview), [Claude Opus 4.5](https://platform.claude.com/docs/id/models/opus-4-5/overview), [Claude Sonnet 4.5](https://platform.claude.com/docs/id/models/sonnet-4-5/overview) |
-| Deprecated | [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview)                                                                                                           |
+| Status               | Model                                                                                                                                                                                                                                                                          |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Tersedia             | Claude Mythos Preview, [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview), [Claude Opus 4.5](https://platform.claude.com/docs/id/models/opus-4-5/overview), [Claude Sonnet 4.5](https://platform.claude.com/docs/id/models/sonnet-4-5/overview) |
+| Tidak digunakan lagi | [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview)                                                                                                           |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Not available
-* Usage: On Claude 4.5 models, Managed Agents turns on manual thinking itself with a fixed budget you can’t change. On newer models it uses adaptive thinking. Use [Effort](https://platform.claude.com/docs/id/build-with-claude/effort) instead.
+* Ketersediaan: Tidak tersedia
+* Penggunaan: Pada model Claude 4.5, Managed Agents mengaktifkan sendiri pemikiran manual dengan anggaran tetap yang tidak dapat Anda ubah. Pada model yang lebih baru, Managed Agents menggunakan pemikiran adaptif. Gunakan [Effort](https://platform.claude.com/docs/id/build-with-claude/effort) sebagai gantinya.

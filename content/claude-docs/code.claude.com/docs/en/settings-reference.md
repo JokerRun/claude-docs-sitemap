@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings-reference
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 887be2e9ee04bcacd54867f2580a37bf6ef724546fe37cf141e9b9b7278b0c47
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 44038f95f9386502a05b3b4e6178c6978c19b5700fb8fe734f88c7b02a849505
 ---
 
 > ## Documentation Index
@@ -3872,7 +3872,7 @@ Allow [channels](https://code.claude.com/docs/en/channels.md) for your organizat
 * **Type**: Boolean
   * `true`: Claude Code allows channels for your organization
   * `false`: the same as unset; whether channels are blocked depends on your plan, as the Default says
-* **Default**: unset; channels are blocked on Team and Enterprise plans and on Console accounts with managed settings, and allowed on Pro and Max plans and on Console accounts without managed settings
+* **Default**: unset; channels are blocked on Team and Enterprise plans and on Console accounts with managed settings, and allowed on Pro, Max, and Ultra plans and on Console accounts without managed settings
 
 ```json managed-settings.json theme={null}
 {

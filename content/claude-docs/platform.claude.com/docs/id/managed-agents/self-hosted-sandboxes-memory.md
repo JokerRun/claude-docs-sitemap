@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: dd83650459c8931b8df7aefb1a0ee23f7ea67700f5f2aeb7b5d8e9df1833d32c
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 9e5c11551bdcd3c4df467a95f2d67ba922e71ea9b0a15f646ecca04ed3cb0b06
 ---
 
 ---
@@ -16,7 +16,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1

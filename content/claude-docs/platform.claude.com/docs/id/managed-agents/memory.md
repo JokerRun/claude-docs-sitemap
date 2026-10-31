@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 671645de3cd2e006da63a916fcab0c9d9ace2eb81bcb5dce092bad595c68c218
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: e82a059a090dcc8e434f896391e9465d22e10acca71ccfe0a997d6cd95b1e1f4
 ---
 
 ---
@@ -14,7 +14,7 @@ featureMetadata:
   betaHeader: agent-memory-2026-07-22
   zdr:
     eligibility: not-eligible
-    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -36,13 +36,13 @@ featureMetadata:
   supportedPlatforms:
     Claude API:
       availability: beta
-      note: Sending `managed-agents-2026-04-01` together with `agent-memory-2026-07-22` on a memory store call returns a 400 error.
+      note: Mengirim `managed-agents-2026-04-01` bersama `agent-memory-2026-07-22` pada panggilan memory store akan menghasilkan error 400.
     Claude Platform on AWS:
       availability: beta
-      note: On Claude Platform on AWS, sessions on self-hosted environments can't attach memory stores. Sending `managed-agents-2026-04-01` together with `agent-memory-2026-07-22` on a memory store call returns a 400 error.
+      note: Di Claude Platform on AWS, sesi pada environment yang di-host sendiri tidak dapat melampirkan memory store. Mengirim `managed-agents-2026-04-01` bersama `agent-memory-2026-07-22` pada panggilan memory store akan menghasilkan error 400.
     Claude Models on Google Cloud (Anthropic managed):
       availability: beta
-      note: On Claude Models on Google Cloud (Anthropic managed), memory stores aren't supported for sessions on self-hosted environments. Sending `managed-agents-2026-04-01` together with `agent-memory-2026-07-22` on a memory store call returns a 400 error.
+      note: Di Claude Models on Google Cloud (Anthropic managed), memory store tidak didukung untuk sesi pada environment yang di-host sendiri. Mengirim `managed-agents-2026-04-01` bersama `agent-memory-2026-07-22` pada panggilan memory store akan menghasilkan error 400.
 ---
 
 Setiap sesi Managed Agents dimulai dengan konteks baru secara default. Ketika sebuah sesi berakhir, semua state yang telah dibangun agen akan hilang. Memory store (penyimpanan memori) memungkinkan agen membawa informasi lintas sesi: preferensi pengguna, konvensi proyek, kesalahan sebelumnya, dan konteks domain.
@@ -1376,44 +1376,44 @@ Ketika sebuah store mencapai batas 10.000 memori, penulisan ke memori baru akan 
 
 * **Batasi akses tulis bila sesuai.** Sesi yang hanya membaca materi referensi bersama tidak memerlukan `read_write`. Menjaga akses tulis terbatas pada sesi yang benar-benar menambahkan memori baru memudahkan pelacakan dari mana pertumbuhan berasal.
 
-## Availability
+## Ketersediaan
 
-Memory stores are in beta on every model.
+Memory store dalam versi beta di semua model.
 
-### API support
+### Dukungan API
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Available
+* Ketersediaan: Tersedia
 
-| Status           | Cloud platforms                                                                                                                                            |
+| Status           | Platform cloud                                                                                                                                             |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Beta<sup>1</sup> | Claude API                                                                                                                                                 |
 | Beta<sup>2</sup> | [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)                                                     |
 | Beta<sup>3</sup> | [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
 
-1. Sending `managed-agents-2026-04-01` together with `agent-memory-2026-07-22` on a memory store call returns a 400 error.
-2. On Claude Platform on AWS, sessions on self-hosted environments can’t attach memory stores. Sending `managed-agents-2026-04-01` together with `agent-memory-2026-07-22` on a memory store call returns a 400 error.
-3. On Claude Models on Google Cloud (Anthropic managed), memory stores aren’t supported for sessions on self-hosted environments. Sending `managed-agents-2026-04-01` together with `agent-memory-2026-07-22` on a memory store call returns a 400 error.
+1. Mengirim `managed-agents-2026-04-01` bersama `agent-memory-2026-07-22` pada panggilan memory store akan menghasilkan error 400.
+2. Di Claude Platform on AWS, sesi pada environment yang di-host sendiri tidak dapat melampirkan memory store. Mengirim `managed-agents-2026-04-01` bersama `agent-memory-2026-07-22` pada panggilan memory store akan menghasilkan error 400.
+3. Di Claude Models on Google Cloud (Anthropic managed), memory store tidak didukung untuk sesi pada environment yang di-host sendiri. Mengirim `managed-agents-2026-04-01` bersama `agent-memory-2026-07-22` pada panggilan memory store akan menghasilkan error 400.
 
-### Required beta headers
+### Header beta yang diperlukan
 
-[Beta headers overview](https://platform.claude.com/docs/id/api/beta-headers)
+[Ikhtisar header beta](https://platform.claude.com/docs/id/api/beta-headers)
 
-Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
+Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model baru sebelum menjadi bagian dari API standar.
 
 * `agent-memory-2026-07-22`
 
-### Data handling
+### Penanganan data
 
-[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+[Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item    | Zero data retention                                                                                                                                      | HIPAA                                                                        |
-| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status  | Not eligible                                                                                                                                             | Not eligible                                                                 |
-| Details | Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes. | Applies to all Managed Agents sub-features, including Self-hosted sandboxes. |
+| Item   | Retensi data nol                                                                                                                                                          | HIPAA                                                                               |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Status | Tidak layak                                                                                                                                                               | Tidak layak                                                                         |
+| Detail | Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. | Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. |
 
-Applicable endpoints:
+Endpoint yang berlaku:
 
 * `/v1/agents`
 * `/v1/sessions`

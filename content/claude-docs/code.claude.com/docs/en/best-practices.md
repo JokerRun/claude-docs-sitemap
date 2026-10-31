@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-10-27T02:22:08.565782Z
-sha256: 3a737bc6ffa82ea2aae5c6c19047d1c8e74a517fea82ce809ea92f2f9175c7ba
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: fd4ff73e26f2d0f0a80ac0ca77b60760b4ae2c9d0d282070fa6e406804f98ddc
 ---
 
 > ## Documentation Index
@@ -496,7 +496,7 @@ Ask Claude to `have the reviewer compare the rate limiter against SPEC.md` and t
 
 With a 1M-token window on most current models and compaction near the top of it, you'll rarely run out of context. You can still *pay* for context you don't need, though. Every request sends the whole conversation, so a session that's collected three unrelated tasks re-reads all three on every turn of the fourth. That's [discounted while the cache is warm](https://code.claude.com/docs/en/costs.md#why-usage-climbs-in-a-long-session) and full price once it expires.
 
-[`/usage`](https://code.claude.com/docs/en/costs) is the first place to look. On Pro, Max, Team, and Enterprise it breaks your usage down by skill, subagent, plugin, and MCP server. It also flags patterns like long context or frequent cache misses once one of them passes 10% of your usage. From there, the usual fixes:
+[`/usage`](https://code.claude.com/docs/en/costs) is the first place to look. On Pro, Max, Ultra, Team, and Enterprise it breaks your usage down by skill, subagent, plugin, and MCP server. It also flags patterns like long context or frequent cache misses once one of them passes 10% of your usage. From there, the usual fixes:
 
 * `/clear` between unrelated tasks. It costs nothing, and it means the next task doesn't keep paying for the previous one's history. `/clear oauth-migration` names the session you're leaving, so you can come back to it later.
 * `/compact` with a focus, like `/compact keep the API changes and the test commands`. On a long session `/compact` is itself a big request, since it reads the whole conversation to summarize it, and even more so once the cache has expired.

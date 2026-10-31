@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 21e0d9460df0a2e6fdb0dfa033574898cc3221836527b81f0457142858c317da
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: f229eb1f1b0d50b29e884eebb956f5b99c9d10f9907701e7581cf6143eed3f61
 ---
 
 ---
@@ -219,6 +219,8 @@ List Memory Versions
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 
@@ -556,6 +558,8 @@ Retrieve a Memory Version
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 - `"anthropic-workspace-id": optional string`
 
   Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
@@ -872,6 +876,8 @@ Redact a Memory Version
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

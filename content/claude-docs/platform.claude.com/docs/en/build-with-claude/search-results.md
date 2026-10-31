@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 2607ad72fd094ace1cbed3598ac30180c28612645bcded5cf0795515c934589e
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 98c7fb81ce05532c825cb8babdcd86e87708ad98ee76ec966a561c623ec786bd
 ---
 
 ---
@@ -10,7 +10,7 @@ title: Search results
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
 description: Get natural citations for RAG applications by providing search results with source attribution
 featureMetadata:
-  status: ga
+  status: stable
   zdr:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
@@ -33,12 +33,12 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
-    Claude Platform on AWS: ga
-    Amazon Bedrock: ga
-    Amazon Bedrock (InvokeModel): ga
-    Claude Models on Google Cloud (Google managed): ga
-    Microsoft Foundry: ga
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (InvokeModel): stable
+    Claude Models on Google Cloud (Google managed): stable
+    Microsoft Foundry: stable
 ---
 
 **API support**: Usage differs by product.
@@ -57,7 +57,7 @@ Search results can be provided in two ways:
 1. **From tool calls:** Your custom tools return search results, which lets you build dynamic RAG applications.
 2. **As top-level content:** You provide search results directly in user messages for pre-fetched or cached content.
 
-In both cases, Claude cites the search results automatically when citations are enabled. No special prompting is needed: ask your question, and citations appear on the text blocks that draw on your content.
+In both cases, Claude cites the search results automatically when citations are enabled. No special prompting is needed: ask your question, and citations appear on the text blocks that draw on your content. However, if your prompt asks for only JSON, the response might contain few or no citations. To extract structured data with a citation for each value, see [Get structured data with citations](https://platform.claude.com/docs/en/build-with-claude/citations#get-structured-data-with-citations).
 
 ### Search result schema
 

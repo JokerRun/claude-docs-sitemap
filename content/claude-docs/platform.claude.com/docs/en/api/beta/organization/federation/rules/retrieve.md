@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/retrieve
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: e95cddf84d4acf8c2aa8986165ae268abbdde0c36ea0c1b9582f8031ace9bd72
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: c6ff766ac625faed6b816ef22dd1e7e6d4053bf486ebadc87cc4593bfbe55e06
 ---
 
 ---
@@ -145,6 +145,8 @@ Retrieve a federation rule by its ID (`fdrl_...`).
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Returns
 

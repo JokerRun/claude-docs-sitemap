@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 72808047561a197004a6b07f9567254192790babb6d9a62e478e0c4b64c0666e
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: d7c42a0357d9d5ca18e85614b0876e0c2457a4736e8a5896758eafcd6d7b8127
 ---
 
 ---
@@ -413,7 +413,7 @@ response = anthropic.request(
 
 Ruby SDK mendukung platform berikut:
 
-* **Agent Platform:** `Anthropic::VertexClient`. Memerlukan gem `googleauth`.
+* **Claude Models on Google Cloud (Google managed):** `Anthropic::VertexClient`. Memerlukan gem `googleauth`.
 * **Bedrock:** `Anthropic::BedrockMantleClient`, atau `Anthropic::BedrockClient` untuk jalur `bedrock-runtime`. `Anthropic::BedrockMantleClient` memerlukan gem `aws-sdk-core`; `Anthropic::BedrockClient` memerlukan gem `aws-sdk-bedrockruntime`.
 * **Claude Platform di AWS:** Bagian dari gem utama `anthropic` (memerlukan gem `aws-sdk-core`). Menyediakan `Anthropic::AWSClient`. Teruskan `workspace_id:` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID` (lihat [Workspace](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#workspaces)). Tersedia dalam beta.
 * **Foundry:** Saat ini tidak didukung di Ruby SDK. Lihat [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk SDK yang didukung.

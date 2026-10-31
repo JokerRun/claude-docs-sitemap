@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: fd7fb86a148c473b48ad0b8142adb56a7070d40100b394be46c6feb67d3235fa
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: a8b6a8eede2c11284eeef4d4d1f422f55dc623ae88408bb88445827edeb6e20d
 ---
 
 ---
@@ -658,7 +658,7 @@ Untuk middleware permintaan (`option.WithMiddleware`) dan mengganti `http.Client
 
 Go SDK mendukung platform berikut:
 
-* **Agent Platform:** `import "github.com/anthropics/anthropic-sdk-go/vertex"`. Gunakan `vertex.WithGoogleAuth(ctx, region, projectID)` atau `vertex.WithCredentials(ctx, region, projectID, creds)`.
+* **Claude Models on Google Cloud (Google managed):** `import "github.com/anthropics/anthropic-sdk-go/vertex"`. Gunakan `vertex.WithGoogleAuth(ctx, region, projectID)` atau `vertex.WithCredentials(ctx, region, projectID, creds)`.
 * **Bedrock:** `import "github.com/anthropics/anthropic-sdk-go/bedrock"`. Gunakan `bedrock.NewMantleClient` untuk endpoint Bedrock Messages-API (streaming melalui SSE), atau `bedrock.WithLoadDefaultConfig(ctx)` / `bedrock.WithConfig(cfg)` (jalur `bedrock-runtime`). Mengimpor paket `bedrock` secara global mendaftarkan decoder untuk `application/vnd.amazon.eventstream` pada lapisan streaming SDK (melalui `init()` paket). Ini berlaku baik Anda menggunakan jalur `bedrock-runtime` `WithConfig`/`WithLoadDefaultConfig` maupun `NewMantleClient`.
 * **Claude Platform on AWS:** `import anthropicaws "github.com/anthropics/anthropic-sdk-go/aws"`. Gunakan `anthropicaws.NewClient(ctx, cfg)` dengan nilai `anthropicaws.ClientConfig` untuk membuat client; atur `WorkspaceID` pada config atau variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID`. Alias impor `anthropicaws` menghindari bentrokan nama dengan `github.com/aws/aws-sdk-go-v2/aws` ketika keduanya diimpor. Tersedia dalam beta.
 * **Foundry:** `import "github.com/anthropics/anthropic-sdk-go/foundry"`. Gunakan `foundry.NewClient(cfg)` dengan nilai `foundry.ClientConfig` untuk membuat client; atur `APIKey` (atau `AzureADTokenProvider` untuk Microsoft Entra ID) dan `Resource` pada config, atau variabel lingkungan `ANTHROPIC_FOUNDRY_API_KEY` dan `ANTHROPIC_FOUNDRY_RESOURCE`.

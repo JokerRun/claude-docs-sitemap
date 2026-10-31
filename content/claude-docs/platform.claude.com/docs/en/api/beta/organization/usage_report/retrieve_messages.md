@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_messages
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 47848903d6974be6432af044162115e3cb336fcd17363b5ab4b176519aea0463
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 36bc5e8076172454a123e295c0680a1abc28bb8f8814450c5c531a46ef9c584c
 ---
 
 ---
@@ -264,6 +264,8 @@ This endpoint is part of the legacy Usage and Cost API. For new integrations, us
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 ## Returns
 
 - `BetaMessagesUsageReport object`
@@ -412,7 +414,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/messages \
       "ending_at": "2025-08-02T00:00:00Z",
       "results": [
         {
-          "account_id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+          "account_id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
           "api_key_id": "apikey_01Rj2N8SVvo6BePZj99NhmiT",
           "cache_creation": {
             "ephemeral_1h_input_tokens": 0,

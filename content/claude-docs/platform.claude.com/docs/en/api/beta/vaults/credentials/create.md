@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/create
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: fbb9deb838f580287675c13e05aadf1fd0a94db776f6a0817245b3ea3d0e12b7
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: eb16c4013cd0f4996ed58e10af73c2c853e80cf4a67b1745882f8ab72c3f933c
 ---
 
 ---
@@ -143,6 +143,8 @@ Create a Credential
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

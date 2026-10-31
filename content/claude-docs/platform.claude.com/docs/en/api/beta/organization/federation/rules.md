@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 2834d0c6a116cd7fde3341b5b54b1aabba509e6e25ec60d99777ae9fac1bfe64
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 6ff3c072b5b453155233d022a96d7b44a8aadfa8c5bd711069d68b69f7836360
 ---
 
 ---
@@ -155,6 +155,8 @@ manage rules whose `oauth_scope` is `workspace:developer` or
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Body parameters
 
@@ -587,6 +589,8 @@ unless `include_archived=true`.
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 ### Returns
 
 - `data: array of BetaFederationRule`
@@ -903,6 +907,8 @@ Retrieve a federation rule by its ID (`fdrl_...`).
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Returns
 
@@ -1238,6 +1244,8 @@ Console session.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Body parameters
 
@@ -1645,6 +1653,8 @@ other scopes require a Console session.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Returns
 
@@ -2190,6 +2200,8 @@ other scopes require a Console session.
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 #### Body parameters
 
 - `workspace_id: string`
@@ -2405,6 +2417,8 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 #### Returns
 
 - `data: array of BetaFederationRuleWorkspace`
@@ -2609,6 +2623,8 @@ Console session.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 #### Returns
 

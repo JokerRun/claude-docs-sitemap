@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/ack
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 1f973911c8c6d8a4e15b9336025f06a412e312fbb7e19b2d85fe273e001b05cb
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: ba47132d89f9556384afe8ea33fcd3bd4c1322a05d537e4af6d865817b1f3f8e
 ---
 
 ---
@@ -145,6 +145,8 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Returns
 

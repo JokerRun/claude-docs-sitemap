@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/retrieve
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 342450694aea90f09e85b1128424d3817a7a5bba80619544a0cd8b1053e17713
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 91ba8141b3e763fcbb81639406f6cce64fb449f372f7750ce542166159056489
 ---
 
 ---
@@ -143,6 +143,8 @@ Get Deployment
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

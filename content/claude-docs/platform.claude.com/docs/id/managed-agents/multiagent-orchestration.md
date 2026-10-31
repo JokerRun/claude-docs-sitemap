@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: e95cf5d17e0eb12f6a8dc0e7c4ab6d10613cd2ca365055ddead2fc72bae77910
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: a1439c58d80deb8ff1b7930a5bdd0f22cbd52952d4fdb382767eba1638e81a25
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -1251,7 +1251,7 @@ Setiap konsultasi berjalan sebagai thread yang dibuat oleh platform bernama `ant
 
 Tidak ada event `agent.tool_use` yang dipancarkan untuk konsultasi, dan tidak ada event `agent.thread_message_sent` yang muncul di aliran event sesi, karena input konsultasi disusun oleh platform, bukan dikirim oleh agen. Jika Anda mencantumkan event milik thread advisor itu sendiri, saran juga muncul di sana sebagai event `agent.thread_message_sent`. Penyampaian saran (event 3) tidak dijamin tiba sebelum event idle dan terminated milik thread advisor, jadi jangan perlakukan event-event tersebut sebagai sinyal bahwa saran sudah disampaikan.
 
-Apakah klien Anda dapat membaca saran bergantung pada kebijakan model advisor. Hal ini mencerminkan pembagian [varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants) pada alat advisor Messages API. Model advisor yang mengembalikan hasil plaintext di sana akan menyampaikan teks yang dapat dibaca di sini. Model yang mengembalikan hasil yang disunting (redacted) akan menyampaikan placeholder `[{"type": "redacted"}]` di setiap permukaan klien, sementara agen tetap membaca saran lengkap di sisi server. Contoh sebelumnya menggunakan model Opus terbaru yang tersedia bagi Anda sebagai advisor. Model tersebut mengembalikan hasil yang disunting, sehingga klien Anda hanya melihat placeholder. Untuk membaca saran di aliran event, gunakan advisor yang mengembalikan plaintext, seperti Claude Opus 4.8. Kebijakan model dapat berubah tanpa perubahan pada API, jadi tangani blok `text` maupun `redacted`. Beberapa model agen hanya dapat dipasangkan dengan advisor yang mengembalikan hasil yang disunting; lihat [tabel kompatibilitas](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) alat advisor. Pemikiran advisor tidak pernah ditampilkan. Klien tidak dapat mengirim blok `redacted` sendiri; event yang memuatnya akan ditolak dengan error validasi 400.
+Apakah klien Anda dapat membaca saran tersebut ditentukan oleh kebijakan model advisor. Hal ini mencerminkan pembagian [varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants) pada alat advisor di Messages API. Model advisor yang mengembalikan hasil plaintext di sana akan menghasilkan teks yang dapat dibaca di sini. Model yang mengembalikan hasil yang disunting (redacted) akan menghasilkan placeholder `[{"type": "redacted"}]` di setiap antarmuka klien, sementara agen tetap membaca saran lengkap di sisi server. Contoh sebelumnya menggunakan model Opus terbaru yang tersedia bagi Anda sebagai advisor. Model tersebut mengembalikan hasil yang disunting, sehingga klien Anda hanya melihat placeholder. Untuk membaca saran pada aliran event, gunakan advisor yang mengembalikan plaintext, seperti Claude Opus 4.8. Kebijakan suatu model dapat berubah tanpa perubahan apa pun pada API, jadi tangani blok `text` maupun `redacted`. Beberapa model agen hanya dapat dipasangkan dengan advisor yang menghasilkan hasil yang disunting; lihat bagian [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) pada alat advisor. Pemikiran advisor tidak pernah ditampilkan. Klien tidak dapat mengirim blok `redacted` sendiri; event yang berisi blok tersebut akan ditolak dengan error validasi 400.
 
 Konsultasi yang gagal atau terinterupsi tidak pernah membuat giliran agen gagal: agen melanjutkan setelah pemberitahuan umum bahwa konsultasi gagal. `user.interrupt` tingkat sesi selama konsultasi menghentikan thread advisor tanpa saran yang disampaikan; `user.interrupt` dengan `session_thread_id` (java: `sessionThreadId`; php: `sessionThreadID`; csharp, go: `SessionThreadID`) milik thread advisor hanya membatalkan konsultasi tersebut.
 
@@ -1309,38 +1309,38 @@ Setelah agen memiliki tipe `multiagent_20261001`, pengaturan yang tidak disertak
 
 Pembaruan tidak mengubah sesi yang sudah ada. Untuk menggunakan blok yang baru, buat sesi setelah pembaruan.
 
-## Availability
+## Ketersediaan
 
-Multiagent orchestration is in beta on every model.
+Orkestrasi multiagen dalam versi beta di semua model.
 
-### API support
+### Dukungan API
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Available
+* Ketersediaan: Tersedia
 
-| Status | Cloud platforms         |
-| ------ | ----------------------- |
-| Beta   | All supported platforms |
+| Status | Platform cloud               |
+| ------ | ---------------------------- |
+| Beta   | Semua platform yang didukung |
 
-### Required beta headers
+### Header beta yang diperlukan
 
-[Beta headers overview](https://platform.claude.com/docs/id/api/beta-headers)
+[Ikhtisar header beta](https://platform.claude.com/docs/id/api/beta-headers)
 
-Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
+Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model baru sebelum menjadi bagian dari API standar.
 
 * `managed-agents-2026-04-01`
 
-### Data handling
+### Penanganan data
 
-[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+[Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item    | Zero data retention                                                                                                                                      | HIPAA                                                                        |
-| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status  | Not eligible                                                                                                                                             | Not eligible                                                                 |
-| Details | Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes. | Applies to all Managed Agents sub-features, including Self-hosted sandboxes. |
+| Item   | Retensi data nol                                                                                                                                                          | HIPAA                                                                               |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Status | Tidak layak                                                                                                                                                               | Tidak layak                                                                         |
+| Detail | Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. | Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. |
 
-Applicable endpoints:
+Endpoint yang berlaku:
 
 * `/v1/agents`
 * `/v1/sessions`

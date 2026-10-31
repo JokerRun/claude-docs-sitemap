@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 9302ed2217a35d6267747b5aaf6ab580353d8ef590309198bc56a4b5a0b3063f
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: d3abc0ea09ac501996972b7825ea025871262e69fe7d378c091bcf5cbe15a533
 ---
 
 ---
@@ -156,6 +156,8 @@ other scopes require a Console session.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Body parameters
 
@@ -372,6 +374,8 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 ### Returns
 
 - `data: array of BetaFederationRuleWorkspace`
@@ -576,6 +580,8 @@ Console session.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Returns
 

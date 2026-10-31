@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: fd20f2d3f20711650bafced9feacd13cf0f77a3f12c77f2ccb296bc886ce05bb
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 9c2363a6beec48c6340d2e266751387b41c857f34246be1915d4f20539777890
 ---
 
 > ## Documentation Index
@@ -544,41 +544,41 @@ Spell checking is off by default, and Claude Code checks nothing in [screen read
 
 Claude Code reads the [`spellcheck`](https://code.claude.com/docs/en/settings-reference#spellcheck) setting from three places, and ignores it in a project's `.claude/settings.json` and `.claude/settings.local.json`. Turn it on from whichever one you use:
 
-**User settings**
+> [tab] User settings
+>
+> Add `spellcheck` to `~/.claude/settings.json`. It applies in every project you open, like the rest of your [user settings](https://code.claude.com/docs/en/settings.md#where-settings-live):
+>
+> ```json theme={null}
+> {
+>   "spellcheck": { "enabled": true }
+> }
+> ```
 
-Add `spellcheck` to `~/.claude/settings.json`. It applies in every project you open, like the rest of your [user settings](https://code.claude.com/docs/en/settings.md#where-settings-live):
+> [tab] Command line
+>
+> Save `spellcheck` in a JSON file, such as `spellcheck.json`:
+>
+> ```json theme={null}
+> {
+>   "spellcheck": { "enabled": true }
+> }
+> ```
+>
+> Then pass the file to `--settings`. It applies to that session only:
+>
+> ```bash theme={null}
+> claude --settings spellcheck.json
+> ```
 
-```json theme={null}
-{
-  "spellcheck": { "enabled": true }
-}
-```
-
-**Command line**
-
-Save `spellcheck` in a JSON file, such as `spellcheck.json`:
-
-```json theme={null}
-{
-  "spellcheck": { "enabled": true }
-}
-```
-
-Then pass the file to `--settings`. It applies to that session only:
-
-```bash theme={null}
-claude --settings spellcheck.json
-```
-
-**Managed settings**
-
-Add `spellcheck` to one of your organization's [managed settings sources](https://code.claude.com/docs/en/permissions.md#managed-settings). It applies to every user who receives those settings, and they can't turn it off:
-
-```json theme={null}
-{
-  "spellcheck": { "enabled": true }
-}
-```
+> [tab] Managed settings
+>
+> Add `spellcheck` to one of your organization's [managed settings sources](https://code.claude.com/docs/en/permissions.md#managed-settings). It applies to every user who receives those settings, and they can't turn it off:
+>
+> ```json theme={null}
+> {
+>   "spellcheck": { "enabled": true }
+> }
+> ```
 
 To check that spell checking is on, type a misspelled word and a space. Claude Code underlines the word. If it doesn't, see [When Claude Code underlines nothing](#when-claude-code-underlines-nothing). To turn spell checking off again, set `enabled` to `false` in the same place, or remove `spellcheck`.
 

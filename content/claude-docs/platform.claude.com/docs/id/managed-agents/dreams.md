@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: d1331a77128529c2219b436b909f3b9844f66067c915cb2c0f8cd2f7195ed7d1
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 8619c31a6ef649ef84d3cea6f332c46f65bc8b8e2e258d0fb174bbc486c7442c
 ---
 
 ---
@@ -14,11 +14,10 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01, dreaming-2026-04-21
   zdr:
     eligibility: not-eligible
-    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
     - claude-fable-5-1
     - claude-fable-5
-    - claude-mythos-preview
     - claude-opus-5-5
     - claude-opus-5
     - claude-sonnet-5-5
@@ -31,24 +30,16 @@ featureMetadata:
 ---
 
 <Note>
-  Dreams are in research preview.
+  Dreams dalam pratinjau riset.
 
-  * [Request access](https://claude.com/form/claude-managed-agents)
+  * [Minta akses](https://claude.com/form/claude-managed-agents)
 </Note>
-
-<Tip>
-  Dreaming adalah fitur pratinjau riset. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
-</Tip>
 
 Agen menulis ke [memory store](https://platform.claude.com/docs/id/managed-agents/memory) (penyimpanan memori) mereka saat bekerja, tetapi penulisan ini bersifat lokal dan inkremental: setelah banyak sesi, sebuah memory store mengakumulasi duplikat, kontradiksi, dan entri yang sudah usang.
 
 **Dreams** (mimpi) memungkinkan Claude membersihkannya. Sebuah dream membaca memory store yang sudah ada bersama dengan transkrip sesi sebelumnya, lalu menghasilkan memory store baru yang telah ditata ulang: duplikat digabungkan, entri yang usang atau bertentangan diganti dengan nilai terbaru, dan wawasan baru dimunculkan.
 
 Store input tidak pernah dimodifikasi, sehingga Anda dapat meninjau outputnya dan membuangnya jika Anda tidak menyukai hasilnya.
-
-<Note>
-  Endpoint dream dibatasi oleh header beta `dreaming-2026-04-21`; header `managed-agents-2026-04-01` saja tidak memberikan akses ke dreams. Contoh endpoint dream di halaman ini mengirim kedua header tersebut; panggilan sesi dan memory store hanya memerlukan `managed-agents-2026-04-01`. SDK mengatur header ini secara otomatis.
-</Note>
 
 ## Cara kerjanya
 
@@ -182,7 +173,7 @@ Dream menghasilkan **memory store output** lain, terpisah dari input. ID store o
   ```
 </CodeGroup>
 
-Input dreaming mencakup memory store yang sudah ada dan sebuah array sesi. Model yang dipilih menjalankan pipeline dreaming. Selama pratinjau riset, `claude-opus-5-5`, `claude-fable-5-1`, `claude-opus-5`, `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5-5`, `claude-sonnet-5`, dan `claude-sonnet-4-6` didukung. Anda dapat secara opsional meneruskan `instructions` (csharp, go: `Instructions`) untuk mengarahkan proses dreaming. Lihat [Mengarahkan dengan instruksi](https://platform.claude.com/docs/id/managed-agents/dreams#steer-with-instructions).
+Input dreaming mencakup memory store yang sudah ada dan sebuah array sesi. Model yang Anda pilih menjalankan pipeline dreaming. Hanya [model tertentu](https://platform.claude.com/docs/id/managed-agents/dreams#feature-availability) yang didukung. Anda dapat secara opsional meneruskan `instructions` (csharp, go: `Instructions`) untuk mengarahkan proses dreaming. Lihat [Mengarahkan dengan instruksi](https://platform.claude.com/docs/id/managed-agents/dreams#steer-with-instructions).
 
 Responsnya adalah resource `dream` lengkap dengan `status: "pending"`:
 
@@ -660,47 +651,43 @@ Dreams ditagih dengan tarif token API standar untuk model yang Anda pilih; `usag
 
 ## Batas
 
-| Batas                                               | Nilai                                                                                                                                                                       |
-| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Sesi per dream                                      | 100                                                                                                                                                                         |
-| Panjang `instructions` (csharp, go: `Instructions`) | 4.096 karakter                                                                                                                                                              |
-| Model yang didukung                                 | `claude-opus-5-5`, `claude-fable-5-1`, `claude-opus-5`, `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5-5`, `claude-sonnet-5`, `claude-sonnet-4-6` |
-
 Batas laju default berlaku untuk pembuatan dream selama fitur ini dalam pratinjau riset. [Hubungi dukungan](https://support.claude.com) jika Anda memerlukan batas yang lebih tinggi.
 
-## Availability
+## Ketersediaan
 
-Dreams are in research preview on select models.
+Dreams dalam pratinjau riset di model tertentu.
 
-### API support
+### Dukungan API
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Available
+* Ketersediaan: Tersedia
 
-| Status           | Cloud platforms | Models                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| ---------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Research preview | Claude API      | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview) |
+| Status          | Platform cloud | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| --------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Pratinjau riset | Claude API     | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview) |
 
-### Required beta headers
+### Header beta yang diperlukan
 
-[Beta headers overview](https://platform.claude.com/docs/id/api/beta-headers)
+[Ikhtisar header beta](https://platform.claude.com/docs/id/api/beta-headers)
 
-Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
+Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model baru sebelum menjadi bagian dari API standar.
 
 * `managed-agents-2026-04-01`
 * `dreaming-2026-04-21`
 
-### Data handling
+Endpoint dream memerlukan header beta `dreaming-2026-04-21`. Header `managed-agents-2026-04-01` saja tidak memberikan akses ke dreams. Panggilan sesi menggunakan `managed-agents-2026-04-01`, dan panggilan memory store menggunakan `agent-memory-2026-07-22`. SDK mengatur header yang tepat pada setiap panggilan.
 
-[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+### Penanganan data
 
-| Item    | Zero data retention                                                                                                                                      | HIPAA                                                                        |
-| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status  | Not eligible                                                                                                                                             | Not eligible                                                                 |
-| Details | Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes. | Applies to all Managed Agents sub-features, including Self-hosted sandboxes. |
+[Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-Applicable endpoints:
+| Item   | Retensi data nol                                                                                                                                                          | HIPAA                                                                               |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Status | Tidak layak                                                                                                                                                               | Tidak layak                                                                         |
+| Detail | Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. | Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. |
+
+Endpoint yang berlaku:
 
 * `/v1/agents`
 * `/v1/sessions`

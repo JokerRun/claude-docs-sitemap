@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/archive
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 1d0e6134e5b52b78bbb06c8d2d819a0dcf004fa73d6a3c19cabf73867f9f8659
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: dcd8136cd10e28b094d78645b3bd9cfa8924a5be23c6af8260c6898bd1d5a7bc
 ---
 
 ---
@@ -143,6 +143,8 @@ Archive Agent
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

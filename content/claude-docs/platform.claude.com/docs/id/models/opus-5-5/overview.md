@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/overview
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: f4c337ac0a6f00370f80f770b20edd0f6d33f5d5355034e58d5587373537b5ba
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 40e882e3b682c30f90753fd47bd146c0aea9514c1757a83441a64cd5c72f7e6e
 ---
 
 ---
@@ -23,7 +23,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $4 / MTok
 
 ## Ikhtisar
 
-Claude Opus 5.5 dibuat untuk pekerjaan coding agentik dan pekerjaan pengetahuan yang berjalan lama, dengan harga $4 / $20 USD per juta token input / output. Empat perubahan yang merusak kompatibilitas memengaruhi kode yang sudah berjalan di Claude Opus 5: [thinking tidak dapat dinonaktifkan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#thinking-cant-be-disabled), [penggunaan alat paksa mengembalikan error](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#forced-tool-use-is-not-supported), [blok thinking terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them), dan, di Claude API serta Claude Models on Google Cloud (Google managed), [alat computer use `computer_20251124` yang lebih lama tidak diterima](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#computer-20251124-is-not-supported). Tiga yang pertama juga berlaku di Claude Fable 5.1. Satu perubahan lain mengubah bentuk respons tanpa membuat permintaan apa pun gagal: [teks di antara panggilan alat dikembalikan dalam blok `thinking`](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#text-between-tool-calls) yang teksnya kosong pada pengaturan `display` default. Aplikasi yang melakukan streaming teks tersebut kepada penggunanya sebagai pembaruan progres akan menjadi diam di antara panggilan alat hingga aplikasi tersebut menetapkan nilai `display` yang mengembalikan teks.
+Claude Opus 5.5 dibuat untuk agentic coding dan pekerjaan berbasis pengetahuan yang berjalan lama, dengan harga $4 / $20 USD per juta token input / output. Empat “breaking changes” (perubahan yang merusak kompatibilitas) memengaruhi kode yang sudah berjalan di Claude Opus 5: [pemikiran tidak dapat dinonaktifkan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#thinking-cant-be-disabled), [forced tool use mengembalikan error](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#forced-tool-use-is-not-supported), [blok pemikiran terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them), dan, di Claude API serta Claude Models on Google Cloud (Google managed), [alat penggunaan komputer `computer_20251124` yang lebih lama tidak diterima](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#computer-20251124-is-not-supported). Tiga yang pertama juga berlaku di Claude Fable 5.1. Satu perubahan lainnya mengubah bentuk respons tanpa menggagalkan permintaan apa pun: [teks di antara panggilan alat dikembalikan dalam blok `thinking`](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#text-between-tool-calls) yang teksnya kosong pada pengaturan `display` default. Aplikasi yang melakukan streaming teks tersebut ke penggunanya sebagai pembaruan progres akan menjadi senyap di antara panggilan alat hingga aplikasi tersebut menetapkan nilai `display` yang mengembalikan teks.
 
 [Yang baru di Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5)
 

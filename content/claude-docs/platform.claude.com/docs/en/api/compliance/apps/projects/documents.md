@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: b54ce5407c8177e569b666b3cdd0d32bad474c2379e7f556bea3ef2118d4acec
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 5e0de9401a81ba23c7ff1235f20d3e7890a09a17a330910224d6e001c3daee75
 ---
 
 ---
@@ -83,7 +83,7 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_I
   "created_at": "2025-03-12T18:22:41.123456Z",
   "filename": "design-notes.txt",
   "user": {
-    "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+    "id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
     "email_address": "jane.doe@example.com"
   }
 }
@@ -182,7 +182,7 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_I
   "mime_type": "text/plain",
   "size_bytes": 0,
   "user": {
-    "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+    "id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
     "email_address": "jane.doe@example.com"
   }
 }

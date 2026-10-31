@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local/messages/list
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 3e79764c84a8052d423a91121d9d793ca548f854f8063e23491f07639c58556d
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 02cd515ff70cd6fa69b150caba9adcb148e137a4672f962d049db4fdffeaec26
 ---
 
 ---
@@ -343,7 +343,7 @@ curl https://api.anthropic.com/v1/compliance/apps/sessions/local/$LOCAL_SESSION_
     "type": "compliance_local_session",
     "updated_at": "2025-03-12T18:22:41.123456Z",
     "user": {
-      "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+      "id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
       "email_address": "jane.doe@example.com"
     },
     "workspace_id": "wrkspc_01SvYKoWVRVHoEbwESNvzYdR"

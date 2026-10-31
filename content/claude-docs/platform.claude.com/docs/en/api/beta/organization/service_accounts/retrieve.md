@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/retrieve
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 01328fb2942e7c64ed88b53f5da28c8712af041b1942790096d951eec1969511
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 99fbf94f4fabc2a76711c80b4c60a9ee8d900d88f27ad7a2fd99746bb7763311
 ---
 
 ---
@@ -145,6 +145,8 @@ Retrieve a service account by its ID (`svac_...`).
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Returns
 

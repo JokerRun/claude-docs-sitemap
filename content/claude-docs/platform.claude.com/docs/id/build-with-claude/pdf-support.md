@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 0ee3fbc43270a8a0ce4dfa221568358b2447a00401bace0c4fe435d0e15a4873
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: fe27252a345043be7d4bb2f7c9aeef35d16ebb80181be24b55f6b8ab0790aba2
 ---
 
 ---
@@ -10,7 +10,7 @@ title: Dukungan PDF
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
 description: "Proses PDF dengan Claude: ekstrak teks, analisis grafik, dan pahami konten visual dari dokumen Anda."
 featureMetadata:
-  status: ga
+  status: stable
   zdr:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
@@ -33,21 +33,21 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
-    Claude Platform on AWS: ga
-    Claude Models on Google Cloud (Anthropic managed): ga
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Claude Models on Google Cloud (Anthropic managed): stable
     Amazon Bedrock:
-      availability: ga
-      note: Base64 sources only.
+      availability: stable
+      note: Hanya sumber base64.
     Amazon Bedrock (InvokeModel):
-      availability: ga
-      note: Base64 sources only. With the Converse API, visual PDF analysis needs citations turned on.
+      availability: stable
+      note: Hanya sumber base64.
     Claude Models on Google Cloud (Google managed):
-      availability: ga
-      note: Base64 sources only.
+      availability: stable
+      note: Hanya sumber base64.
     Microsoft Foundry:
-      availability: ga
-      note: "`file_id` sources need a Hosted on Anthropic deployment."
+      availability: stable
+      note: Sumber `file_id` memerlukan deployment Hosted on Anthropic.
 ---
 
 Anda dapat bertanya kepada Claude tentang teks, gambar, grafik, dan tabel apa pun dalam PDF yang Anda berikan. Beberapa contoh kasus penggunaan:
@@ -79,45 +79,7 @@ Karena dukungan PDF bergantung pada kemampuan vision Claude, dukungan ini tunduk
 
 ### Platform dan model yang didukung
 
-Semua [model aktif](https://platform.claude.com/docs/id/models/overview) mendukung pemrosesan PDF. Untuk dukungan PDF melalui Converse API Amazon Bedrock, lihat [dukungan PDF Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/pdf-support#amazon-bedrock-pdf-support).
-
-### Dukungan PDF Amazon Bedrock
-
-Saat menggunakan dukungan PDF melalui Converse API, bagian dari [Claude di Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), terdapat dua mode pemrosesan dokumen yang berbeda:
-
-<Note>
-  **Penting:** Untuk mengakses kemampuan pemahaman PDF visual penuh Claude di Converse API, Anda harus mengaktifkan citations (kutipan). Tanpa citations diaktifkan, API akan kembali ke ekstraksi teks dasar saja. Pelajari lebih lanjut tentang [bekerja dengan citations](https://platform.claude.com/docs/id/build-with-claude/citations).
-</Note>
-
-#### Mode pemrosesan dokumen
-
-1. **Converse Document Chat** (Mode asli - Hanya ekstraksi teks)
-
-   * Menyediakan ekstraksi teks dasar dari PDF
-   * Tidak dapat menganalisis gambar, grafik, atau tata letak visual dalam PDF
-   * Menggunakan sekitar 1.000 token untuk PDF 3 halaman
-   * Digunakan secara otomatis ketika citations tidak diaktifkan
-
-2. **Claude PDF Chat** (Mode baru - Pemahaman visual penuh)
-
-   * Menyediakan analisis visual lengkap terhadap PDF
-   * Dapat memahami dan menganalisis bagan, grafik, gambar, dan tata letak visual
-   * Memproses setiap halaman sebagai teks dan gambar untuk pemahaman yang komprehensif
-   * Menggunakan sekitar 7.000 token untuk PDF 3 halaman
-   * **Memerlukan citations diaktifkan** di Converse API
-
-#### Keterbatasan utama
-
-* **Converse API:** Analisis PDF visual memerlukan citations diaktifkan. Saat ini tidak ada opsi untuk menggunakan analisis visual tanpa citations (berbeda dengan InvokeModel API).
-* **InvokeModel API:** Menyediakan kontrol penuh atas pemrosesan PDF tanpa citations yang dipaksakan.
-
-#### Masalah umum
-
-Jika Claude tidak melihat gambar atau grafik dalam PDF Anda saat menggunakan Converse API, kemungkinan Anda perlu mengaktifkan flag citations. Tanpanya, Converse akan kembali ke ekstraksi teks dasar saja.
-
-<Note>
-  Ini adalah kendala yang diketahui pada Converse API. Untuk aplikasi yang memerlukan analisis PDF visual tanpa citations, pertimbangkan untuk menggunakan InvokeModel API sebagai gantinya.
-</Note>
+Semua [model aktif](https://platform.claude.com/docs/id/models/overview) mendukung pemrosesan PDF.
 
 <Note>
   File teks biasa seperti .txt, .csv, atau .md dapat digunakan langsung dalam blok dokumen: unggah file tersebut ke Files API dengan tipe MIME `text/plain` dan referensikan melalui `file_id`. Format biner seperti .xlsx atau .docx tidak didukung dalam blok dokumen, jadi konversikan terlebih dahulu ke teks atau PDF. Lihat [Bekerja dengan format file lain](https://platform.claude.com/docs/id/build-with-claude/files#working-with-other-file-formats).
@@ -1076,7 +1038,7 @@ Saat Anda mengirim PDF ke Claude, langkah-langkah berikut terjadi:
 
 Jumlah token file PDF bergantung pada total teks yang diekstrak dari dokumen dan jumlah halaman:
 
-* Biaya token teks: Setiap halaman biasanya menggunakan 1.500–3.000 token per halaman tergantung kepadatan konten. Harga API standar berlaku tanpa biaya PDF tambahan.
+* Biaya token teks: Setiap halaman biasanya menggunakan 1.500–3.000 token tergantung pada kepadatan konten. Harga API standar berlaku tanpa biaya PDF tambahan.
 * Biaya token gambar: Karena setiap halaman dikonversi menjadi gambar, [perhitungan biaya berbasis gambar](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size) yang sama diterapkan.
 
 Anda dapat menggunakan [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) untuk memperkirakan biaya untuk PDF spesifik Anda.
@@ -2024,44 +1986,43 @@ Batch diproses secara asinkron. Untuk memeriksa progres dan mengambil hasil sete
   </Card>
 </CardGroup>
 
-## Availability
+## Ketersediaan
 
-PDF support is available on every model and eligible for zero data retention and HIPAA readiness.
+Dukungan PDF tersedia di semua model dan layak untuk retensi data nol dan kesiapan HIPAA.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Always on
+* Ketersediaan: Selalu aktif
 
-| Status                | Cloud platforms                                                                                                                                                                                                                                                                |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Available             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
-| Available<sup>1</sup> | [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                                                                                                                                                                         |
-| Available<sup>2</sup> | [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)                                                                                                                                                          |
-| Available<sup>3</sup> | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)                         |
+| Status               | Platform cloud                                                                                                                                                                                                                                                                 |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Tersedia             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
+| Tersedia<sup>1</sup> | [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                                                                                                                                                                         |
+| Tersedia<sup>2</sup> | [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)                                                                                                                                                          |
+| Tersedia<sup>2</sup> | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)                         |
 
-1. `file_id` sources need a Hosted on Anthropic deployment.
-2. Base64 sources only. With the Converse API, visual PDF analysis needs citations turned on.
-3. Base64 sources only.
+1. Sumber `file_id` memerlukan deployment Hosted on Anthropic.
+2. Hanya sumber base64.
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Always on
+* Ketersediaan: Selalu aktif
 
-| Status    | Cloud platforms         |
-| --------- | ----------------------- |
-| Available | All supported platforms |
+| Status   | Platform cloud               |
+| -------- | ---------------------------- |
+| Tersedia | Semua platform yang didukung |
 
-### Data handling
+### Penanganan data
 
-[Data handling overview](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
+[Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item    | Zero data retention                                                                                                                                       | HIPAA                                                                                              |
-| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| Status  | Eligible (excludes [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Eligible                                                                                           |
-| Details | —                                                                                                                                                         | HIPAA eligibility applies to PDFs sent inline through the Messages API, not through the Files API. |
+| Item   | Retensi data nol                                                                                                                                                 | HIPAA                                                                                                       |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak                                                                                                       |
+| Detail | —                                                                                                                                                                | Kelayakan HIPAA berlaku untuk PDF yang dikirim secara inline melalui Messages API, bukan melalui Files API. |
 
-Applicable endpoints:
+Endpoint yang berlaku:
 
 * `/v1/messages`

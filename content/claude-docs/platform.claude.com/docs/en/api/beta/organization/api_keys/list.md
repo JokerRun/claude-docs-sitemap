@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/api_keys/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 411907b1eb4bb01ae84a353c180fcfa7e1fa7de2d2560965fa1722f1d2d26f21
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: a126eb47c5877ec452989bc825952f03b7b6872276e608ac7ef181d2e7845188
 ---
 
 ---
@@ -209,7 +209,7 @@ curl https://api.anthropic.com/v1/organizations/api_keys \
       "id": "apikey_01Rj2N8SVvo6BePZj99NhmiT",
       "created_at": "2024-10-30T23:58:27.427722Z",
       "created_by": {
-        "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+        "id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
         "type": "user"
       },
       "expires_at": "2024-10-30T23:58:27.427722Z",
@@ -217,7 +217,7 @@ curl https://api.anthropic.com/v1/organizations/api_keys \
       "partial_key_hint": "sk-ant-api03-R2D...igAA",
       "principal": {
         "type": "user_actor",
-        "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
+        "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu"
       },
       "scope": {
         "type": "workspace",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/retrieve
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: a1cf06e442fc3437a9597abb413fd330c4bd614bda6614a5f1941d32634f3879
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 3ca2b46392f75d0944cc1d4a1d03113405038667d7cd6fba931bafa92ecff574
 ---
 
 ---
@@ -81,7 +81,7 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_I
   "created_at": "2025-03-12T18:22:41.123456Z",
   "filename": "design-notes.txt",
   "user": {
-    "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+    "id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
     "email_address": "jane.doe@example.com"
   }
 }

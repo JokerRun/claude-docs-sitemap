@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-reference
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 06934d7d4da96b15788a340e734d78cfd96adcf2a780bd8584e286b38bda1167
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 0fd2e072a0e72e0241c293dd2e5ad73bfa4423aa25fd22bc2715f5524d4ff1a2
 ---
 
 ---
@@ -16,7 +16,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -46,14 +46,14 @@ Halaman ini mendokumentasikan worker siap pakai yang melayani environment `self_
 | `ant beta:worker poll` | Mengklaim work item dari antrean environment dan menjalankan setiap sesi di dalam proses. Dengan `--on-work`, memanggil skrip Anda untuk setiap work item sebagai gantinya. |
 | `ant beta:worker run`  | Menangani satu sesi yang diklaim lalu keluar. Gunakan sebagai entrypoint dari sandbox per sesi.                                                                             |
 
-| Flag                | Deskripsi                                                                                                                                                                                                           |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--environment-id`  | Environment yang di-poll untuk mendapatkan pekerjaan. Juga dibaca dari `ANTHROPIC_ENVIRONMENT_ID`.                                                                                                                  |
-| `--environment-key` | Mengautentikasi worker dengan environment ini. Juga dibaca dari `ANTHROPIC_ENVIRONMENT_KEY`.                                                                                                                        |
-| `--workdir`         | Direktori tempat skill diunduh dan tempat alat membaca serta menulis file. Default-nya `.` (direktori saat ini).                                                                                                    |
-| `--on-work`         | Skrip yang dipanggil untuk setiap work item yang diklaim alih-alih menjalankan alat di dalam proses. Menerima detail sesi sebagai variabel lingkungan dan work item sebagai JSON pada standard input.               |
-| `--max-idle`        | Berapa lama menunggu setelah sesi menjadi idle dengan [stop reason](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons) (alasan berhenti) `end_turn` sebelum dimatikan. Default-nya `60s`. |
-| `--log-format`      | Format output log. Gunakan `json` untuk penyerapan log terstruktur. Default-nya `text`.                                                                                                                             |
+| Flag                | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--environment-id`  | Environment yang di-poll untuk mendapatkan pekerjaan. Juga dibaca dari `ANTHROPIC_ENVIRONMENT_ID`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `--environment-key` | Mengautentikasi worker dengan environment ini. Juga dibaca dari `ANTHROPIC_ENVIRONMENT_KEY`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `--workdir`         | Direktori tempat skill diunduh dan tempat alat membaca serta menulis file. Default-nya `.` (direktori saat ini).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `--on-work`         | Skrip yang dipanggil untuk setiap work item yang diklaim alih-alih menjalankan alat di dalam proses. Menerima detail sesi sebagai variabel lingkungan dan work item sebagai JSON pada standard input.                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `--max-idle`        | Berapa lama worker menunggu selama sesi dalam keadaan idle sebelum `ant beta:worker run` keluar atau `ant beta:worker poll` beralih ke work item berikutnya. Waktu idle dengan [stop reason `requires_action`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#respond-when-the-session-goes-idle) (alasan berhenti) tidak dihitung. Default-nya `60s`. Atur ke `0` untuk menonaktifkan batas waktu. Dengan skrip `--on-work`, `ant beta:worker poll` mengabaikan flag ini. Sebagai gantinya, teruskan flag ini ke perintah `ant beta:worker run` yang dijalankan oleh skrip Anda. |
+| `--log-format`      | Format output log. Gunakan `json` untuk penyerapan log terstruktur. Default-nya `text`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
 ## Variabel lingkungan
 

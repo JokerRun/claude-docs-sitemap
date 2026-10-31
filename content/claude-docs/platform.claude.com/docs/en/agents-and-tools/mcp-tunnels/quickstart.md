@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/quickstart
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 8616e42255a91db7d2bb90ce2a885cf5e8638d61eb49b0f6ad9ab214baa2620d
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: b91e248ad850b3b526aadcacf27caf5c9e16e3cb0de81e59ed951061a0c5702a
 ---
 
 ---
@@ -268,7 +268,7 @@ A two-container [tunnel stack](https://platform.claude.com/docs/en/agents-and-to
   </Step>
 
   <Step title="Call it from Claude">
-    In the Console, go to the [Sessions](https://platform.claude.com/sessions) page (`platform.claude.com/sessions`) and create a session. In the agent picker, select **Create new agent**, give the agent a name, and keep the prefilled model. Click **+ MCP Server**, select your tunnel, and set **Subdomain** to `echo` and **Path** to `mcp`. Then ask:
+    In the Console, go to the [Sessions](https://platform.claude.com/sessions) page (`platform.claude.com/sessions`) and click **Create session**. From the **Agent** dropdown menu, select **Create new agent**, give the agent a name, and keep the prefilled model. Under **MCP servers**, click **MCP server**, select your tunnel, and set **Subdomain** to `echo` and **Path** to `mcp`. The sample server requires no authentication, so ignore **Connect** or **Needs vault** on the card. Select an environment. If a warning says that the environment blocks MCP servers, see [Use the tunnel in an agent](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/console#use-the-tunnel-in-an-agent). Click **Create session**, then ask:
 
     > Use the hello tool to greet tunnel.
 

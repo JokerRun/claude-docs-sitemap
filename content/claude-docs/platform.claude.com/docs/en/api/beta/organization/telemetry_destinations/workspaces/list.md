@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations/workspaces/list
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: e7ebf3067659bcaead01c56ba375449f0fac694031353a8a05e9e5293e4f7d1b
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 7b1d39f2dda4fd5e0b775b7520035200ca46702b7590f4d25ee8780992536ffc
 ---
 
 ---
@@ -159,6 +159,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Returns
 

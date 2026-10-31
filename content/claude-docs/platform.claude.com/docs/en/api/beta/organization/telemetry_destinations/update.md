@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations/update
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 64396a726c5e50808011d2cf90b5ac329073568e999528b077b012419115a8d6
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 1b368c81a18661b52c83df8971a9bd70544a1f0eb5e138ba5a2688a8102f3713
 ---
 
 ---
@@ -149,6 +149,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Body parameters
 

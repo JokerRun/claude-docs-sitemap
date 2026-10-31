@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 68c2f9a119120a51d281bd8c230ec5f5aaaa073e7fa6175cc8b2f610448af98e
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 000a873039a2c98d5bc750a3ea8ab3739e298f77fbfee9526603607c22cc13c4
 ---
 
 ---
@@ -756,13 +756,7 @@ Untuk daftar fitur lengkap beserta ketersediaannya di Amazon Bedrock, lihat [Ikh
 
 ### Dukungan PDF di Bedrock
 
-Dukungan PDF tersedia di Bedrock melalui Converse API dan InvokeModel API. Untuk informasi terperinci tentang kemampuan dan batasan pemrosesan PDF, lihat [Dukungan PDF Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/pdf-support#amazon-bedrock-pdf-support).
-
-**Pertimbangan penting bagi pengguna Converse API:**
-
-* Analisis PDF visual (grafik, gambar, tata letak) memerlukan citations untuk diaktifkan
-* Tanpa citations, hanya ekstraksi teks dasar yang tersedia
-* Untuk kontrol penuh tanpa citations yang dipaksakan, gunakan InvokeModel API
+[Dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support) tersedia di Bedrock melalui Converse API maupun InvokeModel API.
 
 ### Pesan sistem di tengah percakapan di Bedrock
 

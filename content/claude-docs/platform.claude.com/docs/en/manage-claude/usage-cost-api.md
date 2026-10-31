@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/usage-cost-api
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 06f179ec849456a4619451d6aa8a7940a2df9dbd697d605cf4c726a6520309ad
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 27d83aaff8a71f2bbacc9ac9d7000e6c21a972ecc2e839d62f5d46b929375205
 ---
 
 ---
@@ -354,5 +354,5 @@ Use the Usage and Cost APIs to deliver a better experience for your users, manag
 * [Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) - Optimize costs with caching
 * [Batch processing](https://platform.claude.com/docs/en/build-with-claude/batch-processing) - 50 percent discount on batch requests
 * [Rate limits](https://platform.claude.com/docs/en/api/rate-limits) - Understand usage tiers
-* [Rate Limits API](https://platform.claude.com/docs/en/manage-claude/rate-limits-api) - Read your configured rate limits
+* [Rate Limits API](https://platform.claude.com/docs/en/manage-claude/rate-limits-api) - Read your configured rate limits and set workspace rate limits
 * [Data residency](https://platform.claude.com/docs/en/manage-claude/data-residency) - Control inference geography

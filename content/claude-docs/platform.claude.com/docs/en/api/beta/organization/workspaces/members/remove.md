@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/remove
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 2568ad9635284d64db30835fd44096304c46aa1566a7d6f548503b3577507cad
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: ee1c95688e962248ab950b45dae545e3a1a2465aaa3336c356aa6dd8ccb6eb39
 ---
 
 ---
@@ -66,7 +66,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members
 ```json
 {
   "type": "workspace_member_deleted",
-  "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+  "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
   "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
 }
 ```

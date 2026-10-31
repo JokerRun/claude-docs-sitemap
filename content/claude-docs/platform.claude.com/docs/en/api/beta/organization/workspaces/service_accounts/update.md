@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/update
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 3c6cad214ed81242ed71eabab805feabc3a9bba836d7a73d571a393149058ffa
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 7cb8d63b0f102fd9105c02142eb62e36bd0395d58fac686c2cf3415905898d10
 ---
 
 ---
@@ -156,6 +156,8 @@ rejected.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Body parameters
 

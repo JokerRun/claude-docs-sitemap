@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/settings/retrieve
-fetched_at: 2026-10-16T02:19:48.985501Z
-sha256: 39464e04bf2743264553b21946861b9d3f9f305dd612daa53ee70ef6417eaef2
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 6b045abb89a9ab45b5783104d7d0284f6ec26843a6e73c2a52e5f8f6cfe50725
 ---
 
 ---
@@ -126,6 +126,8 @@ unknown organizations and organizations outside the hierarchy return 404.
 
       - `"claude_academy_inference_enabled"`
 
+      - `"claude_ai_ccr_support_sharing_enabled"`
+
       - `"claude_ai_chat_sharing_enabled"`
 
       - `"claude_ai_feedback_collection_enabled"`
@@ -189,8 +191,6 @@ unknown organizations and organizations outside the hierarchy return 404.
       - `"connector_tools_default_always_allow"`
 
       - `"content_redaction_enabled"`
-
-      - `"cowork_trusted_devices_required"`
 
       - `"desktop_extension_allowlist_enabled"`
 

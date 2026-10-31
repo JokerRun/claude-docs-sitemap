@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 6edf5dc7f270cbbeba64d06e953dfc0b02631b1c46193b302553cbdae304ff5b
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 8ce2575d10a3ada4bf867c5bbc4ac2777a35de8586e30ed3e13bfd248b035ab9
 ---
 
 ---
@@ -151,6 +151,8 @@ matched as the JWT's `iss` claim and is not fetched.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Body parameters
 
@@ -558,6 +560,8 @@ Archived issuers are excluded unless `include_archived=true`.
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 ### Returns
 
 - `data: array of BetaFederationIssuer`
@@ -874,6 +878,8 @@ Retrieve a federation issuer by its ID (`fdis_...`).
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Returns
 
@@ -1194,6 +1200,8 @@ session.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Body parameters
 
@@ -1592,6 +1600,8 @@ issuer cannot be changed), or recreate them against another issuer.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Returns
 

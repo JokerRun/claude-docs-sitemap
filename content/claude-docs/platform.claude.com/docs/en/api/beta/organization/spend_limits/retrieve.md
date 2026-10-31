@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/retrieve
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: d69d019bf55a8925006edcece39850fa002d8cac7e9490f1ef96d2587c9381c9
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: ff037d7f70da864d26a45aa2862875be32133ff850e8ad32caf71ed18c73e505
 ---
 
 ---
@@ -176,7 +176,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limits/$SPEND_LIMIT_ID \
   "period": "daily",
   "scope": {
     "type": "user",
-    "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
+    "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu"
   },
   "type": "spend_limit",
   "updated_at": "2019-12-27T18:11:19.117Z"

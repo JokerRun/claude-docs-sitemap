@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-windows
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 45fde4643a645900aaca8d5f97e978140453ae2a568cd74cdb439c7595f177b1
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 79125a3b3ca7e2f069ec46a2b5403315669e80a133f2ab6cab8bf737923db2e6
 ---
 
 ---
@@ -21,13 +21,13 @@ The “context window” refers to all the text a language model can reference w
   For more on why long contexts degrade and how to engineer around it, see [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
 </Tip>
 
-The following diagram illustrates the standard context window behavior for API requests1:
+The following diagram illustrates the standard context window behavior for API requests<sup>1</sup>:
 
 <Frame>
   ![Diagram of turns accumulating in the context window until the conversation approaches the token limit](https://platform.claude.com/docs/images/context-window.svg)
 </Frame>
 
-*1 Chat interfaces such as [claude.ai](https://claude.ai/) can also manage the context window on a rolling “first in, first out” basis.*
+*<sup>1</sup> Chat interfaces such as [claude.ai](https://claude.ai/) can also manage the context window on a rolling “first in, first out” basis.*
 
 * **Progressive token accumulation:** As the conversation advances through turns, each user message and assistant response accumulates within the context window, and previous turns are preserved completely.
 

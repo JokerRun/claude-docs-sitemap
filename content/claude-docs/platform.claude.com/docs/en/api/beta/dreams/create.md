@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/create
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: d0e810fb75e5740f2d88ff8ab8a5c982f12b00694db245bfdf29edad60442dcc
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 010914339b6c820be2dd8c8b892007752dbbb189082012b3c06f1c418f28c664
 ---
 
 ---
@@ -141,6 +141,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

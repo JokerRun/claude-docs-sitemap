@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/retrieve
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 914ff751e9493ba26d53a5d8c3999b8745fa41dada0a2b9a2378a9fd3e529c32
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: bea0fca416edc3f77b1825f113459227bd5cd6325e1e80ce4e2b11e5401e27dd
 ---
 
 ---
@@ -141,6 +141,8 @@ Retrieve a specific environment by ID.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 8219fd37702aa05d7fe4769bf112b75059fd61a41390b423716e496430f069d9
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: cd0bb42f1ac0a59eb53c2da669e9c6eb4230d0513646d3eab292e3b53c72d341
 ---
 
 ---
@@ -10,7 +10,7 @@ title: Mendefinisikan alat
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools
 description: Tentukan skema alat, tulis deskripsi yang efektif, dan kendalikan kapan Claude memanggil alat Anda.
 featureMetadata:
-  status: ga
+  status: stable
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -30,19 +30,19 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
-    Claude Platform on AWS: ga
-    Claude Models on Google Cloud (Anthropic managed): ga
-    Amazon Bedrock: ga
-    Amazon Bedrock (InvokeModel): ga
-    Claude Models on Google Cloud (Google managed): ga
-    Microsoft Foundry: ga
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Claude Models on Google Cloud (Anthropic managed): stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (InvokeModel): stable
+    Claude Models on Google Cloud (Google managed): stable
+    Microsoft Foundry: stable
 ---
 
-**API support**: Usage differs by product.
+**Dukungan API**: Penggunaan berbeda menurut produk.
 
-* **Messages API**: Define them in the request’s `tools`, and send the results as `tool_result` blocks.
-* **Managed Agents**: Declare them on the agent with `type` `"custom"`; calls arrive as `agent.custom_tool_use` events.
+* **Messages API**: Definisikan dalam `tools` permintaan, dan kirim hasilnya sebagai blok `tool_result`.
+* **Managed Agents**: Deklarasikan pada agen dengan `type` `"custom"`; panggilan tiba sebagai event `agent.custom_tool_use`.
 
 ## Prasyarat
 
@@ -947,26 +947,26 @@ Penting untuk dicatat bahwa Claude mungkin menggunakan berbagai susunan kalimat 
   </Card>
 </CardGroup>
 
-## Availability
+## Ketersediaan
 
-Custom tools are available on every model.
+Alat kustom tersedia di semua model.
 
-### API support
+### Dukungan API
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Availability: Available
-* Usage: Define them in the request’s `tools`. Claude’s response contains `tool_use` blocks, and you send the results as `tool_result` blocks in the next request.
+* Ketersediaan: Tersedia
+* Penggunaan: Definisikan dalam `tools` permintaan. Respons Claude berisi blok `tool_use`, dan Anda mengirim hasilnya sebagai blok `tool_result` dalam permintaan berikutnya.
 
-| Status    | Cloud platforms         |
-| --------- | ----------------------- |
-| Available | All supported platforms |
+| Status   | Platform cloud               |
+| -------- | ---------------------------- |
+| Tersedia | Semua platform yang didukung |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Availability: Available
-* Usage: Declare them on the agent with `type` `"custom"`. Calls arrive as `agent.custom_tool_use` events, and you reply with `user.custom_tool_result` events.
+* Ketersediaan: Tersedia
+* Penggunaan: Deklarasikan pada agen dengan `type` `"custom"`. Panggilan tiba sebagai event `agent.custom_tool_use`, dan Anda membalas dengan event `user.custom_tool_result`.
 
-| Status    | Cloud platforms                                                                                                    |
-| --------- | ------------------------------------------------------------------------------------------------------------------ |
-| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+| Status   | Platform cloud                                                                                                     |
+| -------- | ------------------------------------------------------------------------------------------------------------------ |
+| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |

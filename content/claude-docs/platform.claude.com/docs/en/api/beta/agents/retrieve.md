@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/retrieve
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: c03f3c281e6f104a0c351182d2bd0d1aaba882f61532c3297d27e5541155518a
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: cd6a55026044e603d020a68488d63c68ee5111741c153f09f65460db0091a373
 ---
 
 ---
@@ -151,6 +151,8 @@ Get Agent
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

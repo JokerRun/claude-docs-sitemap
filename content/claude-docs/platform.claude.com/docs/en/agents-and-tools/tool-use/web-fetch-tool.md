@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: c024d320202b7642c7293e0b064480469fb52a76a144361e6b2a85c8d7973254
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 3ef49d267860e398b7a76048c587cf9c99461839b8a6d52992cf4d90d254b20c
 ---
 
 ---
@@ -10,7 +10,7 @@ title: Web fetch tool
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
 description: Fetch and read content from specific URLs to augment Claude's context with live web content.
 featureMetadata:
-  status: ga
+  status: stable
   zdr:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Fetched web content returned in the API response. Dynamic filtering for web fetch is not eligible for ZDR or HIPAA. Website publishers might retain request data (such as fetched URLs and request metadata) according to their own policies.
@@ -33,11 +33,11 @@ featureMetadata:
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
-    Claude API: ga
-    Claude Platform on AWS: ga
-    Claude Models on Google Cloud (Anthropic managed): ga
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Claude Models on Google Cloud (Anthropic managed): stable
     Microsoft Foundry:
-      availability: ga
+      availability: stable
       note: "Deployments hosted on Azure support only `web_fetch_20250910`: no dynamic filtering, response inclusion or cache bypass."
 ---
 
@@ -502,11 +502,9 @@ On [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/ov
 
 ### Content limits
 
-The `max_content_tokens` parameter limits the amount of content included in the context. If the fetched content exceeds this limit, the tool truncates it. This helps control token usage when fetching large documents. The limit applies to text content, not to binary content such as PDFs.
+The `max_content_tokens` parameter limits the amount of content included in the context. If the fetched content exceeds this limit, the tool truncates it. This helps control token usage when fetching large documents. The limit is approximate: the actual number of input tokens used can vary by a small amount. The limit applies to text content, not to binary content such as PDFs.
 
-<Note>
-  The `max_content_tokens` parameter limit is approximate. The actual number of input tokens used can vary by a small amount.
-</Note>
+If a fetched PDF would make the request exceed the [PDF page or size limits](https://platform.claude.com/docs/en/build-with-claude/pdf-support#check-pdf-requirements), the `web_fetch_tool_result` is an error with the `content_too_large` error code. PDFs and images already in the conversation count toward those limits, so removing them can let the fetch succeed.
 
 On Claude Managed Agents, the `web_fetch` entry of the agent toolset also accepts `max_content_tokens`; see the [web tool settings](https://platform.claude.com/docs/en/managed-agents/tools-web-restrictions#settings).
 
@@ -691,6 +689,7 @@ These are the possible error codes:
 * `url_not_accessible`: Failed to fetch content (HTTP error)
 * `too_many_requests`: Rate limit exceeded
 * `unsupported_content_type`: Content type not supported (only text, HTML, and PDF)
+* `content_too_large`: Fetched PDF would make the request exceed the PDF page or size limits (see [Content limits](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool#content-limits))
 * `max_uses_exceeded`: Maximum web fetch tool uses exceeded
 * `unavailable`: An internal error occurred
 

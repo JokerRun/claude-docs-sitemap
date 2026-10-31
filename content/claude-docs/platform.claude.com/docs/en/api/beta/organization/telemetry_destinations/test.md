@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations/test
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 45a69f0f0a34dd2aa070ae62a693da9a8c724d7d2920e829787d8ba9d5d5dcbc
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 28c7a9adbc14450575de517bc352ed622a1f4a83135686f8adbef78481f4a8ee
 ---
 
 ---
@@ -143,6 +143,8 @@ Send one test span, named `anthropic.test`, to the destination with its register
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Returns
 

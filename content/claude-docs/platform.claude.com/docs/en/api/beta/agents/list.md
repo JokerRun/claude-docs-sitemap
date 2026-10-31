@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/list
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: a0fd2665b83af0dfcfa42807e32a06d3bd25af5aaf4fa7cc1df4416a9fcc21a3
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 4e458e155a9207e006dd202bdbe33553101c452330192717606f45f2662c0cec
 ---
 
 ---
@@ -165,6 +165,8 @@ List Agents
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 - `"anthropic-workspace-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/troubleshooting
-fetched_at: 2026-10-26T02:24:48.652012Z
-sha256: 1abf43b6e3225841efdc765eac79cc911440ec3e231442d8b2dd0cba18d6357c
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 643893cf568951d8550c490c6154ba4f9a83d38e772acba6e4bcd4a63667c446
 ---
 
 > ## Documentation Index
@@ -309,17 +309,17 @@ You added or updated a marketplace, and it failed with `Git clone timed out afte
 
 Cloning a marketplace, and re-cloning one to update it, gets 120 seconds by default. For a large repository or a slow connection, raise the limit. The value is in milliseconds:
 
-**Bash or Zsh**
+> [tab] Bash or Zsh
+>
+> ```bash theme={null}
+> export CLAUDE_CODE_PLUGIN_GIT_TIMEOUT_MS=300000
+> ```
 
-```bash theme={null}
-export CLAUDE_CODE_PLUGIN_GIT_TIMEOUT_MS=300000
-```
-
-**PowerShell**
-
-```powershell theme={null}
-$env:CLAUDE_CODE_PLUGIN_GIT_TIMEOUT_MS = "300000"
-```
+> [tab] PowerShell
+>
+> ```powershell theme={null}
+> $env:CLAUDE_CODE_PLUGIN_GIT_TIMEOUT_MS = "300000"
+> ```
 
 Then retry in the same shell.
 
@@ -335,17 +335,17 @@ Each session, for a marketplace with [auto-update on](https://code.claude.com/do
 
 Set this variable to skip the re-clone attempt and keep using the existing checkout when the check can't reach the host:
 
-**Bash or Zsh**
+> [tab] Bash or Zsh
+>
+> ```bash theme={null}
+> export CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE=1
+> ```
 
-```bash theme={null}
-export CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE=1
-```
-
-**PowerShell**
-
-```powershell theme={null}
-$env:CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE = "1"
-```
+> [tab] PowerShell
+>
+> ```powershell theme={null}
+> $env:CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE = "1"
+> ```
 
 With the variable set, Claude Code skips the re-clone only for a checkout that already contains `.claude-plugin/marketplace.json`. A marketplace that was never cloned or whose clone stopped partway still gets the clone attempt, so add it once while online.
 

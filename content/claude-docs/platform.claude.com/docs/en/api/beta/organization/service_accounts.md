@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 5af124b1b876ef4057d1b1fcfeaee379983a41a0197f72842a3441c0472ff42f
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 2455be7b770e4fa7dd21cc47be34f8cf004c88e1d5e4ca9b9a2bc4771621e4fb
 ---
 
 ---
@@ -149,6 +149,8 @@ accounts.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Body parameters
 
@@ -417,6 +419,8 @@ archived service accounts.
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 ### Returns
 
 - `data: array of BetaServiceAccount`
@@ -645,6 +649,8 @@ Retrieve a service account by its ID (`svac_...`).
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Returns
 
@@ -875,6 +881,8 @@ interactive credential (a user OAuth token or a Console session).
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Body parameters
 
@@ -1123,6 +1131,8 @@ those rules first or change their target to another service account.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ### Returns
 
@@ -1462,6 +1472,8 @@ rejected.
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 #### Body parameters
 
 - `workspace_id: string`
@@ -1706,6 +1718,8 @@ page to recover.
 
   - `"analytics-usage-cost-2026-08-24"`
 
+  - `"experimental-claude-tag-2026-10-21"`
+
 #### Returns
 
 - `data: array of BetaServiceAccountWorkspaceMember`
@@ -1921,6 +1935,8 @@ to the implicit `workspace_user` membership. Archived workspaces return
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 #### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/usage-cost-api
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 98d9de4dff21bee0baa3a8d51870995980f348022b65d93d6f4ec999ea3a36ef
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 0eabb988cdf081d2fd8737ec862bb28eebfc203e67d0c8ee8a77bd59c0ed10db
 ---
 
 ---
@@ -349,10 +349,10 @@ Gunakan Usage API dan Cost API untuk memberikan pengalaman yang lebih baik bagi 
 
 * [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api)
 * [Referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization)
-* [Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api) - API analitik dan jenis kunci mana yang dibutuhkan organisasi Anda
+* [Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api) - Analytics API dan jenis kunci mana yang dibutuhkan organisasi Anda
 * [Harga](https://platform.claude.com/docs/id/about-claude/pricing)
 * [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) - Optimalkan biaya dengan caching
-* [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing) - Diskon 50% untuk permintaan batch
-* [Batas laju](https://platform.claude.com/docs/id/api/rate-limits) - Pahami tingkat penggunaan
-* [Rate Limits API](https://platform.claude.com/docs/id/manage-claude/rate-limits-api) - Baca batas laju yang telah Anda konfigurasi
-* [Residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency) - Kontrol geografi inferensi
+* [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing) - Diskon 50 persen untuk permintaan batch
+* [Batas laju](https://platform.claude.com/docs/id/api/rate-limits) - Pahami tingkatan penggunaan
+* [Rate Limits API](https://platform.claude.com/docs/id/manage-claude/rate-limits-api) - Baca batas laju yang telah Anda konfigurasikan dan tetapkan batas laju workspace
+* [Residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency) - Kendalikan geografi inferensi

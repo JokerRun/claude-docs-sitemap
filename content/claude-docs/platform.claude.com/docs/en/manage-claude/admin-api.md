@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/admin-api
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 96728210371422b629e53c76520cb8ae89306a4ad4c13ab2f0d198f4c131108d
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: aabf9f15cfb3db9a9acc98bdafe21e356b2fcb0b713ba209b0c7b76529a56a20
 ---
 
 ---
@@ -1732,7 +1732,7 @@ Monitor developer productivity and Claude Code adoption with the [Claude Code An
 
 ## Rate limits
 
-Read the rate limits configured for your organization and its workspaces with the [Rate Limits API](https://platform.claude.com/docs/en/manage-claude/rate-limits-api).
+Read the rate limits configured for your organization and its workspaces, and set workspace rate limits, with the [Rate Limits API](https://platform.claude.com/docs/en/manage-claude/rate-limits-api).
 
 ## Compliance API
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/users/remove
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 91368094b46feced372a1dc7dfd62bd4833a6d9a68b1bb81daf680e68d38c6a4
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: b35780b14e8dc468e4e932a4774da2d679cd3c4829d30a85d26f93ac9f1162f5
 ---
 
 ---
@@ -57,7 +57,7 @@ curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
 
 ```json
 {
-  "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+  "id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
   "type": "user_deleted"
 }
 ```

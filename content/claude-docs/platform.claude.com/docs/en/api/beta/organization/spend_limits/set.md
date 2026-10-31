@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/set
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: cec3288324e3d390e95ca048f493c6a874a95605665a7ff1579eed05c02ec12b
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 961ebf69daf20a6de8fdccf0adb58b5022f2098d962dbf33b2e330a85cc2c676
 ---
 
 ---
@@ -145,6 +145,8 @@ Anthropic account team.
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
 
 ## Body parameters
 
@@ -335,7 +337,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limits \
           "amount": "50000",
           "scope": {
             "type": "user",
-            "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
+            "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu"
           },
           "period": "monthly"
         }'
@@ -353,7 +355,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limits \
   "period": "daily",
   "scope": {
     "type": "user",
-    "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
+    "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu"
   },
   "type": "spend_limit",
   "updated_at": "2019-12-27T18:11:19.117Z"

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 9252b8c90f49464b1b9bc8b6180348fccb673e65fcf584b84e0af2960f9e49a8
+fetched_at: 2026-10-31T02:12:10.366891Z
+sha256: 52bb64649627caa67c18fa28e928c6d6ad674ce3173b305a4690c2b6e0a88b02
 ---
 
 ---
@@ -1086,7 +1086,7 @@ Untuk menggunakan klien HTTP yang sepenuhnya kustom:
 
 Java SDK mendukung platform berikut melalui dependensi terpisah yang menyediakan implementasi `Backend` khusus platform:
 
-* **Agent Platform:** `com.anthropic:anthropic-java-vertex`: Gunakan `VertexBackend.builder()` atau `VertexBackend.fromEnv()`. `fromEnv()` membaca `CLOUD_ML_REGION` dan `ANTHROPIC_VERTEX_PROJECT_ID` serta menggunakan Application Default Credentials.
+* **Claude Models on Google Cloud (Google managed):** `com.anthropic:anthropic-java-vertex`: Gunakan `VertexBackend.builder()` atau `VertexBackend.fromEnv()`. `fromEnv()` membaca `CLOUD_ML_REGION` dan `ANTHROPIC_VERTEX_PROJECT_ID` serta menggunakan Application Default Credentials.
 * **Bedrock:** `com.anthropic:anthropic-java-bedrock`: Gunakan `BedrockMantleBackend.fromEnv()` atau `BedrockMantleBackend.builder()` untuk endpoint Bedrock Messages-API, atau `BedrockBackend.fromEnv()` / `BedrockBackend.builder()` (jalur `bedrock-runtime`).
 * **Claude Platform on AWS:** `com.anthropic:anthropic-java-aws`: Gunakan `AwsBackend.fromEnv()` (membaca `ANTHROPIC_AWS_WORKSPACE_ID` serta region/rantai kredensial default AWS) atau `AwsBackend.builder()`. Tersedia dalam beta.
 * **Foundry:** `com.anthropic:anthropic-java-foundry`: Gunakan `FoundryBackend.fromEnv()` atau `FoundryBackend.builder()`.
