@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 34cdae9fb70e93f7fd144efad9e4ec503e6ea0b80f707ea27a9f88217e832c40
+fetched_at: 2026-11-02T02:14:08.667882Z
+sha256: 652872f26cfd711c4f92351b1ef8338d3f0b6140024c246c42edcbcbdfea172d
 ---
 
 > ## Documentation Index
@@ -33,6 +33,7 @@ Claude Code runs on the following platforms and configurations:
 ### Additional dependencies
 
 * **ripgrep**: usually included with Claude Code. If search fails, see [search troubleshooting](https://code.claude.com/docs/en/troubleshooting.md#search-and-discovery-issues).
+* **Git**: optional. If git is installed, [`claude plugin eval`](https://code.claude.com/docs/en/plugin-evals#requirements) requires 2.31 or later. [Uploads of a local repository to a cloud session](https://code.claude.com/docs/en/claude-code-on-the-web.md#send-local-repositories-without-github) from macOS, Linux, or WSL need git 2.31 or later. Run `git --version` to see your version.
 
 ## Install Claude Code
 
@@ -46,7 +47,7 @@ To install Claude Code, open a terminal and run the command for your system. If 
 >
 > **macOS, Linux, WSL:**
 >
-> ```bash theme={null}
+> ```bash theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
 > curl -fsSL https://claude.ai/install.sh | bash
 > ```
 >
@@ -54,13 +55,13 @@ To install Claude Code, open a terminal and run the command for your system. If 
 >
 > **Windows PowerShell:**
 >
-> ```powershell theme={null}
+> ```powershell theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
 > irm https://claude.ai/install.ps1 | iex
 > ```
 >
 > **Windows CMD:**
 >
-> ```batch theme={null}
+> ```batch theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
 > curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
 > ```
 >
@@ -78,7 +79,7 @@ To install Claude Code, open a terminal and run the command for your system. If 
 
 > [tab] Homebrew
 >
-> ```bash theme={null}
+> ```bash theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
 > brew install --cask claude-code
 > ```
 >
@@ -90,7 +91,7 @@ To install Claude Code, open a terminal and run the command for your system. If 
 
 > [tab] WinGet
 >
-> ```powershell theme={null}
+> ```powershell theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
 > winget install Anthropic.ClaudeCode
 > ```
 >
