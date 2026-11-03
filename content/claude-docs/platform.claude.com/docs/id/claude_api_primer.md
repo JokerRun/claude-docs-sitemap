@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/claude_api_primer
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 5bea33ff4335119ab98978b5b78e27b7469e19f12bb6f86e1ac300e2459c9479
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 2cdae8d84039a8f11dfc6d1480b7158ef1d21a1acac8dc6d385f212b08a58929
 ---
 
 ---
@@ -75,6 +75,8 @@ Previous Haiku model: Claude Haiku 4.5: claude-haiku-4-5-20251001
 ### Beberapa giliran percakapan
 
 Messages API bersifat “stateless” (tanpa status), yang berarti Anda selalu mengirimkan seluruh riwayat percakapan ke API. Anda dapat menggunakan pola ini untuk membangun percakapan dari waktu ke waktu. Giliran percakapan sebelumnya tidak harus benar-benar berasal dari Claude. Anda dapat menggunakan pesan `assistant` sintetis.
+
+Dengan [thread pesan](https://platform.claude.com/docs/id/build-with-claude/message-threads), yang masih dalam tahap beta, API dapat menyimpan percakapan, sehingga setiap permintaan berikutnya hanya mengirimkan pesan-pesan baru. Thread kedaluwarsa 5 menit setelah permintaan terakhirnya dan dihapus paling lambat 1 jam setelah penggunaan terakhirnya.
 
 <CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
@@ -152,8 +154,9 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Tipe sumber `base64` d
 
 <CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
-  # Opsi 1: Gambar yang dienkode Base64 (prefiks @ otomatis mengenkode file biner sebagai base64)
-  curl -sSo vision-example.jpg https://platform.claude.com/docs/images/vision-example.jpg
+  # Opsi 1: Gambar yang dienkode base64 (prefiks @ otomatis mengenkode file biner sebagai base64)
+  curl -sSo vision-example.jpg \
+    https://platform.claude.com/docs/images/vision-example.jpg
 
   ant messages create <<'YAML'
   model: claude-opus-5-5
@@ -538,7 +541,7 @@ Alat klien ditentukan dalam parameter tingkat atas `tools` dari permintaan API. 
 * Apa arti setiap parameter dan bagaimana pengaruhnya terhadap perilaku alat
 * Peringatan atau batasan penting apa pun
 
-**Pertimbangkan untuk menggunakan `input_examples` untuk alat yang kompleks.** Untuk alat dengan objek bersarang, parameter opsional, atau input yang sensitif terhadap format, Anda dapat memberikan contoh konkret menggunakan field `input_examples` (beta). Ini membantu Claude memahami pola input yang diharapkan. Lihat [Memberikan contoh penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#providing-tool-use-examples) untuk detailnya.
+**Pertimbangkan untuk menggunakan `input_examples` untuk alat yang kompleks.** Untuk alat dengan objek bersarang, parameter opsional, atau input yang sensitif terhadap format, Anda dapat memberikan contoh konkret menggunakan field `input_examples` (beta). Ini menunjukkan kepada Claude pola input yang diharapkan. Lihat [Memberikan contoh penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#providing-tool-use-examples) untuk detailnya.
 
 Contoh deskripsi alat yang baik:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/sonnet-5-5/overview
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 97d424f09d73bd096f7282d26d2da392f343ca4865d541226dc4c4e606979c2d
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 464960f9ab69b638751ba5ffb17c0b5dd0d0f95b99c238d76fa777769262c28c
 ---
 
 ---
@@ -23,12 +23,12 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $2 / MTok
 
 ## Overview
 
-Claude Sonnet 5.5 offers the best combination of speed and intelligence. Five breaking changes affect code already running on Claude Sonnet 5:
+Claude Sonnet 5.5 offers the best combination of speed and intelligence. Five breaking changes can affect code already running on Claude Sonnet 5:
 
 * [Turn off up-front thinking with `between_tools`](https://platform.claude.com/docs/en/models/sonnet-5-5/whats-new-sonnet-5-5#turn-off-up-front-thinking).
 * [Forced tool use returns an error](https://platform.claude.com/docs/en/models/sonnet-5-5/whats-new-sonnet-5-5#forced-tool-use-is-not-supported).
 * [Thinking blocks are tied to the model and the conversation](https://platform.claude.com/docs/en/models/sonnet-5-5/whats-new-sonnet-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them).
-* On the Claude API and Claude Models on Google Cloud (Google managed), [the earlier `computer_20251124` computer use tool is not accepted](https://platform.claude.com/docs/en/models/sonnet-5-5/whats-new-sonnet-5-5#computer-20251124-is-not-supported).
+* [Some computer use tool versions are not supported](https://platform.claude.com/docs/en/models/sonnet-5-5/whats-new-sonnet-5-5#computer-20251124-is-not-supported).
 * [The advisor tool rejects four models as advisors](https://platform.claude.com/docs/en/models/sonnet-5-5/whats-new-sonnet-5-5#advisor-tool-pairings): Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, and Claude Haiku 5.5.
 
 One more change alters the response shape without failing any request: [text between tool calls comes back in `thinking` blocks](https://platform.claude.com/docs/en/models/sonnet-5-5/whats-new-sonnet-5-5#text-between-tool-calls). An application that streams that text to its users goes quiet between tool calls until it sets a `display` value that returns the text, or turns off up-front thinking with `between_tools`.

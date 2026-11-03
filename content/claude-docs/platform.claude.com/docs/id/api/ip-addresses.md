@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/ip-addresses
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: e17d226455ecf0569135e127d0032b01fad3d519b30b6429b1bfe9498380fbb5
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 6a18749be68040873787a9bc8e850a0db0f5f9fd81df10b020f5315b8caf1d3b
 ---
 
 ---
@@ -23,6 +23,8 @@ Ini adalah alamat IP tempat layanan Anthropic menerima koneksi masuk.
 
 `160.79.104.0/23`
 
+`153.61.224.0/22`
+
 ### IPv6
 
 `2607:6bc0::/48`
@@ -34,6 +36,8 @@ Ini adalah alamat IP stabil yang digunakan Anthropic untuk permintaan keluar (mi
 ### IPv4
 
 `160.79.104.0/21`
+
+`153.61.208.0/20`
 
 ### Alamat IP yang sudah tidak digunakan
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: e3d76358cd199fbba373ba14fa55a7c8ea91378d170b8dfffe87eca858a87954
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: f844dfc4053d71f651fdd6d7042ffb016df6cf076011c9822245d6c49e245a16
 ---
 
 ---
@@ -182,20 +182,20 @@ Instal paket yang menyediakan klien tersebut:
 
   <Tab title="Java">
     ```kotlin Gradle
-    implementation("com.anthropic:anthropic-java:3.3.0")
-    implementation("com.anthropic:anthropic-java-google-cloud:3.3.0")
+    implementation("com.anthropic:anthropic-java:3.4.0")
+    implementation("com.anthropic:anthropic-java-google-cloud:3.4.0")
     ```
 
     ```xml Maven
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java</artifactId>
-      <version>3.3.0</version>
+      <version>3.4.0</version>
     </dependency>
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java-google-cloud</artifactId>
-      <version>3.3.0</version>
+      <version>3.4.0</version>
     </dependency>
     ```
   </Tab>
@@ -511,26 +511,28 @@ Fitur-fitur berikut berfungsi di Claude Models on Google Cloud (Anthropic manage
 
 * **Fast mode:** [Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) untuk Claude Opus 5.5.
 
-* **Fitur beta:** Jika sebuah beta dibatasi untuk organisasi tertentu di Claude API, organisasi Anthropic yang dibuat oleh penyiapan memerlukan akses yang sama.
+* **Fitur beta:** Jika suatu beta terbatas untuk organisasi tertentu di Claude API, organisasi Anthropic yang dibuat oleh proses penyiapan memerlukan akses yang sama.
 
-* **Alat:** [“Tool use” (penggunaan alat)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk:
+* **Alat:** [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk:
 
-  * Web search
-  * Web fetch
-  * Code execution
-  * Memory tool
-  * Advisor tool
-  * MCP connector
+  * Pencarian web
+  * Pengambilan web
+  * Eksekusi kode
+  * Alat memori
+  * Alat advisor
+  * Konektor MCP
 
-* **Skill dan file:** [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview) dan [Files API](https://platform.claude.com/docs/id/build-with-claude/files).
+* **Skills dan file:** [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview) dan [Files API](https://platform.claude.com/docs/id/build-with-claude/files).
 
 * **Kemampuan model:**
 
-  * [“Prompt caching” (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
-  * [“Extended thinking” (pemikiran diperpanjang)](https://platform.claude.com/docs/id/build-with-claude/thinking)
+  * [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
+  * [Pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/thinking)
+  * [Pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking#configuring-thinking)
+  * [Effort](https://platform.claude.com/docs/id/build-with-claude/effort)
   * [Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback)
   * [Streaming](https://platform.claude.com/docs/id/build-with-claude/streaming)
-  * [Structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
+  * [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
   * [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting)
 
 * **Batch dan model:** [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing) dan Models API.

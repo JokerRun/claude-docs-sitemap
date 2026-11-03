@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: c1727cd44a1fc9f434fb1886919fa086c9a471544ed55404a90da28a57693cdc
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: c025c9706a3877f7d0458b305c647fcfa00ff1d4deb83fb0492ea044778ab93d
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
 description: Pelajari arti setiap nilai stop_reason dan cara menangani pemotongan, penggunaan alat, giliran yang dijeda, dan penolakan dalam aplikasi Anda.
 ---
 
-Setiap respons Messages API menyertakan field `stop_reason` yang memberi tahu Anda mengapa Claude berhenti menghasilkan output. Periksa field ini untuk memutuskan apakah akan menggunakan respons apa adanya, melanjutkan percakapan, mencoba ulang, atau beralih (fallback) ke model lain.
+Setiap respons Messages API menyertakan field [`stop_reason`](https://platform.claude.com/docs/id/api/messages/create#message.stop_reason) yang memberi tahu Anda mengapa Claude berhenti menghasilkan output. Periksa field ini untuk memutuskan apakah akan menggunakan respons apa adanya, melanjutkan percakapan, mencoba ulang, atau beralih (fallback) ke model lain.
 
 Untuk skema respons lengkap, lihat [referensi Messages API](https://platform.claude.com/docs/id/api/messages/create).
 
@@ -741,7 +741,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
 
 ### max\_tokens
 
-Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permintaan Anda.
+Claude berhenti karena mencapai batas [`max_tokens`](https://platform.claude.com/docs/id/api/messages/create#create.max_tokens) yang ditentukan dalam permintaan Anda.
 
 <CodeGroup>
   ```bash cURL
@@ -1053,7 +1053,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
 
 ### stop\_sequence
 
-Claude menemukan salah satu stop sequence kustom Anda.
+Claude menemukan salah satu [stop sequence](https://platform.claude.com/docs/id/api/messages/create#create.stop_sequences) kustom Anda.
 
 <CodeGroup>
   ```bash cURL
@@ -1904,7 +1904,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
   Jika Anda sering menemukan alasan berhenti `refusal` saat menggunakan Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)) atau Claude Opus 4.1 (yang terakhir [telah dipensiunkan, kecuali di Bedrock dan Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Anda dapat mencoba memperbarui panggilan API Anda untuk menggunakan Haiku 4.5 (`claude-haiku-4-5-20251001`), yang memiliki batasan penggunaan berbeda. Pelajari lebih lanjut tentang [memahami filter keamanan API Sonnet 4.5](https://support.claude.com/en/articles/12449294-understanding-sonnet-4-5-s-api-safety-filters).
 </Tip>
 
-Pada penolakan, objek `stop_details` mengidentifikasi kategori kebijakan yang memicunya. Kategori-kategori tersebut dan bentuk lengkap respons penolakan dibahas dalam [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response). `stop_details` bernilai `null` untuk semua alasan berhenti selain `refusal`.
+Pada penolakan, objek [`stop_details`](https://platform.claude.com/docs/id/api/messages/create#message.stop_details) mengidentifikasi kategori kebijakan yang memicunya. Kategori-kategori tersebut dan bentuk lengkap respons penolakan dibahas dalam [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response). `stop_details` bernilai `null` untuk semua alasan berhenti selain `refusal`.
 
 Permintaan yang ditolak pada Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, atau Claude Haiku 5.5 biasanya dapat dilayani dengan mencoba ulang pada model Claude lain. [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) menunjukkan cara menyiapkan percobaan ulang tersebut, di sisi server atau di klien Anda. Claude Haiku 5.5 tidak memiliki fallback sisi server, jadi siapkan percobaan ulangnya [di klien Anda](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback). Jika Anda membangun sendiri percobaan ulang dari Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, atau Claude Sonnet 5.5, [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) menjelaskan cara menghindari membayar biaya cache prompt dua kali.
 

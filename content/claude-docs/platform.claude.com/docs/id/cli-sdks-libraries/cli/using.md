@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 2c09ae488ab185cd6fa5035e61711e091f5fd3ffc4007900012a47b21e762fc5
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 2d05c693eda16bc503ec65745fcf46f02835d5e5eb9e62b8640ff650ec9f9dda
 ---
 
 ---
@@ -157,15 +157,16 @@ Flag yang menerima path file, seperti `--file` pada perintah upload, menerima pa
 ant files upload --file ./report.pdf
 ```
 
-Untuk menyisipkan isi file ke dalam field bernilai string, beri prefiks `@` pada path:
+Untuk menyisipkan isi file ke dalam field bernilai string di dalam dokumen yang di-pipe melalui stdin, beri prefiks `@` pada path dan bungkus path tersebut dengan tanda kutip:
 
 ```bash
 ant beta:agents create \
-  --name "Researcher" --model '{id: claude-opus-5-5}' \
-  --system @./prompts/researcher.txt
+  --name "Researcher" --model '{id: claude-opus-5-5}' <<'YAML'
+system: "@./prompts/researcher.txt"
+YAML
 ```
 
-Di dalam nilai flag terstruktur, bungkus path dengan tanda kutip. Untuk mengirim PDF ke Messages API:
+Nilai flag terstruktur bekerja dengan cara yang sama. Untuk mengirim PDF ke Messages API:
 
 ```bash
 ant messages create \

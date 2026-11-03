@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 9d1afffec02dc187c659265525c0c7b354b6deb2753bde279e90cb6b4f106e15
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 8e2c73ed7209386a56c19dcd278b0ecc8722812687d55d4bcf8a62ad8ca8b449
 ---
 
 ---
@@ -18,6 +18,10 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
   Untuk pembaruan Claude Code, lihat [CHANGELOG.md lengkap](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) di repositori `claude-code`.
 </Tip>
+
+### 2 November 2026
+
+* Percakapan panjang dan loop agen pada Messages API kini dapat mengirim permintaan yang lebih kecil dan mendapatkan waktu hingga token pertama yang lebih rendah dengan [thread pesan](https://platform.claude.com/docs/id/build-with-claude/message-threads), dalam versi beta dengan header beta `message-threads-2026-08-12`. API menyimpan percakapan di server, sehingga setiap permintaan berikutnya hanya mengirim pesan baru. Thread kedaluwarsa 5 menit setelah permintaan terakhirnya dan dihapus paling lambat 1 jam setelah penggunaan terakhirnya. Thread pesan tersedia di Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), Claude Models on Google Cloud (Anthropic managed), dan [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry).
 
 ### 30 Oktober 2026
 
@@ -167,8 +171,7 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 ### 27 Agustus 2026
 
 * Di Python SDK 1.2.0, TypeScript SDK 0.122.0, Go SDK 1.68.0, Java SDK 2.59.0, Ruby SDK 1.67.0, dan C# SDK 12.44.0, `client.beta.files` dan `client.beta.skills` tidak lagi mengirim beta header `files-api-2025-04-14` dan `skills-2025-10-02` dan mengembalikan bentuk yang sama seperti `client.files` dan `client.skills`. Dengan perubahan ini, `client.beta.skills.delete()` menghapus Skill beserta semua versinya, dan tipe Messages beta `BetaSkill` (referensi Skill container) diganti namanya menjadi `BetaContainerSkill`. Permintaan yang masih mengirim beta header tetap menerima bentuk beta. Lihat [Migrasi dari `files-api-2025-04-14`](https://platform.claude.com/docs/id/build-with-claude/files#migrate-from-files-api-2025-04-14) dan [Migrasi dari `skills-2025-10-02`](https://platform.claude.com/docs/id/build-with-claude/skills-guide#migrate-from-skills-2025-10-02).
-
-- Anda kini dapat membuat **kunci personal** dan **kunci service account** di Claude Console. Kunci tersebut bertindak sebagai Anda atau sebagai [service account](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#service-accounts), dengan izin yang sama, dan berhenti berfungsi saat akun yang ditautkan dihapus dari organisasi. Hal ini memudahkan admin organisasi melacak penggunaan untuk setiap akun, dan memastikan penggunaan kunci sah. Kunci API ini dapat dibatasi ke workspace tertentu atau [berfungsi pada endpoint admin dan di seluruh workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) yang dapat diakses oleh akun tersebut. Kunci API workspace tetap didukung sebagai opsi lama. Lihat [Kunci API di Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication#api-keys) untuk informasi lebih lanjut.
+* Anda kini dapat membuat **kunci personal** dan **kunci service account** di Claude Console. Kunci tersebut bertindak sebagai Anda atau sebagai [service account](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#service-accounts), dengan izin yang sama, dan berhenti berfungsi saat akun yang ditautkan dihapus dari organisasi. Hal ini memudahkan admin organisasi melacak penggunaan untuk setiap akun, dan memastikan penggunaan kunci sah. Kunci API ini dapat dibatasi ke workspace tertentu atau [berfungsi pada endpoint admin dan di seluruh workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) yang dapat diakses oleh akun tersebut. Kunci API workspace tetap didukung sebagai opsi lama. Lihat [Kunci API di Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication#api-keys) untuk informasi lebih lanjut.
 
 ### 26 Agustus 2026
 

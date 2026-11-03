@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/overview
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 10a016a7a96fb3afec5d2eeea38c8f6cad4de015a9aff6e15f804295af8d05c9
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: a8e9e7b9fde7447b3ea416765fe3989e248b0b7c5be840699eea61efa11c835f
 ---
 
 ---
@@ -96,6 +96,7 @@ Features of the Claude Platform that work across its APIs. Each feature’s page
 | ↳ [Memory tool helpers](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool#implement-the-memory-handler) | SDK helpers that handle the memory tool’s interface and tool-use loop, so your code supplies only the storage.                               |
 | [Message streaming](https://platform.claude.com/docs/en/build-with-claude/streaming)                                            | Receiving a Messages API response incrementally, as server-sent events, while it is generated.                                               |
 | ↳ [Fine-grained tool streaming](https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming)      | Streams a tool’s input to your client as Claude writes it, without the server first buffering and checking the JSON.                         |
+| [Message threads](https://platform.claude.com/docs/en/build-with-claude/message-threads)                                        | Give long-running agents a faster time to first token, especially in long conversations, by sending only the new messages on each request.   |
 | [On-demand compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-on-demand)                              | Replaces the earlier messages of a conversation with a summary that Claude writes when your application asks for it.                         |
 | ↳ [Background compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-background)                          | Runs the on-demand compaction request while the conversation continues on its full history, then swaps in the summary when it arrives.       |
 | ↳ [Compaction and preserved thinking](https://platform.claude.com/docs/en/build-with-claude/compaction-thinking-blocks)         | Thinking blocks in the turns you keep after on-demand compaction can stay valid, under stated conditions, on models with preserved thinking. |

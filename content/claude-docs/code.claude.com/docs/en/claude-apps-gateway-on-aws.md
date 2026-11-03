@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-on-aws
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: ef0fd2569534fb8a3fbadbef589789bf4e6961891ab9ba2993b76796b9b87d59
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: d1c2c204c305cc43a2ebf2353f1aadbc7c111272acf643299b1078fdaeac35c8
 ---
 
 > ## Documentation Index
@@ -627,7 +627,7 @@ managed:
 
 Have the developer pass the id of the team the work is for, such as `claude --model data-claude-opus-4-8`.
 
-The gateway applies the [first policy that matches](https://code.claude.com/docs/en/claude-apps-gateway-config.md#managed), so a developer in only the two team groups gets the `team-platform` policy. Their sessions on the data team's id fail with `is not in your role's availableModels allowlist`, naming Claude Code's default model and not the id they typed. If you list both team groups in one policy's `groups` instead, everyone in either team can bill either team's profile.
+By default, the gateway applies the [first policy that matches](https://code.claude.com/docs/en/claude-apps-gateway-config.md#managed), so a developer in only the two team groups gets the `team-platform` policy. Their sessions on the data team's id fail with `is not in your role's availableModels allowlist`, naming Claude Code's default model and not the id they typed. If you list both team groups in one policy's `groups` instead, everyone in either team can bill either team's profile.
 
 In the gateway's own [spend limits](https://code.claude.com/docs/en/claude-apps-gateway-spend-limits.md#set-a-cap), the developer has one total and one cap per period, by default the lowest of their groups' caps, whichever id a session uses. To keep one team's lower cap from stopping work for the other, set a per-user cap for the developer.
 

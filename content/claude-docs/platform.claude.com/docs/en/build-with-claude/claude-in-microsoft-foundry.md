@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 582d06df2a158372825b7f4a627ebf72411a96db95fc280cdc105bca859e0216
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: d3e73f3d4a4087e1b8422f1f06b780ce5cda38eb34368b589ea3ea1b88fd0786
 ---
 
 ---
@@ -87,8 +87,8 @@ Anthropic’s [client SDKs](https://platform.claude.com/docs/en/cli-sdks-librari
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.3.0")
-        implementation("com.anthropic:anthropic-java-foundry:3.3.0")
+        implementation("com.anthropic:anthropic-java:3.4.0")
+        implementation("com.anthropic:anthropic-java-foundry:3.4.0")
 
         // For Entra ID authentication, also add the Azure Identity library
         implementation("com.azure:azure-identity:1.18.3")
@@ -100,12 +100,12 @@ Anthropic’s [client SDKs](https://platform.claude.com/docs/en/cli-sdks-librari
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.3.0</version>
+            <version>3.4.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-foundry</artifactId>
-            <version>3.3.0</version>
+            <version>3.4.0</version>
         </dependency>
         <!-- For Entra ID authentication, also add the Azure Identity library -->
         <dependency>
@@ -660,7 +660,6 @@ Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.
 * Models API
 * Message Batches API
 * Server-side fallback (the [`fallbacks` parameter](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#server-side-fallback); use the [client-side fallback pattern](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#client-side-fallback) instead)
-* [Computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) and [browser use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool) toolsets (`computer_toolset_20260801` and `browser_toolset_20260801` are not currently available on Microsoft Foundry; the beta computer use tool versions remain available for the models listed under [Earlier tool versions](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions))
 
 ### Additional features not supported when hosted on Azure
 

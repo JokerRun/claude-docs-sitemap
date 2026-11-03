@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 6574b73e2a877ba0ed1d1639b5658059f8eeede917ca32734f8d562cb57d0c43
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: ef04bc5c03e4698a428ed0883f5cafebdfeae394212781a7d7e5dd16e5a8b1a7
 ---
 
 ---
@@ -109,8 +109,8 @@ Anthropic’s [client SDKs](https://platform.claude.com/docs/en/cli-sdks-librari
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.3.0")
-        implementation("com.anthropic:anthropic-java-bedrock:3.3.0")
+        implementation("com.anthropic:anthropic-java:3.4.0")
+        implementation("com.anthropic:anthropic-java-bedrock:3.4.0")
         ```
       </Tab>
 
@@ -119,12 +119,12 @@ Anthropic’s [client SDKs](https://platform.claude.com/docs/en/cli-sdks-librari
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.3.0</version>
+            <version>3.4.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-bedrock</artifactId>
-            <version>3.3.0</version>
+            <version>3.4.0</version>
         </dependency>
         ```
       </Tab>
@@ -372,7 +372,7 @@ For the full feature list with Amazon Bedrock availability, see [Features overvi
 * [Messages API](https://platform.claude.com/docs/en/api/messages/create) (`/anthropic/v1/messages`)
 * [Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching)
 * [Thinking](https://platform.claude.com/docs/en/build-with-claude/thinking)
-* [Tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview), including the [Bash tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool), [Computer use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool), [Memory tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool), and [Text editor tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool)
+* [Tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview), including the [Bash tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool), [Browser use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool), [Computer use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool), [Memory tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool), and [Text editor tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool)
 * [Citations](https://platform.claude.com/docs/en/build-with-claude/citations)
 * [Structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
 
@@ -384,7 +384,6 @@ For the full feature list with Amazon Bedrock availability, see [Features overvi
 * API endpoints (Message Batches, Models, Admin, Compliance, Usage and Cost)
 * Claude Managed Agents
 * Server-side fallback (the [`fallbacks` parameter](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#server-side-fallback); use the [client-side fallback pattern](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#client-side-fallback) instead)
-* [Computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) and [browser use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool) toolsets (`computer_toolset_20260801` and `browser_toolset_20260801` are not currently available on Amazon Bedrock; the beta computer use tool versions remain available)
 
 ## Regions
 

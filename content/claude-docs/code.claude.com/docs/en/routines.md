@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/routines
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: a5798b95a676d1062c7dd2278d785583fc70690ef36f5e39a14090e759cf08d0
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 197f51492cb353d49eae277a0797ed5cd52dcb9978c0b720b26b0f0df41ab7d2
 ---
 
 > ## Documentation Index
@@ -112,7 +112,7 @@ Each repository is cloned at the start of a run. Claude creates `claude/`-prefix
 
 **5. Select an environment**
 
-After you select a repository, **Cloud environment** appears below it. Pick a [cloud environment](https://code.claude.com/docs/en/cloud-environments.md) for the task. Environments control what the cloud session has access to:
+After you select a repository, **Cloud environment** appears below it. Pick a [cloud environment](https://code.claude.com/docs/en/cloud-environments.md) for the task. If an environment is already selected, you can keep it or select a different one. Environments control what the cloud session has access to:
 
 * **Network access**: set the level of internet access available during each run
 * **Environment variables**: provide values Claude can use during each run. They're [visible to anyone who uses the environment](https://code.claude.com/docs/en/cloud-environments.md#what-carries-over-from-your-setup), so in an Anthropic-hosted environment, store keys for the APIs Claude calls during a run as [network secrets](https://code.claude.com/docs/en/cloud-environments.md#add-network-secrets) instead. That section also lists the requests that never get a secret

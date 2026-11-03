@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 365f981f6686cff0c5938f70563a2acdd4a5ed107b2817eee632e05f9cc94fd7
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 25c7861ba7fd22d0f27e8a1f5d1adaf7af2e1b4d6e8b16368f29f26edae51741
 ---
 
 ---
@@ -331,10 +331,7 @@ Sertakan objek `diagnostics` pada setiap giliran. Objek inilah yang menjadi tand
       IO.println("Comparison still pending.");
   } else {
       var reason = r2.diagnostics().get().cacheMissReason().get();
-      // CacheMissReason tidak menyediakan accessor .type() bertipe; baca nilainya dari JSON mentah.
-      @SuppressWarnings("unchecked")
-      var json = (Map<String, JsonValue>) reason._json().orElseThrow().asObject().orElseThrow();
-      IO.println("cache_miss_reason: " + json.get("type").asStringOrThrow());
+      IO.println("cache_miss_reason: " + reason.type().asString());
   }
   ```
 
@@ -639,10 +636,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
       IO.println("Comparison still pending.");
   } else {
       var reason = diagnostics.get().cacheMissReason().get();
-      // CacheMissReason tidak menyediakan accessor .type() bertipe; baca dari JSON mentah.
-      @SuppressWarnings("unchecked")
-      var json = (Map<String, JsonValue>) reason._json().orElseThrow().asObject().orElseThrow();
-      IO.println("cache_miss_reason: " + json.get("type").asStringOrThrow());
+      IO.println("cache_miss_reason: " + reason.type().asString());
   }
   ```
 
@@ -910,10 +904,7 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
 
         if (r.diagnostics().isPresent() && r.diagnostics().get().cacheMissReason().isPresent()) {
             var reason = r.diagnostics().get().cacheMissReason().get();
-            // CacheMissReason tidak menyediakan accessor .type() bertipe; baca nilainya dari JSON mentah.
-            @SuppressWarnings("unchecked")
-            var json = (Map<String, JsonValue>) reason._json().orElseThrow().asObject().orElseThrow();
-            IO.println("Turn " + (turn + 1) + " cache_miss_reason: " + json.get("type").asStringOrThrow());
+            IO.println("Turn " + (turn + 1) + " cache_miss_reason: " + reason.type().asString());
         }
 
         messages.add(r.toParam());

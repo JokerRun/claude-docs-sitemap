@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/overview
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 2489f5134e1eb9bc7625547691997907ef27cb596bd9b43812d55e5ec5c6bb34
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 969c12de5849691d165a689f803b0175a35442078353a1d55a10f37053ea0077
 ---
 
 ---
@@ -23,12 +23,12 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $2 / MTok
 
 ## Ikhtisar
 
-Claude Sonnet 5.5 menawarkan kombinasi terbaik antara kecepatan dan kecerdasan. Lima perubahan yang merusak kompatibilitas memengaruhi kode yang sudah berjalan di Claude Sonnet 5:
+Claude Sonnet 5.5 menawarkan kombinasi terbaik antara kecepatan dan kecerdasan. Lima perubahan yang dapat merusak kompatibilitas dapat memengaruhi kode yang sudah berjalan di Claude Sonnet 5:
 
 * [Matikan pemikiran di awal dengan `between_tools`](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#turn-off-up-front-thinking).
-* [Penggunaan alat paksa mengembalikan error](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#forced-tool-use-is-not-supported).
+* [Penggunaan alat yang dipaksakan mengembalikan error](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#forced-tool-use-is-not-supported).
 * [Blok pemikiran terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them).
-* Di Claude API dan Claude Models on Google Cloud (Google managed), [alat penggunaan komputer `computer_20251124` yang lebih lama tidak diterima](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#computer-20251124-is-not-supported).
+* [Beberapa versi alat computer use tidak didukung](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#computer-20251124-is-not-supported).
 * [Alat advisor menolak empat model sebagai advisor](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#advisor-tool-pairings): Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, dan Claude Haiku 5.5.
 
 Satu perubahan lagi mengubah bentuk respons tanpa menggagalkan permintaan apa pun: [teks di antara pemanggilan alat dikembalikan dalam blok `thinking`](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#text-between-tool-calls). Aplikasi yang melakukan streaming teks tersebut ke penggunanya akan menjadi senyap di antara pemanggilan alat hingga aplikasi tersebut menetapkan nilai `display` yang mengembalikan teks, atau mematikan pemikiran di awal dengan `between_tools`.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 57b334ba27d2ab4a3aff22612f0a464110175387234cb9e115a21ab8f95ce138
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 46e0af073c4282dab7fc808e5eaa0f89fb03ea46e3853e5b222e18c8f3a72880
 ---
 
 ---
@@ -11,12 +11,12 @@ url: https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5
 description: "Apa yang berubah saat Anda beralih dari Claude Sonnet 5 ke Claude Sonnet 5.5: perubahan yang merusak kompatibilitas, dukungan fitur, perbedaan perilaku, harga, dan ketersediaan."
 ---
 
-Claude Sonnet 5.5 menawarkan kombinasi terbaik antara kecepatan dan kecerdasan. Lima perubahan yang merusak kompatibilitas memengaruhi kode yang sudah berjalan di Claude Sonnet 5:
+Claude Sonnet 5.5 menawarkan kombinasi terbaik antara kecepatan dan kecerdasan. Lima perubahan yang dapat merusak kompatibilitas dapat memengaruhi kode yang sudah berjalan di Claude Sonnet 5:
 
 * [Matikan pemikiran di awal dengan `between_tools`](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#turn-off-up-front-thinking).
-* [Penggunaan alat paksa mengembalikan error](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#forced-tool-use-is-not-supported).
+* [Penggunaan alat yang dipaksakan mengembalikan error](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#forced-tool-use-is-not-supported).
 * [Blok pemikiran terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them).
-* Di Claude API dan Claude Models on Google Cloud (Google managed), [alat penggunaan komputer `computer_20251124` yang lebih lama tidak diterima](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#computer-20251124-is-not-supported).
+* [Beberapa versi alat computer use tidak didukung](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#computer-20251124-is-not-supported).
 * [Alat advisor menolak empat model sebagai advisor](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#advisor-tool-pairings): Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, dan Claude Haiku 5.5.
 
 Satu perubahan lagi mengubah bentuk respons tanpa menggagalkan permintaan apa pun: [teks di antara pemanggilan alat dikembalikan dalam blok `thinking`](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#text-between-tool-calls). Aplikasi yang melakukan streaming teks tersebut ke penggunanya akan menjadi senyap di antara pemanggilan alat hingga aplikasi tersebut menetapkan nilai `display` yang mengembalikan teks, atau mematikan pemikiran di awal dengan `between_tools`.
@@ -63,17 +63,15 @@ API juga memeriksa apakah ada sesuatu sebelum blok pemikiran Claude Sonnet 5.5 y
 
 Lihat [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking) dan [catatan tentang blok pemikiran](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#thinking-blocks) dalam panduan migrasi.
 
-### Alat penggunaan komputer `computer_20251124` tidak didukung di Claude API dan Claude Models on Google Cloud (Google managed)
+### Beberapa versi alat computer use tidak didukung
 
-Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Sonnet 5.5 mendukung [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) hanya melalui toolset `computer_toolset_20260801`. Permintaan yang mendeklarasikan alat `computer_20251124` yang lebih lama mengembalikan `invalid_request_error` 400. Di Claude API, pesan tersebut menyebutkan tipe yang ditolak, lalu mencantumkan tipe alat yang diterima model. Pesannya diawali dengan:
+Claude Sonnet 5.5 mendukung [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) melalui toolset `computer_toolset_20260801`. Di Amazon Bedrock, Claude Sonnet 5.5 juga menerima alat `computer_20251124` dengan beta header `computer-use-2025-11-24`. Claude Sonnet 5.5 mengembalikan error 400 untuk versi alat computer use apa pun yang tidak diterimanya, seperti `computer_20251124` di Claude API. Pesan `invalid_request_error` dari Claude API menyebutkan tipe yang ditolak dan, setelah `Did you mean one of`, mencantumkan tipe alat yang diterima model. Pesan tersebut diawali dengan:
 
 ```text wrap
 'claude-sonnet-5-5' does not support tool types: computer_20251124.
 ```
 
-Di Amazon Bedrock, Claude Sonnet 5.5 menerima alat `computer_20251124` yang lebih lama.
-
-Untuk memindahkan integrasi yang ada di Claude API atau Claude Models on Google Cloud (Google managed), ikuti [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124), yang menunjukkan permintaan sebelum dan sesudahnya. Hapus header beta, ganti entri `tools` dengan `{"type": "computer_toolset_20260801"}`, dan perbarui loop agen Anda untuk blok `tool_use` anggota, aksi batch, dan `toolset_name` pada hasil. Toolset ini tersedia di Claude API maupun Claude Models on Google Cloud (Google managed). Untuk platform lain, lihat bagian [dukungan API](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#availability-feature-support) alat penggunaan komputer. Integrasi yang sudah menggunakan toolset, dan [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool), tidak memerlukan perubahan.
+Integrasi yang menggunakan toolset tidak memerlukan perubahan. Untuk memindahkan integrasi `computer_20251124` ke toolset, ikuti [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124), yang menunjukkan permintaan sebelum dan sesudahnya. Hapus beta header dan ganti entri `tools` dengan `{"type": "computer_toolset_20260801"}`. Kemudian perbarui loop agen Anda untuk blok `tool_use` anggota, aksi batch, dan `toolset_name` pada hasil.
 
 ### Beberapa pasangan alat advisor tidak didukung
 
@@ -81,7 +79,7 @@ Dengan [alat advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-
 
 ## Dukungan fitur
 
-Claude Sonnet 5.5 mendukung [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta), [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages), [perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes) (beta), [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) dengan prompt minimum yang dapat di-cache sebesar 512 token, [pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing), [Files API](https://platform.claude.com/docs/id/build-with-claude/files), [dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support), [vision](https://platform.claude.com/docs/id/build-with-claude/vision), serta [alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) sisi server dan sisi klien. Effort per pesan, pesan sistem di tengah percakapan, dan perubahan alat di tengah percakapan tidak tersedia di Claude Sonnet 5, yang prompt minimum yang dapat di-cache-nya adalah 1.024 token. Di Claude API dan Claude Models on Google Cloud (Google managed), penggunaan komputer memerlukan toolset `computer_toolset_20260801` (lihat [perubahan penggunaan komputer yang merusak kompatibilitas](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#computer-20251124-is-not-supported)). Lihat halaman masing-masing fitur untuk ketersediaan model.
+Claude Sonnet 5.5 mendukung [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta), [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages), [perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes) (beta), “prompt caching” ([caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)) dengan prompt minimum yang dapat di-cache sebesar 512 token, [pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing), [Files API](https://platform.claude.com/docs/id/build-with-claude/files), [dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support), [vision](https://platform.claude.com/docs/id/build-with-claude/vision), serta [alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) sisi server dan sisi klien. Effort per pesan, pesan sistem di tengah percakapan, dan perubahan alat di tengah percakapan tidak tersedia di Claude Sonnet 5, yang prompt minimum yang dapat di-cache-nya adalah 1.024 token. Lihat halaman masing-masing fitur untuk ketersediaan model.
 
 ### Pemadatan sesuai permintaan (beta)
 
@@ -163,12 +161,12 @@ Perbarui ID model Anda:
 
 Kemudian periksa enam hal:
 
-1. Jika kode Anda mematikan pemikiran dengan `disabled`, kirim `between_tools` sebagai gantinya, pada effort `high` atau di bawahnya.
-2. Ganti tipe `tool_choice` `any` dan `tool` dengan `auto` ditambah [penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use).
-3. Pertahankan percakapan agar hanya bersifat tambahan. Permintaan yang memutar ulang blok pemikiran Claude Sonnet 5.5 setelah pengeditan riwayat sebelumnya dapat mengembalikan error 400. Lihat [Blok pemikiran terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them).
-4. Jika Anda menggunakan penggunaan komputer melalui `computer_20251124` di Claude API atau Claude Models on Google Cloud (Google managed), [pindahlah ke toolset](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124).
+1. Jika kode Anda mematikan pemikiran dengan `disabled`, kirimkan `between_tools` sebagai gantinya, pada effort `high` atau di bawahnya.
+2. Ganti tipe `tool_choice` `any` dan `tool` dengan `auto` ditambah [penggunaan alat strict](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use).
+3. Pertahankan percakapan dalam mode append-only (hanya tambah). Permintaan yang memutar ulang blok pemikiran Claude Sonnet 5.5 setelah pengeditan riwayat sebelumnya dapat mengembalikan error 400. Lihat [Blok pemikiran terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them).
+4. Jika Anda menggunakan computer use melalui `computer_20251124`, [pindahlah ke toolset](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Di Amazon Bedrock, `computer_20251124` juga berfungsi.
 5. Jika Anda menggunakan alat advisor dengan advisor Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, atau Claude Haiku 5.5, [beralihlah ke advisor yang diterima Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#advisor-tool-pairings).
-6. Jika antarmuka Anda menampilkan teks di antara pemanggilan alat, setel `thinking.display` saat Anda menggunakan pemikiran adaptif. Dengan `between_tools`, teks tersebut kembali tanpa pengaturan itu. Lihat [Teks di antara pemanggilan alat dikembalikan dalam blok pemikiran](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#text-between-tool-calls).
+6. Jika antarmuka Anda menampilkan teks di antara panggilan alat, atur `thinking.display` saat Anda menggunakan adaptive thinking. Dengan `between_tools`, teks dikembalikan tanpa pengaturan tersebut. Lihat [Teks di antara panggilan alat dikembalikan dalam blok pemikiran](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#text-between-tool-calls).
 
 [Panduan migrasi](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide) berisi instruksi langkah demi langkah dari Claude Sonnet 5 dan model-model sebelumnya, serta daftar periksa lengkap.
 

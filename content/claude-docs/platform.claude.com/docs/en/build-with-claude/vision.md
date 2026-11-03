@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 5fd984ec22d89f8e0d33209302109e91ff17ee5833dbc22fd47d9a5a932fde9f
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: f67ae8c652f2fc05bf681e7020268d186c5f34b7c713852934b533548c9108ed
 ---
 
 ---
@@ -1386,7 +1386,7 @@ Always carefully review and verify Claude’s image interpretations, especially 
   </Accordion>
 
   <Accordion title="Can I delete images I’ve uploaded?">
-    No. Image uploads are ephemeral and not stored beyond the duration of the API request. Uploaded images are automatically deleted after they have been processed.
+    No. See [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention) for how long images are kept. If you upload images with the [Files API](https://platform.claude.com/docs/en/build-with-claude/files), you can delete them there.
   </Accordion>
 
   <Accordion title="Where can I find details on data privacy for image uploads?">

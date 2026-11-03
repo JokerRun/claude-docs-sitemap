@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 43cf0d5e9f1152efbb272ad56420c18d0263ec9c0183af578354e4934019f53b
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 086391997aa23ea0768d0538afc41d5d0a2ddba6203e19ece5de7bd768365e6e
 ---
 
 ---
@@ -661,12 +661,13 @@ Respons terlihat seperti pesan lainnya, dengan dua tambahan:
 
 * Field `model` tingkat atas melaporkan model yang menghasilkan pesan yang dikembalikan, baik itu model yang diminta maupun fallback.
 
-* Blok konten `fallback` menandai setiap titik di `content` tempat output satu model beralih ke model berikutnya: `{"type": "fallback", "from": {"model": ...}, "to": {"model": ...}}`.
+* Blok konten `fallback` menandai setiap titik di `content` tempat output satu model beralih ke model berikutnya: `{"type": "fallback", "from": {"model": ...}, "to": {"model": ...}, "trigger": {"type": "refusal", "category": ...}}`.
 
   * `from.model` menggemakan string model yang Anda kirim ketika hop yang menolak adalah model yang diminta.
   * `to.model` selalu merupakan ID yang telah di-resolve dari model yang melanjutkan.
+  * `trigger` mencatat alasan `from.model` menolak: `type` bernilai `"refusal"`, dan `category` adalah [`stop_details.category`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) dari penolakan tersebut, yang dapat bernilai `null`.
 
-Pada penolakan sebelum output apa pun, blok `fallback` adalah blok konten pertama. Misalnya, ketika routing default memilih Claude Opus 4.8 untuk kategori penolakan tersebut:
+Pada penolakan sebelum output apa pun, blok `fallback` adalah blok konten pertama. Misalnya, ketika Claude Fable 5 menolak permintaan yang daftar `fallbacks`-nya menyebutkan Claude Opus 4.8:
 
 ```json
 {
@@ -678,7 +679,8 @@ Pada penolakan sebelum output apa pun, blok `fallback` adalah blok konten pertam
     {
       "type": "fallback",
       "from": { "model": "claude-fable-5" },
-      "to": { "model": "claude-opus-4-8" }
+      "to": { "model": "claude-opus-4-8" },
+      "trigger": { "type": "refusal", "category": "cyber" }
     },
     { "type": "text", "text": "Hi! How can I help you today?" }
   ],

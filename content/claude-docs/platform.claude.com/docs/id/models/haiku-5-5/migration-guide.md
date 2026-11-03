@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 9ff8e5d39cebb4f945842b08eba308d3f22807b485ab9d9d8231129acf2fa4cd
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 7373496ff0c655f3a1987bf36b224a07ebe9ae8ef54804dab9dacaf69b2b8402
 ---
 
 ---
@@ -30,15 +30,15 @@ Kerjakan grup-grup ini secara berurutan dan berhenti setelah grup yang menyebutk
 ### Setiap model awal
 
 1. Ganti ID model dengan ID Claude Haiku 5.5 untuk platform Anda. Lihat [Gunakan ID model Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#use-the-claude-haiku-5-5-model-id).
-2. Hitung ulang prompt Anda, dan tinjau kembali batas `max_tokens` serta estimasi biaya, karena teks yang sama dihitung sebagai lebih banyak token dan gambar besar dihitung sebagai lebih banyak token visual. Lihat [Hitung ulang token](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#recount-tokens).
-3. Jika permintaan Anda mengirim `thinking: {"type": "enabled", "budget_tokens": N}`, ubah `thinking` menjadi `{"type": "adaptive"}`. Lihat [Konfigurasikan pemikiran](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#configure-thinking).
-4. Jika kode Anda membaca blok konten pertama sebagai jawaban, pilih blok berdasarkan `type` sebagai gantinya. Lihat [Konfigurasikan pemikiran](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#configure-thinking).
+2. Hitung ulang prompt Anda, dan tinjau kembali batas `max_tokens` serta estimasi biaya, karena teks yang sama dihitung sebagai lebih banyak token dan gambar berukuran besar dihitung sebagai lebih banyak token visual. Lihat [Hitung ulang token](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#recount-tokens).
+3. Jika permintaan Anda mengirimkan `thinking: {"type": "enabled", "budget_tokens": N}`, ubah `thinking` menjadi `{"type": "adaptive"}`. Lihat [Konfigurasikan thinking](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#configure-thinking).
+4. Jika kode Anda membaca blok konten pertama sebagai jawaban, pilih blok berdasarkan `type` sebagai gantinya. Lihat [Konfigurasikan thinking](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#configure-thinking).
 5. Hapus `temperature`, `top_p`, dan `top_k` dari permintaan Anda. Lihat [Hapus parameter sampling](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#remove-sampling-parameters).
-6. Jika permintaan Anda mengakhiri `messages` dengan giliran asisten untuk dilanjutkan oleh model, akhiri dengan giliran pengguna sebagai gantinya. Lihat [Ganti prefill asisten](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#replace-assistant-prefill).
-7. Jika Anda menggunakan alat penggunaan komputer, ganti `computer_20250124`: di Claude API dan Claude Models on Google Cloud (Google managed), dengan toolset `computer_toolset_20260801`; di Amazon Bedrock, dengan `computer_20251124` dan beta header `computer-use-2025-11-24`. Lihat [Pindahkan penggunaan komputer ke toolset](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset).
-8. Jika Anda memutar ulang percakapan tersimpan melalui akun yang berbeda, putar ulang setiap percakapan melalui akun yang menghasilkannya. Lihat [Putar ulang blok pemikiran melalui akun yang menghasilkannya](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#replay-thinking-blocks-through-the-producing-account).
-9. Jika kode Anda mengubah `system`, `tools`, atau `messages` sebelumnya di antara permintaan dalam sebuah percakapan dan mengirim balik blok pemikiran, pertahankan percakapan bersifat append-only. Lihat [Pertahankan giliran sebelumnya tidak berubah](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#keep-earlier-turns-unchanged).
-10. Tangani `stop_reason: "refusal"`. Claude Haiku 5.5 menjalankan pengklasifikasi keamanan yang dapat menolak permintaan, dan tidak memiliki fallback di sisi server. Lihat [Penolakan safeguard](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#safeguard-refusals).
+6. Jika permintaan Anda mengakhiri `messages` dengan giliran assistant agar dilanjutkan oleh model, akhiri dengan giliran user sebagai gantinya. Lihat [Ganti prefill assistant](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#replace-assistant-prefill).
+7. Jika Anda menggunakan computer use, ganti `computer_20250124` dengan toolset `computer_toolset_20260801`. Di Amazon Bedrock, `computer_20251124` juga berfungsi. Lihat [Pindahkan computer use ke toolset](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset).
+8. Jika Anda memutar ulang percakapan yang tersimpan melalui akun yang berbeda, putar ulang masing-masing melalui akun yang menghasilkannya. Lihat [Putar ulang blok thinking melalui akun yang menghasilkannya](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#replay-thinking-blocks-through-the-producing-account).
+9. Jika kode Anda mengubah `system`, `tools`, atau `messages` sebelumnya di antara permintaan dalam sebuah percakapan dan mengirimkan kembali blok thinking, pertahankan percakapan agar bersifat append-only (hanya ditambahkan). Lihat [Pertahankan giliran sebelumnya tanpa perubahan](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#keep-earlier-turns-unchanged).
+10. Tangani `stop_reason: "refusal"`. Claude Haiku 5.5 menjalankan pengklasifikasi keamanan yang dapat menolak permintaan, dan model ini tidak memiliki fallback di sisi server. Lihat [Penolakan safeguard](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#safeguard-refusals).
 
 Jika organisasi Anda memiliki komitmen [Priority Tier](https://platform.claude.com/docs/id/api/service-tiers#supported-models) pada Claude Haiku 4.5, rencanakan kapasitas secara terpisah: Priority Tier tidak didukung pada Claude Haiku 5.5.
 
@@ -133,11 +133,13 @@ Prefill adalah giliran asisten terakhir dalam `messages` yang dilanjutkan oleh m
 
 ## Pindahkan penggunaan komputer ke toolset
 
-Claude Haiku 4.5 mendukung [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) melalui alat `computer_20250124`, dengan beta header `computer-use-2025-01-24`. Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Haiku 5.5 mendukung penggunaan komputer hanya melalui toolset `computer_toolset_20260801`, dan permintaan yang mendeklarasikan `computer_20250124` mengembalikan error 400. Di Amazon Bedrock, Claude Haiku 5.5 juga tidak menerima `computer_20250124`; gunakan versi alat `computer_20251124` dengan beta header `computer-use-2025-11-24`.
+Claude Haiku 4.5 mendukung [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) melalui alat `computer_20250124`, dengan header beta `computer-use-2025-01-24`. Claude Haiku 5.5 mendukung computer use melalui toolset `computer_toolset_20260801`. Permintaan ke Claude Haiku 5.5 yang mendeklarasikan `computer_20250124` akan mengembalikan error 400.
 
-Untuk memindahkan integrasi ke toolset, hapus beta header `computer-use-2025-01-24` dan ganti entri `tools` dengan `{"type": "computer_toolset_20260801"}`. Kemudian lakukan perubahan permintaan dan agent loop lainnya di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124): lakukan dispatch berdasarkan `name` dan `toolset_name` dari setiap blok anggota `tool_use` alih-alih berdasarkan `input.action`, tangani setiap blok semacam itu dalam satu giliran, dan sertakan kembali `toolset_name` pada hasil. Zoom aktif secara default di toolset; jika lingkungan Anda tidak mengimplementasikannya, tambahkan `"configs": {"zoom": {"enabled": false}}`. Jika Anda mengirim beta header `fine-grained-tool-streaming-2025-05-14`, hapus header tersebut. Jika disertakan bersama entri toolset, header itu mengembalikan error 400. Untuk platform lain, lihat bagian [dukungan API](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#availability-feature-support) pada alat penggunaan komputer.
+Untuk memindahkan integrasi ke toolset, hapus header beta `computer-use-2025-01-24` dan ganti entri `tools` dengan `{"type": "computer_toolset_20260801"}`. Kemudian lakukan perubahan permintaan dan agent loop lainnya di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Lakukan dispatch berdasarkan `name` dan `toolset_name` dari setiap blok `tool_use` anggota, bukan berdasarkan `input.action`. Tangani setiap blok tersebut dalam satu giliran dan sertakan kembali `toolset_name` pada hasil. Zoom aktif secara default di toolset; jika lingkungan Anda tidak mengimplementasikannya, tambahkan `"configs": {"zoom": {"enabled": false}}`. Jika Anda mengirimkan header beta `fine-grained-tool-streaming-2025-05-14`, hapus header tersebut. Bila digunakan bersama entri toolset, header itu akan mengembalikan error 400.
 
-Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Haiku 5.5 juga mendukung [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`) untuk tugas di dalam halaman web. Claude Haiku 4.5 tidak mendukungnya.
+Di Amazon Bedrock, Claude Haiku 5.5 juga menerima alat `computer_20251124` dengan header beta `computer-use-2025-11-24`.
+
+Claude Haiku 5.5 mendukung [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`) untuk tugas-tugas di dalam halaman web. Claude Haiku 4.5 tidak mendukungnya.
 
 ## Putar ulang blok pemikiran melalui akun yang menghasilkannya
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-errors
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 247d637b6cf6f074f36f002ee576375eb31c0c82fec1fadd233091cd092330a5
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: cf69089230d18cf5a23a8b57e690439c6766210e16011288d054df2a34be0e6a
 ---
 
 ---
@@ -138,6 +138,22 @@ The page cursor has expired. Restart the walk without a page parameter; results 
 ```
 
 Untuk body pertama, kirim ulang nilai `next_page` yang tidak dimodifikasi dari respons sebelumnya ke endpoint dan sesi yang menerbitkannya. Untuk kursor yang kedaluwarsa, mulai ulang tanpa parameter `page`; penelusuran baru mencerminkan batas retensi yang berlaku saat penelusuran dimulai, sehingga pesan yang telah melewati periode retensi dalam rentang waktu tersebut tidak lagi dikembalikan (lihat [Mengambil transkrip sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-a-local-session-transcript)).
+
+### ID file tidak valid
+
+**Type:** `invalid_request_error`
+
+```text wrap
+Invalid claude_gen_file_id format: 'claude_file_01Qm7RzKdTgWnYbVx3HcLpE5'
+```
+
+```text wrap
+Invalid claude_file_id format: 'claude_gen_file_01TbR8wAcCeFhJkLnPqStUvX'
+```
+
+**Penyebab:** ID di path tidak dalam bentuk yang diterima oleh endpoint. Endpoint file yang dihasilkan (`/v1/compliance/apps/chats/generated-files/*`) hanya menerima ID `claude_gen_file_...` dan mengembalikan body pertama untuk nilai lain apa pun. Endpoint file (`/v1/compliance/apps/chats/files/*`) hanya menerima ID `claude_file_...` dan mengembalikan body kedua. Array `generated_files` pada pesan chat dapat berisi kedua jenis ID tersebut.
+
+**Perbaikan:** Pilih endpoint berdasarkan prefiks ID, bukan berdasarkan array asal ID tersebut; lihat [Mengambil file dan artifact](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-files-and-artifacts). Jika prefiks sudah sesuai dengan endpoint, berarti ID telah terpotong atau diubah; salin kembali dari respons yang mengembalikannya.
 
 ### Halaman transkrip terlalu besar
 

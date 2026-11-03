@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/workflow-runs
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: eb973d6f4ad433b1a4c58c5f20202b7093967b14e1291d6be4dc8fc113223646
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: fa2f7619605f3481764b2bd1e22caa783aee77d39ed1e6947addc75d69d243fa
 ---
 
 ---
@@ -448,7 +448,7 @@ Contoh ini mengikuti sesi dari pesan Anda hingga jawaban agen. Contoh ini membuk
           // Untuk stop reason lainnya, cetak lalu berhenti.
           if (!finished && idle.StopReason?.Value is not BetaManagedAgentsSessionRequiresAction)
           {
-              var reason = idle.StopReason?.Json.GetProperty("type").GetString();
+              var reason = idle.StopReason?.Type.Raw();
               Console.WriteLine($"Session idle: {reason}");
               break;
           }

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-coverage-claude-enterprise
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 9cf379e614e2c92582c7019105d85742e279e1fbbd2f6725cf1ed1de7bc81ba2
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 5f5b8a5db08d39997635cc1be609ed98825b92900475a08c4c7d70b7012258aa
 ---
 
 ---
@@ -44,7 +44,7 @@ This list is not exhaustive. Review it with your team before you set up CMEK.
 | [Skill and plugin security scanning](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise#skill-content-scanning) | Off. The setting can’t be turned on, and skills and plugins are installed without a scan.                                                                                                                                                                                                               |
 | Claude in Slack (beta)                                                                                                                    | Off. Claude declines requests, even if an admin turns the product on.                                                                                                                                                                                                                                   |
 | Analytics: smart reports and contribution metrics                                                                                         | Off. Certain analytics are disabled, regardless of admin settings: Claude smart reports (under claude.ai/analytics/insights) and Claude Code contribution metrics from GitHub (beta, under claude.ai/analytics/claude-code).                                                                            |
-| Claude Security (beta) and routines (research preview)                                                                                    | Off. Beta and research preview features, turned off regardless of admin settings.                                                                                                                                                                                                                       |
+| Claude Security (beta) and cloud scheduled tasks, formerly routines (research preview)                                                    | Off. Beta and research preview features, turned off regardless of admin settings.                                                                                                                                                                                                                       |
 | Standalone Claude Design app (being deprecated)                                                                                           | Not supported. See [Encrypted with Anthropic’s key](https://platform.claude.com/docs/en/manage-claude/cmek-coverage-claude-enterprise#encrypted-with-anthropics-key).                                                                                                                                   |
 
 ## Encrypted with Anthropic’s key

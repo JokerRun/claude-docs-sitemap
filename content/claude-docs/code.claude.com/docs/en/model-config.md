@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 7180ba5975ee6529caebbd3a7847e4bcb5851d0a795efaba3a6f558d226b5842
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 52e7629cad82ef0a8d185cdaa5ec0b043a39f3884f28bb363e6837f7914d80a9
 ---
 
 > ## Documentation Index
@@ -940,7 +940,7 @@ Use the following environment variables to control the model names that the alia
 | `ANTHROPIC_DEFAULT_FABLE_MODEL` | The model to use for `fable`, and the model ID Claude Code recognizes as a Fable model for [automatic model fallback](#automatic-model-fallback) on third-party providers |
 | `ANTHROPIC_DEFAULT_OPUS_MODEL` | The model to use for `opus`, or for `opusplan` when Plan Mode is active. |
 | `ANTHROPIC_DEFAULT_SONNET_MODEL` | The model to use for `sonnet`, or for `opusplan` when Plan Mode is not active. |
-| `ANTHROPIC_DEFAULT_HAIKU_MODEL` | The model to use for `haiku`, or [background functionality](https://code.claude.com/docs/en/costs.md#background-token-usage) |
+| `ANTHROPIC_DEFAULT_HAIKU_MODEL` | The model to use for `haiku`, or background functionality |
 | `CLAUDE_CODE_SUBAGENT_MODEL` | The default model for [subagents](https://code.claude.com/docs/en/sub-agents.md#choose-a-model), [agent team](https://code.claude.com/docs/en/agent-teams.md#specify-teammates-and-models) teammates, and [workflow](https://code.claude.com/docs/en/workflows.md) agents that aren't assigned a model another way. Accepts an alias such as `haiku` or a full model name. A per-invocation model or a definition's `model` field, including `inherit`, takes precedence. To change that, set [`CLAUDE_CODE_SUBAGENT_MODEL_FORCE`](https://code.claude.com/docs/en/sub-agents#run-every-subagent-on-one-model) |
 
 On third-party providers, [Customize pinned model display and capabilities](#customize-pinned-model-display-and-capabilities) describes what a pinned model's row in the `/model` picker shows.

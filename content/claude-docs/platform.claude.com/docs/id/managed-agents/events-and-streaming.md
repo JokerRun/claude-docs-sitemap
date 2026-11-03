@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 191b503f5abb077ee9ac82494c743431511f2c1cc34ec0c0607d77e2e6a541ca
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 9b9ae11f142659a8e2ab300dd24a0610f36d9fb96bf807ffca751e2f7f8538ad
 ---
 
 ---
@@ -230,12 +230,7 @@ Lakukan “streaming” (streaming) event dari sesi untuk menerima pembaruan rea
                   break events;
               }
               case SESSION_ERROR -> {
-                  // Field `message` mencakup semua varian error; baca dari JSON mentah.
-                  var errorMessage =
-                      event.asSessionError().error()._json().orElse(null) instanceof JsonObject json
-                          ? json.values().get("message").asStringOrThrow()
-                          : "unknown";
-                  IO.println("\n[Error: " + errorMessage + "]");
+                  IO.println("\n[Error: " + event.asSessionError().error().message() + "]");
                   break events;
               }
           }
@@ -456,18 +451,14 @@ Untuk menyambung ulang ke sesi yang sudah ada tanpa kehilangan event, gabungkan 
   ```java Java
   try (var stream = client.beta().sessions().events().streamStreaming(session.id())) {
       // Stream terbuka dan melakukan buffering. Tampilkan riwayat sebelum mengikuti event live.
-      // Setiap varian event membawa `id`; baca dari JSON mentah untuk dedup lintas varian.
       var seenEventIds = new HashSet<String>();
       for (var pastEvent : client.beta().sessions().events().list(session.id()).autoPager()) {
-          if (pastEvent._json().orElseThrow() instanceof JsonObject json) {
-              seenEventIds.add(json.values().get("id").asStringOrThrow());
-          }
+          seenEventIds.add(pastEvent.id());
       }
 
       // Ikuti event live; Set.add mengembalikan false untuk ID yang sudah terlihat, melewati replay.
       stream.stream()
-          .filter(event -> event._json().orElseThrow() instanceof JsonObject json
-              && seenEventIds.add(json.values().get("id").asStringOrThrow()))
+          .filter(event -> event.id().map(seenEventIds::add).orElse(true))
           .takeWhile(event -> !event.isSessionStatusIdle())
           .filter(BetaManagedAgentsStreamSessionEvents::isAgentMessage)
           .forEach(event -> event.asAgentMessage().content()
@@ -1488,7 +1479,7 @@ Ambil riwayat event lengkap untuk sebuah sesi:
   var events = await client.Beta.Sessions.Events.List(session.ID);
   foreach (var sessionEvent in events.Items)
   {
-      Console.WriteLine($"[{sessionEvent.Json.GetProperty("type").GetString()}] {sessionEvent.ProcessedAt}");
+      Console.WriteLine($"[{sessionEvent.Type.Raw()}] {sessionEvent.ProcessedAt}");
   }
   ```
 
@@ -1505,10 +1496,7 @@ Ambil riwayat event lengkap untuk sebuah sesi:
   ```java Java
   var events = client.beta().sessions().events().list(session.id());
   for (var event : events.data()) {
-      var eventJson = event._json().orElseThrow().convert(JsonNode.class);
-      var processedAt = eventJson.path("processed_at");
-      IO.println("[" + eventJson.get("type").asText() + "] "
-          + (processedAt.isTextual() ? processedAt.asText() : "null"));
+      IO.println("[" + event.type().asString() + "] " + event.processedAt().orElse(null));
   }
   ```
 
@@ -1567,7 +1555,7 @@ Teruskan filter `types` (curl: `types[]`; cli: `--type`; csharp, go: `Types`) un
   });
   foreach (var sessionEvent in events.Items)
   {
-      Console.WriteLine($"[{sessionEvent.Json.GetProperty("type").GetString()}] {sessionEvent.ProcessedAt}");
+      Console.WriteLine($"[{sessionEvent.Type.Raw()}] {sessionEvent.ProcessedAt}");
   }
   ```
 

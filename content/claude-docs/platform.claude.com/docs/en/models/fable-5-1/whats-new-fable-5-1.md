@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: f4753dd8704a81fbe7344e8c0738580d9d584e7a821d2cd4ba961a466f6dcddb
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 17bd6024e53a3ff4fbe374591195c69783ada7e7fd6c711d97653c79e09efd9f
 ---
 
 ---
@@ -95,7 +95,7 @@ With the [advisor tool](https://platform.claude.com/docs/en/agents-and-tools/too
 
 ### Change effort mid-conversation (beta)
 
-On Claude Fable 5.1 you can change the [effort](https://platform.claude.com/docs/en/build-with-claude/effort) level mid-conversation without invalidating the prompt cache. Raise it for a hard step and lower it for routine ones. Per-message effort is in beta: include the `mid-conversation-output-config-2026-07-01` beta header. Claude Fable 5.1 and Claude Mythos 5.1 support it on the Claude API, Claude Models on Google Cloud (Google managed), and Amazon Bedrock. To use it with Claude Fable 5.1 through the Amazon Bedrock [InvokeModel API](https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy), send that value in the `anthropic_beta` array of the request body instead. For the other models that support it and the platforms for each, see [Change effort mid-conversation](https://platform.claude.com/docs/en/build-with-claude/effort#changing-effort-mid-conversation).
+On Claude Fable 5.1 you can change the [effort](https://platform.claude.com/docs/en/build-with-claude/effort) level mid-conversation without invalidating the prompt cache. Raise it for a hard step and lower it for routine ones. Per-message effort is in beta: include the `mid-conversation-output-config-2026-07-01` beta header. To use it with Claude Fable 5.1 through the Amazon Bedrock [InvokeModel API](https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy), send that value in the `anthropic_beta` array of the request body instead. For the models and platforms that support it, see [Change effort mid-conversation](https://platform.claude.com/docs/en/build-with-claude/effort#changing-effort-mid-conversation).
 
 <CodeGroup>
   ```bash cURL

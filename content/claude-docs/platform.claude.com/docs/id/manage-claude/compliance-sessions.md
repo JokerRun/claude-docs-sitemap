@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-sessions
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 198f5c36085739d75e1ac267f40ea7456282260c9bd73335552ae49cf442315d
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 2f9f229d34964c73a954306c8a1ca65546160bb0b74ae6350740e57996e03f96
 ---
 
 ---
@@ -42,7 +42,7 @@ Tabel berikut memetakan setiap produk, beserta tempat produk tersebut berjalan, 
 Perekaman sesi lokal terkait dengan diaktifkannya Compliance API untuk organisasi Anda dan berlaku selama pengguna masuk dengan akun Claude Enterprise mereka. Endpoint sesi tidak mengembalikan hal-hal berikut:
 
 * Sesi Claude Code yang diautentikasi dengan kunci API Claude Console, atau dijalankan melalui platform cloud pihak ketiga seperti Amazon Bedrock, Google Cloud, atau Microsoft Foundry.
-* [Sesi cloud Claude Code](https://code.claude.com/docs/id/claude-code-on-the-web) (termasuk routine Claude Code yang berjalan di cloud), yang berjalan di infrastruktur cloud alih-alih di mesin pengguna. Sesi cloud ini bukan sesi jarak jauh, meskipun keduanya berjalan di cloud; endpoint sesi jarak jauh hanya mengembalikan sesi Cowork.
+* [Sesi cloud Claude Code](https://code.claude.com/docs/id/claude-code-on-the-web) (termasuk tugas terjadwal cloud Claude Code, sebelumnya routine), yang berjalan di infrastruktur cloud alih-alih di mesin pengguna. Sesi cloud ini bukan sesi jarak jauh, meskipun keduanya berjalan di cloud; endpoint sesi jarak jauh hanya mengembalikan sesi Cowork.
 * Sesi lokal dari produk selain Cowork dan Claude Code di organisasi yang mengaktifkan [kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#hipaa-readiness). Di organisasi tersebut, endpoint sesi lokal hanya mengembalikan sesi Cowork dan Claude Code, dan konten sesi yang direkam disimpan selama 30 hari.
 * Sesi lokal yang dikenai [“zero data retention” (retensi data nol), atau ZDR](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope). Sesi ini dikecualikan dari hasil daftar, dan endpoint retrieve serta messages mengembalikan 404 untuk sesi tersebut.
 

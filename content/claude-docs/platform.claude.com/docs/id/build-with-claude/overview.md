@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/overview
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 86e59fc47edbd23d2163b77c4b0cd6048ead37f9e6ee83593aeaaaeeb88950b7
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 91a94628327ba6cb1ad63bcced67a778f2c2c1304663df96dd1631af9ba47c92
 ---
 
 ---
@@ -96,6 +96,7 @@ Fitur-fitur Claude Platform yang berfungsi di seluruh API-nya. Halaman setiap fi
 | ↳ [Helper alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#implement-the-memory-handler)    | Helper SDK yang menangani antarmuka alat memori dan loop penggunaan alat, sehingga kode Anda hanya perlu menyediakan penyimpanan.                                                     |
 | [Streaming pesan](https://platform.claude.com/docs/id/build-with-claude/streaming)                                                | Menerima respons Messages API secara bertahap, sebagai server-sent event, selama respons dihasilkan.                                                                                  |
 | ↳ [Streaming alat fine-grained](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming)        | Melakukan streaming input alat ke klien Anda saat Claude menulisnya, tanpa server terlebih dahulu melakukan buffering dan memeriksa JSON.                                             |
+| [Thread pesan](https://platform.claude.com/docs/id/build-with-claude/message-threads)                                             | Berikan agen yang berjalan lama waktu hingga token pertama yang lebih cepat, terutama dalam percakapan panjang, dengan hanya mengirim pesan baru pada setiap permintaan.              |
 | [Compaction on-demand](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand)                                | Mengganti pesan-pesan awal percakapan dengan ringkasan yang ditulis Claude saat aplikasi Anda memintanya.                                                                             |
 | ↳ [Compaction latar belakang](https://platform.claude.com/docs/id/build-with-claude/compaction-background)                        | Menjalankan permintaan compaction on-demand sementara percakapan berlanjut dengan riwayat lengkapnya, lalu menggantinya dengan ringkasan saat ringkasan tiba.                         |
 | ↳ [Compaction dan pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks) | Blok pemikiran dalam giliran yang Anda pertahankan setelah compaction on-demand dapat tetap valid, dengan ketentuan tertentu, pada model yang mendukung pemikiran yang dipertahankan. |

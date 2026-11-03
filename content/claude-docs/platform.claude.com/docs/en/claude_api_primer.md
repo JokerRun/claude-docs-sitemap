@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/claude_api_primer
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 5c56b9d8a1b087dea2859c8c9838945a19aa3ea5d1f85512040b88d74ba1c415
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 6a58a4ae73f7068810734c84fcfbb6ac2cdeb00b0b6a24767075cbaae58d7d5c
 ---
 
 ---
@@ -75,6 +75,8 @@ Previous Haiku model: Claude Haiku 4.5: claude-haiku-4-5-20251001
 ### Multiple conversational turns
 
 The Messages API is stateless, which means that you always send the full conversational history to the API. You can use this pattern to build up a conversation over time. Earlier conversational turns don’t necessarily need to actually originate from Claude. You can use synthetic `assistant` messages.
+
+With [message threads](https://platform.claude.com/docs/en/build-with-claude/message-threads), in beta, the API can keep the conversation, so that each later request sends only the new messages. A thread expires 5 minutes after its last request and is deleted no more than 1 hour after its last use.
 
 <CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI

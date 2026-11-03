@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-10-27T02:22:08.565782Z
-sha256: 8f2f22321f633dd94fbcf06acb011d2e51c38d50841dd59296f739b346731945
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 3379d73e8324c5e20bdd06c4152b39d91faeea2fbdf0a9782673916ba83c994c
 ---
 
 ---
@@ -109,8 +109,8 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.3.0")
-        implementation("com.anthropic:anthropic-java-bedrock:3.3.0")
+        implementation("com.anthropic:anthropic-java:3.4.0")
+        implementation("com.anthropic:anthropic-java-bedrock:3.4.0")
         ```
       </Tab>
 
@@ -119,12 +119,12 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.3.0</version>
+            <version>3.4.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-bedrock</artifactId>
-            <version>3.3.0</version>
+            <version>3.4.0</version>
         </dependency>
         ```
       </Tab>
@@ -372,19 +372,18 @@ Untuk daftar fitur lengkap beserta ketersediaannya di Amazon Bedrock, lihat [Ikh
 * [Messages API](https://platform.claude.com/docs/id/api/messages/create) (`/anthropic/v1/messages`)
 * [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
 * [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking)
-* [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool), [alat Computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), [alat Memory](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool), dan [alat Text editor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool)
+* [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk [alat Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool), [alat penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool), [alat penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool), [alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool), dan [alat editor teks](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool)
 * [Sitasi](https://platform.claude.com/docs/id/build-with-claude/citations)
 * [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
 
 ### Fitur yang tidak didukung
 
 * Sumber input (sumber URL untuk gambar dan dokumen, Files API)
-* Alat sisi server (eksekusi kode, pencarian web, web fetch, advisor)
+* Alat sisi server (eksekusi kode, pencarian web, pengambilan web, advisor)
 * Infrastruktur agen (Agent Skills, konektor MCP, pemanggilan alat terprogram)
 * Endpoint API (Message Batches, Models, Admin, Compliance, Usage and Cost)
 * Claude Managed Agents
 * Fallback sisi server ([parameter `fallbacks`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback); gunakan [pola fallback sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) sebagai gantinya)
-* Toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`computer_toolset_20260801` dan `browser_toolset_20260801` saat ini tidak tersedia di Amazon Bedrock; versi beta alat computer use tetap tersedia)
 
 ## Region
 

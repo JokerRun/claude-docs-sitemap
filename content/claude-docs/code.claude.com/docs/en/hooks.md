@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 8e4d5d8c03b5a4cd0e6fe15cc8d71d782a5acc29cf738c584337d024ff1e4ca1
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 524960c086d43f6e23950bf9d98f513259e2b6fbfd88b38622a5d020698fbc6e
 ---
 
 > ## Documentation Index
@@ -587,7 +587,7 @@ In addition to the [common fields](#common-fields), prompt and agent hooks accep
 | Field | Required | Description |
 | :- | :- | :- |
 | `prompt` | yes | Prompt text to send to the model. Use `$ARGUMENTS` as a placeholder for the hook input JSON. Escape with a backslash to include literal text: `\$1.00` renders as `$1.00` |
-| `model` | no | Model to use for evaluation. Defaults to the model Claude Code uses for [background functionality](https://code.claude.com/docs/en/costs.md#background-token-usage) |
+| `model` | no | Model to use for evaluation. Defaults to the model Claude Code uses for [background functionality](https://code.claude.com/docs/en/model-config.md#environment-variables) |
 
 ### Reference scripts by path
 
@@ -3921,7 +3921,7 @@ Events that support `command`, `http`, and `mcp_tool` hooks but not `prompt` or 
 
 Instead of executing a Bash command, prompt-based hooks:
 
-1. Send the hook input and your prompt to a Claude model, by default the one Claude Code uses for [background functionality](https://code.claude.com/docs/en/costs.md#background-token-usage)
+1. Send the hook input and your prompt to a Claude model, by default the one Claude Code uses for [background functionality](https://code.claude.com/docs/en/model-config.md#environment-variables)
 2. The LLM responds with structured JSON containing a decision
 3. Claude Code processes the decision automatically
 
@@ -3954,7 +3954,7 @@ This `Stop` hook asks the LLM to evaluate whether all tasks are complete before 
 | :- | :- | :- |
 | `type` | yes | Must be `"prompt"` |
 | `prompt` | yes | The prompt text to send to the LLM. Use `$ARGUMENTS` as a placeholder for the hook input JSON. If `$ARGUMENTS` is not present, input JSON is appended to the prompt |
-| `model` | no | Model to use for evaluation. Defaults to the model Claude Code uses for [background functionality](https://code.claude.com/docs/en/costs.md#background-token-usage) |
+| `model` | no | Model to use for evaluation. Defaults to the model Claude Code uses for [background functionality](https://code.claude.com/docs/en/model-config.md#environment-variables) |
 | `timeout` | no | Timeout in seconds. Default: 30 |
 | `continueOnBlock` | no | On the events it applies to, `true` feeds an `ok: false` reason back to Claude and continues instead of ending the turn. Default: `false`. See [Response schema](#response-schema) for per-event behavior |
 

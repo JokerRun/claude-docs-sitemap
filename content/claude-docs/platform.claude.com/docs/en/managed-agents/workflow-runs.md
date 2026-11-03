@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/workflow-runs
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: b7983a2c0e5d7361d657eb128f8594c8475356b600aab21bb1bd98792ac0c136
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 33a8f337fcc8f7c03385b8ea6b915bdb1068f0e31ee4da385fe6b230990488a9
 ---
 
 ---
@@ -448,7 +448,7 @@ This sample follows a session from your message to the agent’s answer. It open
           // On any other stop reason, print it and stop.
           if (!finished && idle.StopReason?.Value is not BetaManagedAgentsSessionRequiresAction)
           {
-              var reason = idle.StopReason?.Json.GetProperty("type").GetString();
+              var reason = idle.StopReason?.Type.Raw();
               Console.WriteLine($"Session idle: {reason}");
               break;
           }

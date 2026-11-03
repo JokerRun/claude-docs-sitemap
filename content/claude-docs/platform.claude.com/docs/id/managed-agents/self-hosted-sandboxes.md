@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: cc75924f743b890b136cc19624182855f447f5db7771c85153e35a8ba7f072b1
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: dbb260c4b86837f84378dad41df20fb40eb385c1a279802813a18b893f3801f6
 ---
 
 ---
@@ -223,7 +223,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
         Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
         ```bash
-        VERSION=2.4.0
+        VERSION=2.5.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;

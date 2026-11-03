@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 3c2ca4a9aa5c70e30244caef21e4dcbc53c04e4b493f4a05e225ce4766cbf8e2
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 928e933b00fccb104305269896d0a5c903503c6e56517217b513edd9dd9122a6
 ---
 
 ---
@@ -15,9 +15,9 @@ description: Arahkan seberapa sering dan seberapa dalam Claude berpikir dengan t
   Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-Pemikiran Claude bersifat adaptif: model mengevaluasi setiap permintaan dan menentukan apakah perlu berpikir dan seberapa banyak. Anda menetapkan tujuan, secara opsional menentukan effort, dan model mengalokasikan penalaran di tempat penalaran kemungkinan besar akan membantu.
+Pemikiran Claude bersifat adaptif: model mengevaluasi setiap permintaan dan menentukan apakah perlu berpikir dan seberapa banyak. Anda menetapkan maksud, secara opsional menentukan effort, dan model mengalokasikan penalaran di tempat penalaran kemungkinan besar akan membantu.
 
-Hal ini membuat pemikiran sangat cocok untuk beban kerja yang mencampur permintaan sepele dan kompleks, serta untuk alur kerja agentik jangka panjang di mana jumlah penalaran yang tepat bervariasi dari satu langkah ke langkah lainnya.
+Hal ini menjadikan pemikiran sangat cocok untuk beban kerja yang mencampurkan permintaan sepele dan kompleks, serta untuk alur kerja agentik jangka panjang di mana jumlah penalaran yang tepat bervariasi dari satu langkah ke langkah lainnya.
 
 Untuk mempelajari cara mengaktifkan pemikiran dan cara membaca output pemikiran, lihat ikhtisar [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking). Halaman ini membahas bagaimana Claude menentukan kapan harus berpikir, cara mengarahkan pemikiran, serta mekanisme caching, biaya, dan harga yang mengikutinya.
 
@@ -29,40 +29,40 @@ Penentuan ini terjadi untuk setiap permintaan. Percakapan yang sama dapat berisi
 
 Kontrol utama atas penentuan ini adalah parameter [effort](https://platform.claude.com/docs/id/build-with-claude/effort), yang berfungsi sebagai panduan lunak tentang seberapa sering dan seberapa dalam Claude menggunakan pemikiran; lihat [Tingkat effort](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost#effort-levels) di halaman ini untuk mengetahui fungsi setiap tingkat.
 
-Jika Anda ingin Claude berpikir lebih jarang, turunkan tingkat effort sebelum beralih ke pengarahan berbasis prompt.
+Jika Anda ingin Claude lebih jarang berpikir, turunkan tingkat effort sebelum beralih ke pengarahan berbasis prompt.
 
-Pemikiran juga berselang-seling dengan penggunaan alat secara otomatis: Claude dapat berpikir di antara pemanggilan alat, mengevaluasi setiap hasil alat sebelum menentukan apa yang harus dilakukan selanjutnya ([pemikiran berselang-seling](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking)). Anda tidak memerlukan header beta atau konfigurasi tambahan apa pun untuk ini.
+Pemikiran juga berselang-seling dengan “tool use” (penggunaan alat) secara otomatis: Claude dapat berpikir di antara pemanggilan alat, mengevaluasi setiap hasil alat sebelum menentukan apa yang harus dilakukan selanjutnya ([pemikiran berselang-seling](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking)). Anda tidak memerlukan header beta atau konfigurasi tambahan apa pun untuk ini.
 
 Untuk detail lengkap tentang bagaimana konfigurasi pemikiran dan parameter effort berinteraksi, lihat [Pemikiran dan effort](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-effort).
 
 ## Mengarahkan seberapa sering Claude berpikir
 
-Apakah Claude berpikir pada giliran tertentu dapat diatur melalui prompt. Effort menetapkan sikap keseluruhan, tetapi Anda juga dapat membentuk perilaku tersebut secara langsung dengan panduan bahasa alami, baik secara global di prompt sistem maupun untuk pesan individual di giliran pengguna.
+Apakah Claude berpikir pada giliran tertentu dapat diarahkan melalui prompt. Effort menetapkan sikap keseluruhan, tetapi Anda juga dapat membentuk perilaku tersebut secara langsung dengan panduan bahasa alami, baik secara global dalam “system prompt” (prompt sistem) maupun untuk pesan individual dalam giliran pengguna.
 
-Gunakan kedua tuas ini bersama-sama dalam urutan berikut:
+Gunakan kedua pengungkit ini bersama-sama dengan urutan berikut:
 
 1. Tetapkan tingkat effort yang sesuai dengan keseimbangan default antara kualitas dan latensi pada beban kerja Anda.
-2. Tambahkan panduan prompt hanya jika pemicuan pemikiran Claude masih belum sesuai dengan kebutuhan Anda pada tingkat tersebut.
+2. Tambahkan panduan prompt hanya jika pemicuan Claude masih tidak sesuai dengan kebutuhan Anda pada tingkat tersebut.
 
 <Note>
-  Untuk mendapatkan lebih sedikit pemikiran pada Claude Sonnet 5.5 dan Claude Haiku 5.5, turunkan tingkat effort. Meminta Claude Sonnet 5.5 di prompt sistem untuk berpikir lebih sedikit tidak secara andal mengurangi pemikirannya, dan dalam pengujian Anthropic, memberi tahu Claude Haiku 5.5 di prompt untuk menjawab secara langsung tidak menghentikannya dari berpikir. Lihat [Prompting untuk Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#calibrate-effort) dan [Prompting Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#use-effort-to-control-thinking).
+  Untuk mendapatkan pemikiran yang lebih sedikit pada Claude Sonnet 5.5 dan Claude Haiku 5.5, turunkan tingkat effort. Meminta Claude Sonnet 5.5 dalam prompt sistem untuk lebih sedikit berpikir tidak secara andal mengurangi pemikirannya, dan dalam pengujian Anthropic, memberi tahu Claude Haiku 5.5 dalam prompt untuk menjawab secara langsung tidak menghentikannya dari berpikir. Lihat [Prompting Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#calibrate-effort) dan [Prompting Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#use-effort-to-control-thinking).
 </Note>
 
-Untuk panduan prompting yang lebih luas dengan pemikiran, lihat [memanfaatkan kemampuan pemikiran dan pemikiran berselang-seling](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#leverage-thinking-and-interleaved-thinking-capabilities).
+Untuk panduan prompting yang lebih luas terkait pemikiran, lihat [memanfaatkan kemampuan pemikiran dan pemikiran berselang-seling](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#leverage-thinking-and-interleaved-thinking-capabilities).
 
 ### Tingkat effort
 
-Effort adalah tuas pengarah utama untuk pemikiran. Setiap tingkat menetapkan default yang berbeda untuk seberapa sering Claude berpikir dan seberapa dalam:
+Effort adalah pengungkit pengarahan utama untuk pemikiran. Setiap tingkat menetapkan default yang berbeda untuk seberapa sering dan seberapa dalam Claude berpikir:
 
-| Tingkat effort                                               | Perilaku pemikiran                                                                                                                       |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `max`                                                        | Claude paling mudah terdorong untuk berpikir dan berpikir dengan kedalaman terbesar, tanpa batasan panjang pemikiran.                    |
-| `xhigh`                                                      | Claude lebih mudah terdorong untuk berpikir dan berpikir lebih dalam dibandingkan pada `high`, cocok untuk eksplorasi yang diperpanjang. |
-| `high` (default pada sebagian besar model)                   | Claude berpikir pada sebagian besar permintaan yang mendapat manfaat darinya. Memberikan penalaran mendalam pada tugas kompleks.         |
-| `medium` (default pada Claude Opus 5.5 dan Claude Haiku 5.5) | Claude menggunakan pemikiran sedang. Mungkin melewatkan pemikiran untuk kueri sederhana.                                                 |
-| `low`                                                        | Claude meminimalkan pemikiran. Melewatkan pemikiran untuk tugas sederhana di mana kecepatan paling penting.                              |
+| Tingkat effort                                               | Perilaku pemikiran                                                                                                                     |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `max`                                                        | Claude paling mudah berpikir dan dengan kedalaman terbesar, tanpa batasan pada panjang pemikiran.                                      |
+| `xhigh`                                                      | Claude lebih mudah berpikir dan dengan kedalaman lebih besar dibandingkan pada `high`, cocok untuk eksplorasi yang diperpanjang.       |
+| `high` (default pada sebagian besar model)                   | Claude berpikir pada sebagian besar permintaan yang mendapat manfaat darinya. Memberikan penalaran mendalam pada tugas-tugas kompleks. |
+| `medium` (default pada Claude Opus 5.5 dan Claude Haiku 5.5) | Claude menggunakan pemikiran sedang. Mungkin melewatkan pemikiran untuk kueri sederhana.                                               |
+| `low`                                                        | Claude meminimalkan pemikiran. Melewatkan pemikiran untuk tugas sederhana di mana kecepatan paling penting.                            |
 
-Pada setiap tingkat, Claude menentukan untuk setiap permintaan apakah perlu berpikir. Dalam loop penggunaan alat, permintaan pertama setelah input pengguna baru biasanya membawa sebagian besar penalaran, dan permintaan lanjutan yang hanya memproses hasil alat dapat melewatkan pemikiran, termasuk pada `xhigh` dan `max`. Pemikiran per permintaan juga cenderung berkurang seiring percakapan menjadi lebih panjang. Tidak ada tingkat yang menjamin adanya blok pemikiran pada setiap permintaan.
+Pada setiap tingkat, Claude menentukan untuk setiap permintaan apakah akan berpikir. Dalam loop penggunaan alat, permintaan pertama setelah input pengguna baru biasanya membawa sebagian besar penalaran, dan permintaan lanjutan yang hanya memproses hasil alat dapat melewatkan pemikiran, termasuk pada `xhigh` dan `max`. Pemikiran per permintaan juga cenderung berkurang seiring percakapan menjadi lebih panjang. Tidak ada tingkat yang menjamin adanya blok pemikiran pada setiap permintaan.
 
 Tabel ini menjelaskan bagaimana setiap tingkat mengubah perilaku pemikiran. Untuk panduan tentang tingkat mana yang harus dipilih untuk beban kerja tertentu, termasuk rekomendasi per model, lihat [Kapan menyesuaikan parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort#when-to-adjust-the-effort-parameter) di halaman effort.
 
@@ -95,22 +95,22 @@ Sebaliknya, untuk mendorong pemikiran, gunakan frasa seperti:
 This task involves multistep reasoning. Think carefully before responding.
 ```
 
-Efektivitas pengarahan dapat sensitif terhadap pilihan kata yang tepat. Jika satu rumusan tidak menghasilkan perilaku yang Anda inginkan, coba varian yang lebih langsung.
+Efektivitas pengarahan dapat sensitif terhadap susunan kata yang tepat. Jika satu frasa tidak menghasilkan perilaku yang Anda inginkan, coba varian yang lebih langsung.
 
 ### Pengarahan per pesan
 
 Anda juga dapat mengarahkan pemikiran per pesan dari giliran pengguna, terlepas dari prompt sistem. Menambahkan `"Please think hard before responding."` ke pesan pengguna mendorong Claude untuk berpikir pada giliran tersebut; `"Answer directly without deliberating."` mencegahnya.
 
-Pengarahan per pesan berguna ketika hanya sebagian permintaan dalam percakapan yang memerlukan penalaran yang diperpanjang. Harness agen, misalnya, dapat menambahkan frasa pendorong pada langkah perencanaan dan frasa pencegah pada konfirmasi rutin, tanpa menyentuh prompt sistem atau mengubah parameter permintaan apa pun di antara giliran.
+Pengarahan per pesan berguna ketika hanya beberapa permintaan dalam percakapan yang memerlukan penalaran yang diperpanjang. Sebuah agent harness, misalnya, dapat menambahkan frasa pendorong pada langkah perencanaan dan frasa pencegah pada konfirmasi rutin, tanpa menyentuh prompt sistem atau mengubah parameter permintaan apa pun di antara giliran.
 
-Pada Claude Haiku 5.5, frasa pencegah tidak secara andal mengurangi pemikiran. Pada Claude API dan Claude Models on Google Cloud (Google managed), jalankan giliran rutin pada model tersebut dengan pemikiran yang lebih sedikit menggunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) sebagai gantinya, yang juga mempertahankan cache prompt.
+Pada Claude Haiku 5.5, frasa yang tidak menganjurkan tersebut tidak secara andal mengurangi pemikiran. Jika platform Anda mendukungnya, jalankan giliran rutin pada model tersebut dengan pemikiran yang lebih sedikit menggunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) sebagai gantinya, yang juga mempertahankan “prompt cache” (cache prompt).
 
 ### Verifikasi pengarahan pada beban kerja Anda
 
-Pengarahan berbasis prompt mengubah perilaku model, jadi perlakukan seperti perubahan prompt lainnya: ukur sebelum Anda merilisnya. Jalankan sampel representatif dari lalu lintas Anda dengan dan tanpa panduan tersebut, lalu bandingkan seberapa sering pemikiran terpicu (keberadaan blok pemikiran dalam respons), penggunaan token output, latensi, dan kualitas jawaban pada kasus yang penting bagi Anda.
+Pengarahan berbasis prompt mengubah perilaku model, jadi perlakukan seperti perubahan prompt lainnya: ukur sebelum Anda merilisnya. Jalankan sampel representatif dari lalu lintas Anda dengan dan tanpa panduan tersebut, lalu bandingkan seberapa sering pemikiran terpicu (keberadaan blok pemikiran dalam respons), penggunaan token output, latensi, dan kualitas jawaban pada kasus-kasus yang penting bagi Anda.
 
 <Warning>
-  Mengarahkan Claude untuk lebih jarang berpikir dapat menurunkan kualitas pada tugas yang mendapat manfaat dari penalaran. Menurunkan tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) biasanya merupakan tuas pertama yang lebih baik, karena ini adalah kontrol yang terkalibrasi, bukan instruksi yang sensitif terhadap susunan kata. Ukur dampaknya pada beban kerja spesifik Anda sebelum menerapkan penyetelan berbasis prompt ke produksi.
+  Mengarahkan Claude untuk lebih jarang berpikir dapat menurunkan kualitas pada tugas yang mendapat manfaat dari penalaran. Menurunkan tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) biasanya merupakan pengungkit pertama yang lebih baik, karena ini adalah kontrol yang terkalibrasi, bukan instruksi yang sensitif terhadap susunan kata. Ukur dampaknya pada beban kerja spesifik Anda sebelum menerapkan penyetelan berbasis prompt ke produksi.
 </Warning>
 
 ## Mekanisme
@@ -121,30 +121,30 @@ Tiga mekanisme mengikuti dari Claude yang mengelola pemikirannya sendiri: valida
 
 Giliran asisten tidak perlu dimulai dengan blok pemikiran. (Model yang menggunakan anggaran pemikiran manual lama mewajibkan giliran asisten terakhir dari permintaan dengan pemikiran aktif dimulai dengan blok pemikiran; lihat [Struktur giliran dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#turn-structure-in-manual-mode).)
 
-Untuk aplikasi multigiliran, ini berarti Anda dapat mengirimkan kembali riwayat percakapan dalam bentuk apa pun yang Anda miliki:
+Untuk aplikasi multi-giliran, ini berarti Anda dapat mengirimkan kembali riwayat percakapan dalam bentuk apa pun yang Anda miliki:
 
-* Giliran asisten yang dihasilkan Claude tanpa pemikiran merupakan riwayat yang valid apa adanya.
+* Giliran asisten yang dihasilkan Claude tanpa pemikiran adalah riwayat yang valid apa adanya.
 * Anda dapat melanjutkan percakapan yang dimulai tanpa pemikiran, atau yang menggunakan konfigurasi pemikiran berbeda, tanpa menulis ulang riwayatnya.
-* Riwayat yang disusun dari sumber campuran tidak memerlukan blok pemikiran disisipkan kembali di awal setiap giliran asisten untuk lolos validasi.
+* Riwayat yang disusun dari sumber campuran tidak perlu blok pemikiran disisipkan kembali di awal setiap giliran asisten agar lolos validasi.
 
-Pelonggaran ini berkaitan dengan validasi, bukan tentang apa yang sebaiknya Anda kirim. Ketika Anda memiliki blok pemikiran, kirimkan kembali tanpa modifikasi, terutama selama penggunaan alat, di mana blok tersebut membawa penalaran di balik pemanggilan alat Claude. Lihat ikhtisar [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking) untuk aturan lengkapnya.
+Pelonggaran ini berkaitan dengan validasi, bukan tentang apa yang harus Anda kirim. Ketika Anda memiliki blok pemikiran, kirimkan kembali tanpa dimodifikasi, terutama selama penggunaan alat, di mana blok tersebut membawa penalaran di balik pemanggilan alat Claude. Lihat ikhtisar [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking) untuk aturan lengkapnya.
 
 ### Caching prompt
 
-Permintaan berurutan yang mempertahankan konfigurasi pemikiran dan tingkat effort yang sama akan mempertahankan “prompt caching” (caching prompt); lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching) untuk aturan lengkapnya. Nilai effort yang telah diselesaikan dirender ke dalam prompt, sehingga mengubahnya di antara permintaan akan membatalkan breakpoint cache, sama seperti mengubah parameter lama [`budget_tokens`](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#extended-thinking-with-prompt-caching) pada model yang menggunakannya. Menetapkan `effort` secara eksplisit ke default model setara dengan menghilangkannya dan tidak merusak cache.
+Permintaan berturut-turut yang mempertahankan konfigurasi pemikiran dan tingkat effort yang sama akan mempertahankan “prompt caching” (caching prompt); lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching) untuk aturan lengkapnya. Nilai effort yang ditetapkan dirender ke dalam prompt, sehingga mengubahnya di antara permintaan akan membatalkan breakpoint cache, sama seperti mengubah parameter lama [`budget_tokens`](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#extended-thinking-with-prompt-caching) pada model yang menggunakannya. Menetapkan `effort` secara eksplisit ke nilai default model setara dengan menghilangkannya dan tidak merusak cache.
 
-Konsekuensi praktisnya: pilih konfigurasi pemikiran dan tingkat effort tingkat atas untuk setiap percakapan dan pertahankan. Jika beberapa giliran membutuhkan lebih banyak atau lebih sedikit pemikiran, gunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) pada model yang mendukungnya, atau arahkan dengan [prompting per pesan](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost#tuning-thinking-behavior). Keduanya membiarkan breakpoint cache sebelumnya tetap utuh, sedangkan perubahan pada konfigurasi pemikiran atau tingkat effort tingkat atas tidak.
+Konsekuensi praktisnya: pilih konfigurasi pemikiran dan tingkat effort tingkat atas untuk setiap percakapan dan pertahankan. Jika beberapa giliran memerlukan pemikiran lebih banyak atau lebih sedikit, gunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) pada model yang mendukungnya, atau arahkan dengan [prompting per pesan](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost#tuning-thinking-behavior). Keduanya membiarkan breakpoint cache sebelumnya tetap utuh, sedangkan perubahan pada konfigurasi pemikiran atau tingkat effort tingkat atas tidak.
 
-Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran yang dapat Anda jalankan sendiri:
+Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multi-giliran yang dapat Anda jalankan sendiri:
 
 <Accordion title="Perubahan effort membatalkan cache prompt">
   <CodeGroup exclude="shell:cURL, shell:CLI">
     <CodeGroupItem language="cURL">
-      Alur kerja ini membutuhkan logika lebih banyak daripada satu perintah shell. Gunakan Claude SDK untuk menjalankannya; permintaan HTTP per giliran mengikuti contoh di halaman [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
+      Alur kerja ini memerlukan logika lebih dari satu perintah shell. Gunakan Claude SDK untuk menjalankannya; permintaan HTTP per giliran mengikuti contoh di halaman [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
     </CodeGroupItem>
 
     <CodeGroupItem language="CLI">
-      Alur kerja ini membutuhkan logika lebih banyak daripada satu perintah shell. Gunakan Claude SDK untuk menjalankannya; perintah CLI per giliran mengikuti contoh di halaman [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
+      Alur kerja ini memerlukan logika lebih dari satu perintah shell. Gunakan Claude SDK untuk menjalankannya; perintah CLI per giliran mengikuti contoh di halaman [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
     </CodeGroupItem>
 
     ```python Python
@@ -165,7 +165,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
     # Gunakan teks secukupnya untuk caching (beberapa bab pertama)
     LARGE_TEXT = book_content[:10000]
 
-    # Tanpa prompt sistem: caching dilakukan di messages
+    # Tanpa prompt sistem: caching dilakukan di pesan
     MESSAGES = [
         {
             "role": "user",
@@ -180,7 +180,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
         }
     ]
 
-    # Permintaan pertama: membangun cache
+    # Permintaan pertama: buat cache
     print("First request - establishing cache")
     response1 = client.messages.create(
         model="claude-opus-5-5",
@@ -445,7 +445,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
     	),
     }
 
-    // Permintaan pertama: membangun cache
+    // Permintaan pertama: membuat cache
     fmt.Println("First request - establishing cache")
     response1, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
     	Model:     anthropic.ModelClaudeOpus5_5,
@@ -850,51 +850,51 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multigiliran y
   Third response usage: { cache_creation_input_tokens: 3546, cache_read_input_tokens: 0, input_tokens: 2706, output_tokens: 1468 }
   ```
 
-  Dengan breakpoint cache di dalam array messages, mengubah effort dari `medium`, default pada Claude Opus 5.5, menjadi `low` akan membatalkannya: permintaan ketiga menunjukkan `cache_creation_input_tokens=3546` dan `cache_read_input_tokens=0`, sedangkan permintaan kedua menunjukkan pembacaan cache penuh.
+  Dengan breakpoint cache di dalam array messages, mengubah effort dari `medium`, default pada Claude Opus 5.5, ke `low` akan membatalkannya: permintaan ketiga menunjukkan `cache_creation_input_tokens=3546` dan `cache_read_input_tokens=0`, sedangkan permintaan kedua menunjukkan pembacaan cache penuh.
 </Accordion>
 
 ### Kontrol biaya
 
 Anda tidak menetapkan anggaran token pemikiran. Dua kontrol membatasi biaya:
 
-* `max_tokens` adalah batas keras pada total output untuk permintaan, gabungan pemikiran dan teks respons. Claude tidak pernah menghasilkan melebihinya. Dalam loop penggunaan alat, setiap permintaan dalam giliran memiliki `max_tokens` sendiri, sehingga tidak membatasi pengeluaran seluruh giliran.
-* `effort` adalah panduan lunak tentang seberapa banyak dari output tersebut yang dialokasikan Claude untuk pemikiran. Ini membentuk perilaku tetapi tidak menjamin jumlah token.
+* `max_tokens` adalah batas keras untuk total output permintaan, gabungan pemikiran dan teks respons. Claude tidak pernah menghasilkan melebihi batas tersebut. Dalam loop penggunaan alat, setiap permintaan dalam giliran memiliki `max_tokens` sendiri, sehingga tidak membatasi pengeluaran seluruh giliran.
+* `effort` adalah panduan lunak tentang berapa banyak dari output tersebut yang dialokasikan Claude untuk pemikiran. Ini membentuk perilaku tetapi tidak menjamin jumlah token.
 
-Karena pemikiran dihitung terhadap `max_tokens`, tetapkan nilainya cukup tinggi untuk menyisakan ruang bagi penalaran dan jawaban. `max_tokens` yang diukur untuk respons tanpa pemikiran sering kali terlalu kecil begitu Claude mulai berpikir pada permintaan yang sulit.
+Karena pemikiran dihitung dalam `max_tokens`, tetapkan nilainya cukup tinggi untuk memberi ruang bagi penalaran dan jawaban. `max_tokens` yang diukur untuk respons tanpa pemikiran sering kali terlalu kecil begitu Claude mulai berpikir pada permintaan yang sulit.
 
-Pada effort `high` ke atas, Claude mungkin berpikir secara ekstensif dan lebih mungkin menghabiskan anggaran. Jika Anda melihat [`stop_reason: "max_tokens"`](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#stopped-at-max-tokens) dalam respons, Anda memiliki dua solusi:
+Pada effort `high` dan di atasnya, Claude mungkin berpikir secara ekstensif dan lebih mungkin menghabiskan anggaran. Jika Anda melihat [`stop_reason: "max_tokens"`](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#stopped-at-max-tokens) dalam respons, Anda memiliki dua solusi:
 
 * Naikkan `max_tokens` untuk memberi model lebih banyak ruang untuk pemikiran ditambah jawaban.
-* Turunkan tingkat effort agar Claude berpikir lebih sedikit dan menyisakan lebih banyak anggaran untuk teks respons.
+* Turunkan tingkat effort agar Claude lebih sedikit berpikir dan menyisakan lebih banyak anggaran untuk teks respons.
 
-Mana yang tepat bergantung pada apakah respons yang terpotong memerlukan penalaran tersebut. Jika kualitas pada permintaan tersebut penting, naikkan batasnya; jika permintaan tersebut dipikirkan secara berlebihan, turunkan effort.
+Mana yang tepat bergantung pada apakah respons yang terpotong tersebut membutuhkan penalaran. Jika kualitas pada permintaan tersebut penting, naikkan batasnya; jika permintaan tersebut terlalu banyak dipikirkan, turunkan effort.
 
 ## Harga
 
-Pemikiran menimbulkan biaya untuk:
+Pemikiran dikenakan biaya untuk:
 
 * Token yang digunakan Claude saat berpikir (ditagih sebagai token output)
-* Blok pemikiran dari giliran asisten sebelumnya yang tetap berada dalam konteks, sesuai dengan [default preservasi](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-block-preservation-by-model): semua giliran secara default pada model keep-all, hanya giliran terakhir di tempat lain (ditagih sebagai token input)
+* Blok pemikiran dari giliran asisten sebelumnya yang tetap berada dalam konteks, sesuai dengan [default preservasi](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-block-preservation-by-model): semua giliran secara default pada model keep-all, hanya giliran terakhir pada model lainnya (ditagih sebagai token input)
 * Token output teks standar
 
 <Note>
   Ketika pemikiran aktif, prompt sistem khusus secara otomatis disertakan untuk mendukung fitur ini.
 </Note>
 
-Apa yang ditagihkan kepada Anda tetap sama terlepas dari pengaturan `display`; hanya apa yang Anda lihat yang berubah:
+Apa yang ditagihkan kepada Anda sama terlepas dari pengaturan `display`; hanya apa yang Anda lihat yang berubah:
 
-|                             | `display: "summarized"`                                        | `display: "omitted"`                          |
-| --------------------------- | -------------------------------------------------------------- | --------------------------------------------- |
-| **Token input**             | Token dalam permintaan asli Anda                               | Sama seperti summarized                       |
-| **Token output (ditagih)**  | Token pemikiran lengkap yang dihasilkan Claude secara internal | Sama seperti summarized                       |
-| **Token output (terlihat)** | Teks pemikiran yang diringkas                                  | Nol token pemikiran (field `thinking` kosong) |
-| **Pembuatan ringkasan**     | Tanpa biaya                                                    | Tidak berlaku                                 |
+|                             | `display: "summarized"`                                        | `display: "omitted"`                           |
+| --------------------------- | -------------------------------------------------------------- | ---------------------------------------------- |
+| **Token input**             | Token dalam permintaan asli Anda                               | Sama seperti summarized                        |
+| **Token output (ditagih)**  | Seluruh token pemikiran yang dihasilkan Claude secara internal | Sama seperti summarized                        |
+| **Token output (terlihat)** | Teks pemikiran yang diringkas                                  | Nol token pemikiran (bidang `thinking` kosong) |
+| **Pembuatan ringkasan**     | Tanpa biaya                                                    | Tidak berlaku                                  |
 
 <Warning>
-  Jumlah token output yang ditagih **tidak** sama dengan jumlah token yang terlihat dalam respons. Anda ditagih untuk proses pemikiran lengkap, bukan konten pemikiran yang terlihat dalam respons.
+  Jumlah token output yang ditagih **tidak** sama dengan jumlah token yang terlihat dalam respons. Anda ditagih untuk seluruh proses pemikiran, bukan konten pemikiran yang terlihat dalam respons.
 </Warning>
 
-Untuk melihat berapa banyak token output yang ditagih yang dihabiskan untuk penalaran internal, baca `usage.output_tokens_details.thinking_tokens` dalam respons. Nilai ini mencerminkan penalaran mentah yang dihasilkan model (bukan teks ringkasan yang dikembalikan dalam body) dan selalu kurang dari atau sama dengan `output_tokens`. Kurangkan nilai ini dari `output_tokens` untuk memperkirakan bagian output yang bukan penalaran. Saat streaming, rincian ini hanya muncul pada event `message_delta` terakhir.
+Untuk melihat berapa banyak token output yang ditagih yang digunakan untuk penalaran internal, baca `usage.output_tokens_details.thinking_tokens` dalam respons. Nilai ini mencerminkan penalaran mentah yang dihasilkan model (bukan teks ringkasan yang dikembalikan dalam body) dan selalu kurang dari atau sama dengan `output_tokens`. Kurangkan nilai ini dari `output_tokens` untuk memperkirakan bagian output yang bukan penalaran. Saat streaming, rincian ini hanya muncul pada event `message_delta` terakhir.
 
 ```json
 {
@@ -908,7 +908,7 @@ Untuk melihat berapa banyak token output yang ditagih yang dihabiskan untuk pena
 }
 ```
 
-`output_tokens` tetap menjadi total inklusif dan otoritatif yang digunakan untuk penagihan. `output_tokens_details` adalah rincian hanya-baca untuk observabilitas. Untuk informasi harga lengkap termasuk tarif dasar, penulisan cache, cache hit, dan token output, lihat [Harga](https://platform.claude.com/docs/id/about-claude/pricing).
+`output_tokens` tetap menjadi total inklusif dan resmi yang digunakan untuk penagihan. `output_tokens_details` adalah rincian hanya-baca untuk keperluan observabilitas. Untuk informasi harga lengkap termasuk tarif dasar, penulisan cache, cache hit, dan token output, lihat [Harga](https://platform.claude.com/docs/id/about-claude/pricing).
 
 ## Langkah selanjutnya
 
@@ -917,11 +917,11 @@ Untuk melihat berapa banyak token output yang ditagih yang dihabiskan untuk pena
     Aktifkan pemikiran, baca output pemikiran, dan periksa dukungan per model.
   </Card>
 
-  <Card title="Pemikiran dalam alur kerja alat dan multigiliran" icon="wrench" href="https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows">
-    Pertahankan blok pemikiran di seluruh pemanggilan alat dan kelola pemikiran dalam percakapan multigiliran.
+  <Card title="Pemikiran dalam alur kerja alat dan multi-giliran" icon="wrench" href="https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows">
+    Pertahankan blok pemikiran di seluruh pemanggilan alat dan kelola pemikiran dalam percakapan multi-giliran.
   </Card>
 
   <Card title="Effort" icon="sliders" href="https://platform.claude.com/docs/id/build-with-claude/effort">
-    Kendalikan seberapa banyak pemikiran dan output yang dialokasikan Claude untuk setiap permintaan.
+    Kontrol berapa banyak pemikiran dan output yang dialokasikan Claude untuk setiap permintaan.
   </Card>
 </CardGroup>

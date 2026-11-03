@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks-configuration
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 4f31c952b42a4d31b2d2c2d5aaeab23afc05a8fe9f7bd5f7f61fe2709ac825f0
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 49119570fa5b901ad09d2464776bd4ba127037c4aed44c646bd8b481e016864e
 ---
 
 ---
@@ -130,7 +130,7 @@ While **Only selected roles** is set:
 * If no member set to **Custom roles** is assigned a selected role, no member is inspected.
 * Requests with no member behind them are not inspected, such as requests made with API keys, and Claude Tag conversations in Slack.
 
-The switch and changes to the inspected roles are recorded in your organization’s [Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed).
+Changes to **Inspect** and to the inspected roles are recorded in your organization’s [Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed).
 
 ## Custom blocked prompt message
 

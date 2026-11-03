@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/scheduled-deployments
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 3da531826aed9db23d6e0a2b197d315ecc446d945eea9ab1aeece663c75e2581
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: b360760857e8436f6fb5a42f637d89137abe3a79c447b985a414f15a3f9d6d0f
 ---
 
 ---
@@ -459,9 +459,7 @@ List all deployment runs for a deployment as follows:
   );
   await foreach (var run in runs.Paginate())
   {
-      // The Error union exposes .Message directly; the discriminator is read
-      // from .Json until a common .Type accessor is added.
-      var outcome = run.SessionID ?? run.Error!.Json.GetProperty("type").GetString();
+      var outcome = run.SessionID ?? run.Error!.Type.Raw();
       Console.WriteLine($"{run.CreatedAt} {outcome}");
   }
   ```
@@ -488,10 +486,8 @@ List all deployment runs for a deployment as follows:
           DeploymentRunListParams.builder()
               .deploymentId(deployment.id())
               .build()).autoPager()) {
-      // The Error union does not yet expose common .type()/.message()
-      // accessors; .toString() includes both.
       IO.println(run.createdAt() + " "
-          + run.sessionId().orElseGet(() -> run.error().orElseThrow().toString()));
+          + run.sessionId().orElseGet(() -> run.error().orElseThrow().type().asString()));
   }
   ```
 
@@ -551,7 +547,7 @@ You can additionally filter on deployment runs with errors:
   await foreach (var failedRun in failedRuns.Paginate())
   {
       var error = failedRun.Error!;
-      var errorType = error.Json.GetProperty("type").GetString();
+      var errorType = error.Type.Raw();
       Console.WriteLine($"{failedRun.CreatedAt} {errorType} {error.Message}");
   }
   ```
@@ -576,7 +572,8 @@ You can additionally filter on deployment runs with errors:
               .deploymentId(deployment.id())
               .hasError(true)
               .build()).autoPager()) {
-      IO.println(run.createdAt() + " " + run.error().orElseThrow());
+      var error = run.error().orElseThrow();
+      IO.println(run.createdAt() + " " + error.type().asString() + " " + error.message());
   }
   ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-threads
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: de728639adde4a3f450edf01d8e9eb60cbc31b294c58b546a58296a0a0cf957e
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 4496343fcbbdd8a7d38739b0566077c94550060af2b51f30f56f189b9430494e
 ---
 
 ---
@@ -86,7 +86,7 @@ Cantumkan semua thread yang terkait dengan sebuah sesi sebagai berikut:
   ```csharp C#
   await foreach (var sessionThread in (await client.Beta.Sessions.Threads.List(session.ID)).Paginate())
   {
-      var label = sessionThread.Agent.Name ?? sessionThread.Agent.Json.GetProperty("type").GetString();
+      var label = sessionThread.Agent.Name ?? sessionThread.Agent.Type.Raw();
       Console.WriteLine($"[{label}] {sessionThread.Status.Raw()}");
   }
   ```
@@ -623,7 +623,7 @@ Aliran sebuah thread tidak memutar ulang event sebelumnya. Tepat setelah `sessio
       var page = await client.Beta.Sessions.Threads.Events.List(thread.ID, new() { SessionID = session.ID });
       await foreach (var evt in page.Paginate())
       {
-          Console.WriteLine($"[{evt.Json.GetProperty("type").GetString()}] {evt.ProcessedAt}");
+          Console.WriteLine($"[{evt.Type.Raw()}] {evt.ProcessedAt}");
       }
       ```
 
@@ -647,11 +647,8 @@ Aliran sebuah thread tidak memutar ulang event sebelumnya. Tepat setelah `sessio
                   .sessionId(session.id())
                   .build()
       ).autoPager()) {
-          var type = event._json().orElseThrow() instanceof JsonObject json
-              ? json.values().get("type").asStringOrThrow()
-              : "unknown";
           var processedAt = event.processedAt().map(OffsetDateTime::toString).orElse("pending");
-          IO.println("[" + type + "] " + processedAt);
+          IO.println("[" + event.type().asString() + "] " + processedAt);
       }
       ```
 

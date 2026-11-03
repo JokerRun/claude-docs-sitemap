@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 6fe93109112b574c33a4fa46ed23df3eaae0977e71646620bcbdd2a7b0eea406
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: cd964a394060ca60635026070221b3ab51dcc7087ab3ebef74ce7e681bbc91e4
 ---
 
 ---
@@ -182,20 +182,20 @@ Install the package that provides the client:
 
   <Tab title="Java">
     ```kotlin Gradle
-    implementation("com.anthropic:anthropic-java:3.3.0")
-    implementation("com.anthropic:anthropic-java-google-cloud:3.3.0")
+    implementation("com.anthropic:anthropic-java:3.4.0")
+    implementation("com.anthropic:anthropic-java-google-cloud:3.4.0")
     ```
 
     ```xml Maven
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java</artifactId>
-      <version>3.3.0</version>
+      <version>3.4.0</version>
     </dependency>
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java-google-cloud</artifactId>
-      <version>3.3.0</version>
+      <version>3.4.0</version>
     </dependency>
     ```
   </Tab>
@@ -528,6 +528,8 @@ The following features work on Claude Models on Google Cloud (Anthropic managed)
 
   * [Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching)
   * [Extended thinking](https://platform.claude.com/docs/en/build-with-claude/thinking)
+  * [Adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking#configuring-thinking)
+  * [Effort](https://platform.claude.com/docs/en/build-with-claude/effort)
   * [Server-side fallback](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#server-side-fallback)
   * [Streaming](https://platform.claude.com/docs/en/build-with-claude/streaming)
   * [Structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)

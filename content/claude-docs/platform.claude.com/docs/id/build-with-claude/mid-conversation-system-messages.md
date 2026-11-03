@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: a970c4960922f32dcb6b47dfdf9dc4c1b718a859d3b3df48b4350ae7b1dbd4db
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 5f7c37bb47e78ae54da438405128e6a2c18d1af779025063453c75d628c75181
 ---
 
 ---
@@ -1666,7 +1666,7 @@ Tambahkan pesan dengan `"role": "system"` ke array `messages`. Gunakan string bi
 
 Anda tetap dapat mengatur field `system` tingkat atas untuk instruksi yang harus berlaku di seluruh percakapan. Gunakan pesan sistem di tengah percakapan khusus untuk instruksi yang baru menjadi relevan kemudian, atau yang ingin Anda tambahkan tanpa membatalkan prefiks yang di-cache.
 
-Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) di tengah percakapan. Fitur ini berstatus beta di Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5 di Claude API dan Claude Models on Google Cloud (Google managed), dan memerlukan header beta `mid-conversation-output-config-2026-07-01`. Di Amazon Bedrock, fitur ini berstatus beta di Claude Fable 5.1, Claude Mythos 5.1, dan Claude Opus 5.5, dengan nilai beta yang sama. Claude Opus 5 tidak mendukungnya di Amazon Bedrock. Lihat [Effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta).
+Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) di tengah percakapan, dalam versi beta. Lihat [Effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta).
 
 <CodeGroup>
   ```bash cURL

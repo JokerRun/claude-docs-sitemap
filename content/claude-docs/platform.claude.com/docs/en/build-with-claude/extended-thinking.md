@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 2b5c4beef0eea1981f87e039a650b9cf6cb0f7921cd54cde5a379880caf305f0
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 1119615176f358ed104a9537414ce1ec33f1049a2db9b787da66a3f299884c66
 ---
 
 ---
@@ -322,7 +322,7 @@ Two more considerations for interleaved thinking in manual mode:
 * `budget_tokens` can exceed `max_tokens` here; the [budget rules](https://platform.claude.com/docs/en/build-with-claude/extended-thinking#budget-rules-and-tuning) explain this exception.
 * Interleaved thinking is only supported for [tools used through the Messages API](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview).
 
-How platforms treat the beta header differs. The Claude API and [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) accept `interleaved-thinking-2025-05-14` on any model and ignore it where unsupported. Acceptance is not the same as effect: on models that reject `type: "enabled"` (4.7 and later) or lack manual-mode interleaving (Claude Opus 4.6), the header has no manual-mode effect; adaptive thinking interleaves automatically there.
+How platforms treat the beta header differs. The Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), and [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed) accept `interleaved-thinking-2025-05-14` on any model and ignore it where unsupported. Acceptance is not the same as effect: on models that reject `type: "enabled"` (4.7 and later) or lack manual-mode interleaving (Claude Opus 4.6), the header has no manual-mode effect; adaptive thinking interleaves automatically there.
 
 Partner-operated platforms, [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock) and [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed), likewise accept the header on any model without returning an error, and ignore it on models that don’t support interleaved thinking.
 

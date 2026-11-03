@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-threads
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: bc7bc7cf6b17dde99396378fa331f39fe7103562825f46ef0397af3385251534
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 7f5da58cea8de0b9c6b669a634947299c06c13b6369b13c1a9222bc2a3323ce3
 ---
 
 ---
@@ -86,7 +86,7 @@ List all threads associated with a session as follows:
   ```csharp C#
   await foreach (var sessionThread in (await client.Beta.Sessions.Threads.List(session.ID)).Paginate())
   {
-      var label = sessionThread.Agent.Name ?? sessionThread.Agent.Json.GetProperty("type").GetString();
+      var label = sessionThread.Agent.Name ?? sessionThread.Agent.Type.Raw();
       Console.WriteLine($"[{label}] {sessionThread.Status.Raw()}");
   }
   ```
@@ -623,7 +623,7 @@ A thread’s stream doesn’t replay earlier events. Right after `session.thread
       var page = await client.Beta.Sessions.Threads.Events.List(thread.ID, new() { SessionID = session.ID });
       await foreach (var evt in page.Paginate())
       {
-          Console.WriteLine($"[{evt.Json.GetProperty("type").GetString()}] {evt.ProcessedAt}");
+          Console.WriteLine($"[{evt.Type.Raw()}] {evt.ProcessedAt}");
       }
       ```
 
@@ -647,11 +647,8 @@ A thread’s stream doesn’t replay earlier events. Right after `session.thread
                   .sessionId(session.id())
                   .build()
       ).autoPager()) {
-          var type = event._json().orElseThrow() instanceof JsonObject json
-              ? json.values().get("type").asStringOrThrow()
-              : "unknown";
           var processedAt = event.processedAt().map(OffsetDateTime::toString).orElse("pending");
-          IO.println("[" + type + "] " + processedAt);
+          IO.println("[" + event.type().asString() + "] " + processedAt);
       }
       ```
 

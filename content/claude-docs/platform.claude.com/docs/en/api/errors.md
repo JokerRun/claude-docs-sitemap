@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/errors
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 47fe2413900d447a711e786ea814c81491c29c783f13e389c19ea60bf3424856
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: a292d24bf93cf4c8ab2e9e8ef7816b4e686cfa79c33e8344c5d50c12f22aa856
 ---
 
 ---
@@ -537,13 +537,15 @@ tool_choice: type "tool" and "any" are not supported for this model.
 
 ### Computer use tool version not supported
 
-On the Claude API and Claude Models on Google Cloud (Google managed), Claude Opus 5.5, Claude Sonnet 5.5, and Claude Haiku 5.5 support [computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) only as the `computer_toolset_20260801` toolset. On those platforms, sending any of these models a `tools` entry of the earlier `computer_20251124` or `computer_20250124` type, with that tool’s beta header, returns a 400 `invalid_request_error`. The message names the rejected type, then lists the tool types the model does accept after `Did you mean one of`. For Claude Opus 5.5, it begins:
+Claude Opus 5.5, Claude Sonnet 5.5, and Claude Haiku 5.5 return a 400 error for any [computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) tool version they don’t accept. On the Claude API, that includes `computer_20251124` with its beta header. They don’t accept `computer_20250124` on any platform. The Claude API’s `invalid_request_error` message names the rejected type and, after `Did you mean one of`, lists the tool types the model accepts. For Claude Opus 5.5, the message begins:
 
 ```text wrap
 'claude-opus-5-5' does not support tool types: computer_20251124.
 ```
 
-The API returns the same message for any Anthropic-defined tool type that the requested model doesn’t support. Declare `{"type": "computer_toolset_20260801"}` without the beta header and update your agent loop as described in [Migrate from `computer_20251124`](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). To move from `computer_20250124`, see [Move computer use to the toolset](https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#computer-use-toolset) in the Claude Haiku 5.5 migration guide. Earlier models that support the toolset keep accepting `computer_20251124`, as do Claude Opus 5.5, Claude Sonnet 5.5, and Claude Haiku 5.5 on Amazon Bedrock.
+The Claude API returns the same message for any Anthropic-defined tool type that the requested model doesn’t support. Claude Opus 5.5, Claude Sonnet 5.5, and Claude Haiku 5.5 support computer use through the `computer_toolset_20260801` toolset. Declare `{"type": "computer_toolset_20260801"}` without the beta header and update your agent loop as described in [Migrate from `computer_20251124`](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). To move from `computer_20250124`, see [Move computer use to the toolset](https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#computer-use-toolset) in the Claude Haiku 5.5 migration guide.
+
+On Amazon Bedrock, Claude Opus 5.5, Claude Sonnet 5.5, and Claude Haiku 5.5 also accept the `computer_20251124` tool with the `computer-use-2025-11-24` beta header. [Earlier tool versions](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) lists the models to use with each earlier version.
 
 ### Thinking block bound to a different conversation
 

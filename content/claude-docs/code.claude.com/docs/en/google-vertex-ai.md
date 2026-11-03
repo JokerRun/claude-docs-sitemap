@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 37fd6673fef06afbfd79de8b051bee766b78e8470c2f06e527483cbf65b3e92c
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 450b29687897bc0cd9f80a2ffb0cef890bf88ae872a408b404baa5f9bfdfe670
 ---
 
 > ## Documentation Index
@@ -199,7 +199,12 @@ Start Claude Code and run `/status` to confirm the setup. The `API provider` lin
 
 When Claude Code starts with Google Cloud's Agent Platform configured, it verifies that the models it intends to use are accessible in your project.
 
-If you have pinned a model version that is older than the current Claude Code default, and your project can invoke the newer version, Claude Code prompts you to update the pin. Accepting writes the new model ID to your [user settings file](https://code.claude.com/docs/en/settings.md) and restarts Claude Code. Declining is remembered until the next default version change.
+You may have pinned a model version that is older than the current Claude Code default. If your project can invoke the newer version, Claude Code prompts you to update the pin:
+
+* **If you accept**: Claude Code writes the new model ID to your [user settings file](https://code.claude.com/docs/en/settings.md) and restarts
+* **If you decline**: Claude Code remembers your choice until the next default version change
+
+For a pin in the `env` block of [managed settings](https://code.claude.com/docs/en/managed-settings.md), Claude Code runs no check and shows no prompt.
 
 If you have not pinned a model and the current default is unavailable in your project, Claude Code falls back for the current session and shows a notice. It tries earlier versions of the default model first and, when the default is an Opus model and no Opus version is available, falls back to the default Sonnet model. The fallback is not persisted. Enable the newer model in [Model Garden](https://console.cloud.google.com/vertex-ai/model-garden) or [pin a version](#5-pin-model-versions) to make the choice permanent.
 

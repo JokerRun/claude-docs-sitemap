@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: dfc7a947e457b58cdd03b0a264ff9ee220e80d0dc39b5f3f2a5af052fb9c8b7a
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: ac783903cdd30bcf23e826d1dfb039756ca7f22d97415eb5a850ec0b8466c650
 ---
 
 ---
@@ -1386,7 +1386,7 @@ Selalu tinjau dan verifikasi interpretasi gambar Claude dengan cermat, terutama 
   </Accordion>
 
   <Accordion title="Dapatkah saya menghapus gambar yang telah saya unggah?">
-    Tidak. Unggahan gambar bersifat sementara dan tidak disimpan melebihi durasi permintaan API. Gambar yang diunggah dihapus secara otomatis setelah diproses.
+    Tidak. Lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention) untuk mengetahui berapa lama gambar disimpan. Jika Anda mengunggah gambar dengan [Files API](https://platform.claude.com/docs/id/build-with-claude/files), Anda dapat menghapusnya di sana.
   </Accordion>
 
   <Accordion title="Di mana saya dapat menemukan detail tentang privasi data untuk unggahan gambar?">

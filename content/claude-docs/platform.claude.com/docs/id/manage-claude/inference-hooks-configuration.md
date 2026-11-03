@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 53ff02ba9a2ebff2f2e81be1f12b9aab2dbb25eaaaa78761595096af6f7548ab
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 05624d718ad6a215eb8093771832c4129c1b7937582029ae2f7ef822cdd4aa05
 ---
 
 ---
@@ -130,7 +130,7 @@ Selama **Only selected roles** disetel:
 * Jika tidak ada anggota yang disetel ke **Custom roles** yang diberi peran yang dipilih, tidak ada anggota yang diperiksa.
 * Permintaan yang tidak berasal dari anggota tidak diperiksa, seperti permintaan yang dibuat dengan kunci API, dan percakapan Claude Tag di Slack.
 
-Sakelar tersebut dan perubahan pada peran yang diperiksa dicatat di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) organisasi Anda.
+Perubahan pada **Inspect** dan pada peran yang diperiksa dicatat di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) organisasi Anda.
 
 ## Pesan kustom untuk prompt yang diblokir
 

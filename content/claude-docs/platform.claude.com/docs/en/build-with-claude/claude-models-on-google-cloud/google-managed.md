@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 318f33b77598cc0ceda66099007a159aa6806b7e4c06cad8f9a70f045423b224
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 631285e245bf32a2d39309ce6b3df292c89652788c2e2d22ec5e5de1790511df
 ---
 
 ---
@@ -54,20 +54,20 @@ Anthropic’s [client SDKs](https://platform.claude.com/docs/en/cli-sdks-librari
   <Tab title="Java">
     <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:3.3.0")
-      implementation("com.anthropic:anthropic-java-vertex:3.3.0")
+      implementation("com.anthropic:anthropic-java:3.4.0")
+      implementation("com.anthropic:anthropic-java-vertex:3.4.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>3.3.0</version>
+          <version>3.4.0</version>
       </dependency>
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-vertex</artifactId>
-          <version>3.3.0</version>
+          <version>3.4.0</version>
       </dependency>
       ```
     </CodeGroup>

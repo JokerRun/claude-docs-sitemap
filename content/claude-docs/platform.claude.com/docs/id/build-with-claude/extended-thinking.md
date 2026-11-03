@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: a3f482025417c4b1a17b4083de37a43091792b182b21932ff8a454816cc69ef6
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: eb24200e0abe745e0fda6a8cef4952efe39b0be3c3e889132d2f6b31e68061b6
 ---
 
 ---
@@ -322,7 +322,7 @@ Dua pertimbangan lain untuk pemikiran berselang-seling dalam mode manual:
 * `budget_tokens` dapat melebihi `max_tokens` di sini; [aturan anggaran](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#budget-rules-and-tuning) menjelaskan pengecualian ini.
 * Pemikiran berselang-seling hanya didukung untuk [alat yang digunakan melalui Messages API](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
 
-Cara platform memperlakukan header beta berbeda-beda. Claude API dan [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) menerima `interleaved-thinking-2025-05-14` pada model apa pun dan mengabaikannya jika tidak didukung. Diterima tidak sama dengan berpengaruh: pada model yang menolak `type: "enabled"` (4.7 dan yang lebih baru) atau tidak memiliki pemikiran berselang-seling dalam mode manual (Claude Opus 4.6), header tersebut tidak berpengaruh dalam mode manual; pemikiran adaptif berselang-seling secara otomatis di sana.
+Cara platform memperlakukan beta header berbeda-beda. Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) menerima `interleaved-thinking-2025-05-14` pada model apa pun dan mengabaikannya jika tidak didukung. Diterima tidak sama dengan berefek: pada model yang menolak `type: "enabled"` (4.7 dan yang lebih baru) atau tidak memiliki interleaving mode manual (Claude Opus 4.6), header tersebut tidak memiliki efek mode manual; “adaptive thinking” (pemikiran adaptif) melakukan interleaving secara otomatis di sana.
 
 Platform yang dioperasikan mitra, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), juga menerima header tersebut pada model apa pun tanpa mengembalikan error, dan mengabaikannya pada model yang tidak mendukung “interleaved thinking” (pemikiran berselang).
 

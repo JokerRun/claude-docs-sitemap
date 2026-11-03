@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: d3e9a4b25df49c964f0d235251a9b6cf0b5ed42ae5c8bf3d38c96f38f7d0f4b2
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: a809fb88a382174f39045f9fc7a1df498a9da015dbc1ba2213858a0953d3a269
 ---
 
 ---
@@ -459,9 +459,7 @@ Tampilkan daftar semua eksekusi deployment untuk sebuah deployment sebagai berik
   );
   await foreach (var run in runs.Paginate())
   {
-      // Union Error mengekspos .Message secara langsung; diskriminatornya dibaca
-      // dari .Json sampai accessor .Type yang umum ditambahkan.
-      var outcome = run.SessionID ?? run.Error!.Json.GetProperty("type").GetString();
+      var outcome = run.SessionID ?? run.Error!.Type.Raw();
       Console.WriteLine($"{run.CreatedAt} {outcome}");
   }
   ```
@@ -488,10 +486,8 @@ Tampilkan daftar semua eksekusi deployment untuk sebuah deployment sebagai berik
           DeploymentRunListParams.builder()
               .deploymentId(deployment.id())
               .build()).autoPager()) {
-      // Union Error belum mengekspos accessor umum .type()/.message();
-      // .toString() menyertakan keduanya.
       IO.println(run.createdAt() + " "
-          + run.sessionId().orElseGet(() -> run.error().orElseThrow().toString()));
+          + run.sessionId().orElseGet(() -> run.error().orElseThrow().type().asString()));
   }
   ```
 
@@ -551,7 +547,7 @@ Anda juga dapat memfilter eksekusi deployment yang mengalami error:
   await foreach (var failedRun in failedRuns.Paginate())
   {
       var error = failedRun.Error!;
-      var errorType = error.Json.GetProperty("type").GetString();
+      var errorType = error.Type.Raw();
       Console.WriteLine($"{failedRun.CreatedAt} {errorType} {error.Message}");
   }
   ```
@@ -576,7 +572,8 @@ Anda juga dapat memfilter eksekusi deployment yang mengalami error:
               .deploymentId(deployment.id())
               .hasError(true)
               .build()).autoPager()) {
-      IO.println(run.createdAt() + " " + run.error().orElseThrow());
+      var error = run.error().orElseThrow();
+      IO.println(run.createdAt() + " " + error.type().asString() + " " + error.message());
   }
   ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 9b5a3f7e3f365e869e0cbead29857be8149cc3b192e082e491c5c606e94bbbd6
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: be771b9f777402df340e14f454f3b8492170f046590b9d76043db86ee70ef7f3
 ---
 
 ---
@@ -223,7 +223,7 @@ This quickstart runs one always-on worker with the `ant` CLI, sends it a session
         For Linux environments, download the release binary directly.
 
         ```bash
-        VERSION=2.4.0
+        VERSION=2.5.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;

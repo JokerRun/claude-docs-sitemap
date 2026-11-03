@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-4-8
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 614953808cda02879aa1ef0f07e2cdb40a7c1b2ac3743051fe2a50d204e1740d
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: b43d03a41fc25a795070fbabff09185c04c42c6ec4604ef4e527b29cd9bd99cb
 ---
 
 ---
@@ -164,6 +164,6 @@ Lakukan iterasi pada prompt terhadap subset evaluasi atau kasus uji Anda untuk m
 
 ## Computer use
 
-Claude Opus 4.8 mendukung versi alat sebelumnya, `computer_20251124`, dan, di Claude API serta Claude Models on Google Cloud (Google managed), toolset `computer_toolset_20260801`. Di kedua platform tersebut, Claude Opus 4.8 juga mendukung [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`) untuk tugas di dalam halaman web. Kemampuan [“computer use” (penggunaan komputer)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) berfungsi di berbagai resolusi, hingga resolusi maksimum 2576px / 3,75MP. Pengujian computer use internal menunjukkan bahwa mengirim gambar pada resolusi 1080p memberikan keseimbangan yang baik antara kinerja dan biaya.
+Claude Opus 4.8 mendukung “computer use” (penggunaan komputer) melalui toolset `computer_toolset_20260801` dan versi alat sebelumnya `computer_20251124`. Model ini juga mendukung [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`) untuk tugas-tugas di dalam halaman web. Kemampuan [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) berfungsi di berbagai resolusi, hingga resolusi maksimum 2576px / 3,75MP. Pengujian internal computer use menunjukkan bahwa mengirim gambar pada 1080p memberikan keseimbangan yang baik antara performa dan biaya.
 
 Untuk beban kerja yang sangat sensitif terhadap biaya, 720p atau 1366×768 adalah opsi berbiaya lebih rendah dengan kinerja yang kuat. Lakukan pengujian Anda sendiri untuk menemukan pengaturan ideal untuk kasus penggunaan Anda; bereksperimen dengan pengaturan effort juga dapat membantu menyesuaikan perilaku model.

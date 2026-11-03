@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 31b5d153f84f2cb25a11432e703690137f53f2c44da23f3e24f3f04d7377c858
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 430517e2efe0ae2ac1d3ba4852a8a4120071e1ddae27be5ee76c10b184a76c33
 ---
 
 ---
@@ -193,6 +193,8 @@ Respons penolakan (`stop_reason: "refusal"`) juga menyertakan objek `stop_detail
 ## Beberapa giliran percakapan
 
 Messages API bersifat “stateless” (tanpa status), yang berarti Anda selalu mengirimkan riwayat percakapan lengkap ke API. Anda dapat menggunakan pola ini untuk membangun percakapan dari waktu ke waktu. Giliran percakapan sebelumnya tidak harus benar-benar berasal dari Claude. Anda dapat menggunakan pesan `assistant` sintetis.
+
+Dengan [thread pesan](https://platform.claude.com/docs/id/build-with-claude/message-threads), dalam beta, API dapat menyimpan percakapan, sehingga setiap permintaan berikutnya hanya mengirimkan pesan baru. Thread kedaluwarsa 5 menit setelah permintaan terakhirnya dan dihapus paling lambat 1 jam setelah penggunaan terakhirnya.
 
 <CodeGroup>
   ```bash cURL

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: bb5259b4589da6763ad0aed2d9422b5a4ac00434f8e5becb83140ea83019f9f6
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: a98cd4f4c6b7ceda6b194c081aab971877e07ec83bf41586bb0107bf1ae7f9fe
 ---
 
 ---
@@ -42,10 +42,10 @@ Prompt Claude Haiku 4.5 yang sudah ada seharusnya berkinerja baik tanpa perubaha
 
 Claude Haiku 5.5 adalah model Haiku pertama dengan tingkat effort. Thinking bekerja sebagai berikut:
 
-* Thinking aktif secara default dan dihitung terhadap `max_tokens`, yang dapat mencapai 128.000. Nilai `max_tokens` yang disesuaikan untuk permintaan Claude Haiku 4.5 yang berjalan tanpa thinking dapat memotong balasan, jadi sisakan ruang untuk thinking.
-* Untuk mendapatkan thinking yang lebih sedikit, turunkan tingkat effort. Dalam pengujian Anthropic, meminta model di dalam prompt untuk menjawab secara langsung tidak menghentikannya dari berpikir. Anda juga dapat mematikan thinking dengan `thinking: {"type": "disabled"}`. Ini hanya berfungsi pada `low`, `medium`, dan `high`. Pada `xhigh` dan `max`, permintaan mengembalikan error 400.
-* Pada effort `xhigh` dalam chat multi-giliran, model terkadang menulis seluruh jawabannya di dalam thinking dan mengakhiri giliran tanpa teks yang terlihat. Jika Anda melihat perilaku ini, periksa setiap respons untuk balasan yang kosong.
-* Mengubah nilai `effort` tingkat atas di antara permintaan akan membatalkan cache prompt untuk pesan-pesan percakapan. Di Claude API dan Claude Models on Google Cloud (Google managed), Anda dapat mengubah tingkat di tengah percakapan dengan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta), yang mempertahankan cache. Perubahan berlaku untuk setiap giliran berikutnya hingga digantikan oleh perubahan lain. Ini memerlukan beta header `mid-conversation-output-config-2026-07-01` dan pemikiran adaptif, yang merupakan default. Dengan pemikiran dinonaktifkan, perubahan effort per pesan mengembalikan error 400.
+* Thinking aktif secara default dan dihitung terhadap `max_tokens`, yang dapat mencapai hingga 128.000. Nilai `max_tokens` yang disesuaikan untuk permintaan Claude Haiku 4.5 yang berjalan tanpa thinking dapat memotong balasan, jadi sisakan ruang untuk thinking.
+* Untuk mengurangi thinking, turunkan tingkat effort. Dalam pengujian Anthropic, menginstruksikan model di dalam prompt untuk menjawab secara langsung tidak menghentikannya dari berpikir. Anda juga dapat menonaktifkan thinking dengan `thinking: {"type": "disabled"}`. Ini hanya berfungsi pada `low`, `medium`, dan `high`. Pada `xhigh` dan `max`, permintaan akan mengembalikan error 400.
+* Pada effort `xhigh` dalam obrolan multi-giliran, model terkadang menulis seluruh jawabannya di dalam thinking-nya dan mengakhiri giliran tanpa teks yang terlihat. Jika Anda melihat perilaku ini, periksa setiap respons untuk balasan yang kosong.
+* Mengubah nilai `effort` tingkat atas di antara permintaan akan membatalkan cache prompt untuk pesan-pesan dalam percakapan. Jika platform Anda mendukungnya, Anda dapat mengubah tingkat effort di tengah percakapan dengan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta), yang mempertahankan cache. Sebuah perubahan berlaku untuk setiap giliran berikutnya hingga digantikan oleh perubahan lain. Fitur ini memerlukan header beta `mid-conversation-output-config-2026-07-01` dan adaptive thinking, yang merupakan default. Dengan thinking dinonaktifkan, perubahan effort per pesan akan mengembalikan error 400.
 
 ## Hasil pencarian yang akurat
 

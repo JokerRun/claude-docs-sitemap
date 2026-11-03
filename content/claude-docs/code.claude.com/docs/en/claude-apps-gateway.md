@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 716f50f7cb60241386315a79278eefcdb9f610eee3d217d0c2d056cb23b96f0a
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 8f52f9499f2dbba10ed6db14419cf150afeddea44242b1237d9e26271bdf955d
 ---
 
 > ## Documentation Index
@@ -37,7 +37,7 @@ Companion pages go deeper. The [configuration reference](https://code.claude.com
 The [gateway overview](https://code.claude.com/docs/en/gateways.md) covers what a gateway does and why you'd run one. Claude apps gateway is Anthropic's own gateway, built into the `claude` binary and tested alongside each Claude Code release, so it forwards the `anthropic-beta` values and request fields Claude Code sends without operators maintaining a separate allowlist. Once deployed it gives you:
 
 * **Credentials**: the upstream API key or cloud credential lives only in your infrastructure. Developers authenticate with corporate SSO and receive short-lived bearer tokens, so offboarding happens in your IdP. Deprovision a user and their gateway access expires within the session lifetime, one hour by default.
-* **Access control**: your IdP groups map to model allowlists and [managed settings](https://code.claude.com/docs/en/managed-settings.md) policies. The gateway enforces model access server-side, rejecting requests for non-granted models, and selects each group's managed settings policy, which the CLI applies at the [managed settings tier](https://code.claude.com/docs/en/settings.md#settings-precedence). Different teams get different models, tools, and permissions, and a developer can't override what their policy locks.
+* **Access control**: your IdP groups map to model allowlists, [managed settings](https://code.claude.com/docs/en/managed-settings.md) policies, and [upstreams](https://code.claude.com/docs/en/claude-apps-gateway-config.md#send-each-team-to-its-own-upstream). The gateway enforces model access server-side, rejecting requests for non-granted models, and selects each group's managed settings policy, which the CLI applies at the [managed settings tier](https://code.claude.com/docs/en/settings.md#settings-precedence). Different teams get different models, tools, and permissions, and a developer can't override what their policy locks.
 * **Settings delivery**: the gateway delivers managed settings to signed-in clients itself, taking the place of [server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md) from the claude.ai admin console.
 * **Telemetry**: each configured destination receives [OpenTelemetry Protocol (OTLP) metrics](https://code.claude.com/docs/en/monitoring-usage.md) with token counts, model, user identity, and latency by default, with logs and traces as per-destination opt-ins.
 * **Upstream routing**: clients speak the Anthropic Messages API to the gateway, and the gateway translates for each upstream, whether Amazon Bedrock, [Claude Platform on AWS](https://code.claude.com/docs/en/claude-platform-on-aws.md), Google Cloud's Agent Platform, Microsoft Foundry, or the Anthropic API, with failover between them. You can change regions, providers, or failover order without developers noticing or reconfiguring.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: eb74c8982bba3989057b571a5394dcc1b0d12720a96768e14e36aac30b178336
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 2842c2df0495fe568bbf000465ecfdbf3793481ff46ce2634a2df44cf5ee0c31
 ---
 
 ---
@@ -537,13 +537,15 @@ tool_choice: type "tool" and "any" are not supported for this model.
 
 ### Versi alat computer use tidak didukung
 
-Pada Claude API dan Claude Models on Google Cloud (Google managed), Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 mendukung [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) hanya sebagai toolset `computer_toolset_20260801`. Pada platform tersebut, mengirim entri `tools` bertipe `computer_20251124` atau `computer_20250124` yang lebih lama, dengan beta header alat tersebut, ke salah satu model ini akan mengembalikan 400 `invalid_request_error`. Pesannya menyebutkan tipe yang ditolak, lalu mencantumkan tipe alat yang diterima model setelah `Did you mean one of`. Untuk Claude Opus 5.5, pesannya diawali dengan:
+Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 mengembalikan error 400 untuk versi alat [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) apa pun yang tidak mereka terima. Di Claude API, itu termasuk `computer_20251124` dengan header beta-nya. Model-model ini tidak menerima `computer_20250124` di platform mana pun. Pesan `invalid_request_error` dari Claude API menyebutkan jenis yang ditolak dan, setelah `Did you mean one of`, mencantumkan jenis alat yang diterima model. Untuk Claude Opus 5.5, pesannya dimulai dengan:
 
 ```text wrap
 'claude-opus-5-5' does not support tool types: computer_20251124.
 ```
 
-API mengembalikan pesan yang sama untuk tipe alat apa pun yang didefinisikan Anthropic yang tidak didukung oleh model yang diminta. Deklarasikan `{"type": "computer_toolset_20260801"}` tanpa header beta dan perbarui loop agen Anda seperti yang dijelaskan di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Untuk beralih dari `computer_20250124`, lihat [Pindahkan computer use ke toolset](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset) di panduan migrasi Claude Haiku 5.5. Model-model sebelumnya yang mendukung toolset tetap menerima `computer_20251124`, begitu pula Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 di Amazon Bedrock.
+Claude API mengembalikan pesan yang sama untuk jenis alat yang didefinisikan Anthropic apa pun yang tidak didukung oleh model yang diminta. Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 mendukung computer use melalui toolset `computer_toolset_20260801`. Deklarasikan `{"type": "computer_toolset_20260801"}` tanpa header beta dan perbarui loop agen Anda seperti yang dijelaskan di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Untuk beralih dari `computer_20250124`, lihat [Pindahkan computer use ke toolset](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset) di panduan migrasi Claude Haiku 5.5.
+
+Di Amazon Bedrock, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 juga menerima alat `computer_20251124` dengan header beta `computer-use-2025-11-24`. [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) mencantumkan model yang digunakan dengan setiap versi sebelumnya.
 
 ### Blok thinking yang terikat ke percakapan yang berbeda
 

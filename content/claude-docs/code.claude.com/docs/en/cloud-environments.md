@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cloud-environments
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: e747891fad9b72865d0d67492a1b9a7c3276fba0ba76809d74df6701d187bbb4
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 0a861ffd184ffa7a971ae952f08ea972fb371f85bb85a6d8c4ac9cc5d14096cb
 ---
 
 > ## Documentation Index
@@ -342,6 +342,7 @@ Cloud sessions come with common language runtimes, build tools, and databases pr
 | **C/C++** | GCC, Clang, cmake, ninja, conan |
 | **Docker** | docker, dockerd, docker compose |
 | **Databases** | PostgreSQL 16, Redis 7.0 |
+| **Browser** | Chrome for Testing at `/usr/bin/google-chrome`, with the `CHROME_PATH` environment variable set to that path |
 | **Utilities** | git, gh, jq, yq, ripgrep, tmux, vim, nano |
 
 ¹ Bun is installed but has known [proxy compatibility issues](#install-dependencies-with-a-sessionstart-hook) for package fetching.

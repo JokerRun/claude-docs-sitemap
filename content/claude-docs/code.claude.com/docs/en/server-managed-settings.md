@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: d7020b6bc747f95f074e1ca51a686143fc5648d704665a8665a765da38be5884
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: ac70af357f2914b1f5c59dbf5c640d5462fdd05098b4750b8237313d7db93f47
 ---
 
 > ## Documentation Index
@@ -163,6 +163,15 @@ These keys are exceptions to the no-merge rule:
 * **`allowedProviders`**: a list set on the machine and a server-managed list combine as [its entry's Scope note](https://code.claude.com/docs/en/settings-reference.md#allowedproviders) states. Requires Claude Code v2.1.285 or later
 * **First-party sign-in keys**: [`forceLoginOrgUUID`](https://code.claude.com/docs/en/settings-reference#forceloginorguuid) and the `"claudeai"` and `"console"` values of [`forceLoginMethod`](https://code.claude.com/docs/en/settings-reference#forceloginmethod). If you also deploy an MDM policy or managed settings file, set them there and in server-managed settings from claude.ai until every client runs v2.1.299 or later. For where to set the keys afterward, and which source's value applies, see [Which managed source supplies login keys](https://code.claude.com/docs/en/managed-settings.md#which-managed-source-supplies-login-keys).
 * **Gateway sign-in keys**: Claude Code never reads [`forceLoginGatewayUrl`](https://code.claude.com/docs/en/settings-reference#forcelogingatewayurl), [`gatewayInternalNetworks`](https://code.claude.com/docs/en/settings-reference#gatewayinternalnetworks), or the `"gateway"` value of [`forceLoginMethod`](https://code.claude.com/docs/en/settings-reference#forceloginmethod) from server-managed settings, so a value there neither applies nor hides one set in an MDM policy or managed settings file. The [`managedSourcesBehavior` entry](https://code.claude.com/docs/en/settings-reference#managedsourcesbehavior) says which admin source on the machine supplies them.
+
+#### When a machine's `apiKeyHelper` isn't in effect
+
+When your server-managed settings are the selected source, an `apiKeyHelper` in a machine's managed settings file or MDM policy isn't in effect. Claude Code then [refuses prompts](https://code.claude.com/docs/en/errors.md#claude-code-didnt-send-your-claude-ai-login) in a session that would use a saved claude.ai login, provided both of these hold:
+
+* The file or policy turns on a cloud provider, or any source sets an API address other than Anthropic's
+* The server-managed settings set no helper and don't name Anthropic's API address
+
+To clear the refusal, keep the helper and its API address in effect, name Anthropic's API address in the server-managed settings, or remove the helper from the machine's policy. The refusal requires Claude Code v2.1.314 or later.
 
 ### Fetch and caching behavior
 

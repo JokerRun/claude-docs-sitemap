@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 372423325bc5397549d4a218926e3b87c1bc22f00b218e58f1445057e18646df
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: f3a09504b3565bf7ea695ad44f46a4128a98491d002b3fff84fa88ba6e32a879
 ---
 
 ---
@@ -77,7 +77,7 @@ Let Claude Code set up your agent for you
     For Linux environments, download the release binary directly.
 
     ```bash
-    VERSION=2.4.0
+    VERSION=2.5.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -128,7 +128,7 @@ ant --version
 
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:3.3.0")
+    implementation("com.anthropic:anthropic-java:3.4.0")
     ```
   </Tab>
 

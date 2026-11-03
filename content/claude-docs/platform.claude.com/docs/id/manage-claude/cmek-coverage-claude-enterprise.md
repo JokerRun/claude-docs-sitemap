@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 29cd58c5ea9c19af75360b7daf87fac8889dc7ac5e10a9b7072ef2701a1d1a7b
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 2775490d4f5c2ccf87156a928d1c5bd3b876f8378acb95e75c61486b4ac62a44
 ---
 
 ---
@@ -44,7 +44,7 @@ Daftar ini tidak lengkap. Tinjau daftar ini bersama tim Anda sebelum Anda menyia
 | [Pemindaian keamanan skill dan plugin](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise#skill-content-scanning) | Nonaktif. Pengaturan ini tidak dapat diaktifkan, dan skill serta plugin diinstal tanpa pemindaian.                                                                                                                                                                                            |
 | Claude in Slack (beta)                                                                                                                      | Nonaktif. Claude menolak permintaan, meskipun admin mengaktifkan produk tersebut.                                                                                                                                                                                                             |
 | Analitik: smart reports dan metrik kontribusi                                                                                               | Nonaktif. Analitik tertentu dinonaktifkan, terlepas dari pengaturan admin: Claude smart reports (di claude.ai/analytics/insights) dan metrik kontribusi Claude Code dari GitHub (beta, di claude.ai/analytics/claude-code).                                                                   |
-| Claude Security (beta) dan routines (pratinjau riset)                                                                                       | Nonaktif. Fitur beta dan pratinjau riset, dinonaktifkan terlepas dari pengaturan admin.                                                                                                                                                                                                       |
+| Claude Security (beta) dan tugas terjadwal cloud, sebelumnya routines (pratinjau riset)                                                     | Nonaktif. Fitur beta dan pratinjau riset, dinonaktifkan terlepas dari pengaturan admin.                                                                                                                                                                                                       |
 | Aplikasi Claude Design mandiri (sedang dihentikan)                                                                                          | Tidak didukung. Lihat [Dienkripsi dengan kunci Anthropic](https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise#encrypted-with-anthropics-key).                                                                                                                   |
 
 ## Dienkripsi dengan kunci Anthropic

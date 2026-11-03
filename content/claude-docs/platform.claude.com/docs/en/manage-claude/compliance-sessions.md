@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-sessions
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: c766885ce9f20f78f22a6906fb7f4da0e231470ee27a6709dd1ef529a46deafd
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: df79b4b8f8659196d19f23dc2c4cfded744a0a64af4f2872262a0a7571e04ef0
 ---
 
 ---
@@ -42,7 +42,7 @@ The following table maps each product, and where it runs, to the endpoint family
 Capture of local sessions is tied to the Compliance API being enabled for your organization and applies while users are signed in with their Claude Enterprise account. The session endpoints do not return the following:
 
 * Claude Code sessions authenticated with a Claude Console API key, or run through a third-party cloud platform such as Amazon Bedrock, Google Cloud, or Microsoft Foundry.
-* [Claude Code cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) (including Claude Code routines that run in the cloud), which run on cloud infrastructure instead of the user’s machine. These cloud sessions are not remote sessions, even though both run in the cloud; the remote session endpoints return Cowork sessions only.
+* [Claude Code cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) (including Claude Code cloud scheduled tasks, formerly routines), which run on cloud infrastructure instead of the user’s machine. These cloud sessions are not remote sessions, even though both run in the cloud; the remote session endpoints return Cowork sessions only.
 * Local sessions from products other than Cowork and Claude Code in organizations with [HIPAA readiness](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#hipaa-readiness) enabled. In those organizations, the local session endpoints return Cowork and Claude Code sessions only, and captured session content is stored for 30 days.
 * Local sessions for which [zero data retention (ZDR)](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) is in effect. These sessions are excluded from list results, and the retrieve and messages endpoints return 404 for them.
 

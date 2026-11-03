@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 82f6f2cc1600d346c95999a904786c495b1963fe3f8909a105595bff225c17ad
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: ddc5073c6df8878f9cc89076b92bb8eb4ed7780649074b0554c00434339b1ab3
 ---
 
 ---
@@ -54,20 +54,20 @@ Untuk menggunakan Claude Models on Google Cloud (Google managed), Anda memerluka
   <Tab title="Java">
     <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:3.3.0")
-      implementation("com.anthropic:anthropic-java-vertex:3.3.0")
+      implementation("com.anthropic:anthropic-java:3.4.0")
+      implementation("com.anthropic:anthropic-java-vertex:3.4.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>3.3.0</version>
+          <version>3.4.0</version>
       </dependency>
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-vertex</artifactId>
-          <version>3.3.0</version>
+          <version>3.4.0</version>
       </dependency>
       ```
     </CodeGroup>

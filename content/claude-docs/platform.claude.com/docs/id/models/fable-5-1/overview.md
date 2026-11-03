@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-1/overview
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 56ee6d162eedabdfe907ae66cb39fe1cd6c39f490cf3d7f679daf97f472b9aa5
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 08691fc367549e778ddd1a2d0599726eb96265b6f23dea52d26c116e4d4e3c63
 ---
 
 ---
@@ -23,9 +23,22 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $10 / MTo
 
 ## Ikhtisar
 
-Claude Fable 5.1 memperluas Claude Fable 5 dengan harga input dan output yang sama, dengan pembacaan cache seperempat biayanya, serta menghadirkan kemampuan yang lebih kuat untuk agentic coding jangka panjang, riset multilangkah, serta pekerjaan dokumen, spreadsheet, dan slide. Untuk sebagian besar beban kerja, mulailah dengan Claude Opus 5.5 (lihat [Memilih model](https://platform.claude.com/docs/id/about-claude/models/choosing-a-model)). Gunakan Claude Fable 5.1 untuk penalaran yang menuntut dan pekerjaan agentik jangka panjang, atau ketika eval Anda pada Claude Opus 5.5 dengan effort yang lebih tinggi masih belum memadai. Claude Mythos 5.1 menawarkan kemampuan yang sama hanya kepada organisasi yang terverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842).
+Claude Fable 5.1 memperluas Claude Fable 5 dengan harga input dan output yang sama, dengan pembacaan cache seperempat dari biayanya, dan menghadirkan kemampuan yang lebih kuat untuk agentic coding jangka panjang, riset multilangkah, serta pekerjaan dokumen, spreadsheet, dan slide. Untuk sebagian besar beban kerja, mulailah dengan Claude Opus 5.5 (lihat [Memilih model](https://platform.claude.com/docs/id/about-claude/models/choosing-a-model)). Gunakan Claude Fable 5.1 untuk penalaran yang menuntut dan pekerjaan agentik jangka panjang, atau ketika eval Anda pada Claude Opus 5.5 dengan effort yang lebih tinggi masih belum memenuhi kebutuhan Anda. Claude Mythos 5.1 menawarkan kemampuan yang sama hanya untuk organisasi yang terverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842).
 
-Jika Anda sudah memanggil Claude Fable 5, ada tiga perubahan yang merusak kompatibilitas: [penggunaan alat paksa mengembalikan error](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#forced-tool-use-is-not-supported), [hanya Claude Fable 5.1 dan Claude Mythos 5.1 yang dapat membaca blok thinking Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#thinking-blocks-are-tied-to-the-model-that-produced-them), dan [mengedit giliran sebelumnya membuat blok thinking tidak valid](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#editing-earlier-turns-invalidates-thinking-blocks). Lima bersifat tambahan: [effort per pesan](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#change-effort-mid-conversation-beta) (beta), [pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#turn-scoped-system-messages-beta) (beta), [pembaruan progres yang dapat dibaca di antara panggilan alat](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#progress-updates-between-tool-calls-beta) (`display: "updates"`, beta), [harga pembacaan cache yang lebih rendah](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#pricing), dan [provenans konten](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#content-provenance).
+Jika Anda sudah memanggil Claude Fable 5, empat perubahan bersifat “breaking” (merusak kompatibilitas):
+
+* [Penggunaan alat paksa mengembalikan error](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#forced-tool-use-is-not-supported).
+* Hanya Claude Fable 5.1 dan Claude Mythos 5.1 yang dapat [membaca blok thinking Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#thinking-blocks-are-tied-to-the-model-that-produced-them).
+* [Mengedit giliran sebelumnya membatalkan validitas blok thinking](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#editing-earlier-turns-invalidates-thinking-blocks).
+* [Beberapa pasangan advisor tool tidak didukung](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#advisor-tool-pairings).
+
+Lima perubahan bersifat tambahan:
+
+* [Perubahan effort di tengah percakapan](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#change-effort-mid-conversation-beta) (beta)
+* [Pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#turn-scoped-system-messages-beta) (beta)
+* [Pembaruan kemajuan yang dapat dibaca di antara panggilan alat](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#progress-updates-between-tool-calls-beta) (`display: "updates"`, beta)
+* [Harga pembacaan cache yang lebih rendah](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#pricing)
+* [Asal-usul konten](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#content-provenance)
 
 [Yang baru di Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1)
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: c085f17cfac1f6f36ffb1641546adcf3f2a3936075c1b57c843fa93302f1ace1
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: ed9c6b78a1080524f38115cd4b12760ffcbcd6e0de2e08b7709c090b8051a2c2
 ---
 
 ---
@@ -45,7 +45,7 @@ Claude Haiku 5.5 is the first Haiku model with effort levels. Thinking works as 
 * Thinking is on by default and counts toward `max_tokens`, which can go up to 128,000. A `max_tokens` value sized for Claude Haiku 4.5 requests that ran without thinking can cut the reply off, so leave room for thinking.
 * To get less thinking, lower the effort level. In Anthropic’s testing, telling the model in the prompt to answer directly didn’t stop it from thinking. You can also turn thinking off with `thinking: {"type": "disabled"}`. This works at `low`, `medium`, and `high` only. At `xhigh` and `max`, the request returns a 400 error.
 * At `xhigh` effort in multi-turn chats, the model sometimes writes its whole answer in its thinking and ends the turn with no visible text. If you see this behavior, check each response for an empty reply.
-* Changing the top-level `effort` value between requests invalidates the prompt cache for the conversation’s messages. On the Claude API and Claude Models on Google Cloud (Google managed), you can change the level partway through a conversation with a [per-message effort change](https://platform.claude.com/docs/en/build-with-claude/effort#change-effort-mid-conversation-beta) (beta), which keeps the cache. A change holds for every later turn until another one replaces it. It needs the `mid-conversation-output-config-2026-07-01` beta header and adaptive thinking, which is the default. With thinking off, a per-message effort change returns a 400 error.
+* Changing the top-level `effort` value between requests invalidates the prompt cache for the conversation’s messages. Where your platform supports it, you can change the level partway through a conversation with a [per-message effort change](https://platform.claude.com/docs/en/build-with-claude/effort#change-effort-mid-conversation-beta) (beta), which keeps the cache. A change holds for every later turn until another one replaces it. It needs the `mid-conversation-output-config-2026-07-01` beta header and adaptive thinking, which is the default. With thinking off, a per-message effort change returns a 400 error.
 
 ## Accurate search results
 

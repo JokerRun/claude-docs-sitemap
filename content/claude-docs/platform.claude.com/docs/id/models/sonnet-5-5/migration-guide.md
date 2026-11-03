@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 43427a1b9690b686edb10e63f3b88dc12fbca924ac238a2ab695f64253fa3e20
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 60369b90283d09e74d6d2c9b5c6f64bed832fb46545eeac70017c70a9770063a
 ---
 
 ---
@@ -474,14 +474,14 @@ Kerjakan grup-grup ini dari atas ke bawah dan berhenti setelah grup yang menyebu
 
 * Ubah ID model menjadi `claude-sonnet-5-5`.
 * [Baca blok konten berdasarkan `type`](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#thinking-in-responses), dan kirimkan kembali blok `thinking` tanpa perubahan.
-* Untuk tetap berjalan tanpa pemikiran di awal, kirim [pengaturan pemikiran terendah](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#turn-off-up-front-thinking) pada effort `high` atau di bawahnya.
-* Ganti [penggunaan alat yang dipaksakan](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#forced-tool-use) dengan `auto` dan alat strict.
-* Pertahankan percakapan [hanya-tambah (append-only)](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#thinking-blocks).
-* Di Claude API dan Claude Models on Google Cloud (Google managed), pindahkan penggunaan komputer ke [toolset](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#computer-use-toolset), tanpa beta header `fine-grained-tool-streaming-2025-05-14`.
-* [Pasangkan advisor tool](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#advisor-tool) dengan advisor yang didukung, dan siapkan diri untuk menerima saran terenkripsi.
-* Baca [teks di antara panggilan alat](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#text-between-tool-calls) dari blok `thinking`.
+* Agar tetap berjalan tanpa pemikiran di awal, kirimkan [pengaturan thinking terendah](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#turn-off-up-front-thinking) pada effort `high` atau di bawahnya.
+* Ganti [“forced tool use” (penggunaan alat yang dipaksakan)](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#forced-tool-use) dengan `auto` dan alat strict.
+* Pertahankan percakapan agar bersifat [“append-only” (hanya-tambah)](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#thinking-blocks).
+* Pindahkan computer use ke [toolset](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#computer-use-toolset), tanpa header beta `fine-grained-tool-streaming-2025-05-14`. Di Amazon Bedrock, `computer_20251124` juga berfungsi.
+* [Pasangkan advisor tool](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#advisor-tool) dengan advisor yang didukung, dan harapkan saran yang terenkripsi.
+* Baca [teks di antara pemanggilan alat](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#text-between-tool-calls) dari blok `thinking`.
 * [Tangani penolakan](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#safety-classifiers-and-fallback), dan konfigurasikan fallback.
-* [Jalankan ulang sweep effort Anda](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#recommended-changes), dan tetapkan ulang baseline biaya.
+* [Jalankan ulang effort sweep Anda](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#recommended-changes), dan tetapkan ulang baseline biaya.
 
 ### Claude Sonnet 4.6 atau sebelumnya
 
@@ -493,11 +493,10 @@ Kerjakan grup-grup ini dari atas ke bawah dan berhenti setelah grup yang menyebu
 
 ### Claude Sonnet 4.5 atau sebelumnya
 
-* Ganti [prefill asisten](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-sonnet-45).
-* Parse input panggilan alat dengan parser JSON standar.
-* Di Amazon Bedrock, pindahkan penggunaan komputer dari `computer_20250124` ke [`computer_20251124`](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#computer-use-toolset).
+* Ganti [“assistant prefills” (prefill asisten)](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-sonnet-45).
+* Parse input pemanggilan alat dengan parser JSON standar.
 * Tetapkan `output_config.effort` secara eksplisit.
-* Hapus beta header jendela konteks apa pun.
+* Hapus header beta jendela konteks apa pun.
 * Hapus `interleaved-thinking-2025-05-14`, dan ganti `fine-grained-tool-streaming-2025-05-14` dengan `eager_input_streaming`.
 * Pindahkan `output_format` ke `output_config.format`.
 
@@ -850,18 +849,13 @@ Claude Sonnet 5.5 membaca blok pemikiran dari Claude Sonnet 5, Claude Opus 4.8, 
 
 Setiap blok pemikiran Claude Sonnet 5.5 juga ditandatangani atas percakapan yang mendahuluinya. Pertahankan percakapan agar hanya bersifat append-only (hanya ditambahkan), dan ubah instruksi atau alat dengan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages). Permintaan yang memutar ulang sebuah blok setelah pengeditan pada riwayat sebelumnya dan membiarkan `thinking.block_binding.prefix_mismatch_behavior` tidak diatur akan mendapatkan error 400 pada akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC. Hal ini berlaku di Claude API, Amazon Bedrock, dan Claude Models on Google Cloud (Google managed). Blok pemikiran yang dihasilkan Claude Sonnet 5.5 hanya berfungsi di akun yang menghasilkannya atau di akun yang ditautkan dengannya. Lihat [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking).
 
-### Penggunaan komputer memerlukan toolset di Claude API dan Claude Models on Google Cloud (Google managed)
+### Beberapa versi alat computer use tidak didukung
 
-Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Sonnet 5.5 mendukung penggunaan komputer hanya melalui toolset `computer_toolset_20260801`. Di sana, `computer_20251124` mengembalikan error 400. Claude Sonnet 5.5 tidak menerima `computer_20250124` di platform mana pun. Temukan versi yang Anda kirim saat ini:
+Claude Sonnet 5.5 mendukung computer use melalui toolset `computer_toolset_20260801`. Di Amazon Bedrock, Claude Sonnet 5.5 juga menerima alat `computer_20251124` dengan header beta `computer-use-2025-11-24`. Claude Sonnet 5.5 mengembalikan error 400 untuk versi alat computer use apa pun yang tidak diterimanya, seperti `computer_20251124` di Claude API. Model ini tidak menerima `computer_20250124` di platform mana pun.
 
-| Versi yang Anda kirim saat ini | Model awal yang mengirimnya                          | Kirim di Claude API dan Claude Models on Google Cloud (Google managed) | Kirim di Amazon Bedrock |
-| ------------------------------ | ---------------------------------------------------- | ---------------------------------------------------------------------- | ----------------------- |
-| `computer_20251124`            | Claude Sonnet 5, Claude Sonnet 4.6                   | `computer_toolset_20260801`                                            | `computer_20251124`     |
-| `computer_20250124`            | Claude Sonnet 4.5, Claude Haiku 4.5, Claude Sonnet 4 | `computer_toolset_20260801`                                            | `computer_20251124`     |
+Integrasi yang menggunakan toolset tidak memerlukan perubahan. Untuk beralih ke toolset, ganti `computer_20251124` atau `computer_20250124` dengan `computer_toolset_20260801`, dan hapus header beta versi tersebut. [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124) mencantumkan perubahan pada request dan agent loop.
 
 Jika Anda mengirim beta header `fine-grained-tool-streaming-2025-05-14`, hapus header tersebut saat Anda beralih ke toolset. Bersama entri toolset, header tersebut mengembalikan error 400. Sebagai gantinya, tetapkan `eager_input_streaming: true` pada setiap alat yang memerlukannya.
-
-Kode yang sudah mengirim toolset tidak memerlukan perubahan. [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124) mencantumkan perubahan permintaan dan loop agen. Untuk platform lain, lihat [Dukungan API](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#availability-feature-support).
 
 ### Alat advisor menerima lebih sedikit advisor
 
@@ -1223,7 +1217,7 @@ Ganti setiap prefill sesuai dengan tujuannya:
 
 **Escaping input alat.** Escaping dalam argumen panggilan alat dapat berbeda. Parse `input` dengan parser JSON standar.
 
-**Penggunaan komputer.** Claude Sonnet 5.5 tidak menerima `computer_20250124`. Lihat [tabel penggunaan komputer](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#computer-use-toolset).
+**Computer use.** Claude Sonnet 5.5 tidak menerima `computer_20250124`. Lihat [Beberapa versi alat computer use tidak didukung](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#computer-use-toolset).
 
 **Effort.** Claude Sonnet 4.5 tidak memiliki parameter effort. Tetapkan tingkat effort secara eksplisit, sebagaimana dijelaskan dalam [Perubahan yang direkomendasikan](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#recommended-changes).
 

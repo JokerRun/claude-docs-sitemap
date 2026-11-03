@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 109a04a1077f80d8cdbcd2b659baf09b0dcf748660e063ac971ce83eeb23ec31
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: d523b49856234d88281e3cbaaf4da283440453b8862b1575d7cf82d411050216
 ---
 
 ---
@@ -87,8 +87,8 @@ Sebelum memulai, pastikan Anda memiliki:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.3.0")
-        implementation("com.anthropic:anthropic-java-foundry:3.3.0")
+        implementation("com.anthropic:anthropic-java:3.4.0")
+        implementation("com.anthropic:anthropic-java-foundry:3.4.0")
 
         // Untuk autentikasi Entra ID, tambahkan juga pustaka Azure Identity
         implementation("com.azure:azure-identity:1.18.3")
@@ -100,12 +100,12 @@ Sebelum memulai, pastikan Anda memiliki:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.3.0</version>
+            <version>3.4.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-foundry</artifactId>
-            <version>3.3.0</version>
+            <version>3.4.0</version>
         </dependency>
         <!-- For Entra ID authentication, also add the Azure Identity library -->
         <dependency>
@@ -654,13 +654,12 @@ Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.
 ### Fitur Claude yang tidak didukung untuk Claude di Microsoft Foundry
 
 * Admin API
-* Alat advisor
+* Advisor tool
 * Claude Managed Agents
 * Compliance API
 * Models API
 * Message Batches API
-* Fallback sisi server ([parameter `fallbacks`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback); gunakan [pola fallback sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) sebagai gantinya)
-* Toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`computer_toolset_20260801` dan `browser_toolset_20260801` saat ini tidak tersedia di Microsoft Foundry; versi alat computer use beta tetap tersedia untuk model yang tercantum di bawah [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions))
+* Fallback sisi server (the [parameter `fallbacks`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback); gunakan [pola fallback sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) sebagai gantinya)
 
 ### Fitur tambahan yang tidak didukung saat di-hosting di Azure
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 0fa94807cf868b559be78f8f4d91f197062ad962cd198009fceaeb85c961da64
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 94467cda2e54fc6cce9c87eb08b59f9ffadf54d8cd5c7a99fd3784a1c6cf2f47
 ---
 
 ---
@@ -950,7 +950,7 @@ Pola perangkaian yang paling umum adalah **koreksi diri:** hasilkan draf → min
 
 Model terbaru Claude terkadang mungkin membuat file baru untuk keperluan pengujian dan iterasi, terutama saat bekerja dengan kode. Pendekatan ini memungkinkan Claude menggunakan file, terutama skrip Python, sebagai ‘buku catatan sementara’ sebelum menyimpan output akhirnya. Menggunakan file sementara dapat meningkatkan hasil, terutama untuk kasus penggunaan coding agentik.
 
-Jika Anda lebih suka meminimalkan pembuatan file baru secara neto, Anda dapat menginstruksikan Claude untuk membersihkan setelah selesai:
+Jika Anda lebih suka meminimalkan jumlah file baru yang tertinggal, Anda dapat menginstruksikan Claude untuk membersihkan setelah selesai:
 
 ```text Sample prompt wrap
 If you create any temporary new files, scripts, or helper files for iteration, clean up

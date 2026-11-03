@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fast-mode
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 30ac58ace0ed244e4029838549f79f6730dc125b3486a62190477de0f44cfc7e
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: 04d5d849bd37471e45728f790673e958736f0db9c0c74842eeacdcb1813e37fb
 ---
 
 > ## Documentation Index
@@ -20,6 +20,13 @@ sha256: 30ac58ace0ed244e4029838549f79f6730dc125b3486a62190477de0f44cfc7e
 Fast mode is a high-speed configuration for Claude Opus, making the model up to 2.5x faster at a higher cost per token. Toggle it on with `/fast` when you need speed for interactive work like rapid iteration or live debugging, and toggle it off when cost matters more than latency.
 
 Fast mode is not a different model. It uses Claude Opus with a different API configuration that prioritizes speed over cost efficiency. You get identical quality and capabilities with faster responses. Fast mode is supported on Opus 5.5, Opus 5, and Opus 4.8. It is not available on Sonnet, Haiku, or other models.
+
+> [!WARNING]
+>
+> Fast mode for Opus 4.8 was deprecated on October 30, 2026, and will be removed on November 30, 2026. If Opus 4.8 is still your model with fast mode on after that date, the API rejects your requests. By that date, switch to Opus 5.5 or turn fast mode off in your session:
+>
+> * **To keep fast mode**: use [`/model`](https://code.claude.com/docs/en/model-config#setting-your-model) to switch to [Opus 5.5](https://code.claude.com/docs/en/model-config.md#model-aliases), which requires Claude Code v2.1.280 or later. Fast mode stays on after the switch. If a new session still starts on Opus 4.8, see [A new session starts on a different model than you picked](https://code.claude.com/docs/en/model-config.md#a-new-session-starts-on-a-different-model-than-you-picked).
+> * **To stay on Opus 4.8 at standard speed**: run [`/fast off`](https://code.claude.com/docs/en/commands)
 
 Opus 4.7 doesn't support fast mode, so switching to it turns fast mode off. Fast mode for Opus 4.7 was deprecated on June 25, 2026, and removed on July 24, 2026.
 
@@ -95,7 +102,7 @@ You see fast mode spend in a different place depending on how you signed in, so 
 
 * **Pro, Max, and Ultra**: you pay for fast mode from your usage credits. Go to [**Settings > Usage**](https://claude.ai/settings/usage) on claude.ai, where the **Usage credits** section shows how much you've spent in usage credits this month. That figure includes fast mode but doesn't break it out separately.
 * **Team and Enterprise**: your organization pays for your fast mode usage from its usage credits. To see your own usage-credits spend, run [`/usage`](https://code.claude.com/docs/en/costs#check-your-usage-credits-spend). For where your organization sees that spend, see [Claude for Teams and Enterprise](https://code.claude.com/docs/en/costs.md#claude-for-teams-and-enterprise).
-* **Claude Console**: your organization pays for fast mode with the rest of its API usage. On the Console [Usage](https://platform.claude.com/usage) and [Cost](https://platform.claude.com/cost) pages, select **Speed (Research Preview)** in the **Group by** menu to separate fast mode from standard-speed usage. You see that option only when the selected date range includes fast mode usage.
+* **Claude Console**: your organization pays for fast mode with the rest of its API usage. On the Console [Usage](https://platform.claude.com/usage) and [Cost](https://platform.claude.com/cost) pages, select **Speed (research preview)** in the **Group by** menu to separate fast mode from standard-speed usage. You see that option only when the selected date range includes fast mode usage.
 
 ## Decide when to use fast mode
 

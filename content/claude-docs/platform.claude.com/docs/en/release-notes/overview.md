@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 45c307ba077faf54e4b90e031bd7f962f3b7e6c99e718d4b04ba109a0f266150
+fetched_at: 2026-11-03T02:13:03.351290Z
+sha256: ff0b057fa3d24c1096b1c9d2ffe311842bf56f6971c3c13147b550177ab431cc
 ---
 
 ---
@@ -18,6 +18,10 @@ The Claude Platform release notes list changes to the Claude API, the client SDK
 
   For updates to Claude Code, see the [complete CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) in the `claude-code` repository.
 </Tip>
+
+### November 2, 2026
+
+* Long conversations and agent loops on the Messages API can now send smaller requests and get a lower time to first token with [message threads](https://platform.claude.com/docs/en/build-with-claude/message-threads), in beta with the `message-threads-2026-08-12` beta header. The API keeps the conversation on the server, so each later request sends only the new messages. A thread expires 5 minutes after its last request and is deleted no more than 1 hour after its last use. Message threads are available on the Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), Claude Models on Google Cloud (Anthropic managed), and [Claude in Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry).
 
 ### October 30, 2026
 
@@ -170,8 +174,7 @@ The Claude Platform release notes list changes to the Claude API, the client SDK
 ### August 27, 2026
 
 * In Python SDK 1.2.0, TypeScript SDK 0.122.0, Go SDK 1.68.0, Java SDK 2.59.0, Ruby SDK 1.67.0, and C# SDK 12.44.0, `client.beta.files` and `client.beta.skills` no longer send the `files-api-2025-04-14` and `skills-2025-10-02` beta headers and return the same shapes as `client.files` and `client.skills`. With this change, `client.beta.skills.delete()` deletes a Skill together with all of its versions, and the beta Messages type `BetaSkill` (the container Skill reference) is renamed `BetaContainerSkill`. Requests that still send the beta headers keep receiving the beta shapes. See [Migrate from `files-api-2025-04-14`](https://platform.claude.com/docs/en/build-with-claude/files#migrate-from-files-api-2025-04-14) and [Migrate from `skills-2025-10-02`](https://platform.claude.com/docs/en/build-with-claude/skills-guide#migrate-from-skills-2025-10-02).
-
-- You can now create **personal keys** and **service account keys** in the Claude Console. They act as you or as a [service account](https://platform.claude.com/docs/en/manage-claude/workload-identity-federation#service-accounts), with the same permissions, and stop working when the linked account is removed from an organization. This lets organization admins more easily track usage for each account, and ensure key usage is legitimate. These API keys can be scoped to a specific workspace or [work on admin endpoints and across any workspace](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace) the account has access to. Workspace API keys remain supported as a legacy option. See [API keys in Authentication](https://platform.claude.com/docs/en/manage-claude/authentication#api-keys) for more information.
+* You can now create **personal keys** and **service account keys** in the Claude Console. They act as you or as a [service account](https://platform.claude.com/docs/en/manage-claude/workload-identity-federation#service-accounts), with the same permissions, and stop working when the linked account is removed from an organization. This lets organization admins more easily track usage for each account, and ensure key usage is legitimate. These API keys can be scoped to a specific workspace or [work on admin endpoints and across any workspace](https://platform.claude.com/docs/en/manage-claude/authentication#select-a-workspace) the account has access to. Workspace API keys remain supported as a legacy option. See [API keys in Authentication](https://platform.claude.com/docs/en/manage-claude/authentication#api-keys) for more information.
 
 ### August 26, 2026
 
