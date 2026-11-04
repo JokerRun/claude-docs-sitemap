@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments-deploy
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 810e38308ca42675437df0062d3e6b50b5732152ea5f0d2b540cca3dbb1c0461
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 32e30b17d06d128f75dc226a96f03bdc88dc2ae886642cd75b5b62a666cebbf0
 ---
 
 > ## Documentation Index
@@ -834,7 +834,7 @@ If tool traffic must stay inside your network, run the equivalent tools as local
 
 ### Some sessions don't count as idle
 
-A session holding a background task that never finishes doesn't count as idle, so `--release-idle-session-min` won't release that session's slot. A session that's waiting on an approval requested from inside a running tool call also doesn't count as idle. Always set `--kill-session-after-min` alongside it as a hard backstop so no session can hold a slot indefinitely.
+A session holding a background task that keeps running doesn't count as idle, so `--release-idle-session-min` won't release that session's slot. A session that's waiting on an approval requested from inside a running tool call also doesn't count as idle. Set `--kill-session-after-min` alongside it as a hard backstop.
 
 `--kill-session-after-min` is a backstop for runaway sessions. On a runner on v2.1.260 or later, a session that reaches the limit isn't terminated outright. The runner gives it a grace window, 15 minutes by default, which you can change with [`SELF_HOSTED_RUNNER_MAX_LIFETIME_GRACE_MS`](https://code.claude.com/docs/en/self-hosted-environments-reference#environment-variable-only-settings):
 

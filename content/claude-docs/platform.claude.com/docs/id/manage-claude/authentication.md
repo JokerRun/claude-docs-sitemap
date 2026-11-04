@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/authentication
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: d0f58b9d58f15fa20aba92d2c63edd02f0566477781cae1890a0b1e769aed107
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 838a175c09fd3064304e172eb49be8f4cc81b8bccf892e071b3e9b603b0eafd1
 ---
 
 ---
@@ -49,7 +49,7 @@ Kunci API workspace masih berfungsi tetapi harus dianggap lawas; kunci yang didu
 ```http
 POST /v1/messages
 Authorization: Bearer YOUR_API_KEY
-anthropic-version: 2023-06-01
+anthropic-version: 2026-10-21
 content-type: application/json
 ```
 
@@ -61,7 +61,7 @@ Simpan kunci API di secrets manager, rotasi secara berkala, dan nonaktifkan atau
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -144,7 +144,7 @@ Anda dapat menemukan ID workspace di kolom **ID** pada halaman [Workspaces](http
   # Hilangkan header anthropic-workspace-id untuk kunci yang dibatasi ke satu workspace.
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-workspace-id: wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ" \
     -H "content-type: application/json" \
     -d '{
@@ -358,6 +358,16 @@ Untuk mengganti kunci workspace dengan kunci pribadi atau akun layanan:
 3. **Buat kunci baru.** Buat kunci khusus untuk workspace integrasi tersebut kecuali integrasi memerlukan beberapa workspace.
 4. **Terapkan kunci baru.** Ganti kunci lama di mana pun integrasi membacanya, biasanya variabel lingkungan `ANTHROPIC_API_KEY` atau entri secrets manager. Untuk kunci yang tidak dibatasi cakupannya ke sebuah workspace, kirimkan juga header `anthropic-workspace-id` seperti yang ditunjukkan di [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace).
 5. **Hapus kunci lama.** Pastikan permintaan berhasil, lalu hapus kunci workspace di [halaman Kunci API](https://platform.claude.com/settings/keys) di Claude Console.
+
+### Aplikasi berbasis browser
+
+Panggil Claude API dari back end Anda sendiri, bukan dari kode yang berjalan di browser pengguna Anda. Siapa pun yang menggunakan halaman web dapat membaca kunci API di dalam kode halaman tersebut. Biasanya, front end web Anda memanggil back end Anda, yang menyimpan kunci tersebut dan memanggil Claude API.
+
+Permintaan yang dikirim langsung dari browser adalah permintaan “cross-origin” (lintas asal), atau CORS. API hanya menerima permintaan ini jika menyertakan header `anthropic-dangerous-direct-browser-access: true`, yang dikirim oleh TypeScript SDK saat Anda mengatur `dangerouslyAllowBrowser` ke `true`. Untuk kasus di mana mengekspos kunci dengan cara ini dapat diterima, lihat [Penggunaan browser](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#runtime-support) dalam panduan TypeScript SDK.
+
+Organisasi yang mengaktifkan [“zero data retention” (retensi data nol), atau ZDR](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope), atau [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#set-up-the-compliance-api) tidak dapat memanggil API secara langsung dari browser, bahkan dengan header tersebut. Pengaturan organisasi lainnya dapat memiliki efek yang sama, dan tidak ada pengaturan yang mengizinkan permintaan browser untuk organisasi-organisasi ini. API mengembalikan 401 `authentication_error` yang pesannya diawali dengan `CORS requests are not allowed for this Organization`, meskipun kunci API tersebut valid. Organisasi Claude Console yang ditautkan ke organisasi induk Claude Enterprise mewarisi pengaturan Compliance API dari organisasi induk. Oleh karena itu, pembatasan ini dapat berlaku bahkan ketika pengaturan Claude Console Anda tidak menampilkan bagian Compliance API.
+
+Pembatasan ini hanya berlaku untuk permintaan yang menyertakan header `Origin`, yang ditambahkan oleh browser dan biasanya tidak ditambahkan oleh klien HTTP sisi server. Permintaan dari back end Anda sendiri tidak terpengaruh. Jika back end Anda meneruskan permintaan yang berasal dari browser, buat back end Anda membuat permintaan baru ke Claude API. Jangan meneruskan permintaan browser apa adanya. Permintaan tersebut masih menyertakan header `Origin` dari browser, dan API akan menolaknya dengan cara yang sama.
 
 ## Workload Identity Federation
 

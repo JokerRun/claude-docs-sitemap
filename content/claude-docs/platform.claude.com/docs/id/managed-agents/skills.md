@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/skills
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: b6f2fd875ed59a524f5acbfc43929dbdd9f9ed2a11a1f8bdf6ee1c843b0399f4
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: eafb277e9c039a03fc432b0b36eb780125901f4a7cc647118564a8e962c64fb0
 ---
 
 ---
@@ -61,7 +61,7 @@ Contoh-contoh ini menghilangkan field opsional `display_name` (java, php: `displ
   ```bash cURL
   curl -X POST "https://api.anthropic.com/v1/skills" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -F "files[]=@example_skill.zip"
   ```
 
@@ -252,7 +252,7 @@ Setiap entri dalam array `skills` (csharp, go: `Skills`) menggunakan field berik
   ```bash cURL
   curl -sS https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     --json '{
       "name": "Financial Analyst",
@@ -453,13 +453,13 @@ Direktori `.claude/skills` di tempat lain dalam repositori, misalnya di dalam su
 
 Skill repositori menggunakan format `SKILL.md` yang sama dengan skill kustom yang Anda unggah. Untuk format dan panduan penulisan, lihat [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview) dan [Praktik terbaik penulisan skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices).
 
-Untuk memuat skill dari repositori, buat sesi yang me-mount repositori tersebut. Ini adalah permintaan yang sama seperti yang ditunjukkan di [Mengakses GitHub](https://platform.claude.com/docs/id/managed-agents/github#token-permissions); `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`) bersifat opsional dan default ke `/workspace/<repo-name>`:
+Untuk memuat skill dari repositori, buat sesi yang me-mount repositori tersebut. Ini adalah permintaan yang sama seperti yang ditunjukkan di [Mengakses GitHub](https://platform.claude.com/docs/id/managed-agents/github); `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`) bersifat opsional dan default ke `/workspace/<repo-name>`:
 
 <CodeGroup>
   ```bash cURL
   curl -fsS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d @- <<JSON
@@ -599,7 +599,7 @@ Untuk memuat skill dari repositori, buat sesi yang me-mount repositori tersebut.
   ```
 </CodeGroup>
 
-Untuk repositori privat, `authorization_token` (java, php: `authorizationToken`; csharp, go: `AuthorizationToken`) milik resource harus memiliki akses ke repositori. Ini adalah alur personal access token yang sama yang digunakan untuk mount repositori apa pun; lihat [Mengakses GitHub](https://platform.claude.com/docs/id/managed-agents/github#token-permissions).
+Untuk repositori privat, `authorization_token` (java, php: `authorizationToken`; csharp, go: `AuthorizationToken`) milik resource harus memiliki akses ke repositori. Ini adalah alur personal access token yang sama yang digunakan untuk mount repositori apa pun; lihat [Izin token](https://platform.claude.com/docs/id/managed-agents/github#token-permissions).
 
 Skill yang ditemukan mengikuti status checkout repositori: branch atau commit `checkout` (csharp, go: `Checkout`) jika resource menetapkannya, atau branch default repositori jika tidak. Pemindaian berjalan sekali, saat sesi dimulai. Commit yang di-push di tengah sesi tidak akan diambil; untuk memuat skill yang diperbarui, mulai sesi baru.
 

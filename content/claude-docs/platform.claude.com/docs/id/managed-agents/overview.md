@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/overview
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 833753aec4cede6966731f2309c2423e4324ca94849e3583ad5d295cc5d0e145
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 1293acbd8f91690d46acf164b992a5a3aa1433f06b7fdaf17ee22ac43b9346dd
 ---
 
 ---
@@ -52,7 +52,7 @@ Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok
 Claude Managed Agents menyediakan harness dan infrastruktur untuk menjalankan Claude sebagai agen otonom. Alih-alih membangun agent loop, eksekusi alat, dan runtime Anda sendiri, Anda mendapatkan lingkungan yang sepenuhnya terkelola tempat Claude dapat membaca file, menjalankan perintah, menjelajahi web, dan menjalankan kode dengan aman. Harness ini mendukung “prompt caching” (caching prompt) bawaan, compaction (pemadatan), dan optimasi performa lainnya untuk output agen yang berkualitas tinggi dan efisien. Untuk membangun agent loop Anda sendiri dengan akses model langsung, lihat [Menggunakan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages).
 
 <Note>
-  Claude Managed Agents juga tersedia di Claude Platform on AWS dan Claude Models on Google Cloud (Anthropic managed), dengan beberapa perbedaan dalam ketersediaan fitur dan perilaku sesi. Lihat [Claude Managed Agents](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#claude-managed-agents) dalam panduan Claude Platform on AWS atau panduan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#claude-managed-agents).
+  Claude Managed Agents juga tersedia di Claude Models on Google Cloud (Anthropic managed) dan Claude Platform on AWS, dengan beberapa perbedaan dalam ketersediaan fitur dan perilaku sesi. Lihat panduan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#claude-managed-agents) atau [Claude Managed Agents](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#claude-managed-agents) dalam panduan Claude Platform on AWS.
 </Note>
 
 <CardGroup cols={3}>

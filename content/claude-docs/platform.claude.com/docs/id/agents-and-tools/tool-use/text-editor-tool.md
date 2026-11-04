@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 6d4fa6f68182e6fb6e7a1926fe2caaeb9ffb599d2221646b2266c82f5c665d3a
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: a5a28faca7cf0bec01660256d88c7cbdd0e96d6025e543b99843123d8abf6720
 ---
 
 ---
@@ -69,7 +69,7 @@ Secara opsional, Anda dapat menentukan parameter `max_characters` untuk mengontr
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -424,7 +424,7 @@ Pertama, aplikasi Anda memberikan Claude alat editor teks dan prompt untuk mempe
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -624,7 +624,7 @@ Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya kepada Claude
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -1087,7 +1087,7 @@ Aplikasi Anda kemudian harus melakukan pengeditan dan mengembalikan hasilnya:
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,

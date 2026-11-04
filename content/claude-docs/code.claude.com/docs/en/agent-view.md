@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-view
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 63910c11c75957a894573a5356657f7f2989cc4364787751dcf883c2d16c34b1
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: f746fc00df7b9a7c7efa9f92444f314aa1d4b2216886e50e47fb3426aab17eba
 ---
 
 > ## Documentation Index
@@ -449,7 +449,7 @@ Two commands move work from the session you're in to the background: `/backgroun
 
 Run `/background` or its alias `/bg` to move the current conversation into a background session. Pass a prompt such as `/bg run the test suite and fix any failures` to give one more instruction first. If Claude is responding when you run `/bg`, the response continues in the background session.
 
-Exiting a session that still has background work running, such as subagents, background shell commands, workflows, or [monitors](https://code.claude.com/docs/en/tools-reference.md#monitor-tool), shows a `Background work is running` dialog instead of quitting immediately. Choose `Move to background and exit` to background the session the same way `/background` does and return to your shell. The option isn't shown when agent view is [turned off](#turn-off-agent-view).
+If you exit a session while some kinds of background work are running, such as subagents or workflows, a `Background work is running` dialog warns that the work stops. Choose `Move to background and exit` to background the session the same way `/background` does and return to your shell. The option isn't shown when agent view is [turned off](#turn-off-agent-view).
 
 If a background session on the list already has the conversation's name, Claude Code numbers the new row's name, such as `my-session (2)`, and leaves the existing row's name alone. To rename the new row, select it in agent view and press `Ctrl+R`.
 

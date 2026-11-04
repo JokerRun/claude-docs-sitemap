@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-operations
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: abac041f044bd718aaa9c6e66d646e0a8601ab4f7550def51015b97c05f15684
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 4f986f4d38c7a8fb122d8765025c98794f78b9cfda939da407ee9057064e9a7d
 ---
 
 ---
@@ -69,7 +69,7 @@ The session must be `idle` to update the agent. To update the agent while the se
   ```bash cURL
   curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -236,7 +236,7 @@ A session [created with a budget](https://platform.claude.com/docs/en/managed-ag
   ```bash cURL
   curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
@@ -296,7 +296,7 @@ A `page` cursor is opaque and encodes the `order` of the request that produced i
   curl -sS --fail-with-body \
     "https://api.anthropic.com/v1/sessions?agent_id=$AGENT_ID&limit=1" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   # Pass next_page back as the page query parameter to fetch the next page,
   # or prev_page to go back.
@@ -528,7 +528,7 @@ Archive a session to prevent new events from being sent while preserving its his
   ```bash cURL
   curl -fsSL -X POST "https://api.anthropic.com/v1/sessions/$SESSION_ID/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
@@ -578,7 +578,7 @@ Memory stores, vaults, skills, environments, and agents are independent resource
   ```bash cURL
   curl -fsSL -X DELETE "https://api.anthropic.com/v1/sessions/$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 

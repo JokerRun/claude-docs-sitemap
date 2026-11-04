@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: c018eec29fb008f63fce7e594880b10e7ac68bc9b86291210f109ab0afc87fb9
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 3c14b161dbfe318059fd1b4426538133b05e61a8b7e35056df7ec9ddb47b8da7
 ---
 
 ---
@@ -120,7 +120,7 @@ Skrip yang memanggil API dengan `curl` atau klien HTTP lain dapat menggunakan kr
 ```bash cURL
 curl https://api.anthropic.com/v1/messages \
   -H "Authorization: Bearer $(ant auth print-credentials --access-token)" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   -H "content-type: application/json" \
   -d '{
     "model": "claude-opus-5-5",

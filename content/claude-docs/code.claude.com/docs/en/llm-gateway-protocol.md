@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-protocol
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: f8cb656ba45fce5c56f63f96b6df922fbe54cf63d830001058ff311704fd20d6
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 140aad701e56ba6849383bd1c0c8b00d6c199502408d37f162c39036109f7f33
 ---
 
 > ## Documentation Index
@@ -285,7 +285,7 @@ The retry doesn't cover cases such as a value with its own retry, a value Claude
 
 On v2.1.305 or later, Claude Code resends a request without [`defer_loading` fields and `tool_reference` blocks](https://code.claude.com/docs/en/mcp#tool-search-through-a-gateway) after a `400` or `422` that names tool search or whose cause it doesn't recognize. After a successful retry, later requests in that conversation omit them too.
 
-The developer's requests keep working without any change on the gateway, with their MCP tools loaded upfront. When Claude Code tries tool search again, the gateway sees another rejected request followed by its retry. For tool search itself, Claude Code expects the gateway to forward the `defer_loading` fields and `tool_reference` blocks with their `anthropic-beta` value.
+The developer's requests keep working without any change on the gateway, with their MCP tools loaded upfront. When Claude Code tries tool search again, the gateway can see another rejected request followed by its retry. For tool search itself, Claude Code expects the gateway to forward the `defer_loading` fields and `tool_reference` blocks with their `anthropic-beta` value.
 
 ### Disable pre-release capabilities
 

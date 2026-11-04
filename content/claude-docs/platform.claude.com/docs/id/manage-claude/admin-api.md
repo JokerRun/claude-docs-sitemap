@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: c840bd48eec2242b31b2855cc4f3ec6380fcf21a23cb2cc851caf22e439b306b
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 338c91252085369aed76508b7a99ce107e5788ddacc607ea77096b86a62fd007
 ---
 
 ---
@@ -59,7 +59,7 @@ Panggil Admin API dengan token yang telah diekspor:
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/organizations/me" \
     -H "authorization: Bearer $ANTHROPIC_AUTH_TOKEN" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -145,7 +145,7 @@ Untuk membuat kunci Admin API sesuai jenis organisasi Anda, lihat [Membuat kunci
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/organizations/me" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -257,7 +257,7 @@ Daftarkan anggota organisasi Anda:
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/users?limit=10" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -355,7 +355,7 @@ Perbarui peran anggota:
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/users/user_01WxYzAbCdEfGhJkMnPqRsTu" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{"role": "developer"}'
   ```
@@ -470,7 +470,7 @@ Hapus anggota dari organisasi:
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/organizations/users/user_01WxYzAbCdEfGhJkMnPqRsTu" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -551,7 +551,7 @@ Undang pengguna ke organisasi Anda:
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/invites" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "email": "user@example.com",
@@ -677,7 +677,7 @@ Daftarkan undangan yang tertunda:
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/invites?limit=10" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -775,7 +775,7 @@ Hapus undangan:
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/organizations/invites/invite_015gWxHNr6h6TdRPZTmuCGnn" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -864,7 +864,7 @@ Tambahkan anggota ke workspace:
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/members" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
@@ -1000,7 +1000,7 @@ Daftarkan anggota workspace:
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/members?limit=10" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -1117,7 +1117,7 @@ Perbarui peran anggota workspace:
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/members/user_01WxYzAbCdEfGhJkMnPqRsTu" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{"workspace_role": "workspace_admin"}'
   ```
@@ -1250,7 +1250,7 @@ Hapus anggota dari workspace:
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/members/user_01WxYzAbCdEfGhJkMnPqRsTu" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -1358,7 +1358,7 @@ Daftarkan kunci API aktif di sebuah workspace:
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/api_keys?limit=10&status=active&workspace_id=wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -1487,7 +1487,7 @@ Ganti nama atau nonaktifkan kunci API:
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/api_keys/apikey_01Rj2N8SVvo6BePZj99NhmiT" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "status": "inactive",
@@ -1638,7 +1638,7 @@ Endpoint `/v1/organizations/me` mengembalikan organisasi tempat kredensial Anda 
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/me" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI

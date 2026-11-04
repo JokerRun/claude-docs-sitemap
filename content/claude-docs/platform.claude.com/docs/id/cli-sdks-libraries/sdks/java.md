@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 8a86e6079327eb10d0971354c0b6ad1bdbdeb64bd6e4e382d58ac37868d27713
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 7f7d5df22178798b5b25991d63325334a8cab9982111245b0c51d6ccd3521e59
 ---
 
 ---
@@ -1270,12 +1270,12 @@ void main() {
 
 ## Semantic versioning
 
-Setiap versi mayor SDK ini mengirimkan satu versi API dalam header `anthropic-version` secara default, dan versi mayor baru hadir bersama setiap versi API baru. Versi mayor pertama yang mengirimkan `2026-10-21` adalah 3.0.0; lihat [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade).
-
 Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
 
 1. Perubahan pada internal library yang secara teknis bersifat publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
 2. Perubahan yang tidak diperkirakan akan berdampak pada sebagian besar pengguna dalam praktiknya.
+
+Setiap permintaan ke Claude API menggunakan versi API. Dengan SDK ini, permintaan Anda menggunakan versi API yang berlaku saat versi mayor SDK Anda dirilis, sehingga Anda beralih ke versi API baru dengan melakukan upgrade ke versi mayor baru. Versi 3.0.0 adalah yang pertama menggunakan `2026-10-21`. Lihat [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade) untuk cara melakukan upgrade.
 
 ## Sumber daya tambahan
 

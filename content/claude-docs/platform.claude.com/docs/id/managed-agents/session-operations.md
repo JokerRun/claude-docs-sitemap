@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 4b640c89aed30cd76828c1c3f0d76b3326f883dec5e0e5e21fe68e8832eb59e4
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: e0b7e1720ed94ecb15cf08918f2d0ffe3073c1fc20240bbdb94e8c2987a6f1f3
 ---
 
 ---
@@ -69,7 +69,7 @@ Sesi harus berstatus `idle` untuk memperbarui agen. Untuk memperbarui agen saat 
   ```bash cURL
   curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -236,7 +236,7 @@ Sesi yang [dibuat dengan anggaran](https://platform.claude.com/docs/id/managed-a
   ```bash cURL
   curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
@@ -296,7 +296,7 @@ Kursor `page` bersifat opaque dan mengodekan `order` dari permintaan yang mengha
   curl -sS --fail-with-body \
     "https://api.anthropic.com/v1/sessions?agent_id=$AGENT_ID&limit=1" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   # Teruskan next_page kembali sebagai parameter query page untuk mengambil halaman berikutnya,
   # atau prev_page untuk kembali.
@@ -528,7 +528,7 @@ Arsipkan sesi untuk mencegah event baru dikirim sambil tetap mempertahankan riwa
   ```bash cURL
   curl -fsSL -X POST "https://api.anthropic.com/v1/sessions/$SESSION_ID/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
@@ -578,7 +578,7 @@ Memory store, vault, skill, environment, dan agen adalah sumber daya independen 
   ```bash cURL
   curl -fsSL -X DELETE "https://api.anthropic.com/v1/sessions/$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 

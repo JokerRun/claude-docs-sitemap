@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/access-transparency-log
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: eabafb70f2c310f6b5d1b597ad39d6018057585e4585a3202f753447fe0d990a
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: f074d578409bf94d3f7b6d04e3a0ff95c8c3913ae0b59e5717ffcdec5ee33cfd
 ---
 
 ---
@@ -126,7 +126,7 @@ Respons hanya dapat di-cache oleh klien yang meminta. `Cache-Control` selalu men
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/transparency_log/checkpoint" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  --header "anthropic-version: 2023-06-01"
+  --header "anthropic-version: 2026-10-21"
 ```
 
 Responsnya berupa `text/plain`: sebuah [signed note](https://c2sp.org/signed-note) C2SP. Baris-baris body adalah origin, ukuran pohon dalam desimal, dan root hash dalam base64. Setelahnya ada baris kosong, lalu baris tanda tangan, yang diawali dengan em dash (U+2014), menyebutkan origin, dan diakhiri dengan nilai base64. Nilai-nilai di sini hanya ilustrasi:
@@ -152,7 +152,7 @@ C6C4HzGRqDNlbu54LWCvpDX0NcB5DRTmLcjM4u5vWUI=
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/transparency_log/keys" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  --header "anthropic-version: 2023-06-01"
+  --header "anthropic-version: 2026-10-21"
 ```
 
 ```json
@@ -216,7 +216,7 @@ curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/transparency_log/inclusion" \
   --data-urlencode "leaf_index=41" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  --header "anthropic-version: 2023-06-01"
+  --header "anthropic-version: 2026-10-21"
 ```
 
 ```json
@@ -262,7 +262,7 @@ curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/transparency_log/consistency" \
   --data-urlencode "from=1180" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  --header "anthropic-version: 2023-06-01"
+  --header "anthropic-version: 2026-10-21"
 ```
 
 ```json

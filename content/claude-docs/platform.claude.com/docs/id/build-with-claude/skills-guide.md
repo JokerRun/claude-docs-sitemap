@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: aa4bc0a22d66fb5f9cc70c7ec7554c91996e1f63539951b9844951e8a4fef52c
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: a70a1dae6192f0d752e2534a97b9360cb4bef3bbaf5e4169697dbc8e88f4395f
 ---
 
 ---
@@ -83,7 +83,7 @@ Strukturnya identik untuk Skills Anthropic maupun Skills kustom. Tentukan `type`
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -705,17 +705,17 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
   # Dapatkan metadata file
   curl "https://api.anthropic.com/v1/files/$FILE_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
 
   # Daftar semua file
   curl "https://api.anthropic.com/v1/files" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
 
   # Hapus file
   curl -X DELETE "https://api.anthropic.com/v1/files/$FILE_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -1627,7 +1627,7 @@ Skills mungkin melakukan operasi yang memerlukan beberapa giliran. Tangani stop 
 </CodeGroup>
 
 <Note>
-  Respons mungkin menyertakan stop reason `pause_turn`, yang menunjukkan bahwa API menjeda operasi Skill yang berjalan lama. Anda dapat mengirimkan kembali respons tersebut apa adanya dalam permintaan berikutnya agar Claude dapat melanjutkan gilirannya, atau memodifikasi kontennya jika Anda ingin menginterupsi percakapan dan memberikan panduan tambahan.
+  Respons mungkin menyertakan stop reason `pause_turn`, yang menunjukkan bahwa API menjeda operasi Skill yang berjalan lama. Anda dapat mengirimkan kembali respons tersebut apa adanya dalam permintaan berikutnya agar Claude dapat melanjutkan gilirannya, atau memodifikasi kontennya jika Anda ingin menginterupsi percakapan dan memberikan panduan tambahan. Kirimkan kembali ID container dari respons tersebut bersama permintaan itu, dalam objek `container` yang sama dengan Skills Anda, seperti yang ditunjukkan dalam contoh. Tanpa ID tersebut, permintaan akan berjalan di container baru, dan file dari bagian sebelumnya dalam giliran tersebut akan hilang.
 </Note>
 
 ### Menggunakan beberapa Skills
@@ -1638,7 +1638,7 @@ Gabungkan beberapa Skills dalam satu permintaan untuk menangani alur kerja yang 
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -1963,7 +1963,7 @@ Gabungkan beberapa Skills dalam satu permintaan untuk menangani alur kerja yang 
 
 ### Membuat Skill
 
-Bundle Skill adalah direktori yang berisi file `SKILL.md` di tingkat teratas dengan frontmatter YAML `name` dan `description`, ditambah skrip atau sumber daya pendukung apa pun. Lihat [Memulai dengan Agent Skills di API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart) untuk menulisnya, dan daftar **Persyaratan** setelah contoh-contoh berikut untuk batasan lengkapnya.
+Bundle Skill adalah direktori yang berisi file `SKILL.md` di tingkat teratas dengan frontmatter YAML `name` dan `description`, ditambah skrip atau sumber daya pendukung apa pun. Lihat [Praktik terbaik penulisan Skill](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices) untuk menulisnya, dan daftar **Persyaratan** setelah contoh-contoh berikut untuk batasan lengkapnya.
 
 Unggah Skill kustom Anda agar tersedia di workspace Anda. Anda dapat mengunggah arsip zip atau objek file individual. Python SDK juga menyediakan helper `files_from_dir` yang menerima path direktori, dan `ant apply` pada CLI mengunggah direktori itu sendiri.
 
@@ -1973,7 +1973,7 @@ File diidentifikasi berdasarkan nama file yang Anda lampirkan (akhiran `;filenam
   ```bash cURL
   curl -X POST "https://api.anthropic.com/v1/skills" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -F "files[]=@financial_skill/SKILL.md;filename=financial_skill/SKILL.md" \
     -F "files[]=@financial_skill/analyze.py;filename=financial_skill/analyze.py"
   ```
@@ -2278,12 +2278,12 @@ Ambil semua Skills yang tersedia untuk workspace Anda, termasuk Skills bawaan An
   # Tampilkan daftar semua Skills
   curl "https://api.anthropic.com/v1/skills" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
 
   # Tampilkan daftar Skills kustom saja
   curl "https://api.anthropic.com/v1/skills?source=custom" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -2423,7 +2423,7 @@ Dapatkan detail tentang Skill tertentu:
   ```bash cURL
   curl "https://api.anthropic.com/v1/skills/skill_01AbCdEfGhIjKlMnOpQrStUv" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -2520,7 +2520,7 @@ Menghapus Skill juga akan menghapus semua versinya.
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/skills/skill_01AbCdEfGhIjKlMnOpQrStUv" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -2602,14 +2602,14 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
   # Buat versi baru
   curl -X POST "https://api.anthropic.com/v1/skills/skill_01AbCdEfGhIjKlMnOpQrStUv/versions" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -F "files[]=@financial_skill/SKILL.md;filename=financial_skill/SKILL.md" \
     -F "files[]=@financial_skill/analyze.py;filename=financial_skill/analyze.py"
 
   # Gunakan versi tertentu: ID dari respons pembuatan
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -2628,7 +2628,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
   # Gunakan versi terbaru
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -3141,7 +3141,7 @@ Gabungkan Skill Excel dan Skill analisis DCF kustom. Pertama, buat Skill analisi
   ```bash cURL
   curl -X POST "https://api.anthropic.com/v1/skills" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -F "files[]=@dcf_skill/SKILL.md;filename=dcf_skill/SKILL.md"
   ```
 
@@ -3271,7 +3271,7 @@ Kemudian gunakan bersama Skill Excel untuk membuat model keuangan. Berikan ID Sk
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -3595,7 +3595,7 @@ Tab SDK di bagian ini menunjukkan nilai `container` yang perlu disertakan dalam 
   # Sematkan ke versi tertentu demi stabilitas
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -3736,7 +3736,7 @@ Tab SDK di bagian ini menunjukkan nilai `container` yang perlu disertakan dalam 
   # Gunakan latest untuk pengembangan aktif
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -3879,7 +3879,7 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
   # Skills dirender ke dalam prompt sistem dengan urutan tetap yang ramah cache
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -3896,7 +3896,7 @@ Jika Anda menggunakan [caching prompt](https://platform.claude.com/docs/id/build
   # Mengubah daftar Skills ([xlsx] vs [xlsx, pptx]) mengubah prefiks: cache miss, sedangkan daftar identik menghasilkan cache hit
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -4508,7 +4508,7 @@ Tangani error terkait Skill dengan baik:
 
 ## Migrasi dari `skills-2025-10-02`
 
-Skills API telah keluar dari beta dan tidak memerlukan header beta. Migrasi dari `skills-2025-10-02` bersifat opsional: permintaan yang masih mengirimkannya tetap berfungsi dan tetap mengembalikan bentuk respons beta, sehingga integrasi yang sudah ada tetap berfungsi sampai Anda mengubahnya. Menghapus header tersebut mengalihkan permintaan-permintaan itu ke bentuk yang didokumentasikan di halaman ini:
+Skills API telah keluar dari beta dan tidak memerlukan header beta. Migrasi dari `skills-2025-10-02` bersifat opsional: permintaan yang mengirimkannya tetap berfungsi dan tetap mengembalikan bentuk respons beta, sehingga integrasi yang sudah ada tetap berfungsi sampai Anda mengubahnya. Menghapus header tersebut mengalihkan permintaan-permintaan itu ke bentuk yang didokumentasikan di halaman ini:
 
 |                                    | Dengan `skills-2025-10-02`                                                                  | Tanpa header                                                                                                                                                |
 | ---------------------------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |

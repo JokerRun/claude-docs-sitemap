@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/multilingual-support
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 18465f6327337b1eccf62ed65bd48c6d2d87489afcac0050a473caf23e5c8af5
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: d8152017b246f69b647ec63f65d139ef598b66bf4515607871f9c0d79d7da7f9
 ---
 
 ---
@@ -40,36 +40,36 @@ featureMetadata:
 
 ## Ikhtisar
 
-Claude menunjukkan kemampuan multibahasa yang tangguh, dengan kinerja yang sangat kuat terutama dalam tugas “zero-shot” (tanpa contoh) di berbagai bahasa. Model ini mempertahankan kinerja relatif yang konsisten baik pada bahasa yang digunakan secara luas maupun bahasa dengan sumber daya yang lebih terbatas, menjadikannya pilihan yang andal untuk aplikasi multibahasa.
+Claude menunjukkan kemampuan multibahasa yang tangguh, dengan kinerja yang sangat kuat dalam tugas “zero-shot” (tanpa contoh) di berbagai bahasa.
 
 Claude mampu bekerja dalam banyak bahasa di luar yang diuji dalam tabel berikut. Ujilah dengan bahasa apa pun yang relevan dengan kasus penggunaan spesifik Anda.
 
 ## Data kinerja
 
-Tabel berikut menunjukkan skor evaluasi “zero-shot chain-of-thought” (rantai pemikiran tanpa contoh) untuk model Claude di berbagai bahasa, dinyatakan sebagai persentase relatif terhadap kinerja bahasa Inggris (100%):
+Tabel berikut menunjukkan skor zero-shot untuk model Claude pada [Global-MMLU](https://arxiv.org/abs/2412.03304), yang memperluas set pengujian [“Massive Multitask Language Understanding” (Pemahaman Bahasa Multitugas Masif), atau MMLU](https://en.wikipedia.org/wiki/MMLU) ke 42 bahasa. Setiap skor merupakan persentase dari skor bahasa Inggris model yang sama:
 
-| Bahasa                                 | Claude Sonnet 4.5 (deprecated)<sup>1</sup> | Claude Haiku 4.5<sup>1</sup> |
-| -------------------------------------- | ------------------------------------------ | ---------------------------- |
-| Inggris (acuan dasar, ditetapkan 100%) | 100%                                       | 100%                         |
-| Spanyol                                | 98,2%                                      | 96,4%                        |
-| Portugis (Brasil)                      | 97,8%                                      | 96,1%                        |
-| Italia                                 | 97,9%                                      | 96,0%                        |
-| Prancis                                | 97,5%                                      | 95,7%                        |
-| Indonesia                              | 97,3%                                      | 94,2%                        |
-| Jerman                                 | 97,0%                                      | 94,3%                        |
-| Arab                                   | 97,2%                                      | 92,5%                        |
-| Tionghoa (Sederhana)                   | 96,9%                                      | 94,2%                        |
-| Korea                                  | 96,7%                                      | 93,3%                        |
-| Jepang                                 | 96,8%                                      | 93,5%                        |
-| Hindi                                  | 96,7%                                      | 92,4%                        |
-| Bengali                                | 95,4%                                      | 90,4%                        |
-| Swahili                                | 91,1%                                      | 78,3%                        |
-| Yoruba                                 | 79,7%                                      | 52,7%                        |
+| Bahasa               | Claude Fable 5.1 | Claude Opus 5.5 | Claude Sonnet 5.5 | Claude Haiku 5.5 |
+| -------------------- | ---------------- | --------------- | ----------------- | ---------------- |
+| Inggris              | 100%             | 100%            | 100%              | 100%             |
+| Spanyol              | 99,4%            | 99,3%           | 99,0%             | 98,1%            |
+| Portugis (Brasil)    | 99,0%            | 99,2%           | 98,7%             | 98,1%            |
+| Italia               | 99,0%            | 99,2%           | 98,4%             | 97,7%            |
+| Prancis              | 99,0%            | 99,3%           | 98,7%             | 97,7%            |
+| Indonesia            | 98,9%            | 99,1%           | 98,6%             | 97,1%            |
+| Jerman               | 99,1%            | 99,1%           | 98,5%             | 97,4%            |
+| Arab                 | 98,7%            | 99,3%           | 98,3%             | 96,6%            |
+| Tionghoa (Sederhana) | 98,8%            | 99,3%           | 98,5%             | 97,7%            |
+| Korea                | 98,8%            | 99,1%           | 98,3%             | 97,0%            |
+| Jepang               | 98,7%            | 99,2%           | 98,4%             | 97,4%            |
+| Hindi                | 98,9%            | 99,2%           | 98,5%             | 96,6%            |
+| Bengali              | 98,3%            | 98,6%           | 97,2%             | 95,4%            |
+| Swahili              | 97,7%            | 98,3%           | 96,9%             | 94,0%            |
+| Yoruba               | 95,1%            | 96,3%           | 93,6%             | 87,0%            |
 
-<sup>1</sup> Dengan [extended thinking](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) (pemikiran diperpanjang).
+Semua skor menggunakan [“adaptive thinking” (pemikiran adaptif)](https://platform.claude.com/docs/id/build-with-claude/thinking) pada [tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort) `max`. Skor tidak mencakup pertanyaan yang diblokir oleh “safety classifier” (pengklasifikasi keamanan) atau yang tidak terjawab. Untuk setiap skor dalam tabel, paling banyak 1,7 persen pertanyaan dikecualikan.
 
 <Note>
-  Metrik ini didasarkan pada set pengujian bahasa Inggris [MMLU (Massive Multitask Language Understanding)](https://en.wikipedia.org/wiki/MMLU) yang diterjemahkan ke dalam 14 bahasa tambahan oleh penerjemah manusia profesional, seperti yang didokumentasikan dalam [repositori simple-evals milik OpenAI](https://github.com/openai/simple-evals/blob/main/multilingual_mmlu_benchmark_results.md). Penggunaan penerjemah manusia untuk evaluasi ini memastikan terjemahan berkualitas tinggi, yang sangat penting terutama untuk bahasa dengan sumber daya digital yang lebih sedikit.
+  Gunakan tabel ini untuk membandingkan bahasa dalam satu model, bukan untuk memeringkat model. Perbedaan kurang dari sekitar 1 poin persentase masih berada dalam batas noise pengukuran.
 </Note>
 
 ***
@@ -83,7 +83,7 @@ Claude menyimpulkan bahasa respons dari percakapan, tetapi untuk aplikasi produk
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -184,7 +184,7 @@ Claude menyimpulkan bahasa respons dari percakapan, tetapi untuk aplikasi produk
       messages: [
           ['role' => 'user', 'content' => 'How do I reset my password?']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       system: 'Always respond in French, regardless of the language the user writes in.',
   );
 
@@ -195,7 +195,7 @@ Claude menyimpulkan bahasa respons dari percakapan, tetapi untuk aplikasi produk
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     system: "Always respond in French, regardless of the language the user writes in.",
     messages: [
@@ -215,7 +215,7 @@ Jika aplikasi Anda memungkinkan pengguna memilih bahasa saat runtime, sisipkan p
 
 Saat bekerja dengan konten multibahasa:
 
-1. **Berikan konteks bahasa yang jelas:** Meskipun Claude dapat mendeteksi bahasa target secara otomatis, menyatakan bahasa input dan output yang diinginkan secara eksplisit akan meningkatkan keandalan. Untuk kefasihan yang lebih baik, Anda dapat meminta Claude untuk menggunakan “tuturan idiomatis seolah-olah ia adalah penutur asli.”
+1. **Berikan konteks bahasa yang jelas:** Meskipun Claude dapat mendeteksi bahasa target secara otomatis, menyatakan bahasa input dan output yang Anda inginkan secara eksplisit akan meningkatkan keandalan. Untuk kefasihan yang lebih baik, Anda dapat meminta Claude untuk menggunakan “tuturan idiomatis seolah-olah ia adalah penutur asli.”
 2. **Gunakan aksara asli:** Kirimkan teks dalam aksara aslinya, bukan transliterasi, untuk hasil yang optimal.
 3. **Pertimbangkan konteks budaya:** Komunikasi yang efektif sering kali memerlukan kesadaran budaya dan regional di luar penerjemahan semata.
 
@@ -237,7 +237,7 @@ Ikuti juga panduan umum dalam [Ikhtisar rekayasa prompt](https://platform.claude
   </Card>
 
   <Card title="Agen dukungan pelanggan" icon="headset" href="https://platform.claude.com/docs/id/about-claude/use-case-guides/customer-support-chat">
-    Bangun chatbot dukungan yang dilokalkan menggunakan prompt sistem yang dibatasi bahasanya.
+    Bangun chatbot dukungan pelanggan. Satu chatbot dapat melayani pelanggan dalam banyak bahasa.
   </Card>
 
   <Card title="Ikhtisar model" icon="table" href="https://platform.claude.com/docs/id/models/overview">
@@ -245,7 +245,7 @@ Ikuti juga panduan umum dalam [Ikhtisar rekayasa prompt](https://platform.claude
   </Card>
 
   <Card title="Tentukan kriteria keberhasilan dan bangun evaluasi" icon="scales" href="https://platform.claude.com/docs/id/test-and-evaluate/develop-tests">
-    Evaluasi kualitas terjemahan dan lokalisasi sebelum Anda merilis.
+    Terapkan metode evaluasi umum untuk mengukur kualitas output dalam setiap bahasa yang Anda dukung.
   </Card>
 </CardGroup>
 

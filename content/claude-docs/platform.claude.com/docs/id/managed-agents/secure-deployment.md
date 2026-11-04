@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/secure-deployment
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f0237151849aada66abfe74287a54d08b83596362d9674c0c3dffe16bf34e251
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 530751b6ff64a86bf65eaff26da7c9dbe99ff1f68be9fd8f1a7012802271455d
 ---
 
 ---
@@ -95,7 +95,7 @@ Contoh di halaman ini menggunakan agen dukungan. Agen ini membaca tiket pelangga
   ```bash cURL
   curl -fsS https://api.anthropic.com/v1/environments \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -371,7 +371,7 @@ Contoh berikut membatasi `web_fetch` ke `help.example.com` dengan `allowed_domai
   ```bash cURL
   curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{

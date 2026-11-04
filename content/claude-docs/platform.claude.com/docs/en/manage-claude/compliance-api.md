@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-api
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 681c977982e9ce6f3a17a20ad01d34dbcd8f9d71f6857ed979d20000798512cd
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 16676e603a30ab04c043522314b950dcd195b3f9eb502ec6ff7eec9bfbfe2bb3
 ---
 
 ---
@@ -23,7 +23,7 @@ The following call returns the most recent activity event in your organization. 
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/activities?limit=1" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01"
+  -H "anthropic-version: 2026-10-21"
 ```
 
 A successful response returns a JSON object containing `data` (an array of `Activity` records), `has_more`, `first_id`, and `last_id`:

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/mcp-connector
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 389bd8c969211809010c207a2755328e3cf4d5dff56bb89f7c25a461b62b9a61
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 04a0d1d594658730566584e013746036eb761b970ef9c9524e51f68c066b1665
 ---
 
 ---
@@ -61,7 +61,7 @@ Each declared server also needs a matching `mcp_toolset` entry in the `tools` (c
   ```bash cURL
   curl -sS --fail-with-body https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -308,7 +308,7 @@ With a `limited` [environment](https://platform.claude.com/docs/en/managed-agent
   ```bash cURL
   curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{

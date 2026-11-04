@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 4628ed60bac8984aaf70121a453dfb48363fd1bdebd2a09aeaae5b721e0f6f99
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 14232e15adbbfcde32942f94acf28d3bd6a637ccece4e2036bb614e6b9a61093
 ---
 
 ---
@@ -156,6 +156,6 @@ Lakukan iterasi pada prompt terhadap subset eval atau kasus uji Anda untuk memva
 
 ## Computer use
 
-Claude Sonnet 5 mendukung “computer use” (penggunaan komputer) melalui toolset `computer_toolset_20260801` dan versi alat sebelumnya `computer_20251124`. Model ini juga mendukung [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`) untuk tugas-tugas di dalam halaman web. Kemampuan [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) berfungsi di berbagai resolusi, hingga resolusi maksimum 2576px / 3,75MP. Pengujian computer use internal menunjukkan bahwa mengirim gambar pada resolusi 1080p memberikan keseimbangan yang baik antara kinerja dan biaya.
+Claude Sonnet 5 mendukung “computer use” (penggunaan komputer) melalui toolset `computer_toolset_20260801` dan versi alat `computer_20251124`. Model ini juga mendukung [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`) untuk tugas-tugas di dalam halaman web. Kemampuan [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) berfungsi di berbagai resolusi, hingga resolusi maksimum 2576px / 3,75MP. Pengujian computer use internal menunjukkan bahwa mengirim gambar pada resolusi 1080p memberikan keseimbangan yang baik antara kinerja dan biaya.
 
 Untuk beban kerja yang sangat sensitif terhadap biaya, 720p atau 1366×768 adalah opsi berbiaya lebih rendah dengan kinerja yang kuat. Lakukan pengujian Anda sendiri untuk menemukan pengaturan ideal untuk kasus penggunaan Anda; bereksperimen dengan pengaturan effort juga dapat membantu menyesuaikan perilaku model.

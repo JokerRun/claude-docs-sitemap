@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 391b0711580265392b74a73bdf8dd3dbdcd5ff6ccdb4a568f4e9d51a8c379ed8
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 4c80d7a574c52650003fc7fe4df2c9a3716688e5df72e45028b425f79ac33b96
 ---
 
 ---
@@ -46,7 +46,7 @@ Kedua penawaran memungkinkan Anda menggunakan Claude melalui AWS, tetapi keduany
 
 Jika Anda memerlukan Claude yang dioperasikan AWS, lihat [Claude in Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). Claude Platform on AWS menggunakan kumpulan kapasitas yang terpisah dari Claude API pihak pertama maupun Amazon Bedrock. Anda dapat menjalankan workload di lebih dari satu platform dan melakukan failover di antara keduanya.
 
-[AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html) didukung untuk menghubungkan VPC Anda ke endpoint Claude Platform on AWS.
+[AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html) didukung untuk menghubungkan VPC Anda ke endpoint Claude Platform on AWS (lihat [Terhubung melalui AWS PrivateLink](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#connect-through-aws-privatelink)).
 
 **Kapan memilih Bedrock:** Organisasi di industri yang teregulasi yang memerlukan kepatuhan FedRAMP High, IL4, IL5, atau HIPAA-ready, atau yang memerlukan AWS sebagai satu-satunya pemroses data, sebaiknya menggunakan [Claude in Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). Bedrock berjalan sepenuhnya di infrastruktur yang dikendalikan AWS dengan AWS sebagai pihak yang mengoperasikan.
 
@@ -137,6 +137,7 @@ Untuk organisasi Claude Enterprise (claude.ai), yang berperilaku berbeda, lihat 
 * **Pesan “Not found” saat masuk:** Pesan ini mungkin muncul sebentar selama pengalihan. Anda dapat mengabaikannya.
 * **Halaman Usage tidak menampilkan data setelah panggilan API pertama Anda:** Data penggunaan dapat memerlukan beberapa menit untuk muncul di Claude Console.
 * **“Outbound web identity federation is disabled” pada panggilan API pertama Anda:** Aktifkan federasi satu kali per akun. Lihat [Mengaktifkan outbound web identity federation](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#enable-outbound-web-identity-federation).
+* **403 `permission_error` yang menyebutkan `sts:GetWebIdentityToken` atau `sts:TagGetWebIdentityToken`:** Berikan kedua tindakan tersebut kepada principal IAM yang disebutkan dalam pesan error. Lihat [Kebijakan IAM](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#iam-policies).
 
 ## Sebelum melakukan panggilan API
 
@@ -146,7 +147,8 @@ Pastikan Anda memiliki:
 2. [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html) yang sudah terinstal dan dikonfigurasi
 3. **Outbound web identity federation yang diaktifkan** pada akun AWS Anda, langkah penyiapan satu kali (lihat [Mengaktifkan outbound web identity federation](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#enable-outbound-web-identity-federation))
 4. ID workspace Anda (lihat [Mendapatkan ID workspace Anda](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#obtain-your-workspace-id))
-5. Izin IAM untuk memanggil API: aksi `aws-external-anthropic:CreateInference` pada workspace Anda, ditambah `aws-external-anthropic:CallWithBearerToken` jika Anda mengautentikasi dengan kunci API (lihat [Kebijakan IAM](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#iam-policies))
+5. Izin IAM untuk memanggil API: tindakan `aws-external-anthropic:CreateInference` pada workspace Anda, ditambah tindakan `sts:GetWebIdentityToken` dan `sts:TagGetWebIdentityToken` (lihat [Kebijakan IAM](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#iam-policies))
+6. Izin IAM untuk tindakan `aws-external-anthropic:CallWithBearerToken` jika Anda mengautentikasi dengan kunci API (lihat [Autentikasi kunci API](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#api-key-authentication))
 
 ### Mengaktifkan outbound web identity federation
 
@@ -204,7 +206,7 @@ aws sts get-caller-identity
 
 Untuk jalur integrasi yang lebih sederhana (pengembangan lokal dan skrip), Anda dapat mengautentikasi dengan kunci API alih-alih SigV4. Atur variabel lingkungan `ANTHROPIC_AWS_API_KEY` atau teruskan `api_key` (typescript, php: `apiKey`; go: `APIKey`; java: `.apiKey()`; csharp: `AwsClientOptions.ApiKey`) saat Anda membuat klien.
 
-Buat kunci API di **AWS Console** di bawah **Claude Platform on AWS → API keys**. Klik **Generate a key**, lalu salin nilai kuncinya. Berikan aksi IAM `aws-external-anthropic:CallWithBearerToken` kepada principal yang boleh menggunakan autentikasi kunci API.
+Buat kunci API di **AWS Console** di bawah **Claude Platform on AWS → API keys**. Klik **Generate a key**, lalu salin nilai kuncinya. Principal yang menggunakan kunci API memerlukan izin IAM yang sama dengan principal yang menandatangani permintaan dengan SigV4, termasuk dua tindakan STS (lihat [Kebijakan IAM](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#iam-policies)). Berikan juga tindakan IAM `aws-external-anthropic:CallWithBearerToken` kepada principal yang boleh menggunakan autentikasi kunci API.
 
 <Note>
   Kunci API untuk Claude Platform on AWS dikelola di AWS Console, bukan di Claude Console. Kunci yang dibuat di Claude Console standar di [platform.claude.com](https://platform.claude.com/) (untuk akses API pihak pertama) tidak berfungsi dengan endpoint Claude Platform on AWS.
@@ -264,7 +266,7 @@ Teruskan token yang dihasilkan ke SDK dengan cara yang sama seperti Anda menerus
 
 Jika Anda dapat membuat token secara lokal, proses Anda sudah memiliki kredensial SigV4, dan autentikasi SigV4 biasanya merupakan pilihan yang lebih sederhana. Gunakan kunci jangka pendek ketika proses yang melakukan panggilan API terpisah dari proses yang menyimpan kredensial AWS.
 
-SDK tidak memperbarui kunci jangka pendek secara otomatis. Saat token kedaluwarsa, buat token baru dan buat klien baru. Principal yang menggunakan token tetap memerlukan aksi IAM `aws-external-anthropic:CallWithBearerToken`.
+SDK tidak memperbarui kunci jangka pendek secara otomatis. Saat token kedaluwarsa, buat token baru dan buat klien baru. Principal yang kredensial AWS-nya Anda gunakan untuk membuat token memerlukan izin yang dijelaskan dalam [Autentikasi kunci API](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#api-key-authentication).
 
 ### Prioritas kredensial
 
@@ -396,7 +398,7 @@ Sebelum menjalankan contoh-contoh ini, selesaikan langkah-langkah di [Sebelum me
     -u "$AWS_ACCESS_KEY_ID:$AWS_SECRET_ACCESS_KEY" \
     -H "x-amz-security-token: $AWS_SESSION_TOKEN" \
     -H "content-type: application/json" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-workspace-id: $ANTHROPIC_AWS_WORKSPACE_ID" \
     -d '{
       "model": "claude-sonnet-5-5",
@@ -450,6 +452,7 @@ Sebelum menjalankan contoh-contoh ini, selesaikan langkah-langkah di [Sebelum me
   ```csharp C#
   using Anthropic;
   using Anthropic.Aws;
+  using Anthropic.Models.Messages;
 
   var client = new AnthropicAwsClient();
 
@@ -549,6 +552,24 @@ Nilai `--aws-sigv4` mengikuti format `aws:amz:<region>:<service>`. Nama layanan 
 
 Ukuran “context window” (jendela konteks) di Claude Platform on AWS identik dengan Claude API pihak pertama. Lihat [Jendela konteks](https://platform.claude.com/docs/id/build-with-claude/context-windows) untuk batas per model.
 
+### Terhubung melalui AWS PrivateLink
+
+Untuk menghubungkan VPC Anda ke endpoint Claude Platform on AWS melalui AWS PrivateLink, buat interface VPC endpoint di region AWS workspace Anda. Untuk prosedurnya, lihat [Mengakses layanan AWS menggunakan interface VPC endpoint](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html) dalam dokumentasi AWS.
+
+Nama layanan endpoint mengikuti format ini:
+
+```text wrap
+com.amazonaws.{region}.aws-external-anthropic
+```
+
+Misalnya:
+
+```text wrap
+com.amazonaws.us-east-2.aws-external-anthropic
+```
+
+Nama layanan endpoint adalah string yang berbeda dari hostname di base URL, `aws-external-anthropic.{region}.api.aws`. Hostname tersebut adalah nama DNS privat layanan. Dengan DNS privat diaktifkan pada interface endpoint, hostname tersebut di-resolve ke endpoint itu di dalam VPC Anda. Klien SDK dan permintaan cURL tetap menggunakan base URL yang sama.
+
 ## Dukungan fitur
 
 Claude Platform on AWS menggunakan endpoint Claude API secara langsung, yang berarti Anda mendapatkan kesetaraan fitur penuh dengan Claude API pihak pertama (kecuali jika disebutkan dalam [batasan fitur](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#features-not-supported)):
@@ -563,8 +584,8 @@ Claude Platform on AWS menggunakan endpoint Claude API secara langsung, yang ber
 * **Pemrosesan batch:** Kirim permintaan batch untuk workload dengan throughput tinggi.
 * **Caching prompt:** Cache alat, prompt sistem, dan riwayat pesan untuk mengurangi latensi dan biaya. Semua kemampuan caching prompt (TTL 5 menit, TTL 1 jam, dan caching otomatis) tersedia.
 * **Files API:** Unggah dan referensikan file di berbagai permintaan.
-* **Customer-managed encryption keys (CMEK):** [CMEK](https://platform.claude.com/docs/id/manage-claude/cmek) hanya tersedia dengan kunci [AWS KMS](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms). Kunci Google Cloud KMS dan Azure Key Vault tidak dapat didaftarkan. Kunci harus berupa kunci KMS single-region di akun dan region AWS yang sama dengan workspace tempat kunci tersebut dilampirkan, dan kebijakan kuncinya harus memberikan akses ke service principal `aws-external-anthropic.amazonaws.com`; lihat [Menyiapkan CMEK di Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws). Daftarkan dan lampirkan kunci di [Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#using-the-claude-console); endpoint kunci eksternal juga tersedia, yang diotorisasi melalui [aksi IAM](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#encryption-keys). Tidak ada langkah validasi terpisah: kunci divalidasi secara implisit saat Anda melampirkannya ke workspace (panggilan attach melakukan satu putaran enkripsi/dekripsi), sehingga masalah kebijakan kunci muncul saat attach, bukan saat pendaftaran.
-* **Compliance API:** [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) tersedia. Akses diotorisasi melalui [aksi `ListComplianceActivities`](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#compliance) AWS IAM.
+* **Customer-managed encryption keys (CMEK):** [CMEK](https://platform.claude.com/docs/id/manage-claude/cmek) hanya tersedia dengan kunci [AWS KMS](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms). Kunci Google Cloud KMS dan Azure Key Vault tidak dapat didaftarkan. Kunci harus berupa kunci KMS single-region di akun dan region AWS yang sama dengan workspace tempat kunci tersebut dilampirkan, dan kebijakan kuncinya harus memberikan akses ke service principal `aws-external-anthropic.amazonaws.com`; lihat [Menyiapkan CMEK di Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws). Daftarkan dan lampirkan kunci di [Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#using-the-claude-console); endpoint kunci eksternal juga tersedia, yang diotorisasi melalui [tindakan IAM](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#encryption-keys). Tidak ada langkah validasi terpisah: kunci divalidasi secara implisit saat Anda melampirkannya ke workspace (panggilan attach melakukan satu putaran enkripsi/dekripsi), sehingga masalah kebijakan kunci muncul saat attach, bukan saat pendaftaran.
+* **Compliance API:** [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) tersedia. Akses diotorisasi melalui [tindakan `ListComplianceActivities`](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#compliance) AWS IAM.
 
 Lihat [tabel perbandingan](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#claude-platform-on-aws-vs-amazon-bedrock) untuk perbedaan ketersediaan fitur dibandingkan Amazon Bedrock.
 
@@ -583,14 +604,13 @@ Session dan worker self-hosted di Claude Platform on AWS berbeda dari Claude Man
 Kemampuan berikut saat ini tidak tersedia di Claude Platform on AWS:
 
 * **Kesiapan HIPAA:** Program siap-HIPAA dari Anthropic tidak tersedia. Lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
-
-- **Admin API:** Endpoint workspace (create, get, list, update, dan archive pada `/v1/organizations/workspaces`), endpoint kunci eksternal (register, get, list, update, dan delete pada `/v1/organizations/external_keys`, untuk [CMEK](https://platform.claude.com/docs/id/manage-claude/cmek); kunci divalidasi saat dilampirkan ke workspace, bukan melalui endpoint validate), [endpoint tujuan telemetri](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#telemetry-destinations), dan endpoint [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) tersedia. Endpoint Admin API lainnya (anggota organisasi, anggota workspace, undangan, kunci API, [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) lama, dan laporan “rate limit” (batas laju)) tidak tersedia. AWS IAM mengelola keanggotaan organisasi.
-- **Manajemen anggota workspace:** Menambahkan atau menghapus pengguna dari workspace individual tidak tersedia. Kebijakan AWS IAM pada ARN workspace mengontrol akses.
-- **Workspace Claude Code dan Analytics API:** Workspace Claude Code dengan batas laju otomatis tidak tersedia. Penggunaan Claude Code muncul di tampilan penggunaan umum, bukan di layar khusus.
-- **Autentikasi OAuth:** Tidak didukung. Gunakan autentikasi SigV4 atau kunci API.
-- **Fast mode:** Tidak tersedia di Claude Platform on AWS.
-- **Endpoint API yang kompatibel dengan OpenAI:** Tidak tersedia di Claude Platform on AWS.
-- **Tunnel MCP:** Hanya server MCP yang diekspos melalui internet publik yang didukung.
+* **Admin API:** Endpoint workspace (create, get, list, update, dan archive pada `/v1/organizations/workspaces`), endpoint kunci eksternal (register, get, list, update, dan delete pada `/v1/organizations/external_keys`, untuk [CMEK](https://platform.claude.com/docs/id/manage-claude/cmek); kunci divalidasi saat dilampirkan ke workspace, bukan melalui endpoint validate), [endpoint tujuan telemetri](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#telemetry-destinations), dan endpoint [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) tersedia. Endpoint Admin API lainnya (anggota organisasi, anggota workspace, undangan, kunci API, [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) lama, dan laporan “rate limit” (batas laju)) tidak tersedia. AWS IAM mengelola keanggotaan organisasi.
+* **Manajemen anggota workspace:** Menambahkan atau menghapus pengguna dari workspace individual tidak tersedia. Kebijakan AWS IAM pada ARN workspace mengontrol akses.
+* **Workspace Claude Code dan Claude Code Analytics API:** Workspace Claude Code dengan batas laju otomatis tidak tersedia. Penggunaan Claude Code muncul di tampilan penggunaan umum, bukan di layar khusus.
+* **Autentikasi OAuth:** Tidak didukung. Gunakan autentikasi SigV4 atau kunci API.
+* **Fast mode:** Tidak tersedia di Claude Platform on AWS.
+* **Endpoint API yang kompatibel dengan OpenAI:** Tidak tersedia di Claude Platform on AWS.
+* **Tunnel MCP:** Hanya server MCP yang diekspos melalui internet publik yang didukung.
 
 ## Residensi data
 
@@ -618,7 +638,7 @@ Atur geografi inferensi untuk setiap permintaan dengan parameter `inference_geo`
     -u "$AWS_ACCESS_KEY_ID:$AWS_SECRET_ACCESS_KEY" \
     -H "x-amz-security-token: $AWS_SESSION_TOKEN" \
     -H "content-type: application/json" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-workspace-id: $ANTHROPIC_AWS_WORKSPACE_ID" \
     -d '{
       "model": "claude-sonnet-5-5",
@@ -673,6 +693,7 @@ Atur geografi inferensi untuk setiap permintaan dengan parameter `inference_geo`
   ```csharp C#
   using Anthropic;
   using Anthropic.Aws;
+  using Anthropic.Models.Messages;
 
   var client = new AnthropicAwsClient();
 
@@ -894,7 +915,7 @@ Setiap respons menyertakan dua ID permintaan di header respons:
     -u "$AWS_ACCESS_KEY_ID:$AWS_SECRET_ACCESS_KEY" \
     -H "x-amz-security-token: $AWS_SESSION_TOKEN" \
     -H "content-type: application/json" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-workspace-id: $ANTHROPIC_AWS_WORKSPACE_ID" \
     -d '{
       "model": "claude-sonnet-5-5",
@@ -960,19 +981,20 @@ Setiap respons menyertakan dua ID permintaan di header respons:
   ```csharp C#
   using Anthropic;
   using Anthropic.Aws;
+  using Anthropic.Models.Messages;
 
   var client = new AnthropicAwsClient();
 
-  var response = await client.WithRawResponse.Messages.Create(new()
+  using var response = await client.WithRawResponse.Messages.Create(new()
   {
       Model = Model.ClaudeSonnet5_5,
       MaxTokens = 1024,
       Messages = [new UserMessageParam { Content = "Hello!" }]
   });
 
-  Console.WriteLine(response.Headers.GetValues("x-amzn-requestid").First()); // AWS request ID
-  Console.WriteLine(response.Headers.GetValues("request-id").First()); // Anthropic request ID
-  Console.WriteLine(response.Value.Content);
+  Console.WriteLine(response.GetHeaderValues("x-amzn-requestid").First()); // AWS request ID
+  Console.WriteLine(response.RequestID); // Anthropic request ID
+  Console.WriteLine(await response.Deserialize());
   ```
 
   ```go Go
@@ -1035,15 +1057,15 @@ Setiap respons menyertakan dua ID permintaan di header respons:
 
   $client = new Client();
 
-  $response = $client->messages->raw->create(
-      model: 'claude-sonnet-5-5',
-      maxTokens: 1024,
-      messages: [['role' => 'user', 'content' => 'Hello!']],
-  );
+  $response = $client->messages->raw->create([
+      'model' => 'claude-sonnet-5-5',
+      'maxTokens' => 1024,
+      'messages' => [['role' => 'user', 'content' => 'Hello!']],
+  ]);
 
   echo $response->getHeaderLine('x-amzn-requestid') . "\n"; // AWS request ID
   echo $response->getHeaderLine('request-id') . "\n"; // Anthropic request ID
-  echo $response->parse()->content;
+  echo $response->parse();
   ```
 
   ```ruby Ruby
@@ -1124,7 +1146,7 @@ Jika Anda menggunakan integrasi Bedrock saat ini, format body permintaan sudah b
 ### Jebakan migrasi
 
 <Warning>
-  **Aktifkan federasi identitas web keluar terlebih dahulu.** Jika akun AWS Anda belum pernah menggunakan Claude Platform on AWS, Anda harus [mengaktifkan federasi identitas web keluar](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#enable-outbound-web-identity-federation) satu kali untuk setiap akun sebelum membuat permintaan. Tanpa langkah ini, semua permintaan gagal dengan error federasi (lihat [Mengaktifkan federasi identitas web keluar](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#enable-outbound-web-identity-federation) untuk error dan perbaikan yang tepat). Langkah ini tidak diperlukan untuk Bedrock.
+  **Aktifkan outbound web identity federation terlebih dahulu.** Jika akun AWS Anda belum pernah menggunakan Claude Platform on AWS, Anda harus [mengaktifkan outbound web identity federation](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#enable-outbound-web-identity-federation) satu kali untuk setiap akun sebelum membuat permintaan. Tanpa langkah ini, semua permintaan gagal dengan error federasi (lihat [Mengaktifkan outbound web identity federation](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#enable-outbound-web-identity-federation) untuk error dan perbaikan yang tepat). Langkah ini tidak diperlukan untuk Bedrock.
 </Warning>
 
 <Warning>
@@ -1141,6 +1163,10 @@ Jika Anda menggunakan integrasi Bedrock saat ini, format body permintaan sudah b
 Claude Platform on AWS terintegrasi dengan AWS IAM untuk kontrol akses. Anda memberikan atau menolak akses ke tindakan API tertentu pada workspace tertentu menggunakan sintaks kebijakan IAM standar.
 
 Nama layanan SigV4 dan namespace tindakan IAM adalah `aws-external-anthropic`. Tindakan mengikuti pola `aws-external-anthropic:<Action>` (misalnya, `aws-external-anthropic:CreateInference`).
+
+Setiap principal yang memanggil API, baik dengan SigV4 maupun kunci API, juga memerlukan izin untuk dua tindakan AWS STS: `sts:GetWebIdentityToken` dan `sts:TagGetWebIdentityToken`. Gateway Claude Platform on AWS memanggil STS sebagai principal tersebut untuk mendapatkan JWT yang diteruskannya ke Anthropic (lihat [Mengaktifkan outbound web identity federation](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#enable-outbound-web-identity-federation)). Jika salah satu izin tidak ada, permintaan akan gagal dengan 403 `permission_error` yang pesannya menyebutkan tindakan yang ditolak, bahkan ketika tindakan `aws-external-anthropic` telah diberikan.
+
+Jika principal memiliki kebijakan terkelola AWS `AnthropicFullAccess`, `AnthropicLimitedAccess`, atau `AnthropicReadOnlyAccess`, atau akses administrator, principal tersebut sudah memiliki kedua tindakan tersebut. Kebijakan kustom harus memberikannya, seperti yang dilakukan contoh berikut. Contoh ini mengizinkan `sts:GetWebIdentityToken` hanya ketika gateway melakukan panggilan dan menyebutkan salah satu dari dua audiens Anthropic, seperti yang dilakukan oleh kebijakan terkelola tersebut.
 
 ### Contoh: menolak inferensi batch
 
@@ -1163,8 +1189,24 @@ Kebijakan berikut mengizinkan inferensi real-time sambil memblokir pemrosesan ba
     },
     {
       "Effect": "Allow",
-      "Action": "aws-external-anthropic:ListWorkspaces",
+      "Action": ["aws-external-anthropic:ListWorkspaces", "sts:TagGetWebIdentityToken"],
       "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "sts:GetWebIdentityToken",
+      "Resource": "*",
+      "Condition": {
+        "ForAnyValue:StringEquals": {
+          "sts:IdentityTokenAudience": [
+            "https://api.anthropic.com",
+            "https://platform.claude.com"
+          ]
+        },
+        "StringEquals": {
+          "aws:CalledViaLast": "aws-external-anthropic.amazonaws.com"
+        }
+      }
     },
     {
       "Effect": "Deny",
@@ -1184,7 +1226,7 @@ Tindakan `GetBatchInference` mengotorisasi rute metadata batch dan rute hasil ba
 <Note>
   `ListWorkspaces` memiliki cakupan akun, sehingga muncul di pernyataan Allow terpisah dengan `"Resource": "*"`. Menentukan ARN workspace pada tindakan bercakupan akun tidak berpengaruh (lihat [Otomatisasi penyediaan](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#provisioning-automation)).
 
-  Kebijakan ini mengasumsikan autentikasi AWS SigV4. Jika principal melakukan autentikasi dengan kunci API, tambahkan juga `aws-external-anthropic:CallWithBearerToken` ke pernyataan Allow `"Resource": "*"`. `CallWithBearerToken` adalah tindakan lapisan autentikasi tanpa rute yang tidak terikat ke ARN workspace. Lihat [Isolasi workspace per pelanggan](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#per-customer-workspace-isolation) untuk pola dua pernyataan.
+  Kebijakan ini mengasumsikan autentikasi AWS SigV4. Jika principal mengautentikasi dengan kunci API, tambahkan juga `aws-external-anthropic:CallWithBearerToken` ke pernyataan Allow `"Resource": "*"` yang memuat `ListWorkspaces`. `CallWithBearerToken` adalah tindakan lapisan autentikasi tanpa rute yang tidak terikat ke ARN workspace. Lihat [Isolasi workspace per pelanggan](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#per-customer-workspace-isolation) untuk kebijakan yang memberikannya.
 </Note>
 
 ### Kebijakan terkelola

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: ed9c6b78a1080524f38115cd4b12760ffcbcd6e0de2e08b7709c090b8051a2c2
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 69d8bf18169f27ac8f14fb7f805495a03e4cd7800de5dcfc527982a9fde9a1bf
 ---
 
 ---
@@ -28,7 +28,7 @@ Existing Claude Haiku 4.5 prompts should perform well without changes. Start wit
 <Note>
   For the breaking API changes when migrating from Claude Haiku 4.5, see the [migration guide](https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide).
 
-  Several sections on this page suggest text to add to your system prompt. Add it to new conversations only. A request that sends thinking blocks back after `system` changed can return a 400 error, so a stored conversation resumed with the new system prompt can fail. To change instructions partway through a conversation, [put them in the newest turn](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking#changing-context). On the Claude API, Amazon Bedrock, and Claude Models on Google Cloud (Google managed), you can instead [append a system message to the conversation](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking#new-instructions).
+  Several sections on this page suggest text to add to your system prompt. Add it to new conversations only. A request that sends thinking blocks back after `system` changed can return a 400 error, so a stored conversation resumed with the new system prompt can fail. To change instructions partway through a conversation, [put them in the newest turn](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking#changing-context). On the Claude API, Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), and Claude Models on Google Cloud (Google managed), you can instead [append a system message to the conversation](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking#new-instructions).
 </Note>
 
 ## Use effort to control thinking

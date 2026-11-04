@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 12e37ab099c0cfb37c89f39b43483831a13565be489c47551d3926da9fbe7f2a
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 90f82fafce71b170829503a585a63578cf5cdeae90b38e5b6ec8d630ea5b4a37
 ---
 
 ---
@@ -61,7 +61,7 @@ Versi alat saat ini adalah `bash_20250124`. Untuk dukungan model, beta header, d
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -287,7 +287,7 @@ Untuk menangani `restart: true`, hentikan proses shell, mulai yang baru, dan kem
 
 `bash_20250124` adalah versi alat saat ini, dan tidak memerlukan beta header. Setiap model mulai dari Claude Sonnet 3.7 ([dihentikan](https://platform.claude.com/docs/id/about-claude/model-deprecations)) dan seterusnya menerimanya, termasuk semua model Claude saat ini.
 
-Versi asli `bash_20241022` hanya berfungsi dengan model Claude Sonnet 3.5 Oktober 2024 ([dihentikan](https://platform.claude.com/docs/id/about-claude/model-deprecations)). Permintaan yang menggunakannya memerlukan header `anthropic-beta: computer-use-2024-10-22`, dan SDK hanya mengeksposnya di namespace beta-nya. Integrasi baru sebaiknya menggunakan `bash_20250124`.
+Versi `bash_20241022` hanya berfungsi dengan model Claude Sonnet 3.5 Oktober 2024 ([dihentikan](https://platform.claude.com/docs/id/about-claude/model-deprecations)). Permintaan yang menggunakannya memerlukan header `anthropic-beta: computer-use-2024-10-22`, dan SDK hanya mengeksposnya di namespace beta-nya. Integrasi baru sebaiknya menggunakan `bash_20250124`.
 
 ## Contoh: Otomatisasi multilangkah
 
@@ -869,7 +869,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki seg
       curl https://api.anthropic.com/v1/messages \
         -H "content-type: application/json" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -d '{
           "model": "claude-opus-5-5",
           "max_tokens": 1024,

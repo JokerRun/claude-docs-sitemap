@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/okta
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: a60f2adcb918ca7374bade909934f5d4cfc1a0d16c22078c8ddf2651a4ac91ca
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: bdeb06ebfb05c6b9646e7009a5de7ce9c920521f5a3492d65d1c17df5af4db20
 ---
 
 ---
@@ -111,7 +111,7 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
   # 3. Panggil Claude API.
   curl https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -481,7 +481,7 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
   end
 
   client = Anthropic::Client.new(
-    credentials: Anthropic::WorkloadIdentityCredentials.new(
+    credentials: Anthropic::Credentials::WorkloadIdentity.new(
       identity_token_provider: -> { fetch_okta_token },
       federation_rule_id: ENV.fetch("ANTHROPIC_FEDERATION_RULE_ID"),
       organization_id: ENV.fetch("ANTHROPIC_ORGANIZATION_ID"),

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/home
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 637e4f2a8f9e1f699a20494812ee4fc2f5bedddf5626559d31fc176c57b5178f
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 4e55c5cff5abc0406093a44d9184c54c653e7375045c9867348d80f76d8da9ac
 ---
 
 ---
@@ -176,7 +176,7 @@ dengan Claude"
     curl https://api.anthropic.com/v1/messages \
       -H "content-type: application/json" \
       -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
+      -H "anthropic-version: 2026-10-21" \
       -d '{
         "model": "claude-opus-5-5",
         "max_tokens": 1024,

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 772a12f3d26336ba9227b81517ed371a2dba67b5b913bd75e6292edc96bcd2ef
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 08af4a2fee1f9dc2a7d620fb962b2e43373e21ee7416b7bb8d08d72fc3010b5a
 ---
 
 ---
@@ -102,7 +102,7 @@ Pada Claude Fable 5.1 Anda dapat mengubah tingkat [effort](https://platform.clau
   # Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: mid-conversation-output-config-2026-07-01" \
     -H "content-type: application/json" \
     -d '{

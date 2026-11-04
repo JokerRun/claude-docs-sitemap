@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 0765d5356bc641aacd22cc8ee1db660e3fac07e5a711f6691b79f87013a95493
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 8ca85717b424fbac3c6b0ad97c47ce2c6a940712b84c2fd47a0efc5c45e67dea
 ---
 
 ---
@@ -64,6 +64,21 @@ When you receive a tool use response for a client tool, you should:
    * `content` (optional): The result of the tool, as a string (for example, `"content": "15 degrees"`), a list of nested content blocks (for example, `"content": [{"type": "text", "text": "15 degrees"}]`), or a list of document blocks (for example, `"content": [{"type": "document", "source": {"type": "text", "media_type": "text/plain", "data": "15 degrees"}}]`). These content blocks can use the `text`, `image`, `document`, or [`search_result`](https://platform.claude.com/docs/en/build-with-claude/search-results) types.
    * `is_error` (optional): Set to `true` if the tool execution resulted in an error.
 
+For example, a successful tool result looks like this:
+
+```json JSON
+{
+  "role": "user",
+  "content": [
+    {
+      "type": "tool_result",
+      "tool_use_id": "toolu_01A09q90qw90lq917835lq9",
+      "content": "15 degrees"
+    }
+  ]
+}
+```
+
 A `tool_result` that answers a computer use or browser use member block must also echo the same `toolset_name` value as the `tool_use` block; a member result that omits it is rejected. Its `content` is also narrower: a member result may contain only `text` and `image` blocks, and a browser use result may add one [`browser_state`](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool#track-tabs-and-page-state) block (the [tab-management members](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool#tab-management-results) return only that block).
 
 <Note>
@@ -73,30 +88,6 @@ A `tool_result` that answers a computer use or browser use member block must als
   * In the user message containing tool results, the `tool_result` blocks must come FIRST in the content array. Any text must come AFTER all tool results.
   * If the assistant turn also called a [server tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools) that has no result block yet, the user message must contain only `tool_result` blocks. Text after the results ends the turn early; for a server tool Claude called directly, the request then fails with a 400 error that names the unresolved server tool. See [Stop reasons and fallback](https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons#tool-use).
 
-  For example, this causes a 400 error:
-
-  ```json
-  {
-    "role": "user",
-    "content": [
-      { "type": "text", "text": "Here are the results:" }, // ❌ Text before tool_result
-      { "type": "tool_result", "tool_use_id": "toolu_01" /* ... */ }
-    ]
-  }
-  ```
-
-  This is correct when the assistant turn calls only client tools:
-
-  ```json
-  {
-    "role": "user",
-    "content": [
-      { "type": "tool_result", "tool_use_id": "toolu_01" /* ... */ },
-      { "type": "text", "text": "What should I do next?" } // ✅ Text after tool_result
-    ]
-  }
-  ```
-
   If you receive an error such as “tool\_use ids were found without tool\_result blocks immediately after”, check that your tool results are formatted correctly.
 </Note>
 
@@ -105,21 +96,6 @@ A `tool_result` that answers a computer use or browser use member block must als
 </Warning>
 
 <AccordionGroup>
-  <Accordion title="Example of successful tool result">
-    ```json JSON
-    {
-      "role": "user",
-      "content": [
-        {
-          "type": "tool_result",
-          "tool_use_id": "toolu_01A09q90qw90lq917835lq9",
-          "content": "15 degrees"
-        }
-      ]
-    }
-    ```
-  </Accordion>
-
   <Accordion title="Example of tool result with images">
     ```json JSON
     {
@@ -179,6 +155,32 @@ A `tool_result` that answers a computer use or browser use member block must als
             }
           ]
         }
+      ]
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Example of text before and after a tool result">
+    For example, this causes a 400 error:
+
+    ```json
+    {
+      "role": "user",
+      "content": [
+        { "type": "text", "text": "Here are the results:" }, // ❌ Text before tool_result
+        { "type": "tool_result", "tool_use_id": "toolu_01" /* ... */ }
+      ]
+    }
+    ```
+
+    This is correct when the assistant turn calls only client tools:
+
+    ```json
+    {
+      "role": "user",
+      "content": [
+        { "type": "tool_result", "tool_use_id": "toolu_01" /* ... */ },
+        { "type": "text", "text": "What should I do next?" } // ✅ Text after tool_result
       ]
     }
     ```

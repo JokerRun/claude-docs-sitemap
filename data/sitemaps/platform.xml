@@ -157,6 +157,9 @@
 <loc>https://platform.claude.com/docs/en/build-with-claude/fallback-credit</loc>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/en/build-with-claude/text-watermark</loc>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/en/build-with-claude/effort</loc>
 </url>
 <url>
@@ -434,6 +437,9 @@
 </url>
 <url>
 <loc>https://platform.claude.com/docs/de/build-with-claude/fallback-credit</loc>
+</url>
+<url>
+<loc>https://platform.claude.com/docs/de/build-with-claude/text-watermark</loc>
 </url>
 <url>
 <loc>https://platform.claude.com/docs/de/build-with-claude/effort</loc>
@@ -715,6 +721,9 @@
 <loc>https://platform.claude.com/docs/fr/build-with-claude/fallback-credit</loc>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/fr/build-with-claude/text-watermark</loc>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/fr/build-with-claude/effort</loc>
 </url>
 <url>
@@ -992,6 +1001,9 @@
 </url>
 <url>
 <loc>https://platform.claude.com/docs/ko/build-with-claude/fallback-credit</loc>
+</url>
+<url>
+<loc>https://platform.claude.com/docs/ko/build-with-claude/text-watermark</loc>
 </url>
 <url>
 <loc>https://platform.claude.com/docs/ko/build-with-claude/effort</loc>
@@ -1273,6 +1285,9 @@
 <loc>https://platform.claude.com/docs/zh-CN/build-with-claude/fallback-credit</loc>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/zh-CN/build-with-claude/text-watermark</loc>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/zh-CN/build-with-claude/effort</loc>
 </url>
 <url>
@@ -1552,6 +1567,9 @@
 <loc>https://platform.claude.com/docs/zh-TW/build-with-claude/fallback-credit</loc>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/zh-TW/build-with-claude/text-watermark</loc>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/zh-TW/build-with-claude/effort</loc>
 </url>
 <url>
@@ -1829,6 +1847,9 @@
 </url>
 <url>
 <loc>https://platform.claude.com/docs/id/build-with-claude/fallback-credit</loc>
+</url>
+<url>
+<loc>https://platform.claude.com/docs/id/build-with-claude/text-watermark</loc>
 </url>
 <url>
 <loc>https://platform.claude.com/docs/id/build-with-claude/effort</loc>
@@ -4663,6 +4684,9 @@
 <loc>https://platform.claude.com/docs/es/build-with-claude/fallback-credit</loc>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/es/build-with-claude/text-watermark</loc>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/es/build-with-claude/effort</loc>
 </url>
 <url>
@@ -5962,6 +5986,9 @@
 <loc>https://platform.claude.com/docs/it/build-with-claude/fallback-credit</loc>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/it/build-with-claude/text-watermark</loc>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/it/build-with-claude/effort</loc>
 </url>
 <url>
@@ -6749,6 +6776,9 @@
 </url>
 <url>
 <loc>https://platform.claude.com/docs/ja/build-with-claude/fallback-credit</loc>
+</url>
+<url>
+<loc>https://platform.claude.com/docs/ja/build-with-claude/text-watermark</loc>
 </url>
 <url>
 <loc>https://platform.claude.com/docs/ja/build-with-claude/effort</loc>
@@ -8050,6 +8080,9 @@
 <loc>https://platform.claude.com/docs/pt-BR/build-with-claude/fallback-credit</loc>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/pt-BR/build-with-claude/text-watermark</loc>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/pt-BR/build-with-claude/effort</loc>
 </url>
 <url>
@@ -8837,6 +8870,9 @@
 </url>
 <url>
 <loc>https://platform.claude.com/docs/ru/build-with-claude/fallback-credit</loc>
+</url>
+<url>
+<loc>https://platform.claude.com/docs/ru/build-with-claude/text-watermark</loc>
 </url>
 <url>
 <loc>https://platform.claude.com/docs/ru/build-with-claude/effort</loc>

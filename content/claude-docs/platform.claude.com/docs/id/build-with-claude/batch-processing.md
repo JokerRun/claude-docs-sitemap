@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 7fba892968df5369b5053f60811348798fd8fa2390b6772f4fe1a46c3843bfd6
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: b41fe54a537732fabcb79ef885061099a43a9a43dafdb92d004c10905419ee5c
 ---
 
 ---
@@ -124,13 +124,13 @@ Batches API menawarkan penghematan biaya yang signifikan. Semua penggunaan diken
 | Claude Opus 4.7                                                                                                                                                        | $2.50 / MTok | $12.50 / MTok |
 | Claude Opus 4.6                                                                                                                                                        | $2.50 / MTok | $12.50 / MTok |
 | Claude Opus 4.5                                                                                                                                                        | $2.50 / MTok | $12.50 / MTok |
-| Claude Opus 4.1 ([retired, except on Bedrock and Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $7.50 / MTok | $37.50 / MTok |
+| Claude Opus 4.1 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $7.50 / MTok | $37.50 / MTok |
 | Claude Opus 4 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations))               | $7.50 / MTok | $37.50 / MTok |
 | Claude Sonnet 5.5                                                                                                                                                      | $1 / MTok    | $5 / MTok     |
 | Claude Sonnet 5                                                                                                                                                        | $1 / MTok    | $5 / MTok     |
 | Claude Sonnet 4.6                                                                                                                                                      | $1.50 / MTok | $7.50 / MTok  |
 | Claude Sonnet 4.5                                                                                                                                                      | $1.50 / MTok | $7.50 / MTok  |
-| Claude Sonnet 4 ([retired, except on Bedrock and Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $1.50 / MTok | $7.50 / MTok  |
+| Claude Sonnet 4 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $1.50 / MTok | $7.50 / MTok  |
 | Claude Haiku 5.5 (for prompts up to 100,000 tokens)                                                                                                                    | $0.05 / MTok | $0.25 / MTok  |
 | Claude Haiku 5.5 (for prompts over 100,000 tokens)                                                                                                                     | $0.25 / MTok | $1.25 / MTok  |
 | Claude Haiku 4.5                                                                                                                                                       | $0.50 / MTok | $2.50 / MTok  |
@@ -155,7 +155,7 @@ Anda dapat [membuat batch](https://platform.claude.com/docs/id/api/messages/batc
   ```bash cURL
   curl https://api.anthropic.com/v1/messages/batches \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "requests": [
@@ -486,7 +486,7 @@ Untuk melakukan polling pada Message Batch, Anda memerlukan `id`-nya, yang diber
   # Periksa status; ulangi hingga processing_status bernilai "ended"
   curl "https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -635,7 +635,7 @@ Anda dapat menampilkan daftar semua Message Batch di Workspace Anda menggunakan 
   # melakukan paginasi secara otomatis.)
   curl -s "https://api.anthropic.com/v1/messages/batches?limit=20" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -752,7 +752,7 @@ Hasil batch tersedia untuk diunduh di properti [`results_url`](https://platform.
   # Melakukan streaming hasil .jsonl dari batch, satu hasil per baris.
   # Untuk penanganan per hasil (percobaan ulang, kesalahan validasi), gunakan Claude SDK.
   curl "https://api.anthropic.com/v1/messages/batches/msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d/results" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "x-api-key: $ANTHROPIC_API_KEY"
   ```
 
@@ -799,7 +799,7 @@ Hasil batch tersedia untuk diunduh di properti [`results_url`](https://platform.
         console.log(`Success! ${result.custom_id}`);
         break;
       case "errored":
-        if (result.result.error.type === "invalid_request_error") {
+        if (result.result.error.error.type === "invalid_request_error") {
           // Body permintaan harus diperbaiki sebelum mengirim ulang permintaan
           console.log(`Validation error: ${result.custom_id}`);
         } else {
@@ -938,7 +938,7 @@ Hasil batch tersedia untuk diunduh di properti [`results_url`](https://platform.
     when Anthropic::Models::Messages::MessageBatchSucceededResult
       puts "Success! #{result.custom_id}"
     when Anthropic::Models::Messages::MessageBatchErroredResult
-      if outcome.error.type == :invalid_request
+      if outcome.error.error.type == :invalid_request_error
         puts "Validation error: #{result.custom_id}"
       else
         puts "Server error: #{result.custom_id}"
@@ -975,7 +975,7 @@ Anda dapat membatalkan Message Batch yang sedang diproses menggunakan [endpoint 
   ```bash cURL
   curl -X POST https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/cancel \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -1087,7 +1087,7 @@ Contoh implementasi caching prompt dalam batch:
   ```bash cURL
   curl https://api.anthropic.com/v1/messages/batches \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "requests": [
@@ -1597,7 +1597,7 @@ Satu pembuatan 300k token dapat memerlukan waktu lebih dari satu jam untuk seles
   ```bash cURL
   curl https://api.anthropic.com/v1/messages/batches \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: output-300k-2026-03-24" \
     -H "content-type: application/json" \
     -d '{

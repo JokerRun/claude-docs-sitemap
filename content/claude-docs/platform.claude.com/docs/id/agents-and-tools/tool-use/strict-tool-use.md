@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 3f9d797431f9f5f59a56b9d1ac20e79f7695e248d4414beaa48075f5ec8412f2
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 1b19416ab51f97baf134d0fe417992054de57b1e31797867575f0bfe35f4d36f
 ---
 
 ---
@@ -69,7 +69,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -430,7 +430,7 @@ Entri toolset [penggunaan komputer](https://platform.claude.com/docs/id/agents-a
       curl https://api.anthropic.com/v1/messages \
         -H "content-type: application/json" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -d '{
           "model": "claude-opus-5-5",
           "max_tokens": 1024,
@@ -731,7 +731,7 @@ Entri toolset [penggunaan komputer](https://platform.claude.com/docs/id/agents-a
       curl https://api.anthropic.com/v1/messages \
         -H "content-type: application/json" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -d '{
           "model": "claude-opus-5-5",
           "max_tokens": 1024,

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 9b9ae11f142659a8e2ab300dd24a0610f36d9fb96bf807ffca751e2f7f8538ad
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 083fdd658fdd4e3965a778457755d334b0486c67ed90fe0441b8c33c1adc194a
 ---
 
 ---
@@ -65,7 +65,7 @@ Lakukan “streaming” (streaming) event dari sesi untuk menerima pembaruan rea
   curl --fail-with-body -sS -N \
     "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "accept: text/event-stream"
   ```
@@ -528,7 +528,7 @@ Kirim event `user.message` untuk memulai atau melanjutkan pekerjaan agen:
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -1107,7 +1107,7 @@ Sesi tetap ada di antara interaksi. Untuk melanjutkan sesi, kirim event `user.me
   # Di produksi, berikan ID tersimpan dari sesi yang ingin Anda lanjutkan.
   curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -1273,7 +1273,7 @@ Kirim event `user.interrupt` untuk menghentikan agen saat sedang berjalan, lalu 
   # Interupsi dengan arahan baru:
   curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -1453,7 +1453,7 @@ Ambil riwayat event lengkap untuk sebuah sesi:
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json"
   ```
@@ -1520,7 +1520,7 @@ Teruskan filter `types` (curl: `types[]`; cli: `--type`; csharp, go: `Types`) un
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true&types[]=agent.tool_use&types[]=agent.tool_result" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
@@ -1619,7 +1619,7 @@ Pada [model yang didukung](https://platform.claude.com/docs/id/managed-agents/ev
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{

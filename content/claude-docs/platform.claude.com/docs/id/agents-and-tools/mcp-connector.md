@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: ae8b59ae2bfd8f29d40deb3139148f5003b5222eaf9d3cb9b279d3427e8bfbda
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 5df18e0b8d4086f67c5beb760ff6003c9427f3f3c6afc472bd644cd99cc561eb
 ---
 
 ---
@@ -89,7 +89,7 @@ Contoh ini mengaktifkan semua alat dari server MCP dengan konfigurasi default:
   curl https://api.anthropic.com/v1/messages \
     -H "Content-Type: application/json" \
     -H "X-API-Key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: mcp-client-2025-11-20" \
     -d '{
       "model": "claude-opus-5-5",
@@ -614,7 +614,7 @@ Contoh berikut mengirimkan satu permintaan dengan toolset yang tidak disematkan,
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: mcp-client-2026-09-15" \
     -d '{
       "model": "claude-opus-5-5",
@@ -647,7 +647,7 @@ Contoh berikut mengirimkan satu permintaan dengan toolset yang tidak disematkan,
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: mcp-client-2026-09-15" \
     -d '{
       "model": "claude-opus-5-5",

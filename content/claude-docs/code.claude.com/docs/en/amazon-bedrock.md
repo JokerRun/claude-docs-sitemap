@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: b08174e8aaf1ecdcca859305c7566002cb0c2144ea272f00f3e143606fef9464
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 9900606ada68dd32ce67c9a8d1d83c7ac15dca1ff680baa4207af83c264ad622
 ---
 
 > ## Documentation Index
@@ -322,7 +322,11 @@ Claude Code doesn't check or prompt for these pins:
 * A pin in the `env` block of [managed settings](https://code.claude.com/docs/en/managed-settings.md)
 * A pin that points to an [application inference profile ARN](#map-each-model-version-to-an-inference-profile), because your administrator manages it
 
+If the update prompt still appears for a pin in managed settings, update Claude Code to v2.1.314 or later. Before v2.1.314, the managed pin stayed in effect after you accepted, so the prompt came back at the next start.
+
 If you have not pinned a model and the current default is unavailable in your account, Claude Code falls back for the current session and shows a notice. It tries earlier versions of the default model first and, when the default is an Opus model and no Opus version is available, falls back to the default Sonnet model. The fallback is not persisted. Enable the newer model in your Amazon Bedrock account or [pin a version](#4-pin-model-versions) to make the choice permanent.
+
+### Start a session on a specific model
 
 When you start the session on a specific Sonnet or Opus version, for example with `--model`, `ANTHROPIC_MODEL`, or the [`model` setting](https://code.claude.com/docs/en/settings-reference#model), that version acts as the session's pinned default for the matching `sonnet` or `opus` alias. Claude Code skips the availability check for the built-in default your model replaces and starts on the model you configured, with no fallback notice.
 
@@ -331,7 +335,9 @@ These don't act as pins when you start a session on them:
 * A model alias such as `opus`
 * A model ID Claude Code doesn't recognize, such as an application inference profile ARN
 
-When these checks find a model your account can't invoke, Claude Code remembers the refusal on this machine for up to a day, and launches during that time skip the remembered model without asking Amazon Bedrock again. Claude Code checks a remembered refusal of a current default model again at launch once ten minutes have passed since the last check, so a default your administrator re-enables comes back. To turn the memory off, set [`CLAUDE_CODE_SKIP_MODEL_ACCESS_MEMORY=1`](https://code.claude.com/docs/en/env-vars).
+### Remembered model refusals
+
+When the startup model checks find a model your account can't invoke, Claude Code can remember the refusal on this machine for up to a day. Once ten minutes have passed since the last check, Claude Code checks a remembered refusal of a current default model again at launch. A default your administrator re-enables then comes back. To turn the memory off, set [`CLAUDE_CODE_SKIP_MODEL_ACCESS_MEMORY=1`](https://code.claude.com/docs/en/env-vars).
 
 ### When your organization enforces a model allowlist
 
@@ -464,9 +470,11 @@ Claude Code sends this as the `X-Amzn-Bedrock-Service-Tier` header on each reque
 
 ## AWS Guardrails
 
-[Amazon Bedrock Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) let you implement content filtering for Claude Code. Create a Guardrail in the [Amazon Bedrock console](https://console.aws.amazon.com/bedrock/), publish a version, then add the Guardrail headers to your [settings file](https://code.claude.com/docs/en/settings.md). Enable Cross-Region inference on your Guardrail if you're using cross-region inference profiles.
+[Amazon Bedrock Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) let you implement content filtering for Claude Code. Create a Guardrail in the [Amazon Bedrock console](https://console.aws.amazon.com/bedrock/) and publish a version. Enable Cross-Region inference on your Guardrail if you're using cross-region inference profiles.
 
-Example configuration:
+To apply the Guardrail through a [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway), follow [Apply an Amazon Bedrock guardrail](https://code.claude.com/docs/en/claude-apps-gateway-config.md#apply-an-amazon-bedrock-guardrail). Without a Claude apps gateway, add the Guardrail headers to your [settings file](https://code.claude.com/docs/en/settings.md).
+
+Example settings file configuration:
 
 ```json theme={null}
 {
@@ -475,8 +483,6 @@ Example configuration:
   }
 }
 ```
-
-If your organization delivers the guardrail headers through a [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway) policy instead, they count as [settings that need approval](https://code.claude.com/docs/en/server-managed-settings.md#environment-variables-and-the-approval-dialog).
 
 When the guardrail blocks a response partway through, the text streamed so far stays and the reply ends with the message configured on the guardrail for blocked responses.
 

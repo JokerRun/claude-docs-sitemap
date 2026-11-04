@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 46081c9a47c71c911a7b300842383268b0808e55625ba5c2ae5afa147274bf84
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: fc0fba99537da179c643a6e6e0b8dcddabf51286aa75604a4c87b045c751f71e
 ---
 
 > ## Documentation Index
@@ -162,7 +162,7 @@ A `CLAUDE.md` that passes that test stays short:
 - Integration tests need DATABASE_URL set, see .env.example
 ```
 
-In a session, run `/context` to confirm that Claude loaded the file.
+In a session, run [`/context all`](https://code.claude.com/docs/en/commands#all-commands) to confirm that Claude loaded the file.
 
 Notice that the typecheck line is only the command. Claude needs to know the command so it can check its own work as it goes. If you also want Claude Code to *enforce* a passing typecheck before Claude finishes, that's a job for a [`Stop` hook](#enforce-the-check-with-a-stop-hook). A line like `Always typecheck before you finish` in this file works most of the time, not every time.
 
@@ -610,7 +610,7 @@ You rarely have to clean any of this up yourself:
 >
 > A `claude -p --worktree` run is one you clean up yourself, since it exits without asking. Remove those with `git worktree remove <path>`, and if git refuses because the worktree is locked, `git worktree unlock <path>` first.
 
-For one big mechanical change across many files, [`/batch migrate every handler to the v2 response helpers`](https://code.claude.com/docs/en/commands) splits the work into 5 to 30 units and shows you the plan. Then it runs each unit in its own worktree and opens a PR for it. From your shell, [`claude agents`](https://code.claude.com/docs/en/agent-view) (still a research preview) gives you one screen for everything running in the background on your machine.
+For one big mechanical change across many files, [`/batch migrate every handler to the v2 response helpers`](https://code.claude.com/docs/en/commands) splits the work into 5 to 30 units and shows you the plan. Once you approve it, each unit gets its own worktree and opens a PR or reports what happened. From your shell, [`claude agents`](https://code.claude.com/docs/en/agent-view) (still a research preview) gives you one screen for everything running in the background on your machine.
 
 A second session is also the easiest independent reviewer you can get. One session writes the rate limiter, another reviews `@src/middleware/rateLimiter.ts` without having watched it being written, and you paste the findings back into the first. Same idea as `/code-review`, with you carrying the messages.
 

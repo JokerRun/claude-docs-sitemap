@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-threads
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 7f5da58cea8de0b9c6b669a634947299c06c13b6369b13c1a9222bc2a3323ce3
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 886399df2702d1d21a482d691933bd74fab5f853dd5e4042027ac3ec43029fc4
 ---
 
 ---
@@ -61,7 +61,7 @@ List all threads associated with a session as follows:
   ```bash cURL
   curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
@@ -141,7 +141,7 @@ Send `user.interrupt` with `session_thread_id` (java: `sessionThreadId`; php: `s
   ```bash cURL
   curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -226,7 +226,7 @@ Optionally archive a session thread when it has completed its work. Archiving a 
   ```bash cURL
   curl -fsS -X POST "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
@@ -290,7 +290,7 @@ Archive only succeeds if the thread is `idle`. A thread parked on `requires_acti
   # Interrupt the thread, then archive it
   curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -301,7 +301,7 @@ Archive only succeeds if the thread is `idle`. A thread parked on `requires_acti
 
   curl -fsS -X POST "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
@@ -437,7 +437,7 @@ A thread’s stream doesn’t replay earlier events. Right after `session.thread
       ```bash cURL
       curl -fsSN "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/stream?beta=true" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01"
       ```
 
@@ -593,7 +593,7 @@ A thread’s stream doesn’t replay earlier events. Right after `session.thread
       ```bash cURL
       curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/events" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01"
       ```
 

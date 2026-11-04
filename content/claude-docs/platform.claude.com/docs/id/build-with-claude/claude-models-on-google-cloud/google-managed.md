@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: ddc5073c6df8878f9cc89076b92bb8eb4ed7780649074b0554c00434339b1ab3
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 0d34e66dc53dcbc370d29478a9747ded12c6e954bbcd96873dc7480ad56f97c2
 ---
 
 ---
@@ -107,7 +107,7 @@ Contoh-contoh berikut menggunakan endpoint global. Untuk jenis endpoint lainnya,
     -H "Authorization: Bearer $(gcloud auth print-access-token)" \
     -H "Content-Type: application/json" \
     -d '{
-      "anthropic_version": "vertex-2023-10-16",
+      "anthropic_version": "2026-10-21",
       "messages": [{"role": "user", "content": "Hey Claude!"}],
       "max_tokens": 100
     }'
@@ -360,7 +360,7 @@ Contoh-contoh berikut menggunakan endpoint multi-region `us`. Baris yang disorot
     -H "Authorization: Bearer $(gcloud auth print-access-token)" \
     -H "Content-Type: application/json" \
     -d '{
-      "anthropic_version": "vertex-2023-10-16",
+      "anthropic_version": "2026-10-21",
       "messages": [{"role": "user", "content": "Hey Claude!"}],
       "max_tokens": 100
     }'
@@ -476,7 +476,7 @@ Fitur-fitur yang didukung di Claude Models on Google Cloud (Google managed) meli
 
 * [Structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
 
-[Ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview) mencantumkan setiap fitur dan apakah Claude Models on Google Cloud (Google managed) mendukungnya.
+[Ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview) mencantumkan setiap fitur. Halaman masing-masing fitur menunjukkan apakah Claude Models on Google Cloud (Google managed) mendukungnya.
 
 ### Fitur yang tidak didukung
 
@@ -556,7 +556,7 @@ Untuk mengetahui apa yang berubah saat Anda berpindah, lihat [Perbedaan kedua pe
       curl "https://claude.googleapis.com/v1/projects/$ANTHROPIC_GOOGLE_CLOUD_PROJECT/locations/global/workspaces/$ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID/invoke/v1/messages" \
         -H "Authorization: Bearer $(gcloud auth application-default print-access-token)" \
         -H "content-type: application/json" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -d '{
           "model": "claude-opus-5-5",
           "max_tokens": 1024,
@@ -638,7 +638,7 @@ Untuk mengetahui apa yang berubah saat Anda berpindah, lihat [Perbedaan kedua pe
         -H "Authorization: Bearer $(gcloud auth print-access-token)" \
         -H "Content-Type: application/json" \
         -d '{
-          "anthropic_version": "vertex-2023-10-16",
+          "anthropic_version": "2026-10-21",
           "messages": [{"role": "user", "content": "Hey Claude!"}],
           "max_tokens": 100
         }'

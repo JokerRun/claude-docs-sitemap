@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/vaults
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 15cf3dac457b5ff2e5b6b4195737d1d0b8e6a974aa2ad18f1b57b61b13c005b4
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 37d42b4d665450c445e5658ed11b63c4783eb5d502831aec970271751786cc00
 ---
 
 ---
@@ -53,7 +53,7 @@ A vault is the collection of `credentials` associated with an end user. Give it 
   ```bash cURL
   curl --fail-with-body -sS https://api.anthropic.com/v1/vaults \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -183,7 +183,7 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
       ```bash cURL
       curl --fail-with-body -sS "https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
         -d @- <<'EOF'
@@ -396,7 +396,7 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
       ```bash cURL
       curl --fail-with-body -sS "https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
         -d @- <<'EOF'
@@ -524,7 +524,7 @@ To get the same behavior with a self-hosted sandbox, you can run your own proxy 
       ```bash cURL
       curl --fail-with-body -sS "https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
         -d @- <<'EOF'
@@ -755,7 +755,7 @@ Pass `vault_ids` (java: `vaultIds`; php: `vaultIDs`; csharp: `VaultIds`; go: `Va
   ```bash cURL
   curl --fail-with-body -sS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -859,7 +859,7 @@ Secret values, `display_name` (java, php: `displayName`; csharp, go: `DisplayNam
   curl --fail-with-body -sS \
     "https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d @- <<'EOF'
@@ -1020,7 +1020,7 @@ The top-level `status` (csharp, go: `Status`) tells you what to do next:
   curl --fail-with-body -sS -X POST \
     "https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID/mcp_oauth_validate?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 

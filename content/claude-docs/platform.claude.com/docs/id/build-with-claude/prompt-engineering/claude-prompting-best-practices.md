@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 94467cda2e54fc6cce9c87eb08b59f9ffadf54d8cd5c7a99fd3784a1c6cf2f47
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 00c858bea1479b9460672fc1ebc8805af27edd970720c83f258b7d0480607f0e
 ---
 
 ---
@@ -117,7 +117,7 @@ Menetapkan peran dalam “system prompt” (prompt sistem) memfokuskan perilaku 
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -577,7 +577,7 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-sonnet-4-5-20250929",
       "max_tokens": 16000,
@@ -591,7 +591,7 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 16000,

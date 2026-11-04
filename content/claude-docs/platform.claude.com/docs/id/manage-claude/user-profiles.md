@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-profiles
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 7fd45819fa33e331aec79800eaa1b90a0fa85008e690b6f2ba06baf1481843f9
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 9357d6e9b7fe0e008ee1c7b35a1f9c7ce0fe38b2b758c190e62acfbcaff002a6
 ---
 
 ---
@@ -17,7 +17,7 @@ Jika Anda mengoperasikan platform atau gateway, atau menjual kembali akses API, 
 
 Anda mendaftarkan setiap pelanggan akhir satu kali dengan `POST /v1/user_profiles` dan menyimpan ID `uprof_` yang dikembalikannya. Kemudian Anda mengirim ID tersebut di header `anthropic-user-profile-id` pada setiap permintaan yang Anda buat atas nama pelanggan akhir tersebut.
 
-Profil tidak dikenakan biaya dan tidak memengaruhi harga.
+Dengan sendirinya, profil tidak mengubah penagihan atau harga.
 
 ## Tentukan siapa yang mendapatkan profil
 
@@ -45,7 +45,7 @@ Anda membuat dan mengelola profil di salah satu dari berikut ini:
 * Deployment [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) yang [di-hosting di Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#hosting-options), bukan yang di-hosting di Azure. Anda tidak memerlukan organisasi di Claude API atau Claude Platform on AWS. Gunakan endpoint Foundry Anda, dengan base URL dan autentikasi yang sama dengan yang Anda gunakan untuk inferensi.
 * Organisasi di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), tempat Anda dapat membuat, mengambil, mencantumkan, dan memperbarui profil. Gunakan versi terbaru [klien SDK untuk Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#install-an-sdk), atau panggil [base URL tingkat organisasi](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#making-requests) secara langsung, dengan kredensial Google Cloud alih-alih kunci API.
 
-Amazon Bedrock dan Claude Models on Google Cloud (Google managed) tidak memiliki endpoint `/v1/user_profiles`. Jika inferensi Anda berjalan di sana, buat profil Anda di organisasi di Claude API atau Claude Platform on AWS. Di Amazon Bedrock, profil hanya berfungsi dengan [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). Lihat [Atribusikan permintaan di Amazon Bedrock dan Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/manage-claude/user-profiles#attribute-requests-on-amazon-bedrock-and-google-cloud).
+Claude Models on Google Cloud (Google managed) dan Amazon Bedrock tidak memiliki endpoint `/v1/user_profiles`. Jika inferensi Anda berjalan di sana, buat profil Anda di organisasi di Claude API atau Claude Platform on AWS. Di Amazon Bedrock, profil hanya berfungsi dengan [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). Lihat [Atribusikan permintaan di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock](https://platform.claude.com/docs/id/manage-claude/user-profiles#attribute-requests-on-amazon-bedrock-and-google-cloud).
 
 Tempatkan lalu lintas yang Anda kirim untuk pelanggan akhir Anda di satu organisasi dan penggunaan internal Anda sendiri di organisasi lain. Profil dimiliki oleh organisasi, bukan workspace, sehingga workspace terpisah dalam satu organisasi tidak cukup. Hanya organisasi untuk lalu lintas pelanggan akhir yang memerlukan profil pengguna. Untuk membuat organisasi lain di Claude API, lihat bagian “How to create a new organization” dari [Creating and managing Workspaces in the Claude Console](https://support.claude.com/en/articles/9796807) di Claude Help Center.
 
@@ -61,7 +61,7 @@ Contoh berikut mendaftarkan perusahaan yang membeli akses API melalui gateway, s
   ```bash cURL
   curl https://api.anthropic.com/v1/user_profiles \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "name": "Acme Analytics, Inc.",
@@ -239,7 +239,7 @@ Kirim ID profil di header `anthropic-user-profile-id` pada setiap permintaan yan
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-user-profile-id: $PROFILE_ID" \
     -H "content-type: application/json" \
     -d '{
@@ -370,9 +370,9 @@ Claude API, Claude Platform on AWS, deployment Microsoft Foundry yang di-hosting
 
 Message Batches adalah pengecualian: pembuatan batch hanya memeriksa format ID. Jika ID yang formatnya valid bukan milik organisasi yang mengirim batch, batch tetap dibuat, dan setiap permintaan di dalamnya kemudian gagal dengan hasil `errored` yang berisi `invalid_request_error` yang sama.
 
-### Atribusikan permintaan di Amazon Bedrock dan Claude Models on Google Cloud (Google managed)
+### Atribusikan permintaan di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock
 
-ID profil dari kedua jenis akses juga berfungsi di [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) dan di Claude Models on Google Cloud (Google managed). ID ini tidak berfungsi dengan [integrasi Amazon Bedrock sebelumnya](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) yang Anda panggil dengan `InvokeModel` atau `Converse`. Anda menggunakan kredensial organisasi Anthropic Anda hanya untuk membuat dan mengelola profil. Inferensi tetap menggunakan kredensial AWS atau Google Cloud Anda yang sudah ada.
+ID profil dari kedua jenis akses juga berfungsi di Claude Models on Google Cloud (Google managed) dan di [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). ID ini tidak berfungsi dengan [integrasi Amazon Bedrock sebelumnya](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) yang Anda panggil dengan `InvokeModel` atau `Converse`. Anda menggunakan kredensial organisasi Anthropic Anda hanya untuk membuat dan mengelola profil. Inferensi tetap menggunakan kredensial AWS atau Google Cloud Anda yang sudah ada.
 
 | Platform                                                                                                                                                   | Membuat profil                                         | Kirim ID profil di                         |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------ |
@@ -402,7 +402,7 @@ Tautkan setiap akun AWS yang mengirim permintaan ke Claude di Amazon Bedrock, da
 
 Program yang berlaku untuk sebuah profil hanya berlaku untuk permintaan sebuah akun setelah akun tersebut ditautkan dan portal menampilkannya sebagai **Linked**. Program-program tersebut mencakup program yang disetujui untuk organisasi pelanggan akhir setelah pelanggan akhir [menautkan profil ke organisasi tersebut](https://platform.claude.com/docs/id/manage-claude/user-profiles-verification-portal) dan, untuk tingkat akses Cyber Verification Program, mengaktifkannya untuk profil tersebut di portal.
 
-Claude di Amazon Bedrock dan Claude Models on Google Cloud (Google managed) memeriksa format ID tetapi tidak mencari profilnya. Keduanya menolak ID yang formatnya tidak valid dengan `400`. Keduanya menerima ID apa pun yang formatnya valid, sehingga respons yang berhasil tidak mengonfirmasi bahwa ID tersebut cocok dengan sebuah profil. Permintaan tanpa ID diproses tanpa atribusi, dan jika memicu tindakan penegakan, tindakan tersebut berlaku untuk seluruh organisasi Anda.
+Claude Models on Google Cloud (Google managed) dan Claude di Amazon Bedrock memeriksa format ID tetapi tidak mencari profilnya. Keduanya menolak ID yang formatnya tidak valid dengan `400`. Keduanya menerima ID apa pun yang formatnya valid, sehingga respons yang berhasil tidak mengonfirmasi bahwa ID tersebut cocok dengan sebuah profil. Permintaan tanpa ID diproses tanpa atribusi, dan jika memicu tindakan penegakan, tindakan tersebut berlaku untuk seluruh organisasi Anda.
 
 ### Identifikasi pengguna individual dalam sebuah perusahaan
 
@@ -473,7 +473,7 @@ Contoh berikut menandai akun sebagai ditangguhkan dan menghapus kunci metadata `
   ```bash cURL
   curl "https://api.anthropic.com/v1/user_profiles/$PROFILE_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "external_user_details": {"account_status": "suspended"},
@@ -605,7 +605,7 @@ Hapus profil ketika pelanggan akhir menutup akunnya atau meminta Anda menghapus 
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/user_profiles/$PROFILE_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -680,7 +680,7 @@ Hapus profil ketika pelanggan akhir menutup akunnya atau meminta Anda menghapus 
 
 Respons mengulang ID dengan `"type": "user_profile_deleted"`. Jika penghapusan mengembalikan error server, coba lagi. `404` pada percobaan ulang berarti penghapusan pertama telah berhasil.
 
-Setelah penghapusan, endpoint profil mengembalikan `404` untuk ID tersebut. Hingga sekitar 10 menit, permintaan inferensi yang membawa ID yang telah dihapus masih dapat berhasil. Setelah itu, platform yang memeriksa ID pada setiap permintaan menolak permintaan tersebut dengan `400`. Claude di Amazon Bedrock dan Claude Models on Google Cloud (Google managed) tidak mencari profil, sehingga keduanya tetap menerimanya.
+Setelah penghapusan, endpoint profil mengembalikan `404` untuk ID tersebut. Hingga sekitar 10 menit, permintaan inferensi yang membawa ID yang telah dihapus masih dapat berhasil. Setelah itu, platform yang memeriksa ID pada setiap permintaan menolak permintaan tersebut dengan `400`. Claude Models on Google Cloud (Google managed) dan Claude di Amazon Bedrock tidak mencari profil, sehingga keduanya tetap menerimanya.
 
 ## Langkah selanjutnya
 

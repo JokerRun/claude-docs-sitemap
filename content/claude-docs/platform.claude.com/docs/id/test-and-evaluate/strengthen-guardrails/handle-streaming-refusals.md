@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 47c2169727b7733792dd6809bbee80996acba8c8b67d6bdf366191350d71ae6c
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 90373e21fbf730afcbda64091a1001bf480bb3e9d53be31d4df39ee1e7b577fd
 ---
 
 ---
@@ -39,8 +39,8 @@ featureMetadata:
 
 **Dukungan API**: Penggunaan berbeda menurut produk.
 
-* **Messages API**: Selalu aktif. Stream berakhir dengan `stop_reason` `"refusal"`, dan `stop_details` (`category` dan `explanation`) tiba pada event `message_delta`.
-* **Managed Agents**: Selalu aktif. Giliran yang ditolak berakhir, dan sesi menjadi idle dengan `stop_reason.type` `"refusal"`.
+* **Messages API**: Stream berakhir dengan `stop_reason` `"refusal"`, dan `stop_details` (`category` dan `explanation`) tiba pada event `message_delta`.
+* **Managed Agents**: Giliran yang ditolak berakhir, dan sesi menjadi idle dengan `stop_reason.type` `"refusal"`.
 
 Mulai dari model Claude 4, respons streaming dari API Claude mengembalikan **`stop_reason`: `"refusal"`** ketika pengklasifikasi streaming melakukan intervensi untuk menangani potensi pelanggaran kebijakan. Fitur keamanan ini membantu menjaga kepatuhan konten selama streaming real-time.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 2fa9f98a4bbb2f5c615682d56180f47fff201f5dcee5544f7b279618087f38ad
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: e7d6484fd1afc12fa3ff2bc82b1e3d36e03cc68133e62aa5d9131866b355f073
 ---
 
 ---
@@ -168,7 +168,7 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
 
   curl https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

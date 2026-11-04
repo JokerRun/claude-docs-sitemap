@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-1/migration-guide
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f229faba8eba6589332661cf86dded6c7610154e52f9674e09ff8485912d9c51
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 945d0095fd4ef57ba6f2403165392b6b7f8b19cc1c6faf4ccd68c69f2dc905a5
 ---
 
 ---
@@ -73,7 +73,7 @@ model = "claude-mythos-5-1"  # After
      curl -sS https://api.anthropic.com/v1/messages \
        -H "content-type: application/json" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01" \
+       -H "anthropic-version: 2026-10-21" \
        -d '{
          "model": "claude-fable-5",
          "max_tokens": 16000,
@@ -311,7 +311,7 @@ model = "claude-mythos-5-1"  # After
      curl -sS https://api.anthropic.com/v1/messages \
        -H "content-type: application/json" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01" \
+       -H "anthropic-version: 2026-10-21" \
        -d '{
          "model": "claude-fable-5-1",
          "max_tokens": 16000,
@@ -581,7 +581,7 @@ model = "claude-mythos-5-1"  # After
      curl -sS https://api.anthropic.com/v1/messages \
        -H "content-type: application/json" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01" \
+       -H "anthropic-version: 2026-10-21" \
        -d '{
          "model": "claude-fable-5-1",
          "max_tokens": 16000,
@@ -946,7 +946,7 @@ model = "claude-mythos-5-1"  # After
      ```bash cURL
      curl https://api.anthropic.com/v1/messages \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01" \
+       -H "anthropic-version: 2026-10-21" \
        -H "anthropic-beta: thinking-binding-controls-2026-08-01" \
        -H "content-type: application/json" \
        -d '{
@@ -1241,7 +1241,7 @@ Perubahan ini tidak wajib, tetapi masing-masing menurunkan biaya atau latensi at
      # Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
      curl https://api.anthropic.com/v1/messages \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01" \
+       -H "anthropic-version: 2026-10-21" \
        -H "anthropic-beta: mid-conversation-output-config-2026-07-01" \
        -H "content-type: application/json" \
        -d '{
@@ -1504,7 +1504,7 @@ Perubahan ini tidak wajib, tetapi masing-masing menurunkan biaya atau latensi at
 
    Jika ditempatkan di antara giliran `assistant` dan giliran `user` berikutnya, seperti di sini, pesan berlaku mulai dari giliran `user` tersebut. Jika ditempatkan langsung setelah giliran `user` dengan input baru, pesan menetapkan level untuk balasan Claude pada giliran itu. Giliran `user` yang hanya berisi hasil alat tidak dihitung sebagai input baru: perubahan menunggu giliran `user` berikutnya dengan input baru. Level tersebut kemudian berlaku hingga pesan `role: "system"` lain mengubahnya. Hanya level bernama yang diterima (`low`, `medium`, `high`, `xhigh`, `max`), dan header beta `mid-conversation-output-config-2026-07-01` diperlukan. Lihat [Effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta).
 
-2. **Ubah instruksi dan alat dengan pesan sistem di tengah percakapan:** Untuk mengubah instruksi atau alat di tengah sesi, tambahkan [pesan `role: "system"`](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages), dengan blok `tool_addition` dan `tool_removal` untuk perubahan alat (header beta `inline-tools-2026-09-15` di Claude API). Blok `tool_addition` dapat menyebutkan alat yang dideklarasikan di `tools` saat sesi dimulai atau [membawa definisi lengkap alat](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta), sehingga alat yang tidak diketahui saat sesi dimulai tidak perlu berada di `tools`. Ini mempertahankan hit cache prompt pada giliran sebelumnya dan menjaga riwayat percakapan tetap append-only. Header lama `mid-conversation-tool-changes-2026-07-01` masih berfungsi untuk perubahan yang menyebutkan alat berdasarkan referensi, di Claude API, Amazon Bedrock, dan Claude Models on Google Cloud (Google managed). Pesan yang sama menggantikan `tool_choice` yang dipaksakan ketika alat tertentu harus dijalankan pada giliran saat ini (lihat [Perubahan yang merusak kompatibilitas](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#fable-5-1-breaking-changes)). Untuk pengingat yang hanya berlaku untuk satu giliran, kirimkan sebagai pesan `role: "system"` terpisah yang hanya berisi teks dengan `clear_at: "next_user_message"` ([pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages), header beta `mid-conversation-system-clear-at-2026-08-21`) dan biarkan dalam riwayat: pesan tersebut berhenti dirender setelah pesan pengguna berikutnya dan tidak memakan token setelah dibersihkan. Pesan yang membawa blok `tool_addition` atau `tool_removal` tidak dapat dibuat berlingkup giliran.
+2. **Ubah instruksi dan alat dengan pesan sistem di tengah percakapan:** Untuk mengubah instruksi atau alat di tengah sesi, tambahkan [pesan `role: "system"`](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages), dengan blok `tool_addition` dan `tool_removal` untuk perubahan alat (header beta `inline-tools-2026-09-15` di Claude API). Blok `tool_addition` dapat menyebutkan alat yang dideklarasikan di `tools` saat sesi dimulai atau [membawa definisi lengkap alat](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta), sehingga alat yang tidak diketahui saat sesi dimulai tidak perlu berada di `tools`. Ini mempertahankan hit cache prompt pada giliran sebelumnya dan menjaga riwayat percakapan tetap append-only. Header `mid-conversation-tool-changes-2026-07-01` berfungsi untuk perubahan yang menyebutkan alat berdasarkan referensi, di Claude API, Amazon Bedrock, dan Claude Models on Google Cloud (Google managed). Pesan yang sama menggantikan `tool_choice` yang dipaksakan ketika alat tertentu harus dijalankan pada giliran saat ini (lihat [Perubahan yang merusak kompatibilitas](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#fable-5-1-breaking-changes)). Untuk pengingat yang hanya berlaku untuk satu giliran, kirimkan sebagai pesan `role: "system"` terpisah yang hanya berisi teks dengan `clear_at: "next_user_message"` ([pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages), header beta `mid-conversation-system-clear-at-2026-08-21`) dan biarkan dalam riwayat: pesan tersebut berhenti dirender setelah pesan pengguna berikutnya dan tidak memakan token setelah dibersihkan. Pesan yang membawa blok `tool_addition` atau `tool_removal` tidak dapat dibuat berlingkup giliran.
 
 3. **Gunakan `fallbacks: "default"` untuk penolakan:** Tetap tangani `stop_reason: "refusal"` dan baca `stop_details.category` sebelum konten respons. Untuk menjalankan ulang permintaan yang ditolak pada model lain secara otomatis, atur `fallbacks: "default"` (beta, header `server-side-fallback-2026-07-01`). `"default"` mencoba ulang permintaan yang ditolak pada model yang direkomendasikan Anthropic untuk kategori tersebut. Target fallback yang diizinkan untuk Claude Fable 5.1 adalah Claude Opus 4.8 (`claude-opus-4-8`) dan Claude Opus 5 (`claude-opus-5`). Daftar `fallbacks` eksplisit dapat menyebutkan salah satunya. Model fallback tidak menerima blok pemikiran Claude Fable 5.1. Parameter `fallbacks` tidak tersedia di Amazon Bedrock, Claude Models on Google Cloud (Google managed), atau Microsoft Foundry. Di platform tersebut, gunakan [fallback sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) sebagai gantinya. Jika Anda membangun percobaan ulang sendiri, [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) berlaku dengan ketentuan yang sama seperti Claude Fable 5. Lihat [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback).
 

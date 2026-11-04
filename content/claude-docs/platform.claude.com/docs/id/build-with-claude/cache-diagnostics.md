@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 25c7861ba7fd22d0f27e8a1f5d1adaf7af2e1b4d6e8b16368f29f26edae51741
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: e2e8aa2c85f744867f8addba4d9fb98933d009e2aa2ad2ef4560edff2d39c763
 ---
 
 ---
@@ -50,14 +50,14 @@ Fingerprint hanya berisi hash dan estimasi jumlah token (tidak pernah berisi kon
 
 ## Penggunaan dasar
 
-Sertakan objek `diagnostics` pada setiap giliran. Objek inilah yang menjadi tanda keikutsertaan (opt-in): API hanya menyimpan fingerprint untuk permintaan yang menyertakannya. Pada giliran pertama, berikan `"previous_message_id": null` untuk ikut serta tanpa pesan sebelumnya sebagai pembanding. Pada giliran-giliran berikutnya, berikan `id` dari respons sebelumnya. “Beta header” (header beta) `cache-diagnosis-2026-04-07` tidak lagi diperlukan, dan permintaan yang masih mengirimkannya tetap berfungsi seperti sebelumnya.
+Sertakan objek `diagnostics` pada setiap giliran. Objek inilah yang menjadi tanda keikutsertaan (opt-in): API hanya menyimpan fingerprint untuk permintaan yang menyertakannya. Pada giliran pertama, berikan `"previous_message_id": null` untuk ikut serta tanpa pesan sebelumnya sebagai pembanding. Pada giliran-giliran berikutnya, berikan `id` dari respons sebelumnya. “Beta header” (header beta) `cache-diagnosis-2026-04-07` tidak lagi diperlukan, dan permintaan yang mengirimkannya berfungsi seperti sebelumnya.
 
 <CodeGroup>
   ```bash cURL
   # Giliran 1: buat cache dan aktifkan diagnostik
   curl -sS --fail-with-body https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -72,7 +72,7 @@ Sertakan objek `diagnostics` pada setiap giliran. Objek inilah yang menjadi tand
   # Dalam respons, diagnostics: null berarti tidak ditemukan divergensi.
   curl -sS --fail-with-body https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -421,7 +421,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   # nilai null berarti tidak ditemukan divergensi.
   curl -sS --fail-with-body https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -1042,7 +1042,7 @@ Matriks ini berlaku untuk giliran di mana Anda meneruskan `previous_message_id` 
 
 ## Keterbatasan
 
-* **Hanya Claude API:** Tidak tersedia di Amazon Bedrock atau Claude Models on Google Cloud (Google managed).
+* **Hanya Claude API:** Tidak tersedia di Claude Models on Google Cloud (Google managed) atau Amazon Bedrock.
 * **Retensi terbatas:** Fingerprint untuk pencarian `previous_message_id` kedaluwarsa setelah periode singkat. Jalankan perbandingan diagnostik antara permintaan yang berdekatan waktunya.
 * **Workspace yang sama:** Permintaan sebelumnya harus dijalankan dalam organisasi dan workspace yang sama. Untuk memeriksanya, bandingkan [header respons](https://platform.claude.com/docs/id/api/overview#response-headers) `anthropic-workspace-id` pada kedua respons.
 * **Cakupan perbandingan:** Untuk percakapan yang sangat panjang ketika satu-satunya perubahan berada jauh di dalam daftar pesan, respons mungkin berupa `unavailable` alih-alih lokasi yang tepat.

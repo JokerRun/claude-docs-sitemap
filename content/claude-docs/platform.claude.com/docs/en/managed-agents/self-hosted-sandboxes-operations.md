@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-operations
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 737d9f64896daac71cfb23d52d2c9e20dc1ac2cd6913fdf6956ed907312414d8
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: ae29cb1a9c06cfd482721d1f5a8d4b94b378f03bc63747a7ada6c9f97d8c6258
 ---
 
 ---
@@ -59,7 +59,7 @@ The monitoring calls on this page run from your monitoring or operations tooling
   curl -sS "https://api.anthropic.com/v1/environments/$ANTHROPIC_ENVIRONMENT_ID/work/stats" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -192,7 +192,7 @@ Because these calls run from your operations tooling rather than the worker host
   curl -sS "https://api.anthropic.com/v1/environments/$ANTHROPIC_ENVIRONMENT_ID/work/$ANTHROPIC_WORK_ID/stop" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{}'
   ```

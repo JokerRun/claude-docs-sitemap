@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/workload-identity-federation
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 6b6befd5844b2af7866457ee0bc3cfef93017092426c0e38d7bb2dad39d5d97c
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: b7ef511439249b35f8bd71840ad7ef40308f4e92916134a65d1b86c277812def
 ---
 
 ---
@@ -120,7 +120,7 @@ You can construct the client with explicit credentials or with no arguments. Wit
   # 3. Call the API with the access token in the Authorization: Bearer header.
   curl -sS https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

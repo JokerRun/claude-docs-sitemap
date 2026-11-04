@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: ac783903cdd30bcf23e826d1dfb039756ca7f22d97415eb5a850ec0b8466c650
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: b8b3f986d12b5429e1b96026b9f9cff44ee3d560e4b0739b6121874c7d0a9301
 ---
 
 ---
@@ -64,7 +64,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
 3. `file_id` yang dikembalikan oleh [Files API](https://platform.claude.com/docs/id/build-with-claude/files) (unggah sekali, referensikan berkali-kali)
 
 <Note>
-  Di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), saat ini hanya sumber yang dienkode base64 yang tersedia.
+  Di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, hanya sumber yang dienkode base64 yang tersedia.
 </Note>
 
 <Tip>
@@ -77,7 +77,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d @- <<EOF
   {
@@ -339,7 +339,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -537,7 +537,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
               ],
           ],
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
@@ -547,7 +547,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       {
@@ -583,13 +583,13 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
   # Pertama, unggah gambar Anda ke Files API
   curl -sS -X POST https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -F "file=@vision-example.jpg"
 
   # Lalu gunakan file_id dari respons unggahan dalam pesan Anda
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -834,6 +834,7 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
 
   ```php PHP
   use Anthropic\Core\FileParam;
+  use Anthropic\Messages\Model;
 
   $client = new Client();
 
@@ -857,7 +858,7 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
               ],
           ],
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
@@ -876,7 +877,7 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
 
   # Gunakan file yang diunggah dalam pesan
   message = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       {
@@ -906,7 +907,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -1281,7 +1282,7 @@ Jumlah maksimum gambar untuk setiap pesan atau permintaan adalah:
 
 Dimensi maksimum untuk setiap gambar adalah 8000x8000 px.
 
-Jika satu permintaan API berisi lebih dari 20 gambar, batas dimensi per gambar yang lebih ketat berlaku untuk setiap gambar dalam permintaan tersebut. Semua blok `image` dalam permintaan dihitung terhadap ambang batas ini, termasuk gambar dari giliran percakapan sebelumnya yang Anda kirim ulang dan gambar yang bersarang di dalam konten `tool_result` (misalnya, tangkapan layar yang dikembalikan ke alat computer use). Di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), blok dokumen seperti PDF juga dihitung terhadap ambang batas ini. Gambar yang melebihi batas yang lebih ketat akan ditolak dengan `invalid_request_error` yang pesannya merujuk pada “many-image requests” dan menyebutkan batas saat ini dalam piksel. Agar tetap di bawah batas di semua platform, ubah ukuran setiap gambar sehingga tidak ada dimensi yang melebihi 3.000 px, atau batasi permintaan hingga 20 blok gambar dan dokumen atau kurang.
+Jika satu permintaan API berisi lebih dari 20 gambar, batas dimensi per gambar yang lebih ketat berlaku untuk setiap gambar dalam permintaan tersebut. Semua blok `image` dalam permintaan dihitung terhadap ambang batas ini, termasuk gambar dari giliran percakapan sebelumnya yang Anda kirim ulang dan gambar yang bersarang di dalam konten `tool_result` (misalnya, tangkapan layar yang dikembalikan ke alat computer use). Di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, blok dokumen seperti PDF juga dihitung terhadap ambang batas ini. Gambar yang melebihi batas yang lebih ketat akan ditolak dengan `invalid_request_error` yang pesannya merujuk pada “many-image requests” dan menyebutkan batas saat ini dalam piksel. Agar tetap di bawah batas di semua platform, ubah ukuran setiap gambar sehingga tidak ada dimensi yang melebihi 3.000 px, atau batasi permintaan hingga 20 blok gambar dan dokumen atau kurang.
 
 Ukuran maksimum per gambar adalah:
 

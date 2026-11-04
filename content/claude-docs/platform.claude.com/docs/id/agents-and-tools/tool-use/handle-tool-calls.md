@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: c3e8b77fbe1193cd3446f109630aa29eda13f0470613a9426155d817f4b210c9
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 78256148275a1924d2c524c7a5ffe310fab1e09b1280646d5cd136d070c8983b
 ---
 
 ---
@@ -64,6 +64,21 @@ Ketika Anda menerima respons penggunaan alat untuk alat klien, Anda harus:
    * `content` (opsional): Hasil dari alat, sebagai string (misalnya, `"content": "15 degrees"`), daftar blok konten bersarang (misalnya, `"content": [{"type": "text", "text": "15 degrees"}]`), atau daftar blok dokumen (misalnya, `"content": [{"type": "document", "source": {"type": "text", "media_type": "text/plain", "data": "15 degrees"}}]`). Blok konten ini dapat menggunakan tipe `text`, `image`, `document`, atau [`search_result`](https://platform.claude.com/docs/id/build-with-claude/search-results).
    * `is_error` (opsional): Atur ke `true` jika eksekusi alat menghasilkan error.
 
+Misalnya, hasil alat yang berhasil terlihat seperti ini:
+
+```json JSON
+{
+  "role": "user",
+  "content": [
+    {
+      "type": "tool_result",
+      "tool_use_id": "toolu_01A09q90qw90lq917835lq9",
+      "content": "15 degrees"
+    }
+  ]
+}
+```
+
 `tool_result` yang menjawab blok anggota computer use atau browser use juga harus menggemakan nilai `toolset_name` yang sama dengan blok `tool_use`; hasil anggota yang menghilangkannya akan ditolak. `content`-nya juga lebih sempit: hasil anggota hanya boleh berisi blok `text` dan `image`, dan hasil browser use dapat menambahkan satu blok [`browser_state`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#track-tabs-and-page-state) ([anggota manajemen tab](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#tab-management-results) hanya mengembalikan blok tersebut).
 
 <Note>
@@ -73,30 +88,6 @@ Ketika Anda menerima respons penggunaan alat untuk alat klien, Anda harus:
   * Dalam pesan pengguna yang berisi hasil alat, blok `tool_result` harus berada PERTAMA dalam array konten. Teks apa pun harus berada SETELAH semua hasil alat.
   * Jika giliran asisten juga memanggil [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) yang belum memiliki blok hasil, pesan pengguna harus hanya berisi blok `tool_result`. Teks setelah hasil akan mengakhiri giliran lebih awal; untuk alat server yang dipanggil Claude secara langsung, permintaan kemudian gagal dengan error 400 yang menyebutkan alat server yang belum terselesaikan. Lihat [Alasan berhenti dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use).
 
-  Misalnya, ini menyebabkan kesalahan 400:
-
-  ```json
-  {
-    "role": "user",
-    "content": [
-      { "type": "text", "text": "Here are the results:" }, // ❌ Text before tool_result
-      { "type": "tool_result", "tool_use_id": "toolu_01" /* ... */ }
-    ]
-  }
-  ```
-
-  Ini benar ketika giliran asisten hanya memanggil alat klien:
-
-  ```json
-  {
-    "role": "user",
-    "content": [
-      { "type": "tool_result", "tool_use_id": "toolu_01" /* ... */ },
-      { "type": "text", "text": "What should I do next?" } // ✅ Text after tool_result
-    ]
-  }
-  ```
-
   Jika Anda menerima kesalahan seperti “tool\_use ids were found without tool\_result blocks immediately after”, periksa apakah hasil alat Anda diformat dengan benar.
 </Note>
 
@@ -105,21 +96,6 @@ Ketika Anda menerima respons penggunaan alat untuk alat klien, Anda harus:
 </Warning>
 
 <AccordionGroup>
-  <Accordion title="Contoh hasil alat yang berhasil">
-    ```json JSON
-    {
-      "role": "user",
-      "content": [
-        {
-          "type": "tool_result",
-          "tool_use_id": "toolu_01A09q90qw90lq917835lq9",
-          "content": "15 degrees"
-        }
-      ]
-    }
-    ```
-  </Accordion>
-
   <Accordion title="Contoh hasil alat dengan gambar">
     ```json JSON
     {
@@ -179,6 +155,32 @@ Ketika Anda menerima respons penggunaan alat untuk alat klien, Anda harus:
             }
           ]
         }
+      ]
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Contoh teks sebelum dan sesudah hasil alat">
+    Misalnya, ini menyebabkan kesalahan 400:
+
+    ```json
+    {
+      "role": "user",
+      "content": [
+        { "type": "text", "text": "Here are the results:" }, // ❌ Text before tool_result
+        { "type": "tool_result", "tool_use_id": "toolu_01" /* ... */ }
+      ]
+    }
+    ```
+
+    Ini benar ketika giliran asisten hanya memanggil alat klien:
+
+    ```json
+    {
+      "role": "user",
+      "content": [
+        { "type": "tool_result", "tool_use_id": "toolu_01" /* ... */ },
+        { "type": "text", "text": "What should I do next?" } // ✅ Text after tool_result
       ]
     }
     ```

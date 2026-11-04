@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: e424677828d58ca03a2cebbd4036047e4d848b110d979a6d776a14f36f4b54a8
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: db883d92550dade1018c6734e2060ae518a180053cd40967a40ffe57b6884c14
 ---
 
 ---
@@ -181,7 +181,7 @@ Host URL adalah `<subdomain>.<your-tunnel-domain>`. Path bergantung pada server 
   curl https://api.anthropic.com/v1/messages \
     -H "Content-Type: application/json" \
     -H "X-API-Key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: mcp-client-2025-11-20" \
     -d '{
       "model": "claude-opus-5-5",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f76421c535e819c5138f0780a60f747ae44cf8012a39021323ad2118c5765d4a
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 2b6d0c3361d47e47f9e184289a803af7d05f3f63ef5c39ecb8ab4c3bc36df4d4
 ---
 
 ---
@@ -120,7 +120,7 @@ The following example includes the tool search tool and two deferred tools:
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

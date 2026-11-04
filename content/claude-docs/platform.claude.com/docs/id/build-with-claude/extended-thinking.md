@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: eb24200e0abe745e0fda6a8cef4952efe39b0be3c3e889132d2f6b31e68061b6
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 713c43cc943cc894eb3022be99b6ff017511e2e4b5f965d513e8d680d8eb9b9b
 ---
 
 ---
@@ -52,7 +52,7 @@ Berikut adalah contoh penggunaan pemikiran diperpanjang di Messages API:
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-sonnet-4-6",
@@ -324,7 +324,7 @@ Dua pertimbangan lain untuk pemikiran berselang-seling dalam mode manual:
 
 Cara platform memperlakukan beta header berbeda-beda. Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) menerima `interleaved-thinking-2025-05-14` pada model apa pun dan mengabaikannya jika tidak didukung. Diterima tidak sama dengan berefek: pada model yang menolak `type: "enabled"` (4.7 dan yang lebih baru) atau tidak memiliki interleaving mode manual (Claude Opus 4.6), header tersebut tidak memiliki efek mode manual; “adaptive thinking” (pemikiran adaptif) melakukan interleaving secara otomatis di sana.
 
-Platform yang dioperasikan mitra, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), juga menerima header tersebut pada model apa pun tanpa mengembalikan error, dan mengabaikannya pada model yang tidak mendukung “interleaved thinking” (pemikiran berselang).
+Platform yang dioperasikan mitra, [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) dan [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), juga menerima header tersebut pada model apa pun tanpa mengembalikan error, dan mengabaikannya pada model yang tidak mendukung “interleaved thinking” (pemikiran berselang).
 
 ## Struktur giliran dalam mode manual
 

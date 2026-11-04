@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: bb93f6ce532b350c0f08d90023093fc4ef2cb419ef07d60951e34948d21e6825
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: eb1a5fc073b38666a7d2eaf8025aa426510f6c93152605458a9a166ade7e6fdc
 ---
 
 ---
@@ -39,8 +39,8 @@ featureMetadata:
 
 **API support**: Usage differs by product.
 
-* **Messages API**: Always on. The stream ends with `stop_reason` `"refusal"`, and `stop_details` (`category` and `explanation`) arrives on the `message_delta` event.
-* **Managed Agents**: Always on. A refused turn ends, and the session goes idle with `stop_reason.type` `"refusal"`.
+* **Messages API**: The stream ends with `stop_reason` `"refusal"`, and `stop_details` (`category` and `explanation`) arrives on the `message_delta` event.
+* **Managed Agents**: A refused turn ends, and the session goes idle with `stop_reason.type` `"refusal"`.
 
 Starting with Claude 4 models, streaming responses from Claude’s API return **`stop_reason`: `"refusal"`** when streaming classifiers intervene to handle potential policy violations. This safety feature helps maintain content compliance during real-time streaming.
 

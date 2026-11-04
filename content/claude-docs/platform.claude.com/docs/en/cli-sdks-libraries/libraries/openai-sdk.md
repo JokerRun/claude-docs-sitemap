@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/openai-sdk
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 0aaa63f39ff8b55dab15e899f1a44620d3be3e7ece8197045edf738a3efe0288
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 5e9245b34165f3057a24e81a67a0f8e8098c51fca5f823a4dc4185f87fe9dba8
 ---
 
 ---
@@ -217,6 +217,7 @@ Here are the most substantial differences from using OpenAI:
 * Audio and file inputs are not supported. A request that includes an `input_audio` or `file` content part returns a 400 error.
 * Prompt caching is not supported, but it is supported in the [Anthropic SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries/overview).
 * System/developer messages are hoisted and concatenated into the top-level `system` field, wherever they appear in the conversation. To add system instructions partway through a conversation, use [mid-conversation system messages](https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages) in the native Claude API.
+* Depending on the model, text generated for a request that sets `temperature` or `top_p` to a value other than the Claude API’s default might not carry the [text watermark](https://platform.claude.com/docs/en/build-with-claude/text-watermark#sampling-settings). If you rely on the watermark, omit both parameters.
 
 Most unsupported fields are silently ignored rather than producing errors. These are all documented in the following sections.
 

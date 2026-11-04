@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 862beaba97d0fb225aeea7f1cb2b77c525116b81eac95ab525002b8c970800a6
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 4f21fd1dc5f893e92fc54abe5c696b91fdf75b1d6c3629556da26b5ea5d2722e
 ---
 
 ---
@@ -185,7 +185,7 @@ Add an optional `input_examples` field to your tool definition with an array of 
   curl -sS https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -606,7 +606,7 @@ On models that support it, the highlighted lines are the only difference from a 
   curl -sS https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5",
       "max_tokens": 1024,

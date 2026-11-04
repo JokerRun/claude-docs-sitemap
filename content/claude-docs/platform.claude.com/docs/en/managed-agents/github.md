@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/github
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 05bae82351d6a47515c2bad53a7f63cb6a7309b0932666ce8460a4467856a97f
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: bdab04916c7f8b25a8a7627dbb4f150ecf4a4969861809d0285bfdb12821384b
 ---
 
 ---
@@ -54,7 +54,7 @@ First, create an agent that declares the GitHub MCP server. The agent definition
   ```bash cURL
   curl -fsS https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -69,7 +69,13 @@ First, create an agent that declares the GitHub MCP server. The agent definition
         }
       ],
       "tools": [
-        {"type": "agent_toolset_20260401"},
+        {
+          "type": "agent_toolset_20260401",
+          "configs": [
+            {"name": "web_search", "enabled": false},
+            {"name": "web_fetch", "enabled": false}
+          ]
+        },
         {
           "type": "mcp_toolset",
           "mcp_server_name": "github"
@@ -94,6 +100,11 @@ First, create an agent that declares the GitHub MCP server. The agent definition
           url: https://api.githubcopilot.com/mcp/
       tools:
         - type: agent_toolset_20260401
+          configs:
+            - name: web_search
+              enabled: false
+            - name: web_fetch
+              enabled: false
         - type: mcp_toolset
           mcp_server_name: github
       ---
@@ -116,7 +127,13 @@ First, create an agent that declares the GitHub MCP server. The agent definition
           },
       ],
       tools=[
-          {"type": "agent_toolset_20260401"},
+          {
+              "type": "agent_toolset_20260401",
+              "configs": [
+                  {"name": "web_search", "enabled": False},
+                  {"name": "web_fetch", "enabled": False},
+              ],
+          },
           {
               "type": "mcp_toolset",
               "mcp_server_name": "github",
@@ -138,7 +155,13 @@ First, create an agent that declares the GitHub MCP server. The agent definition
       }
     ],
     tools: [
-      { type: "agent_toolset_20260401" },
+      {
+        type: "agent_toolset_20260401",
+        configs: [
+          { name: "web_search", enabled: false },
+          { name: "web_fetch", enabled: false }
+        ]
+      },
       {
         type: "mcp_toolset",
         mcp_server_name: "github"
@@ -159,7 +182,14 @@ First, create an agent that declares the GitHub MCP server. The agent definition
       ],
       Tools =
       [
-          new BetaManagedAgentsAgentToolset20260401Params(),
+          new BetaManagedAgentsAgentToolset20260401Params
+          {
+              Configs =
+              [
+                  new BetaManagedAgentsWebSearchToolConfigParams { Enabled = false },
+                  new BetaManagedAgentsWebFetchToolConfigParams { Enabled = false },
+              ],
+          },
           new BetaManagedAgentsMcpToolsetParams { McpServerName = "github" },
       ],
   });
@@ -180,7 +210,16 @@ First, create an agent that declares the GitHub MCP server. The agent definition
   	},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{
   		{
-  			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{},
+  			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
+  				Configs: []anthropic.BetaManagedAgentsAgentToolConfigParamsUnion{
+  					{OfWebSearch: &anthropic.BetaManagedAgentsWebSearchToolConfigParams{
+  						Enabled: anthropic.Bool(false),
+  					}},
+  					{OfWebFetch: &anthropic.BetaManagedAgentsWebFetchToolConfigParams{
+  						Enabled: anthropic.Bool(false),
+  					}},
+  				},
+  			},
   		},
   		{
   			OfMCPToolset: &anthropic.BetaManagedAgentsMCPToolsetParams{
@@ -203,7 +242,14 @@ First, create an agent that declares the GitHub MCP server. The agent definition
           .name("github")
           .url("https://api.githubcopilot.com/mcp/")
           .build())
-      .addTool(BetaManagedAgentsAgentToolset20260401Params.builder().build())
+      .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
+          .addConfig(BetaManagedAgentsWebSearchToolConfigParams.builder()
+              .enabled(false)
+              .build())
+          .addConfig(BetaManagedAgentsWebFetchToolConfigParams.builder()
+              .enabled(false)
+              .build())
+          .build())
       .addTool(BetaManagedAgentsMcpToolsetParams.builder()
           .mcpServerName("github")
           .build())
@@ -211,9 +257,14 @@ First, create an agent that declares the GitHub MCP server. The agent definition
   ```
 
   ```php PHP
+  use Anthropic\Beta\Agents\BetaManagedAgentsAgentToolset20260401Params;
+  use Anthropic\Beta\Agents\BetaManagedAgentsModel;
+  use Anthropic\Beta\Agents\BetaManagedAgentsWebFetchToolConfigParams;
+  use Anthropic\Beta\Agents\BetaManagedAgentsWebSearchToolConfigParams;
+
   $agent = $client->beta->agents->create(
       name: 'Code Reviewer',
-      model: 'claude-opus-5-5',
+      model: BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
       system: 'You are a code review assistant with access to GitHub.',
       mcpServers: [
           [
@@ -223,7 +274,12 @@ First, create an agent that declares the GitHub MCP server. The agent definition
           ],
       ],
       tools: [
-          ['type' => 'agent_toolset_20260401'],
+          BetaManagedAgentsAgentToolset20260401Params::with(
+              configs: [
+                  BetaManagedAgentsWebSearchToolConfigParams::with(enabled: false),
+                  BetaManagedAgentsWebFetchToolConfigParams::with(enabled: false),
+              ],
+          ),
           [
               'type' => 'mcp_toolset',
               'mcpServerName' => 'github',
@@ -235,7 +291,7 @@ First, create an agent that declares the GitHub MCP server. The agent definition
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Code Reviewer",
-    model: "claude-opus-5-5",
+    model: Anthropic::Beta::BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
     system_: "You are a code review assistant with access to GitHub.",
     mcp_servers: [
       {
@@ -245,7 +301,13 @@ First, create an agent that declares the GitHub MCP server. The agent definition
       }
     ],
     tools: [
-      {type: "agent_toolset_20260401"},
+      {
+        type: "agent_toolset_20260401",
+        configs: [
+          {name: "web_search", enabled: false},
+          {name: "web_fetch", enabled: false}
+        ]
+      },
       {
         type: "mcp_toolset",
         mcp_server_name: "github"
@@ -261,7 +323,7 @@ Then create a session that mounts the GitHub repository. With a `limited` [envir
   ```bash cURL
   curl -fsS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d @- <<JSON
@@ -436,7 +498,7 @@ Mount multiple repositories by adding entries to the `resources` (csharp, go: `R
   ```bash cURL
   curl -fsS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d @- <<JSON
@@ -606,7 +668,7 @@ After a session is created, you can list its repository resources and rotate the
   # List resources on the session
   curl -fsS "https://api.anthropic.com/v1/sessions/$session_id/resources" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json"
 
@@ -746,7 +808,7 @@ With the GitHub MCP server, the agent can create branches, commit changes, and p
   ```bash cURL
   curl -fsS "https://api.anthropic.com/v1/sessions/$session_id/events" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{

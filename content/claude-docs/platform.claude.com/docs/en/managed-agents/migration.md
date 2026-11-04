@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/migration
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 76b9d512ee2542b69b9e4a7a0c2dc39ebf7f75d1386e10ce02ab64de01cbb8d9
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 04839de372ec08579b01554adc5bf60e32540af19d9cd0ec7b1ee4c4a9e0ccba
 ---
 
 ---
@@ -1268,7 +1268,7 @@ When a new Claude model is released, migrating a Claude Managed Agents integrati
   ```bash cURL
   curl -sS --fail-with-body "https://api.anthropic.com/v1/agents/$AGENT_ID?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -1321,7 +1321,7 @@ When a new Claude model is released, migrating a Claude Managed Agents integrati
 
   ```go Go
   _, err = client.Beta.Agents.Update(ctx, agent.ID, anthropic.BetaAgentUpdateParams{
-  	Version: agent.Version,
+  	Version: anthropic.Int(agent.Version),
   	Model: anthropic.BetaManagedAgentsModelConfigParams{
   		ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   	},

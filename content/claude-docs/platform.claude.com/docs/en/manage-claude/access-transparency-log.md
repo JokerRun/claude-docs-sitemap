@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/access-transparency-log
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 56b72d465afc59465fddec970b22d4259ac050700a3b8f98fac2c7086e8b860c
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 30d5f33338f280008b82ac431368f82adfce0e3d95979bbee28e7acb2d66e6c4
 ---
 
 ---
@@ -128,7 +128,7 @@ Responses are cacheable only by the requesting client. `Cache-Control` always in
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/transparency_log/checkpoint" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01"
+  -H "anthropic-version: 2026-10-21"
 ```
 
 The response is `text/plain`: a C2SP [signed note](https://c2sp.org/signed-note). The body lines are the origin, the tree size in decimal, and the base64 root hash. A blank line follows, then the signature line, which starts with an em dash (U+2014), names the origin, and ends with a base64 value. Values here are illustrative:
@@ -154,7 +154,7 @@ C6C4HzGRqDNlbu54LWCvpDX0NcB5DRTmLcjM4u5vWUI=
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/transparency_log/keys" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01"
+  -H "anthropic-version: 2026-10-21"
 ```
 
 ```json
@@ -218,7 +218,7 @@ curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/transparency_log/inclusion" \
   --data-urlencode "leaf_index=41" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01"
+  -H "anthropic-version: 2026-10-21"
 ```
 
 ```json
@@ -264,7 +264,7 @@ curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/transparency_log/consistency" \
   --data-urlencode "from=1180" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01"
+  -H "anthropic-version: 2026-10-21"
 ```
 
 ```json

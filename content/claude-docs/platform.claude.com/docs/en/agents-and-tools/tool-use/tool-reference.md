@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: e063dcaabd3f4bc056cb7da54444034ab90f135574956b38802b7131f793e09b
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 3006fd4ad2afb420283a0f174031da0273fb55b36e2c72730445ad1a9a1bdab5
 ---
 
 ---
@@ -47,7 +47,7 @@ When a tool has multiple active versions, the relationship between them varies:
 * **Model-keyed:** `text_editor_20250728` is for Claude 4 and later models and `text_editor_20250124` is for earlier models. The version you use depends on the model you target.
 * **Variant, not version:** `tool_search_tool_regex_20251119` and `tool_search_tool_bm25_20251119` are two search algorithms released together. Neither supersedes the other.
 * **Legacy:** `code_execution_20250522` supports only Python. `code_execution_20250825` adds Bash and file operations.
-* **Successor:** `computer_toolset_20260801` is the stable successor to the beta `computer_20251124` and `computer_20250124` versions, which remain available on the models listed for them under [Earlier tool versions](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions). `browser_toolset_20260801` is the first version of the browser use tool. Both are [client toolsets](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference#client-toolsets).
+* **Successor:** `computer_toolset_20260801` is the stable successor to the beta `computer_20251124` and `computer_20250124` versions, which are available on the models listed for them under [Earlier tool versions](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions). `browser_toolset_20260801` is the first version of the browser use tool. Both are [client toolsets](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference#client-toolsets).
 
 The `mcp_toolset` type is not date-versioned; versioning is carried in the `anthropic-beta` header instead.
 
@@ -85,7 +85,7 @@ Set `defer_loading` for each member, never on the entry, and give every enabled 
 * `strict: true` or `input_examples`.
 * `defer_loading` on the entry, or enabled members whose `defer_loading` values differ (set it for each member in `configs`, all to the same value).
 * A code execution caller in `allowed_callers` (no [programmatic tool calling](https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling)).
-* The legacy `fine-grained-tool-streaming-2025-05-14` beta header. When you stream, each member’s `input` arrives as one complete `input_json_delta`.
+* The `fine-grained-tool-streaming-2025-05-14` beta header. When you stream, each member’s `input` arrives as one complete `input_json_delta`.
 * A `tool_choice` of type `tool` that names the toolset or a member (use `auto`, `any`, or `none`).
 * Two entries of the same toolset, or another tool that carries that toolset’s name: a tool named `computer` alongside `computer_toolset_20260801`, or a tool named `browser` alongside `browser_toolset_20260801`. The two toolsets can be declared together.
 

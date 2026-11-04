@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/overview
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: faa3b88b2da0eff52aa7e60cc31fce41f2a21c6d443ec00784ea4121c81ce280
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 5efb1b898c62c5894a0b3554bd4dbb49b74732edf382b37a62d1cbcbbed6db57
 ---
 
 ---
@@ -94,7 +94,7 @@ Claude tersedia melalui Claude API pihak pertama dan melalui platform cloud. Pil
 Akses Claude melalui AWS, Google Cloud, atau Microsoft Azure:
 
 * **Terintegrasi** dengan penagihan dan IAM penyedia cloud
-* **Ketersediaan fitur bervariasi menurut platform:** Platform yang dioperasikan Anthropic mencakup [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry); platform yang dioperasikan mitra mencakup Amazon Bedrock dan Claude Models on Google Cloud (Google managed). Lihat halaman setiap platform untuk ketersediaan dan waktu fitur.
+* **Ketersediaan fitur bervariasi menurut platform:** Platform yang dioperasikan Anthropic mencakup [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry); platform yang dioperasikan mitra mencakup Claude Models on Google Cloud (Google managed) dan Amazon Bedrock. Lihat halaman setiap platform untuk ketersediaan dan waktu fitur.
 * **Terbaik untuk:** Komitmen cloud yang sudah ada, persyaratan kepatuhan tertentu, penagihan cloud terkonsolidasi
 
 | Platform                                          | Penyedia                                 | Dokumentasi                                                                                                                                                |

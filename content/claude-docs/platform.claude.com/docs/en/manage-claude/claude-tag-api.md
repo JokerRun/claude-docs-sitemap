@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/claude-tag-api
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 1e841031717938cc42839dba794f459c300b9bdb675f8e9e581c225fe49c3014
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: b8c464830c0889ff8675528604805f7085e18fc94a60ba8c6fad056d17f613fa
 ---
 
 ---
@@ -44,7 +44,7 @@ This release covers Slack. Connecting and disconnecting a Slack workspace or Ent
 
 * Your organization must be on a Claude Enterprise plan, with [Claude Tag set up](https://claude.com/docs/claude-tag/admins/setup-overview) and at least one Slack workspace or Enterprise Grid connected.
 * Your primary owner creates an Admin API key with the `read:claude_tag` scope, the `write:claude_tag` scope, or both in [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access). See [Create a key for a Claude Enterprise organization](https://platform.claude.com/docs/en/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization).
-* Every request carries three headers: `x-api-key`, `anthropic-version: 2023-06-01` (see [API versions](https://platform.claude.com/docs/en/api/versioning)), and `anthropic-beta: experimental-claude-tag-2026-10-21`.
+* Every request carries three headers: `x-api-key`, `anthropic-version: 2026-10-21` (see [API versions](https://platform.claude.com/docs/en/api/versioning)), and `anthropic-beta: experimental-claude-tag-2026-10-21`.
 
 In Python, TypeScript, C#, Go, Java, PHP, and Ruby, the SDK exposes these endpoints under `client.beta.organization.claude_tag` (typescript: `client.beta.organization.claudeTag`; csharp, go: `client.Beta.Organization.ClaudeTag`; java: `client.beta().organization().claudeTag()`; php: `$client->beta->organization->claudeTag`), and the [`ant` CLI](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/quickstart) under `ant beta:organization:claude-tag`; they send the `anthropic-version` and `anthropic-beta` headers for you. The examples on this page read the Admin API key from the `ANTHROPIC_API_KEY` environment variable. Where an SDK or the CLI fetches more pages for you, `limit` sets the page size, not the total (see [Pagination](https://platform.claude.com/docs/en/manage-claude/claude-tag-api#pagination)).
 
@@ -58,7 +58,7 @@ List your organization’s Slack workspaces in Claude Tag:
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/slack_workspaces" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -412,7 +412,7 @@ An `id` that is not a valid `slch_` identifier returns `400`. A valid one that n
   curl -X POST "https://api.anthropic.com/v1/organizations/claude_tag/slack_channels" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21" \
     -d '{
       "slack": {"workspace_id": "T01ABCD2EFG", "channel_id": "C05HJKL6MNP"},
@@ -574,7 +574,7 @@ Setting the channel up and applying `settings` are two steps. When this request 
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/slack_channels?slack_workspace_id=T01ABCD2EFG" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -689,7 +689,7 @@ Add `slack_channel_id`, Slack’s own ID for the channel, to look one channel up
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/slack_channels?slack_workspace_id=T01ABCD2EFG&slack_channel_id=C05HJKL6MNP" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -811,7 +811,7 @@ Passing a `slch_` ID as `slack_channel_id` returns `400`.
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/slack_channels/slch_011CZkZmRt4vNq8sHbYw2KdX" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -902,7 +902,7 @@ The same request with `include_inherited=true` returns the channel object with `
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/slack_channels/slch_011CZkZmRt4vNq8sHbYw2KdX?include_inherited=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -1010,7 +1010,7 @@ Turn Claude off in one channel and leave its other settings as they are:
   curl -X POST "https://api.anthropic.com/v1/organizations/claude_tag/slack_channels/slch_011CZkZmRt4vNq8sHbYw2KdX" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21" \
     -d '{"settings": {"enabled": false}}'
   ```
@@ -1123,7 +1123,7 @@ Clear the channel’s instructions, so that only the inherited ones apply:
   curl -X POST "https://api.anthropic.com/v1/organizations/claude_tag/slack_channels/slch_011CZkZmRt4vNq8sHbYw2KdX" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21" \
     -d '{"settings": {"instructions": null}}'
   ```
@@ -1259,7 +1259,7 @@ Two kinds of channel cannot be removed here at all, whether Claude is on or off 
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/organizations/claude_tag/slack_channels/slch_011CZkZmRt4vNq8sHbYw2KdX" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -1369,7 +1369,7 @@ An `id` that is not a valid `slws_` identifier returns `400`. A valid one that n
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/slack_workspaces/slws_011CZkZnWa7xPc3uJfZe5LgT" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -1461,7 +1461,7 @@ An `id` that is not a valid `slws_` identifier returns `400`. A valid one that n
   curl -X POST "https://api.anthropic.com/v1/organizations/claude_tag/slack_workspaces/slws_011CZkZnWa7xPc3uJfZe5LgT" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21" \
     -d '{"settings": {"guest_policy": {"type": "restrict"}}}'
   ```
@@ -1594,7 +1594,7 @@ A `bundle_id` that is not a valid `capp_` identifier returns `400`. A valid one 
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/bundles" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -1706,7 +1706,7 @@ A `bundle_id` that is not a valid `capp_` identifier returns `400`. A valid one 
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/bundles/capp_011CZkZjLP1cWxj5EtMmdgbq" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -1815,7 +1815,7 @@ The Bundle that claude.ai attaches as part of an on-call setup is listed and can
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/bundles/capp_011CZkZjLP1cWxj5EtMmdgbq/targets" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -1948,7 +1948,7 @@ Attach a Bundle to a channel:
   curl -X POST "https://api.anthropic.com/v1/organizations/claude_tag/bundles/capp_011CZkZjLP1cWxj5EtMmdgbq/targets" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21" \
     -d '{
       "type": "slack_channel",
@@ -2089,7 +2089,7 @@ Attach a Bundle to a workspace:
   curl -X POST "https://api.anthropic.com/v1/organizations/claude_tag/bundles/capp_011CZkZjLP1cWxj5EtMmdgbq/targets" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21" \
     -d '{
       "type": "slack_workspace",
@@ -2224,7 +2224,7 @@ An attachment to a channel has conditions under which it applies, such as only w
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/bundles/capp_011CZkZjLP1cWxj5EtMmdgbq/targets/btgt_011CZkZpBv9yQd6wKhAr8MnU1CZkZwPd5fSj8tMxUr3ZcH" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -2333,7 +2333,7 @@ An attachment to a channel has conditions under which it applies, such as only w
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/organizations/claude_tag/bundles/capp_011CZkZjLP1cWxj5EtMmdgbq/targets/btgt_011CZkZpBv9yQd6wKhAr8MnU1CZkZwPd5fSj8tMxUr3ZcH" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 

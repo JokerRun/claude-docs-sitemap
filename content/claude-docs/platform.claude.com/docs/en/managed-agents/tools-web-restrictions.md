@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/tools-web-restrictions
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: cbf90f1097b3b963eb3ca57a91eda037205f57e8949cde69d7e5669c07a38930
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 0a5b4a2d4a54cc184e8c653e14526a7f0d8416baf576bae5874ffdb637e03e21
 ---
 
 ---
@@ -66,7 +66,7 @@ The following example creates an agent that limits `web_search` to two sites and
   ```bash cURL
   curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{

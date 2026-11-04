@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: daa686a2f30bac62d68b19169a6b7f7c98b7f0b99f80ac639442bf23668ead96
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 14d779b28c2d09ce65c5ed32efc55ce9428168f0b6a3fdb8cbf79feee838273b
 ---
 
 ---
@@ -92,7 +92,7 @@ Teruskan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Membuat s
   ```bash cURL
   curl -fsSL https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -F file=@/tmp/rubric.md
   ```
@@ -324,7 +324,7 @@ Contoh berikut membuat [sesi](https://platform.claude.com/docs/id/managed-agents
   # Membuat sesi
   curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     --json '{
       "agent": "'"$AGENT_ID"'",
@@ -336,7 +336,7 @@ Contoh berikut membuat [sesi](https://platform.claude.com/docs/id/managed-agents
   # Agen mulai bekerja saat menerima event
   curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     --json '{
       "events": [
@@ -643,7 +643,7 @@ Anda dapat mendengarkan [stream event](https://platform.claude.com/docs/id/manag
   ```bash cURL
   curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
@@ -728,13 +728,13 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
   # Pemfilteran scope_id memerlukan beta managed-agents
   curl -fsSL "https://api.anthropic.com/v1/files?scope_id=$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
 
   # Unduh file berdasarkan ID dari daftar
   curl -fsSL "https://api.anthropic.com/v1/files/$FILE_ID/content" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -o /tmp/output.txt
   ```

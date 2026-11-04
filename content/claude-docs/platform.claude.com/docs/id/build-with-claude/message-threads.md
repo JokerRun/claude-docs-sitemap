@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/message-threads
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: c5a1a2a7d60eaabecd22fbbcc98ecc5a743bfd2873d9c9a4876c65fd46de7422
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 2f5a75eebb3c7fb4709b32db743b95dc372a4f93d8d7aa13252b699bb0af0993
 ---
 
 ---
@@ -275,7 +275,7 @@ Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran k
   # Giliran 1: kirim seluruh percakapan dan buat thread
   curl -sS --fail-with-body https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: message-threads-2026-08-12" \
     -H "content-type: application/json" \
     -d '{
@@ -291,7 +291,7 @@ Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran k
   # Hilangkan system dan tools: thread sudah menyimpannya.
   curl -sS --fail-with-body https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: message-threads-2026-08-12" \
     -H "content-type: application/json" \
     -d '{

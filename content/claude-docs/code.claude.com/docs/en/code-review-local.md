@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review-local
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 77d4618ed700097dae684be0bd2867cc735aa904ce06e1b022544c58b33b2c5d
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 52ea6f9127e4c3b05aa3725bf3430de9a4bc631c03b0e1f4d14978b825c30695
 ---
 
 > ## Documentation Index
@@ -40,7 +40,7 @@ You can also add flags:
 
 **2. Keep working**
 
-The review runs as a background [subagent](https://code.claude.com/docs/en/sub-agents.md) with its own context window, so it doesn't fill your conversation. The findings arrive in your conversation when the review completes.
+In a terminal session, the review runs as a background [subagent](https://code.claude.com/docs/en/sub-agents.md) with its own context window, so it doesn't fill your conversation. The findings arrive in your conversation when the review completes.
 
 **3. Act on the findings**
 

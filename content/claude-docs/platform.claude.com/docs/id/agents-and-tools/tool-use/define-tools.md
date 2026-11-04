@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: cd0bb42f1ac0a59eb53c2da669e9c6eb4230d0513646d3eab292e3b53c72d341
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 08b2103d6cf4a67cee076fa111087e3ae16a9ffcca67feba2dc4b8a725aab1b5
 ---
 
 ---
@@ -185,7 +185,7 @@ Tambahkan field `input_examples` opsional ke definisi alat Anda dengan array obj
   curl -sS https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -606,7 +606,7 @@ Pada model yang mendukungnya, baris yang disorot adalah satu-satunya perbedaan d
   curl -sS https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5",
       "max_tokens": 1024,

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 41bad35c3c599e61a8c182e1babe7f944cd21fb8a8b8ea4f57b4170af7e30c5e
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 8fc74daebcb241c0b3c82a655e8da75889c65ae14d1e11a2fc3621811ea4128f
 ---
 
 ---
@@ -96,7 +96,7 @@ Start with a simple example using the Messages API. You can provide PDFs to Clau
 3. By a `file_id` from the [Files API](https://platform.claude.com/docs/en/build-with-claude/files)
 
 <Note>
-  On Amazon Bedrock and Claude Models on Google Cloud (Google managed), only base64-encoded sources are currently available. On Microsoft Foundry, the Files API is not supported for deployments hosted on Azure.
+  On Claude Models on Google Cloud (Google managed) and Amazon Bedrock, only base64-encoded sources are available. On Microsoft Foundry, the Files API is not supported for deployments hosted on Azure.
 </Note>
 
 #### Option 1: URL-based PDF document
@@ -108,7 +108,7 @@ The simplest approach is to reference a PDF directly from a URL:
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -403,7 +403,7 @@ If you need to send PDFs from your local system or when a URL isn’t available:
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d @request.json
   ```
 
@@ -716,14 +716,14 @@ For PDFs you’ll use repeatedly, or when you want to avoid encoding overhead, u
   # First, upload your PDF to the Files API
   curl -sS -X POST https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -F "file=@document.pdf"
 
   # Then use the file_id from the upload response in your message
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -1087,7 +1087,7 @@ Cache PDFs with [prompt caching](https://platform.claude.com/docs/en/build-with-
     curl https://api.anthropic.com/v1/messages \
       -H "content-type: application/json" \
       -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
+      -H "anthropic-version: 2026-10-21" \
       -d @-
   ```
 
@@ -1444,7 +1444,7 @@ Use the [Message Batches API](https://platform.claude.com/docs/en/build-with-cla
   curl https://api.anthropic.com/v1/messages/batches \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d @request.json
   ```
 

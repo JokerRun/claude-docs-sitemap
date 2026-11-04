@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/search-results
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 372faad70c97798f2a50d6dd322c595b2672712fa44ccddd22ed5fd189e66b4b
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: c387cebe4b52d936b4a2bf208bd32df0944caa190b0bb451e28c3a80d18842aa
 ---
 
 ---
@@ -43,12 +43,10 @@ featureMetadata:
 
 **Dukungan API**: Penggunaan berbeda menurut produk.
 
-* **Messages API**: Selalu aktif. Kirim blok `search_result` dalam hasil alat atau langsung dalam pesan pengguna.
-* **Managed Agents**: Selalu aktif. Hanya diterima dalam hasil alat, seperti event `user.custom_tool_result`, bukan dalam event `user.message`.
+* **Messages API**: Kirim blok `search_result` dalam hasil alat atau langsung dalam pesan pengguna.
+* **Managed Agents**: Hanya diterima dalam hasil alat, seperti event `user.custom_tool_result`, bukan dalam event `user.message`.
 
 Blok konten hasil pencarian memungkinkan Claude mengutip konten Anda sendiri dengan cara yang sama seperti mengutip hasil pencarian web: setiap sitasi membawa sumber dan judul yang Anda berikan. Gunakan blok ini dalam aplikasi “Retrieval-Augmented Generation” (generasi yang diperkaya pengambilan), atau RAG, di mana Claude perlu mengatribusikan jawaban ke dokumen Anda.
-
-Semua [model aktif](https://platform.claude.com/docs/id/models/overview) mendukung hasil pencarian dengan sitasi, kecuali Claude Haiku 3. Tidak diperlukan header beta: hasil pencarian merupakan bagian dari Messages API standar.
 
 ## Cara kerjanya
 
@@ -184,7 +182,11 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan Anda membangun 
       model="claude-opus-5",
       max_tokens=1024,
       tools=[knowledge_base_tool],
-      tool_choice={"type": "tool", "name": "search_knowledge_base"},
+      tool_choice={
+          "type": "tool",
+          "name": "search_knowledge_base",
+          "disable_parallel_tool_use": True,
+      },
       messages=messages,
   )
 
@@ -279,7 +281,11 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan Anda membangun 
     model: "claude-opus-5",
     max_tokens: 1024,
     tools: [knowledgeBaseTool],
-    tool_choice: { type: "tool", name: "search_knowledge_base" },
+    tool_choice: {
+      type: "tool",
+      name: "search_knowledge_base",
+      disable_parallel_tool_use: true
+    },
     messages
   });
 
@@ -366,7 +372,11 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan Anda membangun 
       Model = Model.ClaudeOpus5,
       MaxTokens = 1024,
       Tools = tools,
-      ToolChoice = new ToolChoiceTool { Name = "search_knowledge_base" },
+      ToolChoice = new ToolChoiceTool
+      {
+          Name = "search_knowledge_base",
+          DisableParallelToolUse = true,
+      },
       Messages = messages,
   });
 
@@ -426,11 +436,16 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan Anda membangun 
   	}
 
   	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:      anthropic.ModelClaudeOpus5,
-  		MaxTokens:  1024,
-  		Tools:      []anthropic.ToolUnionParam{knowledgeBaseTool},
-  		ToolChoice: anthropic.ToolChoiceUnionParam{OfTool: &anthropic.ToolChoiceToolParam{Name: "search_knowledge_base"}},
-  		Messages:   messages,
+  		Model:     anthropic.ModelClaudeOpus5,
+  		MaxTokens: 1024,
+  		Tools:     []anthropic.ToolUnionParam{knowledgeBaseTool},
+  		ToolChoice: anthropic.ToolChoiceUnionParam{
+  			OfTool: &anthropic.ToolChoiceToolParam{
+  				Name:                   "search_knowledge_base",
+  				DisableParallelToolUse: anthropic.Bool(true),
+  			},
+  		},
+  		Messages: messages,
   	})
   	if err != nil {
   		log.Fatal(err)
@@ -539,6 +554,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan Anda membangun 
           .addTool(knowledgeBaseTool)
           .toolChoice(ToolChoice.ofTool(ToolChoiceTool.builder()
               .name("search_knowledge_base")
+              .disableParallelToolUse(true)
               .build()))
           .messages(messages)
           .build();
@@ -672,7 +688,11 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan Anda membangun 
       maxTokens: 1024,
       messages: $messages,
       model: 'claude-opus-5',
-      toolChoice: ['type' => 'tool', 'name' => 'search_knowledge_base'],
+      toolChoice: [
+          'type' => 'tool',
+          'name' => 'search_knowledge_base',
+          'disableParallelToolUse' => true,
+      ],
       tools: [$knowledgeBaseTool],
   );
 
@@ -765,7 +785,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan Anda membangun 
     model: "claude-opus-5",
     max_tokens: 1024,
     tools: [knowledge_base_tool],
-    tool_choice: { type: "tool", name: "search_knowledge_base" },
+    tool_choice: { type: "tool", name: "search_knowledge_base", disable_parallel_tool_use: true },
     messages: messages
   )
 
@@ -814,7 +834,7 @@ Anda juga dapat menyediakan hasil pencarian langsung di pesan pengguna. Ini berg
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -1330,7 +1350,7 @@ Contoh berikut memutar ulang percakapan lengkap. Pesan pengguna pertama membawa 
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -2166,7 +2186,6 @@ Ketika `citations.enabled` ditetapkan ke `true`, Claude melampirkan referensi si
 
 ## Batasan
 
-* Blok konten hasil pencarian tersedia di Claude API, Amazon Bedrock, dan Claude Models on Google Cloud (Google managed).
 * Hanya konten teks yang didukung dalam hasil pencarian (tanpa gambar atau media lainnya).
 * Blok `search_result` hanya dapat muncul di pesan pengguna (termasuk di dalam hasil alat). Pesan asisten dengan hasil pencarian akan ditolak.
 * Ketika [alat pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) diaktifkan dalam permintaan yang sama, sitasi harus diaktifkan pada semua blok `search_result`.
@@ -2203,7 +2222,7 @@ Hasil pencarian tersedia di semua model dan layak untuk retensi data nol dan kes
 
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
-* Ketersediaan: Selalu aktif
+* Ketersediaan: Tersedia
 * Penggunaan: Kirim blok `search_result` dalam hasil alat atau langsung dalam pesan pengguna.
 
 | Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
@@ -2212,7 +2231,7 @@ Hasil pencarian tersedia di semua model dan layak untuk retensi data nol dan kes
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
-* Ketersediaan: Selalu aktif
+* Ketersediaan: Tersedia
 * Penggunaan: Hanya diterima dalam hasil alat, seperti event `user.custom_tool_result`, bukan dalam event `user.message`.
 
 | Status   | Platform cloud                                                                                                     |

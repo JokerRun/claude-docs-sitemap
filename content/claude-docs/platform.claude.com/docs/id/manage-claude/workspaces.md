@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workspaces
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 3fae4cf2abb6eebe51da76f45ffaa87afe12328c38aa821bcd0b7b831ff7acb3
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 29a0b2363e2c1a019386ffabf1796096c59399318f4c594b7f02c945cb19e0ac
 ---
 
 ---
@@ -160,7 +160,7 @@ Membuat workspace:
   ```bash cURL
   curl -X POST "https://api.anthropic.com/v1/organizations/workspaces" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{"name": "Production"}'
   ```
@@ -256,7 +256,7 @@ Mendaftar workspaces:
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/workspaces?limit=10&include_archived=false" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -365,7 +365,7 @@ Mengarsipkan workspace:
   ```bash cURL
   curl -X POST "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -457,7 +457,7 @@ Menambahkan anggota ke workspace:
   ```bash cURL
   curl -X POST "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/members" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
@@ -593,7 +593,7 @@ Memperbarui peran anggota:
   ```bash cURL
   curl -X POST "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/members/user_01WxYzAbCdEfGhJkMnPqRsTu" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{"workspace_role": "workspace_admin"}'
   ```
@@ -726,7 +726,7 @@ Menghapus anggota dari workspace:
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/members/user_01WxYzAbCdEfGhJkMnPqRsTu" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -848,7 +848,7 @@ Beberapa sumber daya dikelola secara berbeda:
 Untuk mencari ID workspace organisasi Anda, panggil endpoint [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list) (teruskan `include_default=true` untuk menyertakan Default Workspace) atau temukan di [Claude Console](https://platform.claude.com/settings/workspaces).
 
 <Note>
-  [Prompt caches](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) juga diisolasi per workspace pada Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Pada Amazon Bedrock dan Claude Models on Google Cloud (Google managed), prompt caches diisolasi per organisasi.
+  [Prompt caches](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) juga diisolasi per workspace pada Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Pada Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, prompt caches diisolasi per organisasi.
 </Note>
 
 ## Mengidentifikasi workspace di balik respons API
@@ -871,7 +871,7 @@ Contoh berikut mengirim permintaan Messages API dan membaca ID workspace dari he
   # -i mencetak header respons, termasuk anthropic-workspace-id, sebelum body
   curl -sS -i https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -1051,7 +1051,7 @@ Lacak penggunaan dan biaya berdasarkan workspace menggunakan [Usage and Cost Ana
   workspace_ids[]=wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ&\
   group_by[]=workspace_id&\
   time_bucket_width=1d" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: analytics-usage-cost-2026-08-24" \
     -H "x-api-key: $ANTHROPIC_API_KEY"
   ```

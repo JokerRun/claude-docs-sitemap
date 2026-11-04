@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: dbb260c4b86837f84378dad41df20fb40eb385c1a279802813a18b893f3801f6
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: a7b8d952d31700011a908636772e912ec0206d5e4dcf5e5b5fba05a3bd52b4a0
 ---
 
 ---
@@ -47,7 +47,7 @@ Lingkungan `self_hosted` berfungsi sebagai antrean kerja. Anda menjalankan **env
 2. Worker Anda mengklaim item kerja dan mengunduh [skill](https://platform.claude.com/docs/id/managed-agents/skills) milik agen serta [memory store](https://platform.claude.com/docs/id/managed-agents/memory) milik sesi.
 3. Claude berjalan di sisi Anthropic dan meminta pemanggilan alat. Worker Anda menjalankan setiap pemanggilan secara lokal dan mengirimkan hasilnya kembali.
 
-Input dan output alat tetap mengalir ke control plane Anthropic, sehingga model dapat menerima hasil dan menentukan apa yang harus dilakukan selanjutnya. Anthropic menyimpan skill dan memory store. Sandbox Anda menyimpan salinannya untuk sesi tersebut. Lihat [Model keamanan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security) untuk batas aliran data selengkapnya.
+Input dan output alat tetap mengalir ke Managed Agents di sisi Anthropic, sehingga model dapat menerima hasil dan menentukan apa yang harus dilakukan selanjutnya. Anthropic menyimpan skill dan memory store. Sandbox Anda menyimpan salinannya untuk sesi tersebut. Untuk mengetahui di mana setiap bagian sesi berjalan, lihat [Apa yang dapat dan tidak dapat dilakukan oleh sandbox](https://platform.claude.com/docs/id/managed-agents/secure-deployment-risks#what-the-sandbox-can-and-cannot-do).
 
 Sandbox yang di-host sendiri mendukung setiap model Claude yang tersedia di Managed Agents. Model dikonfigurasi pada agen, bukan pada lingkungan.
 
@@ -86,7 +86,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
       ```bash cURL
       curl -sS --fail-with-body https://api.anthropic.com/v1/environments \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
         -d '{
@@ -291,7 +291,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
       ```bash cURL
       curl -sS --fail-with-body "https://api.anthropic.com/v1/environments/$ANTHROPIC_ENVIRONMENT_ID/work/stats" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01"
       ```
 
@@ -373,7 +373,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
       # Buat sesi
       curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
         -d '{
@@ -384,7 +384,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
       # Kirim tugas ke sesi: SESSION_ID adalah ID dari respons pembuatan
       curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
         -d '{

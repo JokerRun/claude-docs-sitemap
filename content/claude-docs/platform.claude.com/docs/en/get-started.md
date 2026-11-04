@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: f8f8195e0476ebe5a0d23c57854a2b94bca2a4158851e7dccda63dffb1fcec0d
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: fc5ac59d90d6cc1a4e00257f979dd8b6c02dbf10a7433fff7b95991a132de621
 ---
 
 ---
@@ -36,7 +36,7 @@ description: Make your first API call to Claude and build a simple web search as
         curl https://api.anthropic.com/v1/messages \
           -H "content-type: application/json" \
           -H "x-api-key: $ANTHROPIC_API_KEY" \
-          -H "anthropic-version: 2023-06-01" \
+          -H "anthropic-version: 2026-10-21" \
           -d '{
             "model": "claude-opus-5-5",
             "max_tokens": 1000,

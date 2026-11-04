@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 393827717a0638caa29b3d231b787ecf34afc8bfa5141d0c7e8da6aafe54c3f8
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: c32d90137e2ad6fd459415edb1e43629ca8d1d68f14b88de0d93156bca03d013
 ---
 
 ---
@@ -36,7 +36,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         curl https://api.anthropic.com/v1/messages \
           -H "content-type: application/json" \
           -H "x-api-key: $ANTHROPIC_API_KEY" \
-          -H "anthropic-version: 2023-06-01" \
+          -H "anthropic-version: 2026-10-21" \
           -d '{
             "model": "claude-opus-5-5",
             "max_tokens": 1000,

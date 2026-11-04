@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/message-threads
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: e89e8ca4f16ce31e01199fddba2d8b383a8dde38162f9ad03825fb92b04e3bf0
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 51db4c8d40f43cab965431f3b1adb75285c8ee7e1f0ef43e20c075c0c90e7ca5
 ---
 
 ---
@@ -275,7 +275,7 @@ This example creates a thread on the first turn and continues it on the second. 
   # Turn 1: send the full conversation and create a thread
   curl -sS --fail-with-body https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: message-threads-2026-08-12" \
     -H "content-type: application/json" \
     -d '{
@@ -291,7 +291,7 @@ This example creates a thread on the first turn and continues it on the second. 
   # Leave out system and tools: the thread keeps them.
   curl -sS --fail-with-body https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: message-threads-2026-08-12" \
     -H "content-type: application/json" \
     -d '{

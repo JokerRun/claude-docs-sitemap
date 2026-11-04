@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 36cd00dcaa26c2d3001fe3e2a10403e5fd64800d3b5e1810d48ba836f86f5156
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 5a29618d74486d97ef8aaedf45c6996b06a4a4c245d08259487239c71ca0b2c7
 ---
 
 ---
@@ -47,7 +47,7 @@ Ketika sebuah alat memiliki beberapa versi aktif, hubungan di antaranya bervaria
 * **Berdasarkan model:** `text_editor_20250728` ditujukan untuk model Claude 4 dan yang lebih baru, sedangkan `text_editor_20250124` ditujukan untuk model yang lebih lama. Versi yang Anda gunakan bergantung pada model yang Anda targetkan.
 * **Varian, bukan versi:** `tool_search_tool_regex_20251119` dan `tool_search_tool_bm25_20251119` adalah dua algoritma pencarian yang dirilis bersamaan. Tidak ada yang menggantikan yang lain.
 * **Lama (legacy):** `code_execution_20250522` hanya mendukung Python. `code_execution_20250825` menambahkan Bash dan operasi file.
-* **Penerus:** `computer_toolset_20260801` adalah penerus stabil dari versi beta `computer_20251124` dan `computer_20250124`, yang tetap tersedia pada model yang tercantum untuk versi tersebut di bagian [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions). `browser_toolset_20260801` adalah versi pertama dari alat browser use. Keduanya merupakan [toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets).
+* **Penerus:** `computer_toolset_20260801` adalah penerus stabil dari versi beta `computer_20251124` dan `computer_20250124`, yang tersedia pada model yang tercantum untuk versi tersebut di bagian [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions). `browser_toolset_20260801` adalah versi pertama dari alat browser use. Keduanya merupakan [toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets).
 
 Tipe `mcp_toolset` tidak diberi versi berdasarkan tanggal; pemversiannya dibawa dalam header `anthropic-beta`.
 
@@ -85,7 +85,7 @@ Atur `defer_loading` untuk setiap anggota, jangan pernah pada entri, dan berikan
 * `strict: true` atau `input_examples`.
 * `defer_loading` pada entri, atau anggota yang diaktifkan dengan nilai `defer_loading` yang berbeda (atur untuk setiap anggota dalam `configs`, semuanya dengan nilai yang sama).
 * Pemanggil eksekusi kode dalam `allowed_callers` (tidak ada [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling)).
-* Header beta legacy `fine-grained-tool-streaming-2025-05-14`. Saat Anda melakukan streaming, `input` setiap anggota tiba sebagai satu `input_json_delta` yang lengkap.
+* Header beta `fine-grained-tool-streaming-2025-05-14`. Saat Anda melakukan streaming, `input` setiap anggota tiba sebagai satu `input_json_delta` yang lengkap.
 * `tool_choice` bertipe `tool` yang menyebut toolset atau anggota (gunakan `auto`, `any`, atau `none`).
 * Dua entri dari toolset yang sama, atau alat lain yang membawa nama toolset tersebut: alat bernama `computer` bersama `computer_toolset_20260801`, atau alat bernama `browser` bersama `browser_toolset_20260801`. Kedua toolset dapat dideklarasikan bersama.
 

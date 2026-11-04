@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/task-budgets
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 63b8c3a2f464a4526d523c4316df971951f7bc0c24fe9f40217c660ffaadf9ec
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: ee48f815721009b5b94dcf7b95a530d35350b28f95fc3de2c012338a3974047e
 ---
 
 ---
@@ -52,7 +52,7 @@ Tambahkan `task_budget` ke `output_config` dan sertakan header beta:
   curl https://api.anthropic.com/v1/messages \
     -N \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: task-budgets-2026-03-13" \
     -H "content-type: application/json" \
     -d '{
@@ -530,7 +530,7 @@ Jalankan sampel tugas yang representatif **tanpa** menetapkan `task_budget` dan 
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

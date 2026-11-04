@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/organization-webhooks
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: a8597e7a0e362faa33d040208de3628663d86aaa6adc8a4bbdb69b9e531a5512
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: adfb4957fcd70ee847fd7e02b8f66953c7a0989e99155f5b087524082a8ee19e
 ---
 
 ---
@@ -154,7 +154,7 @@ Kirim header `anthropic-beta: webhooks-2026-10-07` dengan setiap permintaan. SDK
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/webhooks" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: webhooks-2026-10-07"
   ```
 
@@ -254,7 +254,7 @@ Contoh ini membuat endpoint yang menerima kedua jenis event:
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/webhooks" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: webhooks-2026-10-07" \
     -H "content-type: application/json" \
     -d '{

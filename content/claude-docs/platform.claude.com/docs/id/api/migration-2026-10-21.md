@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/migration-2026-10-21
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: df4c44e206decb12c835468d89cfbebdc09bd7dc5a5694573edcc40eedfc1c75
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 1b392a2e1449c94febdccedb1b0d0dec5b3ace97b9efe9acb826fc7cf0a32645
 ---
 
 ---
@@ -12,6 +12,12 @@ description: "Tingkatkan integrasi Claude API dari versi API 2023-06-01 ke 2026-
 ---
 
 Panduan ini mencantumkan perubahan kode untuk berpindah dari versi API `2023-06-01` ke `2026-10-21`. [Langkah-langkah peningkatan](https://platform.claude.com/docs/id/api/migration-2026-10-21#migration-checklist) menjelaskan apa yang harus dilakukan, secara berurutan.
+
+Cara termudah untuk meningkatkan kode Anda
+
+```text
+/claude-api api-version
+```
 
 ## Langkah-langkah peningkatan
 
@@ -39,7 +45,7 @@ Panduan ini mencantumkan perubahan kode untuk berpindah dari versi API `2023-06-
       <Tab title="CLI">
         Tingkatkan CLI `ant` ke versi 2.0.0. Perintah Homebrew dan unduhan rilis tetap sama.
 
-        Go mengharuskan path modul pada versi mayor 2 atau lebih baru diakhiri dengan versi tersebut, sehingga path modul CLI sekarang adalah `github.com/anthropics/anthropic-cli/v2`. Jika Anda memasang dengan `go install`, tambahkan `/v2` ke path:
+        Go mengharuskan path modul pada versi mayor 2 atau lebih baru diakhiri dengan versi tersebut, sehingga path modul CLI sekarang adalah `github.com/anthropics/anthropic-cli/v2`. Jika Anda menginstal dengan `go install`, tambahkan `/v2` ke path:
 
         ```bash
         # Sebelum
@@ -49,7 +55,7 @@ Panduan ini mencantumkan perubahan kode untuk berpindah dari versi API `2023-06-
         go install 'github.com/anthropics/anthropic-cli/v2/cmd/ant@latest'
         ```
 
-        Path lama tetap memasang rilis v1 terbaru, tanpa error atau peringatan.
+        Path lama tetap menginstal rilis v1 terbaru, tanpa error atau peringatan.
       </Tab>
 
       <Tab title="Python">
@@ -59,19 +65,23 @@ Panduan ini mencantumkan perubahan kode untuk berpindah dari versi API `2023-06-
       <Tab title="TypeScript">
         Tingkatkan paket `@anthropic-ai/sdk` ke versi 1.0.0.
 
-        v1 dari `@anthropic-ai/bedrock-sdk`, `@anthropic-ai/vertex-sdk`, `@anthropic-ai/foundry-sdk`, `@anthropic-ai/aws-sdk`, dan `@anthropic-ai/google-cloud-sdk` memerlukan v1 dari `@anthropic-ai/sdk`, dan versi sebelumnya memerlukan versi di bawah 1. Jika Anda menggunakan salah satunya, pindahkan ke v1 dalam peningkatan yang sama. Jika tidak, package manager Anda akan memasang salinan kedua `@anthropic-ai/sdk` yang lebih lama untuknya.
+        v1 dari `@anthropic-ai/bedrock-sdk`, `@anthropic-ai/vertex-sdk`, `@anthropic-ai/foundry-sdk`, `@anthropic-ai/aws-sdk`, dan `@anthropic-ai/google-cloud-sdk` memerlukan v1 dari `@anthropic-ai/sdk`, dan versi-versi sebelumnya memerlukan versi di bawah 1. Jika Anda menggunakan salah satunya, pindahkan ke v1 dalam peningkatan yang sama. Jika tidak, package manager Anda akan menginstal salinan kedua `@anthropic-ai/sdk` yang lebih lama untuknya.
       </Tab>
 
       <Tab title="C#">
         Tingkatkan paket `Anthropic` ke versi 13.0.0.
+
+        Versi 1.0.0 dari `Anthropic.Bedrock`, `Anthropic.Vertex`, `Anthropic.Foundry`, `Anthropic.Aws`, `Anthropic.GoogleCloud`, dan `Anthropic.Mcp` memerlukan versi 13.0.0 dari `Anthropic`. Jika Anda menggunakan salah satunya, pindahkan ke 1.0.0 dalam peningkatan yang sama. Versi sebelumnya masih terinstal di samping 13.0.0, tetapi dapat gagal saat dijalankan.
       </Tab>
 
       <Tab title="Go">
-        Tingkatkan ke versi 2.0.0 dari Go SDK, yang path modulnya adalah `github.com/anthropics/anthropic-sdk-go/v2`. Versi mayor baru dari modul Go memiliki path import baru, jadi ubah setiap import `github.com/anthropics/anthropic-sdk-go`, dan paket-paketnya seperti `github.com/anthropics/anthropic-sdk-go/option`, agar diawali dengan `github.com/anthropics/anthropic-sdk-go/v2`. Lalu jalankan `go get github.com/anthropics/anthropic-sdk-go/v2`.
+        Tingkatkan ke versi 2.0.0 dari Go SDK, yang path modulnya adalah `github.com/anthropics/anthropic-sdk-go/v2`. Versi mayor baru dari modul Go memiliki path impor baru, jadi ubah setiap impor `github.com/anthropics/anthropic-sdk-go`, dan paket-paketnya seperti `github.com/anthropics/anthropic-sdk-go/option`, agar diawali dengan `github.com/anthropics/anthropic-sdk-go/v2`. Kemudian jalankan `go get github.com/anthropics/anthropic-sdk-go/v2`.
       </Tab>
 
       <Tab title="Java">
-        Tingkatkan artifact `com.anthropic:anthropic-java` ke versi 3.0.0.
+        Tingkatkan artefak `com.anthropic:anthropic-java` ke versi 3.0.0.
+
+        Versi 3.0.0 dari `anthropic-java-bedrock`, `anthropic-java-vertex`, `anthropic-java-aws`, `anthropic-java-foundry`, `anthropic-java-google-cloud`, dan `anthropic-java-mcp` dipasangkan dengan `anthropic-java` 3.0.0. Jika Anda menggunakan salah satunya, pindahkan ke 3.0.0 dalam peningkatan yang sama.
       </Tab>
 
       <Tab title="PHP">
@@ -84,14 +94,14 @@ Panduan ini mencantumkan perubahan kode untuk berpindah dari versi API `2023-06-
     </Tabs>
 
     <Warning>
-      Di Amazon Bedrock, `2026-10-21` hanya tersedia untuk model Claude 4.7 dan yang lebih baru. Jika Anda memanggil model yang lebih lama di Bedrock, yang tercantum di [Claude di Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), tetaplah pada versi SDK yang Anda gunakan saat ini, atau, jika Anda mengatur versi API sendiri, tetap kirimkan versi yang Anda kirim saat ini. Untuk memindahkan panggilan tersebut ke `2026-10-21`, alihkan terlebih dahulu ke model Claude 4.7 atau yang lebih baru.
+      Di Amazon Bedrock, `2026-10-21` hanya tersedia untuk model Claude 4.7 dan yang lebih baru. Jika Anda memanggil model lama di Bedrock, yang tercantum dalam [Claude di Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), tetaplah pada versi SDK yang Anda gunakan saat ini, atau, jika Anda mengatur versi API sendiri, tetap kirim versi yang Anda kirim saat ini. Untuk memindahkan panggilan tersebut ke `2026-10-21`, alihkan terlebih dahulu ke model Claude 4.7 atau yang lebih baru.
     </Warning>
 
-    Rilis peningkatan ini bersama dengan perbaikan Anda dari langkah berikutnya.
+    Rilis peningkatan ini bersamaan dengan perbaikan Anda dari langkah berikutnya.
   </Step>
 
   <Step title="Perbarui kode Anda untuk perubahan yang merusak kompatibilitas">
-    Tinjau [perubahan yang merusak kompatibilitas](https://platform.claude.com/docs/id/api/migration-2026-10-21#breaking-changes), dan perbarui kode Anda untuk setiap perubahan yang memengaruhi Anda. Lakukan juga [perubahan kode yang diperlukan oleh versi SDK atau CLI yang baru](https://platform.claude.com/docs/id/api/migration-2026-10-21#sdk-changes).
+    Telusuri [“breaking changes” (perubahan yang merusak kompatibilitas)](https://platform.claude.com/docs/id/api/migration-2026-10-21#breaking-changes), dan perbarui kode Anda untuk setiap perubahan yang memengaruhi Anda. Lakukan juga [perubahan kode yang diperlukan oleh versi SDK atau CLI baru](https://platform.claude.com/docs/id/api/migration-2026-10-21#sdk-changes).
   </Step>
 
   <Step title="Uji terhadap 2026-10-21">
@@ -168,15 +178,15 @@ Jika kode Anda memperlakukan `workspace_id` yang bernilai `null` sebagai Default
 
 Versi SDK dan CLI sebelumnya mengirim `anthropic-version: 2023-06-01` pada setiap permintaan. Versi di bawah [Beralih ke 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade) mengirim `2026-10-21`, termasuk klien Amazon Bedrock dan Google Cloud mereka. Perubahan dalam [Perubahan yang merusak kompatibilitas](https://platform.claude.com/docs/id/api/migration-2026-10-21#breaking-changes) juga berlaku untuk versi tersebut: parameter yang dihapus dan nama field lama juga hilang dari tipe SDK serta dari flag dan output CLI.
 
-### `MessageParam` adalah union dengan satu tipe per peran
+### `MessageParam` adalah union dengan satu tipe untuk setiap peran
 
-Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk setiap peran. Setiap peran kini memiliki tipenya sendiri: `UserMessageParam`, `AssistantMessageParam`, dan `SystemMessageParam`. `BetaMessageParam` dipecah dengan cara yang sama, menjadi `BetaUserMessageParam`, `BetaAssistantMessageParam`, dan `BetaSystemMessageParam`. Permintaan yang dikirim SDK memiliki field dan nilai yang sama seperti sebelumnya.
+Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk semua peran. Setiap peran kini memiliki tipenya sendiri: `UserMessageParam`, `AssistantMessageParam`, dan `SystemMessageParam`. `BetaMessageParam` dipecah dengan cara yang sama, menjadi `BetaUserMessageParam`, `BetaAssistantMessageParam`, dan `BetaSystemMessageParam`. Permintaan yang dikirim SDK memiliki field dan nilai yang sama seperti sebelumnya.
 
 <Tabs exclude="shell">
   <Tab title="Python">
-    Pesan yang ditulis sebagai literal dict, seperti `{"role": "user", "content": "Hello"}`, tidak perlu diubah.
+    Pesan yang ditulis sebagai literal dict, seperti `{"role": "user", "content": "Hello"}`, tidak memerlukan perubahan.
 
-    Di v1, `anthropic.types.MessageParam` adalah satu `TypedDict`. Di v2, ini adalah union dari ketiga tipe, dan `anthropic.types.beta.BetaMessageParam` adalah union dari ketiga tipenya. Kedua nama tersebut masih berfungsi dalam anotasi, seperti `list[MessageParam]`.
+    Di v1, `anthropic.types.MessageParam` adalah satu `TypedDict`. Di v2 ia adalah union dari ketiga tipe tersebut, dan `anthropic.types.beta.BetaMessageParam` adalah union dari ketiga tipenya. Kedua nama tersebut masih berfungsi dalam anotasi, seperti `list[MessageParam]`.
 
     Memanggil salah satu nama tersebut kini memunculkan `TypeError`, dan type checker menandainya. Tulis pesan sebagai dict:
 
@@ -208,15 +218,15 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk setiap peran. Setia
     Dua perubahan lagi hanya berlaku untuk `BetaMessageParam`:
 
     * `clear_at` dan `output_config` adalah key dari `BetaSystemMessageParam`, sehingga pesan user atau assistant tidak dapat memilikinya.
-    * `content` bersifat opsional di `BetaSystemMessageParam`, sehingga pyright melaporkan `message["content"]`. Baca dengan `message.get("content")`, atau periksa terlebih dahulu bahwa `message["role"]` bukan `"system"`.
+    * `content` bersifat opsional di `BetaSystemMessageParam`, sehingga pyright melaporkan `message["content"]`. Bacalah dengan `message.get("content")`, atau periksa terlebih dahulu bahwa `message["role"]` bukan `"system"`.
   </Tab>
 
   <Tab title="TypeScript">
-    `MessageParam` dulunya adalah satu interface. Sekarang menjadi `UserMessageParam | AssistantMessageParam | SystemMessageParam`, dan `BetaMessageParam` adalah union yang sama dari ketiga tipenya. Hanya tipenya yang berubah. Literal pesan yang menyebutkan perannya, seperti `{ role: "user", content: "Hello, Claude" }`, lolos pemeriksaan tipe seperti sebelumnya, sehingga sebagian besar kode tidak perlu diubah.
+    `MessageParam` dahulu adalah satu interface. Sekarang ia adalah `UserMessageParam | AssistantMessageParam | SystemMessageParam`, dan `BetaMessageParam` adalah union yang sama dari ketiga tipenya. Hanya tipenya yang berubah. Literal pesan yang menyebutkan perannya, seperti `{ role: "user", content: "Hello, Claude" }`, lolos pemeriksaan tipe seperti sebelumnya, sehingga sebagian besar kode tidak memerlukan perubahan.
 
     Tipe system berbeda dari dua lainnya. `content`-nya berupa string atau blok teks, ditambah blok `tool_addition` dan `tool_removal` di `beta`, sehingga blok gambar di sana tidak lagi dapat dikompilasi. Di `beta`, hanya tipe ini yang memiliki `clear_at` dan `output_config`, dan `content`-nya bersifat opsional.
 
-    Kode yang menangani pesan dari peran apa pun harus memeriksa `role` sebelum mengganti atau menambahkan blok konten, dan sebelum membaca `clear_at` atau `output_config`:
+    Kode yang menangani pesan dengan peran apa pun harus memeriksa `role` sebelum mengganti atau menambahkan blok konten, dan sebelum membaca `clear_at` atau `output_config`:
 
     ```typescript
     // Sebelum
@@ -240,7 +250,7 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk setiap peran. Setia
 
     Tipe `BetaMessageParam["content"]` juga mencakup `undefined`. Untuk konten pesan user atau assistant, gunakan `BetaMessageContentParam`.
 
-    Interface tidak dapat meng-extend union, dan class tidak dapat mengimplementasikannya. Gunakan type alias, atau sebutkan tipe dari satu peran sebagai gantinya.
+    Interface tidak dapat meng-extend union, dan class tidak dapat mengimplementasikannya. Gunakan type alias, atau sebutkan tipe untuk satu peran saja.
 
     ```typescript
     // Sebelum
@@ -254,7 +264,7 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk setiap peran. Setia
   </Tab>
 
   <Tab title="C#">
-    Di v12, `MessageParam` dan `BetaMessageParam` adalah class yang `Role` dan `Content`-nya Anda atur. Di v13, masing-masing adalah union dari tiga class untuk perannya, dan enum `Role` di `Anthropic.Models.Messages` dan `Anthropic.Models.Beta.Messages` telah dihapus.
+    Di v12, `MessageParam` dan `BetaMessageParam` adalah class yang `Role` dan `Content`-nya Anda atur. Di v13 masing-masing adalah union dari tiga class untuk perannya, dan enum `Role` di `Anthropic.Models.Messages` dan `Anthropic.Models.Beta.Messages` telah dihapus.
 
     Saat Anda membuat pesan, sebutkan class untuk perannya dan hapus `Role`. Setiap class dikonversi ke union secara implisit:
 
@@ -271,10 +281,10 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk setiap peran. Setia
     Class yang menampung `Content` juga berubah:
 
     * `MessageParamContent` sekarang menjadi `MessageContentParam`, dan `BetaMessageParamContent` sekarang menjadi `BetaMessageContentParam`.
-    * Pesan system memiliki class kontennya sendiri. `SystemMessageParamContent` menampung string atau list `TextBlockParam`, dan `BetaSystemMessageParamContent` menampung string atau list `SystemMessageContentBlock`. `List<ContentBlockParam>` atau `List<BetaContentBlockParam>` tidak lagi dikonversi ke class tersebut.
+    * Pesan system memiliki class kontennya sendiri. `SystemMessageParamContent` menampung string atau list `TextBlockParam`, dan `BetaSystemMessageParamContent` menampung string atau list `SystemMessageContentBlock`. `List<ContentBlockParam>` atau `List<BetaContentBlockParam>` tidak lagi dikonversi ke sana.
     * `ClearAt` dan `OutputConfig` hanya ada di `BetaSystemMessageParam`.
 
-    Saat Anda membaca pesan, union masih memiliki `Role` dan `Content`, tetapi Anda tidak dapat mengaturnya, sehingga ekspresi `with` diterapkan pada class untuk peran tersebut. `Role` sekarang menampung `MessageParamRole` atau `BetaMessageParamRole`. `BetaMessageParam.Content` dapat bernilai `null`, karena `Content` bersifat opsional di `BetaSystemMessageParam`.
+    Saat Anda membaca pesan, union tersebut masih memiliki `Role` dan `Content`, tetapi Anda tidak dapat mengaturnya, sehingga ekspresi `with` diterapkan pada class untuk perannya. `Role` sekarang menampung `MessageParamRole` atau `BetaMessageParamRole`. `BetaMessageParam.Content` dapat bernilai `null`, karena `Content` bersifat opsional di `BetaSystemMessageParam`.
 
     ```csharp
     // Sebelum
@@ -288,11 +298,11 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk setiap peran. Setia
   </Tab>
 
   <Tab title="Go">
-    Di v1, `MessageParam` adalah satu struct dengan field `Role` dan `Content`. Di v2, ini adalah union: `OfUser` menampung `*UserMessageParam`, `OfAssistant` menampung `*AssistantMessageParam`, dan `OfSystem` menampung `*SystemMessageParam`. `BetaMessageParam` berubah dengan cara yang sama. SDK mengirim JSON yang sama seperti sebelumnya, kecuali urutan key dalam pesan system beta.
+    Di v1, `MessageParam` adalah satu struct dengan field `Role` dan `Content`. Di v2 ia adalah union: `OfUser` menampung `*UserMessageParam`, `OfAssistant` menampung `*AssistantMessageParam`, dan `OfSystem` menampung `*SystemMessageParam`. `BetaMessageParam` berubah dengan cara yang sama. SDK mengirim JSON yang sama seperti sebelumnya, kecuali urutan key dalam pesan system beta.
 
-    `NewUserMessage`, `NewAssistantMessage`, `NewBetaUserMessage`, dan method `ToParam` dari `Message` dan `BetaMessage` berfungsi seperti sebelumnya, sehingga kode yang membuat pesannya dengan fungsi-fungsi tersebut tidak perlu diubah.
+    `NewUserMessage`, `NewAssistantMessage`, `NewBetaUserMessage`, dan metode `ToParam` dari `Message` dan `BetaMessage` berfungsi seperti sebelumnya, sehingga kode yang membuat pesannya dengan fungsi-fungsi tersebut tidak memerlukan perubahan.
 
-    Literal struct menyebutkan tipe untuk perannya. Hilangkan `Role`, karena setiap tipe melakukan marshal perannya sendiri:
+    Literal struct menyebutkan tipe untuk perannya. Jangan sertakan `Role`, karena setiap tipe melakukan marshal perannya sendiri:
 
     ```go
     // Sebelum
@@ -329,11 +339,11 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk setiap peran. Setia
   </Tab>
 
   <Tab title="Java">
-    Di v2, `MessageParam` adalah satu class dengan `role` dan `content`. Di v3, ini adalah union dari ketiga class, dan `MessageParam.Content` sekarang menjadi `MessageContentParam` tingkat atas. `BetaMessageParam` berubah dengan cara yang sama, dan class-class-nya memiliki nama yang sama dengan awalan `Beta`. JSON yang dikirim SDK sama, kecuali bahwa pesan system beta sekarang memiliki `role` sebelum `content`.
+    Di v2, `MessageParam` adalah satu class dengan `role` dan `content`. Di v3 ia adalah union dari tiga class, dan `MessageParam.Content` sekarang menjadi `MessageContentParam` tingkat atas. `BetaMessageParam` berubah dengan cara yang sama, dan class-classnya memiliki nama yang sama dengan awalan `Beta`. JSON yang dikirim SDK sama, kecuali bahwa pesan system beta sekarang memiliki `role` sebelum `content`.
 
     `addUserMessage`, `addAssistantMessage`, dan `addSystemMessage` dengan `String`, `addMessage` dengan `Message` atau `MessageParam`, serta `Message.toParam()` tidak berubah.
 
-    `MessageParam.builder()` dan `toBuilder()` telah dihapus. Panggil factory method untuk peran tersebut, yaitu `ofUser`, `ofAssistant`, atau `ofSystem`:
+    `MessageParam.builder()` dan `toBuilder()` telah dihapus. Panggil factory method untuk perannya, yaitu `ofUser`, `ofAssistant`, atau `ofSystem`:
 
     ```java
     // Sebelum
@@ -346,7 +356,7 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk setiap peran. Setia
     MessageParam message = MessageParam.ofUser("Hello, Claude");
     ```
 
-    Method yang menerima list blok konten memiliki nama baru pada builder dari `MessageCreateParams`, `StructuredMessageCreateParams`, `MessageCountTokensParams`, dan `BatchCreateParams.Request.Params`:
+    Metode yang menerima list blok konten memiliki nama baru pada builder dari `MessageCreateParams`, `StructuredMessageCreateParams`, `MessageCountTokensParams`, dan `BatchCreateParams.Request.Params`:
 
     | v2                                 | v2 beta                                       | v3                                        |
     | ---------------------------------- | --------------------------------------------- | ----------------------------------------- |
@@ -366,13 +376,13 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk setiap peran. Setia
     builder.addSystemMessageOfBlocks(List.of(textBlock));
     ```
 
-    Saat Anda membaca pesan, `role()` tidak berubah. `content()` mengembalikan `MessageContentParam`, atau `Optional<BetaMessageContentParam>` di beta, di mana pesan system dapat tidak memiliki konten. `_role()`, `_content()`, dan `_additionalProperties()` sekarang berada di class untuk peran tersebut, yang dikembalikan oleh `asUser()`, `asAssistant()`, atau `asSystem()`.
+    Saat Anda membaca pesan, `role()` tidak berubah. `content()` mengembalikan `MessageContentParam`, atau `Optional<BetaMessageContentParam>` di beta, di mana pesan system dapat tidak memiliki konten. `_role()`, `_content()`, dan `_additionalProperties()` sekarang berada pada class untuk perannya, yang dikembalikan oleh `asUser()`, `asAssistant()`, atau `asSystem()`.
   </Tab>
 
   <Tab title="PHP">
-    Class-class berada di `Anthropic\Messages`, dan class beta di `Anthropic\Beta\Messages`. Pesan yang Anda tulis sebagai array tidak berubah, dan tetap memerlukan `'role'`-nya.
+    Class-classnya berada di `Anthropic\Messages`, dan class beta di `Anthropic\Beta\Messages`. Pesan yang Anda tulis sebagai array tidak berubah, dan masih memerlukan `'role'`-nya.
 
-    `MessageParam::with()` dan `BetaMessageParam::with()` tetap ada, dan mengembalikan class yang sesuai dengan `role`. Panggilan dengan named argument tidak perlu diubah. `role` sekarang menjadi parameter pertama, jadi dalam panggilan posisional tukar `content` dan `role`, atau panggil `with()` pada class peran tersebut, yang tidak menerima `role`. Untuk argumen dalam urutan lama, PHP melempar `UnhandledMatchError`, yang tidak diperingatkan oleh PHPStan, atau `TypeError` jika `content` berupa list atau `role` berupa enum case.
+    `MessageParam::with()` dan `BetaMessageParam::with()` tetap ada, dan mengembalikan class yang sesuai dengan `role`. Panggilan dengan argumen bernama tidak memerlukan perubahan. `role` sekarang menjadi parameter pertama, jadi dalam panggilan posisional tukar `content` dan `role`, atau panggil `with()` pada class peran tersebut, yang tidak menerima `role`. Untuk argumen dengan urutan lama, PHP melempar `UnhandledMatchError`, yang tidak diperingatkan oleh PHPStan, atau `TypeError` jika `content` berupa list atau `role` berupa enum case.
 
     ```php
     // Sebelum
@@ -382,7 +392,7 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk setiap peran. Setia
     UserMessageParam::with('Hello, Claude');
     ```
 
-    Tidak ada objek yang merupakan `MessageParam` lagi: `instanceof MessageParam` bernilai false, dan PHP melempar `TypeError` di mana tipe parameter atau tipe return menyebutkannya. Sebutkan ketiga class sebagai gantinya:
+    Tidak ada lagi objek yang merupakan `MessageParam`: `instanceof MessageParam` bernilai false, dan PHP melempar `TypeError` di mana tipe parameter atau return menyebutkannya. Sebutkan ketiga class tersebut sebagai gantinya:
 
     ```php
     // Sebelum
@@ -392,9 +402,9 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk setiap peran. Setia
     function send(UserMessageParam|AssistantMessageParam|SystemMessageParam $message): void {}
     ```
 
-    * `MessageParam::fromArray()` dan `(new MessageParam)->withContent()` melempar “Call to undefined method”. Panggil keduanya pada class peran tersebut, yang mengatur `role` sendiri.
-    * `withRole()` sekarang hanya menerima string: PHP melempar `TypeError` untuk case `Role`. Untuk memberikan peran lain pada pesan, buat class dari peran tersebut.
-    * `clearAt` dan `outputConfig` hanya ada di `BetaSystemMessageParam`, dan `BetaMessageParam::with()` mengabaikannya untuk dua peran lainnya. Enum `BetaMessageParam\ClearAt` sekarang menjadi `BetaSystemMessageParam\ClearAt`.
+    * `MessageParam::fromArray()` dan `(new MessageParam())->withContent()` melempar “Call to undefined method”. Panggil keduanya pada class peran tersebut, yang mengatur `role` sendiri.
+    * `withRole()` sekarang hanya menerima string: PHP melempar `TypeError` untuk case `Role`. Untuk memberi pesan peran lain, buat class peran tersebut.
+    * `clearAt` dan `outputConfig` hanya ada di `BetaSystemMessageParam`, dan `BetaMessageParam::with()` membuangnya untuk dua peran lainnya. Enum `BetaMessageParam\ClearAt` sekarang menjadi `BetaSystemMessageParam\ClearAt`.
     * `MessageParam\Content` sekarang menjadi `MessageContentParam`, dan `BetaMessageParam\Content` sekarang menjadi `BetaMessageContentParam`. Tipe PHPStan-nya juga menggunakan nama baru: `ContentShape` sekarang menjadi `MessageContentParamShape`.
     * Array yang `'role'`-nya berupa case `Role` masih berfungsi, tetapi PHPStan sekarang melaporkannya. Tulis string-nya.
   </Tab>
@@ -406,10 +416,10 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk setiap peran. Setia
 
     `Anthropic::MessageParam.new(role: :user, content: "Hello, Claude")` masih berfungsi, dan mengembalikan instance dari class untuk peran tersebut. Anda juga dapat membuat class tersebut sendiri, tanpa `role:`, sebagai `Anthropic::UserMessageParam.new(content: "Hello, Claude")`. Empat hal berubah untuk kode yang membuat atau memeriksa instance ini:
 
-    * `MessageParam.new` hanya menerima keyword, jadi teruskan hash sebagai `MessageParam.new(**hash)`. Ini memunculkan `ArgumentError` ketika `role:` tidak ada atau bukan salah satu dari ketiga peran.
+    * `MessageParam.new` hanya menerima keyword, jadi teruskan hash sebagai `MessageParam.new(**hash)`. Ia memunculkan `ArgumentError` ketika `role:` tidak ada atau bukan salah satu dari ketiga peran tersebut.
     * `message.is_a?(Anthropic::MessageParam)` bernilai `false`. Cabang `when Anthropic::MessageParam` dan `messages.grep(Anthropic::MessageParam)` masih cocok.
-    * Instance yang dibuat dengan `.new` tidak memiliki `:role` dalam `to_h`-nya, dan `message[:role]` bernilai `nil`. `message.role` masih mengembalikan peran tersebut.
-    * Hanya `BetaSystemMessageParam` yang memiliki `clear_at` dan `output_config`. Pada pesan user atau assistant, keduanya dulu mengembalikan `nil`, dan sekarang memunculkan `NoMethodError`.
+    * Instance yang dibuat dengan `.new` tidak memiliki `:role` dalam `to_h`-nya, dan `message[:role]` bernilai `nil`. `message.role` masih mengembalikan perannya.
+    * Hanya `BetaSystemMessageParam` yang memiliki `clear_at` dan `output_config`. Pada pesan user atau assistant, keduanya dahulu mengembalikan `nil`, dan sekarang memunculkan `NoMethodError`.
 
     ```ruby
     # Sebelum
@@ -429,7 +439,7 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk setiap peran. Setia
     | `BetaMessageParam::Content` | `BetaMessageContentParam`, atau `BetaSystemMessageParam::Content` untuk pesan system |
     | `BetaMessageParam::ClearAt` | `BetaSystemMessageParam::ClearAt`                                                    |
 
-    Jika Anda melakukan pemeriksaan tipe dengan Sorbet, `MessageParam::OrHash` telah dihapus, dan `Anthropic::MessageParam` sebagai tipe tidak lagi menerima instance. Gunakan `Anthropic::MessageParam::Variants` untuk ketiga class, yang masing-masing memiliki `OrHash`-nya sendiri. Di RBS, nilai bertipe `Anthropic::MessageParam` tidak memiliki `role` atau `content`. Gunakan alias `Anthropic::Models::message_param`, yang dulunya merupakan bentuk hash dari pesan dan sekarang menjadi union dari ketiga class. Nama beta-nya adalah `BetaMessageParam::Variants` dan `Anthropic::Models::Beta::beta_message_param`.
+    Jika Anda melakukan pemeriksaan tipe dengan Sorbet, `MessageParam::OrHash` telah dihapus, dan `Anthropic::MessageParam` sebagai tipe tidak lagi menerima instance. Gunakan `Anthropic::MessageParam::Variants` untuk ketiga class tersebut, yang masing-masing memiliki `OrHash` sendiri. Di RBS, nilai bertipe `Anthropic::MessageParam` tidak memiliki `role` atau `content`. Gunakan alias `Anthropic::Models::message_param`, yang dahulu merupakan bentuk hash dari pesan dan sekarang merupakan union dari ketiga class tersebut. Nama beta-nya adalah `BetaMessageParam::Variants` dan `Anthropic::Models::Beta::beta_message_param`.
   </Tab>
 </Tabs>
 
@@ -623,13 +633,13 @@ Ini memengaruhi SDK C#, Go, Java, PHP, dan Ruby serta satu flag CLI. Pada versi 
 
 ### Compaction sisi klien dihapus dari tool runner
 
-Ini memengaruhi SDK TypeScript dan Ruby. “Compaction” (pemadatan) sisi klien di tool runner telah dihapus dan digantikan oleh compaction sisi server, yang merangkum percakapan di dalam API alih-alih dengan permintaan tambahan dari klien.
+Ini memengaruhi SDK TypeScript dan Ruby. “Client-side compaction” (pemadatan di sisi klien) di tool runner dihapus dan digantikan dengan pemadatan di sisi server, yang merangkum percakapan di dalam API alih-alih dengan permintaan tambahan dari klien.
 
 <Tabs exclude="shell, python, csharp, go, java, php">
   <Tab title="TypeScript">
-    Opsi `compactionControl` dan modul `@anthropic-ai/sdk/lib/tools/CompactionControl` telah dihapus. Opsi ini berhenti berfungsi di v0.129.0, di mana meneruskannya akan melempar `AnthropicError`. Opsi ini tidak ada di tipe params, sehingga TypeScript melaporkannya sebagai properti yang tidak dikenal.
+    Opsi `compactionControl` dan modul `@anthropic-ai/sdk/lib/tools/CompactionControl` telah dihapus. Opsi tersebut berhenti berfungsi di v0.129.0, di mana meneruskannya akan melempar `AnthropicError`. Opsi ini tidak ada dalam tipe parameter tool runner, sehingga TypeScript melaporkannya sebagai properti yang tidak dikenal.
 
-    Untuk tetap melakukan compaction secara otomatis pada ambang batas token:
+    Untuk tetap melakukan pemadatan secara otomatis pada ambang batas token:
 
     ```typescript
     // Sebelum
@@ -648,13 +658,13 @@ Ini memengaruhi SDK TypeScript dan Ruby. “Compaction” (pemadatan) sisi klien
     });
     ```
 
-    Untuk memutuskan sendiri kapan percakapan dipadatkan, panggil [`runner.compactBeforeNextTurn()`](https://github.com/anthropics/anthropic-sdk-typescript/blob/main/helpers.md#compaction).
+    Untuk menentukan sendiri kapan percakapan dipadatkan, panggil [`runner.compactBeforeNextTurn()`](https://github.com/anthropics/anthropic-sdk-typescript/blob/main/helpers.md#compaction).
   </Tab>
 
   <Tab title="Ruby">
-    Opsi `compaction_control:` telah dihapus. Opsi ini berhenti berfungsi di v1.74.0, di mana meneruskannya akan memunculkan `ArgumentError`.
+    Opsi `compaction_control:` telah dihapus. Opsi tersebut berhenti berfungsi di v1.74.0, di mana meneruskannya akan memunculkan `ArgumentError`.
 
-    Untuk tetap melakukan compaction secara otomatis pada ambang batas token:
+    Untuk tetap melakukan pemadatan secara otomatis pada ambang batas token:
 
     ```ruby
     # Sebelum
@@ -673,7 +683,7 @@ Ini memengaruhi SDK TypeScript dan Ruby. “Compaction” (pemadatan) sisi klien
     )
     ```
 
-    Untuk memutuskan sendiri kapan percakapan dipadatkan, panggil [`#compact_before_next_turn`](https://github.com/anthropics/anthropic-sdk-ruby/blob/main/helpers.md#compact_before_next_turn---compact-the-conversation) pada runner.
+    Untuk menentukan sendiri kapan percakapan dipadatkan, panggil [`#compact_before_next_turn`](https://github.com/anthropics/anthropic-sdk-ruby/blob/main/helpers.md#compact_before_next_turn---compact-the-conversation) pada runner.
   </Tab>
 </Tabs>
 
@@ -681,133 +691,7 @@ Ambang batas pemicu harus setidaknya 50.000 token. Lihat [compaction](https://pl
 
 ### Text Completions dihapus
 
-API Text Completions lama dihapus dari SDK TypeScript, Go, Java, dan Ruby serta dari CLI. Model dan fitur yang lebih baru tidak mendukungnya. Gunakan [Messages API](https://platform.claude.com/docs/id/api/messages) sebagai gantinya.
-
-<Tabs exclude="shell:cURL, python, csharp, php">
-  <Tab title="CLI">
-    Perintah `ant completions create` telah dihapus.
-
-    ```bash
-    # Sebelum
-    ant completions create \
-      --model "$MODEL" \
-      --max-tokens-to-sample 1024 \
-      --prompt $'\n\nHuman: Hello, Claude\n\nAssistant:'
-
-    # Sesudah
-    ant messages create \
-      --model "$MODEL" \
-      --max-tokens 1024 \
-      --message '{role: user, content: "Hello, Claude"}'
-    ```
-
-    Teks balasan berpindah dari field `completion` ke `content.0.text`, sehingga skrip yang meneruskan `--transform completion` kini meneruskan `--transform content.0.text`.
-
-    `ant messages create` juga menerima `--stream`, tetapi event-nya memiliki bentuk lain: teks tiba di `delta.text` dari event `content_block_delta`, sehingga `--transform content.0.text` tidak berlaku untuk stream.
-  </Tab>
-
-  <Tab title="TypeScript">
-    `client.completions` telah dihapus, bersama dengan kelas resource `Completions` dan tipe `Completion`, `CompletionCreateParams`, `CompletionCreateParamsNonStreaming`, dan `CompletionCreateParamsStreaming`. `AnthropicBedrock` juga tidak lagi memiliki properti `completions`. Konstanta `HUMAN_PROMPT` dan `AI_PROMPT`, yang hanya digunakan oleh prompt Text Completions, juga telah dihapus, baik sebagai export maupun sebagai properti statis dari klien.
-
-    ```typescript
-    // Sebelum
-    const completion = await client.completions.create({
-      model,
-      max_tokens_to_sample: 1024,
-      prompt: "\n\nHuman: Hello, Claude\n\nAssistant:"
-    });
-    console.log(completion.completion);
-
-    // Sesudah
-    const message = await client.messages.create({
-      model,
-      max_tokens: 1024,
-      messages: [{ role: "user", content: "Hello, Claude" }]
-    });
-    console.log(message.content);
-    ```
-
-    `client.completions.create({ ..., stream: true })` menjadi `client.messages.create({ ..., stream: true })` atau `client.messages.stream({ ... })`.
-  </Tab>
-
-  <Tab title="Go">
-    `client.Completions` telah dihapus, bersama dengan `CompletionService`, `NewCompletionService`, `CompletionNewParams`, dan `Completion`. `aws.Client` juga tidak lagi memiliki field `Completions`. `bedrock.DefaultEndpoints` tidak lagi mencantumkan `/v1/complete`.
-
-    ```go
-    // Sebelum
-    completion, err := client.Completions.New(ctx, anthropic.CompletionNewParams{
-    	Model:             model,
-    	MaxTokensToSample: 1024,
-    	Prompt:            "\n\nHuman: Hello, Claude\n\nAssistant:",
-    })
-    fmt.Println(completion.Completion)
-
-    // Sesudah
-    message, err := client.Messages.New(ctx, anthropic.MessageNewParams{
-    	Model:     model,
-    	MaxTokens: 1024,
-    	Messages: []anthropic.MessageParam{
-    		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
-    	},
-    })
-    fmt.Println(message.Content[0].Text)
-    ```
-
-    `client.Completions.NewStreaming` menjadi `client.Messages.NewStreaming`.
-  </Tab>
-
-  <Tab title="Java">
-    `client.completions()` telah dihapus dari `AnthropicClient` dan `AnthropicClientAsync`, bersama dengan `CompletionService`, `CompletionServiceAsync`, dan paket `com.anthropic.models.completions` (`CompletionCreateParams` dan `Completion`).
-
-    ```java
-    // Sebelum
-    CompletionCreateParams params = CompletionCreateParams.builder()
-        .model(model)
-        .maxTokensToSample(1024)
-        .prompt("\n\nHuman: Hello, Claude\n\nAssistant:")
-        .build();
-
-    System.out.println(client.completions().create(params).completion());
-
-    // Sesudah
-    MessageCreateParams params = MessageCreateParams.builder()
-        .model(model)
-        .maxTokens(1024)
-        .addUserMessage("Hello, Claude")
-        .build();
-
-    client.messages().create(params).content().stream()
-        .flatMap(contentBlock -> contentBlock.text().stream())
-        .forEach(textBlock -> System.out.println(textBlock.text()));
-    ```
-
-    `client.completions().createStreaming` menjadi `client.messages().createStreaming`.
-  </Tab>
-
-  <Tab title="Ruby">
-    `client.completions` telah dihapus, bersama dengan `Anthropic::Resources::Completions`, `Anthropic::CompletionCreateParams`, dan `Anthropic::Completion`. `Anthropic::BedrockClient` juga tidak lagi memiliki reader `completions`. Pada `Anthropic::BedrockMantleClient` dan `Anthropic::GoogleCloudClient`, di mana `completions` memunculkan `NotImplementedError`, metode tersebut tidak lagi ada.
-
-    ```ruby
-    # Sebelum
-    completion = client.completions.create(
-      model: model,
-      max_tokens_to_sample: 1024,
-      prompt: "\n\nHuman: Hello, Claude\n\nAssistant:"
-    )
-    puts(completion.completion)
-
-    # Sesudah
-    message = client.messages.create(
-      model: model,
-      max_tokens: 1024,
-      messages: [{role: "user", content: "Hello, Claude"}]
-    )
-    puts(message.content)
-    ```
-
-    `client.completions.create_streaming` menjadi `client.messages.stream`.
-  </Tab>
-</Tabs>
+Text Completions API lama dihapus dari SDK TypeScript, Go, Java, dan Ruby serta dari CLI. Model dan fitur yang lebih baru tidak mendukungnya. Gunakan [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) sebagai gantinya.
 
 ### `betas` dihapus dari metode Models non-beta
 
@@ -849,7 +733,7 @@ Metode Models non-beta tidak lagi menerima `betas` (csharp, go: `Betas`; java: `
   </Tab>
 
   <Tab title="C#">
-    `ModelRetrieveParams` dan `ModelListParams` di `Anthropic.Models.Models` tidak lagi memiliki properti `Betas`. Metode pada `client.Beta.Models` menerima kelas dengan nama yang sama di `Anthropic.Models.Beta.Models`.
+    `ModelRetrieveParams` dan `ModelListParams` di `Anthropic.Models.Models` tidak lagi memiliki properti `Betas`. Metode pada `client.Beta.Models` menerima class dengan nama yang sama di `Anthropic.Models.Beta.Models`.
 
     ```csharp
     // Sebelum
@@ -881,20 +765,24 @@ Metode Models non-beta tidak lagi menerima `betas` (csharp, go: `Betas`; java: `
   </Tab>
 
   <Tab title="Java">
-    `ModelRetrieveParams` dan `ModelListParams` di `com.anthropic.models.models` tidak lagi memiliki `betas()`, dan builder-nya tidak lagi memiliki `betas` dan `addBeta`. Metode pada `client.beta().models()` menerima kelas dengan nama yang sama di `com.anthropic.models.beta.models`.
+    `ModelRetrieveParams` dan `ModelListParams` di `com.anthropic.models.models` tidak lagi memiliki `betas()`, dan builder-nya tidak lagi memiliki `betas` dan `addBeta`. Metode pada `client.beta().models()` menerima class dengan nama yang sama di `com.anthropic.models.beta.models`.
 
     ```java
     // Sebelum
     import com.anthropic.models.models.ModelListPage;
     import com.anthropic.models.models.ModelListParams;
 
-    ModelListPage page = client.models().list(ModelListParams.builder().addBeta(beta).build());
+    ModelListPage page = client.models().list(ModelListParams.builder()
+        .addBeta(beta)
+        .build());
 
     // Sesudah
     import com.anthropic.models.beta.models.ModelListPage;
     import com.anthropic.models.beta.models.ModelListParams;
 
-    ModelListPage page = client.beta().models().list(ModelListParams.builder().addBeta(beta).build());
+    ModelListPage page = client.beta().models().list(ModelListParams.builder()
+        .addBeta(beta)
+        .build());
     ```
   </Tab>
 
@@ -929,7 +817,7 @@ Metode Models non-beta tidak lagi menerima `betas` (csharp, go: `Betas`; java: `
 
 ### Kunci API dikirim sebagai `Authorization: Bearer`
 
-SDK dan CLI mengirim kunci API Anda sebagai `Authorization: Bearer <key>` alih-alih di header `X-Api-Key`, jadi ubah proxy atau gateway apa pun yang membaca atau mengatur `X-Api-Key` agar menggunakan `Authorization`, atau [kirim sendiri kunci di `X-Api-Key`](https://platform.claude.com/docs/id/api/migration-2026-10-21#sdk-proxy-x-api-key). Claude API menerima kunci di salah satu header tersebut, sehingga program yang berkomunikasi langsung dengan API tidak memerlukan perubahan.
+SDK dan CLI mengirim kunci API Anda sebagai `Authorization: Bearer <key>` alih-alih di header `X-Api-Key`, jadi ubah proxy atau gateway apa pun yang membaca atau mengatur `X-Api-Key` agar menggunakan `Authorization`, atau [kirim kunci di `X-Api-Key` sendiri](https://platform.claude.com/docs/id/api/migration-2026-10-21#sdk-proxy-x-api-key). Ubah juga kode di program Anda sendiri yang membaca `X-Api-Key`, seperti middleware, filter log, atau test stub. Claude API menerima kunci di salah satu header tersebut.
 
 ```text wrap
 # Before
@@ -943,7 +831,7 @@ Authorization: Bearer <key>
   <Tab title="CLI">
     Ini berlaku untuk kunci di `ANTHROPIC_API_KEY` dan kunci yang di-pipe ke `--api-key-stdin`.
 
-    Dengan `--debug`, log permintaan kini menampilkan `Authorization: Bearer <REDACTED>` di tempat sebelumnya menampilkan `X-Api-Key: <REDACTED>`.
+    Dengan `--debug`, log permintaan sekarang menampilkan `Authorization: Bearer <REDACTED>` di tempat yang sebelumnya menampilkan `X-Api-Key: <REDACTED>`.
   </Tab>
 
   <Tab title="Python">
@@ -956,14 +844,12 @@ Authorization: Bearer <key>
     `Authorization` adalah header yang sudah digunakan oleh opsi `authToken`.
 
     Ini berlaku untuk opsi `apiKey`, variabel lingkungan `ANTHROPIC_API_KEY`, serta `apiKey` dan `ANTHROPIC_AWS_API_KEY` di `@anthropic-ai/aws-sdk`. `apiKey` di `@anthropic-ai/foundry-sdk` masih dikirim sebagai `X-Api-Key`, dan `apiKey` di `@anthropic-ai/bedrock-sdk` sudah merupakan bearer token.
-
-    Middleware atau `fetch` kustom yang membaca kunci dari header permintaan `x-api-key` perlu membaca `authorization` sebagai gantinya, di mana kunci mengikuti `Bearer `.
   </Tab>
 
   <Tab title="C#">
     `Authorization` adalah header yang sudah digunakan oleh `AuthToken`.
 
-    Ini berlaku untuk `ApiKey` pada `AnthropicClient` dan `ClientOptions` serta untuk variabel lingkungan `ANTHROPIC_API_KEY`. Pada rilis `Anthropic.Aws` yang bergantung pada v13, ini juga berlaku untuk `ApiKey` di `AwsClientOptions` dan untuk `ANTHROPIC_AWS_API_KEY`. `AnthropicFoundryApiKeyCredentials` masih mengirim kuncinya sebagai `x-api-key`, dan `ApiKey` di `MantleAwsClientOptions` sudah merupakan bearer token.
+    Ini berlaku untuk `ApiKey` pada `AnthropicClient` dan `ClientOptions` serta untuk variabel lingkungan `ANTHROPIC_API_KEY`. Dalam rilis `Anthropic.Aws` yang bergantung pada v13, ini juga berlaku untuk `ApiKey` di `AwsClientOptions` dan untuk `ANTHROPIC_AWS_API_KEY`. `AnthropicFoundryApiKeyCredentials` masih mengirim kuncinya sebagai `x-api-key`, dan `ApiKey` di `MantleAwsClientOptions` sudah merupakan bearer token.
   </Tab>
 
   <Tab title="Go">
@@ -974,8 +860,6 @@ Authorization: Bearer <key>
     `Authorization` adalah header yang sudah digunakan oleh `authToken`.
 
     Ini berlaku untuk `apiKey` pada builder `AnthropicOkHttpClient`, `AnthropicOkHttpClientAsync`, dan `AnthropicBackend`, variabel lingkungan `ANTHROPIC_API_KEY`, dan system property `anthropic.apiKey`. `apiKey` pada builder `FoundryBackend` masih dikirim sebagai `x-api-key`. `apiKey` pada builder `AwsBackend`, `BedrockBackend`, dan `BedrockMantleBackend` sudah merupakan bearer token.
-
-    Interceptor kini melihat kunci di `Authorization` alih-alih `X-Api-Key`.
   </Tab>
 
   <Tab title="PHP">
@@ -989,7 +873,7 @@ Authorization: Bearer <key>
 
     Ini berlaku untuk argumen `api_key:` dan variabel lingkungan `ANTHROPIC_API_KEY` dari `Anthropic::Client`, serta untuk `api_key:` dan `ANTHROPIC_AWS_API_KEY` dari `Anthropic::AWSClient`. `Anthropic::BedrockMantleClient` sudah mengirim bearer token.
 
-    SDK membuang `Authorization` ketika mengikuti redirect ke origin lain, termasuk redirect dari `http` ke `https` pada host yang sama. Kunci kini juga dibuang dalam kasus tersebut.
+    SDK membuang `Authorization` ketika mengikuti redirect ke origin lain, termasuk redirect dari `http` ke `https` pada host yang sama. Kunci sekarang juga dibuang di sana.
   </Tab>
 </Tabs>
 
@@ -1114,7 +998,7 @@ Authorization: Bearer <key>
 
 Ini memengaruhi SDK Python, TypeScript, Go, PHP, dan Ruby.
 
-Jika Anda menghapus `X-Api-Key` agar permintaan hanya mengirim auth token, hapus kode tersebut alih-alih mengubahnya, karena menghapus `Authorization` akan menghapus token. [Klien menyimpan satu kredensial](https://platform.claude.com/docs/id/api/migration-2026-10-21#sdk-one-credential), jadi pastikan kredensial tersebut adalah token: jika tidak ada yang diteruskan dalam kode dan `ANTHROPIC_API_KEY` serta `ANTHROPIC_AUTH_TOKEN` keduanya diatur, klien menggunakan kunci.
+Jika Anda menghapus `X-Api-Key` agar permintaan hanya mengirim token autentikasi, hapus kode tersebut alih-alih mengubahnya, karena menghapus `Authorization` akan menghapus token. [Klien menyimpan satu kredensial](https://platform.claude.com/docs/id/api/migration-2026-10-21#sdk-one-credential), jadi pastikan kredensial tersebut adalah token: jika tidak ada yang diteruskan dalam kode dan `ANTHROPIC_API_KEY` serta `ANTHROPIC_AUTH_TOKEN` keduanya diatur, klien menggunakan kunci.
 
 <Tabs exclude="shell, csharp, java">
   <Tab title="Python">
@@ -1154,16 +1038,16 @@ Jika Anda menghapus `X-Api-Key` agar permintaan hanya mengirim auth token, hapus
 
 ### Klien menyimpan satu kredensial
 
-Kunci API dan auth token kini berbagi header, sehingga klien SDK menyimpan satu kredensial. Jika tidak ada yang diteruskan dalam kode, klien mengikuti urutan [prioritas kredensial](https://platform.claude.com/docs/id/manage-claude/wif-reference#credential-precedence).
+Kunci API dan token autentikasi sekarang berbagi satu header, sehingga klien SDK menyimpan satu kredensial. Jika tidak ada yang diteruskan dalam kode, klien mengikuti urutan [prioritas kredensial](https://platform.claude.com/docs/id/manage-claude/wif-reference#credential-precedence).
 
 <Tabs exclude="shell">
   <Tab title="Python">
-    v1 mengirim kunci API dan auth token sekaligus ketika klien memiliki keduanya, masing-masing di header-nya sendiri. Kredensial adalah salah satu dari `api_key`, `auth_token`, `credentials`, `config`, atau `profile`.
+    v1 mengirim kunci API dan token autentikasi ketika klien memiliki keduanya, masing-masing di header-nya sendiri. Kredensialnya adalah salah satu dari `api_key`, `auth_token`, `credentials`, `config`, atau `profile`.
 
-    * **Teruskan paling banyak satu.** Dua atau lebih di konstruktor, atau dalam satu panggilan `copy()` atau `with_options()`, memunculkan `ValueError`. `None` tidak dihitung. v1 memunculkan `TypeError`, dan hanya untuk dua dari `credentials`, `config`, dan `profile`.
+    * **Teruskan paling banyak satu.** Dua atau lebih di constructor, atau dalam satu panggilan `copy()` atau `with_options()`, memunculkan `ValueError`. `None` tidak dihitung. v1 memunculkan `TypeError`, dan hanya untuk dua dari `credentials`, `config`, dan `profile`.
     * **Yang Anda teruskan adalah satu-satunya.** Seperti di v1, klien tidak mencari kredensial lain di lingkungan atau di disk.
-    * **Jika tidak ada yang diteruskan, hanya yang pertama dari berikut ini yang diatur yang digunakan:** `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, profil yang dinamai oleh `ANTHROPIC_PROFILE`, variabel workload identity federation, profil aktif di disk (yang dinamai oleh file `active_config`, jika tidak maka `default`). Ketika dua yang pertama keduanya diatur, klien mencatat peringatan sekali. v1 menggunakan profil aktif sebelum variabel federation ketika `ANTHROPIC_CONFIG_DIR` diatur atau file `active_config` ada; atur `ANTHROPIC_PROFILE` untuk tetap menggunakannya.
-    * **`copy()` dan `with_options()` menggantikan.** Kredensial yang Anda teruskan menggantikan milik klien sendiri, apa pun jenis keduanya. Base URL dan header yang berasal dari config atau profil kredensial lama ikut hilang bersamanya, dan milik kredensial baru yang digunakan. Base URL yang Anda teruskan tetap dipertahankan.
+    * **Jika tidak ada yang diteruskan, hanya yang pertama dari berikut ini yang diatur yang digunakan:** `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, profil yang disebutkan oleh `ANTHROPIC_PROFILE`, variabel workload identity federation, profil aktif di disk (yang disebutkan oleh file `active_config`, jika tidak maka `default`). Ketika dua yang pertama keduanya diatur, klien mencatat peringatan satu kali. v1 menggunakan profil aktif sebelum variabel federation ketika `ANTHROPIC_CONFIG_DIR` diatur atau file `active_config` ada; atur `ANTHROPIC_PROFILE` untuk tetap menggunakannya.
+    * **`copy()` dan `with_options()` menggantikan.** Kredensial yang Anda teruskan menggantikan kredensial milik klien, apa pun jenis keduanya. Base URL dan header yang berasal dari config atau profil kredensial lama ikut terbuang, dan milik kredensial baru yang digunakan. Base URL yang Anda teruskan tetap ada.
 
     ```python
     client = Anthropic(api_key=key, auth_token=token)
@@ -1172,92 +1056,92 @@ Kunci API dan auth token kini berbagi header, sehingga klien SDK menyimpan satu 
     # Sesudahnya:  memunculkan `ValueError`
     ```
 
-    Klien platform mempertahankan aturan mereka sendiri. `AnthropicAWS` menerima `auth_token` di samping `api_key` tanpa error, dan mengirim kunci.
+    Klien platform tetap memiliki aturannya sendiri. `AnthropicAWS` menerima `auth_token` di samping `api_key` tanpa error, dan mengirim kuncinya.
 
     Docstring dari `Anthropic.__init__` dan `Anthropic.copy` di [`_client.py`](https://github.com/anthropics/anthropic-sdk-python/blob/main/src/anthropic/_client.py) berisi detailnya.
 
-    Jika Anda mengandalkan pengiriman keduanya, misalnya token untuk gateway dan kunci untuk API di belakangnya, teruskan token sebagai `auth_token` dan atur `X-Api-Key` di `default_headers`. Minta gateway menghapus header `Authorization`-nya sebelum meneruskan permintaan. Claude API mengharapkan satu kredensial per permintaan.
+    Jika Anda mengandalkan pengiriman keduanya, misalnya token untuk gateway dan kunci untuk API di belakangnya, teruskan token sebagai `auth_token` dan atur `X-Api-Key` di `default_headers`. Minta gateway menghapus header `Authorization`-nya sebelum meneruskan permintaan. Claude API mengharapkan satu kredensial untuk setiap permintaan.
   </Tab>
 
   <Tab title="TypeScript">
-    Di v0, klien yang memiliki kunci API dan auth token mengirim keduanya, masing-masing di header-nya sendiri. Kredensial adalah salah satu dari `apiKey`, `authToken`, `credentials`, `config`, atau `profile`.
+    Di v0, klien yang memiliki kunci API dan token autentikasi mengirim keduanya, masing-masing di header-nya sendiri. Kredensialnya adalah salah satu dari `apiKey`, `authToken`, `credentials`, `config`, atau `profile`.
 
     * **Teruskan paling banyak satu.** Dua atau lebih di `new Anthropic()`, atau dalam satu panggilan `withOptions()`, melempar `TypeError`. `null` dan `undefined` tidak dihitung.
     * **Yang Anda teruskan adalah satu-satunya.** Klien tidak mencari kredensial lain di lingkungan atau di disk.
-    * **Jika tidak ada yang diteruskan, yang pertama dari berikut ini yang digunakan:** `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, profil yang dinamai oleh `ANTHROPIC_PROFILE`, variabel workload identity federation, profil aktif di disk (yang dinamai oleh file `active_config`, jika tidak maka `default`). Ketika dua yang pertama keduanya diatur, klien mencatat peringatan sekali. Di v0, profil aktif didahulukan sebelum variabel federation. `ANTHROPIC_PROFILE` yang menamai profil yang tidak ada dilewati di v0, dan kini permintaan pertama melempar `AnthropicError`. `loadConfig()` tanpa argumen mengikuti urutan yang sama dan melempar error yang sama.
-    * **`withOptions` menggantikan.** Kredensial yang Anda teruskan menggantikan milik klien yang Anda salin, sehingga `client.withOptions({ authToken })` tidak lagi memerlukan `apiKey: null` di sampingnya.
-    * **Klien platform hanya menerima kredensial platformnya.** Klien AWS, Bedrock, dan Foundry serta `AnthropicVertex` melempar `AnthropicError` untuk opsi kredensial yang tidak mereka gunakan untuk autentikasi, seperti yang sudah dilakukan `AnthropicGoogleCloud`. Pada klien AWS dan Bedrock, `apiKey: null` kini menghapus kunci, sehingga klien menandatangani dengan kredensial AWS. `AnthropicBedrock` menyimpan kuncinya di `client.apiKey`, sedangkan v0 menyimpannya di `client.authToken`.
+    * **Jika tidak ada yang diteruskan, yang pertama dari berikut ini yang digunakan:** `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, profil yang disebutkan oleh `ANTHROPIC_PROFILE`, variabel workload identity federation, profil aktif di disk (yang disebutkan oleh file `active_config`, jika tidak maka `default`). Ketika dua yang pertama keduanya diatur, klien mencatat peringatan satu kali. Di v0, profil aktif didahulukan sebelum variabel federation. `ANTHROPIC_PROFILE` yang menyebutkan profil yang tidak ada dilewati di v0, dan sekarang permintaan pertama melempar `AnthropicError`. `loadConfig()` tanpa argumen mengikuti urutan yang sama dan melempar error yang sama.
+    * **`withOptions` menggantikan.** Kredensial yang Anda teruskan menggantikan kredensial milik klien yang Anda salin, sehingga `client.withOptions({ authToken })` tidak lagi memerlukan `apiKey: null` di sampingnya.
+    * **Klien platform hanya menerima kredensial platformnya.** Klien AWS, Bedrock, dan Foundry serta `AnthropicVertex` melempar `AnthropicError` untuk opsi kredensial yang tidak mereka gunakan untuk autentikasi, seperti yang sudah dilakukan `AnthropicGoogleCloud`. Pada klien AWS dan Bedrock, `apiKey: null` sekarang menghapus kunci, sehingga klien menandatangani dengan kredensial AWS. `AnthropicBedrock` menyimpan kuncinya di `client.apiKey`, sedangkan v0 menyimpannya di `client.authToken`.
 
     ```typescript
-    // Sebelumnya: mengirim kunci API dan mengabaikan `credentials`
+    // Sebelum: mengirim kunci API dan mengabaikan `credentials`
     const client = new Anthropic({ apiKey, credentials });
 
-    // Sesudahnya: baris di atas melempar TypeError
+    // Sesudah: baris sebelumnya melempar TypeError
     const client = new Anthropic({ credentials });
     ```
 
-    Komentar dokumentasi pada [`ClientOptions`](https://github.com/anthropics/anthropic-sdk-typescript/blob/main/src/client.ts) menjelaskan perilaku setiap opsi, dan komentar dokumentasi pada konstruktor masing-masing klien platform tersebut mencantumkan opsi yang ditolaknya.
+    Komentar dokumentasi pada `ClientOptions` di [`client.ts`](https://github.com/anthropics/anthropic-sdk-typescript/blob/main/src/client.ts) menjelaskan perilaku setiap opsi, dan komentar dokumentasi pada constructor setiap klien platform tersebut mencantumkan opsi yang ditolaknya.
 
-    Jika Anda mengandalkan pengiriman keduanya, misalnya token untuk gateway dan kunci untuk API di belakangnya, atur `X-Api-Key` di `defaultHeaders` dan pertahankan `authToken`. Minta gateway menghapus header `Authorization`-nya sebelum meneruskan permintaan. Claude API mengharapkan satu kredensial per permintaan.
+    Jika Anda mengandalkan pengiriman keduanya, misalnya token untuk gateway dan kunci untuk API di belakangnya, atur `X-Api-Key` di `defaultHeaders` dan pertahankan `authToken`. Minta gateway menghapus header `Authorization`-nya sebelum meneruskan permintaan. Claude API mengharapkan satu kredensial untuk setiap permintaan.
   </Tab>
 
   <Tab title="C#">
-    Di v12, klien yang memiliki kunci API dan auth token mengirim keduanya, masing-masing di header-nya sendiri. Kredensial adalah salah satu dari `ApiKey`, `AuthToken`, atau `ClientOptions.Credentials`.
+    Di v12, klien yang memiliki kunci API dan token autentikasi mengirim keduanya, masing-masing di header-nya sendiri. Kredensialnya adalah salah satu dari `ApiKey`, `AuthToken`, atau `ClientOptions.Credentials`.
 
-    * **Meneruskan dua adalah error.** Mengatur yang kedua melempar `ArgumentException`. `null` tidak dihitung, jadi untuk menukar kredensial di `ClientOptions` yang Anda buat sendiri, atur yang lama ke `null` terlebih dahulu.
-    * **Meneruskan satu akan menggunakannya dan mengabaikan lingkungan.** Tidak ada variabel lingkungan kredensial atau profil di disk yang dibaca. Dengan cara yang sama, `AnthropicCredentials.Resolve(profile: "name")` kini mengembalikan kredensial profil tersebut ketika `ANTHROPIC_API_KEY` atau `ANTHROPIC_AUTH_TOKEN` diatur.
-    * **Tidak meneruskan apa pun akan menggunakan kecocokan pertama di lingkungan:** `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, `ANTHROPIC_PROFILE`, variabel workload identity federation, lalu profil aktif di disk. `ANTHROPIC_API_KEY` atau `ANTHROPIC_AUTH_TOKEN` yang kosong dianggap tidak diatur. Ketika dua yang pertama keduanya diatur, peringatan dikirim ke stderr sekali. Klien mencari saat pertama kali digunakan, sehingga `ANTHROPIC_PROFILE` yang tidak ada kini melempar dari permintaan pertama alih-alih dari konstruktor.
-    * **`WithOptions` menggantikan.** Kredensial yang Anda teruskan di modifier menggantikan milik klien, apa pun jenisnya, sehingga `AuthToken = token` tidak lagi memerlukan `ApiKey = null` di sampingnya. Jika tidak ada yang diteruskan, salinan mempertahankan kredensial, `BaseUrl`, dan `ExtraHeaders` milik klien, bahkan ketika modifier mengembalikan `ClientOptions` baru.
+    * **Meneruskan dua merupakan error.** Mengatur yang kedua melempar `ArgumentException`. `null` tidak dihitung, jadi untuk menukar kredensial di `ClientOptions` yang Anda buat sendiri, atur yang lama ke `null` terlebih dahulu.
+    * **Meneruskan satu akan menggunakannya dan mengabaikan lingkungan.** Tidak ada variabel lingkungan kredensial atau profil di disk yang dibaca. Dengan cara yang sama, `AnthropicCredentials.Resolve(profile: "name")` sekarang mengembalikan kredensial profil tersebut ketika `ANTHROPIC_API_KEY` atau `ANTHROPIC_AUTH_TOKEN` diatur.
+    * **Tidak meneruskan apa pun akan menggunakan kecocokan pertama di lingkungan:** `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, `ANTHROPIC_PROFILE`, variabel workload identity federation, lalu profil aktif di disk. `ANTHROPIC_API_KEY` atau `ANTHROPIC_AUTH_TOKEN` yang kosong dianggap tidak diatur. Ketika dua yang pertama keduanya diatur, peringatan dikirim ke stderr satu kali. Klien melakukan pencarian saat pertama kali digunakan, sehingga `ANTHROPIC_PROFILE` yang tidak ada sekarang melempar dari permintaan pertama alih-alih dari constructor.
+    * **`WithOptions` menggantikan.** Kredensial yang Anda teruskan di modifier menggantikan kredensial milik klien, apa pun jenisnya, sehingga `AuthToken = token` tidak lagi memerlukan `ApiKey = null` di sampingnya. Jika tidak ada yang diteruskan, salinan mempertahankan kredensial, `BaseUrl`, dan `ExtraHeaders` milik klien, bahkan ketika modifier mengembalikan `ClientOptions` baru.
 
     ```csharp
-    // Sebelumnya: keduanya dikirim, masing-masing dalam header-nya sendiri
+    // Sebelumnya: keduanya dikirim, masing-masing dalam header tersendiri
     AnthropicClient client = new() { ApiKey = apiKey, AuthToken = token };
 
-    // Sesudahnya: baris di atas melempar ArgumentException
+    // Sesudahnya: baris sebelumnya melempar ArgumentException
     AnthropicClient client = new() { AuthToken = token };
     ```
 
     Dokumentasi XML pada ketiga properti [`ClientOptions`](https://github.com/anthropics/anthropic-sdk-csharp/blob/main/src/Anthropic/Core/ClientOptions.cs) tersebut berisi detailnya.
 
-    Klien platform cloud mempertahankan kredensial yang digunakan saat dibuat. Klien Bedrock, Bedrock Mantle, Foundry, Google Cloud, dan AWS serta `AnthropicVertexClient` memutuskan cara autentikasi saat Anda membuatnya, dan sebagian besar menggunakan header `Authorization` untuk itu. Rilis paket-paket ini yang bergantung pada v13 mengabaikan `ApiKey` atau `AuthToken` yang Anda atur melalui `WithOptions`. Untuk menggunakan kunci lain dengan `AnthropicAwsClient`, buat klien baru dengan `ApiKey` di `AwsClientOptions`.
+    Klien platform cloud mempertahankan kredensial yang digunakan saat dibuat. Klien Bedrock, Bedrock Mantle, Foundry, Google Cloud, dan AWS serta `AnthropicVertexClient` menentukan cara autentikasi saat Anda membuatnya, dan sebagian besar menggunakan header `Authorization` untuk itu. Rilis paket-paket ini yang bergantung pada v13 mengabaikan `ApiKey` atau `AuthToken` yang Anda atur melalui `WithOptions`. Untuk menggunakan kunci lain dengan `AnthropicAwsClient`, buat klien baru dengan `ApiKey` di `AwsClientOptions`.
 
-    Jika Anda mengandalkan pengiriman keduanya, misalnya token untuk gateway dan kunci untuk API di belakangnya, atur `X-Api-Key` dengan `ExtraHeaders` dan pertahankan `AuthToken`. Minta gateway menghapus header `Authorization`-nya sebelum meneruskan permintaan. Claude API mengharapkan satu kredensial per permintaan.
+    Jika Anda mengandalkan pengiriman keduanya, misalnya token untuk gateway dan kunci untuk API di belakangnya, atur `X-Api-Key` dengan `ExtraHeaders` dan pertahankan `AuthToken`. Minta gateway menghapus header `Authorization`-nya sebelum meneruskan permintaan. Claude API mengharapkan satu kredensial untuk setiap permintaan.
   </Tab>
 
   <Tab title="Go">
-    Di v1, klien yang memiliki kunci API dan auth token mengirim keduanya, masing-masing di header-nya sendiri. Kredensial berasal dari `option.WithAPIKey`, `option.WithAuthToken`, `option.WithConfig`, `option.WithProfile`, atau `option.WithFederationTokenProvider`.
+    Di v1, klien yang memiliki kunci API dan token autentikasi mengirim keduanya, masing-masing di header-nya sendiri. Kredensialnya berasal dari `option.WithAPIKey`, `option.WithAuthToken`, `option.WithConfig`, `option.WithProfile`, atau `option.WithFederationTokenProvider`.
 
-    * **Dua di antaranya yang diteruskan ke `anthropic.NewClient` adalah error.** `NewClient` tidak mengembalikan error, sehingga setiap permintaan yang dibuat klien gagal dengan error tersebut. `NewClient` sudah menerapkan `anthropic.DefaultClientOptions()`, jadi jangan teruskan hasilnya juga: kredensial yang ditemukannya di lingkungan kemudian dihitung sebagai kredensial yang Anda teruskan.
-    * **Salah satunya digunakan apa adanya.** Tidak ada kredensial yang dibaca dari lingkungan atau dari profil di disk. Di v1, `ANTHROPIC_API_KEY` dan `ANTHROPIC_AUTH_TOKEN` mengalahkan tiga yang terakhir.
-    * **Jika tidak ada satu pun, yang pertama dari berikut ini yang diatur yang digunakan,** dalam urutan yang sama seperti v1: `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, `ANTHROPIC_PROFILE`, variabel workload identity federation, profil aktif di disk. Ketika dua yang pertama keduanya diatur, SDK mencatat peringatan sekali.
-    * **Salah satunya pada permintaan menggantikan kredensial klien untuk permintaan tersebut,** sehingga `option.WithAuthToken` tidak lagi memerlukan `option.WithHeaderDel("X-Api-Key")` di sampingnya.
+    * **Dua di antaranya yang diteruskan ke `anthropic.NewClient` merupakan error.** `NewClient` tidak mengembalikan error, sehingga setiap permintaan yang dibuat klien gagal dengan error tersebut. `NewClient` sudah menerapkan `anthropic.DefaultClientOptions()`, jadi jangan teruskan hasilnya juga: kredensial yang ditemukannya di lingkungan kemudian dihitung sebagai kredensial yang Anda teruskan.
+    * **Satu di antaranya digunakan apa adanya.** Tidak ada kredensial yang dibaca dari lingkungan atau dari profil di disk. Di v1, `ANTHROPIC_API_KEY` dan `ANTHROPIC_AUTH_TOKEN` didahulukan atas tiga yang terakhir.
+    * **Jika tidak ada satu pun, yang pertama dari berikut ini yang diatur akan digunakan,** dalam urutan yang sama seperti v1: `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, `ANTHROPIC_PROFILE`, variabel workload identity federation, profil aktif di disk. Ketika dua yang pertama keduanya diatur, SDK mencatat peringatan satu kali.
+    * **Satu di antaranya pada sebuah permintaan menggantikan kredensial klien untuk permintaan tersebut,** sehingga `option.WithAuthToken` tidak lagi memerlukan `option.WithHeaderDel("X-Api-Key")` di sampingnya.
 
     ```go
-    // Sebelumnya: kunci API dikirim dan peringatan dicatat di log
+    // Sebelumnya: kunci API dikirim dan sebuah peringatan dicatat ke log
     client := anthropic.NewClient(
     	option.WithAPIKey(apiKey),
     	option.WithProfile("work"),
     )
 
-    // Sesudahnya: setiap permintaan dari klien di atas gagal, jadi teruskan yang Anda inginkan
+    // Sesudahnya: setiap permintaan dari klien sebelumnya gagal, jadi teruskan kredensial yang Anda inginkan
     client := anthropic.NewClient(option.WithAPIKey(apiKey))
     ```
 
-    Peringatan yang dicatat v1 telah dihapus, sehingga `option.WithConfigQuiet`, yang menekannya, kini melakukan hal yang sama dengan `option.WithConfig` dan sudah deprecated.
+    Peringatan yang dicatat v1 telah dihapus, sehingga `option.WithConfigQuiet`, yang menekannya, sekarang melakukan hal yang sama dengan `option.WithConfig` dan sudah deprecated.
 
     Komentar dokumentasi pada `anthropic.NewClient` dan `anthropic.DefaultClientOptions` di [`client.go`](https://github.com/anthropics/anthropic-sdk-go/blob/main/client.go) berisi detailnya.
 
-    Jika Anda mengandalkan pengiriman keduanya, misalnya token untuk gateway dan kunci untuk API di belakangnya, atur `X-Api-Key` dengan `option.WithHeader` dan pertahankan `option.WithAuthToken`. Minta gateway menghapus header `Authorization`-nya sebelum meneruskan permintaan. Claude API mengharapkan satu kredensial per permintaan.
+    Jika Anda mengandalkan pengiriman keduanya, misalnya token untuk gateway dan kunci untuk API di belakangnya, atur `X-Api-Key` dengan `option.WithHeader` dan pertahankan `option.WithAuthToken`. Minta gateway menghapus header `Authorization`-nya sebelum meneruskan permintaan. Claude API mengharapkan satu kredensial untuk setiap permintaan.
 
-    `ANTHROPIC_CUSTOM_HEADERS` dan `ANTHROPIC_WEBHOOK_SIGNING_KEY` kini berlaku untuk setiap klien yang dibuat oleh `anthropic.NewClient`. Di v1, keduanya hanya dibaca ketika baik lingkungan maupun profil di disk tidak menyimpan kredensial.
+    `ANTHROPIC_CUSTOM_HEADERS` dan `ANTHROPIC_WEBHOOK_SIGNING_KEY` sekarang berlaku untuk setiap klien yang dibuat oleh `anthropic.NewClient`. Di v1, keduanya hanya dibaca ketika baik lingkungan maupun profil di disk tidak menyimpan kredensial.
   </Tab>
 
   <Tab title="Java">
-    Di v2, klien yang memiliki kunci API dan auth token mengirim keduanya, masing-masing di header-nya sendiri. Kredensial adalah salah satu dari `apiKey`, `authToken`, atau `configurationProvider` pada builder `AnthropicOkHttpClient`, `AnthropicOkHttpClientAsync`, dan `AnthropicBackend`.
+    Di v2, klien yang memiliki kunci API dan token autentikasi mengirim keduanya, masing-masing di header-nya sendiri. Kredensialnya adalah salah satu dari `apiKey`, `authToken`, atau `configurationProvider` pada builder `AnthropicOkHttpClient`, `AnthropicOkHttpClientAsync`, dan `AnthropicBackend`.
 
     * **Atur paling banyak satu.** Dengan dua pada satu builder, `build()` melempar `IllegalStateException` yang menyebutkan keduanya. `null` atau `Optional` kosong tidak dihitung.
-    * **Yang Anda atur adalah satu-satunya.** `fromEnv()`, yang dipanggil sebelum atau sesudahnya, tidak mengambil kredensial dari lingkungan atau dari profil di disk. Di v2, kunci atau token yang ditemukan `fromEnv()` dapat ikut dikirim, atau dikirim sebagai gantinya.
-    * **Jika tidak ada yang diatur, `fromEnv()` menggunakan yang pertama dari berikut ini yang ditemukannya:** `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, `ANTHROPIC_PROFILE`, variabel workload identity federation, profil aktif di disk. Ketika dua yang pertama keduanya diatur, peringatan dikirim ke `System.err` sekali. System property `anthropic.apiKey` dan `anthropic.authToken` dihitung sebagai lingkungan. Kunci atau token yang kosong, di variabel atau system property, dianggap tidak diatur. Di v2, `fromEnv()` menggunakan nilai kosong sebagai kunci atau token.
+    * **Yang Anda atur adalah satu-satunya.** `fromEnv()`, yang dipanggil sebelum atau sesudahnya, tidak mengambil kredensial dari lingkungan atau dari profil di disk. Di v2, kunci atau token yang ditemukan `fromEnv()` dapat dikirim juga, atau sebagai gantinya.
+    * **Jika tidak ada yang diatur, `fromEnv()` menggunakan yang pertama dari berikut ini yang ditemukannya:** `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, `ANTHROPIC_PROFILE`, variabel workload identity federation, profil aktif di disk. Ketika dua yang pertama keduanya diatur, peringatan dikirim ke `System.err` satu kali. System property `anthropic.apiKey` dan `anthropic.authToken` dihitung sebagai lingkungan. Kunci atau token yang kosong, dalam variabel atau system property, dianggap tidak diatur. Di v2, `fromEnv()` menggunakan nilai kosong sebagai kunci atau token.
 
     ```java
     // Sebelumnya: keduanya dikirim. Di v3, build() melempar IllegalStateException
@@ -1283,15 +1167,15 @@ Kunci API dan auth token kini berbagi header, sehingga klien SDK menyimpan satu 
         .build();
     ```
 
-    Minta gateway menghapus header `Authorization`-nya sebelum meneruskan permintaan. Claude API mengharapkan satu kredensial per permintaan.
+    Minta gateway menghapus header `Authorization`-nya sebelum meneruskan permintaan. Claude API mengharapkan satu kredensial untuk setiap permintaan.
   </Tab>
 
   <Tab title="PHP">
-    Versi sebelumnya mengirim kunci API dan auth token sekaligus ketika klien memiliki keduanya, masing-masing di header-nya sendiri. `Anthropic\Client` menerima satu kredensial, dari `apiKey`, `authToken`, atau `credentials`:
+    Versi sebelumnya mengirim kunci API dan token autentikasi ketika klien memiliki keduanya, masing-masing di header-nya sendiri. `Anthropic\Client` menerima satu kredensial, dari `apiKey`, `authToken`, atau `credentials`:
 
     * Meneruskan lebih dari satu di antaranya melempar `\InvalidArgumentException`. Hanya `null` yang dianggap tidak diteruskan. String kosong dianggap diteruskan, sehingga `new Client(apiKey: '')` tidak mengirim kredensial.
     * Meneruskan satu akan menggunakannya, dan tidak ada kredensial yang dibaca dari lingkungan atau dari profil di disk. Dengan `ANTHROPIC_API_KEY` diatur, `new Client(authToken: $token)` mengirim token. Versi sebelumnya mengirim kunci dari lingkungan bersamanya.
-    * Tidak meneruskan apa pun akan menggunakan yang pertama dari berikut ini yang diatur: `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, profil yang dinamai oleh `ANTHROPIC_PROFILE`, variabel workload identity federation, profil aktif di disk (yang dinamai oleh file `active_config`, jika tidak maka `default`). Versi sebelumnya menggunakan profil aktif sebelum variabel federation, dan tidak menggunakan profil apa pun ketika tidak ada file `active_config`. Versi tersebut juga melewati `ANTHROPIC_PROFILE` yang menamai profil yang tidak ada atau tidak valid. Untuk kasus itu, `new Client()` kini melempar `Anthropic\Core\Exceptions\AnthropicException`. Dengan `ANTHROPIC_API_KEY` dan `ANTHROPIC_AUTH_TOKEN` keduanya diatur, klien mengirim kunci dan properti `authToken`-nya kosong. Klien pertama yang dibuat dengan cara itu juga menulis peringatan dengan `error_log()`, sekali per proses, yang pada web server berarti sekali per permintaan: `Anthropic: ANTHROPIC_API_KEY and ANTHROPIC_AUTH_TOKEN are both set. Using ANTHROPIC_API_KEY.` Untuk menghentikannya, hapus pengaturan variabel yang tidak Anda gunakan.
+    * Tidak meneruskan apa pun akan menggunakan yang pertama dari berikut ini yang diatur: `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, profil yang disebutkan oleh `ANTHROPIC_PROFILE`, variabel workload identity federation, profil aktif di disk (yang disebutkan oleh file `active_config`, jika tidak maka `default`). Versi sebelumnya menggunakan profil aktif sebelum variabel federation, dan tidak menggunakan profil ketika tidak ada file `active_config`. Versi sebelumnya juga melewati `ANTHROPIC_PROFILE` yang menyebutkan profil yang tidak ada atau tidak valid. Untuk hal itu, `new Client()` sekarang melempar `Anthropic\Core\Exceptions\AnthropicException`. Dengan `ANTHROPIC_API_KEY` dan `ANTHROPIC_AUTH_TOKEN` keduanya diatur, klien mengirim kunci dan properti `authToken`-nya kosong. Klien pertama yang dibuat dengan cara itu juga menulis peringatan dengan `error_log()`, satu kali untuk setiap proses, yang pada web server berarti satu kali untuk setiap permintaan: `Anthropic: ANTHROPIC_API_KEY and ANTHROPIC_AUTH_TOKEN are both set. Using ANTHROPIC_API_KEY.` Untuk menghentikannya, hapus pengaturan variabel yang tidak Anda gunakan.
 
     ```php
     // Sebelumnya: mengirim kunci sebagai X-Api-Key dan token sebagai Authorization.
@@ -1299,20 +1183,20 @@ Kunci API dan auth token kini berbagi header, sehingga klien SDK menyimpan satu 
     $client = new Client(apiKey: $key, authToken: $token);
     ```
 
-    Jika Anda mengandalkan pengiriman keduanya, misalnya token untuk gateway dan kunci untuk API di belakangnya, teruskan token sebagai `authToken` dan tambahkan `X-Api-Key` di middleware seperti yang ada di bawah [Jika proxy atau gateway membaca `X-Api-Key`](https://platform.claude.com/docs/id/api/migration-2026-10-21#sdk-proxy-x-api-key), tanpa panggilan `withoutHeader`. Minta gateway menghapus header `Authorization`-nya sebelum meneruskan permintaan. Claude API mengharapkan satu kredensial per permintaan.
+    Jika Anda mengandalkan pengiriman keduanya, misalnya token untuk gateway dan kunci untuk API di belakangnya, teruskan token sebagai `authToken` dan tambahkan `X-Api-Key` dalam middleware seperti yang ada di bawah [Jika proxy atau gateway membaca `X-Api-Key`](https://platform.claude.com/docs/id/api/migration-2026-10-21#sdk-proxy-x-api-key), tanpa panggilan `withoutHeader`. Minta gateway menghapus header `Authorization`-nya sebelum meneruskan permintaan. Claude API mengharapkan satu kredensial untuk setiap permintaan.
   </Tab>
 
   <Tab title="Ruby">
-    Argumen kredensial dari `Anthropic::Client.new` adalah `api_key:`, `auth_token:`, `credentials:`, dan `config:`. Argumen `nil` dianggap tidak diteruskan. Klien platform mempertahankan aturan mereka sendiri.
+    Argumen kredensial dari `Anthropic::Client.new` adalah `api_key:`, `auth_token:`, `credentials:`, dan `config:`. Argumen `nil` dianggap tidak diteruskan. Klien platform tetap memiliki aturannya sendiri.
 
-    * **Dua atau lebih diteruskan:** `Anthropic::Client.new` memunculkan `ArgumentError`. Versi sebelumnya hanya memunculkan error untuk `credentials:` dengan `config:`, dan selain itu mengirim kunci jika ada, lalu token.
+    * **Dua atau lebih diteruskan:** `Anthropic::Client.new` memunculkan `ArgumentError`. Versi sebelumnya hanya memunculkan error untuk `credentials:` bersama `config:`, dan selain itu mengirim kunci jika ada, atau token jika tidak.
     * **Satu diteruskan:** Klien menggunakannya, dan tidak beralih ke kredensial dari lingkungan atau dari profil di disk.
-    * **Tidak ada yang diteruskan:** Klien menggunakan yang pertama dari berikut ini yang ditemukannya: `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, `ANTHROPIC_PROFILE`, variabel workload identity federation, profil aktif di disk. Urutannya tidak berubah, tetapi dengan `ANTHROPIC_API_KEY` dan `ANTHROPIC_AUTH_TOKEN` keduanya diatur, `client.auth_token` kini bernilai `nil`. `ANTHROPIC_API_KEY` atau `ANTHROPIC_AUTH_TOKEN` yang kosong kini dianggap tidak diatur, sedangkan versi sebelumnya membiarkan `ANTHROPIC_API_KEY` yang kosong menyembunyikan token dan semua yang ada setelahnya.
+    * **Tidak ada yang diteruskan:** Klien menggunakan yang pertama dari berikut ini yang ditemukannya: `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, `ANTHROPIC_PROFILE`, variabel workload identity federation, profil aktif di disk. Urutannya tidak berubah, tetapi dengan `ANTHROPIC_API_KEY` dan `ANTHROPIC_AUTH_TOKEN` keduanya diatur, `client.auth_token` sekarang bernilai `nil`. `ANTHROPIC_API_KEY` atau `ANTHROPIC_AUTH_TOKEN` yang kosong sekarang dianggap tidak diatur, sedangkan versi sebelumnya membiarkan `ANTHROPIC_API_KEY` yang kosong menyembunyikan token dan semua yang ada setelahnya.
 
-    Ketika tidak ada kredensial yang diteruskan dan `ANTHROPIC_API_KEY` serta `ANTHROPIC_AUTH_TOKEN` keduanya diatur, SDK juga memberi peringatan sekali per proses, pada standard error melalui `Kernel#warn`: `Anthropic: ANTHROPIC_API_KEY and ANTHROPIC_AUTH_TOKEN are both set. Using ANTHROPIC_API_KEY.` Hapus pengaturan variabel yang tidak Anda gunakan untuk membungkamnya.
+    Ketika tidak ada kredensial yang diteruskan dan `ANTHROPIC_API_KEY` serta `ANTHROPIC_AUTH_TOKEN` keduanya diatur, SDK juga memberi peringatan satu kali untuk setiap proses, pada standard error melalui `Kernel#warn`: `Anthropic: ANTHROPIC_API_KEY and ANTHROPIC_AUTH_TOKEN are both set. Using ANTHROPIC_API_KEY.` Hapus pengaturan variabel yang tidak Anda gunakan untuk membungkamnya.
 
     ```ruby
-    # Sebelumnya: mengirim kunci dan mengabaikan token.
+    # Sebelumnya: kunci dikirim dan token diabaikan.
     # Sesudahnya: ArgumentError, "Pass at most one of `api_key:`, `auth_token:`, `credentials:`, or `config:`. Received `api_key:`, `auth_token:`."
     Anthropic::Client.new(api_key: api_key, auth_token: auth_token)
 
@@ -1328,7 +1212,7 @@ Setiap perubahan ini memengaruhi satu SDK atau CLI.
 
 <Tabs exclude="shell:cURL, python, typescript">
   <Tab title="CLI">
-    **`--api-key` dan `--auth-token` dihapus.** `ant` tidak lagi menerima kunci API atau token autentikasi sebagai nilai flag, karena nilai pada baris perintah terlihat di riwayat shell dan daftar proses. Kedua flag telah mencetak peringatan deprecation sejak v1.27.0. Perintah yang masih meneruskan salah satunya akan berhenti dengan `flag provided but not defined`.
+    **`--api-key` dan `--auth-token` dihapus.** `ant` tidak lagi menerima kunci API atau token autentikasi sebagai nilai flag, karena nilai di baris perintah terlihat dalam riwayat shell dan daftar proses. Kedua flag telah mencetak peringatan deprecation sejak v1.27.0. Perintah yang masih meneruskan salah satunya akan berhenti dengan `flag provided but not defined`.
 
     | Dihapus                | Gunakan sebagai gantinya                                      |
     | ---------------------- | ------------------------------------------------------------- |
@@ -1349,11 +1233,11 @@ Setiap perubahan ini memengaruhi satu SDK atau CLI.
 
     `--api-key-stdin` dan `--auth-token-stdin` membaca seluruh standard input, sehingga perintah yang menggunakan salah satunya mengambil body permintaannya dari flag.
 
-    `ant auth status`, prompt saat pertama kali menjalankan `ant apply`, dan catatan tentang beberapa sumber autentikasi kini menyebut kredensial ini `ANTHROPIC_API_KEY` dan `ANTHROPIC_AUTH_TOKEN`, yang sebelumnya mencetak `--api-key / ANTHROPIC_API_KEY` dan `--auth-token / ANTHROPIC_AUTH_TOKEN`.
+    `ant auth status`, prompt pertama kali dari `ant apply`, dan catatan tentang beberapa sumber autentikasi sekarang menyebut kredensial ini `ANTHROPIC_API_KEY` dan `ANTHROPIC_AUTH_TOKEN`, di mana sebelumnya mencetak `--api-key / ANTHROPIC_API_KEY` dan `--auth-token / ANTHROPIC_AUTH_TOKEN`.
   </Tab>
 
   <Tab title="C#">
-    **`Type` dari sebuah union adalah enum.** Di v12, properti `Type` dari kelas union, seperti `ContentBlock.Type` atau `RawMessageStreamEvent.Type`, adalah `JsonElement`. Di v13 properti ini adalah `ApiEnum<string, T>`, dengan `T` adalah enum baru yang memiliki satu anggota untuk setiap varian, seperti `ContentBlockType`. Beberapa union dibedakan berdasarkan `Name` atau `Command`, seperti `BetaMemoryTool20250818Command.Command`, dan properti tersebut berubah dengan cara yang sama. `Type` dari kelas varian, seperti `TextBlock.Type`, tetap berupa `JsonElement`.
+    **`Type` dari union adalah enum.** Di v12, properti `Type` dari class union, seperti `ContentBlock.Type` atau `RawMessageStreamEvent.Type`, adalah `JsonElement`. Di v13 ia adalah `ApiEnum<string, T>`, di mana `T` adalah enum baru dengan satu anggota untuk setiap varian, seperti `ContentBlockType`. Beberapa union dibedakan berdasarkan `Name` atau `Command`, seperti `BetaMemoryTool20250818Command.Command`, dan properti tersebut berubah dengan cara yang sama. `Type` dari class varian, seperti `TextBlock.Type`, masih berupa `JsonElement`.
 
     ```csharp
     // Sebelum
@@ -1363,17 +1247,19 @@ Setiap perubahan ini memengaruhi satu SDK atau CLI.
     if (block.Type.Value() == ContentBlockType.ToolUse) { }
     ```
 
-    `block.Type.Raw()` mengembalikan string, termasuk string yang tidak memiliki anggota enum di versi SDK ini.
+    `block.Type.Raw()` mengembalikan string-nya, termasuk string yang tidak memiliki anggota enum di versi SDK ini.
 
-    **`IChatClient` mengabaikan opsi sampling.** Adapter `IChatClient` (`AsIChatClient()`) kini mengabaikan `ChatOptions.Temperature`, `ChatOptions.TopK`, dan `ChatOptions.TopP`. Lihat [Parameter sampling dihapus](https://platform.claude.com/docs/id/api/migration-2026-10-21#sampling-parameters).
+    **`IChatClient` mengabaikan opsi sampling.** Adapter `IChatClient` (`AsIChatClient()`) sekarang mengabaikan `ChatOptions.Temperature`, `ChatOptions.TopK`, dan `ChatOptions.TopP`. Lihat [Parameter sampling dihapus](https://platform.claude.com/docs/id/api/migration-2026-10-21#sampling-parameters).
   </Tab>
 
   <Tab title="Go">
+    **Go 1.25 atau yang lebih baru diperlukan.**
+
     **`vertex.DefaultVersion` dan `bedrock.DefaultVersion` dihapus.**
   </Tab>
 
   <Tab title="Java">
-    **Getter yang kini mengembalikan `Optional`.** `apiKey()` dan `authToken()` pada `AnthropicBackend` kini mengembalikan `Optional<String>`, seperti yang sudah dilakukan `apiKey()` pada `AwsBackend` dan `BedrockMantleBackend`. Di v2 masing-masing mengembalikan `String`, yang bernilai `null` ketika backend tidak memiliki kredensial jenis tersebut.
+    **Getter yang sekarang mengembalikan `Optional`.** `apiKey()` dan `authToken()` pada `AnthropicBackend` sekarang mengembalikan `Optional<String>`, seperti yang sudah dilakukan `apiKey()` pada `AwsBackend` dan `BedrockMantleBackend`. Di v2, masing-masing mengembalikan `String`, yang bernilai `null` ketika `AnthropicBackend` tidak memiliki kredensial jenis tersebut.
 
     ```java
     // Sebelum
@@ -1385,7 +1271,7 @@ Setiap perubahan ini memengaruhi satu SDK atau CLI.
     if (apiKey.isPresent()) {}
     ```
 
-    Getter berikut kini juga mengembalikan `Optional`. Di v2 masing-masing mengembalikan nilai itu sendiri, yang bernilai `null` ketika tidak ada:
+    Getter berikut sekarang juga mengembalikan `Optional`. Di v2, masing-masing mengembalikan nilainya sendiri, yang bernilai `null` ketika tidak ada:
 
     * `apiKey()` dan `awsCredentialsProvider()` pada `BedrockBackend`
     * `filename()` dan `mimeType()` pada `McpResourceFile`
@@ -1406,11 +1292,11 @@ Setiap perubahan ini memengaruhi satu SDK atau CLI.
     Optional<String> resource = backend.resource();
     ```
 
-    `getBaseUrl()` pada `FoundryBackend` dihapus. Panggil `baseUrl()`, yang mengembalikan URL tujuan permintaan. Itu adalah base URL yang Anda tetapkan, atau yang dibangun dari resource, dan diakhiri dengan `/anthropic`.
+    `getBaseUrl()` pada `FoundryBackend` dihapus. Panggil `baseUrl()`, yang mengembalikan URL tujuan permintaan. Itu adalah base URL yang Anda atur, atau yang dibuat dari resource, dan diakhiri dengan `/anthropic`.
 
     `getBaseUrl()` pada `AnthropicBackend` juga dihapus. Panggil `baseUrl()`, yang mengembalikan nilai yang sama.
 
-    **`HttpRequest` memerlukan base URL.** Jika Anda membangun `HttpRequest` sendiri, seperti dalam pengujian interceptor, tetapkan base URL-nya. Tanpa base URL, `build()` kini melempar `IllegalStateException`. Di v2 metode ini mengembalikan permintaan yang `baseUrl()`-nya bernilai `null`. Permintaan yang dibangun oleh SDK sudah memilikinya.
+    **`HttpRequest` memerlukan base URL.** Jika Anda membuat `HttpRequest` sendiri, seperti dalam pengujian interceptor, atur base URL-nya. Tanpanya, `build()` sekarang melempar `IllegalStateException`. Di v2, ia mengembalikan permintaan yang `baseUrl()`-nya bernilai `null`. Permintaan yang dibuat SDK sudah memilikinya.
 
     ```java
     // Sebelum
@@ -1425,21 +1311,25 @@ Setiap perubahan ini memengaruhi satu SDK atau CLI.
         .build();
     ```
 
-    `baseUrl()` tetap mengembalikan `String`, yang kini tidak pernah bernilai `null`. Pada builder, `baseUrl(Optional<String>)` dihapus dan `baseUrl(String)` tidak lagi menerima `null`.
+    `baseUrl()` masih mengembalikan `String`, yang sekarang tidak pernah bernilai `null`. Pada builder, `baseUrl(Optional<String>)` dihapus dan `baseUrl(String)` tidak lagi menerima `null`.
 
-    **Interceptor melihat `anthropic-version`.** Klien kini menambahkan header `anthropic-version` default sebelum interceptor berjalan. Di v2, backend menambahkannya setelah interceptor. Jika interceptor Anda menetapkan versinya sendiri, panggil `replaceHeaders`, karena `putHeader` kini menambahkan nilai kedua:
+    **Interceptor melihat `anthropic-version`.** Klien sekarang menambahkan header `anthropic-version` default sebelum interceptor berjalan. Di v2, backend menambahkannya setelah interceptor. Jika interceptor Anda mengatur versinya sendiri, panggil `replaceHeaders`, karena `putHeader` sekarang menambahkan nilai kedua:
 
     ```java
     // Sebelum
-    request.toBuilder().putHeader("anthropic-version", version).build();
+    request.toBuilder()
+        .putHeader("anthropic-version", version)
+        .build();
 
     // Sesudah
-    request.toBuilder().replaceHeaders("anthropic-version", version).build();
+    request.toBuilder()
+        .replaceHeaders("anthropic-version", version)
+        .build();
     ```
   </Tab>
 
   <Tab title="PHP">
-    **Case enum yang Anda teruskan dibaca kembali sebagai nilainya.** `with()` dan setter seperti `withAllowedCallers()` tetap menerima case enum atau nilainya. Versi sebelumnya menyimpan case sebagaimana Anda meneruskannya. v1 menyimpan nilai dari case tersebut, sesuai dengan yang sudah dideklarasikan oleh tipe properti. Objek yang dibangun SDK dari respons tidak berubah, dan JSON yang dikirim SDK tetap sama. Jika Anda membaca kembali sebuah properti dan membandingkannya dengan sebuah case, perbandingan tersebut kini bernilai false dan tidak ada yang dilempar, jadi bandingkan dengan nilai dari case tersebut:
+    **Enum case yang Anda teruskan dibaca kembali sebagai nilainya.** `with()` dan setter seperti `withAllowedCallers()` masih menerima enum case atau nilainya. Versi sebelumnya mempertahankan case sebagaimana Anda meneruskannya. v1 mempertahankan nilai case tersebut, yang memang dideklarasikan oleh tipe properti. Objek yang dibuat SDK dari respons tidak berubah, dan JSON yang dikirim SDK sama. Jika Anda membaca kembali properti dan membandingkannya dengan case, perbandingan sekarang bernilai false dan tidak ada yang dilempar, jadi bandingkan dengan nilai case tersebut:
 
     ```php
     $tool = CodeExecutionTool20250825::with(allowedCallers: [AllowedCaller::DIRECT]);
@@ -1459,7 +1349,7 @@ Setiap perubahan ini memengaruhi satu SDK atau CLI.
 
 ### Lisensinya adalah Apache 2.0
 
-Mulai dari versi-versi ini, SDK dan CLI dilisensikan di bawah Apache License, Version 2.0. Versi sebelumnya tetap di bawah MIT License. Tidak diperlukan perubahan kode. Jika Anda melacak lisensi dependensi Anda, perbarui entri-entrinya.
+Mulai dari versi-versi di bawah [Beralih ke 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade), SDK dan CLI dilisensikan di bawah Apache License, Version 2.0. Versi sebelumnya tetap berada di bawah MIT License. Tidak ada perubahan kode yang diperlukan. Jika Anda melacak lisensi dependensi Anda, perbarui entrinya.
 
 * **TypeScript:** Paket platform (`@anthropic-ai/bedrock-sdk`, `@anthropic-ai/vertex-sdk`, `@anthropic-ai/foundry-sdk`, `@anthropic-ai/aws-sdk`, dan `@anthropic-ai/google-cloud-sdk`) berganti lisensi dalam rilis 1.0.0 masing-masing.
 * **C#:** Paket lainnya (`Anthropic.Bedrock`, `Anthropic.Vertex`, `Anthropic.Foundry`, `Anthropic.Aws`, `Anthropic.GoogleCloud`, dan `Anthropic.Mcp`) berganti lisensi dalam rilis 1.0.0 masing-masing.

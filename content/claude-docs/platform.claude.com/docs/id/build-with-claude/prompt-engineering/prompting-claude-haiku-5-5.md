@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: a98cd4f4c6b7ceda6b194c081aab971877e07ec83bf41586bb0107bf1ae7f9fe
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: c790f1719b560d46c6adaed62257ec21d8e1014ab7a5c8b112f4efb6108ac3d8
 ---
 
 ---
@@ -28,7 +28,7 @@ Prompt Claude Haiku 4.5 yang sudah ada seharusnya berkinerja baik tanpa perubaha
 <Note>
   Untuk perubahan API yang bersifat breaking saat bermigrasi dari Claude Haiku 4.5, lihat [panduan migrasi](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide).
 
-  Beberapa bagian di halaman ini menyarankan teks untuk ditambahkan ke prompt sistem Anda. Tambahkan hanya ke percakapan baru. Permintaan yang mengirim kembali blok pemikiran setelah `system` berubah dapat mengembalikan error 400, sehingga percakapan tersimpan yang dilanjutkan dengan prompt sistem baru dapat gagal. Untuk mengubah instruksi di tengah percakapan, [letakkan instruksi tersebut di giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#changing-context). Di Claude API, Amazon Bedrock, dan Claude Models on Google Cloud (Google managed), Anda dapat sebagai gantinya [menambahkan pesan sistem ke percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#new-instructions).
+  Beberapa bagian di halaman ini menyarankan teks untuk ditambahkan ke “system prompt” (prompt sistem) Anda. Tambahkan hanya ke percakapan baru. Permintaan yang mengirimkan kembali blok thinking setelah `system` berubah dapat mengembalikan error 400, sehingga percakapan tersimpan yang dilanjutkan dengan prompt sistem baru dapat gagal. Untuk mengubah instruksi di tengah percakapan, [letakkan instruksi tersebut di giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#changing-context). Di Claude API, Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), dan Claude Models on Google Cloud (Google managed), Anda dapat sebagai gantinya [menambahkan pesan sistem ke percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#new-instructions).
 </Note>
 
 ## Gunakan effort untuk mengontrol thinking

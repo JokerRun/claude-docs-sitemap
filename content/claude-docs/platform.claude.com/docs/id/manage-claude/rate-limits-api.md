@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/rate-limits-api
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 9c1db395b6b67a0a9180a17d55e67c0837bc8e2319cd394129fed2b1039169c0
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 6cd5be43b40420dbc8810247d96df5ae8fc610fdb8d5e39095998b0a723a0282
 ---
 
 ---
@@ -20,7 +20,7 @@ Rate Limits API menyediakan akses terprogram ke “rate limit” (batas laju) ya
 Gunakan API ini untuk:
 
 * **Menjaga gateway dan proxy tetap sinkron:** Baca batas Anda saat ini ketika startup dan secara terjadwal alih-alih melakukan hardcode nilai yang akan menyimpang ketika Anthropic menyesuaikannya.
-* **Mendukung peringatan internal:** Bandingkan data penggunaan dari [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) dengan batas yang telah Anda konfigurasi.
+* **Meninjau sisa ruang hingga batas:** Bandingkan penggunaan sebelumnya dari [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) dengan batas yang telah Anda konfigurasi.
 * **Mengaudit konfigurasi workspace:** Verifikasi bahwa override workspace sesuai dengan yang diharapkan oleh otomatisasi provisioning Anda.
 * **Kelola batas workspace dari kode:** Atur dan hapus batas setiap workspace dari otomatisasi provisioning Anda alih-alih mengeditnya di Console.
 
@@ -38,7 +38,7 @@ Tampilkan daftar batas laju yang dikonfigurasi untuk organisasi Anda:
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/rate_limits" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -175,7 +175,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/rate_limits" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -296,7 +296,6 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
     {
       "id": "rlt_01NwFawrTvAijwqn8AjKVBPS",
       "type": "rate_limit",
-      "group_type": "model_group",
       "group": {
         "type": "model_group",
         "id": "rlg_01Hq7YkP3mZ9dTwRx4cVbN2s",
@@ -312,7 +311,6 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
     {
       "id": "rlt_016qriyigbdebqkzhMujdHkX",
       "type": "rate_limit",
-      "group_type": "model_group",
       "group": {
         "type": "model_group",
         "id": "rlg_01Kd5wMv8nSq2LcXy6tRfJ4b",
@@ -334,7 +332,6 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
     {
       "id": "rlt_01EyY8kq14eviKJPgepbgBH4",
       "type": "rate_limit",
-      "group_type": "batch",
       "group": { "type": "batch", "id": "rlg_01Wn3pBz6kCg9vHtQ7mLxD5a" },
       "models": null,
       "limits": [{ "type": "enqueued_batch_requests", "value": 500000 }]
@@ -352,7 +349,7 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk hanya 
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/rate_limits?model=claude-opus-5-5" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -508,7 +505,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/rate_limits" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -645,7 +642,6 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
       "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
       "rate_limit_id": "rlt_01NwFawrTvAijwqn8AjKVBPS",
       "type": "workspace_rate_limit",
-      "group_type": "model_group",
       "group": {
         "type": "model_group",
         "id": "rlg_01Hq7YkP3mZ9dTwRx4cVbN2s",
@@ -671,7 +667,6 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
       "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
       "rate_limit_id": "rlt_016qriyigbdebqkzhMujdHkX",
       "type": "workspace_rate_limit",
-      "group_type": "model_group",
       "group": {
         "type": "model_group",
         "id": "rlg_01Kd5wMv8nSq2LcXy6tRfJ4b",
@@ -716,7 +711,7 @@ Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/rate_limits?include_inherited=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -868,7 +863,6 @@ Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan
       "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
       "rate_limit_id": "rlt_01NwFawrTvAijwqn8AjKVBPS",
       "type": "workspace_rate_limit",
-      "group_type": "model_group",
       "group": {
         "type": "model_group",
         "id": "rlg_01Hq7YkP3mZ9dTwRx4cVbN2s",
@@ -900,7 +894,6 @@ Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan
       "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
       "rate_limit_id": "rlt_016qriyigbdebqkzhMujdHkX",
       "type": "workspace_rate_limit",
-      "group_type": "model_group",
       "group": {
         "type": "model_group",
         "id": "rlg_01Kd5wMv8nSq2LcXy6tRfJ4b",
@@ -938,7 +931,6 @@ Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan
       "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
       "rate_limit_id": "rlt_01EyY8kq14eviKJPgepbgBH4",
       "type": "workspace_rate_limit",
-      "group_type": "batch",
       "group": { "type": "batch", "id": "rlg_01Wn3pBz6kCg9vHtQ7mLxD5a" },
       "models": null,
       "limits": [
@@ -989,7 +981,7 @@ Naikkan request per menit workspace untuk grup Claude Opus 5.5 menjadi 2.000 dan
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/rate_limits/rlt_01NwFawrTvAijwqn8AjKVBPS" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "limits": [
@@ -1165,7 +1157,6 @@ Respons berupa entri grup tersebut, dalam bentuk satu entri pada daftar `data` e
   "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
   "rate_limit_id": "rlt_01NwFawrTvAijwqn8AjKVBPS",
   "type": "workspace_rate_limit",
-  "group_type": "model_group",
   "group": {
     "type": "model_group",
     "id": "rlg_01Hq7YkP3mZ9dTwRx4cVbN2s",
@@ -1193,7 +1184,7 @@ Kedua endpoint daftar menerima parameter query opsional `group_type` yang membat
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/rate_limits?group_type=batch" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI

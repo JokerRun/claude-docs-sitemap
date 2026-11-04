@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: d7c42a0357d9d5ca18e85614b0876e0c2457a4736e8a5896758eafcd6d7b8127
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: c8fa8050cd484d3d31e62851554893debba650b918611cf0b599870f0e775171
 ---
 
 ---
@@ -424,11 +424,11 @@ Ruby SDK juga mendukung Claude Models on Google Cloud (Anthropic managed) melalu
 
 ## Semantic versioning
 
-Setiap versi mayor SDK ini mengirimkan satu versi API di header `anthropic-version` secara default, dan versi mayor baru hadir bersama setiap versi API baru. Versi mayor pertama yang mengirimkan `2026-10-21` adalah 2.0.0; lihat [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade).
-
 Paket ini mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html).
 
 Paket ini menganggap peningkatan pada definisi tipe `*.rbi` dan `*.rbs` (non-runtime) sebagai perubahan yang tidak merusak kompatibilitas.
+
+Setiap permintaan ke Claude API menggunakan versi API. Dengan SDK ini, permintaan Anda menggunakan versi API yang berlaku saat versi mayor SDK Anda dirilis, sehingga Anda beralih ke versi API baru dengan melakukan upgrade ke versi mayor baru. Versi 2.0.0 adalah yang pertama menggunakan `2026-10-21`. Lihat [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade) untuk cara melakukan upgrade.
 
 ## Sumber daya tambahan
 

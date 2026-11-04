@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 3db54c3b55fe61f91c6b2334d42230dde99c6447e5eb6a2aef3a38aa8fe78957
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: bca1170b05afb66cfe44e11664fb4b115e5667c99290458dcd275337f1945fe1
 ---
 
 ---
@@ -69,7 +69,7 @@ For example, suppose a booking system needs `passengers: int`. Without strict mo
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -430,7 +430,7 @@ The [computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use
       curl https://api.anthropic.com/v1/messages \
         -H "content-type: application/json" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -d '{
           "model": "claude-opus-5-5",
           "max_tokens": 1024,
@@ -731,7 +731,7 @@ The [computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use
       curl https://api.anthropic.com/v1/messages \
         -H "content-type: application/json" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -d '{
           "model": "claude-opus-5-5",
           "max_tokens": 1024,

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-latency
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: daebfec80ea77b62234f0d48a5df945a0d0c1d8c01239af1c39c923bd2826211
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 227fb38139738a9f75ccce65b464779f97e787b025da0fc5adf3fade76fc1c0f
 ---
 
 ---
@@ -43,7 +43,7 @@ Untuk aplikasi yang mengutamakan kecepatan, **Claude Haiku 5.5** menawarkan wakt
   # Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 5.5 dengan effort rendah
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-haiku-5-5",

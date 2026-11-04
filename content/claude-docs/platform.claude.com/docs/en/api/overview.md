@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/overview
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 99fb4877823260f12cd7a18ffc6891f00ae2a8df4e84cade7bc1d1c14ee65596
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: e01f368e0ced0dd2aeec56ed76810eecaf3ba470490afea4f22dfdffd858c9e2
 ---
 
 ---
@@ -94,7 +94,7 @@ Claude is available through the first-party Claude API and through cloud platfor
 Access Claude through AWS, Google Cloud, or Microsoft Azure:
 
 * **Integrated** with cloud provider billing and IAM
-* **Feature availability varies by platform:** Anthropic-operated platforms include [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed), and [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry); partner-operated platforms include Amazon Bedrock and Claude Models on Google Cloud (Google managed). See each platform’s page for feature availability and timing.
+* **Feature availability varies by platform:** Anthropic-operated platforms include [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed), and [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry); partner-operated platforms include Claude Models on Google Cloud (Google managed) and Amazon Bedrock. See each platform’s page for feature availability and timing.
 * **Best for:** Existing cloud commitments, specific compliance requirements, consolidated cloud billing
 
 | Platform                                          | Provider                             | Documentation                                                                                                                                              |

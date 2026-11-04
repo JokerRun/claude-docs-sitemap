@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 696e10afad354c6bb80eab6abceabca16cecd5955f2be80cc16b78695e75fdd3
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 62951ac0f28a44ca108edc4d5ead5396204f29c7d0feb4d6fa5e21e438940464
 ---
 
 ---
@@ -48,7 +48,7 @@ featureMetadata:
 
 Alat web fetch memungkinkan Claude mengambil konten lengkap dari halaman web dan dokumen PDF yang ditentukan.
 
-Versi terbaru alat web fetch (`web_fetch_20260318`) mendukung **dynamic filtering** (pemfilteran dinamis): Claude dapat menulis dan mengeksekusi kode untuk memfilter konten yang diambil sebelum mencapai “context window” (jendela konteks), sehingga hanya informasi yang relevan yang disimpan dan sisanya dibuang. Ini mengurangi konsumsi token sambil mempertahankan kualitas respons. Pemfilteran dinamis tersedia dengan model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). `web_fetch_20260318` juga menambahkan kontrol [response inclusion](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#response-inclusion) (penyertaan respons) untuk alur kerja agentic. Versi sebelumnya (`web_fetch_20260309` untuk pemfilteran dinamis dan [cache bypass](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#cache-bypass), `web_fetch_20260209` hanya untuk pemfilteran dinamis, `web_fetch_20250910` untuk fetch dasar) tetap tersedia.
+Versi terbaru alat web fetch (`web_fetch_20260318`) mendukung **dynamic filtering** (pemfilteran dinamis): Claude dapat menulis dan mengeksekusi kode untuk memfilter konten yang diambil sebelum mencapai “context window” (jendela konteks), sehingga hanya informasi yang relevan yang disimpan dan sisanya dibuang. Ini mengurangi konsumsi token sambil mempertahankan kualitas respons. Pemfilteran dinamis tersedia dengan model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). `web_fetch_20260318` juga menambahkan kontrol [response inclusion](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#response-inclusion) (penyertaan respons) untuk alur kerja agentic. Versi lainnya (`web_fetch_20260309` untuk pemfilteran dinamis dan [cache bypass](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#cache-bypass), `web_fetch_20260209` hanya untuk pemfilteran dinamis, `web_fetch_20250910` untuk fetch dasar) tersedia.
 
 Web fetch (dengan dan tanpa pemfilteran dinamis) tersedia di Claude API, [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Microsoft Foundry, deployment yang [di-host di Azure](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure) hanya mendukung alat web fetch dasar (`web_fetch_20250910`, tanpa pemfilteran dinamis). Deployment yang di-host di Anthropic mendukung semua versi.
 
@@ -124,7 +124,7 @@ Untuk mengaktifkan pemfilteran dinamis, gunakan `web_fetch_20260209` atau versi 
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -294,7 +294,7 @@ Sediakan alat web fetch dalam permintaan API Anda:
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -759,7 +759,7 @@ Ketika alat web search dan web fetch sama-sama diaktifkan, dan pengguna menyebut
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

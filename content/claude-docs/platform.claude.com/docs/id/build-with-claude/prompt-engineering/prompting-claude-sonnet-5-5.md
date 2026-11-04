@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 4e836e44def6d9416c7f8877eeefb5b02224aa35d3ff1e95d0389609c794b9be
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: c654ebcd1f2717ff54cace0284b0644381b470f959f10570a471b78174d88856
 ---
 
 ---
@@ -41,7 +41,7 @@ Tiga penyesuaian dapat membantu:
 
 * Atur `max_tokens` dengan ruang untuk pemikiran dan balasan yang Anda harapkan. Pemikiran dihitung dalam `max_tokens` bahkan ketika konten pemikiran tidak dikembalikan kepada Anda. Batas yang diukur untuk permintaan tanpa pemikiran dapat memotong balasan. Untuk coding agentik, atur `max_tokens` ke 128.000, nilai maksimum model, dan lakukan [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) pada respons.
 * Simpan `xhigh` dan `max` untuk pekerjaan di mana Anda telah mengukur peningkatan kualitas, karena pemikiran dan balasan menjadi jauh lebih panjang di level tersebut. Pada level tersebut, `between_tools` tidak diterima, sehingga pemikiran di awal tidak dapat dinonaktifkan.
-* Untuk mendapatkan pemikiran yang lebih sedikit, turunkan level effort. Mulai dari `medium` ke atas, model berpikir sebentar sebelum hampir setiap balasan, bahkan untuk sapaan, yang menambah waktu sebelum token pertama yang terlihat. Meminta model dalam prompt sistem untuk berpikir lebih sedikit tidak secara andal mengurangi pemikirannya. Pada `low`, model melewatkan pemikiran pada sebagian besar permintaan sederhana.
+* Untuk mendapatkan pemikiran yang lebih sedikit, turunkan level effort. Meminta model dalam prompt sistem untuk berpikir lebih sedikit tidak secara andal mengurangi pemikirannya.
 
 Mengubah nilai `effort` tingkat atas di antara permintaan akan membatalkan cache prompt. Untuk mengubah level di tengah percakapan, gunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) sebagai gantinya, yang mempertahankan cache. Suatu perubahan berlaku untuk setiap giliran berikutnya hingga perubahan lain menggantikannya. Misalnya, dalam sesi interaktif pada `low`, tambahkan perubahan ke `high` sebelum masalah sulit yang diajukan pengguna, dan perubahan kembali ke `low` setelah Claude menjawabnya. Perubahan effort per pesan memerlukan pemikiran adaptif. Dengan `between_tools`, perubahan tersebut mengembalikan error 400, seperti yang dijelaskan dalam [Berjalan tanpa pemikiran di awal](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#running-without-up-front-thinking).
 

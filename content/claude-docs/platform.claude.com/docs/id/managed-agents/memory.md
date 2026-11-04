@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: e82a059a090dcc8e434f896391e9465d22e10acca71ccfe0a997d6cd95b1e1f4
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 686ff1b3c868770f6f06335a8f4d53e427d99b3a8ee2c6d3a9184f6461e4f9ad
 ---
 
 ---
@@ -69,7 +69,7 @@ Berikan store sebuah `name` (csharp, go: `Name`) dan `description` (csharp, go: 
   ```bash cURL
   curl -s https://api.anthropic.com/v1/memory_stores \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
     -d '{
@@ -173,7 +173,7 @@ Muat store terlebih dahulu dengan materi referensi sebelum agen apa pun berjalan
   ```bash cURL
   curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
     -d '{
@@ -265,7 +265,7 @@ Anda juga dapat mengonfigurasi `access` (csharp, go: `Access`). Nilai default-ny
   ```bash cURL
   curl -s https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -446,7 +446,7 @@ Daftar memori dalam sebuah store. Hasil dikembalikan dalam urutan yang stabil da
   ```bash cURL
   curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories?path_prefix=/" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: agent-memory-2026-07-22"
   ```
 
@@ -544,7 +544,7 @@ Mengambil memori individual mengembalikan konten lengkapnya.
   ```bash cURL
   curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories/$mem_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: agent-memory-2026-07-22"
   ```
 
@@ -621,7 +621,7 @@ Lihat referensi [Mengambil memori](https://platform.claude.com/docs/id/api/beta/
   ```bash cURL
   curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
     -d '{
@@ -707,7 +707,7 @@ Lihat referensi [Membuat memori](https://platform.claude.com/docs/id/api/beta/me
   ```bash cURL
   curl -s -X POST "https://api.anthropic.com/v1/memory_stores/$store_id/memories/$mem_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
     -d '{"path": "/archive/2026_q1_formatting.md"}'
@@ -790,7 +790,7 @@ Untuk menghindari penimpaan penulisan yang terjadi secara bersamaan, teruskan pr
   ```bash cURL
   curl -s -X POST "https://api.anthropic.com/v1/memory_stores/$store_id/memories/$mem_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
     -d '{
@@ -886,7 +886,7 @@ Untuk menghindari penimpaan penulisan yang terjadi secara bersamaan, teruskan pr
   ```bash cURL
   curl -s -X DELETE "https://api.anthropic.com/v1/memory_stores/$store_id/memories/$mem_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: agent-memory-2026-07-22"
   ```
 
@@ -966,7 +966,7 @@ Daftar riwayat versi untuk sebuah store, yang terbaru lebih dulu. Contoh berikut
   ```bash cURL
   curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memory_versions?memory_id=$mem_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: agent-memory-2026-07-22"
   ```
 
@@ -1084,7 +1084,7 @@ Mengambil versi individual mengembalikan field yang sama dengan respons daftar d
   ```bash cURL
   curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memory_versions/$version_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: agent-memory-2026-07-22"
   ```
 
@@ -1166,7 +1166,7 @@ Versi yang merupakan head saat ini dari memori yang masih aktif tidak dapat dire
   ```bash cURL
   curl -s -X POST "https://api.anthropic.com/v1/memory_stores/$store_id/memory_versions/$version_id/redact" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
     -d '{}'
@@ -1245,7 +1245,7 @@ Daftar store di workspace. Store yang diarsipkan dikecualikan secara default; at
   ```bash cURL
   curl -s "https://api.anthropic.com/v1/memory_stores?include_archived=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: agent-memory-2026-07-22"
   ```
 
@@ -1320,7 +1320,7 @@ Pengarsipan membuat store menjadi read-only dan mencegahnya dilampirkan ke sesi 
   ```bash cURL
   curl -s -X POST "https://api.anthropic.com/v1/memory_stores/$store_id/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: agent-memory-2026-07-22"
   ```
 

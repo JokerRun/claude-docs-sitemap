@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-api-access
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: d75d90f98f770729ed5b66cb305fdfc1bd9f5efd1f324dceee8d4611cd7174d5
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 091dfefc82510eef26ba5b7b62a110be51936d3f3473b284b15547ef2493ef86
 ---
 
 ---
@@ -51,6 +51,8 @@ Penyiapan terdiri dari satu alur: aktifkan Compliance API untuk organisasi Anda,
     * **Organisasi Claude Enterprise:** Pemilik utama mengaktifkan Compliance API di [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access). Pengaktifan terjadi di tingkat organisasi induk dan diteruskan ke setiap organisasi tertaut, baik claude.ai maupun Claude Console.
     * **Organisasi Claude Console mandiri:** Admin organisasi mengaktifkan toggle **Compliance API** di halaman [Compliance](https://platform.claude.com/settings/security) (`platform.claude.com/settings/security`) di Claude Console. Pengaktifan bersifat swalayan untuk organisasi yang memenuhi syarat, dan perubahan berlaku segera. Jika halaman menampilkan error halaman tidak ditemukan, atau tidak menampilkan bagian **Compliance API**, berarti Anda tidak memiliki peran admin, organisasi Anda tertaut ke organisasi induk (Compliance API diaktifkan dari organisasi induk), atau organisasi Anda tidak memenuhi syarat untuk pengaktifan swalayan; hubungi tim akun Anda atau [dukungan Anthropic](https://support.claude.com) jika Anda tidak yakin mana yang berlaku.
     * **Organisasi Claude Console yang tertaut ke organisasi induk:** Tidak ada yang perlu diaktifkan di Claude Console. Minta pemilik utama organisasi induk Anda untuk mengaktifkan Compliance API di claude.ai, atau hubungi tim akun Anda.
+
+    Organisasi yang mengaktifkan Compliance API tidak dapat memanggil Claude API secara langsung dari browser. Ketika organisasi induk mengaktifkannya, hal ini mencakup setiap organisasi Claude Console yang tertaut. Sebelum Anda mengaktifkan Compliance API, tanyakan kepada tim yang menggunakan organisasi-organisasi tersebut apakah ada aplikasi yang memanggil Claude API dari kode browser. Lihat [Aplikasi berbasis browser](https://platform.claude.com/docs/id/manage-claude/authentication#browser-based-applications).
 
     <Warning>
       **Menonaktifkan Compliance API menghentikan perekaman aktivitas.** Admin organisasi dapat menonaktifkan Compliance API kapan saja dengan toggle **Compliance API** yang sama yang digunakan untuk mengaktifkannya. Selama Compliance API nonaktif, tidak ada peristiwa aktivitas yang direkam untuk organisasi Anda, sehingga [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) tidak menerima peristiwa baru. Jika organisasi Anda terdaftar dalam [Access Transparency](https://platform.claude.com/docs/id/manage-claude/access-transparency), menonaktifkan Compliance API juga menghentikan pengiriman peristiwa Access Transparency. Aktivitas yang tidak direkam selama Compliance API nonaktif tidak dapat dipulihkan kemudian. Mengaktifkan kembali Compliance API melanjutkan perekaman sejak saat itu; aktivitas yang sudah direkam tidak dihapus. Untuk organisasi Claude Enterprise, pengaturan Compliance API di claude.ai juga mengatur penangkapan transkrip untuk [sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions) (sesi di mesin pengguna): penangkapan dimulai saat Compliance API diaktifkan dan berhenti selama nonaktif, dan konten transkrip dari sesi yang berjalan selama nonaktif tidak ditangkap dan tidak dapat dipulihkan kemudian.

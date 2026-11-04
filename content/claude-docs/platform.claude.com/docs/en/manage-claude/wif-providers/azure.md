@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/azure
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 49ca563b6210c8d648a8a89f1fb1465f9e50ca0ed99cbac78d417fa1a1e2e706
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 38abb8c28e5227a5adc6ad3d6266f0a033f20c802fee0234770b5dc4b662e0b3
 ---
 
 ---
@@ -194,7 +194,7 @@ The samples fetch the managed identity token from the platform’s token endpoin
   # 3. Call the Claude API with the bearer token.
   curl https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -601,7 +601,7 @@ The samples fetch the managed identity token from the platform’s token endpoin
     JSON.parse(response).fetch("access_token")
   end
 
-  credentials = Anthropic::WorkloadIdentityCredentials.new(
+  credentials = Anthropic::Credentials::WorkloadIdentity.new(
     identity_token_provider: -> { fetch_entra_token },
     federation_rule_id: ENV.fetch("ANTHROPIC_FEDERATION_RULE_ID"),
     organization_id: ENV.fetch("ANTHROPIC_ORGANIZATION_ID"),
@@ -834,7 +834,7 @@ Two different client IDs appear in the samples. `<APP_ID>` is the audience app r
   # 3. Call the Claude API.
   curl -sS https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -1228,7 +1228,7 @@ Two different client IDs appear in the samples. `<APP_ID>` is the audience app r
   end
 
   client = Anthropic::Client.new(
-    credentials: Anthropic::WorkloadIdentityCredentials.new(
+    credentials: Anthropic::Credentials::WorkloadIdentity.new(
       identity_token_provider: -> { fetch_entra_token_via_federation },
       federation_rule_id: ENV.fetch("ANTHROPIC_FEDERATION_RULE_ID"),
       organization_id: ENV.fetch("ANTHROPIC_ORGANIZATION_ID"),

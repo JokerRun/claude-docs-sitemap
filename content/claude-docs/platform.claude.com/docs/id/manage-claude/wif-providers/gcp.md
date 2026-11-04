@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/gcp
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 72bcf97a17b055a63310fdd96f9dbc99b80e080875b4237b818e2cfdfce26b91
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: e5eeb9406e02e4d3acc640cd87a239d6f57ef0d68d52f1128f392fdabdb190f8
 ---
 
 ---
@@ -160,7 +160,7 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
   # Panggil API Claude
   curl -sS https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -442,7 +442,7 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
 
   METADATA_URL = "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/identity?audience=https://api.anthropic.com&format=full"
 
-  credentials = Anthropic::WorkloadIdentityCredentials.new(
+  credentials = Anthropic::Credentials::WorkloadIdentity.new(
     identity_token_provider: -> { Net::HTTP.get(URI(METADATA_URL), {"Metadata-Flavor" => "Google"}) },
     federation_rule_id: ENV.fetch("ANTHROPIC_FEDERATION_RULE_ID"),
     organization_id: ENV.fetch("ANTHROPIC_ORGANIZATION_ID"),

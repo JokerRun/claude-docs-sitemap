@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/define-outcomes
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 0cba97312e159d93415e6c4b645230e129253bba5bae94f139dc0a273e309245
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 07b5e9e8fbd11ed25e3190c635ec8b6d991762cbd6449e246d65b4cf2dfea43c
 ---
 
 ---
@@ -92,7 +92,7 @@ Pass the rubric as inline text on `user.define_outcome` (see [Create a session w
   ```bash cURL
   curl -fsSL https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -F file=@/tmp/rubric.md
   ```
@@ -324,7 +324,7 @@ The following examples create a [session](https://platform.claude.com/docs/en/ma
   # Create a session
   curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     --json '{
       "agent": "'"$AGENT_ID"'",
@@ -336,7 +336,7 @@ The following examples create a [session](https://platform.claude.com/docs/en/ma
   # The agent starts working when it receives the event
   curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     --json '{
       "events": [
@@ -643,7 +643,7 @@ You can either listen on the [event stream](https://platform.claude.com/docs/en/
   ```bash cURL
   curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
@@ -728,13 +728,13 @@ The agent writes output files to `/mnt/session/outputs/` inside the sandbox. To 
   # scope_id filtering requires the managed-agents beta
   curl -fsSL "https://api.anthropic.com/v1/files?scope_id=$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
 
   # Download a file by the ID from the list
   curl -fsSL "https://api.anthropic.com/v1/files/$FILE_ID/content" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -o /tmp/output.txt
   ```

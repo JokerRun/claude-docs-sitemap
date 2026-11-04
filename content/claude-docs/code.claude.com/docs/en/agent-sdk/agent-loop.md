@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/agent-loop
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 029cd5ef8a2d0c8ad2ead97f6bbfdc19bdcfe708102b3b76670679e5ea4d8fcd
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 43dfaed0ecc21ba45166a4f4c5c3ea4b05df0975097dd440186e9d0ae7d34c46
 ---
 
 > ## Documentation Index
@@ -229,7 +229,7 @@ If you don't set `effort`, Claude Code resolves the effort level itself, in the 
 >
 > `effort` trades latency and token cost for reasoning depth within each response. [Extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking) is a separate feature that produces `thinking` blocks in the output, and the `display` field on `ThinkingConfig` for [Python](https://code.claude.com/docs/en/agent-sdk/python.md#thinkingconfig) or [TypeScript](https://code.claude.com/docs/en/agent-sdk/typescript.md#thinkingconfig) controls whether you receive their text. They are independent: you can set `effort: "low"` with extended thinking enabled, or `effort: "max"` without it.
 
-Use lower effort for agents doing simple, well-scoped tasks (like listing files or running a single grep) to reduce cost and latency. Set `effort` in the top-level `query()` options for the whole session, or per subagent with the `effort` field on [`AgentDefinition`](https://code.claude.com/docs/en/agent-sdk/subagents#agentdefinition-configuration) to override the session level.
+Use lower effort for agents doing simple, well-scoped tasks, such as listing files or running a single grep, to reduce cost and latency. Set `effort` in the top-level `query()` options for the [session](https://code.claude.com/docs/en/sub-agents.md#choose-an-effort-level), or per subagent with the `effort` field on [`AgentDefinition`](https://code.claude.com/docs/en/agent-sdk/subagents#agentdefinition-configuration) to override the session level.
 
 ### Permission mode
 

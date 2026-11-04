@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-profiles-verification-portal
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: dc879e309576f743756c7f204fb05a126b241674e93a01ee01f364b45bcc0c87
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: d32117eed0f12aaf2043314cf50c94c11e6273e32dc724793678b3b7aeb64f65
 ---
 
 ---
@@ -27,7 +27,7 @@ Panggilan ini mengembalikan `404` jika pembuatan tautan pendaftaran tidak diakti
   ```bash cURL
   curl https://api.anthropic.com/v1/user_profiles/uprof_011CZkZCu8hGbp5mYRQgUmz9/action_urls \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{"action": {"type": "enroll_end_user"}}'
   ```
@@ -199,7 +199,7 @@ Untuk melihat program mana yang berlaku untuk sebuah profil, [ambil profil terse
 
 Pelanggan akhir dapat melihat profil yang ditautkan di bawah **Linked accounts** di portal.
 
-Jika inferensi Anda berjalan di Claude di Amazon Bedrock atau Claude Models on Google Cloud (Google managed), Anda juga harus menautkan akun Anda sendiri. Program berlaku untuk permintaan dari akun AWS atau proyek Google Cloud hanya setelah Anda menautkannya ke organisasi Anthropic yang membuat profil Anda. Lihat [Atribusikan permintaan di Amazon Bedrock dan Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/manage-claude/user-profiles#attribute-requests-on-amazon-bedrock-and-google-cloud).
+Jika inferensi Anda berjalan di Claude Models on Google Cloud (Google managed) atau Claude di Amazon Bedrock, Anda juga harus menautkan akun Anda sendiri. Program berlaku untuk permintaan dari akun AWS atau proyek Google Cloud hanya setelah Anda menautkannya ke organisasi Anthropic yang membuat profil Anda. Lihat [Atribusikan permintaan di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock](https://platform.claude.com/docs/id/manage-claude/user-profiles#attribute-requests-on-amazon-bedrock-and-google-cloud).
 
 ## Langkah selanjutnya
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/access-transparency
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 754d1adf84a75691309419be091bc5e36fdc44614ffff322f60c3ceb2f14d0ff
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 25fee2d688329c87113c638f558d48d762a6a14822d976cf4add30128b3e54fb
 ---
 
 ---
@@ -43,7 +43,7 @@ Anthropic personnel access customer content only under defined conditions. Acces
 * **Your own organization’s activity:** Your API calls, admin actions, and Compliance API reads are covered by standard [Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed) event types.
 * **Claude for Enterprise and Claude Apps:** claude.ai Enterprise seats, Claude for Work, Cowork, and Claude in Chrome are not covered.
 * **Claude consumer products:** Claude Free, Pro, Max, or Ultra plans.
-* **Partner-operated platforms:** Amazon Bedrock and Claude Models on Google Cloud (Google managed). Refer to those platforms’ transparency controls.
+* **Partner-operated platforms:** Claude Models on Google Cloud (Google managed) and Amazon Bedrock. Refer to those platforms’ transparency controls.
 * **Anything ZDR does not cover:** Products that are not covered by ZDR (for example, the Files API, Anthropic-hosted stateful applications, and the Batch API) are not covered by Access Transparency. See [Zero data retention (ZDR)](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) for additional details.
 
 ## Getting started
@@ -76,7 +76,7 @@ curl --fail-with-body -sS -G \
   --data-urlencode "activity_types[]=anthropic_access" \
   --data-urlencode "limit=50" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01"
+  -H "anthropic-version: 2026-10-21"
 ```
 
 Pagination, date-range filtering (`created_at.gte` / `.lt`), and the response envelope (`has_more`, `first_id`, `last_id`) are shared with the rest of the Activity Feed. See [Query the Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed).
@@ -137,7 +137,7 @@ curl --fail-with-body -sS -G \
   --data-urlencode "activity_types[]=cmek_preserve" \
   --data-urlencode "limit=50" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01"
+  -H "anthropic-version: 2026-10-21"
 ```
 
 Example JSON message:

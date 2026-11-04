@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: c5384371e5d142075013cdb0a2fabc5329c80b1a0c6d4931de6b719933d0dd32
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 9b17a448795bd3e9762cfbb7a5bf74d4711074bd601e469ba74e893fb82621cb
 ---
 
 ---
@@ -41,7 +41,7 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk menampi
   # Daftar Skill yang dikelola Anthropic
   curl --fail-with-body -sS "https://api.anthropic.com/v1/skills?source=anthropic" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -137,7 +137,7 @@ Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Ten
     curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
       -H "content-type: application/json" \
       -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
+      -H "anthropic-version: 2026-10-21" \
       -d '{
         "model": "claude-opus-5-5",
         "max_tokens": 16000,
@@ -354,7 +354,7 @@ Permintaan ini mencakup bagian-bagian berikut:
 * **`tools`:** Mengaktifkan eksekusi kode (diperlukan untuk Skills)
 
 <Note>
-  Contoh-contoh ini menggunakan versi alat `code_execution_20260521`, dan kode Langkah 3 mem-parsing tipe hasil yang dikembalikan oleh versi alat saat ini. Skills juga berfungsi dengan versi [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) yang lebih lama seperti `code_execution_20250825`: versi alat eksekusi kode apa pun yang masih berlaku memenuhi persyaratan Skills. Jika Anda menggunakan versi yang berbeda, gunakan `type` alat yang tercantum di halaman alat eksekusi kode.
+  Contoh-contoh ini menggunakan versi alat `code_execution_20260521`, dan kode Langkah 3 mem-parsing tipe hasil yang dikembalikan oleh versi alat saat ini. Skills juga berfungsi dengan versi [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) lainnya seperti `code_execution_20250825`: versi alat eksekusi kode apa pun yang masih berlaku memenuhi persyaratan Skills. Jika Anda menggunakan versi yang berbeda, gunakan `type` alat yang tercantum di halaman alat eksekusi kode.
 </Note>
 
 Saat Anda membuat permintaan ini, Claude secara otomatis mencocokkan tugas Anda dengan Skill yang relevan. Karena Anda meminta presentasi, Claude menentukan bahwa Skill PowerPoint relevan dan memuat instruksi lengkapnya: tingkat kedua dari pengungkapan bertahap. Kemudian Claude menjalankan kode Skill tersebut untuk membuat presentasi Anda.
@@ -382,7 +382,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. `r
     # Unduh file dan simpan
     curl --fail-with-body -sS "https://api.anthropic.com/v1/files/$file_id/content" \
       -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
+      -H "anthropic-version: 2026-10-21" \
       -o "${TMPDIR:-/tmp}/renewable_energy.pptx"
   fi
   ```
@@ -609,7 +609,7 @@ Coba variasi berikut:
   curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 16000,
@@ -801,7 +801,7 @@ Coba variasi berikut:
   curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 16000,
@@ -993,7 +993,7 @@ Coba variasi berikut:
   curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 16000,

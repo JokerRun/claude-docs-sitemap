@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/effort
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 5b0109fd746a961e9d080f7f95d604fb106fbe3e4e10a42ab29cf562435a363d
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 508e42f06daab51f4d0abaa36a9d07c53d6fb55bd8c87a383bfb1a5716667f0c
 ---
 
 ---
@@ -42,8 +42,8 @@ featureMetadata:
 
 **API support**: Usage differs by product.
 
-* **Messages API**: Always on. Set `output_config.effort` on the request. With no value, the model’s default level applies.
-* **Managed Agents**: Always on. Set `effort` on the agent’s model object, or in a session’s model override. With no value, Managed Agents fills in the model’s default.
+* **Messages API**: Set `output_config.effort` on the request. With no value, the model’s default level applies.
+* **Managed Agents**: Set `effort` on the agent’s model object, or in a session’s model override. With no value, Managed Agents fills in the model’s default.
 
 The effort parameter lets you control how many tokens Claude spends when responding to requests. You can trade off between response thoroughness and token efficiency with a single model. The top-level effort parameter is available on all supported models with no beta header required. [Per-message effort](https://platform.claude.com/docs/en/build-with-claude/effort#change-effort-mid-conversation-beta) is in beta.
 
@@ -59,7 +59,7 @@ Set `output_config.effort` on the request. The following example runs one reques
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -420,7 +420,7 @@ The following example starts at `high`, then drops to `low` for a routine follow
   # Effort-only system message: the new level takes effect from the next user turn.
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: mid-conversation-output-config-2026-07-01" \
     -H "content-type: application/json" \
     -d '{

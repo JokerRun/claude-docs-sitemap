@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/analytics-api
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 0ab60d33293ea3b20b237ac7076b73683f82ca10eb886ac22c472a20ea5cf639
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 4589c628d8a07057f62d3ee3321cc1752b31e9a5fee754e61f57bf0d99af090a
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/manage-claude/analytics-api
 description: Pahami API analitik dan kunci API mana yang dibutuhkan organisasi Anda, lalu sediakan akses ke metrik produktivitas Claude Code atau data keterlibatan dan adopsi Claude Enterprise.
 ---
 
-Anthropic menyediakan dua API analitik, dan API mana yang Anda gunakan bergantung pada produk Claude mana yang dikelola organisasi Anda:
+Anthropic menyediakan dua API analitik produk, dan API mana yang Anda gunakan bergantung pada produk Claude mana yang dikelola organisasi Anda:
 
 * **Claude Code Analytics API** melaporkan metrik produktivitas Claude Code harian untuk organisasi yang menggunakan Claude Platform. API ini merupakan bagian dari [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) dan menggunakan kunci Admin API.
 * **Claude Enterprise Analytics API** melaporkan data keterlibatan, adopsi, dan biaya di seluruh organisasi untuk berbagai produk Claude (chat, proyek, Claude Code, dan lainnya) bagi organisasi Claude Enterprise. API ini menggunakan kunci Analytics API yang dibuat di claude.ai.
@@ -25,7 +25,7 @@ Kedua API tersebut menggunakan jenis kunci yang berbeda, yang dibuat di tempat b
 | **Claude Code Analytics API**       | Kunci Admin API (`sk-ant-admin01-...`) | Halaman [Admin keys](https://platform.claude.com/settings/admin-keys) (`platform.claude.com/settings/admin-keys`) di Claude Console | Admin organisasi            | Metrik Claude Code harian per pengguna: sesi, baris kode, commit, pull request, penerimaan alat, dan estimasi biaya per model                                               |
 | **Claude Enterprise Analytics API** | Kunci Analytics API                    | [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access)                                              | Pemilik utama               | Keterlibatan dan adopsi di seluruh organisasi (aktivitas pengguna, ringkasan pengguna aktif, penggunaan proyek, skill, dan konektor), ditambah laporan biaya dan penggunaan |
 
-Jenis kunci ini tidak dapat dipertukarkan: kunci Admin API tidak dapat memanggil Claude Enterprise Analytics API, dan kunci Analytics API tidak dapat memanggil Admin API. Satu-satunya pengecualian adalah [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api), yang dipanggil oleh organisasi Claude Enterprise dengan kunci Analytics API mereka. Kedua API muncul di bawah [referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization), tetapi keduanya adalah API terpisah dengan jenis kunci terpisah. Jika organisasi Anda menggunakan Claude Platform dan Claude Enterprise sekaligus, Anda dapat menyediakan kedua kunci dan menggunakan masing-masing API untuk datanya sendiri.
+Jenis kunci ini tidak dapat dipertukarkan: kunci Admin API tidak dapat memanggil Claude Enterprise Analytics API, dan kunci Analytics API tidak dapat memanggil Admin API. Satu-satunya pengecualian adalah [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api), yang dipanggil oleh organisasi Claude Enterprise dengan kunci Analytics API mereka. Kedua API analitik produk muncul di bawah [referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization), tetapi keduanya adalah API terpisah dengan jenis kunci terpisah. Jika organisasi Anda menggunakan Claude Platform dan Claude Enterprise sekaligus, Anda dapat menyediakan kedua kunci dan menggunakan masing-masing API untuk datanya sendiri.
 
 <Note>
   Mencari data penggunaan token dan biaya, bukan analitik produk? Lihat [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api), yang melayani organisasi Claude Console maupun Claude Enterprise.
@@ -49,7 +49,7 @@ Claude Code Analytics API tersedia untuk setiap organisasi yang memiliki akses k
 
     ```bash
     curl "https://api.anthropic.com/v1/organizations/usage_report/claude_code?starting_at=2025-09-08" \
-      --header "anthropic-version: 2023-06-01" \
+      --header "anthropic-version: 2026-10-21" \
       --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
     ```
   </Step>

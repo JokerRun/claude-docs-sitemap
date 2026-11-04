@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/user-management
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 5a35f9fefe30a3e71a2b2634123d0929aab21a783680658ac1df6dc69f59c7e5
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 1a498a640d7bf2e2fbbfd0708cfaf2a1c81532ff0fa77192a9fa24f559e5d51c
 ---
 
 ---
@@ -23,7 +23,7 @@ This page covers managing the people in your **Claude Enterprise** (claude.ai) o
 For Claude Console (Claude Platform) organizations, see the [Admin API guide for Claude Console](https://platform.claude.com/docs/en/manage-claude/admin-api).
 
 <Note>
-  Group and custom-role requests don’t require the `anthropic-beta: ce-user-management-2026-07-13` [beta header](https://platform.claude.com/docs/en/api/beta-headers). Requests that still send it are accepted and behave identically.
+  Group and custom-role requests don’t require the `anthropic-beta: ce-user-management-2026-07-13` [beta header](https://platform.claude.com/docs/en/api/beta-headers). Requests that send it are accepted and behave identically.
 </Note>
 
 ## Which endpoints can your organization use?
@@ -72,7 +72,7 @@ List the organization’s members, newest first:
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/users?limit=20" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -237,7 +237,7 @@ For complete parameter details and response schemas, see [List users](https://pl
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/users?email=jane@example.com" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -338,7 +338,7 @@ For complete parameter details and response schemas, see [Get user](https://plat
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/users/user_01AbCdEfGhIjKlMnOpQrSt" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -433,7 +433,7 @@ For complete parameter details and response schemas, see [Update user](https://p
   curl -X POST "https://api.anthropic.com/v1/organizations/users/user_01AbCdEfGhIjKlMnOpQrSt" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{"role": "managed"}'
   ```
 
@@ -549,7 +549,7 @@ For complete parameter details and response schemas, see [Remove user](https://p
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/organizations/users/user_01AbCdEfGhIjKlMnOpQrSt" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -644,7 +644,7 @@ For complete parameter details and response schemas, see [Create invite](https:/
   curl -X POST "https://api.anthropic.com/v1/organizations/invites" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "email": "newhire@example.com",
       "role": "managed",
@@ -804,7 +804,7 @@ For complete parameter details and response schemas, see [List invites](https://
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/invites?limit=20" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -905,7 +905,7 @@ For complete parameter details and response schemas, see [Get invite](https://pl
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/invites/invite_01QrStUvWxYzAbCdEfGhIj" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -999,7 +999,7 @@ For complete parameter details and response schemas, see [Delete invite](https:/
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/organizations/invites/invite_01QrStUvWxYzAbCdEfGhIj" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -1086,7 +1086,7 @@ For complete parameter details and response schemas, see [List groups](https://p
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/rbac_groups?limit=20" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -1186,7 +1186,6 @@ For complete parameter details and response schemas, see [List groups](https://p
       "name": "Engineering",
       "source_type": "direct",
       "role_ids": ["rbac_role_01CdEfGhIjKlMnOpQrStUv"],
-      "roles": ["rbac_role_01CdEfGhIjKlMnOpQrStUv"],
       "created_at": "2026-03-18T10:01:42Z",
       "updated_at": "2026-05-02T08:55:09Z"
     }
@@ -1206,7 +1205,7 @@ For complete parameter details and response schemas, see [Get group](https://pla
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -1307,7 +1306,7 @@ For complete parameter details and response schemas, see [Create group](https://
   curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{"name": "Engineering"}'
   ```
 
@@ -1403,7 +1402,6 @@ For complete parameter details and response schemas, see [Create group](https://
   "name": "Engineering",
   "source_type": "direct",
   "role_ids": [],
-  "roles": [],
   "created_at": "2026-07-09T18:00:00Z",
   "updated_at": "2026-07-09T18:00:00Z"
 }
@@ -1420,7 +1418,7 @@ For complete parameter details and response schemas, see [Update group](https://
   curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{"name": "Platform Engineering"}'
   ```
 
@@ -1533,7 +1531,7 @@ For complete parameter details and response schemas, see [Delete group](https://
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -1628,7 +1626,7 @@ For complete parameter details and response schemas, see [List group members](ht
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn/members?limit=100" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -1744,7 +1742,6 @@ For complete parameter details and response schemas, see [List group members](ht
     {
       "type": "rbac_group_member",
       "rbac_group_id": "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
-      "group_id": "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
       "user_id": "user_01AbCdEfGhIjKlMnOpQrSt",
       "email": "jane@example.com",
       "created_at": "2026-04-07T12:30:00Z"
@@ -1766,7 +1763,7 @@ For complete parameter details and response schemas, see [Add group member](http
   curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn/members" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{"user_id": "user_01AbCdEfGhIjKlMnOpQrSt"}'
   ```
 
@@ -1876,7 +1873,6 @@ For complete parameter details and response schemas, see [Add group member](http
 {
   "type": "rbac_group_member",
   "rbac_group_id": "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
-  "group_id": "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
   "user_id": "user_01AbCdEfGhIjKlMnOpQrSt",
   "email": "jane@example.com",
   "created_at": "2026-07-09T18:00:00Z"
@@ -1893,7 +1889,7 @@ For complete parameter details and response schemas, see [Remove group member](h
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn/members/user_01AbCdEfGhIjKlMnOpQrSt" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -1994,7 +1990,6 @@ For complete parameter details and response schemas, see [Remove group member](h
 ```json
 {
   "rbac_group_id": "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
-  "group_id": "rbac_group_01UvWxYzAbCdEfGhIjKlMn",
   "user_id": "user_01AbCdEfGhIjKlMnOpQrSt",
   "type": "rbac_group_member_deleted"
 }
@@ -2016,7 +2011,7 @@ For complete parameter details and response schemas, see [List roles](https://pl
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/rbac_roles?limit=20" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -2114,7 +2109,6 @@ For complete parameter details and response schemas, see [List roles](https://pl
       "type": "rbac_role",
       "id": "rbac_role_01CdEfGhIjKlMnOpQrStUv",
       "display_name": "Engineering base",
-      "name": "Engineering base",
       "created_at": "2026-03-18T10:01:42Z",
       "updated_at": "2026-05-02T08:55:09Z"
     }
@@ -2134,7 +2128,7 @@ For complete parameter details and response schemas, see [Get role](https://plat
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/rbac_roles/rbac_role_01CdEfGhIjKlMnOpQrStUv" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -2227,7 +2221,7 @@ For complete parameter details and response schemas, see [List role permissions]
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/rbac_roles/rbac_role_01CdEfGhIjKlMnOpQrStUv/permissions?limit=20" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -2373,7 +2367,7 @@ For complete parameter details and response schemas, see [List role permissions]
      ```bash cURL
      curl "https://api.anthropic.com/v1/organizations/users?email=departing@example.com" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01"
+       -H "anthropic-version: 2026-10-21"
      ```
 
      ```bash CLI

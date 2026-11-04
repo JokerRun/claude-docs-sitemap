@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 0d902001131bb822fc188425ef6f9c7a3e3d1fd8e21cfcc55a66b04eb326f58e
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 04abc99c3040e0a206ccb7037e3dc20fe4ba49ae64ea8a88f9c14028c6af1435
 ---
 
 ---
@@ -52,7 +52,7 @@ Pertama, unggah file menggunakan [Files API](https://platform.claude.com/docs/id
   ```bash cURL
   curl --fail-with-body -sS https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -F file=@data.csv
   ```
@@ -129,7 +129,7 @@ Mount file yang telah diunggah ke dalam sandbox dengan menambahkannya ke array `
   ```bash cURL
   curl --fail-with-body -sS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -273,7 +273,7 @@ Mount beberapa file dengan menambahkan entri ke array `resources` (csharp, go: `
   ```bash cURL
   curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -398,7 +398,7 @@ Anda dapat menambahkan atau menghapus file dari sesi setelah dibuat menggunakan 
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/resources" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -492,12 +492,12 @@ Tampilkan daftar semua resource pada sesi dengan `GET /v1/sessions/{session_id}/
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/resources" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
 
   curl --fail-with-body -sS -X DELETE "https://api.anthropic.com/v1/sessions/$SESSION_ID/resources/$RESOURCE_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
@@ -607,13 +607,13 @@ Pemfilteran berdasarkan `scope_id` (java: `scopeId`; php: `scopeID`; csharp, go:
   # Daftar file yang terkait dengan sebuah sesi
   curl -fsSL "https://api.anthropic.com/v1/files?scope_id=sesn_abc123" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
 
   # Unduh sebuah file
   curl -fsSL "https://api.anthropic.com/v1/files/$FILE_ID/content" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -o output.txt
   ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: c5de92f346b2ca6bf9b0f60a5ae60635e687a6c718a7b7496d575c3fcea696b8
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: aca47ccffa433718950aaf17b2eb894c6c0bf19626c6f13a472fb310fb2e4420
 ---
 
 ---
@@ -153,7 +153,7 @@ Spesifikasi pod di [Mengonfigurasi Kubernetes](https://platform.claude.com/docs/
 
   curl https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: a36d7a70f0a8b539d63780b2bbf57781f9cb9d3d10c2f2913a52dafd4140125f
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 35de5c5f7627086bbbfba85837cba2f040291f0f151f747de712f1cd4ed7d928
 ---
 
 ---
@@ -45,7 +45,7 @@ Dapatkan analitik Claude Code organisasi Anda untuk hari tertentu:
 curl "https://api.anthropic.com/v1/organizations/usage_report/claude_code?\
 starting_at=2025-09-08&\
 limit=20" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
@@ -81,7 +81,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Claude Code A
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/usage_report/claude_code?\
 starting_at=2025-09-08" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
@@ -92,14 +92,14 @@ starting_at=2025-09-08" \
 curl "https://api.anthropic.com/v1/organizations/usage_report/claude_code?\
 starting_at=2025-09-08&\
 limit=20" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 
 # Permintaan berikutnya menggunakan cursor dari respons
 curl "https://api.anthropic.com/v1/organizations/usage_report/claude_code?\
 starting_at=2025-09-08&\
 page=page_MjAyNS0wNS0xNFQwMDowMDowMFo=" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 

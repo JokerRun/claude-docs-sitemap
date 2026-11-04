@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 083feb86692f24ff8265a566b204abe0f76511bb750b2ba8c8e448718f442337
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 407696048bd71f5c29cb336481063ad0537b48a2b59efd1e2903cae1865b2701
 ---
 
 ---
@@ -2891,7 +2891,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   # di sini, contoh SDK memuat teks persetujuan tetap yang lengkap.
   curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

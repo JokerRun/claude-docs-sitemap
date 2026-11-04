@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-sessions
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 2f9f229d34964c73a954306c8a1ca65546160bb0b74ae6350740e57996e03f96
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 4cbf5b956603983aaebd2212b1b42be94f48a1a4d89bb85e6570acfe8e9b85eb
 ---
 
 ---
@@ -79,7 +79,7 @@ Endpoint list mengembalikan metadata sesi, tanpa konten transkrip, untuk setiap 
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/apps/sessions/local" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  --header "anthropic-version: 2023-06-01" \
+  --header "anthropic-version: 2026-10-21" \
   --data-urlencode "created_at.gte=2026-07-01T00:00:00Z" \
   --data-urlencode "limit=100"
 ```
@@ -168,7 +168,7 @@ File instruksi proyek seperti `CLAUDE.md` muncul sebagai konten peran pengguna b
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/apps/sessions/local/clls_01HxKpLmNoPqRsTuVwXyZaBc/messages" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  --header "anthropic-version: 2023-06-01"
+  --header "anthropic-version: 2026-10-21"
 ```
 
 ```json Response
@@ -318,7 +318,7 @@ Endpoint list secara default menggunakan cakupan seluruh organisasi: hilangkan `
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/apps/sessions/remote" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  --header "anthropic-version: 2023-06-01" \
+  --header "anthropic-version: 2026-10-21" \
   --data-urlencode "created_at.gte=2026-06-01T00:00:00Z" \
   --data-urlencode "limit=100"
 ```
@@ -385,7 +385,7 @@ Endpoint messages mengembalikan transkrip sesi: prompt pengguna, respons asisten
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/apps/sessions/remote/cse_01WpQrStUvXyZaBcDeFgHjK6/messages" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  --header "anthropic-version: 2023-06-01"
+  --header "anthropic-version: 2026-10-21"
 ```
 
 ```json Response

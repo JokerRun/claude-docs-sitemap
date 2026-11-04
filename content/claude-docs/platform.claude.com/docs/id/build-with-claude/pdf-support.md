@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: fe27252a345043be7d4bb2f7c9aeef35d16ebb80181be24b55f6b8ab0790aba2
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 57728065497ce931d7c60a843314a12d4ce9b73c397836b38e0255091c45dfab
 ---
 
 ---
@@ -96,7 +96,7 @@ Mulailah dengan contoh sederhana menggunakan Messages API. Anda dapat memberikan
 3. Melalui `file_id` dari [Files API](https://platform.claude.com/docs/id/build-with-claude/files)
 
 <Note>
-  Di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), saat ini hanya sumber yang dienkode base64 yang tersedia. Di Microsoft Foundry, Files API tidak didukung untuk deployment yang di-host di Azure.
+  Di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, hanya sumber yang dienkode base64 yang tersedia. Di Microsoft Foundry, Files API tidak didukung untuk deployment yang di-host di Azure.
 </Note>
 
 #### Opsi 1: Dokumen PDF berbasis URL
@@ -108,7 +108,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -403,7 +403,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d @request.json
   ```
 
@@ -716,14 +716,14 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
   # Pertama, unggah PDF Anda ke Files API
   curl -sS -X POST https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -F "file=@document.pdf"
 
   # Lalu gunakan file_id dari respons unggahan dalam pesan Anda
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -1087,7 +1087,7 @@ Cache PDF dengan [caching prompt](https://platform.claude.com/docs/id/build-with
     curl https://api.anthropic.com/v1/messages \
       -H "content-type: application/json" \
       -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
+      -H "anthropic-version: 2026-10-21" \
       -d @-
   ```
 
@@ -1444,7 +1444,7 @@ Gunakan [Message Batches API](https://platform.claude.com/docs/id/build-with-cla
   curl https://api.anthropic.com/v1/messages/batches \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d @request.json
   ```
 

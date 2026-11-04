@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: e9a46ed4c8ae5f5e49f64673caa3fae4d6372c9690f828161c5fb72919cd52ee
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: fadfc580b93f80d214ec969bfa9cde771b33a2219bba1c941152d67f17ce640d
 ---
 
 ---
@@ -75,7 +75,7 @@ Unggah file untuk dirujuk dalam panggilan API berikutnya:
   ```bash cURL
   curl -X POST https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -F "file=@/path/to/document.pdf"
   ```
 
@@ -201,7 +201,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
   ```bash cURL
   curl -X POST https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -474,7 +474,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d @- <<EOF
   {
     "model": "claude-opus-5-5",
@@ -709,7 +709,7 @@ Ambil daftar file yang telah Anda unggah. Endpoint ini menggunakan “pagination
   ```bash cURL
   curl https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -782,7 +782,7 @@ Ambil informasi tentang file tertentu:
   ```bash cURL
   curl "https://api.anthropic.com/v1/files/$FILE_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -838,7 +838,7 @@ Hapus file dari workspace Anda:
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/files/$FILE_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -885,7 +885,7 @@ Unduh file yang dibuat oleh [skills](https://platform.claude.com/docs/id/build-w
   ```bash cURL
   curl -X GET "https://api.anthropic.com/v1/files/$FILE_ID/content" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -o downloaded_file.txt
   ```
 
@@ -999,7 +999,7 @@ Jika organisasi Anda telah mengaktifkan [Compliance API](https://platform.claude
 
 ## Migrasi dari `files-api-2025-04-14`
 
-Files API telah keluar dari beta dan tidak memerlukan header beta. Migrasi dari `files-api-2025-04-14` bersifat opsional: permintaan yang masih mengirimkannya tetap berfungsi dan tetap mengembalikan bentuk respons beta, sehingga integrasi yang ada tetap berfungsi hingga Anda mengubahnya. Menghapus header tersebut akan mengalihkan permintaan itu ke bentuk yang didokumentasikan di halaman ini:
+Files API telah keluar dari beta dan tidak memerlukan header beta. Migrasi dari `files-api-2025-04-14` bersifat opsional: permintaan yang mengirimkannya tetap berfungsi dan tetap mengembalikan bentuk respons beta, sehingga integrasi yang ada tetap berfungsi hingga Anda mengubahnya. Menghapus header tersebut akan mengalihkan permintaan itu ke bentuk yang didokumentasikan di halaman ini:
 
 |                                               | Dengan `files-api-2025-04-14`           | Tanpa header                                                                         |
 | --------------------------------------------- | --------------------------------------- | ------------------------------------------------------------------------------------ |

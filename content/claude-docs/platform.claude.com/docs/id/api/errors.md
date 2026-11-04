@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 2842c2df0495fe568bbf000465ecfdbf3793481ff46ce2634a2df44cf5ee0c31
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 968bd9fb3ef2cbd98890300e2a913e0a0c642c9a2911b3faa8706e6172ab73df
 ---
 
 ---
@@ -19,6 +19,8 @@ API mengikuti format kode error HTTP yang dapat diprediksi:
 
 * 401 - `authentication_error`: Terdapat masalah pada [kunci API](https://platform.claude.com/docs/id/get-api-key) Anda (misalnya, formatnya salah, telah dicabut, atau kedaluwarsa; lihat [Kedaluwarsa kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration)). Di Claude Platform on AWS, ini juga dapat menunjukkan masalah pada kredensial AWS atau tanda tangan SigV4 Anda.
 
+  Error 401 yang pesannya diawali dengan `CORS requests are not allowed for this Organization` bukanlah masalah pada kunci API Anda. Permintaan tersebut menyertakan header `Origin`, yang ditambahkan oleh browser, dan organisasi Anda tidak dapat memanggil Claude API langsung dari browser. Pesan tersebut berlanjut dengan `because of custom retention settings` atau `because of its settings`. Yang pertama hanya muncul untuk pengaturan retensi data seperti “zero data retention” (retensi data nol), atau ZDR; yang kedua adalah kasus umum, yang mencakup Compliance API. Tidak ada perubahan pada permintaan browser yang dapat memperbaikinya, jadi kirimkan permintaan dari back end Anda sendiri; lihat [Aplikasi berbasis browser](https://platform.claude.com/docs/id/manage-claude/authentication#browser-based-applications).
+
 * 402 - `billing_error`: Terdapat masalah pada informasi penagihan atau pembayaran Anda. Periksa detail pembayaran Anda di [Claude Console](https://platform.claude.com), atau di AWS Marketplace jika Anda menggunakan Claude Platform on AWS.
 
 * 403 - `permission_error`: Kunci API Anda tidak memiliki izin untuk menggunakan sumber daya yang ditentukan. Periksa akses organisasi dan pengaturan workspace Anda di [Claude Console](https://platform.claude.com).
@@ -31,9 +33,9 @@ API mengikuti format kode error HTTP yang dapat diprediksi:
 
 * 429 - `rate_limit_error`: Organisasi Anda telah mencapai [“rate limit” (batas laju)](https://platform.claude.com/docs/id/api/rate-limits), mencapai batas pengeluaran bulanan tingkat penggunaannya, atau mencapai batas pengeluaran pada workspace Claude Code. Error 429 akibat batas pengeluaran tingkat tidak memiliki header `retry-after` dan akan terus gagal hingga akses dipulihkan; lihat [Mencapai batas pengeluaran Anda](https://platform.claude.com/docs/id/api/rate-limits#reaching-your-spend-cap) untuk cara mengenalinya.
 
-* 500 - `api_error`: Terjadi error tak terduga di dalam sistem Anthropic. Coba ulang permintaan dengan “exponential backoff” (penundaan eksponensial); jika error berlanjut, hubungi dukungan dengan menyertakan [ID permintaan](https://platform.claude.com/docs/id/api/errors#request-id).
+* 500 - `api_error`: Terjadi error tak terduga di dalam sistem Anthropic. Coba ulang permintaan dengan “exponential backoff” (penundaan eksponensial); jika error berlanjut, hubungi dukungan dengan menyertakan [ID permintaan](https://platform.claude.com/docs/id/api/errors#request-id). Jika tipe error-nya justru `timeout_error`, lihat entri 504.
 
-* 504 - `timeout_error`: Permintaan mengalami timeout saat diproses. Pertimbangkan untuk menggunakan [Messages API dengan streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) untuk permintaan yang berjalan lama. Lihat [Permintaan panjang](https://platform.claude.com/docs/id/api/errors#long-requests) untuk opsi lainnya.
+* 504 - `timeout_error`: Permintaan mengalami timeout saat diproses. API juga mengembalikan `timeout_error` dengan kode status lain, seperti 500 ketika permintaan mencapai batas waktu server sebelum respons dimulai. Untuk permintaan Messages API yang berjalan lama, gunakan [Messages API dengan streaming](https://platform.claude.com/docs/id/build-with-claude/streaming). Lihat [Permintaan panjang](https://platform.claude.com/docs/id/api/errors#long-requests) untuk opsi lainnya.
 
 * 529 - `overloaded_error`: API sedang kelebihan beban untuk sementara.
 
@@ -96,7 +98,7 @@ SDK Python dan TypeScript menyediakan ID permintaan sebagai properti `_request_i
   # -i mencetak header respons, termasuk request-id, sebelum body
   curl -sS -i https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-sonnet-5",

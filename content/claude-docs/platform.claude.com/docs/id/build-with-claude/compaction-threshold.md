@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-threshold
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 9e0115bb5eca620785fc7c85e5a0db50066b3f5dd3cee6aea12fa29a23e0e5bc
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 1c699b87c5711d0ea02bab15d097bfbd70a88f4940b913af189410a0f4ddc4ab
 ---
 
 ---
@@ -80,7 +80,7 @@ Aktifkan compaction dengan menambahkan strategi `compact_20260112` ke `context_m
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: compact-2026-01-12" \
     -H "content-type: application/json" \
     -d '{
@@ -308,7 +308,7 @@ Konfigurasikan kapan compaction dipicu menggunakan parameter `trigger`:
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: compact-2026-01-12" \
     -H "content-type: application/json" \
     -d '{
@@ -529,7 +529,7 @@ Anda dapat memberikan instruksi kustom melalui parameter `instructions`. Instruk
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: compact-2026-01-12" \
     -H "content-type: application/json" \
     -d '{
@@ -755,7 +755,7 @@ Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setel
   # untuk alur jeda-dan-lanjut lengkap. Satu permintaan yang dijeda:
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: compact-2026-01-12" \
     -H "content-type: application/json" \
     -d '{
@@ -1080,6 +1080,8 @@ Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setel
   puts response
   ```
 </CodeGroup>
+
+API berhenti sejenak bahkan jika tidak ada ringkasan yang dihasilkan. `content` dari blok `compaction` kemudian bernilai `null`, jadi pertahankan pesan asli saat Anda melanjutkan. Jika perlindungan memblokir ringkasan, `content` juga bernilai `null` dan stop reason-nya adalah `refusal`, bukan `compaction`. [`stop_details`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#refusal) memberikan kategori kebijakan, jika ada. Lanjutkan dengan cara yang sama dalam kedua kasus: cari blok `compaction` alih-alih memeriksa `stop_reason`, seperti yang dilakukan oleh [contoh yang mempertahankan pesan terbaru](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold#examples).
 
 #### Menerapkan anggaran token total
 
@@ -1663,6 +1665,8 @@ Ketika API menerima blok `compaction`, semua blok konten sebelumnya diabaikan. A
 * Mempertahankan pesan asli dalam daftar Anda dan membiarkan API menangani penghapusan konten yang telah dipadatkan
 * Membuang pesan yang telah dipadatkan secara manual dan hanya menyertakan blok compaction dan seterusnya
 
+Jika tidak ada ringkasan yang dihasilkan, `content` dari blok tersebut bernilai `null` dan API mengabaikan blok tersebut. Tidak ada yang dipadatkan, jadi pertahankan pesan asli.
+
 Pada model Claude 5.1 dan yang lebih baru, blok thinking dari sebelum blok `compaction` tidak dibawa ke depan, sehingga ringkasan adalah satu-satunya yang dimiliki model dari pekerjaan sebelumnya tersebut. Jika Anda menulis `instructions` sendiri, beri tahu model apa yang harus dipertahankan dalam ringkasan; lihat [Beri tahu model apa yang harus dipertahankan dalam ringkasan compaction](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#tell-the-model-what-to-preserve-in-compaction-summaries).
 
 ### Streaming
@@ -1673,7 +1677,7 @@ Blok compaction di-stream secara berbeda dari blok teks. Anda menerima event `co
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: compact-2026-01-12" \
     -H "content-type: application/json" \
     -d '{
@@ -2037,7 +2041,7 @@ Untuk memaksimalkan tingkat cache hit, tambahkan breakpoint `cache_control` di a
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: compact-2026-01-12" \
     -H "content-type: application/json" \
     -d '{
@@ -2312,7 +2316,7 @@ Endpoint penghitungan token (`/v1/messages/count_tokens`) menerapkan blok `compa
   ```bash cURL
   curl https://api.anthropic.com/v1/messages/count_tokens \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: compact-2026-01-12" \
     -H "content-type: application/json" \
     -d '{
@@ -2524,9 +2528,9 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
 
 
   # Jalankan percakapan panjang
-  print(chat("Help me build a Python web scraper"))
-  print(chat("Add support for JavaScript-rendered pages"))
-  print(chat("Now add rate limiting and error handling"))
+  print(chat("Briefly, help me build a Python web scraper"))
+  print(chat("Briefly, add support for JavaScript-rendered pages"))
+  print(chat("Briefly, add rate limiting and error handling"))
   # Terus panggil chat() selama percakapan masih membutuhkannya
   ```
 
@@ -2562,9 +2566,9 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
   }
 
   // Jalankan percakapan panjang
-  console.log(await chat("Help me build a Python web scraper"));
-  console.log(await chat("Add support for JavaScript-rendered pages"));
-  console.log(await chat("Now add rate limiting and error handling"));
+  console.log(await chat("Briefly, help me build a Python web scraper"));
+  console.log(await chat("Briefly, add support for JavaScript-rendered pages"));
+  console.log(await chat("Briefly, add rate limiting and error handling"));
   // Terus panggil chat() selama percakapan masih membutuhkannya
   ```
 
@@ -2572,9 +2576,9 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
   AnthropicClient client = new();
   List<BetaMessageParam> messages = new();
 
-  Console.WriteLine(await Chat(client, messages, "Help me build a Python web scraper"));
-  Console.WriteLine(await Chat(client, messages, "Add support for JavaScript-rendered pages"));
-  Console.WriteLine(await Chat(client, messages, "Now add rate limiting and error handling"));
+  Console.WriteLine(await Chat(client, messages, "Briefly, help me build a Python web scraper"));
+  Console.WriteLine(await Chat(client, messages, "Briefly, add support for JavaScript-rendered pages"));
+  Console.WriteLine(await Chat(client, messages, "Briefly, add rate limiting and error handling"));
 
   static async Task<string> Chat(AnthropicClient client, List<BetaMessageParam> messages, string userMessage)
   {
@@ -2657,9 +2661,9 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
   }
 
   func main() {
-  	fmt.Println(chat("Help me build a Python web scraper"))
-  	fmt.Println(chat("Add support for JavaScript-rendered pages"))
-  	fmt.Println(chat("Now add rate limiting and error handling"))
+  	fmt.Println(chat("Briefly, help me build a Python web scraper"))
+  	fmt.Println(chat("Briefly, add support for JavaScript-rendered pages"))
+  	fmt.Println(chat("Briefly, add rate limiting and error handling"))
   }
   ```
 
@@ -2672,9 +2676,9 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
       private static final List<BetaMessageParam> messages = new ArrayList<>();
 
       public static void main(String[] args) {
-          System.out.println(chat("Help me build a Python web scraper"));
-          System.out.println(chat("Add support for JavaScript-rendered pages"));
-          System.out.println(chat("Now add rate limiting and error handling"));
+          System.out.println(chat("Briefly, help me build a Python web scraper"));
+          System.out.println(chat("Briefly, add support for JavaScript-rendered pages"));
+          System.out.println(chat("Briefly, add rate limiting and error handling"));
       }
 
       private static String chat(String userMessage) {
@@ -2740,9 +2744,9 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
       return '';
   }
 
-  echo chat($client, $messages, 'Help me build a Python web scraper') . "\n";
-  echo chat($client, $messages, 'Add support for JavaScript-rendered pages') . "\n";
-  echo chat($client, $messages, 'Now add rate limiting and error handling') . "\n";
+  echo chat($client, $messages, 'Briefly, help me build a Python web scraper') . "\n";
+  echo chat($client, $messages, 'Briefly, add support for JavaScript-rendered pages') . "\n";
+  echo chat($client, $messages, 'Briefly, add rate limiting and error handling') . "\n";
   ```
 
   ```ruby Ruby
@@ -2772,9 +2776,9 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
     response.content.find { |block| block.type == :text }&.text || ""
   end
 
-  puts chat(client, messages, "Help me build a Python web scraper")
-  puts chat(client, messages, "Add support for JavaScript-rendered pages")
-  puts chat(client, messages, "Now add rate limiting and error handling")
+  puts chat(client, messages, "Briefly, help me build a Python web scraper")
+  puts chat(client, messages, "Briefly, add support for JavaScript-rendered pages")
+  puts chat(client, messages, "Briefly, add rate limiting and error handling")
   ```
 </CodeGroup>
 
@@ -2818,11 +2822,14 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
           },
       )
 
-      # Periksa apakah compaction terjadi dan dijeda
-      if response.stop_reason == "compaction":
-          # Ambil blok compaction dari respons
-          compaction_block = response.content[0]
+      # Cari blok compaction, bukan stop reason:
+      # stop_reason bernilai "refusal", bukan "compaction", jika ringkasan diblokir
+      compaction_block = next(
+          (block for block in response.content if block.type == "compaction"), None
+      )
 
+      # Ganti riwayat hanya jika ringkasan telah dihasilkan
+      if compaction_block is not None and compaction_block.content is not None:
           # Pertahankan pertukaran sebelumnya + pesan pengguna saat ini (3 pesan)
           # dengan menyertakannya setelah blok compaction, tanpa blok thinking
           # ; giliran asisten yang tidak tersisa kontennya akan dibuang
@@ -2847,18 +2854,19 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
               {"role": "assistant", "content": new_assistant_content}
           ] + preserved_messages
 
-          # Lanjutkan permintaan dengan konteks yang dipadatkan + pesan yang dipertahankan
+          # Perbarui daftar pesan untuk mencerminkan compaction
+          messages.clear()
+          messages.extend(messages_after_compaction)
+
+      if compaction_block is not None:
+          # Lanjutkan permintaan, dengan riwayat lengkap jika tidak ada ringkasan
           response = client.beta.messages.create(
               betas=["compact-2026-01-12"],
               model="claude-opus-5-5",
               max_tokens=4096,
-              messages=messages_after_compaction,
+              messages=messages,
               context_management={"edits": [{"type": "compact_20260112"}]},
           )
-
-          # Perbarui daftar pesan untuk mencerminkan compaction
-          messages.clear()
-          messages.extend(messages_after_compaction)
 
       # Tambahkan respons akhir
       messages.append({"role": "assistant", "content": response.content})
@@ -2868,9 +2876,9 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
 
 
   # Jalankan percakapan panjang
-  print(chat("Help me build a Python web scraper"))
-  print(chat("Add support for JavaScript-rendered pages"))
-  print(chat("Now add rate limiting and error handling"))
+  print(chat("Briefly, help me build a Python web scraper"))
+  print(chat("Briefly, add support for JavaScript-rendered pages"))
+  print(chat("Briefly, add rate limiting and error handling"))
   # Terus panggil chat() selama percakapan membutuhkannya
   ```
 
@@ -2898,11 +2906,12 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
       }
     });
 
-    // Periksa apakah compaction terjadi dan dijeda
-    if (response.stop_reason === "compaction") {
-      // Ambil blok compaction dari respons
-      const compactionBlock = response.content[0];
+    // Cari blok compaction, bukan stop reason:
+    // stop_reason bernilai "refusal", bukan "compaction", jika ringkasan diblokir
+    const compactionBlock = response.content.find((block) => block.type === "compaction");
 
+    // Ganti riwayat hanya jika ringkasan telah dihasilkan
+    if (compactionBlock && compactionBlock.content !== null) {
       // Pertahankan pertukaran sebelumnya + pesan pengguna saat ini (3 pesan)
       // dengan menyertakannya setelah blok compaction, tanpa blok thinking;
       // giliran asisten yang tidak tersisa kontennya akan dibuang
@@ -2926,19 +2935,21 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
         ...preservedMessages
       ];
 
-      // Lanjutkan permintaan dengan konteks yang dipadatkan + pesan yang dipertahankan
+      // Perbarui daftar pesan untuk mencerminkan compaction
+      messages = messagesAfterCompaction;
+    }
+
+    if (compactionBlock) {
+      // Lanjutkan permintaan, dengan riwayat lengkap jika tidak ada ringkasan
       response = await client.beta.messages.create({
         betas: ["compact-2026-01-12"],
         model: "claude-opus-5-5",
         max_tokens: 4096,
-        messages: messagesAfterCompaction,
+        messages,
         context_management: {
           edits: [{ type: "compact_20260112" }]
         }
       });
-
-      // Perbarui daftar pesan untuk mencerminkan compaction
-      messages = messagesAfterCompaction;
     }
 
     // Tambahkan respons akhir
@@ -2950,9 +2961,9 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   }
 
   // Jalankan percakapan panjang
-  console.log(await chat("Help me build a Python web scraper"));
-  console.log(await chat("Add support for JavaScript-rendered pages"));
-  console.log(await chat("Now add rate limiting and error handling"));
+  console.log(await chat("Briefly, help me build a Python web scraper"));
+  console.log(await chat("Briefly, add support for JavaScript-rendered pages"));
+  console.log(await chat("Briefly, add rate limiting and error handling"));
   // Terus panggil chat() selama percakapan membutuhkannya
   ```
 
@@ -2960,9 +2971,9 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   AnthropicClient client = new();
   List<BetaMessageParam> messages = new();
 
-  Console.WriteLine(await Chat("Help me build a Python web scraper"));
-  Console.WriteLine(await Chat("Add support for JavaScript-rendered pages"));
-  Console.WriteLine(await Chat("Now add rate limiting and error handling"));
+  Console.WriteLine(await Chat("Briefly, help me build a Python web scraper"));
+  Console.WriteLine(await Chat("Briefly, add support for JavaScript-rendered pages"));
+  Console.WriteLine(await Chat("Briefly, add rate limiting and error handling"));
 
   async Task<string> Chat(string userMessage)
   {
@@ -2984,11 +2995,13 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
           }
       });
 
-      if (response.StopReason == BetaStopReason.Compaction)
-      {
-          if (!response.Content[0].TryPickCompaction(out _))
-              throw new InvalidOperationException("Expected compaction block");
+      // Cari blok compaction, bukan stop reason:
+      // StopReason bernilai Refusal, bukan Compaction, jika ringkasan diblokir
+      var compactionBlock = response.Content.FirstOrDefault(block => block.Value is BetaCompactionBlock);
 
+      // Ganti riwayat hanya jika ringkasan telah dihasilkan
+      if (compactionBlock?.Value is BetaCompactionBlock { Content: not null })
+      {
           // Pertahankan pertukaran sebelumnya + pesan pengguna saat ini (3 pesan),
           // tanpa blok thinking; giliran asisten yang kosong akan dibuang
           var preserved = new List<BetaMessageParam>();
@@ -3014,24 +3027,28 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
           {
               new BetaAssistantMessageParam
               {
-                  Content = new List<BetaContentBlockParam> { new BetaContentBlockParam(response.Content[0].Json) }
+                  Content = new List<BetaContentBlockParam> { new BetaContentBlockParam(compactionBlock.Json) }
               }
           };
           messagesAfterCompaction.AddRange(preserved);
 
+          messages = messagesAfterCompaction;
+      }
+
+      if (compactionBlock is not null)
+      {
+          // Lanjutkan permintaan, dengan riwayat lengkap jika tidak ada ringkasan
           response = await client.Beta.Messages.Create(new()
           {
               Betas = ["compact-2026-01-12"],
               Model = Model.ClaudeOpus5_5,
               MaxTokens = 4096,
-              Messages = messagesAfterCompaction,
+              Messages = messages,
               ContextManagement = new BetaContextManagementConfig
               {
                   Edits = [new BetaCompact20260112Edit()]
               }
           });
-
-          messages = messagesAfterCompaction;
       }
 
       messages.Add(new BetaAssistantMessageParam
@@ -3054,6 +3071,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   	"context"
   	"fmt"
   	"log"
+  	"slices"
 
   	"github.com/anthropics/anthropic-sdk-go/v2"
   )
@@ -3086,8 +3104,15 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   		log.Fatal(err)
   	}
 
-  	if response.StopReason == "compaction" {
-  		compactionParam := response.Content[0].ToParam()
+  	// Cari blok compaction, bukan stop reason:
+  	// StopReason bernilai "refusal", bukan "compaction", jika ringkasan diblokir
+  	compactionIndex := slices.IndexFunc(response.Content, func(block anthropic.BetaContentBlockUnion) bool {
+  		return block.Type == "compaction"
+  	})
+
+  	// Ganti riwayat hanya jika ringkasan telah dihasilkan (content tidak null)
+  	if compactionIndex >= 0 && response.Content[compactionIndex].JSON.Content.Valid() {
+  		compactionParam := response.Content[compactionIndex].ToParam()
 
   		// Pertahankan pertukaran sebelumnya + pesan pengguna saat ini (3 pesan),
   		// tanpa blok thinking; giliran asisten yang kosong akan dibuang
@@ -3114,10 +3139,15 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   		}
   		messagesAfterCompaction = append(messagesAfterCompaction, preserved...)
 
+  		messages = messagesAfterCompaction
+  	}
+
+  	if compactionIndex >= 0 {
+  		// Lanjutkan permintaan, dengan riwayat lengkap jika tidak ada ringkasan
   		response, err = client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
   			Model:     anthropic.ModelClaudeOpus5_5,
   			MaxTokens: 4096,
-  			Messages:  messagesAfterCompaction,
+  			Messages:  messages,
   			ContextManagement: anthropic.BetaContextManagementConfigParam{
   				Edits: []anthropic.BetaContextManagementConfigEditUnionParam{
   					{OfCompact20260112: &anthropic.BetaCompact20260112EditParam{}},
@@ -3128,8 +3158,6 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   		if err != nil {
   			log.Fatal(err)
   		}
-
-  		messages = messagesAfterCompaction
   	}
 
   	messages = append(messages, response.ToParam())
@@ -3143,9 +3171,9 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   }
 
   func main() {
-  	fmt.Println(chat("Help me build a Python web scraper"))
-  	fmt.Println(chat("Add support for JavaScript-rendered pages"))
-  	fmt.Println(chat("Now add rate limiting and error handling"))
+  	fmt.Println(chat("Briefly, help me build a Python web scraper"))
+  	fmt.Println(chat("Briefly, add support for JavaScript-rendered pages"))
+  	fmt.Println(chat("Briefly, add rate limiting and error handling"))
   }
   ```
 
@@ -3153,7 +3181,6 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   import com.anthropic.models.beta.messages.BetaContextManagementConfig;
   import com.anthropic.models.beta.messages.BetaCompact20260112Edit;
   import com.anthropic.models.beta.messages.BetaInputTokensTrigger;
-  import com.anthropic.models.beta.messages.BetaStopReason;
   // ...
       private static final AnthropicClient client = AnthropicOkHttpClient.fromEnv();
       private static final List<BetaMessageParam> messages = new ArrayList<>();
@@ -3178,9 +3205,14 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
 
           BetaMessage response = client.beta().messages().create(params);
 
-          // Periksa apakah compaction (pemadatan) terjadi dan dijeda
-          if (response.stopReason().isPresent()
-                  && response.stopReason().get().equals(BetaStopReason.COMPACTION)) {
+          // Cari blok compaction, bukan stop reason:
+          // stopReason() bernilai REFUSAL, bukan COMPACTION, jika ringkasan diblokir
+          var compactionBlock = response.content().stream()
+              .flatMap(block -> block.compaction().stream())
+              .findFirst();
+
+          // Ganti riwayat hanya jika ringkasan telah dihasilkan
+          if (compactionBlock.flatMap(block -> block.content()).isPresent()) {
               // Pertahankan pertukaran sebelumnya + pesan pengguna saat ini (3 pesan),
               // tanpa blok thinking; giliran asisten yang kosong akan dibuang
               List<BetaMessageParam> preservedMessages = new ArrayList<>();
@@ -3202,22 +3234,24 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
               messagesAfterCompaction.add(response.toParam());
               messagesAfterCompaction.addAll(preservedMessages);
 
-              // Lanjutkan permintaan dengan konteks yang dipadatkan + pesan yang dipertahankan
+              // Perbarui daftar pesan agar mencerminkan compaction
+              messages.clear();
+              messages.addAll(messagesAfterCompaction);
+          }
+
+          if (compactionBlock.isPresent()) {
+              // Lanjutkan permintaan, dengan riwayat lengkap jika tidak ada ringkasan
               MessageCreateParams continueParams = MessageCreateParams.builder()
                   .addBeta("compact-2026-01-12")
                   .model(Model.CLAUDE_OPUS_5_5)
                   .maxTokens(4096L)
-                  .messages(messagesAfterCompaction)
+                  .messages(messages)
                   .contextManagement(BetaContextManagementConfig.builder()
                       .addEdit(BetaCompact20260112Edit.builder().build())
                       .build())
                   .build();
 
               response = client.beta().messages().create(continueParams);
-
-              // Perbarui daftar pesan agar mencerminkan compaction
-              messages.clear();
-              messages.addAll(messagesAfterCompaction);
           }
 
           // Tambahkan respons akhir
@@ -3231,9 +3265,9 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
       }
 
       public static void main(String[] args) {
-          System.out.println(chat("Help me build a Python web scraper"));
-          System.out.println(chat("Add support for JavaScript-rendered pages"));
-          System.out.println(chat("Now add rate limiting and error handling"));
+          System.out.println(chat("Briefly, help me build a Python web scraper"));
+          System.out.println(chat("Briefly, add support for JavaScript-rendered pages"));
+          System.out.println(chat("Briefly, add rate limiting and error handling"));
       }
   ```
 
@@ -3261,9 +3295,18 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
           ]
       );
 
-      if ($response->stopReason === 'compaction') {
-          $compactionBlock = $response->content[0];
+      // Cari blok compaction, bukan stop reason:
+      // stopReason bernilai 'refusal', bukan 'compaction', jika ringkasan diblokir
+      $compactionBlock = null;
+      foreach ($response->content as $block) {
+          if ($block instanceof \Anthropic\Beta\Messages\BetaCompactionBlock) {
+              $compactionBlock = $block;
+              break;
+          }
+      }
 
+      // Ganti riwayat hanya jika ringkasan telah dihasilkan
+      if ($compactionBlock?->content !== null) {
           // Pertahankan pertukaran sebelumnya + pesan pengguna saat ini (3 pesan),
           // tanpa blok thinking; giliran asisten yang kosong akan dibuang
           $preserved = array_values(array_filter(array_map(
@@ -3281,17 +3324,20 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
               $preserved
           );
 
+          $messages = $messagesAfterCompaction;
+      }
+
+      if ($compactionBlock !== null) {
+          // Lanjutkan permintaan, dengan riwayat lengkap jika tidak ada ringkasan
           $response = $client->beta->messages->create(
               maxTokens: 4096,
-              messages: $messagesAfterCompaction,
+              messages: $messages,
               model: 'claude-opus-5-5',
               betas: ['compact-2026-01-12'],
               contextManagement: [
                   'edits' => [['type' => 'compact_20260112']]
               ]
           );
-
-          $messages = $messagesAfterCompaction;
       }
 
       $messages[] = ['role' => 'assistant', 'content' => $response->content];
@@ -3304,9 +3350,9 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
       return '';
   }
 
-  echo chat($client, $messages, 'Help me build a Python web scraper') . "\n";
-  echo chat($client, $messages, 'Add support for JavaScript-rendered pages') . "\n";
-  echo chat($client, $messages, 'Now add rate limiting and error handling') . "\n";
+  echo chat($client, $messages, 'Briefly, help me build a Python web scraper') . "\n";
+  echo chat($client, $messages, 'Briefly, add support for JavaScript-rendered pages') . "\n";
+  echo chat($client, $messages, 'Briefly, add rate limiting and error handling') . "\n";
   ```
 
   ```ruby Ruby
@@ -3332,9 +3378,12 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
       }
     )
 
-    if response.stop_reason == :compaction
-      compaction_block = response.content[0]
+    # Cari blok compaction, bukan stop reason:
+    # stop_reason bernilai :refusal, bukan :compaction, jika ringkasan diblokir
+    compaction_block = response.content.find { |block| block.type == :compaction }
 
+    # Ganti riwayat hanya jika ringkasan telah dihasilkan
+    if compaction_block&.content
       # Pertahankan pertukaran sebelumnya + pesan pengguna saat ini (3 pesan),
       # tanpa blok thinking; giliran asisten yang kosong akan dibuang
       preserved = messages.last(3).map do |message|
@@ -3347,18 +3396,21 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
         { role: "assistant", content: [compaction_block] }
       ] + preserved
 
+      messages.clear
+      messages.concat(messages_after_compaction)
+    end
+
+    if compaction_block
+      # Lanjutkan permintaan, dengan riwayat lengkap jika tidak ada ringkasan
       response = client.beta.messages.create(
         betas: ["compact-2026-01-12"],
         model: Anthropic::Model::CLAUDE_OPUS_5_5,
         max_tokens: 4096,
-        messages: messages_after_compaction,
+        messages: messages,
         context_management: {
           edits: [{ type: "compact_20260112" }]
         }
       )
-
-      messages.clear
-      messages.concat(messages_after_compaction)
     end
 
     messages << { role: "assistant", content: response.content }
@@ -3366,9 +3418,9 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
     response.content.find { |block| block.type == :text }&.text || ""
   end
 
-  puts chat(client, messages, "Help me build a Python web scraper")
-  puts chat(client, messages, "Add support for JavaScript-rendered pages")
-  puts chat(client, messages, "Now add rate limiting and error handling")
+  puts chat(client, messages, "Briefly, help me build a Python web scraper")
+  puts chat(client, messages, "Briefly, add support for JavaScript-rendered pages")
+  puts chat(client, messages, "Briefly, add rate limiting and error handling")
   ```
 </CodeGroup>
 

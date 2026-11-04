@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 0541fc38864003166634cd297868f4572ccace8532ca6f510825f62e617f7cd3
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: b605587a0751b8a0ac8e87aef870954bbae258bf75b5af2512a4df3f153f5a18
 ---
 
 ---
@@ -37,7 +37,7 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
 ---
 
-Anthropic mengamankan control plane di seluruh lingkungan: integritas sesi dan antrean kerja, isolasi multitenant, dan minimisasi konteks agen. Ketika Anda melakukan self-hosting, tanggung jawab berikut berada di tangan Anda.
+Di setiap lingkungan, Anthropic mengamankan bagian-bagian yang dijalankannya: integritas sesi dan antrean kerja, isolasi multitenant, dan minimisasi konteks agen. Ketika Anda melakukan self-hosting sandbox, tanggung jawab berikut berada di tangan Anda.
 
 ## Apa yang menjadi tanggung jawab Anda
 
@@ -54,6 +54,6 @@ Anthropic mengamankan control plane di seluruh lingkungan: integritas sesi dan a
 ## Apa yang tidak dapat dilakukan Anthropic untuk Anda
 
 * **Mengetahui bahwa kunci Anda bocor.** Anthropic dapat mendeteksi pola penggunaan yang anomali, tetapi tidak dapat mengetahui bahwa kunci Anda telah disusupi. Jika Anda mencurigai `ANTHROPIC_ENVIRONMENT_KEY` bocor, cabut kunci tersebut dan buat penggantinya segera. Pencabutan divalidasi pada setiap permintaan, sehingga berlaku pada panggilan worker berikutnya.
-* **Memverifikasi build worker Anda.** Anthropic tidak memeriksa image sandbox atau runtime Anda. Kompromi rantai pasokan (supply-chain) pada image Anda tidak dapat dideteksi dari control plane.
+* **Memverifikasi build worker Anda.** Anthropic tidak memeriksa image sandbox atau runtime Anda. Kompromi rantai pasokan (supply-chain) pada image Anda tidak dapat dideteksi dari sisi Anthropic.
 * **Mengisolasi alat di dalam sandbox Anda.** Batas keamanan Anthropic berhenti di sandbox. Cara Anda mengisolasi eksekusi alat individual satu sama lain di dalam batas tersebut sepenuhnya merupakan tanggung jawab Anda.
 * **Menegakkan retensi data di lingkungan Anda.** Setelah konten sesi mencapai worker Anda, konten tersebut berada di luar kontrol siklus hidup data Anthropic.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/spend-limits-api
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 760853deac064d3dd3876e3ebbc60291652fc3aac91ed44df4b7db3233775492
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: eecd24b9a20a83d5b6e34022a6ad741c1e225c1e3ae7c5d175a5189fe678dd53
 ---
 
 ---
@@ -51,7 +51,7 @@ Daftarkan batas pengeluaran bulanan efektif dan pengeluaran periode berjalan set
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/spend_limits/effective?limit=20" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -253,7 +253,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [List effective spend li
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/spend_limits/effective?limit=20" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -413,7 +413,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [Retrieve a spend limit]
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/spend_limits/spl_01AbCdEfGhIjKlMnOpQrSt" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -517,7 +517,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [Create a spend limit](h
   curl -X POST "https://api.anthropic.com/v1/organizations/spend_limits" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{"scope": {"type": "user", "user_id": "user_01AbCdEfGh"}, "amount": "75000"}'
   ```
 
@@ -652,7 +652,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [Delete a spend limit](h
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/organizations/spend_limits/spl_01RsTuVwXyZaBcDeFgHiJk" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -739,7 +739,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [List spend limit increa
   ```bash cURL
   curl -g "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests?status[]=pending&limit=50" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -859,7 +859,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [Retrieve a spend limit 
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -956,7 +956,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [Approve a spend limit i
   curl -X POST "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt/approve" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{"amount": "75000", "suppress_notification": true}'
   ```
 
@@ -1080,7 +1080,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [Deny a spend limit incr
   curl -X POST "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt/deny" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{"suppress_notification": true}'
   ```
 
@@ -1203,7 +1203,7 @@ Jalankan job terjadwal yang mengambil permintaan pending, menerapkan kebijakan p
      ```bash cURL
      curl -g "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests?status[]=pending&limit=100" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01"
+       -H "anthropic-version: 2026-10-21"
      ```
 
      ```bash CLI
@@ -1322,7 +1322,7 @@ Jalankan job terjadwal yang mengambil permintaan pending, menerapkan kebijakan p
      curl -X POST "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt/approve" \
        -H "content-type: application/json" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01" \
+       -H "anthropic-version: 2026-10-21" \
        -d '{"amount": "75000", "suppress_notification": true}'
      ```
 
@@ -1450,7 +1450,7 @@ Temukan anggota yang mendekati batas mereka sehingga Anda dapat menaikkannya seb
      group_by[]=actor&\
      actor_types[]=user_actor&\
      limit=1000" \
-       -H "anthropic-version: 2023-06-01" \
+       -H "anthropic-version: 2026-10-21" \
        -H "anthropic-beta: analytics-usage-cost-2026-08-24" \
        -H "x-api-key: $ANTHROPIC_API_KEY"
      ```
@@ -1616,7 +1616,7 @@ Temukan anggota yang mendekati batas mereka sehingga Anda dapat menaikkannya seb
      ```bash cURL
      curl -g "https://api.anthropic.com/v1/organizations/spend_limits/effective?user_ids[]=user_01AbCdEfGh&user_ids[]=user_01JkLmNoPq&limit=100" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01"
+       -H "anthropic-version: 2026-10-21"
      ```
 
      ```bash CLI
@@ -1778,7 +1778,7 @@ Munculkan anggota yang pengeluarannya melonjak dari minggu ke minggu.
      group_by[]=actor&\
      actor_types[]=user_actor&\
      limit=1000" \
-       -H "anthropic-version: 2023-06-01" \
+       -H "anthropic-version: 2026-10-21" \
        -H "anthropic-beta: analytics-usage-cost-2026-08-24" \
        -H "x-api-key: $ANTHROPIC_API_KEY"
      ```
@@ -1970,7 +1970,7 @@ Beri ruang bagi penanggap insiden untuk bekerja selama insiden terbuka: naikkan 
      ```bash cURL
      curl -g "https://api.anthropic.com/v1/organizations/spend_limits/effective?user_ids[]=user_01AbCdEfGh&period[]=monthly" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01"
+       -H "anthropic-version: 2026-10-21"
      ```
 
      ```bash CLI
@@ -2011,12 +2011,12 @@ Beri ruang bagi penanggap insiden untuk bekerja selama insiden terbuka: naikkan 
      ```
 
      ```csharp C#
-     using Anthropic.Models.Beta.Organization.SpendLimits.Effective;
+     using Anthropic.Models.Beta.Organization.SpendLimits;
 
      AnthropicClient client = new();
 
      var page = await client.Beta.Organization.SpendLimits.Effective.List(
-         new() { UserIds = ["user_01AbCdEfGh"], Period = [Period.Monthly] }
+         new() { UserIds = ["user_01AbCdEfGh"], Period = [BetaSpendLimitPeriod.Monthly] }
      );
 
      await foreach (var effectiveLimit in page.Paginate())
@@ -2034,7 +2034,7 @@ Beri ruang bagi penanggap insiden untuk bekerja selama insiden terbuka: naikkan 
 
      effectiveLimits := client.Beta.Organization.SpendLimits.Effective.ListAutoPaging(context.Background(), anthropic.BetaOrganizationSpendLimitEffectiveListParams{
      	UserIDs: []string{"user_01AbCdEfGh"},
-     	Period:  []string{"monthly"},
+     	Period:  []anthropic.BetaSpendLimitPeriod{anthropic.BetaSpendLimitPeriodMonthly},
      })
 
      for effectiveLimits.Next() {
@@ -2053,6 +2053,7 @@ Beri ruang bagi penanggap insiden untuk bekerja selama insiden terbuka: naikkan 
      ```
 
      ```java Java
+     import com.anthropic.models.beta.organization.spendlimits.BetaSpendLimitPeriod;
      import com.anthropic.models.beta.organization.spendlimits.effective.EffectiveListParams;
 
      void main() {
@@ -2060,7 +2061,7 @@ Beri ruang bagi penanggap insiden untuk bekerja selama insiden terbuka: naikkan 
 
          var params = EffectiveListParams.builder()
              .addUserId("user_01AbCdEfGh")
-             .addPeriod(EffectiveListParams.Period.MONTHLY)
+             .addPeriod(BetaSpendLimitPeriod.MONTHLY)
              .build();
          var effectiveLimits = client.beta().organization().spendLimits().effective().list(params);
 
@@ -2118,7 +2119,7 @@ Beri ruang bagi penanggap insiden untuk bekerja selama insiden terbuka: naikkan 
      curl -X POST "https://api.anthropic.com/v1/organizations/spend_limits" \
        -H "content-type: application/json" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01" \
+       -H "anthropic-version: 2026-10-21" \
        -d '{"scope": {"type": "user", "user_id": "user_01AbCdEfGh"}, "amount": "500000", "period": "monthly"}'
      ```
 
@@ -2247,7 +2248,7 @@ Beri ruang bagi penanggap insiden untuk bekerja selama insiden terbuka: naikkan 
      curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn/members" \
        -H "content-type: application/json" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01" \
+       -H "anthropic-version: 2026-10-21" \
        -d '{"user_id": "user_01AbCdEfGh"}'
      ```
 

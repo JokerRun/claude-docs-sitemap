@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-observability
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 15580aa38a785e828f46a75769248e39f5c236fcc208af3496c9554514f2180c
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 678eadd5109df5c87cd4ee88815249a4d145d9a5e79b21cda7b3cb7574c8e5e9
 ---
 
 ---
@@ -129,7 +129,7 @@ To enforce a spend limit, set a session budget rather than polling usage and sto
 
 Session usage counts toward your organization’s totals on the [Usage](https://platform.claude.com/usage) page (`platform.claude.com/usage`) and the [Cost](https://platform.claude.com/cost) page (`platform.claude.com/cost`) in the Claude Console. To see token usage by agent, set **Group by** to **Agent** on the **Usage** page.
 
-Session usage also appears in the [usage report](https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_messages) from the [Usage and Cost API](https://platform.claude.com/docs/en/manage-claude/usage-cost-api). To see which account it’s reported under, group the report by one of these fields:
+To see session usage by agent or by session, use the [Usage and Cost Analytics API](https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api) and group by `agent_id` or `session_id`. Session usage also appears in the [usage report](https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_messages) from the legacy [Usage and Cost API](https://platform.claude.com/docs/en/manage-claude/usage-cost-api). To see which account it’s reported under, group that report by one of these fields:
 
 * **`account_id`:** The member who started the session. This covers sessions started in the Console or with a [personal key](https://platform.claude.com/docs/en/manage-claude/authentication#key-types) scoped to a single workspace.
 * **`service_account_id`:** An Anthropic-managed service account (`svac_...`). This covers sessions started with a workspace key or by a [deployment](https://platform.claude.com/docs/en/managed-agents/scheduled-deployments). For this usage, `api_key_id` and `account_id` are `null`.

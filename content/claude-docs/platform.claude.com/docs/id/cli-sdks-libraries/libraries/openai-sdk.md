@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: b5e3b2a88e209fce71e8f9398036a7ec0f257d722d0850c5f854225e60a0d053
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 8773f2df90cff10b921b11c4ebc2b5a4f4793a13498f7bb33b2717ed8be8840f
 ---
 
 ---
@@ -217,6 +217,7 @@ Berikut adalah perbedaan paling substansial dibandingkan menggunakan OpenAI:
 * Input audio dan file tidak didukung. Permintaan yang menyertakan bagian konten `input_audio` atau `file` mengembalikan error 400.
 * Caching prompt tidak didukung, tetapi didukung di [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview).
 * Pesan system/developer diangkat (hoisted) dan digabungkan ke dalam field `system` tingkat atas, di mana pun pesan tersebut muncul dalam percakapan. Untuk menambahkan instruksi sistem di tengah percakapan, gunakan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) di Claude API native.
+* Tergantung pada model, teks yang dihasilkan untuk permintaan yang menetapkan `temperature` atau `top_p` ke nilai selain default Claude API mungkin tidak membawa [watermark teks](https://platform.claude.com/docs/id/build-with-claude/text-watermark#sampling-settings). Jika Anda mengandalkan watermark, hilangkan kedua parameter tersebut.
 
 Sebagian besar field yang tidak didukung diabaikan secara diam-diam alih-alih menghasilkan error. Semuanya didokumentasikan di bagian-bagian berikut.
 

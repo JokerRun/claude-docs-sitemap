@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 74dfbb4aadab8fe7bb38f42bade32fc62dcab4a8771e9872b40c51df59f4f2c1
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 27c43046eb4be2372be639ed4072fd38370b001aad40dbd8c72c11d99c54ba6e
 ---
 
 ---
@@ -58,7 +58,7 @@ Berikut adalah contoh di mana Claude secara programatik melakukan kueri ke datab
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -536,7 +536,7 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -818,31 +818,33 @@ Kirim riwayat percakapan lengkap ditambah hasil alat Anda. Tiga detail penting p
           },
           new AssistantMessageParam
           {
-              Content = new ContentBlock[]
+              Content = new List<ContentBlockParam>
               {
-                  new TextBlock { Text = "I'll query the purchase history and analyze the results." },
-                  new ServerToolUseBlock
+                  new TextBlockParam { Text = "I'll query the purchase history and analyze the results." },
+                  new ServerToolUseBlockParam
                   {
-                      Id = "srvtoolu_abc123",
-                      Name = "code_execution",
-                      Input = new { code = "..." }
-                  },
-                  new ToolUseBlock
-                  {
-                      Id = "toolu_def456",
-                      Name = "query_database",
-                      Input = new { sql = "<sql>" },
-                      Caller = new ToolCaller
+                      ID = "srvtoolu_abc123",
+                      Name = ServerToolUseBlockParamName.CodeExecution,
+                      Input = new Dictionary<string, JsonElement>
                       {
-                          Type = "code_execution_20260120",
-                          ToolId = "srvtoolu_abc123"
+                          ["code"] = JsonSerializer.SerializeToElement("..."),
                       }
+                  },
+                  new ToolUseBlockParam
+                  {
+                      ID = "toolu_def456",
+                      Name = "query_database",
+                      Input = new Dictionary<string, JsonElement>
+                      {
+                          ["sql"] = JsonSerializer.SerializeToElement("<sql>"),
+                      },
+                      Caller = new ServerToolCaller20260120 { ToolID = "srvtoolu_abc123" }
                   }
               }
           },
           new UserMessageParam
           {
-              Content = new ContentBlockParam[]
+              Content = new List<ContentBlockParam>
               {
                   new ToolResultBlockParam
                   {

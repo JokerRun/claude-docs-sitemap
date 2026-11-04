@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-api
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: c7a1d502c8395ed0377ff77d79be11135b13a24371ef8b86e5361ef6e9de073d
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: adc37e2b4a35c6c381201c7f1c9d89cbdbce4e060c936379b49bcaf2fa441091
 ---
 
 ---
@@ -23,7 +23,7 @@ Panggilan berikut mengembalikan peristiwa aktivitas terbaru di organisasi Anda. 
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/activities?limit=1" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  --header "anthropic-version: 2023-06-01"
+  --header "anthropic-version: 2026-10-21"
 ```
 
 Respons yang berhasil mengembalikan objek JSON yang berisi `data` (array berisi record `Activity`), `has_more`, `first_id`, dan `last_id`:

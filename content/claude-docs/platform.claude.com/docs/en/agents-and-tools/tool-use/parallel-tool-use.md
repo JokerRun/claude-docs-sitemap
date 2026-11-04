@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 962e50c591f40a40891d4d39d1fcedde70766f36520fcc1f7d6597eebcaa3fab
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 7bbf18724594a002da13622b090ae6f52440989ed3ae112ff13e7ca68d867f92
 ---
 
 ---
@@ -887,7 +887,7 @@ When the `tool_choice` type is `auto` (the default), setting `disable_parallel_t
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -1170,7 +1170,7 @@ When `tool_choice` type is `any` or `tool`, setting `disable_parallel_tool_use: 
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5",
       "max_tokens": 1024,

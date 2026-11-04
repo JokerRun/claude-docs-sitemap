@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/onboarding
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 143600c6d81867aff18678f0dacf9c1bd4b8a3aecbd004571c8657c473574d5f
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 7c789669a1c28f00a1d73c5beea1787cbc950b3383027009f40022623bc24320
 ---
 
 ---
@@ -69,7 +69,7 @@ Setelah agen Anda berfungsi sesuai harapan:
   ```bash cURL
   curl -fsSL https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{

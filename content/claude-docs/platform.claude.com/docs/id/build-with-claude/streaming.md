@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 83fa8ec35d2cce6535b32935234209675cfed66abac6668b43ec78e330379f38
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 4fd03d7a459328e14de8fa56f8760e4a0b5de775dff07689a949a6ab4d7a60f9
 ---
 
 ---
@@ -430,7 +430,7 @@ Mungkin juga ada event `ping` yang tersebar di sepanjang respons. Lihat [Jenis e
 <CodeGroup>
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -d '{
@@ -607,7 +607,7 @@ Permintaan ini meminta Claude menggunakan alat untuk melaporkan cuaca.
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5",
       "max_tokens": 1024,
@@ -1000,7 +1000,7 @@ Permintaan ini mengaktifkan thinking dengan streaming. Pengaturan `display: "sum
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -1251,7 +1251,7 @@ Permintaan ini meminta Claude mencari informasi cuaca terkini di web.
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

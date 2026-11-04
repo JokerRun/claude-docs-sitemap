@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: d4184fd20ee2fa6fed9a41dd73fe114df6d46684b6c6c1b2e148ed0d0771440c
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 4ba7291e67473767c953f1e62a676f0a961b7586aa2cef5c7cf53957460567f4
 ---
 
 ---
@@ -445,14 +445,14 @@ C# SDK juga mendukung Claude Models on Google Cloud (Anthropic managed) melalui 
 
 ## Semantic versioning
 
-Setiap versi mayor SDK ini mengirimkan satu versi API dalam header `anthropic-version` secara default, dan versi mayor baru hadir bersama setiap versi API baru. Versi mayor pertama yang mengirimkan `2026-10-21` adalah 13.0.0; lihat [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade).
-
 Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
 
 1. Perubahan pada internal library yang secara teknis bersifat publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
 2. Perubahan yang tidak diharapkan berdampak pada sebagian besar pengguna dalam praktiknya.
 
 Kompatibilitas ke belakang ditangani dengan serius untuk memastikan Anda dapat mengandalkan pengalaman upgrade yang lancar.
+
+Setiap permintaan ke Claude API menggunakan versi API. Dengan SDK ini, permintaan Anda menggunakan versi API yang berlaku saat versi mayor SDK Anda dirilis, sehingga Anda beralih ke versi API baru dengan melakukan upgrade ke versi mayor baru. Versi 13.0.0 adalah yang pertama menggunakan `2026-10-21`. Lihat [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade) untuk cara melakukan upgrade.
 
 ## Sumber daya tambahan
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 8f8f98ff23f54a814a758d0e53aa461ce8a296f8e1ef32d49836f07f8e5b2ee7
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 4f4e2e11f088536257967b8d75b188281bd8ce293fe496fea6bd21d57d17042d
 ---
 
 ---
@@ -149,7 +149,7 @@ Using the memory tool takes two steps:
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

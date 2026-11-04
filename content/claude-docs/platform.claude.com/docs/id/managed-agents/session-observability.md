@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-observability
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: b8588296e82d4d2752f9e96262dd76be446b21f6d5bc2517f846fd8aa3bb1050
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 12e688aeda39ec6e8bce38e18a34c6c5b2e0842d6bba2e2ecaa347edb718549a
 ---
 
 ---
@@ -129,7 +129,7 @@ Untuk menerapkan batas pengeluaran, tetapkan anggaran sesi alih-alih melakukan p
 
 Penggunaan sesi dihitung ke dalam total organisasi Anda di halaman [Usage](https://platform.claude.com/usage) (`platform.claude.com/usage`) dan halaman [Cost](https://platform.claude.com/cost) (`platform.claude.com/cost`) di Claude Console. Untuk melihat penggunaan token per agen, atur **Group by** ke **Agent** di halaman **Usage**.
 
-Penggunaan sesi juga muncul di [laporan penggunaan](https://platform.claude.com/docs/id/api/beta/organization/usage_report/retrieve_messages) dari [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api). Untuk melihat akun mana yang menjadi tempat penggunaan tersebut dilaporkan, kelompokkan laporan berdasarkan salah satu field berikut:
+Untuk melihat penggunaan sesi berdasarkan agen atau berdasarkan sesi, gunakan [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) dan kelompokkan berdasarkan `agent_id` atau `session_id`. Penggunaan sesi juga muncul di [laporan penggunaan](https://platform.claude.com/docs/id/api/beta/organization/usage_report/retrieve_messages) dari [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) lama. Untuk melihat akun mana yang menjadi tempat penggunaan tersebut dilaporkan, kelompokkan laporan tersebut berdasarkan salah satu field berikut:
 
 * **`account_id`:** Anggota yang memulai sesi. Ini mencakup sesi yang dimulai di Console atau dengan [kunci pribadi](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang dibatasi pada satu workspace.
 * **`service_account_id`:** Service account yang dikelola Anthropic (`svac_...`). Ini mencakup sesi yang dimulai dengan kunci workspace atau oleh sebuah [deployment](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments). Untuk penggunaan ini, `api_key_id` dan `account_id` bernilai `null`.

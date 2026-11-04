@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: c4b0036bccf8efdfe4953bd20d9e77e2acd10a97f8b167aa2243d51ca115ef46
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 645793bae3d1bd1de06a32607b090fba7e502554aad60fd2e3eb81b24747fb72
 ---
 
 ---
@@ -74,7 +74,7 @@ Contoh berikut mengaktifkan toolset dan menonaktifkan `web_fetch`:
   ```bash cURL
   curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -196,11 +196,12 @@ Contoh berikut mengaktifkan toolset dan menonaktifkan `web_fetch`:
 
   ```php PHP
   use Anthropic\Beta\Agents\BetaManagedAgentsAgentToolset20260401Params;
+  use Anthropic\Beta\Agents\BetaManagedAgentsModel;
   use Anthropic\Beta\Agents\BetaManagedAgentsWebFetchToolConfigParams;
 
   $agent = $client->beta->agents->create(
       name: 'Coding Assistant',
-      model: 'claude-opus-5-5',
+      model: BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
       tools: [
           BetaManagedAgentsAgentToolset20260401Params::with(
               configs: [
@@ -214,7 +215,7 @@ Contoh berikut mengaktifkan toolset dan menonaktifkan `web_fetch`:
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Coding Assistant",
-    model: "claude-opus-5-5",
+    model: Anthropic::Beta::BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
     tools: [
       {
         type: :agent_toolset_20260401,
@@ -275,22 +276,19 @@ Alat kustom serupa dengan [alat klien yang didefinisikan pengguna](https://platf
 
 Claude tidak menjalankan alat kustom sendiri. Claude mengeluarkan permintaan terstruktur, kode Anda menjalankan operasinya, dan Anda mengembalikan hasilnya ke sesi.
 
-Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_weather`:
+Contoh berikut membuat agen dengan satu alat kustom, `get_weather`, dan tanpa alat bawaan:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
   curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
       "name": "Weather Agent",
       "model": "claude-opus-5-5",
       "tools": [
-        {
-          "type": "agent_toolset_20260401"
-        },
         {
           "type": "custom",
           "name": "get_weather",
@@ -318,7 +316,6 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
       name: Weather Agent
       model: claude-opus-5-5
       tools:
-        - type: agent_toolset_20260401
         - type: custom
           name: get_weather
           description: Get current weather for a location
@@ -341,9 +338,6 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
       model="claude-opus-5-5",
       tools=[
           {
-              "type": "agent_toolset_20260401",
-          },
-          {
               "type": "custom",
               "name": "get_weather",
               "description": "Get current weather for a location",
@@ -364,7 +358,6 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
     name: "Weather Agent",
     model: "claude-opus-5-5",
     tools: [
-      { type: "agent_toolset_20260401" },
       {
         type: "custom",
         name: "get_weather",
@@ -389,7 +382,6 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
       Model = BetaManagedAgentsModel.ClaudeOpus5_5,
       Tools =
       [
-          new BetaManagedAgentsAgentToolset20260401Params(),
           new BetaManagedAgentsCustomToolParams
           {
               Name = "get_weather",
@@ -416,8 +408,6 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
   		ID: anthropic.BetaManagedAgentsModelClaudeOpus5_5,
   	},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
-  		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{},
-  	}, {
   		OfCustom: &anthropic.BetaManagedAgentsCustomToolParams{
   			Name:        "get_weather",
   			Description: "Get current weather for a location",
@@ -445,7 +435,6 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
   var agent = client.beta().agents().create(AgentCreateParams.builder()
       .name("Weather Agent")
       .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
-      .addTool(BetaManagedAgentsAgentToolset20260401Params.builder().build())
       .addTool(BetaManagedAgentsCustomToolParams.builder()
           .name("get_weather")
           .description("Get current weather for a location")
@@ -462,15 +451,14 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
   ```
 
   ```php PHP
-  use Anthropic\Beta\Agents\BetaManagedAgentsAgentToolset20260401Params;
   use Anthropic\Beta\Agents\BetaManagedAgentsCustomToolInputSchema;
   use Anthropic\Beta\Agents\BetaManagedAgentsCustomToolParams;
+  use Anthropic\Beta\Agents\BetaManagedAgentsModel;
 
   $agent = $client->beta->agents->create(
       name: 'Weather Agent',
-      model: 'claude-opus-5-5',
+      model: BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
       tools: [
-          BetaManagedAgentsAgentToolset20260401Params::with(),
           BetaManagedAgentsCustomToolParams::with(
               name: 'get_weather',
               description: 'Get current weather for a location',
@@ -486,9 +474,8 @@ Contoh berikut membuat agen dengan toolset bawaan dan satu alat kustom, `get_wea
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Weather Agent",
-    model: "claude-opus-5-5",
+    model: Anthropic::Beta::BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
     tools: [
-      {type: :agent_toolset_20260401},
       {
         type: :custom,
         name: "get_weather",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: b4ae7e2458128fac1a7982dd6f61764eb3a97f2a621f11d41836f1462e7663f2
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: b0dd488fd2c32e1510056eb0c7d3213bf5cd385b6824f17fbb18c3e5a7f717b7
 ---
 
 ---
@@ -57,7 +57,7 @@ Kirim percakapan apa adanya dengan `"compaction": {"type": "summarize"}`. API me
   # max_tokens membatasi seluruh panggilan, termasuk proses thinking, jadi sediakan beberapa ribu token.
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: compact-2026-09-04" \
     -H "content-type: application/json" \
     -d '{

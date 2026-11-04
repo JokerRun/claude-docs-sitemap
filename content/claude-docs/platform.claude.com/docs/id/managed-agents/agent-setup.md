@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: d4986667fe57ade0b5686f293c1d433f4871eabe4c39b18a23a2069514105f04
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 14094aa9f0cbd36f747032e806bb365f71b1b9098fc9c859835a46a3561f1e5f
 ---
 
 ---
@@ -67,7 +67,7 @@ Contoh-contoh ini menggunakan curl, CLI `ant`, atau SDK. Jika Anda belum menyiap
   ```bash cURL
   curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -230,7 +230,7 @@ Contoh berikut menyematkan agen ke inferensi AS. Respons membawa nilai `inferenc
   ```bash cURL
   curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -368,7 +368,7 @@ Dengan CLI, edit file agen dan jalankan `ant apply` lagi; apply memberikan `vers
   ```bash cURL
   curl -fsSL "https://api.anthropic.com/v1/agents/$AGENT_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -476,7 +476,7 @@ Contoh sebelumnya memberikan `version` (csharp, go: `Version`) dari respons pemb
   ```bash cURL
   curl -fsSL "https://api.anthropic.com/v1/agents/$AGENT_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -581,7 +581,7 @@ Pembaruan berikut menghapus deskripsi, menghapus kunci `team` dari `metadata` (c
   ```bash cURL
   curl -fsSL "https://api.anthropic.com/v1/agents/$AGENT_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -731,7 +731,7 @@ Ambil riwayat versi lengkap untuk melacak bagaimana agen berubah dari waktu ke w
   ```bash cURL
   curl -fsSL "https://api.anthropic.com/v1/agents/$AGENT_ID/versions" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
@@ -796,7 +796,7 @@ Pengarsipan membuat agen menjadi hanya-baca dan tidak dapat dibatalkan. Sesi yan
   ```bash cURL
   curl -fsSL -X POST "https://api.anthropic.com/v1/agents/$AGENT_ID/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: f844dfc4053d71f651fdd6d7042ffb016df6cf076011c9822245d6c49e245a16
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: ce080e5929da5383ab15377e53cf69b8045a631895ea6c6ef75942129fea96fd
 ---
 
 ---
@@ -256,7 +256,7 @@ Sebelum menjalankan contoh-contoh ini, selesaikan langkah-langkah di [Sebelum me
   curl "https://claude.googleapis.com/v1/projects/$ANTHROPIC_GOOGLE_CLOUD_PROJECT/locations/global/workspaces/$ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID/invoke/v1/messages" \
     -H "Authorization: Bearer $(gcloud auth application-default print-access-token)" \
     -H "content-type: application/json" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -507,35 +507,51 @@ Seperti klien SDK, CLI tidak mengirim permintaan untuk Claude Models on Google C
 
 Bagian ini mencantumkan fitur yang berfungsi di Claude Models on Google Cloud (Anthropic managed) dan fitur yang tidak didukung di sana. Bagian ini tidak mencantumkan setiap fitur Claude API, dan tidak menyatakan apakah fitur yang tidak tercantum berfungsi.
 
-Fitur-fitur berikut berfungsi di Claude Models on Google Cloud (Anthropic managed) sebagaimana di Claude API:
+Models API dan fitur-fitur berikut tersedia di Claude Models on Google Cloud (Anthropic managed):
 
-* **Fast mode:** [Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) untuk Claude Opus 5.5.
+* [Alat advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool) (Beta)
+* [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview)
+  * [Skill Kustom](https://platform.claude.com/docs/id/build-with-claude/skills-guide#managing-custom-skills)
+  * [Agent Skills siap pakai](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#pre-built-agent-skills)
+* [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing)
+* [Penolakan classifier](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback)
+  * [Fallback sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) (Beta)
+  * [Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) (Beta)
+* [Alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool)
+* [Alat kustom](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools)
+* [Residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency)
+* [Effort](https://platform.claude.com/docs/id/build-with-claude/effort)
+  * [Effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (Beta)
+* [Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode)
+* [Files API](https://platform.claude.com/docs/id/build-with-claude/files)
+* [Konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) (Beta)
+  * [Helper MCP sisi klien](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#client-side-mcp-helpers) (Beta)
+* [Alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool)
+  * [Helper alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#implement-the-memory-handler) (Beta)
+* [Streaming pesan](https://platform.claude.com/docs/id/build-with-claude/streaming)
+* [Thread pesan](https://platform.claude.com/docs/id/build-with-claude/message-threads) (Beta)
+* [Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages)
+  * [Perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes) (Beta)
+  * [Pesan sistem lingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (Beta)
+* [OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry) (Beta)
+* [Dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support)
+* [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
+  * [Durasi 1 jam](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration)
+  * [Durasi 5 menit (default)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#how-prompt-caching-works)
+  * [Caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching)
+* [Middleware SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/middleware)
+* [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
+  * [Helper output terstruktur bertipe](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#usage)
+* [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking)
+  * [Pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost)
+  * [Pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/extended-thinking)
+* [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting)
+* [Tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner) (Beta)
+* [Vision (gambar)](https://platform.claude.com/docs/id/build-with-claude/vision)
+* [Alat web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool)
+* [Alat pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool)
 
-* **Fitur beta:** Jika suatu beta terbatas untuk organisasi tertentu di Claude API, organisasi Anthropic yang dibuat oleh proses penyiapan memerlukan akses yang sama.
-
-* **Alat:** [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk:
-
-  * Pencarian web
-  * Pengambilan web
-  * Eksekusi kode
-  * Alat memori
-  * Alat advisor
-  * Konektor MCP
-
-* **Skills dan file:** [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview) dan [Files API](https://platform.claude.com/docs/id/build-with-claude/files).
-
-* **Kemampuan model:**
-
-  * [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
-  * [Pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/thinking)
-  * [Pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking#configuring-thinking)
-  * [Effort](https://platform.claude.com/docs/id/build-with-claude/effort)
-  * [Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback)
-  * [Streaming](https://platform.claude.com/docs/id/build-with-claude/streaming)
-  * [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
-  * [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting)
-
-* **Batch dan model:** [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing) dan Models API.
+Jika suatu fitur beta dibatasi hanya untuk organisasi tertentu di Claude API, organisasi Anthropic yang dibuat oleh proses penyiapan memerlukan akses yang sama.
 
 Untuk mengaktifkan atau menonaktifkan [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) untuk organisasi Anthropic yang dibuat oleh penyiapan, [buka Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console), buka **Settings > Compliance**, dan gunakan toggle **Compliance API**.
 
@@ -543,15 +559,24 @@ Untuk mengaktifkan atau menonaktifkan [Compliance API](https://platform.claude.c
 
 ### Claude Managed Agents
 
-[Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) tersedia melalui Claude Models on Google Cloud (Anthropic managed), termasuk yang berikut:
+[Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) tersedia melalui Claude Models on Google Cloud (Anthropic managed), termasuk [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) dan fitur-fitur berikut:
 
-* [Agent](https://platform.claude.com/docs/id/managed-agents/agent-setup)
-* [Environment](https://platform.claude.com/docs/id/managed-agents/environments)
-* [Sesi](https://platform.claude.com/docs/id/managed-agents/sessions)
-* [Credential vault](https://platform.claude.com/docs/id/managed-agents/vaults)
-* [Memory store](https://platform.claude.com/docs/id/managed-agents/memory)
-* [Deployment terjadwal](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments)
-* [Sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes)
+* [Konfigurasi agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) (Beta)
+* [Sandbox cloud](https://platform.claude.com/docs/id/managed-agents/environments) (Beta)
+* [Delta event](https://platform.claude.com/docs/id/managed-agents/event-deltas) (Beta)
+* [Akses GitHub](https://platform.claude.com/docs/id/managed-agents/github) (Beta)
+* [Memory store](https://platform.claude.com/docs/id/managed-agents/memory) (Beta)
+* [Orkestrasi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration) (Beta)
+  * [Workflow dinamis](https://platform.claude.com/docs/id/managed-agents/workflow-runs) (Beta)
+  * [Thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads) (Beta)
+* [Outcome](https://platform.claude.com/docs/id/managed-agents/define-outcomes) (Beta)
+* [Kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) (Beta)
+* [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking)
+* [Deployment terjadwal](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments) (Beta)
+* [Sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) (Beta)
+* [Anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) (Beta)
+* [Vault](https://platform.claude.com/docs/id/managed-agents/vaults) (Beta)
+* [Pembatasan domain web](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions) (Beta)
 
 Akses diperiksa saat sesi atau deployment dibuat, bukan saat sedang berjalan:
 
@@ -648,7 +673,7 @@ Untuk beralih ke Claude Models on Google Cloud (Anthropic managed), selesaikan l
         -H "Authorization: Bearer $(gcloud auth print-access-token)" \
         -H "Content-Type: application/json" \
         -d '{
-          "anthropic_version": "vertex-2023-10-16",
+          "anthropic_version": "2026-10-21",
           "messages": [{"role": "user", "content": "Hey Claude!"}],
           "max_tokens": 100
         }'
@@ -747,7 +772,7 @@ Untuk beralih ke Claude Models on Google Cloud (Anthropic managed), selesaikan l
       curl "https://claude.googleapis.com/v1/projects/$ANTHROPIC_GOOGLE_CLOUD_PROJECT/locations/global/workspaces/$ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID/invoke/v1/messages" \
         -H "Authorization: Bearer $(gcloud auth application-default print-access-token)" \
         -H "content-type: application/json" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -d '{
           "model": "claude-opus-5-5",
           "max_tokens": 1024,

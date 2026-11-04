@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: ffa22304d2025166556af146ea513ab4f6811b4352d4286851edafd5a0029405
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 8909d1dd5905374f4bbe501685f7449ab368db3d59d2a9009dc78d422880017f
 ---
 
 ---
@@ -53,7 +53,7 @@ Vault adalah kumpulan `credentials` yang terkait dengan seorang pengguna akhir. 
   ```bash cURL
   curl --fail-with-body -sS https://api.anthropic.com/v1/vaults \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -183,7 +183,7 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
       ```bash cURL
       curl --fail-with-body -sS "https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
         -d @- <<'EOF'
@@ -396,7 +396,7 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
       ```bash cURL
       curl --fail-with-body -sS "https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
         -d @- <<'EOF'
@@ -524,7 +524,7 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
       ```bash cURL
       curl --fail-with-body -sS "https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
         -d @- <<'EOF'
@@ -755,7 +755,7 @@ Teruskan `vault_ids` (java: `vaultIds`; php: `vaultIDs`; csharp: `VaultIds`; go:
   ```bash cURL
   curl --fail-with-body -sS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -859,7 +859,7 @@ Nilai rahasia, `display_name` (java, php: `displayName`; csharp, go: `DisplayNam
   curl --fail-with-body -sS \
     "https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d @- <<'EOF'
@@ -1020,7 +1020,7 @@ Untuk mendiagnosis mengapa refresh gagal, panggil `POST /v1/vaults/{vault_id}/cr
   curl --fail-with-body -sS -X POST \
     "https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID/mcp_oauth_validate?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 

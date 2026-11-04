@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: d798f59a515cbf942f81bc07eabf617be3f1761cb1641cf6575abef8a27b5475
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 2e8fe5433df415e7eddd445fd8daa38ac8b723c94c79a9745462e116ec43b612
 ---
 
 ---
@@ -56,11 +56,13 @@ Caching prompt, kebersihan token, pemrosesan batch, dan audit prompt terhadap mo
 
 #### Mengapa caching didahulukan
 
-Aktifkan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) sebelum tuas lainnya, karena setiap giliran dari tugas agentik mengirim ulang seluruh percakapan yang terus bertambah: “system prompt” (prompt sistem), definisi alat, dan setiap giliran sebelumnya.
+Aktifkan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) sebelum tuas lainnya, karena secara default setiap giliran dari tugas agentik mengirim ulang seluruh percakapan yang terus bertambah: “system prompt” (prompt sistem), definisi alat, dan setiap giliran sebelumnya.
 
 * Tugas dengan 40 giliran mengirim giliran pertamanya sebanyak 40 kali, sehingga biaya tugas tumbuh kira-kira sebanding dengan kuadrat jumlah giliran.
 * Caching tidak menghentikan pengiriman ulang, tetapi setiap pengiriman ulang hanya berbiaya sekitar sepersepuluh (seperdua puluh pada Claude Opus 5.5 dan Claude Sonnet 5.5, seperempat puluh pada Claude Fable 5.1 dan Claude Mythos 5.1) dan diproses lebih cepat.
 * Prefiks ditagih dengan [tarif cache-read](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing) alih-alih harga input, dan setiap giliran membayar tarif cache-write 1,25x hanya untuk bagian yang baru.
+
+[Thread pesan](https://platform.claude.com/docs/id/build-with-claude/message-threads), dalam beta, menghentikan pengiriman ulang selama sebuah thread berlangsung, yaitu hingga 5 menit berlalu sejak permintaan terakhir pada thread tersebut. Thread menurunkan waktu hingga token pertama, bukan biaya: model tetap membaca seluruh percakapan, jadi tetap sertakan `cache_control` pada setiap permintaan. Thread tidak mendukung compaction atau sebagian besar context editing.
 
 **Seperti apa kondisi yang baik.**
 
@@ -175,7 +177,7 @@ Permintaan `max_tokens: 0` ditolak dalam kasus berikut:
   jq '.max_tokens = 0 | del(.stream)' last_request.json | \
     curl https://api.anthropic.com/v1/messages \
       -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
+      -H "anthropic-version: 2026-10-21" \
       -H "content-type: application/json" \
       --data-binary @-
   ```
@@ -319,7 +321,7 @@ def prune_task_boundary(messages, tool_name_by_id, threshold=2000):
 Arahkan setiap permintaan yang tidak ditunggu siapa pun melalui [Batch API](https://platform.claude.com/docs/id/build-with-claude/batch-processing), dan pertahankan jalur interaktif untuk sisanya. Batch API memberikan potongan 50% untuk setiap token dari sebuah permintaan, termasuk yang ter-cache, dengan imbalan hasil yang tiba kapan saja dalam 24 jam.
 
 * Batching adalah tuas gratis terbesar kedua setelah caching untuk pekerjaan agen tanpa pengawasan: run evaluasi, backfill, dan pekerjaan terjadwal seperti run berulang dari agen triase issue dari [pengukuran pemangkasan token](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence#trim-input-and-context-tokens).
-* Batching dapat dikombinasikan dengan sebagian besar isi halaman ini, tetapi tidak dengan [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) atau sesi Claude Managed Agents (lihat [harga Claude Managed Agents](https://platform.claude.com/docs/id/about-claude/pricing#claude-managed-agents-pricing)).
+* Batching dapat dikombinasikan dengan sebagian besar isi halaman ini, tetapi tidak dengan [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode), thread pesan, atau sesi Claude Managed Agents (lihat [harga Claude Managed Agents](https://platform.claude.com/docs/id/about-claude/pricing#claude-managed-agents-pricing)).
 
 ### Audit prompt terhadap model saat ini
 

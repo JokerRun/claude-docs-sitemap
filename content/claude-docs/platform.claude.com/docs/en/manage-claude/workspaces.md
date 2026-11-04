@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/workspaces
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f029e2aa0152eeef70b58033fe8150bc9e7035dc20fee18707a6ed3fd44204fa
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: fc94aa5f454663f7b6048ca9481129061ac0c1805c94a3e500b840ca2f82b605
 ---
 
 ---
@@ -160,7 +160,7 @@ Create a workspace:
   ```bash cURL
   curl -X POST "https://api.anthropic.com/v1/organizations/workspaces" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{"name": "Production"}'
   ```
@@ -256,7 +256,7 @@ List workspaces:
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/workspaces?limit=10&include_archived=false" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -365,7 +365,7 @@ Archive a workspace:
   ```bash cURL
   curl -X POST "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -458,7 +458,7 @@ Add a member to a workspace:
   ```bash cURL
   curl -X POST "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/members" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
@@ -594,7 +594,7 @@ Update a member’s role:
   ```bash cURL
   curl -X POST "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/members/user_01WxYzAbCdEfGhJkMnPqRsTu" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{"workspace_role": "workspace_admin"}'
   ```
@@ -727,7 +727,7 @@ Remove a member from a workspace:
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/members/user_01WxYzAbCdEfGhJkMnPqRsTu" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -849,7 +849,7 @@ Some resources are managed differently:
 To look up your organization’s workspace IDs, call the [List Workspaces](https://platform.claude.com/docs/en/api/organization/workspaces/list) endpoint (pass `include_default=true` to include the Default Workspace) or find them on the [Workspaces](https://platform.claude.com/settings/workspaces) page in the Claude Console.
 
 <Note>
-  [Prompt caches](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) are also isolated by workspace on the Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry). On Amazon Bedrock and Claude Models on Google Cloud (Google managed), prompt caches are isolated by organization.
+  [Prompt caches](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) are also isolated by workspace on the Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry). On Claude Models on Google Cloud (Google managed) and Amazon Bedrock, prompt caches are isolated by organization.
 </Note>
 
 ## Identify the workspace behind an API response
@@ -872,7 +872,7 @@ The following examples send a Messages API request and read the workspace ID fro
   # -i prints the response headers, including anthropic-workspace-id, before the body
   curl -sS -i https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -1052,7 +1052,7 @@ Track usage and costs by workspace using the [Usage and Cost Analytics API](http
   workspace_ids[]=wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ&\
   group_by[]=workspace_id&\
   time_bucket_width=1d" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: analytics-usage-cost-2026-08-24" \
     -H "x-api-key: $ANTHROPIC_API_KEY"
   ```

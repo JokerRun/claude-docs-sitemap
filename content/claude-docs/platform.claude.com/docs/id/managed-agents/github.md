@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f5cb62e8f1b5f9bd9c7c2dd454e8eb59f77c81a87b24abce067d18a0b0450722
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 8705b3019e0a3f008b1890762fc4164b71c621ae04fc846c6ee2abbd1995e2c2
 ---
 
 ---
@@ -54,7 +54,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   ```bash cURL
   curl -fsS https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -69,7 +69,13 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
         }
       ],
       "tools": [
-        {"type": "agent_toolset_20260401"},
+        {
+          "type": "agent_toolset_20260401",
+          "configs": [
+            {"name": "web_search", "enabled": false},
+            {"name": "web_fetch", "enabled": false}
+          ]
+        },
         {
           "type": "mcp_toolset",
           "mcp_server_name": "github"
@@ -94,6 +100,11 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
           url: https://api.githubcopilot.com/mcp/
       tools:
         - type: agent_toolset_20260401
+          configs:
+            - name: web_search
+              enabled: false
+            - name: web_fetch
+              enabled: false
         - type: mcp_toolset
           mcp_server_name: github
       ---
@@ -116,7 +127,13 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
           },
       ],
       tools=[
-          {"type": "agent_toolset_20260401"},
+          {
+              "type": "agent_toolset_20260401",
+              "configs": [
+                  {"name": "web_search", "enabled": False},
+                  {"name": "web_fetch", "enabled": False},
+              ],
+          },
           {
               "type": "mcp_toolset",
               "mcp_server_name": "github",
@@ -138,7 +155,13 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
       }
     ],
     tools: [
-      { type: "agent_toolset_20260401" },
+      {
+        type: "agent_toolset_20260401",
+        configs: [
+          { name: "web_search", enabled: false },
+          { name: "web_fetch", enabled: false }
+        ]
+      },
       {
         type: "mcp_toolset",
         mcp_server_name: "github"
@@ -159,7 +182,14 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
       ],
       Tools =
       [
-          new BetaManagedAgentsAgentToolset20260401Params(),
+          new BetaManagedAgentsAgentToolset20260401Params
+          {
+              Configs =
+              [
+                  new BetaManagedAgentsWebSearchToolConfigParams { Enabled = false },
+                  new BetaManagedAgentsWebFetchToolConfigParams { Enabled = false },
+              ],
+          },
           new BetaManagedAgentsMcpToolsetParams { McpServerName = "github" },
       ],
   });
@@ -180,7 +210,16 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   	},
   	Tools: []anthropic.BetaAgentNewParamsToolUnion{
   		{
-  			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{},
+  			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
+  				Configs: []anthropic.BetaManagedAgentsAgentToolConfigParamsUnion{
+  					{OfWebSearch: &anthropic.BetaManagedAgentsWebSearchToolConfigParams{
+  						Enabled: anthropic.Bool(false),
+  					}},
+  					{OfWebFetch: &anthropic.BetaManagedAgentsWebFetchToolConfigParams{
+  						Enabled: anthropic.Bool(false),
+  					}},
+  				},
+  			},
   		},
   		{
   			OfMCPToolset: &anthropic.BetaManagedAgentsMCPToolsetParams{
@@ -203,7 +242,14 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
           .name("github")
           .url("https://api.githubcopilot.com/mcp/")
           .build())
-      .addTool(BetaManagedAgentsAgentToolset20260401Params.builder().build())
+      .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
+          .addConfig(BetaManagedAgentsWebSearchToolConfigParams.builder()
+              .enabled(false)
+              .build())
+          .addConfig(BetaManagedAgentsWebFetchToolConfigParams.builder()
+              .enabled(false)
+              .build())
+          .build())
       .addTool(BetaManagedAgentsMcpToolsetParams.builder()
           .mcpServerName("github")
           .build())
@@ -211,9 +257,14 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   ```
 
   ```php PHP
+  use Anthropic\Beta\Agents\BetaManagedAgentsAgentToolset20260401Params;
+  use Anthropic\Beta\Agents\BetaManagedAgentsModel;
+  use Anthropic\Beta\Agents\BetaManagedAgentsWebFetchToolConfigParams;
+  use Anthropic\Beta\Agents\BetaManagedAgentsWebSearchToolConfigParams;
+
   $agent = $client->beta->agents->create(
       name: 'Code Reviewer',
-      model: 'claude-opus-5-5',
+      model: BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
       system: 'You are a code review assistant with access to GitHub.',
       mcpServers: [
           [
@@ -223,7 +274,12 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
           ],
       ],
       tools: [
-          ['type' => 'agent_toolset_20260401'],
+          BetaManagedAgentsAgentToolset20260401Params::with(
+              configs: [
+                  BetaManagedAgentsWebSearchToolConfigParams::with(enabled: false),
+                  BetaManagedAgentsWebFetchToolConfigParams::with(enabled: false),
+              ],
+          ),
           [
               'type' => 'mcp_toolset',
               'mcpServerName' => 'github',
@@ -235,7 +291,7 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Code Reviewer",
-    model: "claude-opus-5-5",
+    model: Anthropic::Beta::BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
     system_: "You are a code review assistant with access to GitHub.",
     mcp_servers: [
       {
@@ -245,7 +301,13 @@ Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimp
       }
     ],
     tools: [
-      {type: "agent_toolset_20260401"},
+      {
+        type: "agent_toolset_20260401",
+        configs: [
+          {name: "web_search", enabled: false},
+          {name: "web_fetch", enabled: false}
+        ]
+      },
       {
         type: "mcp_toolset",
         mcp_server_name: "github"
@@ -261,7 +323,7 @@ Kemudian buat sesi yang memasang repositori GitHub. Dengan [environment](https:/
   ```bash cURL
   curl -fsS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d @- <<JSON
@@ -436,7 +498,7 @@ Pasang beberapa repositori dengan menambahkan entri ke array `resources` (csharp
   ```bash cURL
   curl -fsS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d @- <<JSON
@@ -606,7 +668,7 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
   # Daftar resource pada sesi
   curl -fsS "https://api.anthropic.com/v1/sessions/$session_id/resources" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json"
 
@@ -746,7 +808,7 @@ Dengan server GitHub MCP, agen dapat membuat branch, melakukan commit perubahan,
   ```bash cURL
   curl -fsS "https://api.anthropic.com/v1/sessions/$session_id/events" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-admin-api
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 8d466e55ccee84202a88a85fa7e778be05824e8e77857a4b6625bc4d4d88defe
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 2e7bfcc6867a1ed4460e9875ceb7099c6522a3e0a825f3b9be04195e15469aec
 ---
 
 ---
@@ -82,7 +82,7 @@ Di SDK, endpoint ini adalah `client.organization.service_accounts` (typescript: 
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/organizations/service_accounts" \
     -H "authorization: Bearer $ANTHROPIC_AUTH_TOKEN" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -174,7 +174,7 @@ Buat akun layanan:
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/organizations/service_accounts" \
     -H "authorization: Bearer $ANTHROPIC_AUTH_TOKEN" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "name": "inference-worker",
@@ -292,7 +292,7 @@ Tampilkan daftar akun layanan:
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/organizations/service_accounts?limit=20" \
     -H "authorization: Bearer $ANTHROPIC_AUTH_TOKEN" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -389,7 +389,7 @@ Arsipkan akun layanan:
   ```bash cURL
   curl --fail-with-body -sS -X POST "https://api.anthropic.com/v1/organizations/service_accounts/svac_01ABCDEFabcdef0123456789XY/archive" \
     -H "authorization: Bearer $ANTHROPIC_AUTH_TOKEN" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -509,7 +509,7 @@ Daftarkan penerbit. Contoh ini mendaftarkan GitHub Actions dengan penemuan JWKS:
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/organizations/federation_issuers" \
     -H "authorization: Bearer $ANTHROPIC_AUTH_TOKEN" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "name": "github-actions",
@@ -644,7 +644,7 @@ Tampilkan daftar penerbit:
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/organizations/federation_issuers?limit=20" \
     -H "authorization: Bearer $ANTHROPIC_AUTH_TOKEN" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -739,7 +739,7 @@ Arsipkan penerbit:
   ```bash cURL
   curl --fail-with-body -sS -X POST "https://api.anthropic.com/v1/organizations/federation_issuers/fdis_01ABCDEFabcdef0123456789XY/archive" \
     -H "authorization: Bearer $ANTHROPIC_AUTH_TOKEN" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -841,7 +841,7 @@ Buat aturan. Contoh ini memungkinkan deploy GitHub Actions dari branch main bert
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/organizations/federation_rules" \
     -H "authorization: Bearer $ANTHROPIC_AUTH_TOKEN" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "name": "gha-deploy",
@@ -1054,7 +1054,7 @@ Tampilkan daftar aturan, secara opsional difilter berdasarkan penerbit:
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/organizations/federation_rules?issuer_id=fdis_01ABCDEFabcdef0123456789XY" \
     -H "authorization: Bearer $ANTHROPIC_AUTH_TOKEN" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -1161,7 +1161,7 @@ Arsipkan aturan:
   ```bash cURL
   curl --fail-with-body -sS -X POST "https://api.anthropic.com/v1/organizations/federation_rules/fdrl_01ABCDEFabcdef0123456789XY/archive" \
     -H "authorization: Bearer $ANTHROPIC_AUTH_TOKEN" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI

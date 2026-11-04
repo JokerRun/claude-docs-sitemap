@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 791604c77c7abe3084bfd68c27bdd8ee306a0488499d2ebf25296124e4e6f7a3
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 884536dfa73be128c715123cfc98ee41fc2845a5862214f8260515d5b72d0975
 ---
 
 ---
@@ -115,7 +115,7 @@ The following examples use `web_search_20260318`:
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -288,7 +288,7 @@ Provide the web search tool in your API request:
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

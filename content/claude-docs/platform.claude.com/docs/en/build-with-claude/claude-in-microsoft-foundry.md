@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: d3e73f3d4a4087e1b8422f1f06b780ce5cda38eb34368b589ea3ea1b88fd0786
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 5649138d10b0db75c4079664865059a01213ac10c3b3b638994302eb6b0b7164
 ---
 
 ---
@@ -208,7 +208,7 @@ The SDK’s Foundry client requires an API key and either a resource name or bas
   curl https://{resource}.services.ai.azure.com/anthropic/v1/messages \
     -H "content-type: application/json" \
     -H "api-key: YOUR_AZURE_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -411,7 +411,7 @@ Entra ID authentication lets you manage access with Azure RBAC, integrate with y
   curl https://{resource}.services.ai.azure.com/anthropic/v1/messages \
     -H "content-type: application/json" \
     -H "Authorization: Bearer $(az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv)" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,

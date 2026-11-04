@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: be771b9f777402df340e14f454f3b8492170f046590b9d76043db86ee70ef7f3
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 0257d387d7fba53bb68120395002a0ca4c36031b5c6201fd45f9657d8b1ac4f1
 ---
 
 ---
@@ -47,7 +47,7 @@ A `self_hosted` environment acts as a work queue. You run an **environment worke
 2. Your worker claims the work item and downloads the agent’s [skills](https://platform.claude.com/docs/en/managed-agents/skills) and the session’s [memory stores](https://platform.claude.com/docs/en/managed-agents/memory).
 3. Claude runs on Anthropic’s side and requests tool calls. Your worker runs each call locally and posts the result back.
 
-Tool inputs and outputs still flow to Anthropic’s control plane, so the model can receive results and determine what to do next. Anthropic stores skills and memory stores. Your sandbox holds a copy for the session. See [Security model](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-security) for the full data-flow boundary.
+Tool inputs and outputs still flow to Managed Agents on Anthropic’s side, so the model can receive results and determine what to do next. Anthropic stores skills and memory stores. Your sandbox holds a copy for the session. To learn where each part of a session runs, see [What the sandbox can and cannot do](https://platform.claude.com/docs/en/managed-agents/secure-deployment-risks#what-the-sandbox-can-and-cannot-do).
 
 Self-hosted sandboxes support every Claude model available in Managed Agents. The model is configured on the agent, not the environment.
 
@@ -86,7 +86,7 @@ This quickstart runs one always-on worker with the `ant` CLI, sends it a session
       ```bash cURL
       curl -sS --fail-with-body https://api.anthropic.com/v1/environments \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
         -d '{
@@ -291,7 +291,7 @@ This quickstart runs one always-on worker with the `ant` CLI, sends it a session
       ```bash cURL
       curl -sS --fail-with-body "https://api.anthropic.com/v1/environments/$ANTHROPIC_ENVIRONMENT_ID/work/stats" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01"
       ```
 
@@ -373,7 +373,7 @@ This quickstart runs one always-on worker with the `ant` CLI, sends it a session
       # Create a session
       curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
         -d '{
@@ -384,7 +384,7 @@ This quickstart runs one always-on worker with the `ant` CLI, sends it a session
       # Send it a task: SESSION_ID is the ID from the create response
       curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
         -d '{

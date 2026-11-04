@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/budgets
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 28f392909081c8e5b070074b1e8e9d5628fb14d074562a111d8c712998e209c3
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: b3592e411e4ef7677fd1c72ff1dcf70bda7e0d0199fa02fe967b4bf535bce965
 ---
 
 ---
@@ -52,7 +52,7 @@ Berikan field opsional `budget` (csharp, go: `Budget`) saat Anda membuat sesi:
   ```bash cURL
   curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -230,7 +230,7 @@ Perbarui sesi dengan `max_list_cost` (java, php: `maxListCost`; csharp, go: `Max
   ```bash cURL
   curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -337,7 +337,7 @@ Berikan `"budget": null` (python: `budget=None`; typescript: `budget: null`; rub
   ```bash cURL
   curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{"budget": null}'

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/plugins-api
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 5d02341fb7c9367ef3a8c0d4c661ead2818f08aca70cef81aa51a9cd848b5948
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 3b655014264abd65b5f8353d876eb21d95258b64a741bae48a52d083cacc7ac2
 ---
 
 ---
@@ -13,7 +13,7 @@ description: "Inventarisasi dan kelola plugin di organisasi Claude Enterprise An
 
 Plugins API memungkinkan Anda melakukan hal-hal berikut:
 
-* Menginventarisasi setiap plugin di organisasi Claude Enterprise Anda
+* Menginventarisasi plugin di organisasi Claude Enterprise Anda
 * Menerbitkan plugin dan versi baru dari pipeline Anda sendiri
 * Memilih versi mana yang disajikan kepada anggota
 * Mengendalikan siapa yang dapat menggunakan setiap plugin
@@ -40,19 +40,19 @@ API ini menyediakan 18 endpoint di lima sumber daya:
 
 | Sumber daya                                                                                                                                                                                       | Endpoint                                                                                                                                                                                                                                                                                                                  |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Plugin:** mencantumkan setiap plugin di organisasi, mengunggah plugin baru, mencari satu plugin, memilih versi yang disajikan kepada anggota (rollback atau promosi), menghapus satu plugin     | `GET /v1/organizations/plugins`<br />`POST /v1/organizations/plugins`<br />`GET /v1/organizations/plugins/{plugin_id}`<br />`POST /v1/organizations/plugins/{plugin_id}`<br />`DELETE /v1/organizations/plugins/{plugin_id}`                                                                                              |
+| **Plugin:** mencantumkan plugin di organisasi, mengunggah plugin baru, mencari satu plugin, memilih versi yang disajikan kepada anggota (rollback atau promosi), menghapus satu plugin            | `GET /v1/organizations/plugins`<br />`POST /v1/organizations/plugins`<br />`GET /v1/organizations/plugins/{plugin_id}`<br />`POST /v1/organizations/plugins/{plugin_id}`<br />`DELETE /v1/organizations/plugins/{plugin_id}`                                                                                              |
 | **Versi plugin:** mencantumkan riwayat versi plugin, mengunggah versi baru, mencari satu versi, mengunduh file suatu versi                                                                        | `GET /v1/organizations/plugins/{plugin_id}/versions`<br />`POST /v1/organizations/plugins/{plugin_id}/versions`<br />`GET /v1/organizations/plugins/{plugin_id}/versions/{version}`<br />`GET /v1/organizations/plugins/{plugin_id}/versions/{version}/content`                                                           |
 | **Pengaturan instalasi:** membaca siapa yang dapat menggunakan plugin milik organisasi, mengaturnya untuk seluruh organisasi atau untuk satu grup, menghapus salah satu pengaturan tersebut       | `GET /v1/organizations/plugins/{plugin_id}/installation_settings`<br />`POST /v1/organizations/plugins/{plugin_id}/installation_settings/{target}`<br />`DELETE /v1/organizations/plugins/{plugin_id}/installation_settings/{target}`                                                                                     |
 | **Berbagi:** membaca dengan siapa seorang anggota telah membagikan plugin miliknya sendiri (hanya-baca)                                                                                           | `GET /v1/organizations/plugins/{plugin_id}/shares`                                                                                                                                                                                                                                                                        |
 | **Marketplace plugin:** menemukan ID marketplace, mencari satu marketplace, menetapkan pengaturan instalasi default untuk plugin-pluginnya, memeriksa konten marketplace sebelum menghubungkannya | `GET /v1/organizations/plugin_marketplaces`<br />`GET /v1/organizations/plugin_marketplaces/{marketplace_id}`<br />`POST /v1/organizations/plugin_marketplaces/{marketplace_id}`<br />`POST /v1/organizations/plugin_marketplaces/validate_repository`<br />`POST /v1/organizations/plugin_marketplaces/validate_archive` |
 
-Rilis ini tidak mencakup skill mandiri (skill yang ditulis anggota di editor skill atau diunggah sebagai satu skill di claude.ai). Skill tersebut tidak muncul dalam inventaris dan tidak dapat dibuat di sini. Plugin yang dipublikasikan Anthropic juga tidak diinventarisasi; penggunaannya dilaporkan oleh [Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api). Marketplace dibuat, dihubungkan ke repositori, dan dihapus di claude.ai, bukan melalui API ini.
+Plugin yang dipublikasikan Anthropic tidak diinventarisasi; penggunaannya dilaporkan oleh [Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api). Marketplace dibuat, dihubungkan ke repositori, dan dihapus di claude.ai, bukan melalui API ini.
 
 ## Prasyarat
 
 * Organisasi Anda harus menggunakan paket Claude Enterprise.
 * Pemilik utama Anda membuat kunci Admin API dengan cakupan `read:plugins`, cakupan `write:plugins`, atau keduanya di [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access). Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization).
-* Setiap permintaan membawa tiga header: `x-api-key`, `anthropic-version: 2023-06-01`, dan `anthropic-beta: ce-plugins-2026-09-01`.
+* Setiap permintaan membawa tiga header: `x-api-key`, `anthropic-version: 2026-10-21`, dan `anthropic-beta: ce-plugins-2026-09-01`.
 
 SDK Python, TypeScript, C#, Go, Java, PHP, dan Ruby menyediakan endpoint ini di bawah `client.beta.organization` (csharp, go: `client.Beta.Organization`; java: `client.beta().organization()`; php: `$client->beta->organization`), dan [CLI `ant`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart) di bawah `ant beta:organization`; keduanya mengirimkan header `anthropic-version` dan `anthropic-beta` untuk Anda. Contoh di halaman ini menggunakan klien default setiap SDK, yang, seperti CLI, membaca kunci Admin API dari variabel lingkungan `ANTHROPIC_API_KEY`; contoh curl membaca kunci dari variabel yang sama dan mengirimkannya di header `x-api-key`. Ketika SDK atau CLI mengambil halaman tambahan untuk Anda, `limit` menetapkan ukuran halaman, bukan total (lihat [Paginasi](https://platform.claude.com/docs/id/manage-claude/plugins-api#pagination)).
 
@@ -66,7 +66,7 @@ Cantumkan plugin di marketplace milik organisasi Anda sendiri, dimulai dari yang
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/plugins?owner_type=organization&limit=20" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01"
   ```
 
@@ -230,7 +230,7 @@ Masing-masing cakupan baca ini (`read:plugins`, `read:org_audit`, dan `read:comp
 
 ### Membaca organisasi lain di bawah induk yang sama
 
-Kunci `read:plugins` dan `write:plugins` hanya membaca dan menulis organisasi tempat kunci tersebut dibuat. Jika perusahaan Anda memiliki beberapa organisasi Claude yang ditautkan di bawah satu organisasi induk, pemilik utama organisasi induk dapat membuat kunci `read:org_audit` atau `read:compliance_org_data` untuk semua organisasi yang ditautkan (lihat [Membuat kunci untuk organisasi Claude Enterprise](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization)). Kunci tersebut juga dapat membaca organisasi tertaut mana pun yang memiliki akses ke API ini. Untuk membacanya, teruskan ID-nya dalam parameter query `organization_id` pada endpoint `GET` mana pun di halaman ini. ID tersebut adalah UUID organisasi yang ditampilkan di pengaturan claude.ai (bentuk berawalan `org_` juga diterima). Tanpa parameter tersebut, kunci membaca organisasi tempat kunci itu dibuat. `404` berarti organisasi yang disebutkan tidak berada di bawah induk kunci atau API tidak tersedia untuknya; nilai yang bukan UUID atau ID `org_` mengembalikan `400`. Kunci lain apa pun yang menyebutkan organisasi selain miliknya sendiri mendapatkan `404`. Operasi tulis tidak menerima `organization_id`.
+Kunci `read:plugins` dan `write:plugins` hanya membaca dan menulis organisasi tempat kunci tersebut dibuat. Sebagian perusahaan memiliki beberapa organisasi Claude yang ditautkan di bawah satu organisasi induk. Kunci `read:org_audit` atau `read:compliance_org_data` yang [dibuat untuk semua organisasi tertaut](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization) juga dapat membaca organisasi tertaut mana pun yang memiliki akses ke API ini. Untuk membacanya, teruskan ID-nya dalam parameter query `organization_id` pada endpoint `GET` mana pun di halaman ini. ID tersebut adalah UUID organisasi yang ditampilkan di pengaturan claude.ai (bentuk berawalan `org_` juga diterima). Tanpa parameter tersebut, kunci membaca organisasi tempat kunci itu dibuat. Kunci yang tidak memiliki organisasi sendiri harus selalu meneruskan `organization_id`. `404` berarti organisasi yang disebutkan tidak berada di bawah induk kunci atau API tidak tersedia untuknya; nilai yang bukan UUID atau ID `org_` mengembalikan `400`. Kunci lain apa pun yang menyebutkan organisasi selain miliknya sendiri mendapatkan `404`. Operasi tulis tidak menerima `organization_id`.
 
 ## Konsep utama
 
@@ -331,13 +331,13 @@ Di claude.ai, administrator dapat mengizinkan versi yang scan-nya gagal. API ini
 
 `reach` merangkum, dalam satu nilai, seberapa jauh jangkauan suatu versi di mesin anggota dan di luarnya:
 
-| Nilai        | Arti                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `remote`     | Mendeklarasikan server MCP atau CLI, apa pun yang dideklarasikannya selain itu.                                                                                                                                                                                                                                                                                                                                                          |
-| `privileged` | Tidak mendeklarasikan server MCP atau CLI, tetapi mendeklarasikan hook, monitor (perintah latar belakang yang terus berjalan selama sesi), server LSP (Language Server Protocol), atau pengaturan yang diterapkan plugin ke aplikasi anggota, atau berisi skill, command, atau file Markdown lain yang frontmatter-nya menyetujui alat terlebih dahulu (`allowed-tools`). Semua ini berjalan, atau berlaku, di komputer anggota sendiri. |
-| `contained`  | Tidak mendeklarasikan server MCP, CLI, hook, monitor, server LSP, atau pengaturan aplikasi, dan tidak ada file Markdown-nya yang menyetujui alat terlebih dahulu (misalnya, plugin yang hanya berisi skill, command, dan agent, tanpa satu pun yang memiliki `allowed-tools`).                                                                                                                                                           |
+| Nilai        | Arti                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `remote`     | Mendeklarasikan server MCP atau CLI, apa pun yang dideklarasikannya selain itu.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `privileged` | Tidak mendeklarasikan server MCP atau CLI, tetapi mendeklarasikan hook, monitor (perintah latar belakang yang terus berjalan selama sesi), server LSP (Language Server Protocol), alur kerja (skrip yang dapat dijalankan Claude Code; file apa pun di folder `workflows/` pada root plugin dihitung sebagai alur kerja), atau pengaturan yang diterapkan plugin ke aplikasi anggota, atau berisi skill, command, atau file Markdown lain yang frontmatter-nya menyetujui alat terlebih dahulu (`allowed-tools`). Semua ini berjalan, atau berlaku, di komputer anggota sendiri. |
+| `contained`  | Tidak mendeklarasikan server MCP, CLI, hook, monitor, server LSP, alur kerja, atau pengaturan aplikasi, dan tidak ada file Markdown-nya yang menyetujui alat terlebih dahulu (misalnya, plugin yang hanya berisi skill, command, dan agent, tanpa satu pun yang memiliki `allowed-tools`).                                                                                                                                                                                                                                                                                       |
 
-`reach` menghitung semua yang dideklarasikan versi tersebut, termasuk monitor, server LSP, dan pengaturan aplikasi, yang tidak dicantumkan oleh `components`, sehingga versi dengan daftar `components` kosong tetap dapat bernilai `privileged`. Nilainya `null` untuk versi yang disimpan sebelum komponen dicatat, dan untuk versi yang jangkauannya tidak dapat ditentukan karena `SKILL.md` dari salah satu skill-nya, atau salah satu file command-nya, tidak dapat dibaca; perlakukan `null` sebagai tidak terklasifikasi.
+`reach` menghitung semua yang dideklarasikan versi tersebut, termasuk monitor, server LSP, alur kerja, dan pengaturan aplikasi, yang tidak dicantumkan oleh `components`, sehingga versi dengan daftar `components` kosong tetap dapat bernilai `privileged`. Nilainya `null` untuk versi yang disimpan sebelum komponen dicatat, dan untuk versi yang jangkauannya tidak dapat ditentukan karena `SKILL.md` dari salah satu skill-nya, atau salah satu file command-nya, tidak dapat dibaca; perlakukan `null` sebagai tidak terklasifikasi. Nilai ini biasanya ditentukan saat sebuah versi disimpan, berdasarkan aturan yang berlaku pada saat itu. Oleh karena itu, versi yang lebih lama dapat bernilai `contained` padahal file yang sama jika disimpan hari ini akan bernilai `privileged`.
 
 ### Persyaratan unggahan
 
@@ -345,7 +345,7 @@ Unggahan mengikuti aturan yang sama dengan unggahan plugin di claude.ai, sehingg
 
 * Unggahan berupa satu arsip `.zip` atau `.plugin`, atau sekumpulan file individual. Arsip dapat membungkus semuanya dalam satu folder tingkat atas.
 * Unggahan harus berisi tepat satu manifest, di `.claude-plugin/plugin.json`, yang harus mendeklarasikan `name`. `SKILL.md` saja tanpa manifest akan ditolak.
-* `SKILL.md` tingkat atas yang frontmatter-nya mendeklarasikan komponen plugin digabungkan ke dalam manifest; `plugin.json` yang berlaku di mana pun keduanya menetapkan nilai.
+* `SKILL.md` tingkat atas yang frontmatter-nya mendeklarasikan komponen plugin digabungkan ke dalam manifest; `plugin.json` yang berlaku di mana pun keduanya menetapkan nilai. `description` yang diambil manifest dari `SKILL.md` tersebut dipotong menjadi 500 karakter pertamanya.
 * `name` dapat berisi huruf kecil (dari alfabet apa pun), angka, dan tanda hubung, hingga 64 karakter. Huruf besar, spasi, garis bawah, dan tanda baca lainnya ditolak.
 * `displayName` paling banyak 64 karakter dan `description` paling banyak 500.
 * Setiap `SKILL.md` memerlukan frontmatter YAML yang valid dengan `name` dan `description`, yang keduanya tidak boleh berisi tag XML seperti `<example>`. Dua skill, atau dua command, tidak boleh memiliki nama yang sama.
@@ -354,7 +354,7 @@ Unggahan mengikuti aturan yang sama dengan unggahan plugin di claude.ai, sehingg
 * Path file harus relatif, tidak berisi `..`, dan hanya menggunakan huruf, angka, spasi, dan `_ . - / ( ) ,`.
 * Body permintaan dan arsip yang tidak dikompresi masing-masing paling banyak 200 MB; body permintaan yang melebihi batas mengembalikan `413` (`request_too_large`) alih-alih `400`. Sebuah unggahan memiliki paling banyak 5.000 file, kedalaman path 12, path sepanjang 472 karakter, dan nama file atau folder sepanjang 255 karakter.
 * Arsip ZIP harus menggunakan kompresi DEFLATE atau STORE, dan tidak boleh dienkripsi atau berisi tautan simbolik.
-* Unggahan yang membuat plugin ditolak jika marketplace sudah berisi 1.000 item. Total ini mencakup plugin-nya dan skill apa pun yang disimpan anggota di dalamnya. Anthropic dapat menaikkan batas ini dan batas 5.000 file.
+* Unggahan yang membuat plugin mengembalikan `400` jika marketplace sudah berisi 1.000 plugin. Plugin yang tidak dicantumkan oleh API ini juga dihitung, sehingga batas ini dapat tercapai meskipun [Daftar plugin](https://platform.claude.com/docs/id/manage-claude/plugins-api#list-plugins) menampilkan kurang dari 1.000 plugin di marketplace tersebut. Anthropic dapat menaikkan batas 5.000 file.
 
 ## Contoh alur kerja
 
@@ -370,7 +370,7 @@ Unggah setiap build bertag dari CI, dan biarkan pipeline menentukan kapan sebuah
 
 ### Luncurkan plugin ke grup percontohan, lalu ke semua orang
 
-1. Cari ID grup pilot dengan `GET /v1/organizations/rbac_groups`. Panggilan tersebut memerlukan scope `read:rbac_groups`, yang memerlukan kunci yang dibuat untuk semua organisasi tertaut (lihat [Grup di User management](https://platform.claude.com/docs/id/manage-claude/user-management#groups)). Langkah-langkah berikutnya memerlukan `write:plugins`, yang hanya bekerja pada organisasi tempat kuncinya dibuat, jadi di enterprise dengan beberapa organisasi tertaut, buat kunci ini di organisasi yang menyimpan plugin dan berikan kedua scope tersebut, atau gunakan kunci kedua yang dibuat di sana untuk langkah-langkah tersebut.
+1. Cari ID grup pilot dengan `GET /v1/organizations/rbac_groups`. Panggilan tersebut memerlukan scope `read:rbac_groups` (lihat [Grup dan peran di User management](https://platform.claude.com/docs/id/manage-claude/user-management#groups-and-roles)). Langkah-langkah berikutnya memerlukan `write:plugins`, yang hanya bekerja pada organisasi tempat kuncinya dibuat, jadi di enterprise dengan beberapa organisasi tertaut, buat satu kunci di organisasi yang menyimpan plugin dan berikan kedua scope tersebut, atau gunakan kunci kedua yang dibuat di sana untuk langkah-langkah tersebut.
 
 2. [Berikan grup pengaturannya sendiri](https://platform.claude.com/docs/id/manage-claude/plugins-api#set-an-installation-setting), misalnya `auto_install`, dengan `POST /v1/organizations/plugins/{plugin_id}/installation_settings/{target}`, di mana `{target}` adalah ID `rbac_group_` grup tersebut, sementara nilai tingkat organisasi tetap `not_available`. Hanya anggota grup yang mendapatkan plugin.
 
@@ -381,7 +381,7 @@ Unggah setiap build bertag dari CI, dan biarkan pipeline menentukan kapan sebuah
      curl -X POST "https://api.anthropic.com/v1/organizations/plugins/plugin_01Hq3vX8kZcN2mB7pR4tY9wL/installation_settings/organization" \
        -H "content-type: application/json" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01" \
+       -H "anthropic-version: 2026-10-21" \
        -H "anthropic-beta: ce-plugins-2026-09-01" \
        -d '{"installation_preference": "required"}'
      ```
@@ -522,21 +522,26 @@ Jalankan job malam hari yang menandai plugin yang menjangkau di luar sesi anggot
 
 Objek plugin menjelaskan plugin di salah satu marketplace organisasi Anda atau di marketplace pribadi anggota (respons [Mulai cepat](https://platform.claude.com/docs/id/manage-claude/plugins-api#quick-start) menunjukkan contoh lengkapnya). `display_name`, `description`, `manifest_version`, `content_scan`, `components`, dan `reach`-nya menjelaskan versi yang **disajikan**, sehingga satu panggilan daftar menunjukkan apa yang sedang disajikan kepada anggota.
 
-| Field                                                                                    | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                                                                                     | Berawalan `plugin_`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `name`                                                                                   | Dari manifest. Unik di dalam marketplace-nya, bukan di seluruh organisasi. Tetap untuk plugin milik organisasi; berubah jika anggota mengganti nama plugin miliknya sendiri di claude.ai.                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `display_name`, `description`, `manifest_version`                                        | `displayName`, `description`, dan `version` dari manifest versi yang disajikan; masing-masing bernilai `null` jika manifest tidak mendeklarasikannya. `manifest_version` dinormalisasi untuk tampilan: satu `v` atau `V` di awal dihapus, sehingga `version` manifest `"v1.4.0"` dikembalikan sebagai `"1.4.0"`. Nilainya juga `null` untuk nilai yang tidak tampak seperti nomor versi, seperti `"latest"`, dan untuk versi plugin yang dibuat sebelum claude.ai mulai mencatat field ini pada Agustus 2026. Unggahan tidak pernah ditolak karena `version`-nya, dan `manifest_version` tidak unik. |
-| `served_version_id`, `latest_version_id`                                                 | Berawalan `pluginver_`: versi yang disajikan kepada anggota, dan versi terbaru. Lihat [Versi dan versi yang disajikan](https://platform.claude.com/docs/id/manage-claude/plugins-api#versions-and-the-served-version).                                                                                                                                                                                                                                                                                                                                                                               |
-| `served_version_pinned`                                                                  | `false` sampai plugin disematkan (lihat [Versi dan versi yang disajikan](https://platform.claude.com/docs/id/manage-claude/plugins-api#versions-and-the-served-version)); `true` sejak saat itu.                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `owner`                                                                                  | `{"type": "organization"}`, atau `{"type": "user", "user_id": "user_..."}` untuk marketplace pribadi anggota.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| `marketplace_id`                                                                         | Berawalan `marketplace_`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `created_by`                                                                             | Siapa yang membuat plugin: `{"type": "user_actor", "user_id": "user_...", "email_address": "..."}` untuk seseorang di claude.ai (`email_address` mungkin `null`), atau `{"type": "api_actor", "api_key_id": "apikey_..."}` untuk kunci API. Jenis aktor lain mungkin muncul. `null` jika tidak ada pembuat yang tercatat, seperti untuk plugin yang disinkronkan dari Git.                                                                                                                                                                                                                           |
-| `organization_installation_preference`, `organization_installation_preference_inherited` | Milik organisasi: nilai tingkat organisasi, dan apakah nilai tersebut berasal dari default marketplace (lihat [Pengaturan instalasi](https://platform.claude.com/docs/id/manage-claude/plugins-api#installation-settings)). Milik anggota: keduanya `null`.                                                                                                                                                                                                                                                                                                                                          |
-| `content_scan`                                                                           | Hasil pemindaian versi yang disajikan, berupa objek dengan `status`, `assessment`, dan `reason` (dijelaskan setelah tabel ini). `null` jika tidak pernah dipindai.                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `components`                                                                             | Komponen versi yang disajikan, masing-masing `{"type", "name", "description"}` dengan `type` salah satu dari `skill`, `mcp_server`, `command`, `agent`, `hook`, atau `cli`, dicantumkan dalam urutan jenis tersebut lalu berdasarkan nama. Untuk server MCP, `name` adalah kuncinya di manifest; untuk hook, peristiwa tempat hook tersebut berjalan; untuk CLI, nama executable-nya. `description` selalu `null` untuk server MCP, hook, dan CLI. `null` jika tidak tercatat.                                                                                                                       |
-| `reach`                                                                                  | `contained`, `privileged`, atau `remote`. Lihat [Jangkauan](https://platform.claude.com/docs/id/manage-claude/plugins-api#reach).                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `updated_at`                                                                             | Berubah ketika versi yang disajikan berubah, ketika plugin menjadi disematkan, dan biasanya ketika versi baru disimpan. Versi yang menunggu (lihat [Versi dan versi yang disajikan](https://platform.claude.com/docs/id/manage-claude/plugins-api#versions-and-the-served-version)) mengubahnya ketika versi tersebut menjadi versi yang disajikan, tidak selalu ketika disimpan. Nilainya tidak berubah untuk pengaturan instalasi, share, atau perubahan pada `content_scan` saja.                                                                                                                 |
+| Field                                                                                    | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                                                                                     | Berawalan `plugin_`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `name`                                                                                   | Dari manifest. Unik di dalam marketplace-nya, bukan di seluruh organisasi. Tetap untuk plugin milik organisasi; berubah jika anggota mengganti nama plugin miliknya sendiri di claude.ai.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `display_name`, `description`, `manifest_version`                                        | `displayName`, `description`, dan `version` dari manifest versi yang disajikan; masing-masing bernilai `null` jika manifest tidak mendeklarasikannya. `description` mungkin berupa `description` dari sebuah skill, bukan dari manifest (dijelaskan setelah tabel ini). `manifest_version` dinormalisasi untuk tampilan: satu `v` atau `V` di awal dihapus, sehingga `version` manifest `"v1.4.0"` dikembalikan sebagai `"1.4.0"`. Nilainya juga `null` untuk nilai yang tidak tampak seperti nomor versi, seperti `"latest"`, dan untuk versi plugin yang dibuat sebelum claude.ai mulai mencatat field ini pada Agustus 2026. Unggahan tidak pernah ditolak karena `version`-nya, dan `manifest_version` tidak unik. |
+| `served_version_id`, `latest_version_id`                                                 | Berawalan `pluginver_`: versi yang disajikan kepada anggota, dan versi terbaru. Lihat [Versi dan versi yang disajikan](https://platform.claude.com/docs/id/manage-claude/plugins-api#versions-and-the-served-version).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `served_version_pinned`                                                                  | `false` sampai plugin disematkan (lihat [Versi dan versi yang disajikan](https://platform.claude.com/docs/id/manage-claude/plugins-api#versions-and-the-served-version)); `true` sejak saat itu.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `owner`                                                                                  | `{"type": "organization"}`, atau `{"type": "user", "user_id": "user_..."}` untuk marketplace pribadi anggota.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `marketplace_id`                                                                         | Berawalan `marketplace_`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `created_by`                                                                             | Siapa yang membuat plugin: `{"type": "user_actor", "user_id": "user_...", "email_address": "..."}` untuk seseorang di claude.ai (`email_address` mungkin `null`), atau `{"type": "api_actor", "api_key_id": "apikey_..."}` untuk kunci API. Jenis aktor lain mungkin muncul. `null` jika tidak ada pembuat yang tercatat, seperti untuk plugin yang disinkronkan dari Git.                                                                                                                                                                                                                                                                                                                                             |
+| `organization_installation_preference`, `organization_installation_preference_inherited` | Milik organisasi: nilai tingkat organisasi, dan apakah nilai tersebut berasal dari default marketplace (lihat [Pengaturan instalasi](https://platform.claude.com/docs/id/manage-claude/plugins-api#installation-settings)). Milik anggota: keduanya `null`.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `content_scan`                                                                           | Hasil pemindaian versi yang disajikan, berupa objek dengan `status`, `assessment`, dan `reason` (dijelaskan setelah tabel ini). `null` jika tidak pernah dipindai.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `components`                                                                             | Komponen versi yang disajikan, masing-masing `{"type", "name", "description"}` dengan `type` salah satu dari `skill`, `mcp_server`, `command`, `agent`, `hook`, atau `cli`, dicantumkan dalam urutan jenis tersebut lalu berdasarkan nama. Untuk server MCP, `name` adalah kuncinya di manifest; untuk hook, peristiwa tempat hook tersebut berjalan; untuk CLI, nama executable-nya. `description` selalu `null` untuk server MCP, hook, dan CLI. `null` jika tidak tercatat.                                                                                                                                                                                                                                         |
+| `reach`                                                                                  | `contained`, `privileged`, atau `remote`. Lihat [Jangkauan](https://platform.claude.com/docs/id/manage-claude/plugins-api#reach).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `updated_at`                                                                             | Berubah ketika versi yang disajikan berubah, ketika plugin menjadi disematkan, dan biasanya ketika versi baru disimpan. Versi yang menunggu (lihat [Versi dan versi yang disajikan](https://platform.claude.com/docs/id/manage-claude/plugins-api#versions-and-the-served-version)) mengubahnya ketika versi tersebut menjadi versi yang disajikan, tidak selalu ketika disimpan. Nilainya tidak berubah untuk pengaturan instalasi, share, atau perubahan pada `content_scan` saja.                                                                                                                                                                                                                                   |
+
+`description` tidak selalu berasal dari manifest. `description` yang diambil manifest dari `SKILL.md` tingkat atas dipotong menjadi 500 karakter pertamanya (lihat [Persyaratan unggahan](https://platform.claude.com/docs/id/manage-claude/plugins-api#upload-requirements)). Jika `description` manifest adalah 500 karakter pertama dari tepat satu nilai unik `description` skill di `components`, API mengembalikan `description` skill tersebut sebagai gantinya. Akibatnya:
+
+* `description` yang Anda baca mungkin lebih panjang dari 500 karakter, batas untuk manifest yang diunggah. Unggahan yang `plugin.json`-nya menetapkan `description` seperti itu mengembalikan `400`.
+* Di [file yang Anda unduh](https://platform.claude.com/docs/id/manage-claude/plugins-api#download-a-versions-files), `.claude-plugin/plugin.json` mungkin memiliki `description` yang berbeda, atau tidak memilikinya sama sekali.
 
 Objek `content_scan`:
 
@@ -565,17 +570,17 @@ Objek `content_scan`:
   | `other`                           | Kekhawatiran lain apa pun, termasuk yang lebih baru dari daftar ini.                                                                             |
 </Accordion>
 
-`plugin_id` yang tidak memiliki awalan `plugin_` mengembalikan `400`. `plugin_id` yang memiliki awalan tersebut tetapi tidak dapat di-resolve, milik organisasi lain, atau merujuk ke skill mandiri mengembalikan `404`.
+`plugin_id` yang tidak memiliki awalan `plugin_` mengembalikan `400`. `plugin_id` yang memiliki awalan tersebut tetapi tidak ada dalam inventaris organisasi Anda mengembalikan `404`.
 
 ### Daftar plugin
 
-`GET /v1/organizations/plugins` menampilkan setiap plugin di organisasi Anda, di marketplace organisasi dan di marketplace pribadi anggota, diurutkan berdasarkan `created_at` secara menurun. Filter berdasarkan `owner_type` (`organization` atau `user`), `owner_user_id` (ID berawalan `user_`, yang menemukan plugin milik seorang anggota, termasuk setelah anggota tersebut meninggalkan organisasi), `marketplace_id`, dan `created_at[gte]`, `created_at[gt]`, `created_at[lte]`, `created_at[lt]` (timestamp RFC 3339). Filter digabungkan dengan AND. `marketplace_id` atau `owner_user_id` yang tidak cocok dengan apa pun di organisasi Anda mengembalikan halaman kosong, bukan error. Respons memiliki bentuk yang ditampilkan di [Mulai cepat](https://platform.claude.com/docs/id/manage-claude/plugins-api#quick-start). Memerlukan scope `read:plugins`.
+`GET /v1/organizations/plugins` menampilkan plugin di organisasi Anda, di marketplace organisasi dan di marketplace pribadi anggota, diurutkan berdasarkan `created_at` secara menurun. Filter berdasarkan `owner_type` (`organization` atau `user`), `owner_user_id` (ID berawalan `user_`, yang menemukan plugin milik seorang anggota, termasuk setelah anggota tersebut meninggalkan organisasi), `marketplace_id`, dan `created_at[gte]`, `created_at[gt]`, `created_at[lte]`, `created_at[lt]` (timestamp RFC 3339). Filter digabungkan dengan AND. `marketplace_id` atau `owner_user_id` yang tidak cocok dengan apa pun di organisasi Anda mengembalikan halaman kosong, bukan error. Respons memiliki bentuk yang ditampilkan di [Mulai cepat](https://platform.claude.com/docs/id/manage-claude/plugins-api#quick-start). Memerlukan scope `read:plugins`.
 
 <CodeGroup>
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/plugins?owner_type=organization&limit=20" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01"
   ```
 
@@ -686,7 +691,7 @@ Objek `content_scan`:
 
 ### Membuat plugin
 
-`POST /v1/organizations/plugins` membuat plugin milik organisasi beserta versi pertamanya dalam satu panggilan; versi tersebut menjadi versi yang disajikan. Body-nya adalah `multipart/form-data`: `files[]` adalah satu arsip `.zip` atau `.plugin`, atau satu bagian untuk setiap file, di mana nama file setiap bagian adalah path file di dalam plugin (misalnya `.claude-plugin/plugin.json`). Field opsional adalah `marketplace_id` (marketplace `manual` milik organisasi, atau secara default marketplace library Anda, yang dibuat saat pertama kali digunakan) dan `release_notes` (hingga 5.000 karakter, ditampilkan di riwayat versi claude.ai dan dikembalikan pada versi). `name`, `display_name`, `description`, dan `manifest_version` plugin berasal dari manifest yang diunggah, dan unggahan harus memenuhi [persyaratan unggahan](https://platform.claude.com/docs/id/manage-claude/plugins-api#upload-requirements). Ketika pemindaian konten aktif, `content_scan.status` pada respons adalah `processing` dan putusannya tiba secara asinkron. Mengembalikan plugin. Memerlukan scope `write:plugins`.
+`POST /v1/organizations/plugins` membuat plugin milik organisasi beserta versi pertamanya dalam satu panggilan; versi tersebut menjadi versi yang disajikan. Body-nya adalah `multipart/form-data`: `files[]` adalah satu arsip `.zip` atau `.plugin`, atau satu bagian untuk setiap file, di mana nama file setiap bagian adalah path file di dalam plugin (misalnya `.claude-plugin/plugin.json`). Field opsional adalah `marketplace_id` (marketplace `manual` milik organisasi, atau secara default marketplace library Anda, yang dibuat saat pertama kali digunakan) dan `release_notes` (hingga 5.000 karakter, ditampilkan di riwayat versi claude.ai dan dikembalikan pada versi). `name`, `display_name`, `description`, dan `manifest_version` plugin berasal dari file yang diunggah, dan unggahan harus memenuhi [persyaratan unggahan](https://platform.claude.com/docs/id/manage-claude/plugins-api#upload-requirements). Ketika pemindaian konten aktif, `content_scan.status` pada respons adalah `processing` dan putusannya tiba secara asinkron. Mengembalikan plugin. Memerlukan scope `write:plugins`.
 
 Mengunggah arsip:
 
@@ -694,7 +699,7 @@ Mengunggah arsip:
   ```bash cURL
   curl -X POST "https://api.anthropic.com/v1/organizations/plugins" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01" \
     -F "files[]=@dist/sales-toolkit.zip" \
     -F "release_notes=First release"
@@ -860,7 +865,7 @@ Unggah file satu per satu ke marketplace tertentu. Lampirkan setiap file dengan 
   ```bash cURL
   curl -X POST "https://api.anthropic.com/v1/organizations/plugins" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01" \
     -F "files[]=@.claude-plugin/plugin.json;filename=.claude-plugin/plugin.json" \
     -F "files[]=@skills/account-research/SKILL.md;filename=skills/account-research/SKILL.md" \
@@ -1050,14 +1055,14 @@ Unggah file satu per satu ke marketplace tertentu. Lampirkan setiap file dengan 
 
 Selain `400` untuk unggahan yang melanggar [persyaratan unggahan](https://platform.claude.com/docs/id/manage-claude/plugins-api#upload-requirements) (`413` untuk body permintaan lebih dari 200 MB) dan respons bersama (`403` ketika `marketplace_id` adalah marketplace pribadi milik anggota; lihat [Respons error](https://platform.claude.com/docs/id/manage-claude/plugins-api#error-responses)), pembuatan dapat gagal dengan:
 
-| Status                     | Penyebab                                                                                                           | Yang harus dilakukan                                                                                                                                                                                   |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 404                        | `marketplace_id` bukan marketplace milik organisasi Anda.                                                          | Ambil ID dari [Mencantumkan marketplace](https://platform.claude.com/docs/id/manage-claude/plugins-api#list-marketplaces).                                                                             |
-| 400                        | Marketplace disinkronkan dari Git, atau sudah berisi 1.000 plugin dan skill.                                       | Unggah ke marketplace `manual`, atau ubah repositorinya.                                                                                                                                               |
-| 409 `plugin_name_taken`    | Nama tersebut sudah dipakai di marketplace itu.                                                                    | Unggah versi ke `details.plugin_id` hanya jika itu memang plugin yang ingin Anda perbarui, karena mungkin orang lain yang membuatnya. Jika tidak, unggah dengan nama lain (ubah `name` pada manifest). |
-| 409 `skill_name_taken`     | Plugin akan masuk ke marketplace library dan salah satu skill-nya memiliki nama yang sama dengan skill organisasi. | Ganti nama skill tersebut, atau hapus skill organisasi di claude.ai.                                                                                                                                   |
-| 409 (tanpa `error_code`)   | Unggahan lain dengan nama yang sama ke marketplace yang sama masih berlangsung.                                    | Coba lagi sebentar lagi.                                                                                                                                                                               |
-| 503 `registration_pending` | Plugin telah dibuat tetapi pendaftarannya belum selesai.                                                           | Jangan kirim ulang; unggah file yang sama sebagai versi dari `details.plugin_id` (lihat [Mencoba ulang unggahan](https://platform.claude.com/docs/id/manage-claude/plugins-api#retrying-uploads)).     |
+| Status                     | Penyebab                                                                                                                                                                             | Yang harus dilakukan                                                                                                                                                                                                                            |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 404                        | `marketplace_id` bukan marketplace milik organisasi Anda.                                                                                                                            | Ambil ID dari [Mencantumkan marketplace](https://platform.claude.com/docs/id/manage-claude/plugins-api#list-marketplaces).                                                                                                                      |
+| 400                        | Marketplace disinkronkan dari Git, atau sudah berisi 1.000 plugin (lihat [Persyaratan unggahan](https://platform.claude.com/docs/id/manage-claude/plugins-api#upload-requirements)). | Unggah ke marketplace `manual` lain, atau ubah repositorinya.                                                                                                                                                                                   |
+| 409 `plugin_name_taken`    | Nama tersebut sudah dipakai di marketplace itu.                                                                                                                                      | Unggah versi ke `details.plugin_id` hanya jika itu memang plugin yang ingin Anda perbarui, karena mungkin orang lain yang membuatnya. Jika tidak, atau jika `details.plugin_id` tidak ada, unggah dengan nama lain (ubah `name` pada manifest). |
+| 409 `skill_name_taken`     | Plugin akan masuk ke marketplace library dan salah satu skill-nya memiliki nama yang sama dengan skill organisasi.                                                                   | Ganti nama skill tersebut, atau hapus skill organisasi di claude.ai.                                                                                                                                                                            |
+| 409 (tanpa `error_code`)   | Unggahan lain dengan nama yang sama ke marketplace yang sama sedang berlangsung, atau nama tersebut dipegang oleh plugin yang tidak dicantumkan oleh API ini.                        | Coba lagi dengan backoff. Jika `409` tetap muncul selama lebih dari beberapa menit, unggah dengan nama lain (ubah `name` pada manifest).                                                                                                        |
+| 503 `registration_pending` | Plugin telah dibuat tetapi pendaftarannya belum selesai.                                                                                                                             | Jangan kirim ulang; unggah file yang sama sebagai versi dari `details.plugin_id` (lihat [Mencoba ulang unggahan](https://platform.claude.com/docs/id/manage-claude/plugins-api#retrying-uploads)).                                              |
 
 ### Mendapatkan plugin
 
@@ -1067,7 +1072,7 @@ Selain `400` untuk unggahan yang melanggar [persyaratan unggahan](https://platfo
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/plugins/plugin_01Hq3vX8kZcN2mB7pR4tY9wL" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01"
   ```
 
@@ -1162,7 +1167,7 @@ Selain `400` untuk unggahan yang melanggar [persyaratan unggahan](https://platfo
   curl -X POST "https://api.anthropic.com/v1/organizations/plugins/plugin_01Hq3vX8kZcN2mB7pR4tY9wL" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01" \
     -d '{"served_version_id": "pluginver_01Jd5sK2nQ8wE4rT6yU1iO3p"}'
   ```
@@ -1325,7 +1330,7 @@ Penghapusan tidak dapat dibatalkan, dan tidak ada penghapusan per versi. Untuk m
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/organizations/plugins/plugin_01Hq3vX8kZcN2mB7pR4tY9wL" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01"
   ```
 
@@ -1425,7 +1430,7 @@ Versi plugin adalah snapshot yang tidak dapat diubah dari file-file plugin dari 
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/plugins/plugin_01Hq3vX8kZcN2mB7pR4tY9wL/versions?limit=50" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01"
   ```
 
@@ -1546,7 +1551,7 @@ Versi plugin adalah snapshot yang tidak dapat diubah dari file-file plugin dari 
   ```bash cURL
   curl -X POST "https://api.anthropic.com/v1/organizations/plugins/plugin_01Hq3vX8kZcN2mB7pR4tY9wL/versions" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01" \
     -F "files[]=@dist/sales-toolkit.zip" \
     -F "release_notes=Adds the call-prep command."
@@ -1735,7 +1740,7 @@ Selain `400` untuk unggahan yang melanggar [persyaratan unggahan](https://platfo
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/plugins/plugin_01Hq3vX8kZcN2mB7pR4tY9wL/versions/latest" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01"
   ```
 
@@ -1848,7 +1853,7 @@ Mengunduh arsip plugin **milik anggota** mencatat event `claude_plugin_archive_a
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/plugins/plugin_01Hq3vX8kZcN2mB7pR4tY9wL/versions/pluginver_01Km7tL4pR9xF5sU2zV3jP6q/content" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01" \
     -o plugin_01Hq3vX8kZcN2mB7pR4tY9wL_pluginver_01Km7tL4pR9xF5sU2zV3jP6q.zip
   ```
@@ -1994,7 +1999,7 @@ Endpoint ini berlaku untuk plugin milik organisasi. Endpoint ini mengembalikan `
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/plugins/plugin_01Hq3vX8kZcN2mB7pR4tY9wL/installation_settings" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01"
   ```
 
@@ -2105,7 +2110,7 @@ Kirim penulisan pengaturan instalasi untuk suatu plugin satu per satu. Jika bebe
   curl -X POST "https://api.anthropic.com/v1/organizations/plugins/plugin_01Hq3vX8kZcN2mB7pR4tY9wL/installation_settings/rbac_group_01F3xQqQzXyWvUtSrQpOnMlK" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01" \
     -d '{"installation_preference": "available"}'
   ```
@@ -2251,7 +2256,7 @@ Kirim penulisan pengaturan instalasi untuk suatu plugin satu per satu. Jika bebe
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/organizations/plugins/plugin_01Hq3vX8kZcN2mB7pR4tY9wL/installation_settings/rbac_group_01F3xQqQzXyWvUtSrQpOnMlK" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01"
   ```
 
@@ -2372,7 +2377,7 @@ Pembagian (“share”) hanya ada pada plugin milik anggota dan bersifat hanya-b
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/plugins/plugin_01Mr2wP7sU3aJ8vX5cY6nS9t/shares" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01"
   ```
 
@@ -2521,7 +2526,7 @@ API ini membaca [marketplace](https://platform.claude.com/docs/id/manage-claude/
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/plugin_marketplaces?owner_type=organization" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01"
   ```
 
@@ -2639,7 +2644,7 @@ API ini membaca [marketplace](https://platform.claude.com/docs/id/manage-claude/
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/plugin_marketplaces/marketplace_01Lp8uM5qS1yG6tV3aW4kQ7r" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01"
   ```
 
@@ -2738,7 +2743,7 @@ API ini membaca [marketplace](https://platform.claude.com/docs/id/manage-claude/
   curl -X POST "https://api.anthropic.com/v1/organizations/plugin_marketplaces/marketplace_01Lp8uM5qS1yG6tV3aW4kQ7r" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01" \
     -d '{"default_installation_preference": "available"}'
   ```
@@ -2869,7 +2874,7 @@ Memvalidasi repositori publik pada suatu branch:
   curl -X POST "https://api.anthropic.com/v1/organizations/plugin_marketplaces/validate_repository" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01" \
     -d '{"repository_url": "https://github.com/example-org/claude-plugins", "ref": "release-candidate"}'
   ```
@@ -3025,7 +3030,7 @@ Sebagai alternatif, validasi salinan lokal direktori marketplace sebagai `.zip`;
   ```bash cURL
   curl -X POST "https://api.anthropic.com/v1/organizations/plugin_marketplaces/validate_archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: ce-plugins-2026-09-01" \
     -F "archive=@marketplace.zip"
   ```
@@ -3153,7 +3158,7 @@ Setiap nilai string di halaman ini (tipe komponen, `reach`, field pemindaian, `s
 
 ## Pembatasan laju
 
-Permintaan baca (setiap endpoint `GET` di halaman ini) berbagi batas **300 permintaan per menit** untuk setiap organisasi. Permintaan tulis (membuat plugin atau versi, mengubah versi yang disajikan, menghapus, mengatur atau menghapus pengaturan instalasi, dan memperbarui marketplace) berbagi batas **60 permintaan per menit** untuk setiap organisasi. Validasi marketplace (endpoint mana pun) dihitung sebagai operasi baca, dan validasi juga dibatasi hingga 10 per menit untuk setiap organisasi di kedua endpoint; kedua batas diperiksa sebelum body permintaan dibaca. Batas-batas ini dihitung di seluruh kunci organisasi Anda dan terpisah dari batas Admin API lainnya milik organisasi Anda. Permintaan yang melebihi batas mengembalikan **429 Too Many Requests** dengan header `retry-after`. Respons menyertakan header `anthropic-ratelimit-requests-*` untuk batas yang berlaku (pada validasi marketplace, batas 10 per menitnya; pada `429`, batas mana pun yang menolak permintaan tersebut).
+Permintaan baca (setiap endpoint `GET` di halaman ini) berbagi batas **300 permintaan per menit** untuk setiap organisasi. Permintaan tulis (membuat plugin atau versi, mengubah versi yang disajikan, menghapus, mengatur atau menghapus pengaturan instalasi, dan memperbarui marketplace) berbagi batas **60 permintaan per menit** untuk setiap organisasi. Validasi marketplace (endpoint mana pun) dihitung sebagai operasi baca, dan validasi juga dibatasi hingga 10 per menit untuk setiap organisasi di kedua endpoint; kedua batas diperiksa sebelum body permintaan dibaca. Batas-batas ini dihitung di seluruh kunci organisasi Anda dan terpisah dari batas Admin API lainnya milik organisasi Anda. Operasi baca yang meneruskan `organization_id` dihitung terhadap batas organisasi tempat kunci tersebut dibuat, atau terhadap batas organisasi induk jika kunci tidak memiliki organisasi sendiri. Permintaan yang melebihi batas mengembalikan **429 Too Many Requests** dengan header `retry-after`. Respons menyertakan header `anthropic-ratelimit-requests-*` untuk batas yang berlaku (pada validasi marketplace, batas 10 per menitnya; pada `429`, batas mana pun yang menolak permintaan tersebut).
 
 Unggahan, perubahan versi yang disajikan, atau validasi juga dapat mengembalikan `429` dengan `retry-after` ketika layanan untuk sementara tidak memiliki kapasitas untuk permintaan lain, dan unggahan mengembalikan `429` ketika organisasi Anda telah melampaui laju pemindaian kontennya. Tangani semua kasus ini dengan cara yang sama: tunggu sesuai `retry-after`, lalu coba lagi. Terpisah dari batas-batas ini, kirim penulisan pengaturan instalasi untuk plugin yang sama satu per satu: ketika beberapa tiba bersamaan, sebagian dapat dijawab dengan `503` dan `x-should-retry: true`, dan permintaan tersebut aman untuk dikirim lagi setelah satu atau dua detik (lihat [Menetapkan pengaturan instalasi](https://platform.claude.com/docs/id/manage-claude/plugins-api#set-an-installation-setting)).
 
@@ -3196,15 +3201,15 @@ Ketika satu status memiliki beberapa penyebab yang perlu Anda tangani secara ber
 }
 ```
 
-| `error_code`                                    | Status | Arti dan apa yang harus dilakukan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| ----------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `plugin_name_taken`                             | 409    | Plugin dengan nama ini sudah ada di marketplace. `details.plugin_id` adalah plugin tersebut, dan mungkin orang lain yang membuatnya. Untuk mengetahui siapa, [dapatkan plugin tersebut](https://platform.claude.com/docs/id/manage-claude/plugins-api#get-a-plugin) dan baca `created_by`-nya, yang bernilai `null` ketika tidak ada pembuat yang tercatat. Unggah versi ke plugin tersebut hanya jika itu adalah plugin yang ingin Anda perbarui. Jika tidak, unggah dengan nama lain. Ketika `plugin_id` tidak ada, nama tersebut dipegang oleh skill mandiri: unggah dengan nama lain, atau hapus skill tersebut di claude.ai. |
-| `skill_name_taken`                              | 409    | Plugin berada di marketplace pustaka dan salah satu skill-nya memiliki nama yang sama dengan skill organisasi (skill yang diunggah administrator untuk seluruh organisasi di claude.ai). `details.skill_name` menyebutkan namanya. Ganti nama atau hapus salah satunya.                                                                                                                                                                                                                                                                                                                                                           |
-| `registration_pending`                          | 503    | File telah disimpan, tetapi skill plugin belum dapat disediakan untuk anggota. Lihat [Mencoba ulang unggahan](https://platform.claude.com/docs/id/manage-claude/plugins-api#retrying-uploads).                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `scan_pending`                                  | 409    | Pemindaian konten versi tersebut masih berjalan. Coba lagi setelah selesai.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| `scan_failed`                                   | 400    | Pemindaian konten versi menunjukkan `fail` atau `unknown`, atau mengalami error, sehingga versi tersebut tidak dapat disajikan. Pilih versi lain.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `cmek_key_disabled`, `cmek_key_network_blocked` | 400    | Kunci enkripsi yang dikelola pelanggan milik organisasi Anda tidak tersedia. Lihat [Kunci enkripsi yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/plugins-api#customer-managed-encryption-keys).                                                                                                                                                                                                                                                                                                                                                                                                      |
-| `unsupported_charset`                           | 400    | Pada unggahan atau `validate_archive`, header `Content-Type` permintaan menyebutkan charset selain UTF-8, ISO-8859-1, atau US-ASCII. Kirim permintaan tanpa charset, atau dengan salah satu dari charset tersebut.                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `error_code`                                    | Status | Arti dan apa yang harus dilakukan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ----------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `plugin_name_taken`                             | 409    | Marketplace sudah memegang nama ini. `details.plugin_id` adalah plugin yang memegang nama tersebut, dan mungkin orang lain yang membuatnya. Untuk mengetahui siapa, [dapatkan plugin tersebut](https://platform.claude.com/docs/id/manage-claude/plugins-api#get-a-plugin) dan baca `created_by`-nya, yang bernilai `null` ketika tidak ada pembuat yang tercatat. Unggah versi ke plugin tersebut hanya jika itu adalah plugin yang ingin Anda perbarui. Jika tidak, atau ketika `plugin_id` tidak ada, unggah dengan nama lain. |
+| `skill_name_taken`                              | 409    | Plugin berada di marketplace pustaka dan salah satu skill-nya memiliki nama yang sama dengan skill organisasi (skill yang diunggah administrator untuk seluruh organisasi di claude.ai). `details.skill_name` menyebutkan namanya. Ganti nama atau hapus salah satunya.                                                                                                                                                                                                                                                           |
+| `registration_pending`                          | 503    | File telah disimpan, tetapi skill plugin belum dapat disediakan untuk anggota. Lihat [Mencoba ulang unggahan](https://platform.claude.com/docs/id/manage-claude/plugins-api#retrying-uploads).                                                                                                                                                                                                                                                                                                                                    |
+| `scan_pending`                                  | 409    | Pemindaian konten versi tersebut masih berjalan. Coba lagi setelah selesai.                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `scan_failed`                                   | 400    | Pemindaian konten versi menunjukkan `fail` atau `unknown`, atau mengalami error, sehingga versi tersebut tidak dapat disajikan. Pilih versi lain.                                                                                                                                                                                                                                                                                                                                                                                 |
+| `cmek_key_disabled`, `cmek_key_network_blocked` | 400    | Kunci enkripsi yang dikelola pelanggan milik organisasi Anda tidak tersedia. Lihat [Kunci enkripsi yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/plugins-api#customer-managed-encryption-keys).                                                                                                                                                                                                                                                                                                      |
+| `unsupported_charset`                           | 400    | Pada unggahan atau `validate_archive`, header `Content-Type` permintaan menyebutkan charset selain UTF-8, ISO-8859-1, atau US-ASCII. Kirim permintaan tanpa charset, atau dengan salah satu dari charset tersebut.                                                                                                                                                                                                                                                                                                                |
 
 Kode baru dapat ditambahkan. Perlakukan kode yang tidak Anda kenali sebagaimana Anda memperlakukan statusnya.
 
@@ -3237,7 +3242,7 @@ Setiap penulisan melalui API ini dicatat di [Compliance API Activity Feed](https
 | `claude_plugin_archive_accessed`         | Arsip plugin milik anggota diunduh.                                                                                                                                                                        |
 | `claude_plugin_security_scan_completed`  | Pemindaian konten selesai.                                                                                                                                                                                 |
 
-ID plugin, versi, dan marketplace dalam event ini adalah ID yang sama dengan yang dikembalikan API ini. `plugin_installation_preference_updated` mengidentifikasi plugin berdasarkan `name` dan `marketplace_id`-nya, bukan `id`-nya.
+ID plugin, versi, dan marketplace dalam event ini adalah ID yang sama dengan yang dikembalikan API ini. Event juga dapat menyebutkan marketplace yang tidak dicantumkan oleh API ini, seperti marketplace berisi plugin yang dipublikasikan Anthropic. `plugin_installation_preference_updated` mengidentifikasi plugin berdasarkan `name` dan `marketplace_id`-nya, bukan `id`-nya.
 
 Mengubah default marketplace mencatat satu event `marketplace_updated` dan tidak ada event per plugin, meskipun perubahan tersebut mengubah nilai setiap plugin yang mewarisi default tersebut. Pembacaan tidak dicatat, kecuali unduhan arsip plugin milik anggota. Penulisan yang tidak mengubah apa pun tidak mencatat apa pun.
 

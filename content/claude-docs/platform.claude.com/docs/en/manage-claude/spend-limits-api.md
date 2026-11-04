@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/spend-limits-api
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 26a6f2b8343874015475eec00457f48ca0b16ab04b034a2f0ff6b54e7fd315a3
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: b8e40b564c1af0a8d7feb15969697241970666a47553bd92ef9aeb6e5cf0f3bf
 ---
 
 ---
@@ -51,7 +51,7 @@ List every member’s effective monthly spend limit and period-to-date spend:
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/spend_limits/effective?limit=20" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -253,7 +253,7 @@ For complete parameter details and response schemas, see [List effective spend l
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/spend_limits/effective?limit=20" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -413,7 +413,7 @@ For complete parameter details and response schemas, see [Retrieve a spend limit
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/spend_limits/spl_01AbCdEfGhIjKlMnOpQrSt" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -517,7 +517,7 @@ For complete parameter details and response schemas, see [Create a spend limit](
   curl -X POST "https://api.anthropic.com/v1/organizations/spend_limits" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "scope": {"type": "user", "user_id": "user_01AbCdEfGh"},
       "amount": "75000"
@@ -655,7 +655,7 @@ For complete parameter details and response schemas, see [Delete a spend limit](
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/organizations/spend_limits/spl_01RsTuVwXyZaBcDeFgHiJk" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -742,7 +742,7 @@ For complete parameter details and response schemas, see [List spend limit incre
   ```bash cURL
   curl -g "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests?status[]=pending&limit=50" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -862,7 +862,7 @@ For complete parameter details and response schemas, see [Retrieve a spend limit
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -959,7 +959,7 @@ For complete parameter details and response schemas, see [Approve a spend limit 
   curl -X POST "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt/approve" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{"amount": "75000", "suppress_notification": true}'
   ```
 
@@ -1083,7 +1083,7 @@ For complete parameter details and response schemas, see [Deny a spend limit inc
   curl -X POST "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt/deny" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{"suppress_notification": true}'
   ```
 
@@ -1206,7 +1206,7 @@ Run a scheduled job that fetches pending requests, applies your organization’s
      ```bash cURL
      curl -g "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests?status[]=pending&limit=100" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01"
+       -H "anthropic-version: 2026-10-21"
      ```
 
      ```bash CLI
@@ -1325,7 +1325,7 @@ Run a scheduled job that fetches pending requests, applies your organization’s
      curl -X POST "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/slir_01AbCdEfGhIjKlMnOpQrSt/approve" \
        -H "content-type: application/json" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01" \
+       -H "anthropic-version: 2026-10-21" \
        -d '{"amount": "75000", "suppress_notification": true}'
      ```
 
@@ -1453,7 +1453,7 @@ Find members approaching their cap so you can raise it before they’re blocked.
      group_by[]=actor&\
      actor_types[]=user_actor&\
      limit=1000" \
-       -H "anthropic-version: 2023-06-01" \
+       -H "anthropic-version: 2026-10-21" \
        -H "anthropic-beta: analytics-usage-cost-2026-08-24" \
        -H "x-api-key: $ANTHROPIC_API_KEY"
      ```
@@ -1619,7 +1619,7 @@ Find members approaching their cap so you can raise it before they’re blocked.
      ```bash cURL
      curl -g "https://api.anthropic.com/v1/organizations/spend_limits/effective?user_ids[]=user_01AbCdEfGh&user_ids[]=user_01JkLmNoPq&limit=100" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01"
+       -H "anthropic-version: 2026-10-21"
      ```
 
      ```bash CLI
@@ -1781,7 +1781,7 @@ Surface members whose spend has jumped week over week.
      group_by[]=actor&\
      actor_types[]=user_actor&\
      limit=1000" \
-       -H "anthropic-version: 2023-06-01" \
+       -H "anthropic-version: 2026-10-21" \
        -H "anthropic-beta: analytics-usage-cost-2026-08-24" \
        -H "x-api-key: $ANTHROPIC_API_KEY"
      ```
@@ -1973,7 +1973,7 @@ Give an incident responder room to work while an incident is open: raise their s
      ```bash cURL
      curl -g "https://api.anthropic.com/v1/organizations/spend_limits/effective?user_ids[]=user_01AbCdEfGh&period[]=monthly" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01"
+       -H "anthropic-version: 2026-10-21"
      ```
 
      ```bash CLI
@@ -2014,12 +2014,12 @@ Give an incident responder room to work while an incident is open: raise their s
      ```
 
      ```csharp C#
-     using Anthropic.Models.Beta.Organization.SpendLimits.Effective;
+     using Anthropic.Models.Beta.Organization.SpendLimits;
 
      AnthropicClient client = new();
 
      var page = await client.Beta.Organization.SpendLimits.Effective.List(
-         new() { UserIds = ["user_01AbCdEfGh"], Period = [Period.Monthly] }
+         new() { UserIds = ["user_01AbCdEfGh"], Period = [BetaSpendLimitPeriod.Monthly] }
      );
 
      await foreach (var effectiveLimit in page.Paginate())
@@ -2037,7 +2037,7 @@ Give an incident responder room to work while an incident is open: raise their s
 
      effectiveLimits := client.Beta.Organization.SpendLimits.Effective.ListAutoPaging(context.Background(), anthropic.BetaOrganizationSpendLimitEffectiveListParams{
      	UserIDs: []string{"user_01AbCdEfGh"},
-     	Period:  []string{"monthly"},
+     	Period:  []anthropic.BetaSpendLimitPeriod{anthropic.BetaSpendLimitPeriodMonthly},
      })
 
      for effectiveLimits.Next() {
@@ -2056,6 +2056,7 @@ Give an incident responder room to work while an incident is open: raise their s
      ```
 
      ```java Java
+     import com.anthropic.models.beta.organization.spendlimits.BetaSpendLimitPeriod;
      import com.anthropic.models.beta.organization.spendlimits.effective.EffectiveListParams;
 
      void main() {
@@ -2063,7 +2064,7 @@ Give an incident responder room to work while an incident is open: raise their s
 
          var params = EffectiveListParams.builder()
              .addUserId("user_01AbCdEfGh")
-             .addPeriod(EffectiveListParams.Period.MONTHLY)
+             .addPeriod(BetaSpendLimitPeriod.MONTHLY)
              .build();
          var effectiveLimits = client.beta().organization().spendLimits().effective().list(params);
 
@@ -2121,7 +2122,7 @@ Give an incident responder room to work while an incident is open: raise their s
      curl -X POST "https://api.anthropic.com/v1/organizations/spend_limits" \
        -H "content-type: application/json" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01" \
+       -H "anthropic-version: 2026-10-21" \
        -d '{
          "scope": {"type": "user", "user_id": "user_01AbCdEfGh"},
          "amount": "500000",
@@ -2254,7 +2255,7 @@ Give an incident responder room to work while an incident is open: raise their s
      curl -X POST "https://api.anthropic.com/v1/organizations/rbac_groups/rbac_group_01UvWxYzAbCdEfGhIjKlMn/members" \
        -H "content-type: application/json" \
        -H "x-api-key: $ANTHROPIC_API_KEY" \
-       -H "anthropic-version: 2023-06-01" \
+       -H "anthropic-version: 2026-10-21" \
        -d '{"user_id": "user_01AbCdEfGh"}'
      ```
 

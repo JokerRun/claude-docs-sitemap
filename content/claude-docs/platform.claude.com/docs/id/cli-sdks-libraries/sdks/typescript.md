@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: a7978a19ac5fa0bb1fe455cbbc570248cd52f8d5129d33e5f67514d82426ecc4
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 088273f277f6bd1bd3c9008c89425163d0507166bcc045dc510207fdfb6a7238
 ---
 
 ---
@@ -185,11 +185,14 @@ console.log(finalMessage.content);
 Untuk melaporkan error dari sebuah alat kembali ke model, lemparkan `ToolError` dari fungsi `run`. Tidak seperti `Error` biasa, `ToolError` menerima content block, sehingga Anda dapat menyertakan gambar atau konten terstruktur lainnya dalam response error:
 
 ```typescript
-import { ToolError } from "@anthropic-ai/sdk/lib/tools/BetaRunnableTool";
+import { betaZodTool } from "@anthropic-ai/sdk/helpers/beta/zod";
+import { ToolError } from "@anthropic-ai/sdk/resources/beta/messages";
+import { z } from "zod";
 
 const screenshotTool = betaZodTool({
   name: "take_screenshot",
   inputSchema: z.object({ url: z.string() }),
+  description: "Take a screenshot of a webpage",
   run: async (input) => {
     if (!isValidUrl(input.url)) {
       throw new ToolError(`Invalid URL: ${input.url}`);
@@ -205,10 +208,12 @@ const screenshotTool = betaZodTool({
         }
       ]);
     }
-    return {
-      type: "image",
-      source: { type: "base64", data: result.screenshot, media_type: "image/png" }
-    };
+    return [
+      {
+        type: "image",
+        source: { type: "base64", data: result.screenshot, media_type: "image/png" }
+      }
+    ];
   }
 });
 ```
@@ -768,6 +773,8 @@ const response = await client.beta.messages.create({
 
   * **Alat internal:** Jika aplikasi hanya digunakan dalam lingkungan internal yang terkontrol di mana penggunanya tepercaya, risiko terpaparnya kredensial dapat dimitigasi.
   * **Tujuan pengembangan atau debugging:** Mengaktifkan fitur ini untuk sementara mungkin dapat diterima, asalkan kredensial berumur pendek, tidak juga digunakan di lingkungan produksi, atau sering dirotasi.
+
+  Bahkan dalam kasus-kasus ini, dukungan browser hanya berfungsi jika organisasi Anda dapat memanggil Claude API secara langsung dari browser. Organisasi yang mengaktifkan “zero data retention” (retensi data nol), atau ZDR, atau Compliance API tidak dapat melakukannya, dan permintaan browser mereka akan gagal dengan error 401. Lihat [Aplikasi berbasis browser](https://platform.claude.com/docs/id/manage-claude/authentication#browser-based-applications).
 </Accordion>
 
 ## Integrasi platform
@@ -797,8 +804,6 @@ TypeScript SDK juga mendukung Claude Models on Google Cloud (Anthropic managed) 
 
 ## Semantic versioning
 
-Setiap versi mayor SDK ini mengirimkan satu versi API dalam header `anthropic-version` secara default, dan versi mayor baru hadir bersama setiap versi API baru. Versi mayor pertama yang mengirimkan `2026-10-21` adalah 1.0.0; lihat [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade).
-
 Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
 
 1. Perubahan yang hanya memengaruhi tipe statis, tanpa merusak perilaku runtime.
@@ -806,6 +811,8 @@ Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.htm
 3. Perubahan yang tidak diperkirakan akan berdampak pada sebagian besar pengguna dalam praktiknya.
 
 Kompatibilitas ke belakang ditangani dengan serius untuk memastikan Anda dapat mengandalkan pengalaman upgrade yang lancar.
+
+Setiap permintaan ke Claude API menggunakan versi API. Dengan SDK ini, permintaan Anda menggunakan versi API yang berlaku saat versi mayor SDK Anda dirilis, sehingga Anda beralih ke versi API baru dengan melakukan upgrade ke versi mayor baru. Versi 1.0.0 adalah yang pertama menggunakan `2026-10-21`. Lihat [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade) untuk cara melakukan upgrade.
 
 ## Pertanyaan yang sering diajukan
 

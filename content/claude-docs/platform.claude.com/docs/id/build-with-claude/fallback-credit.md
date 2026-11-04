@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fallback-credit
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 2ace44fda8906f9c0f24af2e17b20d180f3ccd89be39ebf4677f58ae75d10c60
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: f2be044c3fffb3ede3f0d720b860f19a3988730710b3c5c22a85a75d8a38c24b
 ---
 
 ---
@@ -41,7 +41,7 @@ Anda memerlukan halaman ini hanya jika Anda membangun percobaan ulang sendiri: m
 
 <Steps>
   <Step title="Ikut serta dengan header beta">
-    Kirim permintaan yang mungkin ditolak dengan header `anthropic-beta: fallback-credit-2026-07-01`. Header `server-side-fallback-2026-07-01` juga memberikan field yang sama, kecuali di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), yang mengembalikan error 400 untuk header tersebut. Header `fallback-credit-2026-06-01` yang lebih lama tetap diterima dan memberikan field yang sama.
+    Kirim permintaan yang mungkin ditolak dengan header `anthropic-beta: fallback-credit-2026-07-01`. Header `server-side-fallback-2026-07-01` juga memberikan field yang sama, kecuali di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, yang mengembalikan error 400 untuk header tersebut. Header `fallback-credit-2026-06-01` diterima dan memberikan field yang sama.
   </Step>
 
   <Step title="Baca dua field dari penolakan">
@@ -611,7 +611,7 @@ Bagian-bagian berikut membahas kasus tepi dan aturan penukaran lengkap. Sebagian
 </Accordion>
 
 <Accordion title="Cakupan dan masa berlaku token">
-  Token hanya dapat ditukarkan dari organisasi dan workspace yang menerima penolakan, termasuk di Microsoft Foundry. Di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), yang tidak memiliki workspace, token terikat pada identitas pemanggil platform sebagai gantinya.
+  Token hanya dapat ditukarkan dari organisasi dan workspace yang menerima penolakan, termasuk di Microsoft Foundry. Di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, yang tidak memiliki workspace, token terikat pada identitas pemanggil platform sebagai gantinya.
 
   Token kedaluwarsa lima menit setelah penolakan. Setelah itu, kirim percobaan ulang tanpanya. Token juga bersifat stateless: server tidak menyimpan apa pun tentangnya, dan tidak ada endpoint untuk memeriksa atau mencabutnya.
 </Accordion>
@@ -642,7 +642,7 @@ Bagian-bagian berikut membahas kasus tepi dan aturan penukaran lengkap. Sebagian
     Setiap nilai `stop_reason` dan cara menanganinya.
   </Card>
 
-  <Card title="Middleware SDK" icon="settings" href="https://platform.claude.com/docs/id/cli-sdks-libraries/middleware">
+  <Card title="Middleware SDK" icon="settings" href="https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback">
     Helper SDK yang menerapkan kredit fallback secara otomatis.
   </Card>
 </CardGroup>

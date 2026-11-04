@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: b0b1dd58d02606cb478674e90f1cb76e75be2f6128570cd45a3ddcb097670584
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: b97439a5b59573d48631c7baec9f3f2905dbce5acd95e5e7255dd91d812a562b
 ---
 
 > ## Documentation Index
@@ -2190,6 +2190,7 @@ type SDKInformationalMessage = {
   level: "info" | "notice" | "suggestion" | "warning";
   tool_use_id?: string;
   prevent_continuation?: boolean;
+  tag?: string;
   uuid: UUID;
   session_id: string;
 };
@@ -2565,8 +2566,11 @@ interface HookCallbackMatcher {
   matcher?: string;
   hooks: HookCallback[];
   timeout?: number; // Timeout in seconds for all hooks in this matcher
+  onFailure?: "continue" | "block"; // "block" blocks the action when a callback fails
 }
 ```
+
+To decide what `onFailure` covers, see [Block the action when a callback fails](https://code.claude.com/docs/en/agent-sdk/hooks.md#block-the-action-when-a-callback-fails).
 
 ### `HookInput`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/claude-tag-api
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: d3d3086dc2e8ca69724b3160f9cff785f28ea09d0915ffb474614ebf3053bf27
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 966101e6dd5b6f739017d018aa222a076dd5d22b30210a7905c05978ccc6a08c
 ---
 
 ---
@@ -44,7 +44,7 @@ Rilis ini mencakup Slack. Menghubungkan dan memutuskan workspace Slack atau Ente
 
 * Organisasi Anda harus menggunakan paket Claude Enterprise, dengan [Claude Tag yang sudah disiapkan](https://claude.com/docs/claude-tag/admins/setup-overview) dan setidaknya satu workspace Slack atau Enterprise Grid yang terhubung.
 * Pemilik utama Anda membuat kunci Admin API dengan cakupan `read:claude_tag`, cakupan `write:claude_tag`, atau keduanya di [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access). Lihat [Membuat kunci untuk organisasi Claude Enterprise](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization).
-* Setiap permintaan membawa tiga header: `x-api-key`, `anthropic-version: 2023-06-01` (lihat [Versi API](https://platform.claude.com/docs/id/api/versioning)), dan `anthropic-beta: experimental-claude-tag-2026-10-21`.
+* Setiap permintaan membawa tiga header: `x-api-key`, `anthropic-version: 2026-10-21` (lihat [Versi API](https://platform.claude.com/docs/id/api/versioning)), dan `anthropic-beta: experimental-claude-tag-2026-10-21`.
 
 Di Python, TypeScript, C#, Go, Java, PHP, dan Ruby, SDK menyediakan endpoint ini di bawah `client.beta.organization.claude_tag` (typescript: `client.beta.organization.claudeTag`; csharp, go: `client.Beta.Organization.ClaudeTag`; java: `client.beta().organization().claudeTag()`; php: `$client->beta->organization->claudeTag`), dan [CLI `ant`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart) di bawah `ant beta:organization:claude-tag`; keduanya mengirimkan header `anthropic-version` dan `anthropic-beta` untuk Anda. Contoh di halaman ini membaca kunci Admin API dari variabel lingkungan `ANTHROPIC_API_KEY`. Ketika SDK atau CLI mengambil halaman berikutnya untuk Anda, `limit` menetapkan ukuran halaman, bukan total (lihat [Paginasi](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#pagination)).
 
@@ -58,7 +58,7 @@ Cantumkan workspace Slack organisasi Anda di Claude Tag:
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/slack_workspaces" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -412,7 +412,7 @@ Objek channel menggambarkan satu channel Slack:
   curl -X POST "https://api.anthropic.com/v1/organizations/claude_tag/slack_channels" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21" \
     -d '{
       "slack": {"workspace_id": "T01ABCD2EFG", "channel_id": "C05HJKL6MNP"},
@@ -574,7 +574,7 @@ Menyiapkan channel dan menerapkan `settings` adalah dua langkah. Ketika perminta
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/slack_channels?slack_workspace_id=T01ABCD2EFG" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -689,7 +689,7 @@ Tambahkan `slack_channel_id`, ID milik Slack sendiri untuk channel, untuk mencar
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/slack_channels?slack_workspace_id=T01ABCD2EFG&slack_channel_id=C05HJKL6MNP" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -811,7 +811,7 @@ Mengirimkan ID `slch_` sebagai `slack_channel_id` mengembalikan `400`.
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/slack_channels/slch_011CZkZmRt4vNq8sHbYw2KdX" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -902,7 +902,7 @@ Permintaan yang sama dengan `include_inherited=true` mengembalikan objek channel
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/slack_channels/slch_011CZkZmRt4vNq8sHbYw2KdX?include_inherited=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -1010,7 +1010,7 @@ Nonaktifkan Claude di satu channel dan biarkan pengaturan lainnya apa adanya:
   curl -X POST "https://api.anthropic.com/v1/organizations/claude_tag/slack_channels/slch_011CZkZmRt4vNq8sHbYw2KdX" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21" \
     -d '{"settings": {"enabled": false}}'
   ```
@@ -1123,7 +1123,7 @@ Hapus instruksi channel, sehingga hanya instruksi yang diwarisi yang berlaku:
   curl -X POST "https://api.anthropic.com/v1/organizations/claude_tag/slack_channels/slch_011CZkZmRt4vNq8sHbYw2KdX" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21" \
     -d '{"settings": {"instructions": null}}'
   ```
@@ -1259,7 +1259,7 @@ Dua jenis channel sama sekali tidak dapat dihapus di sini, baik Claude aktif mau
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/organizations/claude_tag/slack_channels/slch_011CZkZmRt4vNq8sHbYw2KdX" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -1369,7 +1369,7 @@ Objek workspace menggambarkan satu workspace Slack. Objek ini memiliki field yan
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/slack_workspaces/slws_011CZkZnWa7xPc3uJfZe5LgT" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -1461,7 +1461,7 @@ Objek workspace menggambarkan satu workspace Slack. Objek ini memiliki field yan
   curl -X POST "https://api.anthropic.com/v1/organizations/claude_tag/slack_workspaces/slws_011CZkZnWa7xPc3uJfZe5LgT" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21" \
     -d '{"settings": {"guest_policy": {"type": "restrict"}}}'
   ```
@@ -1594,7 +1594,7 @@ Bundle adalah apa yang disebut claude.ai sebagai [Access bundle](https://claude.
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/bundles" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -1706,7 +1706,7 @@ Bundle adalah apa yang disebut claude.ai sebagai [Access bundle](https://claude.
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/bundles/capp_011CZkZjLP1cWxj5EtMmdgbq" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -1815,7 +1815,7 @@ Bundle yang dilampirkan claude.ai sebagai bagian dari penyiapan on-call dicantum
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/bundles/capp_011CZkZjLP1cWxj5EtMmdgbq/targets" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -1948,7 +1948,7 @@ Lampirkan Bundle ke sebuah channel:
   curl -X POST "https://api.anthropic.com/v1/organizations/claude_tag/bundles/capp_011CZkZjLP1cWxj5EtMmdgbq/targets" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21" \
     -d '{
       "type": "slack_channel",
@@ -2089,7 +2089,7 @@ Lampirkan Bundle ke sebuah workspace:
   curl -X POST "https://api.anthropic.com/v1/organizations/claude_tag/bundles/capp_011CZkZjLP1cWxj5EtMmdgbq/targets" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21" \
     -d '{
       "type": "slack_workspace",
@@ -2224,7 +2224,7 @@ Lampiran ke sebuah channel memiliki kondisi yang menentukan kapan lampiran itu b
   ```bash cURL
   curl "https://api.anthropic.com/v1/organizations/claude_tag/bundles/capp_011CZkZjLP1cWxj5EtMmdgbq/targets/btgt_011CZkZpBv9yQd6wKhAr8MnU1CZkZwPd5fSj8tMxUr3ZcH" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 
@@ -2333,7 +2333,7 @@ Lampiran ke sebuah channel memiliki kondisi yang menentukan kapan lampiran itu b
   ```bash cURL
   curl -X DELETE "https://api.anthropic.com/v1/organizations/claude_tag/bundles/capp_011CZkZjLP1cWxj5EtMmdgbq/targets/btgt_011CZkZpBv9yQd6wKhAr8MnU1CZkZwPd5fSj8tMxUr3ZcH" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: experimental-claude-tag-2026-10-21"
   ```
 

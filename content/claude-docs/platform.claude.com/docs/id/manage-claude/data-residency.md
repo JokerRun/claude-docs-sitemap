@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/data-residency
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 28777eb46e13cfee570416158b75b614e7cf62f2ad020c68de30facbee992a31
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 72698d530c589b2ec3119c7b0357052f667aa2acc086715e6022137f90816d1a
 ---
 
 ---
@@ -68,7 +68,7 @@ Parameter `inference_geo` mengontrol lokasi inferensi model dijalankan untuk per
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -259,7 +259,7 @@ Objek `usage` pada respons menyertakan field `inference_geo` yang menunjukkan lo
 Parameter `inference_geo` didukung pada model Claude 4.6 dan yang lebih baru. Permintaan dengan `inference_geo` pada Claude Opus 4.5, Claude Sonnet 4.5 (tidak digunakan lagi), Claude Haiku 4.5, atau model yang lebih lama akan mengembalikan error 400.
 
 <Note>
-  Parameter `inference_geo` tersedia di Claude API (first-party), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed). Di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), region inferensi ditentukan oleh URL endpoint atau profil inferensi, sehingga `inference_geo` tidak berlaku. Di [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), `inference_geo` juga tidak berlaku: deployment yang di-host di Azure dapat menggunakan jenis deployment US Data Zone Standard sebagai gantinya, yang menjaga inferensi tetap berada di Amerika Serikat. Parameter `inference_geo` juga tidak tersedia melalui [endpoint kompatibilitas OpenAI SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk).
+  Parameter `inference_geo` tersedia di Claude API (first-party), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed). Di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, region inferensi ditentukan oleh URL endpoint atau profil inferensi, sehingga `inference_geo` tidak berlaku. Di [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), `inference_geo` juga tidak berlaku: deployment yang di-host di Azure dapat menggunakan jenis deployment US Data Zone Standard sebagai gantinya, yang menjaga inferensi tetap berada di Amerika Serikat. Parameter `inference_geo` juga tidak tersedia melalui [endpoint kompatibilitas OpenAI SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk).
 </Note>
 
 ### Pembatasan tingkat workspace
@@ -301,7 +301,7 @@ Harga residensi data bervariasi menurut generasi model:
 * **Perutean global (`inference_geo: "global"`):** Harga standar berlaku.
 * **Model yang lebih lama:** Tidak mendukung `inference_geo` (lihat [Ketersediaan model](https://platform.claude.com/docs/id/manage-claude/data-residency#model-availability)). Harga standar berlaku. Permintaan yang menyertakan parameter ini akan mengembalikan error 400.
 
-Harga ini berlaku untuk Claude API (first-party), Claude Platform on AWS, dan Claude Models on Google Cloud (Anthropic managed). Di Claude in Microsoft Foundry, pengali 1,1x yang sama berlaku untuk deployment yang di-host di Azure yang menggunakan jenis deployment US Data Zone Standard. Platform yang dioperasikan mitra, yaitu Bedrock dan Claude Models on Google Cloud (Google managed), memiliki harga regional masing-masing. Lihat [Harga residensi data](https://platform.claude.com/docs/id/about-claude/pricing#data-residency-pricing) untuk detailnya.
+Harga ini berlaku untuk Claude API (first-party), Claude Platform on AWS, dan Claude Models on Google Cloud (Anthropic managed). Di Claude in Microsoft Foundry, pengali 1,1x yang sama berlaku untuk deployment yang di-host di Azure yang menggunakan jenis deployment US Data Zone Standard. Platform yang dioperasikan mitra, yaitu Claude Models on Google Cloud (Google managed) dan Bedrock, memiliki harga regional masing-masing. Lihat [Harga residensi data](https://platform.claude.com/docs/id/about-claude/pricing#data-residency-pricing) untuk detailnya.
 
 Pengali yang sama berlaku untuk [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview): ketika [konfigurasi model](https://platform.claude.com/docs/id/managed-agents/agent-setup) agen menetapkan `inference_geo` ke `"us"`, permintaan model dalam sesi yang menjalankan agen tersebut dikenakan harga 1,1x tarif standar.
 

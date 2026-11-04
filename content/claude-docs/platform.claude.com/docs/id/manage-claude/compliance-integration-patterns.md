@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 744582f9cf957b735eb9956c9b47ed6791384cac51316ec550d7e4c406358be4
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 818852506478127c5b18d34cc57bb37eed9aa1942771a7233a18ba206ac41309
 ---
 
 ---
@@ -51,7 +51,7 @@ Tetapkan `created_at.lt` setidaknya 1 menit di masa lalu sehingga setiap aktivit
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/activities" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   --data-urlencode "created_at.gte=2026-04-20T07:00:00Z" \
   --data-urlencode "created_at.lt=2026-04-20T08:00:00Z" \
   --data-urlencode "limit=5000"
@@ -72,7 +72,7 @@ Bahkan dengan penyusunan yang rapi, aktivitas yang terindeks setelah jendelanya 
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/activities" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   --data-urlencode "limit=5000" \
   --data-urlencode "before_id=activity_01DeFgHjKmNpQrStUvWxYzAb"
 ```

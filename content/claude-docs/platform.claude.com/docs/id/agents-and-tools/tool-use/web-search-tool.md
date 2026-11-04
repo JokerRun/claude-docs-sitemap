@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 4a2ec92b5d7486767376a51667d0f24c21d96def358abf9ed396941ef58d38a6
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: a381fd789170fab04b222bec6415cd236c331b1a015521349e9391777de61884
 ---
 
 ---
@@ -115,7 +115,7 @@ Contoh-contoh berikut menggunakan `web_search_20260318`:
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -288,7 +288,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

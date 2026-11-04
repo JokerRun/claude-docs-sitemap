@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/usage-cost-api
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 27d83aaff8a71f2bbacc9ac9d7000e6c21a972ecc2e839d62f5d46b929375205
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 1005d21a5236299cfe7e2204855c1fbc6bc82d198026bcf3efab8b41484ab0ee
 ---
 
 ---
@@ -97,7 +97,7 @@ curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
 starting_at=2025-01-08T00:00:00Z&\
 ending_at=2025-01-15T00:00:00Z&\
 bucket_width=1d" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
@@ -134,7 +134,7 @@ starting_at=2025-01-01T00:00:00Z&\
 ending_at=2025-01-08T00:00:00Z&\
 group_by[]=model&\
 bucket_width=1d" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
@@ -148,7 +148,7 @@ models[]=claude-opus-5-5&\
 service_tiers[]=batch&\
 context_window[]=0-200k&\
 bucket_width=1h" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
@@ -163,7 +163,7 @@ api_key_ids[]=apikey_01ABC123DEF456GHI789JKL&\
 workspace_ids[]=wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ&\
 workspace_ids[]=wrkspc_01XYZ789ABC123DEF456MNO&\
 bucket_width=1d" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
@@ -184,7 +184,7 @@ ending_at=2026-02-08T00:00:00Z&\
 group_by[]=inference_geo&\
 group_by[]=model&\
 bucket_width=1d" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
@@ -197,7 +197,7 @@ ending_at=2026-02-08T00:00:00Z&\
 inference_geos[]=us&\
 group_by[]=model&\
 bucket_width=1d" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
@@ -216,7 +216,7 @@ ending_at=2026-02-08T00:00:00Z&\
 group_by[]=speed&\
 group_by[]=model&\
 bucket_width=1d" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
@@ -229,7 +229,7 @@ ending_at=2026-02-08T00:00:00Z&\
 speeds[]=fast&\
 group_by[]=model&\
 bucket_width=1d" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
@@ -266,7 +266,7 @@ starting_at=2025-01-01T00:00:00Z&\
 ending_at=2025-01-31T00:00:00Z&\
 group_by[]=workspace_id&\
 group_by[]=description" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
@@ -284,7 +284,7 @@ curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
 starting_at=2025-01-01T00:00:00Z&\
 ending_at=2025-01-31T00:00:00Z&\
 limit=7" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 
 # Response includes: "has_more": true, "next_page": "page_xyz..."
@@ -295,7 +295,7 @@ starting_at=2025-01-01T00:00:00Z&\
 ending_at=2025-01-31T00:00:00Z&\
 limit=7&\
 page=page_xyz..." \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 

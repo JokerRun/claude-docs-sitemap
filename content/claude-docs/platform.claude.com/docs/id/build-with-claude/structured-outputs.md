@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 918296521ca9bcf84bf22b0005f01d4515bbad0e527dd8dc4a9de4435fc98204
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 9a1ed13f249321c406e61b3fe90d5439866e03afa6725453b6c51dbf89a158c4
 ---
 
 ---
@@ -88,7 +88,7 @@ Output terstruktur menjamin respons yang sesuai skema melalui “constrained dec
     curl https://api.anthropic.com/v1/messages \
       -H "content-type: application/json" \
       -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
+      -H "anthropic-version: 2026-10-21" \
       -d '{
         "model": "claude-opus-5-5",
         "max_tokens": 1024,
@@ -769,7 +769,7 @@ Untuk menggunakan JSON schema dari file, spesifikasi OpenAPI, atau kode yang mem
     curl https://api.anthropic.com/v1/messages \
       -H "content-type: application/json" \
       -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
+      -H "anthropic-version: 2026-10-21" \
       -d '{
         "model": "claude-opus-5-5",
         "max_tokens": 1024,
@@ -1220,7 +1220,7 @@ Untuk menggunakan JSON schema dari file, spesifikasi OpenAPI, atau kode yang mem
       curl https://api.anthropic.com/v1/messages \
         -H "content-type: application/json" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -d '{
           "model": "claude-opus-5-5",
           "max_tokens": 4096,
@@ -1552,7 +1552,7 @@ Untuk menggunakan JSON schema dari file, spesifikasi OpenAPI, atau kode yang mem
       curl https://api.anthropic.com/v1/messages \
         -H "content-type: application/json" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -d '{
           "model": "claude-opus-5-5",
           "max_tokens": 1024,
@@ -1837,7 +1837,7 @@ Untuk menggunakan JSON schema dari file, spesifikasi OpenAPI, atau kode yang mem
       curl https://api.anthropic.com/v1/messages \
         -H "content-type: application/json" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -d '{
           "model": "claude-opus-5-5",
           "max_tokens": 1024,
@@ -2187,7 +2187,7 @@ Jika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin vali
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,

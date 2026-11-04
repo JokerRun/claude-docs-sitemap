@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/citations
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 5ca4bf7ea2617c6e1bb5d6376abcb3108c76e207542c9092dec597dda05829e5
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: c98d594c05b3944c6ba7640aecbdd5f5618a5da2fd8cb95510d8de739707cc46
 ---
 
 ---
@@ -56,7 +56,7 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -487,7 +487,7 @@ Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung,
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -839,7 +839,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
       ```bash cURL
       curl -X POST https://api.anthropic.com/v1/messages \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "content-type: application/json" \
         -d '{
           "model": "claude-opus-5-5",
@@ -1092,7 +1092,7 @@ Dokumen PDF dapat diberikan sebagai data yang dienkode base64, sebagai URL, atau
       curl https://api.anthropic.com/v1/messages \
         -H "content-type: application/json" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -d '{
           "model": "claude-opus-5-5",
           "max_tokens": 1024,
@@ -1391,7 +1391,7 @@ Dokumen PDF dapat diberikan sebagai data yang dienkode base64, sebagai URL, atau
       curl https://api.anthropic.com/v1/messages \
         -H "content-type: application/json" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -d '{
           "model": "claude-opus-5-5",
           "max_tokens": 1024,
@@ -1667,7 +1667,7 @@ Dokumen PDF dapat diberikan sebagai data yang dienkode base64, sebagai URL, atau
       ```bash cURL
       curl -X POST https://api.anthropic.com/v1/messages \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "content-type: application/json" \
         -d '{
           "model": "claude-opus-5-5",
@@ -1916,7 +1916,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada 
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -2353,7 +2353,7 @@ Untuk respons streaming, kutipan tiba sebagai tipe delta `citations_delta` di da
 
 <CardGroup cols={2}>
   <Card title="Pesan streaming" icon="wifi-high" href="https://platform.claude.com/docs/id/build-with-claude/streaming">
-    Tangani tipe delta `citations_delta` bersama dengan delta teks untuk merender respons yang dikutip saat mereka di-stream.
+    Pelajari alur event dan tipe delta blok konten lainnya yang tiba bersama `citations_delta`.
   </Card>
 
   <Card title="Hasil pencarian" icon="book-bookmark" href="https://platform.claude.com/docs/id/build-with-claude/search-results">

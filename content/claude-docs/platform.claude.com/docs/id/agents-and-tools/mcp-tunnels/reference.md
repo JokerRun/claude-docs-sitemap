@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: bc049c3e6770b54bf60030e6234cace312df196a72d70411c08b8958820e1d7c
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 8f8752f99f9e722f8e65638923ac4a3851a64c985f8fd9ace48380454f148329
 ---
 
 ---
@@ -58,7 +58,7 @@ Header yang wajib pada setiap permintaan:
 | Header              | Nilai                                         |
 | ------------------- | --------------------------------------------- |
 | `Authorization`     | `Bearer <token>` (token hasil pertukaran WIF) |
-| `anthropic-version` | `2023-06-01`                                  |
+| `anthropic-version` | `2026-10-21`                                  |
 | `anthropic-beta`    | `mcp-tunnels-2026-06-22`                      |
 
 ## Persyaratan sertifikat

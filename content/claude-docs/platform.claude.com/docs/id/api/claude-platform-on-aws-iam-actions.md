@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: f4e7cb7adb9df20159b9d1531dec28c843358c945fabf755e2064e0e3d45d45c
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 3fcb55ef855e5fa5fb121ac91311447544345b6d6ea89328c499e01df83248a0
 ---
 
 ---
@@ -88,7 +88,7 @@ Tindakan mengikuti konvensi AWS `VerbNoun` dan menggunakan disiplin kata kerja s
 </Note>
 
 <Note>
-  Membuat atau menghapus versi skill individual dipetakan ke `UpdateSkill`, bukan `CreateSkill` atau `DeleteSkill`. Kebijakan yang menolak `aws-external-anthropic:Delete*` tetap mengizinkan penghapusan versi, dan kebijakan yang menolak `aws-external-anthropic:Create*` tetap mengizinkan pembuatan versi. Tolak juga `UpdateSkill` dan `CreateSkill` jika Anda perlu mencegah mutasi skill apa pun.
+  Membuat atau menghapus versi skill individual dipetakan ke `UpdateSkill`, bukan `CreateSkill` atau `DeleteSkill`. Kebijakan yang menolak `aws-external-anthropic:Delete*` tetap mengizinkan penghapusan versi, dan kebijakan yang menolak `aws-external-anthropic:Create*` tetap mengizinkan pembuatan versi. Untuk memblokir setiap rute tulis di bawah `/v1/skills`, tolak `CreateSkill`, `UpdateSkill`, dan `DeleteSkill`.
 </Note>
 
 ### Agen
@@ -102,26 +102,26 @@ Tindakan mengikuti konvensi AWS `VerbNoun` dan menggunakan disiplin kata kerja s
 | `ArchiveAgent` | `POST /v1/agents/{id}/archive`                            |
 
 <Note>
-  Agen hanya mendukung pengarsipan, bukan penghapusan permanen. Kebijakan yang menolak `aws-external-anthropic:Delete*` tidak memblokir `ArchiveAgent`. Tolak `ArchiveAgent`, `UpdateAgent`, dan `CreateAgent` jika Anda perlu mencegah mutasi agen apa pun.
+  Agen hanya mendukung pengarsipan, bukan penghapusan permanen. Kebijakan yang menolak `aws-external-anthropic:Delete*` tidak memblokir `ArchiveAgent`. Untuk memblokir setiap rute tulis di bawah `/v1/agents`, tolak `CreateAgent`, `UpdateAgent`, dan `ArchiveAgent`.
 </Note>
 
 ### Sesi
 
-| Tindakan         | Rute yang diotorisasi                                                                                                                                                                             |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `CreateSession`  | `POST /v1/sessions`                                                                                                                                                                               |
-| `GetSession`     | `GET /v1/sessions/{id}`<br />`GET /v1/sessions/{id}/events`<br />`GET /v1/sessions/{id}/events/stream`<br />`GET /v1/sessions/{id}/resources`<br />`GET /v1/sessions/{id}/resources/{id}`         |
-| `ListSessions`   | `GET /v1/sessions`                                                                                                                                                                                |
-| `UpdateSession`  | `POST /v1/sessions/{id}`<br />`POST /v1/sessions/{id}/events`<br />`POST /v1/sessions/{id}/resources`<br />`POST /v1/sessions/{id}/resources/{id}`<br />`DELETE /v1/sessions/{id}/resources/{id}` |
-| `ArchiveSession` | `POST /v1/sessions/{id}/archive`                                                                                                                                                                  |
-| `DeleteSession`  | `DELETE /v1/sessions/{id}`                                                                                                                                                                        |
+| Tindakan         | Rute yang diotorisasi                                                                                                                                                                                                                                                                                                                                                      |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CreateSession`  | `POST /v1/sessions`                                                                                                                                                                                                                                                                                                                                                        |
+| `GetSession`     | `GET /v1/sessions/{id}`<br />`GET /v1/sessions/{id}/events`<br />`GET /v1/sessions/{id}/events/stream`<br />`GET /v1/sessions/{id}/resources`<br />`GET /v1/sessions/{id}/resources/{id}`<br />`GET /v1/sessions/{id}/threads`<br />`GET /v1/sessions/{id}/threads/{id}`<br />`GET /v1/sessions/{id}/threads/{id}/events`<br />`GET /v1/sessions/{id}/threads/{id}/stream` |
+| `ListSessions`   | `GET /v1/sessions`                                                                                                                                                                                                                                                                                                                                                         |
+| `UpdateSession`  | `POST /v1/sessions/{id}`<br />`POST /v1/sessions/{id}/events`<br />`POST /v1/sessions/{id}/resources`<br />`POST /v1/sessions/{id}/resources/{id}`<br />`DELETE /v1/sessions/{id}/resources/{id}`<br />`POST /v1/sessions/{id}/threads/{id}/archive`                                                                                                                       |
+| `ArchiveSession` | `POST /v1/sessions/{id}/archive`                                                                                                                                                                                                                                                                                                                                           |
+| `DeleteSession`  | `DELETE /v1/sessions/{id}`                                                                                                                                                                                                                                                                                                                                                 |
 
 <Note>
-  `GetSession` mengotorisasi pembacaan metadata sesi, aliran event lengkap (riwayat percakapan), dan sumber daya sesi. Wildcard `Get*` pada kebijakan `AnthropicReadOnlyAccess`, `AnthropicInferenceAccess`, dan `AnthropicLimitedAccess` mencakup tindakan ini.
+  `GetSession` mengotorisasi pembacaan metadata sesi, aliran event (riwayat percakapan), sumber daya sesi, dan [thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads), termasuk event dari setiap thread. Wildcard `Get*` pada kebijakan `AnthropicReadOnlyAccess`, `AnthropicInferenceAccess`, dan `AnthropicLimitedAccess` mencakup tindakan ini, dan kebijakan `AnthropicSelfHostedEnvironmentAccess` memberikannya secara eksplisit.
 </Note>
 
 <Note>
-  Membuat, memperbarui, atau menghapus sub-sumber daya sesi individual (event atau sumber daya sesi) dipetakan ke `UpdateSession`, bukan `CreateSession` atau `DeleteSession`. Kebijakan yang menolak `aws-external-anthropic:Delete*` tetap mengizinkan penghapusan sub-sumber daya, dan kebijakan yang menolak `aws-external-anthropic:Create*` tetap mengizinkan pembuatan sub-sumber daya. Tolak juga `UpdateSession`, `CreateSession`, dan `ArchiveSession` jika Anda perlu mencegah mutasi sesi apa pun.
+  Setiap rute yang menulis ke event, sumber daya, atau thread dari sesi yang sudah ada dipetakan ke `UpdateSession`, bukan `CreateSession`, `DeleteSession`, atau `ArchiveSession`. Kebijakan yang menolak `aws-external-anthropic:Create*`, `Delete*`, atau `Archive*` tetap mengizinkan pengiriman event, penambahan atau penghapusan sumber daya sesi, dan pengarsipan thread sesi. Untuk memblokir setiap rute tulis di bawah `/v1/sessions`, tolak `CreateSession`, `UpdateSession`, `ArchiveSession`, dan `DeleteSession`. Principal dengan `ProcessEnvironmentWork` tetap dapat [menghentikan sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations#stop-a-session-gracefully) yang berjalan di environment self-hosted.
 </Note>
 
 ### Environment
@@ -137,7 +137,7 @@ Tindakan mengikuti konvensi AWS `VerbNoun` dan menggunakan disiplin kata kerja s
 | `ProcessEnvironmentWork` | `GET /v1/environments/{id}/work/poll`<br />`POST /v1/environments/{id}/work/{work_id}`<br />`POST /v1/environments/{id}/work/{work_id}/ack`<br />`POST /v1/environments/{id}/work/{work_id}/heartbeat`<br />`POST /v1/environments/{id}/work/{work_id}/stop` |
 
 <Note>
-  Kebijakan yang menolak `aws-external-anthropic:Delete*` tidak memblokir `ArchiveEnvironment`. `ProcessEnvironmentWork` tidak dicocokkan oleh wildcard `Create*`, `Update*`, `Delete*`, atau `Archive*`. Tolak juga `ArchiveEnvironment`, `UpdateEnvironment`, `CreateEnvironment`, dan `ProcessEnvironmentWork` jika Anda perlu mencegah mutasi environment apa pun.
+  Kebijakan yang menolak `aws-external-anthropic:Delete*` tidak memblokir `ArchiveEnvironment`. `ProcessEnvironmentWork` tidak dicocokkan oleh wildcard `Create*`, `Update*`, `Delete*`, atau `Archive*`. Untuk memblokir setiap rute tulis di bawah `/v1/environments`, tolak `CreateEnvironment`, `UpdateEnvironment`, `ArchiveEnvironment`, `DeleteEnvironment`, dan `ProcessEnvironmentWork`.
 </Note>
 
 <Note>
@@ -156,7 +156,7 @@ Tindakan mengikuti konvensi AWS `VerbNoun` dan menggunakan disiplin kata kerja s
 | `DeleteVault`  | `DELETE /v1/vaults/{id}`                                                                                                                                                                                        |
 
 <Note>
-  Membuat, memperbarui, mengarsipkan, atau menghapus kredensial vault individual dipetakan ke `UpdateVault`. Membaca kredensial dipetakan ke `GetVault`. Rahasia kredensial vault tidak diekspos: field rahasia bersifat hanya-tulis dan tidak pernah dikembalikan oleh `GetVault` (lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults)). Kebijakan yang menolak `aws-external-anthropic:Delete*` tetap mengizinkan penghapusan kredensial, dan kebijakan yang menolak `aws-external-anthropic:Create*` tetap mengizinkan pembuatan kredensial. Tolak juga `UpdateVault`, `CreateVault`, dan `ArchiveVault` jika Anda perlu mencegah mutasi vault apa pun.
+  Membuat, memperbarui, mengarsipkan, atau menghapus kredensial vault individual dipetakan ke `UpdateVault`. Membaca kredensial dipetakan ke `GetVault`. Rahasia kredensial vault tidak diekspos: field rahasia bersifat hanya-tulis dan tidak pernah dikembalikan oleh `GetVault` (lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults)). Kebijakan yang menolak `aws-external-anthropic:Create*`, `Delete*`, atau `Archive*` tetap mengizinkan pembuatan, penghapusan, dan pengarsipan kredensial. Untuk memblokir setiap rute tulis di bawah `/v1/vaults`, tolak `CreateVault`, `UpdateVault`, `ArchiveVault`, dan `DeleteVault`.
 </Note>
 
 ### Memory store
@@ -175,7 +175,7 @@ Tindakan mengikuti konvensi AWS `VerbNoun` dan menggunakan disiplin kata kerja s
 </Note>
 
 <Note>
-  Membuat, memperbarui, atau menghapus memori individual dan meredaksi versi memori keduanya dipetakan ke `UpdateMemoryStore`, bukan `CreateMemoryStore` atau `DeleteMemoryStore`. Kebijakan yang menolak `aws-external-anthropic:Delete*` tetap mengizinkan penghapusan memori individual dan redaksi versi memori, dan kebijakan yang menolak `aws-external-anthropic:Create*` tetap mengizinkan pembuatan memori individual. Tolak juga `UpdateMemoryStore`, `CreateMemoryStore`, dan `ArchiveMemoryStore` jika Anda perlu mencegah mutasi memory store apa pun.
+  Membuat, memperbarui, atau menghapus memori individual dan meredaksi versi memori keduanya dipetakan ke `UpdateMemoryStore`, bukan `CreateMemoryStore` atau `DeleteMemoryStore`. Kebijakan yang menolak `aws-external-anthropic:Delete*` tetap mengizinkan penghapusan memori individual dan redaksi versi memori, dan kebijakan yang menolak `aws-external-anthropic:Create*` tetap mengizinkan pembuatan memori individual. Untuk memblokir setiap rute tulis di bawah `/v1/memory_stores`, tolak `CreateMemoryStore`, `UpdateMemoryStore`, `ArchiveMemoryStore`, dan `DeleteMemoryStore`. Principal dengan `CreateSession` tetap dapat [melampirkan store ke sesi](https://platform.claude.com/docs/id/managed-agents/memory#attach-a-memory-store-to-a-session) dengan akses `read_write`, yang merupakan default. Agen sesi tersebut kemudian dapat menulis ke store.
 </Note>
 
 ### Webhook
@@ -194,7 +194,7 @@ Tindakan mengikuti konvensi AWS `VerbNoun` dan menggunakan disiplin kata kerja s
 </Note>
 
 <Note>
-  `RotateWebhookSecret` tidak dicocokkan oleh wildcard `aws-external-anthropic:Create*`, `Update*`, atau `Delete*`. Kebijakan yang menolak pola-pola tersebut tetap mengizinkan rotasi rahasia. Tolak `RotateWebhookSecret`, `UpdateWebhook`, `CreateWebhook`, dan `DeleteWebhook` jika Anda perlu mencegah mutasi webhook apa pun.
+  `RotateWebhookSecret` tidak dicocokkan oleh wildcard `aws-external-anthropic:Create*`, `Update*`, atau `Delete*`. Kebijakan yang menolak pola-pola tersebut tetap mengizinkan rotasi rahasia. Untuk memblokir setiap rute tulis di bawah `/v1/webhooks`, tolak `CreateWebhook`, `UpdateWebhook`, `DeleteWebhook`, dan `RotateWebhookSecret`.
 </Note>
 
 ### Profil pengguna
@@ -227,7 +227,7 @@ Tindakan mengikuti konvensi AWS `VerbNoun` dan menggunakan disiplin kata kerja s
 | `ArchiveWorkspace` | `POST /v1/organizations/workspaces/{id}/archive` |
 
 <Note>
-  Workspace hanya mendukung pengarsipan, bukan penghapusan permanen. Kebijakan yang menolak `aws-external-anthropic:Delete*` tidak memblokir `ArchiveWorkspace`. Tolak `ArchiveWorkspace`, `UpdateWorkspace`, dan `CreateWorkspace` jika Anda perlu mencegah mutasi workspace apa pun.
+  Workspace hanya mendukung pengarsipan, bukan penghapusan permanen. Kebijakan yang menolak `aws-external-anthropic:Delete*` tidak memblokir `ArchiveWorkspace`. Untuk memblokir setiap rute tulis di bawah `/v1/organizations/workspaces`, tolak `CreateWorkspace`, `UpdateWorkspace`, dan `ArchiveWorkspace`.
 </Note>
 
 ### Kunci enkripsi
@@ -241,7 +241,7 @@ Tindakan mengikuti konvensi AWS `VerbNoun` dan menggunakan disiplin kata kerja s
 | `DisableKey`  | `DELETE /v1/organizations/external_keys/{id}` |
 
 <Note>
-  Tindakan-tindakan ini mengelola registrasi [customer-managed encryption key (CMEK)](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws) organisasi Anda, yaitu catatan tentang ARN kunci AWS KMS mana yang terdaftar. Tindakan ini tidak membuat, mengubah, atau menonaktifkan kunci di AWS KMS. `DisableKey` menghapus registrasi dan ditolak selama masih ada workspace yang menggunakan kunci tersebut. `RegisterKey` dan `DisableKey` tidak dicocokkan oleh wildcard `Create*`, `Update*`, atau `Delete*`; tolak `RegisterKey`, `UpdateKey`, dan `DisableKey` jika Anda perlu mencegah perubahan apa pun pada registrasi kunci. Dalam rute-rute ini, `{id}` adalah ARN kunci KMS yang di-URL-encode. Melampirkan kunci terdaftar ke workspace adalah operasi workspace, yang diotorisasi oleh `CreateWorkspace` atau `UpdateWorkspace`; principal yang melampirkan kunci juga memerlukan `kms:DescribeKey`, `kms:Encrypt`, dan `kms:Decrypt` pada kunci tersebut (lihat [prasyarat](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws#prerequisites)). Tindakan kunci eksternal bercakupan akun: menentukan ARN workspace pada tindakan tersebut tidak berpengaruh; gunakan `Resource: "*"`.
+  Tindakan-tindakan ini mengelola registrasi [customer-managed encryption key (CMEK)](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws) organisasi Anda, yaitu catatan tentang ARN kunci AWS KMS mana yang terdaftar. Tindakan ini tidak membuat, mengubah, atau menonaktifkan kunci di AWS KMS. `DisableKey` menghapus registrasi dan ditolak selama masih ada workspace yang menggunakan kunci tersebut. `RegisterKey` dan `DisableKey` tidak dicocokkan oleh wildcard `Create*`, `Update*`, atau `Delete*`. Untuk memblokir setiap rute tulis di bawah `/v1/organizations/external_keys`, tolak `RegisterKey`, `UpdateKey`, dan `DisableKey`. Dalam rute-rute ini, `{id}` adalah ARN kunci KMS yang di-URL-encode. Melampirkan kunci terdaftar ke workspace adalah operasi workspace, yang diotorisasi oleh `CreateWorkspace` atau `UpdateWorkspace`; principal yang melampirkan kunci juga memerlukan `kms:DescribeKey`, `kms:Encrypt`, dan `kms:Decrypt` pada kunci tersebut (lihat [prasyarat](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws#prerequisites)). Tindakan kunci eksternal bercakupan akun: menentukan ARN workspace pada tindakan tersebut tidak berpengaruh; gunakan `Resource: "*"`.
 </Note>
 
 ### Kepatuhan
@@ -277,7 +277,7 @@ Tindakan mengikuti konvensi AWS `VerbNoun` dan menggunakan disiplin kata kerja s
 </Note>
 
 <Note>
-  `AddTelemetryDestinationWorkspace` dan `RemoveTelemetryDestinationWorkspace` berlaku untuk workspace dalam rute, dan hanya pada tujuan yang opsi **Workspaces**-nya adalah **Selected**. Untuk mengubah daftar **All except**, gunakan `UpdateAccountTelemetryDestination`. Kebijakan yang menolak `aws-external-anthropic:Create*`, `Update*`, atau `Delete*` tetap mengizinkan penambahan dan penghapusan workspace. Untuk memblokir setiap perubahan pada tujuan, tolak juga `AddTelemetryDestinationWorkspace` dan `RemoveTelemetryDestinationWorkspace`.
+  `AddTelemetryDestinationWorkspace` dan `RemoveTelemetryDestinationWorkspace` berlaku untuk workspace dalam rute, dan hanya pada tujuan yang opsi **Workspaces**-nya adalah **Selected**. Untuk mengubah daftar **All except**, gunakan `UpdateAccountTelemetryDestination`. Kebijakan yang menolak `aws-external-anthropic:Create*`, `Update*`, atau `Delete*` tetap mengizinkan penambahan dan penghapusan workspace. Untuk memblokir setiap rute tulis di bawah `/v1/organizations/telemetry_destinations`, tolak `CreateAccountTelemetryDestination`, `UpdateAccountTelemetryDestination`, `DeleteAccountTelemetryDestination`, `TestAccountTelemetryDestination`, `AddTelemetryDestinationWorkspace`, dan `RemoveTelemetryDestinationWorkspace`.
 </Note>
 
 ### Penggunaan dan biaya
@@ -383,6 +383,11 @@ Tabel-tabel berikut mencantumkan setiap rute pada Claude Platform on AWS dan tin
 | `POST`   | `/v1/sessions/{id}/resources`                                             | `UpdateSession`                             | Data                  |
 | `POST`   | `/v1/sessions/{id}/resources/{id}`                                        | `UpdateSession`                             | Data                  |
 | `DELETE` | `/v1/sessions/{id}/resources/{id}`                                        | `UpdateSession`                             | Data                  |
+| `GET`    | `/v1/sessions/{id}/threads`                                               | `GetSession`                                | Data                  |
+| `GET`    | `/v1/sessions/{id}/threads/{id}`                                          | `GetSession`                                | Data                  |
+| `GET`    | `/v1/sessions/{id}/threads/{id}/events`                                   | `GetSession`                                | Data                  |
+| `GET`    | `/v1/sessions/{id}/threads/{id}/stream`                                   | `GetSession`                                | Data                  |
+| `POST`   | `/v1/sessions/{id}/threads/{id}/archive`                                  | `UpdateSession`                             | Data                  |
 | `POST`   | `/v1/environments`                                                        | `CreateEnvironment`                         | Data                  |
 | `GET`    | `/v1/environments`                                                        | `ListEnvironments`                          | Data                  |
 | `GET`    | `/v1/environments/{id}`                                                   | `GetEnvironment`                            | Data                  |

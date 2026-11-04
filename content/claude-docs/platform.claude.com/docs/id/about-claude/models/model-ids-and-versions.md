@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: a8fe74e4fccb30ce3c7c080a6cb390297ac3137a4207b7b8966e5935fc44e98e
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 40e04295d34645ab548be2823dd553c6fdb7829cff0d05e5c099e77e2768f362
 ---
 
 ---
@@ -87,4 +87,4 @@ Sesekali, pembaruan infrastruktur menghasilkan perbedaan kecil dalam perilaku ya
 
 ## ID model saat ini
 
-Untuk daftar lengkap ID model saat ini beserta padanannya di Amazon Bedrock dan Claude Models on Google Cloud (Google managed), lihat [Ikhtisar model](https://platform.claude.com/docs/id/models/overview).
+Untuk daftar lengkap ID model saat ini beserta padanannya di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, lihat [Ikhtisar model](https://platform.claude.com/docs/id/models/overview).

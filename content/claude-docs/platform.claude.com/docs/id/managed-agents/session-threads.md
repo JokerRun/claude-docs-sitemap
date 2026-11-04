@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-threads
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 4496343fcbbdd8a7d38739b0566077c94550060af2b51f30f56f189b9430494e
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 603109f2a418a2d2fced4da8450bb499f4a14db1a8becd430a456eab3ab00894
 ---
 
 ---
@@ -61,7 +61,7 @@ Cantumkan semua thread yang terkait dengan sebuah sesi sebagai berikut:
   ```bash cURL
   curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
@@ -141,7 +141,7 @@ Kirim `user.interrupt` dengan `session_thread_id` (java: `sessionThreadId`; php:
   ```bash cURL
   curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -226,7 +226,7 @@ Secara opsional, arsipkan thread sesi ketika thread tersebut telah menyelesaikan
   ```bash cURL
   curl -fsS -X POST "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
@@ -290,7 +290,7 @@ Pengarsipan hanya berhasil jika thread berstatus `idle`. Thread yang tertahan pa
   # Interupsi thread, lalu arsipkan
   curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -301,7 +301,7 @@ Pengarsipan hanya berhasil jika thread berstatus `idle`. Thread yang tertahan pa
 
   curl -fsS -X POST "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01"
   ```
 
@@ -437,7 +437,7 @@ Aliran sebuah thread tidak memutar ulang event sebelumnya. Tepat setelah `sessio
       ```bash cURL
       curl -fsSN "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/stream?beta=true" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01"
       ```
 
@@ -593,7 +593,7 @@ Aliran sebuah thread tidak memutar ulang event sebelumnya. Tepat setelah `sessio
       ```bash cURL
       curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/events" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01"
       ```
 

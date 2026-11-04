@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/admin-setup
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 5ad4e95cb97e50abce2bdeb1f932a1e61e5c925747cf336e047aadbda7182834
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 29bdc92733fa012b9b7242e77e7d84955f9785d992c368fd7ce88b4e4a3fb321
 ---
 
 > ## Documentation Index
@@ -136,11 +136,11 @@ For the threat model these controls defend against, see [Security](https://code.
 
 ### Connected GitHub accounts
 
-On Team and Enterprise plans, the GitHub section of [**Organization settings > Git providers**](https://claude.ai/admin-settings/source-control) lists the GitHub organizations and personal accounts linked to your Claude organization through the [Claude GitHub App](https://github.com/apps/claude). Claude Code, [Claude Tag](https://claude.com/docs/claude-tag/admins/configure-github), and Claude Security share the list. Opening the page requires an admin role in your Claude organization.
+On Team and Enterprise plans, the GitHub section of [**Organization settings > Git providers**](https://claude.ai/admin-settings/source-control) lists the GitHub organizations and personal accounts linked to your Claude organization through the [Claude GitHub App](https://github.com/apps/claude). Claude Code, [Claude Tag](https://claude.com/docs/claude-tag/admins/configure-github), and Claude Security share the list. Opening the page requires an [Owner role](https://code.claude.com/docs/en/server-managed-settings.md#access-control) in your Claude organization. The Admin role can't open it.
 
-An admin or a member can link an account:
+Someone can link an account from the Git providers page or by connecting GitHub to Claude:
 
-* **Admin connection**: an admin clicks **Connect** in that section, or **Add organization** once an account is connected, and installs the Claude GitHub App on a GitHub organization. Linking an organization this way requires someone who is both an owner of the GitHub organization and an admin of your Claude organization.
+* **Owner connection**: an Owner clicks **Connect** in that section, or **Add organization** once an account is connected, and installs the Claude GitHub App on a GitHub organization. Linking an organization this way requires an Owner of your Claude organization who also owns the GitHub organization.
 * **Member connection**: when a member connects their GitHub account to Claude, for example while [setting up cloud sessions](https://code.claude.com/docs/en/web-quickstart.md#connect-github), Claude links the GitHub accounts that member owns where the Claude GitHub App is already installed. That can include their personal account and GitHub organizations they own.
 
 A row marked **Not linked** comes from your own GitHub sign-in. It's an account you can see on GitHub where the Claude GitHub App is installed.

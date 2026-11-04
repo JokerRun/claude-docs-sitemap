@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 075e4b3a254e53f381e75b7f97c42d71efd58d78acf4aacd3e525cbe1156cea2
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 714b2f07eed89da8cdb0052c27e2120559f4dcfc59ebf6165cc0ab4e98862ef1
 ---
 
 ---
@@ -120,7 +120,7 @@ Contoh berikut menyertakan alat pencarian alat dan dua alat yang ditangguhkan:
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-editing
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 7abb48e35b7c3701a073d762b4b9a5f9d586701559f90a355ff142f3747f8bd7
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: ee6dddab31fff538f6b6d4fd653d7214746bca64a8fa2769d9261f816c2f08ce
 ---
 
 ---
@@ -118,7 +118,7 @@ Cara paling sederhana untuk mengaktifkan pembersihan hasil alat adalah dengan ha
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -H "anthropic-beta: context-management-2025-06-27" \
     -d '{
@@ -331,7 +331,7 @@ Anda dapat menyesuaikan perilaku pembersihan hasil alat dengan parameter tambaha
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -H "anthropic-beta: context-management-2025-06-27" \
     -d '{
@@ -734,7 +734,7 @@ Gunakan pembersihan blok pemikiran untuk mengelola konteks dan caching prompt da
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -H "anthropic-beta: context-management-2025-06-27" \
     -d '{
@@ -963,7 +963,7 @@ Simpan blok pemikiran dari 3 giliran asisten terakhir:
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -H "anthropic-beta: context-management-2025-06-27" \
     -d '{
@@ -1175,7 +1175,7 @@ Simpan semua blok pemikiran (memaksimalkan cache hit):
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -H "anthropic-beta: context-management-2025-06-27" \
     -d '{
@@ -1375,7 +1375,7 @@ Anda dapat menggunakan pembersihan blok pemikiran dan pembersihan hasil alat sec
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -H "anthropic-beta: context-management-2025-06-27" \
     -d '{
@@ -1827,7 +1827,7 @@ Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-cla
   ```bash cURL
   curl https://api.anthropic.com/v1/messages/count_tokens \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -H "anthropic-beta: context-management-2025-06-27" \
     -d '{
@@ -2132,7 +2132,7 @@ Untuk menggunakan kedua fitur secara bersamaan, aktifkan keduanya dalam perminta
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -H "anthropic-beta: context-management-2025-06-27" \
     -d '{

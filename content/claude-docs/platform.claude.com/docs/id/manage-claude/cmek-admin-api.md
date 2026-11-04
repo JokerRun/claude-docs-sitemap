@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-admin-api
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 58e0eac55c6913f0fda96cf99552b85d772df77d4ba0a49b30a7ce79e91ccdfc
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: b4053fdad31aa358480af01d58d64e7c6ccf41619a56f59b51c340b459c8fc07
 ---
 
 ---
@@ -34,7 +34,7 @@ Membuat kunci eksternal adalah apa yang dilakukan **Add key** di Claude Console,
           ```bash cURL
           curl -sS "https://api.anthropic.com/v1/organizations/external_keys" \
             -H "x-api-key: $ANTHROPIC_API_KEY" \
-            -H "anthropic-version: 2023-06-01" \
+            -H "anthropic-version: 2026-10-21" \
             -H "content-type: application/json" \
             -d '{
               "display_name": "<friendly-name>",
@@ -189,7 +189,7 @@ Membuat kunci eksternal adalah apa yang dilakukan **Add key** di Claude Console,
           ```bash cURL
           curl -sS "https://api.anthropic.com/v1/organizations/external_keys" \
             -H "x-api-key: $ANTHROPIC_API_KEY" \
-            -H "anthropic-version: 2023-06-01" \
+            -H "anthropic-version: 2026-10-21" \
             -H "content-type: application/json" \
             -d '{
               "display_name": "<friendly-name>",
@@ -350,7 +350,7 @@ Membuat kunci eksternal adalah apa yang dilakukan **Add key** di Claude Console,
           ```bash cURL
           curl -sS "https://api.anthropic.com/v1/organizations/external_keys" \
             -H "x-api-key: $ANTHROPIC_API_KEY" \
-            -H "anthropic-version: 2023-06-01" \
+            -H "anthropic-version: 2026-10-21" \
             -H "content-type: application/json" \
             -d '{
               "display_name": "<friendly-name>",
@@ -538,7 +538,7 @@ Membuat kunci eksternal adalah apa yang dilakukan **Add key** di Claude Console,
       ```bash cURL
       curl -sS -X POST "https://api.anthropic.com/v1/organizations/external_keys/ekey_<id>/validate" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01"
+        -H "anthropic-version: 2026-10-21"
       ```
 
       ```bash CLI
@@ -635,7 +635,7 @@ Membuat kunci eksternal adalah apa yang dilakukan **Add key** di Claude Console,
       ```bash cURL
       curl -sS -X POST "https://api.anthropic.com/v1/organizations/workspaces/<workspace-id>" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "content-type: application/json" \
         -d '{
           "external_key_id": "ekey_<id>"

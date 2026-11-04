@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/api
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: d3489ab11bd7838d642a80e7a7f984ec442b3ca5a3a05c0b55c8e3eb5fe0a869
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: ea6b1e6b9a78352606bbb67d2833b8c96c769ae97cccd98e8269e2443c38ea31
 ---
 
 ---
@@ -85,7 +85,7 @@ Anda juga dapat menambahkan tujuan melalui [Admin API](https://platform.claude.c
   ```bash cURL
   curl --fail-with-body -sS "https://api.anthropic.com/v1/organizations/telemetry_destinations" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: telemetry-destinations-2026-08-11" \
     -H "content-type: application/json" \
     -d '{
@@ -395,7 +395,7 @@ API membaca konteks trace dari setiap permintaan dari [header `traceparent`](htt
       # misalnya 00-<trace-id>-<span-id>-01.
       curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
         -H "traceparent: $TRACEPARENT" \
@@ -416,7 +416,7 @@ API membaca konteks trace dari setiap permintaan dari [header `traceparent`](htt
 
       headers = {
           "x-api-key": os.environ["ANTHROPIC_API_KEY"],
-          "anthropic-version": "2023-06-01",
+          "anthropic-version": "2026-10-21",
           "anthropic-beta": "managed-agents-2026-04-01",
           "content-type": "application/json",
       }
@@ -443,7 +443,7 @@ API membaca konteks trace dari setiap permintaan dari [header `traceparent`](htt
 
       const headers: Record<string, string> = {
         "x-api-key": process.env.ANTHROPIC_API_KEY!,
-        "anthropic-version": "2023-06-01",
+        "anthropic-version": "2026-10-21",
         "anthropic-beta": "managed-agents-2026-04-01",
         "content-type": "application/json"
       };
@@ -489,7 +489,7 @@ API membaca konteks trace dari setiap permintaan dari [header `traceparent`](htt
           }),
       };
       request.Headers.Add("x-api-key", Environment.GetEnvironmentVariable("ANTHROPIC_API_KEY"));
-      request.Headers.Add("anthropic-version", "2023-06-01");
+      request.Headers.Add("anthropic-version", "2026-10-21");
       request.Headers.Add("anthropic-beta", "managed-agents-2026-04-01");
 
       // Salin konteks trace dari span aktif ke dalam header permintaan.
@@ -526,7 +526,7 @@ API membaca konteks trace dari setiap permintaan dari [header `traceparent`](htt
       		return err
       	}
       	req.Header.Set("x-api-key", os.Getenv("ANTHROPIC_API_KEY"))
-      	req.Header.Set("anthropic-version", "2023-06-01")
+      	req.Header.Set("anthropic-version", "2026-10-21")
       	req.Header.Set("anthropic-beta", "managed-agents-2026-04-01")
       	req.Header.Set("content-type", "application/json")
 
@@ -553,7 +553,7 @@ API membaca konteks trace dari setiap permintaan dari [header `traceparent`](htt
           var request = HttpRequest.newBuilder(URI.create(
                   "https://api.anthropic.com/v1/sessions/" + System.getenv("SESSION_ID") + "/events"))
               .header("x-api-key", System.getenv("ANTHROPIC_API_KEY"))
-              .header("anthropic-version", "2023-06-01")
+              .header("anthropic-version", "2026-10-21")
               .header("anthropic-beta", "managed-agents-2026-04-01")
               .header("content-type", "application/json")
               .POST(HttpRequest.BodyPublishers.ofString("""
@@ -580,7 +580,7 @@ API membaca konteks trace dari setiap permintaan dari [header `traceparent`](htt
 
       $headers = [
           'x-api-key' => getenv('ANTHROPIC_API_KEY'),
-          'anthropic-version' => '2023-06-01',
+          'anthropic-version' => '2026-10-21',
           'anthropic-beta' => 'managed-agents-2026-04-01',
           'content-type' => 'application/json',
       ];
@@ -616,7 +616,7 @@ API membaca konteks trace dari setiap permintaan dari [header `traceparent`](htt
 
       headers = {
         "x-api-key" => ENV.fetch("ANTHROPIC_API_KEY"),
-        "anthropic-version" => "2023-06-01",
+        "anthropic-version" => "2026-10-21",
         "anthropic-beta" => "managed-agents-2026-04-01",
         "content-type" => "application/json"
       }
@@ -681,7 +681,7 @@ API menonaktifkan tujuan ketika:
 
 Selama tujuan dinonaktifkan, API membuang span-nya, dan span tersebut tidak dikirim setelah Anda mengaktifkannya kembali. Untuk melanjutkan ekspor, perbaiki penyebabnya dan periksa perbaikannya dengan **Test** di menu **More actions** milik tujuan tersebut. Kemudian, di [halaman pengaturan OpenTelemetry](https://platform.claude.com/settings/telemetry-destinations) di Console, klik **Enable** di menu yang sama saat filter **Workspace** menampilkan **All**. Ekspor dimulai lagi dalam sekitar satu menit. Hingga pengiriman berikutnya, kolom **Delivery** masih dapat menampilkan **Failing** dengan error yang lama.
 
-Untuk mengubah sebuah tujuan, buka menu **More actions** miliknya saat filter **Workspace** menampilkan **All**. Kemudian klik **Edit**, **Disable**, **Enable**, atau **Delete**. Jika Anda mengubah host dari **OTLP endpoint URL**, masukkan kembali nilai header. Jika tujuan memiliki **OTLP traces endpoint URL**, berikan host baru yang sama, atau kosongkan.
+Untuk mengubah sebuah tujuan, buka menu **More actions** miliknya saat filter **Workspace** menampilkan **All**. Kemudian klik **Edit**, **Disable**, **Enable**, atau **Delete**. Pengiriman berhenti dalam waktu sekitar satu menit setelah Anda menonaktifkan atau menghapus sebuah tujuan. Jika Anda mengubah host dari **OTLP endpoint URL**, masukkan kembali nilai header. Jika tujuan memiliki **OTLP traces endpoint URL**, berikan host baru yang sama, atau kosongkan.
 
 ## Batas
 

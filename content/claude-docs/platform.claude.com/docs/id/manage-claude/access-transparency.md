@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/access-transparency
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: c9439b55157be2957044dc24ba255e70df84d210f7df446e437464f9ecc1ff8b
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: c3931dc7efa0fa455c5735f016099645faf34004ab59e8d49d020fb8c41d2864
 ---
 
 ---
@@ -43,7 +43,7 @@ Personel Anthropic mengakses konten pelanggan hanya dalam kondisi yang telah dit
 * **Aktivitas organisasi Anda sendiri:** Panggilan API, tindakan admin, dan pembacaan Compliance API Anda dicakup oleh tipe event [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) standar.
 * **Claude for Enterprise dan Claude Apps:** Seat claude.ai Enterprise, Claude for Work, Cowork, dan Claude in Chrome tidak dicakup.
 * **Produk konsumen Claude:** paket Claude Free, Pro, Max, atau Ultra.
-* **Platform yang dioperasikan mitra:** Amazon Bedrock dan Claude Models on Google Cloud (Google managed); lihat kontrol transparansi platform tersebut.
+* **Platform yang dioperasikan mitra:** Claude Models on Google Cloud (Google managed) dan Amazon Bedrock; lihat kontrol transparansi platform tersebut.
 * **Apa pun yang tidak dicakup ZDR:** Produk yang tidak dicakup oleh ZDR (misalnya, Files API, aplikasi stateful yang di-host Anthropic, dan Batch API) tidak dicakup oleh Access Transparency. Lihat [dokumentasi ZDR](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) untuk detail tambahan.
 
 ## Memulai
@@ -76,7 +76,7 @@ curl --fail-with-body -sS -G \
   --data-urlencode "activity_types[]=anthropic_access" \
   --data-urlencode "limit=50" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  --header "anthropic-version: 2023-06-01"
+  --header "anthropic-version: 2026-10-21"
 ```
 
 Paginasi, pemfilteran rentang tanggal (`created_at.gte` / `.lt`), dan envelope respons (`has_more`, `first_id`, `last_id`) sama dengan bagian lain dari Activity Feed. Lihat [Mengkueri Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed).
@@ -135,7 +135,7 @@ curl --fail-with-body -sS -G \
   --data-urlencode "activity_types[]=cmek_preserve" \
   --data-urlencode "limit=50" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  --header "anthropic-version: 2023-06-01"
+  --header "anthropic-version: 2026-10-21"
 ```
 
 Contoh pesan JSON:

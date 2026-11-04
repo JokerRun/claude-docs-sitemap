@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 0d248b8399168a73f334362a2384b91cbf1691d0cbddd0a73e57f5914268545e
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 01cfb668d9f56127e8d2acce24f50073a0d2f14887f4f923bc8b15bbc5372adc
 ---
 
 > ## Documentation Index
@@ -2168,7 +2168,12 @@ class HookMatcher:
         None  # Timeout in seconds. When omitted, the per-event default applies:
         # 600 for most events, 30 for UserPromptSubmit
     )
+    on_failure: Literal["continue", "block"] | None = (
+        None  # "block" blocks the action when a callback fails
+    )
 ```
+
+To decide what `on_failure` covers, see [Block the action when a callback fails](https://code.claude.com/docs/en/agent-sdk/hooks.md#block-the-action-when-a-callback-fails).
 
 ### `HookInput`
 

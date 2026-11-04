@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/kubernetes
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 30ae42cf32d6cb9700cc588772f0ef95f394335baceb4fb98f0073af07ab0898
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: f7516a12197e20941fbe99b52ac059e3399491ee17997ee0a45c1b1153300a8a
 ---
 
 ---
@@ -153,7 +153,7 @@ The pod spec in [Configure Kubernetes](https://platform.claude.com/docs/en/manag
 
   curl https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

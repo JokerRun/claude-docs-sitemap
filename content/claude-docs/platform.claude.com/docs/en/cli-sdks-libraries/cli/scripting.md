@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/scripting
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 26dff8f15624d44269a69843bdf4b5603d0554ec3ce01066e388591e51b8ce57
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 1804909eb643e8986a4148fb32015e7c25cab5bcc7e379acf052fcdd10320fef
 ---
 
 ---
@@ -120,7 +120,7 @@ Scripts that call the API with `curl` or another HTTP client can use the credent
 ```bash cURL
 curl https://api.anthropic.com/v1/messages \
   -H "Authorization: Bearer $(ant auth print-credentials --access-token)" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   -H "content-type: application/json" \
   -d '{
     "model": "claude-opus-5-5",

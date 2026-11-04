@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 5309a4135df906dd8c4d28107c58f7266c5e477ad0fc3ca9fe8e946dd3c55df7
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 547d6f92f8b6b73f1bd8680136287ef83dad9ebf55f9c3beb1b40eb32b8d00f0
 ---
 
 > ## Documentation Index
@@ -336,6 +336,10 @@ A `cancelled` decision with `source` `user_abort` means a message needing immedi
 This span appears only when detailed beta tracing is active, which requires `ENABLE_BETA_TRACING_DETAILED=1` and `BETA_TRACING_ENDPOINT`, a pair that also [changes where your logs and traces go](https://code.claude.com/docs/en/env-vars.md#variables). Set the pair in your shell, user settings, or managed settings; both variables are ignored in [project and local settings](https://code.claude.com/docs/en/settings-reference.md#variables-claude-code-ignores-in-env). `CLAUDE_CODE_ENHANCED_TELEMETRY_BETA` alone doesn't produce it.
 
 In interactive CLI sessions, detailed beta tracing also requires your organization to be allowlisted for the feature. Agent SDK and non-interactive `-p` sessions don't require allowlisting.
+
+> [!WARNING]
+>
+> Set `ENABLE_BETA_TRACING_DETAILED` only for debugging, not in production. Detailed beta tracing has a high export volume, and its [content attributes](#new-context-gates) aren't part of the stable span schema.
 
 | Attribute | Description | Gated by |
 | - | - | - |

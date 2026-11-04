@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: c025c9706a3877f7d0458b305c647fcfa00ff1d4deb83fb0492ea044778ab93d
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 190a9e8434b0396c122508754ffbb1dc7662d876f42a730f193297662afaf702
 ---
 
 ---
@@ -62,7 +62,7 @@ Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan respons
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -747,7 +747,7 @@ Claude berhenti karena mencapai batas [`max_tokens`](https://platform.claude.com
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -1059,7 +1059,7 @@ Claude menemukan salah satu [stop sequence](https://platform.claude.com/docs/id/
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -1203,7 +1203,7 @@ Claude sedang memanggil alat yang perlu Anda jalankan.
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -1546,7 +1546,7 @@ Ketika hal ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok
   # pada respons lalu kirim ulang POST dengan konten assistant ditambahkan.
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -1764,7 +1764,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -1901,7 +1901,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
 </CodeGroup>
 
 <Tip>
-  Jika Anda sering menemukan alasan berhenti `refusal` saat menggunakan Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)) atau Claude Opus 4.1 (yang terakhir [telah dipensiunkan, kecuali di Bedrock dan Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Anda dapat mencoba memperbarui panggilan API Anda untuk menggunakan Haiku 4.5 (`claude-haiku-4-5-20251001`), yang memiliki batasan penggunaan berbeda. Pelajari lebih lanjut tentang [memahami filter keamanan API Sonnet 4.5](https://support.claude.com/en/articles/12449294-understanding-sonnet-4-5-s-api-safety-filters).
+  Jika Anda sering menemukan alasan berhenti `refusal` saat menggunakan Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)) atau Claude Opus 4.1 (yang terakhir [telah dipensiunkan, kecuali di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Anda dapat mencoba memperbarui panggilan API Anda untuk menggunakan Claude Haiku 4.5 (`claude-haiku-4-5-20251001`), yang memiliki batasan penggunaan berbeda. Pelajari lebih lanjut tentang [memahami filter keamanan API Sonnet 4.5](https://support.claude.com/en/articles/12449294-understanding-sonnet-4-5-s-api-safety-filters).
 </Tip>
 
 Pada penolakan, objek [`stop_details`](https://platform.claude.com/docs/id/api/messages/create#message.stop_details) mengidentifikasi kategori kebijakan yang memicunya. Kategori-kategori tersebut dan bentuk lengkap respons penolakan dibahas dalam [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response). `stop_details` bernilai `null` untuk semua alasan berhenti selain `refusal`.
@@ -1920,7 +1920,7 @@ Claude berhenti karena mencapai batas “context window” (jendela konteks) mod
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -2333,7 +2333,7 @@ Ketika respons terpotong karena batas token atau jendela konteks, tambahkan pemb
 
 ### Implementasikan logika percobaan ulang untuk pause\_turn
 
-Ketika Anda menggunakan [server tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools), API mungkin mengembalikan `pause_turn` jika loop sampling sisi server mencapai batas iterasinya (default 10). Tangani hal ini dengan menambahkan respons yang dijeda ke pesan Anda tanpa diubah, lalu kirim permintaan tersebut lagi. Jika respons menyertakan `container`, [kirimkan juga ID-nya kembali](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#container-reuse). Tanpa ID tersebut, permintaan berikutnya akan memulai container baru, dan file dari bagian awal giliran tersebut akan hilang.
+Ketika Anda menggunakan [server tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools), API mungkin mengembalikan `pause_turn` jika loop sampling sisi server mencapai batas iterasinya (default 10). Tangani hal ini dengan menambahkan respons yang dijeda ke pesan Anda tanpa diubah, lalu kirim permintaan tersebut lagi. Jika respons menyertakan `container`, [kirimkan juga ID-nya kembali](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#container-reuse). Tanpa ID tersebut, permintaan berikutnya akan memulai container baru, dan file dari bagian mana pun dalam giliran tersebut sebelum jeda akan hilang.
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
@@ -2710,7 +2710,7 @@ Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
   # $? untuk error dan stop_reason untuk respons yang berhasil.
   curl --fail-with-body https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -2924,7 +2924,7 @@ Saat menggunakan streaming, `stop_reason`:
   # Event message_delta dalam stream SSE membawa stop_reason.
   curl -N https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/apply
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 88c5d01a33545bac5e160eeb18ca6f32dfb301b94bbf972c3d50bad0018b716f
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 09d7e5500f60c9be1bd4ec82cda9e90eb087a8cf6be2458548e25a8667706f69
 ---
 
 ---
@@ -30,8 +30,6 @@ Write the agent as a Markdown file under `agents/` and apply it:
       ---
       name: Summarizer
       model: claude-opus-5-5
-      tools:
-        - type: agent_toolset_20260401
       ---
 
       You are a helpful assistant that writes concise summaries.
@@ -124,6 +122,11 @@ Resources refer to each other by path. Wherever the API expects another resource
     model: claude-opus-5-5
     tools:
       - type: agent_toolset_20260401
+        configs:
+          - name: web_search
+            enabled: false
+          - name: web_fetch
+            enabled: false
     skills:
       - ../skills/pr-summary
     ---
@@ -223,6 +226,11 @@ name: Code reviewer
 model: claude-opus-5-5
 tools:
   - type: agent_toolset_20260401
+    configs:
+      - name: web_search
+        enabled: false
+      - name: web_fetch
+        enabled: false
   - ./tools/*.json # the tools in these files are inserted here
 skills:
   - ../skills/* # every skill under skills/

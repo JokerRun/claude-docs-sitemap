@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 90712a38b1c8f659ed99d59d08f42567249c437065dc4f7f1dc6205521ef0a27
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 0d8f1b2a0434232575282a58f1ef2d5e01a9041e724ca6d3298e9b69b9fa1c9a
 ---
 
 ---
@@ -17,6 +17,8 @@ description: Integrasi Amazon Bedrock lama untuk model Claude, menggunakan API I
 
 <Warning>
   Versi terbaru SDK mengirimkan versi API `2026-10-21` secara default, termasuk melalui Amazon Bedrock. Model dengan versi ARN dalam tabel model di halaman ini tidak mendukung `2026-10-21` di Bedrock, dan permintaan ke model tersebut yang mengirimkannya dapat mengembalikan error 400. Jika Anda memanggil model tersebut melalui SDK, tetap gunakan versi SDK yang Anda gunakan saat ini, dan kunci (pin) versi tersebut di tempat Anda menginstalnya agar instalasi berikutnya tidak meng-upgrade-nya. Contoh Boto3 menetapkan `anthropic_version` dalam isi permintaannya dan tidak terpengaruh.
+
+  Untuk menginstal SDK untuk model-model ini, gunakan perintah di [Instal SDK untuk mengakses Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#install-an-sdk-for-accessing-bedrock), yang menginstal versi mayor terakhir sebelum versi API `2026-10-21`.
 </Warning>
 
 Memanggil Claude melalui Bedrock sedikit berbeda dari cara Anda memanggil Claude di Claude API secara langsung. Panduan ini memandu Anda menyelesaikan panggilan API ke Claude di Bedrock menggunakan salah satu [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) Anthropic.
@@ -40,45 +42,53 @@ aws sts get-caller-identity
 <Tabs>
   <Tab title="Python">
     ```bash
-    pip install -U "anthropic[bedrock]"
+    pip install -U "anthropic[bedrock]<2"
     ```
   </Tab>
 
   <Tab title="TypeScript">
     ```bash
-    npm install @anthropic-ai/bedrock-sdk
+    npm install @anthropic-ai/bedrock-sdk@0
     ```
+
+    Contoh di [Daftar model yang tersedia](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#list-available-models) juga memerlukan klien Bedrock dari AWS. Instal dengan `npm install @aws-sdk/client-bedrock`.
   </Tab>
 
   <Tab title="C#">
     ```bash
-    dotnet add package Anthropic.Bedrock
+    dotnet add package Anthropic.Bedrock --version 0.14.1
     ```
+
+    Jika proyek Anda juga mereferensikan paket `Anthropic`, pertahankan di bawah versi 13.
+
+    Contoh di [Daftar model yang tersedia](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#list-available-models) juga memerlukan klien Bedrock dari AWS. Instal dengan `dotnet add package AWSSDK.Bedrock`.
   </Tab>
 
   <Tab title="Go">
     ```bash
     go get github.com/anthropics/anthropic-sdk-go/bedrock
     ```
+
+    Contoh di [Daftar model yang tersedia](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#list-available-models) juga memerlukan klien Bedrock dari AWS. Instal dengan `go get github.com/aws/aws-sdk-go-v2/service/bedrock`.
   </Tab>
 
   <Tab title="Java">
     <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:3.4.0")
-      implementation("com.anthropic:anthropic-java-bedrock:3.4.0")
+      implementation("com.anthropic:anthropic-java:2.+")
+      implementation("com.anthropic:anthropic-java-bedrock:2.+")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java</artifactId>
-          <version>3.4.0</version>
+          <version>[2.0.0,3.0.0)</version>
       </dependency>
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-bedrock</artifactId>
-          <version>3.4.0</version>
+          <version>[2.0.0,3.0.0)</version>
       </dependency>
       ```
 
@@ -110,20 +120,24 @@ aws sts get-caller-identity
       }
       ```
     </CodeGroup>
+
+    Contoh di [Daftar model yang tersedia](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#list-available-models) juga memerlukan klien Bedrock dari AWS. Tambahkan `software.amazon.awssdk:bedrock` ke build Anda.
   </Tab>
 
   <Tab title="PHP">
     ```bash
-    composer require anthropic-ai/sdk aws/aws-sdk-php
+    composer require "anthropic-ai/sdk:<1.0" aws/aws-sdk-php
     ```
   </Tab>
 
   <Tab title="Ruby">
     ```bash
     # Gemfile
-    gem "anthropic"
+    gem "anthropic", "~> 1.0"
     gem "aws-sdk-bedrockruntime"
     ```
+
+    Contoh di [Daftar model yang tersedia](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#list-available-models) juga memerlukan klien Bedrock dari AWS. Tambahkan `gem "aws-sdk-bedrock"` ke `Gemfile` Anda.
   </Tab>
 
   <Tab title="Boto3 (Python)">
@@ -147,7 +161,7 @@ Buka [AWS Console > Bedrock > Model Access](https://console.aws.amazon.com/bedro
 
 Istilah siklus hidup (Deprecated, Retired) didefinisikan di [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations). Tanggal siklus hidup di platform yang dioperasikan mitra ditetapkan oleh mitra dan dapat berbeda dari jadwal Claude API. Untuk tanggal penghentian terkini dari model apa pun di Amazon Bedrock, lihat [halaman siklus hidup model Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html).
 
-AWS menawarkan model Claude yang lebih baru melalui “cross-region inference” (inferensi lintas region) alih-alih throughput on-demand; lihat [dokumentasinya](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html). Untuk model-model ini, permintaan yang meneruskan ID model dasar akan gagal dengan error HTTP 400 seperti berikut:
+AWS menawarkan model Claude yang lebih baru melalui [“cross-region inference” (inferensi lintas region)](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html) alih-alih throughput on-demand. Untuk model-model ini, permintaan yang meneruskan ID model dasar akan gagal dengan error HTTP 400 seperti berikut:
 
 ```text wrap
 Invocation of model ID anthropic.claude-sonnet-4-5-20250929-v1:0 with on-demand throughput isn't supported. Retry your request with the ID or ARN of an inference profile that contains this model.
@@ -657,6 +671,7 @@ Untuk memberikan token secara terprogram:
     import com.anthropic.client.AnthropicClient;
     import com.anthropic.client.okhttp.AnthropicOkHttpClient;
     import com.anthropic.models.messages.MessageCreateParams;
+    import software.amazon.awssdk.regions.Region;
 
     // Opsi 1: Atur variabel lingkungan AWS_BEARER_TOKEN_BEDROCK dan gunakan fromEnv()
     AnthropicClient client = AnthropicOkHttpClient.builder()
@@ -667,6 +682,7 @@ Untuk memberikan token secara terprogram:
     client = AnthropicOkHttpClient.builder()
         .backend(BedrockBackend.builder()
             .apiKey("your-bearer-token")
+            .region(Region.US_WEST_2)
             .build())
         .build();
 
@@ -1022,8 +1038,10 @@ Untuk menggunakan endpoint regional, ganti prefiks `global.` dengan prefiks regi
     using Anthropic.Bedrock;
     using Anthropic.Models.Messages;
 
+    // Kredensial default menentukan region dari env var AWS_REGION
     AnthropicBedrockClient client = new(
-        new AnthropicBedrockPrivateKeyCredentials { Region = "us-west-2" }
+        await AnthropicBedrockCredentialsHelper.FromEnv()
+        ?? throw new InvalidOperationException("AWS credentials not configured.")
     );
 
     // Menggunakan endpoint regional AS (CRIS)
@@ -1119,10 +1137,6 @@ Untuk menggunakan endpoint regional, ganti prefiks `global.` dengan prefiks regi
     ```
   </Tab>
 </Tabs>
-
-<Note>
-  **Claude Mythos Preview** adalah model pratinjau riset yang tersedia bagi pelanggan yang diundang di Amazon Bedrock. Untuk informasi lebih lanjut, lihat [Project Glasswing](https://anthropic.com/glasswing).
-</Note>
 
 ## Sumber daya tambahan
 

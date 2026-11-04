@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 17bd6024e53a3ff4fbe374591195c69783ada7e7fd6c711d97653c79e09efd9f
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: b12a9b2dc25c7d610d5899fa968e9beeb49acea8d7ebec047f1617076a6190bf
 ---
 
 ---
@@ -102,7 +102,7 @@ On Claude Fable 5.1 you can change the [effort](https://platform.claude.com/docs
   # Effort-only system message: the new level takes effect from the next user turn.
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: mid-conversation-output-config-2026-07-01" \
     -H "content-type: application/json" \
     -d '{

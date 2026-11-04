@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: c7174dc74dbcb155365a37d995a22d004c6618c28c8a948ea98cad5c656a4100
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: fb1ad4a72da8e53178816660d42e7740bc6c3d351d2523341f4bb672bcbb2996
 ---
 
 ---
@@ -117,7 +117,7 @@ Setting a role in the system prompt focuses Claude’s behavior and tone for you
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -577,7 +577,7 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-sonnet-4-5-20250929",
       "max_tokens": 16000,
@@ -591,7 +591,7 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 16000,

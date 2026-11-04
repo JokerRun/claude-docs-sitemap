@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 9bff5930a98271a5d1452a5076d9105f4d46315c6b8d0ec7a01ab9192c53d64e
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 5c32c530541417adfce7d57b73f0af478623ba99d07b0c87097df84120b4afe7
 ---
 
 ---
@@ -59,7 +59,7 @@ Panggilan pemantauan di halaman ini dijalankan dari alat pemantauan atau operasi
   curl -sS "https://api.anthropic.com/v1/environments/$ANTHROPIC_ENVIRONMENT_ID/work/stats" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
-    -H "anthropic-version: 2023-06-01"
+    -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
@@ -192,7 +192,7 @@ Karena panggilan ini dijalankan dari alat operasional Anda, bukan dari host work
   curl -sS "https://api.anthropic.com/v1/environments/$ANTHROPIC_ENVIRONMENT_ID/work/$ANTHROPIC_WORK_ID/stop" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{}'
   ```

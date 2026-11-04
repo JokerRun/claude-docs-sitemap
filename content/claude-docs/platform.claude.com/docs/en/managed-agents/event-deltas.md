@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/event-deltas
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: c0f4fed3850c92b0511296d766561366f7b98b5567367d5a090e27d430d9073f
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 12d8522e6396f28d79dd195aa06103e3e34e709d1a8a2927f02128242670f117
 ---
 
 ---
@@ -603,7 +603,7 @@ A thread stream’s path ends in `/threads/{thread_id}/stream`. `/events/stream`
   curl --fail-with-body -sS -N \
     "https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/stream?beta=true&event_deltas%5B%5D=agent.message" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "accept: text/event-stream"
   ```

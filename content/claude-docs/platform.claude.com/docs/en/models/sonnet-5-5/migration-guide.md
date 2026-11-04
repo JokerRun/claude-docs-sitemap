@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: ed9bce025122c829104274436308dd007fcc12807b6a1fe432f0016865c8b52b
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 773ef3f8c64b81df801236694acf9977ee036cf4e3935a0991098061dfa0dd1a
 ---
 
 ---
@@ -33,7 +33,7 @@ This request works on Claude Sonnet 5.5 as written. It sets an effort level, and
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-sonnet-5-5",
@@ -256,7 +256,7 @@ Before (Claude Sonnet 5):
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-sonnet-5",
@@ -364,7 +364,7 @@ After (Claude Sonnet 5.5):
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-sonnet-5-5",
@@ -534,7 +534,7 @@ Before (Claude Sonnet 5):
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-sonnet-5",
@@ -666,7 +666,7 @@ After (Claude Sonnet 5.5):
   # strict tool use: every call matches the tool's input_schema
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-sonnet-5-5",
@@ -912,7 +912,7 @@ Before (Claude Sonnet 4.6):
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-sonnet-4-6",
@@ -1044,7 +1044,7 @@ After (Claude Sonnet 5.5):
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-sonnet-5-5",
@@ -1229,12 +1229,12 @@ Replace each prefill according to what it was for:
 
 ### Migrating from Claude Sonnet 4 or earlier
 
-Claude Sonnet 4 is retired on the Claude API and still available on Amazon Bedrock and Claude Models on Google Cloud (Google managed). Claude 3.7 Sonnet is retired. From either model, first apply every preceding section, then these changes:
+Claude Sonnet 4 is retired on the Claude API but available on Claude Models on Google Cloud (Google managed) and Amazon Bedrock. Claude 3.7 Sonnet is retired. From either model, first apply every preceding section, then these changes:
 
 * **Tool versions:** Use `text_editor_20250728`, with the tool name `str_replace_based_edit_tool` and no `undo_edit` command. Use `code_execution_20260521`. See the [text editor tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool) and the [code execution tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#upgrade-to-latest-tool-version).
 * **Stop reasons:** Handle `refusal`. Claude 4.5 and later models also stop with `model_context_window_exceeded` at the context window limit. See [Handling stop reasons](https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons).
 * **Trailing newlines:** Claude 4.5 and later models keep them in tool call string parameters.
-* **Legacy beta headers:** Remove `token-efficient-tools-2025-02-19` and `output-128k-2025-02-19`.
+* **Beta headers:** Remove `token-efficient-tools-2025-02-19` and `output-128k-2025-02-19`.
 * **Prompts:** Review them against [prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices).
 
 ## Migrating to Claude Sonnet 5.5 from Claude Haiku 4.5

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 7373496ff0c655f3a1987bf36b224a07ebe9ae8ef54804dab9dacaf69b2b8402
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: bc7d2eeea6572021201b1e334c7ecf104dc4a5554675e77fd32e9c528c41f0d2
 ---
 
 ---
@@ -45,7 +45,7 @@ Jika organisasi Anda memiliki komitmen [Priority Tier](https://platform.claude.c
 ### Claude Haiku 3.5 atau sebelumnya
 
 1. Ganti ID model Claude Haiku 3.5 atau Claude Haiku 3 dengan ID Claude Haiku 5.5 untuk platform Anda. Lihat [Migrasi ke Claude Haiku 5.5 dari Claude Haiku 3.5 dan model Haiku sebelumnya](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#migrating-from-haiku-35).
-2. Jika Anda menggunakan alat lama `code_execution_20250522`, pindah ke `code_execution_20250825` atau yang lebih baru.
+2. Jika Anda menggunakan alat `code_execution_20250522`, pindah ke `code_execution_20250825` atau yang lebih baru.
 3. Jika Anda menggunakan alat text editor, pindah ke `text_editor_20250728`.
 4. Tangani stop reason `refusal` dan `model_context_window_exceeded`.
 5. Jika kode Anda mencocokkan parameter string panggilan alat secara persis, perhitungkan adanya baris baru di akhir (trailing newline).
@@ -153,10 +153,10 @@ Blok pemikiran Claude Haiku 5.5 hanya tetap valid selama semua yang dikirim sebe
 
 Claude Haiku 3.5 telah dipensiunkan di Claude API dan Amazon Bedrock, dan Claude Haiku 3 telah dipensiunkan di Claude API dan Claude Models on Google Cloud (Google managed). Permintaan ke model yang telah dipensiunkan akan gagal. Claude Models on Google Cloud (Google managed) mencantumkan Claude Haiku 3.5 sebagai deprecated dan hanya tersedia untuk pelanggan yang sudah ada. Lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations).
 
-Dari kedua model tersebut, terapkan terlebih dahulu setiap bagian sebelumnya, lalu perubahan berikut:
+Dari model mana pun di antara keduanya, terapkan terlebih dahulu setiap bagian sebelumnya, lalu perubahan berikut:
 
 * **ID model:** Ganti `claude-3-5-haiku-20241022`, aliasnya `claude-3-5-haiku-latest`, atau `claude-3-haiku-20240307` dengan `claude-haiku-5-5`. Di Claude Models on Google Cloud (Google managed), ganti `claude-3-5-haiku@20241022` dengan `claude-haiku-5-5`. Di Amazon Bedrock, gunakan ID Claude Haiku 5.5 dari [Gunakan ID model Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#use-the-claude-haiku-5-5-model-id).
-* **Eksekusi kode:** Claude Haiku 5.5 menerima `code_execution_20250825` dan versi yang lebih baru. Jika Anda menggunakan `code_execution_20250522` lama yang hanya mendukung Python, pindah ke salah satunya. Lihat [Upgrade ke versi alat terbaru](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upgrade-to-latest-tool-version).
+* **Eksekusi kode:** Claude Haiku 5.5 menerima `code_execution_20250825` dan versi yang lebih baru. Jika Anda menggunakan `code_execution_20250522` yang hanya mendukung Python, pindah ke salah satunya. Lihat [Upgrade ke versi alat terbaru](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upgrade-to-latest-tool-version).
 * **Text editor:** Jika Anda menggunakan alat text editor, pindah ke `text_editor_20250728` (nama alat `str_replace_based_edit_tool`), yang tidak memiliki perintah `undo_edit`. Lihat [Alat text editor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool).
 * **Stop reason:** Tangani `refusal` dan `model_context_window_exceeded`. Lihat [Menangani stop reason](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons).
 * **Baris baru di akhir:** Claude 4.5 dan model yang lebih baru mempertahankan baris baru di akhir (trailing newline) dalam parameter string panggilan alat. Jika kode Anda mencocokkan string tersebut secara persis, perhitungkan keberadaannya.

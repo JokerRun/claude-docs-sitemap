@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 90f1a7970e5c349c1ee089dfdd76a029ee09e72d588e7627b0dcc2cab07d0992
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: ee47e463f6bcb2875b57c3ccae94e1bf1750c3e788c63e697cfeaded2d388d35
 ---
 
 ---
@@ -39,7 +39,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
     <CodeGroup>
       ```bash cURL
       curl https://api.anthropic.com/v1/messages \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "content-type: application/json" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -d '{

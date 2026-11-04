@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: a8b6a8eede2c11284eeef4d4d1f422f55dc623ae88408bb88445827edeb6e20d
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 3519b057ce16894c2f12f05c04821b807654d09d47e25abaafdce3e900841ee0
 ---
 
 ---
@@ -751,14 +751,14 @@ Setiap field yang tidak ada pada struct respons disimpan dan dapat diakses melal
 
 ## Semantic versioning
 
-Setiap versi mayor SDK ini mengirimkan satu versi API dalam header `anthropic-version` secara default, dan versi mayor baru hadir bersama setiap versi API baru. Versi mayor pertama yang mengirimkan `2026-10-21` adalah 2.0.0, yang path modulnya adalah `github.com/anthropics/anthropic-sdk-go/v2`; lihat [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade).
-
 Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang mungkin dirilis sebagai versi minor:
 
 1. Perubahan pada internal library yang secara teknis bersifat publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
 2. Perubahan yang tidak diperkirakan berdampak pada sebagian besar pengguna dalam praktiknya.
 
 Kompatibilitas ke belakang ditangani dengan serius untuk memastikan Anda dapat mengandalkan pengalaman upgrade yang lancar.
+
+Setiap permintaan ke Claude API menggunakan versi API. Dengan SDK ini, permintaan Anda menggunakan versi API yang berlaku saat versi mayor SDK Anda dirilis, sehingga Anda beralih ke versi API baru dengan melakukan upgrade ke versi mayor baru. Versi 2.0.0 adalah yang pertama menggunakan `2026-10-21`. Path modulnya adalah `github.com/anthropics/anthropic-sdk-go/v2`. Lihat [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade) untuk cara melakukan upgrade.
 
 Masukan Anda sangat kami hargai; buka [issue](https://github.com/anthropics/anthropic-sdk-go/issues) untuk pertanyaan, bug, atau saran.
 

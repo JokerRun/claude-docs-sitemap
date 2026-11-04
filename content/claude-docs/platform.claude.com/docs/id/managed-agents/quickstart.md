@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 7ee6da1d0661b2125b746b3a09084162638fed1176912854dab7d1c304c35c08
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 948658777681ce47d9f018208e25837f178147af7c588e7cbe869ac9fad92218
 ---
 
 ---
@@ -174,7 +174,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
         ```bash cURL
         curl -sS --fail-with-body https://api.anthropic.com/v1/agents \
           -H "x-api-key: $ANTHROPIC_API_KEY" \
-          -H "anthropic-version: 2023-06-01" \
+          -H "anthropic-version: 2026-10-21" \
           -H "anthropic-beta: managed-agents-2026-04-01" \
           -H "content-type: application/json" \
           -d '{
@@ -182,7 +182,13 @@ export ANTHROPIC_API_KEY="your-api-key-here"
             "model": "claude-opus-5-5",
             "system": "You are a helpful coding assistant. Write clean, well-documented code.",
             "tools": [
-              {"type": "agent_toolset_20260401"}
+              {
+                "type": "agent_toolset_20260401",
+                "configs": [
+                  {"name": "web_search", "enabled": false},
+                  {"name": "web_fetch", "enabled": false}
+                ]
+              }
             ]
           }'
         ```
@@ -202,6 +208,11 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           model: claude-opus-5-5
           tools:
             - type: agent_toolset_20260401
+              configs:
+                - name: web_search
+                  enabled: false
+                - name: web_fetch
+                  enabled: false
           ---
 
           You are a helpful coding assistant. Write clean, well-documented code.
@@ -222,7 +233,13 @@ export ANTHROPIC_API_KEY="your-api-key-here"
             model="claude-opus-5-5",
             system="You are a helpful coding assistant. Write clean, well-documented code.",
             tools=[
-                {"type": "agent_toolset_20260401"},
+                {
+                    "type": "agent_toolset_20260401",
+                    "configs": [
+                        {"name": "web_search", "enabled": False},
+                        {"name": "web_fetch", "enabled": False},
+                    ],
+                },
             ],
         )
 
@@ -242,7 +259,15 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           name: "Coding Assistant",
           model: "claude-opus-5-5",
           system: "You are a helpful coding assistant. Write clean, well-documented code.",
-          tools: [{ type: "agent_toolset_20260401" }]
+          tools: [
+            {
+              type: "agent_toolset_20260401",
+              configs: [
+                { name: "web_search", enabled: false },
+                { name: "web_fetch", enabled: false }
+              ]
+            }
+          ]
         });
 
         console.log(`Agent ID: ${agent.id}, version: ${agent.version}`);
@@ -266,7 +291,17 @@ export ANTHROPIC_API_KEY="your-api-key-here"
             Name = "Coding Assistant",
             Model = BetaManagedAgentsModel.ClaudeOpus5_5,
             System = "You are a helpful coding assistant. Write clean, well-documented code.",
-            Tools = [new BetaManagedAgentsAgentToolset20260401Params()],
+            Tools =
+            [
+                new BetaManagedAgentsAgentToolset20260401Params
+                {
+                    Configs =
+                    [
+                        new BetaManagedAgentsWebSearchToolConfigParams { Enabled = false },
+                        new BetaManagedAgentsWebFetchToolConfigParams { Enabled = false },
+                    ],
+                },
+            ],
         });
 
         Console.WriteLine($"Agent ID: {agent.ID}, version: {agent.Version}");
@@ -297,7 +332,16 @@ export ANTHROPIC_API_KEY="your-api-key-here"
         		},
         		System: anthropic.String("You are a helpful coding assistant. Write clean, well-documented code."),
         		Tools: []anthropic.BetaAgentNewParamsToolUnion{{
-        			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{},
+        			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
+        				Configs: []anthropic.BetaManagedAgentsAgentToolConfigParamsUnion{
+        					{OfWebSearch: &anthropic.BetaManagedAgentsWebSearchToolConfigParams{
+        						Enabled: anthropic.Bool(false),
+        					}},
+        					{OfWebFetch: &anthropic.BetaManagedAgentsWebFetchToolConfigParams{
+        						Enabled: anthropic.Bool(false),
+        					}},
+        				},
+        			},
         		}},
         	})
         	if err != nil {
@@ -316,6 +360,8 @@ export ANTHROPIC_API_KEY="your-api-key-here"
         import com.anthropic.models.beta.agents.AgentCreateParams;
         import com.anthropic.models.beta.agents.BetaManagedAgentsAgentToolset20260401Params;
         import com.anthropic.models.beta.agents.BetaManagedAgentsModel;
+        import com.anthropic.models.beta.agents.BetaManagedAgentsWebFetchToolConfigParams;
+        import com.anthropic.models.beta.agents.BetaManagedAgentsWebSearchToolConfigParams;
         import com.anthropic.models.beta.environments.BetaCloudConfigParams;
         import com.anthropic.models.beta.environments.BetaLimitedNetworkParams;
         import com.anthropic.models.beta.environments.EnvironmentCreateParams;
@@ -331,7 +377,14 @@ export ANTHROPIC_API_KEY="your-api-key-here"
                 .name("Coding Assistant")
                 .model(BetaManagedAgentsModel.CLAUDE_OPUS_5_5)
                 .system("You are a helpful coding assistant. Write clean, well-documented code.")
-                .addTool(BetaManagedAgentsAgentToolset20260401Params.builder().build())
+                .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
+                    .addConfig(BetaManagedAgentsWebSearchToolConfigParams.builder()
+                        .enabled(false)
+                        .build())
+                    .addConfig(BetaManagedAgentsWebFetchToolConfigParams.builder()
+                        .enabled(false)
+                        .build())
+                    .build())
                 .build());
 
             IO.println("Agent ID: " + agent.id() + ", version: " + agent.version());
@@ -342,7 +395,10 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
       <CodeGroupItem>
         ```php PHP
+        use Anthropic\Beta\Agents\BetaManagedAgentsAgentToolset20260401Params;
         use Anthropic\Beta\Agents\BetaManagedAgentsModel;
+        use Anthropic\Beta\Agents\BetaManagedAgentsWebFetchToolConfigParams;
+        use Anthropic\Beta\Agents\BetaManagedAgentsWebSearchToolConfigParams;
         use Anthropic\Client;
 
         $client = new Client();
@@ -352,7 +408,12 @@ export ANTHROPIC_API_KEY="your-api-key-here"
             model: BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
             system: 'You are a helpful coding assistant. Write clean, well-documented code.',
             tools: [
-                ['type' => 'agent_toolset_20260401'],
+                BetaManagedAgentsAgentToolset20260401Params::with(
+                    configs: [
+                        BetaManagedAgentsWebSearchToolConfigParams::with(enabled: false),
+                        BetaManagedAgentsWebFetchToolConfigParams::with(enabled: false),
+                    ],
+                ),
             ],
         );
 
@@ -372,7 +433,15 @@ export ANTHROPIC_API_KEY="your-api-key-here"
           name: "Coding Assistant",
           model: Anthropic::Beta::BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
           system_: "You are a helpful coding assistant. Write clean, well-documented code.",
-          tools: [{type: "agent_toolset_20260401"}]
+          tools: [
+            {
+              type: "agent_toolset_20260401",
+              configs: [
+                {name: "web_search", enabled: false},
+                {name: "web_fetch", enabled: false}
+              ]
+            }
+          ]
         )
 
         puts "Agent ID: #{agent.id}, version: #{agent.version}"
@@ -382,18 +451,18 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       </CodeGroupItem>
     </CodeGroup>
 
-    Tipe alat `agent_toolset_20260401` mengaktifkan set lengkap alat agen bawaan (bash, operasi file, pencarian web, dan lainnya). Lihat [Alat](https://platform.claude.com/docs/id/managed-agents/tools) untuk daftar lengkap dan opsi konfigurasi per alat.
+    Tipe alat `agent_toolset_20260401` mengaktifkan alat agen bawaan (bash, operasi file, pencarian web, dan lainnya). Contoh ini menonaktifkan pencarian web dan pengambilan web karena tugas dalam panduan ini, yaitu menulis skrip Python singkat, tidak menggunakan web. Berikan agen [hanya alat yang dibutuhkannya](https://platform.claude.com/docs/id/managed-agents/secure-deployment#give-the-agent-the-smallest-tool-set). Lihat [Alat](https://platform.claude.com/docs/id/managed-agents/tools) untuk daftar lengkap dan opsi konfigurasi per alat.
   </Step>
 
   <Step title="Buat lingkungan">
-    Lingkungan menentukan sandbox tempat agen Anda berjalan. Lingkungan ini menggunakan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited` dengan manajer paket diizinkan, sehingga kode yang berjalan di sandbox dapat menjangkau [registri paket dan host kode](https://platform.claude.com/docs/id/managed-agents/environments#package-manager-hosts) publik. Pencarian web dan pengambilan web berjalan di luar sandbox, dan quickstart ini tidak memerlukannya. Dengan jaringan `limited`, [daftar `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`)](https://platform.claude.com/docs/id/managed-agents/environments#networking) juga berlaku untuk keduanya. Keduanya tidak mengembalikan halaman atau hasil pencarian di lingkungan ini, karena lingkungan ini tidak mencantumkan host apa pun. Untuk agen Anda sendiri, cantumkan host yang dibutuhkannya di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`).
+    Lingkungan menentukan sandbox tempat agen Anda berjalan. Lingkungan ini menggunakan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited` dengan manajer paket diizinkan, sehingga kode yang berjalan di sandbox dapat menjangkau [registri paket dan host kode](https://platform.claude.com/docs/id/managed-agents/environments#package-manager-hosts) publik. Dengan jaringan `limited`, [daftar `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`)](https://platform.claude.com/docs/id/managed-agents/environments#networking) juga berlaku untuk pencarian web dan pengambilan web, meskipun keduanya berjalan di luar sandbox. Tanpa host yang tercantum, seperti di lingkungan ini, keduanya tidak mengembalikan halaman atau hasil pencarian. Jika agen Anda sendiri menggunakan alat-alat ini, tambahkan host yang dibutuhkannya ke daftar tersebut.
 
     <CodeGroup defaultLanguage="CLI">
       <CodeGroupItem>
         ```bash cURL
         curl -sS --fail-with-body https://api.anthropic.com/v1/environments \
           -H "x-api-key: $ANTHROPIC_API_KEY" \
-          -H "anthropic-version: 2023-06-01" \
+          -H "anthropic-version: 2026-10-21" \
           -H "anthropic-beta: managed-agents-2026-04-01" \
           -H "content-type: application/json" \
           -d '{
@@ -568,7 +637,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
       ```bash cURL
       curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
         -d '{

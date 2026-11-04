@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/claude-code/routines-fire
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 58c3973855dc629a5b28ca23506eaab46c392e68e34ca7d10cd28254a7ba8e6c
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 8e2ab86c075948c818b1927d585e94f665902ecef2ef3749b10f8795ce2cca17
 ---
 
 ---
@@ -82,7 +82,7 @@ The request returns once the session is created. It does not stream session outp
 | `anthropic-version` | Yes                  | The [API version](https://platform.claude.com/docs/en/api/versioning), such as `2026-10-21`. The endpoint accepts every version from `2023-06-01` on and behaves the same in each. |
 | `Content-Type`      | When body is present | `application/json`.                                                                                                                                                                |
 
-Older integrations that send an `anthropic-beta: experimental-cc-routine-2026-04-01` header are unaffected: the endpoint accepts requests with and without it.
+The endpoint accepts requests with and without an `anthropic-beta: experimental-cc-routine-2026-04-01` header.
 
 ### Path parameters
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: cba13dfa2b9852ea8d9a07c562592e149b0bb75e22551033b03c84528bca5e65
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 0826ae2afb34141ee8abda47c9044ec7ecd5f5c6511c1d2516066b20eb6b8d18
 ---
 
 ---
@@ -41,7 +41,7 @@ Three adjustments help:
 
 * Set `max_tokens` with room for thinking and the reply you expect. Thinking counts toward `max_tokens` even when thinking content isn’t returned to you. A limit sized for a request without thinking can cut the reply off. For agentic coding, set `max_tokens` to 128,000, the model’s maximum, and [stream](https://platform.claude.com/docs/en/build-with-claude/streaming) the response.
 * Reserve `xhigh` and `max` for work where you’ve measured a quality gain, because thinking and replies get much longer there. At those levels, `between_tools` isn’t accepted, so up-front thinking can’t be turned off.
-* To get less thinking, lower the effort level. From `medium` up, the model thinks briefly before almost every reply, even a greeting, which adds to the time before the first visible token. Asking it in the system prompt to think less doesn’t reliably reduce its thinking. At `low`, it skips thinking on most simple requests.
+* To get less thinking, lower the effort level. Asking the model in the system prompt to think less doesn’t reliably reduce its thinking.
 
 Changing the top-level `effort` value between requests invalidates the prompt cache. To change the level partway through a conversation, use a [per-message effort change](https://platform.claude.com/docs/en/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) instead, which keeps the cache. A change holds for every later turn until another one replaces it. For example, in an interactive session at `low`, add a change to `high` before the user’s hard problem, and a change back to `low` after Claude answers it. Per-message effort changes need adaptive thinking. With `between_tools`, they return a 400 error, as [Running without up-front thinking](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#running-without-up-front-thinking) explains.
 

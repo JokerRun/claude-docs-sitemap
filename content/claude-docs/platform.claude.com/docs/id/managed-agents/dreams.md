@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 8619c31a6ef649ef84d3cea6f332c46f65bc8b8e2e258d0fb174bbc486c7442c
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 3c58dc9b47927fcbd90ee8e36295a2fbbdf8c7f2b690939bcc240691d34941c9
 ---
 
 ---
@@ -56,7 +56,7 @@ Dream menghasilkan **memory store output** lain, terpisah dari input. ID store o
   ```bash cURL
   curl -s https://api.anthropic.com/v1/dreams \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01,dreaming-2026-04-21" \
     -H "content-type: application/json" \
     -d '{
@@ -221,7 +221,7 @@ Dreams berjalan secara asinkron dan biasanya memakan waktu beberapa menit hingga
   ```bash cURL
   curl -s "https://api.anthropic.com/v1/dreams/$dream_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01,dreaming-2026-04-21"
   ```
 
@@ -316,7 +316,7 @@ Ketika `status` (csharp, go: `Status`) mencapai `completed`, entri `memory_store
   # $output_store_id adalah memory_store_id dari output memory_store milik dream yang telah selesai
   curl -s https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{
@@ -471,7 +471,7 @@ Pembatalan memindahkan dream yang `pending` atau `running` ke `canceled` dengan 
   ```bash cURL
   curl -s -X POST "https://api.anthropic.com/v1/dreams/$dream_id/cancel" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01,dreaming-2026-04-21"
   ```
 
@@ -519,7 +519,7 @@ Pengarsipan mengatur `archived_at` (java, php: `archivedAt`; csharp, go: `Archiv
   ```bash cURL
   curl -s -X POST "https://api.anthropic.com/v1/dreams/$dream_id/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01,dreaming-2026-04-21"
   ```
 
@@ -569,7 +569,7 @@ Mengembalikan semua dream yang tidak diarsipkan di workspace, dari yang terbaru.
   ```bash cURL
   curl -s "https://api.anthropic.com/v1/dreams?limit=20" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01,dreaming-2026-04-21"
   ```
 

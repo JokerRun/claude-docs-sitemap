@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/aws
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: d69e247ba593312cbf0650008c399e17fc5f35c38c03e0969730727e45fc410a
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: bcdf9d5b2f670f873db672c77d3d53bc67716c6442d8b19bed6d71347a631140
 ---
 
 ---
@@ -133,7 +133,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
 
   curl https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -296,7 +296,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
   getStsToken := option.IdentityTokenFunc(func(ctx context.Context) (string, error) {
   	out, err := stsClient.GetWebIdentityToken(ctx, &sts.GetWebIdentityTokenInput{
   		Audience:         []string{"https://api.anthropic.com"},
-  		SigningAlgorithm: "RS256",
+  		SigningAlgorithm: aws.String("RS256"),
   		DurationSeconds:  aws.Int32(900),
   	})
   	if err != nil {
@@ -437,7 +437,7 @@ Panggil `GetWebIdentityToken` dengan `https://api.anthropic.com` sebagai audienc
 
   sts = Aws::STS::Client.new(region: "us-east-1")
   client = Anthropic::Client.new(
-    credentials: Anthropic::WorkloadIdentityCredentials.new(
+    credentials: Anthropic::Credentials::WorkloadIdentity.new(
       identity_token_provider: -> {
         sts.get_web_identity_token(
           audience: ["https://api.anthropic.com"],
@@ -641,7 +641,7 @@ Di dalam pod, token yang diproyeksikan berada di `/var/run/secrets/anthropic.com
 
   curl https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

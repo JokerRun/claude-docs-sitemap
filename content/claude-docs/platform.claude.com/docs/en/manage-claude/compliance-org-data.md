@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-org-data
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 760d61596d6d8209ad5dffee6c8dfc242ad333faeb7b1647f2c586912785fa08
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 32bfe52c0e507fb35e950861ad7fdfc8264415ac9524ecefa7a6a2370105dd21
 ---
 
 ---
@@ -33,7 +33,7 @@ The following call lists every organization under your parent. The response is a
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/organizations" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01"
+  -H "anthropic-version: 2026-10-21"
 ```
 
 ```json Response
@@ -83,7 +83,7 @@ Results are sorted by organization join date ascending. Unlike the Activity Feed
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/organizations/91012d09-e48b-438e-a489-1bebfd8fa6f9/users" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   --data-urlencode "limit=500"
 ```
 
@@ -119,7 +119,7 @@ By default, the response lists only members who have set at least one of the two
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/organizations/91012d09-e48b-438e-a489-1bebfd8fa6f9/user_preferences" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01"
+  -H "anthropic-version: 2026-10-21"
 ```
 
 ```json Response
@@ -149,7 +149,7 @@ Both role endpoints require `read:compliance_org_data`. The list endpoint accept
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/organizations/91012d09-e48b-438e-a489-1bebfd8fa6f9/roles" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01"
+  -H "anthropic-version: 2026-10-21"
 ```
 
 ```json Response
@@ -184,7 +184,7 @@ List groups, then for each group list its members:
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/groups" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01"
+  -H "anthropic-version: 2026-10-21"
 ```
 
 ```json Response
@@ -211,7 +211,7 @@ For each group ID, list its members:
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/groups/rbac_group_01P9qRsTuVwXyZa2BcDeFgHjK/members" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01"
+  -H "anthropic-version: 2026-10-21"
 ```
 
 ```json Response
@@ -252,7 +252,7 @@ A 404 therefore does not reveal whether an organization exists. The settings end
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/organizations/91012d09-e48b-438e-a489-1bebfd8fa6f9/settings" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01"
+  -H "anthropic-version: 2026-10-21"
 ```
 
 The response is a list of typed setting rows, and which rows appear varies by organization: a setting the organization’s administrators cannot change, because it is controlled by Anthropic policy or not available to the organization, is omitted from the list. Treat a missing row as “not controllable by this organization’s administrators”, not as “off”. The following abridged example shows three of the rows a response can contain:

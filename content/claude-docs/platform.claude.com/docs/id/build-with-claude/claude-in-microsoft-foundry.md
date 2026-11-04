@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: d523b49856234d88281e3cbaaf4da283440453b8862b1575d7cf82d411050216
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: bbc069225dcead938dce4faa9beab29cf4c29c90e493db73fdf94bf293a5c04b
 ---
 
 ---
@@ -208,7 +208,7 @@ Klien Foundry pada SDK memerlukan kunci API dan salah satu dari nama resource at
   curl https://{resource}.services.ai.azure.com/anthropic/v1/messages \
     -H "content-type: application/json" \
     -H "api-key: YOUR_AZURE_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -411,7 +411,7 @@ Autentikasi Entra ID memungkinkan Anda mengelola akses dengan Azure RBAC, berint
   curl https://{resource}.services.ai.azure.com/anthropic/v1/messages \
     -H "content-type: application/json" \
     -H "Authorization: Bearer $(az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv)" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,

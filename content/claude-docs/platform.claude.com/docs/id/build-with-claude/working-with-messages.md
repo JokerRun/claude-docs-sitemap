@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 430517e2efe0ae2ac1d3ba4852a8a4120071e1ddae27be5ee76c10b184a76c33
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: b7eefec89b8cc1cf875366bbd54bce2d9f8bcf7a4c310072f9b1f16e0630dbe6
 ---
 
 ---
@@ -62,7 +62,7 @@ Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permi
   #!/bin/sh
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -201,7 +201,7 @@ Dengan [thread pesan](https://platform.claude.com/docs/id/build-with-claude/mess
   #!/bin/sh
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -378,7 +378,7 @@ Anda dapat melakukan prefill sebagian respons Claude di posisi terakhir daftar p
   #!/bin/sh
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-sonnet-4-5",
@@ -548,7 +548,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
 
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d @- <<EOF
   {
@@ -570,7 +570,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
   # Opsi 2: gambar yang dirujuk melalui URL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

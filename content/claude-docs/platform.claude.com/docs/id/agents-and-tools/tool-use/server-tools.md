@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: eaf771c7250237f2c98c79ab56b64cb02710328eadcaa84e2f9c70f2366333b1
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: bb6523e7c4cafbba16b3bf0e8f82209ae2053d6479ed1c3beeb9d950b3038932
 ---
 
 ---
@@ -40,7 +40,7 @@ Berikut cara menangani stop reason `pause_turn`:
   # giliran dengan mengirim ulang permintaan beserta konten asisten yang ditambahkan ke messages.
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -399,7 +399,8 @@ Saat menangani `pause_turn`:
 
 * **Lanjutkan percakapan:** Kirimkan kembali respons yang dijeda apa adanya dalam permintaan berikutnya agar Claude dapat melanjutkan gilirannya.
 * **Pertahankan status alat:** Sertakan alat yang sama dalam permintaan kelanjutan. Giliran yang dijeda dapat berakhir dengan blok `server_tool_use` yang alatnya belum berjalan, dan API mengembalikan error validasi jika alat tersebut tidak ada dalam kelanjutan.
-* **Ulangi sesuai kebutuhan:** Giliran yang dilanjutkan dapat dijeda lagi. Periksa `stop_reason` pada setiap respons dan lanjutkan hingga Anda mendapatkan stop reason yang berbeda, dengan membatasi jumlah kelanjutan seperti yang Anda lakukan pada loop retry apa pun.
+* **Pertahankan container:** Jika respons menyertakan `container`, seperti halnya dengan [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), kirimkan kembali ID-nya dalam permintaan kelanjutan. Tanpanya, permintaan akan berjalan di container baru, dan file dari bagian sebelumnya dalam giliran tersebut akan hilang.
+* **Ulangi sesuai kebutuhan:** Giliran yang dilanjutkan dapat dijeda lagi. Periksa `stop_reason` pada setiap respons dan lanjutkan hingga Anda mendapatkan stop reason yang berbeda, dengan membatasi jumlah kelanjutan seperti yang Anda lakukan pada loop retry apa pun. Simpan setiap respons yang dijeda di `messages`, secara berurutan. Kelanjutan hanya berisi konten baru, sehingga permintaan yang tidak menyertakan respons yang dijeda sebelumnya akan kehilangan pekerjaan tersebut dan dapat mengembalikan kesalahan 400.
 
 Untuk nilai `stop_reason` lainnya dan pola penanganan umum, lihat [Stop reason dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons).
 
@@ -514,7 +515,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
   # dan array tools yang sama (lihat tab SDK).
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

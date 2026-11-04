@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction-on-demand
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: d9c6c2e57c85585176a5cd0f61f66aec4aba31d30d18fac8483f9d923a9766eb
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 2109b26ac323fb643f98ffda0e9585ee998b00e32a79f91257b85396c58333a1
 ---
 
 ---
@@ -57,7 +57,7 @@ Send the conversation as it stands with `"compaction": {"type": "summarize"}`. T
   # max_tokens caps the whole call, including any thinking, so allow several thousand tokens.
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: compact-2026-09-04" \
     -H "content-type: application/json" \
     -d '{

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 5f99a31de43fef3db22df657f668e67d2b93a3c8b0e025dee600fe0cc809dbce
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 43327c152a5f05fb8c3e7a345567d484aa812507fbddfbf4d0d17a4d9e699199
 ---
 
 ---
@@ -31,6 +31,7 @@ featureMetadata:
     - claude-opus-4-6
     - claude-sonnet-4-6
     - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: stable
     Claude Platform on AWS: stable
@@ -82,7 +83,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
   curl https://api.anthropic.com/v1/messages/count_tokens \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "content-type: application/json" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "system": "You are a scientist",
@@ -233,7 +234,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
   curl https://api.anthropic.com/v1/messages/count_tokens \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "content-type: application/json" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "tools": [
@@ -515,7 +516,7 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
 
   curl https://api.anthropic.com/v1/messages/count_tokens \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d @- <<EOF
   {
@@ -830,7 +831,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
   curl https://api.anthropic.com/v1/messages/count_tokens \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "content-type: application/json" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "thinking": {
@@ -1150,7 +1151,7 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
   curl https://api.anthropic.com/v1/messages/count_tokens \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "content-type: application/json" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d @- <<EOF
   {
     "model": "claude-opus-5-5",
@@ -1485,7 +1486,7 @@ Penghitungan token **gratis digunakan** tetapi tunduk pada batas laju permintaan
 
 ## Ketersediaan
 
-Penghitungan token tersedia di model tertentu dan layak untuk retensi data nol dan kesiapan HIPAA.
+Penghitungan token tersedia di semua model dan layak untuk retensi data nol dan kesiapan HIPAA.
 
 ### Dukungan API
 
@@ -1493,9 +1494,9 @@ Penghitungan token tersedia di model tertentu dan layak untuk retensi data nol d
 
 * Ketersediaan: Tersedia
 
-| Status   | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Tersedia | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview), [Claude Opus 4.5](https://platform.claude.com/docs/id/models/opus-4-5/overview) |
+| Status   | Model                                                              |
+| -------- | ------------------------------------------------------------------ |
+| Tersedia | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 

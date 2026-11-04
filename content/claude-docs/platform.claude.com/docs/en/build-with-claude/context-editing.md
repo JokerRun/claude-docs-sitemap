@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: fdbee351fa4c5480b0903ccd16030b8d853f2e2a807d6ab89f360f444c6c2224
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 668db72d76abcc6a26a3dcc1e111e1f2fd35b4a265834a336c9dbf5bdb1be0ca
 ---
 
 ---
@@ -118,7 +118,7 @@ The simplest way to enable tool result clearing is to specify only the strategy 
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -H "anthropic-beta: context-management-2025-06-27" \
     -d '{
@@ -331,7 +331,7 @@ You can customize the tool result clearing behavior with additional parameters:
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -H "anthropic-beta: context-management-2025-06-27" \
     -d '{
@@ -734,7 +734,7 @@ Use thinking block clearing to manage context and prompt caching in conversation
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -H "anthropic-beta: context-management-2025-06-27" \
     -d '{
@@ -963,7 +963,7 @@ Keep thinking blocks from the last 3 assistant turns:
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -H "anthropic-beta: context-management-2025-06-27" \
     -d '{
@@ -1175,7 +1175,7 @@ Keep all thinking blocks (maximizes cache hits):
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -H "anthropic-beta: context-management-2025-06-27" \
     -d '{
@@ -1375,7 +1375,7 @@ You can use both thinking block clearing and tool result clearing together:
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -H "anthropic-beta: context-management-2025-06-27" \
     -d '{
@@ -1827,7 +1827,7 @@ The [token counting](https://platform.claude.com/docs/en/build-with-claude/token
   ```bash cURL
   curl https://api.anthropic.com/v1/messages/count_tokens \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -H "anthropic-beta: context-management-2025-06-27" \
     -d '{
@@ -2132,7 +2132,7 @@ To use both features together, enable them in your API request:
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -H "anthropic-beta: context-management-2025-06-27" \
     -d '{

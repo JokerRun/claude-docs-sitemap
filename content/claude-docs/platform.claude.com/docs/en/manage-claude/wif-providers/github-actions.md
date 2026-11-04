@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/github-actions
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 0166d534bc8f7a92dce0bfe938587a0882be6b9a8b147279196bf1cc7f991f11
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: faa20e48c93b297bb19c438fdce30123c2836a3d1d7faa7fcba2fa8419d9d48f
 ---
 
 ---
@@ -168,7 +168,7 @@ Set the federation environment variables on the job and call the SDK normally. `
 
   curl https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

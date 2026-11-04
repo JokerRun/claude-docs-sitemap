@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: fc9fcf4fd2f7034b7fbee4531d576d375c5a17cbe4b6032c037045451baa5c41
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 8f4864d7f3b1cb3d90650d60c40208df120d01182174a31a382a340e0b52b3f4
 ---
 
 ---
@@ -249,11 +249,11 @@ PHP SDK juga mendukung Claude Models on Google Cloud (Anthropic managed) melalui
 
 ## Semantic versioning
 
-Setiap versi mayor SDK ini mengirimkan satu versi API di header `anthropic-version` secara default, dan versi mayor baru hadir bersama setiap versi API baru. Versi mayor pertama yang mengirimkan `2026-10-21` adalah 1.0.0; lihat [Upgrade ke 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade).
-
 Paket ini mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html).
 
 Paket ini menganggap peningkatan pada definisi tipe PHPDoc (non-runtime) sebagai perubahan yang tidak merusak kompatibilitas.
+
+Setiap permintaan ke Claude API menggunakan versi API. Dengan SDK ini, permintaan Anda menggunakan versi API yang berlaku saat versi mayor SDK Anda dirilis, sehingga Anda beralih ke versi API baru dengan melakukan upgrade ke versi mayor baru. Versi 1.0.0 adalah yang pertama menggunakan `2026-10-21`. Lihat [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade) untuk cara melakukan upgrade.
 
 ## Sumber daya tambahan
 

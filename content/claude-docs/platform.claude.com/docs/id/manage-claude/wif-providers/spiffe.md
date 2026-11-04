@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 28afd4faf86fe9abe9dc7aad0ecede35ed43f258cc58fcfaa7e8c368550e1954
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 453900fa893059debc792e73f2b78dcdf3955412c82674338aabfa67d30da5d7
 ---
 
 ---
@@ -204,7 +204,7 @@ Claude SDK dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau, ke
 
       curl https://api.anthropic.com/v1/messages \
         -H "authorization: Bearer $ACCESS_TOKEN" \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "content-type: application/json" \
         -d '{
           "model": "claude-opus-5-5",

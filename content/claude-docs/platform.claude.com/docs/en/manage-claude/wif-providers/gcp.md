@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/gcp
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 2204cb07bb0c8c3a463d64cd316f3a3eae19af1c379dbc41dec24b7480a22f7b
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 8265b3b0d44f9881a8c01ef9af9f94e066599acf75e3c739ac877226738038ae
 ---
 
 ---
@@ -160,7 +160,7 @@ Inside your Google Cloud workload, fetch the identity token from the metadata se
   # Call the Claude API
   curl -sS https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -442,7 +442,7 @@ Inside your Google Cloud workload, fetch the identity token from the metadata se
 
   METADATA_URL = "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/identity?audience=https://api.anthropic.com&format=full"
 
-  credentials = Anthropic::WorkloadIdentityCredentials.new(
+  credentials = Anthropic::Credentials::WorkloadIdentity.new(
     identity_token_provider: -> { Net::HTTP.get(URI(METADATA_URL), {"Metadata-Flavor" => "Google"}) },
     federation_rule_id: ENV.fetch("ANTHROPIC_FEDERATION_RULE_ID"),
     organization_id: ENV.fetch("ANTHROPIC_ORGANIZATION_ID"),

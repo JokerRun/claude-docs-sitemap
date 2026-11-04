@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workload-identity-federation
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 6661e9c1609c05c6e81e10f8c9bef720f8f4767e2ff48ff54b44bac3ebe649e9
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: bab4af6c579e689e65f0a01f0ffdd09163bdcc34bce7115842e4f4e873ca5321
 ---
 
 ---
@@ -120,7 +120,7 @@ Anda dapat membangun klien dengan kredensial eksplisit atau tanpa argumen. Tanpa
   # 3. Panggil API dengan token akses di header Authorization: Bearer.
   curl -sS https://api.anthropic.com/v1/messages \
     -H "authorization: Bearer $ACCESS_TOKEN" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

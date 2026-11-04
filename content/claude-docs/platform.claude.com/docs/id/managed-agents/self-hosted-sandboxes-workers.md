@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: ec0dcc08871881473f89f12de0d5086d2a64779afcf26c41f968fdee7462eacb
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 3f064b148585f7baa1daeb074264192ac4d8928c23ee2de94bf55a6aeea3d1c6
 ---
 
 ---
@@ -838,7 +838,7 @@ Anthropic tidak me-mount file atau repositori GitHub ke dalam sandbox self-hoste
   ```bash cURL
   curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{

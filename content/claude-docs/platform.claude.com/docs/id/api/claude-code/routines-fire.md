@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/claude-code/routines-fire
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: bc03a1b5333ed371632a815253911ad1ca1cd6a96fe7ce4c9944ab6ec8ebdb87
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 6691aa4a908b81c9b26f0bca8c755244f89f8968b216d67491346e992a1a45fd
 ---
 
 ---
@@ -82,7 +82,7 @@ Permintaan kembali setelah sesi dibuat. Permintaan ini tidak melakukan streaming
 | `anthropic-version` | Ya            | [Versi API](https://platform.claude.com/docs/id/api/versioning), seperti `2026-10-21`. Endpoint menerima setiap versi mulai dari `2023-06-01` dan berperilaku sama di setiap versi. |
 | `Content-Type`      | Jika ada body | `application/json`.                                                                                                                                                                 |
 
-Integrasi lama yang mengirimkan header `anthropic-beta: experimental-cc-routine-2026-04-01` tidak terpengaruh. Endpoint menerima permintaan baik dengan maupun tanpa header tersebut.
+Endpoint menerima permintaan baik dengan maupun tanpa header `anthropic-beta: experimental-cc-routine-2026-04-01`.
 
 ### Parameter path
 

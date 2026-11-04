@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f736f30cea65b5698ba0833c13b17cae6c241ca2399fc0acb318cea45811c073
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 9fe8cc7ab55a6384b167444349a15cfcbf1c6e01bb3eca6438449a701cbb2f6c
 ---
 
 ---
@@ -775,13 +775,13 @@ Gunakan `AnthropicBedrockMantle` untuk proyek baru; `AnthropicBedrock` tetap ter
 
 ## Semantic versioning
 
-Setiap versi mayor SDK ini secara default mengirimkan satu versi API di header `anthropic-version`, dan versi mayor baru hadir bersama setiap versi API baru. Versi mayor pertama yang mengirimkan `2026-10-21` adalah 2.0.0; lihat [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade).
-
 Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
 
 1. Perubahan yang hanya memengaruhi tipe statis, tanpa merusak perilaku runtime.
 2. Perubahan pada internal library yang secara teknis bersifat publik tetapi tidak dimaksudkan atau didokumentasikan untuk penggunaan eksternal.
 3. Perubahan yang tidak diperkirakan akan berdampak pada sebagian besar pengguna dalam praktiknya.
+
+Setiap permintaan ke Claude API menggunakan versi API. Dengan SDK ini, permintaan Anda menggunakan versi API yang berlaku saat versi mayor SDK Anda dirilis, sehingga Anda beralih ke versi API baru dengan melakukan upgrade ke versi mayor baru. Versi 2.0.0 adalah yang pertama menggunakan `2026-10-21`. Lihat [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade) untuk cara melakukan upgrade.
 
 ### Menentukan versi yang terinstal
 

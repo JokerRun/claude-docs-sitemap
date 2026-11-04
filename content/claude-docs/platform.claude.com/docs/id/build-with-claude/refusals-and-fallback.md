@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 086391997aa23ea0768d0538afc41d5d0a2ddba6203e19ece5de7bd768365e6e
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 445a382f2abc4de0123dc9227cf219d9b640359f059e04cb4cff91632d29ad5d
 ---
 
 ---
@@ -44,7 +44,7 @@ Pengaturan paling sederhana, dalam beta di Claude API dan di [Claude Models on G
   ```bash cURL
   curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: server-side-fallback-2026-07-01" \
     -H "content-type: application/json" \
     -d '{
@@ -268,7 +268,7 @@ Routing default tidak pernah memunculkan [penolakan gambar berukuran berlebih](h
   ```bash cURL
   curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: server-side-fallback-2026-07-01" \
     -H "content-type: application/json" \
     -d '{
@@ -515,7 +515,7 @@ Baris yang disorot adalah satu-satunya perbedaan dari permintaan routing default
   ```bash cURL
   curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: server-side-fallback-2026-07-01" \
     -H "content-type: application/json" \
     -d '{

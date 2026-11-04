@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: a34a8ef6dc35d1f2711c3f08ef01f822b942f4f4e0a04417719020caf81647be
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 6b399a4915b5327366f18511c0498a34c2b4c1c83b83845adfcb61a8d33e27ee
 ---
 
 ---
@@ -431,7 +431,7 @@ There might be `ping` events dispersed throughout the response as well. See [Eve
 <CodeGroup>
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -d '{
@@ -608,7 +608,7 @@ This request asks Claude to use a tool to report the weather.
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5",
       "max_tokens": 1024,
@@ -1001,7 +1001,7 @@ This request enables thinking with streaming. The `display: "summarized"` settin
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -1252,7 +1252,7 @@ This request asks Claude to search the web for current weather information.
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

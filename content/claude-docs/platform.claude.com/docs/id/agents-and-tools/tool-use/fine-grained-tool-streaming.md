@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 8fdb660ba5d5dede8025231d7bf3f3634275e1f0a2ec3b07a384a278e636e0d7
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: a94eaa42ed516cdfb1af83d4e393d1c8eb37fbee4f1a7057ccdfd3a29ccc48e4
 ---
 
 ---
@@ -51,7 +51,7 @@ featureMetadata:
 
 Semua model mendukung streaming alat fine-grained di Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Untuk menggunakannya, atur `eager_input_streaming` ke `true` pada alat buatan pengguna mana pun yang Anda inginkan streaming fine-grained-nya diaktifkan, dan aktifkan streaming pada permintaan Anda.
 
-Field `eager_input_streaming` bersifat opsional. Mengaturnya ke `true` mengaktifkan streaming fine-grained untuk alat tersebut, dan menghilangkannya memberi Anda streaming ter-buffer standar, di mana API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali. Pengecualiannya adalah permintaan yang masih mengirim header beta lama `fine-grained-tool-streaming-2025-05-14`, yang mengaktifkan streaming fine-grained untuk alat yang membiarkan field tersebut tidak diatur. Field per-alat menggantikan header tersebut, dan nilai `false` eksplisit mempertahankan streaming ter-buffer untuk suatu alat bahkan ketika permintaan masih mengirim header itu. Header lama tidak dapat digabungkan dengan entri toolset [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) atau [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool): API menolak permintaan yang mengirim keduanya, jadi hapus header tersebut dan atur `eager_input_streaming` pada alat buatan pengguna yang membutuhkannya. Lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference) untuk definisi field tersebut.
+Field `eager_input_streaming` bersifat opsional. Mengaturnya ke `true` mengaktifkan streaming fine-grained untuk alat tersebut, dan menghilangkannya memberi Anda streaming ter-buffer standar, di mana API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali. Pengecualiannya adalah permintaan yang mengirim header beta `fine-grained-tool-streaming-2025-05-14`, yang mengaktifkan streaming fine-grained untuk alat yang membiarkan field tersebut tidak diatur. Field per-alat menggantikan header tersebut, dan nilai `false` eksplisit mempertahankan streaming ter-buffer untuk suatu alat bahkan ketika permintaan mengirim header itu. Header tersebut tidak dapat digabungkan dengan entri toolset [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) atau [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool): API menolak permintaan yang mengirim keduanya, jadi hapus header tersebut dan atur `eager_input_streaming` pada alat buatan pengguna yang membutuhkannya. Lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference) untuk definisi field tersebut.
 
 Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan meminta Claude membuat puisi panjang, sehingga input alat cukup besar untuk diamati saat di-streaming:
 
@@ -60,7 +60,7 @@ Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan me
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 65536,

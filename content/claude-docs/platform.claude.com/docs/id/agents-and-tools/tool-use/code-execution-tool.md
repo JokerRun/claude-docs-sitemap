@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 2e9053b9e84c6d430147048ae3ed1a0cd5772809ebcc9f0bfa6a5cab042d0491
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: b073b7a10d0fe073e311ed6e7a45f07a7e202eb62123dbf4a162ea8f57c8738d
 ---
 
 ---
@@ -70,7 +70,7 @@ Versi alat yang lebih lama tidak dijamin tetap kompatibel dengan model yang lebi
 Untuk memeriksa apakah suatu model menerima alat eksekusi kode sebelum Anda mengirim permintaan, baca nilai `capabilities.server_tools.code_execution.supported` model tersebut dari Models API. Jangan gunakan nilai `capabilities.code_execution` tingkat atas untuk ini. Nilai tersebut melaporkan apakah kode yang berjalan di alat ini dapat memanggil alat lain dalam permintaan Anda, seperti pada pemanggilan alat terprogram. [Menggunakan Models API](https://platform.claude.com/docs/id/models/overview#using-the-models-api) menjelaskan kedua field tersebut.
 
 <Note>
-  Jika Anda masih menggunakan `code_execution_20250522` lama (hanya Python), lihat [Tingkatkan ke versi alat terbaru](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upgrade-to-latest-tool-version) untuk bermigrasi darinya.
+  Jika Anda menggunakan `code_execution_20250522` (hanya Python), lihat [Tingkatkan ke versi alat terbaru](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upgrade-to-latest-tool-version) untuk bermigrasi darinya.
 </Note>
 
 ## Mulai cepat
@@ -81,7 +81,7 @@ Berikut contoh yang meminta Claude melakukan perhitungan:
   ```bash cURL
   curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -302,13 +302,13 @@ Lingkungan Python dapat memproses berbagai tipe file yang diunggah melalui Files
   # Pertama, unggah sebuah file
   curl --fail-with-body -sS https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -F "file=@data.csv"
 
   # Lalu gunakan file tersebut dengan eksekusi kode: FILE_ID adalah ID dari respons unggahan
   curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -1098,6 +1098,8 @@ Container yang sudah kedaluwarsa tidak dapat digunakan kembali: permintaan yang 
 
 Respons mungkin menyertakan alasan berhenti `pause_turn`, yang menunjukkan bahwa API menjeda giliran yang berjalan lama. Anda dapat memberikan respons kembali apa adanya dalam permintaan berikutnya agar Claude melanjutkan gilirannya, atau memodifikasi konten jika Anda ingin menginterupsi percakapan.
 
+Kirimkan kembali ID container dari respons bersama permintaan tersebut (lihat [Penggunaan ulang container](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#container-reuse)). Tanpa ID tersebut, permintaan akan berjalan di container baru, dan file dari bagian sebelumnya dalam giliran tersebut akan hilang.
+
 ## Container
 
 Alat eksekusi kode berjalan dalam lingkungan container yang aman yang dirancang khusus untuk eksekusi kode, dengan fokus lebih pada Python.
@@ -1151,7 +1153,7 @@ Container kedaluwarsa 30 hari setelah pembuatan. Setelah sekitar 5 menit tidak a
   # Permintaan pertama: Buat file berisi angka acak
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -1170,7 +1172,7 @@ Container kedaluwarsa 30 hari setelah pembuatan. Setelah sekitar 5 menit tidak a
   # CONTAINER_ID adalah container.id dari respons pertama
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "container": "'"$CONTAINER_ID"'",
@@ -1501,7 +1503,7 @@ Penggunaan eksekusi kode dilacak dalam respons:
 
 Versi alat terbaru adalah `code_execution_20260521`. Untuk berpindah di antara tiga versi saat ini, perbarui string `type` dalam permintaan Anda: ketiganya mengembalikan blok respons yang didokumentasikan dalam [Format respons](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#response-format). Lihat [Versi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#tool-versions) untuk apa yang ditambahkan setiap versi dan [Dukungan API](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#availability-feature-support) untuk model yang mendukungnya.
 
-Bagian selanjutnya membahas migrasi dari `code_execution_20250522` lama yang hanya mendukung Python ke versi alat saat ini.
+Bagian selanjutnya dari bagian ini membahas migrasi dari `code_execution_20250522` lama yang hanya mendukung Python ke versi alat saat ini.
 
 ### Apa yang berubah
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/thinking-tool-workflows
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: f727a8c9a6620876a3948c9f4b7a07bd4511fd51320d2f8690fe0f76ce0f0afc
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: b8fa616a727b2a7002ee9f5590d212d27a4b900b67670ccd4576cdcc46d0b6e0
 ---
 
 ---
@@ -39,7 +39,7 @@ The example defines a `get_weather` tool, lets Claude think and request a tool c
     <CodeGroup>
       ```bash cURL
       curl https://api.anthropic.com/v1/messages \
-        -H "anthropic-version: 2023-06-01" \
+        -H "anthropic-version: 2026-10-21" \
         -H "content-type: application/json" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -d '{

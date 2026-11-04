@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 09d8b87bb2cb375c106445548dd3797f19311ad10140e55123a067f8b4d75b5e
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 683278e0e899710e12d0a0dd0a0247b9284294c2885144e74f14074fc1504384
 ---
 
 ---
@@ -49,7 +49,7 @@ Mode cepat hanya berfungsi pada model yang didukung. Lihat [Ketersediaan](https:
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
@@ -230,7 +230,7 @@ Objek `usage` pada respons menyertakan field `speed` yang menunjukkan kecepatan 
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

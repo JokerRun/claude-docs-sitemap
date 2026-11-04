@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/webhooks
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: ab9bc7d1c88f18622a993e0df38e721a0ba3630e7ed6da45a6eec80b5c4f3af0
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 5e1a0304276e50eff4aa858f75aad212e441890a16f2e5ddc72de9c6e18efe05
 ---
 
 ---
@@ -142,14 +142,15 @@ Endpoint webhook terdiri dari:
 
 ## Memverifikasi tanda tangan
 
-Setiap pengiriman membawa header `webhook-id`, `webhook-timestamp`, dan `webhook-signature`. Gunakan helper `unwrap()` (csharp, go: `Unwrap()`) dari SDK untuk memverifikasi tanda tangan dan mem-parsing event dalam satu langkah. Helper ini akan melempar error jika tanda tangan tidak valid atau payload berusia lebih dari 5 menit.
+Setiap pengiriman membawa header `webhook-id`, `webhook-timestamp`, dan `webhook-signature`. Di setiap SDK kecuali C#, gunakan helper `unwrap()` (csharp, go: `Unwrap()`) untuk memverifikasi tanda tangan dan mem-parsing event dalam satu langkah. Helper ini akan melempar error jika tanda tangan tidak valid atau payload berusia lebih dari 5 menit.
 
 Atur `ANTHROPIC_WEBHOOK_SIGNING_KEY` ke secret berawalan `whsec_` yang ditampilkan saat pembuatan endpoint.
 
-<CodeGroup exclude="shell:cURL, shell:CLI">
+<CodeGroup exclude="shell:cURL, shell:CLI, csharp">
   ```python Python
   from flask import Flask, request
   import anthropic
+  import standardwebhooks  # pip install "anthropic[webhooks]"
 
   client = anthropic.Anthropic()  # reads ANTHROPIC_WEBHOOK_SIGNING_KEY from env
   app = Flask(__name__)
@@ -163,7 +164,7 @@ Atur `ANTHROPIC_WEBHOOK_SIGNING_KEY` ke secret berawalan `whsec_` yang ditampilk
               request.get_data(as_text=True),
               headers=dict(request.headers),
           )
-      except Exception:
+      except standardwebhooks.WebhookVerificationError:
           return "invalid signature", 400
 
       if event.data.type == "session.status_idled":
@@ -203,38 +204,9 @@ Atur `ANTHROPIC_WEBHOOK_SIGNING_KEY` ke secret berawalan `whsec_` yang ditampilk
   });
   ```
 
-  ```csharp C#
-  using Anthropic;
-
-  var client = new AnthropicClient(); // reads ANTHROPIC_WEBHOOK_SIGNING_KEY from env
-  var app = WebApplication.Create(args);
-
-  app.MapPost("/webhook", async (HttpRequest request) =>
-  {
-      using var reader = new StreamReader(request.Body);
-      var body = await reader.ReadToEndAsync();
-      var headers = request.Headers.ToDictionary(header => header.Key, header => header.Value.ToString());
-
-      UnwrapWebhookEvent webhookEvent;
-      try
-      {
-          // Unwrap() melempar exception jika tanda tangan tidak valid atau payload sudah kedaluwarsa
-          webhookEvent = client.Beta.Webhooks.Unwrap(body, headers);
-      }
-      catch
-      {
-          return Results.BadRequest("invalid signature");
-      }
-
-      if (webhookEvent.Data.TryPickSessionStatusIdled(out var idled))
-      {
-          Console.WriteLine($"session idled: {idled.ID}");
-      }
-      // tangani jenis event lainnya
-
-      return Results.Ok();
-  });
-  ```
+  <CodeGroupItem language="C#">
+    SDK C# tidak memiliki `Unwrap()`. Verifikasi tanda tangan dengan library [Standard Webhooks](https://www.standardwebhooks.com/), lalu deserialisasi body ke dalam `UnwrapWebhookEvent`.
+  </CodeGroupItem>
 
   ```go Go
   package main

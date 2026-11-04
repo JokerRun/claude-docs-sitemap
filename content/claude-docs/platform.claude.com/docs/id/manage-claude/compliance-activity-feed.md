@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 5bb44e1208f6b3bf0e4336765be0bdbb09d0c9e6da75ff87675cc39caec35663
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 75fa13f88e7fedcdcf64377a44ebe823f55caf33212d913db92e730681c83213
 ---
 
 ---
@@ -27,7 +27,7 @@ Activity Feed mencatat aktivitas autentikasi, obrolan, file, proyek, administrat
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/activities?limit=1" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01"
+  -H "anthropic-version: 2026-10-21"
 ```
 
 ```json Response
@@ -69,7 +69,7 @@ curl --fail-with-body -sS -G \
   --data-urlencode "activity_types[]=claude_chat_created" \
   --data-urlencode "created_at.gte=2026-04-01T00:00:00Z" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01"
+  -H "anthropic-version: 2026-10-21"
 ```
 
 Activity Feed menghasilkan ratusan jenis aktivitas yang berbeda. Lihat [Mengkueri aktivitas kepatuhan](https://platform.claude.com/docs/id/api/compliance/activities/list) di referensi API untuk daftar lengkap nilai yang diterima `activity_types[]`.
@@ -110,13 +110,13 @@ Parameter cursor menentukan arah halaman; urutan pengurutan endpoint menentukan 
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/activities?limit=2" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01"
+  -H "anthropic-version: 2026-10-21"
 
 # LAST_ID adalah last_id dari respons pertama. Kirimkan kembali tanpa diubah untuk mengambil halaman berikutnya (lebih lama).
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/activities" \
   -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   --data-urlencode "limit=2" \
   --data-urlencode "after_id=$LAST_ID"
 ```

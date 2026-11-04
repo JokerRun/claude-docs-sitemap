@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 46e0af073c4282dab7fc808e5eaa0f89fb03ea46e3853e5b222e18c8f3a72880
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: dfcf057d246be42799dc343ba810b1fd2a463b3ba66b712a364d3d2c4c2ad093
 ---
 
 ---
@@ -55,7 +55,7 @@ tool_choice: type "tool" and "any" are not supported for this model.
 
 ### Blok pemikiran terikat pada model dan percakapan
 
-Setiap blok pemikiran mencatat model mana yang menghasilkannya. Setiap model membaca bloknya sendiri dan hanya sebagian blok dari model lain. Claude Sonnet 5.5 membaca blok pemikiran dari Claude Sonnet 5, Claude Opus 4.8, Claude Haiku 4.5, dan model-model sebelumnya, serta, di Claude API dan Claude Models on Google Cloud (Google managed), dari Claude Haiku 5.5, tetapi tidak dari Claude Opus 5, Claude Opus 5.5, atau model Claude Fable atau Claude Mythos mana pun. Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Opus 5.5 membaca blok pemikiran Claude Sonnet 5.5; tidak ada model lain yang melakukannya.
+Setiap blok pemikiran mencatat model mana yang menghasilkannya. Setiap model membaca bloknya sendiri dan hanya blok dari sebagian model lain. Claude Sonnet 5.5 membaca blok pemikiran dari Claude Sonnet 5, Claude Opus 4.8, Claude Haiku 4.5, dan model-model sebelumnya, serta, di Claude API dan Claude Models on Google Cloud (Google managed), dari Claude Haiku 5.5, tetapi tidak dari Claude Opus 5, Claude Opus 5.5, atau model Claude Fable atau Claude Mythos mana pun. Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Opus 5.5 membaca blok pemikiran Claude Sonnet 5.5; tidak ada model lain yang melakukannya.
 
 Jadi percakapan yang berpindah dari Claude Sonnet 5 ke Claude Sonnet 5.5, atau dari Claude Sonnet 5.5 naik ke Claude Opus 5.5 di Claude API dan Claude Models on Google Cloud (Google managed), mempertahankan penalarannya, dan perpindahan lain apa pun dari Claude Sonnet 5.5 menjalankan giliran setelah peralihan tanpa penalaran tersebut. Ketika permintaan membawa blok yang tidak dapat dibaca oleh model target, API menghapusnya sebelum model melihatnya: permintaan berhasil, dan blok yang dihapus tidak ditagih. Dengan header beta `thinking-binding-controls-2026-08-01`, penghapusan tersebut dilaporkan dalam array `input_transformations` tingkat atas. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
 

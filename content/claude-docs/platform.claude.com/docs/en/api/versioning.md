@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/versioning
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 5ce7b399277d244cae7fd6469046835508e3d741a6f50b836198c12b57d0809a
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 47b7a604ef4d29427a8b02de7404d2146359371ac2c865c06be6e34cf385f990
 ---
 
 ---
@@ -46,7 +46,7 @@ Anthropic recommends using the latest API version whenever possible.
     * [RBAC groups](https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/list) no longer return `roles`. Use `role_ids` instead.
     * [RBAC group members](https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/members/list), and the response to removing one, no longer return `group_id`. Use `rbac_group_id` instead.
     * [RBAC roles](https://platform.claude.com/docs/en/api/beta/organization/rbac_roles/list) no longer return `name`. Use `display_name` instead.
-    * [Organization](https://platform.claude.com/docs/en/api/organization/rate_limits/list) and [workspace](https://platform.claude.com/docs/en/api/organization/workspaces/rate_limits/list) rate-limit entries no longer return `group_type`. Use `group.type` instead.
+    * [Organization](https://platform.claude.com/docs/en/api/organization/rate_limits/list) and [workspace](https://platform.claude.com/docs/en/api/organization/workspaces/rate_limits/list) rate-limit entries, and the response to [setting a workspace’s rate limits](https://platform.claude.com/docs/en/api/organization/workspaces/rate_limits/update), no longer return `group_type`. Use `group.type` instead.
     * [API keys](https://platform.claude.com/docs/en/api/organization/api_keys/list) no longer return `workspace_id`. Use `scope.workspace_id` instead, which gives the workspace’s real ID even for the Default Workspace (an all-workspaces key has no `workspace_id` in `scope`).
 
   * Claude Enterprise Analytics API:

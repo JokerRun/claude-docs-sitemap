@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 82ce506b326abd4d23f839c27bcdc686976f596da447f49fa392a9d38f2608f7
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 77498e7b1a145c8d992ba85ce5d28c8dfa828c183a468d3e18a38e52b8760fbb
 ---
 
 ---
@@ -2891,7 +2891,7 @@ The agent appends the user’s message first, then any system messages that are 
   # here, the SDK examples carry the full standing-consent text.
   curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",

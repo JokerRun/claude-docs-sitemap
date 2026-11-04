@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 0a7c279ee8e18beb9b85799549afd9399d65ffa7f827a25beb6f7e9ea523d962
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 532081d904d3fc1497ce29b9279dadcf4f58ec286400a28b0b1583ac669e93cb
 ---
 
 ---
@@ -41,7 +41,7 @@ featureMetadata:
     Microsoft Foundry: stable
   details:
     - Model Claude 5.5 dan yang lebih baru mendukung computer use melalui toolset `computer_toolset_20260801`. Model-model ini mengembalikan error 400 untuk versi alat computer use apa pun yang tidak diterimanya, seperti `computer_20251124` di Claude API. Untuk memindahkan integrasi `computer_20251124` ke toolset, lihat [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Untuk berpindah dari `computer_20250124`, lihat [Memindahkan computer use ke toolset](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset) dalam panduan migrasi Claude Haiku 5.5.
-    - Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5 mendukung computer use hanya melalui versi alat sebelumnya `computer_20251124`, yang memerlukan header beta; lihat [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
+    - Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5 mendukung computer use hanya melalui versi alat `computer_20251124`, yang memerlukan header beta; lihat [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
 ---
 
 <Note>
@@ -86,7 +86,7 @@ Tambahkan toolset penggunaan komputer ke array `tools` dari permintaan [Messages
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -d '{
       "model": "claude-opus-5-5",
       "max_tokens": 1024,
@@ -762,7 +762,7 @@ Setiap tindakan adalah alat anggota dari toolset penggunaan komputer: Claude men
 Perhatikan hal-hal berikut saat mengimplementasikan anggota:
 
 * **Koordinat dalam piksel tangkapan layar.** Setiap nilai `coordinate`, `start_coordinate`, dan `region`, serta posisi yang dilaporkan `cursor_position`, berada dalam ruang piksel tangkapan layar tampilan penuh yang Anda kembalikan, dengan titik asal di kiri atas. Gambar zoom tidak mengubah hal ini: setelah `zoom`, Claude tetap menyatakan koordinat dalam ruang tangkapan layar penuh, tidak pernah relatif terhadap gambar yang di-zoom. Jika Anda memperkecil tangkapan layar sebelum mengembalikannya, skalakan kembali koordinat Claude sebelum menerapkannya ke tampilan sebenarnya (lihat [Sesuaikan ukuran tangkapan layar agar sesuai batas gambar](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions)).
-* **Semua anggota diaktifkan secara default, termasuk `zoom`.** Jika lingkungan Anda tidak dapat menghasilkan gambar zoom, tahan anggota tersebut dengan `configs` (lihat [Parameter alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#tool-parameters)) daripada membiarkannya aktif dan mengembalikan error. Jika Claude memanggil anggota yang Anda tahan atau tidak Anda implementasikan, kembalikan `tool_result` dengan `is_error: true` untuk blok tersebut.
+* **Semua anggota diaktifkan secara default, termasuk `zoom`.** Jika lingkungan Anda tidak dapat menghasilkan gambar zoom, kecualikan anggota tersebut dengan `configs` (lihat [Parameter alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#tool-parameters)) daripada membiarkannya aktif dan mengembalikan error. Jika Claude memanggil anggota yang Anda kecualikan atau tidak Anda implementasikan, kembalikan `tool_result` dengan `is_error: true` untuk blok tersebut.
 * **Lakukan dispatch berdasarkan pasangan (`toolset_name`, `name`).** `toolset_name` adalah yang menandai blok sebagai tindakan komputer: alat kustom dalam permintaan yang sama dapat berbagi nama dengan anggota, dan versi toolset berikutnya dapat menambahkan anggota (lihat [Toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets)).
 
 <Accordion title="Contoh tindakan">
@@ -859,7 +859,7 @@ Entri toolset dalam array `tools` menerima empat parameter; aturan yang dibagika
 | `cache_control`   | Tidak | Breakpoint [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) pada definisi toolset; hanya pada entri. Breakpoint pada blok `tool_use` atau `tool_result` mana pun dalam batch berlaku di akhir batch tersebut; lihat [Penggunaan alat dengan caching prompt](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching#cache-control-on-tool-definitions). |
 | `allowed_callers` | Tidak | Hanya `["direct"]`.                                                                                                                                                                                                                                                                                                                                                                                                              |
 
-Misalnya, entri ini menahan `zoom` untuk lingkungan yang tidak mengimplementasikannya dan menetapkan breakpoint cache pada definisi toolset:
+Misalnya, entri ini mengecualikan `zoom` untuk lingkungan yang tidak mengimplementasikannya dan menetapkan breakpoint cache pada definisi toolset:
 
 ```json
 {
@@ -886,7 +886,7 @@ Entri ini juga tidak dapat dideklarasikan dalam permintaan yang sama dengan entr
 Untuk menggabungkan penggunaan komputer dengan pemikiran, lihat [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking).
 
 <Tip>
-  Untuk alat sebelumnya `computer_20251124`, benchmark internal pada model yang menggunakannya menyarankan pengaturan `effort` berikut:
+  Untuk alat `computer_20251124`, benchmark internal pada model yang menggunakannya menyarankan pengaturan `effort` berikut:
 
   * **Claude Opus 4.7:** gunakan `high` sebagai default; gunakan `low` untuk beban kerja dengan throughput tinggi atau yang sensitif terhadap biaya.
   * **Claude Sonnet 4.6 dan Claude Opus 4.6:** gunakan `medium` sebagai default (rasio akurasi terhadap biaya terbaik). Hindari `max`, yang menambah biaya token tanpa meningkatkan akurasi pada tugas UI. Pada model ini, `low` menggunakan token output yang *lebih sedikit* dibandingkan menonaktifkan pemikiran sepenuhnya (lebih sedikit kesalahan berarti lebih sedikit percobaan ulang), menjadikannya opsi yang kuat untuk loop yang sensitif terhadap biaya.
@@ -1849,7 +1849,7 @@ Jika klik meleset dari targetnya, penyebabnya biasanya salah satu dari berikut:
 | Akurasi secara konsisten buruk                              | Resolusi terlalu rendah                                                                                                                      | Coba 1280x720 sebagai baseline                                                                                                                                                                                                                                                                                                                                              |
 
 <Tip>
-  **Pilihan model memengaruhi presisi klik.** Di antara model yang menggunakan alat `computer_20251124` yang lebih lama, Claude Sonnet 4.6 lebih presisi secara mekanis dalam mengklik dibandingkan Claude Opus 4.6 dan lebih tangguh ketika screenshot memerlukan downscale yang besar. Claude Opus 4.7 mempersempit kesenjangan tersebut: presisi kliknya kurang lebih sebanding dengan Sonnet 4.6, dan batas resolusinya yang lebih tinggi berarti lebih sedikit downscale yang diperlukan.
+  **Pilihan model memengaruhi presisi klik.** Di antara model yang menggunakan alat `computer_20251124`, Claude Sonnet 4.6 lebih presisi secara mekanis dalam mengklik dibandingkan Claude Opus 4.6 dan lebih tangguh ketika screenshot memerlukan downscale yang besar. Claude Opus 4.7 mempersempit kesenjangan tersebut: presisi kliknya kurang lebih sebanding dengan Sonnet 4.6, dan batas resolusinya yang lebih tinggi berarti lebih sedikit downscale yang diperlukan.
 </Tip>
 
 ### Ikuti praktik terbaik implementasi
@@ -2187,7 +2187,7 @@ Dua versi sebelumnya dari alat computer use tersedia dalam beta. Masing-masing m
 | Versi alat          | Header beta               | Gunakan dengan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Parameter                                                                     |
 | ------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `computer_20251124` | `computer-use-2025-11-24` | Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5                                                                                                                                                                                                                                                                                                                                                                                                                                                             | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
-| `computer_20250124` | `computer-use-2025-01-24` | Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Haiku 4.5, Claude Opus 4.1 ([dihentikan, kecuali di Bedrock dan Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)), dan Claude Opus 4 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
+| `computer_20250124` | `computer-use-2025-01-24` | Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Haiku 4.5, Claude Opus 4.1 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed) dan Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Sonnet 4 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed) dan Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)), dan Claude Opus 4 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
 
 Di Amazon Bedrock, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 juga menerima alat `computer_20251124` dengan header beta `computer-use-2025-11-24`.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: e3b33706d56be5f97e5f53a486956642e431dbeeadcb94f51e89c1373fb4c7c0
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 58bfc34d81a896798fd517c505af60632a3909622905ee01c9200a9356a198a7
 ---
 
 ---
@@ -66,7 +66,7 @@ Contoh berikut membuat agen yang membatasi `web_search` ke dua situs dan memblok
   ```bash cURL
   curl -fsSL https://api.anthropic.com/v1/agents \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
     -d '{

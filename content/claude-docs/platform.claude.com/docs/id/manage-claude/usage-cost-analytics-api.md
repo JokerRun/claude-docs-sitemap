@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 1df57bf286e20b263ed873227cdfafb604abf2d9cbfe84c359b2769ce9e46c7b
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 36fe87e9f295548b05906d83e0ec9c78ca1f7150ebbf0fb2d4e02c7241821f6a
 ---
 
 ---
@@ -63,7 +63,7 @@ Dapatkan penggunaan token harian untuk minggu pertama bulan September, satu bari
   time_bucket_width=1d&\
   group_by[]=model&\
   limit=10" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: analytics-usage-cost-2026-08-24" \
     -H "x-api-key: $ANTHROPIC_API_KEY"
   ```
@@ -285,9 +285,15 @@ Dimensi seperti `model` dan `actor` berlaku untuk setiap organisasi. Beberapa, s
 
 Dimensi `actor` menunjukkan kepada siapa sebuah permintaan diatribusikan: pengguna, akun layanan, identitas cloud terfederasi (principal AWS atau Google Cloud, untuk organisasi yang mengakses Claude melalui platform cloud mereka), atau, ketika tidak ada satu pun dari itu di balik permintaan, kunci API itu sendiri. Saat Anda mengelompokkan berdasarkan `actor`, `actor` pada setiap baris adalah objek yang `type`-nya menyatakan jenisnya. Penggunaan yang tidak dapat diatribusikan ke identitas mana pun memiliki `actor: null`.
 
-[Kunci pribadi dan kunci akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) bertindak sebagai pengguna atau akun layanan yang ditautkan dengannya, sehingga permintaannya menampilkan identitas tersebut sebagai `actor` dan kuncinya di `api_key_id`. Kunci workspace lama tidak ditautkan ke identitas, sehingga kunci tersebut muncul sebagai `actor` sekaligus `api_key_id`. Pengecualiannya adalah kunci yang dibuat Claude Code untuk seorang anggota saat masuk: kunci tersebut berada di [workspace Claude Code](https://platform.claude.com/docs/id/manage-claude/workspaces#claude-code-workspace), dan penggunaannya diatribusikan ke anggota tersebut. Permintaan yang dibuat tanpa kunci API, seperti dari Claude Console, dari Claude Code setelah [masuk tanpa kunci API](https://code.claude.com/docs/en/authentication#sign-in-without-an-api-key), atau dengan token [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation), memiliki `api_key_id: null`. Setelah masuk tanpa kunci API, `actor` adalah anggota yang masuk; `actor` dari workload terfederasi adalah akun layanannya. Untuk menyertakan penggunaan tanpa kunci API dalam filter `api_key_ids[]`, tambahkan entri kosong: `api_key_ids[]=`.
+[Kunci pribadi dan kunci akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) bertindak sebagai pengguna atau akun layanan yang ditautkan dengannya, sehingga permintaannya menampilkan identitas tersebut sebagai `actor` dan kuncinya di `api_key_id`. Kunci workspace lama tidak ditautkan ke identitas, sehingga kunci tersebut muncul sebagai `actor` sekaligus `api_key_id`.
 
-Filter `api_key_ids[]` dan `actor_ids[]` menjawab pertanyaan yang berbeda. `api_key_ids[]=apikey_...` mencocokkan setiap permintaan yang diautentikasi oleh kunci tersebut, kepada siapa pun permintaan itu diatribusikan. `actor_ids[]=apikey_...` hanya mencocokkan permintaan yang diatribusikan ke kunci itu sendiri.
+Permintaan yang dibuat tanpa kunci API, seperti dari Claude Console atau dengan token [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation), memiliki `api_key_id: null`. Dengan token Workload Identity Federation, `actor` adalah akun layanan yang diwakili oleh token tersebut.
+
+Apa pun cara seorang anggota masuk ke Claude Code dengan akun Claude Console miliknya, `actor` adalah anggota tersebut. Jika Claude Code membuat kunci API saat masuk, `api_key_id` adalah kunci tersebut, yang berada di [workspace Claude Code](https://platform.claude.com/docs/id/manage-claude/workspaces#claude-code-workspace). Setelah [masuk tanpa kunci API](https://code.claude.com/docs/en/authentication#sign-in-without-an-api-key), `api_key_id` bernilai `null`.
+
+Penggunaan token dari sebagian sesi [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) diatribusikan ke akun layanan yang dikelola Anthropic (`svac_...`). Untuk penggunaan ini, `api_key_id` bernilai `null`. Akun ini tidak tercantum bersama akun layanan yang Anda buat. Lihat [Menemukan penggunaan sesi di seluruh organisasi Anda](https://platform.claude.com/docs/id/managed-agents/session-observability#find-session-usage-across-your-organization).
+
+Filter `api_key_ids[]` dan `actor_ids[]` menjawab pertanyaan yang berbeda. `api_key_ids[]=apikey_...` mencocokkan setiap permintaan yang diautentikasi oleh kunci tersebut, kepada siapa pun permintaan itu diatribusikan. `actor_ids[]=apikey_...` hanya mencocokkan permintaan yang diatribusikan ke kunci itu sendiri. Untuk menyertakan penggunaan tanpa kunci API dalam filter `api_key_ids[]`, tambahkan entri kosong: `api_key_ids[]=`.
 
 ## Endpoint penggunaan
 
@@ -303,7 +309,7 @@ Misalnya, untuk melihat penggunaan selama seminggu untuk satu workspace dan satu
   workspace_ids[]=wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ&\
   api_key_ids[]=apikey_01Rj2N8SVvo6BePZj99NhmiT&\
   group_by[]=service_tier" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: analytics-usage-cost-2026-08-24" \
     -H "x-api-key: $ANTHROPIC_API_KEY"
   ```
@@ -458,7 +464,7 @@ Untuk menemukan pengguna, akun layanan, dan kunci API mana yang membuat perminta
   group_by[]=actor&\
   order_by=requests&\
   limit=25" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: analytics-usage-cost-2026-08-24" \
     -H "x-api-key: $ANTHROPIC_API_KEY"
   ```
@@ -617,7 +623,7 @@ Dua dimensi tambahan hanya ada pada endpoint ini dan tidak dihitung dalam batas 
   group_by[]=model&\
   group_by[]=cost_type&\
   group_by[]=token_type" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: analytics-usage-cost-2026-08-24" \
     -H "x-api-key: $ANTHROPIC_API_KEY"
   ```
@@ -827,7 +833,7 @@ starting_at=2026-09-01T00:00:00Z&\
 ending_at=2026-09-08T00:00:00Z&\
 group_by[]=model&\
 bucket_width=1d" \
-  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-version: 2026-10-21" \
   -H "x-api-key: $ANTHROPIC_API_KEY"
 ```
 
@@ -841,7 +847,7 @@ dan sesudahnya:
   group_by[]=model&\
   time_bucket_width=1d&\
   limit=1000" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: analytics-usage-cost-2026-08-24" \
     -H "x-api-key: $ANTHROPIC_API_KEY"
   ```
@@ -1003,7 +1009,7 @@ Biaya harian berdasarkan workspace, model, tingkat layanan, jendela konteks, dan
   group_by[]=cost_type&\
   group_by[]=token_type&\
   limit=1000" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: analytics-usage-cost-2026-08-24" \
     -H "x-api-key: $ANTHROPIC_API_KEY"
   ```
@@ -1270,7 +1276,7 @@ Biaya per pengguna selama sebulan, sebelumnya:
   starting_at=2026-09-01T00:00:00Z&\
   ending_at=2026-10-01T00:00:00Z&\
   limit=100" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "x-api-key: $ANTHROPIC_API_KEY"
   ```
 
@@ -1404,7 +1410,7 @@ dan sesudahnya, dengan tambahan rincian berdasarkan produk:
   group_by[]=product&\
   actor_types[]=user_actor&\
   limit=100" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: analytics-usage-cost-2026-08-24" \
     -H "x-api-key: $ANTHROPIC_API_KEY"
   ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 60369b90283d09e74d6d2c9b5c6f64bed832fb46545eeac70017c70a9770063a
+fetched_at: 2026-11-04T02:12:37.489821Z
+sha256: 70b27fe3688d636177ce2e877bc6f9459f5a76e41fc5a0ef8edecf9e838f608c
 ---
 
 ---
@@ -33,7 +33,7 @@ Permintaan ini berfungsi di Claude Sonnet 5.5 sebagaimana tertulis. Permintaan i
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-sonnet-5-5",
@@ -221,12 +221,12 @@ Permintaan ini berfungsi di Claude Sonnet 5.5 sebagaimana tertulis. Permintaan i
 
 Di Claude Sonnet 5.5, permintaan tanpa field `thinking` berjalan dengan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking), sama seperti `thinking: {"type": "adaptive"}`. Di Claude Sonnet 4.6 dan model sebelumnya serta di Claude Haiku 4.5, permintaan tersebut berjalan tanpa pemikiran. Untuk tetap berjalan tanpa pemikiran di awal, lihat [Menonaktifkan pemikiran di awal](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#turn-off-up-front-thinking).
 
-| Model                                  | Pemikiran tanpa field `thinking` | Nilai `thinking.type` yang diterima                  | `display` default |
-| -------------------------------------- | -------------------------------- | ---------------------------------------------------- | ----------------- |
-| Claude Sonnet 5.5                      | Aktif                            | `"adaptive"`, `"between_tools"`                      | `"omitted"`       |
-| Claude Sonnet 5                        | Aktif                            | `"adaptive"`, `"disabled"`                           | `"omitted"`       |
-| Claude Sonnet 4.6                      | Nonaktif                         | `"adaptive"`, `"disabled"`, `"enabled"` (deprecated) | `"summarized"`    |
-| Claude Sonnet 4.5 dan Claude Haiku 4.5 | Nonaktif                         | `"disabled"`, `"enabled"`                            | `"summarized"`    |
+| Model                                  | Pemikiran tanpa field `thinking` | Nilai `thinking.type` yang diterima             | `display` default |
+| -------------------------------------- | -------------------------------- | ----------------------------------------------- | ----------------- |
+| Claude Sonnet 5.5                      | Aktif                            | `"adaptive"`, `"between_tools"`                 | `"omitted"`       |
+| Claude Sonnet 5                        | Aktif                            | `"adaptive"`, `"disabled"`                      | `"omitted"`       |
+| Claude Sonnet 4.6                      | Nonaktif                         | `"adaptive"`, `"disabled"`, `"enabled"` (usang) | `"summarized"`    |
+| Claude Sonnet 4.5 dan Claude Haiku 4.5 | Nonaktif                         | `"disabled"`, `"enabled"`                       | `"summarized"`    |
 
 ### Menangani pemikiran dalam respons
 
@@ -256,7 +256,7 @@ Sebelum (Claude Sonnet 5):
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-sonnet-5",
@@ -364,7 +364,7 @@ Sesudah (Claude Sonnet 5.5):
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-sonnet-5-5",
@@ -534,7 +534,7 @@ Sebelum (Claude Sonnet 5):
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-sonnet-5",
@@ -666,7 +666,7 @@ Sesudah (Claude Sonnet 5.5):
   # strict tool use (penggunaan alat ketat): setiap panggilan sesuai dengan input_schema milik alat
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-sonnet-5-5",
@@ -898,7 +898,7 @@ Pertama, terapkan setiap bagian sebelumnya, dengan mengganti `claude-sonnet-4-6`
 
 **Pemikiran berjalan pada permintaan yang tidak menyertakannya.** Lihat [Pemikiran berjalan secara default](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#thinking-on-by-default) dan [Menonaktifkan pemikiran di awal](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#turn-off-up-front-thinking).
 
-**Anggaran pemikiran mengembalikan error.** Claude Sonnet 4.6 menerima `thinking: {"type": "enabled", "budget_tokens": N}` sebagai pengaturan yang deprecated. Claude Sonnet 4.5 dan Claude Haiku 4.5 menggunakannya untuk semua pemikiran. Claude Sonnet 5.5 mengembalikan error 400:
+**Anggaran pemikiran mengembalikan error.** Claude Sonnet 4.6 menerima `thinking: {"type": "enabled", "budget_tokens": N}` sebagai pengaturan yang usang. Claude Sonnet 4.5 dan Claude Haiku 4.5 menggunakannya untuk semua pemikiran. Claude Sonnet 5.5 mengembalikan error 400:
 
 ```text wrap
 "thinking.type.enabled" is not supported for this model. Use "thinking.type.adaptive" and "output_config.effort" to control thinking behavior.
@@ -912,7 +912,7 @@ Sebelum (Claude Sonnet 4.6):
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-sonnet-4-6",
@@ -1044,7 +1044,7 @@ Sesudah (Claude Sonnet 5.5):
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-sonnet-5-5",
@@ -1225,16 +1225,16 @@ Ganti setiap prefill sesuai dengan tujuannya:
 
 **Beta header.** Hapus `interleaved-thinking-2025-05-14`, karena pemikiran adaptif melakukan interleaving secara otomatis. Ganti `fine-grained-tool-streaming-2025-05-14` dengan `eager_input_streaming: true` pada setiap alat yang memerlukannya. Header tersebut mengembalikan error 400 bersama entri toolset penggunaan komputer atau browser use. Lihat [Fine-grained tool streaming](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming).
 
-**Structured outputs.** Parameter `output_format` sudah deprecated. Untuk tetap menggunakannya, tambahkan beta header `structured-outputs-2025-11-13`. Tanpa header tersebut, API mengembalikan error 400. Gunakan `output_config.format` sebagai gantinya.
+**Structured outputs.** Parameter `output_format` sudah usang. Untuk tetap menggunakannya, tambahkan beta header `structured-outputs-2025-11-13`. Tanpa header tersebut, API mengembalikan error 400. Gunakan `output_config.format` sebagai gantinya.
 
 ### Migrasi dari Claude Sonnet 4 atau sebelumnya
 
-Claude Sonnet 4 sudah dihentikan di Claude API dan masih tersedia di Amazon Bedrock dan Claude Models on Google Cloud (Google managed). Claude 3.7 Sonnet sudah dihentikan. Dari salah satu model tersebut, pertama terapkan setiap bagian sebelumnya, lalu perubahan berikut:
+Claude Sonnet 4 sudah dihentikan di Claude API tetapi tersedia di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock. Claude 3.7 Sonnet sudah dihentikan. Dari salah satu model tersebut, pertama terapkan setiap bagian sebelumnya, lalu perubahan berikut:
 
 * **Versi alat:** Gunakan `text_editor_20250728`, dengan nama alat `str_replace_based_edit_tool` dan tanpa perintah `undo_edit`. Gunakan `code_execution_20260521`. Lihat [text editor tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool) dan [code execution tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upgrade-to-latest-tool-version).
 * **Stop reason:** Tangani `refusal`. Claude 4.5 dan model yang lebih baru juga berhenti dengan `model_context_window_exceeded` pada batas jendela konteks. Lihat [Menangani stop reason](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons).
 * **Baris baru di akhir:** Claude 4.5 dan model yang lebih baru mempertahankannya dalam parameter string panggilan alat.
-* **Beta header lama:** Hapus `token-efficient-tools-2025-02-19` dan `output-128k-2025-02-19`.
+* **Beta header:** Hapus `token-efficient-tools-2025-02-19` dan `output-128k-2025-02-19`.
 * **Prompt:** Tinjau prompt terhadap [praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
 
 ## Migrasi ke Claude Sonnet 5.5 dari Claude Haiku 4.5
