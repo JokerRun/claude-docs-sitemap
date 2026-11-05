@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/kubernetes
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: f7516a12197e20941fbe99b52ac059e3399491ee17997ee0a45c1b1153300a8a
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 6d7da4c469cfb12a7e5cc6775677f969d1271893637d4c0fb0c50213cb163969
 ---
 
 ---
@@ -13,7 +13,7 @@ description: Authenticate to the Claude API from self-managed Kubernetes cluster
 
 Self-managed Kubernetes clusters (kubeadm, k3s, OpenShift, and on-premise distributions) sign OIDC JSON Web Tokens (JWTs) for every pod through [projected service account tokens](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#serviceaccount-token-volume-projection). The cluster’s API server acts as the OIDC issuer, and each token’s `sub` claim follows the form `system:serviceaccount:<namespace>:<service-account>`. You can find your cluster’s issuer URL by reading its discovery document:
 
-```bash cURL
+```bash
 kubectl get --raw /.well-known/openid-configuration | jq -r .issuer
 ```
 
@@ -84,7 +84,7 @@ The wizard creates these resources for you. Use the following values whether you
 
 **Federation issuer:** Many self-managed clusters use an issuer URL such as `https://kubernetes.default.svc.cluster.local` that is not reachable from the public internet. If that applies to your cluster, choose the **inline** JWKS source and paste the cluster’s keys. Fetch them from inside the cluster:
 
-```bash cURL
+```bash
 kubectl get --raw /openid/v1/jwks
 ```
 

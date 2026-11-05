@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/workflow-runs
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 33a8f337fcc8f7c03385b8ea6b915bdb1068f0e31ee4da385fe6b230990488a9
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: f642c920dea840e3fe18d026061ec76515a299de4fbfdeec966b5e16293bd952
 ---
 
 ---
@@ -566,9 +566,8 @@ This sample follows a session from your message to the agent’s answer. It open
               .build()
       );
 
-      Iterable<BetaManagedAgentsStreamSessionEvents> events = stream.stream()::iterator;
       events:
-      for (var event : events) {
+      for (var event : stream) {
           switch (event.type().value()) {
               case WORKFLOW_RUN_CREATED -> {
                   var created = event.asWorkflowRunCreated();

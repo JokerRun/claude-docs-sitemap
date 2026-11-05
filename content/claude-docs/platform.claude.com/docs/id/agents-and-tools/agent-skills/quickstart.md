@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 9b17a448795bd3e9762cfbb7a5bf74d4711074bd601e469ba74e893fb82621cb
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 8eaf5a98dba42aa18427e769f75c75800a4925e7eb4cb9c64f44e30e7ec98546
 ---
 
 ---
@@ -13,11 +13,133 @@ description: Pelajari cara menggunakan Agent Skills untuk membuat dokumen dengan
 
 Tutorial ini menunjukkan kepada Anda cara menggunakan Agent Skills untuk membuat presentasi PowerPoint. Anda akan mempelajari cara mengaktifkan Skills, membuat permintaan, dan mengakses file yang dihasilkan.
 
-## Prasyarat
+## Sebelum Anda memulai
 
-* Sebuah [kunci API Claude](https://platform.claude.com/settings/keys) dari Claude Console, atau [ant CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication) yang sudah login
-* Sebuah [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk bahasa Anda, atau `curl` dan `jq`
-* Pemahaman dasar tentang cara membuat permintaan API
+Anda memerlukan [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk bahasa Anda, atau `curl` dan `jq`, serta pemahaman dasar tentang cara membuat permintaan API.
+
+<Steps continues>
+  <Step title="Buat akun Claude Console">
+    [Daftar](https://platform.claude.com/) untuk akun Claude Console, atau masuk ke akun yang sudah Anda miliki.
+  </Step>
+
+  <Step title="Pilih cara autentikasi">
+    Masuk dengan CLI direkomendasikan untuk pengembangan lokal.
+
+    Follow the steps for one of the following options.
+  </Step>
+</Steps>
+
+**CLI**
+
+<Steps continued>
+  <Step title="Instal CLI" stepNumber={3}>
+    <Tabs noDeepLinks>
+      <Tab title="Homebrew (macOS)">
+        ```bash
+        brew install anthropics/tap/ant
+        ```
+      </Tab>
+
+      <Tab title="curl (Linux/WSL)">
+        Untuk lingkungan Linux, unduh binary rilis secara langsung.
+
+        ```bash
+        VERSION=2.6.0
+        OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+        case $(uname -m) in
+          x86_64) ARCH=amd64 ;;
+          aarch64) ARCH=arm64 ;;
+        esac
+        curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${VERSION}/ant_${VERSION}_${OS}_${ARCH}.tar.gz" \
+          | sudo tar -xz -C /usr/local/bin ant
+        ```
+
+        Anda dapat menemukan semua rilis di [halaman rilis GitHub](https://github.com/anthropics/anthropic-cli/releases).
+      </Tab>
+
+      <Tab title="go install">
+        Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
+
+        ```bash
+        go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
+        ```
+
+        Binary ditempatkan di `$(go env GOPATH)/bin`. Tambahkan ke `PATH` Anda jika belum ada:
+
+        ```bash
+        export PATH="$PATH:$(go env GOPATH)/bin"
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
+
+  <Step title="Masuk" stepNumber={4}>
+    ```bash
+    ant auth login
+    ```
+
+    Setelah login selesai, SDK dan CLI akan mengambil kredensial Anda secara otomatis.
+  </Step>
+</Steps>
+
+**Kunci API**
+
+<Steps continued>
+  <Step title="Buat kunci API" stepNumber={3}>
+    Buat [kunci API](https://platform.claude.com/settings/keys) di Claude Console.
+  </Step>
+
+  <Step title="Atur variabel lingkungan" stepNumber={4}>
+    SDK dan CLI membaca kunci Anda dari `ANTHROPIC_API_KEY`:
+
+    ```bash
+    export ANTHROPIC_API_KEY="your-api-key-here"
+    ```
+  </Step>
+</Steps>
+
+**Kunci API**
+
+Untuk menjalankan contoh CLI, instal CLI:
+
+<Tabs noDeepLinks>
+  <Tab title="Homebrew (macOS)">
+    ```bash
+    brew install anthropics/tap/ant
+    ```
+  </Tab>
+
+  <Tab title="curl (Linux/WSL)">
+    Untuk lingkungan Linux, unduh binary rilis secara langsung.
+
+    ```bash
+    VERSION=2.6.0
+    OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+    case $(uname -m) in
+      x86_64) ARCH=amd64 ;;
+      aarch64) ARCH=arm64 ;;
+    esac
+    curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${VERSION}/ant_${VERSION}_${OS}_${ARCH}.tar.gz" \
+      | sudo tar -xz -C /usr/local/bin ant
+    ```
+
+    Anda dapat menemukan semua rilis di [halaman rilis GitHub](https://github.com/anthropics/anthropic-cli/releases).
+  </Tab>
+
+  <Tab title="go install">
+    Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
+
+    ```bash
+    go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
+    ```
+
+    Binary ditempatkan di `$(go env GOPATH)/bin`. Tambahkan ke `PATH` Anda jika belum ada:
+
+    ```bash
+    export PATH="$PATH:$(go env GOPATH)/bin"
+    ```
+  </Tab>
+</Tabs>
 
 ## Ikhtisar Agent Skills
 
@@ -37,6 +159,17 @@ Agent Skills bawaan memperluas kemampuan Claude dengan keahlian khusus untuk tug
 Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk menampilkan daftar semua Skills yang dikelola Anthropic. Contoh ini adalah kutipan dari satu skrip berkelanjutan, dengan semua impor dan penyiapan klien di bagian atas:
 
 <CodeGroup>
+  **Masuk melalui CLI**
+
+  ```bash cURL
+  # Daftar Skill yang dikelola Anthropic
+  curl --fail-with-body -sS "https://api.anthropic.com/v1/skills?source=anthropic" \
+    -H "Authorization: Bearer $(ant auth print-credentials --access-token)" \
+    -H "anthropic-version: 2026-10-21"
+  ```
+
+  **Kunci API**
+
   ```bash cURL
   # Daftar Skill yang dikelola Anthropic
   curl --fail-with-body -sS "https://api.anthropic.com/v1/skills?source=anthropic" \
@@ -131,6 +264,31 @@ API ini mengembalikan metadata setiap Skill: nama dan deskripsinya. Claude memua
 Gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Tentukan Skills menggunakan parameter `container` di Messages API:
 
 <CodeGroup>
+  **Masuk melalui CLI**
+
+  ```bash cURL
+  # Buat pesan dengan Skill PowerPoint
+  response=$(
+    curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
+      -H "content-type: application/json" \
+      -H "Authorization: Bearer $(ant auth print-credentials --access-token)" \
+      -H "anthropic-version: 2026-10-21" \
+      -d '{
+        "model": "claude-opus-5-5",
+        "max_tokens": 16000,
+        "container": {
+          "skills": [{"type": "anthropic", "skill_id": "pptx", "version": "latest"}]
+        },
+        "messages": [
+          {"role": "user", "content": "Create a presentation about renewable energy with 5 slides"}
+        ],
+        "tools": [{"type": "code_execution_20260521", "name": "code_execution"}]
+      }'
+  )
+  ```
+
+  **Kunci API**
+
   ```bash cURL
   # Buat pesan dengan Skill PowerPoint
   response=$(
@@ -364,6 +522,33 @@ Saat Anda membuat permintaan ini, Claude secara otomatis mencocokkan tugas Anda 
 Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. `response` dari Langkah 2 menyertakan referensi file dengan ID file. Ekstrak ID file tersebut dan unduh file dengan Files API. Contoh ini menyimpannya ke direktori temp sistem Anda:
 
 <CodeGroup>
+  **Masuk melalui CLI**
+
+  ```bash cURL
+  # Ekstrak ID file. Alat eksekusi kode menjalankan kode Skill melalui
+  # sub-alat Bash-nya, dan file yang dihasilkan muncul sebagai item bash_code_execution_output
+  # di dalam blok bash_code_execution_tool_result.
+  file_id=$(jq -r '
+    last(
+      .content[]
+      | select(.type == "bash_code_execution_tool_result")
+      | .content
+      | select(.type == "bash_code_execution_result")
+      | .content[].file_id
+    ) // empty
+  ' <<<"$response")
+
+  if [[ -n "$file_id" ]]; then
+    # Unduh file dan simpan
+    curl --fail-with-body -sS "https://api.anthropic.com/v1/files/$file_id/content" \
+      -H "Authorization: Bearer $(ant auth print-credentials --access-token)" \
+      -H "anthropic-version: 2026-10-21" \
+      -o "${TMPDIR:-/tmp}/renewable_energy.pptx"
+  fi
+  ```
+
+  **Kunci API**
+
   ```bash cURL
   # Ekstrak ID file. Alat eksekusi kode menjalankan kode Skill melalui
   # sub-alat Bash-nya, dan file yang dihasilkan muncul sebagai item bash_code_execution_output
@@ -605,6 +790,28 @@ Coba variasi berikut:
 ### Buat spreadsheet
 
 <CodeGroup>
+  **Masuk melalui CLI**
+
+  ```bash cURL
+  curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
+    -H "content-type: application/json" \
+    -H "Authorization: Bearer $(ant auth print-credentials --access-token)" \
+    -H "anthropic-version: 2026-10-21" \
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 16000,
+      "container": {
+        "skills": [{"type": "anthropic", "skill_id": "xlsx", "version": "latest"}]
+      },
+      "messages": [
+        {"role": "user", "content": "Create a quarterly sales tracking spreadsheet with sample data"}
+      ],
+      "tools": [{"type": "code_execution_20260521", "name": "code_execution"}]
+    }'
+  ```
+
+  **Kunci API**
+
   ```bash cURL
   curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
@@ -797,6 +1004,28 @@ Coba variasi berikut:
 ### Buat dokumen Word
 
 <CodeGroup>
+  **Masuk melalui CLI**
+
+  ```bash cURL
+  curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
+    -H "content-type: application/json" \
+    -H "Authorization: Bearer $(ant auth print-credentials --access-token)" \
+    -H "anthropic-version: 2026-10-21" \
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 16000,
+      "container": {
+        "skills": [{"type": "anthropic", "skill_id": "docx", "version": "latest"}]
+      },
+      "messages": [
+        {"role": "user", "content": "Write a 2-page report on the benefits of renewable energy"}
+      ],
+      "tools": [{"type": "code_execution_20260521", "name": "code_execution"}]
+    }'
+  ```
+
+  **Kunci API**
+
   ```bash cURL
   curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
@@ -989,6 +1218,28 @@ Coba variasi berikut:
 ### Hasilkan PDF
 
 <CodeGroup>
+  **Masuk melalui CLI**
+
+  ```bash cURL
+  curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
+    -H "content-type: application/json" \
+    -H "Authorization: Bearer $(ant auth print-credentials --access-token)" \
+    -H "anthropic-version: 2026-10-21" \
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 16000,
+      "container": {
+        "skills": [{"type": "anthropic", "skill_id": "pdf", "version": "latest"}]
+      },
+      "messages": [
+        {"role": "user", "content": "Generate a PDF invoice template"}
+      ],
+      "tools": [{"type": "code_execution_20260521", "name": "code_execution"}]
+    }'
+  ```
+
+  **Kunci API**
+
   ```bash cURL
   curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \

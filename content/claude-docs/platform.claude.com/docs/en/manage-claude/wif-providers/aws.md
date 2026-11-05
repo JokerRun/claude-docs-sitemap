@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/aws
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: f5034432e381b08973e4bde6b5ad8dcf3a3f41ada970a879168a41e30cc5a605
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 455968254ceab581c98de9b08ab1657d47680c087827eb36a21eca222385f43d
 ---
 
 ---
@@ -501,7 +501,7 @@ This path additionally requires an EKS cluster with an [IAM OIDC provider enable
   <Step title="Find your cluster’s OIDC issuer URL">
     Each EKS cluster has a unique OIDC issuer. Retrieve it with the AWS CLI:
 
-    ```bash CLI
+    ```bash
     aws eks describe-cluster \
       --name <cluster-name> \
       --query "cluster.identity.oidc.issuer" \

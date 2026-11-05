@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 2cb8738e1d46768a373434e362da2eba71a891bb932bad2c7e16652dadba555e
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: e5f5972c794f132433bf20e8a68b769a35be5fe8aef429a49abb365063ccbec1
 ---
 
 ---
@@ -105,19 +105,23 @@ Instal atau tingkatkan ke versi terbaru Claude SDK:
   <Tab title="Java">
     Tambahkan Claude SDK ke dependensi Anda, atau perbarui setidaknya ke versi berikut jika file build Anda sudah mendeklarasikannya:
 
-    <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
-      ```kotlin Gradle
-      implementation("com.anthropic:anthropic-java:3.4.0")
-      ```
+    <Tabs>
+      <Tab title="Gradle">
+        ```kotlin
+        implementation("com.anthropic:anthropic-java:3.5.0")
+        ```
+      </Tab>
 
-      ```xml Maven
-      <dependency>
-          <groupId>com.anthropic</groupId>
-          <artifactId>anthropic-java</artifactId>
-          <version>3.4.0</version>
-      </dependency>
-      ```
-    </CodeGroup>
+      <Tab title="Maven">
+        ```xml
+        <dependency>
+            <groupId>com.anthropic</groupId>
+            <artifactId>anthropic-java</artifactId>
+            <version>3.5.0</version>
+        </dependency>
+        ```
+      </Tab>
+    </Tabs>
 
     Jika aplikasi Anda belum menggunakan SDK OpenTelemetry, instal SDK tersebut beserta exporter konsol, yang Anda gunakan pada langkah berikutnya untuk mencetak span. Tambahkan `io.opentelemetry:opentelemetry-sdk` dan `io.opentelemetry:opentelemetry-exporter-logging` ke build Anda, keduanya pada versi terbaru di [Maven Central](https://central.sonatype.com/artifact/io.opentelemetry/opentelemetry-sdk).
   </Tab>

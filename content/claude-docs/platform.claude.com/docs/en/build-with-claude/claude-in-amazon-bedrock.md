@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 46cc79a4cb9ae10fe004d2e3ac6061b99f99234172cb6b66895218bf2ea004d6
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 405fae45c7b957eeb23a17969ea2c4da606f3f23aa724f97fc3884e6183daf6c
 ---
 
 ---
@@ -107,8 +107,8 @@ Anthropic’s [client SDKs](https://platform.claude.com/docs/en/cli-sdks-librari
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.4.0")
-        implementation("com.anthropic:anthropic-java-bedrock:3.4.0")
+        implementation("com.anthropic:anthropic-java:3.5.0")
+        implementation("com.anthropic:anthropic-java-bedrock:3.5.0")
         ```
       </Tab>
 
@@ -117,12 +117,12 @@ Anthropic’s [client SDKs](https://platform.claude.com/docs/en/cli-sdks-librari
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.4.0</version>
+            <version>3.5.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-bedrock</artifactId>
-            <version>3.4.0</version>
+            <version>3.5.0</version>
         </dependency>
         ```
       </Tab>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: aca47ccffa433718950aaf17b2eb894c6c0bf19626c6f13a472fb310fb2e4420
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: e7291d8d8d09df0bd3fc028abcf87b3a950399ba5d3fb0b5e26fc65bcb4bbb19
 ---
 
 ---
@@ -13,7 +13,7 @@ description: Autentikasi ke Claude API dari klaster Kubernetes yang dikelola sen
 
 Klaster Kubernetes yang dikelola sendiri (kubeadm, k3s, OpenShift, dan distribusi on-premise) menandatangani OIDC JSON Web Token (JWT) untuk setiap pod melalui [projected service account token](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#serviceaccount-token-volume-projection). API server klaster bertindak sebagai OIDC issuer (penerbit OIDC), dan klaim `sub` setiap token mengikuti bentuk `system:serviceaccount:<namespace>:<service-account>`. Anda dapat menemukan URL issuer klaster Anda dengan membaca dokumen discovery-nya:
 
-```bash cURL
+```bash
 kubectl get --raw /.well-known/openid-configuration | jq -r .issuer
 ```
 
@@ -84,7 +84,7 @@ Wizard membuat sumber daya ini untuk Anda. Gunakan nilai-nilai berikut, baik And
 
 **Federation issuer:** Banyak klaster yang dikelola sendiri menggunakan URL issuer seperti `https://kubernetes.default.svc.cluster.local` yang tidak dapat dijangkau dari internet publik. Jika hal itu berlaku untuk klaster Anda, pilih sumber JWKS **inline** dan tempelkan kunci klaster. Ambil kunci tersebut dari dalam klaster:
 
-```bash cURL
+```bash
 kubectl get --raw /openid/v1/jwks
 ```
 

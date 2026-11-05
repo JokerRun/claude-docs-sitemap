@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: c32d90137e2ad6fd459415edb1e43629ca8d1d68f14b88de0d93156bca03d013
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 282f369e48bf39e6f2deee79dea48de82aa7cc7756d5a229e853548bf20ee080
 ---
 
 ---
@@ -11,25 +11,118 @@ url: https://platform.claude.com/docs/id/get-started
 description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web sederhana.
 ---
 
-## Prasyarat
+## Sebelum Anda memulai
 
-* [Akun Claude Console](https://platform.claude.com/)
-* Sebuah [kunci API](https://platform.claude.com/docs/id/get-api-key)
+<Steps continues>
+  <Step title="Buat akun Claude Console">
+    [Daftar](https://platform.claude.com/) untuk akun Claude Console, atau masuk ke akun yang sudah Anda miliki.
+  </Step>
+
+  <Step title="Pilih cara autentikasi">
+    Masuk dengan CLI direkomendasikan untuk pengembangan lokal.
+
+    Follow the steps for one of the following options.
+  </Step>
+</Steps>
+
+**CLI**
+
+<Steps continued>
+  <Step title="Instal CLI" stepNumber={3}>
+    <Tabs noDeepLinks>
+      <Tab title="Homebrew (macOS)">
+        ```bash
+        brew install anthropics/tap/ant
+        ```
+      </Tab>
+
+      <Tab title="curl (Linux/WSL)">
+        Untuk lingkungan Linux, unduh binary rilis secara langsung.
+
+        ```bash
+        VERSION=2.6.0
+        OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+        case $(uname -m) in
+          x86_64) ARCH=amd64 ;;
+          aarch64) ARCH=arm64 ;;
+        esac
+        curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${VERSION}/ant_${VERSION}_${OS}_${ARCH}.tar.gz" \
+          | sudo tar -xz -C /usr/local/bin ant
+        ```
+
+        Anda dapat menemukan semua rilis di [halaman rilis GitHub](https://github.com/anthropics/anthropic-cli/releases).
+      </Tab>
+
+      <Tab title="go install">
+        Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
+
+        ```bash
+        go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
+        ```
+
+        Binary ditempatkan di `$(go env GOPATH)/bin`. Tambahkan ke `PATH` Anda jika belum ada:
+
+        ```bash
+        export PATH="$PATH:$(go env GOPATH)/bin"
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
+
+  <Step title="Masuk" stepNumber={4}>
+    ```bash
+    ant auth login
+    ```
+
+    Setelah login selesai, SDK dan CLI akan mengambil kredensial Anda secara otomatis.
+  </Step>
+</Steps>
+
+**Kunci API**
+
+<Steps continued>
+  <Step title="Buat kunci API" stepNumber={3}>
+    Buat [kunci API](https://platform.claude.com/settings/keys) di Claude Console.
+  </Step>
+
+  <Step title="Atur variabel lingkungan" stepNumber={4}>
+    SDK dan CLI membaca kunci Anda dari `ANTHROPIC_API_KEY`:
+
+    ```bash
+    export ANTHROPIC_API_KEY="your-api-key-here"
+    ```
+  </Step>
+</Steps>
 
 ## Memanggil API
 
 <Tabs>
   <Tab title="cURL">
     <Steps>
-      <Step title="Atur kunci API Anda">
-        Ekspor kunci API Anda sebagai variabel lingkungan. Perintah cURL pada langkah berikutnya membacanya dari `$ANTHROPIC_API_KEY`.
+      <Step title="Lakukan panggilan API pertama Anda" stepNumber={5}>
+        **CLI**
 
-        ```bash
-        export ANTHROPIC_API_KEY="your-api-key-here"
+        Kirim permintaan `POST` ke Messages API, dengan [token akses dari proses masuk CLI Anda](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting#authenticate-curl-requests-with-cli-credentials) sebagai bearer token:
+
+        ```bash cURL
+        curl https://api.anthropic.com/v1/messages \
+          -H "content-type: application/json" \
+          -H "Authorization: Bearer $(ant auth print-credentials --access-token)" \
+          -H "anthropic-version: 2026-10-21" \
+          -d '{
+            "model": "claude-opus-5-5",
+            "max_tokens": 1000,
+            "messages": [
+              {
+                "role": "user",
+                "content": "What should I search for to find the latest developments in renewable energy?"
+              }
+            ]
+          }'
         ```
-      </Step>
 
-      <Step title="Lakukan panggilan API pertama Anda">
+        **Kunci API**
+
         Kirim permintaan `POST` ke Messages API:
 
         ```bash cURL
@@ -78,33 +171,50 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
 
   <Tab title="CLI">
     <Steps>
-      <Step title="Instal CLI">
-        Instal Anthropic CLI dengan Homebrew:
+      <Step title="Lakukan panggilan API pertama Anda" stepNumber={5}>
+        **Kunci API**
 
-        ```bash
-        brew install anthropics/tap/ant
-        ```
+        Jika sebelumnya Anda memilih kunci API, instal CLI terlebih dahulu:
 
-        Untuk metode instalasi lainnya, lihat [Instalasi](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart#installation) di panduan cepat CLI.
-      </Step>
+        <Tabs noDeepLinks>
+          <Tab title="Homebrew (macOS)">
+            ```bash
+            brew install anthropics/tap/ant
+            ```
+          </Tab>
 
-      <Step title="Autentikasi">
-        Masuk dengan akun Anthropic Anda:
+          <Tab title="curl (Linux/WSL)">
+            Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
-        ```bash
-        ant auth login
-        ```
+            ```bash
+            VERSION=2.6.0
+            OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+            case $(uname -m) in
+              x86_64) ARCH=amd64 ;;
+              aarch64) ARCH=arm64 ;;
+            esac
+            curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${VERSION}/ant_${VERSION}_${OS}_${ARCH}.tar.gz" \
+              | sudo tar -xz -C /usr/local/bin ant
+            ```
 
-        Ini membuka alur OAuth berbasis browser. Setelah memberikan otorisasi, konfirmasikan kredensial Anda dengan:
+            Anda dapat menemukan semua rilis di [halaman rilis GitHub](https://github.com/anthropics/anthropic-cli/releases).
+          </Tab>
 
-        ```bash
-        ant auth status
-        ```
+          <Tab title="go install">
+            Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
 
-        Pada host jarak jauh tanpa browser, berikan `--no-browser` untuk mendapatkan URL yang dapat Anda buka di perangkat lain, lalu tempelkan kode yang dikembalikan ke terminal. Untuk lingkungan non-interaktif seperti CI, lihat [opsi autentikasi CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication).
-      </Step>
+            ```bash
+            go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
+            ```
 
-      <Step title="Lakukan panggilan API pertama Anda">
+            Binary ditempatkan di `$(go env GOPATH)/bin`. Tambahkan ke `PATH` Anda jika belum ada:
+
+            ```bash
+            export PATH="$PATH:$(go env GOPATH)/bin"
+            ```
+          </Tab>
+        </Tabs>
+
         Jalankan `ant messages create` dari terminal Anda:
 
         ```bash CLI
@@ -143,15 +253,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
 
   <Tab title="Python">
     <Steps>
-      <Step title="Atur kunci API Anda">
-        Ekspor kunci API Anda sebagai variabel lingkungan. SDK membaca `ANTHROPIC_API_KEY` secara otomatis.
-
-        ```bash
-        export ANTHROPIC_API_KEY="your-api-key-here"
-        ```
-      </Step>
-
-      <Step title="Buat proyek dan instal SDK">
+      <Step title="Buat proyek dan instal SDK" stepNumber={5}>
         ```bash
         mkdir claude-quickstart && cd claude-quickstart
         python3 -m venv .venv && source .venv/bin/activate
@@ -159,7 +261,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         ```
       </Step>
 
-      <Step title="Buat kode Anda">
+      <Step title="Buat kode Anda" stepNumber={6}>
         Buat file bernama `quickstart.py`:
 
         ```python Python
@@ -184,7 +286,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         ```
       </Step>
 
-      <Step title="Jalankan kode Anda">
+      <Step title="Jalankan kode Anda" stepNumber={7}>
         ```bash
         python quickstart.py
         ```
@@ -202,15 +304,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
 
   <Tab title="TypeScript">
     <Steps>
-      <Step title="Atur kunci API Anda">
-        Ekspor kunci API Anda sebagai variabel lingkungan. SDK membaca `ANTHROPIC_API_KEY` secara otomatis.
-
-        ```bash
-        export ANTHROPIC_API_KEY="your-api-key-here"
-        ```
-      </Step>
-
-      <Step title="Buat proyek dan instal SDK">
+      <Step title="Buat proyek dan instal SDK" stepNumber={5}>
         ```bash
         mkdir claude-quickstart && cd claude-quickstart
         npm init -y
@@ -219,7 +313,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         ```
       </Step>
 
-      <Step title="Buat kode Anda">
+      <Step title="Buat kode Anda" stepNumber={6}>
         Buat file bernama `quickstart.ts`:
 
         ```typescript TypeScript
@@ -246,7 +340,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         ```
       </Step>
 
-      <Step title="Jalankan kode Anda">
+      <Step title="Jalankan kode Anda" stepNumber={7}>
         ```bash
         npx tsx quickstart.ts
         ```
@@ -264,15 +358,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
 
   <Tab title="C#">
     <Steps>
-      <Step title="Atur kunci API Anda">
-        Ekspor kunci API Anda sebagai variabel lingkungan. SDK membaca `ANTHROPIC_API_KEY` secara otomatis.
-
-        ```bash
-        export ANTHROPIC_API_KEY="your-api-key-here"
-        ```
-      </Step>
-
-      <Step title="Buat proyek dan instal SDK">
+      <Step title="Buat proyek dan instal SDK" stepNumber={5}>
         Buat proyek konsol baru dan tambahkan paket Anthropic:
 
         ```bash
@@ -282,7 +368,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         ```
       </Step>
 
-      <Step title="Buat kode Anda">
+      <Step title="Buat kode Anda" stepNumber={6}>
         Ganti isi `Program.cs`:
 
         ```csharp C#
@@ -314,7 +400,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         ```
       </Step>
 
-      <Step title="Jalankan kode Anda">
+      <Step title="Jalankan kode Anda" stepNumber={7}>
         ```bash
         dotnet run
         ```
@@ -332,15 +418,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
 
   <Tab title="Go">
     <Steps>
-      <Step title="Atur kunci API Anda">
-        Ekspor kunci API Anda sebagai variabel lingkungan. SDK membaca `ANTHROPIC_API_KEY` secara otomatis.
-
-        ```bash
-        export ANTHROPIC_API_KEY="your-api-key-here"
-        ```
-      </Step>
-
-      <Step title="Buat proyek dan instal SDK">
+      <Step title="Buat proyek dan instal SDK" stepNumber={5}>
         Buat modul baru dan tambahkan Anthropic SDK:
 
         ```bash
@@ -350,7 +428,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         ```
       </Step>
 
-      <Step title="Buat kode Anda">
+      <Step title="Buat kode Anda" stepNumber={6}>
         Buat file bernama `main.go`:
 
         ```go Go
@@ -387,7 +465,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         ```
       </Step>
 
-      <Step title="Jalankan kode Anda">
+      <Step title="Jalankan kode Anda" stepNumber={7}>
         ```bash
         go run .
         ```
@@ -405,15 +483,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
 
   <Tab title="Java">
     <Steps>
-      <Step title="Atur kunci API Anda">
-        Ekspor kunci API Anda sebagai variabel lingkungan. SDK membaca `ANTHROPIC_API_KEY` secara otomatis.
-
-        ```bash
-        export ANTHROPIC_API_KEY="your-api-key-here"
-        ```
-      </Step>
-
-      <Step title="Siapkan proyek Anda">
+      <Step title="Siapkan proyek Anda" stepNumber={5}>
         Anda memerlukan JDK (25 atau lebih baru) dan [Gradle](https://gradle.org/install/) atau [Maven](https://maven.apache.org/install.html) di `PATH` Anda. Buat direktori untuk proyek Anda dengan direktori sumber Java di dalamnya:
 
         ```bash
@@ -442,7 +512,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:3.4.0")
+                implementation("com.anthropic:anthropic-java:3.5.0")
             }
 
             application {
@@ -468,7 +538,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>3.4.0</version>
+                  <version>3.5.0</version>
                 </dependency>
               </dependencies>
             </project>
@@ -477,7 +547,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         </Tabs>
       </Step>
 
-      <Step title="Buat kode Anda">
+      <Step title="Buat kode Anda" stepNumber={6}>
         Simpan ini sebagai `QuickStart.java` di direktori sumber Java proyek Anda (biasanya `src/main/java/`):
 
         ```java Java
@@ -505,7 +575,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         ```
       </Step>
 
-      <Step title="Jalankan kode Anda">
+      <Step title="Jalankan kode Anda" stepNumber={7}>
         <Tabs>
           <Tab title="Gradle">
             ```bash
@@ -533,22 +603,14 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
 
   <Tab title="PHP">
     <Steps>
-      <Step title="Atur kunci API Anda">
-        Ekspor kunci API Anda sebagai variabel lingkungan. SDK membaca `ANTHROPIC_API_KEY` secara otomatis.
-
-        ```bash
-        export ANTHROPIC_API_KEY="your-api-key-here"
-        ```
-      </Step>
-
-      <Step title="Buat proyek dan instal SDK">
+      <Step title="Buat proyek dan instal SDK" stepNumber={5}>
         ```bash
         mkdir claude-quickstart && cd claude-quickstart
         composer require "anthropic-ai/sdk" "guzzlehttp/guzzle:^7"
         ```
       </Step>
 
-      <Step title="Buat kode Anda">
+      <Step title="Buat kode Anda" stepNumber={6}>
         Buat file bernama `quickstart.php`:
 
         ```php PHP
@@ -580,7 +642,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         ```
       </Step>
 
-      <Step title="Jalankan kode Anda">
+      <Step title="Jalankan kode Anda" stepNumber={7}>
         ```bash
         php quickstart.php
         ```
@@ -598,15 +660,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
 
   <Tab title="Ruby">
     <Steps>
-      <Step title="Atur kunci API Anda">
-        Ekspor kunci API Anda sebagai variabel lingkungan. SDK membaca `ANTHROPIC_API_KEY` secara otomatis.
-
-        ```bash
-        export ANTHROPIC_API_KEY="your-api-key-here"
-        ```
-      </Step>
-
-      <Step title="Buat proyek dan instal SDK">
+      <Step title="Buat proyek dan instal SDK" stepNumber={5}>
         ```bash
         mkdir claude-quickstart && cd claude-quickstart
         bundle init
@@ -614,7 +668,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         ```
       </Step>
 
-      <Step title="Buat kode Anda">
+      <Step title="Buat kode Anda" stepNumber={6}>
         Buat file bernama `quickstart.rb`:
 
         ```ruby Ruby
@@ -639,7 +693,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         ```
       </Step>
 
-      <Step title="Jalankan kode Anda">
+      <Step title="Jalankan kode Anda" stepNumber={7}>
         ```bash
         bundle exec ruby quickstart.rb
         ```

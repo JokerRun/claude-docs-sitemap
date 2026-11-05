@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-threads
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 603109f2a418a2d2fced4da8450bb499f4a14db1a8becd430a456eab3ab00894
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: b347eef1f5b10c1c912904851b24870ea51722cdc2d8b2c9f423f3ce5725f1a8
 ---
 
 ---
@@ -535,7 +535,7 @@ Aliran sebuah thread tidak memutar ulang event sebelumnya. Tepat setelah `sessio
               .build()
       )) {
           loop:
-          for (var event : (Iterable<BetaManagedAgentsStreamSessionThreadEvents>) streamResponse.stream()::iterator) {
+          for (var event : streamResponse) {
               switch (event.type().value()) {
                   case AGENT_MESSAGE -> {
                       for (var block : event.asAgentMessage().content()) {

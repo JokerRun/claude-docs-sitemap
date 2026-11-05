@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 4ff6e4d0d027723ad3f19d39489dc7ef6bb5293a9f419f920b5893b70b07747e
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 8f16f63e0576afcec581f86b053f84e584281677b3596fd011b30a18c80345a9
 ---
 
 ---
@@ -215,7 +215,7 @@ Untuk mempelajari lebih lanjut, lihat [Menggunakan Skills di Claude Code](https:
 
 **Agent Skills siap pakai:** Skills ini aktif saat Anda membuat dokumen. Claude menggunakannya tanpa perlu pengaturan.
 
-**Skills kustom:** Unggah Skills Anda sendiri sebagai file zip melalui Settings > Features. Tersedia pada paket Pro, Max, Ultra, Team, dan Enterprise dengan [eksekusi kode diaktifkan](https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude). Skills kustom bersifat individual untuk setiap pengguna. Skills ini tidak dibagikan ke seluruh organisasi dan tidak dapat dikelola secara terpusat oleh admin.
+**Skills kustom:** Unggah Skills Anda sendiri sebagai file zip melalui **Settings > Features**. Tersedia pada paket Pro, Max, Ultra, Team, dan Enterprise dengan [eksekusi kode diaktifkan](https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude). Skills kustom bersifat individual untuk setiap pengguna. Skills ini tidak dibagikan ke seluruh organisasi dan tidak dapat dikelola secara terpusat oleh admin.
 
 Untuk mempelajari lebih lanjut tentang menggunakan Skills di claude.ai, lihat sumber daya berikut di Claude Help Center:
 

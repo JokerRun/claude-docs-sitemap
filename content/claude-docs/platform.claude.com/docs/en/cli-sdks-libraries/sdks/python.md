@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: f1c711b618fb1b50d7cd5853ba65884228b5aac65f7f75d910e7e39371d5821e
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 56d9da9b3fd262d66d24bce16be956b2130de641b85de1c0eebdb7fee364aa4d
 ---
 
 ---
@@ -513,7 +513,9 @@ Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get
 first_page = await client.messages.batches.list(limit=20)
 
 if first_page.has_next_page():
-    print(f"will fetch next page using these details: {first_page.next_page_info()}")
+    print(
+        f"will fetch next page using these details: {first_page.next_page_info()}"
+    )
     next_page = await first_page.get_next_page()
     print(f"number of items we just fetched: {len(next_page.data)}")
 

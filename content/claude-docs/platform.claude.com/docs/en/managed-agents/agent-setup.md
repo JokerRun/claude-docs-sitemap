@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 868d0da3efdd1c5a77660ca9a7541813cabaed728629c041f13600fe4e2e8555
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: c2e473daf734cd17b80db5e1820e96a7d96b329c1deae77c6a2b3049484d364f
 ---
 
 ---
@@ -61,7 +61,7 @@ You can also override `model` (csharp, go: `Model`), `system` (csharp, go: `Syst
 
 The following example defines a coding agent that uses the newest Claude Opus model with access to the pre-built agent toolset. The toolset lets the agent write code, read files, search the web, and more. See the [agent tools reference](https://platform.claude.com/docs/en/managed-agents/tools) for the full list of supported tools.
 
-The examples use curl, the `ant` CLI, or the SDK. If you haven’t set one up, the [quickstart](https://platform.claude.com/docs/en/managed-agents/quickstart#install-the-cli) covers installation and client setup.
+The examples use curl, the `ant` CLI, or the SDK. If you haven’t set one up, the [quickstart](https://platform.claude.com/docs/en/managed-agents/quickstart#before-you-begin) covers installation and client setup.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL

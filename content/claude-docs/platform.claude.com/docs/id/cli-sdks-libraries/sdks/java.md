@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 7f7d5df22178798b5b25991d63325334a8cab9982111245b0c51d6ccd3521e59
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 329dca878b139119d143740e289963cd8943aed63fd1ecabbc1325934297364e
 ---
 
 ---
@@ -22,7 +22,7 @@ Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang
 <Tabs>
   <Tab title="Gradle">
     ```kotlin
-    implementation("com.anthropic:anthropic-java:3.4.0")
+    implementation("com.anthropic:anthropic-java:3.5.0")
     ```
   </Tab>
 
@@ -31,11 +31,41 @@ Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java</artifactId>
-        <version>3.4.0</version>
+        <version>3.5.0</version>
     </dependency>
     ```
   </Tab>
 </Tabs>
+
+### Add-on
+
+Integrasi platform cloud dan helper MCP sisi klien tersedia sebagai artefak add-on terpisah. Instal add-on bersama `anthropic-java`, yang menyediakan `AnthropicOkHttpClient`. Gunakan versi yang sama untuk keduanya. Contoh ini menambahkan helper MCP sisi klien:
+
+<Tabs>
+  <Tab title="Gradle">
+    ```kotlin
+    implementation("com.anthropic:anthropic-java:3.5.0")
+    implementation("com.anthropic:anthropic-java-mcp:3.5.0")
+    ```
+  </Tab>
+
+  <Tab title="Maven">
+    ```xml
+    <dependency>
+        <groupId>com.anthropic</groupId>
+        <artifactId>anthropic-java</artifactId>
+        <version>3.5.0</version>
+    </dependency>
+    <dependency>
+        <groupId>com.anthropic</groupId>
+        <artifactId>anthropic-java-mcp</artifactId>
+        <version>3.5.0</version>
+    </dependency>
+    ```
+  </Tab>
+</Tabs>
+
+Untuk add-on lain, ganti `anthropic-java-mcp` dengan nama artefaknya. [Integrasi platform](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#platform-integrations) mencantumkan artefak untuk setiap platform cloud. [Helper MCP sisi klien](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#client-side-mcp-helpers) membahas `anthropic-java-mcp` dan versi Java yang diperlukannya.
 
 ## Persyaratan
 
@@ -128,6 +158,9 @@ Untuk sementara menggunakan konfigurasi klien yang dimodifikasi sambil tetap men
 
 ```java
 import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+
+AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
 AnthropicClient clientWithOptions = client.withOptions(optionsBuilder -> {
   optionsBuilder.baseUrl("https://example.com");
@@ -803,6 +836,9 @@ while (true) {
 Setiap kelas dalam SDK memiliki builder terkait untuk membangunnya. Setiap kelas bersifat immutable setelah dibangun. Jika kelas memiliki builder terkait, maka kelas tersebut memiliki metode `toBuilder()`, yang dapat digunakan untuk mengonversinya kembali menjadi builder untuk membuat salinan yang dimodifikasi.
 
 ```java
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+
 MessageCreateParams params = MessageCreateParams.builder()
   .maxTokens(1024L)
   .addUserMessage("Hello, Claude")
@@ -1095,7 +1131,7 @@ Gunakan `BedrockMantleBackend` untuk proyek baru; `BedrockBackend` tetap tersedi
 
 Java SDK juga mendukung Claude Models on Google Cloud (Anthropic managed) melalui `GoogleCloudBackend`, dari dependensi `com.anthropic:anthropic-java-google-cloud`. Backend ini masih dalam tahap beta. Buat backend ini dengan `GoogleCloudBackend.builder()` atau `GoogleCloudBackend.fromEnv()`. `fromEnv()` membaca `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`, `ANTHROPIC_GOOGLE_CLOUD_PROJECT`, dan Google Application Default Credentials. Lihat [Resolusi proyek, lokasi, dan workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution).
 
-Artefak platform merupakan add-on untuk dependensi dasar `com.anthropic:anthropic-java`, yang menyediakan `AnthropicOkHttpClient`, jadi instal keduanya. Setiap implementasi `Backend` diteruskan ke klien dengan `.backend()` pada `AnthropicOkHttpClient.builder()`. Setiap backend cloud menarik kelas SDK platform cloud masing-masing sebagai dependensi transitif.
+Instal setiap artefak platform bersama dependensi dasar `anthropic-java`, seperti yang ditunjukkan di [Add-on](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#add-ons). Setiap implementasi `Backend` diteruskan ke klien dengan `.backend()` pada `AnthropicOkHttpClient.builder()`.
 
 ## Penggunaan lanjutan
 
@@ -1104,11 +1140,15 @@ Artefak platform merupakan add-on untuk dependensi dasar `com.anthropic:anthropi
 Untuk mengakses header HTTP, kode status, dan body respons mentah, awali panggilan metode HTTP apa pun dengan `withRawResponse()`:
 
 ```java
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.core.http.Headers;
 import com.anthropic.core.http.HttpResponseFor;
 import com.anthropic.models.messages.Message;
 import com.anthropic.models.messages.MessageCreateParams;
 import com.anthropic.models.messages.Model;
+
+AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
 MessageCreateParams params = MessageCreateParams.builder()
   .maxTokens(1024L)

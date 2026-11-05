@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: a7b8d952d31700011a908636772e912ec0206d5e4dcf5e5b5fba05a3bd52b4a0
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: a5f18ba61936a0048fabe0a5ce3734e24cc2309a4aa97f7062cf36d67b078a3e
 ---
 
 ---
@@ -212,7 +212,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
   <Step title="Instal CLI ant">
     Jalankan ini di host worker.
 
-    <Tabs>
+    <Tabs noDeepLinks>
       <Tab title="Homebrew (macOS)">
         ```bash
         brew install anthropics/tap/ant
@@ -223,7 +223,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
         Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
         ```bash
-        VERSION=2.5.0
+        VERSION=2.6.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -236,7 +236,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
         Anda dapat menemukan semua rilis di [halaman rilis GitHub](https://github.com/anthropics/anthropic-cli/releases).
       </Tab>
 
-      <Tab title="Go">
+      <Tab title="go install">
         Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
 
         ```bash
@@ -251,7 +251,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
       </Tab>
     </Tabs>
 
-    Periksa instalasi:
+    Periksa instalasinya:
 
     ```bash
     ant --version

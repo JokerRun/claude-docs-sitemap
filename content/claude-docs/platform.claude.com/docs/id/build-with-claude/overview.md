@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/overview
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 91a94628327ba6cb1ad63bcced67a778f2c2c1304663df96dd1631af9ba47c92
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: af3c4bced7e70031ecca158613aa0f91be1ad01518a5b1041df98a2b0e78c5c7
 ---
 
 ---
@@ -37,7 +37,7 @@ Fitur-fitur Claude Platform yang berfungsi di seluruh API-nya. Halaman setiap fi
 | ↳ [Fallback sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback)                                     | Middleware dalam Claude SDK yang mencoba ulang permintaan yang ditolak pada model fallback yang Anda cantumkan.                                                                                   |
 | ↳ [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit)                                                                    | Menagih percobaan ulang permintaan yang ditolak pada model lain seolah-olah percakapan telah menggunakan model tersebut sejak awal, sehingga Anda tidak membayar penulisan cache prompt dua kali. |
 | ↳ [Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback)                                    | API mencoba ulang permintaan yang ditolak pada model fallback dalam panggilan yang sama dan mengembalikan satu respons.                                                                           |
-| [Alat penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool)                                                   | Memberi Claude kendali screenshot, mouse, dan keyboard atas environment desktop.                                                                                                                  |
+| [Alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool)                                                          | Memberi Claude kendali screenshot, mouse, dan keyboard atas environment desktop.                                                                                                                  |
 | [Alat kustom](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools)                                                                     | Alat yang Anda definisikan dengan nama, deskripsi, dan skema input. Claude meminta untuk memanggilnya; kode Anda menjalankannya dan mengembalikan hasilnya.                                       |
 | [Residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency)                                                                            | Kontrol untuk lokasi inferensi model dijalankan (geo inferensi) dan lokasi data disimpan saat tidak aktif (geo workspace).                                                                        |
 | [Effort](https://platform.claude.com/docs/id/build-with-claude/effort)                                                                                        | Pengaturan yang mengontrol berapa banyak token yang digunakan Claude untuk sebuah respons, dengan menyeimbangkan ketelitian dan efisiensi token.                                                  |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: a2db05eeceb08a1e1c464fcb808f549e90796ae47c016e6efd0e3d8cf6ce3574
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 783bd5fcd734a86864e74e74b1893aa51f80a445bcdce045c28d84e842b8410d
 ---
 
 ---
@@ -897,14 +897,14 @@ Cache 1 jam paling baik digunakan dalam skenario berikut:
 
 Anda dapat menggunakan kontrol cache 1 jam dan 5 menit dalam permintaan yang sama, tetapi dengan batasan penting: Entri cache dengan TTL lebih panjang harus muncul sebelum TTL yang lebih pendek (yaitu, entri cache 1 jam harus muncul sebelum entri cache 5 menit mana pun).
 
-Saat mencampur TTL, API menentukan tiga lokasi penagihan dalam prompt Anda:
+Saat mencampur TTL, Claude API menentukan tiga lokasi penagihan dalam prompt Anda:
 
-1. Posisi `A`: Jumlah token pada cache hit tertinggi (atau 0 jika tidak ada hit).
-2. Posisi `B`: Jumlah token pada blok `cache_control` 1 jam tertinggi setelah `A` (atau sama dengan `A` jika tidak ada).
+1. Posisi `A`: Jumlah token pada cache hit terakhir dalam prompt Anda (atau 0 jika tidak ada hit). Cache hit pada entri yang di-cache dengan TTL 5 menit tidak diakui sebagai hit jika blok `cache_control` dengan TTL 1 jam yang posisinya berada setelah entri tersebut merupakan cache miss.
+2. Posisi `B`: Jumlah token pada blok `cache_control` terakhir dengan TTL 1 jam yang posisinya berada setelah `A` (atau sama dengan `A` jika tidak ada).
 3. Posisi `C`: Jumlah token pada blok `cache_control` terakhir.
 
 <Note>
-  Jika `B` atau `C` lebih besar dari `A`, itu pasti merupakan cache miss, karena `A` adalah cache hit tertinggi.
+  Jika `B` atau `C` lebih besar dari `A`, itu pasti merupakan cache miss.
 </Note>
 
 Anda akan dikenakan biaya untuk:

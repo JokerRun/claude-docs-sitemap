@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 14094aa9f0cbd36f747032e806bb365f71b1b9098fc9c859835a46a3561f1e5f
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 419222ae9c7d7d16c6633cf71d45672676ec8ba95b2b6dfb66b590d49d064e14
 ---
 
 ---
@@ -61,7 +61,7 @@ Anda juga dapat menimpa `model` (csharp, go: `Model`), `system` (csharp, go: `Sy
 
 Contoh berikut mendefinisikan agen coding yang menggunakan model Claude Opus terbaru dengan akses ke toolset agen bawaan. Toolset ini memungkinkan agen menulis kode, membaca file, mencari di web, dan lainnya. Lihat [referensi alat agen](https://platform.claude.com/docs/id/managed-agents/tools) untuk daftar lengkap alat yang didukung.
 
-Contoh-contoh ini menggunakan curl, CLI `ant`, atau SDK. Jika Anda belum menyiapkan salah satunya, [panduan memulai cepat](https://platform.claude.com/docs/id/managed-agents/quickstart#install-the-cli) membahas instalasi dan penyiapan klien.
+Contoh-contoh ini menggunakan curl, CLI `ant`, atau SDK. Jika Anda belum menyiapkan salah satunya, [panduan memulai cepat](https://platform.claude.com/docs/id/managed-agents/quickstart#before-you-begin) membahas instalasi dan penyiapan klien.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL

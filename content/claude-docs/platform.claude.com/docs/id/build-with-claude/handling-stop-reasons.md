@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 190a9e8434b0396c122508754ffbb1dc7662d876f42a730f193297662afaf702
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 3eb38d91a7ff892445ff8729d25ef7975790ea58c4349d45fbb65c0464340739
 ---
 
 ---
@@ -1937,6 +1937,8 @@ Claude berhenti karena mencapai batas “context window” (jendela konteks) mod
   ```
 
   ```python Python
+  client = anthropic.Anthropic()
+
   # Permintaan dengan token maksimum untuk mendapatkan hasil sebanyak mungkin
   response = client.beta.messages.create(
       model="claude-opus-5-5",
@@ -1953,6 +1955,8 @@ Claude berhenti karena mencapai batas “context window” (jendela konteks) mod
   ```
 
   ```typescript TypeScript
+  const client = new Anthropic();
+
   // Permintaan dengan token maksimum untuk mendapatkan hasil sebanyak mungkin
   const response = await client.beta.messages.create({
     model: "claude-opus-5-5",
@@ -1968,8 +1972,7 @@ Claude berhenti karena mencapai batas “context window” (jendela konteks) mod
   ```
 
   ```csharp C#
-  using Anthropic.Models.Beta.Messages;
-  using Model = Anthropic.Models.Messages.Model;
+  AnthropicClient client = new();
 
   // Permintaan dengan token maksimum untuk mendapatkan hasil sebanyak mungkin
   var response = await client.Beta.Messages.Create(new MessageCreateParams
@@ -1988,6 +1991,8 @@ Claude berhenti karena mencapai batas “context window” (jendela konteks) mod
   ```
 
   ```go Go
+  client := anthropic.NewClient()
+
   // Permintaan dengan token maksimum untuk mendapatkan hasil sebanyak mungkin
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
   	Model:     anthropic.ModelClaudeOpus5_5,
@@ -2008,9 +2013,7 @@ Claude berhenti karena mencapai batas “context window” (jendela konteks) mod
   ```
 
   ```java Java
-  import com.anthropic.models.beta.messages.BetaMessage;
-  import com.anthropic.models.beta.messages.BetaStopReason;
-  import com.anthropic.models.beta.messages.MessageCreateParams;
+  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   // Permintaan dengan token maksimum untuk mendapatkan hasil sebanyak mungkin
   BetaMessage response = client.beta().messages().create(
@@ -2029,6 +2032,8 @@ Claude berhenti karena mencapai batas “context window” (jendela konteks) mod
   ```
 
   ```php PHP
+  $client = new Client();
+
   // Permintaan dengan token maksimum untuk mendapatkan hasil sebanyak mungkin
   $response = $client->beta->messages->create(
       maxTokens: 20000,
@@ -2044,6 +2049,8 @@ Claude berhenti karena mencapai batas “context window” (jendela konteks) mod
   ```
 
   ```ruby Ruby
+  client = Anthropic::Client.new
+
   # Permintaan dengan token maksimum untuk mendapatkan hasil sebanyak mungkin
   response = client.beta.messages.create(
     model: "claude-opus-5-5",

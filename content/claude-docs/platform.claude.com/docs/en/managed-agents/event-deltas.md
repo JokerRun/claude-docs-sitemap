@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/event-deltas
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 12d8522e6396f28d79dd195aa06103e3e34e709d1a8a2927f02128242670f117
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 5fd6dc7a841318a39af1af91c9f5b378c70b9604e05b19e12f3c144351a25e79
 ---
 
 ---
@@ -415,9 +415,8 @@ The following examples opt in to `agent.message` previews and reconcile them wit
               .build()
       );
 
-      Iterable<BetaManagedAgentsStreamSessionEvents> events = stream.stream()::iterator;
       deltas:
-      for (var event : events) {
+      for (var event : stream) {
           switch (event.type().value()) {
               case EVENT_START -> {
                   if (event.asEventStart().event().isAgentMessage()) {
@@ -788,9 +787,8 @@ A thread stream’s path ends in `/threads/{thread_id}/stream`. `/events/stream`
               .addEventDelta(BetaManagedAgentsDeltaType.AGENT_MESSAGE)
               .build()
   )) {
-      Iterable<BetaManagedAgentsStreamSessionThreadEvents> events = stream.stream()::iterator;
       threadDeltas:
-      for (var event : events) {
+      for (var event : stream) {
           switch (event.type().value()) {
               case EVENT_DELTA -> IO.print(event.asEventDelta().delta().content().text());
               case AGENT_MESSAGE -> {

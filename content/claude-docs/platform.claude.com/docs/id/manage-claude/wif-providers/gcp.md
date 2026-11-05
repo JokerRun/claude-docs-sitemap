@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/gcp
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: e5eeb9406e02e4d3acc640cd87a239d6f57ef0d68d52f1128f392fdabdb190f8
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 4a85059726d29e1465cb84e220c078d90a6e69f45e67cc948a49901292156e97
 ---
 
 ---
@@ -30,7 +30,7 @@ Google menerbitkan token identitas secara otomatis untuk setiap workload yang me
   <Tab title="Cloud Run, Cloud Functions, App Engine, GCE">
     Pasang service account khusus ke layanan atau instance Anda:
 
-    ```bash CLI
+    ```bash
     gcloud run deploy my-service \
       --service-account inference-worker@my-project.iam.gserviceaccount.com
     ```
@@ -44,7 +44,7 @@ Google menerbitkan token identitas secara otomatis untuk setiap workload yang me
 
     Atau, dengan gcloud CLI:
 
-    ```bash CLI
+    ```bash
     gcloud auth print-identity-token \
       --audiences="https://api.anthropic.com" \
       --include-email

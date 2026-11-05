@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/overview
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 72a6f371feecb0e34cb10097f7c3eae3d363fe32421116281205eb2ae2b2d49f
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: c4859d368bbf97e07400b12bab14898b5dcdc0bb6520ce108a032ed62faf85ab
 ---
 
 ---
@@ -23,16 +23,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $4 / MTok
 
 ## Ikhtisar
 
-Claude Opus 5.5 dibuat untuk pekerjaan coding agentik dan pekerjaan pengetahuan yang berjalan lama, dengan harga $4 / $20 USD per juta token input / output. Empat perubahan yang merusak kompatibilitas dapat memengaruhi kode yang sudah berjalan di Claude Opus 5:
-
-* [Thinking tidak dapat dinonaktifkan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#thinking-cant-be-disabled).
-* [Penggunaan alat yang dipaksakan mengembalikan error](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#forced-tool-use-is-not-supported).
-* [Blok thinking terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them).
-* [Beberapa versi alat computer use tidak didukung](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#computer-20251124-is-not-supported).
-
-Tiga perubahan pertama juga berlaku pada Claude Fable 5.1. Perubahan lainnya mengubah bentuk respons tanpa menggagalkan permintaan apa pun: [teks di antara pemanggilan alat dikembalikan dalam blok `thinking`](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#text-between-tool-calls) yang teksnya kosong pada pengaturan `display` default. Aplikasi yang melakukan streaming teks tersebut kepada penggunanya sebagai pembaruan progres akan diam di antara pemanggilan alat hingga aplikasi tersebut menetapkan nilai `display` yang mengembalikan teks tersebut.
-
-[Yang baru di Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5)
+Claude Opus 5.5 dibuat untuk pekerjaan coding agentik dan pekerjaan pengetahuan yang berjalan lama. Penggunaan umumnya mencakup agen coding otonom yang berjalan berjam-jam, refactoring skala besar, rekayasa sistem yang kompleks, alur kerja yang banyak melibatkan visi, dan computer use.
 
 ## Perbandingannya
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/quickstart
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 4e9369fcb25656a92197765b53d4bca1b3b2df6b7a7e9c6718ddb62b07de62ce
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 6b2468af6366743790e1da124bd423073db1f02a4288569183c7ef27b6ec895d
 ---
 
 ---
@@ -28,7 +28,7 @@ Compared to `curl`, `ant` builds request bodies from typed flags or piped YAML i
 
 ## Installation
 
-<Tabs>
+<Tabs noDeepLinks>
   <Tab title="Homebrew (macOS)">
     ```bash
     brew install anthropics/tap/ant
@@ -39,7 +39,7 @@ Compared to `curl`, `ant` builds request bodies from typed flags or piped YAML i
     For Linux environments, download the release binary directly.
 
     ```bash
-    VERSION=2.5.0
+    VERSION=2.6.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -52,7 +52,7 @@ Compared to `curl`, `ant` builds request bodies from typed flags or piped YAML i
     You can find all releases on the [GitHub releases page](https://github.com/anthropics/anthropic-cli/releases).
   </Tab>
 
-  <Tab title="Go">
+  <Tab title="go install">
     You can also install the CLI from source using `go install`. Requires Go 1.25 or later.
 
     ```bash

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: b97439a5b59573d48631c7baec9f3f2905dbce5acd95e5e7255dd91d812a562b
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 6aa043a1651aae557d4420530618e5c1c32a7a52b9cfea7d3c7712b991713eae
 ---
 
 > ## Documentation Index
@@ -1347,7 +1347,7 @@ type PermissionMode =
   | "default" // Standard permission behavior
   | "acceptEdits" // Auto-accept file edits
   | "bypassPermissions" // Bypass permission checks; explicit ask rules still prompt
-  | "plan" // Planning mode - explore without editing
+  | "plan" // Planning mode - Claude explores and plans
   | "dontAsk" // Don't prompt for permissions, deny if not pre-approved
   | "auto"; // A model classifier reviews actions such as shell commands and network requests
 ```
@@ -1356,7 +1356,12 @@ type PermissionMode =
 
 Custom permission function type for controlling tool usage.
 
-The function is the SDK replacement for the interactive permission prompt: it's invoked only when the [permission evaluation flow](https://code.claude.com/docs/en/agent-sdk/permissions.md#how-permissions-are-evaluated) resolves to a prompt. Tool calls already approved by an `allowedTools` entry, a settings allow rule, or the permission mode, such as `acceptEdits` or `bypassPermissions`, never invoke it. To gate every tool call, use a [`PreToolUse` hook](https://code.claude.com/docs/en/agent-sdk/hooks) instead.
+The function replaces the interactive permission prompt. The SDK calls `canUseTool` when the [permission evaluation flow](https://code.claude.com/docs/en/agent-sdk/permissions.md#how-permissions-are-evaluated) resolves to a prompt. Calls approved in either of these ways run without calling `canUseTool`:
+
+* A call that an `allowedTools` entry or a settings allow rule approves
+* A call the permission mode approves, such as a file edit in `acceptEdits` mode
+
+To check those calls, use a [`PreToolUse` hook](https://code.claude.com/docs/en/agent-sdk/hooks), which runs for them too.
 
 An allow rule doesn't pre-approve the [actions no mode auto-approves](https://code.claude.com/docs/en/permission-modes.md#actions-no-mode-auto-approves); see [How permissions are evaluated](https://code.claude.com/docs/en/agent-sdk/permissions.md#how-permissions-are-evaluated) for which of them reach the callback and what happens in `dontAsk` and `auto` mode.
 
@@ -2013,6 +2018,7 @@ Set `CLAUDE_CODE_STARTUP_FAILURE_RESULTS` to `1` in [`env`](#options) to receive
 * A resume that Claude Code stops because it [can't return the session to its worktree](https://code.claude.com/docs/en/worktrees.md#the-session-resumes-outside-its-worktree), with `worktree_unverified` or `worktree_resume_refused`. That section says which error carries which value.
 * A refused [`continue`](#options) of a conversation that a background session holds, with `session_held_by_background`. For a refused [`resume`](#options) of such a conversation, Claude Code writes the result only when the variable is set.
 * A start that Claude Code refuses because [`failIfUnavailable`](#sandboxsettings) is on and the sandbox can't start, with `sandbox_required_unavailable`.
+* A start that Claude Code refuses because `~/.claude.json` isn't valid JSON, with `config_file_invalid`.
 
 The `SDKStartupFailureReason` type lists the values `startup_failure_reason` can hold:
 
@@ -2037,7 +2043,8 @@ type SDKStartupFailureReason =
   | "bypass_root"
   | "org_config_required_unavailable"
   | "org_config_refused"
-  | "sandbox_required_unavailable";
+  | "sandbox_required_unavailable"
+  | "config_file_invalid";
 ```
 
 Each value names one refusal:
@@ -2064,6 +2071,7 @@ Each value names one refusal:
 | `org_config_required_unavailable` | The session needs the organization's policies and managed settings before it can start, and they couldn't be loaded, for example because of a network failure or an Anthropic server error. Requires Agent SDK v0.3.293 or later |
 | `org_config_refused` | Anthropic refused to provide the organization's policies and managed settings for this sign-in, for example because the sign-in expired or was revoked, or the organization doesn't allow Claude Code for this account. Requires Agent SDK v0.3.293 or later |
 | `sandbox_required_unavailable` | [`failIfUnavailable`](#sandboxsettings) is on and the sandbox can't start. The text in `errors` ends with `Set sandbox.failIfUnavailable=false to allow unsandboxed execution.` Requires Agent SDK v0.3.314 or later |
+| `config_file_invalid` | `~/.claude.json` isn't valid JSON. Claude Code leaves the file unchanged, so a retry fails the same way until someone repairs it. `errors` names the file and says how to restore or repair it. See [Configuration error in \~/.claude.json](https://code.claude.com/docs/en/errors.md#configuration-error-in-claude-json). Requires TypeScript Agent SDK v0.3.318 or later and Claude Code v2.1.318 or later |
 
 ### `SDKSystemMessage`
 
@@ -6115,7 +6123,7 @@ type SandboxNetworkConfig = {
 
 > [!NOTE]
 >
-> The built-in sandbox proxy enforces `allowedDomains` based on the requested hostname and does not terminate or inspect TLS traffic, so techniques such as [domain fronting](https://en.wikipedia.org/wiki/Domain_fronting) can potentially bypass it. See [Sandboxing security limitations](https://code.claude.com/docs/en/sandboxing.md#security-limitations) for details and [Secure deployment](https://code.claude.com/docs/en/agent-sdk/secure-deployment.md#traffic-forwarding) for configuring a TLS-terminating proxy.
+> The built-in sandbox proxy enforces `allowedDomains` based on the requested hostname. By default, the proxy doesn't terminate or inspect TLS traffic, so techniques such as [domain fronting](https://en.wikipedia.org/wiki/Domain_fronting) can potentially bypass `allowedDomains`. See [Sandboxing security limitations](https://code.claude.com/docs/en/sandboxing.md#security-limitations) for details and [Secure deployment](https://code.claude.com/docs/en/agent-sdk/secure-deployment.md#traffic-forwarding) for configuring a TLS-terminating proxy.
 
 ### `SandboxFilesystemConfig`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-reference
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 3f24f775d03db0096933becf693383424263c03738c461ca35890f2f6e5f9c56
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 750aec3769e1326cebc787d693e798ae9b06d715e1bad2272077b4a29ae75d7a
 ---
 
 ---
@@ -265,7 +265,7 @@ Jika Anda masih perlu melakukan debug dari JWT itu sendiri, lakukan pemeriksaan 
   <Step title="Dekode JWT">
     Dekode assertion yang Anda kirim sehingga Anda dapat membandingkan setiap klaim dengan konfigurasi issuer dan aturan Anda:
 
-    ```bash cURL
+    ```bash
     jq -rR 'split(".")[1] | gsub("-";"+") | gsub("_";"/") | @base64d | fromjson' <<< "$JWT"
     ```
   </Step>

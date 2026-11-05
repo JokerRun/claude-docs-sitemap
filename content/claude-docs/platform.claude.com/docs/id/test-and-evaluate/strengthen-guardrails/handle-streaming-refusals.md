@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 90373e21fbf730afcbda64091a1001bf480bb3e9d53be31d4df39ee1e7b577fd
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 54ef4a843f668471d76b1578215f211fed130befeea722ebc8df5a1593bdb3e8
 ---
 
 ---
@@ -40,7 +40,7 @@ featureMetadata:
 **Dukungan API**: Penggunaan berbeda menurut produk.
 
 * **Messages API**: Stream berakhir dengan `stop_reason` `"refusal"`, dan `stop_details` (`category` dan `explanation`) tiba pada event `message_delta`.
-* **Managed Agents**: Giliran yang ditolak berakhir, dan sesi menjadi idle dengan `stop_reason.type` `"refusal"`.
+* **Managed Agents**: Giliran yang ditolak berakhir, dan sesi menjadi idle. Anggap giliran ditolak jika `stop_details.type` atau `stop_reason.type` bernilai `"refusal"`.
 
 Mulai dari model Claude 4, respons streaming dari API Claude mengembalikan **`stop_reason`: `"refusal"`** ketika pengklasifikasi streaming melakukan intervensi untuk menangani potensi pelanggaran kebijakan. Fitur keamanan ini membantu menjaga kepatuhan konten selama streaming real-time.
 
@@ -395,7 +395,7 @@ Penolakan streaming tersedia atau dalam versi beta, tergantung pada API.
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
 * Ketersediaan: Selalu aktif
-* Penggunaan: Giliran yang ditolak berakhir, dan sesi menjadi idle dengan `stop_reason.type` `"refusal"` dan `stop_details` (`category` dan `explanation`) pada event `session.status_idle`.
+* Penggunaan: Giliran yang ditolak berakhir, dan sesi menjadi idle. Anggap giliran ditolak jika `stop_details.type` atau `stop_reason.type` pada event `session.status_idle` bernilai `"refusal"`. Pada giliran yang ditolak, `stop_reason.type` dapat bernilai `"end_turn"`. `stop_details` bernilai `null` pada giliran lainnya, dan juga dapat bernilai `null` pada giliran yang ditolak.
 
 | Status | Platform cloud                                                                                                     |
 | ------ | ------------------------------------------------------------------------------------------------------------------ |

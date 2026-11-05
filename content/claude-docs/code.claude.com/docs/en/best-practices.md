@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: fc0fba99537da179c643a6e6e0b8dcddabf51286aa75604a4c87b045c751f71e
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: fe692b7566e6d74bc4958d445bfdaa40509e190984914a90f1d0c69b1748c43a
 ---
 
 > ## Documentation Index
@@ -551,7 +551,7 @@ Once it's going, Claude will carry a long task through on its own. The parts tha
 In a script you'll almost always want a few more flags:
 
 * [`--bare`](https://code.claude.com/docs/en/headless#start-faster-with-bare-mode) skips hooks, skills, plugins, MCP servers, and `CLAUDE.md` files, the repo's as well as the machine's, so the run does the same thing wherever it runs. It also never touches your claude.ai login: auth comes from `ANTHROPIC_API_KEY`, an `apiKeyHelper` in the file you pass with `--settings`, or your cloud provider's credentials.
-* `--append-system-prompt`, `--mcp-config`, and `--settings` pass in whatever the run *does* need, explicitly.
+* `--append-system-prompt`, `--mcp-config`, and `--settings` explicitly pass in what the run *does* need. Hooks you pass with `--settings` [don't run under `--bare`](https://code.claude.com/docs/en/headless#start-faster-with-bare-mode), so don't use `--bare` for a run that needs them.
 * `--allowedTools` pre-approves its tools, and [`--permission-mode dontAsk`](https://code.claude.com/docs/en/permission-modes#allow-only-pre-approved-tools-with-dontask-mode) refuses anything else that would have prompted.
 * `--output-format json` gives you a single result object to parse, and `stream-json` with `--verbose` streams events as they happen.
 

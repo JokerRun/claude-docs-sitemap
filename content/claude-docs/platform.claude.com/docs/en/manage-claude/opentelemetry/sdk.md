@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 6994cf22ec5f8e88fddd9f026ca62c0e99867a6ef8d14161cc398c2bdb44d1ab
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 23e0fe5eb5689779f5ddedeffd490c99b434ce09fb2234924a4d21e0db2af732
 ---
 
 ---
@@ -105,19 +105,23 @@ Install or upgrade to the latest version of the Claude SDK:
   <Tab title="Java">
     Add the Claude SDK to your dependencies, or update it to at least the following version if your build file already declares it:
 
-    <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
-      ```kotlin Gradle
-      implementation("com.anthropic:anthropic-java:3.4.0")
-      ```
+    <Tabs>
+      <Tab title="Gradle">
+        ```kotlin
+        implementation("com.anthropic:anthropic-java:3.5.0")
+        ```
+      </Tab>
 
-      ```xml Maven
-      <dependency>
-          <groupId>com.anthropic</groupId>
-          <artifactId>anthropic-java</artifactId>
-          <version>3.4.0</version>
-      </dependency>
-      ```
-    </CodeGroup>
+      <Tab title="Maven">
+        ```xml
+        <dependency>
+            <groupId>com.anthropic</groupId>
+            <artifactId>anthropic-java</artifactId>
+            <version>3.5.0</version>
+        </dependency>
+        ```
+      </Tab>
+    </Tabs>
 
     If your application doesn’t use the OpenTelemetry SDK yet, install it with a console exporter, which you use in the next step to print spans. Add `io.opentelemetry:opentelemetry-sdk` and `io.opentelemetry:opentelemetry-exporter-logging` to your build, both at the latest version on [Maven Central](https://central.sonatype.com/artifact/io.opentelemetry/opentelemetry-sdk).
   </Tab>

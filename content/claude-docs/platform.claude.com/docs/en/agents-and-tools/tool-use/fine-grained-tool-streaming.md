@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 60a2356db6966e0975d5f0f7120315d7e375987919ec93468e52eb41cf624195
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 1b45172cd693fe281d364524053acf16ffa5ea807a6385f146f7765d24739a4f
 ---
 
 ---
@@ -779,9 +779,7 @@ The type mismatch between the initial `input: {}` (object) and `partial_json` (s
   Map<Long, StringBuilder> toolInputs = new HashMap<>();
 
   try (StreamResponse<RawMessageStreamEvent> streamResponse = client.messages().createStreaming(createParams)) {
-      var eventIterator = streamResponse.stream().iterator();
-      while (eventIterator.hasNext()) {
-          RawMessageStreamEvent event = eventIterator.next();
+      for (RawMessageStreamEvent event : streamResponse) {
           switch (event.type().value()) {
               case CONTENT_BLOCK_START -> {
                   var blockStart = event.asContentBlockStart();

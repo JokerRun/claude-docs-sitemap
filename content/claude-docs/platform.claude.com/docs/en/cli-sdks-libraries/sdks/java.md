@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/java
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 87bce8dcc36d41c559c03262d01fb85bc8f64708990a355ed40d8414525ef2f2
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 8022916949de702cddf613815cce55aa08e0e29bd0f5007dd624381f289d0225
 ---
 
 ---
@@ -22,7 +22,7 @@ The Anthropic Java SDK provides convenient access to the Claude API from applica
 <Tabs>
   <Tab title="Gradle">
     ```kotlin
-    implementation("com.anthropic:anthropic-java:3.4.0")
+    implementation("com.anthropic:anthropic-java:3.5.0")
     ```
   </Tab>
 
@@ -31,11 +31,41 @@ The Anthropic Java SDK provides convenient access to the Claude API from applica
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java</artifactId>
-        <version>3.4.0</version>
+        <version>3.5.0</version>
     </dependency>
     ```
   </Tab>
 </Tabs>
+
+### Add-ons
+
+Cloud platform integrations and the client-side MCP helpers ship as separate add-on artifacts. Install an add-on alongside `anthropic-java`, which provides `AnthropicOkHttpClient`. Use the same version for both. This example adds the client-side MCP helpers:
+
+<Tabs>
+  <Tab title="Gradle">
+    ```kotlin
+    implementation("com.anthropic:anthropic-java:3.5.0")
+    implementation("com.anthropic:anthropic-java-mcp:3.5.0")
+    ```
+  </Tab>
+
+  <Tab title="Maven">
+    ```xml
+    <dependency>
+        <groupId>com.anthropic</groupId>
+        <artifactId>anthropic-java</artifactId>
+        <version>3.5.0</version>
+    </dependency>
+    <dependency>
+        <groupId>com.anthropic</groupId>
+        <artifactId>anthropic-java-mcp</artifactId>
+        <version>3.5.0</version>
+    </dependency>
+    ```
+  </Tab>
+</Tabs>
+
+For another add-on, replace `anthropic-java-mcp` with its artifact name. [Platform integrations](https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/java#platform-integrations) lists the artifact for each cloud platform. [Client-side MCP helpers](https://platform.claude.com/docs/en/agents-and-tools/mcp-connector#client-side-mcp-helpers) covers `anthropic-java-mcp` and the Java version it requires.
 
 ## Requirements
 
@@ -128,6 +158,9 @@ To temporarily use a modified client configuration while reusing the same connec
 
 ```java
 import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+
+AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
 AnthropicClient clientWithOptions = client.withOptions(optionsBuilder -> {
     optionsBuilder.baseUrl("https://example.com");
@@ -808,6 +841,9 @@ while (true) {
 Each class in the SDK has an associated builder for constructing it. Each class is immutable once constructed. If the class has an associated builder, then it has a `toBuilder()` method, which can be used to convert it back to a builder for making a modified copy.
 
 ```java
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+
 MessageCreateParams params = MessageCreateParams.builder()
     .maxTokens(1024L)
     .addUserMessage("Hello, Claude")
@@ -1106,7 +1142,7 @@ Use `BedrockMantleBackend` for new projects; `BedrockBackend` remains for existi
 
 The Java SDK also supports Claude Models on Google Cloud (Anthropic managed) through `GoogleCloudBackend`, from the `com.anthropic:anthropic-java-google-cloud` dependency. This backend is in beta. Create it with `GoogleCloudBackend.builder()` or `GoogleCloudBackend.fromEnv()`. `fromEnv()` reads `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`, `ANTHROPIC_GOOGLE_CLOUD_PROJECT`, and Google Application Default Credentials. See [Project, location, and workspace resolution](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution).
 
-The platform artifacts are add-ons to the base `com.anthropic:anthropic-java` dependency, which provides `AnthropicOkHttpClient`, so install both. Each `Backend` implementation is passed to the client with `.backend()` on `AnthropicOkHttpClient.builder()`. Each cloud backend pulls in its respective cloud-platform SDK classes as transitive dependencies.
+Install each platform artifact alongside the base `anthropic-java` dependency, as shown in [Add-ons](https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/java#add-ons). Each `Backend` implementation is passed to the client with `.backend()` on `AnthropicOkHttpClient.builder()`.
 
 ## Advanced usage
 
@@ -1115,11 +1151,15 @@ The platform artifacts are add-ons to the base `com.anthropic:anthropic-java` de
 To access HTTP headers, status codes, and the raw response body, prefix any HTTP method call with `withRawResponse()`:
 
 ```java
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.core.http.Headers;
 import com.anthropic.core.http.HttpResponseFor;
 import com.anthropic.models.messages.Message;
 import com.anthropic.models.messages.MessageCreateParams;
 import com.anthropic.models.messages.Model;
+
+AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
 MessageCreateParams params = MessageCreateParams.builder()
     .maxTokens(1024L)

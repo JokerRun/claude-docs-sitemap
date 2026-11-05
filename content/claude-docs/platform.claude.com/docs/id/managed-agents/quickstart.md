@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 948658777681ce47d9f018208e25837f178147af7c588e7cbe869ac9fad92218
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: f7df332c97f8093f8a61a848bbe3d156d73852ab8953b1894f31655c0069ec9c
 ---
 
 ---
@@ -59,14 +59,94 @@ Biarkan Claude Code menyiapkan agen Anda untuk Anda
 | **Session**     | Instans agen yang sedang berjalan di dalam sebuah environment, melakukan tugas tertentu dan menghasilkan output                                   |
 | **Events**      | Pesan yang dipertukarkan antara aplikasi Anda dan agen (giliran pengguna, hasil alat, pembaruan status)                                           |
 
-## Prasyarat
+## Sebelum Anda memulai
 
-* Sebuah [akun Claude Console](https://platform.claude.com/)
-* Sebuah [kunci API](https://platform.claude.com/settings/keys) dari Console
+<Steps continues>
+  <Step title="Buat akun Claude Console">
+    [Daftar](https://platform.claude.com/) untuk akun Claude Console, atau masuk ke akun yang sudah Anda miliki.
+  </Step>
 
-## Instal CLI
+  <Step title="Pilih cara autentikasi">
+    Masuk dengan CLI direkomendasikan untuk pengembangan lokal.
 
-<Tabs>
+    Follow the steps for one of the following options.
+  </Step>
+</Steps>
+
+**CLI**
+
+<Steps continued>
+  <Step title="Instal CLI" stepNumber={3}>
+    <Tabs noDeepLinks>
+      <Tab title="Homebrew (macOS)">
+        ```bash
+        brew install anthropics/tap/ant
+        ```
+      </Tab>
+
+      <Tab title="curl (Linux/WSL)">
+        Untuk lingkungan Linux, unduh binary rilis secara langsung.
+
+        ```bash
+        VERSION=2.6.0
+        OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+        case $(uname -m) in
+          x86_64) ARCH=amd64 ;;
+          aarch64) ARCH=arm64 ;;
+        esac
+        curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${VERSION}/ant_${VERSION}_${OS}_${ARCH}.tar.gz" \
+          | sudo tar -xz -C /usr/local/bin ant
+        ```
+
+        Anda dapat menemukan semua rilis di [halaman rilis GitHub](https://github.com/anthropics/anthropic-cli/releases).
+      </Tab>
+
+      <Tab title="go install">
+        Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
+
+        ```bash
+        go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
+        ```
+
+        Binary ditempatkan di `$(go env GOPATH)/bin`. Tambahkan ke `PATH` Anda jika belum ada:
+
+        ```bash
+        export PATH="$PATH:$(go env GOPATH)/bin"
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
+
+  <Step title="Masuk" stepNumber={4}>
+    ```bash
+    ant auth login
+    ```
+
+    Setelah login selesai, SDK dan CLI akan mengambil kredensial Anda secara otomatis.
+  </Step>
+</Steps>
+
+**Kunci API**
+
+<Steps continued>
+  <Step title="Buat kunci API" stepNumber={3}>
+    Buat [kunci API](https://platform.claude.com/settings/keys) di Claude Console.
+  </Step>
+
+  <Step title="Atur variabel lingkungan" stepNumber={4}>
+    SDK dan CLI membaca kunci Anda dari `ANTHROPIC_API_KEY`:
+
+    ```bash
+    export ANTHROPIC_API_KEY="your-api-key-here"
+    ```
+  </Step>
+</Steps>
+
+**Kunci API**
+
+Untuk menjalankan contoh CLI, instal CLI:
+
+<Tabs noDeepLinks>
   <Tab title="Homebrew (macOS)">
     ```bash
     brew install anthropics/tap/ant
@@ -77,7 +157,7 @@ Biarkan Claude Code menyiapkan agen Anda untuk Anda
     Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=2.5.0
+    VERSION=2.6.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -90,7 +170,7 @@ Biarkan Claude Code menyiapkan agen Anda untuk Anda
     Anda dapat menemukan semua rilis di [halaman rilis GitHub](https://github.com/anthropics/anthropic-cli/releases).
   </Tab>
 
-  <Tab title="Go">
+  <Tab title="go install">
     Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
 
     ```bash
@@ -104,12 +184,6 @@ Biarkan Claude Code menyiapkan agen Anda untuk Anda
     ```
   </Tab>
 </Tabs>
-
-Periksa instalasi:
-
-```bash
-ant --version
-```
 
 ## Instal SDK
 
@@ -127,9 +201,23 @@ ant --version
   </Tab>
 
   <Tab title="Java">
-    ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:3.4.0")
-    ```
+    <Tabs>
+      <Tab title="Gradle">
+        ```kotlin
+        implementation("com.anthropic:anthropic-java:3.5.0")
+        ```
+      </Tab>
+
+      <Tab title="Maven">
+        ```xml
+        <dependency>
+            <groupId>com.anthropic</groupId>
+            <artifactId>anthropic-java</artifactId>
+            <version>3.5.0</version>
+        </dependency>
+        ```
+      </Tab>
+    </Tabs>
   </Tab>
 
   <Tab title="Go">
@@ -157,12 +245,6 @@ ant --version
   </Tab>
 </Tabs>
 
-Tetapkan kunci API Anda sebagai variabel lingkungan:
-
-```bash
-export ANTHROPIC_API_KEY="your-api-key-here"
-```
-
 ## Buat sesi pertama Anda
 
 <Steps>
@@ -170,6 +252,36 @@ export ANTHROPIC_API_KEY="your-api-key-here"
     Buat agen yang menentukan model, “system prompt” (prompt sistem), dan alat yang tersedia.
 
     <CodeGroup defaultLanguage="CLI">
+      **Masuk melalui CLI**
+
+      <CodeGroupItem>
+        ```bash cURL
+        curl -sS --fail-with-body https://api.anthropic.com/v1/agents \
+          -H "Authorization: Bearer $(ant auth print-credentials --access-token)" \
+          -H "anthropic-version: 2026-10-21" \
+          -H "anthropic-beta: managed-agents-2026-04-01" \
+          -H "content-type: application/json" \
+          -d '{
+            "name": "Coding Assistant",
+            "model": "claude-opus-5-5",
+            "system": "You are a helpful coding assistant. Write clean, well-documented code.",
+            "tools": [
+              {
+                "type": "agent_toolset_20260401",
+                "configs": [
+                  {"name": "web_search", "enabled": false},
+                  {"name": "web_fetch", "enabled": false}
+                ]
+              }
+            ]
+          }'
+        ```
+
+        Simpan `agent.id` yang dikembalikan. Anda akan mereferensikannya di setiap sesi yang Anda buat.
+      </CodeGroupItem>
+
+      **Kunci API**
+
       <CodeGroupItem>
         ```bash cURL
         curl -sS --fail-with-body https://api.anthropic.com/v1/agents \
@@ -366,7 +478,6 @@ export ANTHROPIC_API_KEY="your-api-key-here"
         import com.anthropic.models.beta.environments.BetaLimitedNetworkParams;
         import com.anthropic.models.beta.environments.EnvironmentCreateParams;
         import com.anthropic.models.beta.sessions.SessionCreateParams;
-        import com.anthropic.models.beta.sessions.events.BetaManagedAgentsStreamSessionEvents;
         import com.anthropic.models.beta.sessions.events.BetaManagedAgentsUserMessageEventParams;
         import com.anthropic.models.beta.sessions.events.EventSendParams;
 
@@ -458,6 +569,29 @@ export ANTHROPIC_API_KEY="your-api-key-here"
     Lingkungan menentukan sandbox tempat agen Anda berjalan. Lingkungan ini menggunakan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited` dengan manajer paket diizinkan, sehingga kode yang berjalan di sandbox dapat menjangkau [registri paket dan host kode](https://platform.claude.com/docs/id/managed-agents/environments#package-manager-hosts) publik. Dengan jaringan `limited`, [daftar `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`)](https://platform.claude.com/docs/id/managed-agents/environments#networking) juga berlaku untuk pencarian web dan pengambilan web, meskipun keduanya berjalan di luar sandbox. Tanpa host yang tercantum, seperti di lingkungan ini, keduanya tidak mengembalikan halaman atau hasil pencarian. Jika agen Anda sendiri menggunakan alat-alat ini, tambahkan host yang dibutuhkannya ke daftar tersebut.
 
     <CodeGroup defaultLanguage="CLI">
+      **Masuk melalui CLI**
+
+      <CodeGroupItem>
+        ```bash cURL
+        curl -sS --fail-with-body https://api.anthropic.com/v1/environments \
+          -H "Authorization: Bearer $(ant auth print-credentials --access-token)" \
+          -H "anthropic-version: 2026-10-21" \
+          -H "anthropic-beta: managed-agents-2026-04-01" \
+          -H "content-type: application/json" \
+          -d '{
+            "name": "quickstart-env",
+            "config": {
+              "type": "cloud",
+              "networking": {"type": "limited", "allow_package_managers": true}
+            }
+          }'
+        ```
+
+        Simpan juga `environment.id` yang dikembalikan.
+      </CodeGroupItem>
+
+      **Kunci API**
+
       <CodeGroupItem>
         ```bash cURL
         curl -sS --fail-with-body https://api.anthropic.com/v1/environments \
@@ -634,6 +768,23 @@ export ANTHROPIC_API_KEY="your-api-key-here"
     Buat sesi yang mereferensikan agen dan lingkungan Anda.
 
     <CodeGroup>
+      **Masuk melalui CLI**
+
+      ```bash cURL
+      curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
+        -H "Authorization: Bearer $(ant auth print-credentials --access-token)" \
+        -H "anthropic-version: 2026-10-21" \
+        -H "anthropic-beta: managed-agents-2026-04-01" \
+        -H "content-type: application/json" \
+        -d '{
+          "agent": "'"$AGENT_ID"'",
+          "environment_id": "'"$ENVIRONMENT_ID"'",
+          "title": "Quickstart session"
+        }'
+      ```
+
+      **Kunci API**
+
       ```bash cURL
       curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -911,7 +1062,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 
           // Proses event streaming
           loop:
-          for (var event : (Iterable<BetaManagedAgentsStreamSessionEvents>) stream.stream()::iterator) {
+          for (var event : stream) {
               switch (event.type().value()) {
                   case AGENT_MESSAGE -> event.asAgentMessage().content().forEach(block -> block.text().ifPresent(textBlock -> IO.print(textBlock.text())));
                   case AGENT_TOOL_USE -> IO.println("\n[Using tool: " + event.asAgentToolUse().name() + "]");

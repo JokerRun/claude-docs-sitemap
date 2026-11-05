@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 15c0ddb3ea3913231efb63b0a42863b79a01e567a10ff5025a143c7cc2ec54a3
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: eed0af331d22370c47b09556b9205bba2f905e90cd11684dab67a470e214c3de
 ---
 
 ---
@@ -176,28 +176,34 @@ Install the package that provides the client:
 
   <Tab title="Go">
     ```bash
-    go get github.com/anthropics/anthropic-sdk-go/v2
+    go get github.com/anthropics/anthropic-sdk-go/v2/googlecloud
     ```
   </Tab>
 
   <Tab title="Java">
-    ```kotlin Gradle
-    implementation("com.anthropic:anthropic-java:3.4.0")
-    implementation("com.anthropic:anthropic-java-google-cloud:3.4.0")
-    ```
+    <Tabs>
+      <Tab title="Gradle">
+        ```kotlin
+        implementation("com.anthropic:anthropic-java:3.5.0")
+        implementation("com.anthropic:anthropic-java-google-cloud:3.5.0")
+        ```
+      </Tab>
 
-    ```xml Maven
-    <dependency>
-      <groupId>com.anthropic</groupId>
-      <artifactId>anthropic-java</artifactId>
-      <version>3.4.0</version>
-    </dependency>
-    <dependency>
-      <groupId>com.anthropic</groupId>
-      <artifactId>anthropic-java-google-cloud</artifactId>
-      <version>3.4.0</version>
-    </dependency>
-    ```
+      <Tab title="Maven">
+        ```xml
+        <dependency>
+            <groupId>com.anthropic</groupId>
+            <artifactId>anthropic-java</artifactId>
+            <version>3.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.anthropic</groupId>
+            <artifactId>anthropic-java-google-cloud</artifactId>
+            <version>3.5.0</version>
+        </dependency>
+        ```
+      </Tab>
+    </Tabs>
   </Tab>
 
   <Tab title="PHP">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 46e245d05b655d427d60dd6080da8522cf4c307e6ce84451c47e90bdfafef896
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 72e111d404c2f2304159c8340dea47537d05e0816d0b882f8e52fcbaf4f2b160
 ---
 
 ---
@@ -215,7 +215,7 @@ To learn more, see [Use Skills in Claude Code](https://code.claude.com/docs/en/s
 
 **Pre-built Agent Skills:** These Skills are active when you create documents. Claude uses them with no setup required.
 
-**Custom Skills:** Upload your own Skills as zip files through Settings > Features. Available on Pro, Max, Ultra, Team, and Enterprise plans with [code execution enabled](https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude). Custom Skills are individual to each user. They are not shared organization-wide and cannot be centrally managed by admins.
+**Custom Skills:** Upload your own Skills as zip files through **Settings > Features**. Available on Pro, Max, Ultra, Team, and Enterprise plans with [code execution enabled](https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude). Custom Skills are individual to each user. They are not shared organization-wide and cannot be centrally managed by admins.
 
 To learn more about using Skills in claude.ai, see the following resources in the Claude Help Center:
 

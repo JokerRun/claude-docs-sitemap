@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 0257d387d7fba53bb68120395002a0ca4c36031b5c6201fd45f9657d8b1ac4f1
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 7bfc197ded4c2d37e268b1f6ad8a684c3d56837a5cba258076fa19aa75b494c3
 ---
 
 ---
@@ -212,7 +212,7 @@ This quickstart runs one always-on worker with the `ant` CLI, sends it a session
   <Step title="Install the ant CLI">
     Run this on the worker host.
 
-    <Tabs>
+    <Tabs noDeepLinks>
       <Tab title="Homebrew (macOS)">
         ```bash
         brew install anthropics/tap/ant
@@ -223,7 +223,7 @@ This quickstart runs one always-on worker with the `ant` CLI, sends it a session
         For Linux environments, download the release binary directly.
 
         ```bash
-        VERSION=2.5.0
+        VERSION=2.6.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -236,7 +236,7 @@ This quickstart runs one always-on worker with the `ant` CLI, sends it a session
         You can find all releases on the [GitHub releases page](https://github.com/anthropics/anthropic-cli/releases).
       </Tab>
 
-      <Tab title="Go">
+      <Tab title="go install">
         You can also install the CLI from source using `go install`. Requires Go 1.25 or later.
 
         ```bash

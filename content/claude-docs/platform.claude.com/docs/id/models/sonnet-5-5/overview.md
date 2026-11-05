@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/overview
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 969c12de5849691d165a689f803b0175a35442078353a1d55a10f37053ea0077
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 30806b2e1f47ce1356a7b2eb7f290891a6b4d4b2a8b405dedbbaed9ef5ddebd3
 ---
 
 ---
@@ -23,17 +23,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $2 / MTok
 
 ## Ikhtisar
 
-Claude Sonnet 5.5 menawarkan kombinasi terbaik antara kecepatan dan kecerdasan. Lima perubahan yang dapat merusak kompatibilitas dapat memengaruhi kode yang sudah berjalan di Claude Sonnet 5:
-
-* [Matikan pemikiran di awal dengan `between_tools`](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#turn-off-up-front-thinking).
-* [Penggunaan alat yang dipaksakan mengembalikan error](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#forced-tool-use-is-not-supported).
-* [Blok pemikiran terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them).
-* [Beberapa versi alat computer use tidak didukung](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#computer-20251124-is-not-supported).
-* [Alat advisor menolak empat model sebagai advisor](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#advisor-tool-pairings): Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, dan Claude Haiku 5.5.
-
-Satu perubahan lagi mengubah bentuk respons tanpa menggagalkan permintaan apa pun: [teks di antara pemanggilan alat dikembalikan dalam blok `thinking`](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#text-between-tool-calls). Aplikasi yang melakukan streaming teks tersebut ke penggunanya akan menjadi senyap di antara pemanggilan alat hingga aplikasi tersebut menetapkan nilai `display` yang mengembalikan teks, atau mematikan pemikiran di awal dengan `between_tools`.
-
-[Yang baru di Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5)
+Claude Sonnet 5.5 menawarkan kombinasi terbaik antara kecepatan dan kecerdasan. Model ini dibuat untuk beban kerja coding, agen, dan enterprise sehari-hari, seperti pembuatan kode, analisis data, pembuatan konten, pemahaman visual, dan penggunaan alat agentik.
 
 ## Perbandingannya
 

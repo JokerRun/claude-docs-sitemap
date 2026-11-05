@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 523018f77c15c76a351c3f4599c77e56ea95731c57e7311c453f7f73b5f16fa9
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: e2c5b68f79604944107cedd11b43f111420166846110790ed8966c0bf6c2c960
 ---
 
 ---
@@ -125,7 +125,10 @@ These streaming methods return [`IAsyncEnumerable`](https://learn.microsoft.com/
 
 ```csharp
 using System;
+using Anthropic;
 using Anthropic.Models.Messages;
+
+AnthropicClient client = new();
 
 MessageCreateParams parameters = new()
 {

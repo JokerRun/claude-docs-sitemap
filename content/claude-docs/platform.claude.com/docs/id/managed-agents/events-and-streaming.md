@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 083fdd658fdd4e3965a778457755d334b0486c67ed90fe0441b8c33c1adc194a
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: a112967c9108c776ba70837b12787ce50da5ce5284d41f44f0c7ec23f244802c
 ---
 
 ---
@@ -221,9 +221,8 @@ Lakukan “streaming” (streaming) event dari sesi untuk menerima pembaruan rea
               .build()
       );
 
-      Iterable<BetaManagedAgentsStreamSessionEvents> events = stream.stream()::iterator;
       events:
-      for (var event : events) {
+      for (var event : stream) {
           switch (event.type().value()) {
               case AGENT_MESSAGE -> event.asAgentMessage().content().forEach(block -> block.text().ifPresent(textBlock -> IO.print(textBlock.text())));
               case SESSION_STATUS_IDLE -> {
@@ -824,7 +823,7 @@ Contoh berikut menjawab setiap panggilan saat panggilan tersebut tiba:
   ```java Java
   try (var stream = client.beta().sessions().events().streamStreaming(session.id())) {
       loop:
-      for (var event : (Iterable<BetaManagedAgentsStreamSessionEvents>) stream.stream()::iterator) {
+      for (var event : stream) {
           switch (event.type().value()) {
               case AGENT_CUSTOM_TOOL_USE -> {
                   var toolUse = event.asAgentCustomToolUse();

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/events-and-streaming
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: b8c72c657bfbb00b299d0c9795318c2c851f8ce318245c06abf0847ae36943e3
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: bce37961b239ffdca4e1ec4b6328d9a5eeac005defa99f4695d2ef0262c4a8db
 ---
 
 ---
@@ -221,9 +221,8 @@ Stream events from the session to receive real-time updates as the agent works. 
               .build()
       );
 
-      Iterable<BetaManagedAgentsStreamSessionEvents> events = stream.stream()::iterator;
       events:
-      for (var event : events) {
+      for (var event : stream) {
           switch (event.type().value()) {
               case AGENT_MESSAGE -> event.asAgentMessage().content().forEach(block -> block.text().ifPresent(textBlock -> IO.print(textBlock.text())));
               case SESSION_STATUS_IDLE -> {
@@ -824,7 +823,7 @@ The following example answers each call as it arrives:
   ```java Java
   try (var stream = client.beta().sessions().events().streamStreaming(session.id())) {
       loop:
-      for (var event : (Iterable<BetaManagedAgentsStreamSessionEvents>) stream.stream()::iterator) {
+      for (var event : stream) {
           switch (event.type().value()) {
               case AGENT_CUSTOM_TOOL_USE -> {
                   var toolUse = event.asAgentCustomToolUse();

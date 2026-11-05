@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/gcp
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 8265b3b0d44f9881a8c01ef9af9f94e066599acf75e3c739ac877226738038ae
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 72793e99e748a661173429bf8fcc308aa23b24dad05f62f04685a0372fb807f8
 ---
 
 ---
@@ -30,7 +30,7 @@ Google issues identity tokens automatically to any workload with an attached ser
   <Tab title="Cloud Run, Cloud Functions, App Engine, GCE">
     Attach a dedicated service account to your service or instance:
 
-    ```bash CLI
+    ```bash
     gcloud run deploy my-service \
       --service-account inference-worker@my-project.iam.gserviceaccount.com
     ```
@@ -44,7 +44,7 @@ Google issues identity tokens automatically to any workload with an attached ser
 
     Or, with the gcloud CLI:
 
-    ```bash CLI
+    ```bash
     gcloud auth print-identity-token \
       --audiences="https://api.anthropic.com" \
       --include-email

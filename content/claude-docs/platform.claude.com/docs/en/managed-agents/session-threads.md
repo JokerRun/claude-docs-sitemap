@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-threads
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 886399df2702d1d21a482d691933bd74fab5f853dd5e4042027ac3ec43029fc4
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 1342802a808a7c81a6ac65698db0946e25ae58998163e14461e8a639c961c060
 ---
 
 ---
@@ -535,7 +535,7 @@ A thread’s stream doesn’t replay earlier events. Right after `session.thread
               .build()
       )) {
           loop:
-          for (var event : (Iterable<BetaManagedAgentsStreamSessionThreadEvents>) streamResponse.stream()::iterator) {
+          for (var event : streamResponse) {
               switch (event.type().value()) {
                   case AGENT_MESSAGE -> {
                       for (var block : event.asAgentMessage().content()) {

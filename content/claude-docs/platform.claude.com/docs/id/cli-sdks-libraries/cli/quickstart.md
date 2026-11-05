@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: ae764058ac5c040f298a98e750e32104d4c729279796fc62fb81c39d35103e59
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: f16eb5ee511accb730a992638bace8d27897f0df9235afb7ceb0293dd1f3fcfb
 ---
 
 ---
@@ -28,7 +28,7 @@ Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe at
 
 ## Instalasi
 
-<Tabs>
+<Tabs noDeepLinks>
   <Tab title="Homebrew (macOS)">
     ```bash
     brew install anthropics/tap/ant
@@ -39,7 +39,7 @@ Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe at
     Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=2.5.0
+    VERSION=2.6.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -52,7 +52,7 @@ Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe at
     Anda dapat menemukan semua rilis di [halaman rilis GitHub](https://github.com/anthropics/anthropic-cli/releases).
   </Tab>
 
-  <Tab title="Go">
+  <Tab title="go install">
     Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
 
     ```bash

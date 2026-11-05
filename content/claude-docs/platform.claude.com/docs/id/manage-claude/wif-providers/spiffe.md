@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 453900fa893059debc792e73f2b78dcdf3955412c82674338aabfa67d30da5d7
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 109b171ead1aeafdeea8771d05813e3f6e45512b65b1a361d9d225cedd1cdc91
 ---
 
 ---
@@ -94,7 +94,7 @@ acme {
 
 Setiap workload yang memanggil Claude API memerlukan registration entry SPIRE yang memetakan selector runtime-nya ke sebuah SPIFFE ID. Jika workload sudah terdaftar, catat SPIFFE ID-nya, yang Anda gunakan di `subject_prefix` pada federation rule. Jika belum, daftarkan. Untuk pod Kubernetes, selector-nya biasanya adalah namespace dan service account Kubernetes:
 
-```bash CLI
+```bash
 # Ganti NODE_UID dengan UID node:
 #   kubectl get node <node-name> -o jsonpath='{.metadata.uid}'
 spire-server entry create \
@@ -464,7 +464,7 @@ Sebelum mengintegrasikan SDK, ambil JWT-SVID langsung dari SPIRE Agent dan pasti
   Workload API melakukan atestasi terhadap proses pemanggil. Untuk registration entry Kubernetes, jalankan perintah ini di dalam pod yang memenuhi selector entry tersebut dan memiliki socket agent yang ter-mount (misalnya, dengan menggunakan `kubectl exec`). Pada VM dan bare metal, jalankan sebagai pengguna atau proses yang cocok dengan selector `unix:` milik entry. Menjalankannya dari shell host yang tidak teratestasi akan mengembalikan `no identity issued`, yang merupakan kegagalan langkah verifikasi paling umum.
 </Note>
 
-```bash CLI
+```bash
 spire-agent api fetch jwt \
   -audience https://api.anthropic.com \
   -socketPath /run/spire/sockets/agent.sock \

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 532081d904d3fc1497ce29b9279dadcf4f58ec286400a28b0b1583ac669e93cb
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 313161202cf2327250a395fb555919399b58759a96f4488f0c771e44edcde1df
 ---
 
 ---
@@ -2262,7 +2262,7 @@ Penggunaan komputer mengikuti [harga penggunaan alat](https://platform.claude.co
 
 ## Ketersediaan
 
-Alat penggunaan komputer tersedia atau dalam versi beta di model tertentu dan layak untuk retensi data nol dan kesiapan HIPAA.
+Alat computer use tersedia atau dalam versi beta di model tertentu dan layak untuk retensi data nol dan kesiapan HIPAA.
 
 ### Dukungan API
 

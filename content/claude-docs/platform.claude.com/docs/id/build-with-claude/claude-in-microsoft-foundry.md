@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: bbc069225dcead938dce4faa9beab29cf4c29c90e493db73fdf94bf293a5c04b
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: e69514079a0903bc4b11a54d21fe9108c0aa184dbfc447071304003b73819067
 ---
 
 ---
@@ -87,11 +87,8 @@ Sebelum memulai, pastikan Anda memiliki:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.4.0")
-        implementation("com.anthropic:anthropic-java-foundry:3.4.0")
-
-        // Untuk autentikasi Entra ID, tambahkan juga pustaka Azure Identity
-        implementation("com.azure:azure-identity:1.18.3")
+        implementation("com.anthropic:anthropic-java:3.5.0")
+        implementation("com.anthropic:anthropic-java-foundry:3.5.0")
         ```
       </Tab>
 
@@ -100,22 +97,18 @@ Sebelum memulai, pastikan Anda memiliki:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.4.0</version>
+            <version>3.5.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-foundry</artifactId>
-            <version>3.4.0</version>
-        </dependency>
-        <!-- For Entra ID authentication, also add the Azure Identity library -->
-        <dependency>
-            <groupId>com.azure</groupId>
-            <artifactId>azure-identity</artifactId>
-            <version>1.18.3</version>
+            <version>3.5.0</version>
         </dependency>
         ```
       </Tab>
     </Tabs>
+
+    Untuk autentikasi Entra ID, tambahkan juga pustaka Azure Identity (`com.azure:azure-identity`) ke build Anda, pada versi terbaru di [Maven Central](https://central.sonatype.com/artifact/com.azure/azure-identity).
   </Tab>
 
   <Tab title="PHP">

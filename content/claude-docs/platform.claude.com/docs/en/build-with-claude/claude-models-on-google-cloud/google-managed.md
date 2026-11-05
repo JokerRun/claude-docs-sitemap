@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 181e5e6e6e045b3d699390d0a4aabd089d3be2b8d85f9eeb30e6f153f3e97974
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: a119fdadc027b67c6ed81de0774ed3ac1e6486814890d3a234aa62be6af63860
 ---
 
 ---
@@ -48,29 +48,34 @@ Anthropic’s [client SDKs](https://platform.claude.com/docs/en/cli-sdks-librari
   <Tab title="Go">
     ```bash
     go get github.com/anthropics/anthropic-sdk-go/v2
+    go get github.com/anthropics/anthropic-sdk-go/v2/vertex
     ```
   </Tab>
 
   <Tab title="Java">
-    <CodeGroup exclude="shell, python, typescript, csharp, go, php, ruby">
-      ```groovy Gradle
-      implementation("com.anthropic:anthropic-java:3.4.0")
-      implementation("com.anthropic:anthropic-java-vertex:3.4.0")
-      ```
+    <Tabs>
+      <Tab title="Gradle">
+        ```kotlin
+        implementation("com.anthropic:anthropic-java:3.5.0")
+        implementation("com.anthropic:anthropic-java-vertex:3.5.0")
+        ```
+      </Tab>
 
-      ```xml Maven
-      <dependency>
-          <groupId>com.anthropic</groupId>
-          <artifactId>anthropic-java</artifactId>
-          <version>3.4.0</version>
-      </dependency>
-      <dependency>
-          <groupId>com.anthropic</groupId>
-          <artifactId>anthropic-java-vertex</artifactId>
-          <version>3.4.0</version>
-      </dependency>
-      ```
-    </CodeGroup>
+      <Tab title="Maven">
+        ```xml
+        <dependency>
+            <groupId>com.anthropic</groupId>
+            <artifactId>anthropic-java</artifactId>
+            <version>3.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.anthropic</groupId>
+            <artifactId>anthropic-java-vertex</artifactId>
+            <version>3.5.0</version>
+        </dependency>
+        ```
+      </Tab>
+    </Tabs>
   </Tab>
 
   <Tab title="PHP">

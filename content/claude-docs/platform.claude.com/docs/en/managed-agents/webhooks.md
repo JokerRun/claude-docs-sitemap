@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/webhooks
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: ca742bf397f13228f60a14f9cab9e7167f083955fa87212c668711dec5dd0333
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 686224fc07dd12347cf6ef6c862f6f5ac9198de415b81df9e90ce082bb0ef9d2
 ---
 
 ---
@@ -438,11 +438,11 @@ The top-level `event.id` is unique for each event, not for each delivery. If you
 
 * **Auto-disable:** An endpoint is automatically set to `disabled` with a machine-readable `disabled_reason` in three cases:
 
-  * The endpoint returns a `3xx` response. Redirects are never followed; this disables the endpoint immediately, on the first attempt, with the reason `auto-disabled: endpoint URL returned a redirect (3xx)`. If your endpoint moves, update the URL in Console and re-enable the endpoint.
+  * The endpoint returns a `3xx` response. Redirects are never followed; this disables the endpoint immediately, on the first attempt, with the reason `auto-disabled: endpoint URL returned a redirect (3xx)`. If your endpoint moves, add a new endpoint with the new URL and the same event types, then delete the old one. The new endpoint has its own signing secret, so update `ANTHROPIC_WEBHOOK_SIGNING_KEY`.
   * The endpoint’s URL resolves to a non-public IP address when Anthropic connects. This disables the endpoint immediately, with the reason `auto-disabled: endpoint URL resolved to an invalid address`.
   * Deliveries to the endpoint fail continuously for a sustained period, with the reason `auto-disabled after sustained delivery failures`. The trigger is how long the endpoint has been failing without interruption, not a delivery count. A single `2xx` resets the window, so one event that fails intermittently can’t disable the endpoint.
 
-  All three are reversible: re-enable the endpoint in Console after you resolve the issue. Events emitted while the endpoint was disabled aren’t replayed.
+  All three are reversible: after you resolve the issue, re-enable the endpoint in Console, unless you replaced it with a new one. Events emitted while the endpoint was disabled aren’t replayed.
 
 ## Availability
 

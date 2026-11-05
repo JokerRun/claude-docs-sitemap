@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/aws
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: bcdf9d5b2f670f873db672c77d3d53bc67716c6442d8b19bed6d71347a631140
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 6fd163c5390851476c28ea61429c61dc0472e6e123180943434ee3683196e150
 ---
 
 ---
@@ -501,7 +501,7 @@ Jalur ini juga memerlukan klaster EKS dengan [IAM OIDC provider yang diaktifkan]
   <Step title="Temukan URL issuer OIDC klaster Anda">
     Setiap klaster EKS memiliki issuer OIDC yang unik. Ambil dengan AWS CLI:
 
-    ```bash CLI
+    ```bash
     aws eks describe-cluster \
       --name <cluster-name> \
       --query "cluster.identity.oidc.issuer" \

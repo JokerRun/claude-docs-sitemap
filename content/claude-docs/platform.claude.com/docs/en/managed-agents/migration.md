@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/migration
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 04839de372ec08579b01554adc5bf60e32540af19d9cd0ec7b1ee4c4a9e0ccba
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 69f3243dfc98ac46f5781f2c1b8ff50ad0b638225a3482c0556ccd8889acc178
 ---
 
 ---
@@ -997,7 +997,6 @@ If you built with the [Claude Agent SDK](https://code.claude.com/docs/en/agent-s
   import com.anthropic.models.beta.environments.EnvironmentCreateParams;
   import com.anthropic.models.beta.sessions.BetaManagedAgentsAgentParams;
   import com.anthropic.models.beta.sessions.SessionCreateParams;
-  import com.anthropic.models.beta.sessions.events.BetaManagedAgentsStreamSessionEvents;
   import com.anthropic.models.beta.sessions.events.BetaManagedAgentsUserCustomToolResultEventParams;
   import com.anthropic.models.beta.sessions.events.BetaManagedAgentsUserMessageEventParams;
   import com.anthropic.models.beta.sessions.events.EventSendParams;
@@ -1048,7 +1047,7 @@ If you built with the [Claude Agent SDK](https://code.claude.com/docs/en/agent-s
               .build());
 
       loop:
-      for (var event : (Iterable<BetaManagedAgentsStreamSessionEvents>) stream.stream()::iterator) {
+      for (var event : stream) {
           switch (event.type().value()) {
               case AGENT_MESSAGE -> {
                   for (var block : event.asAgentMessage().content()) {

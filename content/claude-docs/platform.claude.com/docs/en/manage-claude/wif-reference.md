@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-reference
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 9fffb75d2c381900a6654fa3cfc4866679a4329ec0f655e5f53cefc2f43adf79
+fetched_at: 2026-11-05T02:13:10.463673Z
+sha256: 488e23489e1ad08cd203b7ab5bfc3d8526ae550772751b3ed7b52d5309107b96
 ---
 
 ---
@@ -265,7 +265,7 @@ If you still need to debug from the JWT itself, work through these checks in ord
   <Step title="Decode the JWT">
     Decode the assertion you sent so you can compare each claim against your issuer and rule configuration:
 
-    ```bash cURL
+    ```bash
     jq -rR 'split(".")[1] | gsub("-";"+") | gsub("_";"/") | @base64d | fromjson' <<< "$JWT"
     ```
   </Step>
