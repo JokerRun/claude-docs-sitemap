@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/customer-support-chat
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: d9bba8f60c096a88a080b48262386ed87858b33a2a2a122935fd4375fa304e4b
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: a449b03e76c9ca0f7f82748c8ccb5bc7f4b01c31c4953cc9a9a64a9afc0f683c
 ---
 
 ---
@@ -1136,7 +1136,7 @@ Prompting sering kali memerlukan pengujian dan optimasi agar siap produksi. Untu
 
 ### Tingkatkan kinerja
 
-Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan guna meningkatkan kinerja di luar [teknik prompt engineering](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) standar dan [strategi implementasi guardrail](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Berikut adalah beberapa skenario umum:
+Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan guna meningkatkan kinerja di luar [teknik rekayasa prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) standar dan [strategi implementasi guardrail](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Berikut adalah beberapa skenario umum:
 
 #### Kurangi latensi konteks panjang dengan RAG
 
@@ -1181,7 +1181,7 @@ Dalam beberapa kasus, streaming memungkinkan penggunaan model yang lebih canggih
 
 Seiring bertambahnya kompleksitas chatbot Anda, arsitektur aplikasi Anda dapat berkembang menyesuaikan. Sebelum Anda menambahkan lapisan lebih lanjut ke arsitektur Anda, pertimbangkan opsi-opsi berikut yang kurang menyeluruh:
 
-* Pastikan Anda memaksimalkan prompt Anda dan mengoptimalkannya melalui prompt engineering. Gunakan [panduan prompt engineering](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) untuk menulis prompt yang paling efektif.
+* Pastikan Anda memaksimalkan prompt Anda dan mengoptimalkannya melalui rekayasa prompt. Gunakan [panduan rekayasa prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) untuk menulis prompt yang paling efektif.
 * Tambahkan [alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) tambahan ke prompt (yang dapat mencakup [rantai prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#chain-complex-prompts)) dan lihat apakah Anda dapat mencapai fungsionalitas yang diperlukan.
 
 Jika chatbot Anda menangani tugas yang sangat beragam, Anda mungkin ingin mempertimbangkan untuk menambahkan [pengklasifikasi maksud terpisah](https://platform.claude.com/cookbook/capabilities-classification-guide) untuk merutekan pertanyaan awal pelanggan. Untuk aplikasi yang ada, ini akan melibatkan pembuatan pohon keputusan yang akan merutekan pertanyaan pelanggan melalui pengklasifikasi lalu ke percakapan khusus (dengan set alat dan prompt sistem masing-masing). Perhatikan bahwa metode ini memerlukan panggilan tambahan ke Claude yang dapat meningkatkan latensi.
@@ -1215,7 +1215,7 @@ Berikut cara Anda dapat mendekatinya:
     Streaming respons sehingga pelanggan melihat jawaban saat dihasilkan.
   </Card>
 
-  <Card title="Prompt engineering" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview">
+  <Card title="Rekayasa prompt" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview">
     Sempurnakan prompt sistem dan contoh Anda untuk kinerja tugas yang lebih baik.
   </Card>
 </CardGroup>

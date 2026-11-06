@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: a5f18ba61936a0048fabe0a5ce3734e24cc2309a4aa97f7062cf36d67b078a3e
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 91900ad5bd521f12c1a69a7b7fcdee8261c89e8b33cb7641edb4fe18792a35b4
 ---
 
 ---
@@ -78,7 +78,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
 
 <Steps>
   <Step title="Buat lingkungan self-hosted">
-    Di Claude Console, buka halaman [Environments](https://platform.claude.com/environments) (`platform.claude.com/environments`), klik **Create environment**, lalu di bawah **Hosting** pilih **Self-hosted**.
+    Di Claude Console, buka halaman [Lingkungan](https://platform.claude.com/environments) (`platform.claude.com/environments`), klik **Buat lingkungan**, lalu di bawah **Hosting** pilih **Dihosting sendiri**.
 
     Atau melalui API:
 
@@ -199,7 +199,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
   </Step>
 
   <Step title="Buat kunci lingkungan">
-    Di Console, buka lingkungan tersebut dan klik **Generate environment key**. Kunci lingkungan mengautentikasi worker ke antreannya. Anda hanya dapat membuatnya di Console, bahkan untuk lingkungan yang Anda buat melalui API.
+    Di Console, buka lingkungan tersebut dan klik **Buat kunci lingkungan**. Kunci lingkungan mengautentikasi worker ke antreannya. Anda hanya dapat membuatnya di Console, bahkan untuk lingkungan yang Anda buat melalui API.
 
     Ekspor ID lingkungan dan kunci di host worker:
 
@@ -220,10 +220,10 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
       </Tab>
 
       <Tab title="curl (Linux/WSL)">
-        Untuk lingkungan Linux, unduh binary rilis secara langsung.
+        Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
         ```bash
-        VERSION=2.6.0
+        VERSION=2.7.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -237,13 +237,13 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
       </Tab>
 
       <Tab title="go install">
-        Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
+        Anda juga dapat menginstal CLI dari kode sumber menggunakan `go install`, yang memerlukan Go 1.26.10 atau yang lebih baru.
 
         ```bash
         go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
         ```
 
-        Binary ditempatkan di `$(go env GOPATH)/bin`. Tambahkan ke `PATH` Anda jika belum ada:
+        `go install` menempatkan biner di `$(go env GOPATH)/bin`. Tambahkan direktori tersebut ke `PATH` Anda jika belum ada:
 
         ```bash
         export PATH="$PATH:$(go env GOPATH)/bin"
@@ -272,7 +272,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
       </Tab>
 
       <Tab title="macOS">
-        Volume root bersifat read-only, sehingga `mkdir` tidak dapat membuat `/workspace`. Gunakan direktori di dalam direktori home Anda sebagai gantinya. Jika agen menggunakan skill, tambahkan path lengkap direktori ini (`echo ~/workspace` menampilkannya) ke prompt sistem agen, seperti yang dijelaskan di [Sandbox filesystem](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-reference#sandbox-filesystem).
+        Volume root bersifat read-only, sehingga `mkdir` tidak dapat membuat `/workspace`. Gunakan direktori di dalam direktori home Anda sebagai gantinya. Jika agen menggunakan skill, tambahkan path lengkap direktori ini (`echo ~/workspace` menampilkannya) ke prompt sistem agen, seperti yang dijelaskan di [Sistem file sandbox](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-reference#sandbox-filesystem).
 
         ```bash
         mkdir -p ~/workspace

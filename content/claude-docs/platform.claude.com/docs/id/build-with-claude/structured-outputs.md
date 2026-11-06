@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 9a1ed13f249321c406e61b3fe90d5439866e03afa6725453b6c51dbf89a158c4
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: b4872ba4730c5d56618a4bd842b18a5b94b3de4da6a9cdf3ade820c53bcf5194
 ---
 
 ---
@@ -68,7 +68,7 @@ Output terstruktur menjamin respons yang sesuai skema melalui “constrained dec
 
 <Steps>
   <Step title="Definisikan skema Anda">
-    Jelaskan struktur yang Anda inginkan sebagai JSON schema atau sebagai tipe dalam bahasa pemrograman Anda. Skema mengikuti JSON Schema, dengan beberapa [batasan](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations).
+    Jelaskan struktur yang Anda inginkan sebagai skema JSON atau sebagai tipe dalam bahasa pemrograman Anda. Skema mengikuti JSON Schema, dengan beberapa [batasan](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations).
   </Step>
 
   <Step title="Kirim dalam output_config.format">
@@ -293,7 +293,7 @@ Output terstruktur menjamin respons yang sesuai skema melalui “constrained dec
     }
     ```
 
-    Berikan class atau record C# biasa ke overload generik `Create<T>()`. SDK menurunkan JSON schema dari tipe tersebut, mentransformasinya, dan mem-parse setiap blok teks kembali ke dalamnya.
+    Berikan class atau record C# biasa ke overload generik `Create<T>()`. SDK menurunkan skema JSON dari tipe tersebut, mentransformasinya, dan mem-parse setiap blok teks kembali ke dalamnya.
 
     Contoh sebelumnya menghasilkan output:
 
@@ -338,10 +338,10 @@ Output terstruktur menjamin respons yang sesuai skema melalui “constrained dec
     ```
 
     <Note>
-      Memberikan struct sebagai skema masih dalam beta di Go, sehingga contoh ini menggunakan `client.Beta.Messages.New`. Untuk menggunakan `client.Messages.New` yang stabil, berikan JSON schema seperti yang ditunjukkan dalam [Menggunakan JSON schema mentah](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#using-a-raw-json-schema).
+      Memberikan struct sebagai skema masih dalam beta di Go, sehingga contoh ini menggunakan `client.Beta.Messages.New`. Untuk menggunakan `client.Messages.New` yang stabil, berikan skema JSON seperti yang ditunjukkan dalam [Menggunakan skema JSON mentah](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#using-a-raw-json-schema).
     </Note>
 
-    SDK menghasilkan dan mentransformasi JSON schema dari struct dan melakukan unmarshal respons ke dalamnya.
+    SDK menghasilkan dan mentransformasi skema JSON dari struct dan melakukan unmarshal respons ke dalamnya.
 
     Contoh sebelumnya menghasilkan output:
 
@@ -379,7 +379,7 @@ Output terstruktur menjamin respons yang sesuai skema melalui “constrained dec
     }
     ```
 
-    Saat Anda memberikan class Java ke `outputConfig()`, SDK menurunkan JSON schema darinya dan memvalidasi skema tersebut. Builder kemudian menghasilkan `StructuredMessageCreateParams<T>`. Alih-alih mentransformasi skema, validasi lokal SDK menolak [batasan yang tidak didukung oleh API](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Baca hasil yang telah di-parse dengan `response.content().stream().flatMap(block -> block.text().stream()).findFirst().orElseThrow().text()`.
+    Saat Anda memberikan class Java ke `outputConfig()`, SDK menurunkan skema JSON darinya dan memvalidasi skema tersebut. Builder kemudian menghasilkan `StructuredMessageCreateParams<T>`. Alih-alih mentransformasi skema, validasi lokal SDK menolak [batasan yang tidak didukung oleh API](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Baca hasil yang telah di-parse dengan `response.content().stream().flatMap(block -> block.text().stream()).findFirst().orElseThrow().text()`.
 
     Contoh sebelumnya menghasilkan output:
 
@@ -392,7 +392,7 @@ Output terstruktur menjamin respons yang sesuai skema melalui “constrained dec
     </Note>
 
     <Accordion title="Penghapusan tipe generik">
-      Java menyimpan informasi tipe generik untuk bidang dalam metadata class, tetapi “generic type erasure” (penghapusan tipe generik) berlaku dalam cakupan lain. Meskipun JSON schema dapat diturunkan dari bidang `BookList.books` dengan tipe `List<Book>`, JSON schema yang valid tidak dapat diturunkan dari variabel lokal dengan tipe yang sama.
+      Java menyimpan informasi tipe generik untuk bidang dalam metadata class, tetapi “generic type erasure” (penghapusan tipe generik) berlaku dalam cakupan lain. Meskipun skema JSON dapat diturunkan dari bidang `BookList.books` dengan tipe `List<Book>`, skema JSON yang valid tidak dapat diturunkan dari variabel lokal dengan tipe yang sama.
 
       Jika terjadi kesalahan saat mengonversi respons JSON ke instance class Java, pesan kesalahan menyertakan respons JSON untuk membantu diagnosis. Jika respons JSON Anda mungkin berisi informasi sensitif, hindari mencatatnya secara langsung, atau pastikan Anda menyamarkan detail sensitif apa pun dari pesan kesalahan.
     </Accordion>
@@ -403,7 +403,7 @@ Output terstruktur menjamin respons yang sesuai skema melalui “constrained dec
       Poin-poin utama:
 
       * **Validasi lokal** terjadi tanpa mengirim permintaan ke model AI jarak jauh.
-      * **Validasi jarak jauh** juga dilakukan oleh model AI saat menerima JSON schema.
+      * **Validasi jarak jauh** juga dilakukan oleh model AI saat menerima skema JSON.
       * **Kompatibilitas versi:** Jika versi SDK sudah usang, validasi lokal mungkin menolak skema yang diterima oleh validasi jarak jauh.
       * **Menonaktifkan validasi lokal:** Berikan `JsonSchemaLocalValidation.NO` jika Anda mengalami masalah kompatibilitas:
 
@@ -432,8 +432,8 @@ Output terstruktur menjamin respons yang sesuai skema melalui “constrained dec
       Gunakan `MessageAccumulator` untuk mengumpulkan string JSON dari stream. Setelah terakumulasi, panggil `MessageAccumulator.message(Class<T>)` untuk mengonversi `Message` yang terakumulasi menjadi `StructuredMessage`, yang secara otomatis melakukan deserialisasi JSON ke dalam class Java Anda.
     </Accordion>
 
-    <Accordion title="Properti JSON schema">
-      Saat SDK menurunkan JSON schema dari class Java Anda, secara default SDK menyertakan semua properti yang direpresentasikan oleh bidang `public` atau metode getter `public` dan mengecualikan bidang dan metode getter non-`public`.
+    <Accordion title="Properti skema JSON">
+      Saat SDK menurunkan skema JSON dari class Java Anda, secara default SDK menyertakan semua properti yang direpresentasikan oleh bidang `public` atau metode getter `public` dan mengecualikan bidang dan metode getter non-`public`.
 
       Anda dapat mengontrol visibilitas dengan anotasi:
 
@@ -442,7 +442,7 @@ Output terstruktur menjamin respons yang sesuai skema melalui “constrained dec
 
       Jika Anda mendefinisikan bidang `private` dengan metode getter `public`, SDK menurunkan nama properti dari getter (misalnya, bidang `private` `myValue` dengan metode `public` `getMyValue()` menghasilkan properti `"myValue"`). Untuk menggunakan nama getter yang tidak konvensional, beri anotasi `@JsonProperty` pada metode tersebut.
 
-      Setiap class harus mendefinisikan setidaknya satu properti untuk JSON schema. Kesalahan validasi terjadi jika tidak ada bidang atau metode getter yang dapat menghasilkan properti skema, seperti ketika:
+      Setiap class harus mendefinisikan setidaknya satu properti untuk skema JSON. Kesalahan validasi terjadi jika tidak ada bidang atau metode getter yang dapat menghasilkan properti skema, seperti ketika:
 
       * Tidak ada bidang atau metode getter dalam class
       * Semua anggota `public` diberi anotasi `@JsonIgnore`
@@ -502,7 +502,7 @@ Output terstruktur menjamin respons yang sesuai skema melalui “constrained dec
     </Accordion>
 
     <Accordion title="Anotasi (Jackson dan Swagger)">
-      Anda dapat menggunakan anotasi Jackson Databind untuk memperkaya JSON schema yang diturunkan dari class Java Anda:
+      Anda dapat menggunakan anotasi Jackson Databind untuk memperkaya skema JSON yang diturunkan dari class Java Anda:
 
       ```java
       import com.fasterxml.jackson.annotation.JsonClassDescription;
@@ -610,7 +610,7 @@ Output terstruktur menjamin respons yang sesuai skema melalui “constrained dec
     }
     ```
 
-    Definisikan class yang mengimplementasikan `StructuredOutputModel` dan menggunakan `StructuredOutputModelTrait`, lalu berikan namanya dalam `outputConfig: ['format' => MyClass::class]`. SDK menurunkan JSON schema dari tipe properti PHP 8 class tersebut, mentransformasinya, dan mengembalikan instance bertipe dari `$message->parsedOutput()`.
+    Definisikan class yang mengimplementasikan `StructuredOutputModel` dan menggunakan `StructuredOutputModelTrait`, lalu berikan namanya dalam `outputConfig: ['format' => MyClass::class]`. SDK menurunkan skema JSON dari tipe properti PHP 8 class tersebut, mentransformasinya, dan mengembalikan instance bertipe dari `$message->parsedOutput()`.
 
     `parsedOutput()` mengembalikan instance model Anda jika berhasil, atau `null` (atau array kesalahan) jika parsing gagal. Gunakan `instanceof` untuk mempersempit tipe sebelum mengakses bidang.
 
@@ -705,7 +705,7 @@ Output terstruktur menjamin respons yang sesuai skema melalui “constrained dec
     puts contact
     ```
 
-    Definisikan class yang memperluas `Anthropic::BaseModel` dan berikan ke `messages.create()` sebagai `output_config: {format: Model}`. SDK menurunkan JSON schema dari class tersebut, mentransformasinya, dan menetapkan hasil yang telah di-parse ke atribut `parsed_output` respons sebagai objek Ruby bertipe.
+    Definisikan class yang memperluas `Anthropic::BaseModel` dan berikan ke `messages.create()` sebagai `output_config: {format: Model}`. SDK menurunkan skema JSON dari class tersebut, mentransformasinya, dan menetapkan hasil yang telah di-parse ke atribut `parsed_output` respons sebagai objek Ruby bertipe.
 
     Contoh sebelumnya menghasilkan output:
 
@@ -759,9 +759,9 @@ Claude menerima skema yang disederhanakan, tetapi helper yang memvalidasi respon
 
 **Contoh:** Bidang dengan `minimum: 100` menjadi integer biasa dalam skema yang dikirim, dan SDK menambahkan `{minimum: 100}` ke deskripsi bidang. Helper yang memvalidasi respons tetap memeriksa respons terhadap `minimum: 100`.
 
-## Menggunakan JSON schema mentah
+## Menggunakan skema JSON mentah
 
-Untuk menggunakan JSON schema dari file, spesifikasi OpenAPI, atau kode yang membangunnya saat runtime, berikan skema tersebut dalam `output_config.format`.
+Untuk menggunakan skema JSON dari file, spesifikasi OpenAPI, atau kode yang membangunnya saat runtime, berikan skema tersebut dalam `output_config.format`.
 
 <Tabs>
   <Tab title="cURL">
@@ -929,7 +929,7 @@ Untuk menggunakan JSON schema dari file, spesifikasi OpenAPI, atau kode yang mem
     console.log(response.parsed_output);
     ```
 
-    Gunakan `jsonSchemaOutputFormat()` untuk memberikan JSON schema biasa ke `parse()`, tanpa menginstal Zod. API mengembalikan respons yang sesuai dengan skema, dan jika Anda mendeklarasikan skema dengan `as const`, TypeScript secara otomatis menyimpulkan tipe untuk `parsed_output` sesuai skema Anda. Untuk skema yang diimpor atau dihasilkan, `parsed_output` bertipe `unknown`.
+    Gunakan `jsonSchemaOutputFormat()` untuk memberikan skema JSON biasa ke `parse()`, tanpa menginstal Zod. API mengembalikan respons yang sesuai dengan skema, dan jika Anda mendeklarasikan skema dengan `as const`, TypeScript secara otomatis menyimpulkan tipe untuk `parsed_output` sesuai skema Anda. Untuk skema yang diimpor atau dihasilkan, `parsed_output` bertipe `unknown`.
 
     Secara default, helper ini [mentransformasi skema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#how-sdk-transformation-works) dengan cara yang sama seperti `zodOutputFormat()`. Berikan `{ transform: false }` sebagai argumen kedua untuk mengirimkannya tanpa perubahan. Berbeda dengan `zodOutputFormat()`, helper ini tidak memvalidasi respons, sehingga tidak menangkap pelanggaran [batasan yang tidak didukung oleh API](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations), seperti `minimum`.
 
@@ -2614,7 +2614,7 @@ Output terstruktur menggunakan sampling terbatas dengan artefak tata bahasa yang
 
 * **Latensi permintaan pertama:** Pertama kali Anda menggunakan skema tertentu, ada “latency” (latensi) tambahan saat tata bahasa dikompilasi.
 * **Caching otomatis:** Tata bahasa yang dikompilasi di-cache selama 24 jam sejak penggunaan terakhir, sehingga permintaan berikutnya jauh lebih cepat.
-* **Invalidasi cache:** Cache diinvalidasi jika Anda mengubah struktur JSON schema atau, saat menggunakan output terstruktur dan penggunaan alat sekaligus, kumpulan alat dalam permintaan Anda. Mengubah hanya bidang `name` atau `description` tidak menginvalidasi cache.
+* **Invalidasi cache:** Cache diinvalidasi jika Anda mengubah struktur skema JSON atau, saat menggunakan output terstruktur dan penggunaan alat sekaligus, kumpulan alat dalam permintaan Anda. Mengubah hanya bidang `name` atau `description` tidak menginvalidasi cache.
 
 ### Modifikasi prompt dan biaya token
 
@@ -2792,7 +2792,7 @@ Untuk masalah yang terus berlanjut dengan skema yang valid, [hubungi dukungan](h
 
 Parameter `output_format` telah dipindahkan ke `output_config.format`, dan header beta tidak lagi diperlukan. Parameter `output_format` sudah usang. Untuk tetap menggunakannya, tambahkan header beta `structured-outputs-2025-11-13`. Tanpa header tersebut, API mengembalikan kesalahan 400.
 
-Python SDK (v1.0 dan yang lebih baru) tidak menerima `output_format={...}` pada `client.beta.messages.create()` atau `count_tokens()` dan memunculkan `TypeError`. Gunakan `output_config` sebagai gantinya. Lihat [Menggunakan JSON schema mentah](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#using-a-raw-json-schema) untuk bentuk API yang diperbarui.
+Python SDK (v1.0 dan yang lebih baru) tidak menerima `output_format={...}` pada `client.beta.messages.create()` atau `count_tokens()` dan memunculkan `TypeError`. Gunakan `output_config` sebagai gantinya. Lihat [Menggunakan skema JSON mentah](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#using-a-raw-json-schema) untuk bentuk API yang diperbarui.
 
 ## Kompatibilitas fitur
 
@@ -2805,7 +2805,7 @@ Python SDK (v1.0 dan yang lebih baru) tidak menerima `output_format={...}` pada 
 
 **Tidak kompatibel dengan:**
 
-* **[Kutipan](https://platform.claude.com/docs/id/build-with-claude/citations):** Kutipan memerlukan penyisipan blok kutipan di antara teks, yang bertentangan dengan batasan JSON schema yang ketat. API mengembalikan kesalahan 400 jika kutipan diaktifkan bersama `output_config.format`. Untuk mengekstrak data terstruktur dengan kutipan untuk setiap nilai, lihat [Mendapatkan data terstruktur dengan kutipan](https://platform.claude.com/docs/id/build-with-claude/citations#get-structured-data-with-citations).
+* **[Kutipan](https://platform.claude.com/docs/id/build-with-claude/citations):** Kutipan memerlukan penyisipan blok kutipan di antara teks, yang bertentangan dengan batasan skema JSON yang ketat. API mengembalikan kesalahan 400 jika kutipan diaktifkan bersama `output_config.format`. Untuk mengekstrak data terstruktur dengan kutipan untuk setiap nilai, lihat [Mendapatkan data terstruktur dengan kutipan](https://platform.claude.com/docs/id/build-with-claude/citations#get-structured-data-with-citations).
 * **Prefilling pesan:** Prefilling tidak kompatibel dengan output JSON.
 
 <Tip>
@@ -2843,9 +2843,9 @@ Endpoint yang berlaku:
 
 * `/v1/messages`
 
-Prompt dan respons diproses dengan ZDR saat menggunakan output terstruktur. Namun, JSON schema itu sendiri di-cache sementara hingga 24 jam sejak penggunaan terakhir untuk tujuan optimasi. Tidak ada data prompt atau respons yang disimpan di luar respons API.
+Prompt dan respons diproses dengan ZDR saat menggunakan output terstruktur. Namun, skema JSON itu sendiri di-cache sementara hingga 24 jam sejak penggunaan terakhir untuk tujuan optimasi. Tidak ada data prompt atau respons yang disimpan di luar respons API.
 
-Output terstruktur memenuhi syarat HIPAA, tetapi **PHI tidak boleh disertakan dalam definisi JSON schema**. API mengompilasi JSON schema menjadi tata bahasa yang di-cache secara terpisah dari konten pesan, dan skema yang di-cache ini tidak menerima perlindungan PHI yang sama seperti prompt dan respons. Jangan sertakan PHI dalam nama properti skema, nilai `enum`, nilai `const`, atau regular expression `pattern`. PHI hanya boleh muncul dalam konten pesan (prompt dan respons), di mana PHI dilindungi berdasarkan perlindungan HIPAA.
+Output terstruktur memenuhi syarat HIPAA, tetapi **PHI tidak boleh disertakan dalam definisi skema JSON**. API mengompilasi skema JSON menjadi tata bahasa yang di-cache secara terpisah dari konten pesan, dan skema yang di-cache ini tidak menerima perlindungan PHI yang sama seperti prompt dan respons. Jangan sertakan PHI dalam nama properti skema, nilai `enum`, nilai `const`, atau ekspresi reguler `pattern`. PHI hanya boleh muncul dalam konten pesan (prompt dan respons), di mana PHI dilindungi berdasarkan perlindungan HIPAA.
 
 ## Langkah selanjutnya
 

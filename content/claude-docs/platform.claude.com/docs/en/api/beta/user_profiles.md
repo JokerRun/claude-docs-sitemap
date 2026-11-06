@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 33350de67d25b34c51fa4edd5b5e79f68ce214d25d45e76358a641d647014d84
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 21631246634ee910547427b7d0364dd4041de0e4bbd6c261a4bd4fc56ef3f0f1
 ---
 
 ---
@@ -191,6 +191,8 @@ Create User Profile
   - `country: optional string or null`
 
     The country of the entity (not of the platform), as the platform determines it: an ISO 3166-1 alpha-2 code in upper case, for example `US`. Only the form, two uppercase ASCII letters, is checked.
+
+    pattern: ^[A-Z]{2}$
 
   - `email_hash: optional string or null`
 
@@ -1260,6 +1262,8 @@ Update User Profile
 
     The country of the entity (not of the platform), as the platform determines it: an ISO 3166-1 alpha-2 code in upper case, for example `US`. Only the form, two uppercase ASCII letters, is checked.
 
+    pattern: ^[A-Z]{2}$
+
   - `email_hash: optional string or null`
 
     A hash of the entity's email address, computed by the platform. Anthropic treats it as an opaque string and does not prescribe the hash function. 1 to 255 characters.
@@ -2077,6 +2081,8 @@ curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID/enrollment_url 
   - `country: optional string or null`
 
     The country of the entity (not of the platform), as the platform determines it: an ISO 3166-1 alpha-2 code in upper case, for example `US`. Only the form, two uppercase ASCII letters, is checked.
+
+    pattern: ^[A-Z]{2}$
 
   - `email_hash: optional string or null`
 

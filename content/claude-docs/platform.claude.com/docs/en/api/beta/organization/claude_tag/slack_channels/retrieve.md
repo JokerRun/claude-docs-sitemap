@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/slack_channels/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: c94ca30029cd5a97905bb5ebcb89abfedc719c2b5b063b2e377a84b751bcb115
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: d998710f02bc88f214df89dd87584083d5643f01e113cdd0a77f256ce9c04da4
 ---
 
 ---
@@ -162,7 +162,7 @@ Get one Slack channel and its settings. By default `settings` holds what the cha
 
   - `id: string`
 
-    The channel's identifier. Starts with `slch_`. It does not change for as long as the channel is set up, with one exception: a channel that is not configured gets a new one when claude.ai replaces its record, which happens only while the organization's read-only mode is off. A channel that is removed and set up again also has a new one. The old one keeps returning 404; look the channel up by its Slack identifiers for the new one.
+    The channel's identifier. Starts with `slch_`. It does not change for as long as the channel is set up, with one exception: a channel that is not configured can get a new one. A channel that is removed and set up again also has a new one. The old one keeps returning 404; look the channel up by its Slack identifiers for the new one.
 
   - `created_at: string`
 

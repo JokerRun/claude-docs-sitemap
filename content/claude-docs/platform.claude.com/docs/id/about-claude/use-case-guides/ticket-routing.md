@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: addf106382a395eebacb66ef29b563b2ef2ea711771af619b6602e040429a88c
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 45927f58209d56a7eabd81f04eb07bc5b5224709d53ff29583556bf54dd27526
 ---
 
 ---
@@ -1424,7 +1424,7 @@ Dengan adanya ambang batas ini, Anda dapat mengetahui dalam skala besar, dan den
 
 ## Tingkatkan performa
 
-Dalam skenario yang kompleks, mungkin bermanfaat untuk mempertimbangkan strategi tambahan untuk meningkatkan performa di luar [teknik prompt engineering](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) standar dan [strategi implementasi guardrail](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Berikut adalah beberapa skenario umum:
+Dalam skenario yang kompleks, mungkin bermanfaat untuk mempertimbangkan strategi tambahan untuk meningkatkan performa di luar [teknik rekayasa prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) standar dan [strategi implementasi guardrail](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Berikut adalah beberapa skenario umum:
 
 ### Gunakan hierarki taksonomi untuk kasus dengan 20+ kategori maksud
 

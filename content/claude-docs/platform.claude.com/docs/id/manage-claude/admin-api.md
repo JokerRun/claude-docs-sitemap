@@ -1,28 +1,28 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 338c91252085369aed76508b7a99ce107e5788ddacc607ea77096b86a62fd007
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: a9ff1bac0029fb8368d134fd40f6207738430b609b43b4760afbdde99be7ddbb
 ---
 
 ---
 title: Admin API
 url: https://platform.claude.com/docs/id/manage-claude/admin-api
-description: Kelola anggota organisasi, workspace, undangan, dan kunci API secara terprogram dengan Admin API, menggunakan kunci Admin API, token OAuth `org:admin`, atau kunci personal maupun kunci service account.
+description: Kelola anggota organisasi, workspace, undangan, dan kunci API secara terprogram dengan Admin API, menggunakan kunci Admin API, token OAuth `org:admin`, atau kunci personal maupun kunci akun layanan.
 ---
 
 [Admin API](https://platform.claude.com/docs/id/api/organization) memungkinkan Anda mengelola anggota, workspace, undangan, dan kunci API organisasi Anda secara terprogram, alih-alih secara manual di [Claude Console](https://platform.claude.com/).
 
 ## Ketersediaan
 
-Admin API tidak tersedia untuk akun individu. Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
+Admin API tidak tersedia untuk akun individu. Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organisasi](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
 
 Organisasi Claude Enterprise (claude.ai) memanggil Admin API dengan kunci API ber-scope yang dibuat di claude.ai. Dari halaman ini, hanya endpoint anggota dan undangan yang berlaku untuk mereka. Mereka juga dapat memanggil [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api), yang masih dalam tahap beta dan memerlukan kunci dengan scope `read:analytics`. Mereka juga mendapatkan endpoint khusus Enterprise: pembacaan grup dan peran kustom, serta [batas pengeluaran](https://platform.claude.com/docs/id/manage-claude/spend-limits-api). [Plugins API](https://platform.claude.com/docs/id/manage-claude/plugins-api), yang juga khusus Enterprise, masih dalam tahap beta. Begitu pula [Claude Tag API](https://platform.claude.com/docs/id/manage-claude/claude-tag-api). Lihat [Manajemen pengguna](https://platform.claude.com/docs/id/manage-claude/user-management).
 
 Di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), hanya endpoint Admin API berikut yang tersedia:
 
-* Endpoint workspace: create, get, list, update, dan archive pada `/v1/organizations/workspaces`.
-* Endpoint external key, untuk [CMEK](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws): register, get, list, update, dan delete pada `/v1/organizations/external_keys`. Tidak ada endpoint validate, karena kunci divalidasi saat dilampirkan ke workspace.
+* Endpoint workspace: pembuatan, pengambilan, daftar, pembaruan, dan pengarsipan pada `/v1/organizations/workspaces`.
+* Endpoint kunci eksternal, untuk [CMEK](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws): pendaftaran, pengambilan, daftar, pembaruan, dan penghapusan pada `/v1/organizations/external_keys`. Tidak ada endpoint validasi, karena kunci divalidasi saat dilampirkan ke workspace.
 * [Endpoint tujuan telemetri](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#telemetry-destinations).
 * Endpoint [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api): `/v1/organizations/analytics/usage` dan `/v1/organizations/analytics/cost`.
 
@@ -33,12 +33,12 @@ Anggota organisasi, anggota workspace, undangan, kunci API, [Usage and Cost API]
 Admin API menerima salah satu dari tiga kredensial berikut:
 
 * **Kunci Admin API** (diawali dengan `sk-ant-admin...`) yang dikirim dalam header `x-api-key`. Hanya anggota organisasi dengan peran admin yang dapat membuatnya. Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys).
-* **Token bearer OAuth** dengan scope `org:admin` yang dikirim dalam header `authorization: Bearer`. Hanya anggota dengan peran admin, owner, atau primary owner yang dapat memperolehnya. Lihat [Memperoleh token bearer OAuth](https://platform.claude.com/docs/id/manage-claude/admin-api#oauth-bearer-token).
-* **Kunci personal** atau **kunci service account** yang tidak dibatasi pada workspace tertentu, dikirim dalam header `x-api-key`. Kunci tersebut memiliki izin yang sama dengan akun yang tertaut. Lihat [Jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types).
+* **Token bearer OAuth** dengan scope `org:admin` yang dikirim dalam header `authorization: Bearer`. Hanya anggota dengan peran admin, pemilik, atau pemilik utama yang dapat memperolehnya. Lihat [Memperoleh token bearer OAuth](https://platform.claude.com/docs/id/manage-claude/admin-api#oauth-bearer-token).
+* **Kunci personal** atau **kunci akun layanan** yang tidak dibatasi pada workspace tertentu, dikirim dalam header `x-api-key`. Kunci tersebut memiliki izin yang sama dengan akun yang tertaut. Lihat [Jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types).
 
-Kunci Admin API mencakup sebagian besar endpoint. Endpoint service-account, federation-issuer, dan federation-rule hanya menerima token OAuth `org:admin`. Kirim kunci personal atau kunci service account dalam header `x-api-key`, sama seperti kunci Admin API. Contoh berikut memanggil [endpoint info organisasi](https://platform.claude.com/docs/id/manage-claude/admin-api#accessing-organization-info) dengan token OAuth dan dengan kunci Admin API.
+Kunci Admin API mencakup sebagian besar endpoint. Endpoint akun layanan, penerbit federasi, dan aturan federasi hanya menerima token OAuth `org:admin`. Kirim kunci personal atau kunci akun layanan dalam header `x-api-key`, sama seperti kunci Admin API. Contoh berikut memanggil [endpoint info organisasi](https://platform.claude.com/docs/id/manage-claude/admin-api#accessing-organization-info) dengan token OAuth dan dengan kunci Admin API.
 
-SDK Python, TypeScript, C#, Go, Java, PHP, dan Ruby mengekspos endpoint di halaman ini di bawah `client.organization` (csharp, go: `client.Organization`; java: `client.organization()`; php: `$client->organization`), dan CLI `ant` di bawah `ant organization`. Contoh di halaman ini menggunakan klien default, yang membaca kunci Admin API dari `ANTHROPIC_API_KEY` atau token bearer OAuth dari `ANTHROPIC_AUTH_TOKEN`. Metode list SDK di Python, TypeScript, C#, Go, dan Java mengembalikan iterator yang mengambil halaman berikutnya sesuai kebutuhan, sehingga `limit` menetapkan ukuran halaman, bukan total. Contoh PHP, Ruby, dan curl mengembalikan satu halaman. Di CLI, `--limit` membatasi hasil pada daftar anggota, undangan, workspace, anggota workspace, dan kunci API. Untuk parameter dan respons setiap endpoint, lihat [referensi Admin API](https://platform.claude.com/docs/id/api/organization).
+SDK mengekspos endpoint di halaman ini di bawah `client.organization` (csharp, go: `client.Organization`; java: `client.organization()`; php: `$client->organization`), dan CLI `ant` di bawah `ant organization`. Contoh-contoh di halaman ini menggunakan klien default, yang membaca kunci Admin API dari `ANTHROPIC_API_KEY` atau token bearer OAuth dari `ANTHROPIC_AUTH_TOKEN`. Komentar di setiap contoh daftar menyatakan apakah contoh tersebut mengambil halaman berikutnya atau hanya membaca halaman pertama. Untuk parameter dan respons setiap endpoint, lihat [referensi Admin API](https://platform.claude.com/docs/id/api/organization).
 
 ### Token bearer OAuth
 
@@ -51,7 +51,7 @@ export ANTHROPIC_AUTH_TOKEN=$(ant auth print-credentials --profile admin --acces
 
 Token interaktif berumur pendek. Jika permintaan mulai mengembalikan 401, jalankan kembali perintah `export` untuk memperbarui token.
 
-SDK dan CLI `ant` membaca `ANTHROPIC_AUTH_TOKEN` secara otomatis. Biarkan `ANTHROPIC_API_KEY` tidak diatur di shell yang sama agar keduanya mengirim token bearer. Beban kerja otomatis melewati proses login: mereka melakukan autentikasi melalui workload identity federation, dan SDK serta CLI melakukan pertukaran token dari variabel lingkungan federation. Lihat [Bootstrap beban kerja untuk mengelola WIF](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#bootstrap-a-workload-to-manage-wif).
+SDK dan CLI `ant` membaca `ANTHROPIC_AUTH_TOKEN` secara otomatis. Biarkan `ANTHROPIC_API_KEY` tidak diatur di shell yang sama agar keduanya mengirim bearer token. Beban kerja otomatis tidak perlu login: beban kerja tersebut mengautentikasi melalui Workload Identity Federation, dan SDK serta CLI melakukan pertukaran token dari variabel lingkungan federasi. Lihat [Bootstrap workload untuk mengelola WIF](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#bootstrap-a-workload-to-manage-wif).
 
 Panggil Admin API dengan token yang telah diekspor:
 
@@ -133,7 +133,7 @@ Panggil Admin API dengan token yang telah diekspor:
   ```
 </CodeGroup>
 
-Token `org:admin` memberikan akses ke seluruh organisasi, terlepas dari workspace tempat profil yang mendasarinya atau [federation rule](https://platform.claude.com/docs/id/manage-claude/admin-api#federation-rules) terikat.
+Token `org:admin` memberikan akses ke seluruh organisasi, terlepas dari workspace tempat profil yang mendasarinya atau [aturan federasi](https://platform.claude.com/docs/id/manage-claude/admin-api#federation-rules) terikat.
 
 Untuk CI dan beban kerja non-interaktif lainnya, buat token dengan Workload Identity Federation alih-alih login secara interaktif. Lihat [Mengelola WIF dengan Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#workload-ci-and-automation).
 
@@ -243,7 +243,7 @@ Ada lima peran tingkat organisasi. Untuk detailnya, lihat [Peran dan izin API Co
 | billing            | Dapat menggunakan playground dan mengelola detail penagihan                              |
 | admin              | Dapat melakukan semua hal di atas, ditambah mengelola pengguna                           |
 
-Owner dan primary owner organisasi memiliki semua izin admin dan juga dapat mengelola admin. Semua rujukan ke peran admin di halaman ini juga berlaku untuk owner dan primary owner.
+Pemilik dan pemilik utama organisasi memiliki semua izin admin dan juga dapat mengelola admin. Semua rujukan ke peran admin di halaman ini juga berlaku untuk pemilik dan pemilik utama.
 
 ## Konsep utama
 
@@ -251,16 +251,18 @@ Owner dan primary owner organisasi memiliki semua izin admin dan juga dapat meng
 
 Tampilkan daftar [anggota organisasi](https://platform.claude.com/docs/id/api/organization/users/retrieve), perbarui peran mereka, dan hapus mereka.
 
-Daftarkan anggota organisasi Anda:
+Tampilkan daftar anggota organisasi Anda:
 
 <CodeGroup>
   ```bash cURL
+  # Mengembalikan satu halaman.
   curl "https://api.anthropic.com/v1/organizations/users?limit=10" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
+  # Di terminal, tampilan memuat lebih banyak halaman saat Anda menggulir. Saat di-pipe atau dengan `--format json`, `--limit` membatasi jumlah hasil.
   ant organization:users list --limit 10
   ```
 
@@ -269,7 +271,7 @@ Daftarkan anggota organisasi Anda:
 
   users = client.organization.users.list(limit=10)
 
-  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
+  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menentukan ukuran halaman, bukan jumlah total.
   for user in users:
       print(f"{user.id}: {user.email} ({user.role})")
   ```
@@ -279,6 +281,7 @@ Daftarkan anggota organisasi Anda:
 
   const users = await client.organization.users.list({ limit: 10 });
 
+  // Otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menentukan ukuran halaman, bukan total.
   for await (const user of users) {
     console.log(`${user.id}: ${user.email} (${user.role})`);
   }
@@ -289,6 +292,7 @@ Daftarkan anggota organisasi Anda:
 
   var page = await client.Organization.Users.List(new() { Limit = 10 });
 
+  // Otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menentukan ukuran halaman, bukan jumlah total.
   await foreach (var user in page.Paginate())
   {
       Console.WriteLine($"{user.ID}: {user.Email} ({user.Role.Raw()})");
@@ -302,6 +306,7 @@ Daftarkan anggota organisasi Anda:
   	Limit: anthropic.Int(10),
   })
 
+  // Otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menentukan ukuran halaman, bukan total.
   for users.Next() {
   	user := users.Current()
   	fmt.Printf("%s: %s (%s)\n", user.ID, user.Email, user.Role)
@@ -322,6 +327,7 @@ Daftarkan anggota organisasi Anda:
           .build();
       var users = client.organization().users().list(params);
 
+      // Otomatis mengambil halaman tambahan sesuai kebutuhan, jadi `limit` menentukan ukuran halaman, bukan total.
       for (var user : users.autoPager()) {
           IO.println(user.id() + ": " + user.email() + " (" + user.role().asString() + ")");
       }
@@ -333,6 +339,7 @@ Daftarkan anggota organisasi Anda:
 
   $users = $client->organization->users->list(limit: 10);
 
+  // Hanya membaca halaman pertama.
   foreach ($users->getItems() as $user) {
       echo "{$user->id}: {$user->email} ({$user->role})\n";
   }
@@ -343,6 +350,7 @@ Daftarkan anggota organisasi Anda:
 
   users = client.organization.users.list(limit: 10)
 
+  # Hanya membaca halaman pertama.
   users.data.each do |user|
     puts "#{user.id}: #{user.email} (#{user.role})"
   end
@@ -671,16 +679,18 @@ Undang pengguna ke organisasi Anda:
   ```
 </CodeGroup>
 
-Daftarkan undangan yang tertunda:
+Tampilkan daftar undangan yang tertunda, diterima, dan kedaluwarsa:
 
 <CodeGroup>
   ```bash cURL
+  # Mengembalikan satu halaman.
   curl "https://api.anthropic.com/v1/organizations/invites?limit=10" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
+  # Di terminal, tampilan memuat lebih banyak halaman saat Anda menggulir. Saat di-pipe atau dengan `--format json`, `--limit` membatasi jumlah hasil.
   ant organization:invites list --limit 10
   ```
 
@@ -689,7 +699,7 @@ Daftarkan undangan yang tertunda:
 
   invites = client.organization.invites.list(limit=10)
 
-  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
+  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menentukan ukuran halaman, bukan jumlah total.
   for invite in invites:
       print(f"{invite.id}: {invite.email} ({invite.status})")
   ```
@@ -699,6 +709,7 @@ Daftarkan undangan yang tertunda:
 
   const invites = await client.organization.invites.list({ limit: 10 });
 
+  // Otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menetapkan ukuran halaman, bukan total.
   for await (const invite of invites) {
     console.log(`${invite.id}: ${invite.email} (${invite.status})`);
   }
@@ -709,6 +720,7 @@ Daftarkan undangan yang tertunda:
 
   var page = await client.Organization.Invites.List(new() { Limit = 10 });
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menetapkan ukuran halaman, bukan jumlah total.
   await foreach (var invite in page.Paginate())
   {
       Console.WriteLine($"{invite.ID}: {invite.Email} ({invite.Status.Raw()})");
@@ -722,6 +734,7 @@ Daftarkan undangan yang tertunda:
   	Limit: anthropic.Int(10),
   })
 
+  // Otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menentukan ukuran halaman, bukan total.
   for invites.Next() {
   	invite := invites.Current()
   	fmt.Printf("%s: %s (%s)\n", invite.ID, invite.Email, invite.Status)
@@ -742,6 +755,7 @@ Daftarkan undangan yang tertunda:
           .build();
       var invites = client.organization().invites().list(params);
 
+      // Otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menentukan ukuran halaman, bukan total.
       for (var invite : invites.autoPager()) {
           IO.println(invite.id() + ": " + invite.email() + " (" + invite.status().asString() + ")");
       }
@@ -753,6 +767,7 @@ Daftarkan undangan yang tertunda:
 
   $invites = $client->organization->invites->list(limit: 10);
 
+  // Hanya membaca halaman pertama.
   foreach ($invites->getItems() as $invite) {
       echo "{$invite->id}: {$invite->email} ({$invite->status})\n";
   }
@@ -763,6 +778,7 @@ Daftarkan undangan yang tertunda:
 
   invites = client.organization.invites.list(limit: 10)
 
+  # Hanya membaca halaman pertama.
   invites.data.each do |invite|
     puts "#{invite.id}: #{invite.email} (#{invite.status})"
   end
@@ -856,7 +872,7 @@ Lihat [Workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) 
 
 ### Anggota workspace
 
-Kelola [akses pengguna ke workspace tertentu](https://platform.claude.com/docs/id/api/organization/workspaces/members/retrieve):
+Kelola [akses pengguna ke workspace tertentu](https://platform.claude.com/docs/id/api/organization/workspaces/members/retrieve).
 
 Tambahkan anggota ke workspace:
 
@@ -994,16 +1010,18 @@ Tambahkan anggota ke workspace:
   ```
 </CodeGroup>
 
-Daftarkan anggota workspace:
+Tampilkan daftar anggota workspace:
 
 <CodeGroup>
   ```bash cURL
+  # Mengembalikan satu halaman.
   curl "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/members?limit=10" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
+  # Di terminal, tampilan memuat lebih banyak halaman saat Anda menggulir. Saat di-pipe atau dengan `--format json`, `--limit` membatasi jumlah hasil.
   ant organization:workspaces:members list \
     --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ \
     --limit 10
@@ -1016,7 +1034,7 @@ Daftarkan anggota workspace:
       "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ", limit=10
   )
 
-  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
+  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menentukan ukuran halaman, bukan jumlah total.
   for member in members:
       print(f"{member.user_id}: {member.workspace_role}")
   ```
@@ -1029,6 +1047,7 @@ Daftarkan anggota workspace:
     { limit: 10 }
   );
 
+  // Otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menetapkan ukuran halaman, bukan total.
   for await (const member of members) {
     console.log(`${member.user_id}: ${member.workspace_role}`);
   }
@@ -1042,6 +1061,7 @@ Daftarkan anggota workspace:
       new() { Limit = 10 }
   );
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menetapkan ukuran halaman, bukan jumlah total.
   await foreach (var member in page.Paginate())
   {
       Console.WriteLine($"{member.UserID}: {member.WorkspaceRole.Raw()}");
@@ -1059,6 +1079,7 @@ Daftarkan anggota workspace:
   	},
   )
 
+  // Otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menentukan ukuran halaman, bukan total.
   for members.Next() {
   	member := members.Current()
   	fmt.Printf("%s: %s\n", member.UserID, member.WorkspaceRole)
@@ -1080,6 +1101,7 @@ Daftarkan anggota workspace:
       var members = client.organization().workspaces().members()
           .list("wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ", params);
 
+      // Otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menetapkan ukuran halaman, bukan total.
       for (var member : members.autoPager()) {
           IO.println(member.userId() + ": " + member.workspaceRole().asString());
       }
@@ -1094,6 +1116,7 @@ Daftarkan anggota workspace:
       limit: 10,
   );
 
+  // Hanya membaca halaman pertama.
   foreach ($members->getItems() as $member) {
       echo "{$member->userID}: {$member->workspaceRole}\n";
   }
@@ -1105,6 +1128,7 @@ Daftarkan anggota workspace:
   workspace_id = "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   members = client.organization.workspaces.members.list(workspace_id, limit: 10)
 
+  # Hanya membaca halaman pertama.
   members.data.each do |member|
     puts "#{member.user_id}: #{member.workspace_role}"
   end
@@ -1350,18 +1374,20 @@ Hapus anggota dari workspace:
 
 ### Kunci API
 
-Pantau dan kelola [kunci API](https://platform.claude.com/docs/id/api/organization/api_keys/list). Setiap kunci dalam respons menyertakan timestamp `expires_at` (`null` untuk kunci tanpa [masa kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration)) dan `principal`, yaitu identitas yang diwakilinya (lihat [Jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types)). Untuk kunci personal, `principal` adalah `{"type": "user_actor", "user_id": "user_..."}`; untuk kunci service account, `{"type": "service_account_actor", "service_account_id": "svac_..."}`; dan untuk kunci workspace, `null`. Setiap kunci juga memiliki objek `scope`: `{"type": "workspace", "workspace_id": "wrkspc_..."}` untuk kunci yang terikat pada satu workspace, atau `{"type": "organization"}` untuk kunci yang dapat bekerja di workspace mana pun yang dapat diakses oleh akun tersebut. Memfilter daftar berdasarkan `workspace_id` dengan ID Default Workspace hanya mengembalikan kunci yang terikat pada Default Workspace; kunci tanpa scope workspace tidak dikembalikan di bawah filter `workspace_id` apa pun.
+Pantau dan kelola [kunci API](https://platform.claude.com/docs/id/api/organization/api_keys/list). Setiap kunci dalam respons menyertakan timestamp `expires_at` (`null` untuk kunci tanpa [masa kedaluwarsa](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration)) dan `principal`, identitas yang diwakilinya (lihat [Jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types)). Untuk kunci personal, `principal` adalah `{"type": "user_actor", "user_id": "user_..."}`. Untuk kunci akun layanan, nilainya `{"type": "service_account_actor", "service_account_id": "svac_..."}`. Untuk kunci workspace, nilainya `null`. Setiap kunci juga memiliki objek `scope`: `{"type": "workspace", "workspace_id": "wrkspc_..."}` untuk kunci yang terikat ke satu workspace, atau `{"type": "organization"}` untuk kunci yang dapat bekerja di workspace mana pun yang dapat diakses oleh akun tersebut. Memfilter daftar berdasarkan `workspace_id` dengan ID workspace default hanya mengembalikan kunci yang terikat ke workspace default; kunci tanpa scope workspace tidak dikembalikan di bawah filter `workspace_id` apa pun.
 
-Daftarkan kunci API aktif di sebuah workspace:
+Tampilkan daftar kunci API aktif di sebuah workspace:
 
 <CodeGroup>
   ```bash cURL
+  # Mengembalikan satu halaman.
   curl "https://api.anthropic.com/v1/organizations/api_keys?limit=10&status=active&workspace_id=wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
+  # Di terminal, tampilan memuat halaman berikutnya saat Anda menggulir. Saat di-pipe atau dengan `--format json`, `--limit` membatasi jumlah hasil.
   ant organization:api-keys list \
     --limit 10 \
     --status active \
@@ -1375,7 +1401,7 @@ Daftarkan kunci API aktif di sebuah workspace:
       limit=10, status="active", workspace_id="wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   )
 
-  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
+  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menetapkan ukuran halaman, bukan jumlah total.
   for api_key in api_keys:
       print(f"{api_key.id}: {api_key.name} ({api_key.status})")
   ```
@@ -1389,6 +1415,7 @@ Daftarkan kunci API aktif di sebuah workspace:
     workspace_id: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   });
 
+  // Otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menentukan ukuran halaman, bukan total.
   for await (const apiKey of apiKeys) {
     console.log(`${apiKey.id}: ${apiKey.name} (${apiKey.status})`);
   }
@@ -1406,6 +1433,7 @@ Daftarkan kunci API aktif di sebuah workspace:
       WorkspaceID = "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   });
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menentukan ukuran halaman, bukan jumlah total.
   await foreach (var apiKey in page.Paginate())
   {
       Console.WriteLine($"{apiKey.ID}: {apiKey.Name} ({apiKey.Status.Raw()})");
@@ -1421,6 +1449,7 @@ Daftarkan kunci API aktif di sebuah workspace:
   	WorkspaceID: anthropic.String("wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"),
   })
 
+  // Otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menentukan ukuran halaman, bukan total.
   for apiKeys.Next() {
   	apiKey := apiKeys.Current()
   	fmt.Printf("%s: %s (%s)\n", apiKey.ID, apiKey.Name, apiKey.Status)
@@ -1443,6 +1472,7 @@ Daftarkan kunci API aktif di sebuah workspace:
           .build();
       var apiKeys = client.organization().apiKeys().list(params);
 
+      // Otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` mengatur ukuran halaman, bukan total.
       for (var apiKey : apiKeys.autoPager()) {
           IO.println(apiKey.id() + ": " + apiKey.name() + " (" + apiKey.status().asString() + ")");
       }
@@ -1461,6 +1491,7 @@ Daftarkan kunci API aktif di sebuah workspace:
       workspaceID: 'wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ',
   );
 
+  // Hanya membaca halaman pertama.
   foreach ($apiKeys->getItems() as $apiKey) {
       echo "{$apiKey->id}: {$apiKey->name} ({$apiKey->status})\n";
   }
@@ -1475,6 +1506,7 @@ Daftarkan kunci API aktif di sebuah workspace:
     workspace_id: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   )
 
+  # Hanya membaca halaman pertama.
   api_keys.data.each do |api_key|
     puts "#{api_key.id}: #{api_key.name} (#{api_key.status})"
   end
@@ -1618,17 +1650,17 @@ Ganti nama atau nonaktifkan kunci API:
   ```
 </CodeGroup>
 
-### Service account
+### Akun layanan
 
-Buat dan kelola service account (`svac_...`), yaitu identitas non-manusia yang diwakili oleh [kunci service account](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) dan token [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation). Endpoint ini, seperti endpoint federation-issuer dan federation-rule, memerlukan token OAuth `org:admin`. Lihat [Mengelola WIF dengan Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#service-accounts).
+Buat dan kelola akun layanan (`svac_...`), identitas non-manusia yang diwakili oleh [kunci akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) dan token [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation). Endpoint ini, seperti endpoint penerbit federasi dan aturan federasi, memerlukan token OAuth `org:admin`. Lihat [Akun layanan di Mengelola WIF dengan Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#service-accounts).
 
-### Federation issuer
+### Penerbit federasi
 
-Daftarkan penyedia identitas OIDC (`fdis_...`) yang tokennya dapat menyatakan identitas beban kerja untuk organisasi Anda. Lihat [Mengelola WIF dengan Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#federation-issuers).
+Daftarkan penyedia identitas OIDC (`fdis_...`) yang tokennya dapat menegaskan identitas beban kerja untuk organisasi Anda. Lihat [Federation issuer di Mengelola WIF dengan Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#federation-issuers).
 
-### Federation rule
+### Aturan federasi
 
-Kelola aturan (`fdrl_...`) yang memetakan token issuer ke service account dan scope. Lihat [Mengelola WIF dengan Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#federation-rules).
+Kelola aturan (`fdrl_...`) yang memetakan token issuer ke akun layanan dan scope. Lihat [Federation rule di Mengelola WIF dengan Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#federation-rules).
 
 ## Mengakses info organisasi
 
@@ -1720,7 +1752,7 @@ Endpoint `/v1/organizations/me` mengembalikan organisasi tempat kredensial Anda 
 }
 ```
 
-Untuk detail parameter dan skema respons, lihat [referensi Organization Info API](https://platform.claude.com/docs/id/api/organization/retrieve).
+Untuk detail parameter dan skema respons, lihat [referensi API informasi organisasi](https://platform.claude.com/docs/id/api/organization/retrieve).
 
 ## Laporan penggunaan dan biaya
 
@@ -1747,24 +1779,24 @@ Daftarkan endpoint webhook untuk peristiwa tentang tindakan penegakan pada profi
 * Gunakan nama dan deskripsi yang bermakna untuk workspace dan kunci API
 * Tangani error dari operasi yang gagal
 * Audit peran dan izin anggota secara berkala
-* Bersihkan workspace yang tidak digunakan dan undangan yang kedaluwarsa
+* Arsipkan workspace yang tidak digunakan dan hapus undangan tertunda yang tidak lagi Anda perlukan
 * Pantau penggunaan kunci API, audit [`expires_at`](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration) setiap kunci, dan rotasi kunci secara berkala
 
 ## FAQ
 
 <AccordionGroup>
   <Accordion title="Izin apa yang diperlukan untuk menggunakan Admin API?">
-    Admin API menerima kunci Admin API (diawali dengan `sk-ant-admin`), token bearer OAuth dengan scope `org:admin`, atau kunci personal maupun kunci service account yang tidak dibatasi pada workspace tertentu. Hanya anggota organisasi dengan peran admin yang dapat membuat kunci Admin API, dan hanya anggota dengan peran admin, owner, atau primary owner yang dapat memperoleh token `org:admin`. Kunci personal atau kunci service account memiliki izin yang sama dengan akun yang tertaut. Lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/admin-api#authentication).
+    Admin API menerima kunci Admin API (diawali dengan `sk-ant-admin`), token bearer OAuth dengan scope `org:admin`, atau kunci personal maupun kunci akun layanan yang tidak dibatasi pada workspace tertentu. Hanya anggota organisasi dengan peran admin yang dapat membuat kunci Admin API, dan hanya anggota dengan peran admin, pemilik, atau pemilik utama yang dapat memperoleh token `org:admin`. Kunci personal atau kunci akun layanan memiliki izin yang sama dengan akun yang tertaut. Lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/admin-api#authentication).
   </Accordion>
 
-  <Accordion title="Bisakah saya membuat kunci API baru melalui Admin API?">
+  <Accordion title="Bisakah Admin API membuat kunci API?">
     Tidak. Anda membuat kunci API di Claude Console. Admin API hanya dapat membaca, mengganti nama, dan mengubah status kunci yang sudah ada.
   </Accordion>
 
   <Accordion title="Apa yang terjadi pada kunci API saat menghapus pengguna?">
     Perilakunya bergantung pada [jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types).
 
-    Kunci personal berhenti berfungsi ketika penggunanya dihapus dari organisasi. Kunci service account berhenti berfungsi jika service account-nya diarsipkan, tetapi tetap berfungsi meskipun pengguna yang membuatnya dihapus. Kunci API workspace tetap berfungsi. Di [workspace Claude Code](https://platform.claude.com/docs/id/manage-claude/workspaces#claude-code-workspace), setiap kunci terikat pada anggota yang membuatnya dan berhenti berfungsi ketika anggota tersebut dihapus.
+    Kunci personal berhenti berfungsi ketika penggunanya dihapus dari organisasi. Kunci akun layanan berhenti berfungsi jika akun layanannya diarsipkan, tetapi tetap berfungsi meskipun pengguna yang membuatnya dihapus. Kunci API workspace tetap berfungsi. Di [workspace Claude Code](https://platform.claude.com/docs/id/manage-claude/workspaces#claude-code-workspace), setiap kunci terikat pada anggota yang membuatnya dan berhenti berfungsi ketika anggota tersebut dihapus.
   </Accordion>
 
   <Accordion title="Bisakah admin organisasi dihapus melalui API?">

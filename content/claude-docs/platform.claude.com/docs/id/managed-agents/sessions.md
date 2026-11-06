@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: dd37c96b4fc699997f9a42b43b3282896c3bde21d7f51012affc551e3a2ee222
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 0514aa3b4c1f950e16578437854c712d212175d82f12e6c357e0e3749adc9155
 ---
 
 ---
@@ -632,7 +632,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
 
 #### Menyematkan geo inferensi untuk sebuah sesi
 
-Karena override `model` (csharp, go: `Model`) menggantikan objek `model` (csharp, go: `Model`) agen sepenuhnya, override tersebut juga menetapkan atau menghapus penguncian [inference geo](https://platform.claude.com/docs/id/manage-claude/data-residency) model untuk sesi. Override yang menyertakan `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) mengunci geografi yang melayani permintaan model sesi. Override yang menghilangkannya akan menghapus penguncian agen, sehingga sesi mengikuti `default_inference_geo` milik workspace. Nilai yang ditimpa divalidasi terhadap `allowed_inference_geos` milik workspace saat sesi dibuat.
+Karena override `model` (csharp, go: `Model`) menggantikan objek `model` (csharp, go: `Model`) agen sepenuhnya, override tersebut juga menetapkan atau menghapus penguncian [geografi inferensi](https://platform.claude.com/docs/id/manage-claude/data-residency) model untuk sesi. Override yang menyertakan `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) mengunci geografi yang melayani permintaan model sesi. Override yang menghilangkannya akan menghapus penguncian agen, sehingga sesi mengikuti `default_inference_geo` milik workspace. Nilai yang ditimpa divalidasi terhadap `allowed_inference_geos` milik workspace saat sesi dibuat.
 
 Contoh berikut memulai sesi dari agen yang modelnya tidak memiliki penyematan geo, dan menyematkan permintaan model sesi ke inferensi AS dengan menyertakan `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) dalam override `model` (csharp, go: `Model`). Respons menampilkan kembali nilai tersebut di `agent.model` (csharp, go: `Agent.Model`):
 
@@ -999,7 +999,7 @@ Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, teruskan `vault
 
 ## Memulai sesi
 
-Membuat sesi tanpa `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) akan mendaftarkan sesi tetapi tidak memulai pekerjaan apa pun; sandbox environment mulai disiapkan segera setelah sesi dibuat, sehingga panggilan alat pertama tidak perlu menunggunya. Untuk mendelegasikan tugas, kirim event ke sesi menggunakan [user event](https://platform.claude.com/docs/id/managed-agents/reference#event-types). Untuk menyediakan event pertama dalam permintaan pembuatan, lihat [Mengisi sesi dengan event awal](https://platform.claude.com/docs/id/managed-agents/sessions#seed-the-session-with-initial-events). Sesi bertindak sebagai state machine yang melacak kemajuan, dan event menggerakkan eksekusi yang sebenarnya.
+Membuat sesi tanpa `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) akan mendaftarkan sesi tetapi tidak memulai pekerjaan apa pun; sandbox environment mulai disiapkan segera setelah sesi dibuat, sehingga panggilan alat pertama tidak perlu menunggunya. Untuk mendelegasikan tugas, kirim event ke sesi menggunakan [event pengguna](https://platform.claude.com/docs/id/managed-agents/reference#event-types). Untuk menyediakan event pertama dalam permintaan pembuatan, lihat [Mengisi sesi dengan event awal](https://platform.claude.com/docs/id/managed-agents/sessions#seed-the-session-with-initial-events). Sesi bertindak sebagai mesin status yang melacak kemajuan, dan event menggerakkan eksekusi yang sebenarnya.
 
 <CodeGroup>
   ```bash cURL

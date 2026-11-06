@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: ef343fe28897e1fa3f789a9d6bb1ec34f19d5d26839806e1f4ec780781798607
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 184beee580df7c5314083ae12749f3e3cf7a518784d1984de11e7a6d63c35908
 ---
 
 ---
@@ -210,7 +210,7 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
   Request headers that the API sends with every delivery, typically your collector's authentication header (for example `authorization`).
 
-  The API stores the values encrypted and never returns them. Reads show only `header_names`.
+  The API never returns the values. Reads show only `header_names`.
 
   At most 20 headers. Names are at most 128 characters. Two names can't differ only in case. Values are printable ASCII, at most 4,096 characters, and can't begin or end with a space. Names and values together are at most 16,384 bytes.
 

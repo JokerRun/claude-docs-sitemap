@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/slack_channels/create
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 6abed0a216e0bf14cd5e064f61ebf7ca1de811e0a762912eacf098b02009fa5b
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: d7eebba30578cfed655146990c63df89a6a19419f12085d6565b8c602a621843
 ---
 
 ---
@@ -214,7 +214,7 @@ Set a Slack channel up for Claude Tag and return it with its identifier. If the 
 
   - `id: string`
 
-    The channel's identifier. Starts with `slch_`. It does not change for as long as the channel is set up, with one exception: a channel that is not configured gets a new one when claude.ai replaces its record, which happens only while the organization's read-only mode is off. A channel that is removed and set up again also has a new one. The old one keeps returning 404; look the channel up by its Slack identifiers for the new one.
+    The channel's identifier. Starts with `slch_`. It does not change for as long as the channel is set up, with one exception: a channel that is not configured can get a new one. A channel that is removed and set up again also has a new one. The old one keeps returning 404; look the channel up by its Slack identifiers for the new one.
 
   - `created_at: string`
 

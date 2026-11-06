@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: d3671f8412dd3ea384f2044a198fb7038bd6d2d0ad0b9814507dd88f64144864
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: b5254deb7e2089e9e1fbd79477883ba438557e71d15dd9eb5fd1ee5531781251
 ---
 
 ---
@@ -23,16 +23,16 @@ Berikut contoh minimal menggunakan alat server, yaitu [alat pencarian web](https
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
-      "max_tokens": 1024,
+      "max_tokens": 4096,
       "tools": [{"type": "web_search_20260209", "name": "web_search"}],
-      "messages": [{"role": "user", "content": "What'\''s the latest on the Mars rover?"}]
+      "messages": [{"role": "user", "content": "What is the latest on the Mars rover?"}]
     }'
   ```
 
   ```bash CLI
   ant messages create \
     --model claude-opus-5-5 \
-    --max-tokens 1024 \
+    --max-tokens 4096 \
     --tool '{type: web_search_20260209, name: web_search}' \
     --message '{role: user, content: "What is the latest on the Mars rover?"}'
   ```
@@ -41,9 +41,9 @@ Berikut contoh minimal menggunakan alat server, yaitu [alat pencarian web](https
   client = anthropic.Anthropic()
   response = client.messages.create(
       model="claude-opus-5-5",
-      max_tokens=1024,
+      max_tokens=4096,
       tools=[{"type": "web_search_20260209", "name": "web_search"}],
-      messages=[{"role": "user", "content": "What's the latest on the Mars rover?"}],
+      messages=[{"role": "user", "content": "What is the latest on the Mars rover?"}],
   )
   print(response.content)
   ```
@@ -52,9 +52,9 @@ Berikut contoh minimal menggunakan alat server, yaitu [alat pencarian web](https
   const client = new Anthropic();
   const response = await client.messages.create({
     model: "claude-opus-5-5",
-    max_tokens: 1024,
+    max_tokens: 4096,
     tools: [{ type: "web_search_20260209", name: "web_search" }],
-    messages: [{ role: "user", content: "What's the latest on the Mars rover?" }]
+    messages: [{ role: "user", content: "What is the latest on the Mars rover?" }]
   });
   console.log(response.content);
   ```
@@ -65,9 +65,9 @@ Berikut contoh minimal menggunakan alat server, yaitu [alat pencarian web](https
   var parameters = new MessageCreateParams
   {
       Model = Model.ClaudeOpus5_5,
-      MaxTokens = 1024,
+      MaxTokens = 4096,
       Tools = [new ToolUnion(new WebSearchTool20260209())],
-      Messages = [new UserMessageParam { Content = "What's the latest on the Mars rover?" }]
+      Messages = [new UserMessageParam { Content = "What is the latest on the Mars rover?" }]
   };
 
   var message = await client.Messages.Create(parameters);
@@ -79,12 +79,12 @@ Berikut contoh minimal menggunakan alat server, yaitu [alat pencarian web](https
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
   	Model:     anthropic.ModelClaudeOpus5_5,
-  	MaxTokens: 1024,
+  	MaxTokens: 4096,
   	Tools: []anthropic.ToolUnionParam{
   		{OfWebSearchTool20260209: &anthropic.WebSearchTool20260209Param{}},
   	},
   	Messages: []anthropic.MessageParam{
-  		anthropic.NewUserMessage(anthropic.NewTextBlock("What's the latest on the Mars rover?")),
+  		anthropic.NewUserMessage(anthropic.NewTextBlock("What is the latest on the Mars rover?")),
   	},
   })
   if err != nil {
@@ -101,9 +101,9 @@ Berikut contoh minimal menggunakan alat server, yaitu [alat pencarian web](https
 
       MessageCreateParams params = MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
-          .maxTokens(1024L)
+          .maxTokens(4096L)
           .addTool(WebSearchTool20260209.builder().build())
-          .addUserMessage("What's the latest on the Mars rover?")
+          .addUserMessage("What is the latest on the Mars rover?")
           .build();
 
       Message response = client.messages().create(params);
@@ -116,12 +116,12 @@ Berikut contoh minimal menggunakan alat server, yaitu [alat pencarian web](https
 
   $message = $client->messages->create(
       model: 'claude-opus-5-5',
-      maxTokens: 1024,
+      maxTokens: 4096,
       tools: [
           ['type' => 'web_search_20260209', 'name' => 'web_search'],
       ],
       messages: [
-          ['role' => 'user', 'content' => "What's the latest on the Mars rover?"],
+          ['role' => 'user', 'content' => 'What is the latest on the Mars rover?'],
       ],
   );
 
@@ -133,9 +133,9 @@ Berikut contoh minimal menggunakan alat server, yaitu [alat pencarian web](https
 
   message = client.messages.create(
     model: Anthropic::Model::CLAUDE_OPUS_5_5,
-    max_tokens: 1024,
+    max_tokens: 4096,
     tools: [{ type: "web_search_20260209", name: "web_search" }],
-    messages: [{ role: "user", content: "What's the latest on the Mars rover?" }]
+    messages: [{ role: "user", content: "What is the latest on the Mars rover?" }]
   )
   puts message.content
   ```
@@ -145,7 +145,7 @@ Claude menjalankan pencarian di infrastruktur Anthropic dan mengembalikan hasil 
 
 ## Cara kerja penggunaan alat
 
-Alat terutama dibedakan berdasarkan di mana kodenya dijalankan. **Alat klien** (termasuk alat yang didefinisikan pengguna dan alat dengan skema yang didefinisikan Anthropic, seperti `bash` dan `text_editor`) berjalan di aplikasi Anda. Claude merespons dengan `stop_reason: "tool_use"` dan satu atau lebih blok `tool_use`. Kode Anda menjalankan operasinya dan mengirimkan kembali `tool_result`. **Alat server** (seperti `web_search`, `web_fetch`, `code_execution`, dan `tool_search`) berjalan di infrastruktur Anthropic: Anda melihat hasilnya secara langsung tanpa perlu menangani eksekusinya, kecuali jika Claude memanggil alat tersebut dalam kelompok panggilan alat paralel yang sama dengan salah satu alat klien Anda (lihat [Stop reason dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use)).
+Alat terutama dibedakan berdasarkan di mana kodenya dijalankan. **Alat klien** (termasuk alat yang didefinisikan pengguna dan alat dengan skema yang didefinisikan Anthropic, seperti `bash` dan `text_editor`) berjalan di aplikasi Anda. Claude merespons dengan `stop_reason: "tool_use"` dan satu atau lebih blok `tool_use`. Kode Anda menjalankan operasinya dan mengirimkan kembali `tool_result`. **Alat server** (seperti `web_search`, `web_fetch`, `code_execution`, dan `tool_search`) berjalan di infrastruktur Anthropic: Anda melihat hasilnya secara langsung tanpa perlu menangani eksekusinya, kecuali jika Claude memanggil alat tersebut dalam kelompok panggilan alat paralel yang sama dengan salah satu alat klien Anda (lihat [Alasan berhenti dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use)).
 
 Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Permintaan pertama mendefinisikan alat `get_weather`, dan Claude menjawab pertanyaan dengan memanggilnya: respons membawa blok `tool_use`, kode Anda menjalankan pencarian, dan permintaan kedua mengirimkan hasilnya kembali dalam blok `tool_result` sehingga Claude dapat membalas dengan jawabannya.
 
@@ -704,15 +704,15 @@ Anthropic menerbitkan skemanya dan melatih Claude berdasarkan skema tersebut. Ap
     Jalankan perintah shell dalam sesi persisten yang mempertahankan state.
   </Card>
 
-  <Card title="Alat Text editor" icon="edit" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool">
+  <Card title="Alat editor teks" icon="edit" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool">
     Lihat dan modifikasi file teks untuk men-debug, memperbaiki, dan meningkatkan kode.
   </Card>
 
-  <Card title="Alat Computer use" icon="computer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool">
+  <Card title="Alat penggunaan komputer" icon="computer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool">
     Ambil tangkapan layar dan kendalikan mouse serta keyboard di lingkungan desktop.
   </Card>
 
-  <Card title="Alat Browser use" icon="browser" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool">
+  <Card title="Alat penggunaan browser" icon="browser" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool">
     Navigasi, baca, dan berinteraksi dengan halaman web di lingkungan browser Anda sendiri.
   </Card>
 </CardGroup>
@@ -722,7 +722,7 @@ Anthropic menerbitkan skemanya dan melatih Claude berdasarkan skema tersebut. Ap
 Alat server berjalan di infrastruktur Anthropic, tanpa kode handler di aplikasi Anda. Lihat [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) untuk mekanisme yang dimiliki bersama oleh alat-alat tersebut.
 
 <CardGroup cols={2}>
-  <Card title="Alat Web search" icon="magnifying-glass" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool">
+  <Card title="Alat pencarian web" icon="magnifying-glass" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool">
     Cari informasi di web yang melampaui batas pengetahuan, dengan sumber yang dikutip.
   </Card>
 
@@ -730,7 +730,7 @@ Alat server berjalan di infrastruktur Anthropic, tanpa kode handler di aplikasi 
     Ambil konten lengkap dari halaman web dan dokumen PDF yang ditentukan.
   </Card>
 
-  <Card title="Alat Code execution" icon="code" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool">
+  <Card title="Alat eksekusi kode" icon="code" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool">
     Jalankan kode Python dan Bash dalam container sandbox untuk menganalisis data dan menghasilkan file.
   </Card>
 
@@ -738,7 +738,7 @@ Alat server berjalan di infrastruktur Anthropic, tanpa kode handler di aplikasi 
     Biarkan model eksekutor yang lebih cepat berkonsultasi dengan model penasihat berkecerdasan lebih tinggi di tengah proses generasi.
   </Card>
 
-  <Card title="Alat Tool search" icon="library" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool">
+  <Card title="Alat pencarian alat" icon="library" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool">
     Bekerja dengan ribuan alat dengan menemukan dan memuatnya sesuai permintaan.
   </Card>
 
@@ -786,7 +786,6 @@ Saat Anda menggunakan `tools`, API juga secara otomatis menyertakan “system pr
 | Claude Sonnet 4 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | 313 tokens                                | 315 tokens                               |
 | Claude Haiku 5.5                                                                                                                                                       | 286 tokens                                | 406 tokens                               |
 | Claude Haiku 4.5                                                                                                                                                       | 496 tokens                                | 588 tokens                               |
-| Claude Haiku 3.5 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations))            | 264 tokens                                | 355 tokens                               |
 
 * **auto, none:** The count when tool\_choice is auto or none.
 * **any, tool:** The count when tool\_choice is any or tool.

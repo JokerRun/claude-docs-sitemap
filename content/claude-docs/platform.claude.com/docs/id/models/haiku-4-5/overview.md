@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-4-5/overview
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 8b77fc2def47632d48dde240c77552486d3a771a4726d510b66896653e10853f
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 7a16cafdc9a6a8fa5fadb7d448ef28c67e1513a707288819b1d8c3f0e1f1195b
 ---
 
 ---
@@ -116,7 +116,7 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $1 / MTo
     Prompt sistem yang digunakan Claude Haiku 4.5 di claude.ai dan aplikasi Claude.
   </Card>
 
-  <Card title="System card" icon="file" href="https://www.anthropic.com/claude-haiku-4-5-system-card">
+  <Card title="Kartu sistem" icon="file" href="https://www.anthropic.com/claude-haiku-4-5-system-card">
     Evaluasi keamanan dan keputusan deployment untuk Claude Haiku 4.5.
   </Card>
 

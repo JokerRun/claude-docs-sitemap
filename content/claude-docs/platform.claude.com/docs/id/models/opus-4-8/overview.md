@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-4-8/overview
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 3c71418a8e3a2123cdb36df50b9b6d67642a4956b9ed362ee90e1ec24fa0d940
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 73b81df9ec70f0d2d5551235ad121df622fba872681ba75c4e6c1fb47318c8a9
 ---
 
 ---
@@ -95,7 +95,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $5 / MTok
     Model Opus saat ini: ikhtisar, spesifikasi, dan sumber daya.
   </Card>
 
-  <Card title="Prompting Claude Opus 4.8" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-4-8">
+  <Card title="Menulis prompt untuk Claude Opus 4.8" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-4-8">
     Panduan prompting khusus model.
   </Card>
 </CardGroup>
@@ -107,7 +107,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $5 / MTok
     Prompt sistem yang digunakan Claude Opus 4.8 di claude.ai dan aplikasi Claude.
   </Card>
 
-  <Card title="System card" icon="file" href="https://www.anthropic.com/claude-opus-4-8-system-card">
+  <Card title="Kartu sistem" icon="file" href="https://www.anthropic.com/claude-opus-4-8-system-card">
     Evaluasi keamanan dan keputusan deployment untuk Claude Opus 4.8.
   </Card>
 

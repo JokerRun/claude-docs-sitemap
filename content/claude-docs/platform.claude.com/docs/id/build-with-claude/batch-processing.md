@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: b41fe54a537732fabcb79ef885061099a43a9a43dafdb92d004c10905419ee5c
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 069903883ea2f6e79e3eb872d626477ef4d51862ba3b237436e2c2e90dcde429
 ---
 
 ---
@@ -134,7 +134,6 @@ Batches API menawarkan penghematan biaya yang signifikan. Semua penggunaan diken
 | Claude Haiku 5.5 (for prompts up to 100,000 tokens)                                                                                                                    | $0.05 / MTok | $0.25 / MTok  |
 | Claude Haiku 5.5 (for prompts over 100,000 tokens)                                                                                                                     | $0.25 / MTok | $1.25 / MTok  |
 | Claude Haiku 4.5                                                                                                                                                       | $0.50 / MTok | $2.50 / MTok  |
-| Claude Haiku 3.5 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations))            | $0.40 / MTok | $2 / MTok     |
 
 * **MTok:** Million tokens. $5 / MTok is $5 for every million tokens.
 * **Limited access:** Available only to organizations verified through Anthropic’s verification programs, such as the [Cyber Verification Program](https://support.claude.com/en/articles/14604842). To request access, apply to the program that covers your use case.
@@ -790,7 +789,7 @@ Hasil batch tersedia untuk diunduh di properti [`results_url`](https://platform.
   ```typescript TypeScript
   const client = new Anthropic();
 
-  // Streaming file hasil dalam potongan hemat memori, memproses satu per satu
+  // Lakukan streaming file hasil dalam potongan hemat memori, memproses satu per satu
   for await (const result of await client.messages.batches.results(
     "msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d"
   )) {
@@ -969,7 +968,7 @@ Hasil batch menggunakan versi API dari permintaan yang membuat batch tersebut.
 
 ### Membatalkan Message Batch
 
-Anda dapat membatalkan Message Batch yang sedang diproses menggunakan [endpoint cancel](https://platform.claude.com/docs/id/api/messages/batches/cancel). Segera setelah pembatalan, `processing_status` batch akan menjadi `canceling`. Anda dapat menggunakan teknik polling yang sama seperti yang dijelaskan sebelumnya untuk menunggu hingga pembatalan selesai. Batch yang dibatalkan akan berakhir dengan status `ended` dan mungkin berisi hasil parsial untuk permintaan yang telah diproses sebelum pembatalan.
+Anda dapat membatalkan Message Batch yang sedang diproses menggunakan [endpoint pembatalan](https://platform.claude.com/docs/id/api/messages/batches/cancel). Segera setelah pembatalan, `processing_status` batch akan menjadi `canceling`. Anda dapat menggunakan teknik polling yang sama seperti yang dijelaskan sebelumnya untuk menunggu hingga pembatalan selesai. Batch yang dibatalkan akan berakhir dengan status `ended` dan mungkin berisi hasil parsial untuk permintaan yang telah diproses sebelum pembatalan.
 
 <CodeGroup>
   ```bash cURL
@@ -1922,7 +1921,7 @@ Endpoint yang berlaku:
 
 * `/v1/messages/batches`
 
-Pemrosesan batch menyimpan data permintaan dan respons hingga 29 hari setelah pembuatan batch. Anda dapat menghapus message batch kapan saja setelah pemrosesan menggunakan endpoint [`DELETE /v1/messages/batches/{batch_id}`](https://platform.claude.com/docs/id/api/messages/batches/delete). Untuk menghapus batch yang sedang diproses, batalkan terlebih dahulu. Pemrosesan asinkron memerlukan penyimpanan sisi server untuk input dan output hingga batch selesai dan hasil diambil.
+Pemrosesan batch menyimpan data permintaan dan respons hingga 29 hari setelah pembuatan batch. Anda dapat menghapus batch pesan kapan saja setelah pemrosesan menggunakan endpoint [`DELETE /v1/messages/batches/{batch_id}`](https://platform.claude.com/docs/id/api/messages/batches/delete). Untuk menghapus batch yang sedang diproses, batalkan terlebih dahulu. Pemrosesan asinkron memerlukan penyimpanan sisi server untuk input dan output hingga batch selesai dan hasil diambil.
 
 ## Langkah selanjutnya
 

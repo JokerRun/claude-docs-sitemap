@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 91ba8141b3e763fcbb81639406f6cce64fb449f372f7750ce542166159056489
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 453b4189f43064ded1dad4804ddb1815379cb4616b75da3a6dd4bc44133ed36f
 ---
 
 ---
@@ -562,7 +562,7 @@ Get Deployment
 
             Full commit SHA to check out.
 
-            minLength: 7, maxLength: 64
+            minLength: 7, maxLength: 64, pattern: ^[0-9a-fA-F]+$
 
       - `mount_path: optional string or null`
 
@@ -667,6 +667,8 @@ Get Deployment
       - `amount: string`
 
         Amount in minor units of the currency, as an integer decimal string with no leading zeros: "2500" is $25.00 and "50" is fifty cents. A string rather than a number so no float rounding is ever applied.
+
+        pattern: ^(0|[1-9]\d*)$
 
       - `currency: BetaCurrency`
 

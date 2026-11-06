@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/mcp-connector
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: ac5b6e24ad8735bdbf5c297445390bc0b2bbe850cb7c215d89c8b676bad8c5a7
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: d00151192f31b78fed6d392bf5876f637bd098fd987c53f33bfd302c8e932f3d
 ---
 
 ---
@@ -302,7 +302,7 @@ Ketika output alat MCP melebihi 100.000 karakter (sekitar 25.000 token), output 
 
 Saat memulai sesi, teruskan `vault_ids` (java: `vaultIds`; php: `vaultIDs`; csharp: `VaultIds`; go: `VaultIDs`) untuk menyediakan kredensial bagi server MCP Anda. Vault adalah kumpulan kredensial yang Anda daftarkan sekali dan referensikan berdasarkan ID. Lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults) untuk cara membuat vault dan mengelola kredensial.
 
-Dengan [environment](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, pembuatan sesi gagal dengan error 400 ketika agen mendeklarasikan server MCP yang host-nya tidak ada dalam `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Mengatur `allow_mcp_servers` (java: `allowMcpServers`; php: `allowMCPServers`; csharp: `AllowMcpServers`; go: `AllowMCPServers`) ke `true` dalam pengaturan jaringan environment akan menonaktifkan pemeriksaan ini.
+Dengan [lingkungan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, pembuatan sesi gagal dengan error 400 ketika agen mendeklarasikan server MCP yang host-nya tidak ada dalam `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Mengatur `allow_mcp_servers` (java: `allowMcpServers`; php: `allowMCPServers`; csharp: `AllowMcpServers`; go: `AllowMCPServers`) ke `true` dalam pengaturan jaringan environment akan menonaktifkan pemeriksaan ini.
 
 <CodeGroup>
   ```bash cURL

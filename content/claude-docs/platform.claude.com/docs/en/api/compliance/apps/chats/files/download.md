@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files/download
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: e71c265e2aac16010d99d8d8ffd3db9ba48731cc3b86528607d157fdd7f26e91
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 4fb0cf9e7c59a2ce34415b813de726c29efe0335c79f8570ba2833d920ed363d
 ---
 
 ---
@@ -20,7 +20,7 @@ Downloads the binary content of a file referenced in chat messages.
 
 - `claude_file_id: string`
 
-  The file ID (tagged ID, e.g., claude_file_abc123)
+  The file ID (tagged ID, e.g., claude_file_abc123). Also use this endpoint for any id in `chat_messages[].generated_files[].id` that starts with `claude_file_`.
 
 ## Headers
 

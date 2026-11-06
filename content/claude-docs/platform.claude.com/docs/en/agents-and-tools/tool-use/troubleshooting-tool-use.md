@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/troubleshooting-tool-use
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: d37116d48223c8ad4def058ed55ea5ca3db7d1f1dd5d272a72b7b38a29251b56
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 8c05d7a635c5f1e32e717697bfb3d50daaec85b4014878360518f9036cbaab71
 ---
 
 ---
@@ -40,7 +40,7 @@ Symptom-to-fix tables for the most common tool-use errors. Each fix cross-refere
 | Symptom                                     | Likely cause                                                                                  | Fix                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | ------------------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Every request is a cache miss               | `tool_choice`, the thinking configuration, or `output_config.effort` varying between requests | Keep `tool_choice` stable or place the `cache_control` breakpoint before the variation point; hold the thinking configuration and effort level constant for the life of a cached conversation. See [Tool use with prompt caching](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching) and [Thinking and prompt caching](https://platform.claude.com/docs/en/build-with-claude/thinking#thinking-and-prompt-caching). |
-| Adding a tool mid-conversation breaks cache | Tool prepended to the tools array                                                             | Use `defer_loading: true` with tool search to append the tool inline instead of modifying the array head.                                                                                                                                                                                                                                                                                                                                                    |
+| Adding a tool mid-conversation breaks cache | Tool prepended to the tools array                                                             | Declare the tool with `defer_loading: true` from the first request and let tool search load it inline, instead of adding it to the array later.                                                                                                                                                                                                                                                                                                              |
 
 ## Errors at request time
 

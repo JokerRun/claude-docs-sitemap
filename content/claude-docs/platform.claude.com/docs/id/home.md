@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/home
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 4e55c5cff5abc0406093a44d9184c54c653e7375045c9867348d80f76d8da9ac
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: bd9ebe935d3a5d61970b850637fdf3ba130370f96566c6327e0d299620e9bb7a
 ---
 
 ---
@@ -19,7 +19,7 @@ dengan Claude"
     subtitle="Semua yang Anda butuhkan untuk mengintegrasikan Claude ke dalam aplikasi Anda. Dari panggilan API pertama hingga produksi."
   >
     <HomeQuickChip icon="Play" href="https://platform.claude.com/docs/id/get-started">
-      Quickstart
+      Mulai cepat
     </HomeQuickChip>
 
     <HomeQuickChip icon="Key" href="https://platform.claude.com/settings/keys">
@@ -202,9 +202,9 @@ dengan Claude"
     <HomeSectionHeader label="Platform" title="Pilih cara Anda membangun" description="Pilih antarmuka developer yang sesuai dengan pendekatan Anda, dan infrastruktur yang cocok dengan stack Anda." />
 
     <HomePlatformCards>
-      <HomePlatformCard title="Messages" description="Akses model secara langsung. Anda menyusun setiap giliran, mengelola status percakapan, dan menulis loop alat Anda sendiri." pictogram="code-terminal">
+      <HomePlatformCard title="Pesan" description="Akses model secara langsung. Anda menyusun setiap giliran, mengelola status percakapan, dan menulis loop alat Anda sendiri." pictogram="code-terminal">
         <HomeCardLink icon="play" href="https://platform.claude.com/docs/id/get-started">
-          Quickstart
+          Mulai cepat
         </HomeCardLink>
 
         <HomeCardLink icon="book" href="https://platform.claude.com/docs/id/api/messages/create">
@@ -218,7 +218,7 @@ dengan Claude"
 
       <HomePlatformCard title="Managed Agents" description="Infrastruktur agen yang dikelola sepenuhnya. Deploy dan kelola agen otonom dalam sesi stateful dengan riwayat event yang persisten." pictogram="clouds">
         <HomeCardLink icon="play" href="https://platform.claude.com/docs/id/managed-agents/quickstart">
-          Quickstart
+          Mulai cepat
         </HomeCardLink>
 
         <HomeCardLink icon="book" href="https://platform.claude.com/docs/id/api/beta/sessions">
@@ -250,10 +250,10 @@ dengan Claude"
     <HomeSectionHeader label="Perjalanan developer" title="Dari ide hingga produksi" description="Ikuti siklus hidupnya atau langsung menuju apa yang Anda butuhkan." />
 
     <HomeJourney>
-      <HomeJourneyTab label="Messages">
+      <HomeJourneyTab label="Pesan">
         <HomeJourneyStep title="Memulai">
           <HomeJourneyLink icon="play" href="https://platform.claude.com/docs/id/get-started">
-            Quickstart
+            Mulai cepat
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="lock" href="https://platform.claude.com/settings/keys">
@@ -359,7 +359,7 @@ dengan Claude"
       <HomeJourneyTab label="Managed Agents">
         <HomeJourneyStep title="Memulai">
           <HomeJourneyLink icon="play" href="https://platform.claude.com/docs/id/managed-agents/quickstart">
-            Quickstart
+            Mulai cepat
           </HomeJourneyLink>
 
           <HomeJourneyLink icon="lock" href="https://platform.claude.com/settings/keys">
@@ -429,11 +429,11 @@ dengan Claude"
         Kursus interaktif untuk menguasai Claude.
       </Card>
 
-      <Card icon="book" title="Cookbook" href="https://platform.claude.com/cookbook">
+      <Card icon="book" title="Claude Cookbook" href="https://platform.claude.com/cookbook">
         Contoh kode dan pola.
       </Card>
 
-      <Card icon="play" title="Quickstart" href="https://github.com/anthropics/anthropic-quickstarts">
+      <Card icon="play" title="Quickstart" href="https://github.com/anthropics/claude-quickstarts">
         Aplikasi awal yang siap di-deploy.
       </Card>
 

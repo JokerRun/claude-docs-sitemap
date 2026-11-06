@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: cf27ab99af40b878178c5bb4ce09d6ce3879827dc7aba4447ef7fc6af8931e6c
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 610c90fd8b20d36b38e98b6e792b76873cebdb0d273d8abaf8079f12c9335864
 ---
 
 ---
@@ -17,9 +17,9 @@ description: Google mengoperasikan Claude Models on Google Cloud (Google managed
 
 Untuk menggunakan Claude Models on Google Cloud (Google managed), Anda memerlukan:
 
-1. Proyek Google Cloud yang dapat menggunakan Agent Platform. Untuk langkah-langkah penyiapan, lihat halaman [Anthropic Claude models on Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) dari Google Cloud.
+1. Proyek Google Cloud yang dapat menggunakan Agent Platform. Untuk langkah-langkah penyiapan, lihat halaman [Model Anthropic Claude di Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) dari Google Cloud.
 2. [gcloud CLI](https://cloud.google.com/sdk/docs/install) yang terinstal, untuk pengembangan lokal.
-3. Untuk identitas yang melakukan panggilan, peran IAM yang mencakup izin `aiplatform.endpoints.predict`, seperti Agent Platform User (`roles/aiplatform.user`). Untuk detailnya, lihat halaman [Agent Platform partner models](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/use-partner-models) dari Google Cloud.
+3. Untuk identitas yang melakukan panggilan, peran IAM yang mencakup izin `aiplatform.endpoints.predict`, seperti Agent Platform User (`roles/aiplatform.user`). Untuk detailnya, lihat halaman [Model mitra Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/use-partner-models) dari Google Cloud.
 4. Kredensial Google Cloud untuk identitas tersebut. Untuk contoh SDK, Anda mungkin perlu menjalankan `gcloud auth application-default login` untuk melakukan autentikasi dengan Google Cloud. Contoh cURL untuk Claude Models on Google Cloud (Google managed) mendapatkan token-nya dengan `gcloud auth print-access-token`. Perintah tersebut menggunakan login milik gcloud CLI sendiri, bukan Application Default Credentials. Untuk contoh-contoh tersebut, jalankan `gcloud auth login` atau `gcloud init` terlebih dahulu.
 
 ### Menginstal SDK
@@ -56,8 +56,8 @@ Untuk menggunakan Claude Models on Google Cloud (Google managed), Anda memerluka
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.5.0")
-        implementation("com.anthropic:anthropic-java-vertex:3.5.0")
+        implementation("com.anthropic:anthropic-java:3.6.0")
+        implementation("com.anthropic:anthropic-java-vertex:3.6.0")
         ```
       </Tab>
 
@@ -66,12 +66,12 @@ Untuk menggunakan Claude Models on Google Cloud (Google managed), Anda memerluka
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.5.0</version>
+            <version>3.6.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-vertex</artifactId>
-            <version>3.5.0</version>
+            <version>3.6.0</version>
         </dependency>
         ```
       </Tab>
@@ -316,11 +316,10 @@ Contoh-contoh berikut menggunakan endpoint global. Untuk jenis endpoint lainnya,
 | Claude Sonnet 4 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))   | `claude-sonnet-4@20250514`   |
 | Claude Haiku 5.5                                                                                      | `claude-haiku-5-5`           |
 | Claude Haiku 4.5                                                                                      | `claude-haiku-4-5@20251001`  |
-| Claude Haiku 3.5 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))  | `claude-3-5-haiku@20241022`  |
 
-Claude Models on Google Cloud (Google managed) menawarkan model Claude yang berbeda di region yang berbeda. Untuk memeriksa model mana yang ditawarkan suatu region, cari “Claude” di [Model Garden](https://cloud.google.com/model-garden) atau lihat halaman [Anthropic Claude models on Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) dari Google Cloud.
+Claude Models on Google Cloud (Google managed) menawarkan model Claude yang berbeda di region yang berbeda. Untuk memeriksa model mana yang ditawarkan suatu region, cari “Claude” di [Model Garden](https://cloud.google.com/model-garden) atau lihat halaman [Model Anthropic Claude di Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) dari Google Cloud.
 
-Google menetapkan tanggal siklus hidup untuk model-model yang dilayani oleh Claude Models on Google Cloud (Google managed). Tanggal-tanggal ini dapat berbeda dari jadwal Claude API. Untuk tanggal penghentian terkini suatu model, lihat halaman [Anthropic Claude models on Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) dari Google Cloud. Untuk arti Deprecated dan Retired, lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations).
+Google menetapkan tanggal siklus hidup untuk model-model yang dilayani oleh Claude Models on Google Cloud (Google managed). Tanggal-tanggal ini dapat berbeda dari jadwal Claude API. Untuk tanggal penghentian terkini suatu model, lihat halaman [Model Anthropic Claude di Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) dari Google Cloud. Untuk arti Deprecated dan Retired, lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations).
 
 <Note>
   Claude Mythos Preview adalah pratinjau riset. Claude Models on Google Cloud (Google managed) menawarkannya kepada pelanggan yang diundang. Untuk informasi lebih lanjut, lihat [Project Glasswing](https://anthropic.com/glasswing).
@@ -348,7 +347,7 @@ Jenis-jenis endpoint berbeda dalam hal ke mana permintaan dikirim:
 * **Multi-region:** Permintaan dikirim ke region mana pun di Amerika Serikat (`"us"`) atau Uni Eropa (`"eu"`). Gunakan ini ketika Anda memerlukan residensi data dalam wilayah geografis yang luas dan ketersediaan yang lebih tinggi daripada satu region.
 * **Regional:** Permintaan hanya dikirim ke region yang Anda sebutkan, seperti `"us-east5"` atau `"europe-west1"`. Gunakan ini ketika Anda memerlukan residensi data dalam satu region atau harus memenuhi mandat kepatuhan yang ketat.
 
-Endpoint multi-region dan regional berbiaya 10 persen lebih mahal daripada endpoint global. Ketiga jenis endpoint menerima lalu lintas pay-as-you-go, dan provisioned throughput memerlukan endpoint regional.
+Endpoint multi-region dan regional berbiaya 10 persen lebih mahal daripada endpoint global. Ketiga jenis endpoint menerima lalu lintas pay-as-you-go, dan “provisioned throughput” (throughput yang disediakan) memerlukan endpoint regional.
 
 Endpoint regional hanya melayani Claude Sonnet 4.6 dan model-model sebelumnya. Untuk model yang lebih baru, gunakan endpoint global atau multi-region.
 
@@ -466,20 +465,20 @@ Fitur-fitur yang didukung di Claude Models on Google Cloud (Google managed) meli
 
 * [“Prompt caching” (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
 
-* [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking)
+* [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking)
 
 * [“Tool use” (penggunaan alat)](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), termasuk alat-alat berikut:
 
   * [Alat bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool)
-  * [Alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool)
-  * [Alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool)
+  * [Alat penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool)
+  * [Alat penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool)
   * [Alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool)
   * [Alat editor teks](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool)
   * [Alat pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool)
 
-* [Citations](https://platform.claude.com/docs/id/build-with-claude/citations)
+* [Kutipan](https://platform.claude.com/docs/id/build-with-claude/citations)
 
-* [Structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
+* [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
 
 [Ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview) mencantumkan setiap fitur. Halaman masing-masing fitur menunjukkan apakah Claude Models on Google Cloud (Google managed) mendukungnya.
 
@@ -488,8 +487,8 @@ Fitur-fitur yang didukung di Claude Models on Google Cloud (Google managed) meli
 Claude Models on Google Cloud (Google managed) tidak mendukung hal-hal berikut:
 
 * **Sumber input:** Sumber URL untuk gambar dan dokumen, serta Files API
-* **Alat sisi server:** Code execution, web fetch, dan advisor
-* **Infrastruktur agen:** Agent Skills, konektor MCP, dan programmatic tool calling
+* **Alat sisi server:** Eksekusi kode, web fetch, dan advisor
+* **Infrastruktur agen:** Agent Skills, konektor MCP, dan pemanggilan alat terprogram
 * **Endpoint API:** Message Batches API, Models API, Admin API, Compliance API, serta Usage and Cost API
 * **Claude Managed Agents**
 * **Fallback sisi server:** [Parameter `fallbacks`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback)
@@ -520,15 +519,15 @@ Agent Platform membatasi payload permintaan hingga 30 MB. Saat Anda mengirim do
 
 ### Batas laju
 
-Google Cloud mengelola “rate limit” (batas laju) dan kuota untuk Claude Models on Google Cloud (Google managed). Untuk detailnya, termasuk cara meminta peningkatan kuota, lihat halaman [Quotas for Anthropic Claude models](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude/quotas) dari Google Cloud.
+Google Cloud mengelola “rate limit” (batas laju) dan kuota untuk Claude Models on Google Cloud (Google managed). Untuk detailnya, termasuk cara meminta peningkatan kuota, lihat halaman [Kuota untuk model Anthropic Claude](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude/quotas) dari Google Cloud.
 
 ### Penagihan
 
-Google Cloud menagih Anda untuk Claude Models on Google Cloud (Google managed). Untuk harga, lihat halaman [Generative AI pricing](https://cloud.google.com/vertex-ai/generative-ai/pricing#claude-models) dari Google Cloud. Harga juga bergantung pada jenis endpoint. Lihat [Endpoint global, multi-region, dan regional](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed#global-multi-region-and-regional-endpoints).
+Google Cloud menagih Anda untuk Claude Models on Google Cloud (Google managed). Untuk harga, lihat halaman [Harga AI generatif](https://cloud.google.com/vertex-ai/generative-ai/pricing#claude-models) dari Google Cloud. Harga juga bergantung pada jenis endpoint. Lihat [Endpoint global, multi-region, dan regional](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed#global-multi-region-and-regional-endpoints).
 
 ### Retensi data
 
-Google Cloud mengatur penanganan data untuk Claude Models on Google Cloud (Google managed). Untuk detailnya, lihat [Agent Platform and zero data retention](https://cloud.google.com/vertex-ai/generative-ai/docs/data-governance).
+Google Cloud mengatur penanganan data untuk Claude Models on Google Cloud (Google managed). Untuk detailnya, lihat [Agent Platform dan zero data retention](https://cloud.google.com/vertex-ai/generative-ai/docs/data-governance).
 
 ### Pemantauan dan logging
 
@@ -553,7 +552,7 @@ Untuk mengetahui apa yang berubah saat Anda berpindah, lihat [Perbedaan kedua pe
     Instal paket yang menyediakan klien untuk Claude Models on Google Cloud (Google managed). Lihat [Menginstal SDK](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed#install-an-sdk-for-accessing-vertex-ai).
   </Step>
 
-  <Step title="Ganti import dan klien">
+  <Step title="Ganti impor dan klien">
     Ubah kode yang mengimpor dan membuat klien Anda. Gunakan `AnthropicVertex` (csharp: `AnthropicVertexClient`; go: `vertex.WithGoogleAuth()`; java: `VertexBackend`; php: `Anthropic\Vertex\Client`; ruby: `Anthropic::VertexClient`) sebagai pengganti `AnthropicGoogleCloud` (csharp: `AnthropicGoogleCloudClient`; go: `googlecloud.NewClient()`; java: `GoogleCloudBackend`; php: `Anthropic\GoogleCloud\Client`; ruby: `Anthropic::GoogleCloudClient`). Permintaan cURL memerlukan URL baru, header baru, dan body baru. Kode berikut membuat klien untuk Claude Models on Google Cloud (Anthropic managed) yang Anda gunakan saat ini:
 
     <CodeGroup>

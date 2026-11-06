@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/model-deprecations
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 49a542b74b9ffcfbc2b6d2e9947d2a27fb6760680ce8199ba3d96969606c0eae
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: b3ebae996a610304b61320e330f9647bf0cf164a7b7d3dba1e41a9cb82a438cd
 ---
 
 ---
@@ -36,7 +36,7 @@ Setelah suatu model dihentikan, migrasikan semua penggunaan ke pengganti yang se
 
 Untuk membantu mengukur kinerja model pengganti pada tugas Anda, pertimbangkan pengujian menyeluruh terhadap aplikasi Anda dengan model baru jauh sebelum tanggal pensiun.
 
-Untuk petunjuk khusus tentang migrasi ke model Claude terbaru, lihat [Panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide).
+Untuk instruksi spesifik tentang migrasi ke model Claude terbaru, lihat [Panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide).
 
 ## Notifikasi
 
@@ -44,28 +44,28 @@ Anthropic memberi tahu pelanggan yang memiliki deployment aktif untuk model yang
 
 ## Mengaudit penggunaan model
 
-Untuk membantu mengidentifikasi penggunaan model yang dihentikan, pelanggan dapat mengakses audit penggunaan API mereka. Ikuti langkah-langkah berikut:
+Untuk membantu mengidentifikasi penggunaan model yang dihentikan, Anda dapat mengakses audit penggunaan API Anda. Ikuti langkah-langkah berikut:
 
-1. Buka halaman [Usage](https://platform.claude.com/usage) di Claude Console.
-2. Klik **Export**.
+1. Buka halaman [Penggunaan](https://platform.claude.com/usage) di Claude Console.
+2. Klik **Ekspor**.
 3. Tinjau CSV yang diunduh untuk melihat penggunaan yang dirinci berdasarkan kunci API dan model.
 
-Audit ini akan membantu Anda menemukan setiap kasus di mana aplikasi Anda masih menggunakan model yang dihentikan, sehingga Anda dapat memprioritaskan pembaruan ke model yang lebih baru sebelum tanggal pensiun.
+Audit ini membantu Anda menemukan setiap kasus di mana aplikasi Anda masih menggunakan model yang dihentikan, sehingga Anda dapat memprioritaskan pembaruan ke model yang lebih baru sebelum tanggal pensiun.
 
 ## Praktik terbaik
 
 1. Periksa dokumentasi secara rutin untuk pembaruan tentang penghentian model.
 2. Uji aplikasi Anda dengan model yang lebih baru jauh sebelum tanggal pensiun model Anda saat ini.
 3. Perbarui kode Anda untuk menggunakan model pengganti yang direkomendasikan sesegera mungkin.
-4. Hubungi tim dukungan jika Anda memerlukan bantuan migrasi atau memiliki pertanyaan.
+4. Hubungi tim dukungan jika Anda memerlukan bantuan terkait migrasi atau memiliki pertanyaan.
 
 ## Kekurangan penghentian dan mitigasinya
 
 Anthropic saat ini menghentikan dan memensiunkan model untuk memastikan kapasitas bagi rilis model baru. Hal ini memiliki kekurangan:
 
-* Pengguna yang menghargai model tertentu harus bermigrasi ke versi baru
-* Peneliti kehilangan akses ke model untuk studi yang sedang berlangsung dan studi komparatif
-* Pensiun model menimbulkan risiko terkait keselamatan dan kesejahteraan model
+* Pengguna yang menghargai model tertentu harus bermigrasi ke versi baru.
+* Peneliti kehilangan akses ke model untuk studi yang sedang berlangsung dan studi komparatif.
+* Pensiun model menimbulkan risiko terkait keselamatan dan kesejahteraan model.
 
 Pada suatu saat, Anthropic berharap dapat membuat model-model lama tersedia kembali untuk publik. Sementara itu, Anthropic telah berkomitmen pada pelestarian jangka panjang bobot model dan langkah-langkah lain untuk membantu memitigasi dampak ini. Untuk detail lebih lanjut, lihat [Commitments on Model Deprecation and Preservation](https://www.anthropic.com/research/deprecation-commitments).
 
@@ -142,7 +142,7 @@ Pada 14 April 2026, Anthropic memberi tahu developer yang menggunakan model Clau
   Model ini dipensiunkan pada 20 April 2026.
 </Note>
 
-Pada 19 Februari 2026, Anthropic memberi tahu developer yang menggunakan model Claude Haiku 3 tentang pensiunnya yang akan datang di Claude API.
+Pada 19 Februari 2026, Anthropic memberi tahu developer yang menggunakan Claude Haiku 3 tentang pensiunnya yang akan datang di Claude API.
 
 | Tanggal pensiun | Model yang dihentikan     | Pengganti yang direkomendasikan |
 | --------------- | ------------------------- | ------------------------------- |
@@ -154,7 +154,7 @@ Pada 19 Februari 2026, Anthropic memberi tahu developer yang menggunakan model C
   Model ini dipensiunkan pada 19 Februari 2026.
 </Note>
 
-Pada 19 Desember 2025, Anthropic memberi tahu developer yang menggunakan model Claude Haiku 3.5 tentang pensiunnya yang akan datang di Claude API.
+Pada 19 Desember 2025, Anthropic memberi tahu developer yang menggunakan Claude Haiku 3.5 tentang pensiunnya yang akan datang di Claude API.
 
 | Tanggal pensiun  | Model yang dihentikan       | Pengganti yang direkomendasikan |
 | ---------------- | --------------------------- | ------------------------------- |
@@ -166,7 +166,7 @@ Pada 19 Desember 2025, Anthropic memberi tahu developer yang menggunakan model C
   Model ini dipensiunkan pada 19 Februari 2026.
 </Note>
 
-Pada 28 Oktober 2025, Anthropic memberi tahu developer yang menggunakan model Claude Sonnet 3.7 tentang pensiunnya yang akan datang di Claude API.
+Pada 28 Oktober 2025, Anthropic memberi tahu developer yang menggunakan Claude Sonnet 3.7 tentang pensiunnya yang akan datang di Claude API.
 
 | Tanggal pensiun  | Model yang dihentikan        | Pengganti yang direkomendasikan |
 | ---------------- | ---------------------------- | ------------------------------- |
@@ -191,7 +191,7 @@ Pada 13 Agustus 2025, Anthropic memberi tahu developer yang menggunakan model Cl
   Model ini dipensiunkan pada 5 Januari 2026.
 </Note>
 
-Pada 30 Juni 2025, Anthropic memberi tahu developer yang menggunakan model Claude Opus 3 tentang pensiunnya yang akan datang.
+Pada 30 Juni 2025, Anthropic memberi tahu developer yang menggunakan Claude Opus 3 tentang pensiunnya yang akan datang.
 
 | Tanggal pensiun | Model yang dihentikan    | Pengganti yang direkomendasikan |
 | --------------- | ------------------------ | ------------------------------- |
@@ -231,10 +231,10 @@ Pada 4 September 2024, Anthropic memberi tahu developer yang menggunakan model C
 
 ## Penghentian parameter API
 
-Anthropic sesekali menghentikan parameter permintaan yang tidak lagi berlaku untuk model saat ini. Cara API memperlakukan parameter yang dihentikan bergantung pada modelnya, seperti yang ditunjukkan tabel berikut.
+Anthropic sesekali menghentikan (deprecate) parameter permintaan yang tidak lagi berlaku untuk model saat ini. Model baru dapat menolak parameter yang dihentikan, dan [versi API](https://platform.claude.com/docs/id/api/versioning) baru dapat menghapusnya untuk semua model.
 
-| Parameter                       | Status                                            | Perilaku                                                                                                                                                                                                                                                                                                 | Pengganti yang direkomendasikan                                                                                                                                               |
-| ------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `temperature`, `top_p`, `top_k` | Dihentikan (model Claude 4.7 dan yang lebih baru) | Mengembalikan error 400 jika diatur ke nilai non-default pada model Claude 4.7 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). Parameter-parameter ini juga dihapus di [versi API `2026-10-21`](https://platform.claude.com/docs/id/api/versioning#version-history). | Hilangkan dan gunakan [prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices) untuk mengarahkan perilaku model. |
+| Parameter                       | Status                                                                                                                | Perilaku                                                                                                                                                                                                           | Pengganti yang direkomendasikan                                                                                                                                               |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `temperature`, `top_p`, `top_k` | Dihapus di [versi API `2026-10-21`](https://platform.claude.com/docs/id/api/migration-2026-10-21#sampling-parameters) | Mengembalikan error 400. Versi API sebelumnya mengembalikan error ini ketika diatur ke nilai non-default pada model Claude 4.7 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). | Hilangkan dan gunakan [prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices) untuk mengarahkan perilaku model. |
 
-Untuk langkah-langkah migrasi, lihat [panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide).
+Untuk langkah-langkah migrasi, lihat [Panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide).

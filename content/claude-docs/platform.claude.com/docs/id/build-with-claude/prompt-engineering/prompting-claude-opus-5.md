@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 2ac97d1cdad1114a5dee08e4553cca2ccb8211f518393f0216e0d22f89eaf106
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: ab7cb40756466770a92deba657cb96905a106acc9e8444f9f976b4b7c0eed1d0
 ---
 
 ---
-title: Prompting Claude Opus 5
+title: Menulis prompt untuk Claude Opus 5
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5
 description: Perbedaan perilaku dan pola prompting untuk Claude Opus 5, mencakup verbositas respons, narasi agentik, pembatasan cakupan tugas, delegasi subagen, koreksi diri, dan artefak output saat thinking dinonaktifkan.
 ---
 
 Panduan ini membahas pola prompting yang khusus untuk Claude Opus 5. Untuk spesifikasi model, lihat [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview). Untuk teknik yang berlaku di semua model Claude saat ini, lihat [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
 
-Claude Opus 5 dibangun untuk pekerjaan agentic coding yang kompleks dan pekerjaan enterprise, dengan kekuatan khusus pada tugas agentik berjangka panjang. Model ini bekerja dengan baik secara langsung pada prompt Claude Opus 4.8 yang sudah ada. Pola-pola berikut mencakup perilaku yang paling sering memerlukan penyesuaian.
+Claude Opus 5 dibangun untuk pekerjaan coding agentik yang kompleks dan pekerjaan enterprise, dengan kekuatan khusus pada tugas agentik berjangka panjang. Model ini bekerja dengan baik secara langsung pada prompt Claude Opus 4.8 yang sudah ada. Pola-pola berikut mencakup perilaku yang paling sering memerlukan penyesuaian.
 
 ## Peningkatan kemampuan
 
@@ -81,7 +81,7 @@ Claude Opus 5 lebih mudah mendelegasikan ke subagen daripada model sebelumnya. D
 Delegate to a subagent only for large tasks that are genuinely independent and parallelizable, such as a wide multi-file investigation. Do not delegate work you can finish yourself in a handful of tool calls, and do not use subagents to verify or double-check your own work. If one subagent can complete the task, use one rather than several, and keep spawn counts low.
 ```
 
-Jika harness Anda adalah Claude Code atau Claude Agent SDK, batas deterministiknya adalah variabel lingkungan `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` dan `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS` serta opsi `max_budget_usd` (typescript: `maxBudgetUsd`) milik SDK. Semuanya memerlukan Claude Code 2.1.217 atau yang lebih baru, jadi perbarui SDK yang di-pin sebelum mengarahkannya ke Claude Opus 5. Claude Code menambahkan instruksi delegasinya sendiri pada Claude Opus 5 hanya ketika Anda menggunakan preset prompt sistem `claude_code`; dengan prompt sistem kustom atau yang dihilangkan, tambahkan sendiri instruksi delegasi seperti contoh di bagian ini. Lihat [Membatasi kedalaman, konkurensi, dan pengeluaran subagen](https://code.claude.com/docs/id/agent-sdk/subagents#cap-subagent-depth-concurrency-and-spend) di dokumentasi Agent SDK.
+Jika harness Anda adalah Claude Code atau Claude Agent SDK, batas deterministiknya adalah variabel lingkungan `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` dan `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS` serta opsi `max_budget_usd` (typescript: `maxBudgetUsd`) milik SDK. Versi lama Claude Code tidak memilikinya, jadi perbarui Claude Code dan SDK apa pun yang disematkan versinya sebelum mengarahkan harness Anda ke Claude Opus 5. Claude Code menambahkan instruksi delegasinya sendiri pada Claude Opus 5 hanya ketika Anda menggunakan preset prompt sistem `claude_code`; dengan prompt sistem kustom atau tanpa prompt sistem, tambahkan sendiri instruksi delegasi seperti contoh di bagian ini. Lihat [Batasi kedalaman, konkurensi, dan pengeluaran subagen](https://code.claude.com/docs/id/agent-sdk/subagents#cap-subagent-depth-concurrency-and-spend) dalam dokumentasi Agent SDK.
 
 ## Koreksi diri
 
@@ -95,7 +95,7 @@ Only correct an earlier statement when the error would change the user's code, c
 
 ## Menjalankan dengan thinking dinonaktifkan
 
-Claude Opus 5 berjalan dengan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) aktif secara default, dan thinking hanya dapat dinonaktifkan pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `high` atau lebih rendah. Permintaan yang menggabungkan `thinking: {"type": "disabled"}` dengan effort `xhigh` atau `max` akan mengembalikan error 400. Dengan thinking dinonaktifkan, dua artefak terkadang dapat muncul dalam output model yang terlihat. Mitigasi utama untuk keduanya adalah tetap mengaktifkan thinking dan mengontrol biaya token dengan tingkat effort yang lebih rendah alih-alih menonaktifkan thinking: untuk sebagian besar tugas, thinking yang diaktifkan pada effort `low` berkinerja lebih baik daripada thinking yang dinonaktifkan dengan biaya serupa.
+Claude Opus 5 berjalan dengan [pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking) aktif secara default, dan thinking hanya dapat dinonaktifkan pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `high` atau lebih rendah. Permintaan yang menggabungkan `thinking: {"type": "disabled"}` dengan effort `xhigh` atau `max` akan mengembalikan error 400. Dengan thinking dinonaktifkan, dua artefak terkadang dapat muncul dalam output model yang terlihat. Mitigasi utama untuk keduanya adalah tetap mengaktifkan thinking dan mengontrol biaya token dengan tingkat effort yang lebih rendah alih-alih menonaktifkan thinking: untuk sebagian besar tugas, thinking yang diaktifkan pada effort `low` berkinerja lebih baik daripada thinking yang dinonaktifkan dengan biaya serupa.
 
 **Pemanggilan alat sebagai teks.** Dengan thinking dinonaktifkan, model terkadang menulis pemanggilan alat ke dalam teks yang ditujukan kepada pengguna alih-alih mengeluarkan blok `tool_use` terstruktur. Giliran selesai secara normal dan pemanggilan tersebut tidak pernah berjalan, dan dalam loop agentik teks yang bocor tetap berada dalam riwayat percakapan, sehingga giliran berikutnya juga terpengaruh. Ini paling umum terjadi pada beban kerja yang banyak menggunakan alat seperti pencarian.
 

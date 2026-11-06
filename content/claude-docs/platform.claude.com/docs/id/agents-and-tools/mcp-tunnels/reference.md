@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 8f8752f99f9e722f8e65638923ac4a3851a64c985f8fd9ace48380454f148329
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 35c244e9e126b1de6f6de73b8bc7366733e4d966e950c3e766d45108f04ef440
 ---
 
 ---
@@ -26,7 +26,7 @@ description: Field konfigurasi proxy, Tunnels REST API, persyaratan sertifikat, 
 | `shutdown_timeout`                | Berapa lama menunggu permintaan yang sedang berjalan selama graceful shutdown.                                                                                                                                                                            | `30s`                                           |
 | `tunnel_domain`                   | Domain dasar yang ditetapkan untuk tunnel. Jika diatur, pencarian rute menghapus sufiks ini dari hostname yang masuk sehingga kunci `routes` dapat berupa subdomain saja (`wiki`). Jika kosong, kunci `routes` harus berupa hostname lengkap yang persis. | Wajib jika kunci `routes` berupa subdomain saja |
 | `tls.cert_file`                   | Path ke sertifikat TLS server.                                                                                                                                                                                                                            | Wajib                                           |
-| `tls.key_file`                    | Path ke private key TLS server.                                                                                                                                                                                                                           | Wajib                                           |
+| `tls.key_file`                    | Path ke kunci privat TLS server.                                                                                                                                                                                                                          | Wajib                                           |
 | `routes`                          | Peta dari subdomain atau hostname lengkap ke URL upstream. Lihat [Pencocokan rute](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#route-matching).                                                                            | Wajib                                           |
 | `upstream.allowed_ips`            | Rentang CIDR IPv4 atau alamat tunggal yang boleh dihubungi oleh proxy. Saling eksklusif dengan `disable_ip_validation`.                                                                                                                                   | Rentang privat RFC1918                          |
 | `upstream.disable_ip_validation`  | Menonaktifkan validasi IP upstream sepenuhnya. Saling eksklusif dengan `allowed_ips`.                                                                                                                                                                     | `false`                                         |
@@ -46,7 +46,7 @@ Setiap nilai upstream harus persis berbentuk `scheme://host:port`. Port bersifat
 Tunnels REST API berada di `/v1/tunnels` dan mendukung pembuatan, pencantuman, dan pengarsipan tunnel, pendaftaran sertifikat CA, serta pengungkapan atau rotasi token tunnel. Lihat [referensi Tunnels API](https://platform.claude.com/docs/id/api/beta/tunnels/list) untuk semua endpoint, skema permintaan dan respons, serta contoh.
 
 <Note>
-  Permukaan Admin API sebelumnya di `/v1/organizations/tunnels` (header beta `mcp-tunnels-2026-05-19`, scope `org:manage_tunnels`) tetap berfungsi selama periode migrasi dan tetap didokumentasikan di [referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization/mcp_tunnels) dengan pemberitahuan deprecation. Untuk bermigrasi, perbarui path menjadi `/v1/tunnels`, header beta menjadi `mcp-tunnels-2026-06-22`, dan scope token WIF Anda menjadi `workspace:manage_tunnels`.
+  Permukaan Admin API sebelumnya di `/v1/organizations/tunnels` (header beta `mcp-tunnels-2026-05-19`, scope `org:manage_tunnels`) tetap berfungsi selama periode migrasi dan tetap didokumentasikan di [referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization/mcp_tunnels) dengan pemberitahuan penghentian. Untuk bermigrasi, perbarui path menjadi `/v1/tunnels`, header beta menjadi `mcp-tunnels-2026-06-22`, dan scope token WIF Anda menjadi `workspace:manage_tunnels`.
 </Note>
 
 <Warning>
@@ -78,7 +78,7 @@ Unggah dengan `POST /v1/tunnels/{tunnel_id}/certificates`. Sebuah tunnel dapat m
 
 ### Sertifikat server
 
-Disajikan oleh proxy selama [inner TLS](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components).
+Disajikan oleh proxy selama [TLS dalam](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components).
 
 * Ditandatangani langsung oleh CA yang terdaftar (tanpa intermediate).
 * Ekstensi `AuthorityKeyIdentifier` ada dan cocok dengan `SubjectKeyIdentifier` milik CA.
@@ -91,7 +91,7 @@ Komponen setup menghasilkan CA ECDSA P-256 dengan validitas 5 tahun dan sertifik
 
 ## Komponen setup
 
-Komponen setup dikirimkan di dalam image `mcp-proxy` sebagai binary `setup`. Jalankan dengan `docker compose run --rm setup <subcommand>` (Compose) atau andalkan hook dan CronJob milik chart (Helm).
+Komponen setup dikirimkan di dalam image `mcp-proxy` sebagai biner `setup`. Jalankan dengan `docker compose run --rm setup <subcommand>` (Compose) atau andalkan hook dan CronJob milik chart (Helm).
 
 ### `setup init`
 
@@ -105,7 +105,7 @@ Menghubungkan ke tunnel yang sudah ada (atau membuat tunnel baru jika tidak ada 
 | `--cert-duration` | Masa berlaku sertifikat server.                                                                                                                                                                              | `2160h` (90 hari)                                                                               |
 | `--token-version` | String pendeteksi perubahan. Nilai baru memicu rotasi token saat dijalankan ulang. Chart Helm dan contoh Compose sama-sama meneruskan `1` sebagai nilai awal.                                                | Tidak ada                                                                                       |
 
-Perintah ini melakukan autentikasi melalui [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation). Perintah ini membaca `ANTHROPIC_FEDERATION_RULE_ID`, `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_WORKSPACE_ID` (opsional), dan tepat salah satu dari `ANTHROPIC_IDENTITY_TOKEN_FILE` atau `ANTHROPIC_IDENTITY_TOKEN`. Lihat [referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference) untuk semantik terkini dari variabel-variabel ini; komponen setup menurunkan service account dari federation rule, sehingga tidak memerlukan `ANTHROPIC_SERVICE_ACCOUNT_ID` secara terpisah.
+Perintah ini melakukan autentikasi melalui [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation). Perintah ini membaca `ANTHROPIC_FEDERATION_RULE_ID`, `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_WORKSPACE_ID` (opsional), dan tepat salah satu dari `ANTHROPIC_IDENTITY_TOKEN_FILE` atau `ANTHROPIC_IDENTITY_TOKEN`. Lihat [referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference) untuk semantik terkini dari variabel-variabel ini; komponen setup menurunkan akun layanan dari aturan federasi, sehingga tidak memerlukan `ANTHROPIC_SERVICE_ACCOUNT_ID` secara terpisah.
 
 ### `setup renew-cert`
 

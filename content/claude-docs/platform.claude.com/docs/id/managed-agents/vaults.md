@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 8909d1dd5905374f4bbe501685f7449ab368db3d59d2a9009dc78d422880017f
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 3e4a9a0d596c61a0d29762b34fc97284747d15c463623856c0f24c9cd240e606
 ---
 
 ---
@@ -171,7 +171,7 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
 
 <Tabs>
   <Tab title="MCP OAuth">
-    Gunakan `mcp_oauth` saat server MCP menggunakan OAuth 2.0. Jika Anda menyediakan blok `refresh` (csharp, go: `Refresh`), Anthropic akan memperbarui access token atas nama Anda saat token tersebut kedaluwarsa.
+    Gunakan `mcp_oauth` saat server MCP menggunakan OAuth 2.0. Jika Anda menyediakan blok `refresh` (csharp, go: `Refresh`), Anthropic akan memperbarui token akses atas nama Anda saat token tersebut kedaluwarsa.
 
     Field `refresh.token_endpoint_auth.type` menunjukkan cara mengautentikasi panggilan refresh:
 
@@ -389,7 +389,7 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
     Atur `refresh.token_endpoint` (java, php: `refresh.tokenEndpoint`; csharp, go: `Refresh.TokenEndpoint`) ke endpoint token dari alur OAuth yang menerbitkan refresh token, karena Anthropic mengirimkan setiap permintaan refresh ke URL tersebut dan field ini tidak dapat diubah setelah kredensial dibuat.
   </Tab>
 
-  <Tab title="MCP static bearer">
+  <Tab title="Bearer statis MCP">
     Gunakan `static_bearer` ketika server MCP menerima bearer token tetap (kunci API, personal access token, atau sejenisnya). Tidak diperlukan alur refresh.
 
     <CodeGroup>
@@ -1003,7 +1003,7 @@ Untuk mendapatkan notifikasi jika kredensial diarsipkan, dihapus, atau gagal di-
   Ini adalah daftar webhook yang tidak lengkap; lihat [Berlangganan webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) untuk daftar lengkapnya.
 </Note>
 
-Untuk kredensial `mcp_oauth`, penyelesaian ulang juga me-refresh access token jika sudah kedaluwarsa. Jika refresh gagal, event `vault_credential.refresh_failed` dipancarkan.
+Untuk kredensial `mcp_oauth`, penyelesaian ulang juga me-refresh token akses jika sudah kedaluwarsa. Jika refresh gagal, event `vault_credential.refresh_failed` dipancarkan.
 
 ### Mendiagnosis kegagalan refresh OAuth
 

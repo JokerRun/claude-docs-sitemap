@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-on-aws
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: d1c2c204c305cc43a2ebf2353f1aadbc7c111272acf643299b1078fdaeac35c8
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 9e3af8eeb5f39a42feafa28ab1a6fb02e851e6a68a75c98d2a6a74d51449d45e
 ---
 
 > ## Documentation Index
@@ -635,5 +635,6 @@ In the gateway's own [spend limits](https://code.claude.com/docs/en/claude-apps-
 
 * [Configuration reference](https://code.claude.com/docs/en/claude-apps-gateway-config.md): every `gateway.yaml` option, including `managed.policies` and `telemetry`
 * [Deployment and operations](https://code.claude.com/docs/en/claude-apps-gateway-deploy.md): IdP setup, health checks, JWT secret rotation, upgrades, and the security model
+* [Load-test mode](https://code.claude.com/docs/en/claude-apps-gateway-config.md#load_test_mode): load testing a gateway without calling a model provider
 * [Claude apps gateway overview](https://code.claude.com/docs/en/claude-apps-gateway): quickstart and connecting developers
 * [AWS samples for Claude apps gateway](https://github.com/aws-samples/anthropic-on-aws/tree/main/claude-apps-gateway): AWS-maintained deployment samples covering a range of customer environments

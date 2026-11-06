@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/budgets
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: b3592e411e4ef7677fd1c72ff1dcf70bda7e0d0199fa02fe967b4bf535bce965
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 4a91495748ad380a8a8c7e99e089446effbef06fcdecbccd2715701c437a7702
 ---
 
 ---
@@ -191,7 +191,7 @@ Pemberlakuan menggunakan biaya daftar yang tepat dan tidak dibulatkan. Angka `li
 
 Batas ditegakkan di antara permintaan model, bukan di tengah permintaan. Sebelum setiap permintaan model, platform memeriksa biaya daftar yang telah dikonsumsi sesi, dan setelah total tersebut mencapai batas, setiap thread dijeda sebelum permintaan berikutnya. Permintaan yang membawa total melewati batas telah diterima saat sesi masih di bawah batas dan berjalan hingga selesai. Akibatnya, `list_cost` (java, php: `listCost`; csharp, go: `ListCost`) yang tercatat pada sesi yang dijeda bernilai sama dengan atau sedikit melewati `max_list_cost` (java, php: `maxListCost`; csharp, go: `MaxListCost`). Misalnya, sesi yang dibatasi pada `"50"` (50 sen) dapat dijeda dengan `list_cost` (java, php: `listCost`; csharp, go: `ListCost`) sebesar `"53"`. Hal ini memang diharapkan, bukan kesalahan penagihan. Pengeluaran model yang melewati batas paling banyak sebesar biaya satu permintaan model untuk setiap thread. Pemanggilan alat dalam respons permintaan tersebut tetap berjalan, dan pencarian web serta waktu berjalannya juga dihitung dalam biaya daftar. Perlakukan anggaran sebagai batas untuk pekerjaan baru alih-alih titik berhenti yang tepat, dan tentukan ukuran batas dengan mempertimbangkan margin tersebut.
 
-Sesi yang mencapai anggarannya menjadi idle dengan `stop_reason` (java, php: `stopReason`; csharp, go: `StopReason`) bernilai `budget_reached`; sesi tidak dihentikan, dan riwayat serta sandbox-nya dipertahankan seperti sesi idle lainnya. Pada [event stream](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) Anda akan melihat, secara berurutan:
+Sesi yang mencapai anggarannya menjadi idle dengan `stop_reason` (java, php: `stopReason`; csharp, go: `StopReason`) bernilai `budget_reached`; sesi tidak dihentikan, dan riwayat serta sandbox-nya dipertahankan seperti sesi idle lainnya. Pada [aliran event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) Anda akan melihat, secara berurutan:
 
 1. Event `session.thread_status_idle` dengan `stop_reason` (java, php: `stopReason`; csharp, go: `StopReason`) bernilai `budget_reached` saat setiap thread dijeda.
 2. Event [`session.usage`](https://platform.claude.com/docs/id/managed-agents/budgets#monitor-spend) dengan penggunaan kumulatif dan biaya daftar sesi.
@@ -214,7 +214,7 @@ Event apa pun yang akan memulai pekerjaan baru, seperti `user.message`, ditolak 
 
 `user.interrupt` yang dikirim saat sesi dijeda pada anggarannya (semua thread dijeda pada batas) diterima, dan event tersebut tidak muncul dalam daftar event. Event ini tidak menghentikan thread mana pun, karena setiap thread sudah dijeda. Ubah atau hapus anggaran untuk melanjutkan.
 
-Jika sesi memiliki workflow run yang terbuka, interrupt dapat menjeda run tersebut, seperti halnya interrupt pada waktu lain. Run yang dijeda oleh interrupt tidak dilanjutkan saat Anda mengubah atau menghapus anggaran. Untuk melanjutkannya, ubah atau hapus anggaran, lalu kirim `user.message` yang meminta agen untuk melanjutkan run-nya. Lihat [Menginterupsi sesi dengan run yang terbuka](https://platform.claude.com/docs/id/managed-agents/workflow-runs#interrupt-a-session-with-runs-open).
+Jika sesi memiliki eksekusi workflow yang terbuka, interupsi dapat menjeda eksekusi tersebut, seperti halnya interupsi pada waktu lain. Eksekusi yang dijeda oleh interupsi tidak dilanjutkan saat Anda mengubah atau menghapus anggaran. Untuk melanjutkannya, ubah atau hapus anggaran, lalu kirim `user.message` yang meminta agen untuk melanjutkan eksekusinya. Lihat [Menginterupsi sesi dengan eksekusi yang terbuka](https://platform.claude.com/docs/id/managed-agents/workflow-runs#interrupt-a-session-with-runs-open).
 
 ## Melanjutkan sesi yang mencapai anggarannya
 
@@ -456,7 +456,7 @@ Permintaan terkait anggaran ditolak dalam kasus-kasus berikut:
 | Pembuatan beranggaran mereferensikan model [tanpa harga daftar publik](https://platform.claude.com/docs/id/managed-agents/budgets#models-without-a-list-price)                                                                                               | 400    |
 
 <Note>
-  Anggaran sesi adalah batas ketat dalam dolar AS (ditulis dalam sen) pada satu sesi, yang diberlakukan oleh platform. Anggaran ini berbeda dari [task budget](https://platform.claude.com/docs/id/build-with-claude/task-budgets) pada Messages API, yang merupakan anggaran bersifat anjuran dalam satuan token yang digunakan model untuk mengatur dirinya sendiri dalam satu loop agentik.
+  Anggaran sesi adalah batas ketat dalam dolar AS (ditulis dalam sen) pada satu sesi, yang diberlakukan oleh platform. Anggaran ini berbeda dari [anggaran tugas](https://platform.claude.com/docs/id/build-with-claude/task-budgets) pada Messages API, yang merupakan anggaran bersifat anjuran dalam satuan token yang digunakan model untuk mengatur dirinya sendiri dalam satu loop agentik.
 </Note>
 
 ## Ketersediaan

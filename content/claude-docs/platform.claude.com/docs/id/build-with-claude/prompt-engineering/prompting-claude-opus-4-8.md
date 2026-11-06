@@ -1,12 +1,12 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-4-8
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 830ed77515a426ce5e55522376bef3d8be69bef2a90b4fee428752408cb9eb47
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: f96a95f33fa63dc4b86fc51a00fdaa861593624b4416ab54e8ee127aa0a69365
 ---
 
 ---
-title: Prompting Claude Opus 4.8
+title: Menulis prompt untuk Claude Opus 4.8
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-4-8
 description: Perbedaan perilaku dan pola prompting untuk Claude Opus 4.8, mencakup verbositas, kalibrasi effort, penggunaan alat, subagen, dan default frontend.
 ---
@@ -162,8 +162,8 @@ Jika Anda memang ingin model menyaring sendiri dalam satu kali proses, tentukan 
 
 Lakukan iterasi pada prompt terhadap subset evaluasi atau kasus uji Anda untuk memvalidasi peningkatan recall atau skor F1.
 
-## Computer use
+## Penggunaan komputer
 
-Claude Opus 4.8 mendukung “computer use” (penggunaan komputer) melalui toolset `computer_toolset_20260801` dan versi alat `computer_20251124`. Model ini juga mendukung [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`) untuk tugas-tugas di dalam halaman web. Kemampuan [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) berfungsi di berbagai resolusi, hingga resolusi maksimum 2576px / 3,75MP. Pengujian internal computer use menunjukkan bahwa mengirim gambar pada 1080p memberikan keseimbangan yang baik antara performa dan biaya.
+Claude Opus 4.8 mendukung “computer use” (penggunaan komputer) melalui toolset `computer_toolset_20260801` dan versi alat `computer_20251124`. Model ini juga mendukung [alat penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`) untuk tugas-tugas di dalam halaman web. Kemampuan [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) berfungsi di berbagai resolusi, hingga resolusi maksimum 2576px / 3,75MP. Pengujian internal penggunaan komputer menunjukkan bahwa mengirim gambar pada 1080p memberikan keseimbangan yang baik antara performa dan biaya.
 
 Untuk beban kerja yang sangat sensitif terhadap biaya, 720p atau 1366×768 adalah opsi berbiaya lebih rendah dengan kinerja yang kuat. Lakukan pengujian Anda sendiri untuk menemukan pengaturan ideal untuk kasus penggunaan Anda; bereksperimen dengan pengaturan effort juga dapat membantu menyesuaikan perilaku model.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/external_keys/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 2633a2328521e1760b7563d6f1835ad822f97aac755bcc94b7f765f6c2d5a077
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 9aa98524e8e3253b96d4122d66b2324b19896128967711ac1acb984c35d6115e
 ---
 
 ---
@@ -77,7 +77,7 @@ Results are ordered by creation time (newest first). Use the
 
   - `geo: string`
 
-    Data residency geo. Selects the region that handles this key's encrypt/decrypt roundtrips.
+    Data residency geo. Selects the region this key is used in.
 
   - `provider_config: AWSExternalKeyConfig or GCPExternalKeyConfig or AzureExternalKeyConfig`
 

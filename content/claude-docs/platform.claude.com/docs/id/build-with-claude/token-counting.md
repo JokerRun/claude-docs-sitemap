@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 43327c152a5f05fb8c3e7a345567d484aa812507fbddfbf4d0d17a4d9e699199
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: fa7b41ed942556da98ecd8e2ecee8a88401343f5805091e7388d20f3bec2f926
 ---
 
 ---
@@ -52,7 +52,9 @@ featureMetadata:
 
 ## Cara menghitung token pesan
 
-Endpoint [penghitungan token](https://platform.claude.com/docs/id/api/messages/count_tokens) menerima daftar input terstruktur yang sama seperti untuk membuat pesan, termasuk dukungan untuk prompt sistem, [alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), [gambar](https://platform.claude.com/docs/id/build-with-claude/vision), dan [PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support). Respons berisi jumlah total token input.
+Endpoint [penghitungan token](https://platform.claude.com/docs/id/api/messages/count_tokens) menerima daftar input terstruktur yang sama seperti untuk membuat pesan, termasuk dukungan untuk “system prompt” (prompt sistem), [alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview), [gambar](https://platform.claude.com/docs/id/build-with-claude/vision), dan [PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support). Respons berisi jumlah total [token input](https://platform.claude.com/docs/id/api/messages/count_tokens#message_tokens_count.input_tokens).
+
+(See the `messages/count_tokens` method in [the API reference](https://platform.claude.com/docs/id/api/messages/count_tokens).)
 
 Endpoint ini mengembalikan `invalid_request_error` untuk beberapa input yang diterima oleh Messages API:
 
@@ -60,7 +62,7 @@ Endpoint ini mengembalikan `invalid_request_error` untuk beberapa input yang dit
 * [Konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector)
 * Blok `image` atau `document` dengan sumber `url` atau `file`
 
-Kirim gambar dan PDF sebagai base64 untuk menghitungnya. Untuk permintaan yang menggunakan alat server atau server MCP, respons Messages API melaporkan token yang digunakan dalam objek `usage`-nya.
+Kirim gambar dan PDF sebagai base64 untuk menghitungnya. Untuk permintaan yang menggunakan alat server atau server MCP, respons Messages API melaporkan token yang digunakan dalam objek [`usage`](https://platform.claude.com/docs/id/api/messages/create#message.usage)-nya.
 
 <Note>
   Jumlah token adalah sebuah **estimasi**. Dalam beberapa kasus, jumlah token input aktual yang digunakan saat membuat pesan mungkin berbeda sedikit.
@@ -1440,7 +1442,7 @@ Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5 berbagi
 
 ## Harga dan batas laju
 
-Penghitungan token **gratis digunakan** tetapi tunduk pada batas laju permintaan per menit berdasarkan [tingkat penggunaan](https://platform.claude.com/docs/id/api/rate-limits#rate-limits) Anda. Jika Anda memerlukan batas yang lebih tinggi, gunakan **Request tier increase** di halaman [Rate limits](https://platform.claude.com/usage/limits) di Claude Console.
+Penghitungan token **gratis digunakan** tetapi tunduk pada batas laju permintaan per menit berdasarkan [tingkat penggunaan](https://platform.claude.com/docs/id/api/rate-limits#rate-limits) Anda. Jika Anda memerlukan batas yang lebih tinggi, gunakan **Minta kenaikan tingkat** di halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console.
 
 | Tingkat penggunaan | Permintaan per menit (RPM) |
 | ------------------ | -------------------------- |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/user_profiles/create
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 5d0f270f1a6b8aff78ee4854f1010c6df5e142e74df5c6ed6f712282a775cde8
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 649cdcdb9e0650b90e56bcaaa98c7a02050856f21e6afb9e2907ce1c6f19cc4e
 ---
 
 ---
@@ -67,6 +67,8 @@ Create User Profile
   - `country: optional string or null`
 
     The country of the entity (not of the platform), as the platform determines it: an ISO 3166-1 alpha-2 code in upper case, for example `US`. Only the form, two uppercase ASCII letters, is checked.
+
+    pattern: ^[A-Z]{2}$
 
   - `email_hash: optional string or null`
 

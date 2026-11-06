@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/citations
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: c98d594c05b3944c6ba7640aecbdd5f5618a5da2fd8cb95510d8de739707cc46
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 0c86c5c8e953c272a45fd01f85adeb670ca2a1241844c5c19c6a891b1738d8ea
 ---
 
 ---
@@ -366,7 +366,7 @@ Integrasikan kutipan dengan Claude dalam langkah-langkah berikut:
   </Step>
 
   <Step title="Claude memberikan respons yang dikutip">
-    * Respons kini dapat menyertakan beberapa blok teks di mana setiap blok teks dapat berisi klaim yang dibuat Claude dan daftar sitasi yang mendukung klaim tersebut.
+    * Respons kini dapat menyertakan beberapa blok teks di mana setiap blok teks dapat berisi klaim yang dibuat Claude dan daftar kutipan yang mendukung klaim tersebut.
 
     * Kutipan merujuk ke lokasi tertentu dalam dokumen sumber. Format kutipan ini bergantung pada jenis dokumen yang dikutip.
 
@@ -402,7 +402,7 @@ Integrasikan kutipan dengan Claude dalam langkah-langkah berikut:
 ### Biaya token
 
 * Mengaktifkan kutipan menyebabkan sedikit peningkatan token input karena penambahan prompt sistem dan pemotongan dokumen.
-* Namun, fitur sitasi sangat efisien dalam hal token output. Secara internal, model menghasilkan sitasi dalam format standar, dan sitasi tersebut kemudian diurai menjadi teks yang disitasi dan indeks lokasi dokumen. Field `cited_text` disediakan untuk kemudahan dan tidak dihitung sebagai token output.
+* Namun, fitur kutipan sangat efisien dalam hal token output. Secara internal, model menghasilkan kutipan dalam format standar, dan kutipan tersebut kemudian diurai menjadi teks yang dikutip dan indeks lokasi dokumen. Bidang `cited_text` disediakan untuk kemudahan dan tidak dihitung sebagai token output.
 * Ketika diteruskan kembali dalam giliran percakapan berikutnya, `cited_text` juga tidak dihitung terhadap token input.
 
 ## Kompatibilitas fitur
@@ -1081,7 +1081,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
 
 ### Dokumen PDF
 
-Dokumen PDF dapat diberikan sebagai data yang dienkode base64, sebagai URL, atau dengan `file_id`. Teks PDF diekstrak dan di-chunk menjadi kalimat. Karena sitasi gambar belum didukung, PDF yang merupakan hasil pindaian dokumen dan tidak berisi teks yang dapat diekstrak tidak dapat disitasi.
+Dokumen PDF dapat diberikan sebagai data yang dienkode base64, sebagai URL, atau dengan `file_id`. Teks PDF diekstrak dan dipotong menjadi kalimat. Karena kutipan gambar belum didukung, PDF yang merupakan hasil pindaian dokumen dan tidak berisi teks yang dapat diekstrak tidak dapat dikutip.
 
 <Tabs>
   <Tab title="Base64">

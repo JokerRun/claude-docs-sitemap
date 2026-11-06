@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 5c32c530541417adfce7d57b73f0af478623ba99d07b0c87097df84120b4afe7
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 09c570a7be42164dab5372e551c74cb004ca441fdc5eba77e96af07eaa7f35c5
 ---
 
 ---
@@ -37,10 +37,10 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
 ---
 
-Panggilan pemantauan di halaman ini dijalankan dari alat pemantauan atau operasional Anda, diautentikasi dengan kunci API Claude Anda. Helper worker menangani loop klaim dan keep-alive, sehingga Anda tidak memanggil endpoint tersebut secara langsung.
+Panggilan statistik antrean dan penghentian di halaman ini dijalankan dari alat pemantauan atau operasional Anda, diautentikasi dengan kunci API organisasi Anda. Helper worker menangani loop klaim dan keep-alive, sehingga Anda tidak memanggil endpoint tersebut secara langsung.
 
 <Warning>
-  Endpoint ini menerima kunci API organisasi Anda atau environment key. Panggil endpoint ini dari luar host worker dengan kunci API organisasi Anda. Menetapkan `ANTHROPIC_API_KEY` pada host worker akan mengekspos kredensial berlingkup organisasi ke panggilan alat agen.
+  Endpoint statistik antrean dan penghentian menerima kunci API organisasi Anda atau kunci lingkungan. Panggil endpoint ini dari luar host worker dengan kunci API organisasi Anda. Menetapkan `ANTHROPIC_API_KEY` pada host worker akan mengekspos kredensial berlingkup organisasi ke panggilan alat agen.
 </Warning>
 
 ## Membaca kedalaman antrean
@@ -107,7 +107,7 @@ Panggilan pemantauan di halaman ini dijalankan dari alat pemantauan atau operasi
   	"fmt"
   	"os"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   func main() {
@@ -181,11 +181,11 @@ Panggilan pemantauan di halaman ini dijalankan dari alat pemantauan atau operasi
 
 Gunakan `POST /v1/environments/{environment_id}/work/{work_id}/stop` (python, typescript, ruby: `client.beta.environments.work.stop()`; go, csharp: `client.Beta.Environments.Work.Stop()`; java: `client.beta().environments().work().stop()`; php: `$client->beta->environments->work->stop()`; cli: `ant beta:environments:work stop`) untuk meminta worker yang menangani sesi tertentu agar mematikannya.
 
-Secara default, work item berpindah ke `stopping`. Worker menyadarinya pada heartbeat lease berikutnya, membatalkan panggilan alat sesi yang sedang berjalan, dan mengonfirmasi penghentian. Work item kemudian menjadi `stopped`. Worker Python SDK justru membiarkan panggilan alat yang sedang berjalan selesai terlebih dahulu, yang dapat memakan waktu hingga 2,5 menit.
+Secara default, item pekerjaan berpindah ke `stopping`. Worker mendeteksi hal ini pada heartbeat lease berikutnya, membatalkan panggilan alat sesi yang sedang berjalan, dan mengonfirmasi penghentian. Item pekerjaan kemudian menjadi `stopped`. Worker SDK Python justru membiarkan panggilan alat yang sedang berjalan selesai terlebih dahulu, yang dapat memakan waktu hingga 2,5 menit.
 
-Berikan `force: true` (python: `force=True`; cli: `--force`) untuk menandai work item sebagai `stopped` secara langsung alih-alih menunggu konfirmasi dari worker. Penghentian paksa tidak membuat panggilan alat yang sedang berjalan berakhir lebih cepat, karena worker tetap mendeteksi penghentian pada heartbeat berikutnya.
+Berikan `force: true` (python: `force=True`; csharp: `Force = true`; go: `BetaSelfHostedWorkStopRequest: anthropic.BetaSelfHostedWorkStopRequestParam{Force: anthropic.Bool(true)}`; java: `.force(true)`; cli: `--force`) untuk menandai item pekerjaan sebagai `stopped` secara langsung alih-alih menunggu konfirmasi dari worker. Penghentian paksa tidak membuat panggilan alat yang sedang berjalan berakhir lebih cepat, karena worker tetap mendeteksi penghentian pada heartbeat berikutnya.
 
-Karena panggilan ini dijalankan dari alat operasional Anda, bukan dari host worker, `ANTHROPIC_WORK_ID` tidak ditetapkan secara otomatis. Tetapkan ke ID work item target sebelum menjalankan contoh berikut. Untuk menemukan ID work item, ambil daftar work item environment melalui [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
+Karena panggilan ini dijalankan dari alat operasional Anda, bukan dari host worker, `ANTHROPIC_WORK_ID` tidak ditetapkan secara otomatis. Tetapkan ke ID item pekerjaan target sebelum menjalankan contoh berikut. Untuk menemukan ID item pekerjaan, panggil [Daftar Item Pekerjaan](https://platform.claude.com/docs/id/api/beta/environments/work/list) dengan kunci lingkungan, yang dikirim sebagai `Authorization: Bearer $ANTHROPIC_ENVIRONMENT_KEY`. Endpoint tersebut menolak kunci API organisasi Anda.
 
 <CodeGroup>
   ```bash cURL
@@ -253,7 +253,7 @@ Karena panggilan ini dijalankan dari alat operasional Anda, bukan dari host work
   	"fmt"
   	"os"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   )
 
   func main() {
@@ -326,19 +326,19 @@ Karena panggilan ini dijalankan dari alat operasional Anda, bukan dari host work
 
 ## Menghentikan worker dengan baik
 
-Worker yang dibatalkan saat sebuah sesi berjalan akan mematikan sesi tersebut sebelum keluar, sama seperti saat Anda [menghentikan sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations#stop-a-session-gracefully). Jika sesi memiliki [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory) yang terlampir, worker melewati sinkronisasi akhir tetapi tetap mengunggah file yang berubah dan menghapus direktori store.
+Worker yang dibatalkan saat sesi sedang berjalan akan mematikan sesi tersebut sebelum keluar, sama seperti saat Anda [menghentikan sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations#stop-a-session-gracefully). Jika sesi memiliki [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory) yang terpasang, worker melewati sinkronisasi akhir tetapi tetap mengunggah file yang berubah dan menghapus direktori store.
 
 Proses yang di-kill tidak menjalankan teardown. Untuk menghentikan worker dengan bersih:
 
 1. **Pastikan SIGTERM dan SIGINT membatalkan worker.** Caranya bergantung pada worker:
 
-   | Worker                                      | Yang harus dilakukan                                                                                                                                                           |
-   | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-   | CLI `ant`                                   | Tidak ada. CLI menangani kedua sinyal itu sendiri: CLI membatalkan panggilan alat yang sedang berjalan, mengirimkan hasil error-nya, dan menandai work item sebagai `stopped`. |
-   | Worker SDK yang merupakan prosesnya sendiri | `EnvironmentWorker` tidak memasang signal handler. Batalkan worker dari signal handler, seperti yang dilakukan contoh worker mandiri.                                          |
-   | Worker SDK di dalam server webhook          | Batalkan worker dari shutdown hook milik server itu sendiri, seperti yang dilakukan contoh webhook. Worker tidak boleh mengambil alih sinyal server.                           |
+   | Worker                                      | Yang harus dilakukan                                                                                                                                                                |
+   | ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   | CLI `ant`                                   | Tidak ada. CLI menangani kedua sinyal itu sendiri: CLI membatalkan panggilan alat yang sedang berjalan, mengirimkan hasil error-nya, dan menandai item pekerjaan sebagai `stopped`. |
+   | Worker SDK yang merupakan prosesnya sendiri | `EnvironmentWorker` tidak memasang handler sinyal. Batalkan worker dari handler sinyal, seperti yang dilakukan contoh worker mandiri.                                               |
+   | Worker SDK di dalam server webhook          | Batalkan worker dari hook shutdown milik server itu sendiri, seperti yang dilakukan contoh webhook. Worker tidak boleh mengambil alih sinyal server.                                |
 
-2. **Hentikan worker dengan SIGTERM, dan beri waktu setidaknya 30 detik (3 menit untuk worker Python SDK) sebelum hard kill apa pun.** Mengunggah file yang berubah ke memory store dapat memakan waktu hingga 30 detik, dan worker Python SDK terlebih dahulu membiarkan panggilan alat yang sedang berjalan selesai. Docker mengirim SIGKILL 10 detik setelah sinyal stop secara default. Naikkan batas tersebut dengan `--stop-timeout` pada `docker run`, atau dengan termination grace period dari orchestrator Anda.
+2. **Hentikan worker dengan SIGTERM, dan beri waktu setidaknya 30 detik (3 menit untuk worker Python SDK) sebelum penghentian paksa apa pun.** Mengunggah file yang berubah ke memory store dapat memakan waktu hingga 30 detik, dan worker Python SDK terlebih dahulu membiarkan panggilan alat yang sedang berjalan selesai. Docker mengirim SIGKILL 10 detik setelah sinyal stop secara default. Naikkan batas tersebut dengan `--stop-timeout` pada `docker run`, atau dengan masa tenggang penghentian dari orchestrator Anda.
 
 Jika worker di-kill sebelum teardown-nya berjalan, setiap suntingan memori yang belum tersinkronisasi akan hilang. Pada host yang berumur panjang, hapus juga direktori store sisa di bawah `/mnt/memory/` sebelum sesi berikutnya yang melampirkan store tersebut. Sandbox yang melayani satu sesi lalu dibuang tidak memerlukan pembersihan.
 
@@ -356,25 +356,25 @@ Tidak ada worker yang mengklaim pekerjaan. Sesi yang berada dalam antrean akan m
 
 Worker mencatat kegagalan mount dan sinkronisasi latar belakang di log alih-alih melaporkannya ke sesi. Hanya penolakan read-only yang mencapai agen, sebagai error alat (lihat [Store read-only dan konflik](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#read-only-stores-and-conflicts)).
 
-Jika worker tidak dapat me-mount memory store saat mengklaim sesi, worker akan menggagalkan work item. Sesi tidak memancarkan event error dan tetap idle.
+Jika worker tidak dapat me-mount memory store saat mengklaim sesi, worker akan menggagalkan item pekerjaan. Sesi tidak memancarkan event error dan tetap idle.
 
-| Gejala                                                                                                                           | Penyebab                                                                                                                                                                                                | Perbaikan                                                                                                                                                                                                                                                                      |
-| -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Log worker berisi `the work item carried no sessions token` (di Go, error `ErrSessionMemoryNoToken`) dan work item gagal.        | `secret` (csharp, go: `Secret`) per sesi dari work item tidak sampai ke worker. Entah kode Anda tidak meneruskannya, atau memory store pada sandbox self-hosted tidak diaktifkan untuk organisasi Anda. | [Meneruskan secret work item](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#forward-the-work-items-secret). Jika worker melakukan polling dan menjalankan sesi dalam satu proses dan masih mencatat ini, hubungi dukungan.                  |
-| Log worker berisi `something already exists at the memory store's path`.                                                         | Direktori sisa dari sesi sebelumnya, biasanya sesi yang worker-nya di-kill sebelum teardown-nya berjalan.                                                                                               | Hapus direktori sisa yang disebutkan oleh baris log. Suntingan di dalamnya yang belum tersinkronisasi akan hilang.                                                                                                                                                             |
-| Log worker berisi `cannot create the memory store's folder` dan `the worker host must make this mount path writable`.            | Pengguna yang menjalankan worker tidak dapat membuat direktori di bawah `/mnt/memory`.                                                                                                                  | Buat `/mnt/memory` dan `chown` ke pengguna tersebut. Lihat [Menyiapkan host](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#prepare-the-host).                                                                                                |
-| Sesi berada dalam status `idle` dengan stop reason `requires_action` dan tanpa event error tak lama setelah worker mengklaimnya. | Worker menggagalkan work item karena tidak dapat me-mount memory store, karena salah satu alasan sebelumnya.                                                                                            | Perbaiki penyebabnya di host, lalu kirim event [`user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#interrupt-the-agent). Pekerjaan sesi dimasukkan kembali ke antrean, dan worker berikutnya yang mengklaimnya akan mencoba mount lagi. |
+| Gejala                                                                                                                               | Penyebab                                                                                                                                                                                                     | Perbaikan                                                                                                                                                                                                                                                                                                                                       |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Log worker berisi `the work item carried no sessions token` (di Go, error `ErrSessionMemoryNoToken`) dan item pekerjaan gagal.       | `secret` (csharp, go: `Secret`) per sesi dari item pekerjaan tidak sampai ke worker. Entah kode Anda tidak meneruskannya, atau memory store pada sandbox self-hosted tidak diaktifkan untuk organisasi Anda. | [Meneruskan secret item pekerjaan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#forward-the-work-items-secret). Jika worker melakukan polling dan menjalankan sesi dalam satu proses dan masih mencatat ini, hubungi dukungan.                                                                              |
+| Log worker berisi `something already exists at the memory store's path`.                                                             | Direktori sisa dari sesi sebelumnya, biasanya sesi yang worker-nya di-kill sebelum teardown-nya berjalan.                                                                                                    | Hapus direktori sisa yang disebutkan oleh baris log. Suntingan di dalamnya yang belum tersinkronisasi akan hilang.                                                                                                                                                                                                                              |
+| Log worker berisi `cannot create the memory store's folder` dan `the worker host must make this mount path writable`.                | Pengguna yang menjalankan worker tidak dapat membuat direktori di bawah `/mnt/memory`.                                                                                                                       | Buat `/mnt/memory` dan `chown` ke pengguna tersebut. Lihat [Menyiapkan host](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#prepare-the-host). Di macOS, ikuti [Menyiapkan host macOS](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#prepare-a-macos-host) sebagai gantinya. |
+| Sesi berada dalam status `idle` dengan alasan berhenti `requires_action` dan tanpa event error tak lama setelah worker mengklaimnya. | Worker menggagalkan item pekerjaan karena tidak dapat me-mount memory store, karena salah satu alasan sebelumnya.                                                                                            | Perbaiki penyebabnya di host, lalu kirim event [`user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#interrupt-the-agent). Pekerjaan sesi dimasukkan kembali ke antrean, dan worker berikutnya yang mengklaimnya akan mencoba mount lagi.                                                                  |
 
 ### Panggilan alat kustom tidak pernah kembali
 
-Jika sesi berada dalam keadaan dijeda dengan stop reason `requires_action`, tidak ada worker atau klien yang melayani alat tersebut. Lihat [Melayani alat kustom](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools#serve-a-custom-tool).
+Jika sesi berada dalam keadaan dijeda dengan alasan berhenti `requires_action`, tidak ada worker atau klien yang melayani alat tersebut. Lihat [Melayani alat kustom](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools#serve-a-custom-tool).
 
 ### Panggilan alat MCP yang dibungkus macet
 
 Tanpa timeout pada klien MCP, panggilan yang macet ke [server MCP yang dibungkus](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools#wrap-an-mcp-server-as-custom-tools) baru menjadi hasil alat error ketika sebuah backstop terpicu:
 
-| SDK        | Backstop                                                           | Terpicu setelah            |
-| ---------- | ------------------------------------------------------------------ | -------------------------- |
-| Python     | Batas panggilan alat milik worker itu sendiri                      | Sekitar dua setengah menit |
-| TypeScript | Timeout permintaan default dari MCP SDK                            | Sekitar satu menit         |
-| Go         | Worker membatalkan panggilan alat yang melampaui batas default-nya | 120 detik                  |
+| SDK        | Pengaman terakhir                                                  | Terpicu setelah    |
+| ---------- | ------------------------------------------------------------------ | ------------------ |
+| Python     | Batas panggilan alat milik worker itu sendiri                      | Sekitar 2,5 menit  |
+| TypeScript | Timeout permintaan default dari MCP SDK                            | Sekitar satu menit |
+| Go         | Worker membatalkan panggilan alat yang melampaui batas default-nya | 120 detik          |

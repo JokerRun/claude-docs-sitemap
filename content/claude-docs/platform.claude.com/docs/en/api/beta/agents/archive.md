@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/archive
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: dcd8136cd10e28b094d78645b3bd9cfa8924a5be23c6af8260c6898bd1d5a7bc
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 8389ea2607d6560e57b2763e664adca4a11d066c4d089bba632e6dd218939039
 ---
 
 ---
@@ -823,6 +823,8 @@ Archive Agent
             - `country: optional string or null`
 
               Two-letter ISO 3166-1 country code, uppercase.
+
+              pattern: ^[A-Z]{2}$
 
             - `region: optional string or null`
 

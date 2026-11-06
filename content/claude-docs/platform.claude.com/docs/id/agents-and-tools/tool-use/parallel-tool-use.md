@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 412c9d84220accac56313f26b495a0d5c6d75745dd495cdece1ed908cd0bcb62
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: fad041657c81812b2b382f90877aa9bf64aa0a83e1c43953a516900a5ee498d2
 ---
 
 ---
@@ -56,7 +56,7 @@ Strategi apa pun yang Anda gunakan, kembalikan satu `tool_result` untuk setiap b
 }
 ```
 
-[Alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions) dan [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#batch-actions) lebih ketat. Ketika Claude mengembalikan beberapa panggilan alat anggotanya dalam satu giliran (aksi batch), jalankan secara berurutan sesuai urutan kemunculannya dan berhenti pada kegagalan pertama; setiap alat mendefinisikan teks persis yang harus dikembalikan untuk panggilan yang Anda lewati.
+[Alat penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions) dan [alat penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#batch-actions) lebih ketat. Ketika Claude mengembalikan beberapa panggilan alat anggotanya dalam satu giliran (aksi batch), jalankan secara berurutan sesuai urutan kemunculannya dan berhenti pada kegagalan pertama; setiap alat mendefinisikan teks persis yang harus dikembalikan untuk panggilan yang Anda lewati.
 
 ## Menguji panggilan alat paralel
 
@@ -871,7 +871,7 @@ Model Claude 4 dan yang lebih baru melakukan panggilan alat paralel secara defau
 <Note>
   **Claude Fable 5.1 dalam loop agen yang panjang**
 
-  Claude Fable 5.1 mungkin mengeluarkan lebih sedikit panggilan alat paralel dibandingkan model sebelumnya, paling terlihat dalam loop agen yang panjang di mana pembacaan berikutnya hanya tersirat (agen coding kustom, harness bash dan editor teks, computer use). Pemanggilan fungsi standar tidak terpengaruh. Untuk instruksi batching yang perlu ditambahkan dan di mana meletakkannya, lihat [Batch panggilan alat independen dalam loop agen](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#batch-independent-tool-calls-in-agent-loops).
+  Claude Fable 5.1 mungkin mengeluarkan lebih sedikit panggilan alat paralel dibandingkan model sebelumnya, paling terlihat dalam loop agen yang panjang di mana pembacaan berikutnya hanya tersirat (agen coding kustom, harness bash dan editor teks, penggunaan komputer). Pemanggilan fungsi standar tidak terpengaruh. Untuk instruksi batching yang perlu ditambahkan dan di mana meletakkannya, lihat [Batch panggilan alat independen dalam loop agen](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#batch-independent-tool-calls-in-agent-loops).
 </Note>
 
 ## Menonaktifkan penggunaan alat paralel
@@ -1607,13 +1607,13 @@ Untuk memverifikasi bahwa panggilan alat paralel berfungsi:
 
 **4. Panggilan dalam satu batch tampak saling bergantung**
 
-Urutan eksekusi adalah pilihan Anda. Jika alat Anda memiliki ketergantungan urutan, menjalankan batch secara berurutan dan berhenti pada kegagalan pertama adalah strategi yang valid (dan merupakan strategi yang diwajibkan untuk alat [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#batch-actions)): kembalikan `is_error: true` untuk setiap panggilan yang tidak Anda jalankan. Jika Anda menjalankan secara paralel dan sebuah panggilan gagal karena prasyaratnya belum selesai, kembalikan `is_error: true` dengan pesan error yang wajar. Claude akan mengeluarkan ulang panggilan tersebut pada giliran berikutnya. Untuk mengurangi panggilan yang saling bergantung muncul bersamaan, tambahkan ini ke prompt sistem Anda: “Hanya kelompokkan panggilan alat yang tidak saling bergantung dalam satu batch.”
+Urutan eksekusi adalah pilihan Anda. Jika alat Anda memiliki ketergantungan urutan, menjalankan batch secara berurutan dan berhenti pada kegagalan pertama adalah strategi yang valid (dan merupakan strategi yang diwajibkan untuk alat [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions) dan [penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#batch-actions)): kembalikan `is_error: true` untuk setiap panggilan yang tidak Anda jalankan. Jika Anda menjalankan secara paralel dan sebuah panggilan gagal karena prasyaratnya belum selesai, kembalikan `is_error: true` dengan pesan error yang wajar. Claude akan mengeluarkan ulang panggilan tersebut pada giliran berikutnya. Untuk mengurangi panggilan yang saling bergantung muncul bersamaan, tambahkan ini ke prompt sistem Anda: “Hanya kelompokkan panggilan alat yang tidak saling bergantung dalam satu batch.”
 
 ## Langkah selanjutnya
 
 <CardGroup cols={3}>
   <Card title="Tool runner (SDK)" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner">
-    Gunakan abstraksi tool runner dari SDK untuk menangani loop agentik, pembungkusan error, dan type safety secara otomatis.
+    Gunakan abstraksi tool runner dari SDK untuk menangani loop agentik, pembungkusan error, dan keamanan tipe secara otomatis.
   </Card>
 
   <Card title="Menangani panggilan alat" icon="arrows-left-right" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls">

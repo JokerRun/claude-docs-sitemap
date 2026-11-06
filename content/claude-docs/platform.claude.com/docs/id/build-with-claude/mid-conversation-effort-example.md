@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 407696048bd71f5c29cb336481063ad0537b48a2b59efd1e2903cae1865b2701
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 8596ed0eccfd5079d970f592d074193ada56bfcb65dd9ef157e7fef5f5acf73f
 ---
 
 ---
@@ -28,6 +28,14 @@ Mode ini bukan parameter API. Mode ini dibangun sepenuhnya dari komponen yang te
 Contoh ini berupa satu file. Konstanta-konstanta mengontrol tingkat effort, bentuk fan-out, dan seberapa sering penyegar mode dikirim ulang. `MAX_CONCURRENT` membatasi berapa banyak subagen yang berjalan pada waktu yang sama (port PHP berjalan secara berurutan dan mengabaikannya); `MAX_TOTAL_SUBTASKS` membatasi berapa banyak subagen yang dapat diantrekan model dalam satu panggilan Workflow. Memisahkan keduanya memungkinkan model merencanakan backlog besar tanpa meluncurkan semuanya sekaligus. Pemeriksaan `DOC_TEST_MODE` membatasi loop menjadi satu giliran saat variabel lingkungan tersebut disetel, sehingga harness dokumentasi otomatis dapat memvalidasi bahwa file dapat dikompilasi dan selesai dengan cepat tanpa menjalankan orkestrasi penuh; biarkan tidak disetel saat Anda menjalankan contoh ini sendiri.
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Tetapkan konstanta di dalam kode.
+  </CodeGroupItem>
+
+  <CodeGroupItem language="CLI">
+    Tetapkan konstanta di dalam kode.
+  </CodeGroupItem>
+
   ```python Python
   import atexit
   import concurrent.futures
@@ -285,6 +293,14 @@ Contoh ini berupa satu file. Konstanta-konstanta mengontrol tingkat effort, bent
 Pengingat-pengingat ini sengaja dibuat singkat. Pengingat tersebut mengubah status mode dan menunjuk ke deskripsi alat, tempat instruksi yang berat berada. Teks lengkap dikirim sekali ketika mode diaktifkan, penyegar dikirim ulang hanya setelah beberapa giliran pengguna, dan pemberitahuan keluar dikirim sekali ketika mode dinonaktifkan.
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Definisikan pengingat di dalam kode.
+  </CodeGroupItem>
+
+  <CodeGroupItem language="CLI">
+    Definisikan pengingat di dalam kode.
+  </CodeGroupItem>
+
   ```python Python
   MODE_ENTER = (
       "Orchestration mode is on: optimize for the most exhaustive, correct answer rather than "
@@ -382,6 +398,14 @@ Pengingat-pengingat ini sengaja dibuat singkat. Pengingat tersebut mengubah stat
 Alat Workflow memuat kontrak perilaku yang sebenarnya: aturan opt-in, persetujuan tetap yang berlaku selama mode aktif, panduan granularitas untuk menentukan ukuran fan-out, dan pola kualitas yang dapat digunakan model (gelombang verifikasi, kritikus kelengkapan, pengurutan multifase). Subagen juga mendapatkan alat `report_findings` sehingga hasilnya kembali sebagai JSON terstruktur alih-alih prosa, dan alat bash-nya adalah alat `bash_20250124` yang didefinisikan Anthropic dan dijalankan secara lokal.
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Definisikan alat di dalam kode.
+  </CodeGroupItem>
+
+  <CodeGroupItem language="CLI">
+    Definisikan alat di dalam kode.
+  </CodeGroupItem>
+
   ```python Python
   WORKFLOW_TOOL = {
       "name": "Workflow",
@@ -879,6 +903,14 @@ Alat Workflow memuat kontrak perilaku yang sebenarnya: aturan opt-in, persetujua
 Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gabungan stdout dan stderr, dan memotong hasilnya sehingga perintah yang lepas kendali tidak dapat membanjiri “context window” (jendela konteks). Perintah berjalan di direktori tempat Anda meluncurkan contoh ini, jadi mengarahkannya ke sebuah proyek berarti memulainya di sana; ketika `DOC_TEST_MODE` disetel, harness justru memberi bash sebuah direktori fixture kecil sekali pakai yang dihapus saat keluar. Tidak ada sandbox di sini: perintah berjalan dengan izin proses yang meluncurkan contoh ini. Demi kejelasan, contoh ini menjalankan setiap panggilan dalam subshell baru alih-alih mempertahankan sesi persisten yang dijelaskan oleh kontrak `bash_20250124`; agen produksi sebaiknya mendukung alat ini dengan shell berumur panjang sehingga direktori kerja, lingkungan, dan aksi `restart` berperilaku sesuai dokumentasi.
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Jalankan perintah yang diminta di dalam kode.
+  </CodeGroupItem>
+
+  <CodeGroupItem language="CLI">
+    Jalankan perintah yang diminta di dalam kode.
+  </CodeGroupItem>
+
   ```python Python
   # Jalankan bash di tempat contoh dijalankan. Dalam DOC_TEST_MODE, harness dokumen
   # mengarahkannya ke direktori fixture sementara, yang dihapus saat keluar.
@@ -1418,6 +1450,14 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
 Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, berjalan pada effort yang sama dengan loop utama. Batas waktu per permintaan membatasi setiap panggilan API sehingga koneksi yang terputus hanya menurunkan satu subagen alih-alih menghentikan seluruh proses.
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Contoh lengkap ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
+
+  <CodeGroupItem language="CLI">
+    Contoh lengkap ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
+
   ```python Python
   def run_subagent(model: str, prompt: str) -> str:
       """One subagent: a small nested agent loop with the bash tool plus report_findings.
@@ -1962,6 +2002,14 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
 Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Jurnal kecil yang dialamatkan berdasarkan konten membuatnya idempoten: sebelum mengirimkan subagen, cari SHA-256 dari prompt-nya dalam file JSON lokal, dan kembalikan hasil yang tercatat jika ada. Hentikan eksekusi, jalankan ulang, dan hanya subtugas yang belum pernah selesai yang dihitung ulang. Jurnal melakukan deduplikasi antar eksekusi, bukan di dalam satu gelombang fan-out; hapus file jurnal untuk memulai dari awal.
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Baca dan tulis jurnal di dalam kode.
+  </CodeGroupItem>
+
+  <CodeGroupItem language="CLI">
+    Baca dan tulis jurnal di dalam kode.
+  </CodeGroupItem>
+
   ```python Python
   _journal_lock = threading.Lock()
 
@@ -2253,6 +2301,14 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
 Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurnal dengan paling banyak `MAX_CONCURRENT` yang berjalan bersamaan (berurutan pada port PHP), dan mengisolasi kegagalan sehingga satu subagen yang rusak hanya menghasilkan string error alih-alih mengakhiri eksekusi. Setelah gelombang pertama selesai, gelombang kedua menggunakan kembali jalur subagen yang sama untuk mencoba menyanggah setiap hasil: setiap verifikator menurunkan ulang klaim dari sumbernya, dengan default dianggap tersanggah jika tidak pasti. Hasil asli beserta putusannya dikembalikan ke orkestrator sehingga orkestrator dapat menimbang keduanya bersama-sama.
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Contoh lengkap ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
+
+  <CodeGroupItem language="CLI">
+    Contoh lengkap ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
+
   ```python Python
   def normalize_subtasks(raw) -> list[str]:
       """Accept the subtasks input in whatever shape the model emits: an array, the array
@@ -2880,7 +2936,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
 
 ## Mengaktifkan dan menonaktifkan mode dengan pesan sistem di tengah percakapan
 
-Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang sudah waktunya dikirim: pemberitahuan keluar, teks mode lengkap saat mode diaktifkan, atau penyegar berkala. Menempatkan pesan sistem setelah giliran pengguna menjaga setiap byte yang di-cache sebelumnya tetap utuh. Penempatan ini juga memenuhi aturan bahwa pesan sistem harus mengikuti giliran pengguna.
+Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang sudah waktunya dikirim: pemberitahuan keluar, teks mode lengkap saat mode diaktifkan, atau penyegar berkala. Menempatkan pesan sistem setelah giliran pengguna menjaga setiap byte yang di-cache sebelumnya tetap utuh, dan memenuhi aturan penempatan bahwa pesan sistem harus mengikuti giliran pengguna.
 
 <CodeGroup>
   ```bash cURL
@@ -3789,6 +3845,14 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
 </Warning>
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Contoh lengkap ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
+
+  <CodeGroupItem language="CLI">
+    Contoh lengkap ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+  </CodeGroupItem>
+
   ```python Python
   if __name__ == "__main__":
       task = (

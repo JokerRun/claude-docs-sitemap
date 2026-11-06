@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 713c43cc943cc894eb3022be99b6ff017511e2e4b5f965d513e8d680d8eb9b9b
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 24fff628ddb4d1f6db4be7fba23e5145db198d45d3893e10f57e283d86b5f0d6
 ---
 
 ---
@@ -322,9 +322,9 @@ Dua pertimbangan lain untuk pemikiran berselang-seling dalam mode manual:
 * `budget_tokens` dapat melebihi `max_tokens` di sini; [aturan anggaran](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#budget-rules-and-tuning) menjelaskan pengecualian ini.
 * Pemikiran berselang-seling hanya didukung untuk [alat yang digunakan melalui Messages API](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
 
-Cara platform memperlakukan beta header berbeda-beda. Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) menerima `interleaved-thinking-2025-05-14` pada model apa pun dan mengabaikannya jika tidak didukung. Diterima tidak sama dengan berefek: pada model yang menolak `type: "enabled"` (4.7 dan yang lebih baru) atau tidak memiliki interleaving mode manual (Claude Opus 4.6), header tersebut tidak memiliki efek mode manual; “adaptive thinking” (pemikiran adaptif) melakukan interleaving secara otomatis di sana.
+Cara platform memperlakukan header beta berbeda-beda. Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) menerima `interleaved-thinking-2025-05-14` pada model apa pun dan mengabaikannya jika tidak didukung. Diterima tidak sama dengan berefek: pada model yang menolak `type: "enabled"` (4.7 dan yang lebih baru) atau tidak memiliki interleaving mode manual (Claude Opus 4.6), header tersebut tidak memiliki efek mode manual; pemikiran adaptif melakukan interleaving secara otomatis di sana.
 
-Platform yang dioperasikan mitra, [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) dan [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), juga menerima header tersebut pada model apa pun tanpa mengembalikan error, dan mengabaikannya pada model yang tidak mendukung “interleaved thinking” (pemikiran berselang).
+Platform yang dioperasikan mitra, [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) dan [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), juga menerima header tersebut pada model apa pun tanpa mengembalikan error, dan mengabaikannya pada model yang tidak mendukung pemikiran berselang-seling.
 
 ## Struktur giliran dalam mode manual
 

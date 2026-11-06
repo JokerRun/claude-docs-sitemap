@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/members
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 9889f93a90468cc44a843907271a88f9a6281716eb93d2eb47dd814aca395779
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 1ebc220aa4cc14ef79f5d18fe3ac0f2f6f75bddcde438b2201ac924ab72df89c
 ---
 
 ---
@@ -222,19 +222,21 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
 ### Returns
 
-- `type: "rbac_group_member_deleted"`
+- `BetaDeletedRBACGroupMember object`
 
-  Deleted object type. For RBAC Group Members, this is always `"rbac_group_member_deleted"`.
+  - `type: "rbac_group_member_deleted"`
 
-  default: rbac_group_member_deleted
+    Deleted object type. For RBAC Group Members, this is always `"rbac_group_member_deleted"`.
 
-- `rbac_group_id: string`
+    default: rbac_group_member_deleted
 
-  ID of the RBAC Group.
+  - `rbac_group_id: string`
 
-- `user_id: string`
+    ID of the RBAC Group.
 
-  ID of the User.
+  - `user_id: string`
+
+    ID of the User.
 
 ### Example
 
@@ -257,6 +259,24 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$RBAC_GROUP_ID/membe
 
 ## Domain types
 
+### Beta Deleted RBAC Group Member
+
+- `BetaDeletedRBACGroupMember object`
+
+  - `type: "rbac_group_member_deleted"`
+
+    Deleted object type. For RBAC Group Members, this is always `"rbac_group_member_deleted"`.
+
+    default: rbac_group_member_deleted
+
+  - `rbac_group_id: string`
+
+    ID of the RBAC Group.
+
+  - `user_id: string`
+
+    ID of the User.
+
 ### Beta RBAC Group Member
 
 - `BetaRBACGroupMember object`
@@ -278,24 +298,6 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$RBAC_GROUP_ID/membe
   - `email: string`
 
     Email of the User.
-
-  - `rbac_group_id: string`
-
-    ID of the RBAC Group.
-
-  - `user_id: string`
-
-    ID of the User.
-
-### Member Remove Response
-
-- `MemberRemoveResponse object`
-
-  - `type: "rbac_group_member_deleted"`
-
-    Deleted object type. For RBAC Group Members, this is always `"rbac_group_member_deleted"`.
-
-    default: rbac_group_member_deleted
 
   - `rbac_group_id: string`
 

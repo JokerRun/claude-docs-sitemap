@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 686ff1b3c868770f6f06335a8f4d53e427d99b3a8ee2c6d3a9184f6461e4f9ad
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: c1c0e9a18b202bc79f26d76a463aa7efd256ceacc1e66b7daf2fd6a44952e1d7
 ---
 
 ---
@@ -408,7 +408,7 @@ Anda juga dapat mengonfigurasi `access` (csharp, go: `Access`). Nilai default-ny
 </CodeGroup>
 
 <Warning>
-  Memory store dilampirkan dengan akses `read_write` secara default. Jika agen memproses input yang tidak tepercaya (prompt yang diberikan pengguna, konten web yang diambil, atau output alat pihak ketiga), prompt injection yang berhasil dapat menulis konten berbahaya ke dalam store. Sesi-sesi berikutnya kemudian membaca konten tersebut sebagai memori tepercaya. Gunakan `read_only` untuk materi referensi, lookup bersama, dan store apa pun yang tidak perlu dimodifikasi oleh agen.
+  Memory store dilampirkan dengan akses `read_write` secara default. Jika agen memproses input yang tidak tepercaya (prompt yang diberikan pengguna, konten web yang diambil, atau output alat pihak ketiga), injeksi prompt yang berhasil dapat menulis konten berbahaya ke dalam store. Sesi-sesi berikutnya kemudian membaca konten tersebut sebagai memori tepercaya. Gunakan `read_only` untuk materi referensi, lookup bersama, dan store apa pun yang tidak perlu dimodifikasi oleh agen.
 </Warning>
 
 Maksimal **8 memory store** didukung untuk setiap sesi. Lampirkan beberapa store ketika bagian memori yang berbeda memiliki pemilik atau aturan akses yang berbeda. Alasan umum:
@@ -419,7 +419,7 @@ Maksimal **8 memory store** didukung untuk setiap sesi. Lampirkan beberapa store
 
 ### Bagaimana agen mengakses memori
 
-Setiap store yang dilampirkan di-mount di dalam sandbox sesi sebagai direktori di bawah `/mnt/memory/`. Nama direktori adalah nama tampilan store yang disanitasi menjadi slug yang aman untuk filesystem (huruf kecil, dengan setiap rangkaian karakter non-alfanumerik diganti dengan satu tanda hubung), sehingga store bernama “Demo Memory” di-mount di `/mnt/memory/demo-memory/`. Path yang tepat dikembalikan dalam field `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`) pada resource memory-store sesi; bacalah dari sana alih-alih menyusunnya sendiri. Agen membaca dan menulis store dengan [agent toolset](https://platform.claude.com/docs/id/managed-agents/tools) standar. Penulisan di bawah mount path disimpan kembali ke store dan tetap sinkron di seluruh sesi yang berbagi store tersebut; penulisan ke path lain mana pun di bawah `/mnt/memory/` akan gagal, karena sandbox me-mount direktori induk tersebut sebagai read-only. Deskripsi singkat dari setiap mount (nama tampilan, mount path, mode akses, `description` (csharp, go: `Description`) store, dan `instructions` (csharp, go: `Instructions`) apa pun) secara otomatis ditambahkan ke prompt sistem.
+Setiap store yang dilampirkan di-mount di dalam sandbox sesi sebagai direktori di bawah `/mnt/memory/`. Nama direktori adalah nama tampilan store yang disanitasi menjadi slug yang aman untuk filesystem (huruf kecil, dengan setiap rangkaian karakter non-alfanumerik diganti dengan satu tanda hubung), sehingga store bernama “Demo Memory” di-mount di `/mnt/memory/demo-memory/`. Path yang tepat dikembalikan dalam field `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`) pada resource memory-store sesi; bacalah dari sana alih-alih menyusunnya sendiri. Agen membaca dan menulis store dengan [toolset agen](https://platform.claude.com/docs/id/managed-agents/tools) standar. Penulisan di bawah path mount disimpan kembali ke store dan tetap sinkron di seluruh sesi yang berbagi store tersebut; penulisan ke path lain mana pun di bawah `/mnt/memory/` akan gagal, karena sandbox me-mount direktori induk tersebut sebagai read-only. Deskripsi singkat dari setiap mount (nama tampilan, path mount, mode akses, `description` (csharp, go: `Description`) store, dan `instructions` (csharp, go: `Instructions`) apa pun) secara otomatis ditambahkan ke prompt sistem.
 
 `access` (csharp, go: `Access`) diberlakukan di tingkat filesystem: mount `read_only` menolak penulisan, sedangkan penulisan ke mount `read_write` menghasilkan [versi memori](https://platform.claude.com/docs/id/managed-agents/memory#audit-memory-changes) yang diatribusikan ke sesi.
 
@@ -429,7 +429,7 @@ Setiap store yang dilampirkan di-mount di dalam sandbox sesi sebagai direktori d
   Untuk store `read_only`, alat `write` dan `edit` milik worker menolak perubahan di bawah direktori tersebut dan worker tidak pernah mengunggah apa pun darinya. Untuk mempelajari cara worker menyelesaikan konflik penulisan, dan apa yang masih dapat diubah oleh alat `bash` dalam salinan lokal store read-only, lihat [Store read-only dan konflik](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#read-only-stores-and-conflicts).
 </Note>
 
-Pembacaan dan penulisan agen muncul dalam [event stream](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) sebagai event `agent.tool_use` dan `agent.tool_result` biasa untuk alat mana pun yang menyentuh mount tersebut.
+Pembacaan dan penulisan agen muncul dalam [aliran event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) sebagai event `agent.tool_use` dan `agent.tool_result` biasa untuk alat mana pun yang menyentuh mount tersebut.
 
 ## Melihat dan mengedit memori
 
@@ -782,7 +782,7 @@ Lihat referensi [Membuat memori](https://platform.claude.com/docs/id/api/beta/me
 
 Lihat referensi [Memperbarui memori](https://platform.claude.com/docs/id/api/beta/memory_stores/memories/update) untuk parameter lengkap dan skema respons.
 
-#### Pengeditan konten yang aman (optimistic concurrency)
+#### Pengeditan konten yang aman (konkurensi optimistis)
 
 Untuk menghindari penimpaan penulisan yang terjadi secara bersamaan, teruskan prekondisi `content_sha256`. Pembaruan hanya diterapkan jika hash konten yang tersimpan masih cocok dengan yang Anda baca; jika tidak cocok, baca ulang memori dan coba lagi terhadap state terbaru.
 

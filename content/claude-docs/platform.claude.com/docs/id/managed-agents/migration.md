@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/migration
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 902fb73a36a1acdaacb6a4c76799cb48667ccb4dee4b6378798642b154a3343f
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 8f3ab8e7809c6de907d0687cbedf185f6265aecb1b03f97cf4cb2b21cb48835d
 ---
 
 ---
@@ -531,12 +531,12 @@ Jika Anda membangun agen dengan memanggil `client.messages.create()` (csharp: `c
 
 * **Prompt sistem dan model:** Field yang sama, kini berada pada definisi agen.
 * **Alat kustom:** Masih dideklarasikan dengan JSON Schema. Eksekusi berpindah dari penanganan inline menjadi merespons event `agent.custom_tool_use`. Lihat [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming).
-* **Pengaturan web search dan web fetch:** Field `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`), `blocked_domains` (java, php: `blockedDomains`; csharp, go: `BlockedDomains`), `max_content_tokens` (java, php: `maxContentTokens`; csharp, go: `MaxContentTokens`), dan `user_location` (java, php: `userLocation`; csharp, go: `UserLocation`) yang sama, kini diatur sekali pada entri `web_search` dan `web_fetch` di array `configs` (csharp, go: `Configs`) milik toolset agen, alih-alih di setiap permintaan. Field `max_uses` (java, php: `maxUses`; csharp, go: `MaxUses`), `citations` (csharp, go: `Citations`), dan `cache_control` (java, php: `cacheControl`; csharp, go: `CacheControl`) tidak tersedia. Lihat [Perbedaan dari alat Messages API](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#differences-from-the-messages-api-tools).
-* **Konteks:** Anda masih dapat menyuntikkan konteks melalui prompt sistem, [sumber daya file](https://platform.claude.com/docs/id/managed-agents/files), atau [skills](https://platform.claude.com/docs/id/managed-agents/skills).
+* **Pengaturan pencarian web dan web fetch:** Field `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`), `blocked_domains` (java, php: `blockedDomains`; csharp, go: `BlockedDomains`), `max_content_tokens` (java, php: `maxContentTokens`; csharp, go: `MaxContentTokens`), dan `user_location` (java, php: `userLocation`; csharp, go: `UserLocation`) yang sama, kini diatur sekali pada entri `web_search` dan `web_fetch` di array `configs` (csharp, go: `Configs`) milik toolset agen, alih-alih di setiap permintaan. Field `max_uses` (java, php: `maxUses`; csharp, go: `MaxUses`), `citations` (csharp, go: `Citations`), dan `cache_control` (java, php: `cacheControl`; csharp, go: `CacheControl`) tidak tersedia. Lihat [Perbedaan dari alat Messages API](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#differences-from-the-messages-api-tools).
+* **Konteks:** Anda masih dapat menyuntikkan konteks melalui prompt sistem, [sumber daya file](https://platform.claude.com/docs/id/managed-agents/files), atau [skill](https://platform.claude.com/docs/id/managed-agents/skills).
 
 ## Dari Claude Agent SDK
 
-Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/agent-sdk/overview), Anda sudah bekerja dengan agen, alat, dan sesi sebagai konsep. Perbedaannya adalah di mana semuanya berjalan: SDK berjalan dalam proses yang Anda operasikan, sedangkan Managed Agents berjalan di infrastruktur Anthropic. Sebagian besar migrasi adalah memetakan objek konfigurasi SDK ke padanannya di sisi API.
+Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/agent-sdk/overview), Anda sudah bekerja dengan agen, alat, dan sesi sebagai konsep. Perbedaannya terletak pada tempat semuanya berjalan: SDK berjalan dalam proses yang Anda operasikan, sedangkan Managed Agents berjalan di infrastruktur Anthropic. Sebagian besar migrasi adalah memetakan objek konfigurasi SDK ke padanannya di sisi API.
 
 ### Apa yang berubah
 
@@ -997,7 +997,6 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
   import com.anthropic.models.beta.environments.EnvironmentCreateParams;
   import com.anthropic.models.beta.sessions.BetaManagedAgentsAgentParams;
   import com.anthropic.models.beta.sessions.SessionCreateParams;
-  import com.anthropic.models.beta.sessions.events.BetaManagedAgentsStreamSessionEvents;
   import com.anthropic.models.beta.sessions.events.BetaManagedAgentsUserCustomToolResultEventParams;
   import com.anthropic.models.beta.sessions.events.BetaManagedAgentsUserMessageEventParams;
   import com.anthropic.models.beta.sessions.events.EventSendParams;
@@ -1048,7 +1047,7 @@ Jika Anda membangun dengan [Claude Agent SDK](https://code.claude.com/docs/id/ag
               .build());
 
       loop:
-      for (var event : (Iterable<BetaManagedAgentsStreamSessionEvents>) stream.stream()::iterator) {
+      for (var event : stream) {
           switch (event.type().value()) {
               case AGENT_MESSAGE -> {
                   for (var block : event.asAgentMessage().content()) {
@@ -1246,8 +1245,8 @@ Konsekuensi dari Anthropic menjalankan loop agen adalah beberapa hal yang sebelu
 
 | Fitur SDK                            | Pendekatan Managed Agents                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Plan mode                            | Jalankan sesi khusus perencanaan terlebih dahulu, lalu sesi kedua untuk menjalankan rencana tersebut.                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| Output styles, slash commands        | Terapkan di klien Anda sebelum mengirim `user.message` atau setelah menerima `agent.message`.                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Mode perencanaan                     | Jalankan sesi khusus perencanaan terlebih dahulu, lalu sesi kedua untuk menjalankan rencana tersebut.                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Gaya output, perintah slash          | Terapkan di klien Anda sebelum mengirim `user.message` atau setelah menerima `agent.message`.                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | Hook `PreToolUse` / `PostToolUse`    | Klien Anda sudah melihat setiap event `agent.custom_tool_use` sebelum merespons; letakkan logikanya di sana. Untuk alat bawaan, gunakan `permission_policy: always_ask` untuk meninjau setiap pemanggilan. [`auto`](https://platform.claude.com/docs/id/managed-agents/permission-policies#let-the-server-evaluate-each-call-with-auto) memungkinkan server mengevaluasi setiap pemanggilan sebagai gantinya, tetapi jika server menilai suatu pemanggilan aman, pemanggilan tersebut berjalan tanpa mencapai klien Anda. |
 | `max_turns` (typescript: `maxTurns`) | Hitung giliran di sisi klien.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 

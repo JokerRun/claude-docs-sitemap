@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: d6deefbc74b353924a6f94a2fb93ab101fed102e053f4f60e3843e77d4be7613
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 658457e48675e45c55237757c65edcb55c35306505be2a97fb25f57315813fbd
 ---
 
 ---
@@ -76,9 +76,9 @@ Jika Anda mengalami salah satu masalah berikut saat menyiapkan Claude Models on 
 
 * **`gcloud services enable` tidak dapat menemukan `anthropic-managed-claude.cloudpartnerservices.goog`:** Jalankan perintah sebagai akun yang menyelesaikan pembelian Marketplace, atau hubungi perwakilan akun Anthropic Anda.
 * **Error izin pada panggilan API pertama Anda:** Periksa bahwa `claude.googleapis.com` telah diaktifkan pada proyek yang Anda panggil. Periksa bahwa pemanggil memiliki `roles/claude.user` atau `roles/claude.admin` pada proyek tersebut. Untuk apa yang diizinkan setiap peran, lihat [Peran IAM](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#iam-roles). Pemberian izin baru atau layanan yang baru diaktifkan dapat memerlukan waktu sejenak untuk berlaku.
-* **“Signed in as a different account” setelah mengikuti tautan penyiapan:** Klik **Log out and continue**. Lalu gunakan alamat email yang Anda masukkan di langkah 3.
+* **“Sudah masuk dengan akun lain” setelah mengikuti tautan penyiapan:** Klik **Keluar dan lanjutkan**. Lalu gunakan alamat email yang Anda masukkan di langkah 3.
 * **Tombol menampilkan “Finish Setup” alih-alih “Open Claude Console”:** Organisasi Anthropic Anda sudah ada, tetapi penyiapannya belum selesai. Seorang administrator harus menyelesaikan formulir detail organisasi.
-* **Halaman Usage tidak menampilkan data setelah panggilan API pertama Anda:** Data penggunaan dapat memerlukan beberapa menit untuk muncul di Claude Console.
+* **Halaman Penggunaan tidak menampilkan data setelah panggilan API pertama Anda:** Data penggunaan dapat memerlukan beberapa menit untuk muncul di Claude Console.
 
 ## Mengelola akses
 
@@ -92,7 +92,7 @@ Claude Models on Google Cloud (Anthropic managed) memiliki tiga peran IAM yang t
 | `roles/claude.user`   | Claude User   | Semua yang diizinkan `roles/claude.viewer`, ditambah membuat dan mengubah sumber daya workspace<br />Ini termasuk mengirim pesan dan menghitung token. Ini juga termasuk mengelola batch, file, skill, dan sumber daya Claude Managed Agents. |
 | `roles/claude.admin`  | Claude Admin  | Semua yang diizinkan `roles/claude.user`, ditambah izin yang diperiksa pada organisasi Anthropic Anda<br />Rute tingkat organisasi bertindak pada organisasi Anthropic Anda secara keseluruhan, bukan pada satu workspace.                    |
 
-Sebagai contoh, perintah berikut memungkinkan service account memanggil Claude Models on Google Cloud (Anthropic managed):
+Sebagai contoh, perintah berikut memungkinkan akun layanan memanggil Claude Models on Google Cloud (Anthropic managed):
 
 ```bash CLI
 gcloud projects add-iam-policy-binding my-project-id \
@@ -110,7 +110,7 @@ Dengan Claude Models on Google Cloud (Anthropic managed), Anda tidak dapat mengg
 
 ### Workspace
 
-Di Claude Models on Google Cloud (Anthropic managed), penyiapan membuat organisasi Anthropic Anda dengan satu workspace, yaitu Default Workspace. Untuk membuat lebih banyak workspace, [buka Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console) dan buka **Settings > Workspaces**. Di halaman yang sama, Anda dapat mengganti nama atau mengarsipkan workspace mana pun kecuali Default Workspace. Setiap workspace memiliki [ID workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#find-your-workspace-id) sendiri. File, skill, batch, sesi Claude Managed Agents, dan sumber daya workspace lainnya menjadi milik workspace yang ID-nya Anda [tetapkan untuk permintaan](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution).
+Di Claude Models on Google Cloud (Anthropic managed), penyiapan membuat organisasi Anthropic Anda dengan satu workspace, yaitu workspace default. Untuk membuat lebih banyak workspace, [buka Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console) dan buka **Pengaturan > Ruang kerja**. Di halaman yang sama, Anda dapat mengganti nama atau mengarsipkan workspace mana pun kecuali workspace default. Setiap workspace memiliki [ID workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#find-your-workspace-id) sendiri. File, skill, batch, sesi Claude Managed Agents, dan sumber daya workspace lainnya menjadi milik workspace yang ID-nya Anda [tetapkan untuk permintaan](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution).
 
 Anda memberikan [peran IAM](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#iam-roles) pada proyek, sehingga sebuah peran berlaku untuk setiap workspace di proyek tersebut. Ketika tim memerlukan akses terpisah, berikan setiap tim proyek Google Cloud sendiri. Setiap proyek memiliki organisasi Anthropic sendiri, jadi ulangi [langkah-langkah penyiapan](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#set-up-your-account) di setiap proyek, mulai dari langkah 2.
 
@@ -136,9 +136,9 @@ Ganti `my-project-id` dengan ID proyek Anda. Ganti `you@example.com` dengan alam
 
 ### Menemukan ID workspace Anda
 
-Untuk menemukan ID workspace Anda untuk Claude Models on Google Cloud (Anthropic managed), [buka Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console) dan buka **Settings > Workspaces**. ID tersebut diawali dengan `wrkspc_`. Jika Anda tidak dapat membuka Claude Console, minta seseorang yang dapat membukanya untuk mengirimkan ID tersebut kepada Anda.
+Untuk menemukan ID workspace Anda untuk Claude Models on Google Cloud (Anthropic managed), [buka Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console) dan buka **Pengaturan > Ruang kerja**. ID tersebut diawali dengan `wrkspc_`. Jika Anda tidak dapat membuka Claude Console, minta seseorang yang dapat membukanya untuk mengirimkan ID tersebut kepada Anda.
 
-Tetapkan proyek dan workspace sebagai variabel lingkungan agar klien SDK dan [`ant` CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart) dapat membacanya:
+Tetapkan proyek dan workspace sebagai variabel lingkungan agar klien SDK dan [CLI `ant`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart) dapat membacanya:
 
 ```bash CLI
 export ANTHROPIC_GOOGLE_CLOUD_PROJECT="my-project-id"
@@ -184,8 +184,8 @@ Instal paket yang menyediakan klien tersebut:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.5.0")
-        implementation("com.anthropic:anthropic-java-google-cloud:3.5.0")
+        implementation("com.anthropic:anthropic-java:3.6.0")
+        implementation("com.anthropic:anthropic-java-google-cloud:3.6.0")
         ```
       </Tab>
 
@@ -194,12 +194,12 @@ Instal paket yang menyediakan klien tersebut:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.5.0</version>
+            <version>3.6.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-google-cloud</artifactId>
-            <version>3.5.0</version>
+            <version>3.6.0</version>
         </dependency>
         ```
       </Tab>
@@ -243,7 +243,7 @@ Jika Anda tidak [menetapkan base URL](https://platform.claude.com/docs/id/build-
 Tambahkan path Claude API ke base URL. Sebagai contoh, [Messages API](https://platform.claude.com/docs/id/api/messages/create) berada di `.../invoke/v1/messages`. Tiga hal berbeda dari permintaan Claude API:
 
 * **Base URL:** URL dengan cakupan proyek yang ditunjukkan sebelumnya, sebagai pengganti `https://api.anthropic.com`.
-* **Autentikasi:** Header `Authorization: Bearer` dengan access token Google. Jangan kirim header `x-api-key`.
+* **Autentikasi:** Header `Authorization: Bearer` dengan token akses Google. Jangan kirim header `x-api-key`.
 * **Workspace:** ID workspace merupakan bagian dari URL. Jangan kirim header `anthropic-workspace-id`.
 
 Semua hal lainnya sama seperti di Claude API, termasuk yang berikut:
@@ -253,7 +253,7 @@ Semua hal lainnya sama seperti di Claude API, termasuk yang berikut:
 * Streaming
 * Respons
 
-Contoh kode di bagian lain dokumentasi ini membuat klien Claude API dan membaca kunci API. Untuk menjalankannya dengan Claude Models on Google Cloud (Anthropic managed), ganti import dan konstruktor kliennya dengan yang ada di contoh berikut. Untuk contoh cURL, terapkan tiga perbedaan yang tercantum sebelumnya.
+Contoh kode di bagian lain dokumentasi ini membuat klien Claude API dan membaca kunci API. Untuk menjalankannya dengan Claude Models on Google Cloud (Anthropic managed), ganti impor dan konstruktor kliennya dengan yang ada di contoh berikut. Untuk contoh cURL, terapkan tiga perbedaan yang tercantum sebelumnya.
 
 Sebelum menjalankan contoh-contoh ini, selesaikan langkah-langkah di [Sebelum melakukan panggilan API](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#before-making-api-calls).
 
@@ -439,7 +439,7 @@ CLI menggunakan Claude Models on Google Cloud (Anthropic managed) ketika proyek,
 
 ## Autentikasi
 
-Setiap permintaan ke Claude Models on Google Cloud (Anthropic managed) membawa access token Google OAuth 2.0 dalam header `Authorization: Bearer`. Token tersebut memiliki cakupan `https://www.googleapis.com/auth/cloud-platform`.
+Setiap permintaan ke Claude Models on Google Cloud (Anthropic managed) membawa token akses Google OAuth 2.0 dalam header `Authorization: Bearer`. Token tersebut memiliki cakupan `https://www.googleapis.com/auth/cloud-platform`.
 
 Google Cloud menangani akses. Gateway-nya di `claude.googleapis.com` melakukan hal berikut untuk setiap permintaan:
 
@@ -452,9 +452,9 @@ Untuk memberikan izin, lihat [Peran IAM](https://platform.claude.com/docs/id/bui
 Klien SDK mendapatkan token dari [Application Default Credentials](https://cloud.google.com/docs/authentication/application-default-credentials) (ADC). Sumber kredensial apa pun yang didukung ADC dapat digunakan:
 
 * **Pengembangan lokal:** Jalankan `gcloud auth application-default login`.
-* **Di Google Cloud:** Klien secara otomatis menggunakan service account yang terpasang pada workload, misalnya di Compute Engine, GKE, atau Cloud Run.
-* **File kunci service account:** Tetapkan `GOOGLE_APPLICATION_CREDENTIALS` ke path-nya.
-* **Workload Identity Federation dan impersonasi service account:** Konfigurasikan seperti yang Anda lakukan untuk Google Cloud API mana pun.
+* **Di Google Cloud:** Klien secara otomatis menggunakan akun layanan yang terpasang pada workload, misalnya di Compute Engine, GKE, atau Cloud Run.
+* **File kunci akun layanan:** Tetapkan `GOOGLE_APPLICATION_CREDENTIALS` ke path-nya.
+* **Workload Identity Federation dan impersonasi akun layanan:** Konfigurasikan seperti yang Anda lakukan untuk Google Cloud API mana pun.
 
 Periksa bahwa ADC berfungsi:
 
@@ -472,7 +472,7 @@ Claude Models on Google Cloud (Anthropic managed) tidak menggunakan kunci API. D
 
 Klien SDK untuk Claude Models on Google Cloud (Anthropic managed) memeriksa kredensial dalam urutan berikut. Klien menggunakan yang pertama kali ditemukannya:
 
-1. Token provider yang Anda berikan sebagai `token_provider` (typescript: `bearerTokenProvider`; csharp: `GoogleCloudClientOptions.TokenProvider`; go: `TokenSource`; java: `.bearerTokenSupplier()`; php: `tokenProvider`) saat Anda membuat klien. Ini adalah fungsi atau sumber token yang mengembalikan access token. Klien memintanya untuk token pada setiap permintaan. Caching dan penyegaran token menjadi tanggung jawab Anda.
+1. Penyedia token yang Anda berikan sebagai `token_provider` (typescript: `bearerTokenProvider`; csharp: `GoogleCloudClientOptions.TokenProvider`; go: `TokenSource`; java: `.bearerTokenSupplier()`; php: `tokenProvider`) saat Anda membuat klien. Ini adalah fungsi atau sumber token yang mengembalikan token akses. Klien memintanya untuk token pada setiap permintaan. Caching dan penyegaran token menjadi tanggung jawab Anda.
 2. Objek kredensial Google yang Anda berikan sebagai `credentials` (typescript: `googleAuth`; csharp: `GoogleCloudClientOptions.GoogleCredential`; java: `.googleCredentials()`; php: `googleCredentials`; ruby: `google_credentials`) saat Anda membuat klien. Go SDK tidak memiliki opsi ini.
 3. Application Default Credentials.
 
@@ -485,7 +485,7 @@ Klien tidak memiliki variabel lingkungan sendiri untuk kredensial. Gunakan `GOOG
 
 Jika permintaan Anda melewati proxy yang melampirkan token untuk Anda, tetapkan `skip_auth` (typescript, php: `skipAuth`; go: `SkipAuth`; java: `.skipAuth()`; csharp: `GoogleCloudClientOptions.SkipAuth`). Klien kemudian tidak mengirim header `Authorization`. Anda tidak dapat menggabungkan pengaturan ini dengan opsi kredensial sebelumnya.
 
-Ketika `ant` CLI menggunakan Claude Models on Google Cloud (Anthropic managed), CLI selalu mendapatkan token dari Application Default Credentials. CLI tidak menerima token provider, objek kredensial, atau pengaturan untuk melewati autentikasi.
+Ketika `ant` CLI menggunakan Claude Models on Google Cloud (Anthropic managed), CLI selalu mendapatkan token dari Application Default Credentials. CLI tidak menerima penyedia token, objek kredensial, atau pengaturan untuk melewati autentikasi.
 
 Sebelum Anda menggunakan `ant` dengan Claude Models on Google Cloud (Anthropic managed), pastikan tidak ada satu pun dari berikut ini yang ditetapkan:
 
@@ -520,7 +520,7 @@ Models API dan fitur-fitur berikut tersedia di Claude Models on Google Cloud (An
   * [Skill Kustom](https://platform.claude.com/docs/id/build-with-claude/skills-guide#managing-custom-skills)
   * [Agent Skills siap pakai](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#pre-built-agent-skills)
 * [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing)
-* [Penolakan classifier](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback)
+* [Penolakan pengklasifikasi](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback)
   * [Fallback sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) (Beta)
   * [Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) (Beta)
 * [Alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool)
@@ -559,7 +559,7 @@ Models API dan fitur-fitur berikut tersedia di Claude Models on Google Cloud (An
 
 Jika suatu fitur beta dibatasi hanya untuk organisasi tertentu di Claude API, organisasi Anthropic yang dibuat oleh proses penyiapan memerlukan akses yang sama.
 
-Untuk mengaktifkan atau menonaktifkan [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) untuk organisasi Anthropic yang dibuat oleh penyiapan, [buka Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console), buka **Settings > Compliance**, dan gunakan toggle **Compliance API**.
+Untuk mengaktifkan atau menonaktifkan [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) untuk organisasi Anthropic yang dibuat oleh penyiapan, [buka Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console), buka **Pengaturan > Kepatuhan**, dan gunakan toggle **Compliance API**.
 
 “Customer-managed encryption keys” (kunci enkripsi yang dikelola pelanggan), atau CMEK, tersedia dengan kunci Google Cloud KMS. Untuk mengaktifkan CMEK untuk organisasi Anthropic yang dibuat oleh penyiapan, lihat [Siapa yang dapat menggunakan CMEK](https://platform.claude.com/docs/id/manage-claude/cmek#availability). Untuk menyiapkan kunci, ikuti [Menyiapkan CMEK dengan Google Cloud KMS](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms). Kemudian daftarkan, verifikasi, dan lampirkan kunci di [Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console), seperti yang dijelaskan tab **Claude Platform** di halaman penyiapan.
 
@@ -573,7 +573,7 @@ Untuk mengaktifkan atau menonaktifkan [Compliance API](https://platform.claude.c
 * [Akses GitHub](https://platform.claude.com/docs/id/managed-agents/github) (Beta)
 * [Memory store](https://platform.claude.com/docs/id/managed-agents/memory) (Beta)
 * [Orkestrasi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration) (Beta)
-  * [Workflow dinamis](https://platform.claude.com/docs/id/managed-agents/workflow-runs) (Beta)
+  * [Alur kerja dinamis](https://platform.claude.com/docs/id/managed-agents/workflow-runs) (Beta)
   * [Thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads) (Beta)
 * [Outcome](https://platform.claude.com/docs/id/managed-agents/define-outcomes) (Beta)
 * [Kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) (Beta)
@@ -589,7 +589,7 @@ Akses diperiksa saat sesi atau deployment dibuat, bukan saat sedang berjalan:
 * **Sesi yang sedang berjalan tetap berjalan.** Jika Anda mencabut akses Google Cloud dari identitas yang membuat sesi, sesi tersebut tidak berhenti. Untuk menghentikannya, kirimkan [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events) secara tersendiri. Setelah sesi berstatus `idle`, Anda dapat mengarsipkan atau menghapusnya.
 * **Deployment terjadwal tetap berjalan.** Deployment tidak memeriksa ulang akses pembuatnya pada setiap eksekusi terjadwal. Untuk menghentikannya, jeda, perbarui, atau arsipkan deployment tersebut.
 
-Ketika Anda menghapus pengguna atau merotasi service account, tinjau sesi dan deployment yang dibuat oleh identitas tersebut.
+Ketika Anda menghapus pengguna atau merotasi akun layanan, tinjau sesi dan deployment yang dibuat oleh identitas tersebut.
 
 ### Fitur yang tidak didukung
 
@@ -614,13 +614,13 @@ Anthropic mengelola “rate limit” (batas laju) untuk Claude Models on Google 
 
 Claude Models on Google Cloud (Anthropic managed) ditagih melalui Google Cloud Marketplace. Anthropic mengukur penggunaan Anda. Anthropic melaporkan penggunaan tersebut ke Google Cloud dalam satuan Claude Consumption Unit. Satu Claude Consumption Unit bernilai $0,01 USD. Biaya tersebut muncul pada tagihan Google Cloud Anda. Anthropic tidak mengirimkan faktur terpisah.
 
-Lihat data penggunaan dan biaya di halaman **Usage** dan **Cost** di [Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console), atau kueri data tersebut dengan [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api).
+Lihat data penggunaan dan biaya di halaman **Penggunaan** dan **Biaya** di [Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console), atau kueri data tersebut dengan [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api).
 
 Jika Anda memiliki komitmen pembelanjaan Google Cloud, penggunaan dihitung terhadap komitmen tersebut seperti pembelian Marketplace lainnya.
 
 ### Retensi data
 
-Anthropic adalah pemroses data untuk Claude Models on Google Cloud (Anthropic managed). Beberapa layanan pendukung, seperti sistem trust and safety Anthropic, memproses data di luar Google Cloud.
+Anthropic adalah pemroses data untuk Claude Models on Google Cloud (Anthropic managed). Beberapa layanan pendukung, seperti sistem kepercayaan dan keamanan Anthropic, memproses data di luar Google Cloud.
 
 Claude Models on Google Cloud (Anthropic managed) mengikuti kebijakan retensi data yang sama dengan Claude API. Lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention). “Zero Data Retention” (retensi data nol), atau ZDR, tersedia berdasarkan permintaan. Hubungi perwakilan akun Anthropic Anda.
 
@@ -630,8 +630,8 @@ Pengaturan ZDR pada organisasi Anthropic lain tidak berlaku untuk organisasi And
 
 [Cloud Audit Logs](https://cloud.google.com/logging/docs/audit) mencatat aktivitas API untuk Claude Models on Google Cloud (Anthropic managed) di proyek Anda. Entri muncul di bawah layanan `claude.googleapis.com`. Setiap rute API termasuk dalam salah satu dari dua jenis log:
 
-* **Log Data Access:** Log ini mencakup sebagian besar rute, termasuk messages, batches, files, skills, models, dan sebagian besar sumber daya Claude Managed Agents. Log ini nonaktif secara default.
-* **Log Admin Activity:** Log ini mencakup rute lainnya, termasuk rute kunci enkripsi dan sebagian besar rute credential vault. Pengecualiannya adalah rute untuk `vaults.verify`, yang termasuk Data Access. Log Admin Activity selalu aktif.
+* **Log Data Access:** Log ini mencakup sebagian besar rute, termasuk pesan, batch, file, skill, model, dan sebagian besar sumber daya Claude Managed Agents. Log ini nonaktif secara default.
+* **Log Admin Activity:** Log ini mencakup rute lainnya, termasuk rute kunci enkripsi dan sebagian besar rute vault kredensial. Pengecualiannya adalah rute untuk `vaults.verify`, yang termasuk Data Access. Log Admin Activity selalu aktif.
 
 Untuk menyimpan catatan permintaan, aktifkan log Data Access untuk `claude.googleapis.com` di pengaturan log audit proyek Anda.
 
@@ -651,7 +651,7 @@ Rencanakan perpindahan sebagai cutover ke organisasi baru:
 * **Buat ulang akses dan konfigurasi.** Kunci API, workspace, dan pengaturan Claude Console tidak ikut terbawa. Berikan [peran IAM](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#iam-roles) pada proyek alih-alih membuat kunci API. Untuk membuat ulang workspace Anda, lihat [Workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#workspaces). Untuk pengaturan ZDR, lihat [Retensi data](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#data-retention).
 * **Rencanakan untuk sumber daya yang tersimpan.** File, skill, batch, dan sumber daya Claude Managed Agents tetap berada di organisasi yang sudah ada.
 * **Perbarui integrasi Anda.** Untuk apa yang berubah dan apa yang tetap sama, lihat [Melakukan permintaan](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#making-requests). Untuk fitur yang tidak didukung, lihat [Fitur yang tidak didukung](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#features-not-supported).
-* **Lakukan cutover sesuai jadwal Anda sendiri.** Kedua organisasi bersifat independen dan dapat melayani traffic secara paralel. Anda dapat memindahkan workload secara bertahap. Organisasi yang sudah ada tetap menggunakan penagihannya saat ini. Sebelum Anda mengalihkan traffic produksi, periksa [batas laju untuk Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#rate-limits).
+* **Lakukan cutover sesuai jadwal Anda sendiri.** Kedua organisasi bersifat independen dan dapat melayani lalu lintas secara paralel. Anda dapat memindahkan workload secara bertahap. Organisasi yang sudah ada tetap menggunakan penagihannya saat ini. Sebelum Anda mengalihkan lalu lintas produksi, periksa [batas laju untuk Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#rate-limits).
 
 ## Bermigrasi dari Claude Models on Google Cloud (Google managed)
 
@@ -663,14 +663,14 @@ Untuk beralih ke Claude Models on Google Cloud (Anthropic managed), selesaikan l
   </Step>
 
   <Step title="Siapkan akses">
-    Berikan `roles/claude.user` kepada setiap identitas yang memanggil Claude Models on Google Cloud (Anthropic managed). Tetapkan project dan ID workspace Anda sebagai variabel lingkungan. Untuk keduanya, lihat [Sebelum melakukan panggilan API](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#before-making-api-calls).
+    Berikan `roles/claude.user` kepada setiap identitas yang memanggil Claude Models on Google Cloud (Anthropic managed). Tetapkan proyek dan ID workspace Anda sebagai variabel lingkungan. Untuk keduanya, lihat [Sebelum melakukan panggilan API](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#before-making-api-calls).
   </Step>
 
   <Step title="Instal paket SDK">
     Instal paket yang menyediakan klien untuk Claude Models on Google Cloud (Anthropic managed). Lihat [Instal SDK](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#install-an-sdk).
   </Step>
 
-  <Step title="Ganti import dan klien">
+  <Step title="Ganti impor dan klien">
     Ubah kode yang mengimpor dan membuat klien Anda. Gunakan `AnthropicGoogleCloud` (csharp: `AnthropicGoogleCloudClient`; go: `googlecloud.NewClient()`; java: `GoogleCloudBackend`; php: `Anthropic\GoogleCloud\Client`; ruby: `Anthropic::GoogleCloudClient`) sebagai pengganti `AnthropicVertex` (csharp: `AnthropicVertexClient`; go: `vertex.WithGoogleAuth()`; java: `VertexBackend`; php: `Anthropic\Vertex\Client`; ruby: `Anthropic::VertexClient`). Dalam permintaan cURL, ubah URL, header, dan body. Kode Anda saat ini membuat klien untuk Claude Models on Google Cloud (Google managed). Misalnya, kode berikut membuat klien tersebut dengan endpoint global:
 
     <CodeGroup exclude="shell:CLI">
@@ -852,13 +852,13 @@ Untuk beralih ke Claude Models on Google Cloud (Anthropic managed), selesaikan l
       ```
     </CodeGroup>
 
-    Klien baru membaca project dan ID workspace Anda dari variabel lingkungan yang Anda tetapkan di [Temukan ID workspace Anda](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#find-your-workspace-id). Anda tidak meneruskannya saat membuat klien. Panggilan Messages API Anda tetap seperti semula, kecuali untuk ID model dan fitur pada langkah berikutnya.
+    Klien baru membaca proyek dan ID workspace Anda dari variabel lingkungan yang Anda tetapkan di [Temukan ID workspace Anda](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#find-your-workspace-id). Anda tidak meneruskannya saat membuat klien. Panggilan Messages API Anda tetap seperti semula, kecuali untuk ID model dan fitur pada langkah berikutnya.
   </Step>
 
   <Step title="Periksa ID model dan fitur">
     * **ID model:** Jika Anda menggunakan model yang lebih lama dari Claude 4.6, ganti `@` sebelum tanggal snapshot dalam ID-nya dengan tanda hubung. Misalnya, `claude-haiku-4-5@20251001` menjadi `claude-haiku-4-5-20251001`. Untuk model dan ID-nya, lihat [ID model API](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#api-model-ids).
     * **Fitur:** Periksa [Dukungan fitur](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#feature-support) untuk setiap fitur yang digunakan kode Anda.
-    * **Lokasi:** Jika saat ini Anda menggunakan endpoint multi-region atau regional, periksa lokasi mana yang digunakan Claude Models on Google Cloud (Anthropic managed). Lihat [Resolusi project, lokasi, dan workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution).
+    * **Lokasi:** Jika saat ini Anda menggunakan endpoint multi-region atau regional, periksa lokasi mana yang digunakan Claude Models on Google Cloud (Anthropic managed). Lihat [Resolusi proyek, lokasi, dan workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution).
   </Step>
 
   <Step title="Jalankan permintaan uji">

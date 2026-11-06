@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: b7eefec89b8cc1cf875366bbd54bce2d9f8bcf7a4c310072f9b1f16e0630dbe6
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: d38833e8b041051913423f13904d8f799532a59d2f19c116ff00c2f78fa3d090
 ---
 
 ---
@@ -49,12 +49,12 @@ Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok
 | **Apa itu**            | Akses langsung untuk memberikan prompt ke model | Harness agen siap pakai yang dapat dikonfigurasi dan berjalan di infrastruktur terkelola |
 | **Paling cocok untuk** | Loop agen kustom dan kontrol yang terperinci    | Tugas yang berjalan lama dan pekerjaan asinkron                                          |
 
-Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permintaan dasar, percakapan multi-giliran, teknik prefill, dan kemampuan vision. Untuk spesifikasi API lengkap, lihat [referensi Messages API](https://platform.claude.com/docs/id/api/messages/create). Untuk harness agen terkelola, lihat [ikhtisar Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview).
+Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permintaan dasar, percakapan multi-giliran, teknik prefill, dan kemampuan vision. Untuk spesifikasi API lengkap, lihat [referensi Messages API](https://platform.claude.com/docs/id/api/messages/create). Jika Anda menginginkan harness agen terkelola, lihat [ikhtisar Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview).
 
 ## Permintaan dan respons dasar
 
 <Note>
-  Parameter sampling `temperature`, `top_p`, dan `top_k` tidak didukung pada model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview, atau pada model apa pun mulai dari [versi API `2026-10-21`](https://platform.claude.com/docs/id/api/migration-2026-10-21#sampling-parameters). Menetapkannya ke nilai non-default akan menghasilkan error 400, dan mulai dari `2026-10-21` nilai apa pun juga demikian. Hilangkan parameter tersebut dari payload permintaan dan gunakan prompting untuk mengarahkan perilaku model. Lihat [panduan migrasi](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#opus-46-breaking-changes).
+  Parameter sampling `temperature`, `top_p`, dan `top_k` tidak didukung pada model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview, atau pada model apa pun mulai dari [versi API `2026-10-21`](https://platform.claude.com/docs/id/api/migration-2026-10-21#sampling-parameters). Menetapkannya ke nilai non-default akan menghasilkan error 400, dan mulai dari `2026-10-21` nilai apa pun juga demikian. Hilangkan parameter tersebut dari payload permintaan dan gunakan prompting untuk mengarahkan perilaku model. Lihat [perubahan yang merusak kompatibilitas dalam panduan migrasi](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#opus-46-breaking-changes).
 </Note>
 
 <CodeGroup>
@@ -370,7 +370,7 @@ Lihat [Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/bu
 Anda dapat melakukan prefill sebagian respons Claude di posisi terakhir daftar pesan input. Gunakan teknik ini untuk membentuk respons Claude. Contoh berikut menggunakan `"max_tokens": 1` untuk mendapatkan satu jawaban pilihan ganda dari Claude.
 
 <Warning>
-  Prefill tidak didukung pada model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). Permintaan yang menggunakan prefill dengan model-model ini akan mengembalikan error 400. Sebagai gantinya, gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, atau instruksi prompt sistem. Lihat [panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
+  Prefill tidak didukung pada model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). Permintaan yang menggunakan prefill dengan model-model ini akan mengembalikan error 400. Sebagai gantinya, gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, atau instruksi prompt sistem. Lihat [panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
 </Warning>
 
 <CodeGroup>
@@ -1075,15 +1075,15 @@ Claude dapat membaca teks dan gambar dalam permintaan. Anda dapat menyediakan ga
     Berikan Claude alat untuk memanggil layanan eksternal dan API dari dalam Messages API.
   </Card>
 
-  <Card title="Alat computer use" icon="computer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool">
+  <Card title="Alat penggunaan komputer" icon="computer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool">
     Kendalikan lingkungan komputer desktop dengan Messages API.
   </Card>
 
-  <Card title="Alat browser use" icon="browser" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool">
+  <Card title="Alat penggunaan browser" icon="browser" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool">
     Biarkan Claude menavigasi, membaca, dan berinteraksi dengan halaman web di browser yang Anda jalankan.
   </Card>
 
-  <Card title="Structured outputs" icon="code-brackets" href="https://platform.claude.com/docs/id/build-with-claude/structured-outputs">
+  <Card title="Output terstruktur" icon="code-brackets" href="https://platform.claude.com/docs/id/build-with-claude/structured-outputs">
     Dapatkan output JSON yang terjamin dan tervalidasi skema dari Claude.
   </Card>
 

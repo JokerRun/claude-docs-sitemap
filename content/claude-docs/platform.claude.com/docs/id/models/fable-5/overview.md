@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5/overview
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 970ab97fc8bc89ea2cf6116ee0452725b37e397fc252b6490d0b9e154ed6e97b
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 4934f0454248f0d9f52ba74376aec42b70fe2abf51458d6d3071d7b41d09cc81
 ---
 
 ---
@@ -21,11 +21,11 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $10 / MTo
 
 [Announcement](https://www.anthropic.com/news/claude-fable-5-mythos-5)
 
-## Fable vs. Mythos
+## Fable versus Mythos
 
 [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview) ditawarkan secara terpisah untuk alur kerja keamanan siber defensif dan hanya tersedia bagi organisasi yang telah diverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842). Model ini memiliki spesifikasi dan harga yang sama dengan Claude Fable 5.
 
-## Bagaimana perbandingannya dengan lineup saat ini
+## Bagaimana perbandingannya dengan jajaran model saat ini
 
 | Model                                                                               | Context | Max output | Price / MTok       | Thinking             | Default effort | Knowledge cutoff |
 | :---------------------------------------------------------------------------------- | :------ | :--------- | :----------------- | :------------------- | :------------- | :--------------- |
@@ -100,7 +100,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $10 / MTo
     Model Fable saat ini: ikhtisar, spesifikasi, dan sumber daya.
   </Card>
 
-  <Card title="Prompting Claude Fable 5" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5">
+  <Card title="Menulis prompt untuk Claude Fable 5" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5">
     Panduan prompting khusus model untuk pekerjaan jangka panjang dan agentik.
   </Card>
 
@@ -116,7 +116,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $10 / MTo
     Prompt sistem yang digunakan Claude Fable 5 di claude.ai dan aplikasi Claude.
   </Card>
 
-  <Card title="System card" icon="file" href="https://www.anthropic.com/claude-fable-5-mythos-5-system-card">
+  <Card title="Kartu sistem" icon="file" href="https://www.anthropic.com/claude-fable-5-mythos-5-system-card">
     Evaluasi keamanan dan keputusan penerapan untuk Claude Fable 5 dan Claude Mythos 5.
   </Card>
 

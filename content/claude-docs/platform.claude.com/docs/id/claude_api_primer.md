@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/claude_api_primer
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 2cdae8d84039a8f11dfc6d1480b7158ef1d21a1acac8dc6d385f212b08a58929
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 4cb96dee488c7eef2a493ed98f995a62d92f2c17bb0e95b5537659f200c50518
 ---
 
 ---
 title: Panduan dasar penggunaan API untuk Claude
 url: https://platform.claude.com/docs/id/claude_api_primer
-description: Panduan ini dirancang untuk memberikan Claude dasar-dasar penggunaan Claude API. Panduan ini memberikan penjelasan dan contoh tentang ID model/API messages dasar, penggunaan alat, streaming, thinking, dan tidak ada yang lain.
+description: Panduan ini dirancang untuk memberikan Claude dasar-dasar penggunaan Claude API. Panduan ini memberikan penjelasan dan contoh tentang ID model/API messages dasar, penggunaan alat, streaming, pemikiran, dan tidak ada yang lain.
 ---
 
 # Panduan dasar penggunaan API untuk Claude
 
-> Panduan ini dirancang untuk memberikan Claude dasar-dasar penggunaan Claude API. Panduan ini memberikan penjelasan dan contoh tentang ID model/API messages dasar, penggunaan alat, streaming, thinking, dan tidak ada yang lain.
+> Panduan ini dirancang untuk memberikan Claude dasar-dasar penggunaan Claude API. Panduan ini memberikan penjelasan dan contoh tentang ID model/API messages dasar, penggunaan alat, streaming, pemikiran, dan tidak ada yang lain.
 
 ## Model
 
@@ -245,31 +245,31 @@ Claude dapat membaca teks maupun gambar dalam permintaan. Tipe sumber `base64` d
   ```
 </CodeGroup>
 
-## Thinking
+## Pemikiran
 
-Thinking terkadang dapat membantu Claude dengan tugas yang sangat sulit. Mekanisme saat ini adalah [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (`thinking: {"type": "adaptive"}`): Claude menentukan kapan dan seberapa banyak berpikir, dan Anda mengarahkan kedalaman thinking dengan parameter [`effort`](https://platform.claude.com/docs/id/build-with-claude/effort) alih-alih anggaran token. Adaptive thinking didukung pada model Claude 4.6 dan yang lebih baru serta Claude Mythos Preview. Pada model Claude 5 dan yang lebih baru serta Claude Mythos Preview, thinking aktif secara default ketika parameter `thinking` dihilangkan.
+Thinking terkadang dapat membantu Claude dengan tugas yang sangat sulit. Mekanisme saat ini adalah [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) (`thinking: {"type": "adaptive"}`): Claude menentukan kapan dan seberapa banyak berpikir, dan Anda mengarahkan kedalaman thinking dengan parameter [`effort`](https://platform.claude.com/docs/id/build-with-claude/effort) alih-alih anggaran token. Pemikiran adaptif didukung pada model Claude 4.6 dan yang lebih baru serta Claude Mythos Preview. Pada model Claude 5 dan yang lebih baru serta Claude Mythos Preview, thinking aktif secara default ketika parameter `thinking` dihilangkan.
 
 Thinking didukung pada model-model berikut:
 
-* Claude Opus 5.5 (`claude-opus-5-5`, hanya adaptive thinking, selalu aktif)
-* Claude Sonnet 5.5 (`claude-sonnet-5-5`, hanya adaptive thinking, aktif secara default; `thinking: {"type": "disabled"}` mengembalikan error 400, jadi kirim `thinking: {"type": "between_tools"}` untuk menonaktifkan thinking di awal)
-* Claude Haiku 5.5 (`claude-haiku-5-5`, hanya adaptive thinking, aktif secara default)
-* Claude Fable 5.1 (`claude-fable-5-1`, hanya adaptive thinking, selalu aktif)
-* Claude Mythos 5.1 (`claude-mythos-5-1`, hanya adaptive thinking, selalu aktif)
-* Claude Fable 5 (`claude-fable-5`, hanya adaptive thinking, selalu aktif)
-* Claude Mythos 5 (`claude-mythos-5`, hanya adaptive thinking, selalu aktif)
-* Claude Opus 5 (claude-opus-5, hanya adaptive thinking, aktif secara default)
-* Claude Sonnet 5 (`claude-sonnet-5`, hanya adaptive thinking, aktif secara default)
-* Claude Opus 4.8 (claude-opus-4-8, hanya adaptive thinking)
-* Claude Opus 4.7 (`claude-opus-4-7`, hanya adaptive thinking)
-* Claude Opus 4.6 (`claude-opus-4-6`, adaptive thinking atau manual thinking lama)
-* Claude Sonnet 4.6 (`claude-sonnet-4-6`, adaptive thinking atau manual thinking lama)
-* Claude Opus 4.5 (`claude-opus-4-5-20251101`, hanya manual thinking lama)
-* Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`, [deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations), hanya manual thinking lama)
-* Claude Haiku 4.5 (`claude-haiku-4-5-20251001`, hanya manual thinking lama)
+* Claude Opus 5.5 (`claude-opus-5-5`, hanya pemikiran adaptif, selalu aktif)
+* Claude Sonnet 5.5 (`claude-sonnet-5-5`, hanya pemikiran adaptif, aktif secara default; `thinking: {"type": "disabled"}` mengembalikan error 400, jadi kirim `thinking: {"type": "between_tools"}` untuk menonaktifkan thinking di awal)
+* Claude Haiku 5.5 (`claude-haiku-5-5`, hanya pemikiran adaptif, aktif secara default)
+* Claude Fable 5.1 (`claude-fable-5-1`, hanya pemikiran adaptif, selalu aktif)
+* Claude Mythos 5.1 (`claude-mythos-5-1`, hanya pemikiran adaptif, selalu aktif)
+* Claude Fable 5 (`claude-fable-5`, hanya pemikiran adaptif, selalu aktif)
+* Claude Mythos 5 (`claude-mythos-5`, hanya pemikiran adaptif, selalu aktif)
+* Claude Opus 5 (claude-opus-5, hanya pemikiran adaptif, aktif secara default)
+* Claude Sonnet 5 (`claude-sonnet-5`, hanya pemikiran adaptif, aktif secara default)
+* Claude Opus 4.8 (claude-opus-4-8, hanya pemikiran adaptif)
+* Claude Opus 4.7 (`claude-opus-4-7`, hanya pemikiran adaptif)
+* Claude Opus 4.6 (`claude-opus-4-6`, pemikiran adaptif atau pemikiran manual lama)
+* Claude Sonnet 4.6 (`claude-sonnet-4-6`, pemikiran adaptif atau pemikiran manual lama)
+* Claude Opus 4.5 (`claude-opus-4-5-20251101`, hanya pemikiran manual lama)
+* Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`, [tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations), hanya pemikiran manual lama)
+* Claude Haiku 4.5 (`claude-haiku-4-5-20251001`, hanya pemikiran manual lama)
 
 <Note>
-  Pada model Claude 4.7 dan yang lebih baru, pemikiran diperpanjang manual (`type: enabled` dengan nilai `budget_tokens`) tidak didukung dan mengembalikan error 400. Gunakan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (`type: adaptive`) sebagai gantinya.
+  Pada model Claude 4.7 dan yang lebih baru, pemikiran diperpanjang manual (`type: enabled` dengan nilai `budget_tokens`) tidak didukung dan mengembalikan error 400. Gunakan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) (`type: adaptive`) sebagai gantinya.
 </Note>
 
 ### Cara kerja thinking
@@ -317,7 +317,7 @@ Ketika thinking aktif, Claude membuat blok konten `thinking` tempat ia mengeluar
   ```
 </CodeGroup>
 
-“Manual extended thinking” (pemikiran diperpanjang manual) (`thinking: {"type": "enabled", "budget_tokens": N}`) adalah mekanisme lama. Mekanisme ini hanya berfungsi pada model Claude 4 hingga 4.6 yang mendukung thinking; model Claude 4.7 dan yang lebih baru menolak `type: enabled` dengan error 400 dan menggunakan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) sebagai gantinya. Dengan pemikiran diperpanjang manual, `budget_tokens` menetapkan jumlah maksimum token yang boleh digunakan Claude untuk proses penalaran internalnya; batas ini berlaku untuk token thinking penuh, bukan untuk output yang diringkas. Kecuali Anda menggunakan [interleaved thinking](https://platform.claude.com/docs/id/claude_api_primer#interleaved-thinking), `budget_tokens` harus lebih kecil dari `max_tokens` agar Claude memiliki ruang untuk menulis responsnya setelah thinking selesai.
+“Manual extended thinking” (pemikiran diperpanjang manual) (`thinking: {"type": "enabled", "budget_tokens": N}`) adalah mekanisme lama. Mekanisme ini hanya berfungsi pada model Claude 4 hingga 4.6 yang mendukung thinking; model Claude 4.7 dan yang lebih baru menolak `type: enabled` dengan error 400 dan menggunakan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) sebagai gantinya. Dengan pemikiran diperpanjang manual, `budget_tokens` menetapkan jumlah maksimum token yang boleh digunakan Claude untuk proses penalaran internalnya; batas ini berlaku untuk token thinking penuh, bukan untuk output yang diringkas. Kecuali Anda menggunakan [pemikiran berselang](https://platform.claude.com/docs/id/claude_api_primer#interleaved-thinking), `budget_tokens` harus lebih kecil dari `max_tokens` agar Claude memiliki ruang untuk menulis responsnya setelah thinking selesai.
 
 ## Thinking dengan penggunaan alat
 
@@ -325,7 +325,7 @@ Thinking dapat digunakan bersama penggunaan alat, memungkinkan Claude untuk bern
 
 Batasan penting:
 
-1. **Batasan pilihan alat:** Dengan pemikiran diperpanjang manual (`thinking: {"type": "enabled"}`), hanya `tool_choice: {"type": "auto"}` (default) atau `tool_choice: {"type": "none"}` yang didukung. Adaptive thinking menerima penggunaan alat yang dipaksakan, kecuali pada model yang tercantum di bawah [Memaksa penggunaan alat](https://platform.claude.com/docs/id/claude_api_primer#forcing-tool-use). Jika diterima, pemanggilan alat yang dipaksakan akan melewati thinking: respons dimulai dengan pemanggilan alat dan tidak memiliki blok `thinking`.
+1. **Batasan pilihan alat:** Dengan pemikiran diperpanjang manual (`thinking: {"type": "enabled"}`), hanya `tool_choice: {"type": "auto"}` (default) atau `tool_choice: {"type": "none"}` yang didukung. Pemikiran adaptif menerima penggunaan alat yang dipaksakan, kecuali pada model yang tercantum di bawah [Memaksa penggunaan alat](https://platform.claude.com/docs/id/claude_api_primer#forcing-tool-use). Jika diterima, pemanggilan alat yang dipaksakan akan melewati thinking: respons dimulai dengan pemanggilan alat dan tidak memiliki blok `thinking`.
 2. **Mempertahankan blok thinking:** Selama penggunaan alat, Anda harus meneruskan blok `thinking` kembali ke API untuk pesan assistant terakhir.
 
 ### Mempertahankan blok thinking
@@ -394,15 +394,15 @@ Batasan penting:
   ```
 </CodeGroup>
 
-### Interleaved thinking
+### Pemikiran berselang
 
 “Interleaved thinking” (thinking yang diselingi) memungkinkan Claude untuk berpikir di antara pemanggilan alat, bernalar tentang hasil alat sebelum menentukan langkah berikutnya.
 
 <Info>
-  Pada model dengan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (`thinking: {type: "adaptive"}`), interleaved thinking diaktifkan secara otomatis. Tidak diperlukan beta header. Sonnet 4.6 mendukung beta header `interleaved-thinking-2025-05-14` dengan pemikiran diperpanjang manual maupun adaptive thinking.
+  Pada model dengan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) (`thinking: {type: "adaptive"}`), pemikiran berselang diaktifkan secara otomatis. Tidak diperlukan header beta. Sonnet 4.6 mendukung header beta `interleaved-thinking-2025-05-14` dengan pemikiran diperpanjang manual maupun pemikiran adaptif.
 </Info>
 
-Pada model lama yang menggunakan pemikiran diperpanjang manual (model Claude 4, 4.5, dan Sonnet 4.6), aktifkan interleaved thinking dengan menambahkan beta header `interleaved-thinking-2025-05-14` ke permintaan API Anda:
+Pada model lama yang menggunakan pemikiran diperpanjang manual (model Claude 4, 4.5, dan Sonnet 4.6), aktifkan pemikiran berselang dengan menambahkan header beta `interleaved-thinking-2025-05-14` ke permintaan API Anda:
 
 <CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
@@ -496,7 +496,7 @@ Pada model lama yang menggunakan pemikiran diperpanjang manual (model Claude 4, 
   ```
 </CodeGroup>
 
-Dengan interleaved thinking dan HANYA dengan interleaved thinking (bukan pemikiran diperpanjang manual biasa), `budget_tokens` dapat melebihi parameter `max_tokens`, karena `budget_tokens` dalam kasus ini mewakili total anggaran di seluruh blok thinking dalam satu giliran assistant.
+Dengan pemikiran berselang dan HANYA dengan pemikiran berselang (bukan pemikiran diperpanjang manual biasa), `budget_tokens` dapat melebihi parameter `max_tokens`, karena `budget_tokens` dalam kasus ini mewakili total anggaran di seluruh blok thinking dalam satu giliran assistant.
 
 ## Penggunaan alat
 
@@ -632,13 +632,13 @@ Ketika Anda menerima respons penggunaan alat, Anda harus:
 }
 ```
 
-### Menangani stop reason `max_tokens`
+### Menangani alasan berhenti `max_tokens`
 
 Jika respons Claude terpotong karena mencapai batas `max_tokens` selama penggunaan alat, coba lagi permintaan dengan nilai `max_tokens` yang lebih tinggi.
 
-### Menangani stop reason `pause_turn`
+### Menangani alasan berhenti `pause_turn`
 
-Saat menggunakan alat server seperti pencarian web, API dapat mengembalikan stop reason `pause_turn`. Lanjutkan percakapan dengan meneruskan respons yang dijeda kembali apa adanya dalam permintaan berikutnya.
+Saat menggunakan alat server seperti pencarian web, API dapat mengembalikan alasan berhenti `pause_turn`. Lanjutkan percakapan dengan meneruskan respons yang dijeda kembali apa adanya dalam permintaan berikutnya.
 
 ## Pemecahan masalah error
 
@@ -706,7 +706,7 @@ Setiap server-sent event menyertakan tipe event bernama dan data JSON terkait. S
 
 ### Tipe delta blok konten
 
-#### Text delta
+#### Delta teks
 
 ```json
 {
@@ -716,7 +716,7 @@ Setiap server-sent event menyertakan tipe event bernama dan data JSON terkait. S
 }
 ```
 
-#### Input JSON delta
+#### Delta JSON input
 
 Untuk blok konten `tool_use`, delta berupa *string JSON parsial*:
 
@@ -724,7 +724,7 @@ Untuk blok konten `tool_use`, delta berupa *string JSON parsial*:
 {"type": "content_block_delta","index": 1,"delta": {"type": "input_json_delta","partial_json": "{\"location\": \"San Fra"}}}
 ```
 
-#### Thinking delta
+#### Delta pemikiran
 
 Saat menggunakan thinking dengan streaming:
 

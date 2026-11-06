@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-api
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: c0da246f8a88599a89041ddc6a06d294ea82770aec70c46d9a800554cd9ae211
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 56dbedc41c216195e8e54cd1a4ede6e957cb0a3d934360c587a18f0fd158ed44
 ---
 
 ---
@@ -22,8 +22,8 @@ Panggilan berikut mengembalikan peristiwa aktivitas terbaru di organisasi Anda. 
 ```bash cURL
 curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/activities?limit=1" \
-  --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
-  --header "anthropic-version: 2026-10-21"
+  -H "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
+  -H "anthropic-version: 2026-10-21"
 ```
 
 Respons yang berhasil mengembalikan objek JSON yang berisi `data` (array berisi record `Activity`), `has_more`, `first_id`, dan `last_id`:
@@ -64,7 +64,7 @@ Activity Feed (`GET /v1/compliance/activities`) tersedia untuk kunci apa pun yan
 
 Tenant Claude Enterprise memiliki satu “parent organization” (organisasi induk), yaitu kontainer tingkat teratas yang memusatkan identitas, dengan organisasi tertaut dari dua jenis: organisasi claude.ai, tempat pengguna melakukan chat dan menyimpan konten, dan organisasi Claude Console, tempat pengguna mengelola beban kerja Claude API. Untuk kunci yang mencakup organisasi induk, endpoint direktori (organisasi, pengguna, peran, dan grup) mengembalikan data dari setiap organisasi tertaut dari kedua jenis tersebut. Endpoint konten (chat, file, proyek, lampiran proyek, dan sesi) hanya melayani data Claude Enterprise. Endpoint chat, file, dan proyek mengembalikan chat, file, dan proyek claude.ai. Endpoint sesi mengembalikan transkrip sesi di mesin pengguna (sesi lokal), yang direkam saat pengguna masuk dengan akun Claude Enterprise mereka: sesi di Cowork, Claude Code, Claude Science, Claude for Microsoft 365, add-in Claude untuk Google Docs, Google Sheets, dan Google Slides, serta Claude in Chrome. Endpoint ini juga mengembalikan transkrip sesi Cowork yang dimulai di claude.ai versi web atau seluler dan sesi Claude Tag yang dimulai di Slack, yang berjalan di cloud dalam lingkungan yang dikelola Anthropic atau, untuk Claude Tag, di pool runner yang di-host sendiri (sesi jarak jauh). Organisasi Claude Console mandiri (yang tidak memiliki organisasi induk) bukan bagian dari tenant Claude Enterprise; organisasi tersebut menggunakan kunci Admin API dan hanya dapat mengkueri Activity Feed.
 
-Semua endpoint `/v1/compliance/*` berbagi “rate limit” (batas laju) sebesar 600 permintaan per menit per organisasi induk (untuk organisasi Claude Console mandiri, per organisasi). Endpoint sesi lokal hanya dihitung terhadap batas bersama tersebut, dan endpoint sesi jarak jauh memiliki anggaran permintaan kedua di atasnya. Lihat [429 Too Many Requests](https://platform.claude.com/docs/id/manage-claude/compliance-errors#429-too-many-requests) untuk header respons dan kontrak percobaan ulang.
+Semua endpoint `/v1/compliance/*` berbagi “rate limit” (batas laju) sebesar 600 permintaan per menit untuk setiap organisasi induk (untuk organisasi Claude Console mandiri, untuk setiap organisasi). Endpoint sesi lokal hanya dihitung terhadap batas bersama tersebut, sedangkan endpoint sesi jarak jauh memiliki anggaran permintaan kedua di atasnya. Lihat [429 Too Many Requests](https://platform.claude.com/docs/id/manage-claude/compliance-errors#429-too-many-requests) untuk header respons dan ketentuan percobaan ulang.
 
 ***
 
@@ -80,15 +80,15 @@ Beberapa fitur yang berdekatan tumpang tindih dengan Compliance API; berikut car
 
 ### Ekspor log audit
 
-Ekspor log audit adalah fitur terpisah di [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls) yang memungkinkan pemilik dan pemilik utama mengunduh CSV berisi peristiwa organisasi. Fitur ini jauh lebih sempit daripada Compliance API: jendela lihat-balik yang dibatasi, hanya unduhan CSV, dan tanpa akses ke konten chat, file, atau proyek. Standarkan pada Compliance API untuk penggunaan terprogram yang berkelanjutan.
+Ekspor log audit adalah fitur terpisah di [claude.ai > Pengaturan organisasi > Data dan privasi](https://claude.ai/admin-settings/data-privacy-controls) yang memungkinkan pemilik dan pemilik utama mengunduh CSV berisi peristiwa organisasi. Fitur ini jauh lebih sempit daripada Compliance API: jendela lihat-balik yang dibatasi, hanya unduhan CSV, dan tanpa akses ke konten chat, file, atau proyek. Standarkan pada Compliance API untuk penggunaan terprogram yang berkelanjutan.
 
-### Analytics API
+### API Analitik
 
 Anthropic menyediakan dua API analitik: Claude Enterprise Analytics API dan [Claude Code Analytics API](https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api). Keduanya mengembalikan angka penggunaan dan biaya teragregasi untuk tim IT, FinOps, dan platform, sedangkan Compliance API mengembalikan record per peristiwa untuk tim keamanan, hukum, dan kepatuhan. Kedua keluarga API ini menjawab pertanyaan yang berbeda, menggunakan kunci yang berbeda, dan disediakan secara terpisah.
 
 ### Logging OpenTelemetry
 
-[Logging OpenTelemetry Cowork](https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry) dan [pemantauan Claude Code](https://code.claude.com/docs/id/monitoring-usage) melakukan streaming telemetri per peristiwa, termasuk metadata token, biaya, dan host, ke kolektor yang Anda jalankan saat aktivitas terjadi, sedangkan Compliance API mengembalikan transkrip per sesi yang disimpan dari Anthropic berdasarkan permintaan dan bekerja dengan Compliance Access Key Anda yang sudah ada. Logging OpenTelemetry juga dapat merekam prompt dan respons, tetapi Anthropic merekomendasikan Compliance API untuk mengambil konten sesi Cowork dan Claude Code. Untuk tabel yang membandingkan sesi lokal, sesi jarak jauh, dan logging OpenTelemetry, lihat pengantar [Mengambil transkrip sesi](https://platform.claude.com/docs/id/manage-claude/compliance-sessions).
+[Logging OpenTelemetry Cowork](https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry) dan [pemantauan Claude Code](https://code.claude.com/docs/id/monitoring-usage) mengalirkan telemetri per peristiwa, termasuk metadata token, biaya, dan host, ke kolektor yang Anda jalankan saat aktivitas terjadi, sedangkan Compliance API mengembalikan transkrip per sesi yang disimpan dari Anthropic berdasarkan permintaan dan bekerja dengan Compliance Access Key Anda yang sudah ada. Logging OpenTelemetry juga dapat merekam prompt dan respons, tetapi Anthropic merekomendasikan Compliance API untuk mengambil konten sesi Cowork dan Claude Code. Untuk tabel yang membandingkan sesi lokal, sesi jarak jauh, dan logging OpenTelemetry, lihat pengantar [Mengambil transkrip sesi](https://platform.claude.com/docs/id/manage-claude/compliance-sessions).
 
 ### Inference hooks
 
@@ -112,7 +112,7 @@ Anthropic menyediakan dua API analitik: Claude Enterprise Analytics API dan [Cla
   </Card>
 
   <Card href="https://platform.claude.com/docs/id/manage-claude/compliance-sessions" title="Mengambil transkrip sesi">
-    Daftarkan sesi yang dijalankan pengguna Anda di aplikasi dan agen Claude, seperti Cowork dan Claude Code, lalu ambil transkripnya. Memerlukan Compliance Access Key.
+    Tampilkan daftar sesi yang dijalankan pengguna Anda di aplikasi dan agen Claude, seperti Cowork dan Claude Code, lalu ambil transkripnya. Memerlukan Compliance Access Key.
   </Card>
 
   <Card href="https://platform.claude.com/docs/id/manage-claude/compliance-org-data" title="Mendaftarkan organisasi, pengguna, peran, grup, dan pengaturan">

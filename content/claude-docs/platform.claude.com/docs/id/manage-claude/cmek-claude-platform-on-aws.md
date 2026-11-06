@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 125f2147f9de0f539ac11e99aba7c96eeb6105786dcd446055b07afc9b1ec275
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 0b03485efdcfcfea02c5a4c792ecb5bd4507eff745d1c11983efda177ab4c313
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-a
 description: Buat kunci AWS KMS di akun AWS Anda dan lampirkan ke workspace di Claude Platform on AWS.
 ---
 
-Jika sidebar Claude Console Anda tidak menampilkan **Account managed by AWS**, ikuti [Menyiapkan CMEK dengan AWS KMS](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms) sebagai gantinya.
+Jika sidebar Claude Console Anda tidak menampilkan **Akun dikelola oleh AWS**, ikuti [Menyiapkan CMEK dengan AWS KMS](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms) sebagai gantinya.
 
 ## Sebelum Anda memulai
 
@@ -33,7 +33,7 @@ Jika sidebar Claude Console Anda tidak menampilkan **Account managed by AWS**, i
 
 * Anda memiliki workspace tanpa kunci yang dilampirkan, idealnya workspace baru, karena [data yang sudah ada tetap berada di bawah kunci Anthropic](https://platform.claude.com/docs/id/manage-claude/cmek-how-it-works#when-your-key-takes-effect). Kebijakan kunci mencantumkan ID kompartemen workspace tersebut.
 
-Di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy) dan pilih workspace dari menu dropdown di bagian atas. Salin **Compartment ID** di bawah **Encryption key**. Endpoint [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve) mengembalikannya sebagai `compartment_id`.
+Di Claude Console, buka halaman [Retensi data](https://platform.claude.com/settings/privacy) dan pilih workspace dari menu dropdown di bagian atas. Salin **ID Kompartemen** di bawah **Kunci enkripsi**. Endpoint [Dapatkan Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve) mengembalikannya sebagai `compartment_id`.
 
 ## Di AWS: buat kunci
 
@@ -178,15 +178,15 @@ Masuk ke Claude Console melalui AWS. Untuk membuat skrip bagian ini sebagai gant
 
 <Steps>
   <Step title="Buka pengaturan kunci enkripsi">
-    Di Claude Console, buka [Encryption keys](https://platform.claude.com/settings/privacy#encryption-keys) di halaman Data retention. Jika bagian tersebut tidak ada, pilih **Organization** dari menu dropdown di bagian atas.
+    Di Claude Console, buka [Kunci enkripsi](https://platform.claude.com/settings/privacy#encryption-keys) di halaman Retensi data. Jika bagian tersebut tidak ada, pilih **Organisasi** dari menu dropdown di bagian atas.
   </Step>
 
   <Step title="Tambahkan kunci">
-    Di bawah **Encryption keys**, klik **Add key** dan masukkan **Display name**.
+    Di bawah **Kunci enkripsi**, klik **Tambahkan kunci** dan masukkan **Nama tampilan**.
   </Step>
 
   <Step title="Masukkan ARN kunci">
-    Di **KMS key ARN**, pilih kunci Anda. Jika tidak tercantum, klik **Enter ARN manually** dan tempelkan ARN-nya. Anthropic menolak ARN alias dan kunci multi-Region. Klik **Add**.
+    Di **ARN kunci KMS**, pilih kunci Anda. Jika tidak tercantum, klik **Masukkan ARN secara manual** dan tempelkan ARN-nya. Anthropic menolak ARN alias dan kunci multi-Region. Klik **Tambahkan**.
   </Step>
 
   <Step title="Lampirkan kunci ke workspace">
@@ -194,11 +194,11 @@ Masuk ke Claude Console melalui AWS. Untuk membuat skrip bagian ini sebagai gant
       Melampirkan kunci [tidak dapat dibatalkan](https://platform.claude.com/docs/id/manage-claude/cmek-key-lifecycle#what-each-action-does). Anda tidak dapat melepasnya dari workspace atau menggantinya. Jika kunci dihapus, Anthropic tidak dapat memulihkan data yang dilindunginya.
     </Warning>
 
-    1. Di bagian atas halaman Data retention, pilih workspace dari menu dropdown.
-    2. Di bawah **Encryption key**, pilih kunci lalu klik **Save**.
-    3. Centang kotak untuk mengonfirmasi bahwa Anda telah membaca dokumentasi CMEK, lalu klik **Confirm**.
+    1. Di bagian atas halaman Retensi data, pilih workspace dari menu dropdown.
+    2. Di bawah **Kunci enkripsi**, pilih kunci lalu klik **Simpan**.
+    3. Centang kotak untuk mengonfirmasi bahwa Anda telah membaca dokumentasi CMEK, lalu klik **Konfirmasi**.
 
-    Anda akan melihat **Workspace settings updated.** Setelah kunci [mulai berlaku](https://platform.claude.com/docs/id/manage-claude/cmek-how-it-works#when-your-key-takes-effect), CloudTrail mencatat panggilan ke kunci Anda.
+    Anda akan melihat **Pengaturan ruang kerja diperbarui.** Setelah kunci [mulai berlaku](https://platform.claude.com/docs/id/manage-claude/cmek-how-it-works#when-your-key-takes-effect), CloudTrail mencatat panggilan ke kunci Anda.
 
     Proses melampirkan memeriksa kunci dengan satu panggilan enkripsi dan satu panggilan dekripsi, sehingga masalah kebijakan kunci akan terlihat di sini. Jika Anda mendapatkan error akses KMS, lihat [penyebab dan perbaikannya](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#claude-platform-on-aws).
   </Step>

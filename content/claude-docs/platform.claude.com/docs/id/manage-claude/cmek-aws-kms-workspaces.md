@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms-workspaces
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 27a283e90f1097da21b23005f668a7ff6371063e7bfafff10654e8ed6d3ba311
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: fbaf730ecc4e889b7a782bff8dd78d1ebba8d524b147ea26d8f48c07f470443a
 ---
 
 ---
@@ -17,9 +17,9 @@ Tambahkan [ID kompartemen](https://platform.claude.com/docs/id/manage-claude/cme
 
 ## Salin ID kompartemen workspace
 
-Di Claude Console, buka halaman [Data retention](https://platform.claude.com/settings/privacy) dan pilih workspace dari menu dropdown di bagian atas. Salin **Compartment ID** di bawah **Encryption key**. Endpoint [Get Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve) mengembalikannya sebagai `compartment_id`.
+Di Claude Console, buka halaman [Retensi data](https://platform.claude.com/settings/privacy) dan pilih workspace dari menu dropdown di bagian atas. Salin **ID Kompartemen** di bawah **Kunci enkripsi**. Endpoint [Dapatkan Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve) mengembalikannya sebagai `compartment_id`.
 
-Organisasi Claude Enterprise memiliki satu ID kompartemen. Salin dari kunci Anda di bawah **Encryption keys** di [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls).
+Organisasi Claude Enterprise memiliki satu ID kompartemen. Salin dari kunci Anda di bawah **Kunci enkripsi** di [claude.ai > Pengaturan organisasi > Data dan privasi](https://claude.ai/admin-settings/data-privacy-controls).
 
 ## Tambahkan kondisi ke kebijakan kunci
 

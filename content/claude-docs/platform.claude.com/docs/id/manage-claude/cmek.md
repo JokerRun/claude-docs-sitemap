@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 6016d098096f2a518ca3337763a95d6471423e130679f570d06810726d0a58b5
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: bdbc89e7e02b89e5da532d357d04614dab6cf541f2fb7e29207a9f32a092f196
 ---
 
 ---
@@ -37,7 +37,7 @@ Pilih layanan yang menyimpan kunci Anda. Claude Platform on AWS, yang juga mengg
   </Card>
 
   <Card title="Claude Platform on AWS" href="https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws">
-    Untuk organisasi yang sidebar Claude Console-nya menampilkan **Account managed by AWS**.
+    Untuk organisasi yang sidebar Claude Console-nya menampilkan **Akun dikelola oleh AWS**.
   </Card>
 </CardGroup>
 
@@ -76,9 +76,9 @@ Produk yang Anda gunakan menentukan apa yang dienkripsi oleh kunci Anda, apa yan
 
 CMEK bersifat opsional. Untuk mengaktifkannya bagi organisasi yang memenuhi syarat, hubungi tim akun Anthropic Anda. Anda memerlukan salah satu peran berikut untuk menyiapkannya:
 
-* Claude Platform: Organization Admin
+* Claude Platform: Admin organisasi
 * Claude Platform on AWS: Admin
-* Claude Enterprise: Owner atau Primary Owner
+* Claude Enterprise: Pemilik atau Pemilik utama
 
 ## Setelah penyiapan
 

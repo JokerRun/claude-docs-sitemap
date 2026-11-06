@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: cbe9037b8f13c26053ed953f4091f2179c2cece8f619ef852a269d914042cc32
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 96f4062f928740916f2297e6324c644168cfa5e8f463cea859180b72f42c01f0
 ---
 
 ---
@@ -41,7 +41,7 @@ featureMetadata:
     Claude Platform on AWS: beta
 ---
 
-[Quickstart](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#quickstart) menjalankan satu worker CLI `ant` yang melakukan polling secara terus-menerus dan menjalankan setiap sesi dalam satu proses. Halaman ini membahas cara-cara lain untuk menjalankan worker dan cara memilih di antaranya.
+[Panduan mulai cepat](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#quickstart) menjalankan satu worker CLI `ant` yang melakukan polling secara terus-menerus dan menjalankan setiap sesi dalam satu proses. Halaman ini membahas cara-cara lain untuk menjalankan worker dan cara memilih di antaranya.
 
 ## Pilih pola deployment
 
@@ -49,7 +49,7 @@ Saat menerapkan worker, Anda perlu membuat dua pilihan: bagaimana worker mengkla
 
 **Bagaimana worker mengklaim pekerjaan:**
 
-* **Always-on:** Proses yang berjalan lama melakukan polling antrean secara terus-menerus dan hanya memerlukan HTTPS keluar. Ini adalah penyiapan paling sederhana.
+* **Selalu aktif:** Proses yang berjalan lama melakukan polling antrean secara terus-menerus dan hanya memerlukan HTTPS keluar. Ini adalah penyiapan paling sederhana.
 * **Dipicu webhook:** Sebuah handler aktif pada `session.status_run_started` dan mulai melakukan polling. Ini menghindari poller yang menganggur, tetapi memerlukan endpoint [webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) yang dapat dijangkau oleh Anthropic.
 
 **Di mana setiap sesi berjalan:**
@@ -71,7 +71,7 @@ Lihat [Referensi worker self-hosted](https://platform.claude.com/docs/id/managed
 
 ## Menjalankan worker always-on
 
-Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini melakukan autentikasi dengan [environment key](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-your-first-session) dari quickstart:
+Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini melakukan autentikasi dengan [kunci lingkungan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-your-first-session) dari quickstart:
 
 <CodeGroup exclude="shell:cURL, csharp, java, php, ruby">
   ```bash CLI
@@ -217,7 +217,7 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
         client = anthropic.AsyncAnthropic(
             auth_token=environment_key,
         )
-        # Dibatalkan oleh shutdown() agar work item yang sedang berjalan dapat mengunggah file memori yang berubah dan
+        # Dibatalkan oleh shutdown() agar item pekerjaan yang sedang berjalan dapat mengunggah file memori yang berubah dan
         # menghapus direktori store-nya sebelum proses berakhir.
         inflight: set[asyncio.Task[None]] = set()
 
@@ -326,7 +326,7 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
       ```
 
       <CodeGroupItem language="C#">
-        SDK C# tidak memiliki `EnvironmentWorker`. Untuk menangani work item dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
+        SDK C# tidak memiliki `EnvironmentWorker`. Untuk menangani item pekerjaan dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
       </CodeGroupItem>
 
       ```go Go
@@ -440,19 +440,19 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
       ```
 
       <CodeGroupItem language="Java">
-        SDK Java tidak memiliki `EnvironmentWorker`. Untuk menangani work item dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
+        SDK Java tidak memiliki `EnvironmentWorker`. Untuk menangani item pekerjaan dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
       </CodeGroupItem>
 
       <CodeGroupItem language="PHP">
-        SDK PHP tidak memiliki `EnvironmentWorker`. Untuk menangani work item dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
+        SDK PHP tidak memiliki `EnvironmentWorker`. Untuk menangani item pekerjaan dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
       </CodeGroupItem>
 
       <CodeGroupItem language="Ruby">
-        SDK Ruby tidak memiliki `EnvironmentWorker`. Untuk menangani work item dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
+        SDK Ruby tidak memiliki `EnvironmentWorker`. Untuk menangani item pekerjaan dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
       </CodeGroupItem>
     </CodeGroup>
 
-    Karena handler mengklaim pekerjaan sendiri, handler harus [meneruskan secret work item](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#forward-the-work-items-secret), seperti yang dilakukan argumen `work_secret` (typescript: `workSecret`; go: `WorkSecret`) di sini.
+    Karena handler mengklaim pekerjaan sendiri, handler harus [meneruskan secret item pekerjaan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#forward-the-work-items-secret), seperti yang dilakukan argumen `work_secret` (typescript: `workSecret`; go: `WorkSecret`) di sini.
   </Step>
 </Steps>
 
@@ -468,7 +468,7 @@ Poller di host mengklaim pekerjaan dan memanggil skrip Anda sekali untuk setiap 
 
     ```dockerfile
     FROM your-base-image
-    ARG ANT_VERSION=2.6.0
+    ARG ANT_VERSION=2.7.0
     ARG TARGETARCH
     RUN ARCH=$([ "$TARGETARCH" = "arm64" ] && echo arm64 || echo amd64) && \
         curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${ANT_VERSION}/ant_${ANT_VERSION}_linux_${ARCH}.tar.gz" \
@@ -484,7 +484,7 @@ Poller di host mengklaim pekerjaan dan memanggil skrip Anda sekali untuk setiap 
 
     ```bash
     #!/bin/bash
-    # spawn.sh: dipanggil sekali per item kerja yang diklaim
+    # spawn.sh: dipanggil sekali untuk setiap item kerja yang diklaim
     # Item kerja yang diklaim diterima sebagai JSON melalui stdin.
     ANTHROPIC_WORK_SECRET="$(jq -r '.secret // empty')"
     export ANTHROPIC_WORK_SECRET
@@ -509,18 +509,18 @@ Poller di host mengklaim pekerjaan dan memanggil skrip Anda sekali untuk setiap 
   </Step>
 </Steps>
 
-### Meneruskan secret work item
+### Meneruskan secret item pekerjaan
 
-Setiap work item yang diklaim dapat membawa `secret` (csharp, go: `Secret`) per sesi, yang diterbitkan oleh Anthropic. Worker yang menjalankan sesi memerlukannya untuk me-mount [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory).
+Setiap item pekerjaan yang diklaim dapat membawa `secret` (csharp, go: `Secret`) per sesi, yang diterbitkan oleh Anthropic. Worker yang menjalankan sesi memerlukannya untuk me-mount [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory).
 
 Worker yang mengklaim dan menjalankan sesi dalam satu proses (`ant beta:worker poll` tanpa `--on-work`, atau `EnvironmentWorker` dengan `run()` (go: `Run()`)) meneruskan secret itu sendiri. Ketika kode Anda sendiri berada di antara klaim dan worker, Anda yang meneruskannya:
 
-| Anda mengklaim pekerjaan dengan                                | Secret tiba sebagai                                               | Teruskan ke worker sebagai                                                                                                                                                                 |
-| -------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `ant beta:worker poll --on-work`                               | Field `secret` dari JSON work item pada standard input skrip Anda | `ANTHROPIC_WORK_SECRET` di lingkungan sandbox                                                                                                                                              |
-| `work.poller()` (go: `environments.NewWorkPoller()`) milik SDK | Field `secret` (go: `Secret`) dari setiap work item yang diklaim  | `ANTHROPIC_WORK_SECRET` di lingkungan sandbox, atau argumen `work_secret` (typescript: `workSecret`; go: `WorkSecret`) ke `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`) |
+| Anda mengklaim pekerjaan dengan                                | Secret tiba sebagai                                                    | Teruskan ke worker sebagai                                                                                                                                                                 |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ant beta:worker poll --on-work`                               | Field `secret` dari JSON item pekerjaan pada standard input skrip Anda | `ANTHROPIC_WORK_SECRET` di lingkungan sandbox                                                                                                                                              |
+| `work.poller()` (go: `environments.NewWorkPoller()`) milik SDK | Field `secret` (go: `Secret`) dari setiap item pekerjaan yang diklaim  | `ANTHROPIC_WORK_SECRET` di lingkungan sandbox, atau argumen `work_secret` (typescript: `workSecret`; go: `WorkSecret`) ke `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`) |
 
-Teruskan secret hanya ke sandbox yang melayani sesi tersebut, dan jangan pernah mencatatnya di log. Lihat [Model keamanan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security) untuk mengetahui hubungannya dengan environment key.
+Teruskan secret hanya ke sandbox yang melayani sesi tersebut, dan jangan pernah mencatatnya di log. Lihat [Model keamanan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security) untuk mengetahui hubungannya dengan kunci lingkungan.
 
 ### Meluncurkan sandbox dari poller SDK
 
@@ -607,7 +607,7 @@ Untuk mengklaim pekerjaan dari kode Anda sendiri alih-alih `ant beta:worker poll
   async function launchContainer(work: BetaSelfHostedWork): Promise<void> {
     console.log(`claimed session ${work.data.id}`);
     // Ganti `docker run` dengan peluncur sandbox Anda sendiri. Teruskan kunci environment
-    // (jangan pernah kunci API Anda) dan secret per sesi milik work item: worker
+    // (jangan pernah kunci API Anda) dan secret per sesi milik item pekerjaan: worker
     // di dalamnya memerlukan secret tersebut untuk me-mount memory store sesi.
     const env = {
       ...process.env,
@@ -667,7 +667,7 @@ Untuk mengklaim pekerjaan dari kode Anda sendiri alih-alih `ant beta:worker poll
   func launchContainer(ctx context.Context, work *anthropic.BetaSelfHostedWork) error {
   	fmt.Printf("claimed session %s\n", work.Data.ID)
   	// Ganti `docker run` dengan peluncur sandbox Anda sendiri. Teruskan kunci environment
-  	// (jangan pernah kunci API Anda) dan secret per sesi milik work item: worker
+  	// (jangan pernah kunci API Anda) dan secret per sesi milik item pekerjaan: worker
   	// di dalamnya memerlukan secret tersebut untuk me-mount memory store sesi.
   	args := []string{"run", "--rm", "--detach"}
   	for _, name := range sandboxEnv {
@@ -831,7 +831,7 @@ Ganti entrypoint `ant beta:worker run` dengan entrypoint SDK ketika sandbox haru
 Anthropic tidak me-mount file atau repositori GitHub ke dalam sandbox self-hosted. Untuk menyediakan file khusus sesi:
 
 1. Teruskan referensi file, seperti path S3 atau SHA commit, di field `metadata` sesi.
-2. Di skrip spawn atau handler `--on-work` Anda, ambil sesi (`GET /v1/sessions/{session_id}`) dan baca `metadata`. Work item yang diklaim membawa ID sesi tetapi tidak membawa metadata.
+2. Di skrip spawn atau handler `--on-work` Anda, ambil sesi (`GET /v1/sessions/{session_id}`) dan baca `metadata`. Item pekerjaan yang diklaim membawa ID sesi tetapi tidak membawa metadata.
 3. Siapkan file ke dalam direktori kerja sebelum alat apa pun dijalankan.
 
 <CodeGroup>

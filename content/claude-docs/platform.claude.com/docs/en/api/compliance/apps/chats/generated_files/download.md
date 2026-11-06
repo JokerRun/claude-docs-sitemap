@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files/download
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: d23aba9a557c7644ff0071534648c353d9ee5212e65f3c334f059c13b4275db6
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 61ba94991022a29df054a78d440f094766185ee287aaa993a40c3517e98d04be
 ---
 
 ---
@@ -20,7 +20,7 @@ Downloads the binary content of a file the assistant created via tool use.
 
 - `claude_gen_file_id: string`
 
-  The generated-file id (e.g., 'claude_gen_file_abc123') as returned in `chat_messages[].generated_files[].id` from GET /apps/chats/{claude_chat_id}/messages.
+  The generated-file id (e.g., 'claude_gen_file_abc123') as returned in `chat_messages[].generated_files[].id` from `GET /v1/compliance/apps/chats/{claude_chat_id}/messages`. An id that does not start with `claude_gen_file_` returns a 400 error. `generated_files` can also list ids that start with `claude_file_`; request those from `GET /v1/compliance/apps/chats/files/{claude_file_id}/content` instead.
 
 ## Headers
 

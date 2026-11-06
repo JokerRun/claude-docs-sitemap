@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: c95f13b19d0dc2dc0b6341cf109143ed95b6ea42321f11a3961a6a1bff9ae6dc
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 715e497ea6df01192ed6df6385248ba0df689649498cb31585beb14d237f9fac
 ---
 
 ---
@@ -111,7 +111,7 @@ var message = await client
 Console.WriteLine(message);
 ```
 
-Menggunakan [ekspresi `with`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression) memudahkan pembuatan opsi yang dimodifikasi.
+Anda dapat menggunakan [ekspresi `with`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression) untuk membuat opsi yang dimodifikasi.
 
 Metode `WithOptions` tidak memengaruhi klien atau layanan aslinya.
 
@@ -162,7 +162,7 @@ SDK melempar tipe exception kustom yang tidak diperiksa (unchecked):
 
 Selain itu, semua error 4xx mewarisi dari `Anthropic4xxException`.
 
-* `AnthropicSseException`: dilempar untuk error yang terjadi selama streaming SSE setelah respons HTTP awal yang berhasil.
+* `AnthropicSseException`: Error yang terjadi selama streaming SSE setelah respons HTTP awal berhasil.
 
 * `AnthropicIOException`: Error jaringan I/O.
 
@@ -273,7 +273,7 @@ while (true)
 
 ## Validasi respons
 
-Dalam kasus yang jarang terjadi, API dapat mengembalikan respons yang tidak sesuai dengan tipe yang diharapkan. Secara default, SDK tidak melempar exception dalam kasus ini. SDK melempar `AnthropicInvalidDataException` hanya jika Anda mengakses properti tersebut secara langsung.
+Dalam kasus yang jarang terjadi, API mungkin mengembalikan respons yang tidak sesuai dengan tipe yang diharapkan. Secara default, SDK tidak melemparkan exception dalam kasus ini. SDK melemparkan `AnthropicInvalidDataException` hanya jika Anda mengakses properti tersebut secara langsung.
 
 Jika Anda lebih suka memeriksa bahwa respons sepenuhnya bertipe dengan benar sejak awal, panggil `Validate`:
 
@@ -306,7 +306,7 @@ Console.WriteLine(message);
 
 ## Integrasi IChatClient
 
-SDK menyediakan implementasi antarmuka `IChatClient` dari library `Microsoft.Extensions.AI.Abstractions`. Hal ini memungkinkan `AnthropicClient` (dan `Anthropic.Services.IBetaService`) digunakan dengan library lain yang terintegrasi dengan abstraksi inti ini. Misalnya, alat dalam library MCP C# SDK (`ModelContextProtocol`) dapat digunakan secara langsung dengan `AnthropicClient` yang diekspos melalui `IChatClient`.
+SDK menyediakan implementasi antarmuka `IChatClient` dari library `Microsoft.Extensions.AI.Abstractions`. Hal ini memungkinkan `AnthropicClient` (dan `Anthropic.Services.IBetaService`) digunakan bersama library lain yang terintegrasi dengan abstraksi inti tersebut. Misalnya, alat dalam library MCP C# SDK (`ModelContextProtocol`) dapat digunakan secara langsung dengan `AnthropicClient` yang diekspos melalui `IChatClient`.
 
 ```csharp
 using Anthropic;
@@ -334,13 +334,13 @@ Console.WriteLine(await chatClient.GetResponseAsync("Tell me about IChatClient",
 
 Untuk mengirim permintaan ke Claude API, buat instance dari kelas `Params` dan teruskan ke metode klien yang sesuai. Ketika respons diterima, respons tersebut di-deserialisasi menjadi instance dari kelas C#.
 
-Misalnya, `client.Messages.Create` harus dipanggil dengan instance `MessageCreateParams`, dan akan mengembalikan instance `Task<Message>`.
+Misalnya, `client.Messages.Create` menerima instance `MessageCreateParams` dan mengembalikan instance `Task<Message>`.
 
 ## Penggunaan lanjutan
 
 ### Respons biner
 
-SDK mendefinisikan metode yang mengembalikan respons biner, yang digunakan untuk respons API yang tidak harus di-parse, seperti data non-JSON.
+SDK mendefinisikan metode yang mengembalikan respons biner, yang digunakan untuk respons API yang tidak selalu perlu di-parse, seperti data non-JSON.
 
 Metode ini mengembalikan `HttpResponse`:
 
@@ -428,7 +428,7 @@ SDK diberi tipe untuk kemudahan penggunaan API yang terdokumentasi. Namun, SDK j
 
   * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
   * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
-  * [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
+  * [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
   * [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)
   * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
 
@@ -439,14 +439,14 @@ C# SDK mendukung platform berikut melalui paket NuGet terpisah:
 
 * **Claude Models on Google Cloud (Google managed):** `Anthropic.Vertex`. Lihat [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) untuk penyiapan klien.
 * **Bedrock:** `Anthropic.Bedrock`. Gunakan `AnthropicBedrockMantleClient` untuk endpoint Bedrock Messages-API, atau `AnthropicBedrockClient` (jalur `bedrock-runtime`). `AnthropicBedrockMantleClient` menerima objek konfigurasi `MantleAwsClientOptions` opsional; `AnthropicBedrockClient` menerima `AnthropicBedrockCredentialsHelper.FromEnv()` atau kredensial eksplisit.
-* **Claude Platform di AWS:** `Anthropic.Aws`. Gunakan `AnthropicAwsClient`; atur `WorkspaceId` pada klien atau variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID` (lihat [Workspaces](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#workspaces)). Tersedia dalam beta.
+* **Claude Platform on AWS:** `Anthropic.Aws`. Gunakan `AnthropicAwsClient`; atur `WorkspaceId` pada klien atau variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID` (lihat [Workspace](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#workspaces)). Tersedia dalam beta.
 * **Foundry:** `Anthropic.Foundry`. Gunakan `AnthropicFoundryClient` dengan `DefaultAnthropicFoundryCredentials.FromEnv()` atau kredensial eksplisit.
 
 Gunakan `AnthropicBedrockMantleClient` untuk proyek baru; `AnthropicBedrockClient` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API Bedrock `InvokeModel`.
 
 C# SDK juga mendukung Claude Models on Google Cloud (Anthropic managed) melalui `AnthropicGoogleCloudClient`, dari paket `Anthropic.GoogleCloud`. Klien ini masih dalam beta. Atur `WorkspaceId` pada nilai `GoogleCloudClientOptions` opsional, atau atur variabel lingkungan `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`. Lihat [Resolusi proyek, lokasi, dan workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution).
 
-## Semantic versioning
+## Pembuatan versi semantik
 
 Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
 
@@ -462,4 +462,4 @@ Setiap permintaan ke Claude API menggunakan versi API. Dengan SDK ini, permintaa
 * [Repositori GitHub](https://github.com/anthropics/anthropic-sdk-csharp)
 * [Paket NuGet](https://www.nuget.org/packages/Anthropic)
 * [Referensi API](https://platform.claude.com/docs/id/api/overview)
-* [Streaming Messages](https://platform.claude.com/docs/id/build-with-claude/streaming)
+* [Streaming pesan](https://platform.claude.com/docs/id/build-with-claude/streaming)

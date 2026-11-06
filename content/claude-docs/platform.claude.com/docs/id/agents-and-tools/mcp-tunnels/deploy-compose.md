@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-compose
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 7d960659238357e7d2440e0059d877fab682490e50eb9293f2bcfbd3248e9ff2
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: d4c5538506152cc08cb9e9d45b0974dc070bda282937d911679f3df6df94860a
 ---
 
 ---
@@ -25,7 +25,7 @@ Anda memerlukan:
 
 * **Cara bagi host untuk mengautentikasi ke Tunnels API.**
 
-  * **Akses terprogram (direkomendasikan).** Aktifkan **Set up programmatic access** saat membuat tunnel agar komponen setup dapat mengautentikasi melalui Workload Identity Federation. Jika Anda membiarkan komponen setup membuat tunnel, buat aturan federasi langsung di halaman [Workload identity](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`) di Claude Console sebagai gantinya. Catat ID aturan federasi (`fdrl_...`) dan ID organisasi Anda.
+  * **Akses terprogram (direkomendasikan).** Aktifkan **Siapkan akses programatik** saat membuat tunnel agar komponen setup dapat mengautentikasi melalui Workload Identity Federation. Jika Anda membiarkan komponen setup membuat tunnel, buat aturan federasi langsung di halaman [Identitas beban kerja](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`) di Claude Console sebagai gantinya. Catat ID aturan federasi (`fdrl_...`) dan ID organisasi Anda.
   * **Manual.** Lewati akses terprogram. Anda akan [mendapatkan token tunnel dari Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#get-the-connection-details), membuat CA dan sertifikat server sendiri, dan [mendaftarkan CA di Console](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate).
 
 * **Host dengan Docker dan Docker Compose** yang terinstal. Alur manual juga memerlukan `openssl` (1.1.1 atau lebih baru).
@@ -57,7 +57,7 @@ if __name__ == "__main__":
 EOF
 ```
 
-Langkah-langkah Instal berikut melakukan `cd` ke `mcp-tunnel/` dan mencatat di mana harus menambahkan service dan route yang sesuai.
+Langkah-langkah Instal berikut melakukan `cd` ke `mcp-tunnel/` dan mencatat di mana harus menambahkan service dan rute yang sesuai.
 
 ## Instal
 
@@ -202,7 +202,7 @@ Panduan ini menyediakan satu pendekatan referensi menggunakan Docker Compose. An
       </Step>
 
       <Step title="Tulis konfigurasi proxy">
-        `tunnel_domain` **wajib**: [proxy](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) menggunakannya untuk menghapus sufiks domain dari hostname yang masuk sebelum mencari subdomain di `routes`. `routes` adalah map datar dari subdomain ke URL upstream, bukan list.
+        `tunnel_domain` **wajib**: [proxy](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) menggunakannya untuk menghapus sufiks domain dari hostname yang masuk sebelum mencari subdomain di `routes`. `routes` adalah map datar dari subdomain ke URL upstream, bukan daftar.
 
         ```bash
         cat > config/mcp-proxy.yaml <<EOF
@@ -218,7 +218,7 @@ Panduan ini menyediakan satu pendekatan referensi menggunakan Docker Compose. An
         EOF
         ```
 
-        Route `echo:` menargetkan [server MCP contoh](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-compose#optional-use-a-sample-mcp-server); ganti dengan (atau tambahkan) route Anda sendiri. Lihat referensi [konfigurasi proxy](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#proxy-configuration) untuk semua field yang tersedia.
+        Rute `echo:` menargetkan [server MCP contoh](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-compose#optional-use-a-sample-mcp-server); ganti dengan (atau tambahkan) rute Anda sendiri. Lihat referensi [konfigurasi proxy](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#proxy-configuration) untuk semua field yang tersedia.
       </Step>
 
       <Step title="Mulai deployment">
@@ -231,7 +231,7 @@ Panduan ini menyediakan satu pendekatan referensi menggunakan Docker Compose. An
   </Tab>
 
   <Tab title="Tanpa akses terprogram">
-    Gunakan alur ini jika Anda tidak mengaktifkan **Set up programmatic access**, atau untuk pengembangan dan pengujian lokal. Tidak ada service `setup`.
+    Gunakan alur ini jika Anda tidak mengaktifkan **Siapkan akses programatik**, atau untuk pengembangan dan pengujian lokal. Tidak ada service `setup`.
 
     <Steps>
       <Step title="Dapatkan token dan domain tunnel dari Console">
@@ -289,17 +289,17 @@ Panduan ini menyediakan satu pendekatan referensi menggunakan Docker Compose. An
       </Step>
 
       <Step title="Daftarkan sertifikat CA di Console">
-        Di halaman detail tunnel, gulir ke bagian **Certificates** dan klik **Add certificate**. Unggah `data/ca.crt` secara langsung dengan **Choose file** (jendela modal menerima `.pem`, `.crt`, dan `.cer`), atau tempelkan isinya:
+        Di halaman detail tunnel, gulir ke bagian **Sertifikat** dan klik **Tambahkan sertifikat**. Unggah `data/ca.crt` secara langsung dengan **Pilih file** (jendela modal menerima `.pem`, `.crt`, dan `.cer`), atau tempelkan isinya:
 
         ```bash
         cat data/ca.crt
         ```
 
-        Badge **Needs certificate** di samping nama tunnel akan hilang setelah sertifikat didaftarkan. Lihat [Menambahkan sertifikat CA](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate).
+        Badge **Perlu sertifikat** di samping nama tunnel akan hilang setelah sertifikat didaftarkan. Lihat [Menambahkan sertifikat CA](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate).
       </Step>
 
       <Step title="Tulis konfigurasi proxy">
-        `tunnel_domain` **wajib**: proxy menggunakannya untuk menghapus sufiks domain dari hostname yang masuk sebelum mencari subdomain di `routes`. `routes` adalah map datar dari subdomain ke URL upstream, bukan list.
+        `tunnel_domain` **wajib**: proxy menggunakannya untuk menghapus sufiks domain dari hostname yang masuk sebelum mencari subdomain di `routes`. `routes` adalah map datar dari subdomain ke URL upstream, bukan daftar.
 
         ```bash
         cat > config/mcp-proxy.yaml <<EOF
@@ -314,11 +314,11 @@ Panduan ini menyediakan satu pendekatan referensi menggunakan Docker Compose. An
         EOF
         ```
 
-        Route `echo:` menargetkan [server MCP contoh](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-compose#optional-use-a-sample-mcp-server); ganti dengan (atau tambahkan) route Anda sendiri. Lihat referensi [konfigurasi proxy](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#proxy-configuration) untuk semua field yang tersedia.
+        Rute `echo:` menargetkan [server MCP contoh](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-compose#optional-use-a-sample-mcp-server); ganti dengan (atau tambahkan) rute Anda sendiri. Lihat referensi [konfigurasi proxy](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#proxy-configuration) untuk semua field yang tersedia.
       </Step>
 
       <Step title="Tulis docker-compose.yaml">
-        Pengaturan `network_mode: "service:mcp-proxy"` menempatkan [cloudflared](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) di namespace jaringan proxy sehingga `localhost:8080` di dalam container cloudflared menjangkau proxy. Flag `--url http://localhost:8080` memberikan target penerusan kepada cloudflared; tanpa flag tersebut, cloudflared tidak memiliki route untuk permintaan masuk dan mengembalikan 503.
+        Pengaturan `network_mode: "service:mcp-proxy"` menempatkan [cloudflared](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) di namespace jaringan proxy sehingga `localhost:8080` di dalam container cloudflared menjangkau proxy. Flag `--url http://localhost:8080` memberikan target penerusan kepada cloudflared; tanpa flag tersebut, cloudflared tidak memiliki rute untuk permintaan masuk dan mengembalikan 503.
 
         ```bash
         cat > docker-compose.yaml <<'EOF'
@@ -390,7 +390,7 @@ Panduan ini menyediakan satu pendekatan referensi menggunakan Docker Compose. An
   </Tab>
 </Tabs>
 
-File compose membaca `TUNNEL_TOKEN` dari lingkungan host tanpa nilai default, jadi Anda harus mengulangi export di setiap shell baru dan setelah reboot.
+File compose membaca `TUNNEL_TOKEN` dari lingkungan host tanpa nilai default, jadi Anda harus mengulangi ekspor di setiap shell baru dan setelah reboot.
 
 Untuk deployment multi-VM, salin direktori `mcp-tunnel/` ke setiap host, atur `TUNNEL_TOKEN`, dan jalankan `docker compose up -d`. Dalam alur terprogram, `TUNNEL_TOKEN` adalah `$(sudo cat data/tunnel-token)`; dalam alur manual, nilainya adalah yang Anda salin dari Console. Token tunnel dan sertifikat yang sama berfungsi di semua replika.
 
@@ -416,7 +416,7 @@ Dengan akses terprogram, naikkan `--token-version` di perintah service `setup`, 
 export ANTHROPIC_FEDERATION_RULE_ID=fdrl_...
 export ANTHROPIC_ORGANIZATION_ID=00000000-0000-0000-0000-000000000000
 # export ANTHROPIC_WORKSPACE_ID=wrkspc_...   # jika aturan Anda berlingkup workspace
-# Buat ulang ANTHROPIC_IDENTITY_TOKEN sesuai panduan penyedia WIF untuk
+# Buat ulang ANTHROPIC_IDENTITY_TOKEN seperti dijelaskan di panduan penyedia WIF untuk
 # lingkungan Anda (token tersebut sudah kedaluwarsa sejak instalasi).
 export ANTHROPIC_IDENTITY_TOKEN=...
 
@@ -428,10 +428,10 @@ docker compose up -d cloudflared
 
 Argumen `--token-version` diedit di `docker-compose.yaml` alih-alih diteruskan di baris perintah agar nilai baru tetap tersimpan untuk eksekusi komponen setup berikutnya. Komponen setup mengautentikasi dengan Workload Identity Federation; tidak ada token API yang perlu dicabut.
 
-Tanpa akses terprogram, klik **Rotate token** di halaman detail tunnel di Console, lalu perbarui variabel environment `TUNNEL_TOKEN` di setiap host dan restart cloudflared (`docker compose up -d cloudflared`).
+Tanpa akses terprogram, klik **Rotasikan token** di halaman detail tunnel di Console, lalu perbarui variabel environment `TUNNEL_TOKEN` di setiap host dan restart cloudflared (`docker compose up -d cloudflared`).
 
 <Warning>
-  Mengklik **Rotate token** langsung membatalkan token saat ini. Antara saat itu dan pembaruan `TUNNEL_TOKEN` di setiap host serta restart cloudflared, host mana pun yang cloudflared-nya restart (crash, reboot host) tidak dapat terhubung kembali. Perbarui setiap host segera setelah merotasi.
+  Mengklik **Rotasikan token** langsung membatalkan token saat ini. Antara saat itu dan pembaruan `TUNNEL_TOKEN` di setiap host serta restart cloudflared, host mana pun yang cloudflared-nya restart (crash, reboot host) tidak dapat terhubung kembali. Perbarui setiap host segera setelah merotasi.
 </Warning>
 
 ### Pembaruan sertifikat
@@ -476,6 +476,6 @@ Dalam kedua alur, proxy melakukan polling terhadap `tls.cert_file` dan memuatnya
   </Card>
 
   <Card title="Pemecahan masalah" icon="wrench" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/troubleshooting">
-    Diagnosis masalah konektivitas, TLS, dan routing.
+    Diagnosis masalah konektivitas, TLS, dan perutean.
   </Card>
 </CardGroup>

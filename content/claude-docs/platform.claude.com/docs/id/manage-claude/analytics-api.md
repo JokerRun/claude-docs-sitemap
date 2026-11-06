@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/analytics-api
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 4589c628d8a07057f62d3ee3321cc1752b31e9a5fee754e61f57bf0d99af090a
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 5ede53629300cb9df9bb14ef0e24da2fbc75db869961d341435df35a84729a43
 ---
 
 ---
@@ -20,10 +20,10 @@ Kedua API tersebut menggunakan jenis kunci yang berbeda, yang dibuat di tempat b
 
 ## API mana yang Anda butuhkan?
 
-| API                                 | Jenis kunci                            | Dibuat di                                                                                                                           | Siapa yang dapat membuatnya | Cakupan                                                                                                                                                                     |
-| ----------------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Claude Code Analytics API**       | Kunci Admin API (`sk-ant-admin01-...`) | Halaman [Admin keys](https://platform.claude.com/settings/admin-keys) (`platform.claude.com/settings/admin-keys`) di Claude Console | Admin organisasi            | Metrik Claude Code harian per pengguna: sesi, baris kode, commit, pull request, penerimaan alat, dan estimasi biaya per model                                               |
-| **Claude Enterprise Analytics API** | Kunci Analytics API                    | [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access)                                              | Pemilik utama               | Keterlibatan dan adopsi di seluruh organisasi (aktivitas pengguna, ringkasan pengguna aktif, penggunaan proyek, skill, dan konektor), ditambah laporan biaya dan penggunaan |
+| API                                 | Jenis kunci                            | Dibuat di                                                                                                                            | Siapa yang dapat membuatnya | Cakupan                                                                                                                                                                     |
+| ----------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Claude Code Analytics API**       | Kunci Admin API (`sk-ant-admin01-...`) | Halaman [Kunci admin](https://platform.claude.com/settings/admin-keys) (`platform.claude.com/settings/admin-keys`) di Claude Console | Admin organisasi            | Metrik Claude Code harian per pengguna: sesi, baris kode, commit, pull request, penerimaan alat, dan estimasi biaya per model                                               |
+| **Claude Enterprise Analytics API** | Kunci Analytics API                    | [claude.ai > Pengaturan organisasi > API](https://claude.ai/admin-settings/api-access)                                               | Pemilik utama               | Keterlibatan dan adopsi di seluruh organisasi (aktivitas pengguna, ringkasan pengguna aktif, penggunaan proyek, skill, dan konektor), ditambah laporan biaya dan penggunaan |
 
 Jenis kunci ini tidak dapat dipertukarkan: kunci Admin API tidak dapat memanggil Claude Enterprise Analytics API, dan kunci Analytics API tidak dapat memanggil Admin API. Satu-satunya pengecualian adalah [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api), yang dipanggil oleh organisasi Claude Enterprise dengan kunci Analytics API mereka. Kedua API analitik produk muncul di bawah [referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization), tetapi keduanya adalah API terpisah dengan jenis kunci terpisah. Jika organisasi Anda menggunakan Claude Platform dan Claude Enterprise sekaligus, Anda dapat menyediakan kedua kunci dan menggunakan masing-masing API untuk datanya sendiri.
 
@@ -49,13 +49,13 @@ Claude Code Analytics API tersedia untuk setiap organisasi yang memiliki akses k
 
     ```bash
     curl "https://api.anthropic.com/v1/organizations/usage_report/claude_code?starting_at=2025-09-08" \
-      --header "anthropic-version: 2026-10-21" \
-      --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+      -H "anthropic-version: 2026-10-21" \
+      -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
     ```
   </Step>
 </Steps>
 
-Untuk metrik yang tersedia, parameter permintaan, dan skema respons, lihat [panduan Claude Code Analytics API](https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api) dan [referensi API](https://platform.claude.com/docs/id/api/beta/organization/usage_report/retrieve_claude_code).
+Untuk metrik yang tersedia, parameter permintaan, dan skema respons, lihat panduan [Claude Code Analytics API](https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api) dan [referensi API](https://platform.claude.com/docs/id/api/beta/organization/usage_report/retrieve_claude_code).
 
 ## Mendapatkan akses ke Claude Enterprise Analytics API
 
@@ -67,7 +67,7 @@ Claude Enterprise Analytics API tersedia untuk organisasi Claude Enterprise. Dat
   </Step>
 
   <Step title="Aktifkan akses API dan buat kunci">
-    Buka [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access) dan aktifkan akses API publik, lalu buat kunci Analytics API. Kunci membawa scope `read:analytics`. Salin secret yang ditampilkan dan simpan di pengelola secret Anda.
+    Buka [claude.ai > Pengaturan organisasi > API](https://claude.ai/admin-settings/api-access) dan aktifkan akses API publik, lalu buat kunci Analytics API. Kunci membawa scope `read:analytics`. Salin secret yang ditampilkan dan simpan di pengelola secret Anda.
   </Step>
 
   <Step title="Panggil API">
@@ -92,51 +92,66 @@ Untuk detail endpoint, parameter, dan skema respons, lihat [referensi Claude Ent
 
 Data Claude Enterprise Analytics API tersedia untuk tanggal pada atau setelah 1 Januari 2026.
 
-**Endpoint keterlibatan dan adopsi** (aktivitas pengguna, ringkasan, proyek, skill, konektor) mengembalikan snapshot per hari untuk tanggal yang Anda tentukan. Data untuk hari tertentu biasanya tersedia sekitar pukul 13:00–13:30 UTC pada hari berikutnya (jeda 1 hari). Sebelum itu, hari terbaru yang tersedia biasanya adalah dua hari sebelum tanggal UTC saat ini. Data tiba lebih lambat pada hari-hari ketika pipeline data hulu berjalan terlambat, dan kesegaran pastinya bervariasi per kueri. Jadi, alih-alih mengasumsikan waktu yang tetap, periksa respons error: meminta tanggal yang belum tersedia akan mengembalikan error 400 yang menyebutkan hari terbaru yang tersedia. Jika data belum tersedia jauh melewati jeda yang biasa, hal ini biasanya menandakan kegagalan pipeline data di sisi Anthropic. Hubungi dukungan jika kesenjangan tersebut berlanjut.
+**Endpoint keterlibatan dan adopsi** (aktivitas pengguna, ringkasan, proyek, skill, konektor) mengembalikan snapshot per hari untuk tanggal yang Anda tentukan. Data untuk hari tertentu biasanya tersedia sekitar pukul 13:00–13:30 UTC pada hari berikutnya (jeda 1 hari). Sebelum itu, hari terbaru yang tersedia biasanya 2 hari sebelum tanggal UTC saat ini. Data datang lebih lambat pada hari ketika pipeline data hulu berjalan terlambat, dan kesegaran pastinya bervariasi per kueri. Alih-alih mengasumsikan waktu tetap, periksa respons error: meminta tanggal yang belum tersedia akan mengembalikan error 400 yang menyebutkan hari terbaru yang tersedia. Jika data belum tersedia jauh melewati jeda yang biasa, hal ini biasanya menandakan kegagalan pipeline data di sisi Anthropic; hubungi dukungan jika kesenjangan tersebut berlanjut.
 
-**Endpoint biaya dan penggunaan** mengikuti model kesegaran yang berbeda. Data biasanya tersedia dalam empat jam setelah penggunaan yang mendasarinya tetapi dapat memakan waktu hingga 24 jam. Nilai dapat direvisi seiring datangnya peristiwa yang terlambat dan berjalannya rekonsiliasi, hingga sekitar 7 hari setelah akhir bulan kalender. Misalnya, nilai untuk 1 Oktober dapat berubah hingga sekitar 7 November. Untuk total setingkat penagihan, kueri hanya bulan-bulan yang berakhir setidaknya 7 hari yang lalu.
+**Endpoint biaya dan penggunaan** mengikuti model kesegaran yang berbeda. Data biasanya tersedia dalam 4 jam setelah penggunaan yang mendasarinya, tetapi mungkin memerlukan waktu hingga 24 jam. Nilai dapat direvisi seiring datangnya peristiwa yang terlambat dan berjalannya rekonsiliasi, hingga sekitar 7 hari setelah akhir bulan kalender. Misalnya, nilai untuk 1 Oktober dapat berubah hingga sekitar 7 November. Untuk total setingkat faktur, kueri hanya bulan-bulan yang berakhir setidaknya 7 hari yang lalu.
 
 <Note>
-  Respons biaya dan penggunaan menyertakan timestamp `data_refreshed_at`. Ketika `ending_at` dihilangkan (default-nya adalah waktu saat ini), respons menyertakan ekor data setelah `data_refreshed_at` yang belum lengkap. Untuk hasil yang stabil di seluruh panggilan berulang, atur `ending_at` ke nilai pada atau sebelum `data_refreshed_at` yang dikembalikan sebelumnya.
+  Respons biaya dan penggunaan menyertakan timestamp `data_refreshed_at`. Jika Anda menghilangkan `ending_at`, nilai default-nya adalah 31 hari setelah `starting_at` atau waktu saat ini, mana pun yang lebih awal. Rentang tersebut dapat melewati `data_refreshed_at`, dan data setelah waktu itu belum lengkap. Untuk hasil yang stabil di seluruh panggilan berulang, atur `ending_at` ke nilai pada atau sebelum `data_refreshed_at` yang dikembalikan sebelumnya.
 </Note>
 
 ## Bagaimana metrik didefinisikan
 
-**Pengguna aktif.** Seorang pengguna dihitung aktif untuk suatu hari jika salah satu dari hal berikut benar: mereka mengirim setidaknya satu pesan chat di Claude, mereka memiliki setidaknya satu sesi Claude Code (lokal atau jarak jauh) yang terkait dengan organisasi Claude Enterprise Anda yang mencakup penggunaan alat atau aktivitas git, atau mereka memiliki setidaknya satu sesi Cowork dengan penggunaan alat atau aktivitas pesan.
+**Pengguna aktif.** Seorang pengguna dihitung aktif untuk suatu hari jika salah satu kondisi berikut terpenuhi:
 
-**Chat and Cowork unified (beta).** Chat and Cowork unified membawa fitur-fitur Cowork ke dalam chat claude.ai. Sebagian besar aktivitas di Chat and Cowork unified dilaporkan di bawah nilai produk `chat_cowork_unified`, bukan `chat` atau `cowork`.
+* Mereka mengirim setidaknya satu pesan chat di Claude.
+* Mereka memiliki setidaknya satu sesi Claude Code (lokal atau jarak jauh) yang terkait dengan organisasi Claude Enterprise Anda yang mencakup penggunaan alat atau aktivitas git.
+* Mereka memiliki setidaknya satu sesi Cowork dengan penggunaan alat atau aktivitas pesan.
+
+**Chat and Cowork unified.** Chat and Cowork unified menghadirkan fitur-fitur Cowork ke dalam chat claude.ai. Sebagian besar aktivitas di Chat and Cowork unified dilaporkan di bawah nilai produk `chat_cowork_unified`, bukan `chat` atau `cowork`.
 
 Dalam aktivitas pengguna serta dalam penggunaan skill, konektor, dan plugin, penggunaan ini muncul di objek `chat_cowork_unified_metrics`. Dalam ringkasan aktivitas, penggunaan ini dihitung dalam `chat_cowork_unified_daily_active_user_count`, `chat_cowork_unified_weekly_active_user_count`, dan `chat_cowork_unified_monthly_active_user_count`.
 
-Seiring semakin banyak pengguna mulai menggunakan Chat and Cowork unified, penggunaan berpindah dari angka chat dan Cowork Anda ke angka-angka baru ini. Penggunaan dari hari-hari sebelum seorang pengguna mulai menggunakan Chat and Cowork unified tetap berada di bawah chat atau Cowork. Angka di seluruh organisasi, seperti total penggunaan token, total biaya, dan jumlah pengguna aktif keseluruhan, tidak berubah. Laporan biaya dan penggunaan yang difilter berdasarkan produk tidak menyertakan penggunaan Chat and Cowork unified kecuali `products[]` menyertakan `chat_cowork_unified`.
+Ketika seorang pengguna mulai menggunakan Chat and Cowork unified, penggunaan mereka berpindah dari angka chat dan Cowork Anda ke angka Chat and Cowork unified. Penggunaan dari hari-hari sebelum seorang pengguna mulai menggunakan Chat and Cowork unified tetap berada di bawah chat atau Cowork. Angka di seluruh organisasi, seperti total penggunaan token, total biaya, dan jumlah pengguna aktif keseluruhan, tidak berubah. Laporan biaya dan penggunaan yang difilter berdasarkan produk tidak menyertakan penggunaan Chat and Cowork unified kecuali `products[]` menyertakan `chat_cowork_unified`.
 
 Sebagian aktivitas dari pengguna Chat and Cowork unified, seperti mode suara, masih dapat dilaporkan di bawah chat atau Cowork. Aktivitas seorang pengguna juga dapat terbagi antar produk pada hari mereka mulai menggunakan Chat and Cowork unified. Hal yang sama berlaku pada hari fitur tersebut dinonaktifkan untuk mereka. Cara pembagian aktivitas tidak dijamin.
 
-Seorang pengguna dapat muncul baik dalam hitungan chat atau Cowork maupun dalam hitungan Chat and Cowork unified. Hal ini dapat terjadi pada hari ketika mereka menggunakan Chat and Cowork unified dan sebagian aktivitas mereka masih dilaporkan di bawah chat atau Cowork. Hitungan mingguan dan bulanan dapat menyertakan mereka di keduanya ketika jendela waktu memiliki aktivitas dari kedua jenis, bahkan pada hari yang berbeda. Misalnya, jendela waktu tersebut mungkin mencakup hari-hari sebelum dan sesudah mereka mulai menggunakan Chat and Cowork unified.
+Seorang pengguna dapat muncul baik di hitungan chat atau Cowork maupun di hitungan Chat and Cowork unified. Hal ini dapat terjadi pada hari ketika mereka menggunakan Chat and Cowork unified dan sebagian aktivitas mereka masih dilaporkan di bawah chat atau Cowork. Hitungan mingguan dan bulanan dapat menyertakan mereka di keduanya ketika jendela waktu memiliki aktivitas dari kedua jenis, bahkan pada hari yang berbeda. Misalnya, jendela waktu tersebut mungkin mencakup hari-hari sebelum dan sesudah mereka mulai menggunakan Chat and Cowork unified.
 
 Ketika Anda memfilter aktivitas pengguna berdasarkan proyek, aktivitas proyek setiap hari hanya dihitung di satu tempat. Jika seorang pengguna mengirim pesan chat di Chat and Cowork unified pada hari itu, semua aktivitas proyek mereka dihitung dalam `chat_cowork_unified_metrics.chat`. Jika tidak, aktivitas tersebut dihitung dalam `chat_metrics`.
 
-**Blok metrik per produk.** Objek metrik per produk (misalnya, metrik Office Agent atau Cowork pada catatan aktivitas pengguna) selalu ada di setiap catatan. Organisasi tanpa penggunaan produk tersebut akan melihat nilai yang semuanya nol, bukan `null`. Pengecualiannya adalah Chat and Cowork unified: pada deployment yang tidak menawarkannya, field-nya dihilangkan dari respons.
+**Blok metrik per produk.** Objek metrik per produk (misalnya, metrik Office Agent atau Cowork pada catatan aktivitas pengguna) selalu ada di setiap catatan. Organisasi tanpa penggunaan produk tersebut akan melihat hitungan nol, bukan objek `null`. Pengecualiannya adalah Chat and Cowork unified: pada deployment yang tidak menawarkannya, field-nya dihilangkan dari respons. Field individual di dalam objek-objek ini dapat bernilai `null`, yang berarti nilainya tidak tersedia. Misalnya, ketika Anda memfilter aktivitas pengguna berdasarkan proyek, `distinct_skills_used_count` dalam `chat_metrics` bernilai `null`. [Referensi Claude Enterprise Analytics API](https://platform.claude.com/docs/id/api/beta/organization/analytics) menunjukkan field mana yang dapat bernilai `null`.
 
 **Nama konektor.** Nama konektor dinormalisasi di seluruh sumber. Misalnya, `Atlassian MCP server`, `mcp-atlassian`, dan `atlassian_MCP` semuanya muncul sebagai `atlassian` di endpoint penggunaan konektor.
 
 ## Bekerja dengan API
 
-**Cursor paginasi terikat pada kueri yang menerbitkannya.** Pada endpoint biaya dan penggunaan, jangan mengubah parameter kueri di tengah urutan: jika Anda mengubah `products[]`, `group_by[]`, `order_by`, rentang tanggal, atau filter apa pun dan meneruskan cursor lama, permintaan akan mengembalikan error 400. Untuk mengubah parameter, mulai ulang dari halaman pertama tanpa cursor.
+**Cursor paginasi terikat pada kueri yang menerbitkannya.** Pada endpoint biaya dan penggunaan, jangan mengubah parameter kueri di tengah urutan: jika Anda mengubah `products[]`, `group_by[]`, `order_by`, rentang tanggal, atau filter apa pun dan meneruskan kursor lama, permintaan akan mengembalikan error 400. Untuk mengubah parameter, mulai ulang dari halaman pertama tanpa kursor.
 
 **Parameter daftar menggunakan notasi kurung siku.** Ulangi parameter untuk setiap nilai, misalnya `products[]=chat&products[]=claude_code`.
 
-**Field jumlah adalah string desimal dalam sen.** Jumlah mata uang dikembalikan sebagai string desimal seperti `"41280.000000"` (yang merepresentasikan $412,80). Untuk mengonversi ke dolar, parse sebagai desimal dan bagi dengan 100. Hindari parsing floating-point biner untuk nilai yang mungkin melebihi beberapa juta dolar.
+**Field jumlah berupa string desimal dalam sen.** Jumlah mata uang dikembalikan sebagai string desimal seperti `"41280.000000"` (yang mewakili $412,80 USD). Untuk mengonversi ke dolar, parse sebagai desimal dan bagi dengan 100. Hindari parsing floating-point biner untuk nilai yang mungkin melebihi beberapa juta dolar.
 
-**Batas laju (rate limit) berlaku di tingkat organisasi**, bukan per kunci, dengan default 60 permintaan per menit di seluruh endpoint dalam API ini. Jika itu tidak mencukupi untuk kasus penggunaan Anda, hubungi tim akun Anthropic Anda untuk mendiskusikan penyesuaian batas tersebut.
+**Batas laju (rate limit) berlaku di tingkat organisasi**, bukan untuk setiap kunci, dengan default 60 permintaan per menit di semua endpoint dalam API ini. Jika itu tidak mencukupi untuk kasus penggunaan Anda, hubungi tim akun Anthropic Anda untuk membahas penyesuaian batas tersebut.
 
 ## Pembuatan versi
 
-Kirim header `anthropic-version` pada setiap permintaan; lihat [versi API](https://platform.claude.com/docs/id/api/versioning) untuk versi yang tersedia.
+Kirim header `anthropic-version` pada setiap permintaan; lihat [Versi](https://platform.claude.com/docs/id/api/versioning) untuk versi yang tersedia.
 
 ## Keterbatasan yang diketahui
 
+### Claude Code melalui Amazon Bedrock
+
 Jika organisasi Anda menggunakan Claude Code melalui Amazon Bedrock, Claude Enterprise Analytics API tidak mengembalikan aktivitas Claude Code untuk penggunaan tersebut.
+
+### Claude Code dan Cowork dengan kunci enkripsi yang dikelola pelanggan
+
+Jika organisasi Anda menggunakan [kunci enkripsi yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/cmek), Anthropic tidak menyertakan sebagian detail penggunaan Claude Code dan Cowork dalam analitik penggunaannya, untuk melindungi data Anda. Akibatnya, jangan gunakan angka Claude Enterprise Analytics API berikut untuk mengukur seberapa banyak organisasi Anda menggunakan Claude Code atau Cowork. Angka-angka tersebut dapat bernilai nol atau lebih rendah dari penggunaan sebenarnya:
+
+* **Perubahan kode:** Dalam aktivitas pengguna, field berikut di `claude_code_metrics.core_metrics` dapat bernilai nol: `lines_of_code` (baris yang ditambahkan dan dihapus) dan `commit_count`. Field `pull_request_count` dapat lebih rendah dari jumlah pull request yang sebenarnya.
+* **Skill yang dimulai dengan perintah slash:** Jika pengguna memulai skill di Claude Code atau Cowork dengan mengetik perintah slash, seperti `/skill-name`, penggunaan tersebut tidak dihitung. Hal ini berlaku untuk penggunaan skill, dan untuk hitungan skill Cowork dalam aktivitas pengguna. Skill yang dipanggil Claude tanpa perintah slash tetap dihitung.
+
+Untuk perubahan analitik lainnya dengan kunci enkripsi yang dikelola pelanggan, lihat [Apa yang dicakup CMEK di Claude Enterprise](https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise#turned-off-or-changed).
 
 ## Langkah selanjutnya
 

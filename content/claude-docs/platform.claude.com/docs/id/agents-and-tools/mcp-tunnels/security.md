@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/security
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 03df10469dc887f82899adcfd1debd057e45362eea2b150d8a0be2e21e5f594a
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 4db62aabe556c4fc2f795c0733699036218b63eaeb400ef59d414e7e2ff5f04a
 ---
 
 ---
@@ -24,10 +24,10 @@ Arsitektur tunnel menyediakan default yang kuat (konektivitas hanya-keluar, enkr
 * **Batasi `upstream.allowed_ips`.** Gunakan rentang CIDR terkecil yang mencakup server MCP Anda. Ini adalah pertahanan SSRF utama milik [proxy](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components).
 * **Pantau log.** Buat peringatan untuk warning, error, dan pola lalu lintas yang tidak biasa dari tunnel stack.
 * **Rotasi kredensial.** Rotasi sertifikat server dan token tunnel secara terjadwal, dan segera lakukan jika Anda mencurigai adanya kompromi.
-* **Jaga image tetap terbaru.** Pantau rilis proxy baru dan pin image berdasarkan digest SHA-256.
+* **Jaga image tetap terbaru.** Pantau rilis proxy baru dan sematkan image berdasarkan digest SHA-256.
 * **Batasi jangkauan jaringan.** Proxy dan [cloudflared](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) seharusnya hanya dapat menjangkau tujuan yang tercantum dalam [persyaratan jaringan](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview#network-requirements). Gunakan NetworkPolicy (Kubernetes) atau aturan firewall host (Compose).
 * **Batasi cakupan server MCP.** Setiap server seharusnya hanya mengekspos alat dan data yang diperlukan untuk tujuannya.
-* **Lindungi kredensial saat disimpan (at rest).** Terapkan praktik manajemen rahasia organisasi Anda pada private key dan token tunnel.
+* **Lindungi kredensial saat disimpan (at rest).** Terapkan praktik manajemen rahasia organisasi Anda pada kunci privat dan token tunnel.
 
 ## Merespons dugaan pelanggaran
 
@@ -55,14 +55,14 @@ Jika Anda yakin token tunnel, kunci TLS, atau host proxy Anda telah dikompromika
   </Step>
 
   <Step title="Arsipkan tunnel">
-    Pengarsipan membatalkan token tunnel dan melepaskan domain. Di Console, [arsipkan tunnel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#archive-a-tunnel) dari daftar **MCP tunnels**. Untuk mengarsipkan melalui API, lihat [Arsipkan tunnel](https://platform.claude.com/docs/id/api/beta/tunnels/archive).
+    Pengarsipan membatalkan token tunnel dan melepaskan domain. Di Console, [arsipkan tunnel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#archive-a-tunnel) dari daftar **Tunnel MCP**. Untuk mengarsipkan melalui API, lihat [Arsipkan tunnel](https://platform.claude.com/docs/id/api/beta/tunnels/archive).
   </Step>
 
   <Step title="Hubungi Anthropic">
     Laporkan dugaan kompromi tersebut ke dukungan Anthropic.
   </Step>
 
-  <Step title="Rotasi kredensial downstream">
+  <Step title="Rotasi kredensial hilir">
     Sediakan ulang tunnel baru dan rotasi token OAuth apa pun yang diterbitkan oleh server MCP yang terdampak.
   </Step>
 
@@ -93,7 +93,7 @@ Ikuti langkah-langkah berikut untuk menonaktifkan tunnel dan menghapus semua kre
   </Step>
 
   <Step title="Arsipkan tunnel">
-    Di Console, [arsipkan tunnel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#archive-a-tunnel) dari daftar **MCP tunnels**.
+    Di Console, [arsipkan tunnel](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#archive-a-tunnel) dari daftar **Tunnel MCP**.
   </Step>
 
   <Step title="Hapus kredensial yang tersimpan">
@@ -109,7 +109,7 @@ Ikuti langkah-langkah berikut untuk menonaktifkan tunnel dan menghapus semua kre
       </Tab>
 
       <Tab title="Docker Compose">
-        Private key dan sertifikat berada di `data/`. Token tunnel berada di `data/tunnel-token` (alur programatik) atau di environment shell Anda (alur manual). Direktori `config/` dan `docker-compose.yaml` tidak berisi rahasia; simpan jika Anda berencana menyediakan ulang, atau hapus juga.
+        Kunci privat dan sertifikat berada di `data/`. Token tunnel berada di `data/tunnel-token` (alur programatik) atau di environment shell Anda (alur manual). Direktori `config/` dan `docker-compose.yaml` tidak berisi rahasia; simpan jika Anda berencana menyediakan ulang, atau hapus juga.
 
         ```bash
         sudo rm -rf data

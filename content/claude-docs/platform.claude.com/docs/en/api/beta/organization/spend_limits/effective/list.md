@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/effective/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 180629d3371bb9036bf73fabc1e13b012836d57a30f67d36c8347998fc62968c
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 17a51b5a139f47bb324f0a9bf82da1a0e2824df0db94d9028345f78a40effd14
 ---
 
 ---
@@ -34,7 +34,7 @@ organizations.
 
   Opaque cursor from a previous response's `next_page` field.
 
-- `period: optional array of "daily" or "monthly" or "weekly"`
+- `period: optional array of BetaSpendLimitPeriod`
 
   Restrict the report to these limit periods. Omit to return one row per period each member resolves a spend limit for.
 

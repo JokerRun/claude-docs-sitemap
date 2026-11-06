@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 72ea80ba4d75ccc08fe5fb1b116a677c3b44c776224380428f79261d9e62f0a7
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 358f58d56aa70f51535e226a4b46668b322182d7d8bb93c84488fe596d41c4ae
 ---
 
 ---
@@ -40,7 +40,7 @@ description: Make your first API call to Claude and build a simple web search as
         For Linux environments, download the release binary directly.
 
         ```bash
-        VERSION=2.6.0
+        VERSION=2.7.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -54,13 +54,13 @@ description: Make your first API call to Claude and build a simple web search as
       </Tab>
 
       <Tab title="go install">
-        You can also install the CLI from source using `go install`. Requires Go 1.25 or later.
+        You can also install the CLI from source with `go install`, which requires Go 1.26.10 or later.
 
         ```bash
         go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
         ```
 
-        The binary is placed in `$(go env GOPATH)/bin`. Add it to your `PATH` if it isn’t already:
+        `go install` places the binary in `$(go env GOPATH)/bin`. Add that directory to your `PATH` if it isn’t already there:
 
         ```bash
         export PATH="$PATH:$(go env GOPATH)/bin"
@@ -187,7 +187,7 @@ description: Make your first API call to Claude and build a simple web search as
             For Linux environments, download the release binary directly.
 
             ```bash
-            VERSION=2.6.0
+            VERSION=2.7.0
             OS=$(uname -s | tr '[:upper:]' '[:lower:]')
             case $(uname -m) in
               x86_64) ARCH=amd64 ;;
@@ -201,13 +201,13 @@ description: Make your first API call to Claude and build a simple web search as
           </Tab>
 
           <Tab title="go install">
-            You can also install the CLI from source using `go install`. Requires Go 1.25 or later.
+            You can also install the CLI from source with `go install`, which requires Go 1.26.10 or later.
 
             ```bash
             go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
             ```
 
-            The binary is placed in `$(go env GOPATH)/bin`. Add it to your `PATH` if it isn’t already:
+            `go install` places the binary in `$(go env GOPATH)/bin`. Add that directory to your `PATH` if it isn’t already there:
 
             ```bash
             export PATH="$PATH:$(go env GOPATH)/bin"
@@ -512,7 +512,7 @@ description: Make your first API call to Claude and build a simple web search as
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:3.5.0")
+                implementation("com.anthropic:anthropic-java:3.6.0")
             }
 
             application {
@@ -538,7 +538,7 @@ description: Make your first API call to Claude and build a simple web search as
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>3.5.0</version>
+                  <version>3.6.0</version>
                 </dependency>
               </dependencies>
             </project>

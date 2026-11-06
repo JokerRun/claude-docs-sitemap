@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/archive
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: a132e5b09d18f52b7e06141be1a3575e6f1221c72c104f63f47d9dd8db44e453
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 7f04333b7ccca8cb7f36e001e5f9df54bf6e0b4c915aec29ae6fbc396c7e552a
 ---
 
 ---
@@ -686,6 +686,8 @@ Archive Session Thread
 
                   Two-letter ISO 3166-1 country code, uppercase.
 
+                  pattern: ^[A-Z]{2}$
+
                 - `region: optional string or null`
 
                   Region or state name.
@@ -959,6 +961,8 @@ Archive Session Thread
       - `amount: string`
 
         Amount in minor units of the currency, as an integer decimal string with no leading zeros: "2500" is $25.00 and "50" is fifty cents. A string rather than a number so no float rounding is ever applied.
+
+        pattern: ^(0|[1-9]\d*)$
 
       - `currency: BetaCurrency`
 

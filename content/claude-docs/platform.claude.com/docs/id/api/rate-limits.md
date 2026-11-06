@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/rate-limits
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: a7ccfbedce588d8d0df375ae92ea94a9919f0786b8df500ec090406c27116045
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: ea17225a7e62d7a1298838040dd170e78a4c9ad60dee84cf637e7f0f84adf026
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Untuk memitigasi penyalahgunaan dan mengelola kapasitas pada API, t
 ---
 
 <Note>
-  **[Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws):** Batas laju di halaman ini berlaku untuk Claude Platform on AWS, tetapi penagihan dan pengelolaan batasnya berbeda. Penagihan dilakukan melalui AWS Marketplace (bukan pembelian kredit Anthropic). Organisasi di Claude Platform on AWS ditempatkan pada tingkat Start dan dapat berpindah ke tingkat yang lebih tinggi secara otomatis seiring mereka membangun riwayat faktur AWS Marketplace yang telah dibayar. Untuk meminta batas yang lebih tinggi, hubungi perwakilan akun Anthropic Anda atau [dukungan Anthropic](https://support.claude.com); alur **Request tier increase** tidak tersedia. Konfigurasi batas laju per workspace dan [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (mode cepat) tidak tersedia di Claude Platform on AWS. Untuk detailnya, lihat [Batas laju dan kuota di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#rate-limits-and-quotas).
+  **[Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws):** Batas laju di halaman ini berlaku untuk Claude Platform on AWS, tetapi penagihan dan pengelolaan batasnya berbeda. Penagihan dilakukan melalui AWS Marketplace (bukan pembelian kredit Anthropic). Organisasi di Claude Platform on AWS ditempatkan pada tingkat Start dan dapat berpindah ke tingkat yang lebih tinggi secara otomatis seiring mereka membangun riwayat faktur AWS Marketplace yang telah dibayar. Untuk meminta batas yang lebih tinggi, hubungi perwakilan akun Anthropic Anda atau [dukungan Anthropic](https://support.claude.com); alur **Minta kenaikan tingkat** tidak tersedia. Konfigurasi batas laju per workspace dan [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (mode cepat) tidak tersedia di Claude Platform on AWS. Untuk detailnya, lihat [Batas laju dan kuota di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#rate-limits-and-quotas).
 </Note>
 
 Ada dua jenis batas:
@@ -27,7 +27,7 @@ API menerapkan batas yang dikonfigurasi oleh layanan di tingkat organisasi, teta
 * Batas dirancang untuk mencegah penyalahgunaan API, sekaligus meminimalkan dampak pada pola penggunaan pelanggan yang umum.
 * Batas ditentukan berdasarkan **tingkat penggunaan** (“usage tier”). Organisasi ditempatkan pada suatu tingkat secara otomatis berdasarkan riwayat penggunaan dan status akun, serta dapat berpindah ke tingkat yang lebih tinggi seiring waktu saat mereka menggunakan API.
 * Organisasi baru dan organisasi dengan riwayat penggunaan terbatas mungkin memulai di tingkat Evaluation, dengan batas di bawah batas standar yang ditampilkan di halaman ini selagi riwayat akun dibangun. Batas awal ini merupakan bagian dari cara Anthropic mencegah penipuan dan penyalahgunaan, dan batas tersebut meningkat secara otomatis seiring organisasi Anda membangun riwayat penggunaan.
-* Batas ditetapkan di tingkat organisasi. Anda dapat melihat tingkat dan batas organisasi Anda saat ini di halaman [Rate limits](https://platform.claude.com/usage/limits) (`platform.claude.com/usage/limits`) di [Claude Console](https://platform.claude.com/).
+* Batas ditetapkan di tingkat organisasi. Anda dapat melihat tingkat dan batas organisasi Anda saat ini di halaman [Batas laju](https://platform.claude.com/usage/limits) (`platform.claude.com/usage/limits`) di [Claude Console](https://platform.claude.com/).
 * Anda mungkin mencapai batas laju dalam interval waktu yang lebih pendek. Misalnya, laju 60 permintaan per menit (RPM) mungkin diberlakukan sebagai 1 permintaan per detik. Lonjakan permintaan singkat dapat melampaui batas dan memicu error batas laju.
 * Batas berikut adalah batas standar untuk setiap tingkat. Jika Anda memerlukan batas yang lebih tinggi, lihat [Meminta batas yang lebih tinggi](https://platform.claude.com/docs/id/api/rate-limits#requesting-higher-limits).
 * API menggunakan [algoritma token bucket](https://en.wikipedia.org/wiki/Token_bucket) untuk melakukan pembatasan laju. Ini berarti kapasitas Anda terus diisi ulang hingga batas maksimum Anda, bukan direset pada interval tetap.
@@ -39,7 +39,7 @@ API menerapkan batas yang dikonfigurasi oleh layanan di tingkat organisasi, teta
   **[Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws):** Batas pengeluaran bulanan yang sama berlaku, dan permintaan berhenti pada batas tersebut dengan cara yang sama. Penagihan dan kenaikan tingkat bekerja secara berbeda; lihat [Batas pengeluaran di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#spend-limits).
 </Note>
 
-Masing-masing tingkat Start, Build, dan Scale memiliki batas pengeluaran bulanan (“monthly spend cap”), yaitu jumlah maksimum yang dapat dibelanjakan organisasi Anda untuk API setiap bulan kalender. Anda dapat melihat batas pengeluaran bulanan organisasi Anda dan menetapkan batas Anda sendiri di halaman [Billing](https://platform.claude.com/settings/billing) di Claude Console.
+Masing-masing tingkat Start, Build, dan Scale memiliki batas pengeluaran bulanan (“monthly spend cap”), yaitu jumlah maksimum yang dapat dibelanjakan organisasi Anda untuk API setiap bulan kalender. Anda dapat melihat batas pengeluaran bulanan organisasi Anda dan menetapkan batas Anda sendiri di halaman [Penagihan](https://platform.claude.com/settings/billing) di Claude Console.
 
 | Tingkat penggunaan | Batas pengeluaran bulanan |
 | ------------------ | ------------------------- |
@@ -74,12 +74,12 @@ Setelah Anda mencapai batas pengeluaran tingkat Anda, penggunaan API dijeda hing
 Anda juga dapat menetapkan batas pengeluaran Anda sendiri di bawah batas tingkat Anda untuk mengendalikan biaya:
 
 <Steps>
-  <Step title="Buka halaman Billing">
-    Di Claude Console, buka halaman [Billing](https://platform.claude.com/settings/billing) (`platform.claude.com/settings/billing`).
+  <Step title="Buka halaman Penagihan">
+    Di Claude Console, buka halaman [Penagihan](https://platform.claude.com/settings/billing) (`platform.claude.com/settings/billing`).
   </Step>
 
   <Step title="Buka editor batas pengeluaran">
-    Di bagian **Spend limits**, klik **Adjust limit** (atau **Set limit** jika belum ada batas yang ditetapkan).
+    Di bagian **Batas pengeluaran**, klik **Sesuaikan batas** (atau **Tetapkan batas** jika belum ada batas yang ditetapkan).
   </Step>
 
   <Step title="Sesuaikan batas pengeluaran Anda">
@@ -93,7 +93,7 @@ Batas pada [workspace Claude Code](https://platform.claude.com/docs/id/manage-cl
 
 ## Batas laju
 
-Batas laju untuk Messages API diukur dalam permintaan per menit (RPM), token input per menit (ITPM), dan token output per menit (OTPM) untuk setiap kelas model. Jika Anda melebihi salah satu batas laju, Anda akan mendapatkan [error 429](https://platform.claude.com/docs/id/api/errors) yang menjelaskan batas laju mana yang terlampaui. Ketika respons memiliki header `retry-after`, tunggu selama jumlah detik tersebut sebelum mencoba ulang.
+Batas laju untuk Messages API diukur dalam permintaan per menit (RPM), token input per menit (ITPM), dan token output per menit (OTPM) untuk setiap kelas model. Jika Anda melebihi salah satu batas laju, Anda mendapatkan [error 429](https://platform.claude.com/docs/id/api/errors) yang menjelaskan batas laju mana yang terlampaui. Ketika respons memiliki header `retry-after`, tunggu selama jumlah detik tersebut sebelum mencoba ulang.
 
 <Note>
   Anda mungkin juga mengalami error 429 karena batas akselerasi pada API jika organisasi Anda mengalami peningkatan penggunaan yang tajam. Untuk menghindari batas akselerasi, tingkatkan lalu lintas Anda secara bertahap dan pertahankan pola penggunaan yang konsisten.
@@ -101,7 +101,7 @@ Batas laju untuk Messages API diukur dalam permintaan per menit (RPM), token inp
 
 ### ITPM yang sadar cache
 
-Banyak penyedia API menggunakan batas gabungan “token per menit” (TPM) yang mungkin mencakup semua token, baik yang di-cache maupun tidak, input maupun output. **Untuk sebagian besar model Claude, hanya token input yang tidak di-cache yang dihitung terhadap batas laju ITPM Anda.** Ini adalah keunggulan utama yang membuat batas laju secara efektif lebih tinggi daripada yang mungkin terlihat pada awalnya.
+Banyak penyedia API menggunakan batas gabungan “token per menit” (TPM) yang mungkin mencakup semua token, baik yang di-cache maupun tidak, input maupun output. **Batas laju ITPM default Claude hanya menghitung token input yang tidak di-cache.** Ini adalah keunggulan utama yang membuat batas laju secara efektif lebih tinggi daripada yang mungkin terlihat pada awalnya.
 
 Batas laju ITPM diperkirakan di awal setiap permintaan, dan perkiraan tersebut disesuaikan selama permintaan untuk mencerminkan jumlah token input aktual yang digunakan.
 
@@ -109,7 +109,7 @@ Berikut yang dihitung terhadap ITPM:
 
 * `input_tokens` (token setelah breakpoint cache terakhir) ✓ **Dihitung terhadap ITPM**
 * `cache_creation_input_tokens` (token yang sedang ditulis ke cache) ✓ **Dihitung terhadap ITPM**
-* `cache_read_input_tokens` (token yang dibaca dari cache) ✗ **TIDAK dihitung terhadap ITPM** untuk sebagian besar model
+* `cache_read_input_tokens` (token yang dibaca dari cache) ✗ **TIDAK dihitung terhadap ITPM**
 
 <Note>
   Field `input_tokens` hanya mewakili token yang muncul **setelah breakpoint cache terakhir Anda**, bukan semua token input dalam permintaan Anda. Untuk menghitung total token input:
@@ -118,77 +118,68 @@ Berikut yang dihitung terhadap ITPM:
   total_input_tokens = cache_read_input_tokens + cache_creation_input_tokens + input_tokens
   ```
 
-  Ini berarti ketika Anda memiliki konten yang di-cache, `input_tokens` biasanya akan jauh lebih kecil daripada total input Anda. Misalnya, dengan dokumen yang di-cache sebesar 200 ribu token dan pertanyaan pengguna sebesar 50 token, Anda akan melihat `input_tokens: 50` meskipun total inputnya adalah 200.050 token.
+  Ini berarti ketika Anda memiliki konten yang di-cache, `input_tokens` biasanya jauh lebih kecil daripada total input Anda. Misalnya, dengan dokumen yang di-cache sebesar 200 ribu token dan pertanyaan pengguna sebesar 50 token, Anda akan melihat `input_tokens: 50` meskipun total inputnya adalah 200.050 token.
 
-  Untuk keperluan batas laju pada sebagian besar model, hanya `input_tokens` + `cache_creation_input_tokens` yang dihitung terhadap batas ITPM Anda, menjadikan [“prompt caching” (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) cara yang efektif untuk meningkatkan throughput efektif Anda.
+  Untuk keperluan batas laju, hanya `input_tokens` + `cache_creation_input_tokens` yang dihitung terhadap batas ITPM Anda, menjadikan [“prompt caching” (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) cara yang efektif untuk meningkatkan throughput Anda.
 </Note>
 
-**Contoh:** Dengan batas ITPM 2.000.000 dan tingkat cache hit 80 persen, Anda secara efektif dapat memproses total 10.000.000 token input per menit (2 juta tidak di-cache + 8 juta di-cache), karena token yang di-cache tidak dihitung terhadap batas laju Anda.
+**Contoh:** Dengan batas ITPM 2.000.000 dan tingkat cache hit 80 persen, Anda secara efektif dapat memproses total 10.000.000 token input per menit (2 juta tidak di-cache + 8 juta di-cache), karena token yang di-cache tidak dihitung terhadap batas laju Anda. Token yang di-cache tersebut ditagih dengan [tarif baca cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing), sebagian kecil dari harga input dasar.
 
-<Note>
-  Claude Haiku 3.5 (ditandai dengan catatan kaki 4 pada tabel batas laju berikut) juga menghitung `cache_read_input_tokens` terhadap batas laju ITPM.
-
-  Untuk semua model lainnya, token input yang di-cache tidak dihitung terhadap batas laju dan ditagih dengan [tarif baca cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing), sebagian kecil dari harga input dasar. Ini berarti Anda dapat mencapai throughput efektif yang jauh lebih tinggi dengan menggunakan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
-</Note>
-
-Untuk mendapatkan throughput tertinggi dalam batas laju Anda, cache konten yang berulang seperti instruksi sistem dan prompt, dokumen konteks besar, definisi alat, dan riwayat percakapan; lihat [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk panduan. Dengan caching yang efektif, Anda dapat meningkatkan throughput aktual Anda secara substansial tanpa menaikkan batas laju Anda. Pantau tingkat cache hit Anda di halaman [Usage](https://platform.claude.com/usage) di Claude Console untuk menyempurnakan strategi caching Anda.
+Untuk mendapatkan throughput tertinggi dalam batas laju Anda, cache konten yang berulang seperti instruksi sistem dan prompt, dokumen konteks besar, definisi alat, dan riwayat percakapan; lihat [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk panduan. Dengan caching yang efektif, Anda dapat meningkatkan throughput aktual Anda secara substansial tanpa menaikkan batas laju Anda. Pantau tingkat cache hit Anda di halaman [Penggunaan](https://platform.claude.com/usage) di Claude Console untuk menyempurnakan strategi caching Anda.
 
 Batas laju OTPM dievaluasi secara real time saat token output dihasilkan, dengan hanya menghitung token aktual yang dihasilkan. Parameter `max_tokens` tidak diperhitungkan dalam kalkulasi batas laju OTPM, sehingga tidak ada kerugian terkait batas laju jika menetapkan nilai `max_tokens` yang lebih tinggi.
 
-Setiap baris dalam tabel berikut memiliki batas RPM, ITPM, dan OTPM tersendiri. Beberapa baris mencakup beberapa model yang berbagi satu batas; lihat catatan di bawah tabel. Anda dapat memeriksa “rate limit” (batas laju) dan perilaku Anda saat ini di halaman [Rate limits](https://platform.claude.com/usage/limits) di Claude Console, atau membaca batas yang dikonfigurasi dan menetapkan batas workspace secara terprogram dengan [Rate Limits API](https://platform.claude.com/docs/id/manage-claude/rate-limits-api).
+Setiap baris dalam tabel berikut memiliki batas RPM, ITPM, dan OTPM tersendiri. Beberapa baris mencakup beberapa model yang berbagi satu batas; lihat catatan di bawah tabel. Anda dapat memeriksa “rate limit” (batas laju) dan perilaku Anda saat ini di halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console, atau membaca batas yang dikonfigurasi dan menetapkan batas workspace secara terprogram dengan [Rate Limits API](https://platform.claude.com/docs/id/manage-claude/rate-limits-api).
 
 <Note>
-  Batas laju saat ini dibagikan di semua nilai `inference_geo`. Permintaan dengan `inference_geo: "us"` dan `inference_geo: "global"` mengambil dari kumpulan batas laju yang sama.
+  Batas laju dibagikan di semua nilai `inference_geo`. Permintaan dengan `inference_geo: "us"` dan `inference_geo: "global"` mengambil dari kumpulan batas laju yang sama.
 </Note>
 
 <Tabs>
   <Tab title="Tingkat Start">
-    | Model                                                                                                                                                           | Permintaan maksimum per menit (RPM) | Token input maksimum per menit (ITPM) | Token output maksimum per menit (OTPM) |
-    | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- | ------------------------------------- | -------------------------------------- |
-    | Claude Fable 5.x<sup>1</sup>                                                                                                                                    | 4.000                               | 500.000                               | 100.000                                |
-    | Claude Opus 5.5                                                                                                                                                 | 4.000                               | 2.000.000                             | 400.000                                |
-    | Claude Opus 5                                                                                                                                                   | 1.000                               | 2.000.000                             | 400.000                                |
-    | Claude Opus 4.x<sup>2</sup>                                                                                                                                     | 1.000                               | 2.000.000                             | 400.000                                |
-    | Claude Sonnet 5.5                                                                                                                                               | 4.000                               | 2.000.000                             | 400.000                                |
-    | Claude Sonnet 5                                                                                                                                                 | 1.000                               | 2.000.000                             | 400.000                                |
-    | Claude Sonnet 4.x<sup>3</sup>                                                                                                                                   | 1.000                               | 2.000.000                             | 400.000                                |
-    | Claude Haiku 5.5                                                                                                                                                | 4.000                               | 2.000.000                             | 400.000                                |
-    | Claude Haiku 4.5                                                                                                                                                | 1.000                               | 2.000.000                             | 400.000                                |
-    | Claude Haiku 3.5 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | 1.000                               | 100.000<sup>4</sup>                   | 20.000                                 |
+    | Model                         | Permintaan maksimum per menit (RPM) | Token input maksimum per menit (ITPM) | Token output maksimum per menit (OTPM) |
+    | ----------------------------- | ----------------------------------- | ------------------------------------- | -------------------------------------- |
+    | Claude Fable 5.x<sup>1</sup>  | 4.000                               | 500.000                               | 100.000                                |
+    | Claude Opus 5.5               | 4.000                               | 2.000.000                             | 400.000                                |
+    | Claude Opus 5                 | 1.000                               | 2.000.000                             | 400.000                                |
+    | Claude Opus 4.x<sup>2</sup>   | 1.000                               | 2.000.000                             | 400.000                                |
+    | Claude Sonnet 5.5             | 4.000                               | 2.000.000                             | 400.000                                |
+    | Claude Sonnet 5               | 1.000                               | 2.000.000                             | 400.000                                |
+    | Claude Sonnet 4.x<sup>3</sup> | 1.000                               | 2.000.000                             | 400.000                                |
+    | Claude Haiku 5.5              | 4.000                               | 2.000.000                             | 400.000                                |
+    | Claude Haiku 4.5              | 1.000                               | 2.000.000                             | 400.000                                |
   </Tab>
 
   <Tab title="Tingkat Build">
-    | Model                                                                                                                                                           | Permintaan maksimum per menit (RPM) | Token input maksimum per menit (ITPM) | Token output maksimum per menit (OTPM) |
-    | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- | ------------------------------------- | -------------------------------------- |
-    | Claude Fable 5.x<sup>1</sup>                                                                                                                                    | 10.000                              | 1.500.000                             | 300.000                                |
-    | Claude Opus 5.5                                                                                                                                                 | 10.000                              | 5.000.000                             | 1.000.000                              |
-    | Claude Opus 5                                                                                                                                                   | 5.000                               | 5.000.000                             | 1.000.000                              |
-    | Claude Opus 4.x<sup>2</sup>                                                                                                                                     | 5.000                               | 5.000.000                             | 1.000.000                              |
-    | Claude Sonnet 5.5                                                                                                                                               | 10.000                              | 5.000.000                             | 1.000.000                              |
-    | Claude Sonnet 5                                                                                                                                                 | 5.000                               | 5.000.000                             | 1.000.000                              |
-    | Claude Sonnet 4.x<sup>3</sup>                                                                                                                                   | 5.000                               | 5.000.000                             | 1.000.000                              |
-    | Claude Haiku 5.5                                                                                                                                                | 10.000                              | 5.000.000                             | 1.000.000                              |
-    | Claude Haiku 4.5                                                                                                                                                | 5.000                               | 5.000.000                             | 1.000.000                              |
-    | Claude Haiku 3.5 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | 2.000                               | 200.000<sup>4</sup>                   | 40.000                                 |
+    | Model                         | Permintaan maksimum per menit (RPM) | Token input maksimum per menit (ITPM) | Token output maksimum per menit (OTPM) |
+    | ----------------------------- | ----------------------------------- | ------------------------------------- | -------------------------------------- |
+    | Claude Fable 5.x<sup>1</sup>  | 10.000                              | 1.500.000                             | 300.000                                |
+    | Claude Opus 5.5               | 10.000                              | 5.000.000                             | 1.000.000                              |
+    | Claude Opus 5                 | 5.000                               | 5.000.000                             | 1.000.000                              |
+    | Claude Opus 4.x<sup>2</sup>   | 5.000                               | 5.000.000                             | 1.000.000                              |
+    | Claude Sonnet 5.5             | 10.000                              | 5.000.000                             | 1.000.000                              |
+    | Claude Sonnet 5               | 5.000                               | 5.000.000                             | 1.000.000                              |
+    | Claude Sonnet 4.x<sup>3</sup> | 5.000                               | 5.000.000                             | 1.000.000                              |
+    | Claude Haiku 5.5              | 10.000                              | 5.000.000                             | 1.000.000                              |
+    | Claude Haiku 4.5              | 5.000                               | 5.000.000                             | 1.000.000                              |
   </Tab>
 
   <Tab title="Tingkat Scale">
-    | Model                                                                                                                                                           | Permintaan maksimum per menit (RPM) | Token input maksimum per menit (ITPM) | Token output maksimum per menit (OTPM) |
-    | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- | ------------------------------------- | -------------------------------------- |
-    | Claude Fable 5.x<sup>1</sup>                                                                                                                                    | 13.000                              | 4.000.000                             | 800.000                                |
-    | Claude Opus 5.5                                                                                                                                                 | 13.000                              | 10.000.000                            | 2.000.000                              |
-    | Claude Opus 5                                                                                                                                                   | 10.000                              | 10.000.000                            | 2.000.000                              |
-    | Claude Opus 4.x<sup>2</sup>                                                                                                                                     | 10.000                              | 10.000.000                            | 2.000.000                              |
-    | Claude Sonnet 5.5                                                                                                                                               | 13.000                              | 10.000.000                            | 2.000.000                              |
-    | Claude Sonnet 5                                                                                                                                                 | 10.000                              | 10.000.000                            | 2.000.000                              |
-    | Claude Sonnet 4.x<sup>3</sup>                                                                                                                                   | 10.000                              | 10.000.000                            | 2.000.000                              |
-    | Claude Haiku 5.5                                                                                                                                                | 13.000                              | 10.000.000                            | 2.000.000                              |
-    | Claude Haiku 4.5                                                                                                                                                | 10.000                              | 10.000.000                            | 2.000.000                              |
-    | Claude Haiku 3.5 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | 4.000                               | 400.000<sup>4</sup>                   | 80.000                                 |
+    | Model                         | Permintaan maksimum per menit (RPM) | Token input maksimum per menit (ITPM) | Token output maksimum per menit (OTPM) |
+    | ----------------------------- | ----------------------------------- | ------------------------------------- | -------------------------------------- |
+    | Claude Fable 5.x<sup>1</sup>  | 13.000                              | 4.000.000                             | 800.000                                |
+    | Claude Opus 5.5               | 13.000                              | 10.000.000                            | 2.000.000                              |
+    | Claude Opus 5                 | 10.000                              | 10.000.000                            | 2.000.000                              |
+    | Claude Opus 4.x<sup>2</sup>   | 10.000                              | 10.000.000                            | 2.000.000                              |
+    | Claude Sonnet 5.5             | 13.000                              | 10.000.000                            | 2.000.000                              |
+    | Claude Sonnet 5               | 10.000                              | 10.000.000                            | 2.000.000                              |
+    | Claude Sonnet 4.x<sup>3</sup> | 10.000                              | 10.000.000                            | 2.000.000                              |
+    | Claude Haiku 5.5              | 13.000                              | 10.000.000                            | 2.000.000                              |
+    | Claude Haiku 4.5              | 10.000                              | 10.000.000                            | 2.000.000                              |
   </Tab>
 
   <Tab title="Tingkat Custom">
-    Jika Anda memerlukan batas yang lebih tinggi dari tingkat Scale, hubungi tim penjualan melalui halaman [Rate limits](https://platform.claude.com/usage/limits) di Claude Console.
+    Jika Anda memerlukan batas yang lebih tinggi dari tingkat Scale, hubungi tim penjualan melalui halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console.
   </Tab>
 </Tabs>
 
@@ -196,13 +187,11 @@ Setiap baris dalam tabel berikut memiliki batas RPM, ITPM, dan OTPM tersendiri. 
 
 *<sup>2 Batas laju Opus adalah batas total yang berlaku untuk lalu lintas gabungan di Claude Opus 4.8, Opus 4.7, Opus 4.6, dan Opus 4.5. Claude Opus 5.5 dan Claude Opus 5 masing-masing memiliki batas laju terpisah dan bukan bagian dari kelompok gabungan ini.</sup>*
 
-*<sup>3 Batas laju Sonnet 4.x adalah batas total yang berlaku untuk lalu lintas gabungan di Sonnet 4.6 dan Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)). Claude Sonnet 5.5 dan Claude Sonnet 5 masing-masing memiliki batas laju terpisah dan bukan bagian dari kelompok gabungan ini.</sup>*
-
-*<sup>4 Batas ini menghitung `cache_read_input_tokens` terhadap penggunaan ITPM.</sup>*
+*<sup>3 Batas laju Sonnet 4.x adalah batas total yang berlaku untuk lalu lintas gabungan di Sonnet 4.6 dan Sonnet 4.5 (tidak digunakan lagi; lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations)). Claude Sonnet 5.5 dan Claude Sonnet 5 masing-masing memiliki batas laju terpisah dan bukan bagian dari kelompok gabungan ini.</sup>*
 
 ### Message Batches API
 
-Message Batches API memiliki set batas lajunya sendiri, yang dibagikan di semua model. Ini mencakup batas permintaan per menit (RPM) untuk semua endpoint API dan batas jumlah permintaan batch yang dapat berada dalam antrean pemrosesan pada saat yang sama. “Permintaan batch” di sini mengacu pada bagian dari sebuah Message Batch. Anda dapat membuat Message Batch yang berisi ribuan permintaan batch, yang masing-masing dihitung terhadap batas ini. Sebuah permintaan batch dianggap sebagai bagian dari antrean pemrosesan ketika belum berhasil diproses oleh model.
+Message Batches API memiliki set batas lajunya sendiri, yang dibagikan di semua model. Ini mencakup batas permintaan per menit (RPM) untuk semua endpoint API dan batas jumlah permintaan batch yang dapat berada dalam antrean pemrosesan pada saat yang sama. “Permintaan batch” di sini mengacu pada bagian dari sebuah Message Batch. Anda dapat membuat Message Batch yang berisi ribuan permintaan batch, yang masing-masing dihitung terhadap batas ini. Sebuah permintaan batch tetap berada dalam antrean pemrosesan hingga model berhasil memprosesnya.
 
 <Tabs>
   <Tab title="Tingkat Start">
@@ -224,7 +213,7 @@ Message Batches API memiliki set batas lajunya sendiri, yang dibagikan di semua 
   </Tab>
 
   <Tab title="Tingkat Custom">
-    Jika Anda memerlukan batas yang lebih tinggi dari tingkat Scale, hubungi tim penjualan melalui halaman [Rate limits](https://platform.claude.com/usage/limits) di Claude Console.
+    Jika Anda memerlukan batas yang lebih tinggi dari tingkat Scale, hubungi tim penjualan melalui halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console.
   </Tab>
 </Tabs>
 
@@ -232,26 +221,26 @@ Message Batches API memiliki set batas lajunya sendiri, yang dibagikan di semua 
 
 Endpoint [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) dibatasi lajunya untuk setiap organisasi. Batas ini terpisah dari batas laju Messages API yang dijelaskan sebelumnya di halaman ini.
 
-| Operasi                                                   | Batas                      |
-| --------------------------------------------------------- | -------------------------- |
-| Endpoint pembuatan (misalnya, agen, sesi, dan lingkungan) | 300 permintaan per menit   |
-| Endpoint pembacaan (misalnya, retrieve, list, dan stream) | 1.200 permintaan per menit |
+| Operasi                                                        | Batas                      |
+| -------------------------------------------------------------- | -------------------------- |
+| Endpoint pembuatan (misalnya, agen, sesi, dan lingkungan)      | 300 permintaan per menit   |
+| Endpoint pembacaan (misalnya, pengambilan, daftar, dan stream) | 1.200 permintaan per menit |
 
 ### Files API
 
-Permintaan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) memiliki batas per organisasinya sendiri, yang dibagi bersama di seluruh operasi upload, list, retrieve, download, dan delete serta terpisah dari batas Messages API yang dijelaskan sebelumnya di halaman ini. Lihat [batas laju Files API](https://platform.claude.com/docs/id/build-with-claude/files#rate-limits) untuk nilai saat ini.
+Permintaan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) memiliki batas per organisasinya sendiri, yang dibagi bersama di seluruh operasi unggah, daftar, pengambilan, unduh, dan penghapusan serta terpisah dari batas Messages API yang dijelaskan sebelumnya di halaman ini. Lihat [batas laju Files API](https://platform.claude.com/docs/id/build-with-claude/files#rate-limits) untuk nilai saat ini.
 
-### Batas laju fast mode
+### Batas laju mode cepat
 
-Saat menggunakan [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) dengan `speed: "fast"` pada Claude Opus 5.5, Claude Opus 5, atau Claude Opus 4.8, berlaku batas laju khusus yang terpisah dari batas laju Opus standar. Claude Opus 5.5 memiliki batas laju fast mode default di tingkat Start, Build, dan Scale, sehingga Anda tidak perlu meminta akses untuk menggunakan fast mode dengannya. Organisasi di tingkat Evaluation dapat menggunakan fast mode dengan Claude Opus 5.5 setelah mereka berpindah ke tingkat Start, Build, atau Scale. Fast mode untuk Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset. Untuk melihat batas laju fast mode Anda, buka halaman [Rate limits](https://platform.claude.com/usage/limits) di Claude Console. Ketika batas laju fast mode terlampaui, API mengembalikan error `429` dengan header `retry-after`.
+Saat menggunakan [mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) dengan `speed: "fast"` pada Claude Opus 5.5, Claude Opus 5, atau Claude Opus 4.8, berlaku batas laju khusus yang terpisah dari batas laju Opus standar. Claude Opus 5.5 memiliki batas laju mode cepat default di tingkat Start, Build, dan Scale, sehingga Anda tidak perlu meminta akses untuk menggunakan mode cepat dengannya. Organisasi di tingkat Evaluation dapat menggunakan mode cepat dengan Claude Opus 5.5 setelah mereka berpindah ke tingkat Start, Build, atau Scale. Mode cepat untuk Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset. Untuk melihat batas laju mode cepat Anda, buka halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console. Ketika batas laju mode cepat terlampaui, API mengembalikan error `429` dengan header `retry-after`.
 
-Respons menyertakan header `anthropic-fast-*` yang menunjukkan status batas laju fast mode Anda. Lihat [Batas laju fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode#rate-limits) untuk detail tentang header ini.
+Respons menyertakan header `anthropic-fast-*` yang menunjukkan status batas laju mode cepat Anda. Lihat [Batas laju mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#rate-limits) untuk detail tentang header ini.
 
 ### Memantau batas laju Anda di Console
 
-Anda dapat memantau penggunaan batas laju Anda di halaman [Usage](https://platform.claude.com/usage) di [Claude Console](https://platform.claude.com/).
+Anda dapat memantau penggunaan batas laju Anda di halaman [Penggunaan](https://platform.claude.com/usage) di [Claude Console](https://platform.claude.com/).
 
-Selain menyediakan grafik token dan permintaan, halaman **Usage** menyediakan dua grafik batas laju terpisah. Gunakan grafik ini untuk melihat ruang yang Anda miliki untuk berkembang, mengidentifikasi kapan Anda mungkin mencapai puncak penggunaan, memahami batas laju apa yang perlu diminta, dan mempelajari cara meningkatkan tingkat caching Anda. Grafik tersebut memvisualisasikan sejumlah metrik untuk batas laju tertentu (misalnya, untuk setiap model):
+Selain menyediakan grafik token dan permintaan, halaman **Penggunaan** menyediakan dua grafik batas laju terpisah. Gunakan grafik ini untuk melihat ruang yang Anda miliki untuk berkembang, mengidentifikasi kapan Anda mungkin mencapai puncak penggunaan, memahami batas laju apa yang perlu diminta, dan mempelajari cara meningkatkan tingkat caching Anda. Grafik tersebut memvisualisasikan sejumlah metrik untuk batas laju tertentu (misalnya, untuk setiap model):
 
 * Grafik **Rate Limit - Input Tokens** mencakup:
 
@@ -266,55 +255,55 @@ Selain menyediakan grafik token dan permintaan, halaman **Usage** menyediakan du
 
 ## Meminta batas yang lebih tinggi
 
-Untuk meminta batas laju yang lebih tinggi atau batas pengeluaran bulanan yang lebih tinggi, gunakan **Request tier increase** di halaman [Rate limits](https://platform.claude.com/usage/limits) di Claude Console. Dukungan Anthropic juga dapat menaikkan batas; untuk kebutuhan mendesak, hubungi [dukungan Anthropic](https://support.claude.com).
+Untuk meminta batas laju yang lebih tinggi atau batas pengeluaran bulanan yang lebih tinggi, gunakan **Minta kenaikan tingkat** di halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console. Dukungan Anthropic juga dapat menaikkan batas; untuk kebutuhan mendesak, hubungi [dukungan Anthropic](https://support.claude.com).
 
 <Note>
-  **[Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws):** Alur **Request tier increase** tidak tersedia. Hubungi perwakilan akun Anthropic Anda atau [dukungan Anthropic](https://support.claude.com), dan sertakan model yang perlu dinaikkan batasnya, token input dan output puncak per menit untuk setiap model, serta perkiraan porsi input Anda yang merupakan konteks yang di-cache atau berulang. Lihat [Batas laju dan kuota di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#rate-limits-and-quotas).
+  **[Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws):** Alur **Minta kenaikan tingkat** tidak tersedia. Hubungi perwakilan akun Anthropic Anda atau [dukungan Anthropic](https://support.claude.com), dan sertakan model yang perlu dinaikkan batasnya, token input dan output puncak per menit untuk setiap model, serta perkiraan porsi input Anda yang merupakan konteks yang di-cache atau berulang. Lihat [Batas laju dan kuota di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#rate-limits-and-quotas).
 </Note>
 
 ## Menetapkan batas yang lebih rendah untuk workspace
 
 Untuk informasi lebih lanjut tentang workspace, lihat [Workspace](https://platform.claude.com/docs/id/manage-claude/workspaces).
 
-Untuk melindungi Workspace di Organisasi Anda dari potensi penggunaan berlebih, Anda dapat menetapkan batas pengeluaran dan batas laju khusus untuk setiap Workspace.
+Untuk melindungi workspace di organisasi Anda dari potensi penggunaan berlebih, Anda dapat menetapkan batas pengeluaran dan batas laju khusus untuk setiap workspace.
 
-Contoh: Jika batas Organisasi Anda adalah 40.000 token input per menit dan 8.000 token output per menit, Anda dapat membatasi satu Workspace hingga 30.000 token input per menit. Ini melindungi Workspace lain dari potensi penggunaan berlebih dan memastikan distribusi sumber daya yang lebih merata di seluruh Organisasi Anda. Sisa token per menit yang tidak terpakai (atau lebih, jika Workspace tersebut tidak menggunakan batasnya) kemudian tersedia untuk digunakan oleh Workspace lain.
+Contoh: Jika batas organisasi Anda adalah 40.000 token input per menit dan 8.000 token output per menit, Anda dapat membatasi satu workspace hingga 30.000 token input per menit. Ini melindungi workspace lain dari potensi penggunaan berlebih dan membagi sumber daya secara lebih merata di seluruh organisasi Anda. Sisa 10.000 token input per menit, ditambah bagian mana pun dari 30.000 yang tidak digunakan oleh workspace tersebut, tetap tersedia untuk workspace lain.
 
 Catatan:
 
-* Anda tidak dapat menetapkan batas pengeluaran pada Workspace default.
-* Jika tidak ditetapkan, batas Workspace sama dengan batas Organisasi.
-* Batas Workspace ditetapkan untuk setiap jenis pembatas (seperti permintaan per menit, token input per menit, atau token output per menit).
-* Batas tingkat Organisasi selalu berlaku, meskipun jumlah batas Workspace lebih besar.
+* Anda tidak dapat menetapkan batas pengeluaran pada workspace default.
+* Jika tidak ditetapkan, batas workspace sama dengan batas organisasi.
+* Batas workspace ditetapkan untuk setiap jenis pembatas (seperti permintaan per menit, token input per menit, atau token output per menit).
+* Batas tingkat organisasi selalu berlaku, meskipun jumlah batas workspace lebih besar.
 
 Untuk membaca batas laju organisasi dan workspace Anda saat ini atau menetapkan batas laju workspace secara terprogram, gunakan [Rate Limits API](https://platform.claude.com/docs/id/manage-claude/rate-limits-api).
 
 ## Header respons
 
-Respons API menyertakan header yang menunjukkan batas laju yang diberlakukan, penggunaan saat ini, dan kapan batas akan direset.
+Respons API menyertakan header yang menunjukkan batas laju yang diberlakukan, penggunaan saat ini, dan kapan batas direset.
 
 Header berikut dikembalikan:
 
-| Header                                        | Deskripsi                                                                                                                                                                                                                                                                                                                          |
-| --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `retry-after`                                 | Jumlah detik yang harus ditunggu hingga Anda dapat mencoba ulang permintaan. Percobaan ulang yang lebih awal akan gagal. Tidak semua 429 membawa header ini; 429 batas pengeluaran tidak pernah membawanya (lihat [Mencapai batas pengeluaran Anda](https://platform.claude.com/docs/id/api/rate-limits#reaching-your-spend-cap)). |
-| `anthropic-ratelimit-requests-limit`          | Jumlah maksimum permintaan yang diizinkan dalam periode batas laju apa pun.                                                                                                                                                                                                                                                        |
-| `anthropic-ratelimit-requests-remaining`      | Jumlah permintaan yang tersisa sebelum dibatasi lajunya.                                                                                                                                                                                                                                                                           |
-| `anthropic-ratelimit-requests-reset`          | Waktu ketika batas laju permintaan akan terisi penuh kembali, disediakan dalam format RFC 3339.                                                                                                                                                                                                                                    |
-| `anthropic-ratelimit-tokens-limit`            | Jumlah maksimum token yang diizinkan dalam periode batas laju apa pun.                                                                                                                                                                                                                                                             |
-| `anthropic-ratelimit-tokens-remaining`        | Jumlah token yang tersisa (dibulatkan ke ribuan terdekat) sebelum dibatasi lajunya.                                                                                                                                                                                                                                                |
-| `anthropic-ratelimit-tokens-reset`            | Waktu ketika batas laju token akan terisi penuh kembali, disediakan dalam format RFC 3339.                                                                                                                                                                                                                                         |
-| `anthropic-ratelimit-input-tokens-limit`      | Jumlah maksimum token input yang diizinkan dalam periode batas laju apa pun.                                                                                                                                                                                                                                                       |
-| `anthropic-ratelimit-input-tokens-remaining`  | Jumlah token input yang tersisa (dibulatkan ke ribuan terdekat) sebelum dibatasi lajunya.                                                                                                                                                                                                                                          |
-| `anthropic-ratelimit-input-tokens-reset`      | Waktu ketika batas laju token input akan terisi penuh kembali, disediakan dalam format RFC 3339.                                                                                                                                                                                                                                   |
-| `anthropic-ratelimit-output-tokens-limit`     | Jumlah maksimum token output yang diizinkan dalam periode batas laju apa pun.                                                                                                                                                                                                                                                      |
-| `anthropic-ratelimit-output-tokens-remaining` | Jumlah token output yang tersisa (dibulatkan ke ribuan terdekat) sebelum dibatasi lajunya.                                                                                                                                                                                                                                         |
-| `anthropic-ratelimit-output-tokens-reset`     | Waktu ketika batas laju token output akan terisi penuh kembali, disediakan dalam format RFC 3339.                                                                                                                                                                                                                                  |
-| `anthropic-priority-input-tokens-limit`       | Jumlah maksimum token input Priority Tier yang diizinkan dalam periode batas laju apa pun. (Hanya Priority Tier)                                                                                                                                                                                                                   |
-| `anthropic-priority-input-tokens-remaining`   | Jumlah token input Priority Tier yang tersisa (dibulatkan ke ribuan terdekat) sebelum dibatasi lajunya. (Hanya Priority Tier)                                                                                                                                                                                                      |
-| `anthropic-priority-input-tokens-reset`       | Waktu ketika batas laju token input Priority Tier akan terisi penuh kembali, disediakan dalam format RFC 3339. (Hanya Priority Tier)                                                                                                                                                                                               |
-| `anthropic-priority-output-tokens-limit`      | Jumlah maksimum token output Priority Tier yang diizinkan dalam periode batas laju apa pun. (Hanya Priority Tier)                                                                                                                                                                                                                  |
-| `anthropic-priority-output-tokens-remaining`  | Jumlah token output Priority Tier yang tersisa (dibulatkan ke ribuan terdekat) sebelum dibatasi lajunya. (Hanya Priority Tier)                                                                                                                                                                                                     |
-| `anthropic-priority-output-tokens-reset`      | Waktu ketika batas laju token output Priority Tier akan terisi penuh kembali, disediakan dalam format RFC 3339. (Hanya Priority Tier)                                                                                                                                                                                              |
+| Header                                        | Deskripsi                                                                                                                                                                                                                                                                                                                     |
+| --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `retry-after`                                 | Jumlah detik yang harus ditunggu hingga Anda dapat mencoba ulang permintaan. Percobaan ulang yang lebih awal gagal. Tidak semua 429 membawa header ini; 429 batas pengeluaran tidak pernah membawanya (lihat [Mencapai batas pengeluaran Anda](https://platform.claude.com/docs/id/api/rate-limits#reaching-your-spend-cap)). |
+| `anthropic-ratelimit-requests-limit`          | Jumlah maksimum permintaan yang diizinkan dalam periode batas laju apa pun.                                                                                                                                                                                                                                                   |
+| `anthropic-ratelimit-requests-remaining`      | Jumlah permintaan yang tersisa sebelum dibatasi lajunya.                                                                                                                                                                                                                                                                      |
+| `anthropic-ratelimit-requests-reset`          | Waktu ketika batas laju permintaan terisi penuh kembali, disediakan dalam format RFC 3339.                                                                                                                                                                                                                                    |
+| `anthropic-ratelimit-tokens-limit`            | Jumlah maksimum token yang diizinkan dalam periode batas laju apa pun.                                                                                                                                                                                                                                                        |
+| `anthropic-ratelimit-tokens-remaining`        | Jumlah token yang tersisa (dibulatkan ke ribuan terdekat) sebelum dibatasi lajunya.                                                                                                                                                                                                                                           |
+| `anthropic-ratelimit-tokens-reset`            | Waktu ketika batas laju token terisi penuh kembali, disediakan dalam format RFC 3339.                                                                                                                                                                                                                                         |
+| `anthropic-ratelimit-input-tokens-limit`      | Jumlah maksimum token input yang diizinkan dalam periode batas laju apa pun.                                                                                                                                                                                                                                                  |
+| `anthropic-ratelimit-input-tokens-remaining`  | Jumlah token input yang tersisa (dibulatkan ke ribuan terdekat) sebelum dibatasi lajunya.                                                                                                                                                                                                                                     |
+| `anthropic-ratelimit-input-tokens-reset`      | Waktu ketika batas laju token input terisi penuh kembali, disediakan dalam format RFC 3339.                                                                                                                                                                                                                                   |
+| `anthropic-ratelimit-output-tokens-limit`     | Jumlah maksimum token output yang diizinkan dalam periode batas laju apa pun.                                                                                                                                                                                                                                                 |
+| `anthropic-ratelimit-output-tokens-remaining` | Jumlah token output yang tersisa (dibulatkan ke ribuan terdekat) sebelum dibatasi lajunya.                                                                                                                                                                                                                                    |
+| `anthropic-ratelimit-output-tokens-reset`     | Waktu ketika batas laju token output terisi penuh kembali, disediakan dalam format RFC 3339.                                                                                                                                                                                                                                  |
+| `anthropic-priority-input-tokens-limit`       | Jumlah maksimum token input Priority Tier yang diizinkan dalam periode batas laju apa pun. (Hanya Priority Tier)                                                                                                                                                                                                              |
+| `anthropic-priority-input-tokens-remaining`   | Jumlah token input Priority Tier yang tersisa (dibulatkan ke ribuan terdekat) sebelum dibatasi lajunya. (Hanya Priority Tier)                                                                                                                                                                                                 |
+| `anthropic-priority-input-tokens-reset`       | Waktu ketika batas laju token input Priority Tier terisi penuh kembali, disediakan dalam format RFC 3339. (Hanya Priority Tier)                                                                                                                                                                                               |
+| `anthropic-priority-output-tokens-limit`      | Jumlah maksimum token output Priority Tier yang diizinkan dalam periode batas laju apa pun. (Hanya Priority Tier)                                                                                                                                                                                                             |
+| `anthropic-priority-output-tokens-remaining`  | Jumlah token output Priority Tier yang tersisa (dibulatkan ke ribuan terdekat) sebelum dibatasi lajunya. (Hanya Priority Tier)                                                                                                                                                                                                |
+| `anthropic-priority-output-tokens-reset`      | Waktu ketika batas laju token output Priority Tier terisi penuh kembali, disediakan dalam format RFC 3339. (Hanya Priority Tier)                                                                                                                                                                                              |
 
-Header `anthropic-ratelimit-tokens-*` menampilkan nilai untuk batas paling ketat yang sedang berlaku. Misalnya, jika Anda telah melampaui batas token per menit Workspace, header akan berisi nilai batas laju token per menit Workspace. Jika batas Workspace tidak berlaku, header akan mengembalikan total token yang tersisa, di mana total adalah jumlah token input dan output. Pendekatan ini memastikan Anda memiliki visibilitas terhadap kendala yang paling relevan pada penggunaan API Anda saat ini. Untuk melihat Workspace mana yang diperhitungkan untuk suatu permintaan, baca [header respons](https://platform.claude.com/docs/id/api/overview#response-headers) `anthropic-workspace-id`, yang membawa ID Workspace yang menjadi tujuan resolusi kunci API atau token akses Anda.
+Header `anthropic-ratelimit-tokens-*` menampilkan nilai untuk batas paling ketat yang sedang berlaku. Misalnya, jika Anda telah melampaui batas token per menit workspace, header berisi nilai batas laju token per menit workspace. Jika batas workspace tidak berlaku, header mengembalikan total token yang tersisa, di mana total adalah jumlah token input dan output. Untuk melihat workspace mana yang diperhitungkan untuk suatu permintaan, baca [header respons](https://platform.claude.com/docs/id/api/overview#response-headers) `anthropic-workspace-id`, yang membawa ID workspace yang menjadi tujuan resolusi kunci API atau token akses Anda.

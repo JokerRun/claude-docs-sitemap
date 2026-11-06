@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 2d05c693eda16bc503ec65745fcf46f02835d5e5eb9e62b8640ff650ec9f9dda
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: e39274685ce931f7c9c72320c5101da2b452ef2cc49f6ea3d369191255fd77d3
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using
 description: Struktur perintah, format output, transformasi GJSON, body permintaan, dan debugging untuk CLI ant.
 ---
 
-Halaman ini membahas mekanisme input dan output CLI `ant` yang berlaku di setiap endpoint. Untuk menginstal dan melakukan autentikasi, lihat [Quickstart](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart). Untuk merangkai perintah dan mengelola versi sumber daya, lihat [Scripting dan otomatisasi CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting).
+Halaman ini membahas mekanisme input dan output CLI `ant` yang berlaku di setiap endpoint. Untuk menginstal dan melakukan autentikasi, lihat [Mulai cepat](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart). Untuk merangkai perintah dan mengelola versi sumber daya, lihat [Scripting dan otomatisasi CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting).
 
 ## Struktur perintah
 
@@ -23,7 +23,7 @@ ant <resource>[:<subresource>] <action> [flags]
 
 Jalankan `ant --help` untuk daftar sumber daya lengkap, atau tambahkan `--help` ke subperintah mana pun untuk melihat flag-nya.
 
-Sumber daya dalam beta (termasuk agents, sessions, deployments, dan environments) berada di bawah prefiks `beta:`. Perintah dalam namespace ini secara otomatis mengirimkan header `anthropic-beta` yang sesuai untuk sumber daya tersebut, sehingga Anda tidak perlu meneruskannya sendiri. Gunakan `--beta <header>` hanya untuk menimpa default (misalnya, untuk memilih versi skema yang berbeda).
+Sumber daya dalam beta (termasuk agen, sesi, deployment, dan lingkungan) berada di bawah prefiks `beta:`. Perintah dalam namespace ini secara otomatis mengirimkan header `anthropic-beta` yang sesuai untuk sumber daya tersebut, sehingga Anda tidak perlu meneruskannya sendiri. Gunakan `--beta <header>` hanya untuk menimpa default (misalnya, untuk memilih versi skema yang berbeda).
 
 ```bash
 ant models list
@@ -34,18 +34,18 @@ ant beta:sessions:events list --session-id session_01...
 
 ### Flag global
 
-| Flag                                  | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--profile`                           | Profil bernama yang digunakan untuk pemanggilan ini (setara dengan mengatur `ANTHROPIC_PROFILE`). Lihat [Beralih antar workspace](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#switch-between-workspaces).                                                                                                                                                                                                                                                 |
-| `--api-key-stdin`                     | Membaca kunci API dari standard input. Flag ini membaca seluruh standard input, jadi teruskan body permintaan dengan [flag](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#flags).                                                                                                                                                                                                                                                                                    |
-| `--auth-token-stdin`                  | Membaca bearer token dari standard input. Flag ini membaca seluruh standard input, jadi teruskan body permintaan dengan [flag](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#flags).                                                                                                                                                                                                                                                                                 |
-| `--format`                            | Format output: `auto`, `json`, `jsonl`, `yaml`, `pretty`, `raw`, `explore`                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `--transform`                         | Memfilter atau membentuk ulang respons dengan [path GJSON](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#transform-output-with-gjson)                                                                                                                                                                                                                                                                                                                                |
-| `-r`, `--raw-output`                  | Mencetak hasil string tanpa tanda kutip di sekelilingnya, seperti `jq -r`                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `--base-url`                          | Menimpa URL dasar API                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `--workspace-id`                      | Opsional. ID workspace (`wrkspc_...`) yang dikirim sebagai header `anthropic-workspace-id`, untuk kunci API dengan akses ke beberapa workspace (setara dengan mengatur `ANTHROPIC_WORKSPACE_ID`). Lihat [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace). Perintah [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) menerima `--workspace-id` sendiri, yang justru menunjuk workspace yang dikelolanya. |
-| `--debug`                             | Mencetak permintaan dan respons HTTP lengkap ke stderr                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `--format-error`, `--transform-error` | Sama seperti `--format` dan `--transform` tetapi diterapkan pada [respons error](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting#inspect-errors)                                                                                                                                                                                                                                                                                                                   |
+| Flag                                  | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--profile`                           | Profil bernama yang digunakan untuk perintah ini (setara dengan mengatur `ANTHROPIC_PROFILE`). Lihat [Beralih antar workspace](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#switch-between-workspaces).                                                                                                                                                                                                                                                          |
+| `--api-key-stdin`                     | Membaca kunci API dari standard input. Flag ini membaca seluruh standard input, jadi teruskan body permintaan dengan [flag](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#flags).                                                                                                                                                                                                                                                                                          |
+| `--auth-token-stdin`                  | Membaca bearer token dari standard input. Flag ini membaca seluruh standard input, jadi teruskan body permintaan dengan [flag](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#flags).                                                                                                                                                                                                                                                                                       |
+| `--format`                            | Format output: `auto`, `json`, `jsonl`, `yaml`, `pretty`, `raw`, `explore`                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `--transform`                         | Memfilter atau membentuk ulang respons dengan path GJSON. Lihat [Mentransformasi output dengan GJSON](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/using#transform-output-with-gjson).                                                                                                                                                                                                                                                                                          |
+| `-r`, `--raw-output`                  | Mencetak hasil string tanpa tanda kutip di sekelilingnya, seperti `jq -r`                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `--base-url`                          | Menimpa URL dasar API                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `--workspace-id`                      | Opsional. ID workspace (`wrkspc_...`) yang dikirim sebagai header `anthropic-workspace-id`, untuk kunci API yang tidak dibatasi pada workspace (setara dengan mengatur `ANTHROPIC_WORKSPACE_ID`). Lihat [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace). Perintah [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) menerima `--workspace-id` tersendiri, yang justru menyebutkan workspace yang dikelolanya. |
+| `--debug`                             | Mencetak permintaan dan respons HTTP lengkap ke stderr                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `--format-error`, `--transform-error` | Sama seperti `--format` dan `--transform` tetapi diterapkan pada [respons error](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting#inspect-errors)                                                                                                                                                                                                                                                                                                                         |
 
 ## Format output
 
@@ -65,7 +65,7 @@ Endpoint list melakukan paginasi otomatis. Dalam format default, setiap item dit
 
 ### Penjelajah interaktif
 
-Penjelajah adalah TUI lipat-dan-cari untuk menelusuri respons berukuran besar. Tombol panah membuka dan menutup node, `/` melakukan pencarian, `q` keluar. Perintah list dan retrieve membukanya secara default saat terhubung ke terminal. Teruskan `--format explore` untuk membukanya secara eksplisit:
+Penjelajah adalah TUI lipat-dan-cari untuk menelusuri respons berukuran besar. Tombol panah memperluas dan menciutkan node, `/` melakukan pencarian, dan `q` keluar. Perintah list dan retrieve membukanya secara default saat terhubung ke terminal. Teruskan `--format explore` untuk membukanya secara eksplisit:
 
 ```bash
 ant models list --format explore
@@ -76,9 +76,7 @@ ant models list --format explore
 Gunakan `--transform` untuk membentuk ulang respons sebelum dicetak. Ekspresinya adalah [path GJSON](https://github.com/tidwall/gjson/blob/master/SYNTAX.md). Untuk endpoint list, transformasi dijalankan terhadap setiap item secara individual, bukan terhadap envelope:
 
 ```bash
-ant beta:agents list \
-  --transform "{id,name,model}" \
-  --format jsonl
+ant beta:agents list --transform "{id,name,model}" --format jsonl
 ```
 
 ```jsonl Output
@@ -124,7 +122,7 @@ ant beta:agents create \
   --name "Research Agent" \
   --model '{id: claude-opus-5-5}' \
   --tool '{type: agent_toolset_20260401}' \
-  --tool '{type: custom, name: search_docs, input_schema: {type: object, properties: {query: {type: string}}}}'
+  --tool '{type: custom, name: search_docs, description: Search the documentation, input_schema: {type: object, properties: {query: {type: string}}}}'
 ```
 
 ### Stdin
@@ -205,7 +203,7 @@ Setiap sumber daya API yang diekspos oleh CLI didokumentasikan dalam [referensi 
 
 <CardGroup cols={3}>
   <Card title="Scripting dan otomatisasi CLI" icon="code" href="https://platform.claude.com/docs/id/cli-sdks-libraries/cli/scripting">
-    Kontrol versi sumber daya API, pola scripting, dan penggunaan dari Claude Code
+    Kontrol versi untuk sumber daya API, pola scripting, dan penggunaan dari Claude Code
   </Card>
 
   <Card title="Referensi API" icon="book" href="https://platform.claude.com/docs/id/api/cli/messages/create">

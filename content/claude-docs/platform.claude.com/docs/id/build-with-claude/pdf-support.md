@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 57728065497ce931d7c60a843314a12d4ce9b73c397836b38e0255091c45dfab
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 3d432998083e7f1a0445a5a25c17ac5f1f0bd7896f2c96ae015638b41c441e76
 ---
 
 ---
@@ -472,7 +472,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
 
   // Metode 2: Muat dari file lokal
   // import { readFile } from "node:fs/promises";
-  // const pdfBase64 = (await readFile('document.pdf')).toString('base64');
+  // const pdfBase64 = (await readFile("document.pdf")).toString("base64");
 
   // Kirim permintaan API dengan PDF yang dienkode base64
   const anthropic = new Anthropic();
@@ -1265,7 +1265,7 @@ Cache PDF dengan [caching prompt](https://platform.claude.com/docs/id/build-with
   ```java Java
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  // Unduh dan encode PDF
+  // Unduh dan enkode PDF
   String pdfUrl =
       "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf";
   HttpClient httpClient = HttpClient.newBuilder()

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 9d662ccf6206611eeedfc719dd90e295d3e62a255654b1db1da8a071c634f134
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: e0884a66ebf81e5972f4025ab9ddc2314ba132c78f99f72bd451b7659e0d6859
 ---
 
 ---
@@ -53,7 +53,7 @@ Bentuk kanoniknya adalah loop `while` yang bergantung pada `stop_reason`:
 4. Kirim permintaan baru yang berisi pesan asli, respons asisten, dan pesan pengguna dengan blok `tool_result`.
 5. Ulangi dari langkah 2 selama `stop_reason` adalah `"tool_use"`.
 
-Dalam praktiknya, ini berbunyi: selama `stop_reason == "tool_use"`, jalankan alat dan lanjutkan percakapan. Loop keluar pada stop reason lainnya (`"end_turn"`, `"max_tokens"`, `"stop_sequence"`, atau `"refusal"`), yang berarti Claude telah menghasilkan jawaban akhir atau berhenti karena alasan lain yang harus ditangani aplikasi Anda.
+Dalam praktiknya, ini berbunyi: selama `stop_reason == "tool_use"`, jalankan alat dan lanjutkan percakapan. Loop keluar pada alasan berhenti lainnya (`"end_turn"`, `"max_tokens"`, `"stop_sequence"`, atau `"refusal"`), yang berarti Claude telah menghasilkan jawaban akhir atau berhenti karena alasan lain yang harus ditangani aplikasi Anda.
 
 Untuk mekanisme membangun permintaan, menangani panggilan alat paralel, dan memformat hasil, lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls).
 
@@ -63,7 +63,7 @@ Alat yang dieksekusi server menjalankan loop-nya sendiri di dalam infrastruktur 
 
 Loop internal ini memiliki batas iterasi. Jika model masih beriterasi saat mencapai batas tersebut, respons dikembalikan dengan `stop_reason: "pause_turn"` alih-alih `"end_turn"`. Giliran yang dijeda berarti pekerjaan belum selesai; kirim ulang percakapan (termasuk respons yang dijeda) agar model dapat melanjutkan dari titik terakhirnya. Lihat [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) untuk pola kelanjutannya.
 
-Loop ini juga menyerahkan kendali kembali kepada Anda sebelum alat server berjalan jika Claude memanggil alat server tersebut dan alat klien dalam kelompok panggilan alat paralel yang sama. Respons kemudian kembali dengan `stop_reason: "tool_use"` dan blok `server_tool_use` yang belum memiliki blok hasil; API menjalankannya setelah Anda mengembalikan hasil alat klien. Lihat [Stop reason dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use) untuk kontrak persisnya.
+Loop ini juga menyerahkan kendali kembali kepada Anda sebelum alat server berjalan jika Claude memanggil alat server tersebut dan alat klien dalam kelompok panggilan alat paralel yang sama. Respons kemudian kembali dengan `stop_reason: "tool_use"` dan blok `server_tool_use` yang belum memiliki blok hasil; API menjalankannya setelah Anda mengembalikan hasil alat klien. Lihat [Alasan berhenti dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use) untuk kontrak persisnya.
 
 ## Kapan menggunakan alat (dan kapan tidak)
 

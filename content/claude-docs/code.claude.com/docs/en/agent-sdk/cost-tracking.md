@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/cost-tracking
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 0c4c84de2eaec4980d6ae66540984667cde68c7e3e9871aced02cc9f9ca507f6
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 925f01c52c412c47a93a110e36fff9ab3080e9a51df755778d3131dc76c6c226
 ---
 
 > ## Documentation Index
@@ -309,8 +309,6 @@ For accurate cost tracking, account for the placeholder output count on assistan
 Claude Code builds each assistant message from the usage the API reported when the response began, so the message's `output_tokens` is only the count the API had reported at `message_start`, before the response was generated. One API response can produce several assistant messages, and every one of them carries that same placeholder.
 
 The API reports the real output count at the end of the response, and Claude Code adds it to the result message. Read output tokens from the result's `usage`, or from `modelUsage` for a per-model breakdown.
-
-To watch a response's output count grow while it streams, set `includePartialMessages`, or `include_partial_messages` in Python, and read `usage` from each `message_delta` stream event, typed as [`SDKPartialAssistantMessage`](https://code.claude.com/docs/en/agent-sdk/typescript#sdkpartialassistantmessage) in TypeScript and [`StreamEvent`](https://code.claude.com/docs/en/agent-sdk/python#streamevent) in Python.
 
 ### Track costs on failed conversations
 

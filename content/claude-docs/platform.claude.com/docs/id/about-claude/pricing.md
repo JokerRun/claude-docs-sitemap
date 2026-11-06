@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: bde589cf3c54154d230ef4efc2935a37b9ece6d1330d4f8c8d43369a1334222c
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 396c26f6f87600222bc85a5f6d6479e515e1a310b7cc952bd2fa2d1ffeb976d9
 ---
 
 ---
@@ -41,7 +41,6 @@ Tabel berikut menunjukkan harga untuk semua model Claude:
 | Claude Haiku 5.5 (for prompts up to 100,000 tokens)                                                                                                                    | $0.10 / MTok          | $0.125 / MTok   | $0.20 / MTok    | $0.01 / MTok             | $0.50 / MTok           |
 | Claude Haiku 5.5 (for prompts over 100,000 tokens)                                                                                                                     | $0.50 / MTok          | $0.625 / MTok   | $1 / MTok       | $0.05 / MTok             | $2.50 / MTok           |
 | Claude Haiku 4.5                                                                                                                                                       | $1 / MTok             | $1.25 / MTok    | $2 / MTok       | $0.10 / MTok             | $5 / MTok              |
-| Claude Haiku 3.5 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations))            | $0.80 / MTok          | $1 / MTok       | $1.60 / MTok    | $0.08 / MTok             | $4 / MTok              |
 
 *<sup>1 Cache hits and refreshes on Claude Fable 5.1 and Claude Mythos 5.1 are priced at 0.025x the base input price.</sup>*
 
@@ -118,7 +117,7 @@ Saat Anda mendaftar di halaman layanan **Claude Platform on AWS** di AWS Console
 
 ## Harga Claude in Microsoft Foundry
 
-[Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) ditagih melalui Azure Marketplace menggunakan Claude Consumption Units (CCU). Anthropic menghitung penggunaan token Anda dalam USD berdasarkan tarif standar per model dan per fitur, menerapkan diskon yang telah dinegosiasikan, mengonversi hasilnya menjadi CCU dengan tarif $0,01 USD per CCU, dan melaporkan jumlah CCU ke Azure Marketplace setiap jam. Tagihan Azure Anda menampilkan satu item baris CCU.
+[Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) ditagih melalui Azure Marketplace menggunakan Claude Consumption Units (CCU). Anthropic menghitung penggunaan token Anda dalam USD berdasarkan tarif standar per model dan per fitur, menerapkan diskon yang telah dinegosiasikan, mengonversi hasilnya menjadi CCU dengan tarif $0,01 USD per CCU, dan melaporkan jumlah CCU ke Azure Marketplace setiap jam. Tagihan Azure Anda menampilkan satu item baris CCU.
 
 | Konsep                  | Detail                                                                                                                                                                                                                                                     |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -172,7 +171,7 @@ Untuk informasi lebih lanjut, lihat [Residensi data](https://platform.claude.com
 
 ### Harga mode cepat
 
-[Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) menyediakan output yang jauh lebih cepat untuk Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8 dengan harga premium. Mode cepat untuk Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset. Harga mode cepat berlaku di seluruh “context window” (jendela konteks), termasuk permintaan di atas 200k token input. Mode cepat tersedia di Claude API (first-party) dan, untuk Claude Opus 5.5, di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#billing) serta di [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Azure.
+[Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) menyediakan output yang jauh lebih cepat untuk Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8 dengan harga premium. Mode cepat untuk Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset. Harga mode cepat berlaku di seluruh “context window” (jendela konteks), termasuk permintaan di atas 200k token input. Mode cepat tersedia di Claude API (first-party) dan, untuk Claude Opus 5.5, di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#billing) serta di [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Azure.
 
 | Model                           | Input          | Output         |
 | ------------------------------- | -------------- | -------------- |
@@ -214,7 +213,6 @@ Batch API memungkinkan pemrosesan asinkron untuk permintaan dalam volume besar d
 | Claude Haiku 5.5 (for prompts up to 100,000 tokens)                                                                                                                    | $0.05 / MTok | $0.25 / MTok  |
 | Claude Haiku 5.5 (for prompts over 100,000 tokens)                                                                                                                     | $0.25 / MTok | $1.25 / MTok  |
 | Claude Haiku 4.5                                                                                                                                                       | $0.50 / MTok | $2.50 / MTok  |
-| Claude Haiku 3.5 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations))            | $0.40 / MTok | $2 / MTok     |
 
 * **MTok:** Million tokens. $5 / MTok is $5 for every million tokens.
 * **Limited access:** Available only to organizations verified through Anthropic’s verification programs, such as the [Cyber Verification Program](https://support.claude.com/en/articles/14604842). To request access, apply to the program that covers your use case.
@@ -263,7 +261,6 @@ Saat Anda menggunakan `tools`, API juga secara otomatis menyertakan “system pr
 | Claude Sonnet 4 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | 313 tokens                                | 315 tokens                               |
 | Claude Haiku 5.5                                                                                                                                                       | 286 tokens                                | 406 tokens                               |
 | Claude Haiku 4.5                                                                                                                                                       | 496 tokens                                | 588 tokens                               |
-| Claude Haiku 3.5 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations))            | 264 tokens                                | 355 tokens                               |
 
 * **auto, none:** The count when tool\_choice is auto or none.
 * **any, tool:** The count when tool\_choice is any or tool.
@@ -296,7 +293,7 @@ Lihat [harga penggunaan alat](https://platform.claude.com/docs/id/about-claude/p
 
 #### Alat eksekusi kode
 
-**Eksekusi kode gratis ketika digunakan bersama web search atau web fetch.** Ketika `web_search_20260209` (atau yang lebih baru) atau `web_fetch_20260209` (atau yang lebih baru) disertakan dalam permintaan API Anda, tidak ada biaya tambahan untuk pemanggilan alat eksekusi kode di luar biaya token input dan output standar.
+**Eksekusi kode gratis ketika digunakan bersama pencarian web atau web fetch.** Ketika `web_search_20260209` (atau yang lebih baru) atau `web_fetch_20260209` (atau yang lebih baru) disertakan dalam permintaan API Anda, tidak ada biaya tambahan untuk pemanggilan alat eksekusi kode di luar biaya token input dan output standar.
 
 Ketika digunakan tanpa alat-alat tersebut, eksekusi kode ditagih berdasarkan waktu eksekusi, yang dilacak secara terpisah dari penggunaan token:
 
@@ -350,9 +347,9 @@ Penggunaan web search (pencarian web) dikenakan biaya di luar penggunaan token:
 }
 ```
 
-Web search tersedia di Claude API seharga **$10 USD per 1.000 pencarian**, ditambah biaya token standar untuk konten yang dihasilkan pencarian. Hasil web search yang diambil sepanjang percakapan dihitung sebagai token input, baik dalam iterasi pencarian yang dijalankan selama satu giliran maupun dalam giliran percakapan berikutnya.
+Pencarian web tersedia di Claude API seharga **$10 USD per 1.000 pencarian**, ditambah biaya token standar untuk konten yang dihasilkan pencarian. Hasil pencarian web yang diambil sepanjang percakapan dihitung sebagai token input, baik dalam iterasi pencarian yang dijalankan selama satu giliran maupun dalam giliran percakapan berikutnya.
 
-Setiap pencarian web dihitung sebagai satu penggunaan, terlepas dari jumlah hasil yang dikembalikan. Jika terjadi kesalahan selama pencarian web, pencarian web tersebut tidak akan ditagih.
+Setiap pencarian web dihitung sebagai satu penggunaan, terlepas dari jumlah hasil yang dikembalikan. Pencarian web yang gagal karena kesalahan tidak ditagih.
 
 #### Alat web fetch
 
@@ -486,7 +483,7 @@ Saat membangun agen dengan Claude:
 
 “Rate limit” (batas laju) bervariasi menurut tingkat penggunaan dan memengaruhi berapa banyak permintaan yang dapat Anda buat:
 
-* **Tingkat Start:** Batas tingkat awal untuk memulai
+* **Tingkat awal:** Batas tingkat awal untuk memulai
 * **Tingkat Build:** Batas yang ditingkatkan untuk aplikasi yang sedang berkembang
 * **Tingkat Scale:** Batas standar tertinggi untuk beban kerja produksi
 
@@ -536,6 +533,6 @@ Diskon Batch API dan caching prompt dapat digabungkan. Misalnya, menggunakan ked
 
 ### Metode pembayaran apa yang diterima?
 
-Kartu kredit utama diterima untuk akun standar. Untuk membeli kredit atau mengelola metode pembayaran Anda, buka halaman [Billing](https://platform.claude.com/settings/billing) (`platform.claude.com/settings/billing`) di Claude Console. Pelanggan enterprise dapat mengatur faktur dan metode pembayaran lainnya.
+Kartu kredit utama diterima untuk akun standar. Untuk membeli kredit atau mengelola metode pembayaran Anda, buka halaman [Penagihan](https://platform.claude.com/settings/billing) (`platform.claude.com/settings/billing`) di Claude Console. Pelanggan enterprise dapat mengatur faktur dan metode pembayaran lainnya.
 
 Untuk pertanyaan tambahan tentang harga, hubungi [support@anthropic.com](mailto:support@anthropic.com).

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/okta
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: bdeb06ebfb05c6b9646e7009a5de7ce9c920521f5a3492d65d1c17df5af4db20
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 9db0c98fe3d626b7633eecad5f2644ccaece178179838784e678929217daf561
 ---
 
 ---
@@ -16,7 +16,7 @@ Okta dapat bertindak sebagai penyedia identitas workload dengan menerbitkan toke
 URL issuer server otorisasi Okta berbentuk `https://<your-domain>.okta.com/oauth2/<auth-server-id>`. Jika Anda menggunakan server default bawaan, path-nya adalah `/oauth2/default`.
 
 <Note>
-  Anda harus menggunakan **custom authorization server** (server otorisasi kustom) Okta (termasuk yang `default`). Token yang diterbitkan langsung oleh server otorisasi org Okta (endpoint `/oauth2/v1/token` tanpa ID server otorisasi di path) tidak dapat divalidasi oleh pihak eksternal karena Okta tidak memublikasikan kunci penandatanganan untuk token tersebut.
+  Anda harus menggunakan **custom authorization server** (server otorisasi kustom) Okta (termasuk yang `default`). Pihak eksternal tidak dapat memvalidasi token yang diterbitkan langsung oleh server otorisasi org Okta (endpoint `/oauth2/v1/token` tanpa ID server otorisasi di path), karena Okta tidak memublikasikan kunci penandatanganan untuk token tersebut.
 </Note>
 
 Ada banyak cara untuk mengonfigurasi dan melakukan autentikasi ke Okta yang berada di luar cakupan dokumentasi ini. Pastikan bahwa konfigurasi dan mekanisme autentikasi Anda mengikuti panduan dan praktik keamanan perusahaan Anda.
@@ -33,26 +33,26 @@ Ada banyak cara untuk mengonfigurasi dan melakukan autentikasi ke Okta yang bera
 Secara garis besar, Anda perlu:
 
 1. Membuat aplikasi layanan Okta.
-2. Mengonfigurasi server otorisasi default Anda (atau membuat server otorisasi kustom baru) dengan audience, scope, access policy, dan custom claim apa pun yang ingin Anda cocokkan.
+2. Mengonfigurasi server otorisasi default Anda (atau membuat server otorisasi kustom baru) dengan audience, scope, kebijakan akses, dan klaim kustom apa pun yang ingin Anda cocokkan.
 
 Navigasi yang tepat bergantung pada konfigurasi org Okta Anda dan versi konsol admin. Langkah-langkah bernomor berikut menjelaskan salah satu jalur yang umum:
 
-1. **Buat integrasi aplikasi layanan.** Di Okta Admin Console, buat integrasi aplikasi baru dengan tipe **API Services** (OIDC, machine-to-machine). Catat **Client ID** yang dihasilkan.
+1. **Buat integrasi aplikasi layanan.** Di Okta Admin Console, buat integrasi aplikasi baru dengan tipe **API Services** (OIDC, mesin-ke-mesin). Catat **Client ID** yang dihasilkan.
 2. **Konfigurasikan autentikasi klien.** Untuk penyiapan tanpa kunci, pilih **Public key / Private key** (`private_key_jwt`) dan daftarkan JWK publik workload Anda. Sebagai alternatif, gunakan client secret jika lingkungan Anda dapat menyimpannya dengan aman. Untuk contoh berikut, Anda mungkin perlu menonaktifkan persyaratan DPoP pada aplikasi; pastikan penyiapan produksi Anda mematuhi persyaratan keamanan organisasi Anda.
-3. **Tetapkan audience.** Pada server otorisasi kustom Anda, tetapkan audience ke `https://api.anthropic.com` sehingga token akses yang diterbitkan membawa claim `aud` tersebut. Anthropic memvalidasi `aud` terhadap nilai tetap ini.
+3. **Tetapkan audience.** Pada server otorisasi kustom Anda, tetapkan audience ke `https://api.anthropic.com` sehingga token akses yang diterbitkan membawa klaim `aud` tersebut. Anthropic memvalidasi `aud` terhadap nilai tetap ini.
 4. **Berikan scope.** Pada server otorisasi kustom Anda, pastikan setidaknya ada satu scope yang diizinkan untuk diminta oleh aplikasi layanan (misalnya, `anthropic.access`). Okta menolak permintaan `client_credentials` yang tidak menyertakan scope yang telah diberikan.
-5. **Buat access policy.** Pada server otorisasi kustom Anda, buat access policy dengan setidaknya satu aturan yang mengizinkan aplikasi layanan Anda meminta scope yang Anda berikan pada langkah 4.
-6. **(Opsional) Tambahkan custom claim.** Jika Anda ingin mencocokkan sesuatu selain client ID, tambahkan claim ke token akses di tab **Claims** server otorisasi Anda.
+5. **Buat kebijakan akses.** Pada server otorisasi kustom Anda, buat kebijakan akses dengan setidaknya satu aturan yang mengizinkan aplikasi layanan Anda meminta scope yang Anda berikan pada langkah 4.
+6. **(Opsional) Tambahkan klaim kustom.** Jika Anda ingin mencocokkan sesuatu selain client ID, tambahkan klaim ke token akses di tab **Claims** server otorisasi Anda.
 
-Untuk aplikasi layanan yang menggunakan `client_credentials`, Okta menetapkan claim `sub` dari token akses yang diterbitkan ke **Client ID** aplikasi, dan `iss` ke URL issuer server otorisasi.
+Untuk aplikasi layanan yang menggunakan `client_credentials`, Okta menetapkan klaim `sub` dari token akses yang diterbitkan ke **Client ID** aplikasi, dan `iss` ke URL issuer server otorisasi.
 
 ## Mengonfigurasi Anthropic
 
-Di Claude Console, buka halaman [Workload identity](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`), klik **Connect workload**, lalu pilih **Custom OIDC**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat federation rule.
+Di Claude Console, buka halaman [Identitas beban kerja](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`), klik **Hubungkan beban kerja**, lalu pilih **Custom OIDC**. Wizard akan memandu Anda mendaftarkan issuer, membuat akun layanan, dan membuat aturan federasi.
 
 Wizard membuat sumber daya ini untuk Anda. Gunakan nilai-nilai berikut, baik Anda memasukkannya di wizard maupun mengirimkannya ke [Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api):
 
-**Federation issuer:** Gunakan URL server otorisasi kustom Okta Anda dan mode discovery. Anthropic membaca dokumen discovery `.well-known/openid-configuration` Okta dan mengambil JWKS dari `jwks_uri` yang diiklankannya.
+**Penerbit federasi:** Gunakan URL server otorisasi kustom Okta Anda dan mode discovery. Anthropic membaca dokumen discovery `.well-known/openid-configuration` Okta dan mengambil JWKS dari `jwks_uri` yang diiklankannya.
 
 ```json
 {
@@ -62,7 +62,7 @@ Wizard membuat sumber daya ini untuk Anda. Gunakan nilai-nilai berikut, baik And
 }
 ```
 
-**Federation rule:** Cocokkan pada claim `sub` Okta, yaitu Client ID aplikasi layanan. Jika Anda mendefinisikan custom claim di Okta, Anda dapat mencocokkannya sebagai gantinya dengan map `claims` atau `condition` CEL.
+**Aturan federasi:** Cocokkan pada klaim `sub` Okta, yaitu Client ID aplikasi layanan. Jika Anda mendefinisikan klaim kustom di Okta, Anda dapat mencocokkannya sebagai gantinya dengan map `claims` atau `condition` CEL.
 
 ```json
 {
@@ -81,7 +81,7 @@ Wizard membuat sumber daya ini untuk Anda. Gunakan nilai-nilai berikut, baik And
 
 ## Memperoleh token dan memanggil Claude API
 
-Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang menyediakan token di dalam runtime workload (melalui file yang diproyeksikan atau endpoint metadata lokal), Okta tidak melakukannya. Workload Anda harus memanggil endpoint token Okta untuk memperoleh JWT, lalu meneruskan JWT tersebut ke Anthropic SDK sebagai identity token.
+Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang menyediakan token di dalam runtime workload (melalui file yang diproyeksikan atau endpoint metadata lokal), Okta tidak melakukannya. Workload Anda harus memanggil endpoint token Okta untuk memperoleh JWT, lalu meneruskan JWT tersebut ke Anthropic SDK sebagai token identitas.
 
 <CodeGroup>
   ```bash cURL
@@ -121,7 +121,7 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
   ```
 
   ```bash CLI
-  # 1. Minta access token dari Okta dan tulis ke file sementara.
+  # 1. Minta token akses dari Okta dan tulis ke file sementara.
   export ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
   curl -sS "$OKTA_ISSUER/v1/token" \
     -d grant_type=client_credentials \
@@ -131,8 +131,10 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
     | jq -r .access_token > "$ANTHROPIC_IDENTITY_TOKEN_FILE"
 
   # 2. Panggil Claude API. CLI membaca ANTHROPIC_FEDERATION_RULE_ID,
-  # ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan
-  # ANTHROPIC_IDENTITY_TOKEN_FILE lalu melakukan pertukaran token.
+  # ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, dan
+  # ANTHROPIC_IDENTITY_TOKEN_FILE lalu melakukan pertukaran.
+  # Untuk aturan yang aktif di semua workspace atau lebih dari satu, atur ANTHROPIC_PROFILE
+  # ke profil federasi yang menetapkan workspace_id.
   ant messages create \
     --model claude-opus-5-5 \
     --max-tokens 1024 \
@@ -382,7 +384,7 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
       // Java SDK menerima token itu sendiri atau path file, bukan fungsi; dengan
       // source("value"), path(...) berisi token. SDK mengirim token yang sama
       // pada setiap refresh token akses Anthropic, yang gagal setelah token
-      // kedaluwarsa atau, jika memiliki claim jti, sudah dipakai. Untuk proses
+      // kedaluwarsa atau, jika memiliki klaim jti, sudah dipakai. Untuk proses
       // yang berjalan lebih lama, berikan source("file") dan tulis token baru ke file
       // sebelum setiap refresh.
       var response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
@@ -499,7 +501,7 @@ Tidak seperti penyedia platform-native (AWS, Google Cloud, Kubernetes), yang men
   ```
 </CodeGroup>
 
-Kecuali di Java (lihat komentar dalam contoh tersebut), contoh SDK meneruskan pengambilan token Okta Anda ke `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider()`; java: `IdentityTokenConfig`) sebagai penyedia token. Claude SDK memanggilnya setiap kali token akses Anthropic mendekati masa kedaluwarsa, sehingga fungsi pengambil token Okta Anda harus mengembalikan token baru pada setiap panggilan alih-alih menyimpan satu token dalam cache tanpa batas waktu. CLI `ant` membaca ulang `ANTHROPIC_IDENTITY_TOKEN_FILE` pada setiap pertukaran, jadi perbarui file tersebut secara berkala dengan timer untuk shell yang berjalan lama.
+Teruskan token Okta Anda ke `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider()`; java: `IdentityTokenConfig`). Kecuali di Java, tempat `IdentityTokenConfig` menerima token atau path file, opsi tersebut menerima pengambilan token Okta Anda sebagai penyedia token. Claude SDK memanggilnya setiap kali token akses Anthropic mendekati masa kedaluwarsa, sehingga fungsi pengambil token Okta Anda harus mengembalikan token baru pada setiap panggilan alih-alih menyimpan satu token dalam cache tanpa batas waktu. CLI `ant` membaca ulang `ANTHROPIC_IDENTITY_TOKEN_FILE` pada setiap pertukaran, jadi perbarui file tersebut secara berkala dengan timer untuk shell yang berjalan lama.
 
 ## Memverifikasi penyiapan
 
@@ -515,7 +517,7 @@ Kunci blok `match` aturan ke cakupan tersempit yang sesuai dengan kasus pengguna
 
 * **Sematkan Client ID yang tepat:** Tetapkan `subject_prefix` ke Client ID lengkap aplikasi layanan tanpa `*` di akhir.
 * **Sematkan audience:** Cocokkan nilai `audience` yang Anda konfigurasikan pada server otorisasi sehingga token yang dicetak untuk audience berbeda ditolak.
-* **Cocokkan pada custom claim:** Untuk pembatasan cakupan yang lebih terperinci, tambahkan claim di tab **Claims** server otorisasi dan cocokkan dengan map `claims` aturan atau `condition` CEL.
+* **Cocokkan pada klaim kustom:** Untuk pembatasan cakupan yang lebih terperinci, tambahkan klaim di tab **Claims** server otorisasi dan cocokkan dengan map `claims` aturan atau `condition` CEL.
 * **Gunakan satu aturan untuk setiap aplikasi layanan:** Buat aturan federasi terpisah untuk setiap aplikasi layanan alih-alih berbagi satu aturan di beberapa aplikasi.
 
 ## Langkah selanjutnya

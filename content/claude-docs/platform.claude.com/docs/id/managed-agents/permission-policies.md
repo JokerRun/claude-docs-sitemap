@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 8822967fd542d7a35b9c3e92a33fd96cd2bab114c891b382873153497aa72082
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: bf331e37aa4e48bca1389d467a821d39aa99d8f83023b81daed347e1efaae71d
 ---
 
 ---
@@ -1069,7 +1069,7 @@ Jika Anda mengirim `user.tool_confirmation` untuk event yang `evaluated_permissi
 
 Untuk menjawab secara interaktif, gunakan `ant beta:sessions connect`, yang menampilkan panggilan yang sedang menunggu dan mengirim event ini ketika Anda mengizinkan atau menolaknya. Lihat [Menghubungkan ke sesi Managed Agents dari terminal Anda](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/sessions-connect#follow-and-steer-the-session).
 
-Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.event_ids` pada event `session.status_idle`. Pelajari lebih lanjut tentang menerima event di panduan [Aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#stream-events), atau [berlangganan webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) untuk mendapatkan notifikasi ketika sesi dijeda untuk menunggu input.
+Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.event_ids` pada event `session.status_idle`. Pelajari lebih lanjut tentang [menerima event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#stream-events) di panduan Aliran event sesi, atau [berlangganan webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) untuk mendapatkan notifikasi ketika sesi dijeda untuk menunggu input.
 
 <CodeGroup>
   ```bash cURL
@@ -1108,7 +1108,7 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
   ```
 
   ```bash CLI
-  # Izinkan alat untuk dieksekusi
+  # Izinkan alat untuk dijalankan
   ant beta:sessions:events send \
     --session-id "$SESSION_ID" \
     --event "{type: user.tool_confirmation, tool_use_id: $AGENT_TOOL_USE_EVENT_ID, result: allow}"
@@ -1287,7 +1287,7 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
   ```
 
   ```ruby Ruby
-  # Izinkan alat untuk dieksekusi
+  # Izinkan alat untuk dijalankan
   client.beta.sessions.events.send_(
     session.id,
     events: [

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_groups
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: fea40ac2c58b9a8a56aeff300d8d87c5074803e978baa8a6351e2200ff5c502e
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: adbcc25f66decffc67d2bfe923f27ba0cb8660e3dfa3b70980b252bbc2491889
 ---
 
 ---
@@ -436,17 +436,19 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
 ### Returns
 
-- `type: "rbac_group_deleted"`
+- `BetaDeletedRBACGroup object`
 
-  Deleted object type.
+  - `type: "rbac_group_deleted"`
 
-  For RBAC Groups, this is always `"rbac_group_deleted"`.
+    Deleted object type.
 
-  default: rbac_group_deleted
+    For RBAC Groups, this is always `"rbac_group_deleted"`.
 
-- `id: string`
+    default: rbac_group_deleted
 
-  ID of the RBAC Group.
+  - `id: string`
+
+    ID of the RBAC Group.
 
 ### Example
 
@@ -467,6 +469,22 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$RBAC_GROUP_ID \
 ```
 
 ## Domain types
+
+### Beta Deleted RBAC Group
+
+- `BetaDeletedRBACGroup object`
+
+  - `type: "rbac_group_deleted"`
+
+    Deleted object type.
+
+    For RBAC Groups, this is always `"rbac_group_deleted"`.
+
+    default: rbac_group_deleted
+
+  - `id: string`
+
+    ID of the RBAC Group.
 
 ### Beta RBAC Group
 
@@ -511,22 +529,6 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$RBAC_GROUP_ID \
     RFC 3339 timestamp of when the RBAC Group was last updated.
 
     format: date-time
-
-### RBAC Group Delete Response
-
-- `RBACGroupDeleteResponse object`
-
-  - `type: "rbac_group_deleted"`
-
-    Deleted object type.
-
-    For RBAC Groups, this is always `"rbac_group_deleted"`.
-
-    default: rbac_group_deleted
-
-  - `id: string`
-
-    ID of the RBAC Group.
 
 ## RBAC Groups › Members
 
@@ -740,19 +742,21 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
 #### Returns
 
-- `type: "rbac_group_member_deleted"`
+- `BetaDeletedRBACGroupMember object`
 
-  Deleted object type. For RBAC Group Members, this is always `"rbac_group_member_deleted"`.
+  - `type: "rbac_group_member_deleted"`
 
-  default: rbac_group_member_deleted
+    Deleted object type. For RBAC Group Members, this is always `"rbac_group_member_deleted"`.
 
-- `rbac_group_id: string`
+    default: rbac_group_member_deleted
 
-  ID of the RBAC Group.
+  - `rbac_group_id: string`
 
-- `user_id: string`
+    ID of the RBAC Group.
 
-  ID of the User.
+  - `user_id: string`
+
+    ID of the User.
 
 #### Example
 

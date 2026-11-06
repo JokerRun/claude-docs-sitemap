@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 12b98abe82d3059f4ee332d4c119bc2f83df70b047cf7fb8983fae7cf774f5c1
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: ac2c39cafb14d4cf750bdd04b876c6375cf5f648ba2c3b961c0d079650a582a1
 ---
 
 ---
@@ -43,7 +43,7 @@ featureMetadata:
 ---
 
 <Note>
-  Ekspor OpenTelemetry sedang dalam tahap beta. Fitur ini disediakan berdasarkan perjanjian Anda dengan Anthropic, termasuk bagian Layanan Beta dari [Ketentuan Khusus Layanan](https://www.anthropic.com/legal/service-specific-terms).
+  Ekspor OpenTelemetry sedang dalam tahap beta. Fitur ini disediakan berdasarkan perjanjian Anda dengan Anthropic, termasuk bagian Beta Services dari [Ketentuan Khusus Layanan](https://www.anthropic.com/legal/service-specific-terms).
 </Note>
 
 <video aria-label="Menelusuri agen dengan OpenTelemetry di Claude Platform">
@@ -52,7 +52,7 @@ featureMetadata:
   <source src="https://media.platform.claude.com/docs/opentelemetry/tracing/overview-480p.mp4" type="video/mp4" />
 </video>
 
-Claude API dan SDK dapat melakukan “tracing” (penelusuran) terhadap permintaan Messages API, penggunaan alat, dan sesi Managed Agents Anda dengan [OpenTelemetry](https://opentelemetry.io/) (OTel). Anda dapat melihat trace ini di platform observabilitas yang sudah Anda miliki. Gunakan trace tersebut untuk men-debug permintaan yang gagal atau lambat, melacak penggunaan token dan “latency” (latensi), serta membangun eval dari lalu lintas nyata. Anda juga dapat melihat setiap permintaan di dalam trace aplikasi Anda sendiri, yang ditautkan ke pengguna atau fitur yang mengirimkannya.
+Claude API dan SDK dapat melakukan “tracing” (penelusuran) terhadap permintaan Messages API, penggunaan alat, dan sesi Managed Agents Anda dengan [OpenTelemetry](https://opentelemetry.io/) (OTel). Anda dapat melihat trace ini di platform observabilitas yang sudah Anda miliki. Gunakan trace tersebut untuk men-debug permintaan yang gagal atau lambat, melacak pengeluaran token dan “latency” (latensi), serta membangun eval dari lalu lintas nyata. Anda juga dapat melihat setiap permintaan di dalam trace aplikasi Anda sendiri, yang ditautkan ke pengguna atau fitur yang mengirimkannya.
 
 OpenTelemetry adalah standar netral vendor yang didukung oleh sebagian besar platform observabilitas. *Trace* (jejak) adalah catatan lengkap dari satu permintaan yang melewati sistem Anda. *Span* (rentang) adalah satu langkah dalam sebuah trace, seperti permintaan model atau penggunaan alat. API dan SDK menggunakan atribut dari [konvensi semantik GenAI](https://github.com/open-telemetry/semantic-conventions-genai), sehingga platform yang mendukung konvensi tersebut dapat mengenali span tanpa penyiapan tambahan.
 
@@ -96,7 +96,7 @@ Siapkan tracing OpenTelemetry dengan Claude API dan Claude SDK
 | Cakupan                                                                                                                           | Klien yang menggunakan SDK                                                  | Klien apa pun                                                                              | Klien apa pun                                                                              |
 | Dukungan platform cloud                                                                                                           | Apa pun                                                                     | Claude Platform<br />Claude Platform on AWS                                                | Claude Platform<br />Claude Platform on AWS                                                |
 
-Untuk Claude Code, Agent SDK, atau Cowork, lihat [pemantauan Claude Code](https://code.claude.com/docs/en/monitoring-usage), [observability Agent SDK](https://code.claude.com/docs/en/agent-sdk/observability), atau [pemantauan aktivitas Cowork](https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry).
+Untuk Claude Code, Agent SDK, atau Cowork, lihat [pemantauan Claude Code](https://code.claude.com/docs/en/monitoring-usage), [observabilitas Agent SDK](https://code.claude.com/docs/en/agent-sdk/observability), atau [pemantauan aktivitas Cowork](https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry).
 
 ## Mengirim trace ke platform mitra
 
@@ -172,10 +172,10 @@ Kirim trace ke platform observabilitas apa pun yang menerima OTLP, termasuk mitr
 
 Setiap tujuan dan setiap klien SDK memiliki mode konten, yang menentukan apakah span menyertakan prompt dan respons model. Atur mode ini saat Anda [menambahkan tujuan](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#add-a-destination) atau [mengonfigurasi SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk#configure-the-sdk).
 
-* **Metadata only** (`metadata_only` di SDK): Default. Span menyertakan pengidentifikasi, waktu, status, jumlah token, dan teks yang Anda pilih, seperti nama dan deskripsi agen dan alat Anda serta nama server MCP Anda.
-* **Full content** (`content` di SDK): Visibilitas paling tinggi. Span menyertakan prompt dan respons model, serta semua yang ada di Metadata only.
+* **Hanya metadata** (`metadata_only` di SDK): Default. Span menyertakan pengidentifikasi, waktu, status, jumlah token, dan teks yang Anda pilih, seperti nama dan deskripsi agen dan alat Anda serta nama server MCP Anda.
+* **Konten lengkap** (`content` di SDK): Visibilitas paling tinggi. Span menyertakan prompt dan respons model, serta semua yang ada di Hanya metadata.
 
-Dengan Full content, Anda juga dapat melihat mengapa suatu proses gagal atau lambat, membaca percakapan lengkap, dan membangun eval dari trace nyata. Di [referensi span OpenTelemetry](https://platform.claude.com/docs/id/api/opentelemetry/spans), atribut yang menyimpan prompt dan respons ditandai <Badge>Content</Badge>.
+Dengan Konten lengkap, Anda juga dapat melihat mengapa suatu proses gagal atau lambat, membaca percakapan lengkap, dan membangun eval dari trace nyata. Di [referensi span OpenTelemetry](https://platform.claude.com/docs/id/api/opentelemetry/spans), atribut yang menyimpan prompt dan respons ditandai <Badge>Konten</Badge>.
 
 <Info>
   Platform observabilitas Anda menyimpan konten ini di bawah pengaturan akses dan retensinya sendiri, jadi periksa bahwa pengaturan tersebut memenuhi persyaratan organisasi Anda.
@@ -183,11 +183,11 @@ Dengan Full content, Anda juga dapat melihat mengapa suatu proses gagal atau lam
 
 Jika organisasi Anda memiliki pembatasan penanganan data HIPAA, FERPA, atau K-12 dengan Anthropic, tujuan hanya mengekspor metadata apa pun mode kontennya. Span SDK tidak terpengaruh.
 
-Dengan [zero data retention](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention), Anda tetap dapat menggunakan Full content. Untuk permintaan Messages API, API menyimpan konten yang diekspor hanya di memori hingga konten tersebut dikirimkan ke tujuan. [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) tidak memenuhi syarat untuk zero data retention, dan retensi datanya tetap sama saat Anda menggunakan OpenTelemetry.
+Dengan [zero data retention](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention), Anda tetap dapat menggunakan Konten lengkap. Untuk permintaan Messages API, API menyimpan konten yang diekspor hanya di memori hingga konten tersebut dikirimkan ke tujuan. [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) tidak memenuhi syarat untuk zero data retention, dan retensi datanya tetap sama saat Anda menggunakan OpenTelemetry.
 
 ### Batas konten
 
-Dengan Full content, setiap span secara default menampung konten hingga 0,75 MB. Ukuran itu cukup untuk jendela konteks 200 ribu token berisi teks bahasa Inggris dan tetap di bawah batas permintaan 1 MB pada banyak platform observabilitas dan proxy. Jika Anda memilih platform mitra sebagai **Provider**, Console menetapkan batas yang diterima oleh platform tersebut.
+Dengan Konten lengkap, setiap span secara default menampung konten hingga 0,75 MB. Ukuran itu cukup untuk jendela konteks 200 ribu token berisi teks bahasa Inggris dan tetap di bawah batas permintaan 1 MB pada banyak platform observabilitas dan proxy. Jika Anda memilih platform mitra sebagai **Penyedia**, Console menetapkan batas yang diterima oleh platform tersebut.
 
 Ketika konten melebihi batas, SDK atau API memendekkan konten tersebut dan mengatur `anthropic.content.truncated` ke `true`. Span permintaan menghapus prompt sistem dan pesan paling awal terlebih dahulu, dan span alat menghapus blok mulai dari akhir hasil. Gambar dan dokumen hanya muncul sebagai jenisnya.
 
@@ -196,13 +196,13 @@ Ubah batas dalam kasus berikut:
 * **Platform observabilitas Anda menerima payload yang lebih besar:** Naikkan atau hapus batas agar prompt dan respons yang panjang tetap utuh. Jendela konteks 1M token yang terisi penuh membutuhkan sekitar 4 MB.
 * **Platform observabilitas Anda atau proxy di depannya menolak permintaan berukuran besar:** Turunkan batas.
 
-Di SDK, atur `traces.max_content_bytes` (typescript, java, php: `traces.maxContentBytes`; csharp: `Traces.MaxContentBytes`; go: `option.WithOpenTelemetryTracesMaxContentBytes()`). Di Console, atur **Content mode** ke **Full content** saat Anda [menambahkan tujuan](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#add-a-destination), lalu atur **Maximum content size in MB** di bagian **Advanced settings**.
+Di SDK, atur `traces.max_content_bytes` (typescript, java, php: `traces.maxContentBytes`; csharp: `Traces.MaxContentBytes`; go: `option.WithOpenTelemetryTracesMaxContentBytes()`). Di Console, atur **Mode konten** ke **Konten lengkap** saat Anda [menambahkan tujuan](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#add-a-destination), lalu atur **Ukuran konten maksimum dalam MB** di bagian **Pengaturan lanjutan**.
 
 ## Contoh trace dan cara membacanya
 
 ### Permintaan Messages API
 
-Di bawah span API dari permintaan yang [membuat pesan](https://platform.claude.com/docs/id/api/messages/create), API menambahkan span untuk setiap permintaan model dan span alat untuk setiap penggunaan server tool atau alat konektor MCP yang dijalankan API.
+Di bawah span API dari permintaan yang [membuat pesan](https://platform.claude.com/docs/id/api/messages/create), API menambahkan span untuk setiap permintaan model dan span alat untuk setiap penggunaan alat server atau alat konektor MCP yang dijalankan API.
 
 Dalam contoh ini, aplikasi Anda memanggil [tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner), helper SDK yang menjalankan alat Anda dan mengirimkan hasilnya kembali ke Claude. Setiap permintaan yang dikirim tool runner memiliki span klien dari SDK dan span server dari API. Span muncul dalam urutan berikut:
 
@@ -219,7 +219,7 @@ SDK di aplikasi Anda memancarkan span [`anthropic.messages.tool_runner`](https:/
 
 Setiap permintaan memiliki penggunaan tokennya di beberapa span-nya. Untuk menghitung setiap token sekali saja, lihat [Penghitungan token](https://platform.claude.com/docs/id/manage-claude/opentelemetry#count-tokens).
 
-Dengan [Full content](https://platform.claude.com/docs/id/manage-claude/opentelemetry#choose-a-content-mode), span server `anthropic.messages.create` berisi prompt dan respons. Prompt sistem ada di `gen_ai.system_instructions`, pesan-pesan dari permintaan di `gen_ai.input.messages`, dan respons di `gen_ai.output.messages`.
+Dengan [Konten lengkap](https://platform.claude.com/docs/id/manage-claude/opentelemetry#choose-a-content-mode), span server `anthropic.messages.create` berisi prompt dan respons. Prompt sistem ada di `gen_ai.system_instructions`, pesan-pesan dari permintaan di `gen_ai.input.messages`, dan respons di `gen_ai.output.messages`.
 
 Untuk setiap span dan atributnya, lihat [referensi span OpenTelemetry](https://platform.claude.com/docs/id/api/opentelemetry/spans).
 
@@ -230,23 +230,23 @@ Sebuah sesi memiliki span untuk setiap permintaan Sessions API dan span giliran 
 Contoh ini mengikuti satu permintaan chat, di mana aplikasi Anda mengirim pesan ke sebuah sesi dan menjalankan alat kustom. Trace tersebut memiliki span dari aplikasi Anda dan dari API, dengan urutan berikut:
 
 1. Aplikasi Anda menerima permintaan `POST /chat` dari pengguna.
-2. Aplikasi Anda memulai session tool runner dari SDK, yang mencantumkan dan melakukan streaming event sesi (ditampilkan sebagai span `anthropic.sessions.events.stream` dan `anthropic.sessions.events.list`).
+2. Aplikasi Anda memulai tool runner sesi dari SDK, yang mencantumkan dan melakukan streaming event sesi (ditampilkan sebagai span `anthropic.sessions.events.stream` dan `anthropic.sessions.events.list`).
 3. Aplikasi Anda mengirim pesan pengguna ke sesi dengan memanggil `sessions.events.send`.
 4. Sebuah giliran dimulai dan mencakup permintaan model, penggunaan alat `bash`, dan giliran pada thread lain (ditampilkan sebagai span `anthropic.session.turn` pertama dan span di bawahnya).
-5. Model meminta untuk menggunakan [alat kustom](https://platform.claude.com/docs/id/managed-agents/tools) `list_issues`, sehingga giliran berakhir dengan stop reason `requires_action`.
-6. Session tool runner menjalankan `list_issues` (ditampilkan sebagai span `anthropic.custom_tool_use list_issues`) dan mengirim hasilnya dengan memanggil `sessions.events.send`.
+5. Model meminta untuk menggunakan [alat kustom](https://platform.claude.com/docs/id/managed-agents/tools) `list_issues`, sehingga giliran berakhir dengan alasan berhenti `requires_action`.
+6. Tool runner sesi menjalankan `list_issues` (ditampilkan sebagai span `anthropic.custom_tool_use list_issues`) dan mengirim hasilnya dengan memanggil `sessions.events.send`.
 7. Giliran kedua dimulai dengan hasil alat (ditampilkan sebagai span `anthropic.session.turn` terakhir).
 
 ![Contoh trace sesi Managed Agents: POST /chat, empat permintaan event sesi, tiga giliran, satu penggunaan alat bash, dan list\_issues](https://platform.claude.com/docs/id/images/opentelemetry-trace-shape.svg)
 
 SDK di aplikasi Anda memancarkan span [`anthropic.custom_tool_use`](https://platform.claude.com/docs/id/api/opentelemetry/spans#anthropic-tool-use-anthropic-mcp-tool-use-and-anthropic-custom-tool-use) dan span klien dari setiap permintaan. Untuk mendapatkan span ini, [siapkan tracing SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
 
-Span dari sebuah sesi dapat berada di beberapa trace, misalnya ketika Anda mengirim permintaan berikutnya dari root trace baru. Dengan [multiagent](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration) aktif, sebuah sesi juga dapat memiliki beberapa thread. Untuk menemukan span yang Anda perlukan, kelompokkan berdasarkan ID.
+Span dari sebuah sesi dapat berada di beberapa trace, misalnya ketika Anda mengirim permintaan berikutnya dari trace root baru. Dengan [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration) aktif, sebuah sesi juga dapat memiliki beberapa thread. Untuk menemukan span yang Anda perlukan, kelompokkan berdasarkan ID.
 
 * **Satu thread:** Kelompokkan span berdasarkan `gen_ai.conversation.id`, yang berisi ID thread sesi. Urutkan berdasarkan waktu mulai untuk membaca thread sebagai transkrip.
 * **Seluruh sesi, dengan semua thread-nya:** Kelompokkan span berdasarkan `anthropic.session.id`, lintas trace.
 
-Dengan [Full content](https://platform.claude.com/docs/id/manage-claude/opentelemetry#choose-a-content-mode), Anda dapat membaca konten sebuah sesi dari span-nya.
+Dengan [Konten lengkap](https://platform.claude.com/docs/id/manage-claude/opentelemetry#choose-a-content-mode), Anda dapat membaca konten sebuah sesi dari span-nya.
 
 * Untuk membaca konten sebuah giliran, gunakan [span giliran](https://platform.claude.com/docs/id/api/opentelemetry/spans#anthropic-session-turn)-nya. Prompt sistem ada di `gen_ai.system_instructions` pada span giliran pertama sebuah thread, input di `gen_ai.input.messages` (pesan dan hasil alat Anda, event `system.message`, dan pesan dari thread lain), dan output di `gen_ai.output.messages` (pesan agen, penggunaan alat, dan hasil alat).
 * Untuk melihat argumen dan hasil dari penggunaan alat, baca [span alat](https://platform.claude.com/docs/id/api/opentelemetry/spans#anthropic-tool-use-anthropic-mcp-tool-use-and-anthropic-custom-tool-use)-nya. Argumen ada di `gen_ai.tool.call.arguments`, dan hasilnya ada di `anthropic.tool_result.content`.

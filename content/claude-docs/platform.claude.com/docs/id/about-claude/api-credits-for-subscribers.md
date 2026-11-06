@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/api-credits-for-subscribers
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 01df116bf2aec50a65b80921318dc2ee33fa991f109824eb0a200fee10aded18
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: faabe2614780d4c2b4123014956545e5aeaeb4b288432de8e8a1ca249c816e01
 ---
 
 ---
@@ -17,7 +17,7 @@ Paket Claude Max, Ultra, dan Team menyertakan kredit bulanan untuk Claude API. U
   Claude Platform on AWS, Amazon Bedrock, Google Cloud, dan Microsoft Foundry: Kredit ini hanya berlaku untuk Claude API di Claude Console. Kredit ini tidak dapat digunakan di platform lain.
 </Note>
 
-## Sekilas
+## Ringkasan
 
 | Topik                                       | Detail                                                                                                       |
 | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
@@ -31,15 +31,15 @@ Paket Claude Max, Ultra, dan Team menyertakan kredit bulanan untuk Claude API. U
 
 ## Jumlah kredit API
 
-| Paket                                            | Kredit bulanan                                                              |
-| ------------------------------------------------ | --------------------------------------------------------------------------- |
-| Max                                              | $100 USD                                                                    |
-| Ultra                                            | $200 USD                                                                    |
-| Team, kursi Standard                             | $20 USD per kursi\*                                                         |
-| Team, kursi Premium                              | $100 USD per kursi\*                                                        |
-| Paket Team dengan diskon (Nonprofit, Scientists) | Sama seperti Team: $20 USD per kursi Standard, $100 USD per kursi Premium\* |
+| Paket                                                  | Kredit bulanan                                                             |
+| ------------------------------------------------------ | -------------------------------------------------------------------------- |
+| Max                                                    | $100 USD                                                                   |
+| Ultra                                                  | $200 USD                                                                   |
+| Team, kursi Standar                                    | $20 USD per kursi\*                                                        |
+| Team, kursi Premium                                    | $100 USD per kursi\*                                                       |
+| Paket Team dengan diskon (organisasi nirlaba, ilmuwan) | Sama seperti Team: $20 USD per kursi Standar, $100 USD per kursi Premium\* |
 
-\*Pada paket Team, kredit untuk semua kursi digabungkan menjadi satu saldo bulanan, dengan batas maksimum $500 USD. Setiap kredit bulanan, termasuk yang pertama, didasarkan pada jumlah kursi di paket Anda pada awal bulan penagihan tersebut. Misalnya, tim dengan tiga kursi Standard dan dua kursi Premium menerima $260 USD per bulan. Menambahkan satu kursi Premium lagi akan menaikkan kredit bulan berikutnya menjadi $360 USD.
+\*Pada paket Team, kredit untuk semua kursi digabungkan menjadi satu saldo bulanan, dengan batas maksimum $500 USD. Setiap kredit bulanan, termasuk yang pertama, didasarkan pada jumlah kursi di paket Anda pada awal bulan penagihan tersebut. Misalnya, tim dengan tiga kursi Standar dan dua kursi Premium menerima $260 USD per bulan. Menambahkan satu kursi Premium lagi akan menaikkan kredit bulan berikutnya menjadi $360 USD.
 
 ## Kelayakan
 
@@ -57,7 +57,7 @@ Anda memerlukan kedua peran berikut:
 | Tempat                        | Peran yang diperlukan                                     |
 | ----------------------------- | --------------------------------------------------------- |
 | **Paket Claude**              | Max atau Ultra: pelanggan<br />Team: Primary Owner, Owner |
-| **Organisasi Claude Console** | Owner, Admin, atau Billing                                |
+| **Organisasi Claude Console** | Pemilik, Admin, atau Penagihan                            |
 
 Jika Anda belum memiliki organisasi Claude Console, buat terlebih dahulu di Console di [platform.claude.com](https://platform.claude.com/), atau buat selama alur klaim.
 
@@ -65,15 +65,15 @@ Jika Anda belum memiliki organisasi Claude Console, buat terlebih dahulu di Cons
 
 <Steps>
   <Step title="Buka pengaturan penagihan">
-    Di claude.ai, buka **Settings > Billing** pada paket Max atau Ultra, atau **Organization settings > Billing** pada paket Team.
+    Di claude.ai, buka **Pengaturan > Penagihan** pada paket Max atau Ultra, atau **Pengaturan organisasi > Penagihan** pada paket Team.
   </Step>
 
   <Step title="Tautkan organisasi Console">
-    Di bagian **API credits**, pilih organisasi Console yang akan menerima kredit, lalu setujui [ketentuan program](https://www.anthropic.com/legal/credit-terms) dengan menautkannya.
+    Di bagian **API credits (kredit API)**, pilih organisasi Console yang akan menerima kredit, lalu setujui [ketentuan program](https://www.anthropic.com/legal/credit-terms) dengan menautkannya.
   </Step>
 
   <Step title="Mulai membangun">
-    Kredit Anda muncul di bagian **Promotional credits** pada halaman [Billing](https://platform.claude.com/settings/billing) (`platform.claude.com/settings/billing`) di Console. Buat kunci API dan kirim permintaan pertama Anda. Lihat [Memulai](https://platform.claude.com/docs/id/get-started).
+    Kredit Anda muncul di bagian **Kredit promosi** pada halaman [Penagihan](https://platform.claude.com/settings/billing) (`platform.claude.com/settings/billing`) di Console. Buat kunci API dan kirim permintaan pertama Anda. Lihat [Memulai](https://platform.claude.com/docs/id/get-started).
   </Step>
 </Steps>
 
@@ -81,7 +81,7 @@ Jika Anda belum memiliki organisasi Claude Console, buat terlebih dahulu di Cons
   Setiap paket ditautkan ke satu organisasi Console, dan setiap organisasi Console dapat menerima kredit dari satu paket. Anda tidak dapat mengubah sendiri organisasi yang ditautkan, jadi tautkan organisasi tempat Anda berencana membangun. Untuk mengubahnya nanti, [hubungi dukungan](https://support.claude.com/en/articles/9015913-how-to-get-support).
 </Warning>
 
-Pelanggan yang tidak memenuhi syarat tidak akan melihat kredit API di halaman pengaturan mereka. Jika Anda merasa seharusnya memenuhi syarat tetapi tidak melihat kredit API, [hubungi dukungan](https://support.claude.com/en/articles/9015913-how-to-get-support).
+Pelanggan yang tidak memenuhi syarat tidak melihat kredit API di halaman pengaturan mereka. Jika Anda merasa seharusnya memenuhi syarat tetapi tidak melihat kredit API, [hubungi dukungan](https://support.claude.com/en/articles/9015913-how-to-get-support).
 
 ## Apa yang dicakup oleh kredit
 
@@ -103,7 +103,7 @@ Kredit API ini hanya dapat digunakan di Claude Platform. Tabel berikut menunjukk
 * **Urutan.** Kredit yang disertakan digunakan terlebih dahulu, kemudian kredit yang Anda beli. Auto-reload (isi ulang otomatis) hanya didasarkan pada saldo yang Anda beli. Isi ulang terjadi ketika saldo tersebut mencapai ambang batas Anda, meskipun kredit yang disertakan masih tersisa.
 * **Kedaluwarsa.** Kredit yang tidak terpakai kedaluwarsa pada akhir setiap siklus penagihan (atau setiap bulan untuk paket tahunan) dan tidak diakumulasikan ke periode berikutnya.
 * **Berbagi.** Setiap kunci API dan workspace di organisasi yang ditautkan menggunakan saldo yang sama. Untuk membatasi pengeluaran pada suatu proyek, berikan proyek tersebut workspace tersendiri dan atur [batas pengeluaran](https://platform.claude.com/docs/id/manage-claude/workspaces#setting-workspace-limits) workspace tersebut.
-* **Visibilitas.** Kredit Anda muncul di bagian **Promotional credits** pada halaman [Billing](https://platform.claude.com/settings/billing) (`platform.claude.com/settings/billing`) di Console, beserta jumlah dan tanggal kedaluwarsanya.
+* **Visibilitas.** Kredit Anda muncul di bagian **Kredit promosi** pada halaman [Penagihan](https://platform.claude.com/settings/billing) (`platform.claude.com/settings/billing`) di Console, beserta jumlah dan tanggal kedaluwarsanya.
 * **Paket Claude Anda.** Kredit tidak mengubah batas penggunaan Anda di Claude atau Claude Code.
 
 ## Batas pengeluaran dan batas laju
@@ -117,7 +117,7 @@ Kredit tidak mengubah cara kerja [batas laju dan batas pengeluaran](https://plat
 ### Ketika kredit habis
 
 * **Jika organisasi memiliki kredit lain**, permintaan tetap berjalan menggunakan kredit yang dibeli. Auto-reload, jika diaktifkan, menambahkan kredit ke saldo yang dibeli.
-* **Jika organisasi tidak memiliki kredit tersisa**, permintaan API berhenti hingga kredit API bulanan Anda berikutnya masuk. Penggunaan tidak pernah ditagihkan ke paket Claude Anda. Untuk terus membangun, beli kredit atau aktifkan auto-reload di halaman [Billing](https://platform.claude.com/settings/billing) (`platform.claude.com/settings/billing`) di Console.
+* **Jika organisasi tidak memiliki kredit tersisa**, permintaan API berhenti hingga kredit API bulanan Anda berikutnya masuk. Penggunaan tidak pernah ditagihkan ke paket Claude Anda. Untuk terus membangun, beli kredit atau aktifkan auto-reload di halaman [Penagihan](https://platform.claude.com/settings/billing) (`platform.claude.com/settings/billing`) di Console.
 * **Jika organisasi Anda ditagih melalui tim penjualan Anthropic**, penggunaan di luar kredit API ditagih seperti biasa.
 
 Ketika saldo habis, permintaan mengembalikan:
@@ -141,14 +141,14 @@ Credit balance too low · Add funds: https://platform.claude.com/settings/billin
 | Peningkatan dari Max atau Ultra ke Team                                           | Tautan ke paket Max atau Ultra Anda berakhir. Owner Team dapat mengklaim kredit tim setelah paket Team aktif selama 7 hari.                                                                                                                                        |
 | Menambah atau mengurangi kursi Team                                               | Kursi yang ditambahkan ke paket Anda dihitung mulai dari kredit bulan penagihan berikutnya. Kursi yang Anda hapus tetap ada di paket Anda hingga diperpanjang, sehingga kredit mungkin lebih rendah setelah itu. Gabungan kredit tetap dibatasi maksimum $500 USD. |
 
-## Maksimalkan kredit Anda
+## Gunakan kredit Anda secara efisien
 
-Biaya bulanan Anda terutama bergantung pada model yang Anda pilih dan seberapa sering aplikasi Anda berjalan. Untuk memaksimalkan kredit Anda:
+Biaya bulanan Anda terutama bergantung pada model yang Anda pilih dan seberapa sering aplikasi Anda berjalan. Untuk menggunakan lebih sedikit kredit:
 
 * Pilih model yang sesuai untuk setiap tugas. Untuk mempelajari caranya, lihat [Memilih model yang tepat](https://platform.claude.com/docs/id/about-claude/models/choosing-a-model).
 * Gunakan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk konteks yang berulang.
 * Gunakan [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing) untuk pekerjaan yang tidak memerlukan respons segera. Biayanya 50 persen lebih murah.
-* Periksa [harga](https://platform.claude.com/docs/id/about-claude/pricing) dan pantau pengeluaran di halaman [Cost](https://platform.claude.com/cost) di Claude Console.
+* Periksa [harga](https://platform.claude.com/docs/id/about-claude/pricing) dan pantau pengeluaran di halaman [Biaya](https://platform.claude.com/cost) di Claude Console.
 
 ## Terkait
 

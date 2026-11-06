@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: fe612b625d5805f8641f72abdb3ad4ed56401360e0371e519b9d57939c8e0a0a
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 9efd483679ac61dfa8a0cc06913d40cf008838aca9838c2776d6ad6fc1eb17a3
 ---
 
 ---
@@ -11,10 +11,10 @@ url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedr
 description: Akses model Claude melalui Amazon Bedrock dengan autentikasi, penagihan, dan batas keamanan native AWS.
 ---
 
-Panduan ini memandu Anda dalam menyiapkan dan melakukan panggilan API ke Claude di Amazon Bedrock. Claude di Amazon Bedrock berjalan pada infrastruktur yang dikelola AWS dengan akses operator nol (personel Anthropic tidak memiliki akses ke infrastruktur inferensi), sehingga Anda dapat membangun aplikasi sensitif sepenuhnya di dalam batas keamanan AWS sambil menggunakan bentuk Messages API yang sama dengan yang Anda gunakan pada API pihak pertama Anthropic.
+Panduan ini memandu Anda dalam menyiapkan dan melakukan panggilan API ke Claude di Amazon Bedrock. Claude di Amazon Bedrock berjalan pada infrastruktur yang dikelola AWS dengan akses operator nol: personel Anthropic tidak memiliki akses ke infrastruktur inferensi. Anda dapat membangun aplikasi sensitif sepenuhnya di dalam batas keamanan AWS, dengan bentuk Messages API yang sama dengan yang Anda gunakan pada Claude API.
 
 <Note>
-  Halaman ini membahas Claude di Amazon Bedrock, yang menyajikan Claude melalui Messages API di `/anthropic/v1/messages` pada infrastruktur yang dikelola AWS. Integrasi Amazon Bedrock sebelumnya (API `InvokeModel` dan `Converse` dengan pengidentifikasi model berversi ARN) tetap tersedia dan didokumentasikan di [Claude di Amazon Bedrock (Opus 4.6 dan yang lebih lama)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy). Untuk alternatif yang dioperasikan Anthropic di AWS dengan penagihan AWS Marketplace dan akses fitur yang biasanya tersedia di hari yang sama, lihat [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
+  Halaman ini membahas Claude di Amazon Bedrock, yang menyajikan Claude melalui Messages API di `/anthropic/v1/messages` pada infrastruktur yang dikelola AWS. API `InvokeModel` dan `Converse` dengan pengidentifikasi model berversi ARN didokumentasikan di [Claude di Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy). Untuk alternatif yang dioperasikan Anthropic di AWS dengan penagihan AWS Marketplace, lihat [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
 </Note>
 
 ## Akses
@@ -32,31 +32,31 @@ Sebelum memulai, pastikan Anda memiliki:
 
 Claude di Amazon Bedrock mendukung tiga jalur autentikasi. Pilih yang paling sesuai dengan persyaratan keamanan Anda.
 
-### Service role Bedrock (direkomendasikan)
+### Peran layanan Bedrock (direkomendasikan)
 
-Gunakan service role Bedrock dengan kunci yang dikelola AWS untuk akses jangka panjang yang paling aman:
+Gunakan peran layanan Bedrock dengan kunci yang dikelola AWS untuk akses jangka panjang yang paling aman:
 
 <Steps>
-  <Step title="Admin: sediakan service role">
-    Administrator AWS menyediakan service role Bedrock dan memberikan izin `iam:PassRole` kepada developer pada ARN service role tersebut.
+  <Step title="Admin: sediakan peran layanan">
+    Administrator AWS menyediakan peran layanan Bedrock dan memberikan izin `iam:PassRole` kepada developer pada ARN peran layanan tersebut.
   </Step>
 
-  <Step title="Developer: teruskan role">
-    Saat Anda memanggil API, Bedrock mengambil (assume) service role tersebut atas nama Anda. Lihat [dokumentasi Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-mantle.html) untuk cara mengaitkan role dengan permintaan Anda.
+  <Step title="Developer: teruskan peran">
+    Saat Anda memanggil API, Bedrock mengambil (assume) peran layanan tersebut atas nama Anda. Lihat [dokumentasi Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-mantle.html) untuk cara mengaitkan peran dengan permintaan Anda.
   </Step>
 </Steps>
 
-### IAM assumed role
+### Peran IAM yang diasumsikan
 
 Untuk akses terfederasi identitas dengan sesi maksimum 12 jam:
 
 <Steps>
-  <Step title="Admin: konfigurasikan IAM role">
-    Buat IAM role yang dibatasi cakupannya pada model Claude Anda. Trust policy menyebutkan penyedia identitas Anda (SAML, OIDC, atau AWS Identity Center). Permissions policy memberikan `bedrock-mantle:CreateInference` hanya pada ARN model yang diizinkan.
+  <Step title="Admin: konfigurasikan peran IAM">
+    Buat peran IAM yang dibatasi cakupannya pada model Claude Anda. Kebijakan kepercayaan menyebutkan penyedia identitas Anda (SAML, OIDC, atau AWS Identity Center). Kebijakan izin memberikan `bedrock-mantle:CreateInference` hanya pada ARN model yang diizinkan.
   </Step>
 
-  <Step title="Developer: autentikasi dan assume">
-    Lakukan autentikasi melalui penyedia identitas perusahaan Anda, lalu assume IAM role tersebut. AWS STS menerbitkan kredensial sementara yang digunakan SDK atau CLI untuk menandatangani permintaan.
+  <Step title="Developer: autentikasi dan ambil peran">
+    Lakukan autentikasi melalui penyedia identitas perusahaan Anda, lalu ambil peran IAM tersebut. AWS STS menerbitkan kredensial sementara yang digunakan SDK atau CLI untuk menandatangani permintaan.
   </Step>
 </Steps>
 
@@ -66,7 +66,7 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
 
 <Steps>
   <Step title="Admin: batasi jenis token">
-    Blokir kunci jangka panjang dengan melampirkan policy yang menolak `bedrock:CallWithBearerToken` kecuali kondisi `bedrock:BearerTokenType` cocok dengan token jangka pendek.
+    Blokir kunci jangka panjang dengan melampirkan kebijakan yang menolak `bedrock:CallWithBearerToken` kecuali kondisi `bedrock:BearerTokenType` cocok dengan token jangka pendek.
   </Step>
 
   <Step title="Developer: buat token">
@@ -76,7 +76,7 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
 
 ## Instal SDK
 
-[SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) Anthropic mendukung Claude di Amazon Bedrock melalui paket atau modul khusus Bedrock.
+[SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) mendukung Claude di Amazon Bedrock melalui paket atau modul khusus Bedrock.
 
 <Tabs>
   <Tab title="Python">
@@ -107,8 +107,8 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.5.0")
-        implementation("com.anthropic:anthropic-java-bedrock:3.5.0")
+        implementation("com.anthropic:anthropic-java:3.6.0")
+        implementation("com.anthropic:anthropic-java-bedrock:3.6.0")
         ```
       </Tab>
 
@@ -117,12 +117,12 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.5.0</version>
+            <version>3.6.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-bedrock</artifactId>
-            <version>3.5.0</version>
+            <version>3.6.0</version>
         </dependency>
         ```
       </Tab>
@@ -146,9 +146,11 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
 
 ## Membuat permintaan pertama Anda
 
-Endpoint mengikuti pola `https://bedrock-mantle.{region}.api.aws/anthropic/v1/messages`. Tidak seperti integrasi berbasis `InvokeModel`, endpoint ini menggunakan streaming SSE standar dan bentuk body permintaan yang sama dengan API pihak pertama Anthropic.
+Endpoint mengikuti pola `https://bedrock-mantle.{region}.api.aws/anthropic/v1/messages`. Endpoint ini menggunakan streaming SSE standar dan bentuk body permintaan yang sama dengan Claude API.
 
-SDK menentukan kredensial dan region menggunakan urutan prioritas standar AWS: argumen konstruktor, lalu variabel lingkungan (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`, `AWS_REGION`), lalu file konfigurasi AWS dan rantai kredensial (SSO, assumed role, ECS task role, IMDS).
+Teruskan region saat Anda membuat klien, atau atur variabel lingkungan `AWS_REGION`. Jika Anda tidak melakukan keduanya, SDK Python, TypeScript, C#, Go, PHP, dan Ruby mencoba `AWS_DEFAULT_REGION`. SDK Java hanya membaca lingkungan saat Anda memanggil `BedrockMantleBackend.fromEnv()`, yang menggunakan [rantai penyedia AWS Region default](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/region-selection.html). Rantai tersebut juga memeriksa file konfigurasi AWS dan metadata instans EC2 Anda.
+
+Untuk kredensial, klien menggunakan apa yang Anda teruskan saat membuatnya. Jika tidak, variabel lingkungan `AWS_BEARER_TOKEN_BEDROCK` lebih diprioritaskan daripada rantai kredensial AWS milik klien, yang mencakup variabel lingkungan `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, dan `AWS_SESSION_TOKEN`.
 
 <Tabs>
   <Tab title="cURL">
@@ -387,39 +389,39 @@ Untuk daftar fitur lengkap beserta ketersediaannya di Amazon Bedrock, lihat [Ikh
 Claude di Amazon Bedrock tersedia di region AWS berikut. Amazon Bedrock menawarkan dua jenis endpoint:
 
 * **Global:** perutean dinamis di seluruh region yang tersedia untuk ketersediaan maksimum. Tanpa premi harga.
-* **Regional:** endpoint mengarah ke satu region AWS yang Anda tentukan, untuk kebutuhan residensi data. Endpoint regional dikenakan premi harga 10 persen dibandingkan endpoint global. Untuk melakukan routing ke beberapa region dalam satu wilayah geografis, gunakan [inference profile](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html) (US, EU, JP, atau AU). Region yang ditandai **In-region only** dalam tabel mendukung routing langsung ke satu region tanpa inference profile.
+* **Regional:** endpoint mengarah ke satu region AWS yang Anda tentukan, untuk kebutuhan residensi data. Endpoint regional dikenakan premi harga 10 persen dibandingkan endpoint global. Untuk merutekan ke beberapa region dalam satu wilayah geografis, gunakan [profil inferensi](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html) (US, EU, JP, atau AU). Region yang ditandai **Hanya dalam region** dalam tabel mendukung perutean langsung ke satu region tanpa profil inferensi.
 
 Endpoint global tersedia untuk Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5.5, Claude Sonnet 5, Claude Haiku 5.5, dan Claude Haiku 4.5. Untuk Claude Fable 5.1, endpoint regional hanya tersedia di `us-east-1`.
 
-| Region AWS       | Lokasi                      | Jenis endpoint             |
-| ---------------- | --------------------------- | -------------------------- |
-| `af-south-1`     | Afrika (Cape Town)          | Global                     |
-| `ap-northeast-1` | Asia Pasifik (Tokyo)        | Global, JP, In-region only |
-| `ap-northeast-2` | Asia Pasifik (Seoul)        | Global                     |
-| `ap-northeast-3` | Asia Pasifik (Osaka)        | Global, JP                 |
-| `ap-south-1`     | Asia Pasifik (Mumbai)       | Global                     |
-| `ap-south-2`     | Asia Pasifik (Hyderabad)    | Global                     |
-| `ap-southeast-1` | Asia Pasifik (Singapura)    | Global                     |
-| `ap-southeast-2` | Asia Pasifik (Sydney)       | Global, AU                 |
-| `ap-southeast-3` | Asia Pasifik (Jakarta)      | Global                     |
-| `ap-southeast-4` | Asia Pasifik (Melbourne)    | Global, AU, In-region only |
-| `ca-central-1`   | Kanada (Tengah)             | Global, US                 |
-| `ca-west-1`      | Kanada Barat (Calgary)      | Global                     |
-| `eu-central-1`   | Eropa (Frankfurt)           | Global, EU                 |
-| `eu-central-2`   | Eropa (Zurich)              | Global, EU                 |
-| `eu-north-1`     | Eropa (Stockholm)           | Global, EU, In-region only |
-| `eu-south-1`     | Eropa (Milan)               | Global, EU                 |
-| `eu-south-2`     | Eropa (Spanyol)             | Global, EU                 |
-| `eu-west-1`      | Eropa (Irlandia)            | Global, EU, In-region only |
-| `eu-west-2`      | Eropa (London)              | Global, EU                 |
-| `eu-west-3`      | Eropa (Paris)               | Global, EU                 |
-| `il-central-1`   | Israel (Tel Aviv)           | Global                     |
-| `me-central-1`   | Timur Tengah (UEA)          | Global                     |
-| `sa-east-1`      | Amerika Selatan (São Paulo) | Global                     |
-| `us-east-1`      | AS Timur (N. Virginia)      | Global, US, In-region only |
-| `us-east-2`      | AS Timur (Ohio)             | Global, US, In-region only |
-| `us-west-1`      | AS Barat (N. California)    | Global, US                 |
-| `us-west-2`      | AS Barat (Oregon)           | Global, US, In-region only |
+| Region AWS       | Lokasi                      | Jenis endpoint                 |
+| ---------------- | --------------------------- | ------------------------------ |
+| `af-south-1`     | Afrika (Cape Town)          | Global                         |
+| `ap-northeast-1` | Asia Pasifik (Tokyo)        | Global, JP, Hanya dalam region |
+| `ap-northeast-2` | Asia Pasifik (Seoul)        | Global                         |
+| `ap-northeast-3` | Asia Pasifik (Osaka)        | Global, JP                     |
+| `ap-south-1`     | Asia Pasifik (Mumbai)       | Global                         |
+| `ap-south-2`     | Asia Pasifik (Hyderabad)    | Global                         |
+| `ap-southeast-1` | Asia Pasifik (Singapura)    | Global                         |
+| `ap-southeast-2` | Asia Pasifik (Sydney)       | Global, AU                     |
+| `ap-southeast-3` | Asia Pasifik (Jakarta)      | Global                         |
+| `ap-southeast-4` | Asia Pasifik (Melbourne)    | Global, AU, Hanya dalam region |
+| `ca-central-1`   | Kanada (Tengah)             | Global, US                     |
+| `ca-west-1`      | Kanada Barat (Calgary)      | Global                         |
+| `eu-central-1`   | Eropa (Frankfurt)           | Global, EU                     |
+| `eu-central-2`   | Eropa (Zurich)              | Global, EU                     |
+| `eu-north-1`     | Eropa (Stockholm)           | Global, EU, Hanya dalam region |
+| `eu-south-1`     | Eropa (Milan)               | Global, EU                     |
+| `eu-south-2`     | Eropa (Spanyol)             | Global, EU                     |
+| `eu-west-1`      | Eropa (Irlandia)            | Global, EU, Hanya dalam region |
+| `eu-west-2`      | Eropa (London)              | Global, EU                     |
+| `eu-west-3`      | Eropa (Paris)               | Global, EU                     |
+| `il-central-1`   | Israel (Tel Aviv)           | Global                         |
+| `me-central-1`   | Timur Tengah (UEA)          | Global                         |
+| `sa-east-1`      | Amerika Selatan (São Paulo) | Global                         |
+| `us-east-1`      | AS Timur (Virginia Utara)   | Global, US, Hanya dalam region |
+| `us-east-2`      | AS Timur (Ohio)             | Global, US, Hanya dalam region |
+| `us-west-1`      | AS Barat (California Utara) | Global, US                     |
+| `us-west-2`      | AS Barat (Oregon)           | Global, US, Hanya dalam region |
 
 ## Kuota
 

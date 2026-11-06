@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: cd95f89d0832246a5bc177b682e015d1065fedc2f0334eaadfd5f35fbe414868
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 35b7c1ee8b3512849a8652bddb08a049d15682dfe6ca06dc99ef1d7447a54b9f
 ---
 
 > ## Documentation Index
@@ -233,6 +233,17 @@ The session details panel is a set of cards beside the chat that show where the 
 #### Hide or show the session details panel
 
 To hide or show the panel, click **Hide session rail** or **Show session rail** in the session's title bar, or in the bar's **⋮** menu. If you still don't see the panel, [check which Code tab layout you have](#check-which-layout-you-have).
+
+### Minimize a pane
+
+To keep the Terminal, Browser, or [iOS Simulator](https://code.claude.com/docs/en/desktop-ios-simulator.md) in view at a small size, click **Minimize** in the pane's header. The button requires Claude Desktop v4.0.0 or later and a Claude account rather than a [third-party provider](https://code.claude.com/docs/en/third-party-integrations.md). The Browser pane has it only in local sessions.
+
+The minimized pane sits in the [session details panel](#see-session-details) while that panel is on screen, and floats in a corner of the chat otherwise:
+
+* **In the panel**: the minimized pane sits below the panel's cards, where you can't move or resize it. To float it over the chat instead, [hide the panel](#hide-or-show-the-session-details-panel).
+* **In a corner of the chat**: hover over the minimized pane to show its header. Drag the header to move it to another corner. To resize it, drag the corner of the minimized pane nearest the center of the chat.
+
+To get the full pane back, click **Expand** in the minimized pane's header. To close the minimized pane instead, click the close button beside **Expand**.
 
 ### Run commands in the terminal
 

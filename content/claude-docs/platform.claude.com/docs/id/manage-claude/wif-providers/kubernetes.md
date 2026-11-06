@@ -1,24 +1,24 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: e7291d8d8d09df0bd3fc028abcf87b3a950399ba5d3fb0b5e26fc65bcb4bbb19
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 29429f2cd0a65caedc69d52c008060de9729b476536ce6bd65c06aaefb5c5e06
 ---
 
 ---
 title: Menggunakan WIF dengan Kubernetes
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes
-description: Autentikasi ke Claude API dari klaster Kubernetes yang dikelola sendiri menggunakan projected service account token.
+description: Autentikasi ke Claude API dari klaster Kubernetes yang dikelola sendiri menggunakan token akun layanan terproyeksi.
 ---
 
-Klaster Kubernetes yang dikelola sendiri (kubeadm, k3s, OpenShift, dan distribusi on-premise) menandatangani OIDC JSON Web Token (JWT) untuk setiap pod melalui [projected service account token](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#serviceaccount-token-volume-projection). API server klaster bertindak sebagai OIDC issuer (penerbit OIDC), dan klaim `sub` setiap token mengikuti bentuk `system:serviceaccount:<namespace>:<service-account>`. Anda dapat menemukan URL issuer klaster Anda dengan membaca dokumen discovery-nya:
+Klaster Kubernetes yang dikelola sendiri (kubeadm, k3s, OpenShift, dan distribusi on-premise) menandatangani OIDC JSON Web Token (JWT) untuk setiap pod melalui [token akun layanan terproyeksi](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#serviceaccount-token-volume-projection). API server klaster bertindak sebagai OIDC issuer (penerbit OIDC), dan klaim `sub` setiap token mengikuti bentuk `system:serviceaccount:<namespace>:<service-account>`. Anda dapat menemukan URL issuer klaster Anda dengan membaca dokumen discovery-nya:
 
 ```bash
 kubectl get --raw /.well-known/openid-configuration | jq -r .issuer
 ```
 
 <Note>
-  Mekanisme di halaman ini (projected service-account token, API server klaster sebagai OIDC issuer) merupakan fitur bawaan Kubernetes itu sendiri, sehingga mendasari setiap distribusi Kubernetes. Jika Anda menjalankan layanan Kubernetes terkelola, panduan penyedia cloud menjelaskan di mana menemukan URL issuer yang dikelola penyedia: [AWS (EKS)](https://platform.claude.com/docs/id/manage-claude/wif-providers/aws#use-eks-projected-service-account-tokens), [Google Cloud (GKE)](https://platform.claude.com/docs/id/manage-claude/wif-providers/gcp), atau [Azure (AKS)](https://platform.claude.com/docs/id/manage-claude/wif-providers/azure). Jika klaster Anda menjalankan SPIRE, SPIRE OIDC Discovery Provider adalah issuer-nya, bukan API server klaster; lihat [SPIFFE](https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe). Untuk distribusi lain atau penyedia terkelola yang tidak tercantum di sana, ikuti panduan ini dan gunakan URL issuer yang dilaporkan klaster Anda.
+  Mekanisme di halaman ini (token service-account terproyeksi, API server klaster sebagai OIDC issuer) merupakan fitur bawaan Kubernetes itu sendiri, sehingga mendasari setiap distribusi Kubernetes. Jika Anda menjalankan layanan Kubernetes terkelola, panduan penyedia cloud menjelaskan di mana menemukan URL issuer yang dikelola penyedia: [AWS (EKS)](https://platform.claude.com/docs/id/manage-claude/wif-providers/aws#use-eks-projected-service-account-tokens), [Google Cloud (GKE)](https://platform.claude.com/docs/id/manage-claude/wif-providers/gcp), atau [Azure (AKS)](https://platform.claude.com/docs/id/manage-claude/wif-providers/azure). Jika klaster Anda menjalankan SPIRE, SPIRE OIDC Discovery Provider adalah issuer-nya, bukan API server klaster; lihat [Menggunakan WIF dengan SPIFFE](https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe). Untuk distribusi lain atau penyedia terkelola yang tidak tercantum di sana, ikuti panduan ini dan gunakan URL issuer yang dilaporkan klaster Anda.
 </Note>
 
 ## Prasyarat
@@ -36,7 +36,7 @@ kubectl get --raw /.well-known/openid-configuration | jq -r .issuer
 
 ## Mengonfigurasi Kubernetes
 
-Proyeksikan service account token ke dalam pod Anda dengan audience dan masa berlaku yang diharapkan oleh federation rule Anda. Proyeksi `serviceAccountToken` menulis JWT baru ke mount path dan merotasinya sebelum `expirationSeconds` berlalu.
+Proyeksikan token akun layanan ke dalam pod Anda dengan audience dan masa berlaku yang diharapkan oleh aturan federasi Anda. Proyeksi `serviceAccountToken` menulis JWT baru ke path mount dan merotasinya sebelum `expirationSeconds` berlalu.
 
 ```yaml Pod
 apiVersion: v1
@@ -78,11 +78,11 @@ Token yang diterbitkan untuk pod ini membawa `sub: "system:serviceaccount:infere
 
 ## Mengonfigurasi Anthropic
 
-Di Claude Console, buka halaman [Workload identity](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`), klik **Connect workload**, lalu pilih tile **Kubernetes**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat federation rule.
+Di Claude Console, buka halaman [Identitas beban kerja](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`), klik **Hubungkan beban kerja**, lalu pilih tile **Kubernetes**. Wizard akan memandu Anda mendaftarkan issuer, membuat akun layanan, dan membuat aturan federasi.
 
 Wizard membuat sumber daya ini untuk Anda. Gunakan nilai-nilai berikut, baik Anda memasukkannya di wizard maupun mengirimkannya ke [Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api):
 
-**Federation issuer:** Banyak klaster yang dikelola sendiri menggunakan URL issuer seperti `https://kubernetes.default.svc.cluster.local` yang tidak dapat dijangkau dari internet publik. Jika hal itu berlaku untuk klaster Anda, pilih sumber JWKS **inline** dan tempelkan kunci klaster. Ambil kunci tersebut dari dalam klaster:
+**Penerbit federasi:** Banyak klaster yang dikelola sendiri menggunakan URL issuer seperti `https://kubernetes.default.svc.cluster.local` yang tidak dapat dijangkau dari internet publik. Jika hal itu berlaku untuk klaster Anda, pilih sumber JWKS **inline** dan tempelkan kunci klaster. Ambil kunci tersebut dari dalam klaster:
 
 ```bash
 kubectl get --raw /openid/v1/jwks
@@ -107,7 +107,7 @@ Dalam mode `inline`, `issuer_url` hanya dibandingkan dengan klaim `iss` pada JWT
   Dengan kunci `inline`, Anda bertanggung jawab memperbarui issuer ketika klaster merotasi kunci penandatanganan service account-nya. Rotasi jarang terjadi (biasanya hanya selama upgrade klaster), tetapi pertukaran token akan gagal dengan error tanda tangan sampai Anda mengirimkan JWKS yang baru.
 </Warning>
 
-**Federation rule:** Cocokkan klaim `sub` service account dan audience yang Anda atur pada projected token.
+**Aturan federasi:** Cocokkan klaim `sub` service account dan audience yang Anda atur pada token terproyeksi.
 
 ```json
 {
@@ -127,11 +127,11 @@ Dalam mode `inline`, `issuer_url` hanya dibandingkan dengan klaim `iss` pada JWT
 }
 ```
 
-Buatlah sespesifik mungkin sesuai yang diizinkan workload. Longgarkan `subject_prefix` menjadi `system:serviceaccount:inference:*` (tanda `*` di akhir menjadikannya pencocokan prefiks) hanya jika setiap service account di namespace tersebut harus dipetakan ke service account Anthropic yang sama. Tambahkan ID `fdrl_...` milik rule ke variabel lingkungan `ANTHROPIC_FEDERATION_RULE_ID` pada pod Anda.
+Buatlah sespesifik mungkin sesuai yang diizinkan workload. Longgarkan `subject_prefix` menjadi `system:serviceaccount:inference:*` (tanda `*` di akhir menjadikannya pencocokan prefiks) hanya jika setiap akun layanan di namespace tersebut harus dipetakan ke akun layanan Anthropic yang sama. Tambahkan ID `fdrl_...` milik aturan ke variabel lingkungan `ANTHROPIC_FEDERATION_RULE_ID` pada pod Anda.
 
 ## Memperoleh dan menggunakan token
 
-Spesifikasi pod di [Mengonfigurasi Kubernetes](https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes#configure-kubernetes) mengatur `ANTHROPIC_IDENTITY_TOKEN_FILE` ke projected mount path, bersama dengan `ANTHROPIC_FEDERATION_RULE_ID`, `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_SERVICE_ACCOUNT_ID`, dan `ANTHROPIC_WORKSPACE_ID`. Dengan semua itu terpasang, SDK membaca token dari disk pada setiap pertukaran dan menyegarkan access token Anthropic secara otomatis.
+Spesifikasi pod di [Mengonfigurasi Kubernetes](https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes#configure-kubernetes) mengatur `ANTHROPIC_IDENTITY_TOKEN_FILE` ke path mount terproyeksi, bersama dengan `ANTHROPIC_FEDERATION_RULE_ID`, `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_SERVICE_ACCOUNT_ID`, dan `ANTHROPIC_WORKSPACE_ID`. Dengan semua itu terpasang, SDK membaca token dari disk pada setiap pertukaran dan menyegarkan token akses Anthropic secara otomatis.
 
 <CodeGroup>
   ```bash cURL
@@ -139,7 +139,7 @@ Spesifikasi pod di [Mengonfigurasi Kubernetes](https://platform.claude.com/docs/
 
   ACCESS_TOKEN=$(curl -sS https://api.anthropic.com/v1/oauth/token \
     -H "content-type: application/json" \
-    --data @- <<JSON | jq -r .access_token
+    -d @- <<JSON | jq -r .access_token
   {
     "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
     "assertion": "$JWT",
@@ -160,6 +160,17 @@ Spesifikasi pod di [Mengonfigurasi Kubernetes](https://platform.claude.com/docs/
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello, Claude"}]
     }'
+  ```
+
+  ```bash CLI
+  # Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
+  # ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE.
+  # Untuk aturan yang diaktifkan bagi semua workspace atau lebih dari satu, atur ANTHROPIC_PROFILE
+  # ke profil federasi yang menetapkan workspace_id.
+  ant messages create \
+    --model claude-opus-5-5 \
+    --max-tokens 1024 \
+    --message '{role: user, content: "Hello, Claude"}'
   ```
 
   ```python Python
@@ -198,6 +209,27 @@ Spesifikasi pod di [Mengonfigurasi Kubernetes](https://platform.claude.com/docs/
   }
   ```
 
+  ```csharp C#
+  // Membaca ANTHROPIC_IDENTITY_TOKEN_FILE, ANTHROPIC_FEDERATION_RULE_ID,
+  // ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID
+  // dari environment pod.
+  using var client = new AnthropicClient();
+
+  var message = await client.Messages.Create(new()
+  {
+      Model = Model.ClaudeOpus5_5,
+      MaxTokens = 1024,
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
+  });
+  foreach (var block in message.Content)
+  {
+      if (block.Value is TextBlock textBlock)
+      {
+          Console.WriteLine(textBlock.Text);
+      }
+  }
+  ```
+
   ```go Go
   // Membaca ANTHROPIC_IDENTITY_TOKEN_FILE, ANTHROPIC_FEDERATION_RULE_ID,
   // ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID
@@ -226,42 +258,12 @@ Spesifikasi pod di [Mengonfigurasi Kubernetes](https://platform.claude.com/docs/
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   var message = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5_5)
-          .maxTokens(1024)
-          .addUserMessage("Hello, Claude")
-          .build());
+      .model(Model.CLAUDE_OPUS_5_5)
+      .maxTokens(1024)
+      .addUserMessage("Hello, Claude")
+      .build());
 
   IO.println(message.content());
-  ```
-
-  ```csharp C#
-  // Membaca ANTHROPIC_IDENTITY_TOKEN_FILE, ANTHROPIC_FEDERATION_RULE_ID,
-  // ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID
-  // dari environment pod.
-  using var client = new AnthropicClient();
-
-  var message = await client.Messages.Create(new()
-  {
-      Model = Model.ClaudeOpus5_5,
-      MaxTokens = 1024,
-      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
-  });
-  foreach (var block in message.Content)
-  {
-      if (block.Value is TextBlock textBlock)
-      {
-          Console.WriteLine(textBlock.Text);
-      }
-  }
-  ```
-
-  ```bash CLI
-  # Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
-  # ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
-  ant messages create \
-    --model claude-opus-5-5 \
-    --max-tokens 1024 \
-    --message '{role: user, content: "Hello, Claude"}'
   ```
 
   ```php PHP
@@ -298,22 +300,22 @@ Spesifikasi pod di [Mengonfigurasi Kubernetes](https://platform.claude.com/docs/
 
 ## Memverifikasi penyiapan
 
-Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika pertukaran gagal dengan respons `401` `authentication_error` yang buram (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console untuk alasan penolakan dan lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi Kubernetes adalah ketidakcocokan kunci JWKS (untuk mode `inline`, ambil ulang dengan `kubectl get --raw /openid/v1/jwks` dan perbarui issuer).
+Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika pertukaran gagal dengan respons `401` `authentication_error` yang buram (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console untuk alasan penolakan dan lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange). Penyebab paling umum di sisi Kubernetes adalah ketidakcocokan kunci JWKS (untuk mode `inline`, ambil ulang dengan `kubectl get --raw /openid/v1/jwks` dan perbarui issuer).
 
-## Membatasi cakupan rule Anda
+## Membatasi cakupan aturan Anda
 
 <Warning>
-  `subject_prefix` berupa `system:serviceaccount:*` cocok dengan setiap service account di klaster, sehingga pod mana pun dapat memperoleh token Anthropic terfederasi. Tanpa matcher `audience`, rule juga cocok dengan token default-audience klaster, yang sudah diproyeksikan ke setiap pod.
+  `subject_prefix` berupa `system:serviceaccount:*` cocok dengan setiap akun layanan di klaster, sehingga pod mana pun dapat memperoleh token Anthropic terfederasi. Tanpa matcher `audience`, aturan juga cocok dengan token default-audience klaster, yang sudah diproyeksikan ke setiap pod.
 </Warning>
 
 Kunci blok `match` pada rule ke cakupan tersempit yang sesuai dengan kasus penggunaan Anda:
 
 * **Tetapkan namespace dan nama service-account:** Gunakan nilai lengkap `system:serviceaccount:<namespace>:<name>` tanpa `*` di akhir.
-* **Selalu atur audience:** Wajibkan `audience` pada rule dan atur nilai yang sama pada proyeksi `serviceAccountToken` pod sehingga token default-audience ditolak.
-* **Gunakan rule terpisah per namespace:** Buat rule dan service account Anthropic yang berbeda untuk setiap namespace daripada memperluas satu rule.
-* **Batasi issuer inline-JWKS ke satu klaster:** Ketika beberapa klaster berbagi URL issuer, daftarkan JWKS setiap klaster sebagai federation issuer tersendiri dan ikat rule hanya ke issuer tersebut.
+* **Selalu atur audience:** Wajibkan `audience` pada aturan dan atur nilai yang sama pada proyeksi `serviceAccountToken` pod sehingga token default-audience ditolak.
+* **Gunakan aturan terpisah untuk setiap namespace:** Buat aturan dan akun layanan Anthropic yang berbeda untuk setiap namespace alih-alih memperluas satu aturan.
+* **Batasi issuer inline-JWKS ke satu klaster:** Ketika beberapa klaster berbagi URL issuer, daftarkan JWKS setiap klaster sebagai penerbit federasi tersendiri dan ikat rule hanya ke issuer tersebut.
 
 ## Langkah selanjutnya
 
 * [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation): konsep, alur pertukaran token, dan opsi konfigurasi SDK.
-* [Referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference): variabel lingkungan, mode sumber JWKS, dan mode pencocokan rule.
+* [Referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference): variabel lingkungan, mode sumber JWKS, dan mode pencocokan aturan.

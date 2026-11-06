@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/intro
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: a6eecab07e5ce3499d53b855107659e17b3576e7e3e377577a5d48a0402a917b
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 1797201e5c8f2f09110ddf6c15771d1c36f91804f89cdee1062364adfad195c1
 ---
 
 ---
@@ -49,13 +49,13 @@ Ikuti langkah-langkah berikut untuk membangun integrasi Claude yang berfungsi.
   </Step>
 
   <Step title="Amankan kredensial Anda">
-    Tetapkan masa kedaluwarsa saat Anda membuat kunci API. Jauhkan kunci tersebut dari source control, kode sisi klien, dan prompt. Periksa apakah beban kerja Anda dapat menggunakan Workload Identity Federation sebagai pengganti kunci statis.
+    Tetapkan masa kedaluwarsa saat Anda membuat kunci API. Jauhkan kunci tersebut dari kontrol sumber, kode sisi klien, dan prompt. Periksa apakah beban kerja Anda dapat menggunakan Workload Identity Federation sebagai pengganti kunci statis.
 
     [Baca panduan autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication)
   </Step>
 
   <Step title="Pahami Messages API">
-    Pelajari struktur inti permintaan dan respons, termasuk percakapan multi-giliran, “system prompt” (prompt sistem), dan stop reason.
+    Pelajari struktur inti permintaan dan respons, termasuk percakapan multi-giliran, “system prompt” (prompt sistem), dan alasan berhenti.
 
     [Baca panduan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
   </Step>

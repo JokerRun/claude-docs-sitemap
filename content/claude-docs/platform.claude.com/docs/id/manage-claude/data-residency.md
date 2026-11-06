@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/data-residency
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 72698d530c589b2ec3119c7b0357052f667aa2acc086715e6022137f90816d1a
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: bfbb70680876dd5a995c1c19171f3917a4090a678a9dff37250e80dc37943023
 ---
 
 ---
@@ -46,14 +46,14 @@ featureMetadata:
 
 Kontrol “data residency” (residensi data) memungkinkan Anda mengelola lokasi data Anda diproses dan disimpan. Dua pengaturan independen mengatur hal ini:
 
-* **Inference geo:** Mengontrol lokasi inferensi model dijalankan, per permintaan. Diatur melalui parameter API `inference_geo` atau sebagai default workspace.
-* **Workspace geo:** Mengontrol lokasi data disimpan saat tidak digunakan (at rest) dan lokasi pemrosesan endpoint (seperti transcoding gambar dan eksekusi kode) terjadi. Dikonfigurasi di tingkat workspace di [Claude Console](https://platform.claude.com/).
+* **Geografi inferensi:** Mengontrol lokasi inferensi model dijalankan, per permintaan. Diatur melalui parameter API `inference_geo` atau sebagai default workspace.
+* **Geografi workspace:** Mengontrol lokasi data disimpan saat tidak digunakan (at rest) dan lokasi pemrosesan endpoint (seperti transcoding gambar dan eksekusi kode) terjadi. Dikonfigurasi di tingkat workspace di [Claude Console](https://platform.claude.com/).
 
 <Note>
-  [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) mendukung penetapan geografis di tingkat agen: `inference_geo` pada [konfigurasi model agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#pin-the-inference-geo) menetapkan geografi yang melayani permintaan model untuk sesi yang menjalankan agen tersebut, dengan [penggantian per sesi](https://platform.claude.com/docs/id/managed-agents/sessions#pin-the-inference-geo-for-a-session) saat pembuatan sesi. Agen tanpa penetapan mengikuti inference geo default workspace pada setiap permintaan. Managed Agents juga mematuhi Workspace geo yang dikonfigurasi di Console, dan dengan [sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes), eksekusi alat dan sistem file sandbox tetap berada di infrastruktur yang Anda kendalikan; isi [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory) yang terlampir tetap disimpan oleh Anthropic dan disalin ke sandbox Anda untuk sesi tersebut.
+  [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) mendukung penetapan geografis di tingkat agen: `inference_geo` pada [konfigurasi model agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#pin-the-inference-geo) menetapkan geografi yang melayani permintaan model untuk sesi yang menjalankan agen tersebut, dengan [penggantian per sesi](https://platform.claude.com/docs/id/managed-agents/sessions#pin-the-inference-geo-for-a-session) saat pembuatan sesi. Agen tanpa penetapan mengikuti geografi inferensi default workspace pada setiap permintaan. Managed Agents juga mematuhi geografi ruang kerja yang dikonfigurasi di Console, dan dengan [sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes), eksekusi alat dan sistem file sandbox tetap berada di infrastruktur yang Anda kendalikan; isi [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory) yang terlampir tetap disimpan oleh Anthropic dan disalin ke sandbox Anda untuk sesi tersebut.
 </Note>
 
-## Inference geo
+## Geografi inferensi
 
 Parameter `inference_geo` mengontrol lokasi inferensi model dijalankan untuk permintaan API tertentu. Tambahkan parameter ini ke panggilan `POST /v1/messages` mana pun.
 
@@ -259,12 +259,12 @@ Objek `usage` pada respons menyertakan field `inference_geo` yang menunjukkan lo
 Parameter `inference_geo` didukung pada model Claude 4.6 dan yang lebih baru. Permintaan dengan `inference_geo` pada Claude Opus 4.5, Claude Sonnet 4.5 (tidak digunakan lagi), Claude Haiku 4.5, atau model yang lebih lama akan mengembalikan error 400.
 
 <Note>
-  Parameter `inference_geo` tersedia di Claude API (first-party), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed). Di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, region inferensi ditentukan oleh URL endpoint atau profil inferensi, sehingga `inference_geo` tidak berlaku. Di [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), `inference_geo` juga tidak berlaku: deployment yang di-host di Azure dapat menggunakan jenis deployment US Data Zone Standard sebagai gantinya, yang menjaga inferensi tetap berada di Amerika Serikat. Parameter `inference_geo` juga tidak tersedia melalui [endpoint kompatibilitas OpenAI SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk).
+  Parameter `inference_geo` tersedia di Claude API (first-party), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed). Di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, region inferensi ditentukan oleh URL endpoint atau profil inferensi, sehingga `inference_geo` tidak berlaku. Di [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), `inference_geo` juga tidak berlaku: deployment yang di-host di Azure dapat menggunakan jenis deployment US Data Zone Standard sebagai gantinya, yang menjaga inferensi tetap berada di Amerika Serikat. Parameter `inference_geo` juga tidak tersedia melalui [endpoint kompatibilitas OpenAI SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk).
 </Note>
 
 ### Pembatasan tingkat workspace
 
-Pengaturan workspace juga mendukung pembatasan inference geo yang tersedia:
+Pengaturan workspace juga mendukung pembatasan geografi inferensi yang tersedia:
 
 * **`allowed_inference_geos`:** Membatasi geo yang dapat digunakan oleh workspace. Jika permintaan menentukan `inference_geo` yang tidak ada dalam daftar ini, API akan mengembalikan error.
 * **`default_inference_geo`:** Menetapkan geo cadangan ketika `inference_geo` dihilangkan dari permintaan. Permintaan individual dapat menggantinya dengan menetapkan `inference_geo` secara eksplisit.
@@ -272,25 +272,25 @@ Pengaturan workspace juga mendukung pembatasan inference geo yang tersedia:
 Pengaturan ini dapat dikonfigurasi melalui Console atau [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) di bawah field `data_residency`.
 
 <Note>
-  **Claude Models on Google Cloud (Anthropic managed):** Setiap workspace mengizinkan semua inference geo dan menggunakan `"global"` sebagai inference geo default-nya. Claude Console menampilkan kedua pengaturan tersebut sebagai hanya-baca. Untuk inferensi khusus AS, tetapkan `inference_geo: "us"` pada setiap permintaan.
+  **Claude Models on Google Cloud (Anthropic managed):** Setiap workspace mengizinkan semua geografi inferensi dan menggunakan `"global"` sebagai geografi inferensi default-nya. Claude Console menampilkan kedua pengaturan tersebut sebagai hanya-baca. Untuk inferensi khusus AS, tetapkan `inference_geo: "us"` pada setiap permintaan.
 </Note>
 
-## Workspace geo
+## Geografi ruang kerja
 
-Workspace geo ditetapkan saat Anda membuat workspace dan tidak dapat diubah setelahnya. Saat ini, `"us"` adalah satu-satunya workspace geo yang tersedia.
+Geografi ruang kerja ditetapkan saat Anda membuat workspace dan tidak dapat diubah setelahnya. Saat ini, `"us"` adalah satu-satunya geografi ruang kerja yang tersedia.
 
-Untuk menetapkan workspace geo, buat workspace baru di [Console](https://platform.claude.com/):
+Untuk menetapkan geografi ruang kerja, buat workspace baru di [Console](https://platform.claude.com/):
 
 1. Buka [Workspaces di Claude Console](https://platform.claude.com/settings/workspaces) (`platform.claude.com/settings/workspaces`).
-2. Klik **Create workspace** untuk membuka halaman [Create workspace](https://platform.claude.com/settings/workspaces/new) (`platform.claude.com/settings/workspaces/new`) di Console.
-3. Masukkan nama, konfirmasikan nilai di field **Workspace geo**, lalu klik **Create workspace**.
+2. Klik **Buat ruang kerja** untuk membuka halaman [Buat ruang kerja](https://platform.claude.com/settings/workspaces/new) (`platform.claude.com/settings/workspaces/new`) di Console.
+3. Masukkan nama, konfirmasikan nilai di field **Geografi ruang kerja**, lalu klik **Buat ruang kerja**.
 
 <Note>
-  **Claude Platform on AWS:** Workspace geo tidak dapat dikonfigurasi. Sesi Claude Managed Agents di platform ini berjalan dengan Workspace geo efektif `"us"`, yang saat ini merupakan satu-satunya workspace geo yang tersedia. Lihat [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) untuk pertimbangan residensi data yang khusus untuk platform tersebut.
+  **Claude Platform on AWS:** Geografi ruang kerja tidak dapat dikonfigurasi. Sesi Claude Managed Agents di platform ini berjalan dengan geografi ruang kerja efektif `"us"`, yang saat ini merupakan satu-satunya geografi ruang kerja yang tersedia. Lihat [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) untuk pertimbangan residensi data yang khusus untuk platform tersebut.
 </Note>
 
 <Note>
-  **Claude Models on Google Cloud (Anthropic managed):** Workspace geo tidak dapat dikonfigurasi. Setiap workspace menggunakan `"us"` sebagai workspace geo-nya, dan field **Workspace geo** tidak muncul di Claude Console.
+  **Claude Models on Google Cloud (Anthropic managed):** Geografi ruang kerja tidak dapat dikonfigurasi. Setiap workspace menggunakan `"us"` sebagai geografi ruang kerjanya, dan field **Geografi ruang kerja** tidak muncul di Claude Console.
 </Note>
 
 ## Harga
@@ -336,7 +336,7 @@ Semua permintaan API yang menggunakan kunci dari workspace Anda tetap berjalan d
 
 ### Jika Anda ingin menggunakan perutean global
 
-Jika persyaratan residensi data Anda telah berubah dan Anda ingin memanfaatkan perutean global untuk kinerja dan ketersediaan yang lebih baik, perbarui pengaturan inference geo workspace Anda untuk menyertakan `"global"` dalam geo yang diizinkan dan tetapkan `default_inference_geo` ke `"global"`. Lihat [Pembatasan tingkat workspace](https://platform.claude.com/docs/id/manage-claude/data-residency#workspace-level-restrictions) untuk detailnya.
+Jika persyaratan residensi data Anda telah berubah dan Anda ingin memanfaatkan perutean global untuk kinerja dan ketersediaan yang lebih baik, perbarui pengaturan geografi inferensi workspace Anda untuk menyertakan `"global"` dalam geo yang diizinkan dan tetapkan `default_inference_geo` ke `"global"`. Lihat [Pembatasan tingkat workspace](https://platform.claude.com/docs/id/manage-claude/data-residency#workspace-level-restrictions) untuk detailnya.
 
 ### Dampak harga
 
@@ -345,8 +345,8 @@ Model lama tidak terpengaruh oleh migrasi ini. Untuk harga terkini pada model ya
 ## Keterbatasan saat ini
 
 * **Batas laju bersama:** Batas laju dibagikan di semua geo.
-* **Inference geo:** Hanya `"us"` dan `"global"` yang tersedia.
-* **Workspace geo:** Saat ini hanya `"us"` yang tersedia. Workspace geo tidak dapat diubah setelah workspace dibuat.
+* **Geografi inferensi:** Hanya `"us"` dan `"global"` yang tersedia.
+* **Geografi workspace:** Saat ini hanya `"us"` yang tersedia. Geografi ruang kerja tidak dapat diubah setelah workspace dibuat.
 
 ## Langkah selanjutnya
 
@@ -360,7 +360,7 @@ Model lama tidak terpengaruh oleh migrasi ini. Untuk harga terkini pada model ya
   </Card>
 
   <Card title="Usage and Cost Analytics API" icon="chart" href="https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api">
-    Lacak penggunaan dan biaya berdasarkan inference geo.
+    Lacak penggunaan dan biaya berdasarkan geografi inferensi.
   </Card>
 </CardGroup>
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 928e933b00fccb104305269896d0a5c903503c6e56517217b513edd9dd9122a6
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: fb7e01a3234b21ef71e42ab42fc32d8106c7a3fde110ae14ffd2d9d00c4d293e
 ---
 
 ---
@@ -45,7 +45,7 @@ Gunakan kedua pengungkit ini bersama-sama dengan urutan berikut:
 2. Tambahkan panduan prompt hanya jika pemicuan Claude masih tidak sesuai dengan kebutuhan Anda pada tingkat tersebut.
 
 <Note>
-  Untuk mendapatkan pemikiran yang lebih sedikit pada Claude Sonnet 5.5 dan Claude Haiku 5.5, turunkan tingkat effort. Meminta Claude Sonnet 5.5 dalam prompt sistem untuk lebih sedikit berpikir tidak secara andal mengurangi pemikirannya, dan dalam pengujian Anthropic, memberi tahu Claude Haiku 5.5 dalam prompt untuk menjawab secara langsung tidak menghentikannya dari berpikir. Lihat [Prompting Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#calibrate-effort) dan [Prompting Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#use-effort-to-control-thinking).
+  Untuk mendapatkan pemikiran yang lebih sedikit pada Claude Sonnet 5.5 dan Claude Haiku 5.5, turunkan tingkat effort. Meminta Claude Sonnet 5.5 dalam prompt sistem untuk lebih sedikit berpikir tidak secara andal mengurangi pemikirannya, dan dalam pengujian Anthropic, memberi tahu Claude Haiku 5.5 dalam prompt untuk menjawab secara langsung tidak menghentikannya dari berpikir. Lihat [Prompting untuk Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#calibrate-effort) dan [Menulis prompt untuk Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#use-effort-to-control-thinking).
 </Note>
 
 Untuk panduan prompting yang lebih luas terkait pemikiran, lihat [memanfaatkan kemampuan pemikiran dan pemikiran berselang-seling](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#leverage-thinking-and-interleaved-thinking-capabilities).
@@ -101,7 +101,7 @@ Efektivitas pengarahan dapat sensitif terhadap susunan kata yang tepat. Jika sat
 
 Anda juga dapat mengarahkan pemikiran per pesan dari giliran pengguna, terlepas dari prompt sistem. Menambahkan `"Please think hard before responding."` ke pesan pengguna mendorong Claude untuk berpikir pada giliran tersebut; `"Answer directly without deliberating."` mencegahnya.
 
-Pengarahan per pesan berguna ketika hanya beberapa permintaan dalam percakapan yang memerlukan penalaran yang diperpanjang. Sebuah agent harness, misalnya, dapat menambahkan frasa pendorong pada langkah perencanaan dan frasa pencegah pada konfirmasi rutin, tanpa menyentuh prompt sistem atau mengubah parameter permintaan apa pun di antara giliran.
+Pengarahan per pesan berguna ketika hanya beberapa permintaan dalam percakapan yang memerlukan penalaran yang diperpanjang. Sebuah harness agen, misalnya, dapat menambahkan frasa pendorong pada langkah perencanaan dan frasa pencegah pada konfirmasi rutin, tanpa menyentuh prompt sistem atau mengubah parameter permintaan apa pun di antara giliran.
 
 Pada Claude Haiku 5.5, frasa yang tidak menganjurkan tersebut tidak secara andal mengurangi pemikiran. Jika platform Anda mendukungnya, jalankan giliran rutin pada model tersebut dengan pemikiran yang lebih sedikit menggunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) sebagai gantinya, yang juga mempertahankan “prompt cache” (cache prompt).
 

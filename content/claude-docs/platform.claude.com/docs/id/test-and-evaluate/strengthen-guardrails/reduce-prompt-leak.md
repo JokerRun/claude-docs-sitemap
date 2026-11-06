@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-prompt-leak
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 95e18c612d08fcf3944f95e1ce7074c68deff3db79ce94b7b1e0fc2f0f872b17
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 1731019f901aed953c275d167480aa6994785c4617d5e83d6c53bc7cdc240daa
 ---
 
 ---
@@ -56,7 +56,7 @@ Jika Anda memutuskan untuk menerapkan teknik tahan kebocoran, pastikan untuk men
   ```
 </Accordion>
 
-* **Gunakan pasca-pemrosesan:** Filter output Claude untuk kata kunci yang mungkin mengindikasikan kebocoran. Tekniknya meliputi penggunaan regular expression, pemfilteran kata kunci, atau metode pemrosesan teks lainnya.
+* **Gunakan pasca-pemrosesan:** Filter output Claude untuk kata kunci yang mungkin mengindikasikan kebocoran. Tekniknya meliputi penggunaan ekspresi reguler, pemfilteran kata kunci, atau metode pemrosesan teks lainnya.
   <Note>
     Anda juga dapat menggunakan LLM yang diberi prompt untuk memfilter output terhadap kebocoran yang lebih halus.
   </Note>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/update
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 64154fdd6619e26b20d99c01a6d4ae64381c1d9b55ac15b0e6bac0e052887cbb
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: a073caa49560beabb0283d5f7e8e30658c868ffb3b0dc6aa57d1c3952488df60
 ---
 
 ---
@@ -146,7 +146,7 @@ encrypted data requires the original key identity to decrypt.
 
   - `geo: string`
 
-    Data residency geo. Selects the region that handles this key's encrypt/decrypt roundtrips.
+    Data residency geo. Selects the region this key is used in.
 
   - `provider_config: BetaAWSExternalKeyConfig or BetaGCPExternalKeyConfig or BetaAzureExternalKeyConfig`
 

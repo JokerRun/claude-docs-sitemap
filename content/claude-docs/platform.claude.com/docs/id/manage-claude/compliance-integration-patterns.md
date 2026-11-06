@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: d3cb577e7a84b09c497bbe1089956ffea2f5032b5d864cbb95c0d0dba6ab2ffa
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: d306ac885c7597d73e1efc6eabb3fd7f36f368c5ae8392d80fdf3a0ae3f08c0a
 ---
 
 ---
@@ -25,7 +25,7 @@ Halaman ini mengasumsikan Anda telah membaca halaman-halaman berikut:
 
 * [Kueri Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed), yang mendefinisikan parameter dan kontrak paginasi yang dirujuk di seluruh halaman ini.
 * [Ambil dan hapus chat, file, dan proyek](https://platform.claude.com/docs/id/manage-claude/compliance-content-data), yang mendefinisikan endpoint chat, file, dan proyek serta semantik `deleted_at` yang dirujuk dalam [Rencanakan retensi konten](https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns#plan-content-retention).
-* [Ambil transkrip sesi](https://platform.claude.com/docs/id/manage-claude/compliance-sessions), yang mendefinisikan endpoint sesi lokal dan remote.
+* [Ambil transkrip sesi](https://platform.claude.com/docs/id/manage-claude/compliance-sessions), yang mendefinisikan endpoint sesi lokal dan jarak jauh.
 
 ## Pilih pola konsumsi feed
 
@@ -33,17 +33,17 @@ Activity Feed mendukung dua pola konsumsi: “window polling” (polling jendela
 
 Kedua pola berbagi batasan berikut:
 
-* Aktivitas dapat dikueri dalam 1 menit setelah terjadi dan disimpan selama 6 tahun. Pencatatan tidak bersifat retroaktif: pencatatan dimulai ketika Compliance API pertama kali diaktifkan untuk organisasi Anda, dan aktivitas dari sebelum pengaktifan tidak diisi ulang (backfill).
+* Aktivitas dapat dikueri dalam waktu 1 menit setelah terjadi dan disimpan selama 6 tahun. Pencatatan tidak berlaku surut: pencatatan dimulai saat Compliance API pertama kali diaktifkan untuk organisasi Anda, dan aktivitas dari sebelum pengaktifan tidak diisi ulang. Peristiwa Access Transparency merupakan pengecualian. Jika organisasi Anda terdaftar dalam [Access Transparency](https://platform.claude.com/docs/id/manage-claude/access-transparency), peristiwa ini dicatat bahkan saat Compliance API nonaktif. Oleh karena itu, feed dapat menyertakan beberapa peristiwa dari sebelum Compliance API pertama kali diaktifkan.
 * `limit` maksimum untuk setiap halaman adalah 5.000.
 * Nilai kursor adalah string opaque yang tidak boleh Anda parse.
-* Permintaan dibatasi hingga 600 per menit untuk setiap [organisasi induk](https://platform.claude.com/docs/id/manage-claude/compliance-api#how-the-compliance-api-works), yang dibagi di antara setiap kunci, setiap organisasi yang ditautkan, dan setiap endpoint `/v1/compliance/*`; tidak seperti endpoint sesi lokal, endpoint sesi jarak jauh memiliki anggaran permintaan kedua di atasnya. Lihat [429 Too Many Requests](https://platform.claude.com/docs/id/manage-claude/compliance-errors#429-too-many-requests) untuk header respons dan kontrak retry.
+* Permintaan dibatasi hingga 600 per menit untuk setiap [organisasi induk](https://platform.claude.com/docs/id/manage-claude/compliance-api#how-the-compliance-api-works), yang dibagi di antara setiap kunci, setiap organisasi yang ditautkan, dan setiap endpoint `/v1/compliance/*`; tidak seperti endpoint sesi lokal, endpoint sesi jarak jauh memiliki anggaran permintaan kedua di atasnya. Lihat [429 Too Many Requests](https://platform.claude.com/docs/id/manage-claude/compliance-errors#429-too-many-requests) untuk header respons dan kontrak percobaan ulang.
 
 | Pola                                  | Pilih ketika                                                                                                                                                                                                                                           |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Window polling                        | Pipeline Anda berjalan pada jadwal tetap, Anda lebih menyukai worker stateless, dan Anda dapat menoleransi pemutaran ulang atau jendela yang tumpang tindih                                                                                            |
+| Polling jendela                       | Pipeline Anda berjalan pada jadwal tetap, Anda lebih menyukai worker stateless, dan Anda dapat menoleransi pemutaran ulang atau jendela yang tumpang tindih                                                                                            |
 | Pembacaan inkremental berbasis kursor | Anda menginginkan latensi terendah antara terjadinya aktivitas dan pipeline Anda mengingestnya, Anda ingin menghindari membaca ulang halaman yang sudah Anda kuras, dan Anda memiliki tempat yang tahan lama untuk menyimpan kursor di antara eksekusi |
 
-### Window polling
+### Polling jendela
 
 Tetapkan `created_at.lt` setidaknya 1 menit di masa lalu sehingga setiap aktivitas dalam jendela sudah dapat dikueri. Gunakan `created_at.gte` untuk batas bawah dan `created_at.lt` untuk batas atas sehingga jendela yang berurutan tersusun rapat tanpa celah atau tumpang tindih; gunakan kembali nilai `lt` jendela sebelumnya sebagai `gte` jendela berikutnya.
 
@@ -62,7 +62,7 @@ Ketika respons memiliki `has_more: true`, jendela berisi lebih dari satu halaman
 Bahkan dengan penyusunan yang rapi, aktivitas yang terindeks setelah jendelanya ditutup tidak akan pernah muncul di jendela berikutnya. Lakukan deduplikasi pada `id` aktivitas dan perlebar setiap jendela baru sehingga tumpang tindih dengan jendela sebelumnya selama beberapa menit, atau jalankan proses rekonsiliasi periodik yang mengueri ulang jendela yang lebih lama.
 
 <Warning>
-  Batas `created_at.lt` yang terlalu dekat dengan saat ini akan secara diam-diam dan permanen menghilangkan aktivitas yang terindeks terlambat: begitu `created_at.gte` maju melewatinya, tidak ada jendela berikutnya yang dapat memulihkannya. Perlakukan angka keterkuerian 1 menit sebagai lag pengindeksan yang terdokumentasi, bukan rekomendasi lunak.
+  Batas `created_at.lt` yang terlalu dekat dengan saat ini akan secara diam-diam dan permanen menghilangkan aktivitas yang terindeks terlambat: begitu `created_at.gte` maju melewatinya, tidak ada jendela berikutnya yang dapat memulihkannya. Perlakukan angka keterkuerian 1 menit sebagai jeda pengindeksan yang terdokumentasi, bukan rekomendasi lunak.
 </Warning>
 
 ### Pembacaan inkremental berbasis kursor
@@ -77,9 +77,9 @@ curl --fail-with-body -sS -G \
   --data-urlencode "before_id=activity_01DeFgHjKmNpQrStUvWxYzAb"
 ```
 
-Lakukan paginasi hingga `has_more` bernilai `false`, lalu simpan `first_id` dari respons terakhir dan teruskan tanpa diubah sebagai `before_id` pada eksekusi berikutnya untuk mengambil aktivitas yang lebih baru dari cursor yang disimpan. Untuk berjalan ke arah sebaliknya untuk backfill, simpan `last_id` dan teruskan sebagai `after_id`. Untuk referensi lengkap cursor versus page token dan semantik retry, lihat [Paginasi hasil](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#paginate-results).
+Lakukan paginasi hingga `has_more` bernilai `false`, lalu simpan `first_id` dari respons terakhir dan teruskan tanpa diubah sebagai `before_id` pada eksekusi berikutnya untuk mengambil aktivitas yang lebih baru dari kursor yang disimpan. Untuk berjalan ke arah sebaliknya untuk backfill, simpan `last_id` dan teruskan sebagai `after_id`. Untuk referensi lengkap kursor versus token halaman dan semantik percobaan ulang, lihat [Paginasi hasil](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#paginate-results).
 
-Loop **catch-up** produksi mengambil aktivitas yang tercatat sejak polling terakhir Anda dengan menggerakkan iterasi berdasarkan `has_more` dan `first_id`:
+Loop **catch-up (mengejar ketertinggalan)** produksi mengambil aktivitas yang tercatat sejak polling terakhir Anda dengan menggerakkan iterasi berdasarkan `has_more` dan `first_id`:
 
 ```text
 cursor = stored_cursor
@@ -100,7 +100,7 @@ Kursor tetap berlaku setelah rotasi kunci; lihat [Kelola dan rotasi kunci](https
 
 ## Korelasikan dengan SIEM Anda
 
-Setiap `Activity` membawa field yang dapat Anda join dengan event yang sudah ada di SIEM Anda (Splunk, Datadog, Microsoft Sentinel, Cribl, atau sejenisnya):
+Setiap `Activity` membawa field yang dapat Anda gabungkan dengan event yang sudah ada di SIEM Anda (Splunk, Datadog, Microsoft Sentinel, Cribl, atau sejenisnya):
 
 | Field Compliance API  | Target join                                                                     |
 | --------------------- | ------------------------------------------------------------------------------- |
@@ -110,30 +110,30 @@ Setiap `Activity` membawa field yang dapat Anda join dengan event yang sudah ada
 | `actor.user_agent`    | Inventaris endpoint dan perangkat, serta aplikasi klien yang membuat permintaan |
 | `created_at`          | Korelasi jendela waktu di seluruh sumber apa pun                                |
 
-`actor.user_id` dan `actor.email_address` ada ketika `actor.type` adalah `user_actor`. `actor.ip_address` dan `actor.user_agent` tidak ada pada beberapa tipe actor, seperti `anthropic_actor` dan `scim_directory_sync_actor`. Periksa diskriminator sebelum membaca field-field ini. `user_id` adalah pengidentifikasi stabil dan opaque untuk akun pengguna: nilainya konsisten di seluruh endpoint Compliance API dan payload aktivitas, dan tidak berubah ketika email atau nama tampilan pengguna berubah. Gunakan `user_id`, bukan `email_address`, sebagai kunci join utama.
+`actor.user_id` dan `actor.email_address` ada ketika `actor.type` adalah `user_actor`. `actor.ip_address` dan `actor.user_agent` tidak ada pada beberapa tipe aktor, seperti `anthropic_actor` dan `scim_directory_sync_actor`. Periksa diskriminator sebelum membaca field-field ini. `user_id` adalah pengidentifikasi stabil dan buram untuk akun pengguna: nilainya konsisten di seluruh endpoint Compliance API dan payload aktivitas, dan tidak berubah ketika email atau nama tampilan pengguna berubah. Gunakan `user_id`, bukan `email_address`, sebagai kunci join utama.
 
-Panggilan ke Compliance API itu sendiri menghasilkan aktivitas `compliance_api_accessed`. Ingest aktivitas ini bersama tipe aktivitas lainnya sehingga SIEM Anda mencatat siapa yang mengueri data kepatuhan, dan kapan. Teruskan `activity_types[]=compliance_api_accessed` untuk membatasi kueri, lalu di klien Anda, baca `actor.api_key_id` dari setiap aktivitas yang `actor.type`-nya adalah `api_actor` untuk mengatribusikan akses tersebut ke Compliance Access Key atau kunci Admin API tertentu.
+Panggilan ke Compliance API itu sendiri menghasilkan aktivitas `compliance_api_accessed`. Serap aktivitas ini bersama tipe aktivitas lainnya sehingga SIEM Anda mencatat siapa yang mengueri data kepatuhan, dan kapan. Teruskan `activity_types[]=compliance_api_accessed` untuk membatasi kueri, lalu di klien Anda, baca `actor.api_key_id` dari setiap aktivitas yang `actor.type`-nya adalah `api_actor` untuk mengatribusikan akses tersebut ke Compliance Access Key atau kunci Admin API tertentu.
 
 ## Rencanakan retensi konten
 
 Enam horizon retensi mengatur apa yang dapat Anda ambil nanti:
 
-| Data                                                | Disimpan selama                                                                                                                                                                                             | Dikendalikan oleh                                                          |
-| --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Catatan Activity Feed                               | 6 tahun                                                                                                                                                                                                     | Anthropic                                                                  |
-| Konten chat, file, dan proyek                       | Kebijakan retensi claude.ai organisasi Anda, kecuali pengguna menghapusnya lebih awal                                                                                                                       | Organisasi Anda                                                            |
-| Transkrip sesi lokal (sesi di mesin pengguna)       | 6 tahun secara default, atau periode retensi percakapan kustom organisasi Anda ketika periode terbatas ditetapkan; 30 hari di organisasi yang mengaktifkan kesiapan HIPAA                                   | Anthropic secara default; organisasi Anda ketika menetapkan periode kustom |
-| Transkrip sesi jarak jauh Cowork (sesi di cloud)    | 6 tahun, kecuali pengguna menghapus sesi lebih awal                                                                                                                                                         | Anthropic                                                                  |
-| Transkrip sesi Claude Tag (sesi di cloud)           | Tidak ada periode default; dihapus bersama channel atau workspace Slack-nya (lihat [Retensi dan penghapusan](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retention-and-deletion)) | Organisasi Anda                                                            |
-| Konten yang dihapus permanen melalui Compliance API | Tidak disimpan; penghapusan bersifat langsung dan permanen                                                                                                                                                  | Pemanggil endpoint `DELETE`                                                |
+| Data                                                          | Disimpan selama                                                                                                                                                                                             | Dikendalikan oleh                                                                                             |
+| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Catatan Activity Feed                                         | 6 tahun                                                                                                                                                                                                     | Anthropic                                                                                                     |
+| Konten chat, file, dan proyek                                 | Kebijakan retensi claude.ai organisasi Anda, kecuali pengguna menghapusnya lebih awal                                                                                                                       | Organisasi Anda                                                                                               |
+| Transkrip sesi lokal (sesi di mesin pengguna)                 | 6 tahun secara default, atau periode retensi percakapan kustom organisasi Anda ketika periode terbatas ditetapkan; 30 hari di organisasi yang mengaktifkan kesiapan HIPAA                                   | Anthropic secara default; organisasi Anda ketika menetapkan periode kustom                                    |
+| Transkrip sesi jarak jauh (sesi di cloud), kecuali Claude Tag | Tidak ada periode default; lihat [Retensi dan penghapusan](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retention-and-deletion)                                                    | Pengguna Anda secara default; juga kebijakan retensi organisasi Anda untuk sesi yang dimulai Claude dari chat |
+| Transkrip sesi Claude Tag (sesi di cloud)                     | Tidak ada periode default; dihapus bersama channel atau workspace Slack-nya (lihat [Retensi dan penghapusan](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retention-and-deletion)) | Organisasi Anda                                                                                               |
+| Konten yang dihapus permanen melalui Compliance API           | Tidak disimpan; penghapusan bersifat langsung dan permanen                                                                                                                                                  | Pemanggil endpoint `DELETE`                                                                                   |
 
 Untuk mempelajari bagaimana bagian lain Claude Platform menangani retensi, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 
 Putuskan antara ekspor-dan-arsip dan pengambilan API sesuai permintaan sebagai berikut:
 
-* Jika horizon “legal hold” (penahanan hukum) atau audit Anda melebihi 6 tahun untuk metadata aktivitas atau transkrip sesi, ekspor halaman Activity Feed dan transkrip sesi ke arsip Anda sendiri saat Anda menyerapnya.
+* Jika horizon “legal hold” (penahanan hukum) atau audit Anda melebihi 6 tahun untuk metadata aktivitas atau transkrip sesi lokal, ekspor halaman Activity Feed dan transkrip sesi lokal ke arsip Anda sendiri saat Anda menyerapnya.
 * Jika kebijakan retensi konten Anda lebih pendek dari horizon “eDiscovery” (penemuan elektronik) Anda, ekspor konten chat dan file sebelum jendela retensi berakhir; Compliance API tidak dapat mengembalikan konten yang sudah dihapus oleh retensi. Hal yang sama berlaku untuk transkrip sesi lokal, yang mengikuti periode retensi percakapan kustom organisasi Anda ketika periode terbatas ditetapkan, bahkan ketika periode tersebut lebih pendek dari 6 tahun. Endpoint sesi lokal berhenti mengembalikan pesan yang lebih lama dari periode organisasi Anda saat ini segera setelah pengaturan berubah, dan memperpanjang periode di kemudian hari tidak memulihkan transkrip yang sudah kedaluwarsa, jadi ekspor setiap transkrip yang harus Anda simpan melampaui periode tersebut.
-* Jika Anda harus menyimpan konten chat atau transkrip sesi jarak jauh setelah pengguna menghapusnya di claude.ai (misalnya, di bawah legal hold), ekspor konten chat, file, artifact, dan sesi jarak jauh ke arsip Anda sendiri saat Anda menyerapnya; Compliance API tidak dapat mengembalikan konten yang sudah dihapus oleh pengguna.
+* Jika Anda harus menyimpan konten chat atau transkrip sesi jarak jauh setelah keduanya dihapus (misalnya, di bawah penahanan hukum), ekspor konten chat, file, artifact, dan sesi jarak jauh ke arsip Anda sendiri saat Anda menyerapnya; Compliance API tidak dapat mengembalikan konten yang sudah dihapus.
 * Jika Anda harus menyimpan transkrip sesi Claude Tag, ekspor transkrip tersebut ke arsip Anda sendiri saat Anda menyerapnya. Menghapus channel, menghapusnya di Slack, atau memutuskan koneksi workspace Slack akan menghapus transkrip tersebut, dan Compliance API tidak dapat mengembalikannya setelah itu.
 * Jika suatu alur kerja mungkin menjalankan “hard-delete” (penghapusan permanen) melalui Compliance API (misalnya, penegakan “data loss prevention” (pencegahan kehilangan data), atau DLP), ambil dan arsipkan konten target terlebih dahulu. Tidak ada jendela pemulihan setelah hard-delete.
 
@@ -141,7 +141,7 @@ Dalam semua kasus lainnya, andalkan pengambilan API langsung dan hindari memelih
 
 ### Jaminan pengiriman dan kelengkapan
 
-Perlakukan Activity Feed sebagai **at-least-once**: traversal yang dipaginasi dengan benar mengembalikan setiap aktivitas setidaknya sekali, tetapi retry setelah kegagalan parsial dapat mengirim ulang aktivitas yang sudah Anda simpan. Lakukan deduplikasi pada field `id` aktivitas.
+Perlakukan Activity Feed sebagai **at-least-once**: traversal yang dipaginasi dengan benar mengembalikan setiap aktivitas setidaknya sekali, tetapi percobaan ulang setelah kegagalan parsial dapat mengirim ulang aktivitas yang sudah Anda simpan. Lakukan deduplikasi pada field `id` aktivitas.
 
 Endpoint list tidak mengembalikan field `total_count` atau checksum. Untuk membuktikan bahwa suatu eksekusi ekspor sudah lengkap, catat:
 
@@ -149,9 +149,9 @@ Endpoint list tidak mengembalikan field `total_count` atau checksum. Untuk membu
 * Jumlah catatan yang diekspor.
 * Timestamp eksekusi dan `request-id` halaman terakhir.
 
-Volume aktivitas bukanlah pemeriksaan kelengkapan. Tipe aktivitas `claude_*_viewed`, seperti `claude_chat_viewed`, mengikuti pola pemuatan masing-masing aplikasi (lihat [Pahami objek Activity](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#understand-the-activity-object)). Periode dengan pesan chat tetapi tanpa aktivitas `claude_chat_viewed` tidak dengan sendirinya menunjukkan data yang hilang. Sebagai gantinya, andalkan traversal dan proses tumpang tindih atau rekonsiliasi yang dijelaskan dalam [Window polling](https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns#window-polling).
+Volume aktivitas bukanlah pemeriksaan kelengkapan. Tipe aktivitas `claude_*_viewed`, seperti `claude_chat_viewed`, mengikuti pola pemuatan masing-masing aplikasi (lihat [Pahami objek Activity](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#understand-the-activity-object)). Periode dengan pesan chat tetapi tanpa aktivitas `claude_chat_viewed` tidak dengan sendirinya menunjukkan data yang hilang. Sebagai gantinya, andalkan traversal dan proses tumpang tindih atau rekonsiliasi yang dijelaskan dalam [Polling jendela](https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns#window-polling).
 
-Endpoint konten (chat, file, proyek, lampiran proyek, serta transkrip sesi lokal dan remote) hanya melayani data Claude Enterprise. Activity Feed menampilkan event administratif dan sumber daya di seluruh organisasi. Compliance API tidak mencakup:
+Endpoint konten (chat, file, proyek, lampiran proyek, serta transkrip sesi lokal dan jarak jauh) hanya melayani data Claude Enterprise. Activity Feed menampilkan event administratif dan sumber daya di seluruh organisasi. Compliance API tidak mencakup:
 
 * Teks prompt atau respons model dari Claude Console, atau dari beban kerja Claude API yang diautentikasi dengan kunci API.
 * Aktivitas di perangkat dalam sesi lokal yang tidak pernah dikirim ke Anthropic, seperti file lokal yang tidak dibaca oleh Claude.
@@ -169,7 +169,7 @@ Endpoint konten (chat, file, proyek, lampiran proyek, serta transkrip sesi lokal
 
 Lihat [FAQ Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-faq#data-coverage-and-retention) untuk informasi lebih lanjut tentang apa yang ditangkap dan tidak ditangkap oleh Compliance API.
 
-Untuk chain of custody, simpan catatan yang diekspor dengan metadata provenans: endpoint sumber, parameter kueri, timestamp eksekusi, dan hash konten setiap catatan.
+Untuk “chain of custody” (rantai penjagaan bukti), simpan catatan yang diekspor dengan metadata provenans: endpoint sumber, parameter kueri, timestamp eksekusi, dan hash konten setiap catatan.
 
 ## Langkah selanjutnya
 
@@ -179,7 +179,7 @@ Untuk chain of custody, simpan catatan yang diekspor dengan metadata provenans: 
   </Card>
 
   <Card title="Ambil dan hapus chat, file, dan proyek" href="https://platform.claude.com/docs/id/manage-claude/compliance-content-data">
-    Endpoint chat, file, dan proyek, termasuk hard delete.
+    Endpoint chat, file, dan proyek, termasuk penghapusan permanen (hard delete).
   </Card>
 
   <Card title="Ambil transkrip sesi" href="https://platform.claude.com/docs/id/manage-claude/compliance-sessions">

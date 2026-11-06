@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 4e458e155a9207e006dd202bdbe33553101c452330192717606f45f2662c0cec
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 30692db208a044923fea55e0262a5b7d48a223ecef094132d49957604d386bfb
 ---
 
 ---
@@ -845,6 +845,8 @@ List Agents
             - `country: optional string or null`
 
               Two-letter ISO 3166-1 country code, uppercase.
+
+              pattern: ^[A-Z]{2}$
 
             - `region: optional string or null`
 

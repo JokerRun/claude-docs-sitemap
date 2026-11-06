@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/home
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 4df59f9cbae02dc7cf66f77a75f714b1832fa94d2e1c9ecb7ff861ecf8cd7497
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: dea919fc4556bcc8d03ae6c24c613b492095fe3bc1777634f1f73ae62d96c0a6
 ---
 
 ---
@@ -429,11 +429,11 @@ with Claude"
         Interactive courses to master Claude.
       </Card>
 
-      <Card icon="book" title="Cookbook" href="https://platform.claude.com/cookbook">
+      <Card icon="book" title="Claude Cookbook" href="https://platform.claude.com/cookbook">
         Code samples and patterns.
       </Card>
 
-      <Card icon="play" title="Quickstarts" href="https://github.com/anthropics/anthropic-quickstarts">
+      <Card icon="play" title="Quickstarts" href="https://github.com/anthropics/claude-quickstarts">
         Deployable starter apps.
       </Card>
 

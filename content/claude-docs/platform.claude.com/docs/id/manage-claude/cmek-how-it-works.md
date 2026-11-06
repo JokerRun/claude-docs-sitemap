@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-how-it-works
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: fb81346c51385c22916008b1c18a07fc6a2a22e389efb980882f4cf7e8b2b372
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: d841bfda5cf9da94d04dd338fbf7b04cfcb956bfde9d42ac2f8a50ddc8e21271
 ---
 
 ---
@@ -47,7 +47,7 @@ Di Claude Platform dan Claude Platform on AWS, kunci yang dilampirkan ke sebuah 
 
 Log audit cloud Anda dapat mencatat setiap operasi yang dilakukan Anthropic dengan kunci Anda. Jika Anda harus mengaktifkan pencatatan tersebut, halaman penyiapan Anda mencantumkannya sebagai prasyarat. Di AWS CloudTrail, beberapa entri merupakan [error yang diharapkan](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#cloudtrail).
 
-Perubahan pada konfigurasi CMEK Anda muncul di [Compliance API Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed). Operasi kunci tidak muncul di sana.
+Perubahan pada konfigurasi CMEK Anda muncul di [Activity Feed Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed). Operasi kunci tidak muncul di sana.
 
 ## Latensi dan standar
 

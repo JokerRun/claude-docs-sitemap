@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 4fd03d7a459328e14de8fa56f8760e4a0b5de775dff07689a949a6ab4d7a60f9
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 33e47f4f5ea0964866b2b7ed26ba5cf2f1dbd4f11d4b556f310fbec49b124c2f
 ---
 
 ---
@@ -178,7 +178,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
 
 <CodeGroup exclude="shell:cURL">
   ```bash CLI
-  # Flag --stream pada CLI ant memancarkan satu event per baris dan tidak
+  # Flag --stream pada CLI ant mengeluarkan satu event per baris dan tidak
   # mengakumulasikannya menjadi Message akhir. Untuk generasi panjang, lakukan streaming
   # event mentah:
   ant messages create --stream --format jsonl <<'YAML'
@@ -301,6 +301,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
   $accumulator = MessageAccumulator::forMessages();
   foreach ($stream as $event) {
       $accumulator->accumulate($event);
+      // Panggil $accumulator->message() di sini untuk mendapatkan snapshot pesan sejauh ini.
   }
 
   echo array_find($accumulator->message()->content, static fn ($block): bool => $block->type === 'text')->text;
@@ -381,11 +382,11 @@ event: content_block_delta
 data: {"type": "content_block_delta","index": 1,"delta": {"type": "input_json_delta","partial_json": "{\"location\": \"San Fra"}}}
 ```
 
-Catatan: Model saat ini hanya mendukung pengiriman satu properti key dan value lengkap dari `input` dalam satu waktu. Oleh karena itu, saat menggunakan alat, mungkin ada jeda antar event streaming selama model sedang bekerja. Setelah key dan value `input` terakumulasi, keduanya dikirim sebagai beberapa event `content_block_delta` dengan JSON parsial yang dipecah-pecah sehingga format ini dapat secara otomatis mendukung granularitas yang lebih halus pada model mendatang.
+Catatan: Model saat ini hanya mendukung pengiriman satu properti kunci dan nilai lengkap dari `input` dalam satu waktu. Oleh karena itu, saat menggunakan alat, mungkin ada jeda antar event streaming selama model sedang bekerja. Setelah kunci dan nilai `input` terakumulasi, keduanya dikirim sebagai beberapa event `content_block_delta` dengan JSON parsial yang dipecah-pecah sehingga format ini dapat secara otomatis mendukung granularitas yang lebih halus pada model mendatang.
 
 ### Delta thinking
 
-Saat menggunakan [pemikiran dengan streaming diaktifkan](https://platform.claude.com/docs/id/build-with-claude/thinking#streaming-thinking), Anda akan menerima konten pemikiran melalui event `thinking_delta`. Delta ini sesuai dengan field `thinking` dari content block `thinking`.
+Saat menggunakan [pemikiran dengan streaming diaktifkan](https://platform.claude.com/docs/id/build-with-claude/thinking#streaming-thinking), Anda akan menerima konten pemikiran melalui event `thinking_delta`. Delta ini sesuai dengan field `thinking` dari blok konten `thinking`.
 
 Untuk konten thinking, event `signature_delta` khusus dikirim tepat sebelum event `content_block_stop`. Signature ini digunakan untuk memverifikasi integritas blok thinking.
 
@@ -1243,7 +1244,7 @@ event: message_stop
 data: {"type": "message_stop"}
 ```
 
-### Permintaan streaming dengan penggunaan alat web search
+### Permintaan streaming dengan penggunaan alat pencarian web
 
 Permintaan ini meminta Claude mencari informasi cuaca terkini di web.
 
@@ -1554,7 +1555,7 @@ Untuk model Claude 4.6 dan setelahnya, strategi tangkap-dan-lanjutkan yang sama 
     Stream JSON input alat tanpa buffering sisi server untuk latensi lebih rendah.
   </Card>
 
-  <Card title="Thinking" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
+  <Card title="Pemikiran" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
     Stream output thinking dengan event `thinking_delta` dan `signature_delta`.
   </Card>
 

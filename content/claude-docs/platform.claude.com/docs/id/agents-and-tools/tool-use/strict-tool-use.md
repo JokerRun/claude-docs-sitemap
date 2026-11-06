@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 1b19416ab51f97baf134d0fe417992054de57b1e31797867575f0bfe35f4d36f
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 9c1e7aa556aaf97b554f14747847ecc00d54783ccb206aaa26ab2413c3dcdf91
 ---
 
 ---
@@ -417,7 +417,7 @@ Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mo
   </Step>
 </Steps>
 
-Entri toolset [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`computer_toolset_20260801` dan `browser_toolset_20260801`) tidak menerima `strict: true`; permintaan yang mengaturnya pada salah satu entri tersebut akan ditolak.
+Entri toolset [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`computer_toolset_20260801` dan `browser_toolset_20260801`) tidak menerima `strict: true`; permintaan yang mengaturnya pada salah satu entri tersebut akan ditolak.
 
 ## Kasus penggunaan umum
 
@@ -1154,7 +1154,7 @@ Entri toolset [penggunaan komputer](https://platform.claude.com/docs/id/agents-a
 
 ## Retensi data
 
-Penggunaan alat ketat mengompilasi definisi `input_schema` alat menjadi tata bahasa menggunakan pipeline yang sama dengan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs). Skema alat di-cache sementara hingga 24 jam sejak penggunaan terakhir. Prompt dan respons tidak disimpan melampaui respons API.
+Penggunaan alat ketat mengompilasi definisi `input_schema` alat menjadi tata bahasa menggunakan pipeline yang sama dengan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs). Skema alat di-cache sementara hingga 24 jam sejak penggunaan terakhir. Prompt dan respons tidak disimpan melampaui respons API.
 
 Penggunaan alat ketat memenuhi syarat HIPAA, tetapi **informasi kesehatan yang dilindungi (PHI) tidak boleh disertakan dalam definisi skema alat**. API menyimpan cache skema yang dikompilasi secara terpisah dari konten pesan, dan skema yang di-cache ini tidak menerima perlindungan PHI yang sama seperti prompt dan respons. Jangan sertakan PHI dalam nama properti `input_schema`, nilai `enum`, nilai `const`, atau ekspresi reguler `pattern`. PHI hanya boleh muncul dalam konten pesan (prompt dan respons), di mana PHI dilindungi di bawah perlindungan HIPAA.
 
@@ -1169,7 +1169,7 @@ Penggunaan alat ketat memenuhi syarat HIPAA, tetapi **informasi kesehatan yang d
     Cache definisi alat di seluruh giliran untuk mengurangi biaya dan latensi.
   </Card>
 
-  <Card title="Structured outputs" icon="code-brackets" href="https://platform.claude.com/docs/id/build-with-claude/structured-outputs">
+  <Card title="Output terstruktur" icon="code-brackets" href="https://platform.claude.com/docs/id/build-with-claude/structured-outputs">
     Dapatkan respons JSON yang tervalidasi menggunakan sampling yang dibatasi tata bahasa yang sama.
   </Card>
 

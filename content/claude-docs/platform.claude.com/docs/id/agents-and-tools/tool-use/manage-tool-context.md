@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/manage-tool-context
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 1c1f13388af3ce84da30f31379cd2442a174e5f643a1be07b7be118aa0adae33
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 16a985ba7555931bc95c8dac9d9b698a28a1f7acb3649a66d9ccf10add62235f
 ---
 
 ---
@@ -17,16 +17,16 @@ Definisi alat dan blok `tool_result` yang terakumulasi menghabiskan “context w
 
 Setiap pendekatan menargetkan sumber tekanan konteks yang berbeda. Pilih pendekatan yang sesuai dengan ke mana token Anda mengalir.
 
-| Pendekatan                         | Apa yang dikurangi                           | Kapan cocok digunakan                                                                      | Pelajari lebih lanjut                                                                                                               |
-| ---------------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| Pencarian alat                     | Definisi alat yang dimuat di awal            | Kumpulan alat besar (20+ alat) di mana sebagian besar alat tidak diperlukan setiap giliran | [Alat pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool)                               |
-| Pemanggilan alat secara terprogram | Bolak-balik `tool_result`                    | Rangkaian pemanggilan alat yang dapat dijalankan sebagai satu skrip                        | [Pemanggilan alat secara terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling)       |
-| Caching prompt                     | Biaya token dari definisi alat yang berulang | Kumpulan alat yang stabil di banyak permintaan                                             | [Penggunaan alat dengan caching prompt](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching) |
-| Pengeditan konteks                 | Blok `tool_result` lama dalam riwayat        | Percakapan panjang di mana hasil awal tidak lagi relevan                                   | [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing)                                         |
+| Pendekatan                         | Apa yang dikurangi                           | Kapan cocok digunakan                                                  | Pelajari lebih lanjut                                                                                                               |
+| ---------------------------------- | -------------------------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Pencarian alat                     | Definisi alat yang dimuat di awal            | Banyak alat (10+), yang sebagian besar tidak diperlukan setiap giliran | [Alat pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool)                               |
+| Pemanggilan alat secara terprogram | Bolak-balik `tool_result`                    | Rangkaian pemanggilan alat yang dapat dijalankan sebagai satu skrip    | [Pemanggilan alat secara terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling)       |
+| Caching prompt                     | Biaya token dari definisi alat yang berulang | Definisi alat yang stabil di banyak permintaan                         | [Penggunaan alat dengan caching prompt](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching) |
+| Pengeditan konteks                 | Blok `tool_result` lama dalam riwayat        | Percakapan panjang di mana hasil awal tidak lagi relevan               | [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing)                                         |
 
 ### Pencarian alat
 
-“Tool search” (pencarian alat) menjaga definisi alat tetap di luar jendela konteks sampai Claude memintanya. Alih-alih mengirim 50 skema alat di awal, Anda mengirim satu alat `tool_search` dan membiarkan Claude menemukan sisanya sesuai permintaan. Ini menukar sedikit “latency” (latensi) (satu giliran tambahan untuk mencari alat) dengan pengurangan besar dalam penggunaan konteks dasar.
+“Tool search” (pencarian alat) menjaga definisi alat tetap di luar jendela konteks sampai Claude memintanya. Alih-alih memuat 50 skema alat ke dalam konteks di awal, Anda menandainya dengan `defer_loading: true`, menambahkan alat pencarian alat, dan membiarkan Claude menemukannya sesuai permintaan. Ini menukar sedikit “latency” (latensi) (satu giliran tambahan untuk mencari alat) dengan pengurangan besar dalam penggunaan konteks dasar.
 
 ### Pemanggilan alat terprogram
 
@@ -34,7 +34,7 @@ Setiap pendekatan menargetkan sumber tekanan konteks yang berbeda. Pilih pendeka
 
 ### Caching prompt
 
-“Prompt caching” (caching prompt) tidak mengurangi jumlah token dalam konteks, tetapi mengurangi biaya yang Anda bayar untuk token tersebut pada permintaan berikutnya. Jika definisi alat Anda stabil, cache sekali dan gunakan kembali prefiks yang di-cache di ribuan permintaan. Ini adalah pilihan yang tepat ketika kumpulan alat besar tetapi tetap.
+“Prompt caching” (caching prompt) tidak mengurangi jumlah token dalam konteks, tetapi mengurangi biaya yang Anda bayar untuk token tersebut pada permintaan berikutnya. Jika definisi alat Anda stabil, cache sekali dan gunakan kembali prefiks yang di-cache di ribuan permintaan. Ini adalah pilihan yang tepat ketika daftar alat Anda besar tetapi tetap.
 
 ### Pengeditan konteks
 
@@ -42,12 +42,12 @@ Setiap pendekatan menargetkan sumber tekanan konteks yang berbeda. Pilih pendeka
 
 ## Menggabungkan pendekatan
 
-Pendekatan-pendekatan ini dapat dikombinasikan. Agen yang berjalan lama mungkin menggunakan pencarian alat untuk menjaga kumpulan alat tetap ramping, caching prompt untuk mengamortisasi biaya definisi yang tersisa, dan pengeditan konteks untuk memangkas hasil yang sudah usang seiring bertambahnya percakapan. Masing-masing menyelesaikan bagian masalah yang berbeda, sehingga tidak ada konflik dalam menggunakannya bersama-sama.
+Anda dapat menggunakan pendekatan-pendekatan ini bersama-sama, karena masing-masing menyelesaikan bagian masalah yang berbeda. Agen yang berjalan lama mungkin menggunakan pencarian alat untuk memuat lebih sedikit definisi alat, caching prompt untuk mengamortisasi biaya definisi yang tersisa, dan pengeditan konteks untuk memangkas hasil yang sudah usang seiring bertambahnya percakapan.
 
 Titik awal yang masuk akal untuk agen bervolume tinggi:
 
 1. Aktifkan caching prompt pada definisi alat Anda sejak awal. Penulisan cache dikenakan biaya tambahan 25 persen di atas harga input dasar, yang terbayar kembali pada permintaan kedua yang mengenai cache.
-2. Tambahkan pencarian alat setelah kumpulan alat Anda bertambah melebihi sekitar 20 alat atau penggunaan konteks dasar Anda menjadi terasa.
+2. Tambahkan pencarian alat setelah Anda memiliki 10 alat atau lebih atau penggunaan konteks dasar Anda menjadi terasa.
 3. Tambahkan pengeditan konteks setelah percakapan individual mulai berjalan cukup lama sehingga hasil awal menjadi tidak relevan.
 4. Pertimbangkan pemanggilan alat terprogram jika Anda melihat rangkaian berulang dari pemanggilan alat kecil yang dapat dijalankan sebagai satu batch.
 

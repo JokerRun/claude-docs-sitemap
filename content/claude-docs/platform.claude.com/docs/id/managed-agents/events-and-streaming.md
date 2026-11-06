@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: a112967c9108c776ba70837b12787ce50da5ce5284d41f44f0c7ec23f244802c
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 1ae4cd41340690e298823f42bde7929bd2016f8cc632cab83ff70f8830540975
 ---
 
 ---
@@ -321,11 +321,11 @@ Untuk menyambung ulang ke sesi yang sudah ada tanpa kehilangan event, gabungkan 
 
   ```python Python
   with client.beta.sessions.events.stream(session.id) as stream:
-      # Stream terbuka dan sedang buffering. Daftarkan riwayat sebelum mengikuti event live.
+      # Stream terbuka dan sedang buffering. Daftarkan riwayat sebelum mengikuti event langsung.
       history = client.beta.sessions.events.list(session.id)
       seen_event_ids = {past_event.id for past_event in history}
 
-      # Ikuti event live, lewati apa pun yang sudah terlihat
+      # Ikuti event langsung, lewati apa pun yang sudah terlihat
       for event in stream:
           if event.type == "event_start" or event.type == "event_delta":
               # Pratinjau delta tidak diaktifkan pada koneksi ini.
@@ -346,12 +346,12 @@ Untuk menyambung ulang ke sesi yang sudah ada tanpa kehilangan event, gabungkan 
   const seenEventIds = new Set<string>();
   const stream = await client.beta.sessions.events.stream(session.id);
 
-  // Stream terbuka dan sedang melakukan buffering. Daftarkan riwayat sebelum mengikuti event live.
+  // Stream terbuka dan sedang melakukan buffering. Daftarkan riwayat sebelum mengikuti event langsung.
   for await (const event of client.beta.sessions.events.list(session.id)) {
     seenEventIds.add(event.id);
   }
 
-  // Ikuti event live, lewati apa pun yang sudah terlihat
+  // Ikuti event langsung, lewati apa pun yang sudah terlihat
   tail: for await (const event of stream) {
     // Event pratinjau (event_start/event_delta) tidak memiliki `id` tingkat atas
     if (event.type === "event_start" || event.type === "event_delta") {
@@ -414,7 +414,7 @@ Untuk menyambung ulang ke sesi yang sudah ada tanpa kehilangan event, gabungkan 
   	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
   	defer stream.Close()
 
-  	// Stream terbuka dan sedang buffering. Tampilkan riwayat sebelum mengikuti event live.
+  	// Stream terbuka dan sedang buffering. Tampilkan riwayat sebelum mengikuti event langsung.
   	seenEventIDs := map[string]struct{}{}
   	history := client.Beta.Sessions.Events.ListAutoPaging(ctx, session.ID, anthropic.BetaSessionEventListParams{})
   	for history.Next() {
@@ -424,7 +424,7 @@ Untuk menyambung ulang ke sesi yang sudah ada tanpa kehilangan event, gabungkan 
   		panic(err)
   	}
 
-  	// Ikuti event live, lewati apa pun yang sudah terlihat
+  	// Ikuti event langsung, lewati apa pun yang sudah terlihat
   tail:
   	for stream.Next() {
   		event := stream.Current()
@@ -449,13 +449,13 @@ Untuk menyambung ulang ke sesi yang sudah ada tanpa kehilangan event, gabungkan 
 
   ```java Java
   try (var stream = client.beta().sessions().events().streamStreaming(session.id())) {
-      // Stream terbuka dan melakukan buffering. Tampilkan riwayat sebelum mengikuti event live.
+      // Stream terbuka dan melakukan buffering. Tampilkan riwayat sebelum mengikuti event langsung.
       var seenEventIds = new HashSet<String>();
       for (var pastEvent : client.beta().sessions().events().list(session.id()).autoPager()) {
           seenEventIds.add(pastEvent.id());
       }
 
-      // Ikuti event live; Set.add mengembalikan false untuk ID yang sudah terlihat, melewati replay.
+      // Ikuti event langsung; Set.add mengembalikan false untuk ID yang sudah terlihat, melewati pemutaran ulang.
       stream.stream()
           .filter(event -> event.id().map(seenEventIds::add).orElse(true))
           .takeWhile(event -> !event.isSessionStatusIdle())
@@ -471,13 +471,13 @@ Untuk menyambung ulang ke sesi yang sudah ada tanpa kehilangan event, gabungkan 
 
   $stream = $client->beta->sessions->events->streamStream($session->id);
 
-  // Stream terbuka dan sedang melakukan buffering. Tampilkan riwayat sebelum mengikuti event live.
+  // Stream terbuka dan sedang melakukan buffering. Tampilkan riwayat sebelum mengikuti event langsung.
   $seenEventIds = [];
   foreach ($client->beta->sessions->events->list($session->id)->pagingEachItem() as $event) {
       $seenEventIds[$event->id] = true;
   }
 
-  // Ikuti event live, lewati apa pun yang sudah terlihat
+  // Ikuti event langsung, lewati apa pun yang sudah terlihat
   foreach ($stream as $event) {
       if (isset($seenEventIds[$event->id])) {
           continue;
@@ -500,11 +500,11 @@ Untuk menyambung ulang ke sesi yang sudah ada tanpa kehilangan event, gabungkan 
   ```ruby Ruby
   stream = client.beta.sessions.events.stream_events(session.id)
 
-  # Stream terbuka dan sedang buffering. Tampilkan riwayat sebelum mengikuti event live.
+  # Stream terbuka dan sedang buffering. Tampilkan riwayat sebelum mengikuti event langsung.
   seen_event_ids = Set.new
   client.beta.sessions.events.list(session.id).auto_paging_each { seen_event_ids << it.id }
 
-  # Ikuti event live, lewati yang sudah terlihat (Set#add? mengembalikan nil untuk duplikat)
+  # Ikuti event langsung, lewati yang sudah terlihat (Set#add? mengembalikan nil untuk duplikat)
   stream.each do |event|
     next unless seen_event_ids.add?(event.id)
     case event
@@ -677,7 +677,7 @@ Event `session.status_idle` berarti agen telah berhenti dan sedang menunggu inpu
 | `requires_action`  | Satu atau lebih panggilan alat memerlukan jawaban dari Anda, seperti panggilan alat kustom atau permintaan konfirmasi.                                    | [Jawab setiap panggilan alat yang memblokir](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#answer-tool-calls-that-pause-the-session).        |
 | `budget_reached`   | Biaya daftar yang dilacak sesi telah mencapai [anggarannya](https://platform.claude.com/docs/id/managed-agents/budgets).                                  | [Ubah atau hapus anggaran](https://platform.claude.com/docs/id/managed-agents/budgets#resume-a-session-at-its-budget).                                                 |
 
-Tidak ada event yang Anda kirim yang dapat melanjutkan sesi yang dijeda karena anggarannya. Pekerjaan yang dijeda oleh anggaran akan dilanjutkan secara otomatis ketika Anda mengubah anggaran ke nilai di atas biaya daftar yang telah terpakai, atau menghapusnya. Ketika pekerjaan dilanjutkan, sesi memancarkan event `workflow_run.status_running` untuk setiap [workflow run yang dijeda oleh anggaran](https://platform.claude.com/docs/id/managed-agents/workflow-runs#budgets-and-limits). Run yang dijeda oleh interupsi tetap dijeda; lihat [Melanjutkan sesi pada anggarannya](https://platform.claude.com/docs/id/managed-agents/budgets#resume-a-session-at-its-budget). Lihat [Ketika sesi mencapai anggarannya](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget) untuk event yang menandai jeda dan event yang masih diterima sesi.
+Tidak ada event yang Anda kirim yang dapat melanjutkan sesi yang dijeda karena anggarannya. Pekerjaan yang dijeda oleh anggaran akan dilanjutkan secara otomatis ketika Anda mengubah anggaran ke nilai di atas biaya daftar yang telah terpakai, atau menghapusnya. Ketika pekerjaan dilanjutkan, sesi memancarkan event `workflow_run.status_running` untuk setiap [eksekusi workflow yang dijeda oleh anggaran](https://platform.claude.com/docs/id/managed-agents/workflow-runs#budgets-and-limits). Eksekusi yang dijeda oleh interupsi tetap dijeda; lihat [Melanjutkan sesi pada anggarannya](https://platform.claude.com/docs/id/managed-agents/budgets#resume-a-session-at-its-budget). Lihat [Ketika sesi mencapai anggarannya](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget) untuk event yang menandai jeda dan event yang masih diterima sesi.
 
 ## Menjawab panggilan alat yang menjeda sesi
 
@@ -898,7 +898,7 @@ Contoh berikut menjawab setiap panggilan saat panggilan tersebut tiba:
   ```
 </CodeGroup>
 
-Jika agen memiliki [workflow run](https://platform.claude.com/docs/id/managed-agents/workflow-runs) yang terbuka, panggilan alat kustom dapat tiba saat sesi tetap `running`. Event idle `requires_action` hanya tiba ketika tidak ada satu pun [thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads) yang sedang bekerja. Jangan menunggunya: jawab setiap panggilan ketika event `agent.custom_tool_use`-nya tiba. Contoh di [Mengikuti run](https://platform.claude.com/docs/id/managed-agents/workflow-runs#follow-a-run) menunjukkan caranya.
+Jika agen memiliki [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs) yang terbuka, panggilan alat kustom dapat tiba saat sesi tetap `running`. Event idle `requires_action` hanya tiba ketika tidak ada satu pun [thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads) yang sedang bekerja. Jangan menunggunya: jawab setiap panggilan ketika event `agent.custom_tool_use`-nya tiba. Contoh di [Mengikuti eksekusi](https://platform.claude.com/docs/id/managed-agents/workflow-runs#follow-a-run) menunjukkan caranya.
 
 ### Mengonfirmasi panggilan alat
 
@@ -1095,7 +1095,7 @@ Contoh berikut menyetujui setiap panggilan yang tertunda:
   ```
 </CodeGroup>
 
-Contoh sebelumnya menyetujui setiap panggilan setelah sesi menjadi idle. Jika agen memiliki [workflow run](https://platform.claude.com/docs/id/managed-agents/workflow-runs) yang terbuka, panggilan alat dapat menunggu konfirmasi Anda saat sesi tetap `running`. Jangan menunggu event idle: ketika event `agent.tool_use` atau `agent.mcp_tool_use` tiba dengan [`evaluated_permission` (java, php: `evaluatedPermission`; csharp, go: `EvaluatedPermission`)](https://platform.claude.com/docs/id/managed-agents/permission-policies#see-how-each-call-was-evaluated) bernilai `ask`, jawablah. Contoh di [Mengikuti run](https://platform.claude.com/docs/id/managed-agents/workflow-runs#follow-a-run) menjawab panggilan alat kustom dengan cara ini, dan pengantarnya menjelaskan cara menambahkan konfirmasi.
+Contoh sebelumnya menyetujui setiap panggilan setelah sesi menjadi idle. Jika agen memiliki [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs) yang terbuka, panggilan alat dapat menunggu konfirmasi Anda saat sesi tetap `running`. Jangan menunggu event idle: ketika event `agent.tool_use` atau `agent.mcp_tool_use` tiba dengan [`evaluated_permission` (java, php: `evaluatedPermission`; csharp, go: `EvaluatedPermission`)](https://platform.claude.com/docs/id/managed-agents/permission-policies#see-how-each-call-was-evaluated) bernilai `ask`, jawablah. Contoh di [Mengikuti eksekusi](https://platform.claude.com/docs/id/managed-agents/workflow-runs#follow-a-run) menjawab panggilan alat kustom dengan cara ini, dan pengantarnya menjelaskan cara menambahkan konfirmasi.
 
 ## Melanjutkan sesi yang idle
 
@@ -1442,7 +1442,7 @@ Panggilan kembali segera setelah event dimasukkan ke antrean. Interupsi kemudian
 2. Event `user.interrupt` muncul di aliran, dan giliran yang diinterupsi berakhir dengan event `session.status_idle`.
 3. Agen memulai giliran berikutnya dengan `user.message` yang Anda kirim setelah interupsi.
 
-`stop_reason.type` dari event idle adalah `end_turn`, nilai yang sama dengan giliran yang selesai dengan sendirinya. Jika ada workflow run yang terbuka, interupsi tidak mengakhiri satu pun dari run tersebut. Run yang sedang berjalan dapat membuat sesi tetap `running`, sehingga event `session.status_idle` pada langkah 2 mungkin tidak tiba. Lihat [Menginterupsi sesi dengan run yang terbuka](https://platform.claude.com/docs/id/managed-agents/workflow-runs#interrupt-a-session-with-runs-open).
+`stop_reason.type` dari event idle adalah `end_turn`, nilai yang sama dengan giliran yang selesai dengan sendirinya. Jika ada eksekusi workflow yang terbuka, interupsi tidak mengakhiri satu pun dari eksekusi tersebut. Eksekusi yang sedang berjalan dapat membuat sesi tetap `running`, sehingga event `session.status_idle` pada langkah 2 mungkin tidak tiba. Lihat [Menginterupsi sesi dengan eksekusi yang terbuka](https://platform.claude.com/docs/id/managed-agents/workflow-runs#interrupt-a-session-with-runs-open).
 
 ## Mendaftar event sebelumnya
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 04fccf0d8097493a97a1ea334c27d8afda8e145d4b12c21bee80947cf3caf6ea
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 30524372c22b6c2adbc29d3db077f8baf4c1d49105c477598bd306cd46c084c6
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply
 description: Deklarasikan agen, lingkungan, skill, penyimpanan memori, deployment, dan vault sebagai berkas di repositori Anda dan jaga agar sumber daya API tetap sinkron dengannya menggunakan ant apply.
 ---
 
-`ant apply` membuat dan memperbarui sumber daya Claude API dari berkas: agen, lingkungan, skill, penyimpanan memori, deployment, dan vault. Semuanya berada di repositori Anda dan berubah melalui proses review yang sama dengan kode Anda. Anda mendeskripsikan setiap sumber daya dalam sebuah berkas, menjalankan `ant apply`, dan menyetujui rencana yang ditampilkannya. Kemudian Anda melakukan commit pada `claude-lock.json` yang ditulisnya, sehingga eksekusi berikutnya memperbarui sumber daya yang sama alih-alih membuat yang baru.
+`ant apply` membuat dan memperbarui sumber daya Claude API dari berkas: agen, lingkungan, skill, penyimpanan memori, deployment, dan vault. Semuanya berada di repositori Anda dan berubah melalui proses tinjauan yang sama dengan kode Anda. Anda mendeskripsikan setiap sumber daya dalam sebuah berkas, menjalankan `ant apply`, dan menyetujui rencana yang ditampilkannya. Kemudian Anda melakukan commit pada `claude-lock.json` yang ditulisnya, sehingga eksekusi berikutnya memperbarui sumber daya yang sama alih-alih membuat yang baru.
 
 Untuk menginstal dan mengautentikasi CLI, lihat [panduan memulai cepat CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart). `ant apply` memerlukan CLI versi 1.30.0 atau yang lebih baru.
 
@@ -74,7 +74,7 @@ Jawab `d` untuk melihat detailnya terlebih dahulu: bidang-bidang setiap sumber d
 
 Untuk mengubah agen, edit berkas tersebut dan jalankan `ant apply` lagi. Rencana kemudian menampilkan pembaruan alih-alih pembuatan.
 
-## Commit claude-lock.json
+## Lakukan commit claude-lock.json
 
 Eksekusi `ant apply` pertama menulis `claude-lock.json`, yaitu “lockfile” (berkas kunci), di direktori tempat Anda menjalankannya. Karena itu, jalankan perintah ini dari root repositori. Lockfile mencatat ID sumber daya yang dibuat oleh setiap berkas, serta organisasi dan workspace tempat sumber daya tersebut berada:
 
@@ -335,7 +335,7 @@ jobs:
 
 Jalankan `ant apply` pertama di mesin Anda dan commit `claude-lock.json` sebelum Anda mengaktifkan workflow. Langkah terakhir hanya meng-commit perubahan pada lockfile yang sudah dilacak oleh Git.
 
-Untuk membuat aturan federasi dan service account yang disebutkan dalam blok `env`, lihat [Menggunakan WIF dengan GitHub Actions](https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions). Aktifkan aturan tersebut untuk satu workspace saja, yaitu yang tercatat di `claude-lock.json`, sehingga pertukaran token tidak memerlukan ID workspace. Karena job tersebut menyebutkan sebuah lingkungan, klaim `sub` pada token identitasnya adalah `repo:<owner>/<repo>:environment:agents-prod`, sehingga itulah nilai yang harus dicocokkan oleh `subject_prefix` pada aturan tersebut.
+Untuk membuat aturan federasi dan akun layanan yang disebutkan dalam blok `env`, lihat [Menggunakan WIF dengan GitHub Actions](https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions). Aktifkan aturan tersebut untuk satu workspace saja, yaitu yang tercatat di `claude-lock.json`, sehingga pertukaran token tidak memerlukan ID workspace. Karena job tersebut menyebutkan sebuah lingkungan, klaim `sub` pada token identitasnya adalah `repo:<owner>/<repo>:environment:agents-prod`, sehingga itulah nilai yang harus dicocokkan oleh `subject_prefix` pada aturan tersebut.
 
 ## Flag
 

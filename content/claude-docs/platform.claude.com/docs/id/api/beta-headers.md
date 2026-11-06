@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/beta-headers
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 29f20f28da8a42c0dd7d2d438843bde64b7247103367d53975fd5105cfdcfe02
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 89c6c34340589932782b6efcc3572ee991794fa2fa3a1c661f9f8e9b82da506b
 ---
 
 ---
@@ -187,7 +187,7 @@ Dengan SDK, cantumkan setiap fitur (misalnya, `betas=["feature1", "feature2"]` (
 
 ### Fitur beta di platform lain
 
-Nama beta sama di setiap platform yang menerimanya, tetapi tidak setiap platform menerima setiap beta. [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) menerima nama beta di header `anthropic-beta`, seperti halnya Claude API. Untuk mengirim beberapa beta, letakkan nama-namanya dalam satu header, dipisahkan dengan koma: Claude Models on Google Cloud (Google managed) hanya membaca satu header `anthropic-beta` dan mengabaikan sisanya, sehingga beta di header lainnya tidak berlaku.
+Nama beta sama di setiap platform yang menerimanya, tetapi tidak setiap platform menerima setiap beta. [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) menerima nama beta di header `anthropic-beta`, seperti halnya Claude API. Untuk mengirim beberapa beta, letakkan nama-namanya dalam satu header, dipisahkan dengan koma: Claude Models on Google Cloud (Google managed) hanya membaca satu header `anthropic-beta` dan mengabaikan sisanya, sehingga beta di header lainnya tidak berlaku.
 
 Di Amazon Bedrock, lokasi nama beta bergantung pada API yang Anda panggil:
 

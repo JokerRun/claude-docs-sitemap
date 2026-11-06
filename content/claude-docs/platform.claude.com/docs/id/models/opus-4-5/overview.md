@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-4-5/overview
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 8cb02ff5a739e9c735612df47497f1d6db284e9a23123cf87607502008ef86ca
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 3ca6da0c578f12a60aa19d3537e2c4ae11b5832955defc4c998b62f43b215baa
 ---
 
 ---
@@ -105,7 +105,7 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $5 / MTo
     Prompt sistem yang digunakan Claude Opus 4.5 di claude.ai dan aplikasi Claude.
   </Card>
 
-  <Card title="System card" icon="file" href="https://www.anthropic.com/claude-opus-4-5-system-card">
+  <Card title="Kartu sistem" icon="file" href="https://www.anthropic.com/claude-opus-4-5-system-card">
     Evaluasi keamanan dan keputusan deployment untuk Claude Opus 4.5.
   </Card>
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/event-deltas
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: bbaeec76273c240deced462c7ec7cea004ace3279b40dc9314e27505647b35f9
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: ceb2ae2472ed005962091b21066d1e1a64b134e5a059176d0c7fce040cd4364c
 ---
 
 ---
@@ -110,7 +110,7 @@ Sebuah giliran dibuka dengan satu event `session.status_running`. Pada giliran y
 2. `event_start`
 3. Event-event `event_delta`
 4. `agent.message` yang di-buffer
-5. [`span.model_request_end`](https://platform.claude.com/docs/id/managed-agents/reference#event-types) (di tab **Span events**)
+5. [`span.model_request_end`](https://platform.claude.com/docs/id/managed-agents/reference#event-types) (di tab **Event span**)
 
 Di wire, ini adalah bagian yang dipratinjau dari urutan tersebut, diselingi dengan event buffer lain dari koneksi:
 
@@ -617,7 +617,7 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
   ```
 
   ```python Python
-  # Daftarkan thread sesi dan pilih child: child thread punya parent_thread_id
+  # Daftarkan thread sesi dan pilih satu thread anak: thread anak punya parent_thread_id
   # non-null, dan parent_thread_id thread utama bernilai null.
   child_thread = next(
       thread
@@ -648,7 +648,7 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
   ```
 
   ```typescript TypeScript
-  // Daftarkan thread sesi dan pilih child: child thread memiliki parent_thread_id
+  // Daftarkan thread sesi dan pilih satu thread anak: thread anak memiliki parent_thread_id
   // yang tidak null, dan parent_thread_id thread utama bernilai null.
   let childThreadId: string | undefined;
   for await (const thread of client.beta.sessions.threads.list(session.id)) {
@@ -690,7 +690,7 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
   ```
 
   ```csharp C#
-  // Daftar thread sesi dan pilih child: child thread punya parent_thread_id
+  // Daftar thread sesi dan pilih satu thread anak: thread anak punya parent_thread_id
   // non-null, dan parent_thread_id thread utama bernilai null.
   var threads = await client.Beta.Sessions.Threads.List(session.ID);
   var childThread = threads.Items.First(thread => thread.ParentThreadID is not null);
@@ -724,7 +724,7 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
   ```
 
   ```go Go
-  	// Tampilkan thread sesi dan pilih child: child thread punya parent_thread_id
+  	// Tampilkan thread sesi dan pilih satu thread anak: thread anak punya parent_thread_id
   	// non-null, sedangkan parent_thread_id thread utama bernilai null.
   	var childThreadID string
   	threads := client.Beta.Sessions.Threads.ListAutoPaging(ctx, session.ID, anthropic.BetaSessionThreadListParams{})
@@ -771,7 +771,7 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
   ```
 
   ```java Java
-  // Tampilkan thread sesi dan pilih child: child thread punya parent_thread_id
+  // Tampilkan thread sesi dan pilih satu thread anak: thread anak punya parent_thread_id
   // non-null, sedangkan parent_thread_id thread utama bernilai null.
   var childThread = client.beta().sessions().threads().list(session.id()).autoPager().stream()
       .filter(thread -> thread.parentThreadId().isPresent())
@@ -812,7 +812,7 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
   use Anthropic\Beta\Sessions\Events\ManagedAgentsSessionThreadStatusIdleEvent;
   use Anthropic\Beta\Sessions\Events\ManagedAgentsTextBlock;
 
-  // Tampilkan daftar thread sesi dan pilih child: thread child memiliki
+  // Tampilkan daftar thread sesi dan pilih satu thread anak: thread anak memiliki
   // parentThreadID yang tidak null, dan parentThreadID thread utama bernilai null.
   $childThread = null;
   foreach ($client->beta->sessions->threads->list($session->id)->pagingEachItem() as $thread) {
@@ -853,7 +853,7 @@ Path aliran thread diakhiri dengan `/threads/{thread_id}/stream`. `/events/strea
   ```
 
   ```ruby Ruby
-  # Tampilkan thread sesi dan pilih child: child thread punya parent_thread_id
+  # Tampilkan thread sesi dan pilih satu thread anak: thread anak punya parent_thread_id
   # non-null, sedangkan parent_thread_id thread utama bernilai null.
   child_thread = client.beta.sessions.threads.list(session.id).to_enum.find { it.parent_thread_id }
 

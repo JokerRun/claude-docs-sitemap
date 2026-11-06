@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: d764cfddfa028852d6a2fd33c5e2b4e3aae14dd5473fc61ae192187cb3f8e665
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: b2f1784622e669797faf52ae7b9f0d3d73e12baa3ec339f27e7264546c0d7e4c
 ---
 
 ---
@@ -17,15 +17,15 @@ Biarkan Claude Code menyiapkan fitur ini untuk Anda
 /claude-api bantu saya mengonfigurasi kunci enkripsi yang dikelola pelanggan dengan AWS KMS
 ```
 
-Jika sidebar Claude Console Anda menampilkan **Account managed by AWS**, ikuti [Menyiapkan CMEK di Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws) sebagai gantinya.
+Jika sidebar Claude Console Anda menampilkan **Akun dikelola oleh AWS**, ikuti [Menyiapkan CMEK di Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws) sebagai gantinya.
 
 ## Sebelum Anda mulai
 
 Di Claude:
 
 * Kunci enkripsi yang dikelola pelanggan (CMEK) telah [diaktifkan untuk organisasi Anda](https://platform.claude.com/docs/id/manage-claude/cmek#availability).
-* Anda memiliki ID organisasi Anthropic Anda, yaitu UUID tanpa awalan `org_`. Salin ID tersebut dari [Organization](https://platform.claude.com/settings/organization) di Claude Console, atau dari **Organization settings > Organization and access** di claude.ai. Siapa pun yang membuat kunci memerlukannya.
-* Anda adalah Organization Admin di Claude Platform, atau Owner atau Primary Owner di Claude Enterprise.
+* Anda memiliki ID organisasi Anthropic Anda, yaitu UUID tanpa awalan `org_`. Salin ID tersebut dari [Organisasi](https://platform.claude.com/settings/organization) di Claude Console, atau dari **Pengaturan organisasi > Organisasi dan Akses** di claude.ai. Siapa pun yang membuat kunci memerlukannya.
+* Anda adalah Admin organisasi di Claude Platform, atau Pemilik atau Pemilik utama di Claude Enterprise.
 * Di Claude Platform, Anda memiliki workspace yang [menyimpan data](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#data-retention), idealnya workspace baru, karena [data yang sudah ada tetap berada di bawah kunci milik Anthropic](https://platform.claude.com/docs/id/manage-claude/cmek-how-it-works#when-your-key-takes-effect).
 * Di Claude Enterprise, Anda mengetahui [fitur mana yang dinonaktifkan atau berubah](https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise#turned-off-or-changed).
 
@@ -36,7 +36,7 @@ Di AWS:
 
 ## Di AWS: buat kunci
 
-Setelah **Verify** atau **Add** gagal, lihat [perbaikan untuk AWS KMS](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#aws-kms).
+Setelah **Verifikasi** atau **Tambahkan** gagal, lihat [perbaikan untuk AWS KMS](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#aws-kms).
 
 ### Tulis kebijakan kunci
 
@@ -173,19 +173,19 @@ Untuk membuat skrip bagian ini di Claude Platform, [gunakan Admin API](https://p
   <Tab title="Claude Platform">
     <Steps>
       <Step title="Buka pengaturan kunci enkripsi">
-        Di Claude Console, buka [Encryption keys](https://platform.claude.com/settings/privacy#encryption-keys) di halaman Data retention. Jika bagian tersebut tidak ada, pilih **Organization** dari menu dropdown di bagian atas.
+        Di Claude Console, buka [Kunci enkripsi](https://platform.claude.com/settings/privacy#encryption-keys) di halaman Retensi data. Jika bagian tersebut tidak ada, pilih **Organisasi** dari menu dropdown di bagian atas.
       </Step>
 
       <Step title="Tambahkan kunci">
-        Di bawah **Encryption keys**, klik **Add key**. Masukkan **Display name**, pilih **AWS KMS**, lalu klik **Continue**.
+        Di bawah **Kunci enkripsi**, klik **Tambahkan kunci**. Masukkan **Nama tampilan**, pilih **AWS KMS**, lalu klik **Lanjutkan**.
       </Step>
 
       <Step title="Masukkan ARN kunci">
-        Periksa bahwa [kebijakan kunci](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#key-policy) Anda berisi **Organization ID for the key policy** yang ditampilkan di kotak dialog. Tempelkan ARN kunci ke **KMS key ARN** lalu klik **Add**.
+        Periksa bahwa [kebijakan kunci](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#key-policy) Anda berisi **ID organisasi untuk kebijakan kunci** yang ditampilkan di kotak dialog. Tempelkan ARN kunci ke **ARN kunci KMS** lalu klik **Tambahkan**.
       </Step>
 
       <Step title="Verifikasi kunci">
-        Di daftar **Encryption keys**, klik **Verify** di samping kunci. **Connected** muncul saat pemeriksaan berhasil. Jika yang muncul justru **Connection failed**, lihat [Memecahkan masalah CMEK](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting).
+        Di daftar **Kunci enkripsi**, klik **Verifikasi** di samping kunci. **Terhubung** muncul saat pemeriksaan berhasil. Jika yang muncul justru **Koneksi gagal**, lihat [Memecahkan masalah CMEK](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting).
       </Step>
 
       <Step title="Lampirkan kunci ke workspace">
@@ -193,13 +193,13 @@ Untuk membuat skrip bagian ini di Claude Platform, [gunakan Admin API](https://p
           Melampirkan kunci [tidak dapat dibatalkan](https://platform.claude.com/docs/id/manage-claude/cmek-key-lifecycle#what-each-action-does). Anda tidak dapat melepasnya dari workspace atau menggantinya. Jika kunci dihapus, Anthropic tidak dapat memulihkan data yang dilindunginya.
         </Warning>
 
-        1. Di bagian atas halaman Data retention, pilih workspace dari menu dropdown.
-        2. Di bawah **Encryption key**, pilih kunci lalu klik **Save**.
-        3. Centang kotak untuk mengonfirmasi bahwa Anda telah membaca dokumentasi CMEK, lalu klik **Confirm**.
+        1. Di bagian atas halaman Retensi data, pilih workspace dari menu dropdown.
+        2. Di bawah **Kunci enkripsi**, pilih kunci lalu klik **Simpan**.
+        3. Centang kotak untuk mengonfirmasi bahwa Anda telah membaca dokumentasi CMEK, lalu klik **Konfirmasi**.
 
-        Anda akan melihat **Workspace settings updated.** Setelah kunci [mulai berlaku](https://platform.claude.com/docs/id/manage-claude/cmek-how-it-works#when-your-key-takes-effect), audit log penyedia cloud Anda menampilkan panggilan Anthropic ke kunci tersebut.
+        Anda akan melihat **Pengaturan ruang kerja diperbarui.** Setelah kunci [mulai berlaku](https://platform.claude.com/docs/id/manage-claude/cmek-how-it-works#when-your-key-takes-effect), log audit penyedia cloud Anda menampilkan panggilan Anthropic ke kunci tersebut.
 
-        Dalam [organisasi ZDR](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#zdr-organizations), setelah Anda memilih workspace, pilih **Standard data retention** agar **Encryption key** muncul. Setelah Anda mengklik **Save**, klik **Accept** pada ketentuan retensi data.
+        Dalam [organisasi ZDR](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#zdr-organizations), setelah Anda memilih workspace, pilih **Retensi data standar** agar **Kunci enkripsi** muncul. Setelah Anda mengklik **Simpan**, klik **Terima** pada ketentuan retensi data.
       </Step>
     </Steps>
   </Tab>
@@ -215,19 +215,19 @@ Untuk membuat skrip bagian ini di Claude Platform, [gunakan Admin API](https://p
 
     <Steps>
       <Step title="Buka pengaturan kunci enkripsi">
-        Buka [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls) dan temukan **Encryption keys**.
+        Buka [claude.ai > Pengaturan organisasi > Data dan privasi](https://claude.ai/admin-settings/data-privacy-controls) dan temukan **Kunci enkripsi**.
       </Step>
 
       <Step title="Tambahkan kunci">
-        Klik **Add key**. Masukkan **Display name** dan pilih **AWS KMS**. Centang kotak untuk mengonfirmasi bahwa Anda telah membaca dokumentasi CMEK, lalu klik **Continue**.
+        Klik **Tambah kunci**. Masukkan **Nama tampilan** dan pilih **AWS KMS**. Centang kotak untuk mengonfirmasi bahwa Anda telah membaca dokumentasi CMEK, lalu klik **Lanjutkan**.
       </Step>
 
       <Step title="Masukkan ARN kunci">
-        Periksa bahwa [kebijakan kunci](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#key-policy) Anda berisi **Organization ID for the key policy** yang ditampilkan di kotak dialog. Tempelkan ARN kunci ke **KMS key ARN** lalu klik **Add**.
+        Periksa bahwa [kebijakan kunci](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#key-policy) Anda berisi **ID organisasi untuk kebijakan kunci** yang ditampilkan di kotak dialog. Tempelkan ARN kunci ke **KMS key ARN** lalu klik **Tambahkan**.
       </Step>
 
       <Step title="Konfirmasi bahwa kunci telah ditambahkan">
-        Pemeriksaan dapat memakan waktu hingga 30 detik. Saat **Encryption key configured.** muncul, klik **Done**. Jika yang muncul justru **The encryption key couldn’t be added.**, [temukan penyebabnya dan coba lagi](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#claude-ai-add-fails).
+        Pemeriksaan dapat memakan waktu hingga 30 detik. Saat **Kunci enkripsi terkonfigurasi.** muncul, klik **Selesai**. Jika yang muncul justru **Kunci enkripsi tidak dapat ditambahkan.**, [temukan penyebabnya dan coba lagi](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#claude-ai-add-fails).
 
         Kunci Anda melindungi data yang ditulis sejak saat itu. Beri tahu pengguna Anda [fitur mana yang berubah](https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise#turned-off-or-changed).
       </Step>

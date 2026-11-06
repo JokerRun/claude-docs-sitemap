@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: b8b3f986d12b5429e1b96026b9f9cff44ee3d560e4b0739b6121874c7d0a9301
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 03ab38877894896dac9186ec917098b317a43affc22734152cfd35ce3e59fed3
 ---
 
 ---
@@ -1282,7 +1282,7 @@ Jumlah maksimum gambar untuk setiap pesan atau permintaan adalah:
 
 Dimensi maksimum untuk setiap gambar adalah 8000x8000 px.
 
-Jika satu permintaan API berisi lebih dari 20 gambar, batas dimensi per gambar yang lebih ketat berlaku untuk setiap gambar dalam permintaan tersebut. Semua blok `image` dalam permintaan dihitung terhadap ambang batas ini, termasuk gambar dari giliran percakapan sebelumnya yang Anda kirim ulang dan gambar yang bersarang di dalam konten `tool_result` (misalnya, tangkapan layar yang dikembalikan ke alat computer use). Di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, blok dokumen seperti PDF juga dihitung terhadap ambang batas ini. Gambar yang melebihi batas yang lebih ketat akan ditolak dengan `invalid_request_error` yang pesannya merujuk pada “many-image requests” dan menyebutkan batas saat ini dalam piksel. Agar tetap di bawah batas di semua platform, ubah ukuran setiap gambar sehingga tidak ada dimensi yang melebihi 3.000 px, atau batasi permintaan hingga 20 blok gambar dan dokumen atau kurang.
+Jika satu permintaan API berisi lebih dari 20 gambar, batas dimensi per gambar yang lebih ketat berlaku untuk setiap gambar dalam permintaan tersebut. Semua blok `image` dalam permintaan dihitung terhadap ambang batas ini, termasuk gambar dari giliran percakapan sebelumnya yang Anda kirim ulang dan gambar yang bersarang di dalam konten `tool_result` (misalnya, tangkapan layar yang dikembalikan ke alat penggunaan komputer). Di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, blok dokumen seperti PDF juga dihitung terhadap ambang batas ini. Gambar yang melebihi batas yang lebih ketat akan ditolak dengan `invalid_request_error` yang pesannya merujuk pada “many-image requests” dan menyebutkan batas saat ini dalam piksel. Agar tetap di bawah batas di semua platform, ubah ukuran setiap gambar sehingga tidak ada dimensi yang melebihi 3.000 px, atau batasi permintaan hingga 20 blok gambar dan dokumen atau kurang.
 
 Ukuran maksimum per gambar adalah:
 
@@ -1304,7 +1304,7 @@ Claude mendukung gambar JPEG, PNG, GIF, dan WebP (`image/jpeg`, `image/png`, `im
 
 Claude memproses gambar dalam bentuk patch, bukan piksel. Setiap patch adalah blok gambar berukuran 28×28 piksel, yang disebut sebagai token visual. Oleh karena itu, sebuah gambar memerlukan biaya `⌈width / 28⌉ × ⌈height / 28⌉` token visual.
 
-Setiap model memiliki resolusi gambar native maksimum, yang dinyatakan sebagai batas sisi panjang dan batas token visual. Gambar yang lebih besar dari salah satu batas tersebut akan diperkecil sebelum diproses; lihat [Cara Claude mengubah ukuran dan menambahkan padding pada gambar](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images) untuk aturan persisnya. Pengecualiannya adalah tangkapan layar dan gambar zoom yang Anda kembalikan ke toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#targets-and-coordinates): API menolak gambar `tool_result` yang melebihi batas model dengan error validasi alih-alih memperkecilnya, jadi ubah ukuran gambar tersebut di aplikasi Anda sebelum mengembalikannya. Agar gambar berukuran berlebih lainnya ditolak dengan error alih-alih diperkecil, atur [field `transformations`](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#oversized-image-error) pada blok gambar.
+Setiap model memiliki resolusi gambar native maksimum, yang dinyatakan sebagai batas sisi panjang dan batas token visual. Gambar yang lebih besar dari salah satu batas tersebut akan diperkecil sebelum diproses; lihat [Cara Claude mengubah ukuran dan menambahkan padding pada gambar](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images) untuk aturan persisnya. Pengecualiannya adalah tangkapan layar dan gambar zoom yang Anda kembalikan ke toolset [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions) dan [penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#targets-and-coordinates): API menolak gambar `tool_result` yang melebihi batas model dengan error validasi alih-alih memperkecilnya, jadi ubah ukuran gambar tersebut di aplikasi Anda sebelum mengembalikannya. Agar gambar berukuran berlebih lainnya ditolak dengan error alih-alih diperkecil, atur [field `transformations`](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#oversized-image-error) pada blok gambar.
 
 | Tingkat resolusi | Model                                | Sisi panjang maks | Token visual maks |
 | ---------------- | ------------------------------------ | ----------------- | ----------------- |
@@ -1328,7 +1328,7 @@ Ketika sebuah gambar diperkecil, Claude menskalakannya ke ukuran terbesar yang s
 
 Untuk memperkirakan biaya, kalikan jumlah token dengan [harga per token model](https://claude.com/pricing) yang Anda gunakan. Misalnya, dengan harga Claude Haiku 4.5 sebesar $1 USD per juta token input (tingkat standar), gambar 1000×1000 memerlukan biaya sekitar $1,30 USD per seribu gambar. Dengan harga Claude Opus 5.5 sebesar $4 USD per juta (tingkat resolusi tinggi), gambar yang sama memerlukan biaya sekitar $5,18 USD per seribu dan gambar 4K sekitar $19,14 USD per seribu.
 
-Gambar resolusi tinggi dapat menggunakan hingga kira-kira tiga kali lebih banyak token visual dibandingkan gambar yang sama pada model tingkat standar. Jika Anda tidak memerlukan fidelitas tambahan yang diberikan resolusi tinggi untuk computer use, pemahaman tangkapan layar, dan dokumen padat, lakukan downsampling pada gambar sebelum mengirim untuk mengendalikan biaya token. Untuk meminimalkan latensi dan menyederhanakan [alur kerja berbasis koordinat](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates), utamakan mengubah ukuran gambar sebelum mengunggahnya.
+Gambar resolusi tinggi dapat menggunakan hingga kira-kira tiga kali lebih banyak token visual dibandingkan gambar yang sama pada model tingkat standar. Jika Anda tidak memerlukan fidelitas tambahan yang diberikan resolusi tinggi untuk penggunaan komputer, pemahaman tangkapan layar, dan dokumen padat, lakukan downsampling pada gambar sebelum mengirim untuk mengendalikan biaya token. Untuk meminimalkan latensi dan menyederhanakan [alur kerja berbasis koordinat](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates), utamakan mengubah ukuran gambar sebelum mengunggahnya.
 
 ### Panduan kualitas gambar
 
@@ -1398,7 +1398,7 @@ Selalu tinjau dan verifikasi interpretasi gambar Claude dengan cermat, terutama 
     Jika interpretasi gambar Claude tampak tidak benar:
 
     1. Pastikan gambar jernih, berkualitas tinggi, dan berorientasi dengan benar.
-    2. Coba teknik prompt engineering untuk meningkatkan hasil.
+    2. Coba teknik rekayasa prompt untuk meningkatkan hasil.
     3. Jika masalah berlanjut, tandai output di claude.ai (jempol ke atas/ke bawah) atau hubungi [tim dukungan](https://support.claude.com/).
 
     Umpan balik Anda membantu meningkatkan Claude!

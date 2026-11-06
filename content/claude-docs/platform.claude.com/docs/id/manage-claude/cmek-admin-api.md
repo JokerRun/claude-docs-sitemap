@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-admin-api
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: b4053fdad31aa358480af01d58d64e7c6ccf41619a56f59b51c340b459c8fc07
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 26c3baa25de296c322e2f1dcd1f150027b82bc6fe9cf629cb65b7ccf12792760
 ---
 
 ---
@@ -13,7 +13,7 @@ description: Buat, validasi, dan lampirkan kunci enkripsi yang dikelola pelangga
 
 Panggilan-panggilan ini berfungsi di Claude Platform. Di Claude Enterprise atau Claude Platform on AWS, ikuti [halaman penyiapan Anda](https://platform.claude.com/docs/id/manage-claude/cmek#set-it-up).
 
-Membuat kunci eksternal adalah apa yang dilakukan **Add key** di Claude Console, dan memvalidasinya adalah apa yang dilakukan **Verify**.
+Membuat kunci eksternal adalah apa yang dilakukan **Tambahkan kunci** di Claude Console, dan memvalidasinya adalah apa yang dilakukan **Verifikasi**.
 
 ## Sebelum Anda memulai
 

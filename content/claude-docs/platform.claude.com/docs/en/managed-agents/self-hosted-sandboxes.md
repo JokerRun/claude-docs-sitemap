@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 7bfc197ded4c2d37e268b1f6ad8a684c3d56837a5cba258076fa19aa75b494c3
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 6b5274dd39804e906bd2b8995bd836746cdcf6a5b94a3f459c4ded374be68738
 ---
 
 ---
@@ -223,7 +223,7 @@ This quickstart runs one always-on worker with the `ant` CLI, sends it a session
         For Linux environments, download the release binary directly.
 
         ```bash
-        VERSION=2.6.0
+        VERSION=2.7.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -237,13 +237,13 @@ This quickstart runs one always-on worker with the `ant` CLI, sends it a session
       </Tab>
 
       <Tab title="go install">
-        You can also install the CLI from source using `go install`. Requires Go 1.25 or later.
+        You can also install the CLI from source with `go install`, which requires Go 1.26.10 or later.
 
         ```bash
         go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
         ```
 
-        The binary is placed in `$(go env GOPATH)/bin`. Add it to your `PATH` if it isn’t already:
+        `go install` places the binary in `$(go env GOPATH)/bin`. Add that directory to your `PATH` if it isn’t already there:
 
         ```bash
         export PATH="$PATH:$(go env GOPATH)/bin"

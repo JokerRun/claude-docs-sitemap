@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 8773f2df90cff10b921b11c4ebc2b5a4f4793a13498f7bb33b2717ed8be8840f
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: e9f2e9777d2f1c9e63c931f4b7b63bdbbc13f41dc7244e7bd6fce472a823b0fd
 ---
 
 ---
@@ -42,7 +42,7 @@ featureMetadata:
 </Note>
 
 <Tip>
-  Untuk pengalaman terbaik dan akses ke set fitur Claude API secara lengkap ([pemrosesan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support), [sitasi](https://platform.claude.com/docs/id/build-with-claude/citations), [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking), dan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)), gunakan [Claude API](https://platform.claude.com/docs/id/api/overview) native.
+  Untuk pengalaman terbaik dan akses ke set fitur Claude API secara lengkap ([pemrosesan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support), [sitasi](https://platform.claude.com/docs/id/build-with-claude/citations), [pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking), dan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)), gunakan [Claude API](https://platform.claude.com/docs/id/api/overview) native.
 </Tip>
 
 ## Memulai dengan OpenAI SDK
@@ -212,11 +212,11 @@ Untuk menggunakan fitur kompatibilitas OpenAI SDK, Anda perlu:
 
 Berikut adalah perbedaan paling substansial dibandingkan menggunakan OpenAI:
 
-* Parameter `strict` untuk function calling diabaikan, yang berarti JSON penggunaan alat tidak dijamin mengikuti skema yang diberikan. Untuk kesesuaian skema yang terjamin, gunakan [Claude API native dengan structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs).
+* Parameter `strict` untuk function calling diabaikan, yang berarti JSON penggunaan alat tidak dijamin mengikuti skema yang diberikan. Untuk kesesuaian skema yang terjamin, gunakan [Claude API native dengan output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs).
 * `response_format` hanya menerima `json_schema` dengan `strict: true`. Permintaan yang menetapkan `json_object` atau `text` mengembalikan error 400.
 * Input audio dan file tidak didukung. Permintaan yang menyertakan bagian konten `input_audio` atau `file` mengembalikan error 400.
 * Caching prompt tidak didukung, tetapi didukung di [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview).
-* Pesan system/developer diangkat (hoisted) dan digabungkan ke dalam field `system` tingkat atas, di mana pun pesan tersebut muncul dalam percakapan. Untuk menambahkan instruksi sistem di tengah percakapan, gunakan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) di Claude API native.
+* Pesan sistem/developer diangkat (hoisted) dan digabungkan ke dalam field `system` tingkat atas, di mana pun pesan tersebut muncul dalam percakapan. Untuk menambahkan instruksi sistem di tengah percakapan, gunakan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) di Claude API native.
 * Tergantung pada model, teks yang dihasilkan untuk permintaan yang menetapkan `temperature` atau `top_p` ke nilai selain default Claude API mungkin tidak membawa [watermark teks](https://platform.claude.com/docs/id/build-with-claude/text-watermark#sampling-settings). Jika Anda mengandalkan watermark, hilangkan kedua parameter tersebut.
 
 Sebagian besar field yang tidak didukung diabaikan secara diam-diam alih-alih menghasilkan error. Semuanya didokumentasikan di bagian-bagian berikut.
@@ -225,13 +225,13 @@ Sebagian besar field yang tidak didukung diabaikan secara diam-diam alih-alih me
 
 Jika Anda telah menyesuaikan prompt Anda secara ekstensif, kemungkinan besar prompt tersebut disetel khusus untuk OpenAI. Pertimbangkan untuk menyusunnya ulang untuk Claude menggunakan panduan [praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
 
-### Pengangkatan pesan system / developer
+### Pengangkatan pesan sistem / developer
 
-Sebagian besar input ke OpenAI SDK dipetakan secara jelas dan langsung ke parameter Claude API, tetapi satu perbedaan yang mencolok adalah penanganan prompt system / developer. Kedua prompt ini dapat ditempatkan di sepanjang percakapan chat di OpenAI API. Lapisan kompatibilitas mengambil semua pesan system/developer dan menggabungkannya dengan satu baris baru (`\n`) di antaranya. String lengkap ini kemudian diberikan sebagai field `system` tingkat atas, sebelum setiap pesan.
+Sebagian besar input ke OpenAI SDK dipetakan secara jelas dan langsung ke parameter Claude API, tetapi satu perbedaan yang mencolok adalah penanganan prompt sistem / developer. Kedua prompt ini dapat ditempatkan di sepanjang percakapan chat di OpenAI API. Lapisan kompatibilitas mengambil semua pesan sistem/developer dan menggabungkannya dengan satu baris baru (`\n`) di antaranya. String lengkap ini kemudian diberikan sebagai field `system` tingkat atas, sebelum setiap pesan.
 
 ### Dukungan thinking
 
-Pada model Claude 5 dan Claude Mythos Preview, [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) aktif secara default, sehingga Anda dapat menghilangkan field `thinking`. Untuk menggunakan thinking pada model lain melalui lapisan kompatibilitas, tetapkan field `thinking` pada body permintaan ke `{"type": "enabled", "budget_tokens": N}`. `N` harus minimal 1.024 dan kurang dari `max_tokens` atau `max_completion_tokens`, mana pun yang Anda tetapkan.
+Pada model Claude 5 dan Claude Mythos Preview, [pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking) aktif secara default, sehingga Anda dapat menghilangkan field `thinking`. Untuk menggunakan thinking pada model lain melalui lapisan kompatibilitas, tetapkan field `thinking` pada body permintaan ke `{"type": "enabled", "budget_tokens": N}`. `N` harus minimal 1.024 dan kurang dari `max_tokens` atau `max_completion_tokens`, mana pun yang Anda tetapkan.
 
 Lapisan kompatibilitas berbeda dari Claude API native dalam hal-hal berikut:
 
@@ -335,7 +335,7 @@ OpenAI SDK tidak memiliki parameter `thinking`, sehingga contoh berikut mengirim
 | `stop`                  | Semua stop sequence non-whitespace berfungsi                                                                                                                                                                                                                                                                                                                                                                               |
 | `temperature`           | Antara 0 dan 1 (inklusif). Nilai lebih besar dari 1 dibatasi menjadi 1. Pada model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview, nilai apa pun di bawah 1 mengembalikan error 400, jadi hilangkan parameter ini. Lihat [Menggunakan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages).                                                                              |
 | `n`                     | Harus tepat 1. Nilai lain apa pun mengembalikan error 400.                                                                                                                                                                                                                                                                                                                                                                 |
-| `response_format`       | Didukung dengan batasan. Hanya `json_schema` dengan `strict: true` yang diterima, dan [batasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations) structured outputs berlaku. Nilai lain apa pun, termasuk `json_object` dan `text`, mengembalikan error 400.                                                                                                  |
+| `response_format`       | Didukung dengan batasan. Hanya `json_schema` dengan `strict: true` yang diterima, dan [batasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations) output terstruktur berlaku. Nilai lain apa pun, termasuk `json_object` dan `text`, mengembalikan error 400.                                                                                                  |
 | `logprobs`              | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `metadata`              | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `prediction`            | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                  |
@@ -363,7 +363,7 @@ OpenAI SDK tidak memiliki parameter `thinking`, sehingga contoh berikut mengirim
       | `name`        | Didukung penuh                                                                                                                                                              |
       | `description` | Didukung penuh                                                                                                                                                              |
       | `parameters`  | Didukung penuh                                                                                                                                                              |
-      | `strict`      | Diabaikan. Gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) dengan Claude API native untuk validasi skema yang ketat. |
+      | `strict`      | Diabaikan. Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) dengan Claude API native untuk validasi skema yang ketat. |
     </Tab>
 
     <Tab title="Functions">
@@ -378,7 +378,7 @@ OpenAI SDK tidak memiliki parameter `thinking`, sehingga contoh berikut mengirim
       | `name`        | Didukung penuh                                                                                                                                                              |
       | `description` | Didukung penuh                                                                                                                                                              |
       | `parameters`  | Didukung penuh                                                                                                                                                              |
-      | `strict`      | Diabaikan. Gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) dengan Claude API native untuk validasi skema yang ketat. |
+      | `strict`      | Diabaikan. Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) dengan Claude API native untuk validasi skema yang ketat. |
     </Tab>
   </Tabs>
 </Accordion>
@@ -387,7 +387,7 @@ OpenAI SDK tidak memiliki parameter `thinking`, sehingga contoh berikut mengirim
 
 <Accordion title="Tampilkan field">
   <Tabs>
-    <Tab title="Role developer">
+    <Tab title="Peran developer">
       Field untuk `messages[n].role == "developer"`
 
       <Info>
@@ -400,7 +400,7 @@ OpenAI SDK tidak memiliki parameter `thinking`, sehingga contoh berikut mengirim
       | `name`    | Diabaikan                       |
     </Tab>
 
-    <Tab title="Role system">
+    <Tab title="Peran system">
       Field untuk `messages[n].role == "system"`
 
       <Info>
@@ -413,7 +413,7 @@ OpenAI SDK tidak memiliki parameter `thinking`, sehingga contoh berikut mengirim
       | `name`    | Diabaikan                       |
     </Tab>
 
-    <Tab title="Role user">
+    <Tab title="Peran user">
       Field untuk `messages[n].role == "user"`
 
       | Field     | Varian                           | Sub-field | Status dukungan         |
@@ -427,7 +427,7 @@ OpenAI SDK tidak memiliki parameter `thinking`, sehingga contoh berikut mengirim
       | `name`    |                                  |           | Diabaikan               |
     </Tab>
 
-    <Tab title="Role assistant">
+    <Tab title="Peran assistant">
       Field untuk `messages[n].role == "assistant"`
 
       | Field           | Varian                       | Status dukungan |
@@ -441,7 +441,7 @@ OpenAI SDK tidak memiliki parameter `thinking`, sehingga contoh berikut mengirim
       | `refusal`       |                              | Diabaikan       |
     </Tab>
 
-    <Tab title="Role tool">
+    <Tab title="Peran tool">
       Field untuk `messages[n].role == "tool"`
 
       | Field          | Varian                    | Status dukungan |
@@ -452,7 +452,7 @@ OpenAI SDK tidak memiliki parameter `thinking`, sehingga contoh berikut mengirim
       | `name`         |                           | Diabaikan       |
     </Tab>
 
-    <Tab title="Role function">
+    <Tab title="Peran function">
       Field untuk `messages[n].role == "function"`
 
       | Field     | Varian   | Status dukungan                  |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/onboarding
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 7c789669a1c28f00a1d73c5beea1787cbc950b3383027009f40022623bc24320
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 2915e95f3e3d7e8b6c3000c3c6f121760aa1f1e865f2974464692ab97ba20263
 ---
 
 ---
@@ -56,7 +56,7 @@ Saat Anda mengonfigurasi, Console menampilkan permintaan API yang setara sehingg
 
 ## Menguji agen
 
-Console menyertakan session runner inline. Setelah mengonfigurasi agen Anda, Anda dapat memulai sesi pengujian secara langsung, mengirim pesan, dan memantau aliran event tanpa meninggalkan halaman. Ini adalah cara tercepat untuk memeriksa bahwa prompt sistem dan pilihan alat Anda menghasilkan perilaku yang Anda harapkan.
+Console menyertakan runner sesi inline. Setelah mengonfigurasi agen Anda, Anda dapat memulai sesi pengujian secara langsung, mengirim pesan, dan memantau aliran event tanpa meninggalkan halaman. Ini adalah cara tercepat untuk memeriksa bahwa prompt sistem dan pilihan alat Anda menghasilkan perilaku yang Anda harapkan.
 
 ## Dari Console ke basis kode Anda
 

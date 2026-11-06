@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/okta
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: dcac16002faf124c55ac073e7715019bb5c943661a94a5eff7e11bbb540b3266
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: eb5f784c7f61efc32bf67768dc6b507d6fa2f7882fb968874bc7180f74cbd842
 ---
 
 ---
@@ -16,7 +16,7 @@ Okta can act as a workload identity provider by issuing OIDC access tokens to a 
 The Okta authorization server’s issuer URL takes the form `https://<your-domain>.okta.com/oauth2/<auth-server-id>`. If you use the built-in default server, the path is `/oauth2/default`.
 
 <Note>
-  You must use an Okta **custom authorization server** (including the `default` one). Tokens issued directly by the Okta org authorization server (the `/oauth2/v1/token` endpoint with no authorization server ID in the path) cannot be validated by external parties because Okta does not publish signing keys for them.
+  You must use an Okta **custom authorization server** (including the `default` one). External parties cannot validate tokens issued directly by the Okta org authorization server (the `/oauth2/v1/token` endpoint with no authorization server ID in the path), because Okta does not publish signing keys for them.
 </Note>
 
 There are many ways to configure and authenticate to Okta that are outside the scope of this documentation. Ensure that your configuration and authentication mechanisms follow your company’s guidance and security practices.
@@ -131,8 +131,10 @@ Unlike platform-native providers (AWS, Google Cloud, Kubernetes), which make a t
     | jq -r .access_token > "$ANTHROPIC_IDENTITY_TOKEN_FILE"
 
   # 2. Call the Claude API. The CLI reads ANTHROPIC_FEDERATION_RULE_ID,
-  # ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, and
+  # ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, and
   # ANTHROPIC_IDENTITY_TOKEN_FILE and performs the exchange.
+  # For a rule enabled for all workspaces or more than one, set ANTHROPIC_PROFILE
+  # to a federation profile that sets workspace_id.
   ant messages create \
     --model claude-opus-5-5 \
     --max-tokens 1024 \
@@ -499,7 +501,7 @@ Unlike platform-native providers (AWS, Google Cloud, Kubernetes), which make a t
   ```
 </CodeGroup>
 
-Except in Java (see the comment in that example), the SDK example passes your Okta token fetch to `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider()`; java: `IdentityTokenConfig`) as a token provider. The Claude SDK calls it each time the Anthropic access token approaches expiry, so your Okta fetcher should return a fresh token on each call rather than caching one indefinitely. The `ant` CLI re-reads `ANTHROPIC_IDENTITY_TOKEN_FILE` on each exchange, so refresh that file on a timer for long-running shells.
+Pass your Okta token to `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider()`; java: `IdentityTokenConfig`). Except in Java, where `IdentityTokenConfig` takes a token or a file path, that option takes your Okta fetch as a token provider. The Claude SDK calls it each time the Anthropic access token approaches expiry, so your Okta fetcher should return a fresh token on each call rather than caching one indefinitely. The `ant` CLI re-reads `ANTHROPIC_IDENTITY_TOKEN_FILE` on each exchange, so refresh that file on a timer for long-running shells.
 
 ## Verify the setup
 

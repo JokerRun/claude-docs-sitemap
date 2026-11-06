@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 842a97b53052f6fcdd9a7d75e9c621c80e8f7fc8296a1b3bd0ab3df4b236f767
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: c97177410e48abf45a562379ae2b966e65a0e9b457b9ce973a9c9643318a1c26
 ---
 
 ---
@@ -869,7 +869,7 @@ Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan a
         if tool_response is not None:
             # append_messages() menandai state sebagai dimodifikasi, jadi runner melewati
             # append otomatisnya untuk iterasi ini. Tambahkan sendiri pesan asisten dan
-            # tool result, beserta tindak lanjut apa pun.
+            # hasil alat, beserta tindak lanjut apa pun.
             runner.append_messages(
                 message,
                 tool_response,

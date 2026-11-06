@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/apple-foundation-models
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 7cef9e3d0840008ec97ffce143f2a4273fe9ad6b9d58a27435cf21dcc59fa14b
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: df6523b1280847dc5ed16eefdade722a0406c2761b147c7449c9a4dfeec8464f
 ---
 
 ---
@@ -33,7 +33,7 @@ featureMetadata:
     Claude API: beta
 ---
 
-[Claude for Foundation Models](https://github.com/anthropics/ClaudeForFoundationModels) adalah paket Swift yang membuat Claude tersedia sebagai model bahasa sisi server dalam framework [Foundation Models](https://developer.apple.com/documentation/foundationmodels) milik Apple. Paket ini menyesuaikan Claude dengan protokol `LanguageModel` milik framework tersebut, sehingga Anda mengendalikannya dengan API `LanguageModelSession` yang sama dengan yang Anda gunakan untuk model on-device Apple: `respond(to:)`, streaming, guided generation, dan pemanggilan alat semuanya bekerja dengan cara yang sama.
+[Claude for Foundation Models](https://github.com/anthropics/ClaudeForFoundationModels) adalah paket Swift yang membuat Claude tersedia sebagai model bahasa sisi server dalam framework [Foundation Models](https://developer.apple.com/documentation/foundationmodels) milik Apple. Paket ini menyesuaikan Claude dengan protokol `LanguageModel` milik framework tersebut, sehingga Anda mengendalikannya dengan API `LanguageModelSession` yang sama dengan yang Anda gunakan untuk model on-device Apple: `respond(to:)`, streaming, “guided generation” (pembuatan terpandu), dan pemanggilan alat semuanya bekerja dengan cara yang sama.
 
 Permintaan dikirim langsung dari aplikasi Anda ke Claude API; Apple tidak berada di jalur permintaan dan tidak melihat prompt maupun respons. Penggunaan ditagihkan ke akun Anthropic Anda sesuai [harga API standar](https://platform.claude.com/docs/id/about-claude/pricing), sehingga organisasi Anda memerlukan saldo kredit yang tersedia atau metode penagihan yang aktif. Aplikasi Anda menentukan kapan menggunakan Claude dan kapan menggunakan model on-device Apple: berikan model mana pun yang Anda inginkan ke setiap sesi.
 
@@ -42,7 +42,7 @@ Permintaan dikirim langsung dari aplikasi Anda ke Claude API; Apple tidak berada
 </Note>
 
 <Info>
-  Claude for Foundation Models **bukan** klien Messages API serbaguna. Permukaan publiknya adalah konformansi penyedia Foundation Models ditambah tipe konfigurasi yang menjangkaunya (`ClaudeLanguageModel`, `ClaudeModel`, `AuthMode`, `ClaudeServerTool`). Untuk akses langsung ke Messages API dalam bahasa lain, lihat [Client SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview#client-sdks).
+  Claude for Foundation Models **bukan** klien Messages API serbaguna. Permukaan publiknya adalah konformansi penyedia Foundation Models ditambah tipe konfigurasi yang menjangkaunya (`ClaudeLanguageModel`, `ClaudeModel`, `AuthMode`, `ClaudeServerTool`). Untuk akses langsung ke Messages API dalam bahasa lain, lihat [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview#client-sdks).
 </Info>
 
 ## Persyaratan
@@ -104,7 +104,7 @@ Konstanta mencerminkan ID model API (`.opus5` adalah `claude-opus-5`) dan membaw
 
 ### Kapabilitas
 
-Setiap `ClaudeModel` mendeklarasikan apa yang diterimanya: parameter sampling, tingkat effort, adaptive thinking, output terstruktur, dan input gambar. Paket menggunakan ini untuk menentukan field permintaan mana yang dikirim, karena mengirim field yang ditolak model merupakan error fatal. Konstanta membawa kapabilitas yang tepat. Untuk ID yang belum dikompilasi, deklarasikan apa yang diterima model (sengaja tidak ada pintasan yang menebak):
+Setiap `ClaudeModel` mendeklarasikan apa yang diterimanya: parameter sampling, tingkat effort, pemikiran adaptif, output terstruktur, dan input gambar. Paket menggunakan ini untuk menentukan field permintaan mana yang dikirim, karena mengirim field yang ditolak model merupakan error fatal. Konstanta membawa kapabilitas yang tepat. Untuk ID yang belum dikompilasi, deklarasikan apa yang diterima model (sengaja tidak ada pintasan yang menebak):
 
 ```swift
 let model = ClaudeModel(
@@ -116,7 +116,7 @@ ClaudeLanguageModel(name: model, auth: auth)
 
 ### Effort
 
-Tetapkan [tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort) Claude untuk setiap permintaan dengan `fixedEffort:`. Ini lebih diutamakan daripada petunjuk reasoning per permintaan dari framework. Tingkat reasoning bernama dari framework berhenti di high; untuk meminta effort lebih tinggi untuk satu permintaan saja, berikan tingkat reasoning kustom yang menyebutkan effort Claude (`.custom("xhigh")` atau `.custom("max")`), yang dipetakan secara langsung. Ketika tidak ada effort yang dikirim, API menggunakan tingkat default model, yang berbeda-beda per model (lihat [Tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort#effort-levels)):
+Tetapkan [tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort) Claude untuk setiap permintaan dengan `fixedEffort:`. Ini lebih diutamakan daripada petunjuk penalaran per permintaan dari framework. Tingkat penalaran bernama dari framework berhenti di high; untuk meminta effort lebih tinggi untuk satu permintaan saja, berikan tingkat penalaran kustom yang menyebutkan effort Claude (`.custom("xhigh")` atau `.custom("max")`), yang dipetakan secara langsung. Ketika tidak ada effort yang dikirim, API menggunakan tingkat default model, yang berbeda-beda per model (lihat [Tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort#effort-levels)):
 
 ```swift
 ClaudeLanguageModel(name: .opus5_5, auth: auth, fixedEffort: .xhigh)
@@ -126,7 +126,7 @@ Tingkat tersebut harus merupakan tingkat yang diterima model. Setiap `ClaudeMode
 
 ### Kapan menggunakan Claude versus model on-device
 
-Model on-device Apple cepat, privat, dan tersedia secara offline, tetapi ukurannya dirancang untuk tugas ringan. Eskalasikan ke Claude ketika Anda memerlukan konteks yang lebih besar, reasoning terdepan, atau alat sisi server seperti pencarian web dan eksekusi kode. Karena keduanya menggunakan API `LanguageModelSession` yang sama, Anda dapat beralih dengan menukar argumen `model:`.
+Model on-device Apple cepat, privat, dan tersedia secara offline, tetapi ukurannya dirancang untuk tugas ringan. Eskalasikan ke Claude ketika Anda memerlukan konteks yang lebih besar, penalaran terdepan, atau alat sisi server seperti pencarian web dan eksekusi kode. Karena keduanya menggunakan API `LanguageModelSession` yang sama, Anda dapat beralih dengan menukar argumen `model:`.
 
 ## Autentikasi
 
@@ -151,18 +151,18 @@ ClaudeLanguageModel(
   App Attest memerlukan perangkat fisik. Simulator, dan perangkat keras tanpa Secure Enclave, tidak dapat melakukan App Attest. Gunakan `.apiKey` saat beriterasi di Simulator, dan `.appAttest` saat berjalan di perangkat.
 </Note>
 
-Untuk menyiapkan App Attest, Anda memerlukan Apple Developer Team ID Anda dan peran admin, owner, atau primary owner di organisasi Anda. Konfigurasikan proyek Xcode Anda dan daftarkan aplikasi Anda di [Claude Console](https://platform.claude.com/):
+Untuk menyiapkan App Attest, Anda memerlukan Apple Developer Team ID Anda dan peran admin, pemilik, atau pemilik utama di organisasi Anda. Konfigurasikan proyek Xcode Anda dan daftarkan aplikasi Anda di [Claude Console](https://platform.claude.com/):
 
 1. Di Xcode, tambahkan kapabilitas **App Attest** ke target aplikasi Anda di bawah **Signing & Capabilities**.
 2. Di Claude Console, buka halaman [App integrations](https://platform.claude.com/settings/workspaces/default/app-integrations) (`platform.claude.com/settings/workspaces/default/app-integrations`). Setiap integrasi aplikasi dimiliki oleh satu workspace. Pilih workspace yang Anda inginkan di pemilih workspace pada sidebar.
 3. Klik **Create app integration** dan masukkan nama, Apple Developer Team ID Anda, dan satu atau lebih bundle ID (hingga 32).
-4. Salin client ID (`clid_...`) dari tab **Overview** integrasi tersebut dan teruskan ke konfigurasi Claude aplikasi Anda.
+4. Salin client ID (`clid_...`) dari tab **Ringkasan** integrasi tersebut dan teruskan ke konfigurasi Claude aplikasi Anda.
 
 Saat pertama kali aplikasi Anda menggunakan Claude di sebuah perangkat, aplikasi meminta challenge dari Anthropic, melakukan atestasi perangkat dengan `DCAppAttestService` milik Apple, dan menukarkan atestasi yang telah diverifikasi dengan “access token” (token akses). Paket Claude for Foundation Models menjalankan alur ini secara otomatis dan meminta token baru saat token lama kedaluwarsa; tidak ada kode atestasi yang perlu Anda tulis.
 
 Token dibatasi cakupannya pada workspace Anda, kedaluwarsa setelah 1 jam, dan hanya mengotorisasi panggilan [Messages API](https://platform.claude.com/docs/id/api/messages/create). Token tidak membawa identitas pengguna akhir: App Attest mengidentifikasi aplikasi Anda, bukan orang yang menggunakannya, jadi tangani logika per pengguna apa pun di dalam aplikasi Anda.
 
-Untuk menghentikan aplikasi yang telah disusupi atau sudah tidak digunakan lagi, cabut integrasinya. Di Claude Console, buka halaman [App integrations](https://platform.claude.com/settings/workspaces/default/app-integrations) (`platform.claude.com/settings/workspaces/default/app-integrations`). Setiap integrasi aplikasi dimiliki oleh satu workspace. Di pemilih workspace pada sidebar, pilih workspace yang menyimpan integrasi tersebut. Pilih integrasi tersebut dan klik **Revoke**, lalu konfirmasi. Mencabut integrasi akan mencabut token-tokennya yang masih berlaku, dan perangkat-perangkatnya yang terdaftar tidak dapat lagi meminta token baru. Pencabutan bersifat permanen, jadi buat integrasi aplikasi baru untuk memulihkan akses.
+Untuk menghentikan aplikasi yang telah disusupi atau sudah tidak digunakan lagi, cabut integrasinya. Di Claude Console, buka halaman [App integrations](https://platform.claude.com/settings/workspaces/default/app-integrations) (`platform.claude.com/settings/workspaces/default/app-integrations`). Setiap integrasi aplikasi dimiliki oleh satu workspace. Di pemilih workspace pada sidebar, pilih workspace yang menyimpan integrasi tersebut. Pilih integrasi tersebut dan klik **Cabut**, lalu konfirmasi. Mencabut integrasi akan mencabut token-tokennya yang masih berlaku, dan perangkat-perangkatnya yang terdaftar tidak dapat lagi meminta token baru. Pencabutan bersifat permanen, jadi buat integrasi aplikasi baru untuk memulihkan akses.
 
 ### Proxy (produksi)
 
@@ -187,7 +187,7 @@ ClaudeLanguageModel(name: .sonnet5, auth: .apiKey("YOUR_API_KEY"))
 ```
 
 <Warning>
-  Kunci yang dibundel ke dalam aplikasi dapat diekstrak dari binary yang dirilis, dan siapa pun yang mengekstraknya dapat membuat permintaan yang ditagihkan ke akun Anda. Gunakan `.apiKey` hanya untuk pengembangan, dan beralihlah ke App Attest atau proxy sebelum rilis.
+  Kunci yang dibundel ke dalam aplikasi dapat diekstrak dari biner yang dirilis, dan siapa pun yang mengekstraknya dapat membuat permintaan yang ditagihkan ke akun Anda. Gunakan `.apiKey` hanya untuk pengembangan, dan beralihlah ke App Attest atau proxy sebelum rilis.
 </Warning>
 
 ## Streaming
@@ -264,7 +264,7 @@ do {
 } catch ClaudeError.missingCredential {
   // Meminta kunci API.
 } catch let error as LanguageModelError {
-  // Error berbentuk framework (batas laju, guardrail, panjang konteks, decoding).
+  // Error berbentuk framework (batas laju, guardrail, luapan jendela konteks, decoding).
 } catch {
   // Error transport.
 }

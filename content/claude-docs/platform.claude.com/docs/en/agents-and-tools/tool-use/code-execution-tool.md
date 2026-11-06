@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 527f501e93fe17e46127fd6649fdf36d0af14776bca5df6f33228305ea9657c7
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 38a888bd3289dfeacd32689aada603cbc51b20fc7335a9ff1d8589d7c20c129e
 ---
 
 ---
@@ -875,9 +875,7 @@ When Claude saves files to its output directory during code execution (see [How 
     file_ids = []
     response.content.each do |item|
       if item.type == :bash_code_execution_tool_result
-        # WORKAROUND for anthropic-sdk-ruby union coercion bug (SDK-636): item.content is a
-        # nested content union, so the typed accessors on `item.content` are unreliable.
-        # Read the raw response data through the public `BaseModel#[]` API instead.
+        # Collect the file IDs from the tool result
         content_item = item.content
         if content_item[:type].to_s == "bash_code_execution_result"
           Array(content_item[:content]).each do |output_block|

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 3eb38d91a7ff892445ff8729d25ef7975790ea58c4349d45fbb65c0464340739
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: d3dde8dd277f1991b1d9e8fb6fc9827db63f210b5d461aabfcbceec4e7510e9b
 ---
 
 ---
@@ -52,7 +52,7 @@ Field `stop_reason` adalah bagian dari setiap respons Messages API yang berhasil
 }
 ```
 
-## Nilai stop reason
+## Nilai alasan berhenti
 
 ### end\_turn
 
@@ -1485,10 +1485,10 @@ Claude sedang memanggil alat yang perlu Anda jalankan.
   ```
 </CodeGroup>
 
-Respons `tool_use` juga dapat berisi blok `server_tool_use` yang `id`-nya tidak memiliki blok hasil yang cocok. Panggilan server tool tersebut belum selesai, dan respons ini tidak membawa hasilnya. Dalam kasus umum, Claude memanggil sebuah [server tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) dan salah satu client tool Anda dalam kelompok panggilan alat paralel yang sama: API mengembalikan respons tanpa menjalankan server tool agar Anda dapat menjalankan client tool terlebih dahulu. Tidak ada penanda lain untuk keadaan ini; deteksi dengan memeriksa `id` setiap blok `server_tool_use` atau `mcp_tool_use` apakah memiliki blok hasil yang cocok.
+Respons `tool_use` juga dapat berisi blok `server_tool_use` yang `id`-nya tidak memiliki blok hasil yang cocok. Panggilan alat server tersebut belum selesai, dan respons ini tidak membawa hasilnya. Dalam kasus umum, Claude memanggil sebuah [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) dan salah satu alat klien Anda dalam kelompok panggilan alat paralel yang sama: API mengembalikan respons tanpa menjalankan alat server agar Anda dapat menjalankan alat klien terlebih dahulu. Tidak ada penanda lain untuk keadaan ini; deteksi dengan memeriksa `id` setiap blok `server_tool_use` atau `mcp_tool_use` apakah memiliki blok hasil yang cocok.
 
 <Note>
-  Dengan [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), bentuk respons yang sama memiliki arti yang berbeda. Blok client `tool_use` berasal dari kode yang sedang berjalan di alat `code_execution` alih-alih langsung dari Claude, dan field `caller`-nya menyebutkan blok `code_execution` yang memanggilnya. Kode tersebut sudah dimulai: kode itu dijeda sambil menunggu blok `tool_result` Anda, dan mengirimkannya akan melanjutkan eksekusi alih-alih memulai alat yang ditunda. Blok hasil milik blok `code_execution` itu sendiri tiba setelah kode selesai, yang dapat memerlukan lebih dari satu putaran hasil alat. Pesan pengguna lanjutan itu sendiri sama dalam kedua kasus; dengan pemanggilan alat terprogram, kirimkan juga kembali `id` dari field `container` respons, seperti yang ditunjukkan di halaman tersebut.
+  Dengan [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), bentuk respons yang sama memiliki arti yang berbeda. Blok `tool_use` klien berasal dari kode yang sedang berjalan di alat `code_execution` alih-alih langsung dari Claude, dan field `caller`-nya menyebutkan blok `code_execution` yang memanggilnya. Kode tersebut sudah dimulai: kode itu dijeda sambil menunggu blok `tool_result` Anda, dan mengirimkannya akan melanjutkan eksekusi alih-alih memulai alat yang ditunda. Blok hasil milik blok `code_execution` itu sendiri tiba setelah kode selesai, yang dapat memerlukan lebih dari satu putaran hasil alat. Pesan pengguna lanjutan itu sendiri sama dalam kedua kasus; dengan pemanggilan alat terprogram, kirimkan juga kembali `id` dari field `container` respons, seperti yang ditunjukkan di halaman tersebut.
 </Note>
 
 ```json A mixed tool_use response
@@ -1538,7 +1538,7 @@ Menghilangkan `tool_result`, atau menempatkannya setelah konten lain, akan gagal
 
 Dikembalikan ketika loop sampling sisi server mencapai batas iterasinya saat menjalankan [server tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) seperti pencarian web. Batas default adalah 10 iterasi untuk setiap permintaan.
 
-Ketika hal ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok hasil yang sesuai. Agar Claude dapat menyelesaikan pemrosesan, lanjutkan percakapan dengan mengirimkan kembali respons apa adanya. Respons yang menyisakan blok client `tool_use` yang menunggu Anda tidak pernah memiliki `stop_reason` bernilai `pause_turn`: ketika Claude berhenti untuk memanggil alat Anda, `stop_reason` bernilai [`tool_use`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use), dan Anda melanjutkannya dengan mengirimkan blok client `tool_result` alih-alih respons itu sendiri.
+Ketika hal ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok hasil yang sesuai. Agar Claude dapat menyelesaikan pemrosesan, lanjutkan percakapan dengan mengirimkan kembali respons apa adanya. Respons yang menyisakan blok `tool_use` klien yang menunggu Anda tidak pernah memiliki `stop_reason` bernilai `pause_turn`: ketika Claude berhenti untuk memanggil alat Anda, `stop_reason` bernilai [`tool_use`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use), dan Anda melanjutkannya dengan mengirimkan blok `tool_result` klien alih-alih respons itu sendiri.
 
 <CodeGroup>
   ```bash cURL
@@ -2441,7 +2441,7 @@ Ketika Anda menggunakan [server tool](https://platform.claude.com/docs/id/agents
   ```
 
   ```csharp C#
-  // Giliran server tool dapat berjalan beberapa menit, lebih lama dari timeout default SDK,
+  // Giliran alat server dapat berjalan beberapa menit, lebih lama dari timeout default SDK,
   // yang diatur berdasarkan MaxTokens (sekitar 2 menit pada 4096).
   AnthropicClient client = new() { Timeout = TimeSpan.FromMinutes(10) };
 
@@ -2474,7 +2474,7 @@ Ketika Anda menggunakan [server tool](https://platform.claude.com/docs/id/agents
           }
 
           // pause_turn: tambahkan respons yang dijeda sebagai pesan assistant, lalu lanjutkan
-          // Blok request dan response adalah tipe terpisah: salin JSON setiap blok apa adanya
+          // Blok permintaan dan respons adalah tipe terpisah: salin JSON setiap blok apa adanya
           messages.Add(new AssistantMessageParam
           {
               Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList()
@@ -2676,7 +2676,7 @@ Ketika Anda menggunakan [server tool](https://platform.claude.com/docs/id/agents
       # pause_turn: tambahkan respons yang dijeda sebagai pesan assistant, lalu lanjutkan
       messages << { role: "assistant", content: response.content }
 
-      # Jika tool berjalan di container, kirim kembali ID-nya agar file-nya tetap disimpan
+      # Jika alat berjalan di container, kirim kembali ID-nya agar file-nya tetap disimpan
       container_id = response.container&.id || container_id
     end
 

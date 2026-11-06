@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/migration-2026-10-21
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 1b392a2e1449c94febdccedb1b0d0dec5b3ace97b9efe9acb826fc7cf0a32645
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 85940b2e23398005ef6f5aab1b861ad52fad8bffc0fe8daf22f8310ab99e74dd
 ---
 
 ---
@@ -65,7 +65,7 @@ Cara termudah untuk meningkatkan kode Anda
       <Tab title="TypeScript">
         Tingkatkan paket `@anthropic-ai/sdk` ke versi 1.0.0.
 
-        v1 dari `@anthropic-ai/bedrock-sdk`, `@anthropic-ai/vertex-sdk`, `@anthropic-ai/foundry-sdk`, `@anthropic-ai/aws-sdk`, dan `@anthropic-ai/google-cloud-sdk` memerlukan v1 dari `@anthropic-ai/sdk`, dan versi-versi sebelumnya memerlukan versi di bawah 1. Jika Anda menggunakan salah satunya, pindahkan ke v1 dalam peningkatan yang sama. Jika tidak, package manager Anda akan menginstal salinan kedua `@anthropic-ai/sdk` yang lebih lama untuknya.
+        v1 dari `@anthropic-ai/bedrock-sdk`, `@anthropic-ai/vertex-sdk`, `@anthropic-ai/foundry-sdk`, `@anthropic-ai/aws-sdk`, dan `@anthropic-ai/google-cloud-sdk` memerlukan v1 dari `@anthropic-ai/sdk`, dan versi-versi sebelumnya memerlukan versi di bawah 1. Jika Anda menggunakan salah satunya, pindahkan ke v1 dalam peningkatan yang sama. Jika tidak, manajer paket Anda akan menginstal salinan kedua `@anthropic-ai/sdk` yang lebih lama untuknya.
       </Tab>
 
       <Tab title="C#">
@@ -147,13 +147,13 @@ Di `2026-10-21`, respons dari Admin API dan [Claude Enterprise Analytics API](ht
 
 Admin API:
 
-| Endpoint                                                                                                                                                                                                                                                  | Nama lama      | Nama baru                                                                                                                                         |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Grup RBAC](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/list): create, list, retrieve, dan update                                                                                                                               | `roles`        | `role_ids`                                                                                                                                        |
-| [Anggota grup RBAC](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/members/list): list dan add, serta respons untuk [menghapus anggota](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/members/remove)      | `group_id`     | `rbac_group_id`                                                                                                                                   |
-| [Peran RBAC](https://platform.claude.com/docs/id/api/beta/organization/rbac_roles/list): list dan retrieve                                                                                                                                                | `name`         | `display_name`                                                                                                                                    |
-| Batas laju [organisasi](https://platform.claude.com/docs/id/api/organization/rate_limits/list) dan [workspace](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/list): list, serta respons untuk mengatur batas laju workspace | `group_type`   | `group.type`                                                                                                                                      |
-| [Kunci API](https://platform.claude.com/docs/id/api/organization/api_keys/list): list, retrieve, dan update                                                                                                                                               | `workspace_id` | `scope` (nilai berbeda; lihat [`workspace_id` pada kunci API](https://platform.claude.com/docs/id/api/migration-2026-10-21#api-key-workspace-id)) |
+| Endpoint                                                                                                                                                                                                                                                                                                                                          | Nama lama      | Nama baru                                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Grup RBAC](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/list): pembuatan, daftar, pengambilan, dan pembaruan                                                                                                                                                                                                            | `roles`        | `role_ids`                                                                                                                                        |
+| [Anggota grup RBAC](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/members/list): daftar dan penambahan, serta respons untuk [menghapus anggota](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/members/remove)                                                                                     | `group_id`     | `rbac_group_id`                                                                                                                                   |
+| [Peran RBAC](https://platform.claude.com/docs/id/api/beta/organization/rbac_roles/list): daftar dan pengambilan                                                                                                                                                                                                                                   | `name`         | `display_name`                                                                                                                                    |
+| Batas laju [organisasi](https://platform.claude.com/docs/id/api/organization/rate_limits/list) dan [workspace](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/list): daftar, serta respons untuk [mengatur batas laju workspace](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/update) | `group_type`   | `group.type`                                                                                                                                      |
+| [Kunci API](https://platform.claude.com/docs/id/api/organization/api_keys/list): daftar, pengambilan, dan pembaruan                                                                                                                                                                                                                               | `workspace_id` | `scope` (nilai berbeda; lihat [`workspace_id` pada kunci API](https://platform.claude.com/docs/id/api/migration-2026-10-21#api-key-workspace-id)) |
 
 Claude Enterprise Analytics API:
 
@@ -168,11 +168,11 @@ Parameter query `group_type` pada endpoint list batas laju dan filter `workspace
 
 Memengaruhi Anda jika kode Anda membaca `workspace_id` pada kunci API.
 
-Di `2023-06-01`, `workspace_id` dari kunci API adalah ID workspace tempat kunci tersebut terikat, atau `null` untuk kunci yang terikat ke Default Workspace dan untuk kunci yang tidak terikat ke satu workspace (kunci semua workspace).
+Di `2023-06-01`, `workspace_id` dari kunci API adalah ID workspace tempat kunci tersebut terikat, atau `null` untuk kunci yang terikat ke workspace default dan untuk kunci yang tidak terikat ke satu workspace (kunci semua workspace).
 
-Di `2026-10-21`, `workspace_id` dihapus. Baca `scope` sebagai gantinya: untuk kunci yang terikat ke workspace, termasuk Default Workspace, `scope.workspace_id` adalah ID sebenarnya dari workspace tersebut, dan kunci semua workspace memiliki `scope` berupa `{"type": "organization"}`, tanpa `workspace_id`.
+Di `2026-10-21`, `workspace_id` dihapus. Baca `scope` sebagai gantinya: untuk kunci yang terikat ke workspace, termasuk workspace default, `scope.workspace_id` adalah ID sebenarnya dari workspace tersebut, dan kunci semua workspace memiliki `scope` berupa `{"type": "organization"}`, tanpa `workspace_id`.
 
-Jika kode Anda memperlakukan `workspace_id` yang bernilai `null` sebagai Default Workspace, bandingkan `scope.workspace_id` dengan ID Default Workspace Anda sebagai gantinya. Untuk menemukan ID tersebut, panggil [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list) dengan `include_default=true` dan ambil workspace bernama `"Default"`.
+Jika kode Anda memperlakukan `workspace_id` yang bernilai `null` sebagai workspace default, bandingkan `scope.workspace_id` dengan ID workspace default Anda sebagai gantinya. Untuk menemukan ID tersebut, panggil [Daftar Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/list) dengan `include_default=true` dan ambil workspace bernama `"Default"`.
 
 ## Perubahan SDK dan CLI
 
@@ -188,7 +188,7 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk semua peran. Setiap
 
     Di v1, `anthropic.types.MessageParam` adalah satu `TypedDict`. Di v2 ia adalah union dari ketiga tipe tersebut, dan `anthropic.types.beta.BetaMessageParam` adalah union dari ketiga tipenya. Kedua nama tersebut masih berfungsi dalam anotasi, seperti `list[MessageParam]`.
 
-    Memanggil salah satu nama tersebut kini memunculkan `TypeError`, dan type checker menandainya. Tulis pesan sebagai dict:
+    Memanggil salah satu nama tersebut kini memunculkan `TypeError`, dan pemeriksa tipe menandainya. Tulis pesan sebagai dict:
 
     ```python
     # Sebelum
@@ -250,7 +250,7 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk semua peran. Setiap
 
     Tipe `BetaMessageParam["content"]` juga mencakup `undefined`. Untuk konten pesan user atau assistant, gunakan `BetaMessageContentParam`.
 
-    Interface tidak dapat meng-extend union, dan class tidak dapat mengimplementasikannya. Gunakan type alias, atau sebutkan tipe untuk satu peran saja.
+    Interface tidak dapat meng-extend union, dan class tidak dapat mengimplementasikannya. Gunakan alias tipe, atau sebutkan tipe untuk satu peran saja.
 
     ```typescript
     // Sebelum
@@ -281,7 +281,7 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk semua peran. Setiap
     Class yang menampung `Content` juga berubah:
 
     * `MessageParamContent` sekarang menjadi `MessageContentParam`, dan `BetaMessageParamContent` sekarang menjadi `BetaMessageContentParam`.
-    * Pesan system memiliki class kontennya sendiri. `SystemMessageParamContent` menampung string atau list `TextBlockParam`, dan `BetaSystemMessageParamContent` menampung string atau list `SystemMessageContentBlock`. `List<ContentBlockParam>` atau `List<BetaContentBlockParam>` tidak lagi dikonversi ke sana.
+    * Pesan system memiliki class kontennya sendiri. `SystemMessageParamContent` menampung string atau daftar `TextBlockParam`, dan `BetaSystemMessageParamContent` menampung string atau daftar `SystemMessageContentBlock`. `List<ContentBlockParam>` atau `List<BetaContentBlockParam>` tidak lagi dikonversi ke sana.
     * `ClearAt` dan `OutputConfig` hanya ada di `BetaSystemMessageParam`.
 
     Saat Anda membaca pesan, union tersebut masih memiliki `Role` dan `Content`, tetapi Anda tidak dapat mengaturnya, sehingga ekspresi `with` diterapkan pada class untuk perannya. `Role` sekarang menampung `MessageParamRole` atau `BetaMessageParamRole`. `BetaMessageParam.Content` dapat bernilai `null`, karena `Content` bersifat opsional di `BetaSystemMessageParam`.
@@ -343,7 +343,7 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk semua peran. Setiap
 
     `addUserMessage`, `addAssistantMessage`, dan `addSystemMessage` dengan `String`, `addMessage` dengan `Message` atau `MessageParam`, serta `Message.toParam()` tidak berubah.
 
-    `MessageParam.builder()` dan `toBuilder()` telah dihapus. Panggil factory method untuk perannya, yaitu `ofUser`, `ofAssistant`, atau `ofSystem`:
+    `MessageParam.builder()` dan `toBuilder()` telah dihapus. Panggil metode factory untuk perannya, yaitu `ofUser`, `ofAssistant`, atau `ofSystem`:
 
     ```java
     // Sebelum
@@ -356,7 +356,7 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk semua peran. Setiap
     MessageParam message = MessageParam.ofUser("Hello, Claude");
     ```
 
-    Metode yang menerima list blok konten memiliki nama baru pada builder dari `MessageCreateParams`, `StructuredMessageCreateParams`, `MessageCountTokensParams`, dan `BatchCreateParams.Request.Params`:
+    Metode yang menerima daftar blok konten memiliki nama baru pada builder dari `MessageCreateParams`, `StructuredMessageCreateParams`, `MessageCountTokensParams`, dan `BatchCreateParams.Request.Params`:
 
     | v2                                 | v2 beta                                       | v3                                        |
     | ---------------------------------- | --------------------------------------------- | ----------------------------------------- |
@@ -382,7 +382,7 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk semua peran. Setiap
   <Tab title="PHP">
     Class-classnya berada di `Anthropic\Messages`, dan class beta di `Anthropic\Beta\Messages`. Pesan yang Anda tulis sebagai array tidak berubah, dan masih memerlukan `'role'`-nya.
 
-    `MessageParam::with()` dan `BetaMessageParam::with()` tetap ada, dan mengembalikan class yang sesuai dengan `role`. Panggilan dengan argumen bernama tidak memerlukan perubahan. `role` sekarang menjadi parameter pertama, jadi dalam panggilan posisional tukar `content` dan `role`, atau panggil `with()` pada class peran tersebut, yang tidak menerima `role`. Untuk argumen dengan urutan lama, PHP melempar `UnhandledMatchError`, yang tidak diperingatkan oleh PHPStan, atau `TypeError` jika `content` berupa list atau `role` berupa enum case.
+    `MessageParam::with()` dan `BetaMessageParam::with()` tetap ada, dan mengembalikan class yang sesuai dengan `role`. Panggilan dengan argumen bernama tidak memerlukan perubahan. `role` sekarang menjadi parameter pertama, jadi dalam panggilan posisional tukar `content` dan `role`, atau panggil `with()` pada class peran tersebut, yang tidak menerima `role`. Untuk argumen dengan urutan lama, PHP melempar `UnhandledMatchError`, yang tidak diperingatkan oleh PHPStan, atau `TypeError` jika `content` berupa daftar atau `role` berupa enum case.
 
     ```php
     // Sebelum
@@ -392,7 +392,7 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk semua peran. Setiap
     UserMessageParam::with('Hello, Claude');
     ```
 
-    Tidak ada lagi objek yang merupakan `MessageParam`: `instanceof MessageParam` bernilai false, dan PHP melempar `TypeError` di mana tipe parameter atau return menyebutkannya. Sebutkan ketiga class tersebut sebagai gantinya:
+    Tidak ada lagi objek yang merupakan `MessageParam`: `instanceof MessageParam` bernilai false, dan PHP melempar `TypeError` di mana tipe parameter atau tipe kembalian menyebutkannya. Sebutkan ketiga class tersebut sebagai gantinya:
 
     ```php
     // Sebelum
@@ -544,7 +544,7 @@ Ini memengaruhi SDK C#, Go, Java, PHP, dan Ruby serta satu flag CLI. Pada versi 
   </Tab>
 
   <Tab title="Java">
-    Contoh enum semacam itu adalah nested class `BetaManagedAgentsTextBlock.Type`, dengan satu anggotanya `TEXT`. Hampir semuanya adalah `type` dari class di bawah `com.anthropic.models.beta`: `agents`, `deploymentruns`, `deployments`, `dreams`, `environments`, `memorystores`, `sessions`, `userprofiles`, dan `vaults`. Di v3, field-field ini berupa `JsonValue` yang diisi oleh builder, seperti milik `TextBlockParam` sebelumnya. Field opsional, seperti `type` dari `BetaManagedAgentsBashToolConfigParams`, tetap mempertahankan enum-nya.
+    Contoh enum semacam itu adalah kelas bersarang `BetaManagedAgentsTextBlock.Type`, dengan satu anggotanya `TEXT`. Hampir semuanya adalah `type` dari class di bawah `com.anthropic.models.beta`: `agents`, `deploymentruns`, `deployments`, `dreams`, `environments`, `memorystores`, `sessions`, `userprofiles`, dan `vaults`. Di v3, field-field ini berupa `JsonValue` yang diisi oleh builder, seperti milik `TextBlockParam` sebelumnya. Field opsional, seperti `type` dari `BetaManagedAgentsBashToolConfigParams`, tetap mempertahankan enum-nya.
 
     Saat Anda membuat objek, hapus pemanggilan tersebut:
 
@@ -561,7 +561,7 @@ Ini memengaruhi SDK C#, Go, Java, PHP, dan Ruby serta satu flag CLI. Pada versi 
         .build();
     ```
 
-    Class yang tersisa dengan satu field wajib juga mendapatkan factory method yang menerimanya, sehingga `BetaManagedAgentsTextBlock.of("Hello Claude!")` juga berfungsi. Class yang tidak tersisa field wajib apa pun kehilangan `of(type)`, dan union-nya kehilangan overload yang menerima enum, seperti `ofAlwaysAllow(type)`. Buat dengan `BetaManagedAgentsAlwaysAllowPolicy.builder().build()`.
+    Class yang tersisa dengan satu field wajib juga mendapatkan metode factory yang menerimanya, sehingga `BetaManagedAgentsTextBlock.of("Hello Claude!")` juga berfungsi. Class yang tidak tersisa field wajib apa pun kehilangan `of(type)`, dan union-nya kehilangan overload yang menerima enum, seperti `ofAlwaysAllow(type)`. Buat dengan `BetaManagedAgentsAlwaysAllowPolicy.builder().build()`.
 
     Saat Anda membacanya, `type()` telah dihapus dan `_type()` mengembalikan `com.anthropic.core.JsonValue`:
 
@@ -625,9 +625,9 @@ Ini memengaruhi SDK C#, Go, Java, PHP, dan Ruby serta satu flag CLI. Pada versi 
     )
     ```
 
-    Saat Anda membuat instance model, `type:` sekarang memiliki nilai default, sehingga Anda dapat menghilangkannya: `Anthropic::Beta::Sessions::BetaManagedAgentsTextBlock.new(text: "Hello Claude!")`. Hal yang sama berlaku untuk keyword `type:` dari `client.beta.sessions.resources.add`.
+    Saat Anda membuat instance model, `type:` sekarang memiliki nilai default, sehingga Anda dapat menghilangkannya: `Anthropic::Beta::Sessions::BetaManagedAgentsTextBlock.new(text: "Hello Claude!")`. Hal yang sama berlaku untuk kata kunci `type:` dari `client.beta.sessions.resources.add`.
 
-    Jika Anda melakukan pemeriksaan tipe dengan Sorbet, alias `Type::OrSymbol` dan `Type::TaggedSymbol` dari modul-modul ini ikut dihapus, dan field-field tersebut berupa `Symbol`. `OrSymbol` juga mengizinkan `String`, sehingga `.new(type: "text")` tidak lagi lolos pemeriksaan tipe. Hilangkan keyword tersebut atau teruskan `:text`. Di RBS, alias `type_` dari setiap class telah dihapus, dan field-nya berupa literal, seperti `:text`.
+    Jika Anda melakukan pemeriksaan tipe dengan Sorbet, alias `Type::OrSymbol` dan `Type::TaggedSymbol` dari modul-modul ini ikut dihapus, dan field-field tersebut berupa `Symbol`. `OrSymbol` juga mengizinkan `String`, sehingga `.new(type: "text")` tidak lagi lolos pemeriksaan tipe. Hilangkan kata kunci tersebut atau teruskan `:text`. Di RBS, alias `type_` dari setiap class telah dihapus, dan field-nya berupa literal, seperti `:text`.
   </Tab>
 </Tabs>
 
@@ -709,7 +709,7 @@ Metode Models non-beta tidak lagi menerima `betas` (csharp, go: `Betas`; java: `
   </Tab>
 
   <Tab title="Python">
-    `client.models.retrieve()` dan `client.models.list()` tidak lagi menerima `betas` (meneruskannya menghasilkan `TypeError`, dan type checker menandainya), dan `anthropic.types.ModelListParams` tidak lagi memiliki key `betas`.
+    `client.models.retrieve()` dan `client.models.list()` tidak lagi menerima `betas` (meneruskannya menghasilkan `TypeError`, dan pemeriksa tipe menandainya), dan `anthropic.types.ModelListParams` tidak lagi memiliki kunci `betas`.
 
     ```python
     # Sebelum
@@ -817,7 +817,7 @@ Metode Models non-beta tidak lagi menerima `betas` (csharp, go: `Betas`; java: `
 
 ### Kunci API dikirim sebagai `Authorization: Bearer`
 
-SDK dan CLI mengirim kunci API Anda sebagai `Authorization: Bearer <key>` alih-alih di header `X-Api-Key`, jadi ubah proxy atau gateway apa pun yang membaca atau mengatur `X-Api-Key` agar menggunakan `Authorization`, atau [kirim kunci di `X-Api-Key` sendiri](https://platform.claude.com/docs/id/api/migration-2026-10-21#sdk-proxy-x-api-key). Ubah juga kode di program Anda sendiri yang membaca `X-Api-Key`, seperti middleware, filter log, atau test stub. Claude API menerima kunci di salah satu header tersebut.
+SDK dan CLI mengirim kunci API Anda sebagai `Authorization: Bearer <key>` alih-alih di header `X-Api-Key`, jadi ubah proxy atau gateway apa pun yang membaca atau mengatur `X-Api-Key` agar menggunakan `Authorization`, atau [kirim kunci di `X-Api-Key` sendiri](https://platform.claude.com/docs/id/api/migration-2026-10-21#sdk-proxy-x-api-key). Ubah juga kode di program Anda sendiri yang membaca `X-Api-Key`, seperti middleware, filter log, atau stub pengujian. Claude API menerima kunci di salah satu header tersebut.
 
 ```text wrap
 # Before
@@ -859,7 +859,7 @@ Authorization: Bearer <key>
   <Tab title="Java">
     `Authorization` adalah header yang sudah digunakan oleh `authToken`.
 
-    Ini berlaku untuk `apiKey` pada builder `AnthropicOkHttpClient`, `AnthropicOkHttpClientAsync`, dan `AnthropicBackend`, variabel lingkungan `ANTHROPIC_API_KEY`, dan system property `anthropic.apiKey`. `apiKey` pada builder `FoundryBackend` masih dikirim sebagai `x-api-key`. `apiKey` pada builder `AwsBackend`, `BedrockBackend`, dan `BedrockMantleBackend` sudah merupakan bearer token.
+    Ini berlaku untuk `apiKey` pada builder `AnthropicOkHttpClient`, `AnthropicOkHttpClientAsync`, dan `AnthropicBackend`, variabel lingkungan `ANTHROPIC_API_KEY`, dan properti sistem `anthropic.apiKey`. `apiKey` pada builder `FoundryBackend` masih dikirim sebagai `x-api-key`. `apiKey` pada builder `AwsBackend`, `BedrockBackend`, dan `BedrockMantleBackend` sudah merupakan bearer token.
   </Tab>
 
   <Tab title="PHP">
@@ -871,7 +871,7 @@ Authorization: Bearer <key>
   <Tab title="Ruby">
     `Authorization` adalah header yang sudah digunakan oleh `auth_token:`.
 
-    Ini berlaku untuk argumen `api_key:` dan variabel lingkungan `ANTHROPIC_API_KEY` dari `Anthropic::Client`, serta untuk `api_key:` dan `ANTHROPIC_AWS_API_KEY` dari `Anthropic::AWSClient`. `Anthropic::BedrockMantleClient` sudah mengirim bearer token.
+    Ini berlaku untuk argumen `api_key:` dan variabel lingkungan `ANTHROPIC_API_KEY` dari `Anthropic::Client`, serta untuk `api_key:` dan `ANTHROPIC_AWS_API_KEY` dari `Anthropic::AWSClient`. `Anthropic::FoundryClient` mengirim kuncinya sebagai `x-api-key`, dan `Anthropic::BedrockMantleClient` sudah mengirim bearer token.
 
     SDK membuang `Authorization` ketika mengikuti redirect ke origin lain, termasuk redirect dari `http` ke `https` pada host yang sama. Kunci sekarang juga dibuang di sana.
   </Tab>
@@ -1047,7 +1047,7 @@ Kunci API dan token autentikasi sekarang berbagi satu header, sehingga klien SDK
     * **Teruskan paling banyak satu.** Dua atau lebih di constructor, atau dalam satu panggilan `copy()` atau `with_options()`, memunculkan `ValueError`. `None` tidak dihitung. v1 memunculkan `TypeError`, dan hanya untuk dua dari `credentials`, `config`, dan `profile`.
     * **Yang Anda teruskan adalah satu-satunya.** Seperti di v1, klien tidak mencari kredensial lain di lingkungan atau di disk.
     * **Jika tidak ada yang diteruskan, hanya yang pertama dari berikut ini yang diatur yang digunakan:** `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, profil yang disebutkan oleh `ANTHROPIC_PROFILE`, variabel workload identity federation, profil aktif di disk (yang disebutkan oleh file `active_config`, jika tidak maka `default`). Ketika dua yang pertama keduanya diatur, klien mencatat peringatan satu kali. v1 menggunakan profil aktif sebelum variabel federation ketika `ANTHROPIC_CONFIG_DIR` diatur atau file `active_config` ada; atur `ANTHROPIC_PROFILE` untuk tetap menggunakannya.
-    * **`copy()` dan `with_options()` menggantikan.** Kredensial yang Anda teruskan menggantikan kredensial milik klien, apa pun jenis keduanya. Base URL dan header yang berasal dari config atau profil kredensial lama ikut terbuang, dan milik kredensial baru yang digunakan. Base URL yang Anda teruskan tetap ada.
+    * **`copy()` dan `with_options()` menggantikan.** Kredensial yang Anda teruskan menggantikan kredensial milik klien, apa pun jenis keduanya. Base URL dan header yang berasal dari konfigurasi atau profil kredensial lama ikut terbuang, dan milik kredensial baru yang digunakan. Base URL yang Anda teruskan tetap ada.
 
     ```python
     client = Anthropic(api_key=key, auth_token=token)
@@ -1141,7 +1141,7 @@ Kunci API dan token autentikasi sekarang berbagi satu header, sehingga klien SDK
 
     * **Atur paling banyak satu.** Dengan dua pada satu builder, `build()` melempar `IllegalStateException` yang menyebutkan keduanya. `null` atau `Optional` kosong tidak dihitung.
     * **Yang Anda atur adalah satu-satunya.** `fromEnv()`, yang dipanggil sebelum atau sesudahnya, tidak mengambil kredensial dari lingkungan atau dari profil di disk. Di v2, kunci atau token yang ditemukan `fromEnv()` dapat dikirim juga, atau sebagai gantinya.
-    * **Jika tidak ada yang diatur, `fromEnv()` menggunakan yang pertama dari berikut ini yang ditemukannya:** `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, `ANTHROPIC_PROFILE`, variabel workload identity federation, profil aktif di disk. Ketika dua yang pertama keduanya diatur, peringatan dikirim ke `System.err` satu kali. System property `anthropic.apiKey` dan `anthropic.authToken` dihitung sebagai lingkungan. Kunci atau token yang kosong, dalam variabel atau system property, dianggap tidak diatur. Di v2, `fromEnv()` menggunakan nilai kosong sebagai kunci atau token.
+    * **Jika tidak ada yang diatur, `fromEnv()` menggunakan yang pertama dari berikut ini yang ditemukannya:** `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, `ANTHROPIC_PROFILE`, variabel workload identity federation, profil aktif di disk. Ketika dua yang pertama keduanya diatur, peringatan dikirim ke `System.err` satu kali. Properti sistem `anthropic.apiKey` dan `anthropic.authToken` dihitung sebagai lingkungan. Kunci atau token yang kosong, dalam variabel atau properti sistem, dianggap tidak diatur. Di v2, `fromEnv()` menggunakan nilai kosong sebagai kunci atau token.
 
     ```java
     // Sebelumnya: keduanya dikirim. Di v3, build() melempar IllegalStateException
@@ -1175,7 +1175,7 @@ Kunci API dan token autentikasi sekarang berbagi satu header, sehingga klien SDK
 
     * Meneruskan lebih dari satu di antaranya melempar `\InvalidArgumentException`. Hanya `null` yang dianggap tidak diteruskan. String kosong dianggap diteruskan, sehingga `new Client(apiKey: '')` tidak mengirim kredensial.
     * Meneruskan satu akan menggunakannya, dan tidak ada kredensial yang dibaca dari lingkungan atau dari profil di disk. Dengan `ANTHROPIC_API_KEY` diatur, `new Client(authToken: $token)` mengirim token. Versi sebelumnya mengirim kunci dari lingkungan bersamanya.
-    * Tidak meneruskan apa pun akan menggunakan yang pertama dari berikut ini yang diatur: `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, profil yang disebutkan oleh `ANTHROPIC_PROFILE`, variabel workload identity federation, profil aktif di disk (yang disebutkan oleh file `active_config`, jika tidak maka `default`). Versi sebelumnya menggunakan profil aktif sebelum variabel federation, dan tidak menggunakan profil ketika tidak ada file `active_config`. Versi sebelumnya juga melewati `ANTHROPIC_PROFILE` yang menyebutkan profil yang tidak ada atau tidak valid. Untuk hal itu, `new Client()` sekarang melempar `Anthropic\Core\Exceptions\AnthropicException`. Dengan `ANTHROPIC_API_KEY` dan `ANTHROPIC_AUTH_TOKEN` keduanya diatur, klien mengirim kunci dan properti `authToken`-nya kosong. Klien pertama yang dibuat dengan cara itu juga menulis peringatan dengan `error_log()`, satu kali untuk setiap proses, yang pada web server berarti satu kali untuk setiap permintaan: `Anthropic: ANTHROPIC_API_KEY and ANTHROPIC_AUTH_TOKEN are both set. Using ANTHROPIC_API_KEY.` Untuk menghentikannya, hapus pengaturan variabel yang tidak Anda gunakan.
+    * Tidak meneruskan apa pun akan menggunakan yang pertama dari berikut ini yang diatur: `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, profil yang disebutkan oleh `ANTHROPIC_PROFILE`, variabel workload identity federation, profil aktif di disk (yang disebutkan oleh file `active_config`, jika tidak maka `default`). Versi sebelumnya menggunakan profil aktif sebelum variabel federation, dan tidak menggunakan profil ketika tidak ada file `active_config`. Versi sebelumnya juga melewati `ANTHROPIC_PROFILE` yang menyebutkan profil yang tidak ada atau tidak valid. Untuk hal itu, `new Client()` sekarang melempar `Anthropic\Core\Exceptions\AnthropicException`. Dengan `ANTHROPIC_API_KEY` dan `ANTHROPIC_AUTH_TOKEN` keduanya diatur, klien mengirim kunci dan properti `authToken`-nya kosong. Klien pertama yang dibuat dengan cara itu juga menulis peringatan dengan `error_log()`, satu kali untuk setiap proses, yang pada server web berarti satu kali untuk setiap permintaan: `Anthropic: ANTHROPIC_API_KEY and ANTHROPIC_AUTH_TOKEN are both set. Using ANTHROPIC_API_KEY.` Untuk menghentikannya, hapus pengaturan variabel yang tidak Anda gunakan.
 
     ```php
     // Sebelumnya: mengirim kunci sebagai X-Api-Key dan token sebagai Authorization.
@@ -1212,7 +1212,7 @@ Setiap perubahan ini memengaruhi satu SDK atau CLI.
 
 <Tabs exclude="shell:cURL, python, typescript">
   <Tab title="CLI">
-    **`--api-key` dan `--auth-token` dihapus.** `ant` tidak lagi menerima kunci API atau token autentikasi sebagai nilai flag, karena nilai di baris perintah terlihat dalam riwayat shell dan daftar proses. Kedua flag telah mencetak peringatan deprecation sejak v1.27.0. Perintah yang masih meneruskan salah satunya akan berhenti dengan `flag provided but not defined`.
+    **`--api-key` dan `--auth-token` dihapus.** `ant` tidak lagi menerima kunci API atau token autentikasi sebagai nilai flag, karena nilai di baris perintah terlihat dalam riwayat shell dan daftar proses. Kedua flag telah mencetak peringatan penghentian sejak v1.27.0. Perintah yang masih meneruskan salah satunya akan berhenti dengan `flag provided but not defined`.
 
     | Dihapus                | Gunakan sebagai gantinya                                      |
     | ---------------------- | ------------------------------------------------------------- |
@@ -1227,7 +1227,7 @@ Setiap perubahan ini memengaruhi satu SDK atau CLI.
     export ANTHROPIC_API_KEY="$KEY"
     ant models list
 
-    # Sesudah, dari secret manager
+    # Sesudah, dari pengelola rahasia
     op read op://vault/anthropic/api-key | ant --api-key-stdin models list
     ```
 

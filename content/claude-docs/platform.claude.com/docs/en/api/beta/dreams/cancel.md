@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/cancel
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 4ed61e03923d0459395eb83aec1f02680d180df19738620747caa1fb7bb60331
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: e4df2563118ed438263b0328609e1e88757246d451e0ae8162a39982152a064c
 ---
 
 ---
@@ -239,8 +239,6 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
         The IDs of the sessions whose transcripts the dream reads (`sesn_...`).
 
         Give 1 to 100 IDs, with no duplicates. Each session must be in the same workspace as the dream. Responses list the IDs in sorted order.
-
-        The [limits table in the Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams?sdk_languages=http#limits) lists all the limits on a dream.
 
   - `instructions: string or null`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/rate-limits-api
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 6cd5be43b40420dbc8810247d96df5ae8fc610fdb8d5e39095998b0a723a0282
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 7a75397add041f9765c79768bbb7e7a3b28044d002776675ef53d4186093bbf6
 ---
 
 ---
@@ -12,23 +12,23 @@ description: Baca batas laju API organisasi Anda secara terprogram dan atur bata
 ---
 
 <Tip>
-  **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
+  **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organisasi](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
 </Tip>
 
-Rate Limits API menyediakan akses terprogram ke “rate limit” (batas laju) yang dikonfigurasi untuk organisasi Anda dan workspace-nya. Ini adalah informasi yang sama dengan yang ditampilkan di halaman [Rate limits](https://platform.claude.com/usage/limits) di Claude Console. Anda juga dapat menggunakannya untuk mengatur dan menghapus batas laju sebuah workspace.
+Rate Limits API menyediakan akses terprogram ke “rate limit” (batas laju) yang dikonfigurasi untuk organisasi Anda dan workspace-nya. Ini adalah informasi yang sama dengan yang ditampilkan di [halaman Batas laju di Claude Console](https://platform.claude.com/usage/limits). Anda juga dapat menggunakannya untuk mengatur dan menghapus batas laju sebuah workspace.
 
 Gunakan API ini untuk:
 
 * **Menjaga gateway dan proxy tetap sinkron:** Baca batas Anda saat ini ketika startup dan secara terjadwal alih-alih melakukan hardcode nilai yang akan menyimpang ketika Anthropic menyesuaikannya.
 * **Meninjau sisa ruang hingga batas:** Bandingkan penggunaan sebelumnya dari [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) dengan batas yang telah Anda konfigurasi.
 * **Mengaudit konfigurasi workspace:** Verifikasi bahwa override workspace sesuai dengan yang diharapkan oleh otomatisasi provisioning Anda.
-* **Kelola batas workspace dari kode:** Atur dan hapus batas setiap workspace dari otomatisasi provisioning Anda alih-alih mengeditnya di Console.
+* **Mengelola batas workspace dari kode:** Atur dan hapus batas setiap workspace dari otomatisasi provisioning Anda alih-alih mengeditnya di Console.
 
 <Check>
   **Kredensial Admin API diperlukan.** Endpoint ini merupakan bagian dari Admin API. Anda dapat mengaksesnya menggunakan [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys), token OAuth dengan cakupan `org:admin`, atau kunci akun pribadi maupun akun layanan yang tidak dibatasi pada suatu workspace; kunci API workspace tidak dapat digunakan. Lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/admin-api#authentication) untuk detailnya.
 </Check>
 
-Contoh SDK dan CLI di halaman ini membuat klien default, yang membaca kunci Admin API dari variabel lingkungan `ANTHROPIC_API_KEY`. SDK mengekspos endpoint ini sebagai `client.organization.rate_limits` (typescript: `client.organization.rateLimits`; csharp, go: `client.Organization.RateLimits`; java: `client.organization().rateLimits()`; php: `$client->organization->rateLimits`) dan `client.organization.workspaces.rate_limits` (typescript: `client.organization.workspaces.rateLimits`; csharp, go: `client.Organization.Workspaces.RateLimits`; java: `client.organization().workspaces().rateLimits()`; php: `$client->organization->workspaces->rateLimits`); metode list di Python, TypeScript, C#, Go, dan Java mengembalikan iterator yang mengikuti `next_page` untuk Anda, sedangkan contoh PHP, Ruby, dan curl membaca satu halaman.
+Klien default SDK dan CLI membaca kunci Admin API dari variabel lingkungan `ANTHROPIC_API_KEY`. SDK mengekspos endpoint ini sebagai `client.organization.rate_limits` (typescript: `client.organization.rateLimits`; csharp, go: `client.Organization.RateLimits`; java: `client.organization().rateLimits()`; php: `$client->organization->rateLimits`) dan `client.organization.workspaces.rate_limits` (typescript: `client.organization.workspaces.rateLimits`; csharp, go: `client.Organization.Workspaces.RateLimits`; java: `client.organization().workspaces().rateLimits()`; php: `$client->organization->workspaces->rateLimits`). Komentar di setiap contoh daftar menyatakan apakah contoh tersebut mengambil halaman-halaman berikutnya atau hanya membaca halaman pertama.
 
 ## Mulai cepat
 
@@ -36,12 +36,14 @@ Tampilkan daftar batas laju yang dikonfigurasi untuk organisasi Anda:
 
 <CodeGroup>
   ```bash cURL
+  # Mengembalikan satu halaman, yang berisi semua entri jika `limit` tidak disertakan.
   curl "https://api.anthropic.com/v1/organizations/rate_limits" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
+  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   ant organization:rate-limits list
   ```
 
@@ -50,6 +52,7 @@ Tampilkan daftar batas laju yang dikonfigurasi untuk organisasi Anda:
 
   rate_limits = client.organization.rate_limits.list()
 
+  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for entry in rate_limits:
       models = f" ({', '.join(entry.models)})" if entry.models else ""
       print(f"{entry.group.type}{models}")
@@ -62,6 +65,7 @@ Tampilkan daftar batas laju yang dikonfigurasi untuk organisasi Anda:
 
   const rateLimits = await client.organization.rateLimits.list();
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for await (const entry of rateLimits) {
     const models = entry.models ? ` (${entry.models.join(", ")})` : "";
     console.log(`${entry.group.type}${models}`);
@@ -76,6 +80,7 @@ Tampilkan daftar batas laju yang dikonfigurasi untuk organisasi Anda:
 
   var rateLimits = await client.Organization.RateLimits.List();
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   await foreach (var entry in rateLimits.Paginate())
   {
       var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
@@ -92,6 +97,7 @@ Tampilkan daftar batas laju yang dikonfigurasi untuk organisasi Anda:
 
   rateLimits := client.Organization.RateLimits.ListAutoPaging(context.Background(), anthropic.OrganizationRateLimitListParams{})
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for rateLimits.Next() {
   	entry := rateLimits.Current()
   	models := ""
@@ -113,6 +119,7 @@ Tampilkan daftar batas laju yang dikonfigurasi untuk organisasi Anda:
 
   var rateLimits = client.organization().rateLimits().list();
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for (var entry : rateLimits.autoPager()) {
       var models = entry.models()
           .map(modelIds -> " (" + String.join(", ", modelIds) + ")")
@@ -129,6 +136,7 @@ Tampilkan daftar batas laju yang dikonfigurasi untuk organisasi Anda:
 
   $rateLimits = $client->organization->rateLimits->list();
 
+  // Hanya membaca halaman pertama, yang memuat semua entri jika `limit` tidak disertakan.
   foreach ($rateLimits->data as $entry) {
       $models = $entry->models ? ' (' . implode(', ', $entry->models) . ')' : '';
       echo "{$entry->group->type}{$models}\n";
@@ -143,6 +151,7 @@ Tampilkan daftar batas laju yang dikonfigurasi untuk organisasi Anda:
 
   rate_limits = client.organization.rate_limits.list
 
+  # Hanya membaca halaman pertama, yang memuat semua entri jika `limit` tidak diberikan.
   rate_limits.data.each do |entry|
     models = entry.models ? " (#{entry.models.join(", ")})" : ""
     puts "#{entry.group.type}#{models}"
@@ -159,26 +168,28 @@ Endpoint `/v1/organizations/rate_limits` mengembalikan batas laju yang diterapka
 
 ### Konsep utama
 
-* **Grup batas laju:** Setiap entri dalam respons mewakili satu grup batas laju. Batas laju model dikelompokkan sehingga beberapa versi model berbagi satu set batas yang sama, dan grup lainnya mencakup sumber daya seperti Message Batches API, Files API, Token Counting API, agent skills, dan alat web search.
+* **Grup batas laju:** Setiap entri dalam respons mewakili satu grup batas laju. Batas laju model dikelompokkan sehingga beberapa versi model berbagi satu set batas yang sama. Grup lainnya mencakup Message Batches API dan alat pencarian web.
 * **Objek `group`:** Ada di setiap entri, objek ini mengidentifikasi grup batas laju tempat entri tersebut berlaku. Objek ini selalu memiliki `type`, yang merupakan salah satu nilai `group_type`, dan `id`, sebuah pengidentifikasi opak dengan awalan `rlg_`. Pada entri `model_group`, objek ini juga memiliki `display_name`, label Anthropic saat ini untuk grup tersebut, seperti `Claude Sonnet 4.x`. Label ini hanya untuk tampilan dan dapat berubah. Tipe grup lainnya tidak memiliki `display_name`.
-* **`id` di dalam `group`:** Sebuah grup memiliki `id` yang sama di setiap organisasi dan di setiap override workspace, dan tidak pernah berubah. Gunakan untuk mencocokkan entri antar organisasi atau dengan katalog Anda sendiri. `id` milik entri itu sendiri berbeda per organisasi, dan `models` berubah ketika Anthropic memindahkan model antar grup. Keduanya bukan kunci yang stabil untuk grup.
+* **`id` di dalam `group`:** Sebuah grup memiliki `id` yang sama di setiap organisasi dan pada setiap override workspace, dan tidak pernah berubah. Gunakan ini untuk mencocokkan entri di seluruh organisasi atau dengan katalog Anda sendiri. `id` milik entri itu sendiri berbeda untuk setiap organisasi, dan `models` berubah ketika Anthropic memindahkan model antar grup. Keduanya bukan kunci yang stabil untuk grup.
 * **`group_type`:** Parameter kueri yang membatasi daftar ke satu tipe grup. Lihat [Memfilter berdasarkan tipe grup](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#filtering-by-group-type) untuk nilai-nilainya.
 * **Daftar `models`:** Untuk entri `model_group`, field `models` mencantumkan setiap ID model dan alias yang dihitung terhadap batas grup tersebut. Gunakan daftar ini untuk mencari grup mana yang mencakup string model apa pun. Untuk tipe grup lainnya, `models` bernilai `null`.
 * **Daftar `limits`:** Setiap grup membawa daftar pasangan `{type, value}`. Field `type` mengidentifikasi limiter (seperti `requests_per_minute`, `input_tokens_per_minute`, atau `output_tokens_per_minute`) dan `value` adalah batas yang dikonfigurasi. Lihat [Batas laju](https://platform.claude.com/docs/id/api/rate-limits) untuk cara setiap limiter diukur dan diberlakukan.
 * **`source` pada batas workspace:** Pada endpoint workspace, setiap nilai batas juga membawa `source`, yang menyatakan asal `value`: `{"type": "workspace"}` untuk override yang disimpan pada workspace, atau `{"type": "organization"}` untuk nilai yang diwarisi dari organisasi. Secara default, endpoint workspace hanya mengembalikan override, sehingga `source.type` selalu `workspace` di sana; nilai yang diwarisi muncul ketika Anda meneruskan `include_inherited=true`. Lihat [Batas laju workspace](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#workspace-rate-limits).
 
-Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization Rate Limits API](https://platform.claude.com/docs/id/api/organization/rate_limits/list).
+Untuk detail parameter lengkap dan skema respons, lihat [referensi API batas laju organisasi](https://platform.claude.com/docs/id/api/organization/rate_limits/list).
 
 ### Menampilkan semua batas laju organisasi
 
 <CodeGroup>
   ```bash cURL
+  # Mengembalikan satu halaman, yang berisi semua entri jika `limit` tidak disertakan.
   curl "https://api.anthropic.com/v1/organizations/rate_limits" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
+  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   ant organization:rate-limits list
   ```
 
@@ -187,6 +198,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
 
   rate_limits = client.organization.rate_limits.list()
 
+  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for entry in rate_limits:
       models = f" ({', '.join(entry.models)})" if entry.models else ""
       print(f"{entry.group.type}{models}")
@@ -199,6 +211,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
 
   const rateLimits = await client.organization.rateLimits.list();
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for await (const entry of rateLimits) {
     const models = entry.models ? ` (${entry.models.join(", ")})` : "";
     console.log(`${entry.group.type}${models}`);
@@ -213,6 +226,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
 
   var rateLimits = await client.Organization.RateLimits.List();
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   await foreach (var entry in rateLimits.Paginate())
   {
       var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
@@ -229,6 +243,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
 
   rateLimits := client.Organization.RateLimits.ListAutoPaging(context.Background(), anthropic.OrganizationRateLimitListParams{})
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for rateLimits.Next() {
   	entry := rateLimits.Current()
   	models := ""
@@ -250,6 +265,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
 
   var rateLimits = client.organization().rateLimits().list();
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for (var entry : rateLimits.autoPager()) {
       var models = entry.models()
           .map(modelIds -> " (" + String.join(", ", modelIds) + ")")
@@ -266,6 +282,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
 
   $rateLimits = $client->organization->rateLimits->list();
 
+  // Hanya membaca halaman pertama, yang memuat semua entri jika `limit` tidak disertakan.
   foreach ($rateLimits->data as $entry) {
       $models = $entry->models ? ' (' . implode(', ', $entry->models) . ')' : '';
       echo "{$entry->group->type}{$models}\n";
@@ -280,6 +297,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization 
 
   rate_limits = client.organization.rate_limits.list
 
+  # Hanya membaca halaman pertama, yang memuat semua entri jika `limit` tidak diberikan.
   rate_limits.data.each do |entry|
     models = entry.models ? " (#{entry.models.join(", ")})" : ""
     puts "#{entry.group.type}#{models}"
@@ -347,12 +365,14 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk hanya 
 
 <CodeGroup>
   ```bash cURL
+  # Mengembalikan satu halaman, yang memuat semua entri jika `limit` tidak diberikan.
   curl "https://api.anthropic.com/v1/organizations/rate_limits?model=claude-opus-5-5" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
+  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   ant organization:rate-limits list --model claude-opus-5-5
   ```
 
@@ -361,6 +381,7 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk hanya 
 
   rate_limits = client.organization.rate_limits.list(model="claude-opus-5-5")
 
+  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for entry in rate_limits:
       models = f" ({', '.join(entry.models)})" if entry.models else ""
       print(f"{entry.group.type}{models}")
@@ -375,6 +396,7 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk hanya 
     model: "claude-opus-5-5"
   });
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for await (const entry of rateLimits) {
     const models = entry.models ? ` (${entry.models.join(", ")})` : "";
     console.log(`${entry.group.type}${models}`);
@@ -392,6 +414,7 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk hanya 
       Model = "claude-opus-5-5"
   });
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   await foreach (var entry in rateLimits.Paginate())
   {
       var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
@@ -410,6 +433,7 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk hanya 
   	Model: anthropic.String(anthropic.ModelClaudeOpus5_5),
   })
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for rateLimits.Next() {
   	entry := rateLimits.Current()
   	models := ""
@@ -438,6 +462,7 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk hanya 
           .build();
       var rateLimits = client.organization().rateLimits().list(params);
 
+      // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
       for (var entry : rateLimits.autoPager()) {
           var models = entry.models()
               .map(modelIds -> " (" + String.join(", ", modelIds) + ")")
@@ -459,6 +484,7 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk hanya 
       model: Model::CLAUDE_OPUS_5_5->value,
   );
 
+  // Hanya membaca halaman pertama, yang memuat semua entri jika `limit` tidak diberikan.
   foreach ($rateLimits->data as $entry) {
       $models = $entry->models ? ' (' . implode(', ', $entry->models) . ')' : '';
       echo "{$entry->group->type}{$models}\n";
@@ -473,6 +499,7 @@ Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk hanya 
 
   rate_limits = client.organization.rate_limits.list(model: Anthropic::Model::CLAUDE_OPUS_5_5)
 
+  # Hanya membaca halaman pertama, yang memuat semua entri jika `limit` tidak disertakan.
   rate_limits.data.each do |entry|
     models = entry.models ? " (#{entry.models.join(", ")})" : ""
     puts "#{entry.group.type}#{models}"
@@ -487,7 +514,7 @@ Jika string model tidak cocok dengan grup mana pun, endpoint mengembalikan error
 
 ## Batas laju workspace
 
-Endpoint `/v1/organizations/workspaces/{workspace_id}/rate_limits` mengembalikan override batas laju yang dikonfigurasi untuk satu workspace. Untuk juga melihat nilai yang diwarisi workspace, berikan `include_inherited=true` (lihat [Sertakan nilai yang diwarisi](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#include-inherited-values)). Untuk mengubah override, lihat [Mengatur batas laju workspace](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#set-workspace-rate-limits).
+Endpoint `/v1/organizations/workspaces/{workspace_id}/rate_limits` mengembalikan override batas laju yang dikonfigurasi untuk satu workspace. Untuk juga melihat nilai yang diwarisi workspace, berikan `include_inherited=true` (lihat [Menyertakan nilai yang diwarisi](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#include-inherited-values)). Untuk mengubah override, lihat [Mengatur batas laju workspace](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#set-workspace-rate-limits).
 
 Secara default, respons hanya menyertakan override, sehingga apa pun yang tidak ada di dalamnya diwarisi dari organisasi:
 
@@ -495,20 +522,22 @@ Secara default, respons hanya menyertakan override, sehingga apa pun yang tidak 
 * Di dalam grup yang ada, tipe limiter yang tidak ada di `limits[]` tidak memiliki override workspace untuk limiter tersebut. Workspace mewarisi nilai organisasi untuknya.
 * Untuk setiap limiter yang ada, `org_limit` adalah nilai tingkat organisasi untuk limiter yang sama, atau `null` jika organisasi tidak memiliki batas yang dikonfigurasi untuk tipe limiter tersebut, dan `source` adalah `{"type": "workspace"}`.
 
-Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rate Limits API](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/list).
+Untuk detail parameter lengkap dan skema respons, lihat [referensi API batas laju workspace](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/list).
 
 <Tip>
-  Untuk mengambil ID workspace organisasi Anda, gunakan endpoint [List Workspaces](https://platform.claude.com/docs/id/api/organization/workspaces/list), atau temukan di [Claude Console](https://platform.claude.com/settings/workspaces). List Workspaces menyertakan workspace default hanya ketika Anda meneruskan `include_default=true`.
+  Untuk mengambil ID workspace organisasi Anda, gunakan endpoint [Daftar Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/list), atau temukan di bawah [Workspaces di Claude Console](https://platform.claude.com/settings/workspaces). Daftar Workspace hanya menyertakan workspace default ketika Anda meneruskan `include_default=true`.
 </Tip>
 
 <CodeGroup>
   ```bash cURL
+  # Mengembalikan satu halaman, yang memuat semua entri jika `limit` tidak disertakan.
   curl "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/rate_limits" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
+  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   ant organization:workspaces:rate-limits list \
     --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ
   ```
@@ -520,6 +549,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
       "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   )
 
+  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for entry in rate_limits:
       models = f" ({', '.join(entry.models)})" if entry.models else ""
       print(f"{entry.group.type}{models}")
@@ -534,6 +564,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
     "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   );
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for await (const entry of rateLimits) {
     const models = entry.models ? ` (${entry.models.join(", ")})` : "";
     console.log(`${entry.group.type}${models}`);
@@ -550,6 +581,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
       "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   );
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   await foreach (var entry in rateLimits.Paginate())
   {
       var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
@@ -570,6 +602,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
   	anthropic.OrganizationWorkspaceRateLimitListParams{},
   )
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for rateLimits.Next() {
   	entry := rateLimits.Current()
   	models := ""
@@ -592,6 +625,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
   var rateLimits = client.organization().workspaces().rateLimits()
       .list("wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ");
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for (var entry : rateLimits.autoPager()) {
       var models = entry.models()
           .map(modelIds -> " (" + String.join(", ", modelIds) + ")")
@@ -610,6 +644,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
       workspaceID: 'wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ',
   );
 
+  // Hanya membaca halaman pertama, yang memuat semua entri jika `limit` tidak diisi.
   foreach ($rateLimits->data as $entry) {
       $models = $entry->models ? ' (' . implode(', ', $entry->models) . ')' : '';
       echo "{$entry->group->type}{$models}\n";
@@ -625,6 +660,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
   workspace_id = "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   rate_limits = client.organization.workspaces.rate_limits.list(workspace_id)
 
+  # Hanya membaca halaman pertama, yang memuat semua entri jika `limit` dihilangkan.
   rate_limits.data.each do |entry|
     models = entry.models ? " (#{entry.models.join(", ")})" : ""
     puts "#{entry.group.type}#{models}"
@@ -701,7 +737,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rat
 
 ### Menyertakan nilai yang diwarisi
 
-Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan parameter kueri opsional `include_inherited`. Nilai defaultnya adalah `false`; nilai yang bukan Boolean mengembalikan error 400. Dengan `include_inherited=true`:
+Untuk membaca batas yang berlaku pada sebuah workspace dalam satu permintaan, tambahkan parameter kueri opsional `include_inherited`. Nilai defaultnya `false`; nilai yang bukan boolean mengembalikan error 400. Dengan `include_inherited=true`:
 
 * `data` memiliki satu entri untuk setiap grup yang berlaku pada workspace dan memiliki nilai tingkat organisasi, meskipun workspace tidak meng-override satu pun darinya. Grup model berlaku ketika workspace dapat mengakses setidaknya satu modelnya.
 * `limits[]` pada setiap entri mencantumkan setiap tipe limiter yang memiliki nilai dari organisasi pada grup tersebut, ditambah tipe apa pun yang di-override oleh workspace. Setiap tipe muncul sekali, dengan override workspace jika ada yang disimpan dan nilai organisasi jika tidak, sehingga satu entri dapat mencampur keduanya.
@@ -709,12 +745,14 @@ Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan
 
 <CodeGroup>
   ```bash cURL
+  # Mengembalikan satu halaman, yang berisi semua entri jika `limit` tidak disertakan.
   curl "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ/rate_limits?include_inherited=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
+  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   ant organization:workspaces:rate-limits list \
     --workspace-id wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ \
     --include-inherited
@@ -728,6 +766,7 @@ Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan
       include_inherited=True,
   )
 
+  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for entry in rate_limits:
       models = f" ({', '.join(entry.models)})" if entry.models else ""
       print(f"{entry.group.type}{models}")
@@ -743,6 +782,7 @@ Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan
     { include_inherited: true }
   );
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for await (const entry of rateLimits) {
     const models = entry.models ? ` (${entry.models.join(", ")})` : "";
     console.log(`${entry.group.type}${models}`);
@@ -760,6 +800,7 @@ Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan
       new() { IncludeInherited = true }
   );
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   await foreach (var entry in rateLimits.Paginate())
   {
       var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
@@ -782,6 +823,7 @@ Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan
   	},
   )
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for rateLimits.Next() {
   	entry := rateLimits.Current()
   	models := ""
@@ -810,6 +852,7 @@ Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan
       var rateLimits = client.organization().workspaces().rateLimits()
           .list("wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ", params);
 
+      // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
       for (var entry : rateLimits.autoPager()) {
           var models = entry.models()
               .map(modelIds -> " (" + String.join(", ", modelIds) + ")")
@@ -831,6 +874,7 @@ Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan
       includeInherited: true,
   );
 
+  // Hanya membaca halaman pertama, yang memuat semua entri jika `limit` tidak disertakan.
   foreach ($rateLimits->data as $entry) {
       $models = $entry->models ? ' (' . implode(', ', $entry->models) . ')' : '';
       echo "{$entry->group->type}{$models}\n";
@@ -846,6 +890,7 @@ Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan
   workspace_id = "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
   rate_limits = client.organization.workspaces.rate_limits.list(workspace_id, include_inherited: true)
 
+  # Hanya membaca halaman pertama, yang memuat semua entri jika `limit` tidak disertakan.
   rate_limits.data.each do |entry|
     models = entry.models ? " (#{entry.models.join(", ")})" : ""
     puts "#{entry.group.type}#{models}"
@@ -949,7 +994,7 @@ Untuk membaca batas yang berlaku pada workspace dalam satu permintaan, tambahkan
 
 ### Mengatur batas laju workspace
 
-Untuk menetapkan atau menghapus “rate limit” (batas laju) sebuah workspace untuk satu grup batas laju, kirim permintaan `POST` ke `/v1/organizations/workspaces/{workspace_id}/rate_limits/{rate_limit_id}`. Untuk `rate_limit_id`, berikan `id` dari entri grup tersebut dari endpoint organisasi, atau `rate_limit_id` dari entri grup tersebut dari endpoint daftar workspace. Untuk menemukan ID grup yang belum di-override oleh workspace, panggil endpoint daftar workspace dengan `include_inherited=true`, yang mengembalikan grup-grup yang dapat Anda tetapkan batasnya. ID ini berbeda antar organisasi, jadi cari ID tersebut di setiap organisasi yang Anda kelola.
+Untuk menetapkan atau menghapus batas laju sebuah workspace untuk satu grup batas laju, kirim permintaan `POST` ke `/v1/organizations/workspaces/{workspace_id}/rate_limits/{rate_limit_id}`. Untuk `rate_limit_id`, berikan `id` dari entri grup tersebut dari endpoint organisasi, atau `rate_limit_id` dari entri grup tersebut dari endpoint daftar workspace. Untuk menemukan ID grup yang belum di-override oleh workspace, panggil endpoint daftar workspace dengan `include_inherited=true`, yang mengembalikan grup-grup yang dapat Anda tetapkan batasnya. ID ini berbeda antar organisasi, jadi cari ID tersebut di setiap organisasi yang Anda kelola.
 
 Badan permintaan memiliki array `limits` berisi satu atau lebih entri `{type, value}`, masing-masing untuk jenis limiter yang berbeda:
 
@@ -957,13 +1002,13 @@ Badan permintaan memiliki array `limits` berisi satu atau lebih entri `{type, va
 * `value` bernilai `null` menghapus override, sehingga workspace kembali mewarisi nilai organisasi. Menghapus jenis limiter yang tidak memiliki override tidak mengubah apa pun.
 * Jenis limiter yang tidak disebutkan dalam permintaan mempertahankan nilainya saat ini.
 
-Anda dapat mengatur jenis limiter berikut: `requests_per_minute`, `input_tokens_per_minute`, `output_tokens_per_minute`, `input_tokens_per_minute_cache_aware`, `tokens_per_minute`, `tokens_per_day`, `tool_uses_per_second`, dan, jika endpoint daftar menampilkannya untuk organisasi Anda, batas [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) `fast_itpmca` (token input per menit, cache-aware) dan `fast_otpm` (token output per menit). Jenis mana yang diterima oleh sebuah grup bergantung pada `group.type`-nya:
+Anda dapat mengatur jenis limiter berikut: `requests_per_minute`, `input_tokens_per_minute`, `output_tokens_per_minute`, `input_tokens_per_minute_cache_aware`, `tokens_per_minute`, `tokens_per_day`, `tool_uses_per_second`, dan, jika endpoint daftar menampilkannya untuk organisasi Anda, batas [mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) `fast_itpmca` (token input per menit, cache-aware) dan `fast_otpm` (token output per menit). Jenis mana yang diterima oleh sebuah grup bergantung pada `group.type`-nya:
 
 * `model_group`: semua jenis kecuali `tool_uses_per_second`
 * `web_search`: hanya `tool_uses_per_second`
 * `batch`: hanya `requests_per_minute`
 
-Jenis grup lainnya tidak menerima jenis limiter apa pun. Anda dapat menghapus jenis limiter mana pun yang tercantum sebelumnya pada grup mana pun. Endpoint daftar dapat mengembalikan jenis limiter yang tidak dapat Anda atur, seperti `enqueued_batch_requests`; mengirimkan salah satunya akan mengembalikan error 400.
+Anda dapat menghapus jenis limiter mana pun yang tercantum sebelumnya pada grup mana pun dari grup-grup ini. Endpoint daftar dapat mengembalikan jenis limiter yang tidak dapat Anda atur, seperti `enqueued_batch_requests`; mengirimkan salah satunya akan mengembalikan error 400.
 
 API menyimpan nilai di atas batas organisasi untuk jenis limiter yang sama, tetapi memberlakukan nilai yang lebih rendah dari keduanya. `org_limit` pada respons menampilkan nilai organisasi.
 
@@ -972,7 +1017,7 @@ Perubahan berlaku dalam waktu sekitar satu jam. Sampai perubahan berlaku, permin
 API memeriksa seluruh permintaan sebelum mengubah apa pun, sehingga entri yang tidak valid akan menggagalkan permintaan dengan error 400 dan tidak mengubah apa pun. Jika permintaan lolos validasi, API kemudian menerapkan entri satu per satu. Jika penerapan salah satu entri gagal, permintaan mengembalikan error dan entri-entri sebelumnya tetap diterapkan. Setiap entri menetapkan atau menghapus nilai absolut, sehingga Anda dapat dengan aman mengirim permintaan yang sama lagi. Pengiriman ulang akan menggantikan perubahan apa pun yang dibuat orang lain di antaranya pada jenis limiter yang disebutkannya.
 
 <Note>
-  Mengatur batas laju workspace belum tersedia di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
+  Mengatur batas laju workspace tidak tersedia di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
 </Note>
 
 Naikkan request per menit workspace untuk grup Claude Opus 5.5 menjadi 2.000 dan hapus override token input per menitnya:
@@ -1061,25 +1106,36 @@ Naikkan request per menit workspace untuk grup Claude Opus 5.5 menjadi 2.000 dan
   ```
 
   ```go Go
-  client := anthropic.NewClient()
+  import (
+  	"context"
+  	"fmt"
+  	"log"
 
-  entry, err := client.Organization.Workspaces.RateLimits.Update(
-  	context.Background(),
-  	"rlt_01NwFawrTvAijwqn8AjKVBPS",
-  	anthropic.OrganizationWorkspaceRateLimitUpdateParams{
-  		WorkspaceID: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
-  		Limits: []anthropic.WorkspaceRateLimitUpdateValueParam{
-  			{Type: "requests_per_minute", Value: anthropic.Int(2000)},
-  			{Type: "input_tokens_per_minute", Value: param.Null[int64]()},
-  		},
-  	},
+  	"github.com/anthropics/anthropic-sdk-go/v2"
+  	"github.com/anthropics/anthropic-sdk-go/v2/packages/param"
   )
-  if err != nil {
-  	log.Fatal(err)
-  }
 
-  for _, limit := range entry.Limits {
-  	fmt.Printf("%s: %d\n", limit.Type, limit.Value)
+  func main() {
+  	client := anthropic.NewClient()
+
+  	entry, err := client.Organization.Workspaces.RateLimits.Update(
+  		context.Background(),
+  		"rlt_01NwFawrTvAijwqn8AjKVBPS",
+  		anthropic.OrganizationWorkspaceRateLimitUpdateParams{
+  			WorkspaceID: "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+  			Limits: []anthropic.WorkspaceRateLimitUpdateValueParam{
+  				{Type: "requests_per_minute", Value: anthropic.Int(2000)},
+  				{Type: "input_tokens_per_minute", Value: param.Null[int64]()},
+  			},
+  		},
+  	)
+  	if err != nil {
+  		log.Fatal(err)
+  	}
+
+  	for _, limit := range entry.Limits {
+  		fmt.Printf("%s: %d\n", limit.Type, limit.Value)
+  	}
   }
   ```
 
@@ -1178,16 +1234,18 @@ Endpoint mengembalikan error 400 untuk permintaan yang tidak valid atau workspac
 
 ## Memfilter berdasarkan tipe grup
 
-Kedua endpoint daftar menerima parameter query opsional `group_type` yang membatasi respons ke satu kategori:
+Kedua endpoint daftar menerima parameter kueri opsional `group_type` yang membatasi respons ke satu kategori:
 
 <CodeGroup>
   ```bash cURL
+  # Mengembalikan satu halaman, yang memuat semua entri jika `limit` tidak disertakan.
   curl "https://api.anthropic.com/v1/organizations/rate_limits?group_type=batch" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21"
   ```
 
   ```bash CLI
+  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   ant organization:rate-limits list --group-type batch
   ```
 
@@ -1196,6 +1254,7 @@ Kedua endpoint daftar menerima parameter query opsional `group_type` yang membat
 
   rate_limits = client.organization.rate_limits.list(group_type="batch")
 
+  # Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for entry in rate_limits:
       models = f" ({', '.join(entry.models)})" if entry.models else ""
       print(f"{entry.group.type}{models}")
@@ -1208,6 +1267,7 @@ Kedua endpoint daftar menerima parameter query opsional `group_type` yang membat
 
   const rateLimits = await client.organization.rateLimits.list({ group_type: "batch" });
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for await (const entry of rateLimits) {
     const models = entry.models ? ` (${entry.models.join(", ")})` : "";
     console.log(`${entry.group.type}${models}`);
@@ -1227,6 +1287,7 @@ Kedua endpoint daftar menerima parameter query opsional `group_type` yang membat
       GroupType = GroupType.Batch
   });
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   await foreach (var entry in rateLimits.Paginate())
   {
       var models = entry.Models is null ? "" : $" ({string.Join(", ", entry.Models)})";
@@ -1245,6 +1306,7 @@ Kedua endpoint daftar menerima parameter query opsional `group_type` yang membat
   	GroupType: anthropic.OrganizationRateLimitListParamsGroupTypeBatch,
   })
 
+  // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
   for rateLimits.Next() {
   	entry := rateLimits.Current()
   	models := ""
@@ -1272,6 +1334,7 @@ Kedua endpoint daftar menerima parameter query opsional `group_type` yang membat
           .build();
       var rateLimits = client.organization().rateLimits().list(params);
 
+      // Secara otomatis mengambil halaman berikutnya sesuai kebutuhan.
       for (var entry : rateLimits.autoPager()) {
           var models = entry.models()
               .map(modelIds -> " (" + String.join(", ", modelIds) + ")")
@@ -1294,6 +1357,7 @@ Kedua endpoint daftar menerima parameter query opsional `group_type` yang membat
       groupType: GroupType::BATCH,
   );
 
+  // Hanya membaca halaman pertama, yang memuat semua entri jika `limit` tidak diisi.
   foreach ($rateLimits->data as $entry) {
       $models = $entry->models ? ' (' . implode(', ', $entry->models) . ')' : '';
       echo "{$entry->group->type}{$models}\n";
@@ -1308,6 +1372,7 @@ Kedua endpoint daftar menerima parameter query opsional `group_type` yang membat
 
   rate_limits = client.organization.rate_limits.list(group_type: :batch)
 
+  # Hanya membaca halaman pertama, yang memuat semua entri jika `limit` tidak disertakan.
   rate_limits.data.each do |entry|
     models = entry.models ? " (#{entry.models.join(", ")})" : ""
     puts "#{entry.group.type}#{models}"
@@ -1318,11 +1383,11 @@ Kedua endpoint daftar menerima parameter query opsional `group_type` yang membat
   ```
 </CodeGroup>
 
-Nilai yang valid adalah `model_group`, `batch`, `token_count`, `files`, `skills`, dan `web_search`.
+Nilai yang valid adalah `model_group`, `batch`, `token_count`, `files`, `skills`, dan `web_search`. Nilai `token_count`, `files`, dan `skills` mengembalikan daftar `data` yang kosong, karena tidak satu pun endpoint daftar mengembalikan batas untuk Token Counting API, Files API, atau Skills API.
 
 ## Paginasi
 
-Kedua endpoint menerima parameter kueri `page` dan mengembalikan field `next_page`. Respons saat ini selalu satu halaman, jadi `next_page` adalah `null`. Lakukan loop pada `next_page` agar klien Anda melakukan paginasi dengan benar tanpa perubahan ketika respons bertambah.
+Kedua endpoint daftar menerima parameter kueri opsional `limit` dan `page` serta mengembalikan field `next_page`. `limit` berkisar dari 1 hingga 1.000. Jika Anda tidak menyertakannya, respons berisi setiap entri yang tersisa dan `next_page` bernilai `null`. Jika `limit` memotong daftar, `next_page` berisi sebuah kursor: berikan kursor tersebut sebagai `page`, dengan filter yang sama, untuk mendapatkan entri berikutnya. Lakukan loop pada `next_page` agar klien Anda mendapatkan setiap entri.
 
 ## Pertanyaan yang sering diajukan
 
@@ -1330,15 +1395,15 @@ Kedua endpoint menerima parameter kueri `page` dan mengembalikan field `next_pag
 
 Setiap ID model dan alias yang dihitung terhadap grup, termasuk ID bertanggal (seperti `claude-sonnet-4-5-20250929`) dan alias tidak bertanggal (seperti `claude-sonnet-4-5`). Cari string model apa pun yang Anda berikan ke Messages API dan Anda akan menemukannya dalam tepat satu entri `model_group`.
 
-Daftar ini mencakup model yang dapat diakses oleh organisasi Anda, sehingga dapat berbeda antar organisasi.
+Daftar ini mencakup model yang dapat diakses organisasi Anda, sehingga dapat berbeda antar organisasi.
 
 ### Apa artinya jika sebuah grup hilang dari respons workspace?
 
 Secara default, respons workspace hanya mencantumkan override, sehingga grup yang tidak ada tidak memiliki override workspace dan mewarisi batas tingkat organisasi. Teruskan `include_inherited=true` untuk melihat nilai yang diwarisi pada endpoint workspace, atau kueri endpoint organisasi. Dengan `include_inherited=true`, sebuah grup hanya tidak ada ketika grup tersebut tidak berlaku pada workspace atau organisasi tidak menetapkan batas untuknya.
 
-### Bisakah saya memperbarui batas laju dengan API ini?
+### Bisakah Anda memperbarui batas laju dengan API ini?
 
-**Untuk workspace:** Ya. Endpoint [Set Workspace Rate Limits](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/update) mengatur atau menghapus override workspace untuk satu grup batas laju. Berikan `id` tingkat atas dari entri yang sesuai dalam [respons endpoint organisasi](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#list-all-organization-rate-limits) sebagai `rate_limit_id`, bukan `id` `rlg_` di dalam `group`-nya. Nilai yang lebih rendah antara override workspace dan batas tingkat organisasi yang berlaku, dan perubahan berlaku dalam waktu sekitar satu jam. Untuk badan permintaan dan contohnya, lihat [bagian halaman ini tentang mengatur batas laju workspace](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#set-workspace-rate-limits). Anda juga dapat mengatur batas laju workspace di halaman [Rate limits](https://platform.claude.com/usage/limits) di Claude Console: pilih workspace dari menu dropdown **Workspace**, lalu klik **Edit** di samping sebuah model.
+**Untuk workspace:** Ya. Endpoint [Atur Batas Laju Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/update) mengatur atau menghapus override workspace untuk satu grup batas laju. Berikan `id` tingkat atas dari entri yang sesuai dalam [respons endpoint organisasi](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#list-all-organization-rate-limits) sebagai `rate_limit_id`, bukan `id` `rlg_` di dalam `group`-nya. Nilai yang lebih rendah antara override workspace dan batas tingkat organisasi yang berlaku, dan perubahan berlaku dalam waktu sekitar satu jam. Untuk badan permintaan dan contohnya, lihat [Mengatur batas laju workspace](https://platform.claude.com/docs/id/manage-claude/rate-limits-api#set-workspace-rate-limits). Anda juga dapat mengatur batas laju workspace di [halaman Batas laju di Claude Console](https://platform.claude.com/usage/limits): pilih workspace dari menu dropdown **Ruang kerja**, lalu klik **Edit** di samping sebuah model.
 
 **Untuk organisasi:** Tidak. Untuk meminta batas yang lebih tinggi, lihat [Meminta batas yang lebih tinggi](https://platform.claude.com/docs/id/api/rate-limits#requesting-higher-limits).
 

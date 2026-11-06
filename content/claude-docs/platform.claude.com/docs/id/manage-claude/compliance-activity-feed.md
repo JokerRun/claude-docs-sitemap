@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 75fa13f88e7fedcdcf64377a44ebe823f55caf33212d913db92e730681c83213
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 13e77d2c0e322c70af1d6b954c34f46088faaa2e21127dba5d5aeb9992d87b64
 ---
 
 ---
@@ -82,8 +82,8 @@ Compliance API menggunakan dua skema “pagination” (paginasi) tergantung pada
 
 | Keluarga endpoint                                                                    | Urutan pengurutan                                                          | Skema         | Parameter                                                            |
 | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------- | ------------- | -------------------------------------------------------------------- |
-| Aktivitas                                                                            | Terbaru terlebih dahulu                                                    | Cursor        | `after_id`, `before_id` (dikembalikan sebagai `first_id`, `last_id`) |
-| Chat dan pesan chat                                                                  | Terlama terlebih dahulu                                                    | Cursor        | `after_id`, `before_id` (dikembalikan sebagai `first_id`, `last_id`) |
+| Aktivitas                                                                            | Terbaru terlebih dahulu                                                    | Kursor        | `after_id`, `before_id` (dikembalikan sebagai `first_id`, `last_id`) |
+| Chat dan pesan chat                                                                  | Terlama terlebih dahulu                                                    | Kursor        | `after_id`, `before_id` (dikembalikan sebagai `first_id`, `last_id`) |
 | Organisasi, proyek, lampiran proyek, pengguna, peran, izin peran, grup, anggota grup | Spesifik per endpoint                                                      | Token halaman | `page` (dikembalikan sebagai `next_page`)                            |
 | Sesi lokal dan jarak jauh serta pesan sesi                                           | Sesi terbaru terlebih dahulu; pesan terlama terlebih dahulu secara default | Token halaman | `page` (dikembalikan sebagai `next_page`)                            |
 
@@ -97,10 +97,10 @@ Untuk menelusuri halaman aktivitas:
 * Berikan `first_id` sebagai `before_id` untuk kembali ke halaman sebelumnya.
 * Berhenti ketika `has_more` bernilai `false`.
 
-Parameter cursor menentukan arah halaman; urutan pengurutan endpoint menentukan arah waktu. Parameter `after_id` yang sama menjangkau aktivitas yang lebih lama di sini. Chat diurutkan dari yang terlama terlebih dahulu; lihat [Mengambil dan menghapus chat, file, dan proyek](https://platform.claude.com/docs/id/manage-claude/compliance-content-data) untuk semantik cursor di sana.
+Parameter kursor menentukan arah halaman; urutan pengurutan endpoint menentukan arah waktu. Parameter `after_id` yang sama menjangkau aktivitas yang lebih lama di sini. Chat diurutkan dari yang terlama terlebih dahulu; lihat [Mengambil dan menghapus chat, file, dan proyek](https://platform.claude.com/docs/id/manage-claude/compliance-content-data) untuk semantik kursor di sana.
 
 <Note>
-  **Cursor aman digunakan kembali saat percobaan ulang.** Cursor atau token halaman dari halaman yang berhasil dikembalikan tetap valid; permintaan yang gagal (5xx, timeout, kesalahan jaringan) tidak memajukan posisi Anda. Coba ulang permintaan yang sama dengan cursor yang sama. Hanya berpindah ke cursor berikutnya setelah Anda menyimpan halaman yang dilewatinya.
+  **Cursor aman digunakan kembali saat percobaan ulang.** Cursor atau token halaman dari halaman yang berhasil dikembalikan tetap valid; permintaan yang gagal (5xx, timeout, kesalahan jaringan) tidak memajukan posisi Anda. Coba ulang permintaan yang sama dengan kursor yang sama. Hanya berpindah ke kursor berikutnya setelah Anda menyimpan halaman yang dilewatinya.
 
   Token halaman pada endpoint sesi lokal adalah pengecualian untuk jeda yang lebih lama. Pada [endpoint pesan sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-a-local-session-transcript), token `page` dari suatu penelusuran kedaluwarsa 24 jam setelah halaman pertamanya (satu penelusuran adalah satu kali melewati semua halaman), jadi selesaikan atau lanjutkan dalam jendela waktu tersebut, atau mulai ulang tanpa parameter `page`. Pada [daftar sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions), token `page` yang lebih lama masih diterima tetapi dievaluasi ulang terhadap batas retensi saat ini dan dapat melewatkan sesi, jadi selesaikan penelusuran daftar dalam 24 jam juga.
 </Note>
@@ -123,7 +123,7 @@ curl --fail-with-body -sS -G \
 
 Loop **backfill** produksi menelusuri aktivitas yang lebih lama dengan menggerakkan iterasi berdasarkan `has_more` dan `last_id`:
 
-1. Mulai dari cursor yang Anda simpan (atau hilangkan `after_id` untuk memulai dari awal).
+1. Mulai dari kursor yang Anda simpan (atau hilangkan `after_id` untuk memulai dari awal).
 2. Telusuri halaman dengan `after_id=<last_id>` hingga `has_more` bernilai `false`.
 3. Simpan `last_id` terakhir secara permanen hanya setelah Anda menyimpan setiap halaman yang dicakupnya.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/overview
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: c4859d368bbf97e07400b12bab14898b5dcdc0bb6520ce108a032ed62faf85ab
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 714e1dc2f3516a02de1d97384c283cd3ac9cbbd305d855ee2fd299f03a33a40a
 ---
 
 ---
@@ -23,7 +23,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $4 / MTok
 
 ## Ikhtisar
 
-Claude Opus 5.5 dibuat untuk pekerjaan coding agentik dan pekerjaan pengetahuan yang berjalan lama. Penggunaan umumnya mencakup agen coding otonom yang berjalan berjam-jam, refactoring skala besar, rekayasa sistem yang kompleks, alur kerja yang banyak melibatkan visi, dan computer use.
+Claude Opus 5.5 dibuat untuk pekerjaan coding agentik dan pekerjaan pengetahuan yang berjalan lama. Penggunaan umumnya mencakup agen coding otonom yang berjalan berjam-jam, refactoring skala besar, rekayasa sistem yang kompleks, alur kerja yang banyak melibatkan visi, dan penggunaan komputer.
 
 ## Perbandingannya
 
@@ -101,7 +101,7 @@ Claude Opus 5.5 dibuat untuk pekerjaan coding agentik dan pekerjaan pengetahuan 
 ## Sumber daya
 
 <CardGroup cols={3}>
-  <Card title="Prompting Claude Opus 5.5" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5">
+  <Card title="Menulis prompt untuk Claude Opus 5.5" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5">
     Perbedaan perilaku dan pola prompting yang khusus untuk Claude Opus 5.5.
   </Card>
 
@@ -125,7 +125,7 @@ Claude Opus 5.5 dibuat untuk pekerjaan coding agentik dan pekerjaan pengetahuan 
     Prompt sistem yang digunakan Claude Opus 5.5 di claude.ai dan aplikasi Claude.
   </Card>
 
-  <Card title="System card" icon="file" href="https://www.anthropic.com/claude-opus-5-5-system-card">
+  <Card title="Kartu sistem" icon="file" href="https://www.anthropic.com/claude-opus-5-5-system-card">
     Evaluasi keamanan dan keputusan deployment untuk Claude Opus 5.5.
   </Card>
 

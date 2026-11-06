@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 35cd68d81670e19073d852cd20ef4328ea77eb8dcc820293ab2fc2b93dd1ed2b
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 781966ec12fe51e3a493c750925c089bc2673b377169fdb3604cf6f9ec9be78d
 ---
 
 ---
@@ -53,9 +53,21 @@ Sebelum menerapkan Skill apa pun dari pihak ketiga atau kontributor internal, se
 
 ### Pemindaian konten Skill
 
-Organisasi Claude Enterprise dapat mengaktifkan pemindaian keamanan otomatis untuk Skills kustom di claude.ai dan Claude Cowork. Setelah Anda mengaktifkan **Skill and plugin security scanning** di [claude.ai > Organization settings > Skills](https://claude.ai/admin-settings/skills), Skills yang kemudian diunggah atau diedit anggota di claude.ai atau Cowork akan dipindai untuk mendeteksi tanda-tanda perilaku berbahaya, seperti eksekusi kode tersembunyi, pengiriman data Anda ke layanan luar, atau instruksi yang mengutak-atik perlindungan Claude. Skill yang gagal dalam pemindaian, atau yang pemindaiannya belum selesai, akan diblokir dari penggunaan. Administrator dapat mengizinkan beberapa Skill yang gagal dalam pemindaian. Skill yang lolos dengan peringatan tetap dapat digunakan dengan pemberitahuan kehati-hatian. Jika pemindaian tersedia untuk organisasi Anda, aktifkanlah. Pemindaian ini melengkapi, tetapi tidak menggantikan, [daftar periksa tinjauan](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise#review-checklist).
+Organisasi Claude Enterprise dapat mengaktifkan pemindaian keamanan otomatis untuk Skills kustom di claude.ai dan Claude Cowork. Pengaturannya adalah **Pemindaian keamanan skill dan plugin** di [claude.ai > Pengaturan organisasi > Skills](https://claude.ai/admin-settings/skills).
 
-Pemindaian tidak mencakup Claude API. Skills yang Anda unggah melalui Skills API (`/v1/skills`), termasuk dari Claude Console, tidak dipindai, sehingga untuk penerapan API, andalkan daftar periksa tinjauan dan [penyematan versi](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise#versioning-strategy). Pemindaian juga tidak berlaku untuk Skills yang sudah ada di organisasi Anda saat Anda mengaktifkannya, atau untuk organisasi dengan konfigurasi penanganan data tertentu, seperti customer-managed encryption keys (CMEK), zero data retention (ZDR), atau kesiapan HIPAA. Untuk langkah penyiapan, pengecualian, dan jenis hasil, lihat [Get started with skill and plugin scanning](https://support.claude.com/en/articles/15927065-get-started-with-skill-and-plugin-scanning) di Claude Help Center.
+Setelah Anda mengaktifkan pengaturan tersebut, pemindaian berlaku untuk Skills yang kemudian diunggah atau diedit oleh anggota di claude.ai atau Cowork. Setiap pemindaian memeriksa tanda-tanda perilaku berbahaya. Tanda-tanda ini mencakup eksekusi kode tersembunyi, pemindahan data Anda ke layanan luar, dan instruksi yang mengutak-atik pengamanan Claude.
+
+Apakah sebuah Skill dapat digunakan bergantung pada hasil pemindaiannya:
+
+* Skill yang gagal dalam pemindaian diblokir dari penggunaan.
+* Skill yang pemindaiannya belum selesai diblokir dari penggunaan.
+* Skill yang lolos dengan peringatan tetap dapat digunakan di balik pemberitahuan kehati-hatian.
+
+Pemilik organisasi dapat mengizinkan beberapa Skills yang gagal dalam pemindaian. Demikian pula anggota yang [peran kustom](https://platform.claude.com/docs/id/manage-claude/user-management#custom-roles)-nya dapat mengelola **Pustaka**.
+
+Jika pemindaian tersedia untuk organisasi Anda, aktifkanlah. Pemindaian melengkapi, tetapi tidak menggantikan, [daftar periksa tinjauan](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise#review-checklist).
+
+Pemindaian tidak mencakup Claude API. Skills yang Anda unggah melalui Skills API (`/v1/skills`), termasuk dari Claude Console, tidak dipindai, sehingga untuk penerapan API, andalkan daftar periksa tinjauan dan [penyematan versi](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise#versioning-strategy). Pemindaian juga tidak berlaku untuk Skills yang sudah ada di organisasi Anda saat Anda mengaktifkannya, atau untuk organisasi dengan konfigurasi penanganan data tertentu, seperti kunci enkripsi yang dikelola pelanggan (CMEK), zero data retention (ZDR), atau kesiapan HIPAA. Untuk langkah penyiapan, pengecualian, dan jenis hasil, lihat [Mulai dengan pemindaian skill dan plugin](https://support.claude.com/en/articles/15927065-get-started-with-skill-and-plugin-scanning) di Pusat Bantuan Claude.
 
 ## Mengevaluasi Skills sebelum penerapan
 
@@ -174,7 +186,7 @@ Skills API menyediakan distribusi dengan cakupan workspace. Skills yang diunggah
 * **Produksi:** Sematkan Skills ke versi tertentu. Jika Anda menghilangkan `version`, permintaan akan menggunakan versi terbaru, sehingga versi baru yang diunggah oleh siapa pun di workspace akan langsung mengubah apa yang dijalankan agen produksi. Jalankan rangkaian evaluasi lengkap sebelum mempromosikan versi baru. Perlakukan setiap pembaruan sebagai penerapan baru yang memerlukan tinjauan keamanan penuh.
 * **Pengembangan dan pengujian:** Gunakan versi terbaru untuk memvalidasi perubahan sebelum promosi ke produksi.
 * **Rencana rollback:** Pertahankan versi sebelumnya sebagai cadangan. Jika versi baru gagal dalam evaluasi di produksi, segera kembalikan ke versi terakhir yang diketahui baik.
-* **Verifikasi integritas:** Hitung checksum dari Skills yang telah ditinjau dan verifikasi pada saat penerapan. Gunakan signed commit di repositori Skill Anda untuk memastikan asal-usulnya.
+* **Verifikasi integritas:** Hitung checksum dari Skills yang telah ditinjau dan verifikasi pada saat penerapan. Gunakan commit bertanda tangan di repositori Skill Anda untuk memastikan asal-usulnya.
 
 ### Pertimbangan lintas permukaan
 

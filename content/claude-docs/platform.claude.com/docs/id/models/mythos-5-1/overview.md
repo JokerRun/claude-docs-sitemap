@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/mythos-5-1/overview
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: dea84f62bb782952957a203ef7f4811503ec19d57d8bc16d99f00271da47a783
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 1767bb7d762a056bda6617b6aa04a67acba7fab82e9f596f2a1f327b26c8387d
 ---
 
 ---
@@ -94,7 +94,7 @@ Claude Mythos 5.1 is available only to organizations verified through Anthropicâ
     Apa yang berubah saat Anda beralih dari Claude Mythos 5.
   </Card>
 
-  <Card title="System card" icon="file" href="https://www.anthropic.com/claude-fable-5-1-mythos-5-1-system-card">
+  <Card title="Kartu sistem" icon="file" href="https://www.anthropic.com/claude-fable-5-1-mythos-5-1-system-card">
     Evaluasi keamanan dan keputusan deployment untuk Claude Fable 5.1 dan Claude Mythos 5.1.
   </Card>
 

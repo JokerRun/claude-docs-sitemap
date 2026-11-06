@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: e7d6484fd1afc12fa3ff2bc82b1e3d36e03cc68133e62aa5d9131866b355f073
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 05c6a220770d522587c11742df8ca6096863de85bc6004f442c9c151acc878de
 ---
 
 ---
@@ -20,7 +20,7 @@ Klaim `sub` pada token mengodekan repositori dan konteks pemicu. Untuk push ke s
 * Pemahaman tentang [konsep WIF](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#concepts): “service account” (akun layanan), “federation issuer” (penerbit federasi), dan “federation rule” (aturan federasi).
 * Repositori GitHub tempat Anda dapat mengedit file workflow dan memberikan izin `id-token: write`.
 * Izin untuk membuat akun layanan, penerbit federasi, dan aturan federasi di Claude Console untuk organisasi Anthropic Anda.
-* ID organisasi Anthropic Anda. Anda dapat menemukannya di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
+* ID organisasi Anthropic Anda. Anda dapat menemukannya di halaman [Organisasi](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
 
 ## Mengonfigurasi workflow Anda
 
@@ -75,7 +75,7 @@ Lihat [referensi klaim subjek OIDC GitHub](https://docs.github.com/en/actions/de
 
 ## Mengonfigurasi Anthropic
 
-Di Claude Console, buka halaman [Workload identity](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`), klik **Connect workload**, dan pilih tile **GitHub Actions**. Wizard akan memandu Anda mendaftarkan penerbit, membuat akun layanan, dan membuat aturan federasi.
+Di Claude Console, buka halaman [Identitas beban kerja](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`), klik **Hubungkan beban kerja**, dan pilih tile **GitHub Actions**. Wizard akan memandu Anda mendaftarkan penerbit, membuat akun layanan, dan membuat aturan federasi.
 
 Wizard membuat sumber daya ini untuk Anda. Gunakan nilai-nilai berikut, baik Anda memasukkannya di wizard maupun mengirimkannya ke [Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api):
 
@@ -116,7 +116,7 @@ Buat aturan sespesifik yang dimungkinkan oleh beban kerja. Longgarkan `subject_p
 
 ## Memperoleh dan menggunakan token
 
-Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthropic()` (typescript: `new Anthropic()`; csharp: `new AnthropicClient()`; go: `anthropic.NewClient()`; java: `AnthropicOkHttpClient.fromEnv()`; php: `new Client()`; ruby: `Anthropic::Client.new`) membaca `ANTHROPIC_IDENTITY_TOKEN_FILE`, menukar JWT pada permintaan pertama, dan memperbarui token akses secara otomatis sebelum kedaluwarsa.
+Atur variabel lingkungan federasi pada job. Di SDK, `anthropic.Anthropic()` (typescript: `new Anthropic()`; csharp: `new AnthropicClient()`; go: `anthropic.NewClient()`; java: `AnthropicOkHttpClient.fromEnv()`; php: `new Client()`; ruby: `Anthropic::Client.new`) membaca `ANTHROPIC_IDENTITY_TOKEN_FILE`, menukar JWT pada permintaan pertama, dan memperbarui token akses secara otomatis sebelum kedaluwarsa.
 
 <CodeGroup>
   ```yaml Workflow
@@ -179,8 +179,10 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
 
   ```bash CLI
   # Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
-  # ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
-  # dari environment job.
+  # ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
+  # dari lingkungan job.
+  # Untuk aturan yang aktif di semua workspace atau lebih dari satu, atur ANTHROPIC_PROFILE
+  # ke profil federasi yang menetapkan workspace_id.
   ant messages create \
     --model claude-opus-5-5 \
     --max-tokens 1024 \
@@ -192,7 +194,7 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
 
   # Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   # ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
-  # dari environment job.
+  # dari lingkungan job.
   client = anthropic.Anthropic()
 
   message = client.messages.create(
@@ -208,7 +210,7 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
 
   // Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   // ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
-  // dari environment job.
+  // dari lingkungan job.
   const client = new Anthropic();
 
   const message = await client.messages.create({
@@ -226,7 +228,7 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
   ```csharp C#
   // Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   // ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
-  // dari environment job.
+  // dari lingkungan job.
   using var client = new AnthropicClient();
 
   var message = await client.Messages.Create(new()
@@ -285,7 +287,7 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
 
   // Membaca ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   // ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, dan ANTHROPIC_IDENTITY_TOKEN_FILE
-  // dari environment job.
+  // dari lingkungan job.
   $client = new Client();
 
   $message = $client->messages->create(
@@ -314,16 +316,16 @@ Atur variabel lingkungan federasi pada job dan panggil SDK seperti biasa. `Anthr
   ```
 </CodeGroup>
 
-Setiap token identitas yang diterbitkan GitHub kedaluwarsa sekitar 5 menit setelah penerbitan. Endpoint permintaan token (`ACTIONS_ID_TOKEN_REQUEST_URL`) tetap valid selama seluruh job, sehingga Anda dapat mengambil token baru kapan saja. SDK menukarkan token pada penggunaan pertama dan menyimpan cache token akses Anthropic yang dihasilkan. Untuk job yang berjalan lebih lama dari masa berlaku token Anthropic, SDK membaca ulang `ANTHROPIC_IDENTITY_TOKEN_FILE` pada setiap penyegaran, jadi jalankan ulang langkah pengambilan secara berkala (atau bungkus dalam loop latar belakang) agar file tetap mutakhir. Sebagai alternatif, kecuali di Java, berikan SDK sebuah penyedia token yang memanggil `ACTIONS_ID_TOKEN_REQUEST_URL` secara langsung alih-alih menggunakan path file.
+Setiap token identitas yang diterbitkan GitHub kedaluwarsa sekitar 5 menit setelah penerbitan. Endpoint permintaan token (`ACTIONS_ID_TOKEN_REQUEST_URL`) tetap valid selama seluruh job, sehingga Anda dapat mengambil token baru kapan saja. SDK menukarkan token pada penggunaan pertama dan menyimpan cache token akses Anthropic yang dihasilkan. Pada setiap penyegaran, SDK membaca ulang `ANTHROPIC_IDENTITY_TOKEN_FILE`. Untuk job yang berjalan lebih lama dari masa berlaku token Anthropic, jalankan ulang langkah pengambilan secara berkala (atau bungkus dalam loop latar belakang) agar file tetap mutakhir. Sebagai alternatif, kecuali di Java, berikan SDK sebuah penyedia token yang memanggil `ACTIONS_ID_TOKEN_REQUEST_URL` secara langsung alih-alih menggunakan path file.
 
 ## Memverifikasi penyiapan
 
-Penukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Penukaran yang ditolak mengembalikan `401` `authentication_error` yang buram dengan pesan tetap `Authentication failed`, apa pun pemeriksaan yang gagal; dalam sebagian besar kasus, alasan penolakan dicatat pada entri percobaan tersebut di [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console, dan [Memecahkan masalah penukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange) menelusuri pemeriksaan-pemeriksaan tersebut secara berurutan. Penyebab paling umum dari sisi GitHub Actions adalah format klaim `sub` yang tidak cocok (segmen akhirnya bervariasi di antara event `ref:...`, `environment:...`, dan `pull_request`); entri riwayat menampilkan alasan `match_subject_prefix`.
+Penukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Penukaran yang ditolak mengembalikan `401` `authentication_error` yang buram dengan pesan tetap `Authentication failed`, apa pun pemeriksaan yang gagal. Dalam sebagian besar kasus, alasan penolakan dicatat pada entri percobaan tersebut di [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console. [Memecahkan masalah penukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange) menelusuri pemeriksaan-pemeriksaan tersebut secara berurutan. Penyebab paling umum dari sisi GitHub Actions adalah format klaim `sub` yang tidak cocok (segmen akhirnya bervariasi di antara event `ref:...`, `environment:...`, dan `pull_request`); entri riwayat menampilkan alasan `match_subject_prefix`.
 
 ## Membatasi workflow yang dapat melakukan autentikasi
 
 <Warning>
-  `subject_prefix` berupa `repo:your-org/*` saja akan mencocokkan setiap repositori di organisasi Anda. Tanpa batasan `ref`, nilai ini juga mencocokkan eksekusi `pull_request` yang dipicu dari fork. Akibatnya, siapa pun yang dapat membuka pull request ke repositori yang cocok dapat memperoleh token Anthropic terfederasi.
+  `subject_prefix` berupa `repo:your-org/*` saja akan mencocokkan setiap repositori di organisasi Anda, dan tanpa batasan `ref` nilai ini juga mencocokkan eksekusi `pull_request` yang dipicu dari fork. Siapa pun yang dapat membuka pull request ke repositori yang cocok dapat memperoleh token Anthropic terfederasi.
 </Warning>
 
 Kunci blok `match` pada aturan ke cakupan tersempit yang sesuai dengan kasus penggunaan Anda:

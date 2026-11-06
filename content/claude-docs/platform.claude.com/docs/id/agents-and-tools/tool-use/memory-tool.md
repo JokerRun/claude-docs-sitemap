@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 4057fed9144bf7b6455e00d9ec63d9d989e10c4f57f66e6acb1034007b5d0334
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 7ad9cfe36a373ad09528542e38b27aad9a0c3f05a0be9b6d436cf8dc1cef008f
 ---
 
 ---
@@ -44,7 +44,7 @@ featureMetadata:
 
 Alat memori memungkinkan Claude menyimpan dan mengambil informasi lintas percakapan dalam sebuah direktori file memori. Claude dapat membuat, membaca, memperbarui, dan menghapus file yang tetap ada di antara sesi, sehingga membangun pengetahuan dari waktu ke waktu tanpa menyimpan semuanya di “context window” (jendela konteks).
 
-Memori mendukung pengambilan konteks “just-in-time” (tepat waktu). Alih-alih memuat semua informasi yang relevan di awal, agen mencatat apa yang dipelajarinya dalam file memori dan membacanya kembali sesuai kebutuhan. Hal ini menjaga konteks aktif tetap fokus pada tugas saat ini, yang penting untuk sesi berdurasi panjang yang jika tidak demikian akan membebani jendela konteks. Lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) untuk pola yang lebih luas.
+Memori mendukung pengambilan konteks “just-in-time” (tepat waktu). Alih-alih memuat semua informasi yang relevan di awal, agen mencatat apa yang dipelajarinya dalam file memori dan membacanya kembali sesuai kebutuhan. Hal ini menjaga konteks aktif tetap fokus pada tugas saat ini, yang penting untuk sesi berdurasi panjang yang jika tidak demikian akan membebani jendela konteks. Lihat [Rekayasa konteks yang efektif](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) untuk pola yang lebih luas.
 
 Alat memori beroperasi di sisi klien: Claude meminta operasi file, dan aplikasi Anda yang menjalankannya. Anda mengendalikan di mana dan bagaimana data disimpan melalui infrastruktur Anda sendiri.
 
@@ -1004,13 +1004,13 @@ Alat memori menggunakan pola penanganan error yang mirip dengan [alat editor tek
 }
 ```
 
-## Integrasi context editing
+## Integrasi pengeditan konteks
 
-Alat memori dipadukan dengan “context editing” (pengeditan konteks) untuk mengelola percakapan berdurasi panjang. Untuk detailnya, lihat [Context editing](https://platform.claude.com/docs/id/build-with-claude/context-editing).
+Alat memori dipadukan dengan “context editing” (pengeditan konteks) untuk mengelola percakapan berdurasi panjang. Untuk detailnya, lihat [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing).
 
 ## Menggunakan dengan compaction
 
-Alat memori juga dapat dipadukan dengan [compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) (pemadatan), yang merangkum konteks percakapan lama di sisi server. Context editing menghapus hasil alat tertentu di sisi klien. Compaction secara otomatis merangkum seluruh percakapan di server ketika percakapan mendekati batas jendela konteks.
+Alat memori juga dapat dipadukan dengan [compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) (pemadatan), yang merangkum konteks percakapan lama di sisi server. Pengeditan konteks menghapus hasil alat tertentu di sisi klien. Compaction secara otomatis merangkum seluruh percakapan di server ketika percakapan mendekati batas jendela konteks.
 
 Untuk agen berdurasi panjang, pertimbangkan untuk menggunakan keduanya: compaction menjaga konteks aktif tetap kecil tanpa pencatatan di sisi klien, dan memori menyimpan informasi yang harus bertahan setelah peringkasan.
 
@@ -1041,8 +1041,8 @@ Kerjakan satu fitur dalam satu waktu. Tandai fitur sebagai selesai hanya setelah
     Jalankan perintah shell dalam sesi bash yang persisten.
   </Card>
 
-  <Card title="Context editing" icon="edit" href="https://platform.claude.com/docs/id/build-with-claude/context-editing">
-    Kelola konteks percakapan secara otomatis seiring pertumbuhannya dengan context editing.
+  <Card title="Pengeditan konteks" icon="edit" href="https://platform.claude.com/docs/id/build-with-claude/context-editing">
+    Kelola konteks percakapan secara otomatis seiring pertumbuhannya dengan pengeditan konteks.
   </Card>
 
   <Card title="Compaction" icon="stack" href="https://platform.claude.com/docs/id/build-with-claude/compaction">

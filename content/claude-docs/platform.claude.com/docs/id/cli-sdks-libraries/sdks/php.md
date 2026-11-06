@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 8f4864d7f3b1cb3d90650d60c40208df120d01182174a31a382a340e0b52b3f4
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: a15b2a50c1ad131f266208a6a21ae3a03ed80e5d5ff2b9c02e65bc9a35bdf97e
 ---
 
 ---
 title: PHP SDK
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php
-description: Instal dan konfigurasikan Anthropic PHP SDK dengan value object dan pola builder
+description: Instal dan konfigurasikan Anthropic PHP SDK dengan objek nilai dan pola builder
 ---
 
 Library PHP Anthropic menyediakan akses yang mudah ke Claude API dari aplikasi PHP 8.1.0+ mana pun.
@@ -37,9 +37,9 @@ Library ini menggunakan “named parameters” (parameter bernama) untuk menentu
 $client = new Client();
 
 $message = $client->messages->create(
-  maxTokens: 1024,
-  messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-5-5',
+    maxTokens: 1024,
+    messages: [['role' => 'user', 'content' => 'Hello, Claude']],
+    model: 'claude-opus-5-5',
 );
 
 $textBlock = array_find($message->content, static fn ($block): bool => $block->type === 'text');
@@ -48,11 +48,11 @@ echo $textBlock->text;
 
 Untuk opsi autentikasi termasuk “Workload Identity Federation” (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
 
-## Value object
+## Objek nilai
 
-Disarankan untuk menggunakan konstruktor statis `with` `Base64ImageSource::with(data: "U3RhaW5sZXNzIHJvY2tz", ...)` dan parameter bernama untuk menginisialisasi “value object” (objek nilai).
+Cara yang direkomendasikan untuk menginisialisasi “value object” (objek nilai) adalah dengan konstruktor statis `with` `Base64ImageSource::with(data: 'U3RhaW5sZXNzIHJvY2tz', ...)` menggunakan parameter bernama.
 
-Namun, builder juga disediakan `(new Base64ImageSource)->withData("U3RhaW5sZXNzIHJvY2tz")`.
+Namun, builder juga disediakan, misalnya `(new Base64ImageSource())->withData('U3RhaW5sZXNzIHJvY2tz')`.
 
 ## Streaming
 
@@ -62,13 +62,13 @@ SDK menyediakan dukungan untuk respons streaming menggunakan Server-Sent Events 
 $client = new Client();
 
 $stream = $client->messages->createStream(
-  maxTokens: 1024,
-  messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-5-5',
+    maxTokens: 1024,
+    messages: [['role' => 'user', 'content' => 'Hello, Claude']],
+    model: Model::CLAUDE_OPUS_5_5,
 );
 
 foreach ($stream as $event) {
-  echo $event->type . PHP_EOL;
+    echo $event->type . PHP_EOL;
 }
 ```
 
@@ -76,7 +76,7 @@ Streaming memerlukan klien HTTP yang mengembalikan body respons secara bertahap.
 
 ```php
 $client = new Client(
-  requestOptions: RequestOptions::with(streamingTransporter: $myStreamingClient),
+    requestOptions: RequestOptions::with(streamingTransporter: $myStreamingClient),
 );
 ```
 
@@ -90,27 +90,28 @@ Ketika library tidak dapat terhubung ke API, atau jika API mengembalikan kode st
 use Anthropic\Core\Exceptions\APIConnectionException;
 use Anthropic\Core\Exceptions\APIStatusException;
 use Anthropic\Core\Exceptions\RateLimitException;
+use Anthropic\Messages\Model;
 // ...
 try {
-  $message = $client->messages->create(
-    maxTokens: 1024,
-    messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-    model: 'claude-opus-5-5',
-  );
+    $message = $client->messages->create(
+        maxTokens: 1024,
+        messages: [['role' => 'user', 'content' => 'Hello, Claude']],
+        model: Model::CLAUDE_OPUS_5_5,
+    );
 } catch (APIConnectionException $e) {
-  echo "The server could not be reached", PHP_EOL;
-  echo $e->getPrevious()?->getMessage(), PHP_EOL;
+    echo 'The server could not be reached', PHP_EOL;
+    echo $e->getPrevious()?->getMessage(), PHP_EOL;
 } catch (RateLimitException $_) {
-  echo "A 429 status code was received; we should back off a bit.", PHP_EOL;
+    echo 'A 429 status code was received; we should back off a bit.', PHP_EOL;
 } catch (APIStatusException $e) {
-  echo "Another non-200-range status code was received", PHP_EOL;
-  echo $e->getMessage();
+    echo 'Another non-200-range status code was received', PHP_EOL;
+    echo $e->getMessage();
 }
 ```
 
 Kode error adalah sebagai berikut:
 
-| Penyebab           | Jenis Error                    |
+| Penyebab           | Jenis error                    |
 | ------------------ | ------------------------------ |
 | HTTP 400           | `BadRequestException`          |
 | HTTP 401           | `AuthenticationException`      |
@@ -133,6 +134,7 @@ Error koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Time
 Anda dapat menggunakan opsi `maxRetries` untuk mengonfigurasi atau menonaktifkan ini:
 
 ```php
+use Anthropic\Messages\Model;
 use Anthropic\RequestOptions;
 // ...
 // Konfigurasikan default untuk semua permintaan:
@@ -140,10 +142,10 @@ $client = new Client(requestOptions: RequestOptions::with(maxRetries: 0));
 
 // Atau, konfigurasikan per permintaan:
 $result = $client->messages->create(
-  maxTokens: 1024,
-  messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-5-5',
-  requestOptions: RequestOptions::with(maxRetries: 5),
+    maxTokens: 1024,
+    messages: [['role' => 'user', 'content' => 'Hello, Claude']],
+    model: Model::CLAUDE_OPUS_5_5,
+    requestOptions: RequestOptions::with(maxRetries: 5),
 );
 ```
 
@@ -160,12 +162,12 @@ $page = $client->beta->messages->batches->list(limit: 20);
 
 // ambil item dari halaman saat ini
 foreach ($page->getItems() as $item) {
-  echo $item->id, PHP_EOL;
+    echo $item->id, PHP_EOL;
 }
 // buat permintaan jaringan tambahan untuk mengambil item dari semua halaman, termasuk dan setelah halaman saat ini
 // ...
 foreach ($page->pagingEachItem() as $item) {
-  echo $item->id, PHP_EOL;
+    echo $item->id, PHP_EOL;
 // ...
 }
 ```
@@ -190,14 +192,14 @@ Anda dapat mengirim parameter yang tidak terdokumentasi ke endpoint mana pun, da
 use Anthropic\RequestOptions;
 // ...
 $message = $client->messages->create(
-  maxTokens: 1024,
-  messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-  model: 'claude-opus-5-5',
-  requestOptions: RequestOptions::with(
-    extraQueryParams: ['my_query_parameter' => 'value'],
-    extraBodyParams: ['my_body_parameter' => 'value'],
-    extraHeaders: ['my-header' => 'value'],
-  ),
+    maxTokens: 1024,
+    messages: [['role' => 'user', 'content' => 'Hello, Claude']],
+    model: 'claude-opus-5-5',
+    requestOptions: RequestOptions::with(
+        extraQueryParams: ['my_query_parameter' => 'value'],
+        extraBodyParams: ['my_body_parameter' => 'value'],
+        extraHeaders: ['my-header' => 'value'],
+    ),
 );
 ```
 
@@ -213,13 +215,47 @@ Untuk membuat permintaan ke endpoint yang tidak terdokumentasi sambil tetap memp
 $client = new Client();
 
 $response = $client->request(
-  method: "post",
-  path: '/undocumented/endpoint',
-  query: ['dog' => 'woof'],
-  headers: ['useful-header' => 'interesting-value'],
-  body: ['hello' => 'world']
+    method: 'post',
+    path: '/undocumented/endpoint',
+    query: ['dog' => 'woof'],
+    headers: ['useful-header' => 'interesting-value'],
+    body: ['hello' => 'world']
 );
 ```
+
+### Middleware
+
+Middleware menjalankan kode Anda di sekitar setiap permintaan HTTP yang dikirim klien. [Middleware SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/middleware) menunjukkan cara mendaftarkan middleware dan urutan eksekusi beberapa middleware. Bagian ini membahas detail yang khusus untuk PHP SDK.
+
+Middleware adalah callable yang menerima permintaan dan `$next`, atau instance dari kelas yang mengimplementasikan `Anthropic\Middleware`, yang metode `handle()`-nya memiliki signature yang sama. Opsi permintaan `middleware` menerima keduanya:
+
+```php
+use Anthropic\Middleware;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+
+final class TracingMiddleware implements Middleware
+{
+    public function handle(RequestInterface $request, \Closure $next): ResponseInterface
+    {
+        return $next($request->withHeader('x-trace-id', bin2hex(random_bytes(8))));
+    }
+}
+
+$client = new Client(requestOptions: ['middleware' => [new TracingMiddleware()]]);
+```
+
+`$next` menjalankan sisa rantai dan mengirim permintaan. Panggil sekali untuk meneruskan permintaan, lewati pemanggilan untuk mengembalikan respons Anda sendiri (seperti respons yang di-cache), atau panggil beberapa kali untuk mengirim permintaan lanjutan (seperti percobaan ulang kustom).
+
+SDK juga meneruskan argumen ketiga ke setiap middleware: `Anthropic\RequestOptions` milik permintaan, yang menggabungkan opsi klien dengan opsi pemanggilan. Untuk membaca opsi seperti `fallbackState`, deklarasikan parameter ketiga yang opsional, `?RequestOptions $options = null`. Perlakukan objek tersebut sebagai read-only, karena setiap middleware dan setiap percobaan ulang permintaan berbagi objek yang sama. Jika callable Anda sudah memiliki parameter ketiga dengan tujuan lain, tulis ulang callable tersebut, karena SDK mengisi parameter itu pada setiap pemanggilan.
+
+Saat runtime:
+
+* **Percobaan ulang:** Middleware berjalan sekali untuk setiap percobaan HTTP, di dalam loop percobaan ulang SDK, sehingga berjalan lagi pada setiap percobaan ulang.
+* **Respons error:** `$next` mengembalikan respons untuk setiap status HTTP. SDK melemparkan [exception bertipe](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php#error-handling) miliknya hanya setelah seluruh rantai selesai, sehingga middleware dapat memeriksa atau mengganti respons 4xx atau 5xx.
+* **Exception:** Exception yang dilemparkan middleware mencapai kode Anda tanpa perubahan, kecuali dalam dua kasus. SDK menangani `ClientExceptionInterface` PSR-18 sebagai error koneksi, yang muncul sebagai `APIConnectionException`. SDK mencoba ulang percobaan setelah `Anthropic\Core\Exceptions\RetryableException`, dan melemparkan exception tersebut tanpa perubahan ketika tidak ada percobaan ulang yang tersisa.
+* **Autentikasi:** SDK memperbarui token OAuth, serta menandatangani atau mengotorisasi permintaan Amazon Bedrock dan Google Cloud, di dalam `$next` paling dalam. Oleh karena itu, permintaan yang diubah oleh middleware Anda ditandatangani setelah perubahan, dan ditandatangani lagi setiap kali Anda memanggil `$next`.
+* **Body respons:** Middleware yang membaca body respons harus me-rewind-nya, atau mengembalikan `$response->withBody(...)` dengan body baru, sehingga SDK masih dapat mendekodenya. Body streaming tidak dapat di-rewind, jadi teruskan tanpa dibaca.
 
 ## Integrasi platform
 
@@ -247,7 +283,7 @@ Gunakan `MantleClient` untuk proyek baru; `Anthropic\Bedrock\Client` tetap terse
 
 PHP SDK juga mendukung Claude Models on Google Cloud (Anthropic managed) melalui `Anthropic\GoogleCloud\Client`. Klien ini masih dalam tahap beta. `Anthropic\GoogleCloud\Client` memerlukan `google/auth` sebagai “soft dependency” (dependensi opsional). Gunakan `new Anthropic\GoogleCloud\Client(workspaceId: ...)` atau atur variabel lingkungan `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`. Lihat [Resolusi proyek, lokasi, dan workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution).
 
-## Semantic versioning
+## Pembuatan versi semantik
 
 Paket ini mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html).
 
@@ -260,4 +296,4 @@ Setiap permintaan ke Claude API menggunakan versi API. Dengan SDK ini, permintaa
 * [Repositori GitHub](https://github.com/anthropics/anthropic-sdk-php)
 * [Packagist](https://packagist.org/packages/anthropic-ai/sdk)
 * [Referensi API](https://platform.claude.com/docs/id/api/overview)
-* [Streaming Messages](https://platform.claude.com/docs/id/build-with-claude/streaming)
+* [Streaming pesan](https://platform.claude.com/docs/id/build-with-claude/streaming)

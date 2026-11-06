@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-4-6/overview
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 641c1e3dcec8a7f24a0d25d3a6602a0764077b404bcfe4a3d086d964e2b3019b
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 5175f6f27f69e83de069e56284f8755051b09112bc8466ec9957613c08f5e685
 ---
 
 ---
@@ -105,7 +105,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $3 / MTok
     Prompt sistem yang digunakan Claude Sonnet 4.6 di claude.ai dan aplikasi Claude.
   </Card>
 
-  <Card title="System card" icon="file" href="https://www.anthropic.com/claude-sonnet-4-6-system-card">
+  <Card title="Kartu sistem" icon="file" href="https://www.anthropic.com/claude-sonnet-4-6-system-card">
     Evaluasi keamanan dan keputusan deployment untuk Claude Sonnet 4.6.
   </Card>
 

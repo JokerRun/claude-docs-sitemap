@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 5f6c0b848846775fab267d626bcad75dd1cde0be3e9b5cca130d5ddfdff29685
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: bc154faf80791d6bdfcdd1b421fc44da661c4a5d5d05c4ed842e321bfaba10e8
 ---
 
 ---
@@ -134,7 +134,6 @@ The Batches API offers significant cost savings. All usage is charged at 50 perc
 | Claude Haiku 5.5 (for prompts up to 100,000 tokens)                                                                                                                    | $0.05 / MTok | $0.25 / MTok  |
 | Claude Haiku 5.5 (for prompts over 100,000 tokens)                                                                                                                     | $0.25 / MTok | $1.25 / MTok  |
 | Claude Haiku 4.5                                                                                                                                                       | $0.50 / MTok | $2.50 / MTok  |
-| Claude Haiku 3.5 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/about-claude/model-deprecations))            | $0.40 / MTok | $2 / MTok     |
 
 * **MTok:** Million tokens. $5 / MTok is $5 for every million tokens.
 * **Limited access:** Available only to organizations verified through Anthropic’s verification programs, such as the [Cyber Verification Program](https://support.claude.com/en/articles/14604842). To request access, apply to the program that covers your use case.

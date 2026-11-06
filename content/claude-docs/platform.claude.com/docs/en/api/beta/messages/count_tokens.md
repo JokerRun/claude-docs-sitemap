@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/count_tokens
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: d90d55e955f140ba9f4c7a91dfd895bc7fbfe4a8be5d20f5e6bb9ac8259ed4bd
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 44d30cf0aabb5cc66255446c71921e03ae61186d4b11f6844fbd34f4f11a4d66
 ---
 
 ---
@@ -3235,7 +3235,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
                       - `max_tokens: optional number or null`
 
-                        Bounds the advisor's total output (thinking + text) per call. When the advisor hits this cap, the returned advisor_result or advisor_redacted_result block carries stop_reason='max_tokens', and a truncation note is appended to the advice text the worker model sees (inside the encrypted blob in redacted mode). When set, the server also emits a remaining-tokens budget block in the advisor's prompt so the advisor self-shapes toward the cap. When omitted, the advisor model's default output cap applies and no budget block is emitted.
+                        Bounds the advisor's total output (thinking + text) per call. When the advisor hits this cap, the returned advisor_result or advisor_redacted_result block carries stop_reason='max_tokens', and a truncation note is appended to the advice text the worker model sees (inside the encrypted blob in redacted mode). When set, the API also passes the advisor its remaining-token budget, so the advisor shapes its output toward the cap. When omitted, the advisor model's default output cap applies and the API doesn't pass a budget.
 
                         minimum: 1024
 

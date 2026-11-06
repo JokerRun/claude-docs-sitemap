@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: b073b7a10d0fe073e311ed6e7a45f07a7e202eb62123dbf4a162ea8f57c8738d
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 2e10a93a0a9f0fb109aec271ec0e9fb9297aa4dd38c847714ee6eb062c715fb0
 ---
 
 ---
@@ -43,9 +43,9 @@ featureMetadata:
 
 Claude dapat menganalisis data, membuat visualisasi, melakukan perhitungan kompleks, menjalankan perintah sistem, membuat dan mengedit file, serta memproses file yang diunggah langsung di dalam percakapan API. Alat eksekusi kode memungkinkan Claude menjalankan perintah Bash dan memanipulasi file, termasuk menulis kode, dalam lingkungan sandbox yang aman.
 
-**Eksekusi kode gratis saat digunakan bersama web search atau web fetch (`web_search_20260209`, `web_fetch_20260209`, atau yang lebih baru).** Ketika salah satu alat tersebut ada dalam permintaan Anda, tidak ada biaya tambahan untuk eksekusi kode dalam permintaan tersebut selain biaya token standar. Ini mencakup eksekusi kode di balik pemfilteran dinamis maupun kode apa pun yang dijalankan Claude secara langsung. Harga eksekusi kode standar berlaku ketika alat-alat tersebut tidak disertakan.
+**Eksekusi kode gratis saat digunakan bersama pencarian web atau web fetch (`web_search_20260209`, `web_fetch_20260209`, atau yang lebih baru).** Ketika salah satu alat tersebut ada dalam permintaan Anda, tidak ada biaya tambahan untuk eksekusi kode dalam permintaan tersebut selain biaya token standar. Ini mencakup eksekusi kode di balik pemfilteran dinamis maupun kode apa pun yang dijalankan Claude secara langsung. Harga eksekusi kode standar berlaku ketika alat-alat tersebut tidak disertakan.
 
-Eksekusi kode juga menjalankan pemfilteran dinamis pada alat [web search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) dan [web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool): Claude memfilter hasil di dalam lingkungan eksekusi kode sebelum hasil tersebut mencapai “context window” (jendela konteks). Ketika pemfilteran dinamis berjalan, API secara otomatis menyediakan eksekusi kode yang dibutuhkan untuk permintaan tersebut, sehingga Anda tidak perlu menambahkan alat eksekusi kode ke permintaan Anda untuk itu.
+Eksekusi kode juga menjalankan pemfilteran dinamis pada alat [pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) dan [web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool): Claude memfilter hasil di dalam lingkungan eksekusi kode sebelum hasil tersebut mencapai “context window” (jendela konteks). Ketika pemfilteran dinamis berjalan, API secara otomatis menyediakan eksekusi kode yang dibutuhkan untuk permintaan tersebut, sehingga Anda tidak perlu menambahkan alat eksekusi kode ke permintaan Anda untuk itu.
 
 <Note>
   Gunakan [formulir umpan balik](https://forms.gle/LTAU6Xn2puCJMi1n6) untuk membagikan umpan balik Anda tentang fitur ini.
@@ -63,7 +63,7 @@ Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), eksekusi kode di
 
 Tidak satu pun dari ketiga versi alat memerlukan header `anthropic-beta`. Header beta eksekusi kode lama tetap valid sebagai opt-in.
 
-Contoh di halaman ini menggunakan `code_execution_20250825`, yang mencakup operasi Bash dan file yang didemonstrasikan dan berperilaku sama di setiap model yang didukung; gunakan `code_execution_20260120` atau yang lebih baru ketika Anda memerlukan pemanggilan alat terprogram atau persistensi status REPL. Alat [web search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) dan [web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool) saat ini (`web_search_20260209`, `web_fetch_20260209`, dan yang lebih baru) memerlukan `code_execution_20260120` atau yang lebih baru sebagai versi eksekusi kodenya.
+Contoh di halaman ini menggunakan `code_execution_20250825`, yang mencakup operasi Bash dan file yang didemonstrasikan dan berperilaku sama di setiap model yang didukung; gunakan `code_execution_20260120` atau yang lebih baru ketika Anda memerlukan pemanggilan alat terprogram atau persistensi status REPL. Alat [pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) dan [web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool) saat ini (`web_search_20260209`, `web_fetch_20260209`, dan yang lebih baru) memerlukan `code_execution_20260120` atau yang lebih baru sebagai versi eksekusi kodenya.
 
 Versi alat yang lebih lama tidak dijamin tetap kompatibel dengan model yang lebih baru. Saat Anda mengadopsi model baru, periksa [Versi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#tool-versions) dan [Dukungan API](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#availability-feature-support), dan utamakan versi alat terbaru yang didukung integrasi Anda.
 
@@ -266,7 +266,7 @@ Claude menjalankan kode ketika permintaan mendapat manfaat dari komputasi atau p
 * Matematika non-trivial (angka besar, banyak langkah, hasil yang sensitif terhadap presisi)
 * Analisis data, parsing file, atau visualisasi
 * Eksekusi algoritma atau simulasi
-* Permintaan eksplisit untuk “run,” “compute,” atau “execute”
+* Permintaan eksplisit untuk “jalankan,” “hitung,” atau “eksekusi”
 
 Claude menjawab langsung tanpa menjalankan kode untuk:
 
@@ -875,9 +875,7 @@ Ketika Claude menyimpan file ke direktori output-nya selama eksekusi kode (lihat
     file_ids = []
     response.content.each do |item|
       if item.type == :bash_code_execution_tool_result
-        # WORKAROUND untuk bug koersi union anthropic-sdk-ruby (SDK-636): item.content adalah
-        # union konten bersarang, sehingga accessor bertipe pada `item.content` tidak andal.
-        # Sebagai gantinya, baca data respons mentah melalui API publik `BaseModel#[]`.
+        # Kumpulkan ID file dari hasil alat
         content_item = item.content
         if content_item[:type].to_s == "bash_code_execution_result"
           Array(content_item[:content]).each do |output_block|
@@ -920,7 +918,7 @@ Di Claude API, file gambar, video, dan audio yang didukung yang dihasilkan Claud
 
 Penandatanganan tidak memerlukan perubahan pada permintaan atau penanganan respons Anda, dan manifes tidak mencatat apa pun tentang Anda, organisasi Anda, atau permintaan Anda. Konten file yang terlihat tidak berubah. Manifes menambahkan beberapa kilobyte, sehingga ukuran dan checksum file yang diunduh berbeda dari file sebagaimana adanya di dalam container. File teks, PDF, dan dokumen perkantoran tidak ditandatangani karena bukan format yang didukung untuk penandatanganan. File yang Anda unggah disimpan apa adanya, termasuk Content Credentials apa pun yang sudah dibawanya.
 
-Untuk memverifikasi kredensial, periksa file dengan alat apa pun yang kompatibel dengan C2PA, seperti [utilitas baris perintah c2patool](https://github.com/contentauth/c2pa-rs) yang open-source. Re-encoding, konversi format, tangkapan layar, dan alat yang menghapus metadata akan menghilangkan kredensial, sehingga kredensial yang hilang tidak berarti file tidak dihasilkan dengan Claude. Untuk informasi lebih lanjut tentang mengapa kredensial bisa hilang, lihat [How Claude marks AI-generated content](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content).
+Untuk memverifikasi kredensial, periksa file dengan alat apa pun yang kompatibel dengan C2PA, seperti [utilitas baris perintah c2patool](https://github.com/contentauth/c2pa-rs) yang open-source. Re-encoding, konversi format, tangkapan layar, dan alat yang menghapus metadata akan menghilangkan kredensial, sehingga kredensial yang hilang tidak berarti file tidak dihasilkan dengan Claude. Untuk informasi lebih lanjut tentang mengapa kredensial bisa hilang, lihat [Bagaimana Claude menandai konten yang dihasilkan AI](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content).
 
 ## Definisi alat
 
@@ -1060,8 +1058,8 @@ Hasil perintah Bash (`bash_code_execution_result`) mencakup:
 
 Hasil operasi file memiliki field-nya sendiri:
 
-* **View** (`text_editor_code_execution_view_result`): `file_type`, `content`, `num_lines`, `start_line`, `total_lines`
-* **Create** (`text_editor_code_execution_create_result`): `is_file_update` (apakah file sudah ada sebelumnya)
+* **Lihat** (`text_editor_code_execution_view_result`): `file_type`, `content`, `num_lines`, `start_line`, `total_lines`
+* **Buat** (`text_editor_code_execution_create_result`): `is_file_update` (apakah file sudah ada sebelumnya)
 * **Edit** (`text_editor_code_execution_str_replace_result`): `old_start`, `old_lines`, `new_start`, `new_lines`, `lines` (format diff)
 
 ### Kesalahan
@@ -1090,7 +1088,7 @@ Setiap tipe alat dapat mengembalikan kesalahan tertentu:
 | Semua alat   | `invalid_tool_input`      | Parameter yang tidak valid diberikan ke alat    |
 | Semua alat   | `too_many_requests`       | Batas laju terlampaui untuk penggunaan alat     |
 | bash         | `output_file_too_large`   | Output perintah melebihi ukuran maksimum        |
-| text\_editor | `file_not_found`          | File tidak ada (untuk operasi view/edit)        |
+| text\_editor | `file_not_found`          | File tidak ada (untuk operasi lihat/edit)       |
 
 Container yang sudah kedaluwarsa tidak dapat digunakan kembali: permintaan yang merujuknya mengembalikan kesalahan alih-alih memulihkannya. Kirim permintaan lagi tanpa parameter `container` untuk mendapatkan container baru.
 
@@ -1447,7 +1445,7 @@ When multiple code execution environments are available, be aware that:
 - If you need to pass results between environments, explicitly include outputs in subsequent tool calls rather than assuming shared state
 ```
 
-Ini sangat penting ketika menggabungkan eksekusi kode dengan [web search](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) atau [web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool), yang mengaktifkan eksekusi kode secara otomatis. Jika aplikasi Anda sudah menyediakan alat shell sisi klien, eksekusi kode otomatis menciptakan lingkungan eksekusi kedua yang perlu dibedakan Claude dari yang pertama.
+Ini sangat penting ketika menggabungkan eksekusi kode dengan [pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) atau [web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool), yang mengaktifkan eksekusi kode secara otomatis. Jika aplikasi Anda sudah menyediakan alat shell sisi klien, eksekusi kode otomatis menciptakan lingkungan eksekusi kedua yang perlu dibedakan Claude dari yang pertama.
 
 Ketika Claude memanggil salah satu alat klien Anda bersamaan dengan eksekusi kode, API mengembalikan panggilan eksekusi kode tanpa hasilnya. Hasilnya tiba dalam respons berikutnya, setelah Anda mengirim kembali blok `tool_result` untuk alat klien Anda.
 
@@ -1476,7 +1474,7 @@ Anda dapat menyertakan alat eksekusi kode dalam [Messages Batches API](https://p
 
 ## Penggunaan dan harga
 
-**Eksekusi kode gratis ketika digunakan bersama web search atau web fetch.** Ketika `web_search_20260209` (atau yang lebih baru) atau `web_fetch_20260209` (atau yang lebih baru) disertakan dalam permintaan API Anda, tidak ada biaya tambahan untuk pemanggilan alat eksekusi kode di luar biaya token input dan output standar.
+**Eksekusi kode gratis ketika digunakan bersama pencarian web atau web fetch.** Ketika `web_search_20260209` (atau yang lebih baru) atau `web_fetch_20260209` (atau yang lebih baru) disertakan dalam permintaan API Anda, tidak ada biaya tambahan untuk pemanggilan alat eksekusi kode di luar biaya token input dan output standar.
 
 Ketika digunakan tanpa alat-alat tersebut, eksekusi kode ditagih berdasarkan waktu eksekusi, yang dilacak secara terpisah dari penggunaan token:
 

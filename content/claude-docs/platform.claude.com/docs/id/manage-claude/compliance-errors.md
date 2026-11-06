@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-errors
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: cf69089230d18cf5a23a8b57e690439c6766210e16011288d054df2a34be0e6a
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: a73521a9d431d4496aba6d76cd383e0b40b1ab5931dfb897f0e2e89834be5770
 ---
 
 ---
@@ -51,7 +51,7 @@ Permintaan valid secara sintaksis, tetapi server menolak sebuah parameter atau C
 
 ### Compliance API belum diaktifkan
 
-**Type:** `invalid_request_error`
+**Tipe:** `invalid_request_error`
 
 ```text wrap
 Compliance API is not enabled for this organization
@@ -63,7 +63,7 @@ Compliance API is not enabled for this organization
 
 ### Parameter query tidak dikenal
 
-**Type:** `invalid_request_error`
+**Tipe:** `invalid_request_error`
 
 ```text wrap
 Unknown query parameter: 'created_at[gte]'. Did you mean 'created_at.gte'?
@@ -75,7 +75,7 @@ Unknown query parameter: 'created_at[gte]'. Did you mean 'created_at.gte'?
 
 ### Nilai parameter tidak valid
 
-**Type:** `invalid_request_error`
+**Tipe:** `invalid_request_error`
 
 ```text wrap
 limit: Input should be less than or equal to 1000
@@ -91,9 +91,9 @@ activity_types[].0: Input is not one of the permitted values.
 
 **Penyebab:** Nilai sebuah parameter query gagal validasi. Pesan diawali dengan nama parameter (diikuti posisi elemen untuk parameter array), lalu menyatakan batasan yang gagal dipenuhi. Tiga kasus umum ditampilkan: `limit` di atas nilai maksimum endpoint (angka dalam pesan adalah nilai maksimum endpoint tersebut), nilai `created_at.*` atau `updated_at.*` yang tidak dapat di-parse sebagai tanggal atau timestamp, dan nilai `activity_types[]` yang bukan merupakan jenis aktivitas yang didukung.
 
-**Perbaikan:** Perbaiki parameter yang disebutkan dalam pesan. Setiap endpoint list memiliki rentang `limit` sendiri; lihat batasan parameter di halaman [referensi Compliance API](https://platform.claude.com/docs/id/api/compliance) yang sesuai. Kirim timestamp dalam format RFC 3339 dengan offset UTC eksplisit, misalnya, `2024-03-01T00:00:00Z` atau `2024-03-01T00:00:00+00:00`; list sesi lokal menolak timestamp tanpa offset (`created_at.gte: Input should have timezone info`). Untuk nilai `activity_types[]` yang didukung, lihat [Mengkueri aktivitas kepatuhan](https://platform.claude.com/docs/id/api/compliance/activities/list).
+**Perbaikan:** Perbaiki parameter yang disebutkan dalam pesan. Setiap endpoint list memiliki rentang `limit` sendiri; lihat batasan parameter di halaman [referensi Compliance API](https://platform.claude.com/docs/id/api/compliance) yang sesuai. Kirim timestamp dalam format RFC 3339 dengan offset UTC eksplisit, misalnya, `2024-03-01T00:00:00Z` atau `2024-03-01T00:00:00+00:00`; daftar sesi lokal menolak timestamp tanpa offset (`created_at.gte: Input should have timezone info`). Untuk nilai `activity_types[]` yang didukung, lihat [Mengkueri aktivitas kepatuhan](https://platform.claude.com/docs/id/api/compliance/activities/list).
 
-List sesi lokal (`GET /v1/compliance/apps/sessions/local`) juga mengembalikan 400 `invalid_request_error` ketika Anda memberikan batas bawah (`created_at.gte` atau `created_at.gt`) dan batas atas (`created_at.lt` atau `created_at.lte`) dan batas atas tidak lebih lambat dari batas bawah. Kedua batas hanya boleh bernilai sama untuk `created_at.gte` dengan `created_at.lte`. Pesan menyebutkan kedua parameter tersebut, misalnya:
+Daftar sesi lokal (`GET /v1/compliance/apps/sessions/local`) juga mengembalikan 400 `invalid_request_error` ketika Anda memberikan batas bawah (`created_at.gte` atau `created_at.gt`) dan batas atas (`created_at.lt` atau `created_at.lte`) dan batas atas tidak lebih lambat dari batas bawah. Kedua batas hanya boleh bernilai sama untuk `created_at.gte` dengan `created_at.lte`. Pesan menyebutkan kedua parameter tersebut, misalnya:
 
 ```text wrap
 created_at.lt must be strictly after created_at.gte.
@@ -109,7 +109,7 @@ Endpoint transkrip sesi (`GET /v1/compliance/apps/sessions/local/{session_id}/me
 
 ### Kursor paginasi tidak valid
 
-**Type:** `invalid_request_error`
+**Tipe:** `invalid_request_error`
 
 ```text wrap
 Invalid activity_id format: 'activity_invalid123'
@@ -125,7 +125,7 @@ Invalid pagination cursor for 'after_id'
 
 Endpoint direktori, proyek, dan sesi (organisasi, pengguna, peran, izin peran, grup, anggota grup, proyek, lampiran proyek, sesi lokal dan jarak jauh, serta pesan sesi) melakukan paginasi dengan token `page` yang buram alih-alih `after_id` dan `before_id`. Saran yang sama berlaku: teruskan nilai `next_page` dari respons sebelumnya tanpa diubah, dan berhenti ketika `has_more` bernilai `false` (atau, pada endpoint sesi, yang tidak mengembalikan `has_more`, ketika `next_page` bernilai `null`). Token `page` yang salah bentuk mengembalikan 400 `invalid_request_error` yang sama seperti `after_id` atau `before_id` yang salah bentuk, dengan pesan yang spesifik untuk endpoint tersebut.
 
-Dua endpoint sesi lokal yang berpaginasi (list dan endpoint messages) mengembalikan 400 `invalid_request_error` berikut untuk nilai `page` apa pun yang tidak dapat didekode. Contohnya termasuk token yang terpotong atau diubah setelah Anda menyimpannya, dan token yang diterbitkan oleh endpoint berbeda atau di bawah organisasi induk berbeda. Pada endpoint messages sesi lokal (`GET /v1/compliance/apps/sessions/local/{session_id}/messages`), setiap cursor `page` juga terikat pada sesi dan `order` yang menjadi dasar penerbitannya, sehingga cursor yang diterbitkan untuk sesi atau urutan pengurutan yang berbeda mengembalikan body yang sama:
+Dua endpoint sesi lokal yang berpaginasi (list dan endpoint messages) mengembalikan 400 `invalid_request_error` berikut untuk nilai `page` apa pun yang tidak dapat didekode. Contohnya termasuk token yang terpotong atau diubah setelah Anda menyimpannya, dan token yang diterbitkan oleh endpoint berbeda atau di bawah organisasi induk berbeda. Pada endpoint messages sesi lokal (`GET /v1/compliance/apps/sessions/local/{session_id}/messages`), setiap kursor `page` juga terikat pada sesi dan `order` yang menjadi dasar penerbitannya, sehingga kursor yang diterbitkan untuk sesi atau urutan pengurutan yang berbeda mengembalikan body yang sama:
 
 ```text wrap
 The page parameter is not a valid cursor for this request.
@@ -141,7 +141,7 @@ Untuk body pertama, kirim ulang nilai `next_page` yang tidak dimodifikasi dari r
 
 ### ID file tidak valid
 
-**Type:** `invalid_request_error`
+**Tipe:** `invalid_request_error`
 
 ```text wrap
 Invalid claude_gen_file_id format: 'claude_file_01Qm7RzKdTgWnYbVx3HcLpE5'
@@ -157,7 +157,7 @@ Invalid claude_file_id format: 'claude_gen_file_01TbR8wAcCeFhJkLnPqStUvX'
 
 ### Halaman transkrip terlalu besar
 
-**Type:** `invalid_request_error`
+**Tipe:** `invalid_request_error`
 
 **Kode error:** `transcript_page_read_limit_exceeded`, dikembalikan di `error.details.error_code`
 
@@ -165,7 +165,7 @@ Invalid claude_file_id format: 'claude_gen_file_01TbR8wAcCeFhJkLnPqStUvX'
 This page of the session's transcript is too large to read, and retrying will not help. If you are reading newest first (order=desc), read this session oldest first instead: omit the order and page parameters, then follow next_page.
 ```
 
-**Penyebab:** `GET /v1/compliance/apps/sessions/local/{session_id}/messages` dapat mengembalikan error ini untuk satu halaman dari sesi yang sangat besar. Hanya endpoint ini yang mengembalikan error ini. Error ini berbagi type `invalid_request_error` dengan 400 lainnya, jadi identifikasi berdasarkan kode error-nya, bukan berdasarkan teks pesan, yang mungkin diubah susunan katanya.
+**Penyebab:** `GET /v1/compliance/apps/sessions/local/{session_id}/messages` dapat mengembalikan error ini untuk satu halaman dari sesi yang sangat besar. Hanya endpoint ini yang mengembalikan error ini. Error ini berbagi tipe `invalid_request_error` dengan 400 lainnya, jadi identifikasi berdasarkan kode error-nya, bukan berdasarkan teks pesan, yang mungkin diubah susunan katanya.
 
 **Perbaikan:** Jangan coba ulang permintaan. Jika permintaan menggunakan `order=desc`, baca sesi tersebut dari yang terlama terlebih dahulu:
 
@@ -181,7 +181,7 @@ Permintaan membawa Compliance Access Key (`sk-ant-api01-...`) atau kunci Admin A
 
 ### Kunci API tidak valid, dinonaktifkan, atau kedaluwarsa
 
-**Type:** `authentication_error`
+**Tipe:** `authentication_error`
 
 ```text wrap
 API key is invalid.
@@ -197,7 +197,7 @@ API key has expired.
 
 **Penyebab:** `API key is invalid.` berarti nilai yang dikirim tidak cocok dengan kunci yang dapat digunakan, misalnya karena terpotong atau diubah saat disimpan. `API key has been deactivated.` berarti kunci telah dinonaktifkan atau dihapus. `API key has expired.` berarti tanggal kedaluwarsa kunci Admin API telah lewat; Compliance Access Key tidak dibuat dengan tanggal kedaluwarsa.
 
-**Perbaikan:** Untuk `API key is invalid.`, bandingkan nilai yang dikirim klien Anda dengan secret yang Anda simpan saat kunci dibuat; secret lengkap hanya ditampilkan sekali, jadi jika salinan yang Anda simpan salah, buat kunci baru. Untuk `API key has been deactivated.`, aktifkan kembali kunci jika kunci tersebut hanya dinonaktifkan, di [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access) untuk Compliance Access Key atau di halaman [Admin keys](https://platform.claude.com/settings/admin-keys) (`platform.claude.com/settings/admin-keys`) di Claude Console untuk kunci Admin API; kunci yang telah dihapus tidak dapat dipulihkan. Untuk kunci yang dihapus atau kedaluwarsa, buat kunci baru dan perbarui integrasi Anda untuk menggunakannya, seperti yang dijelaskan di [Mengelola dan merotasi kunci](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#manage-and-rotate-keys).
+**Perbaikan:** Untuk `API key is invalid.`, bandingkan nilai yang dikirim klien Anda dengan secret yang Anda simpan saat kunci dibuat; secret lengkap hanya ditampilkan sekali, jadi jika salinan yang Anda simpan salah, buat kunci baru. Untuk `API key has been deactivated.`, aktifkan kembali kunci jika kunci tersebut hanya dinonaktifkan, di [claude.ai > Pengaturan organisasi > API](https://claude.ai/admin-settings/api-access) untuk Compliance Access Key atau di halaman [Kunci admin](https://platform.claude.com/settings/admin-keys) (`platform.claude.com/settings/admin-keys`) di Claude Console untuk kunci Admin API; kunci yang telah dihapus tidak dapat dipulihkan. Untuk kunci yang dihapus atau kedaluwarsa, buat kunci baru dan perbarui integrasi Anda untuk menggunakannya, seperti yang dijelaskan di [Mengelola dan merotasi kunci](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#manage-and-rotate-keys).
 
 ## 403 Forbidden
 
@@ -205,7 +205,7 @@ Kunci di `x-api-key` valid tetapi tidak membawa scope yang diterima oleh endpoin
 
 ### Scope tidak memadai: Activity Feed
 
-**Type:** `permission_error`
+**Tipe:** `permission_error`
 
 ```text wrap
 Missing required scopes. Got: ['read:compliance_user_data'] Needed one of: ['read:compliance_activities', 'read:org_audit']
@@ -220,7 +220,7 @@ Missing required scopes. Got: ['read:compliance_user_data'] Needed one of: ['rea
 
 ### Scope tidak memadai: data organisasi
 
-**Type:** `permission_error`
+**Tipe:** `permission_error`
 
 ```text wrap
 Missing required scopes. Got: ['read:compliance_user_data'] Needed one of: ['read:compliance_org_data', 'read:org_audit']
@@ -235,7 +235,7 @@ Missing required scopes. Got: ['read:compliance_user_data'] Needed one of: ['rea
 
 ### Scope yang dihentikan: pengaturan organisasi
 
-**Type:** `permission_error`
+**Tipe:** `permission_error`
 
 ```text wrap
 Missing required scopes. Got: ['read:compliance_org_settings'] Needed one of: ['read:compliance_org_data', 'read:org_audit']
@@ -247,7 +247,7 @@ Missing required scopes. Got: ['read:compliance_org_settings'] Needed one of: ['
 
 ### Scope tidak memadai: data pengguna
 
-**Type:** `permission_error`
+**Tipe:** `permission_error`
 
 ```text wrap
 Missing required scopes. Got: ['read:compliance_activities'] Needed one of: ['read:compliance_user_data', 'read:org_audit']
@@ -262,7 +262,7 @@ Missing required scopes. Got: ['read:compliance_activities'] Needed one of: ['re
 
 ### Scope tidak memadai: hapus
 
-**Type:** `permission_error`
+**Tipe:** `permission_error`
 
 ```text wrap
 Missing required scopes. Got: ['read:compliance_user_data'] Needed: ['delete:compliance_user_data']
@@ -278,19 +278,19 @@ Missing required scopes. Got: ['read:compliance_user_data'] Needed: ['delete:com
 
 ### Permintaan tidak terautentikasi
 
-**Type:** `not_found_error`
+**Tipe:** `not_found_error`
 
 ```text wrap
 Not found
 ```
 
-**Penyebab:** Permintaan tidak membawa kredensial yang diterima oleh Compliance API: tidak ada kunci API yang dikirim, atau kunci tersebut bukan Compliance Access Key (`sk-ant-api01-...`) atau kunci Admin API (`sk-ant-admin01-...`), misalnya, kunci Claude API (`sk-ant-api03-...`). Status, type, dan pesannya sama dengan path yang tidak ada dan tidak bergantung pada endpoint atau ID sumber daya apa pun, sehingga endpoint list seperti `GET /v1/compliance/activities` juga mengembalikan body ini. Satu-satunya pengecualian adalah `GET /v1/compliance/organizations/{organization_id}/settings`, yang menjawab permintaan semacam ini dengan 401 `authentication_error`. Pada setiap endpoint, Compliance Access Key atau kunci Admin API yang tidak berhasil diautentikasi akan mengembalikan [401 Unauthorized](https://platform.claude.com/docs/id/manage-claude/compliance-errors#401-unauthorized) sebagai gantinya.
+**Penyebab:** Permintaan tidak membawa kredensial yang diterima oleh Compliance API: tidak ada kunci API yang dikirim, atau kunci tersebut bukan Compliance Access Key (`sk-ant-api01-...`) atau kunci Admin API (`sk-ant-admin01-...`), misalnya, kunci Claude API (`sk-ant-api03-...`). Status, tipe, dan pesannya sama dengan path yang tidak ada dan tidak bergantung pada endpoint atau ID sumber daya apa pun, sehingga endpoint list seperti `GET /v1/compliance/activities` juga mengembalikan body ini. Satu-satunya pengecualian adalah `GET /v1/compliance/organizations/{organization_id}/settings`, yang menjawab permintaan semacam ini dengan 401 `authentication_error`. Pada setiap endpoint, Compliance Access Key atau kunci Admin API yang tidak berhasil diautentikasi akan mengembalikan [401 Unauthorized](https://platform.claude.com/docs/id/manage-claude/compliance-errors#401-unauthorized) sebagai gantinya.
 
 **Perbaikan:** Kirim kunci di header `x-api-key` dan periksa prefiksnya: Compliance API hanya menerima kunci `sk-ant-api01-...` dan `sk-ant-admin01-...`; lihat [Kunci mana yang Anda perlukan?](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#which-key-do-you-need). Jika header dan kunci sudah benar dan satu path masih mengembalikan `Not found` sementara path lain berhasil, periksa path tersebut terhadap [referensi Compliance API](https://platform.claude.com/docs/id/api/compliance).
 
 ### Chat tidak ditemukan
 
-**Type:** `not_found_error`
+**Tipe:** `not_found_error`
 
 ```text wrap
 Chat conversation not found: 'claude_chat_01H5CWunD7RpVJ5bHa8RCkja'
@@ -302,7 +302,7 @@ Chat conversation not found: 'claude_chat_01H5CWunD7RpVJ5bHa8RCkja'
 
 ### File tidak ditemukan
 
-**Type:** `not_found_error`
+**Tipe:** `not_found_error`
 
 ```text wrap
 File not found: 0d3b8f72-6c1e-4a59-b2de-7f4c9a1e5b60
@@ -314,7 +314,7 @@ File not found: 0d3b8f72-6c1e-4a59-b2de-7f4c9a1e5b60
 
 ### File yang dihasilkan atau artifact tidak ditemukan
 
-**Type:** `not_found_error`
+**Tipe:** `not_found_error`
 
 ```text wrap
 Generated file not found: 'claude_gen_file_01TbR8wAcCeFhJkLnPqStUvX'
@@ -330,11 +330,11 @@ Artifact version not found: 'claude_artifact_version_01KmNpQrSt3UvWxYz5AbCdEfG'
 
 **Penyebab:** ID di path tidak cocok dengan file yang dihasilkan alat atau versi artifact yang dapat dibaca melalui Compliance API. Endpoint metadata file yang dihasilkan mengembalikan body pertama, endpoint konten mengembalikan body kedua, dan kedua endpoint artifact mengembalikan body ketiga. File yang dihasilkan dan artifact dihapus bersama chat tempat keduanya dibuat, termasuk ketika pengguna menghapus chat di claude.ai.
 
-**Perbaikan:** Gunakan [Get chat messages](https://platform.claude.com/docs/id/api/compliance/apps/chats/messages/list) untuk mencari chat asal ID tersebut. Jika `deleted_at` milik chat terisi, atau ada aktivitas `claude_chat_deleted` yang menyebutkan chat tersebut, kontennya sudah hilang; hapus ID tersebut dari antrean Anda. Jika tidak, konfirmasikan ID tersebut terhadap array `generated_files` dan `artifacts` pada pesan-pesan chat tersebut. Ketika kebijakan retensi organisasi Anda menghapus sebuah chat, Activity Feed tidak mencatat aktivitas `claude_chat_deleted`.
+**Perbaikan:** Gunakan [Mendapatkan pesan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/messages/list) untuk mencari chat asal ID tersebut. Jika `deleted_at` milik chat terisi, atau ada aktivitas `claude_chat_deleted` yang menyebutkan chat tersebut, kontennya sudah hilang; hapus ID tersebut dari antrean Anda. Jika tidak, konfirmasikan ID tersebut terhadap array `generated_files` dan `artifacts` pada pesan-pesan chat tersebut. Ketika kebijakan retensi organisasi Anda menghapus sebuah chat, Activity Feed tidak mencatat aktivitas `claude_chat_deleted`.
 
 ### Proyek tidak ditemukan
 
-**Type:** `not_found_error`
+**Tipe:** `not_found_error`
 
 ```text wrap
 No project is found with the provided id.
@@ -350,7 +350,7 @@ No project found with provided id, or it has already been deleted.
 
 ### Dokumen proyek tidak ditemukan
 
-**Type:** `not_found_error`
+**Tipe:** `not_found_error`
 
 ```text wrap
 No project document found with the provided id.
@@ -366,7 +366,7 @@ No project document found with the provided id, or it has already been deleted.
 
 ### Sesi lokal tidak ditemukan
 
-**Type:** `not_found_error`
+**Tipe:** `not_found_error`
 
 ```text wrap
 Local session not found.
@@ -381,13 +381,13 @@ Local session not found.
 
 Respons `Local session not found.` tidak memiliki bentuk sementara, karena sesi lokal tidak memiliki status penyediaan (`pending`); bandingkan dengan [Sesi jarak jauh tidak ditemukan](https://platform.claude.com/docs/id/manage-claude/compliance-errors#remote-session-not-found), di mana sesi `pending` mengembalikan 404 hingga dimulai. ID sesi yang bukan pengidentifikasi `clls_` yang berformat benar mengembalikan [400 Bad Request](https://platform.claude.com/docs/id/manage-claude/compliance-errors#400-bad-request) sebagai gantinya.
 
-Endpoint sesi lokal, termasuk endpoint list, mengembalikan pesan 404 yang berbeda, `Local sessions are not available.`, selama endpoint itu sendiri tidak tersedia untuk organisasi induk Anda. Respons tersebut tidak bergantung pada ID sesi; tidak ada kunci, scope, atau pengaturan di sisi pelanggan yang dapat mengubahnya, dan respons tersebut dapat bersifat sementara. Kedua respons membawa type `not_found_error`; teks pesanlah yang membedakan keduanya.
+Endpoint sesi lokal, termasuk endpoint list, mengembalikan pesan 404 yang berbeda, `Local sessions are not available.`, selama endpoint itu sendiri tidak tersedia untuk organisasi induk Anda. Respons tersebut tidak bergantung pada ID sesi; tidak ada kunci, scope, atau pengaturan di sisi pelanggan yang dapat mengubahnya, dan respons tersebut dapat bersifat sementara. Kedua respons membawa tipe `not_found_error`; teks pesanlah yang membedakan keduanya.
 
-**Perbaikan:** Konfirmasikan ID sesi terhadap `GET /v1/compliance/apps/sessions/local`; lihat [Sesi di mesin pengguna](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions). Jika sesi tidak lagi muncul di list, kontennya telah melewati masa retensi (atau sesi tersebut karena alasan lain tidak lagi berada di organisasi yang dapat dibaca oleh kunci Anda) dan transkripnya tidak dapat diambil; hapus ID dari antrean Anda. Jika setiap panggilan, termasuk list, mengembalikan `Local sessions are not available.`, simpan ID sesi yang ada di antrean Anda dan coba ulang pada eksekusi terjadwal berikutnya; jika respons tersebut terus muncul, hubungi perwakilan Anthropic Anda dan sertakan header respons `request-id`.
+**Perbaikan:** Konfirmasikan ID sesi terhadap `GET /v1/compliance/apps/sessions/local`; lihat [Sesi di mesin pengguna](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions). Jika sesi tidak lagi muncul di daftar, kontennya telah melewati masa retensi (atau sesi tersebut karena alasan lain tidak lagi berada di organisasi yang dapat dibaca oleh kunci Anda) dan transkripnya tidak dapat diambil; hapus ID dari antrean Anda. Jika setiap panggilan, termasuk list, mengembalikan `Local sessions are not available.`, simpan ID sesi yang ada di antrean Anda dan coba ulang pada eksekusi terjadwal berikutnya; jika respons tersebut terus muncul, hubungi perwakilan Anthropic Anda dan sertakan header respons `request-id`.
 
 ### Sesi jarak jauh tidak ditemukan
 
-**Type:** `not_found_error`
+**Tipe:** `not_found_error`
 
 ```text wrap
 Remote session not found.
@@ -401,11 +401,11 @@ Remote session not found.
 
 ID sesi yang bukan pengidentifikasi `cse_` yang berformat benar mengembalikan [400 Bad Request](https://platform.claude.com/docs/id/manage-claude/compliance-errors#400-bad-request) sebagai gantinya.
 
-**Perbaikan:** Konfirmasikan ID sesi dan `status`-nya terhadap `GET /v1/compliance/apps/sessions/remote`; lihat [Sesi di cloud](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-remote-sessions). Jika sesi berstatus `pending`, coba ulang setelah sesi keluar dari status tersebut. Jika sesi tidak lagi muncul di list, sesi tersebut telah dihapus dan transkripnya tidak dapat diambil.
+**Perbaikan:** Konfirmasikan ID sesi dan `status`-nya terhadap `GET /v1/compliance/apps/sessions/remote`; lihat [Sesi di cloud](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-remote-sessions). Jika sesi berstatus `pending`, coba ulang setelah sesi keluar dari status tersebut. Jika sesi tidak lagi muncul di daftar, sesi tersebut telah dihapus dan transkripnya tidak dapat diambil.
 
 ### Organisasi, peran, atau grup tidak ditemukan
 
-**Type:** `not_found_error`
+**Tipe:** `not_found_error`
 
 ```text wrap
 The "ce86b5f3-7c16-48b3-a9f3-e1d2c4b8a0f1" organization does not exist or the requester is not authorized to access it.
@@ -419,7 +419,7 @@ Endpoint organisasi, peran, dan grup mengembalikan 404 `not_found_error` dalam f
 
 ### Pengaturan organisasi tidak tersedia
 
-**Type:** `not_found_error`
+**Tipe:** `not_found_error`
 
 ```text wrap
 organization `91012d09-e48b-438e-a489-1bebfd8fa6f9` not found in this organization's hierarchy
@@ -429,7 +429,7 @@ organization `91012d09-e48b-438e-a489-1bebfd8fa6f9` not found in this organizati
 
 * `organization_id` bukan salah satu organisasi yang ditautkan ke induk Anda.
 * `organization_id` bukan UUID yang valid.
-* Endpoint settings belum diaktifkan untuk organisasi induk Anda.
+* Endpoint pengaturan belum diaktifkan untuk organisasi induk Anda.
 
 Endpoint sengaja mengembalikan body yang sama dalam ketiga kasus, sehingga 404 tidak mengungkapkan apakah suatu organisasi ada.
 
@@ -437,11 +437,11 @@ Endpoint sengaja mengembalikan body yang sama dalam ketiga kasus, sehingga 404 t
 
 ## 409 Conflict
 
-Permintaan terbentuk dengan benar dan terotorisasi, tetapi bertentangan dengan status sumber daya saat ini. Body membawa type `invalid_request_error`, yang juga digunakan oleh respons 400, jadi bedakan konflik berdasarkan kode status 409, bukan berdasarkan `error.type`.
+Permintaan terbentuk dengan benar dan terotorisasi, tetapi bertentangan dengan status sumber daya saat ini. Body membawa tipe `invalid_request_error`, yang juga digunakan oleh respons 400, jadi bedakan konflik berdasarkan kode status 409, bukan berdasarkan `error.type`.
 
 ### Proyek memiliki chat yang terlampir
 
-**Type:** `invalid_request_error`
+**Tipe:** `invalid_request_error`
 
 ```text wrap
 The "claude_proj_01KGp4eZNug9ri4kE35RSppq" project cannot be deleted as it has chats attached to it. Delete or detach all chats, and try deleting the project again.
@@ -495,7 +495,7 @@ Jika Anda melakukan polling [Activity Feed](https://platform.claude.com/docs/id/
 
 ### Server sibuk membaca transkrip besar
 
-**Type:** `rate_limit_error`
+**Tipe:** `rate_limit_error`
 
 **Kode error:** `transcript_read_server_busy`, dikembalikan di `error.details.error_code`
 
@@ -509,7 +509,7 @@ Too many large session transcripts are being read at once. This is not a limit o
 
 ## 500 Internal Server Error
 
-500 dari Compliance API membawa header respons `x-should-retry: false` ketika kegagalannya bersifat deterministik. Claude SDK mematuhi header ini secara otomatis. Jika Anda menggunakan library retry HTTP generik yang mencoba ulang pada setiap 5xx, nonaktifkan percobaan ulang ketika `x-should-retry` bernilai `false`; mencoba ulang error ini akan gagal dengan cara yang sama pada setiap percobaan.
+500 dari Compliance API membawa header respons `x-should-retry: false` ketika kegagalannya bersifat deterministik. Claude SDK mematuhi header ini secara otomatis. Jika Anda menggunakan library percobaan ulang HTTP generik yang mencoba ulang pada setiap 5xx, nonaktifkan percobaan ulang ketika `x-should-retry` bernilai `false`; mencoba ulang error ini akan gagal dengan cara yang sama pada setiap percobaan.
 
 500 tanpa header `x-should-retry: false` bersifat sementara: coba lagi dengan backoff eksponensial (mulai dari 1 detik, gandakan hingga 60 detik). Hal yang sama berlaku untuk respons 502, 503, 504, dan 529. Pengecualiannya adalah sekumpulan kecil 503 sesi lokal, yang dijelaskan berikutnya, yang bergantung pada pengaturan atau kunci enkripsi organisasi, bukan pada beban. Lihat [Error Claude API](https://platform.claude.com/docs/id/api/errors) untuk semantik percobaan ulang di seluruh platform.
 
@@ -533,13 +533,13 @@ The local-sessions index cannot currently evaluate retention overrides for this 
 
 * Body `index is temporarily unavailable` berarti daftar sesi tidak tersedia untuk sementara karena beban atau kondisi backend. Kondisi ini bersifat sementara.
 * Body `Captured content` berarti konten transkrip sebuah sesi tidak dapat dikembalikan saat ini. Kondisi ini biasanya juga bersifat sementara. Di organisasi yang menggunakan [“customer-managed encryption keys” (kunci enkripsi yang dikelola pelanggan)](https://platform.claude.com/docs/id/manage-claude/cmek), endpoint messages juga mengembalikan body ini untuk setiap halaman yang berisi konten yang tidak dapat didekripsi oleh kunci yang dikelola pelanggan milik Anda. Misalnya, Anda telah menonaktifkan, mencabut, atau menghancurkan kunci tersebut, atau kunci tersebut tidak dapat dijangkau. Dalam kasus ini, error akan terus muncul selama kunci tidak dapat digunakan. Teks pesannya sama dalam kedua kasus, sehingga satu-satunya tanda bahwa kunci adalah penyebabnya adalah error yang terus berulang untuk organisasi tersebut. Kunci yang tidak dapat digunakan tidak pernah dilaporkan sebagai `not_captured`.
-* Body `retention overrides` berarti pengaturan “retention” (retensi) atau penanganan data yang berlaku untuk satu atau beberapa sesi dalam rentang yang diminta belum dapat dievaluasi. Pada endpoint retrieve dan messages, body ini berbunyi `for this session`, bukan `for this page`. Kondisi ini bergantung pada data dan pengaturan organisasi yang menjalankan sesi, bukan pada beban, dan dapat berlangsung dalam waktu yang lama.
+* Body `retention overrides` berarti pengaturan “retention” (retensi) atau penanganan data yang berlaku untuk satu atau beberapa sesi dalam rentang yang diminta belum dapat dievaluasi. Pada endpoint pengambilan dan messages, body ini berbunyi `for this session`, bukan `for this page`. Kondisi ini bergantung pada data dan pengaturan organisasi yang menjalankan sesi, bukan pada beban, dan dapat berlangsung dalam waktu yang lama.
 
 **Perbaikan:** Tangani setiap body sebagai berikut:
 
 * Untuk kedua body `Try again shortly.`, coba lagi dengan “exponential backoff” (backoff eksponensial) dan jangan majukan kursor `page` Anda, karena permintaan yang gagal tidak mengembalikan data apa pun.
 * Jika body `Captured content` terus berulang pada endpoint messages untuk organisasi yang menggunakan kunci yang dikelola pelanggan, anggap kondisi ini persisten. Hentikan penelusuran transkrip organisasi tersebut dan periksa status kunci di “key management service” (layanan manajemen kunci) Anda. Transkrip di organisasi tertaut lainnya, serta metadata sesi di semua organisasi, tidak terpengaruh. Jika Anda mencoba lagi pada proses berikutnya, mulai ulang penelusuran setiap sesi tanpa `page`, karena kursor halaman messages kedaluwarsa 24 jam setelah halaman pertama penelusuran.
-* Untuk body `Try again later.`, jangan biarkan penelusuran tetap terbuka sambil menunggu kondisi ini pulih. Pada endpoint list, coba lagi nanti dengan memulai ulang tanpa parameter `page` (token halaman list yang berusia lebih dari 24 jam masih diterima, tetapi dievaluasi ulang terhadap batas retensi saat ini, sehingga penelusuran yang ditunda dapat melewatkan sesi), atau persempit jendela `created_at` hingga permintaan berhasil, lalu ekspor rentang yang terlewat secara terpisah pada proses berikutnya. Pada endpoint retrieve dan messages, lewati ID sesi tersebut, lanjutkan sisa ekspor Anda, dan coba lagi sesi tersebut pada proses berikutnya. Kursor halaman messages kedaluwarsa 24 jam setelah halaman pertama penelusuran, jadi mulai ulang penelusuran sesi tersebut tanpa `page` saat Anda kembali ke sesi itu.
+* Untuk body `Try again later.`, jangan biarkan penelusuran tetap terbuka sambil menunggu kondisi ini pulih. Pada endpoint daftar, coba lagi nanti dengan memulai ulang tanpa parameter `page` (token halaman daftar yang berusia lebih dari 24 jam masih diterima, tetapi dievaluasi ulang terhadap batas retensi saat ini, sehingga penelusuran yang ditunda dapat melewatkan sesi), atau persempit jendela `created_at` hingga permintaan berhasil, lalu ekspor rentang yang terlewat secara terpisah pada proses berikutnya. Pada endpoint pengambilan dan messages, lewati ID sesi tersebut, lanjutkan sisa ekspor Anda, dan coba lagi sesi tersebut pada proses berikutnya. Kursor halaman messages kedaluwarsa 24 jam setelah halaman pertama penelusuran, jadi mulai ulang penelusuran sesi tersebut tanpa `page` saat Anda kembali ke sesi itu.
 
 Jika salah satu kondisi ini terus berulang di beberapa proses, hubungi perwakilan Anthropic Anda dan sertakan header respons `request-id`. Untuk kasus kunci yang dikelola pelanggan, lakukan ini hanya jika error terus muncul saat kunci tersebut dapat digunakan.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/develop-tests
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 336992fae3d738c0190e99c0b7eeaf2e60b734ae6d99a7a569f2ff1f19a59014
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 976c1fd6b107ecda809830f3e4e17cc62da89e6db1760487d9ff5b8346fbc66d
 ---
 
 ---
@@ -105,10 +105,10 @@ Berikut beberapa kriteria yang mungkin penting untuk kasus penggunaan Anda. Daft
 Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beberapa kriteria keberhasilan.
 
 <Accordion title="Contoh kriteria multidimensi untuk analisis sentimen">
-  |       | Kriteria                                                                                                                                                                                                                                                                                         |
-  | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-  | Buruk | Model harus mengklasifikasikan sentimen dengan baik                                                                                                                                                                                                                                              |
-  | Baik  | Pada held-out test set berisi 10.000 postingan Twitter yang beragam, model analisis sentimen harus mencapai:<br />- skor F1 minimal 0,85<br />- 99,5% output tidak toksik<br />- 90% kesalahan hanya akan menyebabkan ketidaknyamanan, bukan kesalahan fatal\*<br />- 95% waktu respons \< 200ms |
+  |       | Kriteria                                                                                                                                                                                                                                                                                        |
+  | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Buruk | Model harus mengklasifikasikan sentimen dengan baik                                                                                                                                                                                                                                             |
+  | Baik  | Pada set uji held-out berisi 10.000 postingan Twitter yang beragam, model analisis sentimen harus mencapai:<br />- skor F1 minimal 0,85<br />- 99,5% output tidak toksik<br />- 90% kesalahan hanya akan menyebabkan ketidaknyamanan, bukan kesalahan fatal\*<br />- 95% waktu respons \< 200ms |
 
   \*Pada kenyataannya, Anda juga akan mendefinisikan apa arti “ketidaknyamanan” dan “fatal”.
 </Accordion>
@@ -1125,7 +1125,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       // ROUGE-L mengukur "longest common subsequence" (subsekuens bersama terpanjang), atau LCS, kata antara
       // ringkasan kandidat dan referensi, dilaporkan di sini sebagai skor F1. Tokenisasi
-      // disederhanakan menjadi kata berbasis spasi; skor bisa berbeda dari library rouge Python.
+      // disederhanakan menjadi kata berbasis spasi; skor mungkin berbeda dari library rouge Python.
       function rougeL(candidate: string, reference: string): number {
         const candidateWords = candidate.toLowerCase().trim().split(/\s+/);
         const referenceWords = reference.toLowerCase().trim().split(/\s+/);
@@ -1194,7 +1194,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       // ROUGE-L mengukur "longest common subsequence" (subsekuens bersama terpanjang), atau LCS, kata antara
       // ringkasan kandidat dan referensi, dilaporkan di sini sebagai skor F1. Tokenisasi
-      // disederhanakan menjadi kata berbasis spasi; skor dapat berbeda dari pustaka rouge Python.
+      // disederhanakan menjadi kata berbasis spasi; skor mungkin berbeda dari library rouge Python.
       double RougeL(string candidate, string reference)
       {
           var candidateWords = Regex.Split(candidate.ToLowerInvariant().Trim(), @"\s+");
@@ -1378,7 +1378,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       // ROUGE-L mengukur "longest common subsequence" (subsekuens bersama terpanjang), atau LCS, kata antara
       // ringkasan kandidat dan referensi, dilaporkan di sini sebagai skor F1. Tokenisasi
-      // disederhanakan menjadi kata berbasis spasi; skor bisa berbeda dari library rouge Python.
+      // disederhanakan menjadi kata berbasis spasi; skor mungkin berbeda dari library rouge Python.
       double rougeL(String candidate, String reference) {
           var candidateWords = candidate.toLowerCase().strip().split("\\s+");
           var referenceWords = reference.toLowerCase().strip().split("\\s+");
@@ -1450,7 +1450,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       // ROUGE-L mengukur "longest common subsequence" (subsekuens bersama terpanjang), atau LCS, kata antara
       // ringkasan kandidat dan referensi, dilaporkan di sini sebagai skor F1. Tokenisasi
-      // disederhanakan menjadi kata berbasis spasi; skor bisa berbeda dari library rouge Python.
+      // disederhanakan menjadi kata berbasis spasi; skor mungkin berbeda dari library rouge Python.
       function rougeL(string $candidate, string $reference): float
       {
           $candidateWords = preg_split('/\s+/', strtolower(trim($candidate)));
@@ -1534,7 +1534,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
 
       # ROUGE-L mengukur "longest common subsequence" (subsekuens bersama terpanjang), atau LCS, kata antara
       # ringkasan kandidat dan referensi, dilaporkan di sini sebagai skor F1. Tokenisasi
-      # disederhanakan menjadi kata berbasis spasi; skor bisa berbeda dari library rouge Python.
+      # disederhanakan menjadi kata berbasis spasi; skor mungkin berbeda dari library rouge Python.
       def rouge_l(candidate, reference)
         candidate_words = candidate.downcase.split
         reference_words = reference.downcase.split
@@ -2015,7 +2015,7 @@ Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beb
           Output only the number.
         PROMPT
 
-        # Praktik terbaiknya, gunakan model evaluator yang berbeda dari model yang menghasilkan output yang dievaluasi
+        # Praktik terbaik umumnya adalah mengevaluasi dengan model yang berbeda dari model yang menghasilkan output yang dievaluasi
         response = client.messages.create(
           model: Anthropic::Model::CLAUDE_OPUS_5_5,
           max_tokens: 1024,
@@ -3248,7 +3248,7 @@ Saat memutuskan metode mana yang akan digunakan untuk menilai eval, pilih metode
     Suatu kasus penggunaan, atau bahkan kriteria keberhasilan tertentu untuk kasus penggunaan tersebut, mungkin memerlukan beberapa rubrik untuk evaluasi yang holistik.
   </Note>
 * **Bersifat empiris atau spesifik:** Misalnya, instruksikan LLM untuk hanya mengeluarkan ‘correct’ atau ‘incorrect’, atau menilai dengan skala 1–5. Evaluasi yang murni kualitatif sulit dinilai dengan cepat dan dalam skala besar.
-* **Dorong penalaran:** Gunakan model penilai dengan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) aktif, sehingga model bernalar sebelum menghasilkan skor evaluasi. Ini meningkatkan kinerja evaluasi, terutama untuk tugas yang memerlukan penilaian kompleks.
+* **Dorong penalaran:** Gunakan model penilai dengan [pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking) aktif, sehingga model bernalar sebelum menghasilkan skor evaluasi. Ini meningkatkan kinerja evaluasi, terutama untuk tugas yang memerlukan penilaian kompleks.
 
 <Accordion title="Contoh: Penilaian berbasis LLM">
   <CodeGroup exclude="shell">

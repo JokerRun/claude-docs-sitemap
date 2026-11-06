@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: db883d92550dade1018c6734e2060ae518a180053cd40967a40ffe57b6884c14
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 8c864eb27b8c9fffb6ae38914240f7577c0b3daf8aed543df4dce279809837a6
 ---
 
 ---
@@ -14,7 +14,7 @@ featureMetadata:
   betaHeader: mcp-client-2026-09-15, mcp-client-2025-11-20
   zdr:
     eligibility: not-eligible
-    note: Research preview. Halaman keamanan Tunnel MCP menjelaskan batas aliran data dan detail subprosesor.
+    note: Pratinjau riset. Halaman keamanan Tunnel MCP menjelaskan batas aliran data dan detail subprosesor.
   supportedModels:
     - claude-fable-5-1
     - claude-mythos-5-1
@@ -40,7 +40,7 @@ featureMetadata:
 <Note>
   Tunnel MCP dalam pratinjau riset.
 
-  Tunnel MCP masih dalam research preview. Tunnel MCP disediakan “apa adanya” tanpa komitmen uptime, dukungan, atau kesinambungan apa pun, dan bergantung pada penyedia jaringan pihak ketiga (Cloudflare) yang tidak memberikan komitmen ketersediaan untuk transport yang mendasarinya. Anthropic dapat mengubah atau menghentikan Tunnel MCP kapan saja.
+  Tunnel MCP masih dalam pratinjau riset. Tunnel MCP disediakan “apa adanya” tanpa komitmen uptime, dukungan, atau kesinambungan apa pun, dan bergantung pada penyedia jaringan pihak ketiga (Cloudflare) yang tidak memberikan komitmen ketersediaan untuk transport yang mendasarinya. Anthropic dapat mengubah atau menghentikan Tunnel MCP kapan saja.
 
   * [Minta akses](https://claude.com/form/mcp-tunnels)
 </Note>
@@ -127,7 +127,7 @@ Perjanjian Anthropic dengan Cloudflare membatasi penggunaan telemetri ini oleh C
 Jika Anda baru mengenal tunnel MCP, mulailah dengan quickstart untuk mendapatkan tunnel yang berfungsi secara lokal sebelum mengonfigurasi deployment produksi.
 
 <CardGroup cols={2}>
-  <Card title="Quickstart" icon="rocket" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/quickstart">
+  <Card title="Mulai cepat" icon="rocket" href="https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/quickstart">
     Jalur terpendek menuju tunnel yang berfungsi: Docker Compose dengan server MCP contoh.
   </Card>
 
@@ -164,15 +164,15 @@ Dalam kedua kasus, tunnel membawa lalu lintas terenkripsi ke server MCP Anda tet
 
 ### Managed Agents (Console)
 
-1. Di halaman [Sessions](https://platform.claude.com/sessions) (`platform.claude.com/sessions`) di Claude Console, buat sesi dan pilih **Create new agent** agar Anda dapat mengedit daftar server MCP.
-2. Di bawah **MCP servers**, klik **MCP server** dan buka menu dropdown. Tunnel di workspace sesi yang memiliki setidaknya satu sertifikat aktif muncul di bagian atas daftar, di atas katalog konektor publik.
-3. Pilih tunnel dan isikan **Subdomain** yang dirutekan proxy Anda ke server MCP tertentu, serta **Path** yang diharapkan oleh server MCP upstream. Baris **Resolves to** menampilkan URL persisnya.
+1. Di halaman [Sesi](https://platform.claude.com/sessions) (`platform.claude.com/sessions`) di Claude Console, buat sesi dan pilih **Buat agen baru** agar Anda dapat mengedit daftar server MCP.
+2. Di bawah **Server MCP**, klik **Server MCP** dan buka menu dropdown. Tunnel di workspace sesi yang memiliki setidaknya satu sertifikat aktif muncul di bagian atas daftar, di atas katalog konektor publik.
+3. Pilih tunnel dan isikan **Subdomain** yang dirutekan proxy Anda ke server MCP tertentu, serta **Jalur** yang diharapkan oleh server MCP upstream. Baris **Mengarah ke** menampilkan URL persisnya.
 
 Untuk prosedur lengkapnya, lihat [Menggunakan tunnel dalam agen](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console#use-the-tunnel-in-an-agent).
 
 ### Messages API
 
-Teruskan URL server MCP upstream dalam array `mcp_servers`, dengan cara yang sama seperti server MCP remote lainnya. Body permintaan dan header `anthropic-beta` mengikuti format [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) standar; hanya `url` yang spesifik untuk tunnel. Contoh berikut menggunakan header beta `mcp-client` dari konektor MCP, yang terpisah dari beta `mcp-tunnels` yang digunakan oleh [Tunnels API](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference). Buat permintaan di workspace tempat tunnel dibuat dengan menggunakan kunci API untuk workspace tersebut atau, jika kunci Anda tidak dibatasi pada workspace, dengan mengatur [header `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) ke workspace tersebut.
+Teruskan URL server MCP upstream dalam array `mcp_servers`, dengan cara yang sama seperti server MCP jarak jauh lainnya. Body permintaan dan header `anthropic-beta` mengikuti format [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) standar; hanya `url` yang spesifik untuk tunnel. Contoh berikut menggunakan header beta `mcp-client` dari konektor MCP, yang terpisah dari beta `mcp-tunnels` yang digunakan oleh [Tunnels API](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference). Buat permintaan di workspace tempat tunnel dibuat dengan menggunakan kunci API untuk workspace tersebut atau, jika kunci Anda tidak dibatasi pada workspace, dengan mengatur [header `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) ke workspace tersebut.
 
 Host URL adalah `<subdomain>.<your-tunnel-domain>`. Path bergantung pada server MCP upstream Anda, bukan pada tunnel: transport `streamable-http` milik FastMCP melayani di `/mcp`, dan server lain mungkin menggunakan `/` atau path kustom (periksa dokumentasi server tersebut). Proxy meneruskan path tanpa mengubahnya.
 
@@ -470,10 +470,10 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                       | HIPAA       |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| Status | Tidak layak                                                                                                                                                                                            | Tidak layak |
-| Detail | Research preview. Halaman keamanan Tunnel MCP menjelaskan batas aliran data dan detail subprosesor. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/security) | —           |
+| Item   | Retensi data nol                                                                                                                                                                                      | HIPAA       |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Status | Tidak layak                                                                                                                                                                                           | Tidak layak |
+| Detail | Pratinjau riset. Halaman keamanan Tunnel MCP menjelaskan batas aliran data dan detail subprosesor. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/security) | —           |
 
 Endpoint yang berlaku:
 

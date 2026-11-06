@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/update
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 00145cd41723218b07e5f6dc52d0261604885866a0acccc3328c1e3aa84287fc
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 278e8781f0b0e481f466cb19ef02b3b93926a70f7a8c6575c2026d5004b6c8d1
 ---
 
 ---
@@ -172,7 +172,7 @@ Update a Credential
 
       The new OAuth access token to replace the stored one.
 
-      minLength: 1, maxLength: 8192
+      minLength: 1, maxLength: 8192, pattern: ^[^\x00-\x1f\x7f]*$
 
     - `expires_at: optional string or null`
 
@@ -240,7 +240,7 @@ Update a Credential
 
       The new static bearer token to replace the stored one.
 
-      minLength: 1, maxLength: 8192
+      minLength: 1, maxLength: 8192, pattern: ^[^\x00-\x1f\x7f]*$
 
   - `BetaManagedAgentsEnvironmentVariableUpdateParams object`
 
@@ -286,7 +286,7 @@ Update a Credential
 
       The new secret value to replace the stored one.
 
-      minLength: 1, maxLength: 4096
+      minLength: 1, maxLength: 4096, pattern: ^[^\x00-\x1f\x7f]*$
 
 - `display_name: optional string or null`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-combinations
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 8f0296523100b6e3ad66b846accaee2909722f4d5b801889714fa64722fd4968
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: a1282b506cc7cb7d24810497c973b4c949f27dd7916264f6ba23f1185ff09cbd
 ---
 
 ---
@@ -76,7 +76,7 @@ Memory bersifat ortogonal terhadap alat Anda yang lain. Memory tidak mengubah ca
 
 ## Serba ada: computer\_use
 
-Alat computer use mencakup sebagian besar alat lainnya dengan mengoperasikan desktop penuh. Claude menerima screenshot dan mengeluarkan aksi mouse dan keyboard, yang berarti Claude dapat mengendalikan aplikasi apa pun yang dapat dioperasikan manusia. Gunakan ini ketika tugas memerlukan interaksi GUI sembarang yang tidak dapat dijangkau oleh alat yang lebih spesifik: perangkat lunak lama tanpa API, langkah verifikasi visual, atau alur kerja yang mencakup beberapa aplikasi desktop.
+Alat penggunaan komputer mencakup sebagian besar alat lainnya dengan mengoperasikan desktop penuh. Claude menerima screenshot dan mengeluarkan aksi mouse dan keyboard, yang berarti Claude dapat mengendalikan aplikasi apa pun yang dapat dioperasikan manusia. Gunakan ini ketika tugas memerlukan interaksi GUI sembarang yang tidak dapat dijangkau oleh alat yang lebih spesifik: perangkat lunak lama tanpa API, langkah verifikasi visual, atau alur kerja yang mencakup beberapa aplikasi desktop.
 
 ```json
 {
@@ -86,11 +86,11 @@ Alat computer use mencakup sebagian besar alat lainnya dengan mengoperasikan des
 
 Entri toolset tidak menerima `name` atau dimensi tampilan: koordinat dinyatakan dalam ruang piksel dari tangkapan layar yang Anda kembalikan, dan Anda dapat menonaktifkan aksi individual melalui field `configs` pada entri tersebut.
 
-Computer use adalah opsi yang paling umum dan juga yang paling lambat, karena Claude biasanya memerlukan tangkapan layar baru setelah setiap kumpulan aksi. Utamakan alat yang lebih sempit jika alat tersebut mencakup kasus penggunaan Anda, dan gunakan computer use ketika tidak ada yang lain yang cocok. Jika tugas tetap berada di dalam browser web, gunakan pola agen browser di bagian berikutnya. Lihat [Alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) untuk penyiapan sandbox.
+Penggunaan komputer adalah opsi yang paling umum dan juga yang paling lambat, karena Claude biasanya memerlukan tangkapan layar baru setelah setiap kumpulan aksi. Utamakan alat yang lebih sempit jika alat tersebut mencakup kasus penggunaan Anda, dan gunakan alat penggunaan komputer ketika tidak ada yang lain yang cocok. Jika tugas tetap berada di dalam browser web, gunakan pola agen browser di bagian berikutnya. Lihat [Alat penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) untuk penyiapan sandbox.
 
 ## Agen browser: browser\_use
 
-Ketika seluruh tugas terjadi di dalam halaman web (mengisi formulir, membaca konten halaman, bekerja di beberapa tab), alat browser use lebih cocok daripada computer use. Aplikasi Anda mengendalikan browser yang dikontrolnya dan mengembalikan screenshot atau state halaman; Claude memanggil alat anggota yang memahami halaman seperti `read_page`, `find`, `form_input`, dan `get_page_text` bersama dengan klik dan pengetikan, sehingga Claude dapat bertindak berdasarkan referensi elemen selain koordinat piksel.
+Ketika seluruh tugas terjadi di dalam halaman web (mengisi formulir, membaca konten halaman, bekerja di beberapa tab), alat penggunaan browser lebih cocok daripada penggunaan komputer. Aplikasi Anda mengendalikan browser yang dikontrolnya dan mengembalikan screenshot atau state halaman; Claude memanggil alat anggota yang memahami halaman seperti `read_page`, `find`, `form_input`, dan `get_page_text` bersama dengan klik dan pengetikan, sehingga Claude dapat bertindak berdasarkan referensi elemen selain koordinat piksel.
 
 ```json
 {
@@ -98,7 +98,7 @@ Ketika seluruh tugas terjadi di dalam halaman web (mengisi formulir, membaca kon
 }
 ```
 
-Seperti toolset computer use, entri ini tidak menerima `name`, dan Anda menonaktifkan alat anggota individual melalui field `configs`-nya. Lihat [Alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) untuk kontrak eksekusinya.
+Seperti toolset penggunaan komputer, entri ini tidak menerima `name`, dan Anda menonaktifkan alat anggota individual melalui field `configs`-nya. Lihat [Alat penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) untuk kontrak eksekusinya.
 
 ## Langkah selanjutnya
 

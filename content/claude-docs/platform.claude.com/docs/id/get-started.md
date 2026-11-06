@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 282f369e48bf39e6f2deee79dea48de82aa7cc7756d5a229e853548bf20ee080
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 67e66d5b1866049d798aa6eae8e0d86b3c5c4a3a1daa7bdaae73bb09b7824cfb
 ---
 
 ---
@@ -37,10 +37,10 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
       </Tab>
 
       <Tab title="curl (Linux/WSL)">
-        Untuk lingkungan Linux, unduh binary rilis secara langsung.
+        Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
         ```bash
-        VERSION=2.6.0
+        VERSION=2.7.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -54,13 +54,13 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
       </Tab>
 
       <Tab title="go install">
-        Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
+        Anda juga dapat menginstal CLI dari kode sumber menggunakan `go install`, yang memerlukan Go 1.26.10 atau yang lebih baru.
 
         ```bash
         go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
         ```
 
-        Binary ditempatkan di `$(go env GOPATH)/bin`. Tambahkan ke `PATH` Anda jika belum ada:
+        `go install` menempatkan biner di `$(go env GOPATH)/bin`. Tambahkan direktori tersebut ke `PATH` Anda jika belum ada:
 
         ```bash
         export PATH="$PATH:$(go env GOPATH)/bin"
@@ -184,10 +184,10 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
           </Tab>
 
           <Tab title="curl (Linux/WSL)">
-            Untuk lingkungan Linux, unduh binary rilis secara langsung.
+            Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
             ```bash
-            VERSION=2.6.0
+            VERSION=2.7.0
             OS=$(uname -s | tr '[:upper:]' '[:lower:]')
             case $(uname -m) in
               x86_64) ARCH=amd64 ;;
@@ -201,13 +201,13 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
           </Tab>
 
           <Tab title="go install">
-            Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
+            Anda juga dapat menginstal CLI dari kode sumber menggunakan `go install`, yang memerlukan Go 1.26.10 atau yang lebih baru.
 
             ```bash
             go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
             ```
 
-            Binary ditempatkan di `$(go env GOPATH)/bin`. Tambahkan ke `PATH` Anda jika belum ada:
+            `go install` menempatkan biner di `$(go env GOPATH)/bin`. Tambahkan direktori tersebut ke `PATH` Anda jika belum ada:
 
             ```bash
             export PATH="$PATH:$(go env GOPATH)/bin"
@@ -512,7 +512,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:3.5.0")
+                implementation("com.anthropic:anthropic-java:3.6.0")
             }
 
             application {
@@ -538,7 +538,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>3.5.0</version>
+                  <version>3.6.0</version>
                 </dependency>
               </dependencies>
             </project>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/service-tiers
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: eb9698d7d3d64d3c699661d5a8fc43d2a1979c61211375d9a52fbfcc5b3d1f14
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 94326d7b025e1051dc5b11507b83bf061241e802f84a808efc9ca623e443215e
 ---
 
 ---
@@ -44,16 +44,16 @@ featureMetadata:
 Anthropic menawarkan tiga “service tiers” (tingkat layanan):
 
 * **Priority Tier:** Hanya tersedia bagi organisasi yang memiliki komitmen kapasitas yang sudah ada
-* **Standard:** Tingkat default untuk uji coba maupun penskalaan kasus penggunaan sehari-hari
+* **Standar:** Tingkat default untuk uji coba maupun penskalaan kasus penggunaan sehari-hari
 * **Batch:** Paling cocok untuk alur kerja asinkron yang dapat menunggu atau diuntungkan dengan berada di luar kapasitas normal Anda
 
 ## Tingkat standar
 
-Standard tier adalah tingkat layanan default untuk semua permintaan API. API memprioritaskan permintaan ini bersama semua permintaan lainnya dengan ketersediaan best-effort (upaya terbaik).
+Tingkat standar adalah tingkat layanan default untuk semua permintaan API. API memprioritaskan permintaan ini bersama semua permintaan lainnya dengan ketersediaan best-effort (upaya terbaik).
 
 ## Priority Tier
 
-API memprioritaskan permintaan dalam tingkat ini di atas semua permintaan lainnya. Prioritas ini membantu meminimalkan [error “server overloaded”](https://platform.claude.com/docs/id/api/errors#http-errors), bahkan pada waktu puncak.
+API memprioritaskan permintaan dalam tingkat ini di atas semua permintaan lainnya. Prioritas ini membantu meminimalkan [error “server kelebihan beban”](https://platform.claude.com/docs/id/api/errors#http-errors), bahkan pada waktu puncak.
 
 Untuk informasi lebih lanjut, lihat [Komitmen Priority Tier yang sudah ada](https://platform.claude.com/docs/id/api/service-tiers#existing-priority-tier-commitments).
 
@@ -79,7 +79,7 @@ Anthropic menghitung penggunaan terhadap kapasitas Priority Tier sebagai berikut
 * Untuk permintaan [inferensi khusus AS](https://platform.claude.com/docs/id/manage-claude/data-residency) (`inference_geo: "us"`) pada model Claude 4.6 dan yang lebih baru, token output dihitung sebagai 1,1 token per token
 * Semua token output lainnya dihitung sebagai 1 token per token
 
-Jika tidak, permintaan diproses pada standard tier.
+Jika tidak, permintaan diproses pada tingkat standar.
 
 <Note>
   Laju burndown (pengurangan kapasitas) ini mencerminkan harga relatif dari setiap jenis token. Misalnya, inferensi khusus AS dihargai 1,1x pada model Claude 4.6 dan yang lebih baru, sehingga setiap token yang dikonsumsi dengan `inference_geo: "us"` mengurangi 1,1 token dari kapasitas Priority Tier Anda.
@@ -180,7 +180,7 @@ Anda dapat mengontrol tingkat layanan mana yang dapat digunakan untuk suatu perm
       .model(Model.CLAUDE_OPUS_4_8)
       .maxTokens(1024L)
       .addUserMessage("Hello, Claude!")
-      // Otomatis gunakan Priority Tier jika tersedia, kembali ke standard jika tidak
+      // Otomatis gunakan Priority Tier jika tersedia, kembali ke standar jika tidak
       .serviceTier(MessageCreateParams.ServiceTier.AUTO)
       .build();
 
@@ -216,7 +216,7 @@ Anda dapat mengontrol tingkat layanan mana yang dapat digunakan untuk suatu perm
 Parameter `service_tier` menerima nilai-nilai berikut:
 
 * `"auto"` (default) - Menggunakan kapasitas Priority Tier jika tersedia, dan beralih ke kapasitas Anda yang lain jika tidak tersedia
-* `"standard_only"` - Hanya menggunakan kapasitas tingkatan standard, berguna jika Anda tidak ingin menggunakan kapasitas Priority Tier Anda
+* `"standard_only"` - Hanya menggunakan kapasitas tingkatan standar, berguna jika Anda tidak ingin menggunakan kapasitas Priority Tier Anda
 
 Objek `usage` pada respons juga menyertakan tingkat layanan yang ditetapkan untuk permintaan tersebut:
 
@@ -256,7 +256,7 @@ Komitmen Priority Tier terdiri dari:
 * Durasi komitmen (1, 3, 6, atau 12 bulan)
 * Versi model tertentu
 
-Priority Tier menargetkan uptime 99,5 persen dengan sumber daya komputasi yang diprioritaskan. Permintaan yang melebihi kapasitas yang Anda komitmenkan secara otomatis beralih ke tingkatan standard.
+Priority Tier menargetkan uptime 99,5 persen dengan sumber daya komputasi yang diprioritaskan. Permintaan yang melebihi kapasitas yang Anda komitmenkan secara otomatis beralih ke tingkatan standar.
 
 ### Model yang didukung
 

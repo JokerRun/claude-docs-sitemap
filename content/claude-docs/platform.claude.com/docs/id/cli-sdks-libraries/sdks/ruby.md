@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: c8fa8050cd484d3d31e62851554893debba650b918611cf0b599870f0e775171
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 53cf5762001c37c54296a139eece76df7084f9be3fb2a820e58b30a5cc912f08
 ---
 
 ---
@@ -39,7 +39,7 @@ anthropic = Anthropic::Client.new(
 message = anthropic.messages.create(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-5-5"
+  model: Anthropic::Model::CLAUDE_OPUS_5_5
 )
 
 message.content.each do |block|
@@ -58,7 +58,7 @@ anthropic = Anthropic::Client.new
 stream = anthropic.messages.stream(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-5-5"
+  model: Anthropic::Model::CLAUDE_OPUS_5_5
 )
 
 stream.each do |message|
@@ -75,7 +75,7 @@ anthropic = Anthropic::Client.new
 stream = anthropic.messages.stream(
   max_tokens: 1024,
   messages: [{role: :user, content: "Say hello there!"}],
-  model: :"claude-opus-5-5"
+  model: Anthropic::Model::CLAUDE_OPUS_5_5
 )
 
 stream.text.each do |text|
@@ -107,7 +107,7 @@ end
 
 # Menangani loop eksekusi alat secara otomatis
 anthropic.beta.messages.tool_runner(
-  model: "claude-opus-5-5",
+  model: Anthropic::Model::CLAUDE_OPUS_5_5,
   max_tokens: 1024,
   messages: [{role: "user", content: "What's 15 * 7?"}],
   tools: [Calculator.new]
@@ -128,7 +128,7 @@ begin
   message = anthropic.messages.create(
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello, Claude"}],
-    model: :"claude-opus-5-5"
+    model: Anthropic::Model::CLAUDE_OPUS_5_5
   )
 rescue Anthropic::Errors::APIConnectionError => e
   puts("The server could not be reached")
@@ -269,7 +269,7 @@ anthropic = Anthropic::Client.new
 anthropic.messages.create(
   max_tokens: 1024,
   messages: [Anthropic::MessageParam.new(role: "user", content: "Hello, Claude")],
-  model: :"claude-opus-5-5"
+  model: Anthropic::Model::CLAUDE_OPUS_5_5
 )
 ```
 
@@ -281,14 +281,14 @@ anthropic = Anthropic::Client.new
 anthropic.messages.create(
   max_tokens: 1024,
   messages: [{role: "user", content: "Hello, Claude"}],
-  model: :"claude-opus-5-5"
+  model: Anthropic::Model::CLAUDE_OPUS_5_5
 )
 
 # Anda juga dapat melakukan splat pada seluruh kelas Params:
 params = Anthropic::MessageCreateParams.new(
   max_tokens: 1024,
   messages: [Anthropic::MessageParam.new(role: "user", content: "Hello, Claude")],
-  model: :"claude-opus-5-5"
+  model: Anthropic::Model::CLAUDE_OPUS_5_5
 )
 anthropic.messages.create(**params)
 ```
@@ -342,7 +342,7 @@ Semua objek parameter dan respons mewarisi dari `Anthropic::Internal::Type::Base
 
 Instance `Anthropic::Client` bersifat threadsafe, tetapi hanya fork-safe ketika tidak ada permintaan HTTP yang sedang berlangsung.
 
-Setiap instance `Anthropic::Client` memiliki connection pool HTTP sendiri dengan ukuran default 99. Oleh karena itu, rekomendasinya adalah membuat client sekali per aplikasi di sebagian besar pengaturan.
+Setiap instance `Anthropic::Client` memiliki connection pool HTTP sendiri dengan ukuran default 99. Oleh karena itu, rekomendasinya adalah membuat klien sekali per aplikasi di sebagian besar pengaturan.
 
 Ketika semua koneksi yang tersedia dari pool sedang digunakan, permintaan akan menunggu koneksi baru tersedia, dengan waktu antrean dihitung terhadap timeout permintaan.
 
@@ -405,8 +405,9 @@ response = anthropic.request(
 
   * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
   * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
-  * [Claude Platform di AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
+  * [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
   * [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)
+  * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
 
   Lihat juga [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed).
 </Note>
@@ -415,14 +416,14 @@ Ruby SDK mendukung platform berikut:
 
 * **Claude Models on Google Cloud (Google managed):** `Anthropic::VertexClient`. Memerlukan gem `googleauth`.
 * **Bedrock:** `Anthropic::BedrockMantleClient`, atau `Anthropic::BedrockClient` untuk jalur `bedrock-runtime`. `Anthropic::BedrockMantleClient` memerlukan gem `aws-sdk-core`; `Anthropic::BedrockClient` memerlukan gem `aws-sdk-bedrockruntime`.
-* **Claude Platform di AWS:** Bagian dari gem utama `anthropic` (memerlukan gem `aws-sdk-core`). Menyediakan `Anthropic::AWSClient`. Teruskan `workspace_id:` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID` (lihat [Workspace](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#workspaces)). Tersedia dalam beta.
-* **Foundry:** Saat ini tidak didukung di Ruby SDK. Lihat [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk SDK yang didukung.
+* **Claude Platform on AWS:** Bagian dari gem utama `anthropic` (memerlukan gem `aws-sdk-core`). Menyediakan `Anthropic::AWSClient`. Teruskan `workspace_id:` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID` (lihat [Workspace](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#workspaces)). Tersedia dalam beta.
+* **Foundry:** Bagian dari gem utama `anthropic`. Menyediakan `Anthropic::FoundryClient`. Teruskan `resource:` dan `api_key:` (atau `azure_ad_token_provider:` untuk Microsoft Entra ID) ke konstruktor, atau atur variabel lingkungan `ANTHROPIC_FOUNDRY_RESOURCE` dan `ANTHROPIC_FOUNDRY_API_KEY`.
 
 Gunakan `Anthropic::BedrockMantleClient` untuk proyek baru; `Anthropic::BedrockClient` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
 
 Ruby SDK juga mendukung Claude Models on Google Cloud (Anthropic managed) melalui `Anthropic::GoogleCloudClient`. Klien ini masih dalam tahap beta. Klien ini disertakan dalam gem utama `anthropic` dan memerlukan gem `googleauth`. Berikan `workspace_id:` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`. Lihat [Resolusi proyek, lokasi, dan workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution) untuk mengetahui cara klien menentukan ID workspace.
 
-## Semantic versioning
+## Pembuatan versi semantik
 
 Paket ini mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html).
 

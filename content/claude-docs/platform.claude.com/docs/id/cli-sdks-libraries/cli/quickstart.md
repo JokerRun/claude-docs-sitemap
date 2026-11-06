@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: f16eb5ee511accb730a992638bace8d27897f0df9235afb7ceb0293dd1f3fcfb
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 57683d0f600423f0da5cd63eb819c4f499d6e90871b8c51f0d1b5fb8401cede5
 ---
 
 ---
@@ -36,10 +36,10 @@ Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe at
   </Tab>
 
   <Tab title="curl (Linux/WSL)">
-    Untuk lingkungan Linux, unduh binary rilis secara langsung.
+    Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
     ```bash
-    VERSION=2.6.0
+    VERSION=2.7.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -53,13 +53,13 @@ Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe at
   </Tab>
 
   <Tab title="go install">
-    Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
+    Anda juga dapat menginstal CLI dari kode sumber menggunakan `go install`, yang memerlukan Go 1.26.10 atau yang lebih baru.
 
     ```bash
     go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
     ```
 
-    Binary ditempatkan di `$(go env GOPATH)/bin`. Tambahkan ke `PATH` Anda jika belum ada:
+    `go install` menempatkan biner di `$(go env GOPATH)/bin`. Tambahkan direktori tersebut ke `PATH` Anda jika belum ada:
 
     ```bash
     export PATH="$PATH:$(go env GOPATH)/bin"
@@ -87,7 +87,7 @@ ant auth login
 
 ## Kirim permintaan pertama Anda
 
-Dengan binary yang sudah terinstal dan terautentikasi, panggil [Messages API](https://platform.claude.com/docs/id/api/cli/messages/create):
+Dengan biner yang sudah terinstal dan terautentikasi, panggil [Messages API](https://platform.claude.com/docs/id/api/cli/messages/create):
 
 ```bash
 ant messages create \

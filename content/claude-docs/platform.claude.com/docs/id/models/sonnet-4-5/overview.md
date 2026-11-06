@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-4-5/overview
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: ab5acfea803547ae6b4fb5a2e8b6b671da52f83ce3a40a85adbdbd2df0dcc567
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: ceeb70c6172181e54e4c357ff45e49a0ad398fd5861a1622721cdefe94a460d2
 ---
 
 ---
@@ -21,7 +21,7 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $3 / MTo
 
 [Announcement](https://www.anthropic.com/news/claude-sonnet-4-5)
 
-## Bagaimana perbandingannya dengan lineup saat ini
+## Bagaimana perbandingannya dengan jajaran model saat ini
 
 | Model                                                                               | Context | Max output | Price / MTok       | Thinking             | Default effort | Knowledge cutoff |
 | :---------------------------------------------------------------------------------- | :------ | :--------- | :----------------- | :------------------- | :------------- | :--------------- |
@@ -106,7 +106,7 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $3 / MTo
     Prompt sistem yang digunakan Claude Sonnet 4.5 di claude.ai dan aplikasi Claude.
   </Card>
 
-  <Card title="System card" icon="file" href="https://www.anthropic.com/claude-sonnet-4-5-system-card">
+  <Card title="Kartu sistem" icon="file" href="https://www.anthropic.com/claude-sonnet-4-5-system-card">
     Evaluasi keamanan dan keputusan penerapan untuk Claude Sonnet 4.5.
   </Card>
 

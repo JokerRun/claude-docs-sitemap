@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/whats-new-haiku-5-5
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: f1df3f98cd83fa0fbb63b1c8a901cf9395f3b4b3fe65e7dd0430596943fe3729
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: bc87dcd84f4daddf6460b4b6a517ddeed36f7159e52e10cdc2fbfb3006fb8fdd
 ---
 
 ---
@@ -11,9 +11,9 @@ url: https://platform.claude.com/docs/id/models/haiku-5-5/whats-new-haiku-5-5
 description: Ikhtisar kemampuan baru, perubahan yang merusak kompatibilitas, dan perubahan perilaku di Claude Haiku 5.5, dengan tautan ke panduan setiap fitur dan ke panduan migrasi untuk perubahan kode.
 ---
 
-Claude Haiku 5.5 dirancang untuk pekerjaan bervolume tinggi yang sensitif terhadap latensi seperti klasifikasi, routing, ekstraksi, dan tugas subagen. Model ini mendukung “adaptive thinking” (pemikiran adaptif) dengan parameter effort, “context window” (jendela konteks) sebesar 1M token, dan hingga 128k token output. Model ini menggunakan tokenizer baru yang sama dengan Claude 4.7 dan model-model setelahnya, sehingga teks yang sama dihitung sebagai sekitar 30 persen lebih banyak token dibandingkan pada Claude Haiku 4.5. Blok pemikirannya hanya berfungsi di akun yang menghasilkannya, atau di akun yang terhubung dengannya.
+Claude Haiku 5.5 dirancang untuk pekerjaan bervolume tinggi yang sensitif terhadap latensi seperti klasifikasi, perutean, ekstraksi, dan tugas subagen. Model ini mendukung “adaptive thinking” (pemikiran adaptif) dengan parameter effort, “context window” (jendela konteks) sebesar 1M token, dan hingga 128k token output. Model ini menggunakan tokenizer baru yang sama dengan Claude 4.7 dan model-model setelahnya, sehingga teks yang sama dihitung sebagai sekitar 30 persen lebih banyak token dibandingkan pada Claude Haiku 4.5. Blok pemikirannya hanya berfungsi di akun yang menghasilkannya, atau di akun yang terhubung dengannya.
 
-Untuk perubahan kode, lihat [panduan migrasi](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide). Untuk ID model, harga, dan batasan, lihat [ikhtisar Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview). Untuk panduan prompting, lihat [Prompting Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5).
+Untuk perubahan kode, lihat [panduan migrasi](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide). Untuk ID model, harga, dan batasan, lihat [ikhtisar Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview). Untuk panduan prompting, lihat [Menulis prompt untuk Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5).
 
 ## Ringkasan perubahan dari Claude Haiku 4.5
 

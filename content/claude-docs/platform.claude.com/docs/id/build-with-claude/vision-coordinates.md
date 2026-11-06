@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision-coordinates
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 621d060dcd4b8d304d33d5669cc0b008e5d780e727b6d1c595d0758d7689db25
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 498cd5b66a6a57f649ecf472ca14faa37a1d51b24bf2c3348af61d498d57ef1e
 ---
 
 ---
@@ -16,7 +16,7 @@ Claude dapat menemukan dan memberi label pada wilayah suatu gambar (misalnya, me
 Anda akan membutuhkan ini untuk pipeline OCR, ekstraksi formulir, penguraian bagan, penentuan lokasi elemen UI, dan tugas apa pun di mana Anda bertindak pada wilayah tertentu dari suatu gambar. Untuk pengiriman gambar, format yang didukung, dan batas resolusi per model, lihat [Vision](https://platform.claude.com/docs/id/build-with-claude/vision).
 
 <Note>
-  **Claude bekerja paling baik dengan koordinat piksel absolut.** Mintalah secara eksplisit dalam prompt Anda. Misalnya: *“Kembalikan bounding box setiap tabel sebagai `[x1, y1, x2, y2]` (sudut kiri atas dan kanan bawah) dalam koordinat piksel.”* Claude tidak bekerja dengan baik ketika Anda meminta koordinat yang dinormalisasi, misalnya: *“Kembalikan koordinat bounding box antara `0` dan `1000`.”* Selalu minta koordinat piksel dan lakukan normalisasi dalam kode Anda sendiri jika perlu. Untuk mendapatkan koordinat sebagai JSON yang dapat dibaca mesin alih-alih prosa, tentukan skema dengan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), misalnya objek dengan array `[x1, y1, x2, y2]` untuk setiap elemen yang terdeteksi.
+  **Claude bekerja paling baik dengan koordinat piksel absolut.** Mintalah secara eksplisit dalam prompt Anda. Misalnya: *“Kembalikan bounding box setiap tabel sebagai `[x1, y1, x2, y2]` (sudut kiri atas dan kanan bawah) dalam koordinat piksel.”* Claude tidak bekerja dengan baik ketika Anda meminta koordinat yang dinormalisasi, misalnya: *“Kembalikan koordinat bounding box antara `0` dan `1000`.”* Selalu minta koordinat piksel dan lakukan normalisasi dalam kode Anda sendiri jika perlu. Untuk mendapatkan koordinat sebagai JSON yang dapat dibaca mesin alih-alih prosa, tentukan skema dengan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), misalnya objek dengan array `[x1, y1, x2, y2]` untuk setiap elemen yang terdeteksi.
 </Note>
 
 Koordinat mengikuti konvensi gambar standar: titik asal `(0, 0)` adalah sudut kiri atas gambar, dengan x bertambah ke kanan dan y bertambah ke bawah. Koordinat yang dikembalikan Claude adalah posisi piksel dalam gambar yang diproses Claude: gambar Anda setelah Claude mengubah ukurannya agar sesuai dengan resolusi native model (lihat [Cara Claude mengubah ukuran dan menambahkan padding pada gambar](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images)). Untuk mendapatkan koordinat yang dapat langsung Anda gunakan, ubah ukuran gambar Anda terlebih dahulu agar koordinat terpetakan satu-ke-satu ke gambar yang Anda miliki (lihat [Ubah ukuran gambar Anda sebelum mengunggah](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#resize-your-image-before-uploading)), atau skalakan ulang koordinat yang dikembalikan Claude (lihat [Skalakan ulang koordinat ketika Anda tidak dapat mengubah ukuran terlebih dahulu](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#rescale-coordinates-when-you-cannot-pre-resize)).
@@ -94,7 +94,7 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
           resized_h, resized_w = resized_size(height, width, max_edge, max_tokens)
           return (resized_w, resized_h)
 
-      # Binary search di sepanjang sisi panjang untuk ukuran terbesar yang menjaga
+      # Pencarian biner di sepanjang sisi panjang untuk ukuran terbesar yang menjaga
       # rasio aspek dan masih muat.
       aspect_ratio = width / height
       lo, hi = 1, width  # lo always fits; hi never fits
@@ -107,7 +107,7 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
       return (lo, max(round(lo / aspect_ratio), 1))
 
 
-  # Contoh A4 dari "How Claude resizes and pads images":
+  # Contoh A4 dari "Bagaimana Claude mengubah ukuran dan menambahkan padding pada gambar":
   print(resized_size(1075, 1520))  # (924, 1307)
 
   # Untuk menerapkan resize, gunakan pustaka gambar Anda, misalnya Pillow:
@@ -159,7 +159,7 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
       return [resizedW, resizedH];
     }
 
-    // Binary search di sepanjang sisi panjang untuk ukuran terbesar yang menjaga
+    // Pencarian biner di sepanjang sisi panjang untuk ukuran terbesar yang menjaga
     // rasio aspek dan masih muat.
     const aspectRatio = width / height;
     let lo = 1; // lo always fits
@@ -175,7 +175,7 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
     return [lo, Math.max(roundTiesToEven(lo / aspectRatio), 1)];
   }
 
-  // Contoh A4 dari "How Claude resizes and pads images":
+  // Contoh A4 dari "Bagaimana Claude mengubah ukuran dan menambahkan padding pada gambar":
   console.log(resizedSize(1075, 1520)); // [ 924, 1307 ]
 
   // Untuk menerapkan resize, gunakan library gambar Anda, misalnya sharp:
@@ -211,7 +211,7 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
           return (resizedW, resizedH);
       }
 
-      // Binary search di sepanjang sisi panjang untuk ukuran terbesar yang mempertahankan
+      // Pencarian biner di sepanjang sisi panjang untuk ukuran terbesar yang mempertahankan
       // aspek dan muat. Sisi pendek dibulatkan half-to-even, sesuai dengan API
       // langsung pada tie tepat .5 (MidpointRounding.ToEven, default Math.Round).
       double aspectRatio = (double)width / height;
@@ -235,7 +235,7 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
           Math.Max((int)Math.Round(longEdge / aspectRatio, MidpointRounding.ToEven), 1);
   }
 
-  // Contoh A4 dari "How Claude resizes and pads images":
+  // Contoh A4 dari "Bagaimana Claude mengubah ukuran dan menambahkan padding pada gambar":
   Console.WriteLine(ResizedSize(1075, 1520)); // (924, 1307)
   ```
 
@@ -250,7 +250,7 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
   // (width, height). Berikan maxEdge 1568 dan maxTokens 1568 untuk tier resolusi
   // standar, atau 2576 dan 4784 untuk tier resolusi tinggi. Gambar
   // yang sudah muat dalam batas dikembalikan tanpa perubahan.
-  // Contoh A4 dari "How Claude resizes and pads images":
+  // Contoh A4 dari "Bagaimana Claude mengubah ukuran dan menambahkan padding pada gambar":
   // resizedSize(1075, 1520, 1568, 1568) mengembalikan (924, 1307).
   func resizedSize(width, height, maxEdge, maxTokens int) (int, int) {
   	fits := func(w, h int) bool {
@@ -267,7 +267,7 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
   		return resizedW, resizedH
   	}
 
-  	// Binary search di sepanjang sisi panjang untuk ukuran terbesar yang menjaga
+  	// Pencarian biner di sepanjang sisi panjang untuk ukuran terbesar yang menjaga
   	// aspek dan muat. Sisi pendek membulatkan setengah ke genap (math.RoundToEven),
   	// sesuai API langsung pada tie tepat .5; math.Round akan membulatkannya ke atas.
   	aspectRatio := float64(width) / float64(height)
@@ -313,9 +313,9 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
           return new Size(rotated.height(), rotated.width());
       }
 
-      // Binary search di sepanjang sisi panjang untuk ukuran terbesar yang menjaga
+      // Pencarian biner di sepanjang sisi panjang untuk ukuran terbesar yang menjaga
       // rasio aspek dan masih muat. Sisi pendek dibulatkan half-to-even (Math.rint),
-      // sesuai API live pada tie tepat .5; Math.round akan membulatkannya ke atas.
+      // sesuai API yang sebenarnya pada tie tepat .5; Math.round akan membulatkannya ke atas.
       double aspectRatio = (double) width / height;
       int lo = 1; // lo always fits
       int hi = width; // hi never fits
@@ -370,7 +370,7 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
           return [$resizedW, $resizedH];
       }
 
-      // Binary search di sepanjang sisi panjang untuk ukuran terbesar yang mempertahankan
+      // Pencarian biner di sepanjang sisi panjang untuk ukuran terbesar yang mempertahankan
       // rasio aspek dan muat. Sisi pendek membulatkan setengah ke genap
       // (PHP_ROUND_HALF_EVEN), sesuai dengan API langsung pada kasus tepat .5.
       $aspectRatio = $width / $height;
@@ -389,7 +389,7 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
       return [$lo, max((int) round($lo / $aspectRatio, 0, PHP_ROUND_HALF_EVEN), 1)];
   }
 
-  // Contoh A4 dari "How Claude resizes and pads images":
+  // Contoh A4 dari "Bagaimana Claude mengubah ukuran dan menambahkan padding pada gambar":
   [$resizedWidth, $resizedHeight] = resizedSize(1075, 1520);
   echo "({$resizedWidth}, {$resizedHeight})\n"; // (924, 1307)
   ```
@@ -419,7 +419,7 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
       return [resized_w, resized_h]
     end
 
-    # Binary search di sepanjang sisi panjang untuk ukuran terbesar yang menjaga
+    # Pencarian biner di sepanjang sisi panjang untuk ukuran terbesar yang menjaga
     # aspek dan muat. Sisi pendek dibulatkan half-to-even (round(half: :even)),
     # sesuai dengan API langsung pada tie tepat .5.
     aspect_ratio = width.fdiv(height)
@@ -438,7 +438,7 @@ Pertama, periksa tingkat resolusi model Anda (lihat [Resolusi dan biaya token](h
     [lo, [(lo / aspect_ratio).round(half: :even), 1].max]
   end
 
-  # Contoh A4 dari "How Claude resizes and pads images":
+  # Contoh A4 dari "Bagaimana Claude mengubah ukuran dan menambahkan padding pada gambar":
   p resized_size(1075, 1520) # => [924, 1307]
   ```
 </CodeGroup>
@@ -486,7 +486,7 @@ Endpoint [Penghitungan token](https://platform.claude.com/docs/id/build-with-cla
 
 Jika Anda tidak dapat mengubah ukuran terlebih dahulu (misalnya, ketika gambar berasal dari sistem upstream yang tidak dapat Anda ubah), gunakan helper pengubah ukuran dari [Ubah ukuran gambar Anda sebelum mengunggah](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#resize-your-image-before-uploading) untuk memperoleh kembali dimensi gambar yang diproses Claude, lalu petakan koordinat yang dikembalikan Claude ke koordinat yang dinormalisasi atau kembali ke gambar asli Anda. Kecuali sebuah gambar memilih [error gambar berukuran berlebih](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#oversized-image-error), Claude mengubah ukuran gambar yang terlalu besar alih-alih menolaknya, hingga [batas permintaan](https://platform.claude.com/docs/id/build-with-claude/vision#request-limits) API. Di luar batas tersebut, permintaan gagal dengan error validasi. Berikan batas tingkat yang sesuai dengan model yang Anda panggil: batas tingkat yang salah akan menghasilkan dimensi hasil pengubahan ukuran yang salah dan diam-diam menggeser setiap koordinat. Pendekatan ini memerlukan pengetahuan tentang dimensi piksel gambar yang Anda unggah, sehingga tidak berlaku untuk unggahan PDF.
 
-Tangkapan layar dan gambar zoom yang Anda kembalikan ke toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#targets-and-coordinates) merupakan pengecualian dari pengubahan ukuran otomatis. API menolak gambar `tool_result` yang melebihi batas model dengan error validasi alih-alih mengubah ukurannya. Ubah ukuran gambar tersebut di aplikasi Anda sebelum mengembalikannya, lalu skalakan koordinat yang dikembalikan Claude kembali ke dimensi layar Anda.
+Tangkapan layar dan gambar zoom yang Anda kembalikan ke toolset [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions) dan [penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#targets-and-coordinates) merupakan pengecualian dari pengubahan ukuran otomatis. API menolak gambar `tool_result` yang melebihi batas model dengan error validasi alih-alih mengubah ukurannya. Ubah ukuran gambar tersebut di aplikasi Anda sebelum mengembalikannya, lalu skalakan koordinat yang dikembalikan Claude kembali ke dimensi layar Anda.
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
@@ -658,7 +658,7 @@ Tangkapan layar dan gambar zoom yang Anda kembalikan ke toolset [computer use](h
 
 Padding hanya diterapkan pada tepi bawah dan kanan, sehingga titik asal tidak bergeser dan penskalaan ulang linear per sumbu sudah cukup. Batasi (clamp) koordinat yang dikembalikan ke dimensi hasil pengubahan ukuran sebelum menskalakan ulang, sehingga titik yang sedikit di luar gambar tidak dapat terpetakan di luar gambar asli Anda.
 
-Koordinat relatif dikalikan dengan permukaan apa pun yang Anda tindak lanjuti: gambar asli, pindaian resolusi penuh, atau layar. Ketika Anda bertindak pada layar dan piksel tangkapan layar berbeda dari koordinat logis (layar HiDPI), bagi juga dengan faktor skala tampilan. [Panduan penskalaan alat Computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions) membahas pola tersebut.
+Koordinat relatif dikalikan dengan permukaan apa pun tempat Anda bertindak: gambar asli, pindaian resolusi penuh, atau layar. Ketika Anda bertindak pada layar dan piksel tangkapan layar berbeda dari koordinat logis (layar HiDPI), bagi juga dengan faktor skala tampilan. [Panduan penskalaan alat penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions) membahas pola tersebut.
 
 ## Langkah selanjutnya
 
@@ -667,8 +667,8 @@ Koordinat relatif dikalikan dengan permukaan apa pun yang Anda tindak lanjuti: g
     Agent Skills adalah kapabilitas modular yang memperluas fungsionalitas Claude. Setiap Skill mengemas instruksi, metadata, dan sumber daya opsional (skrip, template) yang digunakan Claude secara otomatis ketika relevan.
   </Card>
 
-  <Card title="Alat computer use" icon="computer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool">
-    Berikan Claude kendali tangkapan layar, mouse, dan keyboard atas lingkungan desktop dengan alat computer use.
+  <Card title="Alat penggunaan komputer" icon="computer" href="https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool">
+    Berikan Claude kendali tangkapan layar, mouse, dan keyboard atas lingkungan desktop dengan alat penggunaan komputer.
   </Card>
 
   <Card title="Dukungan PDF" icon="file" href="https://platform.claude.com/docs/id/build-with-claude/pdf-support">

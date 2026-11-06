@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 58bfc34d81a896798fd517c505af60632a3909622905ee01c9200a9356a198a7
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 76c4645af5595e7892f15f918b3f40df8d63645e8b156e2d883e5de83bd2cdae
 ---
 
 ---
-title: Membatasi domain web search dan web fetch
+title: Membatasi domain pencarian web dan web fetch
 url: https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions
-description: Kontrol situs mana yang dapat dijangkau oleh alat web search dan web fetch milik agen, batasi konten yang diambil, dan lokalkan hasil pencarian.
+description: Kontrol situs mana yang dapat dijangkau oleh alat pencarian web dan web fetch milik agen, batasi konten yang diambil, dan lokalkan hasil pencarian.
 featureMetadata:
   topic:
     title: Managed Agents
@@ -54,7 +54,7 @@ Setiap alat memiliki daftarnya sendiri, sehingga `web_search` dan `web_fetch` da
   `web_search` dan `web_fetch` berjalan di server Anthropic, bukan di sandbox. Environment cloud dengan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited` juga menerapkan `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) miliknya pada alat-alat tersebut; lihat [Menetapkan daftar domain pada agen](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#set-domain-lists-on-an-agent). Jaringan `unrestricted` dan environment self-hosted tidak membatasinya. Daftar per alat membatasi alat-alat ini lebih lanjut.
 </Note>
 
-Pengaturan web search organisasi Anda di halaman [**Capabilities**](https://platform.claude.com/settings/capabilities) pada Claude Console juga berlaku untuk `web_search` dalam sesi. Jika administrator menonaktifkan web search, panggilan `web_search` mengembalikan hasil error kepada agen, dan sesi tetap berlanjut. Jika organisasi membatasi domain web search, agen hanya menerima hasil pencarian yang diizinkan baik oleh pembatasan domain organisasi maupun daftar per alat milik agen.
+Pengaturan pencarian web organisasi Anda di halaman [**Kemampuan**](https://platform.claude.com/settings/capabilities) pada Claude Console juga berlaku untuk `web_search` dalam sesi. Jika administrator menonaktifkan pencarian web, panggilan `web_search` mengembalikan hasil error kepada agen, dan sesi tetap berlanjut. Jika organisasi membatasi domain pencarian web, agen hanya menerima hasil pencarian yang diizinkan baik oleh pembatasan domain organisasi maupun daftar per alat milik agen.
 
 Pengaturan web fetch organisasi Anda di halaman yang sama juga berlaku untuk `web_fetch` dalam sesi. Jika administrator menonaktifkan web fetch, panggilan `web_fetch` mengembalikan hasil error kepada agen, dan sesi tetap berlanjut. Jika organisasi menetapkan domain yang diizinkan atau diblokir untuk web fetch, sebuah URL harus diizinkan oleh daftar organisasi dan juga oleh daftar per alat milik agen, begitu pula setiap URL yang dituju oleh pengalihan. Panggilan `web_fetch` untuk URL yang dikecualikan oleh salah satu daftar tersebut juga mengembalikan hasil error kepada agen.
 
@@ -401,7 +401,7 @@ Contoh berikut membuat agen yang membatasi `web_search` ke dua situs dan memblok
 
 Dalam environment cloud dengan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) milik environment juga berlaku untuk `web_search` dan `web_fetch`. Pembuatan sesi gagal dengan error 400 ketika `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`) dari alat web yang diaktifkan memiliki entri yang tidak berada dalam `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Hal yang sama berlaku untuk pembaruan sesi yang menambahkan entri semacam itu. Untuk memperbaikinya, tambahkan host ke `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) atau hapus entri dari `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`). Saat runtime, panggilan `web_fetch` untuk URL pada host yang tidak cocok dengan `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) mengembalikan hasil error `url_not_allowed`. `web_search` menghilangkan hasil dari host semacam itu. Kedua daftar dicocokkan secara berbeda: entri alat mencakup subdomainnya, tetapi entri `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) hanya cocok dengan satu host yang persis sama kecuali diawali dengan `*.`. Misalnya, entri alat `docs.example.com` tidak berada dalam `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) berisi `["example.com"]`, tetapi berada dalam `["docs.example.com"]` atau `["*.example.com"]`.
 
-Di Claude Console, tetapkan domain yang diizinkan atau diblokir dari baris `web_search` dan `web_fetch` pada kartu **Built-in tools** di formulir agen. Tetapkan `max_content_tokens` dan `user_location` di tampilan **Raw** dari konfigurasi agen.
+Di Claude Console, tetapkan domain yang diizinkan atau diblokir dari baris `web_search` dan `web_fetch` pada kartu **Alat bawaan** di formulir agen. Tetapkan `max_content_tokens` dan `user_location` di tampilan **Mentah** dari konfigurasi agen.
 
 ## Pengaturan
 
@@ -439,7 +439,7 @@ Hostname dibandingkan tanpa memperhatikan huruf besar/kecil.
 
 ### Format domain
 
-Setiap domain adalah nama domain yang dapat didaftarkan, atau subdomainnya, yang ditulis sebagai hostname polos. Domain dapat berisi huruf ASCII, angka, tanda hubung, garis bawah, dan titik. Satu `/` di akhir akan diabaikan. Domain `web_search` juga dapat menyertakan path, sebagaimana dijelaskan dalam [Sufiks path pada domain web search](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#path-suffixes-on-web-search-domains).
+Setiap domain adalah nama domain yang dapat didaftarkan, atau subdomainnya, yang ditulis sebagai hostname polos. Domain dapat berisi huruf ASCII, angka, tanda hubung, garis bawah, dan titik. Satu `/` di akhir akan diabaikan. Domain `web_search` juga dapat menyertakan path, sebagaimana dijelaskan dalam [Sufiks path pada domain pencarian web](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#path-suffixes-on-web-search-domains).
 
 | Tidak diterima                                                                               | Contoh                   | Gunakan sebagai gantinya               |
 | -------------------------------------------------------------------------------------------- | ------------------------ | -------------------------------------- |
@@ -448,13 +448,13 @@ Setiap domain adalah nama domain yang dapat didaftarkan, atau subdomainnya, yang
 | Wildcard                                                                                     | `*.example.com`          | `example.com`                          |
 | Path pada domain `web_fetch`                                                                 | `example.com/*`          | `example.com`                          |
 | Alamat IP dalam bentuk apa pun, baik IPv4, IPv6, dalam kurung siku, maupun singkatan numerik | `127.1`                  | Nama domain situs                      |
-| Top-level domain polos atau sufiks registri                                                  | `com`, `co.uk`, `gov.uk` | Domain lengkap seperti `example.co.uk` |
+| Domain tingkat atas polos atau sufiks registri                                               | `com`, `co.uk`, `gov.uk` | Domain lengkap seperti `example.co.uk` |
 | Nama satu label                                                                              | `intranet`               | Domain lengkap seperti `example.co.uk` |
 | Karakter non-ASCII, seperti pada nama domain internasional                                   |                          | Bentuk `xn--` (Punycode)               |
 
 Domain juga ditolak jika berisi kredensial atau spasi, atau jika salah satu labelnya diawali atau diakhiri dengan tanda hubung. `localhost` dan host yang berakhiran `.localhost`, `.local`, `.internal`, `.localdomain`, atau `.invalid` juga ditolak.
 
-### Sufiks path pada domain web search
+### Sufiks path pada domain pencarian web
 
 Domain `web_search` dapat membawa sufiks path, seperti `example.com/blog`. Path tidak boleh berisi spasi, `?`, `#`, atau karakter apa pun dari `$ , | ^ !`.
 

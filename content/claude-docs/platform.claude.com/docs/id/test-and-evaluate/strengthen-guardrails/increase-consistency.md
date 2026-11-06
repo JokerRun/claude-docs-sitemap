@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/increase-consistency
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: a4ac72b08933380e72b3b6e9f88263b66cf7b886e70db8ad5d4efe513c031ed5
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 8813c4514d63744074541281948d48cfdb7cc37e35596361a1fdc9542c9674a0
 ---
 
 ---
@@ -14,7 +14,7 @@ description: Buat output Claude lebih konsisten dengan menentukan format yang te
 <Tip>
   **Untuk kepatuhan skema JSON yang terjamin**
 
-  Jika Anda memerlukan Claude untuk selalu menghasilkan JSON valid yang sesuai dengan skema tertentu, gunakan [Structured Outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) alih-alih teknik rekayasa prompt di bawah ini. Structured outputs (output terstruktur) memberikan kepatuhan skema yang terjamin dan dirancang khusus untuk kasus penggunaan ini.
+  Jika Anda memerlukan Claude untuk selalu menghasilkan JSON valid yang sesuai dengan skema tertentu, gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) alih-alih teknik rekayasa prompt di bawah ini. Structured outputs (output terstruktur) memberikan kepatuhan skema yang terjamin dan dirancang khusus untuk kasus penggunaan ini.
 
   Teknik-teknik di bawah ini berguna untuk konsistensi output secara umum atau ketika Anda memerlukan fleksibilitas di luar skema JSON yang ketat.
 </Tip>
@@ -71,7 +71,7 @@ Definisikan secara tepat format output yang Anda inginkan menggunakan JSON, XML,
 
   . Sebagai gantinya, gunakan 
 
-  [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
+  [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
 
    pada model yang mendukungnya, atau instruksi prompt sistem.
 </Note>

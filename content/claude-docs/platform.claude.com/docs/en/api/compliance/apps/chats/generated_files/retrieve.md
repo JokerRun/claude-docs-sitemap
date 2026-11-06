@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files/retrieve
-fetched_at: 2026-10-13T02:33:54.812386Z
-sha256: e6288b03eea6586d545e7b8f890050703c1ca8b13206ef048fa1ca7be9a8af04
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 6b27074e9be912b3771c568557a0841df66acf67a7cd1270aab79217be997d43
 ---
 
 ---
@@ -22,7 +22,7 @@ Use the sibling `/content` endpoint to download the bytes.
 
 - `claude_gen_file_id: string`
 
-  The generated-file id (e.g., 'claude_gen_file_abc123') as returned in `chat_messages[].generated_files[].id` from GET /apps/chats/{claude_chat_id}/messages.
+  The generated-file id (e.g., 'claude_gen_file_abc123') as returned in `chat_messages[].generated_files[].id` from `GET /v1/compliance/apps/chats/{claude_chat_id}/messages`. An id that does not start with `claude_gen_file_` returns a 400 error. `generated_files` can also list ids that start with `claude_file_`; request those from `GET /v1/compliance/apps/chats/files/{claude_file_id}` instead.
 
 ## Headers
 

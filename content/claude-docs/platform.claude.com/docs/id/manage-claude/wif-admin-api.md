@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-admin-api
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 2e7bfcc6867a1ed4460e9875ceb7099c6522a3e0a825f3b9be04195e15469aec
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 6f07c9133d1fef625b204a174ac0ce437e55faa19dce2aae4e46033796cd235a
 ---
 
 ---
@@ -15,24 +15,24 @@ Admin API memungkinkan Anda membuat dan mengelola sumber daya [Workload Identity
 
 ## Prasyarat
 
-Setiap permintaan di halaman ini diautentikasi dengan “bearer token” (token pembawa) OAuth yang membawa scope `org:admin`. Scope ini hanya diberikan kepada anggota organisasi dengan peran admin, owner, atau primary owner, dan memberikan akses ke seluruh organisasi: setiap pengikatan workspace diabaikan. Ada dua cara untuk memperoleh token, dan keduanya membawa izin yang berbeda: token dari login Anda sendiri bertindak sebagai pengguna, sedangkan token terfederasi bertindak sebagai akun layanan dan tidak dapat melakukan setiap operasi di halaman ini.
+Setiap permintaan di halaman ini diautentikasi dengan “bearer token” (token pembawa) OAuth yang membawa scope `org:admin`. Scope ini hanya diberikan kepada anggota organisasi dengan peran admin, pemilik, atau pemilik utama, dan memberikan akses ke seluruh organisasi: setiap pengikatan workspace diabaikan. Ada dua cara untuk memperoleh token, dan keduanya membawa izin yang berbeda. Token dari login Anda sendiri bertindak sebagai pengguna. Token terfederasi bertindak sebagai akun layanan dan tidak dapat melakukan setiap operasi di halaman ini.
 
 ### Interaktif (terminal Anda)
 
-Login dengan [CLI `ant`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart) di bawah profil khusus, dengan meminta scope `org:admin` (lihat [Akses admin](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#admin-access)), lalu ekspor bearer token. Login dengan `--profile admin` menyimpan kredensial `org:admin` di bawah nama profilnya sendiri dan juga menjadikannya profil aktif CLI, dan variabel yang diekspor berlaku untuk setiap panggilan SDK dan CLI di shell tersebut; jadi gunakan shell yang Anda khususkan untuk administrasi, hapus variabel tersebut setelah selesai, dan alihkan CLI kembali dengan `ant profile activate default`:
+Masuk dengan [CLI `ant`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart) di bawah profil khusus, dengan meminta scope `org:admin` (lihat [Akses admin](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#admin-access)), lalu ekspor bearer token. Masuk dengan `--profile admin` menyimpan kredensial `org:admin` di bawah nama profilnya sendiri dan juga menjadikannya profil aktif CLI. Variabel yang diekspor berlaku untuk setiap panggilan SDK dan CLI di shell tersebut. Karena alasan-alasan ini, gunakan shell yang Anda khususkan untuk administrasi, hapus variabel tersebut (unset) setelah selesai, dan kembalikan CLI dengan `ant profile activate default`:
 
 ```bash CLI
 ant auth login --profile admin --scope "org:admin"
 export ANTHROPIC_AUTH_TOKEN=$(ant auth print-credentials --profile admin --access-token)
 ```
 
-Token interaktif berumur pendek; jika permintaan mulai mengembalikan 401, jalankan ulang perintah ekspor (perintah ini menyegarkan token secara otomatis).
+Token interaktif berumur pendek. Jika permintaan mulai mengembalikan 401, jalankan ulang perintah `export` untuk menyegarkan token.
 
 SDK dan CLI `ant` membaca `ANTHROPIC_AUTH_TOKEN` secara otomatis; biarkan `ANTHROPIC_API_KEY` tidak diatur di shell yang sama, karena endpoint ini menolak kunci API dan setiap klien menggunakan kunci tersebut ketika keduanya diatur.
 
 ### Workload (CI dan otomatisasi)
 
-Buat aturan federasi dengan `oauth_scope: org:admin` yang menargetkan akun layanan yang `organization_role`-nya adalah `admin`. Aturan itu sendiri harus dibuat di Claude Console: memberikan akses admin organisasi kepada sebuah workload adalah tindakan manusia yang disengaja, bukan sesuatu yang dapat di-bootstrap sendiri oleh otomatisasi. Bagian berikutnya menjelaskan penyiapan satu kali per organisasi ini.
+Buat aturan federasi dengan `oauth_scope: org:admin` yang menargetkan akun layanan yang `organization_role`-nya adalah `admin`. Anda harus membuat aturan itu sendiri di Claude Console: memberikan akses admin organisasi kepada suatu workload adalah tindakan manusia yang disengaja, bukan sesuatu yang dapat di-bootstrap sendiri oleh otomatisasi. Bagian berikutnya memandu penyiapan sekali per organisasi ini.
 
 ## Bootstrap workload untuk mengelola WIF
 
@@ -40,7 +40,7 @@ Satu aturan yang dibuat di Console sudah cukup untuk menempatkan sisa konfiguras
 
 <Steps>
   <Step title="Buat aturan org:admin di Console">
-    Di Claude Console, buka halaman [Workload identity](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`) dan pilih **Connect workload** untuk membuat satu aturan federasi bagi workload otomatisasi Anda, misalnya workflow GitHub Actions di repositori infrastruktur Anda. Di bawah **Advanced rule options**, atur scope OAuth aturan ke `org:admin`: wizard kemudian membuat akun layanan baru dengan peran organisasi Admin (atau meminta Anda memilih akun layanan admin yang sudah ada sebagai target).
+    Di Claude Console, buka halaman [Identitas beban kerja](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`) dan pilih **Hubungkan beban kerja** untuk membuat satu aturan federasi bagi workload otomatisasi Anda, misalnya workflow GitHub Actions di repositori infrastruktur Anda. Di bawah **Opsi aturan lanjutan**, atur scope OAuth aturan ke `org:admin`: wizard kemudian membuat akun layanan baru dengan peran organisasi Admin (atau meminta Anda memilih akun layanan admin yang sudah ada sebagai target).
 
     <Warning>
       Cocokkan aturan dengan satu identitas workload yang persis, bukan pola yang luas. `subject_prefix` adalah pencocokan persis kecuali diakhiri dengan `*`. Untuk GitHub Actions, sematkan subject ke branch yang dilindungi, seperti `repo:my-org/my-repo:ref:refs/heads/main`. Wildcard di akhir seperti `repo:my-org/my-repo:*` juga cocok dengan run `pull_request`, termasuk run yang dipicu dari fork, sehingga siapa pun yang dapat membuka pull request terhadap repositori tersebut dapat mencetak token `org:admin`. Lihat [Membatasi workflow mana yang dapat diautentikasi](https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions#restrict-which-workflows-can-authenticate).
@@ -48,7 +48,7 @@ Satu aturan yang dibuat di Console sudah cukup untuk menempatkan sisa konfiguras
   </Step>
 
   <Step title="Tukarkan token identitas workload">
-    Workload yang menggunakan salah satu SDK atau CLI `ant` tidak melakukan pertukaran itu sendiri. Arahkan klien ke aturan dengan variabel lingkungan federasi dan buat klien tanpa argumen, persis seperti untuk inferensi di [Membuat klien SDK](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#construct-the-sdk-client); klien menukarkan token identitas pada permintaan pertama dan, sebelum token akses yang dihasilkan kedaluwarsa, membaca ulang token identitas dan menukarkannya lagi:
+    Workload yang menggunakan SDK atau CLI `ant` tidak melakukan pertukaran itu sendiri. Klien menukarkan token identitas pada permintaan pertama. Sebelum token akses yang dihasilkan kedaluwarsa, klien membaca ulang token identitas dan mengulangi pertukaran. Buat klien tanpa argumen, persis seperti untuk inferensi di [Membuat klien SDK](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#construct-the-sdk-client), dan arahkan klien ke aturan tersebut dengan variabel lingkungan federasi:
 
     ```bash
     export ANTHROPIC_FEDERATION_RULE_ID=fdrl_...        # the org:admin rule from step 1
@@ -60,7 +60,11 @@ Satu aturan yang dibuat di Console sudah cukup untuk menempatkan sisa konfiguras
     unset ANTHROPIC_API_KEY ANTHROPIC_AUTH_TOKEN       # both take precedence over federation
     ```
 
-    CLI `ant` membaca variabel yang sama, atau menerima flag `--federation-rule`, `--organization-id`, `--service-account-id`, dan `--identity-token-file`. Untuk workload yang menjalankan lebih dari satu perintah `ant`, gunakan [profil federasi](https://platform.claude.com/docs/id/manage-claude/wif-reference#profile-configuration-file) alih-alih flag atau variabel lingkungan: dengan flag atau variabel, CLI menukarkan token identitas lagi di setiap proses, dan token identitas yang membawa klaim `jti` (token GitHub Actions membawanya) hanya diterima sekali, sehingga perintah kedua akan ditolak; profil juga merupakan satu-satunya cara untuk memberikan `workspace_id` kepada CLI untuk pertukaran ketika aturan diaktifkan untuk semua workspace atau lebih dari satu, karena tidak seperti SDK, CLI tidak meneruskan `ANTHROPIC_WORKSPACE_ID` atau `--workspace-id` ke dalam pertukaran. Setiap SDK juga menerima pengaturan yang sama sebagai argumen konstruktor eksplisit, yang ditunjukkan per bahasa di [Membuat klien SDK](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#construct-the-sdk-client). Lihat [Variabel lingkungan](https://platform.claude.com/docs/id/manage-claude/wif-reference#environment-variables) dan [Prioritas kredensial](https://platform.claude.com/docs/id/manage-claude/wif-reference#credential-precedence) untuk daftar lengkap dan urutannya.
+    SDK juga menerima pengaturan ini sebagai argumen konstruktor eksplisit, yang ditunjukkan di [Membuat klien SDK](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#construct-the-sdk-client). CLI `ant` juga membaca variabel ini, atau menerima flag `--federation-rule`, `--organization-id`, `--service-account-id`, dan `--identity-token-file`. Lihat [Variabel lingkungan](https://platform.claude.com/docs/id/manage-claude/wif-reference#environment-variables) dan [Prioritas kredensial](https://platform.claude.com/docs/id/manage-claude/wif-reference#credential-precedence) untuk daftar lengkap variabel dan urutannya.
+
+    Untuk workload yang menjalankan lebih dari satu perintah `ant`, gunakan [profil federasi](https://platform.claude.com/docs/id/manage-claude/wif-reference#profile-configuration-file) alih-alih flag atau variabel lingkungan. Profil menyimpan token akses dalam cache di antara perintah. Dengan flag atau variabel, setiap perintah menukarkan token identitas lagi. Secara default, token identitas yang membawa klaim `jti`, seperti token GitHub Actions, hanya diterima sekali, sehingga perintah kedua akan ditolak.
+
+    Ketika aturan diaktifkan untuk semua workspace atau lebih dari satu, berikan kepada CLI `ant` profil federasi yang mengatur `workspace_id`, dan atur `ANTHROPIC_PROFILE` ke nama profil tersebut. Tidak seperti SDK, CLI meneruskan `ANTHROPIC_WORKSPACE_ID` ke dalam pertukaran hanya melalui profil federasi, dan `--workspace-id` tidak pernah mencapai pertukaran.
 
     Workload yang memanggil API dengan curl menukarkan JWT dengan bearer token `org:admin` berumur pendek secara mandiri, menggunakan [pertukaran token](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#authenticate-from-your-workload) yang sama seperti workload terfederasi lainnya, dan mengirimkannya di header `authorization: Bearer`.
   </Step>
@@ -70,13 +74,13 @@ Satu aturan yang dibuat di Console sudah cukup untuk menempatkan sisa konfiguras
   </Step>
 </Steps>
 
-Untuk operasi yang dapat dan tidak dapat dilakukan oleh token yang dicetak workload, lihat [Izin dan batasan](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#permissions-and-constraints). Jika Anda sudah membuat penerbit, akun layanan, atau aturan dengan wizard **Connect workload**, tampilkan daftarnya dengan endpoint berikut dan impor ke state infrastructure-as-code Anda alih-alih membuatnya ulang.
+Untuk operasi yang dapat dan tidak dapat dilakukan oleh token terfederasi, lihat [Izin dan batasan](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#permissions-and-constraints). Jika Anda sudah membuat penerbit, akun layanan, atau aturan dengan wizard **Hubungkan beban kerja**, tampilkan daftarnya dengan endpoint berikut dan impor ke state infrastructure-as-code Anda alih-alih membuatnya ulang.
 
 ## Autentikasi
 
 Semua endpoint berada di bawah `https://api.anthropic.com/v1/organizations/`. Setiap permintaan ke endpoint federasi dan akun layanan memerlukan header versi API dan bearer token:
 
-Di SDK, endpoint ini adalah `client.organization.service_accounts` (typescript: `client.organization.serviceAccounts`; csharp, go: `client.Organization.ServiceAccounts`; java: `client.organization().serviceAccounts()`; php: `$client->organization->serviceAccounts`), `client.organization.federation.issuers` (csharp, go: `client.Organization.Federation.Issuers`; java: `client.organization().federation().issuers()`; php: `$client->organization->federation->issuers`), dan `client.organization.federation.rules` (csharp, go: `client.Organization.Federation.Rules`; java: `client.organization().federation().rules()`; php: `$client->organization->federation->rules`) (`ant organization:service-accounts`, `federation:issuers`, dan `federation:rules` di CLI). Contoh SDK dan CLI membuat klien default, yang mengirimkan bearer token dari `ANTHROPIC_AUTH_TOKEN`, atau, dalam workload otomatis, melakukan pertukaran federasi sendiri seperti yang dijelaskan di [Bootstrap workload untuk mengelola WIF](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#bootstrap-a-workload-to-manage-wif). Metode list SDK mengambil halaman berikutnya sesuai permintaan, sehingga `limit` mengatur ukuran halaman; contoh PHP dan Ruby membaca satu halaman.
+Di SDK, endpoint ini adalah `client.organization.service_accounts` (typescript: `client.organization.serviceAccounts`; csharp, go: `client.Organization.ServiceAccounts`; java: `client.organization().serviceAccounts()`; php: `$client->organization->serviceAccounts`), `client.organization.federation.issuers` (csharp, go: `client.Organization.Federation.Issuers`; java: `client.organization().federation().issuers()`; php: `$client->organization->federation->issuers`), dan `client.organization.federation.rules` (csharp, go: `client.Organization.Federation.Rules`; java: `client.organization().federation().rules()`; php: `$client->organization->federation->rules`) (`ant organization:service-accounts`, `ant organization:federation:issuers`, dan `ant organization:federation:rules` di CLI). SDK dan CLI `ant` mengirimkan bearer token dari `ANTHROPIC_AUTH_TOKEN`. Dalam workload otomatis, keduanya melakukan pertukaran federasi sendiri seperti yang dijelaskan di [Bootstrap workload untuk mengelola WIF](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#bootstrap-a-workload-to-manage-wif).
 
 <CodeGroup>
   ```bash cURL
@@ -1247,7 +1251,7 @@ Arsipkan aturan:
   ```
 </CodeGroup>
 
-Endpoint list mengembalikan satu halaman aturan dan cursor untuk halaman berikutnya:
+Endpoint list mengembalikan satu halaman aturan dan kursor untuk halaman berikutnya:
 
 ```json
 {
@@ -1266,13 +1270,14 @@ Untuk detail parameter lengkap dan skema respons, lihat [Referensi API aturan fe
   * Pemanggil yang diautentikasi dengan OAuth hanya dapat membuat atau memodifikasi aturan yang `oauth_scope`-nya adalah `workspace:developer` atau `workspace:inference`. Untuk membuat atau memodifikasi aturan dengan scope lain (seperti `org:admin` atau `workspace:manage_tunnels`), gunakan Console.
   * Pemanggil OAuth tidak dapat memperbarui penerbit federasi yang mendukung aturan dengan `oauth_scope` selain `workspace:developer` atau `workspace:inference` (seperti `org:admin` atau `workspace:manage_tunnels`). Pertimbangkan untuk mendaftarkan penerbit khusus untuk aturan bootstrap agar penerbit di balik aturan berlingkup workspace tetap dapat diperbarui melalui API.
   * Kunci Admin API tidak diterima pada endpoint ini, baik untuk baca maupun tulis; gunakan token OAuth `org:admin`.
+  * Token terfederasi tidak dapat mengatur `organization_role` ke `admin` pada akun layanan baru atau yang sudah ada, bahkan akun yang sudah berperan `admin`. Untuk mengatur peran tersebut, gunakan [token interaktif](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#interactive-your-terminal) atau Console.
 </Note>
 
 Aturan dengan `oauth_scope: org:admin` harus menargetkan akun layanan yang `organization_role`-nya adalah `admin`. Nama sumber daya harus cocok dengan `^[a-z0-9-]+$`, terdiri dari 1 hingga 255 karakter, dan unik dalam satu organisasi untuk setiap jenis sumber daya; untuk batasan tingkat field selengkapnya, lihat [Aturan validasi](https://platform.claude.com/docs/id/manage-claude/wif-reference#validation-rules).
 
 ## Paginasi dan pengarsipan
 
-Endpoint list akun layanan, penerbit federasi, dan aturan federasi menerima `limit` (1 hingga 100, default 20) dan cursor `page` yang diambil dari respons sebelumnya. Teruskan nilai `next_page` dari respons sebagai parameter query `page` pada permintaan berikutnya. List sub-resource rule-workspaces mengembalikan set lengkap tanpa paginasi. Sumber daya yang diarsipkan disembunyikan dari daftar secara default; teruskan `include_archived=true` untuk menyertakannya.
+Endpoint list akun layanan, penerbit federasi, dan aturan federasi menerima `limit` (ukuran halaman, 1 hingga 100, default 20) dan kursor `page` yang diambil dari respons sebelumnya. Teruskan nilai `next_page` dari respons sebagai parameter query `page` pada permintaan berikutnya. SDK mengambil halaman berikutnya sesuai permintaan saat Anda melakukan iterasi dengan `for` (typescript: `for await`; csharp: `Paginate()`; go: `ListAutoPaging()`; java: `autoPager()`; php: `pagingEachItem()`; ruby: `auto_paging_each`), dan CLI `ant` melakukannya secara default. Daftar sub-sumber daya rule-workspaces mengembalikan set lengkap tanpa paginasi. Sumber daya yang diarsipkan disembunyikan dari daftar secara default; teruskan `include_archived=true` untuk menyertakannya.
 
 Pengarsipan adalah “soft delete” (penghapusan lunak) dan bersifat idempoten: mengarsipkan sumber daya yang sudah diarsipkan akan berhasil. Mengarsipkan penerbit atau akun layanan mengembalikan `400` selama aturan federasi yang aktif masih mereferensikannya; arsipkan aturan tersebut terlebih dahulu.
 

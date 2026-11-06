@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 7482a4bb658464ef02c08a145236954db7680877ca01940eadbacf437aa28d19
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 536e1ee604c2f128e20153c967b718ab726def1436dcac6fca1c2053250f0b84
 ---
 
 ---
@@ -20,7 +20,7 @@ Skill ini mencakup delapan bahasa pemrograman untuk Messages API maupun Managed 
 
 Skill ini disertakan bersama [Claude Code](https://code.claude.com/docs/en/overview) dan juga tersedia di [repositori skills Anthropic](https://github.com/anthropics/skills) open-source, tempat Anda dapat menginstalnya di lingkungan apa pun yang mendukung Agent Skills.
 
-Skill ini menggunakan [progressive disclosure](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#how-skills-work) (pengungkapan bertahap) agar konteks tetap efisien: Claude hanya memuat dokumentasi yang relevan dengan bahasa proyek Anda, surface (Messages API atau Managed Agents), dan tugas spesifik yang sedang dikerjakan (penggunaan alat, streaming, batch, dan sebagainya), alih-alih memuat semuanya sekaligus.
+Skill ini menggunakan [progressive disclosure](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#how-skills-work) (pengungkapan bertahap) agar konteks tetap efisien: Claude hanya memuat dokumentasi yang relevan dengan bahasa proyek Anda, permukaan (Messages API atau Managed Agents), dan tugas spesifik yang sedang dikerjakan (penggunaan alat, streaming, batch, dan sebagainya), alih-alih memuat semuanya sekaligus.
 
 ## Apa yang disediakan skill ini
 
@@ -34,7 +34,7 @@ Saat dipicu, skill ini membekali Claude dengan:
 * **Pemrosesan batch:** Pemrosesan batch offline dengan biaya 50 persen
 * **Caching prompt:** Desain stabilitas prefiks, penempatan breakpoint, dan audit terhadap penyebab invalidasi diam-diam
 * **Migrasi model:** Panduan langkah demi langkah untuk bermigrasi ke model Claude yang lebih baru (termasuk perubahan yang merusak kompatibilitas dan pergeseran perilaku pada [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-5), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide), dan [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide))
-* **Migrasi preserved thinking:** Menemukan, mengukur, dan memperbaiki pengeditan riwayat yang membuat blok `thinking` tidak valid, tersedia melalui subperintah `/claude-api preserved-thinking-migration`
+* **Migrasi pemikiran yang dipertahankan:** Menemukan, mengukur, dan memperbaiki pengeditan riwayat yang membuat blok `thinking` tidak valid, tersedia melalui subperintah `/claude-api preserved-thinking-migration`
 * **Informasi model terkini:** ID model, ukuran “context window” (jendela konteks), dan harga
 * **Kesalahan umum:** Panduan terperinci untuk menghindari kesalahan yang sering terjadi saat berintegrasi dengan API
 
@@ -54,7 +54,7 @@ Skill ini aktif dengan dua cara:
 
 * Kode Anda mengimpor SDK Anthropic (`anthropic` untuk Python, `@anthropic-ai/sdk` untuk TypeScript/JavaScript)
 * Anda meminta Claude membantu membangun, men-debug, atau mengoptimalkan sesuatu dengan Claude API, SDK Anthropic, atau Managed Agents
-* Anda menambahkan, memodifikasi, atau menyetel fitur Claude dalam sebuah file (caching prompt, adaptive thinking, compaction, penggunaan alat, batch, files, citations, memory) atau referensi model
+* Anda menambahkan, memodifikasi, atau menyetel fitur Claude dalam sebuah file (caching prompt, pemikiran adaptif, compaction, penggunaan alat, batch, file, kutipan, memori) atau referensi model
 
 **Pemanggilan manual** terjadi ketika Anda mengetik `/claude-api` (dengan subperintah atau teks opsional) di lingkungan mana pun tempat skill ini diinstal.
 
@@ -73,7 +73,7 @@ Skill ini mendeteksi bahasa proyek Anda secara otomatis dengan memeriksa file pr
 | Java       | Ya               | Ya (beta)   | Ya (beta)      |
 | PHP        | Ya               | Ya (beta)   | Ya (beta)      |
 | Ruby       | Ya               | Ya (beta)   | Ya (beta)      |
-| cURL       | Ya               | N/A         | Ya (beta)      |
+| cURL       | Ya               | T/A         | Ya (beta)      |
 
 Jika proyek Anda menggunakan beberapa bahasa, Claude akan menanyakan bahasa mana yang berlaku. Untuk bahasa yang tidak didukung (Rust, Swift, C++), skill ini menyediakan contoh cURL/HTTP mentah.
 
@@ -158,9 +158,9 @@ Saat mengedit, skill ini menjelaskan setiap perubahan dan motivasinya secara inl
 
 Untuk daftar lengkap perubahan khusus model yang diterapkan skill ini, lihat [Migrasi ke Claude Opus 5.5 dari Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Migrasi ke Claude Opus 5.5 dari Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8), [Migrasi ke Claude Sonnet 5.5 dari Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-5), [panduan migrasi Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide), dan [panduan migrasi Claude Fable 5.1 dan Claude Mythos 5.1](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide).
 
-## Memeriksa integrasi untuk preserved thinking
+## Memeriksa integrasi untuk pemikiran yang dipertahankan
 
-[Preserved thinking](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking) menjaga blok `thinking` tetap valid hanya selama prompt `system`, `tools`, dan pesan-pesan sebelumnya tidak berubah. Untuk menemukan dan memperbaiki tempat-tempat di mana kode Anda mengedit riwayat tersebut, buka repositori yang membangun permintaan Anda dan panggil subperintah `preserved-thinking-migration`:
+[Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking) menjaga blok `thinking` tetap valid hanya selama prompt `system`, `tools`, dan pesan-pesan sebelumnya tidak berubah. Untuk menemukan dan memperbaiki tempat-tempat di mana kode Anda mengedit riwayat tersebut, buka repositori yang membangun permintaan Anda dan panggil subperintah `preserved-thinking-migration`:
 
 Biarkan Claude Code memeriksa kode Anda
 
@@ -242,7 +242,7 @@ Dalam setiap kasus, skill ini memuat dokumentasi khusus bahasa yang relevan dan 
 
 <CardGroup cols={2}>
   <Card title="Agent Skills" icon="graduation-cap" href="https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview">
-    Pelajari cara kerja Agent Skills dan model progressive disclosure
+    Pelajari cara kerja Agent Skills dan model pengungkapan bertahap
   </Card>
 
   <Card title="SDK Klien" icon="code" href="https://platform.claude.com/docs/id/cli-sdks-libraries/overview">

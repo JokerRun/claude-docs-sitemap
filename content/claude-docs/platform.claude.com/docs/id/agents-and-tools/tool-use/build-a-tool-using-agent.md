@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: af4f348889143578da36ee4a013a5513283b50d5024fa8907f86150d2f3b2873
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: e47a836c0b27875e69fc322f2686da9b89e3a3e3dd8151d146247c6dd796d9e5
 ---
 
 ---
@@ -905,7 +905,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
       return {"error": f"Unknown tool: {name}"}
 
 
-  # Simpan seluruh riwayat percakapan dalam list agar setiap giliran melihat konteks sebelumnya.
+  # Simpan seluruh riwayat percakapan dalam daftar agar setiap giliran melihat konteks sebelumnya.
   messages = [
       {
           "role": "user",
@@ -2742,7 +2742,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
       throw new InvalidOperationException($"Unknown tool: {toolUse.Name}");
   }
 
-  // Buat request yang melebihi batas peserta alat agar jalur error dijalankan.
+  // Buat permintaan yang melebihi batas peserta alat agar jalur error dijalankan.
   var emails = string.Join(", ", Enumerable.Range(0, 15).Select(i => $"user{i}@example.com"));
 
   List<MessageParam> messages =
@@ -2877,7 +2877,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   		}},
   	}
 
-  	// Buat request yang melebihi batas peserta alat agar jalur error dijalankan.
+  	// Buat permintaan yang melebihi batas peserta alat agar jalur error dijalankan.
   	emails := make([]string, 15)
   	for i := range emails {
   		emails[i] = fmt.Sprintf("user%d@example.com", i)
@@ -3022,7 +3022,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
               .build())
           .build();
 
-      // Buat request yang melebihi batas peserta alat agar jalur error dijalankan.
+      // Buat permintaan yang melebihi batas peserta alat agar jalur error dijalankan.
       String emails = IntStream.range(0, 15)
           .mapToObj(i -> "user" + i + "@example.com")
           .collect(Collectors.joining(", "));
@@ -3144,7 +3144,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
       throw new \InvalidArgumentException("Unknown tool: {$name}");
   }
 
-  // Buat request yang melebihi batas peserta alat agar jalur error dijalankan.
+  // Buat permintaan yang melebihi batas peserta alat agar jalur error dijalankan.
   $emails = array_map(fn (int $i): string => "user{$i}@example.com", range(0, 14));
   $messages = [
       [
@@ -3258,7 +3258,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
     end
   end
 
-  # Buat request yang melebihi batas peserta alat agar jalur error dijalankan.
+  # Buat permintaan yang melebihi batas peserta alat agar jalur error dijalankan.
   emails = (0...15).map { |i| "user#{i}@example.com" }
   messages = [
     {

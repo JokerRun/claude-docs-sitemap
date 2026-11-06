@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/additional-resources
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: c838859ef93dd4966227e377a61ea70cc17d58c52f29cba7881909633a2a33c4
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 3c31187faa3822be2c029a1a05e588e415a39d9e830624f215e8d7e9d6c3c586
 ---
 
 ---
@@ -14,7 +14,7 @@ description: Learning resources and documentation formats optimized for AI inges
 ## Learning resources
 
 <CardGroup cols={3}>
-  <Card title="Quickstarts" icon="lightning" href="https://github.com/anthropics/anthropic-quickstarts">
+  <Card title="Quickstarts" icon="lightning" href="https://github.com/anthropics/claude-quickstarts">
     Deployable applications built with the API.
   </Card>
 

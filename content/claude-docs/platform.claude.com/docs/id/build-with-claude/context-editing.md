@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-editing
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: ee6dddab31fff538f6b6d4fd653d7214746bca64a8fa2769d9261f816c2f08ce
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 58fa5d1cc8348417a94fb1c976797077fce14bc811ed9fe672d294d9b28749c3
 ---
 
 ---
@@ -48,7 +48,7 @@ featureMetadata:
   Untuk sebagian besar kasus penggunaan, [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) adalah strategi utama untuk mengelola konteks dalam percakapan yang berjalan lama. Strategi di halaman ini berguna untuk skenario tertentu di mana Anda memerlukan kontrol yang lebih terperinci atas konten apa yang dibersihkan.
 </Note>
 
-“Context editing” (pengeditan konteks) memungkinkan Anda untuk secara selektif menghapus konten tertentu dari riwayat percakapan seiring pertumbuhannya. Selain mengoptimalkan biaya dan tetap berada dalam batas, ini tentang secara aktif mengkurasi apa yang diterima Claude: konteks adalah sumber daya terbatas dengan hasil yang semakin berkurang, dan konten yang tidak relevan menurunkan fokus model. Pengeditan konteks memberi Anda kontrol runtime yang terperinci atas kurasi tersebut. Untuk prinsip-prinsip yang lebih luas di balik manajemen konteks, lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents). Halaman ini mencakup:
+“Context editing” (pengeditan konteks) memungkinkan Anda untuk secara selektif menghapus konten tertentu dari riwayat percakapan seiring pertumbuhannya. Selain mengoptimalkan biaya dan tetap berada dalam batas, ini tentang secara aktif mengkurasi apa yang diterima Claude: konteks adalah sumber daya terbatas dengan hasil yang semakin berkurang, dan konten yang tidak relevan menurunkan fokus model. Pengeditan konteks memberi Anda kontrol runtime yang terperinci atas kurasi tersebut. Untuk prinsip-prinsip yang lebih luas di balik manajemen konteks, lihat [Rekayasa konteks yang efektif](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents). Halaman ini mencakup:
 
 * **Penghapusan hasil alat:** Paling cocok untuk alur kerja agentik dengan penggunaan alat yang intensif di mana hasil alat lama tidak lagi diperlukan
 * **Penghapusan blok pemikiran:** Untuk mengelola blok pemikiran dari giliran sebelumnya, dengan opsi untuk mempertahankan pemikiran terbaru demi kesinambungan konteks
@@ -71,23 +71,23 @@ featureMetadata:
 
 Strategi `clear_tool_uses_20250919` menghapus hasil alat ketika konteks percakapan tumbuh melampaui ambang batas yang Anda konfigurasi. Ini sangat berguna untuk alur kerja agentik dengan penggunaan alat yang intensif. Hasil alat yang lebih lama (seperti isi file atau hasil pencarian) tidak lagi diperlukan setelah Claude memprosesnya.
 
-Saat diaktifkan, API secara otomatis membersihkan hasil alat terlama dalam urutan kronologis. API mengganti setiap hasil yang dibersihkan dengan teks placeholder yang menunjukkan kepada Claude bahwa hasil tersebut telah dihapus. Secara default, hanya hasil alat yang dibersihkan. Anda dapat secara opsional membersihkan hasil alat dan panggilan alat (parameter penggunaan alat) dengan mengatur `clear_tool_inputs` ke true.
+Saat diaktifkan, API secara otomatis membersihkan hasil alat terlama dalam urutan kronologis. API mengganti setiap hasil yang dibersihkan dengan teks placeholder yang menunjukkan kepada Claude bahwa hasil tersebut telah dihapus. Secara default, hanya hasil alat yang dibersihkan. Anda dapat secara opsional membersihkan hasil alat dan panggilan alat (parameter penggunaan alat) dengan mengatur `clear_tool_inputs` ke `true`.
 
 ### Pembersihan blok pemikiran
 
 Strategi `clear_thinking_20251015` mengelola blok `thinking` dari giliran asisten sebelumnya. Strategi ini memberi Anda kontrol atas pelestarian pemikiran: Anda dapat memilih untuk menyimpan lebih banyak blok pemikiran guna mempertahankan kesinambungan penalaran, atau membersihkannya secara lebih agresif untuk menghemat ruang konteks.
 
 <Tip>
-  **Perilaku default:** Default bervariasi menurut kelas model.
+  **Perilaku default:** Ketika permintaan tidak menyertakan strategi `clear_thinking_20251015`, default bervariasi menurut kelas model.
 
-  | Kelas model      | Simpan semua pemikiran sebelumnya     | Simpan hanya pemikiran giliran terakhir            |
-  | ---------------- | ------------------------------------- | -------------------------------------------------- |
-  | Opus             | Claude Opus 4.5 dan yang lebih baru   | Claude Opus 4.1 dan yang lebih lama                |
-  | Sonnet           | Claude Sonnet 4.6 dan yang lebih baru | Claude Sonnet 4.5 (deprecated) dan yang lebih lama |
-  | Haiku            | Claude Haiku 5.5 dan yang lebih baru  | Claude Haiku 4.5 dan yang lebih lama               |
-  | Fable dan Mythos | Semua model                           | (tidak ada)                                        |
+  | Kelas model      | Simpan semua pemikiran sebelumnya     | Simpan pemikiran hanya untuk giliran yang sedang berlangsung |
+  | ---------------- | ------------------------------------- | ------------------------------------------------------------ |
+  | Opus             | Claude Opus 4.5 dan yang lebih baru   | Claude Opus 4.1 dan yang lebih lama                          |
+  | Sonnet           | Claude Sonnet 4.6 dan yang lebih baru | Claude Sonnet 4.5 (deprecated) dan yang lebih lama           |
+  | Haiku            | Claude Haiku 5.5 dan yang lebih baru  | Claude Haiku 4.5 dan yang lebih lama                         |
+  | Fable dan Mythos | Semua model                           | (tidak ada)                                                  |
 
-  Gunakan strategi ini untuk menimpa default. Jika kode Anda berjalan di beberapa tingkatan model, atur `keep` secara eksplisit daripada mengandalkan default per model.
+  Gunakan strategi ini untuk menimpa default. Jika kode Anda berjalan di beberapa kelas model, sertakan strategi ini dan atur `keep` secara eksplisit daripada mengandalkan default per model.
 </Tip>
 
 Satu giliran percakapan asisten dapat mencakup beberapa blok konten (misalnya, saat menggunakan alat) dan beberapa blok pemikiran (misalnya, dengan [pemikiran yang disisipkan](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking)).
@@ -285,7 +285,7 @@ Cara paling sederhana untuk mengaktifkan pembersihan hasil alat adalah dengan ha
       messages: [
           ['role' => 'user', 'content' => 'Search for recent developments in AI']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['context-management-2025-06-27'],
       tools: [
           ['type' => 'web_search_20250305', 'name' => 'web_search']
@@ -637,7 +637,7 @@ Anda dapat menyesuaikan perilaku pembersihan hasil alat dengan parameter tambaha
               'content' => 'Create a simple command line calculator app using Python'
           ]
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['context-management-2025-06-27'],
       tools: [
           [
@@ -680,7 +680,7 @@ Anda dapat menyesuaikan perilaku pembersihan hasil alat dengan parameter tambaha
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     messages: [
       {
@@ -951,13 +951,17 @@ Gunakan pembersihan blok pemikiran untuk mengelola konteks dan caching prompt da
 
 Strategi `clear_thinking_20251015` mendukung konfigurasi berikut:
 
-| Opsi konfigurasi | Default        | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| ---------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `keep`           | Spesifik model | Menentukan berapa banyak giliran asisten terbaru dengan blok pemikiran yang akan dipertahankan. Gunakan `{type: "thinking_turns", value: N}` di mana N harus > 0 untuk menyimpan N giliran terakhir, atau `"all"` untuk menyimpan semua blok pemikiran. Opus 4.5+, Sonnet 4.6+, dan Haiku 5.5+: semua giliran. Model Fable dan Mythos: semua giliran. Opus/Sonnet yang lebih lama dan Haiku hingga Claude Haiku 4.5: hanya giliran terakhir. |
+| Opsi konfigurasi | Default                              | Deskripsi                                                                                                                                                                                                                                       |
+| ---------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `keep`           | `{type: "thinking_turns", value: 1}` | Menentukan berapa banyak giliran asisten terbaru yang mempertahankan blok pemikirannya. Gunakan `{type: "thinking_turns", value: N}` di mana N harus > 0 untuk menyimpan N giliran terakhir, atau `"all"` untuk menyimpan semua blok pemikiran. |
+
+Permintaan yang menyertakan strategi ini tanpa `keep` mendapatkan `{type: "thinking_turns", value: 1}` pada setiap model, termasuk model yang [default per model](https://platform.claude.com/docs/id/build-with-claude/context-editing#thinking-block-clearing)-nya menyimpan semua pemikiran. Permintaan tanpa strategi ini mendapatkan default per model.
+
+N menghitung giliran asisten yang sedang berlangsung dan giliran tanpa blok pemikiran. Pesan pengguna yang hanya berisi blok `tool_result` melanjutkan giliran yang sedang berlangsung. Pesan pengguna lainnya memulai giliran baru. Ketika permintaan diakhiri dengan pesan yang memulai giliran baru, nilai 1 membersihkan pemikiran dari setiap giliran asisten sebelumnya.
 
 **Contoh konfigurasi:**
 
-Simpan blok pemikiran dari 3 giliran asisten terakhir:
+Simpan blok pemikiran dari 3 giliran asisten terakhir, termasuk giliran yang sedang berlangsung:
 
 <CodeGroup>
   ```bash cURL
@@ -1672,7 +1676,7 @@ Anda dapat menggunakan pembersihan blok pemikiran dan pembersihan hasil alat sec
               'content' => 'Search for the latest developments in quantum error correction and summarize the key breakthroughs.'
           ]
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['context-management-2025-06-27'],
       tools: [
           [
@@ -2047,7 +2051,7 @@ Endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-cla
       messages: [
           ['role' => 'user', 'content' => 'Continue our conversation...']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['context-management-2025-06-27'],
       contextManagement: [
           'edits' => [
@@ -2341,7 +2345,7 @@ Untuk referensi lengkap alat memori termasuk perintah dan contoh, lihat [Alat me
 <Warning>
   **Anthropic merekomendasikan kompaksi sisi server daripada kompaksi SDK.** [Kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) menangani manajemen konteks secara otomatis dengan kompleksitas integrasi yang lebih rendah, perhitungan penggunaan token yang lebih baik, dan tanpa keterbatasan sisi klien. Gunakan kompaksi SDK hanya jika Anda secara khusus memerlukan kontrol sisi klien atas proses peringkasan.
 
-  Parameter `compaction_control` sudah deprecated di SDK TypeScript dan Ruby dan akan dihapus di versi mendatang. SDK TypeScript dan Ruby mengeluarkan peringatan deprecation saat parameter ini diaktifkan. SDK Python telah menghapusnya di v1.0. Untuk menggunakan compaction sisi server dengan tool runner, teruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
+  Parameter `compaction_control` sudah deprecated di SDK TypeScript dan Ruby dan akan dihapus di versi mendatang. SDK TypeScript dan Ruby mengeluarkan peringatan penghentian saat parameter ini diaktifkan. SDK Python telah menghapusnya di v1.0. Untuk menggunakan compaction sisi server dengan tool runner, teruskan edit `compact_20260112` dalam parameter `context_management` pada permintaan.
 </Warning>
 
 <Note>

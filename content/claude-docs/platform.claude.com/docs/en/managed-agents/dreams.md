@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/dreams
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 0c7b9988bca6b352a1bd5508b071a391e34da8301f126954366c1df67766e3da
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: cb5cfadbc446209988ccf661662e1528f5fab595c0ad95fab0bb95fd9dcd3b00
 ---
 
 ---
@@ -34,6 +34,10 @@ featureMetadata:
 
   * [Request access](https://claude.com/form/claude-managed-agents)
 </Note>
+
+<Tip>
+  Want more control over dreaming? The [Dreaming with a dynamic workflow](https://platform.claude.com/cookbook/managed-agents-cma-dreaming-with-a-dynamic-workflow) recipe in the Claude Cookbook shows how to build your own dream with prompts and models you choose. You decide when it runs, which transcripts it reads, and what it does with them.
+</Tip>
 
 Agents write to their [memory stores](https://platform.claude.com/docs/en/managed-agents/memory) as they work, but these writes are local and incremental: over many sessions a memory store accumulates duplicates, contradictions, and stale entries.
 

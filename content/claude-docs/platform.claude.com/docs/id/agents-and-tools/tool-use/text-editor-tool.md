@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: a5a28faca7cf0bec01660256d88c7cbdd0e96d6025e543b99843123d8abf6720
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: cb7b39743a199342d745e3793c484fd743f200a9ae379d53fcac810b55c3949f
 ---
 
 ---
@@ -1799,7 +1799,7 @@ Tipe alatnya adalah `type: "text_editor_20250728"` untuk model Claude 4 dan yang
   Saat mengimplementasikan alat editor teks, perhatikan hal-hal berikut:
 
   1. **Keamanan:** Alat ini memiliki akses ke sistem file lokal Anda, jadi implementasikan langkah-langkah keamanan yang tepat.
-  2. **Backup:** Selalu buat backup sebelum mengizinkan pengeditan pada file penting.
+  2. **Cadangan:** Selalu buat backup sebelum mengizinkan pengeditan pada file penting.
   3. **Validasi:** Validasi semua input untuk mencegah perubahan yang tidak diinginkan.
   4. **Pencocokan unik:** Pastikan penggantian cocok dengan tepat satu lokasi untuk menghindari pengeditan yang tidak diinginkan.
 </Warning>

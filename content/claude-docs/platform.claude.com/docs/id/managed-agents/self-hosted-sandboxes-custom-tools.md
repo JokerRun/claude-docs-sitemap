@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 7689350ab1069b4846c9eb0d63b820904e39e118abbe114aad1586bc476e9775
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: f86e731ada0d5b3bae9e8b981c3317f0f38ec456a542b787bb4690d6996b3180
 ---
 
 ---
@@ -39,7 +39,7 @@ featureMetadata:
 
 [Alat kustom](https://platform.claude.com/docs/id/managed-agents/tools#custom-tools) adalah alat yang dijalankan oleh kode Anda sendiri: agen memancarkan event `agent.custom_tool_use` dan menunggu `user.custom_tool_result` yang sesuai. Worker Anda dapat menjadi kode tersebut. Karena berjalan di dalam sandbox Anda, alat tersebut menjangkau layanan internal, kredensial, dan “network egress” (lalu lintas jaringan keluar) yang Anda konfigurasikan untuk sandbox, dan tidak lebih dari itu.
 
-Environment key mengotorisasi pengiriman hasil alat kustom, sehingga kunci API Claude Anda tetap berada di luar host worker.
+Kunci lingkungan mengotorisasi pengiriman hasil alat kustom, sehingga kunci API Claude Anda tetap berada di luar host worker.
 
 <Note>
   Melayani alat kustom memerlukan worker SDK. Worker CLI `ant` tidak memiliki cara untuk mendaftarkan implementasi alat kustom. Dalam pola sandbox-per-sesi, [jalankan worker SDK di dalam sandbox](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#run-the-sdk-worker-inside-the-sandbox).

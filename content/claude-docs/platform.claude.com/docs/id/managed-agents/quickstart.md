@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: f7df332c97f8093f8a61a848bbe3d156d73852ab8953b1894f31655c0069ec9c
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 7b38e4b27bece1ee442517479f7a5d17ea89fa9f224627ac95eef0ba62b223f5
 ---
 
 ---
@@ -52,12 +52,12 @@ Biarkan Claude Code menyiapkan agen Anda untuk Anda
 
 ## Konsep inti
 
-| Konsep          | Deskripsi                                                                                                                                         |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Agent**       | Model, prompt sistem, alat, server MCP, dan skill                                                                                                 |
-| **Environment** | Konfigurasi untuk tempat sesi berjalan: sandbox cloud yang dikelola Anthropic, atau sandbox yang di-hosting sendiri di infrastruktur Anda sendiri |
-| **Session**     | Instans agen yang sedang berjalan di dalam sebuah environment, melakukan tugas tertentu dan menghasilkan output                                   |
-| **Events**      | Pesan yang dipertukarkan antara aplikasi Anda dan agen (giliran pengguna, hasil alat, pembaruan status)                                           |
+| Konsep         | Deskripsi                                                                                                                                         |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Agen**       | Model, prompt sistem, alat, server MCP, dan skill                                                                                                 |
+| **Lingkungan** | Konfigurasi untuk tempat sesi berjalan: sandbox cloud yang dikelola Anthropic, atau sandbox yang di-hosting sendiri di infrastruktur Anda sendiri |
+| **Sesi**       | Instans agen yang sedang berjalan di dalam sebuah environment, melakukan tugas tertentu dan menghasilkan output                                   |
+| **Event**      | Pesan yang dipertukarkan antara aplikasi Anda dan agen (giliran pengguna, hasil alat, pembaruan status)                                           |
 
 ## Sebelum Anda memulai
 
@@ -85,10 +85,10 @@ Biarkan Claude Code menyiapkan agen Anda untuk Anda
       </Tab>
 
       <Tab title="curl (Linux/WSL)">
-        Untuk lingkungan Linux, unduh binary rilis secara langsung.
+        Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
         ```bash
-        VERSION=2.6.0
+        VERSION=2.7.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -102,13 +102,13 @@ Biarkan Claude Code menyiapkan agen Anda untuk Anda
       </Tab>
 
       <Tab title="go install">
-        Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
+        Anda juga dapat menginstal CLI dari kode sumber menggunakan `go install`, yang memerlukan Go 1.26.10 atau yang lebih baru.
 
         ```bash
         go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
         ```
 
-        Binary ditempatkan di `$(go env GOPATH)/bin`. Tambahkan ke `PATH` Anda jika belum ada:
+        `go install` menempatkan biner di `$(go env GOPATH)/bin`. Tambahkan direktori tersebut ke `PATH` Anda jika belum ada:
 
         ```bash
         export PATH="$PATH:$(go env GOPATH)/bin"
@@ -154,10 +154,10 @@ Untuk menjalankan contoh CLI, instal CLI:
   </Tab>
 
   <Tab title="curl (Linux/WSL)">
-    Untuk lingkungan Linux, unduh binary rilis secara langsung.
+    Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
     ```bash
-    VERSION=2.6.0
+    VERSION=2.7.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -171,13 +171,13 @@ Untuk menjalankan contoh CLI, instal CLI:
   </Tab>
 
   <Tab title="go install">
-    Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
+    Anda juga dapat menginstal CLI dari kode sumber menggunakan `go install`, yang memerlukan Go 1.26.10 atau yang lebih baru.
 
     ```bash
     go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
     ```
 
-    Binary ditempatkan di `$(go env GOPATH)/bin`. Tambahkan ke `PATH` Anda jika belum ada:
+    `go install` menempatkan biner di `$(go env GOPATH)/bin`. Tambahkan direktori tersebut ke `PATH` Anda jika belum ada:
 
     ```bash
     export PATH="$PATH:$(go env GOPATH)/bin"
@@ -204,7 +204,7 @@ Untuk menjalankan contoh CLI, instal CLI:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.5.0")
+        implementation("com.anthropic:anthropic-java:3.6.0")
         ```
       </Tab>
 
@@ -213,7 +213,7 @@ Untuk menjalankan contoh CLI, instal CLI:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.5.0</version>
+            <version>3.6.0</version>
         </dependency>
         ```
       </Tab>
@@ -1172,7 +1172,7 @@ Masing-masing quickstart ini memadukan Claude Managed Agents dengan framework ch
   </Card>
 
   <Card title="assistant-ui" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/assistant-ui">
-    Seorang analis spreadsheet dalam chat yang dibangun dari primitif assistant-ui. Sesi menjadi daftar thread, satu reducer mengubah log event sesi menjadi pesan dan kartu alat, dan setiap perintah bash merender gerbang Allow/Deny inline sebelum dijalankan.
+    Seorang analis spreadsheet dalam chat yang dibangun dari primitif assistant-ui. Sesi menjadi daftar thread, satu reducer mengubah log event sesi menjadi pesan dan kartu alat, dan setiap perintah bash merender gerbang Izinkan/Tolak inline sebelum dijalankan.
   </Card>
 
   <Card title="CopilotKit (AG-UI)" icon="github-logo" href="https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/copilot-kit-ag-ui">

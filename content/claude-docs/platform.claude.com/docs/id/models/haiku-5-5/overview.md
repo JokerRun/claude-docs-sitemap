@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/overview
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: d65c2f2887d65d61beef11068e45cce1b8b9a8738d6fa613834c53b11f3324ec
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 488c7f0fdb0f544fd1ec75bc2acef2d09793a6de60d0b584bad221c127e109fb
 ---
 
 ---
 title: Claude Haiku 5.5
 url: https://platform.claude.com/docs/id/models/haiku-5-5/overview
-description: "Sekilas tentang Claude Haiku 5.5: kegunaannya, ID model di setiap platform, jendela konteks, batas output, harga, ketersediaan, serta panduan dan sumber daya untuk membangun dengannya."
+description: "Ikhtisar Claude Haiku 5.5: kegunaannya, ID model di setiap platform, jendela konteks, batas output, harga, ketersediaan, serta panduan dan sumber daya untuk membangun dengannya."
 ---
 
 **Latest.** Released October 7, 2026.
@@ -23,9 +23,9 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: From $0.1
 
 ## Ikhtisar
 
-Claude Haiku 5.5 dirancang untuk pekerjaan bervolume tinggi yang sensitif terhadap latensi seperti klasifikasi, routing, ekstraksi, dan tugas subagen. Model ini mendukung “adaptive thinking” (pemikiran adaptif) dengan parameter effort, “context window” (jendela konteks) sebesar 1M token, dan hingga 128k token output. Model ini menggunakan tokenizer baru yang sama dengan Claude 4.7 dan model-model setelahnya, sehingga teks yang sama dihitung sebagai sekitar 30 persen lebih banyak token dibandingkan pada Claude Haiku 4.5. Blok pemikirannya hanya berfungsi di akun yang menghasilkannya, atau di akun yang terhubung dengannya.
+Claude Haiku 5.5 dirancang untuk pekerjaan bervolume tinggi yang sensitif terhadap latensi seperti klasifikasi, perutean, ekstraksi, dan tugas subagen. Model ini mendukung “adaptive thinking” (pemikiran adaptif) dengan parameter effort, “context window” (jendela konteks) sebesar 1M token, dan hingga 128k token output. Model ini menggunakan tokenizer baru yang sama dengan Claude 4.7 dan model-model setelahnya, sehingga teks yang sama dihitung sebagai sekitar 30 persen lebih banyak token dibandingkan pada Claude Haiku 4.5. Blok pemikirannya hanya berfungsi di akun yang menghasilkannya, atau di akun yang terhubung dengannya.
 
-Untuk perubahan kode, lihat [panduan migrasi](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide). Untuk ID model, harga, dan batasan, lihat [ikhtisar Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview). Untuk panduan prompting, lihat [Prompting Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5).
+Untuk perubahan kode, lihat [panduan migrasi](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide). Untuk ID model, harga, dan batasan, lihat [ikhtisar Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview). Untuk panduan prompting, lihat [Menulis prompt untuk Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5).
 
 [Yang baru di Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/whats-new-haiku-5-5)
 
@@ -106,7 +106,7 @@ Untuk perubahan kode, lihat [panduan migrasi](https://platform.claude.com/docs/i
 ## Sumber daya
 
 <CardGroup cols={3}>
-  <Card title="Prompting Claude Haiku 5.5" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5">
+  <Card title="Menulis prompt untuk Claude Haiku 5.5" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5">
     Perbedaan perilaku dan pola prompting yang khusus untuk Claude Haiku 5.5.
   </Card>
 
@@ -130,7 +130,7 @@ Untuk perubahan kode, lihat [panduan migrasi](https://platform.claude.com/docs/i
     Prompt sistem yang digunakan Claude Haiku 5.5 di claude.ai dan aplikasi Claude.
   </Card>
 
-  <Card title="System card" icon="file" href="https://www.anthropic.com/document/claude-haiku-5-5-system-card">
+  <Card title="Kartu sistem" icon="file" href="https://www.anthropic.com/document/claude-haiku-5-5-system-card">
     Evaluasi keamanan dan keputusan penerapan untuk Claude Haiku 5.5.
   </Card>
 

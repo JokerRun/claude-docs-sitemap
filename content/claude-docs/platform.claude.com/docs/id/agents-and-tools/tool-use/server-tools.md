@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: bb6523e7c4cafbba16b3bf0e8f82209ae2053d6479ed1c3beeb9d950b3038932
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: e203ca65a4d36ad620284f575465119c6169f79af758a14debb3a080f26a77f1
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools
 description: "Bekerja dengan alat yang dijalankan oleh Anthropic: blok server_tool_use, kelanjutan pause_turn, giliran campuran alat server dan klien, serta pemfilteran domain."
 ---
 
-Alat yang dieksekusi server berbagi mekanisme berikut: blok `server_tool_use`, kelanjutan `pause_turn`, giliran yang mencampur alat server dan klien, kelayakan Zero Data Retention (ZDR), dan pemfilteran domain. Untuk alat individual, lihat [referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference).
+Alat yang dieksekusi server berbagi mekanisme berikut: blok `server_tool_use`, kelanjutan `pause_turn`, giliran yang mencampur alat server dan klien, kelayakan “Zero Data Retention” (Retensi Data Nol), atau ZDR, serta pemfilteran domain. Untuk masing-masing alat, lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference).
 
 ## Blok server\_tool\_use
 
@@ -30,9 +30,9 @@ API menjalankan alat tersebut secara internal. Anda melihat panggilan dan hasiln
 
 ## Loop sisi server dan pause\_turn
 
-Saat menggunakan alat server seperti pencarian web, API mengeksekusi panggilan alat dalam “agentic loop” (loop agentik) sisi server. Pada giliran yang berjalan lama, API mungkin menjeda loop tersebut dan mengembalikan stop reason `pause_turn`.
+Saat menggunakan alat server seperti pencarian web, API mengeksekusi panggilan alat dalam “agentic loop” (loop agentik) sisi server. Pada giliran yang berjalan lama, API mungkin menjeda loop tersebut dan mengembalikan alasan berhenti `pause_turn`.
 
-Berikut cara menangani stop reason `pause_turn`:
+Berikut cara menangani alasan berhenti `pause_turn`:
 
 <CodeGroup>
   ```bash cURL
@@ -44,7 +44,7 @@ Berikut cara menangani stop reason `pause_turn`:
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
-      "max_tokens": 1024,
+      "max_tokens": 4096,
       "messages": [
         {
           "role": "user",
@@ -57,10 +57,10 @@ Berikut cara menangani stop reason `pause_turn`:
 
   ```bash CLI
   # Permintaan awal. Jika "stop_reason" pada output bernilai "pause_turn", jalankan ulang dengan
-  # konten asisten ditambahkan ke messages (lihat tab SDK).
+  # konten asisten ditambahkan ke messages.
   ant messages create <<'YAML'
   model: claude-opus-5-5
-  max_tokens: 1024
+  max_tokens: 4096
   tools:
     - {type: web_search_20250305, name: web_search, max_uses: 10}
   messages:
@@ -74,7 +74,7 @@ Berikut cara menangani stop reason `pause_turn`:
   # Permintaan awal dengan pencarian web
   response = client.messages.create(
       model="claude-opus-5-5",
-      max_tokens=1024,
+      max_tokens=4096,
       messages=[
           {
               "role": "user",
@@ -84,7 +84,7 @@ Berikut cara menangani stop reason `pause_turn`:
       tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 10}],
   )
 
-  # Periksa apakah respons memiliki stop reason pause_turn
+  # Periksa apakah respons memiliki alasan berhenti pause_turn
   if response.stop_reason == "pause_turn":
       # Lanjutkan percakapan dengan konten yang dijeda
       messages = [
@@ -98,7 +98,7 @@ Berikut cara menangani stop reason `pause_turn`:
       # Kirim permintaan lanjutan
       continuation = client.messages.create(
           model="claude-opus-5-5",
-          max_tokens=1024,
+          max_tokens=4096,
           messages=messages,
           tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 10}],
       )
@@ -114,7 +114,7 @@ Berikut cara menangani stop reason `pause_turn`:
   // Permintaan awal dengan pencarian web
   const response = await client.messages.create({
     model: "claude-opus-5-5",
-    max_tokens: 1024,
+    max_tokens: 4096,
     messages: [
       {
         role: "user",
@@ -146,7 +146,7 @@ Berikut cara menangani stop reason `pause_turn`:
     // Kirim permintaan lanjutan
     const continuation = await client.messages.create({
       model: "claude-opus-5-5",
-      max_tokens: 1024,
+      max_tokens: 4096,
       messages,
       tools: [
         {
@@ -169,7 +169,7 @@ Berikut cara menangani stop reason `pause_turn`:
   var parameters = new MessageCreateParams
   {
       Model = Model.ClaudeOpus5_5,
-      MaxTokens = 1024,
+      MaxTokens = 4096,
       Messages = [
           new UserMessageParam
           {
@@ -187,7 +187,7 @@ Berikut cara menangani stop reason `pause_turn`:
       var continuationParams = new MessageCreateParams
       {
           Model = Model.ClaudeOpus5_5,
-          MaxTokens = 1024,
+          MaxTokens = 4096,
           Messages = [
               new UserMessageParam
               {
@@ -221,7 +221,7 @@ Berikut cara menangani stop reason `pause_turn`:
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
   	Model:     anthropic.ModelClaudeOpus5_5,
-  	MaxTokens: 1024,
+  	MaxTokens: 4096,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Search for comprehensive information about quantum computing breakthroughs in 2025")),
   	},
@@ -235,7 +235,7 @@ Berikut cara menangani stop reason `pause_turn`:
   	// Kirim kembali respons yang dijeda apa adanya agar Claude dapat melanjutkan giliran
   	continuation, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
   		Model:     anthropic.ModelClaudeOpus5_5,
-  		MaxTokens: 1024,
+  		MaxTokens: 4096,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Search for comprehensive information about quantum computing breakthroughs in 2025")),
   			response.ToParam(),
@@ -260,7 +260,7 @@ Berikut cara menangani stop reason `pause_turn`:
 
       MessageCreateParams params = MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
-          .maxTokens(1024L)
+          .maxTokens(4096L)
           .addUserMessage("Search for comprehensive information about quantum computing breakthroughs in 2025")
           .addTool(WebSearchTool20250305.builder()
               .maxUses(10L)
@@ -273,7 +273,7 @@ Berikut cara menangani stop reason `pause_turn`:
               && response.stopReason().get().equals(StopReason.PAUSE_TURN)) {
           MessageCreateParams continuationParams = MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(1024L)
+              .maxTokens(4096L)
               .addUserMessage("Search for comprehensive information about quantum computing breakthroughs in 2025")
               .addMessage(response)
               .addTool(WebSearchTool20250305.builder()
@@ -293,7 +293,7 @@ Berikut cara menangani stop reason `pause_turn`:
   $client = new Client();
 
   $response = $client->messages->create(
-      maxTokens: 1024,
+      maxTokens: 4096,
       messages: [
           [
               'role' => 'user',
@@ -323,7 +323,7 @@ Berikut cara menangani stop reason `pause_turn`:
       ];
 
       $continuation = $client->messages->create(
-          maxTokens: 1024,
+          maxTokens: 4096,
           messages: $messages,
           model: 'claude-opus-5-5',
           tools: [
@@ -346,7 +346,7 @@ Berikut cara menangani stop reason `pause_turn`:
 
   response = client.messages.create(
     model: Anthropic::Model::CLAUDE_OPUS_5_5,
-    max_tokens: 1024,
+    max_tokens: 4096,
     messages: [
       {
         role: "user",
@@ -377,7 +377,7 @@ Berikut cara menangani stop reason `pause_turn`:
 
     continuation = client.messages.create(
       model: Anthropic::Model::CLAUDE_OPUS_5_5,
-      max_tokens: 1024,
+      max_tokens: 4096,
       messages: messages,
       tools: [
         {
@@ -400,9 +400,9 @@ Saat menangani `pause_turn`:
 * **Lanjutkan percakapan:** Kirimkan kembali respons yang dijeda apa adanya dalam permintaan berikutnya agar Claude dapat melanjutkan gilirannya.
 * **Pertahankan status alat:** Sertakan alat yang sama dalam permintaan kelanjutan. Giliran yang dijeda dapat berakhir dengan blok `server_tool_use` yang alatnya belum berjalan, dan API mengembalikan error validasi jika alat tersebut tidak ada dalam kelanjutan.
 * **Pertahankan container:** Jika respons menyertakan `container`, seperti halnya dengan [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), kirimkan kembali ID-nya dalam permintaan kelanjutan. Tanpanya, permintaan akan berjalan di container baru, dan file dari bagian sebelumnya dalam giliran tersebut akan hilang.
-* **Ulangi sesuai kebutuhan:** Giliran yang dilanjutkan dapat dijeda lagi. Periksa `stop_reason` pada setiap respons dan lanjutkan hingga Anda mendapatkan stop reason yang berbeda, dengan membatasi jumlah kelanjutan seperti yang Anda lakukan pada loop retry apa pun. Simpan setiap respons yang dijeda di `messages`, secara berurutan. Kelanjutan hanya berisi konten baru, sehingga permintaan yang tidak menyertakan respons yang dijeda sebelumnya akan kehilangan pekerjaan tersebut dan dapat mengembalikan kesalahan 400.
+* **Ulangi sesuai kebutuhan:** Giliran yang dilanjutkan dapat dijeda lagi. Periksa `stop_reason` pada setiap respons dan lanjutkan hingga Anda mendapatkan alasan berhenti yang berbeda, dengan membatasi jumlah kelanjutan seperti yang Anda lakukan pada loop percobaan ulang apa pun. Simpan setiap respons yang dijeda di `messages`, secara berurutan. Kelanjutan hanya berisi konten baru, sehingga permintaan yang tidak menyertakan respons yang dijeda sebelumnya akan kehilangan pekerjaan tersebut dan dapat mengembalikan kesalahan 400.
 
-Untuk nilai `stop_reason` lainnya dan pola penanganan umum, lihat [Stop reason dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons).
+Untuk nilai `stop_reason` lainnya dan pola penanganan umum, lihat [Alasan berhenti dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons).
 
 ## Mencampur alat server dan alat klien dalam satu giliran
 
@@ -503,7 +503,7 @@ Blok `server_tool_use` dan blok hasilnya dipasangkan berdasarkan `tool_use_id`, 
   Untuk memberi Claude input tambahan, kirimkan sebagai pesan pengguna terpisah setelah giliran selesai.
 </Warning>
 
-**Perbedaannya dengan `pause_turn`:** [Respons `pause_turn`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn) juga dapat berakhir dengan blok `server_tool_use` yang belum berjalan, tetapi tidak pernah meninggalkan blok `tool_use` klien yang menunggu Anda, sehingga Anda melanjutkannya dengan mengirim ulang konten asisten apa adanya. Respons yang meninggalkan blok `tool_use` klien yang menunggu Anda tidak pernah memiliki `stop_reason` berupa `pause_turn`: ketika Claude berhenti untuk memanggil alat Anda, `stop_reason` adalah `tool_use`, dan Anda melanjutkannya dengan mengirim blok `tool_result` klien, bukan dengan mengirim ulang respons. Dalam kedua kasus, API menjalankan alat server yang tertunda pada awal permintaan berikutnya.
+**Perbedaannya dengan `pause_turn`:** [Respons `pause_turn`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn) juga dapat berakhir dengan blok `server_tool_use` yang belum berjalan, tetapi tidak pernah meninggalkan blok `tool_use` klien yang menunggu Anda, sehingga Anda melanjutkannya dengan mengirim ulang konten asisten apa adanya. Respons yang meninggalkan blok `tool_use` klien yang menunggu Anda tidak pernah memiliki `stop_reason` berupa `pause_turn`: ketika Claude berhenti untuk memanggil alat Anda, `stop_reason` adalah `tool_use`, dan Anda melanjutkannya dengan mengirim kembali respons tersebut beserta pesan pengguna baru yang berisi blok `tool_result` klien. Dalam kedua kasus, API menjalankan alat server yang tertunda pada awal permintaan berikutnya.
 
 Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang didefinisikan pengguna dan menangani respons campuran:
 
@@ -511,15 +511,15 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
   ```bash cURL
   # Jika "stop_reason" adalah "tool_use" dan blok server_tool_use tidak memiliki
   # blok hasil yang cocok, panggilan itu belum selesai. Jalankan alat klien, lalu POST
-  # lagi dengan satu pesan user tambahan yang hanya berisi blok tool_result mereka
-  # dan array tools yang sama (lihat tab SDK).
+  # lagi dengan konten asisten, satu pesan user tambahan yang hanya berisi
+  # blok tool_result-nya, dan array tools yang sama.
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
-      "max_tokens": 1024,
+      "max_tokens": 4096,
       "messages": [
         {
           "role": "user",
@@ -543,11 +543,11 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
 
   ```bash CLI
   # Jika "stop_reason" adalah "tool_use" dan blok server_tool_use tidak memiliki
-  # blok hasil yang cocok, jalankan alat klien dan jalankan ulang dengan pesan pengguna yang hanya
-  # berisi blok tool_result mereka yang ditambahkan (lihat tab SDK).
+  # blok hasil yang cocok, jalankan alat klien lalu jalankan ulang dengan konten asisten dan
+  # pesan pengguna berisi hanya blok tool_result dari alat tersebut yang ditambahkan.
   ant messages create <<'YAML'
   model: claude-opus-5-5
-  max_tokens: 1024
+  max_tokens: 4096
   messages:
     - role: user
       content: "Summarize https://example.com/article and run uname -a to tell me what system this is on."
@@ -588,7 +588,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
   ]
 
   response = client.messages.create(
-      model="claude-opus-5-5", max_tokens=1024, tools=tools, messages=messages
+      model="claude-opus-5-5", max_tokens=4096, tools=tools, messages=messages
   )
 
   tool_results = [
@@ -607,7 +607,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
       # Kirim kembali hanya blok tool_result klien, dengan alat yang sama.
       continuation = client.messages.create(
           model="claude-opus-5-5",
-          max_tokens=1024,
+          max_tokens=4096,
           tools=tools,
           messages=[
               *messages,
@@ -651,7 +651,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
 
   const response = await client.messages.create({
     model: "claude-opus-5-5",
-    max_tokens: 1024,
+    max_tokens: 4096,
     tools: [webFetchTool, runCommandTool],
     messages
   });
@@ -673,7 +673,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
     // Kirim kembali hanya blok tool_result klien, dengan alat yang sama.
     const continuation = await client.messages.create({
       model: "claude-opus-5-5",
-      max_tokens: 1024,
+      max_tokens: 4096,
       tools: [webFetchTool, runCommandTool],
       messages: [
         ...messages,
@@ -719,7 +719,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
   var response = await client.Messages.Create(new MessageCreateParams
   {
       Model = Model.ClaudeOpus5_5,
-      MaxTokens = 1024,
+      MaxTokens = 4096,
       Tools = tools,
       Messages = [userMessage]
   });
@@ -745,7 +745,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
       var continuation = await client.Messages.Create(new MessageCreateParams
       {
           Model = Model.ClaudeOpus5_5,
-          MaxTokens = 1024,
+          MaxTokens = 4096,
           Tools = tools,
           Messages =
           [
@@ -792,7 +792,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
   	Model:     anthropic.ModelClaudeOpus5_5,
-  	MaxTokens: 1024,
+  	MaxTokens: 4096,
   	Tools:     tools,
   	Messages:  []anthropic.MessageParam{userMessage},
   })
@@ -814,7 +814,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
   	// Kirim kembali hanya blok tool_result klien, dengan alat yang sama.
   	continuation, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
   		Model:     anthropic.ModelClaudeOpus5_5,
-  		MaxTokens: 1024,
+  		MaxTokens: 4096,
   		Tools:     tools,
   		Messages: []anthropic.MessageParam{
   			userMessage,
@@ -851,7 +851,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
 
       Message response = client.messages().create(MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
-          .maxTokens(1024L)
+          .maxTokens(4096L)
           .addTool(WebFetchTool20250910.builder()
               .maxUses(5L)
               .build())
@@ -878,7 +878,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
           // Kirim kembali hanya blok tool_result klien, dengan alat yang sama.
           Message continuation = client.messages().create(MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(1024L)
+              .maxTokens(4096L)
               .addTool(WebFetchTool20250910.builder()
                   .maxUses(5L)
                   .build())
@@ -916,7 +916,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
   $userMessage = ['role' => 'user', 'content' => 'Summarize https://example.com/article and run uname -a to tell me what system this is on.'];
 
   $response = $client->messages->create(
-      maxTokens: 1024,
+      maxTokens: 4096,
       messages: [$userMessage],
       model: 'claude-opus-5-5',
       tools: $tools,
@@ -938,7 +938,7 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
       // Blok server_tool_use tanpa blok hasil dalam respons ini belum selesai; hasilnya tiba di respons berikutnya.
       // Kirim kembali hanya blok tool_result klien, dengan alat yang sama.
       $continuation = $client->messages->create(
-          maxTokens: 1024,
+          maxTokens: 4096,
           messages: [
               $userMessage,
               ['role' => 'assistant', 'content' => $response->content],
@@ -978,8 +978,8 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
   }
 
   response = client.messages.create(
-    model: "claude-opus-5-5",
-    max_tokens: 1024,
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
+    max_tokens: 4096,
     tools: tools,
     messages: [user_message]
   )
@@ -1000,8 +1000,8 @@ Contoh berikut mengaktifkan web fetch bersama dengan alat `run_command` yang did
     # Blok server_tool_use tanpa blok hasil dalam respons ini belum selesai; hasilnya tiba di respons berikutnya.
     # Kirim kembali hanya blok tool_result klien, dengan alat yang sama.
     continuation = client.messages.create(
-      model: "claude-opus-5-5",
-      max_tokens: 1024,
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
+      max_tokens: 4096,
       tools: tools,
       messages: [
         user_message,
@@ -1095,7 +1095,7 @@ Versi `_20260209` dan yang lebih baru dari pencarian web dan web fetch menggunak
 
 Event alat server di-streaming sebagai bagian dari alur “server-sent events” (event yang dikirim server), atau SSE, yang normal. Blok `server_tool_use` yang dipanggil Claude secara langsung di-streaming seperti blok `tool_use` klien: event `content_block_start` diikuti oleh event `input_json_delta`. Blok hasil tiba secara lengkap dalam satu event `content_block_start`, tanpa delta.
 
-Lihat [Streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) untuk referensi event lengkap. Halaman alat individual mendokumentasikan nama event khusus alat jika berbeda.
+Lihat [Streaming pesan](https://platform.claude.com/docs/id/build-with-claude/streaming) untuk referensi event lengkap. Halaman alat individual mendokumentasikan nama event khusus alat jika berbeda.
 
 ## Permintaan batch
 

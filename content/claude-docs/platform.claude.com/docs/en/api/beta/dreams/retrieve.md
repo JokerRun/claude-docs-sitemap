@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 7bf68173c93a8031703102ebdbb744e596be53440e0310e5fa4abbc1cac11b92
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 852a48ed346b12b20a64325b3c5c9df1fa91caa99a7cd5468ca144ceca1250a6
 ---
 
 ---
@@ -239,8 +239,6 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
         The IDs of the sessions whose transcripts the dream reads (`sesn_...`).
 
         Give 1 to 100 IDs, with no duplicates. Each session must be in the same workspace as the dream. Responses list the IDs in sorted order.
-
-        The [limits table in the Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams?sdk_languages=http#limits) lists all the limits on a dream.
 
   - `instructions: string or null`
 

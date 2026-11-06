@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/overview
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 30806b2e1f47ce1356a7b2eb7f290891a6b4d4b2a8b405dedbbaed9ef5ddebd3
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 127700e0036d4c831cd94c5baaace1d32e1197077fb57bc6a437259f3594edd6
 ---
 
 ---
 title: Claude Sonnet 5.5
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/overview
-description: "Sekilas tentang Claude Sonnet 5.5: kegunaannya, ID model di setiap platform, jendela konteks, batas output, harga, ketersediaan, serta panduan dan sumber daya untuk membangun dengannya."
+description: "Ikhtisar Claude Sonnet 5.5: kegunaannya, ID model di setiap platform, jendela konteks, batas output, harga, ketersediaan, serta panduan dan sumber daya untuk membangun dengannya."
 ---
 
 **Latest.** Released September 28, 2026.
@@ -96,18 +96,18 @@ Claude Sonnet 5.5 menawarkan kombinasi terbaik antara kecepatan dan kecerdasan. 
 * “Adaptive thinking” (pemikiran adaptif) aktif secara default. Pengaturan pemikiran terendah adalah `between_tools`, yang menonaktifkan pemikiran di awal. Pengaturan ini berfungsi pada tingkat effort `high` atau lebih rendah. Lihat [Yang baru di Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#turn-off-up-front-thinking).
 * Mengatur `temperature`, `top_p`, atau `top_k` akan menghasilkan error 400.
 * Panjang prompt minimum yang dapat di-cache adalah 512 token. Lihat [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations).
-* Pada [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing#extended-output-beta), Claude Sonnet 5.5 mendukung hingga 300k token output dengan beta header `output-300k-2026-03-24`.
+* Pada [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing#extended-output-beta), Claude Sonnet 5.5 mendukung hingga 300k token output dengan header beta `output-300k-2026-03-24`.
 * Kueri batas dan kemampuan secara terprogram dengan [Models API](https://platform.claude.com/docs/id/api/models/list).
 
 ## Sumber daya
 
 <CardGroup cols={3}>
-  <Card title="Prompting Claude Sonnet 5.5" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5">
+  <Card title="Prompting untuk Claude Sonnet 5.5" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5">
     Perbedaan perilaku dan pola prompting yang khusus untuk Claude Sonnet 5.5.
   </Card>
 
   <Card title="Effort" icon="sliders" href="https://platform.claude.com/docs/id/build-with-claude/effort">
-    Kontrol untuk kedalaman pemikiran, latensi, dan biaya. Pilih tingkat per beban kerja.
+    Kontrol untuk kedalaman pemikiran, latensi, dan biaya. Pilih level untuk setiap beban kerja.
   </Card>
 
   <Card title="Pemikiran adaptif" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
@@ -122,7 +122,7 @@ Claude Sonnet 5.5 menawarkan kombinasi terbaik antara kecepatan dan kecerdasan. 
     Prompt sistem yang digunakan Claude Sonnet 5.5 di claude.ai dan aplikasi Claude.
   </Card>
 
-  <Card title="System card" icon="file" href="https://www.anthropic.com/document/claude-sonnet-5-5-system-card">
+  <Card title="Kartu sistem" icon="file" href="https://www.anthropic.com/document/claude-sonnet-5-5-system-card">
     Evaluasi keamanan dan keputusan penerapan untuk Claude Sonnet 5.5.
   </Card>
 

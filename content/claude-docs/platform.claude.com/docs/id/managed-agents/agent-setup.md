@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 419222ae9c7d7d16c6633cf71d45672676ec8ba95b2b6dfb66b590d49d064e14
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 06e5afab125e82fd9f2831debdcb26bf9f42aba430f00483027610a574b70995
 ---
 
 ---
@@ -47,7 +47,7 @@ Buat agen sekali sebagai sumber daya yang dapat digunakan ulang dan rujuk agen t
 | ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `name` (csharp, go: `Name`)                                                     | Wajib. Nama agen yang mudah dibaca manusia.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | `model` (csharp, go: `Model`)                                                   | Wajib. [Model](https://platform.claude.com/docs/id/models/overview) Claude yang menjalankan agen. Menerima string ID model atau objek, misalnya `{"id": "claude-opus-5-5"}`. Model Claude 4.5 dan yang lebih baru didukung. Bentuk objek juga menerima field `speed` (csharp, go: `Speed`), `effort` (csharp, go: `Effort`), dan `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`); lihat tips di bagian [Membuat agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#create-an-agent), [Tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort#effort-levels), dan [Menyematkan geo inferensi](https://platform.claude.com/docs/id/managed-agents/agent-setup#pin-the-inference-geo). |
-| `system` (csharp, go: `System`; ruby: `system_`)                                | “System prompt” (prompt sistem) yang [mendefinisikan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role) perilaku dan persona agen. Prompt sistem berbeda dari [pesan pengguna](https://platform.claude.com/docs/id/managed-agents/reference#event-types), yang seharusnya menjelaskan pekerjaan yang harus dilakukan.                                                                                                                                                                                                                                                                                                                                                    |
+| `system` (csharp, go: `System`; ruby: `system_`)                                | [“System prompt” (prompt sistem)](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role) yang mendefinisikan perilaku dan persona agen. Prompt sistem berbeda dari [pesan pengguna](https://platform.claude.com/docs/id/managed-agents/reference#event-types), yang seharusnya menjelaskan pekerjaan yang harus dilakukan.                                                                                                                                                                                                                                                                                                                                                    |
 | `tools` (csharp, go: `Tools`)                                                   | Alat yang tersedia untuk agen. Menggabungkan [alat agen bawaan](https://platform.claude.com/docs/id/managed-agents/tools), [alat MCP](https://platform.claude.com/docs/id/managed-agents/mcp-connector), dan [alat kustom](https://platform.claude.com/docs/id/managed-agents/tools#custom-tools).                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`) | [Server MCP](https://platform.claude.com/docs/id/managed-agents/mcp-connector) yang menyediakan kemampuan pihak ketiga yang terstandar.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | `skills` (csharp, go: `Skills`)                                                 | [Skill](https://platform.claude.com/docs/id/managed-agents/skills) yang menyediakan konteks khusus domain dengan pengungkapan progresif.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
@@ -650,7 +650,7 @@ Pembaruan berikut menghapus deskripsi, menghapus kunci `team` dari `metadata` (c
   ```
 
   ```go Go
-  // Metadata adalah map[string]string, jadi kirim null untuk team sebagai opsi request.
+  // Metadata adalah map[string]string, jadi kirim null untuk team sebagai opsi permintaan.
   clearedAgent, err := client.Beta.Agents.Update(ctx, agent.ID, anthropic.BetaAgentUpdateParams{
   	Description: param.Null[string](),
   	Multiagent: anthropic.BetaManagedAgentsMultiagentParamsUnion{
@@ -717,11 +717,11 @@ Pembaruan berikut menghapus deskripsi, menghapus kunci `team` dari `metadata` (c
 
 ## Siklus hidup agen
 
-| Operasi           | Perilaku                                                                                                |
-| ----------------- | ------------------------------------------------------------------------------------------------------- |
-| **Update**        | Menghasilkan versi agen baru ketika konfigurasi berubah.                                                |
-| **List versions** | Mengembalikan riwayat versi lengkap sehingga Anda dapat melacak perubahan dari waktu ke waktu.          |
-| **Archive**       | Membuat agen menjadi hanya-baca. Sesi baru tidak dapat merujuknya, tetapi sesi yang ada tetap berjalan. |
+| Operasi          | Perilaku                                                                                                |
+| ---------------- | ------------------------------------------------------------------------------------------------------- |
+| **Perbarui**     | Menghasilkan versi agen baru ketika konfigurasi berubah.                                                |
+| **Daftar versi** | Mengembalikan riwayat versi lengkap sehingga Anda dapat melacak perubahan dari waktu ke waktu.          |
+| **Arsipkan**     | Membuat agen menjadi hanya-baca. Sesi baru tidak dapat merujuknya, tetapi sesi yang ada tetap berjalan. |
 
 ### Daftar versi
 

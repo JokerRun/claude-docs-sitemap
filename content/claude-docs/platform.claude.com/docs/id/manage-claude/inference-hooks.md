@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: 40f6a18aec9a495ea2cb0ea6a62d4c77b3d465b9175bdbd040f9fb2b4f10bee8
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 495d04346624566a497c238e1b509632cbb5e1066f87b4a8f7ecba468660b7bf
 ---
 
 ---
@@ -12,14 +12,14 @@ description: Kirim setiap prompt yang diatur ke server keamanan AI organisasi An
 ---
 
 <Note>
-  Inference hooks hanya tersedia untuk organisasi Claude Enterprise. Mengonfigurasinya memerlukan izin `organization:manage` di claude.ai, yang hanya dimiliki oleh peran Owner dan Primary owner; lihat [Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration).
+  Inference hooks hanya tersedia untuk organisasi Claude Enterprise. Mengonfigurasinya memerlukan izin `organization:manage` di claude.ai, yang hanya dimiliki oleh peran Pemilik dan Pemilik utama; lihat [Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration).
 </Note>
 
 Inference hooks memungkinkan organisasi Claude Enterprise merutekan setiap prompt yang diatur melalui “AI security server” (server keamanan AI), yaitu layanan HTTPS yang dioperasikan oleh organisasi atau vendor keamanannya, sebelum inferensi berjalan. Saat pengguna mengirimkan prompt, Anthropic mengirimkan transkrip percakapan ke server keamanan AI Anda dan menunggu putusan izinkan atau tolak; permintaan yang ditolak tidak pernah mencapai model. Tim keamanan dan kepatuhan menggunakan Inference hooks untuk menegakkan kebijakan data secara inline, dan pengembang membangun server keamanan AI yang mengevaluasi setiap permintaan.
 
 Karena hook berjalan di server Anthropic, setelah permintaan meninggalkan klien dan sebelum model berjalan, hook ini berlaku secara seragam untuk setiap permintaan yang diatur, di semua produk Claude di organisasi Anda, tanpa perlu menginstal atau menerapkan apa pun di perangkat pengguna.
 
-Ada dua event hook. `prompt` dipicu sekali untuk setiap permintaan inferensi yang diatur, sebelum inferensi dimulai. `tool_call` dipicu ketika respons Claude berisi panggilan alat, sebelum salah satunya berjalan, di organisasi yang mengaktifkan **Validate tool calls**.
+Ada dua event hook. `prompt` dipicu sekali untuk setiap permintaan inferensi yang diatur, sebelum inferensi dimulai. `tool_call` dipicu ketika respons Claude berisi panggilan alat, sebelum salah satunya berjalan, di organisasi yang mengaktifkan **Validate tool calls (validasi panggilan alat)**.
 
 ***
 
@@ -58,7 +58,7 @@ Langkah-langkahnya bergantung pada aplikasi:
 
 * **claude.ai, termasuk Claude Desktop dan aplikasi seluler.** Pengguna mengedit pesan yang ditolak atau pesan sebelumnya, alih-alih mengirim salinan yang sudah diperbaiki sebagai pesan baru. Di web dan di Claude Desktop, pengeditan akan mengirim ulang lampiran pesan kecuali pengguna menghapusnya. Memulai chat baru juga bisa menjadi solusi.
 * **Claude Code.** Pengguna menjalankan `/rewind` dan memilih prompt yang pertama kali memasukkan konten tersebut. Jika diminta, pengguna memilih **Restore conversation**, lalu mengedit atau mengosongkan prompt yang kembali ke kolom input. Perintah `/clear` memulai dari awal. Lihat [Checkpointing](https://code.claude.com/docs/en/checkpointing).
-* **Cowork.** Pengguna mengedit pesan yang ditolak jika pesan tersebut adalah pesan terakhirnya. Pengeditan akan mengirim ulang file yang dilampirkan, sedangkan **Restart from here** mengirim ulang seluruh pesan tanpa perubahan. Jika konten tersebut ada di dalam file atau pesan sebelumnya, pengguna memilih **New task**.
+* **Cowork.** Pengguna mengedit pesan yang ditolak jika pesan tersebut adalah pesan terakhirnya. Pengeditan akan mengirim ulang file yang dilampirkan, sedangkan **Restart from here** mengirim ulang seluruh pesan tanpa perubahan. Jika konten tersebut ada di dalam file atau pesan sebelumnya, pengguna memilih **Tugas baru**.
 * **Claude Tag.** Di Slack, pengguna terlebih dahulu mengedit pesan yang ditolak, atau menghapusnya jika pesan tersebut berupa balasan. Setelah itu, pengguna mengirim `@Claude !restart` sebagai pesan tersendiri di tempat Claude sebelumnya menjawab, yaitu di thread tersebut atau di tingkat teratas channel. Sesi baru akan membaca ulang pesan-pesan yang masih ada di Slack, sehingga pengeditan atau penghapusan harus dilakukan lebih dulu. Lihat [perintah `!restart`](https://claude.com/docs/claude-tag/users/commands#restart-a-stuck-or-wrong-context-session).
 
 ***
@@ -82,7 +82,7 @@ Langkah-langkahnya bergantung pada aplikasi:
 
 ## Ketersediaan
 
-Inference hooks tersedia untuk organisasi Claude Enterprise. Mengonfigurasinya memerlukan izin `organization:manage`, yang hanya dimiliki oleh peran Owner dan Primary owner.
+Inference hooks tersedia untuk organisasi Claude Enterprise. Mengonfigurasinya memerlukan izin `organization:manage`, yang hanya dimiliki oleh peran Pemilik dan Pemilik utama.
 
 Satu hook mengatur percakapan di semua produk Claude di organisasi Claude Enterprise Anda, termasuk, namun tidak terbatas pada, claude.ai, Cowork, Claude Code, Claude for Microsoft 365, Claude Tag, dan Claude in Chrome, baik yang berjalan di web, di aplikasi desktop atau seluler, di CLI, maupun di Slack. Inference hooks tidak tersedia di Amazon Bedrock atau Google Cloud.
 
@@ -104,7 +104,7 @@ Beberapa fitur yang dijalankan Anthropic untuk organisasi Anda melakukan pemangg
 
 * **Pemindaian Claude Security (beta).** [Claude Security](https://claude.com/product/claude-security) menjalankan pemindaian yang di-host pada repositori Anda yang terhubung. Sesi yang dibuka pengguna untuk memperbaiki temuan, serta plugin Claude Security di Claude Code, termasuk yang diatur.
 * **Code Review (pratinjau riset).** [Code Review](https://code.claude.com/docs/en/code-review) menjalankan tinjauan pada pull request GitHub Anda. Tinjauan yang dijalankan pengguna secara lokal di Claude Code dengan `/code-review` termasuk yang diatur.
-* **Smart reports.** Anthropic melakukan pemanggilan model untuk membangun [smart reports](https://support.claude.com/en/articles/16893491-get-started-with-smart-reports) organisasi Anda. Apa yang diketik atau diunggah pengguna saat membuat laporan termasuk yang diatur.
+* **Laporan pintar.** Anthropic melakukan pemanggilan model untuk membangun [laporan pintar](https://support.claude.com/en/articles/16893491-get-started-with-smart-reports) organisasi Anda. Apa yang diketik atau diunggah pengguna saat membuat laporan termasuk yang diatur.
 
 ***
 

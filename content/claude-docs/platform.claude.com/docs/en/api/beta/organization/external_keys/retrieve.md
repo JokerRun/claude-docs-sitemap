@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 3e09c0cda1834d429f8bf690930f34170ebd7de5f0bf7dd13ca3a15c2472e2e6
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 98084979fa791fb0b0ab0c2fb35dc4f756b8384b1ab465d680cf864dcabd0e23
 ---
 
 ---
@@ -76,7 +76,7 @@ Retrieve a single external key config in the caller's organization by ID.
 
   - `geo: string`
 
-    Data residency geo. Selects the region that handles this key's encrypt/decrypt roundtrips.
+    Data residency geo. Selects the region this key is used in.
 
   - `provider_config: BetaAWSExternalKeyConfig or BetaGCPExternalKeyConfig or BetaAzureExternalKeyConfig`
 

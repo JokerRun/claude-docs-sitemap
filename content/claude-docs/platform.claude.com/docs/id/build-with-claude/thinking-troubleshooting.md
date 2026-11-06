@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f6e2df39ad56cec25dfd63344ed96d13a7502fa84b1c77ed019c987b3e0da25e
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 9c125fd9dcda916653d98aef254df62d1a825d18a3fafce1e13be8064d79ca03
 ---
 
 ---
@@ -15,7 +15,7 @@ description: "Diagnosis dan perbaiki kegagalan thinking yang paling umum: error 
   Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-Halaman ini membahas kegagalan paling umum saat mengonfigurasi thinking atau melakukan round-trip blok thinking (mengirim kembali blok thinking yang dikembalikan dalam permintaan berikutnya). Bagian pertama memetakan setiap model ke konfigurasi thinking yang didukungnya dan yang ditolaknya; bagian-bagian setelahnya masing-masing dimulai dari gejala yang Anda amati, sehingga Anda dapat mencocokkan pesan error atau respons yang tidak terduga langsung dengan penyebab dan perbaikannya. Untuk mempelajari cara kerja thinking, lihat ikhtisar [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking).
+Halaman ini membahas kegagalan paling umum saat mengonfigurasi thinking atau melakukan round-trip blok thinking (mengirim kembali blok thinking yang dikembalikan dalam permintaan berikutnya). Bagian pertama memetakan setiap model ke konfigurasi thinking yang didukungnya dan yang ditolaknya; bagian-bagian setelahnya masing-masing dimulai dari gejala yang Anda amati, sehingga Anda dapat mencocokkan pesan error atau respons yang tidak terduga langsung dengan penyebab dan perbaikannya. Untuk mempelajari cara kerja thinking, lihat ikhtisar [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking).
 
 ## Dukungan thinking, default, dan konfigurasi yang ditolak per model
 
@@ -45,7 +45,7 @@ Tabel ini mencantumkan apa yang didukung setiap model, nilai default-nya, dan ni
 | Claude Haiku 4.5      | Hanya diperpanjang                        | Nonaktif     | `"adaptive"`                          |
 | Claude Sonnet 4.5     | Hanya diperpanjang                        | Nonaktif     | `"adaptive"`                          |
 
-*<sup>1</sup> `enabled` dan `budget_tokens` masih berfungsi pada model-model ini tetapi sudah usang; gunakan adaptive thinking sebagai gantinya.*\
+*<sup>1</sup> `enabled` dan `budget_tokens` masih berfungsi pada model-model ini tetapi sudah usang; gunakan pemikiran adaptif sebagai gantinya.*\
 *<sup>2</sup> Claude Opus 5 dan Claude Haiku 5.5 menerima `"disabled"` pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `high` atau lebih rendah; menggabungkannya dengan effort `xhigh` atau `max` mengembalikan error 400. Pada Claude Opus 5, pembatasan ini diberlakukan pada setiap permintaan. Pada Claude Haiku 5.5, effort per pesan yang berbeda dari level yang sedang berlaku juga mengembalikan error 400.*\
 *<sup>3</sup> Claude Sonnet 5.5 menerima `"between_tools"` pada effort `high` atau lebih rendah. Menggabungkannya dengan effort `xhigh` atau `max` mengembalikan error 400, begitu pula effort per pesan yang berbeda dari level yang sedang berlaku.*
 
@@ -63,7 +63,7 @@ Permintaan gagal dengan error 400 yang pesannya berbunyi:
 
 Ini terjadi karena model yang Anda minta telah menghapus pemikiran diperpanjang (lihat [tabel konfigurasi per model](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#rejected-configurations)).
 
-Ubah permintaan ke `thinking: {type: "adaptive"}` dan arahkan kedalaman thinking dengan `effort` alih-alih `budget_tokens`. [Migrasi ke adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#migrating-to-adaptive-thinking) memandu Anda melalui konversinya.
+Ubah permintaan ke `thinking: {type: "adaptive"}` dan arahkan kedalaman thinking dengan `effort` alih-alih `budget_tokens`. [Migrasi ke pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#migrating-to-adaptive-thinking) memandu Anda melalui konversinya.
 
 ## Error 400 setelah mengirim `thinking: {type: "disabled"}`
 
@@ -115,7 +115,7 @@ output_config.effort 'xhigh' is not supported when thinking is disabled on this 
 
 Ini terjadi karena Claude Sonnet 5.5 menerima `between_tools` hanya pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `high` atau lebih rendah. Pesan tersebut menyatakan thinking dinonaktifkan karena `between_tools` tidak memiliki thinking di awal, meskipun permintaan tidak mengirim `"disabled"`. Pesan tersebut menyebutkan level yang dikirim permintaan.
 
-Turunkan effort ke `high` atau lebih rendah. Untuk berjalan pada `xhigh` atau `max`, gunakan adaptive thinking: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Itulah yang dimaksud pesan tersebut dengan “enable thinking.” Claude Sonnet 5.5 menolak `"enabled"` dengan error 400.
+Turunkan effort ke `high` atau lebih rendah. Untuk berjalan pada `xhigh` atau `max`, gunakan pemikiran adaptif: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Itulah yang dimaksud pesan tersebut dengan “enable thinking.” Claude Sonnet 5.5 menolak `"enabled"` dengan error 400.
 
 Claude Haiku 5.5 mengembalikan pesan yang sama ketika permintaan mengirim `thinking: {type: "disabled"}` pada effort `xhigh` atau `max`. Model ini menerima `"disabled"` hanya pada `high` atau lebih rendah. Turunkan effort, atau atur `thinking` ke `{"type": "adaptive"}`.
 
@@ -129,11 +129,11 @@ messages.N: output_config.effort 'low' differs from the 'high' in effect before 
 
 Pesan tersebut menyatakan thinking dinonaktifkan karena `between_tools` tidak memiliki thinking di awal. Dengan `between_tools`, effort tidak dapat berubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari level yang sedang berlaku mengembalikan error 400. `messages.N` adalah posisi pesan yang menetapkan level baru.
 
-Hapus effort per pesan tersebut, atau atur ke level yang berlaku. Untuk memvariasikan effort pada setiap giliran, gunakan adaptive thinking: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Itulah yang dimaksud pesan tersebut dengan “enable thinking.”
+Hapus effort per pesan tersebut, atau atur ke level yang berlaku. Untuk memvariasikan effort pada setiap giliran, gunakan pemikiran adaptif: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Itulah yang dimaksud pesan tersebut dengan “enable thinking.”
 
 Claude Haiku 5.5 mengembalikan pesan yang sama ketika permintaan dengan `thinking: {type: "disabled"}` menetapkan effort per pesan yang berbeda dari level yang berlaku. Hapus effort per pesan tersebut, atau atur `thinking` ke `{"type": "adaptive"}` untuk memvariasikan effort pada setiap giliran.
 
-## Error 400 menyatakan adaptive thinking tidak didukung
+## Error 400 menyatakan pemikiran adaptif tidak didukung
 
 Permintaan gagal dengan error 400 yang pesannya berbunyi:
 
@@ -143,7 +143,7 @@ adaptive thinking is not supported on this model
 
 Ini terjadi karena model tersebut hanya mendukung pemikiran diperpanjang (lihat [tabel konfigurasi per model](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#rejected-configurations)).
 
-Gunakan `thinking: {type: "enabled", budget_tokens: N}` sebagai gantinya; lihat [Extended thinking](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) untuk konfigurasinya.
+Gunakan `thinking: {type: "enabled", budget_tokens: N}` sebagai gantinya; lihat [Pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) untuk konfigurasinya.
 
 ## Error 400 menyatakan blok thinking tidak dapat dimodifikasi
 
@@ -155,7 +155,7 @@ Permintaan yang mengembalikan hasil alat gagal dengan 400 `invalid_request_error
 
 Dalam percakapan multi-giliran dan penggunaan alat, Anda mengirim pesan asisten sebelumnya, termasuk blok `thinking` dan `redacted_thinking`-nya, kembali ke API, dan API memverifikasi bahwa pesan tersebut tiba tanpa modifikasi. Error ini terjadi ketika pesan asisten yang Anda kirim kembali berbeda dari yang dikembalikan API, paling sering karena kode Anda memfilter blok konten berdasarkan jenis dan membuang blok `redacted_thinking`, atau menyusun ulang pesan asisten alih-alih mengirimkannya kembali apa adanya.
 
-Gemakan kembali giliran asisten secara verbatim, termasuk blok thinking. Lihat [Mempertahankan blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks) untuk aturannya, dan contoh round trip lengkap di [Thinking dalam alur kerja alat dan multi-giliran](https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows#two-turn-tool-use-round-trip) untuk kode yang benar di setiap SDK.
+Gemakan kembali giliran asisten secara verbatim, termasuk blok thinking. Lihat [Mempertahankan blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks) untuk aturannya, dan contoh perjalanan bolak-balik lengkap di [Thinking dalam alur kerja alat dan multi-giliran](https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows#two-turn-tool-use-round-trip) untuk kode yang benar di setiap SDK.
 
 ## Error 400 menyatakan signature blok thinking tidak valid
 
@@ -171,7 +171,7 @@ Pesan tersebut biasanya diakhiri dengan kalimat yang menyebutkan apa yang beruba
 
 Jika pesan berhenti setelah ``Invalid `signature` in `thinking` block``, signature itu sendiri tidak terverifikasi: signature terpotong, diubah, atau dikirim kembali dalam keadaan kosong, dan `prefix_mismatch_behavior` tidak berlaku. Teks thinking yang diedit mengembalikan error yang berbeda. Lihat [Error 400 menyatakan blok thinking tidak dapat dimodifikasi](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-blocks-modified).
 
-Model-model ini hanya menerima blok thinking yang diputar ulang selama prompt `system`, `tools`, dan pesan-pesan yang mendahuluinya tidak berubah. Lihat [Menjaga prefix tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check). Error ini berarti ada sesuatu di bagian awal percakapan yang berubah di antara permintaan. Penyebab umumnya meliputi hal-hal berikut:
+Model-model ini hanya menerima blok thinking yang diputar ulang selama prompt `system`, `tools`, dan pesan-pesan yang mendahuluinya tidak berubah. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check). Error ini berarti ada sesuatu di bagian awal percakapan yang berubah di antara permintaan. Penyebab umumnya meliputi hal-hal berikut:
 
 * Giliran yang diedit, diurutkan ulang, atau dihapus
 * Pengingat per giliran yang disisipkan lalu kemudian dihapus
@@ -239,12 +239,12 @@ Anda mengubah `effort` tetapi frekuensi atau kedalaman thinking tetap sama.
 
 Ini terjadi karena effort adalah pengungkit thinking utama hanya dalam mode adaptive. Pada model yang hanya mendukung pemikiran diperpanjang, kedalaman thinking diatur oleh `budget_tokens` sebagai gantinya.
 
-Sesuaikan `budget_tokens` pada model-model tersebut, atau periksa mode mana yang dijalankan model Anda; lihat [Thinking dan effort](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-effort). Pada Claude Opus 4.5, satu-satunya model khusus extended thinking yang mendukung effort, effort berpadu dengan anggaran; lihat [Aturan dan penyetelan anggaran](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#budget-rules-and-tuning).
+Sesuaikan `budget_tokens` pada model-model tersebut, atau periksa mode mana yang dijalankan model Anda; lihat [Thinking dan effort](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-effort). Pada Claude Opus 4.5, satu-satunya model khusus pemikiran diperpanjang yang mendukung effort, effort berpadu dengan anggaran; lihat [Aturan dan penyetelan anggaran](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#budget-rules-and-tuning).
 
 ## Langkah selanjutnya
 
 <CardGroup cols={3}>
-  <Card title="Thinking" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
+  <Card title="Pemikiran" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
     Ikhtisar: apa itu thinking, cara mengonfigurasinya, dan bagaimana interaksinya dengan alat, caching, dan streaming.
   </Card>
 
@@ -252,7 +252,7 @@ Sesuaikan `budget_tokens` pada model-model tersebut, atau periksa mode mana yang
     Referensi error lengkap, termasuk error 400 konfigurasi thinking dengan pesan server persisnya.
   </Card>
 
-  <Card title="Migrasi ke adaptive thinking" icon="arrow-right" href="https://platform.claude.com/docs/id/build-with-claude/extended-thinking#migrating-to-adaptive-thinking">
-    Konversi permintaan `budget_tokens` ke adaptive thinking dengan effort.
+  <Card title="Migrasi ke pemikiran adaptif" icon="arrow-right" href="https://platform.claude.com/docs/id/build-with-claude/extended-thinking#migrating-to-adaptive-thinking">
+    Konversi permintaan `budget_tokens` ke pemikiran adaptif dengan effort.
   </Card>
 </CardGroup>

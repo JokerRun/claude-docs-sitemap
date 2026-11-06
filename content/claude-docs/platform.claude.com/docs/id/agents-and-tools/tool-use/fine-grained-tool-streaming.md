@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: a94eaa42ed516cdfb1af83d4e393d1c8eb37fbee4f1a7057ccdfd3a29ccc48e4
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 7d4b12c451c913714d54d0c4ec7356419f779824ce12fe02bac40d1d73991f89
 ---
 
 ---
@@ -44,14 +44,14 @@ featureMetadata:
 “Fine-grained tool streaming” (streaming alat fine-grained) mengirimkan input alat ke klien Anda saat Claude menghasilkannya, tanpa buffering atau validasi JSON di sisi server. Melewati langkah buffering mengurangi waktu hingga fragmen pertama dari parameter besar, seperti dokumen atau blok kode, dan fragmen-fragmen tersebut tiba melalui event [Streaming pesan](https://platform.claude.com/docs/id/build-with-claude/streaming) yang sama seperti penggunaan alat standar.
 
 <Warning>
-  Karena API tidak melakukan buffering atau memvalidasi input alat sebelum melakukan streaming, Anda mungkin menerima JSON yang parsial atau tidak valid. Respons yang berakhir dengan [stop reason](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons) `max_tokens` juga dapat memotong parameter di tengah jalan. Akumulasikan fragmen-fragmennya, lindungi proses parse, dan lihat [Menangani JSON tidak valid dalam respons alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming#handling-invalid-json-in-tool-responses) untuk cara mengembalikan input yang tidak dapat di-parse ke Claude.
+  Karena API tidak melakukan buffering atau memvalidasi input alat sebelum melakukan streaming, Anda mungkin menerima JSON yang parsial atau tidak valid. Respons yang berakhir dengan [alasan berhenti](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons) `max_tokens` juga dapat memotong parameter di tengah jalan. Akumulasikan fragmen-fragmennya, lindungi proses parse, dan lihat [Menangani JSON tidak valid dalam respons alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming#handling-invalid-json-in-tool-responses) untuk cara mengembalikan input yang tidak dapat di-parse ke Claude.
 </Warning>
 
 ## Cara menggunakan streaming alat fine-grained
 
 Semua model mendukung streaming alat fine-grained di Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Untuk menggunakannya, atur `eager_input_streaming` ke `true` pada alat buatan pengguna mana pun yang Anda inginkan streaming fine-grained-nya diaktifkan, dan aktifkan streaming pada permintaan Anda.
 
-Field `eager_input_streaming` bersifat opsional. Mengaturnya ke `true` mengaktifkan streaming fine-grained untuk alat tersebut, dan menghilangkannya memberi Anda streaming ter-buffer standar, di mana API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali. Pengecualiannya adalah permintaan yang mengirim header beta `fine-grained-tool-streaming-2025-05-14`, yang mengaktifkan streaming fine-grained untuk alat yang membiarkan field tersebut tidak diatur. Field per-alat menggantikan header tersebut, dan nilai `false` eksplisit mempertahankan streaming ter-buffer untuk suatu alat bahkan ketika permintaan mengirim header itu. Header tersebut tidak dapat digabungkan dengan entri toolset [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) atau [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool): API menolak permintaan yang mengirim keduanya, jadi hapus header tersebut dan atur `eager_input_streaming` pada alat buatan pengguna yang membutuhkannya. Lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference) untuk definisi field tersebut.
+Field `eager_input_streaming` bersifat opsional. Mengaturnya ke `true` mengaktifkan streaming fine-grained untuk alat tersebut, dan menghilangkannya memberi Anda streaming ter-buffer standar, di mana API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali. Pengecualiannya adalah permintaan yang mengirim header beta `fine-grained-tool-streaming-2025-05-14`, yang mengaktifkan streaming fine-grained untuk alat yang membiarkan field tersebut tidak diatur. Field per-alat menggantikan header tersebut, dan nilai `false` eksplisit mempertahankan streaming ter-buffer untuk suatu alat bahkan ketika permintaan mengirim header itu. Header tersebut tidak dapat digabungkan dengan entri toolset [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) atau [penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool): API menolak permintaan yang mengirim keduanya, jadi hapus header tersebut dan atur `eager_input_streaming` pada alat buatan pengguna yang membutuhkannya. Lihat [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference) untuk definisi field tersebut.
 
 Contoh berikut mengaktifkan streaming fine-grained untuk alat `make_file` dan meminta Claude membuat puisi panjang, sehingga input alat cukup besar untuk diamati saat di-streaming:
 
@@ -511,7 +511,7 @@ Tanpa `eager_input_streaming`, API melakukan buffering dan memvalidasi setiap ni
 
 ## Mengakumulasi delta input alat
 
-Kontrak akumulasinya sama seperti untuk streaming penggunaan alat standar, jadi bagian ini berlaku dengan maupun tanpa `eager_input_streaming`. Lihat [Input JSON delta](https://platform.claude.com/docs/id/build-with-claude/streaming#input-json-delta) di Streaming pesan untuk format event-nya. Streaming alat fine-grained mengubah apa yang dapat Anda asumsikan tentang hasilnya: server melakukan streaming fragmen tanpa memvalidasinya, sehingga string terakumulasi mungkin bukan JSON yang valid.
+Kontrak akumulasinya sama seperti untuk streaming penggunaan alat standar, jadi bagian ini berlaku dengan maupun tanpa `eager_input_streaming`. Lihat [Delta JSON input](https://platform.claude.com/docs/id/build-with-claude/streaming#input-json-delta) di Streaming pesan untuk format event-nya. Streaming alat fine-grained mengubah apa yang dapat Anda asumsikan tentang hasilnya: server melakukan streaming fragmen tanpa memvalidasinya, sehingga string terakumulasi mungkin bukan JSON yang valid.
 
 Ketika blok konten `tool_use` di-streaming, event `content_block_start` awal berisi `input: {}` (objek kosong). Ini adalah placeholder. Input sebenarnya tiba sebagai serangkaian event `input_json_delta`, masing-masing membawa fragmen string `partial_json`. Untuk menyusun input lengkap, gabungkan fragmen-fragmen ini dan parse hasilnya ketika blok ditutup.
 
@@ -523,7 +523,7 @@ Kontrak akumulasinya:
 2. Untuk setiap `content_block_delta` dengan `type: "input_json_delta"`, tambahkan: `input_json += event.delta.partial_json`.
 3. Pada `content_block_stop`, parse string yang terkumpul.
 
-Lindungi proses parsing, seperti yang dilakukan contoh SDK berikut. Respons juga dapat berhenti di `max_tokens` di tengah parameter. Periksa [stop reason](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons) dan putuskan apakah akan mencoba ulang permintaan dengan `max_tokens` yang lebih tinggi atau memperbaiki input parsial.
+Lindungi proses parsing, seperti yang dilakukan contoh SDK berikut. Respons juga dapat berhenti di `max_tokens` di tengah parameter. Periksa [alasan berhenti](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons) dan putuskan apakah akan mencoba ulang permintaan dengan `max_tokens` yang lebih tinggi atau memperbaiki input parsial.
 
 Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) memang disengaja. Objek kosong menandai slot dalam array konten. String delta membangun nilai sebenarnya.
 
@@ -570,7 +570,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
                       parsed = json.loads(raw_input)
                   except json.JSONDecodeError:
                       # String yang terakumulasi tidak dijamin merupakan JSON yang valid.
-                      # Lihat "Handling invalid JSON in tool responses" di halaman ini.
+                      # Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
                       print(f"Invalid tool input: {raw_input}")
                   else:
                       print(f"Tool input: {parsed}")
@@ -621,7 +621,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
             console.log("Tool input:", JSON.parse(rawInput));
           } catch {
             // String yang terakumulasi tidak dijamin merupakan JSON yang valid.
-            // Lihat "Handling invalid JSON in tool responses" di halaman ini.
+            // Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
             console.log("Invalid tool input:", rawInput);
           }
         }
@@ -739,7 +739,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   			var parsed map[string]any
   			if err := json.Unmarshal([]byte(accumulated), &parsed); err != nil {
   				// String yang terakumulasi belum tentu merupakan JSON yang valid.
-  				// Lihat "Handling invalid JSON in tool responses" di halaman ini.
+  				// Lihat "Menangani JSON tidak valid dalam respons alat" di halaman ini.
   				fmt.Println("Invalid tool input:", accumulated)
   			} else {
   				fmt.Println("Tool input:", parsed)
@@ -779,9 +779,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   Map<Long, StringBuilder> toolInputs = new HashMap<>();
 
   try (StreamResponse<RawMessageStreamEvent> streamResponse = client.messages().createStreaming(createParams)) {
-      var eventIterator = streamResponse.stream().iterator();
-      while (eventIterator.hasNext()) {
-          RawMessageStreamEvent event = eventIterator.next();
+      for (RawMessageStreamEvent event : streamResponse) {
           switch (event.type().value()) {
               case CONTENT_BLOCK_START -> {
                   var blockStart = event.asContentBlockStart();
@@ -937,7 +935,7 @@ Dengan streaming alat fine-grained, input terakumulasi untuk pemanggilan alat mu
 }
 ```
 
-Kembalikan pembungkus tersebut, yang diserialisasi menjadi string, sebagai `content` dari blok konten [tool result](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls#handling-errors-with-is-error) dengan `is_error` diatur ke `true`:
+Kembalikan pembungkus tersebut, yang diserialisasi menjadi string, sebagai `content` dari blok konten [hasil alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls#handling-errors-with-is-error) dengan `is_error` diatur ke `true`:
 
 ```json
 {

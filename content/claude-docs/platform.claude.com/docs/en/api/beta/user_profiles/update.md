@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/update
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 2f6bca26cdfd1cb37d71281cbc96380e6cfef5490ee4e1cfaf7cf4d16ddf94a2
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 5465409086b70c63101cbd1063242b64627be876ea0620c2de689d6360578ef7
 ---
 
 ---
@@ -195,6 +195,8 @@ Update User Profile
   - `country: optional string or null`
 
     The country of the entity (not of the platform), as the platform determines it: an ISO 3166-1 alpha-2 code in upper case, for example `US`. Only the form, two uppercase ASCII letters, is checked.
+
+    pattern: ^[A-Z]{2}$
 
   - `email_hash: optional string or null`
 

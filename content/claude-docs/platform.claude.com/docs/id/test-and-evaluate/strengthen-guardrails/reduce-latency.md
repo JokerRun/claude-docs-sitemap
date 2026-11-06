@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-latency
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 227fb38139738a9f75ccce65b464779f97e787b025da0fc5adf3fade76fc1c0f
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: da3ed2ef9d02d508df85c02e7d60722c074fb0ce376364ff5b48d08108d35a3f
 ---
 
 ---
@@ -34,7 +34,7 @@ Untuk pemahaman yang lebih mendalam tentang istilah-istilah ini, lihat [glosariu
 
 ### 1. Pilih model yang tepat
 
-Salah satu cara paling langsung untuk mengurangi latensi adalah memilih model yang sesuai untuk kasus penggunaan Anda. Anthropic menawarkan [berbagai model](https://platform.claude.com/docs/id/models/overview) dengan kemampuan dan karakteristik kinerja yang berbeda. Pertimbangkan kebutuhan spesifik Anda dan pilih model yang paling sesuai dengan kebutuhan Anda dalam hal kecepatan dan kualitas output.
+Salah satu cara paling langsung untuk mengurangi latensi adalah memilih model yang sesuai untuk kasus penggunaan Anda. Anthropic menawarkan [berbagai model](https://platform.claude.com/docs/id/models/overview) dengan kemampuan dan karakteristik performa yang berbeda. Pertimbangkan kebutuhan spesifik Anda dan pilih model yang paling sesuai dengan kebutuhan Anda dalam hal kecepatan dan kualitas output.
 
 Untuk aplikasi yang mengutamakan kecepatan, **Claude Haiku 5.5** menawarkan waktu respons tercepat sambil tetap mempertahankan kecerdasan yang tinggi. [Effort](https://platform.claude.com/docs/id/build-with-claude/effort) adalah kontrol utamanya untuk kecepatan dan biaya. Lihat [Gunakan effort untuk mengontrol thinking](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#use-effort-to-control-thinking). Contoh berikut menjalankannya pada `low`, tingkat termurah dan tercepat, serta menyisakan ruang di `max_tokens` untuk pemikiran:
 
@@ -194,7 +194,7 @@ Untuk aplikasi yang mengutamakan kecepatan, **Claude Haiku 5.5** menawarkan wakt
 
   # Untuk aplikasi yang sensitif terhadap waktu, gunakan Claude Haiku 5.5 dengan effort rendah
   message = client.messages.create(
-    model: "claude-haiku-5-5",
+    model: Anthropic::Model::CLAUDE_HAIKU_5_5,
     max_tokens: 1024,
     output_config: { effort: :low },
     messages: [{ role: "user", content: "Summarize this customer feedback in 2 sentences: [feedback text]" }]
@@ -211,8 +211,8 @@ Minimalkan jumlah token baik dalam prompt input Anda maupun output yang diharapk
 
 Berikut beberapa tips untuk membantu Anda mengoptimalkan prompt dan output Anda:
 
-* **Jelas tetapi ringkas:** Usahakan menyampaikan maksud Anda dengan jelas dan ringkas dalam prompt. Hindari detail yang tidak perlu atau informasi yang berlebihan, sambil tetap mengingat bahwa [Claude tidak memiliki konteks](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#be-clear-and-direct) tentang kasus penggunaan Anda dan mungkin tidak membuat lompatan logika yang dimaksud jika instruksinya tidak jelas.
-* **Minta respons yang lebih pendek:** Minta Claude secara langsung untuk bersikap ringkas. Jika Claude menghasilkan output dengan panjang yang tidak diinginkan, minta Claude untuk [mengurangi sifat cerewetnya](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#be-clear-and-direct).
+* **Jelas tetapi ringkas:** Usahakan untuk menyampaikan maksud Anda dengan jelas dan ringkas dalam prompt. Hindari detail yang tidak perlu atau informasi yang berulang, sambil tetap mengingat bahwa [Claude tidak memiliki konteks](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#be-clear-and-direct) tentang kasus penggunaan Anda dan mungkin tidak membuat kesimpulan yang dimaksud jika instruksinya tidak jelas.
+* **Minta respons yang lebih pendek:** Minta Claude secara langsung untuk bersikap ringkas. Jika Claude menghasilkan output dengan panjang yang tidak diinginkan, minta Claude untuk [mengurangi verbositasnya](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#be-clear-and-direct).
   <Tip>
     Karena cara LLM menghitung 
 

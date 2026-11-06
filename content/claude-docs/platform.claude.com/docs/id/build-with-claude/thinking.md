@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 31c08eea5db634cfc123cd883b850b7178fbd96ad841ca4ae77e94a7db0a3116
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: d04e3d70bb8b66ee22ff087a97028dcfcbd28c24bdf21e4070b536a4ee0ebad0
 ---
 
 ---
@@ -515,7 +515,7 @@ Field `display` pada konfigurasi pemikiran mengontrol bagaimana konten pemikiran
 
 * `"summarized"`: blok pemikiran berisi teks [pemikiran yang diringkas](https://platform.claude.com/docs/id/build-with-claude/thinking#summarized-thinking), ringkasan penalaran Claude yang dapat dibaca. Ini adalah default pada Claude Opus 4.6, Claude Sonnet 4.6, dan model-model sebelumnya.
 * `"omitted"`: blok pemikiran dikembalikan dengan field `thinking` yang kosong. Field `signature` tetap membawa pemikiran lengkap yang terenkripsi untuk kesinambungan multi-giliran (lihat [Enkripsi pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-encryption)). Ini adalah default pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, [Claude Mythos Preview](https://anthropic.com/glasswing), dan Claude Haiku 5.5.
-* `"updates"` (beta): blok penalaran dikembalikan dengan field `thinking` yang kosong, seperti pada `"omitted"`, dan [pembaruan progres](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates) singkat yang ditulis beberapa model di antara pemanggilan alat dikembalikan sebagai teks yang dapat dibaca. Memerlukan beta header `thinking-display-updates-2026-08-18`.
+* `"updates"` (beta): blok penalaran dikembalikan dengan field `thinking` yang kosong, seperti pada `"omitted"`, dan [pembaruan progres](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates) singkat yang ditulis beberapa model di antara pemanggilan alat dikembalikan sebagai teks yang dapat dibaca. Memerlukan header beta `thinking-display-updates-2026-08-18`.
 
 Tetapkan `display: "omitted"` ketika aplikasi Anda tidak menampilkan konten pemikiran kepada pengguna. Manfaat utamanya adalah waktu hingga token teks pertama yang lebih cepat saat streaming: server sepenuhnya melewatkan streaming token pemikiran dan hanya mengirimkan signature, sehingga respons teks akhir mulai di-stream lebih cepat.
 
@@ -556,23 +556,22 @@ Ketika `display` bernilai `"summarized"`, teks pemikiran yang Anda terima adalah
 Perhatikan hal-hal berikut saat bekerja dengan pemikiran yang diringkas:
 
 * Anda dikenakan biaya untuk token pemikiran lengkap yang dihasilkan oleh permintaan asli, bukan token ringkasan. Jumlah token output yang ditagih tidak sama dengan jumlah token yang Anda lihat dalam respons.
-* Pada Claude Opus 4.6, Claude Sonnet 4.6, dan model-model sebelumnya, beberapa baris pertama output pemikiran lebih panjang, memberikan penalaran terperinci yang sangat membantu untuk keperluan prompt engineering. [Claude Mythos Preview](https://anthropic.com/glasswing) meringkas sejak token pertama, sehingga blok pemikirannya tidak menampilkan pembukaan panjang ini.
+* Pada Claude Opus 4.6, Claude Sonnet 4.6, dan model-model sebelumnya, beberapa baris pertama output pemikiran lebih panjang, memberikan penalaran terperinci yang sangat membantu untuk keperluan rekayasa prompt. [Claude Mythos Preview](https://anthropic.com/glasswing) meringkas sejak token pertama, sehingga blok pemikirannya tidak menampilkan pembukaan panjang ini.
 * Peringkasan mempertahankan gagasan utama dari proses pemikiran Claude dengan tambahan latensi minimal, sehingga ringkasan dapat di-stream saat tiba.
 * Peringkasan diproses oleh model yang berbeda dari model yang Anda targetkan dalam permintaan Anda. Model pemikiran tidak menerima output yang diringkas.
-* Seiring Anthropic berupaya meningkatkan fitur pemikiran, perilaku peringkasan dapat berubah.
 
 <Note>
   Dalam kasus langka di mana Anda memerlukan akses ke output pemikiran lengkap, [hubungi tim penjualan Anthropic](mailto:sales@anthropic.com).
 </Note>
 
-Untuk melihat penalaran model, baca blok `thinking` alih-alih meminta penalaran dalam teks respons melalui prompt. Pada Claude Fable 5.1, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Fable 5, permintaan yang mencoba memancing penalaran internal model sebagai bagian dari teks respons dapat ditolak dengan `stop_details.category: "reasoning_extraction"`. Lihat [Kategori penolakan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk referensi field dan [Simpan penalaran di blok pemikiran](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks) untuk apa yang sebaiknya diminta sebagai gantinya.
+Untuk melihat penalaran model, baca blok `thinking` alih-alih meminta penalaran dalam teks respons melalui prompt. Pada Claude Fable 5.1, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Fable 5, permintaan yang mencoba memancing penalaran internal model sebagai bagian dari teks respons dapat ditolak dengan `stop_details.category: "reasoning_extraction"`. Lihat [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk referensi field dan [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks) untuk apa yang sebaiknya diminta sebagai gantinya.
 
 ### Streaming pemikiran
 
 Pemikiran berfungsi dengan [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming). Blok pemikiran di-stream sebagai event `thinking_delta` di dalam event `content_block_delta`, diikuti oleh satu event `signature_delta` tepat sebelum `content_block_stop` blok tersebut. Blok teks di-stream setelahnya seperti biasa.
 
 <Frame>
-  ![Stream pemikiran: blok terbuka, delta membawa teks hanya jika display mengembalikan teks, satu signature delta menutupnya, lalu teks](https://platform.claude.com/docs/id/images/how-thinking-streams.svg)
+  ![Stream pemikiran: blok terbuka, delta membawa teks hanya jika display mengembalikan teks, satu delta tanda tangan menutupnya, lalu teks](https://platform.claude.com/docs/id/images/how-thinking-streams.svg)
 </Frame>
 
 Contoh-contoh berikut men-stream respons dengan pemikiran adaptif, mencetak delta pemikiran dan teks saat tiba:
@@ -818,7 +817,7 @@ Contoh-contoh berikut men-stream respons dengan pemikiran adaptif, mencetak delt
     max_tokens: 16000,
     # Hash biasa seperti ini menerima display:. Kelas bertipe ThinkingConfigAdaptive
     # menulisnya display_ (dengan garis bawah di akhir) agar tidak menimpa Kernel#display milik Ruby.
-    # Request tetap mengirimkan display.
+    # Permintaan tetap mengirimkan display.
     thinking: { type: "adaptive", display: "summarized" },
     messages: [
       { role: "user", content: "What is the greatest common divisor of 1071 and 462?" }
@@ -1008,11 +1007,11 @@ Untuk contoh lengkap dengan kode di setiap SDK, lihat [Panduan bolak-balik pengg
   Pemanggilan alat yang berurutan tidak memerlukan pemikiran berselang. Claude dapat merangkai pemanggilan alat dengan atau tanpa pemikiran berselang. Pemikiran berselang mengubah di mana blok pemikiran muncul di antara pemanggilan alat, bukan apakah pemanggilan alat dapat dirangkai.
 </Note>
 
-Dengan pemikiran adaptif, pemikiran berselang otomatis aktif pada setiap model yang mendukung pemikiran adaptif. Tidak diperlukan beta header. Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Opus 4.8, dan Claude Opus 4.7, penalaran di antara pemanggilan alat selalu muncul dalam blok pemikiran. Claude Haiku 4.5 tidak mendukung pemikiran berselang. Pada model yang menggunakan pemikiran diperpanjang manual, pemikiran berselang memerlukan beta header dan mengubah cara anggaran pemikiran dihitung. [Pemikiran berselang-seling dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#interleaved-thinking) membahas aturan per model dan perilaku header khusus platform.
+Dengan pemikiran adaptif, pemikiran berselang otomatis aktif pada setiap model yang mendukung pemikiran adaptif. Tidak diperlukan header beta. Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Opus 4.8, dan Claude Opus 4.7, penalaran di antara pemanggilan alat selalu muncul dalam blok pemikiran. Claude Haiku 4.5 tidak mendukung pemikiran berselang. Pada model yang menggunakan pemikiran diperpanjang manual, pemikiran berselang memerlukan header beta dan mengubah cara anggaran pemikiran dihitung. [Pemikiran berselang-seling dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#interleaved-thinking) membahas aturan per model dan perilaku header khusus platform.
 
 Dengan pemikiran berselang, alokasi pemikiran dapat mencakup seluruh giliran asisten, bukan hanya satu respons. Pemikiran berselang hanya didukung untuk [alat yang digunakan melalui Messages API](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
 
-Untuk perbandingan lengkap yang menunjukkan apa yang diubah pemikiran berselang dalam alur kerja dua alat, lihat [Bagaimana interleaved thinking mengubah alur](https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows#how-interleaved-thinking-changes-the-flow).
+Untuk perbandingan lengkap yang menunjukkan apa yang diubah pemikiran berselang dalam alur kerja dua alat, lihat [Bagaimana pemikiran berselang mengubah alur](https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows#how-interleaved-thinking-changes-the-flow).
 
 ### Pembaruan progres di antara pemanggilan alat
 
@@ -1026,9 +1025,9 @@ Isi blok pembaruan progres bergantung pada [`display`](https://platform.claude.c
 | `"updates"` (beta)                         | Field `thinking` kosong | Teks ringkasan                                            |
 | `"summarized"`                             | Teks ringkasan          | Teks ringkasan, tidak dapat dibedakan dari blok penalaran |
 
-Pada Claude Sonnet 5.5, pengaturan pemikiran terendah adalah `thinking: {type: "between_tools"}`. Pengaturan ini menonaktifkan pemikiran di awal, dan setiap pembaruan progres dikembalikan dengan teks ringkasannya, seperti di bawah `display: "updates"`. `between_tools` hanya diterima pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `high` atau lebih rendah. Pada `xhigh` atau `max`, permintaan dengan pengaturan ini mengembalikan error 400. `between_tools` tidak menerima field lain: `display`, `budget_tokens`, atau `block_binding` yang dikirim bersamanya mengembalikan error 400. Pengaturan ini tidak memerlukan beta header dan berfungsi di setiap platform yang menawarkan Claude Sonnet 5.5. Kirimkan kembali blok-blok tersebut tanpa diubah: blok pembaruan progres yang Anda kirim kembali memberi model catatan lengkap yang ditulisnya, bukan ringkasannya.
+Pada Claude Sonnet 5.5, pengaturan pemikiran terendah adalah `thinking: {type: "between_tools"}`. Pengaturan ini menonaktifkan pemikiran di awal, dan setiap pembaruan progres dikembalikan dengan teks ringkasannya, seperti di bawah `display: "updates"`. `between_tools` hanya diterima pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `high` atau lebih rendah. Pada `xhigh` atau `max`, permintaan dengan pengaturan ini mengembalikan error 400. `between_tools` tidak menerima field lain: `display`, `budget_tokens`, atau `block_binding` yang dikirim bersamanya mengembalikan error 400. Pengaturan ini tidak memerlukan header beta dan berfungsi di setiap platform yang menawarkan Claude Sonnet 5.5. Kirimkan kembali blok-blok tersebut tanpa diubah: blok pembaruan progres yang Anda kirim kembali memberi model catatan lengkap yang ditulisnya, bukan ringkasannya.
 
-Gunakan `display: "updates"` untuk antarmuka agen yang menyembunyikan penalaran dan menampilkan baris status kepada pengguna di setiap langkah. Di bawah pengaturan ini, setiap blok `thinking` dengan teks yang tidak kosong adalah pembaruan progres, jadi tampilkan blok-blok tersebut dan tidak ada yang lain. Fitur ini dalam tahap beta dan memerlukan beta header `thinking-display-updates-2026-08-18` (untuk mengirimkannya di Amazon Bedrock, Claude Models on Google Cloud (Google managed), atau Microsoft Foundry, lihat [Fitur beta di platform lain](https://platform.claude.com/docs/id/api/beta-headers#beta-features-on-other-platforms)). Tanpa header tersebut, nilai ini ditolak dengan error 400 `invalid_request_error` yang sama seperti nilai `display` yang tidak dikenal.
+Gunakan `display: "updates"` untuk antarmuka agen yang menyembunyikan penalaran dan menampilkan baris status kepada pengguna di setiap langkah. Di bawah pengaturan ini, setiap blok `thinking` dengan teks yang tidak kosong adalah pembaruan progres, jadi tampilkan blok-blok tersebut dan tidak ada yang lain. Fitur ini dalam tahap beta dan memerlukan header beta `thinking-display-updates-2026-08-18` (untuk mengirimkannya di Amazon Bedrock, Claude Models on Google Cloud (Google managed), atau Microsoft Foundry, lihat [Fitur beta di platform lain](https://platform.claude.com/docs/id/api/beta-headers#beta-features-on-other-platforms)). Tanpa header tersebut, nilai ini ditolak dengan error 400 `invalid_request_error` yang sama seperti nilai `display` yang tidak dikenal.
 
 ```json
 {
@@ -1090,14 +1089,14 @@ Perhatikan hal-hal berikut saat bekerja dengan pembaruan progres:
 * Blok pembaruan progres dapat dikembalikan dengan field `thinking` kosong di bawah nilai `display` apa pun. Jangan tampilkan apa pun untuk blok yang kosong. Di bawah `"updates"` blok tersebut terlihat sama dengan blok penalaran kosong dan tidak memerlukan penanganan terpisah.
 * Ketika respons berhenti karena `max_tokens`, `model_context_window_exceeded`, atau `stop_sequence` segera setelah pemanggilan alat atau hasil alat, blok terakhirnya dapat berupa blok pembaruan progres yang menggantikan pekerjaan yang belum diselesaikan model. Di bawah `"updates"` dan `"summarized"` teksnya persis `This part of the response was interrupted before it finished.` dan Anda dapat menampilkannya seperti pembaruan lainnya. Di bawah `"omitted"` blok tersebut kosong. Untuk melanjutkan, kirimkan kembali giliran asisten tanpa diubah dan tambahkan pesan `user` baru (dengan `tool_result` untuk setiap blok `tool_use` dalam giliran tersebut).
 * Saat [streaming](https://platform.claude.com/docs/id/build-with-claude/thinking#streaming-thinking), perkirakan jeda beberapa detik sebelum blok pembaruan progres terbuka. Lihat jejak `"updates"` di [Streaming pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking#streaming-thinking).
-* Model-model ini menulis lebih sedikit pembaruan progres pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang lebih tinggi dan dalam rantai alat yang panjang. Jika antarmuka Anda bergantung pada pembaruan tersebut, lihat [Minta pembaruan progres yang ditujukan untuk pengguna](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#ask-for-user-facing-progress-updates) atau, untuk Claude Opus 5.5, [Pembaruan progres yang ditujukan untuk pengguna](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#user-facing-progress-updates). Untuk Claude Sonnet 5.5, lihat [Pembaruan progres yang ditujukan untuk pengguna](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#user-facing-progress-updates).
+* Model-model ini menulis lebih sedikit pembaruan progres pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang lebih tinggi dan dalam rantai alat yang panjang. Jika antarmuka Anda bergantung pada pembaruan tersebut, lihat [Minta pembaruan progres yang ditujukan kepada pengguna](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#ask-for-user-facing-progress-updates). Untuk Claude Opus 5.5 dan Claude Sonnet 5.5, lihat bagian Pembaruan progres untuk pengguna di [Menulis prompt untuk Claude Opus 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#user-facing-progress-updates) atau [Prompting untuk Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#user-facing-progress-updates).
 
 ### Preservasi blok pemikiran berdasarkan model
 
 Apakah blok pemikiran dari giliran asisten sebelumnya tetap berada dalam konteks secara default bergantung pada model:
 
 * **Menyimpan semua giliran sebelumnya:** Claude Opus 4.5 dan model Opus yang lebih baru, Claude Sonnet 4.6 dan model Sonnet yang lebih baru, Claude Haiku 5.5, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, dan Claude Mythos Preview.
-* **Hanya menyimpan giliran terakhir:** model Opus dan Sonnet yang lebih lama, serta semua model Haiku hingga Claude Haiku 4.5. Saat Anda mengirimkan kembali blok pemikiran yang lebih lama, API menghapusnya secara otomatis. Anda tidak perlu menghapusnya sendiri.
+* **Hanya menyimpan giliran yang sedang berlangsung (model hanya-giliran-terakhir):** model Opus dan Sonnet yang lebih lama, serta semua model Haiku hingga Claude Haiku 4.5. Saat Anda mengirimkan kembali blok pemikiran yang lebih lama, API menghapusnya secara otomatis. Anda tidak perlu menghapusnya sendiri.
 
 Preservasi membawa dua manfaat:
 
@@ -1122,7 +1121,7 @@ Pemeriksaan prefiks berjalan pada Claude 5.1 dan model yang lebih baru. Buat int
 Agar pemikiran tetap valid, kirimkan kembali setiap giliran asisten persis seperti saat Anda menerimanya dan tambahkan pesan baru hanya di akhir `messages`. Jika kode Anda membangun array `messages` sendiri, halaman Pemikiran yang dipertahankan mencakup:
 
 * [Apa yang dihitung sebagai suntingan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#what-counts-as-an-edit), dan [cara memeriksa apakah kode Anda melakukan suntingan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#how-to-tell-whether-your-integration-is-impacted).
-* [Fitur API yang menggantikan setiap suntingan umum](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#replace-prefix-edits): pesan sistem di tengah percakapan untuk instruksi baru dan pengingat per giliran, blok `tool_addition` dan `tool_removal` untuk perubahan alat, `output_config` per pesan untuk perubahan effort, serta compaction dan context editing sisi server untuk pemangkasan.
+* [Fitur API yang menggantikan setiap suntingan umum](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#replace-prefix-edits): pesan sistem di tengah percakapan untuk instruksi baru dan pengingat per giliran, blok `tool_addition` dan `tool_removal` untuk perubahan alat, `output_config` per pesan untuk perubahan effort, serta compaction dan pengeditan konteks sisi server untuk pemangkasan.
 * [Compaction sisi klien](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#custom-compaction-on-the-client): pola mana yang menjaga pemikiran tetap valid dan mana yang tidak.
 * [Header beta `thinking-binding-controls-2026-08-01`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#preserved-thinking-controls). Header ini menambahkan field `block_binding.prefix_mismatch_behavior` (`"error"` atau `"drop_block"`) ke konfigurasi pemikiran dan array `input_transformations` ke setiap respons. Array tersebut mencantumkan setiap blok pemikiran yang dibuang oleh API atau yang gagal dalam pemeriksaan prefiks dan mencapai model.
 
@@ -1196,7 +1195,7 @@ Konten pemikiran lengkap dienkripsi dan dikembalikan dalam field `signature` pad
 
 Perhatikan hal-hal berikut saat bekerja dengan signature:
 
-* Mengirimkan kembali blok pemikiran hanya benar-benar diperlukan saat [menggunakan alat dengan pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use). Jika tidak, Anda dapat menghilangkan blok pemikiran dari giliran sebelumnya. Jika Anda mengirimkannya kembali, apakah API menyimpan atau menghapusnya bergantung pada model (lihat [Preservasi blok pemikiran berdasarkan model](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-block-preservation-by-model)). Gunakan [context editing](https://platform.claude.com/docs/id/build-with-claude/context-editing) untuk mengonfigurasi hal ini.
+* Mengirimkan kembali blok pemikiran hanya benar-benar diperlukan saat [menggunakan alat dengan pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use). Jika tidak, Anda dapat menghilangkan blok pemikiran dari giliran sebelumnya. Jika Anda mengirimkannya kembali, apakah API menyimpan atau menghapusnya bergantung pada model (lihat [Preservasi blok pemikiran berdasarkan model](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-block-preservation-by-model)). Gunakan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) untuk mengonfigurasi hal ini.
 * Saat mengirimkan kembali blok pemikiran, kirimkan semuanya persis seperti saat Anda menerimanya, demi konsistensi dan untuk menghindari potensi masalah.
 * Saat [melakukan streaming respons](https://platform.claude.com/docs/id/build-with-claude/thinking#streaming-thinking), signature tiba sebagai `signature_delta` di dalam event `content_block_delta` tepat sebelum event `content_block_stop`.
 * Nilai `signature` jauh lebih panjang pada model Claude 4 dan yang lebih baru dibandingkan model sebelumnya.
@@ -1232,11 +1231,11 @@ Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claud
 
 ### Prefill respons dan penggunaan alat paksa
 
-Model Claude 4.6 dan yang lebih baru serta Claude Mythos Preview menolak giliran asisten terakhir yang di-prefill dengan error 400, baik pemikiran aktif maupun tidak (lihat [Prefill tidak didukung](https://platform.claude.com/docs/id/api/errors#prefill-not-supported)). Pada model yang lebih lama, Anda tidak dapat melakukan prefill respons asisten saat pemikiran aktif. Penggunaan alat paksa (`tool_choice: {"type": "any"}` atau `{"type": "tool", ...}`) tidak kompatibel dengan “extended thinking” (pemikiran diperpanjang) manual tetapi berfungsi dengan pemikiran adaptif. Pengecualiannya adalah Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1, yang menolak penggunaan alat paksa pada setiap permintaan dengan error 400. Pada model-model tersebut, gunakan `tool_choice: {"type": "auto"}` dengan [strict tool use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) atau [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) sebagai gantinya. Jika penggunaan alat paksa diterima, respons dimulai dengan panggilan alat dan tidak memiliki blok `thinking`. Agar model dapat berpikir sebelum memanggil alat, gunakan `tool_choice: {"type": "auto"}` dan sebutkan dalam prompt kapan harus menggunakan alat tersebut. Lihat [Pemikiran dengan penggunaan alat](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use).
+Model Claude 4.6 dan yang lebih baru serta Claude Mythos Preview menolak giliran asisten terakhir yang di-prefill dengan error 400, baik pemikiran aktif maupun tidak (lihat [Prefill tidak didukung](https://platform.claude.com/docs/id/api/errors#prefill-not-supported)). Pada model yang lebih lama, Anda tidak dapat melakukan prefill respons asisten saat pemikiran aktif. Penggunaan alat paksa (`tool_choice: {"type": "any"}` atau `{"type": "tool", ...}`) tidak kompatibel dengan “extended thinking” (pemikiran diperpanjang) manual tetapi berfungsi dengan pemikiran adaptif. Pengecualiannya adalah Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1, yang menolak penggunaan alat paksa pada setiap permintaan dengan error 400. Pada model-model tersebut, gunakan `tool_choice: {"type": "auto"}` dengan [penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) atau [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) sebagai gantinya. Jika penggunaan alat paksa diterima, respons dimulai dengan panggilan alat dan tidak memiliki blok `thinking`. Agar model dapat berpikir sebelum memanggil alat, gunakan `tool_choice: {"type": "auto"}` dan sebutkan dalam prompt kapan harus menggunakan alat tersebut. Lihat [Pemikiran dengan penggunaan alat](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use).
 
 ### Batas output
 
-Setiap model menerima `max_tokens` hingga batas atas yang tercantum di sini. Pada [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing#extended-output-beta), [beta header](https://platform.claude.com/docs/id/api/beta-headers) `output-300k-2026-03-24` menaikkan batas atas tersebut untuk model-model yang memiliki batas atas batch yang tercantum.
+Setiap model menerima `max_tokens` hingga batas atas yang tercantum di sini. Pada [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing#extended-output-beta), [header beta](https://platform.claude.com/docs/id/api/beta-headers) `output-300k-2026-03-24` menaikkan batas atas tersebut untuk model-model yang memiliki batas atas batch yang tercantum.
 
 | Model                 | Max output tokens | Batches beta ceiling |
 | :-------------------- | :---------------- | :------------------- |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: fadfc580b93f80d214ec969bfa9cde771b33a2219bba1c941152d67f17ce640d
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 5e058a8986a23aa608e6166e3e3cf0b308e7b63aff4f654fa58ffd5b68a17587
 ---
 
 ---
@@ -57,10 +57,10 @@ Files API menyediakan pendekatan buat-sekali, gunakan-berkali-kali untuk bekerja
 * **Unggah file** ke penyimpanan aman Anthropic dan terima `file_id` unik
 * **Unduh file** yang dibuat oleh skills atau alat eksekusi kode
 * **Referensikan file** dalam permintaan [Messages](https://platform.claude.com/docs/id/api/messages/create) menggunakan `file_id` alih-alih mengunggah ulang konten
-* **Kelola file Anda** dengan operasi list, retrieve, dan delete
+* **Kelola file Anda** dengan operasi daftar, pengambilan, dan penghapusan
 
 <Warning id="workspace-scoped-access" title="File yang diunggah dapat diakses oleh seluruh workspace Anda">
-  File tidak dibatasi pada pengguna akhir, percakapan, atau sesi tertentu. Kunci API apa pun yang memiliki akses ke sebuah workspace dapat mengakses file apa pun yang diunggah ke workspace tersebut. Setiap akun layanan, dan setiap pengguna yang peran organisasinya mengizinkan akses API, dapat menggunakan Default Workspace selain workspace mana pun tempat Anda menambahkan mereka, jadi simpan file yang harus tetap terpisah di workspace tersendiri dan akses file tersebut hanya dengan [kunci yang dibatasi pada workspace tersebut](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping). Jangan pernah menerima nilai `file_id` dari pengguna akhir atau sumber tidak tepercaya lainnya: ID file yang diberikan pengguna dapat memungkinkan satu pengguna aplikasi Anda membaca konten yang diunggah oleh pengguna lain. Perlakukan ID file sebagai referensi sisi server, dan simpan pemetaan antara pengguna Anda dan file mereka di aplikasi Anda.
+  File tidak dibatasi pada pengguna akhir, percakapan, atau sesi tertentu. Kunci API apa pun yang memiliki akses ke sebuah workspace dapat mengakses file apa pun yang diunggah ke workspace tersebut. Setiap akun layanan, dan setiap pengguna yang peran organisasinya mengizinkan akses API, dapat menggunakan workspace default selain workspace mana pun tempat Anda menambahkan mereka, jadi simpan file yang harus tetap terpisah di workspace tersendiri dan akses file tersebut hanya dengan [kunci yang dibatasi pada workspace tersebut](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping). Jangan pernah menerima nilai `file_id` dari pengguna akhir atau sumber tidak tepercaya lainnya: ID file yang diberikan pengguna dapat memungkinkan satu pengguna aplikasi Anda membaca konten yang diunggah oleh pengguna lain. Perlakukan ID file sebagai referensi sisi server, dan simpan pemetaan antara pengguna Anda dan file mereka di aplikasi Anda.
 
   Jika Anda membangun aplikasi “multitenant” (multi-penyewa) di atas Files API, buat [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) terpisah untuk setiap tenant. Workspace adalah batas isolasi untuk file, sehingga satu workspace untuk setiap tenant memberikan isolasi ketat bagi data tenant tersebut dari setiap tenant lainnya. Setiap organisasi dapat memiliki hingga 100 workspace; hubungi tim akun Anda jika Anda membutuhkan lebih banyak.
 </Warning>
@@ -187,7 +187,7 @@ Respons dari pengunggahan file mencakup:
 }
 ```
 
-[`downloadable`](https://platform.claude.com/docs/id/api/files#file_metadata.downloadable) bernilai `false` untuk file yang Anda unggah. Hanya file yang dibuat oleh [skills](https://platform.claude.com/docs/id/build-with-claude/skills-guide) atau [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) yang dapat diunduh. Lihat [Mengunduh file](https://platform.claude.com/docs/id/build-with-claude/files#downloading-a-file).
+[`downloadable`](https://platform.claude.com/docs/id/api/files#file_metadata.downloadable) bernilai `false` untuk file yang Anda unggah. Hanya file yang dibuat oleh [skill](https://platform.claude.com/docs/id/build-with-claude/skills-guide) atau [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) yang dapat diunduh. Lihat [Mengunduh file](https://platform.claude.com/docs/id/build-with-claude/files#downloading-a-file).
 
 Referensi API menjelaskan setiap field dari objek file.
 
@@ -448,7 +448,7 @@ Untuk gambar, gunakan blok konten `image`:
 }
 ```
 
-#### Blok container upload
+#### Blok unggahan container
 
 Untuk [mengirim file ke alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upload-and-analyze-your-own-files), gunakan blok konten `container_upload`:
 
@@ -703,7 +703,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
 
 #### Daftar file
 
-Ambil daftar file yang telah Anda unggah. Endpoint ini menggunakan “pagination” (paginasi): setiap permintaan mengembalikan hingga [`limit`](https://platform.claude.com/docs/id/api/files/list#list.limit) file (20 secara default, dan paling banyak 1.000), dan kursor [`next_page`](https://platform.claude.com/docs/id/api/files/list#list.response.next_page) pada respons mengambil halaman berikutnya ketika diteruskan kembali sebagai parameter [`page`](https://platform.claude.com/docs/id/api/files/list#list.page). File diurutkan dari yang terbaru. Lihat [referensi API List Files](https://platform.claude.com/docs/id/api/files/list). SDK mengembalikan halaman pertama dan menyediakan helper [paginasi otomatis](https://platform.claude.com/docs/id/api/overview#pagination).
+Ambil daftar file yang telah Anda unggah. Endpoint ini menggunakan “pagination” (paginasi): setiap permintaan mengembalikan hingga [`limit`](https://platform.claude.com/docs/id/api/files/list#list.limit) file (20 secara default, dan paling banyak 1.000), dan kursor [`next_page`](https://platform.claude.com/docs/id/api/files/list#list.response.next_page) pada respons mengambil halaman berikutnya ketika diteruskan kembali sebagai parameter [`page`](https://platform.claude.com/docs/id/api/files/list#list.page). File diurutkan dari yang terbaru. Lihat [referensi API Daftar File](https://platform.claude.com/docs/id/api/files/list). SDK mengembalikan halaman pertama dan menyediakan helper [paginasi otomatis](https://platform.claude.com/docs/id/api/overview#pagination).
 
 <CodeGroup>
   ```bash cURL
@@ -879,7 +879,7 @@ Hapus file dari workspace Anda:
 
 ### Mengunduh file
 
-Unduh file yang dibuat oleh [skills](https://platform.claude.com/docs/id/build-with-claude/skills-guide) atau [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool). File yang Anda unggah tidak dapat diunduh. `file_id` dari file yang dihasilkan muncul dalam [blok konten `bash_code_execution_tool_result`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files) pada respons Messages yang membuatnya:
+Unduh file yang dibuat oleh [skill](https://platform.claude.com/docs/id/build-with-claude/skills-guide) atau [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool). File yang Anda unggah tidak dapat diunduh. `file_id` dari file yang dihasilkan muncul dalam [blok konten `bash_code_execution_tool_result`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files) pada respons Messages yang membuatnya:
 
 <CodeGroup>
   ```bash cURL
@@ -1010,13 +1010,13 @@ Files API telah keluar dari beta dan tidak memerlukan header beta. Migrasi dari 
 
 Untuk bermigrasi:
 
-1. **Hapus beta header.** Hilangkan `anthropic-beta: files-api-2025-04-14` dari permintaan Anda. Dengan SDK, panggil `client.files` (csharp, go: `client.Files`; java: `client.files()`; php: `$client->files`) alih-alih `client.beta.files` (csharp, go: `client.Beta.Files`; java: `client.beta().files()`; php: `$client->beta->files`); tetap menggunakan `client.beta.files` (csharp, go: `client.Beta.Files`; java: `client.beta().files()`; php: `$client->beta->files`) hanya berfungsi pada [rilis SDK yang tidak lagi mengirimkan header tersebut](https://platform.claude.com/docs/id/build-with-claude/files#sdk-beta-namespace). Rilis sebelumnya mengirimkannya dari `client.beta.files` (csharp, go: `client.Beta.Files`; java: `client.beta().files()`; php: `$client->beta->files`) bahkan ketika Anda tidak meneruskan nama beta apa pun.
+1. **Hapus header beta.** Hilangkan `anthropic-beta: files-api-2025-04-14` dari permintaan Anda. Dengan SDK, panggil `client.files` (csharp, go: `client.Files`; java: `client.files()`; php: `$client->files`) alih-alih `client.beta.files` (csharp, go: `client.Beta.Files`; java: `client.beta().files()`; php: `$client->beta->files`); tetap menggunakan `client.beta.files` (csharp, go: `client.Beta.Files`; java: `client.beta().files()`; php: `$client->beta->files`) hanya berfungsi pada [rilis SDK yang tidak lagi mengirimkan header tersebut](https://platform.claude.com/docs/id/build-with-claude/files#sdk-beta-namespace). Rilis sebelumnya mengirimkannya dari `client.beta.files` (csharp, go: `client.Beta.Files`; java: `client.beta().files()`; php: `$client->beta->files`) bahkan ketika Anda tidak meneruskan nama beta apa pun.
 2. **Perbarui paginasi.** Ganti loop `after_id`/`before_id` dengan kursor `page`/`next_page`, atau gunakan helper paginasi otomatis SDK yang ditunjukkan di [Mengelola file](https://platform.claude.com/docs/id/build-with-claude/files#managing-files).
 3. **Baca `expires_at`.** Field ini hanya muncul tanpa header; `null` berarti file tidak memiliki kedaluwarsa (lihat [Kedaluwarsa file](https://platform.claude.com/docs/id/build-with-claude/files#file-expiration)).
 
 ### Namespace beta SDK
 
-Mulai dari Python SDK 1.2.0, TypeScript SDK 0.122.0, Go SDK 1.68.0, Java SDK 2.59.0, PHP SDK 0.45.0, Ruby SDK 1.67.0, dan C# SDK 12.44.0, `client.beta.files` (csharp, go: `client.Beta.Files`; java: `client.beta().files()`; php: `$client->beta->files`) tidak lagi mengirimkan `files-api-2025-04-14` dan mengembalikan bentuk yang sama dengan `client.files` (csharp, go: `client.Files`; java: `client.files()`; php: `$client->files`), dengan nama tipe berawalan `Beta` (di PHP, kelas dalam namespace `Anthropic\Beta`). Namespace ini menerima nama beta melalui `betas` (csharp, go: `Betas`; java: `.addBeta()`) untuk fitur Files yang masih dalam beta, seperti pemfilteran `scope_id` di bawah beta header [Managed Agents](https://platform.claude.com/docs/id/managed-agents/files). Rilis SDK sebelumnya memiliki tipe yang sesuai dengan bentuk beta; jika Anda bergantung pada tipe tersebut, tetaplah pada rilis sebelumnya hingga Anda bermigrasi.
+Mulai dari Python SDK 1.2.0, TypeScript SDK 0.122.0, Go SDK 1.68.0, Java SDK 2.59.0, PHP SDK 0.45.0, Ruby SDK 1.67.0, dan C# SDK 12.44.0, `client.beta.files` (csharp, go: `client.Beta.Files`; java: `client.beta().files()`; php: `$client->beta->files`) tidak lagi mengirimkan `files-api-2025-04-14` dan mengembalikan bentuk yang sama dengan `client.files` (csharp, go: `client.Files`; java: `client.files()`; php: `$client->files`), dengan nama tipe berawalan `Beta` (di PHP, kelas dalam namespace `Anthropic\Beta`). Namespace ini menerima nama beta melalui `betas` (csharp, go: `Betas`; java: `.addBeta()`) untuk fitur Files yang masih dalam beta, seperti pemfilteran `scope_id` di bawah header beta [Managed Agents](https://platform.claude.com/docs/id/managed-agents/files). Rilis SDK sebelumnya memiliki tipe yang sesuai dengan bentuk beta; jika Anda bergantung pada tipe tersebut, tetaplah pada rilis sebelumnya hingga Anda bermigrasi.
 
 Permintaan yang membawa `anthropic-beta: managed-agents-2026-04-01` tanpa `files-api-2025-04-14` menerima bentuk di halaman ini dengan satu kelonggaran kompatibilitas pada `GET /v1/files`: `before_id` dan `after_id` masih diterima (tidak dapat digabungkan dengan `page` atau `ids[]`), dan respons list menyertakan `has_more`, `first_id`, dan `last_id` di samping `next_page`. Versi beta Managed Agents yang lebih baru menerima bentuk biasa.
 

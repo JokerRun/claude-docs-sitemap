@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/embeddings
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 253e2d2c51b0c01097ad7318d36807437fe4db158205b6f00dd1524d4a14b46e
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 8f3760986cda5c39834664603ea28720cfec466a02c3985e33149fda462ade86
 ---
 
 ---
-title: Embeddings
+title: Embedding
 url: https://platform.claude.com/docs/id/build-with-claude/embeddings
-description: Text embeddings adalah representasi numerik dari teks yang memungkinkan Anda mengukur kemiripan semantik. Panduan ini memperkenalkan embeddings, penerapannya, dan cara menggunakan model embedding untuk tugas-tugas seperti pencarian, rekomendasi, dan deteksi anomali.
+description: Embedding teks adalah representasi numerik dari teks yang memungkinkan Anda mengukur kemiripan semantik. Panduan ini memperkenalkan embeddings, penerapannya, dan cara menggunakan model embedding untuk tugas-tugas seperti pencarian, rekomendasi, dan deteksi anomali.
 ---
 
 ## Sebelum mengimplementasikan embeddings
@@ -29,7 +29,7 @@ Sisa panduan ini ditujukan untuk Voyage AI, tetapi Anda sebaiknya menilai berbag
 
 ## Model yang tersedia
 
-Voyage AI menawarkan model text embedding berikut:
+Voyage AI menawarkan model embedding teks berikut:
 
 **Generasi terbaru**
 
@@ -38,7 +38,7 @@ Voyage AI menawarkan model text embedding berikut:
 | `voyage-4-large` | 32.000          | 1024 (default), 256, 512, 2048 | Kualitas retrieval serbaguna dan multibahasa terbaik. Lihat [postingan blog Voyage 4](https://blog.voyageai.com/2026/01/15/voyage-4/) untuk detailnya.                                                                                                                                                     |
 | `voyage-4`       | 32.000          | 1024 (default), 256, 512, 2048 | Dioptimalkan untuk kualitas retrieval serbaguna dan multibahasa. Menyeimbangkan kualitas dan efisiensi. Lihat [postingan blog Voyage 4](https://blog.voyageai.com/2026/01/15/voyage-4/) untuk detailnya.                                                                                                   |
 | `voyage-4-lite`  | 32.000          | 1024 (default), 256, 512, 2048 | Dioptimalkan untuk latensi dan biaya. Lihat [postingan blog Voyage 4](https://blog.voyageai.com/2026/01/15/voyage-4/) untuk detailnya.                                                                                                                                                                     |
-| `voyage-code-4`  | 32.000          | 1024 (default), 256, 512, 2048 | Dioptimalkan untuk retrieval **kode** dan aplikasi agentic coding. Lihat [postingan blog voyage-code-4](https://blog.voyageai.com/2026/08/13/voyage-code-4/) untuk detailnya.                                                                                                                              |
+| `voyage-code-4`  | 32.000          | 1024 (default), 256, 512, 2048 | Dioptimalkan untuk retrieval **kode** dan aplikasi coding agentik. Lihat [postingan blog voyage-code-4](https://blog.voyageai.com/2026/08/13/voyage-code-4/) untuk detailnya.                                                                                                                              |
 | `voyage-4-nano`  | 32.000          | 2048 (default), 256, 512, 1024 | Model open-weight (lisensi Apache 2.0) yang Anda unduh dari [Hugging Face](https://huggingface.co/voyageai/voyage-4-nano) dan jalankan sendiri. Tidak tersedia melalui Atlas Embedding and Reranking API. Lihat [postingan blog Voyage 4](https://blog.voyageai.com/2026/01/15/voyage-4/) untuk detailnya. |
 
 **Generasi sebelumnya**
@@ -105,7 +105,7 @@ Instal paket `voyageai` menggunakan perintah berikut. Untuk menggunakan kunci AP
 pip install -U voyageai
 ```
 
-Kemudian, Anda dapat membuat objek client dan mulai menggunakannya untuk meng-embed teks Anda:
+Kemudian, Anda dapat membuat objek klien dan mulai menggunakannya untuk meng-embed teks Anda:
 
 ```python
 import voyageai
@@ -213,7 +213,7 @@ Embeddings memungkinkan Anda melakukan pencarian semantik / retrieval di ruang v
 query = "When is Apple's conference call scheduled?"
 ```
 
-Selanjutnya, konversikan query tersebut menjadi embedding dan lakukan pencarian nearest neighbor untuk menemukan dokumen yang paling relevan berdasarkan jarak di ruang embedding.
+Selanjutnya, konversikan query tersebut menjadi embedding dan lakukan pencarian tetangga terdekat untuk menemukan dokumen yang paling relevan berdasarkan jarak di ruang embedding.
 
 ```python
 import numpy as np
@@ -266,7 +266,7 @@ Jika Anda mencari serangkaian resep terperinci tentang cara melakukan RAG dengan
     Model spesifik domain:
 
     * Tugas hukum: `voyage-law-2`
-    * Retrieval kode dan agentic coding: `voyage-code-4`
+    * Retrieval kode dan coding agentik: `voyage-code-4`
     * Tugas terkait keuangan: `voyage-finance-2`
 
     Untuk retrieval tingkat chunk dan tingkat dokumen: `voyage-context-4`
@@ -279,7 +279,7 @@ Jika Anda mencari serangkaian resep terperinci tentang cara melakukan RAG dengan
 
     Embeddings Voyage AI dinormalisasi ke panjang 1, yang berarti bahwa:
 
-    * Cosine similarity setara dengan dot-product similarity, meskipun yang terakhir dapat dihitung lebih cepat.
+    * Cosine similarity setara dengan kemiripan dot-product, meskipun yang terakhir dapat dihitung lebih cepat.
     * Kemiripan cosine dan jarak Euclidean menghasilkan peringkat yang identik.
   </Accordion>
 

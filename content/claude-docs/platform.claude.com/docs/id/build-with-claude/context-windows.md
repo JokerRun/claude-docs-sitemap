@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-windows
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 9e562dd2ba2d0e7f392ffd203aeda7186a05f2c88a66a0833ec0fb1e7960b571
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 696101b21d052b128c0750935b14dd505a54411ef77eb2f3ee2f58ac7aacb3a3
 ---
 
 ---
@@ -18,7 +18,7 @@ Seiring percakapan bertambah panjang, Anda pada akhirnya akan mendekati batas je
 “Context window” (jendela konteks) mengacu pada semua teks yang dapat direferensikan oleh model bahasa saat menghasilkan respons, termasuk respons itu sendiri. Ini berbeda dari korpus data besar tempat model bahasa dilatih, dan sebaliknya mewakili “memori kerja” untuk model. Jendela konteks yang lebih besar memungkinkan model menangani prompt yang lebih kompleks dan panjang, tetapi lebih banyak konteks tidak otomatis lebih baik. Seiring jumlah token bertambah, akurasi dan recall menurun, sebuah fenomena yang dikenal sebagai *context rot* (pembusukan konteks). Hal ini membuat kurasi isi konteks sama pentingnya dengan seberapa banyak ruang yang tersedia.
 
 <Tip>
-  Untuk informasi lebih lanjut tentang mengapa konteks panjang menurun kualitasnya dan cara merekayasa solusinya, lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
+  Untuk informasi lebih lanjut tentang mengapa konteks panjang menurun kualitasnya dan cara merekayasa solusinya, lihat [Rekayasa konteks yang efektif](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
 </Tip>
 
 Diagram berikut mengilustrasikan perilaku jendela konteks standar untuk permintaan API<sup>1</sup>:
@@ -61,14 +61,14 @@ Apakah blok thinking dari giliran asisten sebelumnya tetap berada di jendela kon
 Diagram berikut menunjukkan bagaimana token dikelola saat thinking diaktifkan pada model yang menghapus blok thinking sebelumnya:
 
 <Frame>
-  ![Diagram "thinking" (pemikiran) pada model yang menghapus blok thinking sebelumnya: blok thinking setiap giliran dihasilkan dalam output dan tidak dibawa ke input giliran berikutnya](https://platform.claude.com/docs/id/images/context-window-thinking.svg)
+  ![Pemikiran pada model yang menghapus pemikiran sebelumnya: pemikiran setiap giliran dihasilkan tetapi tidak dibawa ke input giliran berikutnya](https://platform.claude.com/docs/id/images/context-window-thinking.svg)
 </Frame>
 
 * **Penghapusan blok thinking:** Pada model yang menghapus blok thinking sebelumnya, blok thinking (ditampilkan dalam warna abu-abu gelap) dihasilkan selama fase output setiap giliran tetapi tidak dibawa ke depan sebagai token input untuk giliran berikutnya. Anda tidak perlu menghapus blok thinking sendiri: jika Anda mengirimkannya kembali, Claude API menghapusnya secara otomatis.
 * **Penagihan:** Token thinking ditagih sebagai token output satu kali, saat dihasilkan. Pada model yang mempertahankan blok thinking sebelumnya, blok yang dipertahankan kemudian menjadi bagian dari input permintaan berikutnya dan ditagih sebagai token input, seperti riwayat percakapan lainnya.
 
 <Note>
-  Anda dapat membaca lebih lanjut tentang jendela konteks dan thinking dalam panduan [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking).
+  Anda dapat membaca lebih lanjut tentang jendela konteks dan thinking dalam panduan [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking).
 </Note>
 
 ## Jendela konteks dengan thinking dan penggunaan alat
@@ -76,7 +76,7 @@ Diagram berikut menunjukkan bagaimana token dikelola saat thinking diaktifkan pa
 Diagram berikut mengilustrasikan bagaimana token dikelola saat Anda menggabungkan thinking dengan “tool use” (penggunaan alat) pada model yang menghapus blok thinking sebelumnya:
 
 <Frame>
-  ![Diagram "thinking" (pemikiran) dengan "tool use" (penggunaan alat): thinking dipertahankan bersama hasil alatnya, lalu dibuang pada giliran pengguna berikutnya pada model yang menghapus blok thinking sebelumnya](https://platform.claude.com/docs/id/images/context-window-thinking-tools.svg)
+  ![Pemikiran dengan alat pada model yang menghapus pemikiran sebelumnya: pemikiran tetap bersama hasil alatnya hingga giliran pengguna berikutnya](https://platform.claude.com/docs/id/images/context-window-thinking-tools.svg)
 </Frame>
 
 <Steps>
@@ -88,7 +88,7 @@ Diagram berikut mengilustrasikan bagaimana token dikelola saat Anda menggabungka
 
   <Step title="Penanganan hasil alat (giliran 2)">
     * **Komponen input:** Setiap blok pada giliran pertama dan `tool_result`. Anda harus mengembalikan blok thinking bersama hasil alat yang bersesuaian. Ini adalah satu-satunya kasus di mana Anda harus mengembalikan blok thinking.
-    * **Komponen output:** Setelah hasil alat dikirimkan kembali ke Claude, Claude merespons hanya dengan teks (tanpa thinking tambahan hingga pesan `user` berikutnya, kecuali [interleaved thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking) diaktifkan).
+    * **Komponen output:** Setelah hasil alat dikirimkan kembali ke Claude, Claude merespons hanya dengan teks (tanpa thinking tambahan hingga pesan `user` berikutnya, kecuali [pemikiran berselang](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking) diaktifkan).
     * **Perhitungan token:** Semua komponen input dan output diperhitungkan terhadap jendela konteks, dan semua komponen output ditagih sebagai token output.
   </Step>
 
@@ -176,7 +176,7 @@ Untuk tetap berada dalam batas jendela konteks, gunakan [API penghitungan token]
     Lihat tabel perbandingan model untuk daftar ukuran jendela konteks dan harga token input/output berdasarkan model.
   </Card>
 
-  <Card title="Thinking" icon="settings" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
+  <Card title="Pemikiran" icon="settings" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
     Berikan Claude penalaran yang ditingkatkan untuk tugas kompleks dan kendalikan bagaimana konten thinking dikembalikan.
   </Card>
 </CardGroup>

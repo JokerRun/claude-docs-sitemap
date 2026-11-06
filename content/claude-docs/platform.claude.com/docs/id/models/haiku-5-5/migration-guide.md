@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: bc7d2eeea6572021201b1e334c7ecf104dc4a5554675e77fd32e9c528c41f0d2
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: e6ddc0421488090dc41cefd73469eefc63a043d2025c2f49bb4b3ee315f7e1e1
 ---
 
 ---
@@ -21,7 +21,7 @@ Biarkan Claude Code memigrasikan kode Anda
 /claude-api migrate proyek ini ke claude-haiku-5-5
 ```
 
-Panduan ini membahas pemindahan kode yang memanggil Claude Haiku 4.5 ke Claude Haiku 5.5. Untuk kode yang memanggil Claude Haiku 3.5 atau Claude Haiku 3, lakukan juga perubahan di [Migrasi ke Claude Haiku 5.5 dari Claude Haiku 3.5 dan model Haiku sebelumnya](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#migrating-from-haiku-35). Untuk beralih ke model Sonnet atau Opus sebagai gantinya, lihat [Upgrade antar versi model](https://platform.claude.com/docs/id/about-claude/models/migration-guide). Untuk mengetahui berapa lama Claude Haiku 4.5 tetap tersedia, lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations).
+Panduan ini membahas pemindahan kode yang memanggil Claude Haiku 4.5 ke Claude Haiku 5.5. Untuk kode yang memanggil Claude Haiku 3.5 atau Claude Haiku 3, lakukan juga perubahan di [Migrasi ke Claude Haiku 5.5 dari Claude Haiku 3.5 dan model Haiku sebelumnya](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#migrating-from-haiku-35). Untuk beralih ke model Sonnet atau Opus sebagai gantinya, lihat [Panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide). Untuk mengetahui berapa lama Claude Haiku 4.5 tetap tersedia, lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations).
 
 ## Daftar periksa migrasi berdasarkan model awal
 
@@ -35,7 +35,7 @@ Kerjakan grup-grup ini secara berurutan dan berhenti setelah grup yang menyebutk
 4. Jika kode Anda membaca blok konten pertama sebagai jawaban, pilih blok berdasarkan `type` sebagai gantinya. Lihat [Konfigurasikan thinking](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#configure-thinking).
 5. Hapus `temperature`, `top_p`, dan `top_k` dari permintaan Anda. Lihat [Hapus parameter sampling](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#remove-sampling-parameters).
 6. Jika permintaan Anda mengakhiri `messages` dengan giliran assistant agar dilanjutkan oleh model, akhiri dengan giliran user sebagai gantinya. Lihat [Ganti prefill assistant](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#replace-assistant-prefill).
-7. Jika Anda menggunakan computer use, ganti `computer_20250124` dengan toolset `computer_toolset_20260801`. Di Amazon Bedrock, `computer_20251124` juga berfungsi. Lihat [Pindahkan computer use ke toolset](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset).
+7. Jika Anda menggunakan fitur penggunaan komputer, ganti `computer_20250124` dengan toolset `computer_toolset_20260801`. Di Amazon Bedrock, `computer_20251124` juga berfungsi. Lihat [Pindahkan penggunaan komputer ke toolset](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset).
 8. Jika Anda memutar ulang percakapan yang tersimpan melalui akun yang berbeda, putar ulang masing-masing melalui akun yang menghasilkannya. Lihat [Putar ulang blok thinking melalui akun yang menghasilkannya](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#replay-thinking-blocks-through-the-producing-account).
 9. Jika kode Anda mengubah `system`, `tools`, atau `messages` sebelumnya di antara permintaan dalam sebuah percakapan dan mengirimkan kembali blok thinking, pertahankan percakapan agar bersifat append-only (hanya ditambahkan). Lihat [Pertahankan giliran sebelumnya tanpa perubahan](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#keep-earlier-turns-unchanged).
 10. Tangani `stop_reason: "refusal"`. Claude Haiku 5.5 menjalankan pengklasifikasi keamanan yang dapat menolak permintaan, dan model ini tidak memiliki fallback di sisi server. Lihat [Penolakan safeguard](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#safeguard-refusals).
@@ -46,8 +46,8 @@ Jika organisasi Anda memiliki komitmen [Priority Tier](https://platform.claude.c
 
 1. Ganti ID model Claude Haiku 3.5 atau Claude Haiku 3 dengan ID Claude Haiku 5.5 untuk platform Anda. Lihat [Migrasi ke Claude Haiku 5.5 dari Claude Haiku 3.5 dan model Haiku sebelumnya](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#migrating-from-haiku-35).
 2. Jika Anda menggunakan alat `code_execution_20250522`, pindah ke `code_execution_20250825` atau yang lebih baru.
-3. Jika Anda menggunakan alat text editor, pindah ke `text_editor_20250728`.
-4. Tangani stop reason `refusal` dan `model_context_window_exceeded`.
+3. Jika Anda menggunakan alat editor teks, pindah ke `text_editor_20250728`.
+4. Tangani alasan berhenti `refusal` dan `model_context_window_exceeded`.
 5. Jika kode Anda mencocokkan parameter string panggilan alat secara persis, perhitungkan adanya baris baru di akhir (trailing newline).
 6. Tinjau prompt Anda.
 
@@ -68,12 +68,12 @@ Ganti ID model Claude Haiku 4.5 dengan ID Claude Haiku 5.5 untuk platform Anda.
 
 ## Hitung ulang token
 
-Claude Haiku 5.5 menggunakan tokenizer baru yang sama dengan Claude 4.7 dan model yang lebih baru. Seperti semua model yang menggunakan tokenizer ini, teks input yang sama menghasilkan sekitar 30 persen lebih banyak token pada Claude Haiku 5.5 dibandingkan pada Claude Haiku 4.5. Peningkatan pastinya bergantung pada konten. Permintaan, respons, dan event streaming mempertahankan bentuk yang sama. Yang berubah adalah apa pun yang Anda ukur atau anggarkan dalam token:
+Claude Haiku 5.5 menggunakan tokenizer yang sama dengan Claude 4.7 dan model yang lebih baru. Seperti semua model yang menggunakan tokenizer ini, teks input yang sama menghasilkan sekitar 30 persen lebih banyak token pada Claude Haiku 5.5 dibandingkan pada Claude Haiku 4.5. Peningkatan pastinya bergantung pada konten. Permintaan, respons, dan event streaming mempertahankan bentuk yang sama. Yang berubah adalah apa pun yang Anda ukur atau anggarkan dalam token:
 
 * Field `usage` dan hasil [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) lebih tinggi untuk teks yang sama.
 * Sejumlah token tertentu menampung lebih sedikit teks.
 * Batas `max_tokens` yang disesuaikan untuk Claude Haiku 4.5 mungkin memotong output yang setara.
-* Estimasi biaya yang dibuat dari jumlah token Claude Haiku 4.5 perlu dihitung ulang dengan jumlah token dan [harga](https://platform.claude.com/docs/id/about-claude/pricing) Claude Haiku 5.5, termasuk harga yang lebih tinggi untuk prompt panjang. Lihat [Harga konteks panjang](https://platform.claude.com/docs/id/about-claude/pricing#long-context-pricing).
+* Estimasi biaya yang dibuat dari jumlah token Claude Haiku 4.5 perlu dihitung ulang dengan jumlah token dan harga Claude Haiku 5.5, termasuk harga yang lebih tinggi untuk prompt panjang. Lihat [Harga](https://platform.claude.com/docs/id/about-claude/pricing) dan [Harga konteks panjang](https://platform.claude.com/docs/id/about-claude/pricing#long-context-pricing).
 
 Gambar besar juga dapat memakan lebih banyak token. Claude Haiku 5.5 menggunakan tingkat gambar resolusi tinggi, yang memperkecil gambar di atas 2.576 piksel pada sisi terpanjang atau 4.784 token visual. Claude Haiku 4.5 dan model Haiku sebelumnya menggunakan tingkat standar, yang memperkecil gambar di atas 1.568 piksel pada sisi terpanjang atau 1.568 token visual. Gambar berukuran 2.000 kali 1.500 piksel memakan sekitar 2,5 kali lebih banyak token visual pada Claude Haiku 5.5 dibandingkan pada Claude Haiku 4.5. Lihat [Resolusi dan biaya token](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size).
 
@@ -126,20 +126,20 @@ Pada Claude Haiku 5.5, hilangkan `temperature`, `top_p`, dan `top_k` dan gunakan
 
 Prefill adalah giliran asisten terakhir dalam `messages` yang dilanjutkan oleh model. Claude Haiku 4.5 menerimanya ketika pemikiran dinonaktifkan. Claude Haiku 5.5 menolaknya dengan error 400, bahkan ketika pemikiran dinonaktifkan. Akhiri `messages` dengan giliran pengguna, dan ganti setiap prefill sesuai dengan tujuannya:
 
-* **Format output:** gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), atau alat dengan field enum untuk klasifikasi.
+* **Format output:** gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), atau alat dengan field enum untuk klasifikasi.
 * **Pembukaan:** minta jawaban langsung dalam prompt sistem.
 * **Kelanjutan:** pindahkan ke pesan pengguna, misalnya “Your previous response was interrupted and ended with `[previous_response]`. Continue from where you left off.”
 * **Pengingat konteks:** letakkan di giliran pengguna.
 
 ## Pindahkan penggunaan komputer ke toolset
 
-Claude Haiku 4.5 mendukung [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) melalui alat `computer_20250124`, dengan header beta `computer-use-2025-01-24`. Claude Haiku 5.5 mendukung computer use melalui toolset `computer_toolset_20260801`. Permintaan ke Claude Haiku 5.5 yang mendeklarasikan `computer_20250124` akan mengembalikan error 400.
+Claude Haiku 4.5 mendukung [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) melalui alat `computer_20250124`, dengan header beta `computer-use-2025-01-24`. Claude Haiku 5.5 mendukung penggunaan komputer melalui toolset `computer_toolset_20260801`. Permintaan ke Claude Haiku 5.5 yang mendeklarasikan `computer_20250124` akan mengembalikan error 400.
 
 Untuk memindahkan integrasi ke toolset, hapus header beta `computer-use-2025-01-24` dan ganti entri `tools` dengan `{"type": "computer_toolset_20260801"}`. Kemudian lakukan perubahan permintaan dan agent loop lainnya di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Lakukan dispatch berdasarkan `name` dan `toolset_name` dari setiap blok `tool_use` anggota, bukan berdasarkan `input.action`. Tangani setiap blok tersebut dalam satu giliran dan sertakan kembali `toolset_name` pada hasil. Zoom aktif secara default di toolset; jika lingkungan Anda tidak mengimplementasikannya, tambahkan `"configs": {"zoom": {"enabled": false}}`. Jika Anda mengirimkan header beta `fine-grained-tool-streaming-2025-05-14`, hapus header tersebut. Bila digunakan bersama entri toolset, header itu akan mengembalikan error 400.
 
 Di Amazon Bedrock, Claude Haiku 5.5 juga menerima alat `computer_20251124` dengan header beta `computer-use-2025-11-24`.
 
-Claude Haiku 5.5 mendukung [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`) untuk tugas-tugas di dalam halaman web. Claude Haiku 4.5 tidak mendukungnya.
+Claude Haiku 5.5 mendukung [alat penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) (`browser_toolset_20260801`) untuk tugas-tugas di dalam halaman web. Claude Haiku 4.5 tidak mendukungnya.
 
 ## Putar ulang blok pemikiran melalui akun yang menghasilkannya
 
@@ -151,13 +151,13 @@ Blok pemikiran Claude Haiku 5.5 hanya tetap valid selama semua yang dikirim sebe
 
 ## Migrasi ke Claude Haiku 5.5 dari Claude Haiku 3.5 dan model Haiku sebelumnya
 
-Claude Haiku 3.5 telah dipensiunkan di Claude API dan Amazon Bedrock, dan Claude Haiku 3 telah dipensiunkan di Claude API dan Claude Models on Google Cloud (Google managed). Permintaan ke model yang telah dipensiunkan akan gagal. Claude Models on Google Cloud (Google managed) mencantumkan Claude Haiku 3.5 sebagai deprecated dan hanya tersedia untuk pelanggan yang sudah ada. Lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations).
+Claude Haiku 3.5 telah dipensiunkan di Claude API, Amazon Bedrock, dan Claude Models on Google Cloud (Google managed). Claude Haiku 3 telah dipensiunkan di Claude API dan Claude Models on Google Cloud (Google managed). Lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations).
 
 Dari model mana pun di antara keduanya, terapkan terlebih dahulu setiap bagian sebelumnya, lalu perubahan berikut:
 
 * **ID model:** Ganti `claude-3-5-haiku-20241022`, aliasnya `claude-3-5-haiku-latest`, atau `claude-3-haiku-20240307` dengan `claude-haiku-5-5`. Di Claude Models on Google Cloud (Google managed), ganti `claude-3-5-haiku@20241022` dengan `claude-haiku-5-5`. Di Amazon Bedrock, gunakan ID Claude Haiku 5.5 dari [Gunakan ID model Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#use-the-claude-haiku-5-5-model-id).
 * **Eksekusi kode:** Claude Haiku 5.5 menerima `code_execution_20250825` dan versi yang lebih baru. Jika Anda menggunakan `code_execution_20250522` yang hanya mendukung Python, pindah ke salah satunya. Lihat [Upgrade ke versi alat terbaru](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upgrade-to-latest-tool-version).
-* **Text editor:** Jika Anda menggunakan alat text editor, pindah ke `text_editor_20250728` (nama alat `str_replace_based_edit_tool`), yang tidak memiliki perintah `undo_edit`. Lihat [Alat text editor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool).
-* **Stop reason:** Tangani `refusal` dan `model_context_window_exceeded`. Lihat [Menangani stop reason](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons).
+* **Editor teks:** Jika Anda menggunakan alat editor teks, pindah ke `text_editor_20250728` (nama alat `str_replace_based_edit_tool`), yang tidak memiliki perintah `undo_edit`. Lihat [Alat editor teks](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool).
+* **Alasan berhenti:** Tangani `refusal` dan `model_context_window_exceeded`. Lihat [Alasan berhenti dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons).
 * **Baris baru di akhir:** Claude 4.5 dan model yang lebih baru mempertahankan baris baru di akhir (trailing newline) dalam parameter string panggilan alat. Jika kode Anda mencocokkan string tersebut secara persis, perhitungkan keberadaannya.
-* **Prompt:** Claude 4 dan model yang lebih baru memiliki gaya komunikasi yang lebih ringkas dan langsung serta memerlukan arahan yang eksplisit. Tinjau prompt Anda berdasarkan [Prompting Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5) dan [praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
+* **Prompt:** Claude 4 dan model yang lebih baru memiliki gaya komunikasi yang lebih ringkas dan langsung serta memerlukan arahan yang eksplisit. Tinjau prompt Anda berdasarkan [Menulis prompt untuk Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5) dan [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/choosing-an-environment
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 1fe5dd0be1c71987bd752410af2f1d037d32df9fdb3f2bea8c9e94a01468cda6
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 519c05c86b04ffd9021f3b1618974edb594a3b3261d8cf14e53628ce9ff5c505
 ---
 
 ---
@@ -78,7 +78,7 @@ Sandbox yang di-host sendiri cocok ketika agen perlu melakukan salah satu hal be
 
 ## Apa yang tidak diubah oleh sandbox yang di-host sendiri
 
-Dengan opsi mana pun, riwayat percakapan dan hasil alat dikirim ke layanan Managed Agents, yang dioperasikan oleh Anthropic. Begitulah cara model menerima hasil dari setiap panggilan alat. Alat web search dan web fetch juga berjalan di sisi Anthropic, bukan di sandbox. Lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions). Tidak ada opsi yang mengubah cakupan kepatuhan Managed Agents atau berapa lama layanan tersebut menyimpan riwayat percakapan. Lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility).
+Dengan opsi mana pun, riwayat percakapan dan hasil alat dikirim ke layanan Managed Agents, yang dioperasikan oleh Anthropic. Begitulah cara model menerima hasil dari setiap panggilan alat. Alat pencarian web dan web fetch juga berjalan di sisi Anthropic, bukan di sandbox. Lihat [Membatasi domain pencarian web dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions). Tidak ada opsi yang mengubah cakupan kepatuhan Managed Agents atau berapa lama layanan tersebut menyimpan riwayat percakapan. Lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility).
 
 ## Apa yang Anda tanggung dan lepaskan dengan sandbox yang di-host sendiri
 
@@ -97,7 +97,7 @@ Jika Anda menggunakan Claude Managed Agents melalui Claude Platform on AWS, Anth
 
 ## Perbedaan pada Claude Models on Google Cloud (Anthropic managed)
 
-Jika Anda menggunakan Claude Managed Agents melalui Claude Models on Google Cloud (Anthropic managed), Anthropic tetap mengoperasikan layanannya. Di sana, memory store tidak didukung di sandbox yang di-host sendiri, dan tunnel MCP tidak tersedia. Worker melakukan autentikasi dengan kredensial Google Cloud, bukan kunci lingkungan, dan Anda menulis worker Anda sendiri, karena worker bawaan di CLI `ant` serta SDK Python, TypeScript, dan Go tidak berfungsi di sana. Lihat [Dukungan fitur](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#feature-support) dalam panduan Claude Models on Google Cloud (Anthropic managed).
+Jika Anda menggunakan Claude Managed Agents melalui Claude Models on Google Cloud (Anthropic managed), Anthropic tetap mengoperasikan layanannya. Di sana, memory store tidak tersedia di sandbox yang di-host sendiri, dan tunnel MCP tidak tersedia. Worker melakukan autentikasi dengan kredensial Google Cloud, bukan kunci lingkungan. Anda menulis worker Anda sendiri, karena worker bawaan di CLI `ant` serta SDK Python, TypeScript, dan Go tidak berfungsi di sana. Lihat [Dukungan fitur](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#feature-support) dalam panduan Claude Models on Google Cloud (Anthropic managed).
 
 ## Beralih dari lingkungan cloud ke sandbox yang di-host sendiri
 
@@ -109,4 +109,4 @@ Untuk beralih ke sandbox yang di-host sendiri, Anda mempertahankan agen, membuat
 
 Di Claude Platform on AWS, memory store tidak terbawa ke sandbox yang di-host sendiri, dan worker tidak menggunakan kunci lingkungan. Lihat [Perbedaan pada Claude Platform on AWS](https://platform.claude.com/docs/id/managed-agents/choosing-an-environment#differences-on-claude-platform-on-aws).
 
-Di Claude Models on Google Cloud (Anthropic managed), memory store tidak didukung di sandbox yang di-host sendiri, dan Anda menulis worker Anda sendiri, yang tidak menggunakan kunci lingkungan. Lihat [Perbedaan pada Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/managed-agents/choosing-an-environment#differences-on-claude-models-on-google-cloud-anthropic-managed).
+Di Claude Models on Google Cloud (Anthropic managed), memory store tidak tersedia di sandbox yang di-host sendiri, dan Anda menulis worker Anda sendiri, yang tidak menggunakan kunci lingkungan. Lihat [Perbedaan pada Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/managed-agents/choosing-an-environment#differences-on-claude-models-on-google-cloud-anthropic-managed).

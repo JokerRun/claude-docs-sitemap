@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 82f2d68c8b9d4f8c2bbf0da001f683d0d1e3873f09280c5f2b32b00e316a1a2d
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 400537c67fcfad18e22658a1cec72bf97414ebd2e986e967b2b55537fa7448be
 ---
 
 ---
@@ -210,7 +210,7 @@ List Session Resources
 
           Full commit SHA to check out.
 
-          minLength: 7, maxLength: 64
+          minLength: 7, maxLength: 64, pattern: ^[0-9a-fA-F]+$
 
   - `BetaManagedAgentsFileResource object`
 
@@ -243,6 +243,8 @@ List Session Resources
     - `memory_store_id: string`
 
       The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      pattern: ^memstore_[a-zA-Z0-9_]+$
 
     - `access: optional "read_write" or "read_only" or null`
 

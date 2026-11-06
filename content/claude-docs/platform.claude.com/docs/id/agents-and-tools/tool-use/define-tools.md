@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 08b2103d6cf4a67cee076fa111087e3ae16a9ffcca67feba2dc4b8a725aab1b5
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 9d84bb459b8a172c78b122f461e0b79cafe8678bc752fc292656f05686c57942
 ---
 
 ---
@@ -50,12 +50,12 @@ featureMetadata:
 * Kunci API Claude dan pengaturan SDK atau cURL yang berfungsi
 
 <Tip>
-  Jika menggunakan Claude dengan penggunaan alat dan thinking, lihat [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) untuk informasi lebih lanjut.
+  Jika menggunakan Claude dengan penggunaan alat dan thinking, lihat [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking) untuk informasi lebih lanjut.
 </Tip>
 
 ## Menentukan alat klien
 
-“Client tools” (alat klien) ditentukan dalam parameter tingkat atas `tools` pada permintaan API. Alat klien berskema Anthropic, seperti alat bash dan editor teks, dideklarasikan dengan `type` berversi tanggal; lihat halaman masing-masing alat, yang ditautkan dari [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference), untuk field yang diterimanya. Alat computer use dan browser use adalah [toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets): satu entri tanpa `name` yang mendeklarasikan sekumpulan alat anggota yang tetap. Definisi alat yang ditentukan pengguna mencakup:
+“Client tools” (alat klien) ditentukan dalam parameter tingkat atas `tools` pada permintaan API. Alat klien berskema Anthropic, seperti alat bash dan editor teks, dideklarasikan dengan `type` berversi tanggal; lihat halaman masing-masing alat, yang ditautkan dari [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference), untuk field yang diterimanya. Alat penggunaan komputer dan penggunaan browser adalah [toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets): satu entri tanpa `name` yang mendeklarasikan sekumpulan alat anggota yang tetap. Definisi alat yang ditentukan pengguna mencakup:
 
 | Parameter        | Deskripsi                                                                                                                                                                                                                                           |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -583,7 +583,7 @@ Contoh disertakan dalam prompt bersama skema alat Anda, menunjukkan kepada Claud
 ### Persyaratan dan batasan
 
 * **Validasi skema** - Setiap contoh harus valid menurut `input_schema` alat. Contoh yang tidak valid mengembalikan error 400.
-* **Tidak didukung untuk alat sisi server atau toolset klien** - Contoh input berfungsi pada alat klien yang ditentukan pengguna dan alat klien dengan skema Anthropic selain toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool), tetapi tidak pada alat server seperti web search atau code execution.
+* **Tidak didukung untuk alat sisi server atau toolset klien** - Contoh input berfungsi pada alat klien yang ditentukan pengguna dan alat klien dengan skema Anthropic selain toolset [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool), tetapi tidak pada alat server seperti pencarian web atau eksekusi kode.
 * **Biaya token** - Contoh menambah token prompt: \~20–50 token untuk contoh sederhana, \~100–200 token untuk objek bersarang yang kompleks.
 
 ## Mengendalikan output Claude
@@ -596,8 +596,8 @@ Tidak semua model dan pengaturan mendukung penggunaan alat yang dipaksakan. Jika
 
 | Model atau pengaturan                                                                                                                         | Batasan                                                                                                                  | Alternatif yang dapat digunakan                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [Pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) manual (`thinking: {type: "enabled"}`)      | `any` dan `tool` tidak didukung dan menghasilkan error                                                                   | `auto` atau `none`. [Adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) sendiri tidak memblokir penggunaan alat paksa (model dengan thinking aktif secara default, seperti Claude Opus 5 dan Claude Haiku 5.5, menerimanya, tetapi panggilan yang dipaksakan melewati thinking: respons dimulai dengan panggilan alat dan tidak memiliki blok `thinking`); model di baris berikutnya menolak penggunaan alat paksa terlepas dari pengaturan thinking |
-| Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) | `any` dan `tool` mengembalikan [error 400](https://platform.claude.com/docs/id/api/errors#forced-tool-use-not-supported) | `auto` dengan [penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) untuk menjamin input alat yang valid sesuai skema, atau [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) ketika Anda membutuhkan respons dalam bentuk JSON yang tetap. Prompting tetap memengaruhi alat mana yang dipilih oleh `auto`. `none` juga didukung                                                       |
+| [Pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) manual (`thinking: {type: "enabled"}`)      | `any` dan `tool` tidak didukung dan menghasilkan error                                                                   | `auto` atau `none`. [Pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) sendiri tidak memblokir penggunaan alat paksa (model dengan thinking aktif secara default, seperti Claude Opus 5 dan Claude Haiku 5.5, menerimanya, tetapi panggilan yang dipaksakan melewati thinking: respons dimulai dengan panggilan alat dan tidak memiliki blok `thinking`); model di baris berikutnya menolak penggunaan alat paksa terlepas dari pengaturan thinking |
+| Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) | `any` dan `tool` mengembalikan [error 400](https://platform.claude.com/docs/id/api/errors#forced-tool-use-not-supported) | `auto` dengan [penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) untuk menjamin input alat yang valid sesuai skema, atau [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) ketika Anda membutuhkan respons dalam bentuk JSON yang tetap. Prompting tetap memengaruhi alat mana yang dipilih oleh `auto`. `none` juga didukung                                                       |
 
 Pada model yang mendukungnya, baris yang disorot adalah satu-satunya perbedaan dari permintaan penggunaan alat standar:
 

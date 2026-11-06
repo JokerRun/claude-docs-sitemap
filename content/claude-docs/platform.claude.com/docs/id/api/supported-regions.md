@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/supported-regions
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: a2fd63ce2c57508e59745929c229887617787e0ce9484799d4a40ccc959090a6
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 6b869e55405bb153e887f3b512e4843bd97d05c8506895cfba5b5a8a55e449dd
 ---
 
 ---
@@ -37,7 +37,7 @@ description: "Berikut adalah negara, wilayah, dan teritori tempat Anthropic dapa
 * Bulgaria
 * Burkina Faso
 * Burundi
-* Cabo Verde
+* Tanjung Verde
 * Kamboja
 * Kamerun
 * Kanada
@@ -47,7 +47,7 @@ description: "Berikut adalah negara, wilayah, dan teritori tempat Anthropic dapa
 * Komoro
 * Kongo, Republik
 * Kosta Rika
-* Côte d’Ivoire
+* Pantai Gading
 * Kroasia
 * Siprus
 * Ceko (Republik Ceko)
@@ -153,7 +153,7 @@ description: "Berikut adalah negara, wilayah, dan teritori tempat Anthropic dapa
 * Seychelles
 * Sierra Leone
 * Singapura
-* Slovakia
+* Slowakia
 * Slovenia
 * Kepulauan Solomon
 * Afrika Selatan

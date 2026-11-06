@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/migration-2026-10-21
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 6db47f9181f4a987e21d927f14604e241095766d13ba431159a550d5484da801
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 1ba92baeb922a87f4721c76869bf151b4318dd89de0d66ff2d44f891b48c92f3
 ---
 
 ---
@@ -871,7 +871,7 @@ Authorization: Bearer <key>
   <Tab title="Ruby">
     `Authorization` is the header `auth_token:` already uses.
 
-    This applies to the `api_key:` argument and the `ANTHROPIC_API_KEY` environment variable of `Anthropic::Client`, and to `api_key:` and `ANTHROPIC_AWS_API_KEY` of `Anthropic::AWSClient`. `Anthropic::BedrockMantleClient` already sent a bearer token.
+    This applies to the `api_key:` argument and the `ANTHROPIC_API_KEY` environment variable of `Anthropic::Client`, and to `api_key:` and `ANTHROPIC_AWS_API_KEY` of `Anthropic::AWSClient`. `Anthropic::FoundryClient` sends its key as `x-api-key`, and `Anthropic::BedrockMantleClient` already sent a bearer token.
 
     The SDK drops `Authorization` when it follows a redirect to another origin, which includes a redirect from `http` to `https` on the same host. The key is now dropped there too.
   </Tab>

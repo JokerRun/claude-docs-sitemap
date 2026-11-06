@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-threshold
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 1c699b87c5711d0ea02bab15d097bfbd70a88f4940b913af189410a0f4ddc4ab
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: cb37b8f02912df2f28e30898d42279988557efc749f727b5546e9f4b3ddc88d2
 ---
 
 ---
@@ -49,7 +49,7 @@ featureMetadata:
 Compaction memperluas panjang konteks efektif untuk percakapan dan tugas yang berjalan lama dengan meringkas konteks lama secara otomatis saat mendekati batas “context window” (jendela konteks). Compaction juga menjaga konteks aktif tetap kecil: seiring percakapan bertambah panjang, kualitas respons menurun, sehingga compaction menggantikan konten lama dengan ringkasan yang padat.
 
 <Tip>
-  Untuk penjelasan lebih mendalam tentang mengapa konteks panjang menurunkan kualitas dan bagaimana compaction membantu, lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
+  Untuk penjelasan lebih mendalam tentang mengapa konteks panjang menurunkan kualitas dan bagaimana compaction membantu, lihat [Rekayasa konteks yang efektif](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
 </Tip>
 
 Ini ideal untuk:
@@ -745,7 +745,7 @@ Pada model Claude 5.1 dan yang lebih baru, permintaan dengan `instructions` kust
 
 Gunakan `pause_after_compaction` untuk menghentikan sejenak API setelah menghasilkan ringkasan compaction. Ini memungkinkan Anda menambahkan blok konten tambahan (seperti mempertahankan pesan terbaru atau pesan berorientasi instruksi tertentu) sebelum API melanjutkan respons.
 
-Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setelah menghasilkan blok compaction:
+Ketika diaktifkan, API mengembalikan pesan dengan alasan berhenti `compaction` setelah menghasilkan blok compaction:
 
 <CodeGroup>
   ```bash cURL
@@ -1081,7 +1081,7 @@ Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setel
   ```
 </CodeGroup>
 
-API berhenti sejenak bahkan jika tidak ada ringkasan yang dihasilkan. `content` dari blok `compaction` kemudian bernilai `null`, jadi pertahankan pesan asli saat Anda melanjutkan. Jika perlindungan memblokir ringkasan, `content` juga bernilai `null` dan stop reason-nya adalah `refusal`, bukan `compaction`. [`stop_details`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#refusal) memberikan kategori kebijakan, jika ada. Lanjutkan dengan cara yang sama dalam kedua kasus: cari blok `compaction` alih-alih memeriksa `stop_reason`, seperti yang dilakukan oleh [contoh yang mempertahankan pesan terbaru](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold#examples).
+API berhenti sejenak bahkan jika tidak ada ringkasan yang dihasilkan. `content` dari blok `compaction` kemudian bernilai `null`, jadi pertahankan pesan asli saat Anda melanjutkan. Jika perlindungan memblokir ringkasan, `content` juga bernilai `null` dan alasan berhentinya adalah `refusal`, bukan `compaction`. [`stop_details`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#refusal) memberikan kategori kebijakan, jika ada. Lanjutkan dengan cara yang sama dalam kedua kasus: cari blok `compaction` alih-alih memeriksa `stop_reason`, seperti yang dilakukan oleh [contoh yang mempertahankan pesan terbaru](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold#examples).
 
 #### Menerapkan anggaran token total
 
@@ -2306,7 +2306,7 @@ Array `iterations` menunjukkan penggunaan untuk setiap iterasi sampling. Ketika 
 
 ### Alat server
 
-Saat menggunakan server tools (seperti pencarian web), pemicu compaction diperiksa di awal setiap iterasi sampling. Compaction dapat terjadi beberapa kali dalam satu permintaan, tergantung pada ambang batas pemicu Anda dan jumlah output yang dihasilkan.
+Saat menggunakan alat server (seperti pencarian web), pemicu compaction diperiksa di awal setiap iterasi sampling. Compaction dapat terjadi beberapa kali dalam satu permintaan, tergantung pada ambang batas pemicu Anda dan jumlah output yang dihasilkan.
 
 ### Penghitungan token
 
@@ -2822,7 +2822,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
           },
       )
 
-      # Cari blok compaction, bukan stop reason:
+      # Cari blok compaction, bukan alasan berhenti:
       # stop_reason bernilai "refusal", bukan "compaction", jika ringkasan diblokir
       compaction_block = next(
           (block for block in response.content if block.type == "compaction"), None
@@ -2831,8 +2831,8 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
       # Ganti riwayat hanya jika ringkasan telah dihasilkan
       if compaction_block is not None and compaction_block.content is not None:
           # Pertahankan pertukaran sebelumnya + pesan pengguna saat ini (3 pesan)
-          # dengan menyertakannya setelah blok compaction, tanpa blok thinking
-          # ; giliran asisten yang tidak tersisa kontennya akan dibuang
+          # dengan menyertakannya setelah blok compaction, tanpa blok thinking;
+          # giliran asisten yang tidak tersisa kontennya akan dibuang
           preserved_messages = [
               {
                   **message,
@@ -2906,7 +2906,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
       }
     });
 
-    // Cari blok compaction, bukan stop reason:
+    // Cari blok compaction, bukan alasan berhenti:
     // stop_reason bernilai "refusal", bukan "compaction", jika ringkasan diblokir
     const compactionBlock = response.content.find((block) => block.type === "compaction");
 
@@ -2995,7 +2995,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
           }
       });
 
-      // Cari blok compaction, bukan stop reason:
+      // Cari blok compaction, bukan alasan berhenti:
       // StopReason bernilai Refusal, bukan Compaction, jika ringkasan diblokir
       var compactionBlock = response.Content.FirstOrDefault(block => block.Value is BetaCompactionBlock);
 
@@ -3104,7 +3104,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   		log.Fatal(err)
   	}
 
-  	// Cari blok compaction, bukan stop reason:
+  	// Cari blok compaction, bukan alasan berhenti:
   	// StopReason bernilai "refusal", bukan "compaction", jika ringkasan diblokir
   	compactionIndex := slices.IndexFunc(response.Content, func(block anthropic.BetaContentBlockUnion) bool {
   		return block.Type == "compaction"
@@ -3205,7 +3205,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
 
           BetaMessage response = client.beta().messages().create(params);
 
-          // Cari blok compaction, bukan stop reason:
+          // Cari blok compaction, bukan alasan berhenti:
           // stopReason() bernilai REFUSAL, bukan COMPACTION, jika ringkasan diblokir
           var compactionBlock = response.content().stream()
               .flatMap(block -> block.compaction().stream())
@@ -3295,7 +3295,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
           ]
       );
 
-      // Cari blok compaction, bukan stop reason:
+      // Cari blok compaction, bukan alasan berhenti:
       // stopReason bernilai 'refusal', bukan 'compaction', jika ringkasan diblokir
       $compactionBlock = null;
       foreach ($response->content as $block) {
@@ -3378,7 +3378,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
       }
     )
 
-    # Cari blok compaction, bukan stop reason:
+    # Cari blok compaction, bukan alasan berhenti:
     # stop_reason bernilai :refusal, bukan :compaction, jika ringkasan diblokir
     compaction_block = response.content.find { |block| block.type == :compaction }
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/update
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 4c16c698f1b71f5e74936f6fd1b7b34d3b1e8e79f0f87bef22a55df0797aeae9
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 0002fd94accc90ca30c397e75233edcdf2df267e3b4b1191ff0d31b91330f0ad
 ---
 
 ---
@@ -174,7 +174,7 @@ Update Agent
 
       The IAM role's ARN, e.g. "arn:aws:iam::123456789012:role/my-agent-runner". Maximum 2048 characters.
 
-      maxLength: 2048
+      maxLength: 2048, pattern: ^arn:aws(-[a-z]+)*:iam::[0-9]{12}:role/[\w+=,.@/-]+$
 
   - `BetaManagedAgentsServiceAccountExecutionIdentityParams object`
 
@@ -354,7 +354,7 @@ Update Agent
 
     - `speed: optional "standard" or "fast" or null`
 
-      Inference speed mode. Defaults to `standard`.
+      Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Defaults to `standard`. Not all models support `fast`; invalid combinations are rejected at create time.
 
       - `"standard"`
 
@@ -968,6 +968,8 @@ Update Agent
 
             Two-letter ISO 3166-1 country code, uppercase.
 
+            pattern: ^[A-Z]{2}$
+
           - `region: optional string or null`
 
             Region or state name.
@@ -1096,7 +1098,7 @@ Update Agent
 
       Unique name for the tool. 1-128 characters; letters, digits, underscores, and hyphens.
 
-      minLength: 1, maxLength: 128
+      minLength: 1, maxLength: 128, pattern: ^[a-zA-Z0-9_-]{1,128}$
 
 - `version: optional number`
 
@@ -1775,6 +1777,8 @@ Update Agent
             - `country: optional string or null`
 
               Two-letter ISO 3166-1 country code, uppercase.
+
+              pattern: ^[A-Z]{2}$
 
             - `region: optional string or null`
 

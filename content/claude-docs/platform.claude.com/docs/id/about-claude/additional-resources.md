@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/additional-resources
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: b3a7e5963de185afc09c2f769851969631c7c714f320ee08931d84b3f69ae25f
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 3253339cb125ed06b5dc4f03efd6c5fd363f75cb463a62c8942821eef6ea10be
 ---
 
 ---
@@ -14,7 +14,7 @@ description: Sumber daya pembelajaran dan format dokumentasi yang dioptimalkan u
 ## Sumber daya pembelajaran
 
 <CardGroup cols={3}>
-  <Card title="Quickstart" icon="lightning" href="https://github.com/anthropics/anthropic-quickstarts">
+  <Card title="Quickstart" icon="lightning" href="https://github.com/anthropics/claude-quickstarts">
     Aplikasi siap deploy yang dibangun dengan API.
   </Card>
 

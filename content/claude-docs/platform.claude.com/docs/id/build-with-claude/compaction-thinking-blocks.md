@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 6bc9aa9380741cb9b8ad458660be2e72f98056d3d924c28e8298e62c7b334f87
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 77787dbdbb9333489ba06b1a23d2253a6befedaf452eda6b9c838c81f86dfea8
 ---
 
 ---
@@ -75,7 +75,7 @@ Respons compaction tidak menyatakan apakah thinking yang dipertahankan tetap val
 3. Kirim permintaan berikutnya, dengan blok terlebih dahulu, lalu giliran yang dipertahankan, lalu pesan `user` baru, dan dengan `thinking.block_binding.prefix_mismatch_behavior` ditetapkan ke `"error"`.
 4. Baca hasilnya. Respons 200 yang array `input_transformations`-nya kosong berarti tidak ada blok thinking yang gagal dalam pemeriksaan atau dibuang. Error 400 yang menyatakan bahwa blok terikat pada percakapan yang berbeda berarti ada yang gagal. Pesan tersebut dimulai dengan path dari blok pertama yang gagal, dan [Apa yang dilakukan API dengan blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior) menampilkannya secara lengkap.
 
-Field `prefix_mismatch_behavior` memerlukan beta header `thinking-binding-controls-2026-08-01` selain [beta header `compact-2026-09-04`](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#request-a-summary). Nilai yang ditetapkan oleh sebuah permintaan berlaku di akun mana pun.
+Field `prefix_mismatch_behavior` memerlukan header beta `thinking-binding-controls-2026-08-01` selain [header beta `compact-2026-09-04`](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#request-a-summary). Nilai yang ditetapkan oleh sebuah permintaan berlaku di akun mana pun.
 
 Program berikut menjalankan keempat langkah tersebut. Program ini mencetak berapa banyak blok thinking yang ada dalam giliran yang dipertahankan dan berapa banyak entri yang dimiliki `input_transformations`; tidak adanya entri berarti thinking yang dipertahankan tetap valid:
 

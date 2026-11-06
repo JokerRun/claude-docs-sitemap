@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/overview
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 5efb1b898c62c5894a0b3554bd4dbb49b74732edf382b37a62d1cbcbbed6db57
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 44eeacf06cf16a7daac546ed810247dd4d4bd74792d3ab0fe85eccc3f1363cbf
 ---
 
 ---
@@ -21,7 +21,7 @@ Claude API adalah RESTful API di `https://api.anthropic.com` yang menyediakan ak
 
 Untuk menggunakan Claude API, Anda memerlukan:
 
-* Sebuah [akun Claude Console](https://platform.claude.com)
+* Sebuah [akun Claude Console](https://platform.claude.com/)
 * Sebuah [kunci API](https://platform.claude.com/settings/keys) dari Console, atau aturan [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation) yang telah dikonfigurasi
 
 Untuk instruksi penyiapan langkah demi langkah, lihat [Memulai](https://platform.claude.com/docs/id/get-started).
@@ -30,32 +30,32 @@ Untuk instruksi penyiapan langkah demi langkah, lihat [Memulai](https://platform
 
 Claude API mencakup API berikut:
 
-* **[Messages API](https://platform.claude.com/docs/id/api/messages/create)**: Kirim pesan ke Claude untuk interaksi percakapan (`POST /v1/messages`)
-* **[Message Batches API](https://platform.claude.com/docs/id/api/messages/batches/create)**: Proses volume besar permintaan Messages secara asinkron dengan pengurangan biaya 50% (`POST /v1/messages/batches`)
-* **[Token Counting API](https://platform.claude.com/docs/id/api/messages/count_tokens)**: Hitung token dalam sebuah pesan sebelum mengirim untuk mengelola biaya dan batas laju (`POST /v1/messages/count_tokens`)
-* **[Models API](https://platform.claude.com/docs/id/api/models/list)**: Daftar model Claude yang tersedia dan detailnya (`GET /v1/models`)
-* **[Files API](https://platform.claude.com/docs/id/api/files/upload)**: Unggah dan kelola file untuk digunakan di beberapa panggilan API (`POST /v1/files`, `GET /v1/files`)
-* **[Skills API](https://platform.claude.com/docs/id/api/skills/create)**: Buat dan kelola keterampilan agen kustom (`POST /v1/skills`, `GET /v1/skills`)
+* **[Messages API](https://platform.claude.com/docs/id/api/messages/create):** Kirim pesan ke Claude untuk interaksi percakapan (`POST /v1/messages`)
+* **[Message Batches API](https://platform.claude.com/docs/id/api/messages/batches/create):** Proses permintaan Messages dalam volume besar secara asinkron dengan pengurangan biaya 50 persen (`POST /v1/messages/batches`)
+* **[Token Counting API](https://platform.claude.com/docs/id/api/messages/count_tokens):** Hitung token dalam pesan sebelum mengirimnya untuk mengelola biaya dan batas laju (`POST /v1/messages/count_tokens`)
+* **[Models API](https://platform.claude.com/docs/id/api/models/list):** Tampilkan daftar model Claude yang tersedia beserta detailnya (`GET /v1/models`)
+* **[Files API](https://platform.claude.com/docs/id/api/files/upload):** Unggah dan kelola file untuk digunakan di beberapa panggilan API (`POST /v1/files`, `GET /v1/files`)
+* **[Skills API](https://platform.claude.com/docs/id/api/skills/create):** Buat dan kelola skill agen kustom (`POST /v1/skills`, `GET /v1/skills`)
 
 API berikut berada dalam tahap beta:
 
-* **[Agents API](https://platform.claude.com/docs/id/managed-agents/agent-setup)**: Definisikan konfigurasi agen yang dapat digunakan kembali dan berversi untuk Claude Managed Agents (`POST /v1/agents`, `GET /v1/agents`)
-* **[Sessions API](https://platform.claude.com/docs/id/managed-agents/sessions)**: Jalankan sesi agen stateful dalam sandbox cloud terkelola (`POST /v1/sessions`, `GET /v1/sessions/{id}/events/stream`)
-* **[Environments API](https://platform.claude.com/docs/id/managed-agents/environments)**: Konfigurasikan template sandbox untuk sesi agen (`POST /v1/environments`, `GET /v1/environments`)
+* **[Agents API](https://platform.claude.com/docs/id/managed-agents/agent-setup):** Tentukan konfigurasi agen yang dapat digunakan kembali dan berversi untuk Claude Managed Agents (`POST /v1/agents`, `GET /v1/agents`)
+* **[Sessions API](https://platform.claude.com/docs/id/managed-agents/sessions):** Jalankan sesi agen stateful di sandbox cloud terkelola (`POST /v1/sessions`, `GET /v1/sessions/{id}/events/stream`)
+* **[Environments API](https://platform.claude.com/docs/id/managed-agents/environments):** Konfigurasikan template sandbox untuk sesi agen (`POST /v1/environments`, `GET /v1/environments`)
 
-Untuk referensi API lengkap dengan semua endpoint, parameter, dan skema respons, jelajahi halaman referensi API yang tercantum dalam navigasi. Untuk mengakses fitur beta, lihat [Beta headers](https://platform.claude.com/docs/id/api/beta-headers).
+Untuk referensi API lengkap dengan semua endpoint, parameter, dan skema respons, jelajahi halaman referensi API yang tercantum dalam navigasi. Untuk mengakses fitur beta, lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers).
 
 ## Autentikasi
 
 Untuk detail tentang setiap metode autentikasi dan kapan menggunakannya, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Permintaan ke Claude API menyertakan header berikut:
 
-| Header                   | Nilai                                                                                                                                                                                                                                                                    | Wajib                                                                                                                                                                                                                                                                                          |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Authorization`          | `Bearer <token>`, di mana `<token>` adalah kunci API Anda atau token akses berumur pendek yang diperoleh dari `POST /v1/oauth/token` melalui [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation)              | Ya, kecuali `x-api-key` diatur                                                                                                                                                                                                                                                                 |
-| `x-api-key`              | Kunci API Anda dari Console. Fallback lama untuk `Authorization`, masih didukung                                                                                                                                                                                         | Tidak                                                                                                                                                                                                                                                                                          |
-| `anthropic-workspace-id` | ID [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) tempat permintaan dijalankan (misalnya, `wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ`). Lihat [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace). | Wajib dengan kunci API multi-workspace. Opsional untuk kunci API lainnya. Kunci yang dibuat untuk satu workspace berjalan di workspace tersebut ketika Anda menghilangkan header ini. Tidak digunakan dengan token Workload Identity Federation, yang memilih workspace saat pertukaran token. |
-| `anthropic-version`      | Versi API (misalnya, `2026-10-21`)                                                                                                                                                                                                                                       | Ya                                                                                                                                                                                                                                                                                             |
-| `content-type`           | `application/json`                                                                                                                                                                                                                                                       | Ya                                                                                                                                                                                                                                                                                             |
+| Header                   | Nilai                                                                                                                                                                                                                                                                    | Wajib                                                                                                                                                                                                                                                                                                             |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Authorization`          | `Bearer <token>`, di mana `<token>` adalah kunci API Anda atau token akses berumur pendek yang diperoleh dari `POST /v1/oauth/token` melalui [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation)              | Ya, kecuali `x-api-key` diatur                                                                                                                                                                                                                                                                                    |
+| `x-api-key`              | Kunci API Anda dari Console. Fallback lama untuk `Authorization`, masih didukung                                                                                                                                                                                         | Tidak                                                                                                                                                                                                                                                                                                             |
+| `anthropic-workspace-id` | ID [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) tempat permintaan dijalankan (misalnya, `wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ`). Lihat [Memilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace). | Wajib dengan kunci API yang tidak dibatasi pada workspace. Opsional untuk kunci API lainnya. Kunci yang dibuat untuk satu workspace berjalan di workspace tersebut ketika Anda menghilangkan header ini. Tidak digunakan dengan token Workload Identity Federation, yang memilih workspace saat pertukaran token. |
+| `anthropic-version`      | Versi API (misalnya, `2026-10-21`)                                                                                                                                                                                                                                       | Ya                                                                                                                                                                                                                                                                                                                |
+| `content-type`           | `application/json`                                                                                                                                                                                                                                                       | Ya                                                                                                                                                                                                                                                                                                                |
 
 Jika Anda menggunakan [SDK Klien](https://platform.claude.com/docs/id/api/overview#client-sdks), SDK mengirim header autentikasi, versi, dan content-type secara otomatis; Anda meneruskan `anthropic-workspace-id` sendiri ketika kunci Anda memerlukannya. Untuk detail versi API, lihat [Versi API](https://platform.claude.com/docs/id/api/versioning).
 
@@ -63,7 +63,7 @@ Saat mengakses Claude melalui [platform cloud](https://platform.claude.com/docs/
 
 ### Mendapatkan kunci API
 
-API tersedia melalui [Console](https://platform.claude.com/) web. Di Console, Anda dapat menggunakan [playground](https://platform.claude.com/playground) (`platform.claude.com/playground`) untuk mencoba API di browser lalu membuat kunci API di halaman [Kunci API](https://platform.claude.com/settings/keys) (`platform.claude.com/settings/keys`). Untuk mempelajari caranya, lihat [Dapatkan kunci API Claude Anda](https://platform.claude.com/docs/id/get-api-key). Anda memilih jenis setiap kunci (lihat [Jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types)) dan [kedaluwarsanya](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration) saat Anda membuatnya. Gunakan [workspace](https://platform.claude.com/settings/workspaces) di Console untuk memisahkan lingkungan dan [mengontrol pengeluaran](https://platform.claude.com/docs/id/api/rate-limits) berdasarkan kasus penggunaan.
+API tersedia melalui [Console](https://platform.claude.com/) web. Di Console, Anda dapat menggunakan [Playground](https://platform.claude.com/playground) (`platform.claude.com/playground`) untuk mencoba API di browser lalu membuat kunci API di halaman [Kunci API](https://platform.claude.com/settings/keys) (`platform.claude.com/settings/keys`). Untuk mempelajari caranya, lihat [Dapatkan kunci API Claude Anda](https://platform.claude.com/docs/id/get-api-key). Anda memilih jenis setiap kunci (lihat [Jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types)) dan [kedaluwarsanya](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration) saat Anda membuatnya. Gunakan [workspace](https://platform.claude.com/settings/workspaces) di Console untuk memisahkan lingkungan dan [mengontrol pengeluaran](https://platform.claude.com/docs/id/api/rate-limits) berdasarkan kasus penggunaan.
 
 ## SDK Klien
 
@@ -77,9 +77,9 @@ Anthropic menyediakan SDK resmi yang menyederhanakan integrasi API dengan menang
 * Dukungan streaming
 * Timeout permintaan dan manajemen koneksi
 
-Untuk daftar SDK klien, lihat [SDK Klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview).
+Untuk daftar SDK klien, lihat [SDK, CLI, dan library](https://platform.claude.com/docs/id/cli-sdks-libraries/overview).
 
-## Claude API vs platform cloud
+## Claude API dibandingkan platform cloud
 
 Claude tersedia melalui Claude API pihak pertama dan melalui platform cloud. Pilih berdasarkan infrastruktur, ketersediaan fitur, persyaratan kepatuhan, dan preferensi harga Anda.
 
@@ -115,17 +115,17 @@ Akses Claude melalui AWS, Google Cloud, atau Microsoft Azure:
 
 Claude API pihak pertama menerapkan batas ukuran permintaan berikut:
 
-| Endpoint                                                                                      | Ukuran permintaan maksimum |
-| --------------------------------------------------------------------------------------------- | -------------------------- |
-| Messages, Token Counting                                                                      | 128 MB                     |
-| [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing) | 256 MB                     |
-| [Files API](https://platform.claude.com/docs/id/build-with-claude/files)                      | 500 MB                     |
-| Sessions, Agents, Environments                                                                | 32 MB                      |
+| Endpoint                                                                                                               | Ukuran permintaan maksimum |
+| ---------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| Pesan, Penghitungan token                                                                                              | 128 MB                     |
+| Message Batches API (lihat [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing)) | 256 MB                     |
+| [Files API](https://platform.claude.com/docs/id/build-with-claude/files)                                               | 500 MB                     |
+| Sesi, Agen, Lingkungan                                                                                                 | 32 MB                      |
 
 Jika Anda melampaui batas ini, Anda akan menerima kesalahan 413 `request_too_large`.
 
 <Note>
-  Platform yang dioperasikan mitra memiliki batas ukuran permintaan mereka sendiri: Bedrock membatasi permintaan hingga 20 MB, dan Claude Models on Google Cloud (Google managed) membatasi permintaan hingga 30 MB. Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), dan Microsoft Foundry mendukung permintaan Messages dan Token Counting hingga 32 MB. Konsultasikan dokumentasi platform Anda untuk nilai saat ini.
+  Platform yang dioperasikan mitra memiliki batas ukuran permintaan sendiri: Bedrock membatasi permintaan hingga 20 MB, dan Claude Models on Google Cloud (Google managed) membatasi permintaan hingga 30 MB. Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), dan Microsoft Foundry mendukung permintaan Messages dan Token Counting hingga 32 MB. Periksa dokumentasi platform Anda untuk nilai terkini.
 </Note>
 
 ### Header respons
@@ -134,14 +134,14 @@ Claude API menyertakan header berikut dalam responsnya:
 
 | Header                      | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `request-id`                | Pengidentifikasi unik global untuk permintaan, seperti `req_018EeWyXxfu5pfWkrYcMdjWG`. Sertakan saat Anda menghubungi dukungan tentang permintaan tertentu. Lihat [Request ID](https://platform.claude.com/docs/id/api/errors#request-id).                                                                                                                                                                                                                                                                                                                                              |
+| `request-id`                | Pengidentifikasi unik global untuk permintaan, seperti `req_018EeWyXxfu5pfWkrYcMdjWG`. Sertakan saat Anda menghubungi dukungan tentang permintaan tertentu. Lihat [ID permintaan](https://platform.claude.com/docs/id/api/errors#request-id).                                                                                                                                                                                                                                                                                                                                           |
 | `anthropic-organization-id` | ID organisasi tempat kunci API atau token akses yang digunakan dalam permintaan tersebut berada.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| `anthropic-workspace-id`    | ID berawalan `wrkspc_` dari [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) yang diselesaikan oleh kunci API atau token akses, seperti `wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ`, termasuk ketika itu adalah Default Workspace organisasi Anda. Tidak ada ketika kredensial tidak diselesaikan ke workspace (misalnya, pada permintaan Admin API) atau permintaan gagal sebelum autentikasi selesai. Lihat [Identifikasi workspace di balik respons API](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response). |
+| `anthropic-workspace-id`    | ID berawalan `wrkspc_` dari [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) yang diselesaikan oleh kunci API atau token akses, seperti `wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ`, termasuk ketika itu adalah workspace default organisasi Anda. Tidak ada ketika kredensial tidak diselesaikan ke workspace (misalnya, pada permintaan Admin API) atau permintaan gagal sebelum autentikasi selesai. Lihat [Identifikasi workspace di balik respons API](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response). |
 
 Untuk header batas laju, lihat [Header respons](https://platform.claude.com/docs/id/api/rate-limits#response-headers) di Batas laju. Untuk contoh yang membaca header respons berdasarkan nama dengan setiap SDK, lihat [Identifikasi workspace di balik respons API](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response).
 
 <Note>
-  Claude Platform on AWS menambahkan ID permintaan AWS (`x-amzn-requestid`) di samping header `request-id` standar. Lihat [Request IDs](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#request-ids) untuk pola penanganan ID ganda.
+  Claude Platform on AWS menambahkan ID permintaan AWS (`x-amzn-requestid`) di samping header `request-id` standar. Lihat [ID permintaan](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#request-ids) untuk pola penanganan ID ganda.
 </Note>
 
 ## Paginasi
@@ -158,10 +158,10 @@ Endpoint daftar mengembalikan hasil dalam halaman. Sebagian besar endpoint dafta
 
 Untuk kembali satu halaman, teruskan `prev_page` sebagai parameter `page`. `prev_page` adalah `null` ketika Anda berada di halaman pertama. Tidak semua endpoint daftar mendukung `prev_page`. Hanya `GET /v1/sessions` yang mengembalikan `prev_page`; pada endpoint daftar yang tidak mendukung paginasi mundur, bidang tersebut tidak ada dalam respons alih-alih `null`. Untuk panduan permintaan, lihat [Mendaftar sesi](https://platform.claude.com/docs/id/managed-agents/session-operations#listing-sessions).
 
-SDK menyediakan iterator paginasi otomatis yang mengikuti `next_page` untuk Anda. Misalnya, `for session in client.beta.sessions.list()` (typescript: `for await (const session of client.beta.sessions.list())`; go: `client.Beta.Sessions.ListAutoPaging()`; java: `client.beta().sessions().list().autoPager()`; csharp: `(await client.Beta.Sessions.List()).Paginate()`; php: `$client->beta->sessions->list()->pagingEachItem()`; ruby: `client.beta.sessions.list.auto_paging_each`) menelusuri setiap sesi. Paginasi otomatis SDK hanya bergerak maju; untuk kembali ke halaman sebelumnya, baca `prev_page` dari respons dan teruskan sendiri sebagai parameter `page`. Lihat [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk detailnya.
+SDK menyediakan iterator paginasi otomatis yang mengikuti `next_page` untuk Anda. Misalnya, `for session in client.beta.sessions.list()` (typescript: `for await (const session of client.beta.sessions.list())`; go: `client.Beta.Sessions.ListAutoPaging()`; java: `client.beta().sessions().list().autoPager()`; csharp: `(await client.Beta.Sessions.List()).Paginate()`; php: `$client->beta->sessions->list()->pagingEachItem()`; ruby: `client.beta.sessions.list.auto_paging_each`) menelusuri setiap sesi. Paginasi otomatis SDK hanya bergerak maju; untuk kembali ke halaman sebelumnya, baca `prev_page` dari respons dan teruskan sendiri sebagai parameter `page`. Lihat [SDK, CLI, dan library](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk detailnya.
 
 <Note>
-  Beberapa endpoint daftar menggunakan skema kursor yang berbeda. [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing), [Models API](https://platform.claude.com/docs/id/api/models/list), dan beberapa endpoint [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) mengambil parameter kueri `after_id` dan `before_id` alih-alih `page`. Respons mereka mengembalikan `has_more`, `first_id`, dan `last_id` alih-alih `next_page`. Lihat halaman referensi untuk setiap endpoint untuk bidang paginasi yang tepat.
+  Beberapa endpoint daftar menggunakan skema kursor yang berbeda. Message Batches API (lihat [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing)), [Models API](https://platform.claude.com/docs/id/api/models/list), dan beberapa endpoint [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) menerima parameter kueri `after_id` dan `before_id` alih-alih `page`. Responsnya mengembalikan `has_more`, `first_id`, dan `last_id` alih-alih `next_page`. Lihat halaman referensi setiap endpoint untuk field paginasi yang tepat.
 </Note>
 
 ## Batas laju dan ketersediaan
@@ -170,10 +170,10 @@ SDK menyediakan iterator paginasi otomatis yang mengikuti `next_page` untuk Anda
 
 API menerapkan batas laju dan batas pengeluaran untuk mencegah penyalahgunaan dan mengelola kapasitas. Batas diatur ke dalam tingkatan penggunaan; organisasi Anda ditempatkan pada tingkatan secara otomatis dan dapat berpindah ke tingkatan yang lebih tinggi seiring waktu. Setiap tingkatan memiliki:
 
-* **Batas pengeluaran**: Biaya bulanan maksimum untuk penggunaan API
-* **Batas laju**: Jumlah maksimum permintaan per menit (RPM) dan token per menit (TPM)
+* **Batas pengeluaran:** Biaya bulanan maksimum untuk penggunaan API
+* **Batas laju:** Jumlah maksimum permintaan per menit (RPM) dan token per menit (TPM)
 
-Di Console, Anda dapat melihat batas laju Anda di halaman [Batas laju](https://platform.claude.com/usage/limits) dan batas pengeluaran Anda di halaman [Penagihan](https://platform.claude.com/settings/billing). Untuk batas laju yang lebih tinggi atau batas pengeluaran bulanan yang lebih tinggi, gunakan **Request tier increase** di halaman Batas laju.
+Anda dapat melihat batas laju Anda di [Batas laju di Claude Console](https://platform.claude.com/usage/limits) dan batas pengeluaran Anda di halaman [Penagihan](https://platform.claude.com/settings/billing) Console. Untuk batas laju yang lebih tinggi atau batas pengeluaran bulanan yang lebih tinggi, gunakan **Minta kenaikan tingkat** di halaman **Batas laju**.
 
 Untuk informasi terperinci tentang batas, tingkatan, dan algoritma token bucket yang digunakan untuk pembatasan laju, lihat [Batas laju](https://platform.claude.com/docs/id/api/rate-limits).
 
@@ -189,7 +189,7 @@ Claude API tersedia di [banyak negara dan wilayah](https://platform.claude.com/d
   </Card>
 
   <Card title="Referensi Claude Managed Agents" icon="brain" href="https://platform.claude.com/docs/id/managed-agents/sessions">
-    Endpoint Agents, Sessions, dan Environments
+    Endpoint Agen, Sesi, dan Lingkungan
   </Card>
 
   <Card title="SDK Klien" icon="code" href="https://platform.claude.com/docs/id/cli-sdks-libraries/overview">

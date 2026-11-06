@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: e5f5972c794f132433bf20e8a68b769a35be5fe8aef429a49abb365063ccbec1
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 04fa6a1311cab7848e697c51f8d854a82ae67feb06a77304141db896417c1a0b
 ---
 
 ---
@@ -92,7 +92,7 @@ Instal atau tingkatkan ke versi terbaru Claude SDK:
 
   <Tab title="Go">
     ```bash
-    go get github.com/anthropics/anthropic-sdk-go@latest
+    go get github.com/anthropics/anthropic-sdk-go/v2@latest
     ```
 
     Jika aplikasi Anda belum menggunakan OpenTelemetry SDK, instal bersama console exporter, yang Anda gunakan pada langkah berikutnya untuk mencetak span:
@@ -108,7 +108,7 @@ Instal atau tingkatkan ke versi terbaru Claude SDK:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.5.0")
+        implementation("com.anthropic:anthropic-java:3.6.0")
         ```
       </Tab>
 
@@ -117,7 +117,7 @@ Instal atau tingkatkan ke versi terbaru Claude SDK:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.5.0</version>
+            <version>3.6.0</version>
         </dependency>
         ```
       </Tab>
@@ -242,7 +242,7 @@ Contoh berikut mendaftarkan tracer provider yang mencetak setiap span ke konsol 
   	"context"
   	"fmt"
 
-  	"github.com/anthropics/anthropic-sdk-go"
+  	"github.com/anthropics/anthropic-sdk-go/v2"
   	"go.opentelemetry.io/otel"
   	"go.opentelemetry.io/otel/exporters/stdout/stdouttrace"
   	"go.opentelemetry.io/otel/propagation"
@@ -439,7 +439,7 @@ Contoh berikut menunjukkan cara menggunakan setiap opsi:
   ```
 
   ```csharp C#
-  // Gunakan tracer provider tertentu: tambahkan source SDK ke dalamnya.
+  // Gunakan tracer provider tertentu: tambahkan sumber SDK ke dalamnya.
   using var tracerProvider = Sdk.CreateTracerProviderBuilder()
       .AddSource("com.anthropic.sdk.csharp*")
       .AddConsoleExporter()
@@ -508,7 +508,10 @@ Contoh berikut menunjukkan cara menggunakan setiap opsi:
       .build();
 
   // Nonaktifkan span untuk satu klien.
-  var quietClient = AnthropicOkHttpClient.builder().fromEnv().openTelemetry(false).build();
+  var quietClient = AnthropicOkHttpClient.builder()
+      .fromEnv()
+      .openTelemetry(false)
+      .build();
 
   // Tetapkan ID percakapan di opsi permintaan untuk satu panggilan.
   var params = MessageCreateParams.builder()
@@ -517,7 +520,9 @@ Contoh berikut menunjukkan cara menggunakan setiap opsi:
       .addUserMessage("Hello, Claude")
       .build();
   var message = client.messages().create(params, RequestOptions.builder()
-      .openTelemetry(OpenTelemetryRequestOptions.builder().conversationId("conv_42").build())
+      .openTelemetry(OpenTelemetryRequestOptions.builder()
+          .conversationId("conv_42")
+          .build())
       .build());
   ```
 
@@ -609,7 +614,7 @@ Agar SDK tidak mengirim header ini, misalnya ketika instrumentasi klien HTTP And
     ```
 
     <Warning>
-      Tetapkan 
+      Atur 
 
       `propagation: false`
 
@@ -621,15 +626,15 @@ Agar SDK tidak mengirim header ini, misalnya ketika instrumentasi klien HTTP And
 
       `@opentelemetry/auto-instrumentations-node`
 
-      . Jika tidak, 
+      . Jika tidak, sebuah 
 
-      [bug di paket tersebut](https://github.com/open-telemetry/opentelemetry-js-contrib/issues/3711)
+      [bug instrumentasi undici](https://github.com/open-telemetry/opentelemetry-js-contrib/issues/3711)
 
        menambahkan header 
 
       `traceparent`
 
-       kedua ke setiap permintaan, sehingga konteks trace menjadi tidak valid.
+       kedua ke setiap permintaan, yang membuat konteks trace tidak valid.
     </Warning>
   </CodeGroupItem>
 
@@ -652,7 +657,9 @@ Agar SDK tidak mengirim header ini, misalnya ketika instrumentasi klien HTTP And
   var envOptions = OpenTelemetryOptions.fromEnv();
   var client = AnthropicOkHttpClient.builder()
       .fromEnv()
-      .openTelemetry(envOptions.toBuilder().propagation(false).build())
+      .openTelemetry(envOptions.toBuilder()
+          .propagation(false)
+          .build())
       .build();
   ```
 
@@ -669,14 +676,14 @@ Saat SDK memanggil [alat MCP](https://platform.claude.com/docs/id/agents-and-too
 
 ## Pemecahan masalah
 
-| Masalah                                                                                                         | Yang perlu diperiksa                                                                                                                                                                                                                                                                                                                  |
-| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tidak ada span dari SDK                                                                                         | Daftarkan tracer provider sebelum panggilan pertama. Pastikan Anda menginstal SDK seperti pada [Instal SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk#install-the-sdk) dan bahwa `ANTHROPIC_OPEN_TELEMETRY` tidak bernilai `false`.                                                                         |
-| Java SDK tidak mengirim span ke tracer provider yang terdaftar, atau tidak mengirim konteks trace ke API        | Dependensi lain menetapkan `opentelemetry-api` di bawah 1.57.0. Tingkatkan `opentelemetry-api` ke 1.57.0 atau lebih baru.                                                                                                                                                                                                             |
-| Span SDK tidak bersarang di bawah span Anda, atau span yang dibuat alat Anda tidak bersarang di bawah span alat | Panggil SDK dari dalam salah satu span Anda sendiri, seperti yang dilakukan [contoh di Hubungkan span API ke trace Anda sendiri](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#connect-api-spans-to-your-own-traces). Di Go, mulai span yang dibuat alat Anda dari `ctx` yang diteruskan tool runner kepadanya. |
-| Permintaan dari SDK tidak memiliki header `traceparent`                                                         | Daftarkan propagator W3C trace context dengan OpenTelemetry. SDK menulis header dengan propagator aplikasi Anda.                                                                                                                                                                                                                      |
-| Span SDK dari sebuah stream tidak berakhir atau tidak berisi respons                                            | Lihat [Penelusuran stream](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk#trace-a-stream).                                                                                                                                                                                                                       |
-| Setiap permintaan muncul dua kali                                                                               | Span SDK dan span API dari sebuah permintaan memiliki nama yang sama. Gunakan span kind atau `service.name` untuk membedakannya. Jika pustaka lain juga melacak SDK, nonaktifkan salah satu dari keduanya.                                                                                                                            |
+| Masalah                                                                                                         | Yang perlu diperiksa                                                                                                                                                                                                                                                                                                                       |
+| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Tidak ada span dari SDK                                                                                         | Daftarkan tracer provider sebelum panggilan pertama. Pastikan Anda menginstal SDK seperti pada [Instal SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk#install-the-sdk) dan bahwa `ANTHROPIC_OPEN_TELEMETRY` tidak bernilai `false`.                                                                              |
+| Java SDK tidak mengirim span ke tracer provider yang terdaftar, atau tidak mengirim konteks trace ke API        | Dependensi lain menetapkan `opentelemetry-api` di bawah 1.57.0. Tingkatkan `opentelemetry-api` ke 1.57.0 atau lebih baru.                                                                                                                                                                                                                  |
+| Span SDK tidak bersarang di bawah span Anda, atau span yang dibuat alat Anda tidak bersarang di bawah span alat | Panggil SDK dari dalam salah satu span Anda sendiri, seperti yang dilakukan contoh di [Hubungkan span API ke trace Anda sendiri](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#connect-api-spans-to-your-own-traces). Di Go, mulai span yang dibuat alat Anda dari `ctx` yang diteruskan oleh tool runner kepadanya. |
+| Permintaan dari SDK tidak memiliki header `traceparent`                                                         | Daftarkan propagator W3C trace context dengan OpenTelemetry. SDK menulis header dengan propagator aplikasi Anda.                                                                                                                                                                                                                           |
+| Span SDK dari sebuah stream tidak berakhir atau tidak berisi respons                                            | Lihat [Penelusuran stream](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk#trace-a-stream).                                                                                                                                                                                                                            |
+| Setiap permintaan muncul dua kali                                                                               | Span SDK dan span API dari sebuah permintaan memiliki nama yang sama. Gunakan jenis span atau `service.name` untuk membedakannya. Jika pustaka lain juga melacak SDK, nonaktifkan salah satu dari keduanya.                                                                                                                                |
 
 ## Ketersediaan
 

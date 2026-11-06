@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 783bd5fcd734a86864e74e74b1893aa51f80a445bcdce045c28d84e842b8410d
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 2cb8cf3a94deda5a2de519adda104890672716f6dc164eaebe137ad8e535f182
 ---
 
 ---
@@ -46,7 +46,7 @@ featureMetadata:
 * **Messages API**: Aktifkan dengan `cache_control`, di level teratas atau pada blok.
 * **Managed Agents**: Selalu aktif. Entri cache menggunakan masa berlaku 5 menit secara default, dan pembacaan serta penulisan cache muncul dalam penggunaan sesi.
 
-“Prompt caching” (caching prompt) mengoptimalkan penggunaan API Anda dengan memungkinkan melanjutkan dari prefiks tertentu dalam prompt Anda. Ini secara signifikan mengurangi waktu pemrosesan dan biaya untuk tugas berulang atau prompt dengan elemen yang konsisten.
+“Prompt caching” (caching prompt) mengoptimalkan penggunaan API Anda dengan memungkinkan API melanjutkan dari prefiks tertentu dalam prompt Anda. Ini secara signifikan mengurangi waktu pemrosesan dan biaya untuk tugas berulang atau prompt dengan elemen yang konsisten.
 
 Ada dua cara untuk mengaktifkan caching prompt:
 
@@ -169,22 +169,19 @@ Cara paling sederhana untuk memulai adalah dengan caching otomatis:
   ```java Java
   import com.anthropic.models.messages.CacheControlEphemeral;
   // ...
-  public class PromptCachingExample {
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      public static void main(String[] args) {
-          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+      MessageCreateParams params = MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(1024)
+          .cacheControl(CacheControlEphemeral.builder().build())
+          .system("You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.")
+          .addUserMessage("Analyze the major themes in 'Pride and Prejudice'.")
+          .build();
 
-          MessageCreateParams params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(1024)
-              .cacheControl(CacheControlEphemeral.builder().build())
-              .system("You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.")
-              .addUserMessage("Analyze the major themes in 'Pride and Prejudice'.")
-              .build();
-
-          Message message = client.messages().create(params);
-          System.out.println(message.usage());
-      }
+      Message message = client.messages().create(params);
+      IO.println(message.usage());
   }
   ```
 
@@ -213,7 +210,7 @@ Cara paling sederhana untuk memulai adalah dengan caching otomatis:
     model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     cache_control: {type: "ephemeral"},
-    system: "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.",
+    system_: "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.",
     messages: [
       {
         role: "user",
@@ -233,7 +230,7 @@ Dengan caching otomatis, sistem meng-cache semua konten hingga dan termasuk blok
 
 Saat Anda mengirim permintaan dengan caching prompt diaktifkan:
 
-1. Sistem memeriksa apakah prefiks prompt, hingga cache breakpoint yang ditentukan, sudah di-cache dari kueri terbaru.
+1. Sistem memeriksa apakah prefiks prompt, hingga breakpoint cache yang ditentukan, sudah di-cache dari kueri terbaru.
 2. Jika ditemukan, sistem menggunakan versi yang di-cache, sehingga mengurangi waktu pemrosesan dan biaya.
 3. Jika tidak, sistem memproses prompt lengkap dan meng-cache prefiks setelah respons dimulai.
 
@@ -246,7 +243,7 @@ Ini sangat berguna untuk:
 
 Secara default, cache memiliki masa hidup 5 menit. Cache diperbarui tanpa biaya tambahan setiap kali konten yang di-cache digunakan.
 
-Masa hidup diukur sejak awal permintaan yang menulis atau membaca entri cache, bukan sejak akhir responsnya. Waktu yang dihabiskan untuk menghasilkan respons dihitung terhadap masa hidup: jika respons membutuhkan 4 menit untuk di-stream, permintaan lanjutan yang menggunakan kembali prefiks yang sama harus dimulai dalam waktu sekitar 1 menit setelah respons tersebut selesai.
+Masa hidup diukur sejak awal permintaan yang menulis atau membaca entri cache, bukan sejak akhir responsnya. Waktu yang dihabiskan untuk menghasilkan respons dihitung terhadap masa hidup: jika respons membutuhkan 4 menit untuk di-stream, permintaan lanjutan yang menggunakan kembali prefiks yang di-cache yang sama harus dimulai dalam waktu sekitar 1 menit setelah respons tersebut selesai.
 
 <Note>
   Jika Anda merasa 5 menit terlalu singkat, Anthropic juga menawarkan durasi cache 1 jam [dengan biaya tambahan](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing).
@@ -264,7 +261,7 @@ Masa hidup diukur sejak awal permintaan yang menulis atau membaca entri cache, b
 
 ## Harga
 
-Caching prompt memperkenalkan struktur harga baru. Tabel berikut menunjukkan harga per juta token untuk setiap model yang didukung:
+Caching prompt memiliki harganya sendiri. Tabel berikut menunjukkan harga per juta token untuk setiap model yang didukung:
 
 | Model                                                                                                                                                                  | Base input tokens | 5m cache writes | 1h cache writes | Cache hits and refreshes | Output tokens |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------- | :-------------- | :-------------- | :----------------------- | :------------ |
@@ -288,7 +285,6 @@ Caching prompt memperkenalkan struktur harga baru. Tabel berikut menunjukkan har
 | Claude Haiku 5.5 (for prompts up to 100,000 tokens)                                                                                                                    | $0.10 / MTok      | $0.125 / MTok   | $0.20 / MTok    | $0.01 / MTok             | $0.50 / MTok  |
 | Claude Haiku 5.5 (for prompts over 100,000 tokens)                                                                                                                     | $0.50 / MTok      | $0.625 / MTok   | $1 / MTok       | $0.05 / MTok             | $2.50 / MTok  |
 | Claude Haiku 4.5                                                                                                                                                       | $1 / MTok         | $1.25 / MTok    | $2 / MTok       | $0.10 / MTok             | $5 / MTok     |
-| Claude Haiku 3.5 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations))            | $0.80 / MTok      | $1 / MTok       | $1.60 / MTok    | $0.08 / MTok             | $4 / MTok     |
 
 *<sup>1 Cache hits and refreshes on Claude Fable 5.1 and Claude Mythos 5.1 are priced at 0.025x the base input price.</sup>*
 
@@ -303,7 +299,7 @@ Caching prompt memperkenalkan struktur harga baru. Tabel berikut menunjukkan har
   * Token penulisan cache dengan TTL 1 jam adalah 2 kali harga token input dasar.
   * Token pembacaan cache adalah 0,1 kali harga token input dasar (lihat catatan kaki tabel untuk pengecualian per model).
 
-  Pengali ini bertumpuk dengan pengubah harga lainnya seperti diskon Batch API, [harga konteks panjang](https://platform.claude.com/docs/id/about-claude/pricing#long-context-pricing), dan residensi data. Pada model yang harganya ditentukan berdasarkan panjang prompt, pembacaan cache dan penulisan cache dihitung ke dalam panjang prompt suatu permintaan. Lihat [Harga Claude](https://platform.claude.com/docs/id/about-claude/pricing) untuk detail lengkap.
+  Pengali ini bertumpuk dengan pengubah harga lainnya seperti diskon Batch API, [harga konteks panjang](https://platform.claude.com/docs/id/about-claude/pricing#long-context-pricing), dan residensi data. Pada model yang harganya ditentukan berdasarkan panjang prompt, pembacaan cache dan penulisan cache dihitung ke dalam panjang prompt suatu permintaan. Lihat [Harga](https://platform.claude.com/docs/id/about-claude/pricing) untuk detail lengkap.
 </Note>
 
 ***
@@ -316,7 +312,7 @@ Caching prompt (baik otomatis maupun eksplisit) didukung pada semua [model Claud
 
 ## Caching otomatis
 
-Caching otomatis adalah cara paling sederhana untuk mengaktifkan caching prompt. Alih-alih menempatkan `cache_control` pada blok konten individual, tambahkan satu field `cache_control` di tingkat teratas body permintaan Anda. Sistem secara otomatis menerapkan cache breakpoint ke blok terakhir yang dapat di-cache.
+Caching otomatis adalah cara paling sederhana untuk mengaktifkan caching prompt. Alih-alih menempatkan `cache_control` pada blok konten individual, tambahkan satu field `cache_control` di tingkat teratas body permintaan Anda. Sistem secara otomatis menerapkan breakpoint cache ke blok terakhir yang dapat di-cache.
 
 <CodeGroup>
   ```bash cURL
@@ -443,24 +439,21 @@ Caching otomatis adalah cara paling sederhana untuk mengaktifkan caching prompt.
   ```java Java
   import com.anthropic.models.messages.CacheControlEphemeral;
   // ...
-  public class AutomaticCachingExample {
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      public static void main(String[] args) {
-          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+      MessageCreateParams params = MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(1024)
+          .cacheControl(CacheControlEphemeral.builder().build())
+          .system("You are a helpful assistant that remembers our conversation.")
+          .addUserMessage("My name is Alex. I work on machine learning.")
+          .addAssistantMessage("Nice to meet you, Alex! How can I help with your ML work today?")
+          .addUserMessage("What did I say I work on?")
+          .build();
 
-          MessageCreateParams params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(1024)
-              .cacheControl(CacheControlEphemeral.builder().build())
-              .system("You are a helpful assistant that remembers our conversation.")
-              .addUserMessage("My name is Alex. I work on machine learning.")
-              .addAssistantMessage("Nice to meet you, Alex! How can I help with your ML work today?")
-              .addUserMessage("What did I say I work on?")
-              .build();
-
-          Message message = client.messages().create(params);
-          System.out.println(message.usage());
-      }
+      Message message = client.messages().create(params);
+      IO.println(message.usage());
   }
   ```
 
@@ -491,7 +484,7 @@ Caching otomatis adalah cara paling sederhana untuk mengaktifkan caching prompt.
     model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     cache_control: {type: "ephemeral"},
-    system: "You are a helpful assistant that remembers our conversation.",
+    system_: "You are a helpful assistant that remembers our conversation.",
     messages: [
       {role: "user", content: "My name is Alex. I work on machine learning."},
       {role: "assistant", content: "Nice to meet you, Alex! How can I help with your ML work today?"},
@@ -512,7 +505,7 @@ Dengan caching otomatis, titik cache bergerak maju secara otomatis seiring perca
 | Permintaan 2 | System<br />+ User(1) + Asst(1)<br />+ User(2) + Asst(2)<br />+ **User(3)** ◀ cache                          | System hingga User(2) dibaca dari cache;<br />Asst(2) + User(3) ditulis ke cache |
 | Permintaan 3 | System<br />+ User(1) + Asst(1)<br />+ User(2) + Asst(2)<br />+ User(3) + Asst(3)<br />+ **User(4)** ◀ cache | System hingga User(3) dibaca dari cache;<br />Asst(3) + User(4) ditulis ke cache |
 
-Cache breakpoint secara otomatis berpindah ke blok terakhir yang dapat di-cache dalam setiap permintaan, sehingga Anda tidak perlu memperbarui penanda `cache_control` apa pun seiring percakapan bertambah.
+Breakpoint cache secara otomatis berpindah ke blok terakhir yang dapat di-cache dalam setiap permintaan, sehingga Anda tidak perlu memperbarui penanda `cache_control` apa pun seiring percakapan bertambah.
 
 ### Dukungan TTL
 
@@ -524,7 +517,7 @@ Secara default, caching otomatis menggunakan TTL 5 menit. Anda dapat menentukan 
 
 ### Menggabungkan dengan caching tingkat blok
 
-Caching otomatis kompatibel dengan [cache breakpoint eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints). Saat digunakan bersama, cache breakpoint otomatis menggunakan salah satu dari 4 slot breakpoint yang tersedia.
+Caching otomatis kompatibel dengan [breakpoint cache eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints). Saat digunakan bersama, breakpoint cache otomatis menggunakan salah satu dari 4 slot breakpoint yang tersedia.
 
 Ini memungkinkan Anda menggabungkan kedua pendekatan. Misalnya, gunakan breakpoint eksplisit untuk meng-cache prompt sistem Anda, sementara caching otomatis menangani percakapan:
 
@@ -553,7 +546,7 @@ Caching otomatis menggunakan infrastruktur caching dasar yang sama. Harga, amban
 * Jika blok terakhir sudah memiliki `cache_control` eksplisit dengan TTL yang sama, caching otomatis tidak melakukan apa-apa.
 * Jika blok terakhir memiliki `cache_control` eksplisit dengan TTL yang berbeda, API mengembalikan error 400.
 * Jika sudah ada 4 breakpoint tingkat blok eksplisit, API mengembalikan error 400 (tidak ada slot tersisa untuk caching otomatis).
-* Jika blok terakhir tidak memenuhi syarat sebagai target cache breakpoint otomatis, sistem secara diam-diam berjalan mundur untuk menemukan blok terdekat yang memenuhi syarat. Jika tidak ada yang ditemukan, caching dilewati.
+* Jika blok terakhir tidak memenuhi syarat sebagai target breakpoint cache otomatis, sistem secara diam-diam berjalan mundur untuk menemukan blok terdekat yang memenuhi syarat. Jika tidak ada yang ditemukan, caching dilewati.
 
 <Note>
   Caching otomatis tersedia di setiap platform kecuali integrasi lama [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy). Pada integrasi tersebut, API mengembalikan error 400 untuk field `cache_control` tingkat teratas, jadi gunakan [cache breakpoint eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints) sebagai gantinya.
@@ -573,7 +566,7 @@ Prefiks cache dibuat dalam urutan berikut: `tools`, `system`, lalu `messages`. U
 
 #### Cara kerja pemeriksaan prefiks otomatis
 
-Anda dapat menggunakan hanya satu cache breakpoint di akhir konten statis Anda, dan sistem secara otomatis menemukan prefiks terpanjang yang sudah ditulis ke cache oleh permintaan sebelumnya. Memahami cara kerjanya membantu Anda mengoptimalkan strategi caching Anda.
+Anda dapat menggunakan hanya satu breakpoint cache di akhir konten statis Anda, dan sistem secara otomatis menemukan prefiks terpanjang yang sudah ditulis ke cache oleh permintaan sebelumnya. Memahami cara kerjanya membantu Anda mengoptimalkan strategi caching Anda.
 
 **Tiga prinsip inti:**
 
@@ -614,12 +607,12 @@ Anda dapat menentukan hingga 4 cache breakpoint jika Anda ingin:
   **Batasan penting:** Lookback hanya dapat menemukan entri yang sudah ditulis oleh permintaan sebelumnya. Jika percakapan yang terus bertambah mendorong breakpoint Anda 20 blok atau lebih melewati penulisan terakhir, jendela lookback akan melewatkannya. Tambahkan breakpoint kedua yang lebih dekat ke posisi tersebut sejak awal agar penulisan terakumulasi di sana sebelum Anda membutuhkannya.
 </Note>
 
-### Memahami biaya cache breakpoint
+### Memahami biaya breakpoint cache
 
 **Cache breakpoint itu sendiri tidak menambah biaya apa pun.** Anda hanya dikenakan biaya untuk:
 
-* **Penulisan cache:** Saat konten baru ditulis ke cache (25% lebih mahal dari token input dasar untuk TTL 5 menit)
-* **Pembacaan cache:** Saat konten yang di-cache digunakan (10% dari harga token input dasar, dengan [pengecualian per model](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing))
+* **Penulisan cache:** Saat konten baru ditulis ke cache (25 persen lebih mahal dari token input dasar untuk TTL 5 menit)
+* **Pembacaan cache:** Saat konten yang di-cache digunakan (10 persen dari harga token input dasar, dengan [pengecualian per model](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing))
 * **Token input reguler:** Untuk konten apa pun yang tidak di-cache
 
 Menambahkan lebih banyak breakpoint `cache_control` tidak meningkatkan biaya Anda; Anda tetap membayar jumlah yang sama berdasarkan konten apa yang benar-benar di-cache dan dibaca. Breakpoint memberi Anda kontrol atas bagian mana yang dapat di-cache secara independen.
@@ -637,7 +630,6 @@ Pada Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/bu
 * 4.096 token untuk Claude Opus 4.6 dan Claude Opus 4.5
 * 1.024 token untuk Claude Opus 4.8, Claude Sonnet 5, Claude Sonnet 4.6, Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Opus 4.1 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed) dan Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Opus 4 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)), dan Claude Sonnet 4 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed) dan Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations))
 * 4.096 token untuk Claude Haiku 4.5
-* 2.048 token untuk Claude Haiku 3.5 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations))
 
 Batas minimum ini berlaku di setiap platform tempat masing-masing model tersedia.
 
@@ -693,7 +685,7 @@ Tabel berikut menunjukkan bagian cache mana yang dibatalkan oleh berbagai jenis 
 | **Pengaturan kecepatan**                                          | ✓              | ✘              | ✘              | Beralih antara [`speed: "fast"` dan kecepatan standar](https://platform.claude.com/docs/id/build-with-claude/fast-mode) membatalkan cache sistem dan pesan                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | **Pilihan alat**                                                  | ✓              | ✓              | ✘              | Perubahan pada parameter `tool_choice` hanya memengaruhi blok pesan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | **Gambar**                                                        | ✓              | ✓              | ✘              | Menambahkan/menghapus gambar di mana pun dalam prompt memengaruhi blok pesan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| **Parameter pemikiran**                                           | Spesifik model | Spesifik model | ✘              | Konfigurasi pemikiran (mode, dan `budget_tokens` dalam mode extended) dirender ke dalam prompt, sehingga mengubahnya selalu membatalkan blok pesan; cache alat dan sistem juga dibatalkan pada model yang merender konfigurasi sebelum keduanya. Lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching).                                                                                                                                                                                                                                               |
+| **Parameter pemikiran**                                           | Spesifik model | Spesifik model | ✘              | Konfigurasi pemikiran (mode, dan `budget_tokens` dalam mode diperpanjang) dirender ke dalam prompt, sehingga mengubahnya selalu membatalkan blok pesan; cache alat dan sistem juga dibatalkan pada model yang merender konfigurasi sebelum keduanya. Lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching).                                                                                                                                                                                                                                           |
 | **Pengaturan effort**                                             | Spesifik model | Spesifik model | ✘              | Mengubah nilai [`output_config.effort`](https://platform.claude.com/docs/id/build-with-claude/effort) selalu membatalkan blok pesan, dengan efek spesifik model yang sama pada cache alat dan sistem seperti parameter pemikiran. Mengatur effort secara eksplisit ke nilai default model setara dengan menghilangkannya dan tidak membatalkan cache. Pada model yang mendukung [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta), perubahan effort yang dibawa dalam pesan `role: "system"` di dalam `messages` membiarkan prefiks yang di-cache tetap utuh. |
 | **Hasil non-alat yang diteruskan ke permintaan dengan pemikiran** | ✓              | ✓              | Spesifik model | Pada Opus 4.5+, Sonnet 4.6+, dan Haiku 5.5, blok pemikiran dipertahankan secara default, sehingga cache tetap valid (✓). Pada model Opus/Sonnet sebelumnya dan model Haiku hingga Claude Haiku 4.5, semua blok pemikiran yang sebelumnya di-cache dihapus dari konteks, dan pesan apa pun yang mengikuti blok pemikiran tersebut dihapus dari cache (✘). Untuk detail lebih lanjut, lihat [Caching dengan blok pemikiran](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#caching-with-thinking-blocks).                                                                                                    |
 | **Blok pemikiran yang dibuang**                                   | ✓              | ✓              | ✘              | Ketika API membuang blok pemikiran model Claude 5.1 dan yang lebih baru yang tidak [dipertahankan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking) pada permintaan tersebut, prefiks yang di-cache berubah mulai dari posisi blok tersebut dan seterusnya pada permintaan tersebut. Blok yang dapat dibaca oleh model penerima, yang diteruskan kembali tanpa perubahan, menjaga cache tetap utuh.                                                                                                                                                                                            |
@@ -701,7 +693,7 @@ Tabel berikut menunjukkan bagian cache mana yang dibatalkan oleh berbagai jenis 
 Pada model yang mendukung [perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes), header beta `inline-tools-2026-09-15` memungkinkan Anda menambahkan alat, atau mengubah definisi alat, di tengah percakapan tanpa mengedit `tools`. Kirim definisi dalam blok `tool_addition` di pesan sistem di tengah percakapan dan biarkan `tools` persis seperti yang pertama kali Anda kirim. Prefiks yang di-cache tetap cocok, sehingga hanya pesan yang ditambahkan yang diproses sebagai input baru. Satu-satunya pengecualian adalah array `tools` tanpa alat non-deferred, di mana alat pertama yang didefinisikan dengan cara ini menyebabkan satu cache miss penuh pada permintaan tersebut. Lihat [Mendefinisikan alat dalam pesan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta).
 
 <Note>
-  Pada Claude Fable 5.1, [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), Claude Fable 5, [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Opus 5.5, Claude Opus 4.8, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5, Anda dapat menambahkan instruksi sistem baru di tengah percakapan tanpa membatalkan cache sistem atau pesan. Tambahkan pesan `{"role": "system"}` ke `messages` alih-alih mengedit field `system` tingkat teratas, sehingga prefiks yang di-cache tetap tidak berubah. Fitur ini tidak tersedia pada Claude Sonnet 5. Gunakan field `system` tingkat teratas sebagai gantinya. Lihat [Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages).
+  Pada Claude Fable 5.1, [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), Claude Fable 5, [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Opus 5.5, Claude Opus 4.8, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5, Anda dapat menambahkan instruksi sistem baru di tengah percakapan tanpa membatalkan cache sistem atau pesan. Tambahkan pesan `{"role": "system"}` ke `messages` alih-alih mengedit field `system` tingkat teratas, sehingga prefiks yang di-cache tetap tidak berubah. Fitur ini tidak tersedia pada Claude Sonnet 5. Gunakan field `system` tingkat teratas sebagai gantinya. Lihat [Pesan sistem dan perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages).
 </Note>
 
 ### Melacak kinerja cache
@@ -710,12 +702,12 @@ Pantau kinerja cache menggunakan field respons API berikut, di dalam `usage` pad
 
 * `cache_creation_input_tokens`: Jumlah token yang ditulis ke cache saat membuat entri baru
 * `cache_read_input_tokens`: Jumlah token yang diambil dari cache untuk permintaan ini
-* `input_tokens`: Jumlah token input yang tidak dibaca dari atau digunakan untuk membuat cache (yaitu, token setelah cache breakpoint terakhir)
+* `input_tokens`: Jumlah token input yang tidak dibaca dari atau digunakan untuk membuat cache (yaitu, token setelah breakpoint cache terakhir)
 
 <Note>
   **Memahami rincian token**
 
-  Field `input_tokens` hanya mewakili token yang muncul **setelah cache breakpoint terakhir** dalam permintaan Anda, bukan semua token input yang Anda kirim.
+  Field `input_tokens` hanya mewakili token yang muncul **setelah breakpoint cache terakhir** dalam permintaan Anda, bukan semua token input yang Anda kirim.
 
   Untuk menghitung total token input:
 
@@ -729,14 +721,14 @@ Pantau kinerja cache menggunakan field respons API berikut, di dalam `usage` pad
   * `cache_creation_input_tokens` = token sebelum breakpoint yang sedang di-cache sekarang (penulisan)
   * `input_tokens` = token setelah breakpoint terakhir Anda (tidak memenuhi syarat untuk cache)
 
-  **Contoh:** Jika Anda memiliki permintaan dengan 100.000 token konten yang di-cache (dibaca dari cache), 0 token konten baru yang di-cache, dan 50 token dalam pesan pengguna Anda (setelah cache breakpoint):
+  **Contoh:** Jika Anda memiliki permintaan dengan 100.000 token konten yang di-cache (dibaca dari cache), 0 token konten baru yang di-cache, dan 50 token dalam pesan pengguna Anda (setelah breakpoint cache):
 
   * `cache_read_input_tokens`: 100.000
   * `cache_creation_input_tokens`: 0
   * `input_tokens`: 50
   * **Total token input yang diproses:** 100.050 token
 
-  Ini penting untuk memahami biaya dan batas laju, karena `input_tokens` biasanya akan jauh lebih kecil daripada total input Anda saat menggunakan caching secara efektif.
+  Ini penting untuk memahami biaya dan batas laju, karena `input_tokens` biasanya jauh lebih kecil daripada total input Anda saat menggunakan caching secara efektif.
 </Note>
 
 ### Caching dengan blok pemikiran
@@ -791,7 +783,7 @@ Untuk informasi lebih rinci, lihat [Pemikiran dan caching prompt](https://platfo
 
 * **Isolasi organisasi dan workspace:** Cache diisolasi antar organisasi. Organisasi yang berbeda tidak pernah berbagi cache, bahkan jika mereka menggunakan prompt yang identik. Cache juga diisolasi per workspace dalam suatu organisasi di Claude API, Claude Platform on AWS, dan Microsoft Foundry; Claude Models on Google Cloud (Google managed) dan Bedrock hanya menggunakan isolasi tingkat organisasi.
 
-* **Pencocokan persis:** Cache hit memerlukan segmen prompt yang 100 persen identik, termasuk semua teks dan gambar hingga dan termasuk blok yang ditandai dengan cache control.
+* **Pencocokan persis:** Cache hit memerlukan segmen prompt yang 100 persen identik, termasuk semua teks dan gambar hingga dan termasuk blok yang ditandai dengan kontrol cache.
 
 * **Pembuatan token output:** Caching prompt tidak berpengaruh pada pembuatan token output. Respons yang Anda terima identik dengan yang akan Anda dapatkan jika caching prompt tidak digunakan.
 
@@ -820,7 +812,7 @@ Sesuaikan strategi caching prompt Anda dengan skenario Anda:
 
 ### Memecahkan masalah umum
 
-Jika mengalami perilaku yang tidak terduga:
+Jika Anda mengalami perilaku yang tidak terduga:
 
 <Tip>
   [Diagnostik cache](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics) membuat API membandingkan permintaan berturut-turut dan melaporkan di mana prefiks prompt menyimpang, yang secara otomatis menangani banyak langkah dalam daftar ini.
@@ -875,17 +867,17 @@ Respons menyertakan informasi cache terperinci seperti berikut:
 }
 ```
 
-Perhatikan bahwa field `cache_creation_input_tokens` saat ini sama dengan jumlah nilai dalam objek `cache_creation`.
+Field `cache_creation_input_tokens` sama dengan jumlah nilai dalam objek `cache_creation`.
 
 Jika Anda melihat penulisan `ephemeral_5m_input_tokens` yang tidak Anda minta saat menggunakan alat server seperti pencarian web, lihat [Hasil alat server di-cache secara otomatis](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching#server-tool-results-are-cached-automatically).
 
 ### Kapan menggunakan cache 1 jam
 
-Jika Anda memiliki prompt yang digunakan dengan ritme teratur (yaitu, prompt sistem yang digunakan lebih sering dari setiap 5 menit), tetap gunakan cache 5 menit, karena cache ini akan terus diperbarui tanpa biaya tambahan.
+Jika Anda menggunakan prompt dengan ritme teratur (misalnya, prompt sistem yang Anda kirim lebih sering dari setiap 5 menit), tetap gunakan cache 5 menit, karena cache ini terus diperbarui tanpa biaya tambahan.
 
 Cache 1 jam paling baik digunakan dalam skenario berikut:
 
-* Saat Anda memiliki prompt yang kemungkinan digunakan lebih jarang dari setiap 5 menit, tetapi lebih sering dari setiap jam. Misalnya, saat side-agent agentik akan memakan waktu lebih dari 5 menit, atau saat menyimpan percakapan chat panjang dengan pengguna dan Anda umumnya memperkirakan pengguna tersebut mungkin tidak merespons dalam 5 menit ke depan.
+* Saat Anda memiliki prompt yang kemungkinan digunakan lebih jarang dari setiap 5 menit, tetapi lebih sering dari setiap jam. Misalnya, saat side-agent agentik memakan waktu lebih dari 5 menit, atau saat menyimpan percakapan chat panjang dengan pengguna dan Anda umumnya memperkirakan pengguna tersebut mungkin tidak merespons dalam 5 menit ke depan.
 * Saat latensi penting dan prompt lanjutan Anda mungkin dikirim setelah lebih dari 5 menit.
 * Saat Anda ingin meningkatkan pemanfaatan batas laju Anda, karena cache hit tidak dipotong dari batas laju Anda.
 
@@ -899,8 +891,13 @@ Anda dapat menggunakan kontrol cache 1 jam dan 5 menit dalam permintaan yang sam
 
 Saat mencampur TTL, Claude API menentukan tiga lokasi penagihan dalam prompt Anda:
 
-1. Posisi `A`: Jumlah token pada cache hit terakhir dalam prompt Anda (atau 0 jika tidak ada hit). Cache hit pada entri yang di-cache dengan TTL 5 menit tidak diakui sebagai hit jika blok `cache_control` dengan TTL 1 jam yang posisinya berada setelah entri tersebut merupakan cache miss.
+1. Posisi `A`: Jumlah token pada cache hit terakhir dalam prompt Anda (atau 0 jika tidak ada hit).
+
+   * Cache hit pada entri yang di-cache dengan TTL 5 menit tidak diakui sebagai hit jika blok `cache_control` dengan TTL 1 jam yang posisinya berada setelah entri tersebut merupakan cache miss.
+   * Permintaan yang membaca entri yang di-cache dengan TTL 5 menit memulai ulang masa hidup 5 menit milik entri tersebut, meskipun permintaan tersebut kini mengatur `"ttl": "1h"`.
+
 2. Posisi `B`: Jumlah token pada blok `cache_control` terakhir dengan TTL 1 jam yang posisinya berada setelah `A` (atau sama dengan `A` jika tidak ada).
+
 3. Posisi `C`: Jumlah token pada blok `cache_control` terakhir.
 
 <Note>
@@ -913,7 +910,7 @@ Anda akan dikenakan biaya untuk:
 2. Token tulis cache 1 jam untuk `(B - A)`.
 3. Token tulis cache 5 menit untuk `(C - B)`.
 
-Berikut tiga contoh. Ini menggambarkan token input dari 3 permintaan, yang masing-masing memiliki cache hit dan cache miss yang berbeda. Akibatnya, masing-masing memiliki perhitungan harga yang berbeda, yang ditunjukkan dalam kotak berwarna.
+Berikut tiga contoh permintaan, yang masing-masing memiliki cache hit dan cache miss yang berbeda. Masing-masing memiliki perhitungan harga yang berbeda, yang ditunjukkan dalam kotak.
 
 <Frame>
   ![Tiga permintaan dengan cache hit dan miss yang berbeda: A, B, dan C menandai di mana pembacaan, penulisan 1 jam, dan penulisan 5 menit berakhir](https://platform.claude.com/docs/id/images/prompt-cache-mixed-ttl.svg)
@@ -1487,7 +1484,7 @@ Buat permintaan pemanasan saat aplikasi Anda dimulai (atau pada interval terjadw
       messages: [['role' => 'user', 'content' => 'warmup']],
   );
 
-  // Permintaan pengguna yang sebenarnya; mendapat manfaat dari cache yang sudah hangat.
+  // Permintaan pengguna yang sebenarnya; memanfaatkan cache yang sudah hangat.
   $respond = fn (string $userMessage) => $client->messages->create(
       model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 1024,
@@ -1495,13 +1492,13 @@ Buat permintaan pemanasan saat aplikasi Anda dimulai (atau pada interval terjadw
       messages: [['role' => 'user', 'content' => $userMessage]],
   );
 
-  // Hangatkan cache sebelum lalu lintas pengguna mulai masuk.
+  // Hangatkan cache sebelum lalu lintas pengguna masuk.
   $prewarmCache();
 
   // Nanti, saat pengguna mengirim pesan, prefiks prompt sistem sudah ada di cache.
   $response = $respond('How do I implement a binary search tree?');
   foreach ($response->content as $block) {
-      if ($block->type === 'text') {
+      if ($block instanceof \Anthropic\Messages\TextBlock) {
           echo $block->text, PHP_EOL;
       }
   }
@@ -1528,7 +1525,7 @@ Buat permintaan pemanasan saat aplikasi Anda dimulai (atau pada interval terjadw
     )
   end
 
-  # Permintaan pengguna yang sebenarnya; diuntungkan oleh cache yang sudah hangat.
+  # Permintaan pengguna yang sebenarnya; mendapat manfaat dari cache yang sudah hangat.
   def respond(client, user_message)
     client.messages.create(
       model: Anthropic::Model::CLAUDE_OPUS_5_5,
@@ -1538,13 +1535,13 @@ Buat permintaan pemanasan saat aplikasi Anda dimulai (atau pada interval terjadw
     )
   end
 
-  # Hangatkan cache sebelum lalu lintas pengguna mana pun tiba.
+  # Hangatkan cache sebelum lalu lintas pengguna masuk.
   prewarm_cache(client)
 
   # Nanti, saat pengguna mengirim pesan, prefiks prompt sistem sudah ada di cache.
   response = respond(client, "How do I implement a binary search tree?")
   response.content.each do |block|
-    puts block.text if block.type == :text
+    puts block.text if block.is_a?(Anthropic::Models::TextBlock)
   end
   ```
 </CodeGroup>
@@ -1564,7 +1561,7 @@ Permintaan `max_tokens: 0` ditolak dengan `invalid_request_error` jika salah sat
 
 ### Mengganti solusi `max_tokens=1`
 
-Sebelum `max_tokens: 0` tersedia, beberapa aplikasi menggunakan panggilan pemanasan `max_tokens: 1` untuk mencapai efek yang sama. Pendekatan `max_tokens: 0` lebih disarankan: tidak ada output yang dihasilkan, sehingga tidak ada balasan satu token yang perlu dibuang, tidak ada token output yang ditagih, dan maksud permintaan menjadi jelas.
+Beberapa aplikasi mengirim permintaan `max_tokens: 1` untuk memanaskan cache. Utamakan `max_tokens: 0` jika permintaan memungkinkannya: tidak ada output yang dihasilkan, sehingga tidak ada balasan satu token yang perlu dibuang, tidak ada token output yang ditagih, dan maksud permintaan menjadi jelas.
 
 ***
 
@@ -1741,33 +1738,30 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
       ```java Java
       import com.anthropic.models.messages.CacheControlEphemeral;
       // ...
-      public class LegalDocumentAnalysisExample {
+      void main() {
+          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          public static void main(String[] args) {
-              AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-              MessageCreateParams params = MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_5_5)
-                  .maxTokens(1024)
-                  .systemOfTextBlockParams(
-                      List.of(
-                          TextBlockParam.builder()
-                              .text("You are an AI assistant tasked with analyzing legal documents.")
-                              .build(),
-                          TextBlockParam.builder()
-                              .text(
-                                  "Here is the full text of a complex legal agreement: [Insert full text of a 50-page legal agreement here]"
-                              )
-                              .cacheControl(CacheControlEphemeral.builder().build())
-                              .build()
-                      )
+          MessageCreateParams params = MessageCreateParams.builder()
+              .model(Model.CLAUDE_OPUS_5_5)
+              .maxTokens(1024)
+              .systemOfTextBlockParams(
+                  List.of(
+                      TextBlockParam.builder()
+                          .text("You are an AI assistant tasked with analyzing legal documents.")
+                          .build(),
+                      TextBlockParam.builder()
+                          .text(
+                              "Here is the full text of a complex legal agreement: [Insert full text of a 50-page legal agreement here]"
+                          )
+                          .cacheControl(CacheControlEphemeral.builder().build())
+                          .build()
                   )
-                  .addUserMessage("What are the key terms and conditions in this agreement?")
-                  .build();
+              )
+              .addUserMessage("What are the key terms and conditions in this agreement?")
+              .build();
 
-              Message message = client.messages().create(params);
-              System.out.println(message.usage());
-          }
+          Message message = client.messages().create(params);
+          IO.println(message.usage());
       }
       ```
 
@@ -1803,9 +1797,9 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
       client = Anthropic::Client.new
 
       message = client.messages.create(
-        model: "claude-opus-5-5",
+        model: Anthropic::Model::CLAUDE_OPUS_5_5,
         max_tokens: 1024,
-        system: [
+        system_: [
           {
             type: "text",
             text: "You are an AI assistant tasked with analyzing legal documents."
@@ -2134,47 +2128,44 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
       ```java Java
       import com.anthropic.models.messages.CacheControlEphemeral;
       // ...
-      public class ConversationWithCacheControlExample {
+      void main() {
+          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          public static void main(String[] args) {
-              AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+          // Buat prompt sistem sementara
+          TextBlockParam systemPrompt = TextBlockParam.builder()
+              .text("...long system prompt")
+              .cacheControl(CacheControlEphemeral.builder().build())
+              .build();
 
-              // Buat prompt sistem sementara
-              TextBlockParam systemPrompt = TextBlockParam.builder()
-                  .text("...long system prompt")
-                  .cacheControl(CacheControlEphemeral.builder().build())
-                  .build();
-
-              // Buat parameter pesan
-              MessageCreateParams params = MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_5_5)
-                  .maxTokens(1024)
-                  .systemOfTextBlockParams(List.of(systemPrompt))
-                  // Pesan pengguna pertama (tanpa kontrol cache)
-                  .addUserMessage("Hello, can you tell me more about the solar system?")
-                  // Respons asisten
-                  .addAssistantMessage(
-                      "Certainly! The solar system is the collection of celestial bodies that orbit our Sun. It consists of eight planets, numerous moons, asteroids, comets, and other objects. The planets, in order from closest to farthest from the Sun, are: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune. Each planet has its own unique characteristics and features. Is there a specific aspect of the solar system you would like to know more about?"
-                  )
-                  // Pesan pengguna kedua (dengan kontrol cache)
-                  .addUserMessageOfContentBlockParams(
-                      List.of(
-                          ContentBlockParam.ofText(TextBlockParam.builder()
-                              .text("Good to know.")
-                              .build()),
-                          ContentBlockParam.ofText(
-                              TextBlockParam.builder()
-                                  .text("Tell me more about Mars.")
-                                  .cacheControl(CacheControlEphemeral.builder().build())
-                                  .build()
-                          )
+          // Buat parameter pesan
+          MessageCreateParams params = MessageCreateParams.builder()
+              .model(Model.CLAUDE_OPUS_5_5)
+              .maxTokens(1024)
+              .systemOfTextBlockParams(List.of(systemPrompt))
+              // Pesan pengguna pertama (tanpa kontrol cache)
+              .addUserMessage("Hello, can you tell me more about the solar system?")
+              // Respons asisten
+              .addAssistantMessage(
+                  "Certainly! The solar system is the collection of celestial bodies that orbit our Sun. It consists of eight planets, numerous moons, asteroids, comets, and other objects. The planets, in order from closest to farthest from the Sun, are: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune. Each planet has its own unique characteristics and features. Is there a specific aspect of the solar system you would like to know more about?"
+              )
+              // Pesan pengguna kedua (dengan kontrol cache)
+              .addUserMessageOfContentBlockParams(
+                  List.of(
+                      ContentBlockParam.ofText(TextBlockParam.builder()
+                          .text("Good to know.")
+                          .build()),
+                      ContentBlockParam.ofText(
+                          TextBlockParam.builder()
+                              .text("Tell me more about Mars.")
+                              .cacheControl(CacheControlEphemeral.builder().build())
+                              .build()
                       )
                   )
-                  .build();
+              )
+              .build();
 
-              Message message = client.messages().create(params);
-              System.out.println(message.usage());
-          }
+          Message message = client.messages().create(params);
+          IO.println(message.usage());
       }
       ```
 
@@ -2226,9 +2217,9 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
       client = Anthropic::Client.new
 
       message = client.messages.create(
-        model: "claude-opus-5-5",
+        model: Anthropic::Model::CLAUDE_OPUS_5_5,
         max_tokens: 1024,
-        system: [
+        system_: [
           {
             type: "text",
             text: "...long system prompt",
@@ -2268,9 +2259,9 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
 
     Contoh ini menunjukkan cara menggunakan caching prompt dalam percakapan multi-giliran.
 
-    Pada setiap giliran, blok terakhir dari pesan terakhir ditandai dengan `cache_control` sehingga percakapan dapat di-cache secara bertahap. Sistem secara otomatis mencari dan menggunakan urutan blok terpanjang yang sebelumnya di-cache untuk pesan lanjutan. Artinya, blok yang sebelumnya ditandai dengan blok `cache_control` kemudian tidak lagi ditandai, tetapi blok tersebut tetap akan dianggap sebagai cache hit (dan juga penyegaran cache!) jika dikenai dalam waktu 5 menit.
+    Pada setiap giliran, blok terakhir dari pesan terakhir ditandai dengan `cache_control` sehingga percakapan dapat di-cache secara bertahap. Sistem secara otomatis mencari dan menggunakan urutan blok terpanjang yang sebelumnya di-cache untuk pesan lanjutan. Blok yang ditandai dengan `cache_control` pada giliran sebelumnya tidak ditandai lagi, tetapi permintaan dalam waktu 5 menit tetap membacanya dari cache dan memperbarui masa hidupnya.
 
-    Selain itu, perhatikan bahwa parameter `cache_control` ditempatkan pada pesan sistem. Ini untuk memastikan bahwa jika pesan ini dikeluarkan dari cache (setelah tidak digunakan selama lebih dari 5 menit), pesan tersebut akan ditambahkan kembali ke cache pada permintaan berikutnya.
+    Parameter `cache_control` juga ditempatkan pada pesan sistem. Jika pesan sistem dikeluarkan dari cache setelah tidak digunakan selama lebih dari 5 menit, permintaan berikutnya akan menambahkannya kembali.
 
     Pendekatan ini berguna untuk mempertahankan konteks dalam percakapan yang sedang berlangsung tanpa berulang kali memproses informasi yang sama.
 
@@ -2281,7 +2272,7 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
     * `cache_read_input_tokens`: Jumlah token dalam percakapan hingga giliran sebelumnya
   </Accordion>
 
-  <Accordion title="Menggabungkan semuanya: Beberapa breakpoint cache">
+  <Accordion title="Menggabungkan semuanya: beberapa breakpoint cache">
     <CodeGroup>
       ```bash cURL
       curl https://api.anthropic.com/v1/messages \
@@ -2841,118 +2832,115 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
       ```java Java
       import com.anthropic.models.messages.CacheControlEphemeral;
       // ...
-      public class MultipleCacheBreakpointsExample {
+      void main() {
+          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          public static void main(String[] args) {
-              AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-              // Skema alat pencarian
-              InputSchema searchSchema = InputSchema.builder()
-                  .properties(
-                      JsonValue.from(
-                          Map.of("query", Map.of("type", "string", "description", "Search query"))
-                      )
+          // Skema alat pencarian
+          InputSchema searchSchema = InputSchema.builder()
+              .properties(
+                  JsonValue.from(
+                      Map.of("query", Map.of("type", "string", "description", "Search query"))
                   )
-                  .putAdditionalProperty("required", JsonValue.from(List.of("query")))
-                  .build();
+              )
+              .putAdditionalProperty("required", JsonValue.from(List.of("query")))
+              .build();
 
-              // Skema alat untuk mengambil dokumen
-              InputSchema getDocSchema = InputSchema.builder()
-                  .properties(
-                      JsonValue.from(
-                          Map.of("doc_id", Map.of("type", "string", "description", "Document ID"))
-                      )
+          // Skema alat pengambil dokumen
+          InputSchema getDocSchema = InputSchema.builder()
+              .properties(
+                  JsonValue.from(
+                      Map.of("doc_id", Map.of("type", "string", "description", "Document ID"))
                   )
-                  .putAdditionalProperty("required", JsonValue.from(List.of("doc_id")))
-                  .build();
+              )
+              .putAdditionalProperty("required", JsonValue.from(List.of("doc_id")))
+              .build();
 
-              MessageCreateParams params = MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_5_5)
-                  .maxTokens(1024)
-                  // Alat dengan cache control pada alat terakhir
-                  .addTool(
-                      Tool.builder()
-                          .name("search_documents")
-                          .description("Search through the knowledge base")
-                          .inputSchema(searchSchema)
-                          .build()
-                  )
-                  .addTool(
-                      Tool.builder()
-                          .name("get_document")
-                          .description("Retrieve a specific document by ID")
-                          .inputSchema(getDocSchema)
+          MessageCreateParams params = MessageCreateParams.builder()
+              .model(Model.CLAUDE_OPUS_5_5)
+              .maxTokens(1024)
+              // Alat dengan kontrol cache pada alat terakhir
+              .addTool(
+                  Tool.builder()
+                      .name("search_documents")
+                      .description("Search through the knowledge base")
+                      .inputSchema(searchSchema)
+                      .build()
+              )
+              .addTool(
+                  Tool.builder()
+                      .name("get_document")
+                      .description("Retrieve a specific document by ID")
+                      .inputSchema(getDocSchema)
+                      .cacheControl(CacheControlEphemeral.builder().build())
+                      .build()
+              )
+              // Prompt sistem dengan kontrol cache terpisah pada instruksi dan konteks
+              .systemOfTextBlockParams(
+                  List.of(
+                      TextBlockParam.builder()
+                          .text(
+                              "You are a helpful research assistant with access to a document knowledge base.\n\n# Instructions\n- Always search for relevant documents before answering\n- Provide citations for your sources\n- Be objective and accurate in your responses\n- If multiple documents contain relevant information, synthesize them\n- Acknowledge when information is not available in the knowledge base"
+                          )
+                          .cacheControl(CacheControlEphemeral.builder().build())
+                          .build(),
+                      TextBlockParam.builder()
+                          .text(
+                              "# Knowledge Base Context\n\nHere are the relevant documents for this conversation:\n\n## Document 1: Solar System Overview\nThe solar system consists of the Sun and all objects that orbit it...\n\n## Document 2: Planetary Characteristics\nEach planet has unique features. Mercury is the smallest planet...\n\n## Document 3: Mars Exploration\nMars has been a target of exploration for decades...\n\n[Additional documents...]"
+                          )
                           .cacheControl(CacheControlEphemeral.builder().build())
                           .build()
                   )
-                  // Prompt sistem dengan cache control terpisah pada instruksi dan konteks
-                  .systemOfTextBlockParams(
-                      List.of(
+              )
+              // Riwayat percakapan
+              .addUserMessage("Can you search for information about Mars rovers?")
+              .addAssistantMessageOfContentBlockParams(
+                  List.of(
+                      ContentBlockParam.ofToolUse(
+                          ToolUseBlockParam.builder()
+                              .id("tool_1")
+                              .name("search_documents")
+                              .input(JsonValue.from(Map.of("query", "Mars rovers")))
+                              .build()
+                      )
+                  )
+              )
+              .addUserMessageOfContentBlockParams(
+                  List.of(
+                      ContentBlockParam.ofToolResult(
+                          ToolResultBlockParam.builder()
+                              .toolUseId("tool_1")
+                              .content(
+                                  "Found 3 relevant documents: Document 3 (Mars Exploration), Document 7 (Rover Technology), Document 9 (Mission History)"
+                              )
+                              .build()
+                      )
+                  )
+              )
+              .addAssistantMessageOfContentBlockParams(
+                  List.of(
+                      ContentBlockParam.ofText(
                           TextBlockParam.builder()
                               .text(
-                                  "You are a helpful research assistant with access to a document knowledge base.\n\n# Instructions\n- Always search for relevant documents before answering\n- Provide citations for your sources\n- Be objective and accurate in your responses\n- If multiple documents contain relevant information, synthesize them\n- Acknowledge when information is not available in the knowledge base"
+                                  "I found 3 relevant documents about Mars rovers. Let me get more details from the Mars Exploration document."
                               )
-                              .cacheControl(CacheControlEphemeral.builder().build())
-                              .build(),
+                              .build()
+                      )
+                  )
+              )
+              .addUserMessageOfContentBlockParams(
+                  List.of(
+                      ContentBlockParam.ofText(
                           TextBlockParam.builder()
-                              .text(
-                                  "# Knowledge Base Context\n\nHere are the relevant documents for this conversation:\n\n## Document 1: Solar System Overview\nThe solar system consists of the Sun and all objects that orbit it...\n\n## Document 2: Planetary Characteristics\nEach planet has unique features. Mercury is the smallest planet...\n\n## Document 3: Mars Exploration\nMars has been a target of exploration for decades...\n\n[Additional documents...]"
-                              )
+                              .text("Yes, please tell me about the Perseverance rover specifically.")
                               .cacheControl(CacheControlEphemeral.builder().build())
                               .build()
                       )
                   )
-                  // Riwayat percakapan
-                  .addUserMessage("Can you search for information about Mars rovers?")
-                  .addAssistantMessageOfContentBlockParams(
-                      List.of(
-                          ContentBlockParam.ofToolUse(
-                              ToolUseBlockParam.builder()
-                                  .id("tool_1")
-                                  .name("search_documents")
-                                  .input(JsonValue.from(Map.of("query", "Mars rovers")))
-                                  .build()
-                          )
-                      )
-                  )
-                  .addUserMessageOfContentBlockParams(
-                      List.of(
-                          ContentBlockParam.ofToolResult(
-                              ToolResultBlockParam.builder()
-                                  .toolUseId("tool_1")
-                                  .content(
-                                      "Found 3 relevant documents: Document 3 (Mars Exploration), Document 7 (Rover Technology), Document 9 (Mission History)"
-                                  )
-                                  .build()
-                          )
-                      )
-                  )
-                  .addAssistantMessageOfContentBlockParams(
-                      List.of(
-                          ContentBlockParam.ofText(
-                              TextBlockParam.builder()
-                                  .text(
-                                      "I found 3 relevant documents about Mars rovers. Let me get more details from the Mars Exploration document."
-                                  )
-                                  .build()
-                          )
-                      )
-                  )
-                  .addUserMessageOfContentBlockParams(
-                      List.of(
-                          ContentBlockParam.ofText(
-                              TextBlockParam.builder()
-                                  .text("Yes, please tell me about the Perseverance rover specifically.")
-                                  .cacheControl(CacheControlEphemeral.builder().build())
-                                  .build()
-                          )
-                      )
-                  )
-                  .build();
+              )
+              .build();
 
-              Message message = client.messages().create(params);
-              System.out.println(message.usage());
-          }
+          Message message = client.messages().create(params);
+          IO.println(message.usage());
       }
       ```
 
@@ -3060,7 +3048,7 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
       client = Anthropic::Client.new
 
       message = client.messages.create(
-        model: "claude-opus-5-5",
+        model: Anthropic::Model::CLAUDE_OPUS_5_5,
         max_tokens: 1024,
         tools: [
           {
@@ -3093,7 +3081,7 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
             cache_control: { type: "ephemeral" }
           }
         ],
-        system: [
+        system_: [
           {
             type: "text",
             text: "You are a helpful research assistant with access to a document knowledge base.\n\n# Instructions\n- Always search for relevant documents before answering\n- Provide citations for your sources\n- Be objective and accurate in your responses\n- If multiple documents contain relevant information, synthesize them\n- Acknowledge when information is not available in the knowledge base",
@@ -3221,7 +3209,7 @@ Representasi cache KV (key-value) dan hash kriptografis dari konten yang di-cach
     Tidak, breakpoint cache itu sendiri gratis. Anda hanya membayar untuk:
 
     * Menulis konten ke cache (25 persen lebih mahal dari token input dasar untuk TTL 5 menit)
-    * Membaca dari cache (sebagian kecil dari harga token input dasar, lihat [Harga](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing))
+    * Membaca dari cache ([sebagian kecil dari harga token input dasar](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing))
     * Token input reguler untuk konten yang tidak di-cache
 
     Jumlah breakpoint tidak memengaruhi harga; yang penting hanyalah jumlah konten yang di-cache dan dibaca.
@@ -3238,7 +3226,7 @@ Representasi cache KV (key-value) dan hash kriptografis dari konten yang di-cach
     * `cache_creation_input_tokens`: Token baru yang ditulis ke cache (pada breakpoint cache)
     * `input_tokens`: Token **setelah breakpoint cache terakhir** yang tidak di-cache
 
-    **Penting:** `input_tokens` TIDAK mewakili semua token input, hanya bagian setelah breakpoint cache terakhir Anda. Jika Anda memiliki konten yang di-cache, `input_tokens` biasanya akan jauh lebih kecil dari total input Anda.
+    **Penting:** `input_tokens` TIDAK mewakili semua token input, hanya bagian setelah breakpoint cache terakhir Anda. Jika Anda memiliki konten yang di-cache, `input_tokens` biasanya jauh lebih kecil dari total input Anda.
 
     **Contoh:** Dengan dokumen 200k token yang di-cache dan pertanyaan pengguna 50 token:
 
@@ -3289,7 +3277,7 @@ Representasi cache KV (key-value) dan hash kriptografis dari konten yang di-cach
   </Accordion>
 
   <Accordion title="Bagaimana caching prompt memengaruhi harga?">
-    Caching prompt memperkenalkan struktur harga baru di mana penulisan cache 5 menit berbiaya 25 persen lebih mahal dari token input dasar, penulisan cache 1 jam berbiaya 2x token input dasar, dan cache hit berbiaya sebagian kecil dari harga token input dasar (lihat [Harga](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing) untuk pengali per model).
+    Caching prompt memiliki harganya sendiri: penulisan cache 5 menit berbiaya 25 persen lebih mahal dari token input dasar, penulisan cache 1 jam berbiaya 2x token input dasar, dan cache hit berbiaya [sebagian kecil dari harga token input dasar](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing), dengan pengali untuk setiap model.
   </Accordion>
 
   <Accordion title="Bisakah saya menghapus cache secara manual?">
@@ -3318,8 +3306,8 @@ Representasi cache KV (key-value) dan hash kriptografis dari konten yang di-cach
     Langkah-langkah ini memastikan bahwa caching prompt menjaga privasi dan keamanan data sambil menawarkan manfaat kinerja.
   </Accordion>
 
-  <Accordion title="Bisakah saya menggunakan caching prompt dengan Batches API?">
-    Ya, caching prompt dapat digunakan dengan permintaan [Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing) Anda. Namun, karena permintaan batch asinkron dapat diproses secara bersamaan dan dalam urutan apa pun, cache hit disediakan berdasarkan upaya terbaik (best-effort).
+  <Accordion title="Bisakah saya menggunakan caching prompt dengan Message Batches API?">
+    Ya, caching prompt dapat digunakan dengan permintaan [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing) Anda. Namun, karena permintaan batch asinkron dapat diproses secara bersamaan dan dalam urutan apa pun, cache hit disediakan berdasarkan upaya terbaik (best-effort).
 
     [Cache 1 jam](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration) dapat membantu meningkatkan cache hit Anda. Cara paling hemat biaya untuk menggunakannya adalah sebagai berikut:
 
@@ -3331,7 +3319,7 @@ Representasi cache KV (key-value) dan hash kriptografis dari konten yang di-cach
   </Accordion>
 
   <Accordion title="Mengapa saya melihat error `AttributeError: 'Beta' object has no attribute 'prompt_caching'` di Python?">
-    Error ini biasanya muncul ketika Anda telah meng-upgrade SDK atau menggunakan contoh kode yang sudah usang. Caching prompt tidak lagi memerlukan prefiks beta. Alih-alih:
+    Error ini biasanya muncul ketika Anda telah meng-upgrade SDK atau menggunakan contoh kode yang sudah usang. Caching prompt tersedia di `client.messages`, tanpa prefiks beta. Alih-alih:
 
     <CodeGroup exclude="shell:cURL, shell:CLI, typescript, csharp, go, java, php, ruby">
       ```python Python
@@ -3349,7 +3337,7 @@ Representasi cache KV (key-value) dan hash kriptografis dari konten yang di-cach
   </Accordion>
 
   <Accordion title="Mengapa saya melihat ‘TypeError: Cannot read properties of undefined (reading ‘messages’)’?">
-    Error ini biasanya muncul ketika Anda telah meng-upgrade SDK atau menggunakan contoh kode yang sudah usang. Caching prompt tidak lagi memerlukan prefiks beta. Alih-alih:
+    Error ini biasanya muncul ketika Anda telah meng-upgrade SDK atau menggunakan contoh kode yang sudah usang. Caching prompt tersedia di `client.messages`, tanpa prefiks beta. Alih-alih:
 
     ```typescript TypeScript
     client.beta.promptCaching.messages.create(/* ... */);

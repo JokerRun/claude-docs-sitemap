@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5/overview
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 9e2312d41c356f8b4e83f00dc62b7ac8be2f77c615c805094eb7d815acd9a0ce
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 6b1c82edf15ef03088117a5ce4237d2adc5a57cbdcae4c74223daf534200bd5f
 ---
 
 ---
@@ -103,7 +103,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $5 / MTok
     Model Opus saat ini: ikhtisar, spesifikasi, dan sumber daya.
   </Card>
 
-  <Card title="Prompting Claude Opus 5" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5">
+  <Card title="Menulis prompt untuk Claude Opus 5" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5">
     Panduan prompting khusus model.
   </Card>
 </CardGroup>
@@ -115,7 +115,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $5 / MTok
     Prompt sistem yang digunakan Claude Opus 5 di claude.ai dan aplikasi Claude.
   </Card>
 
-  <Card title="System card" icon="file" href="https://www.anthropic.com/claude-opus-5-system-card">
+  <Card title="Kartu sistem" icon="file" href="https://www.anthropic.com/claude-opus-5-system-card">
     Evaluasi keamanan dan keputusan deployment untuk Claude Opus 5.
   </Card>
 

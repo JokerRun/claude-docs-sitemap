@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/create
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 7bdae71980a2aff09491755da1744932b5cf722f459c1d4a2a8c818539f82ce3
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: e475569a63fe6cbb8751500213594626761a20d3144654b2f37a9813a7e08d4c
 ---
 
 ---
@@ -4206,8 +4206,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
         the thinking-block delimiter tokens.
 
         Reflects the raw reasoning the model produced, not the (possibly shorter)
-        summarized thinking text returned in the response body. Computed by
-        re-tokenizing the raw reasoning text, so it may differ from the model's exact
+        summarized thinking text returned in the response body. It may differ from the model's exact
         generation count by a small number of tokens. Always ≤ `output_tokens`;
         `output_tokens - thinking_tokens` approximates the non-reasoning output.
 

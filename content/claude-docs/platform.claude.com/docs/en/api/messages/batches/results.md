@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/results
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 31c4915ced726a2bd718692a6bf8bccd309b509ad5ed069ef2ae51867e9ce38e
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: cd5889142bceb9ce52fcb0212de9f07f6cff1fb2156c74f3f467e867d70afd27
 ---
 
 ---
@@ -1174,8 +1174,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
               the thinking-block delimiter tokens.
 
               Reflects the raw reasoning the model produced, not the (possibly shorter)
-              summarized thinking text returned in the response body. Computed by
-              re-tokenizing the raw reasoning text, so it may differ from the model's exact
+              summarized thinking text returned in the response body. It may differ from the model's exact
               generation count by a small number of tokens. Always ≤ `output_tokens`;
               `output_tokens - thinking_tokens` approximates the non-reasoning output.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/reference
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 3fddc7e1167f651dcd4736a1e1cbfe31c9740eaaf7f5ddac459f75d06024e8dc
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 69a4c1223889fc057a1143b12fc1021d4d375fbd4f333291a1e73df62b58f2b2
 ---
 
 ---
@@ -53,7 +53,7 @@ String jenis event yang dipersistenkan mengikuti konvensi penamaan `{domain}.{ac
     | Tipe                      | Deskripsi                                                                                                                                                                                                                                                  |
     | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
     | `user.message`            | Pesan pengguna dengan konten teks, gambar, atau dokumen.                                                                                                                                                                                                   |
-    | `user.interrupt`          | Menghentikan agen saat sedang berjalan. Event ini tidak mengakhiri [workflow run](https://platform.claude.com/docs/id/managed-agents/workflow-runs#interrupt-a-session-with-runs-open) apa pun.                                                            |
+    | `user.interrupt`          | Menghentikan agen saat sedang berjalan. Event ini tidak mengakhiri [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs#interrupt-a-session-with-runs-open) apa pun.                                                       |
     | `user.custom_tool_result` | Respons terhadap panggilan alat kustom dari agen.                                                                                                                                                                                                          |
     | `user.tool_confirmation`  | Menyetujui atau menolak panggilan alat agen atau MCP ketika kebijakan izin memerlukan konfirmasi.                                                                                                                                                          |
     | `user.define_outcome`     | Mendefinisikan [outcome](https://platform.claude.com/docs/id/managed-agents/define-outcomes) yang akan dikerjakan oleh agen.                                                                                                                               |
@@ -74,7 +74,7 @@ String jenis event yang dipersistenkan mengikuti konvensi penamaan `{domain}.{ac
     | `agent.thread_message_received`  | Dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), pesan dari thread lain tiba di thread yang alirannya membawa event ini; pada thread utama, sebuah agen mengirim laporan atau pertanyaan kepada agen yang dijalankan oleh sesi.                                                                                                        |
     | `agent.thread_message_sent`      | Dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), thread yang alirannya membawa event ini mengirim pesan ke thread lain; pada thread utama, agen yang dijalankan oleh sesi mengirim tugas atau pesan tindak lanjut ke agen lain.                                                                                                        |
 
-    Konten pesan dalam event-event ini dapat menyertakan blok konten `redacted`, `{"type": "redacted"}`: sebuah placeholder untuk konten yang ditahan oleh kebijakan model Anthropic. Blok ini tidak membawa field lain. Blok redacted hanya muncul dalam konten yang dikeluarkan platform; event pengguna yang menyertakannya akan ditolak dengan error 400.
+    Konten pesan dalam event-event ini dapat menyertakan blok konten `redacted`, `{"type": "redacted"}`: sebuah placeholder untuk konten yang ditahan oleh kebijakan model Anthropic. Blok ini tidak membawa field lain. Blok yang disunting hanya muncul dalam konten yang dikeluarkan platform; event pengguna yang menyertakannya akan ditolak dengan error 400.
   </Tab>
 
   <Tab title="Event sesi">
@@ -125,7 +125,7 @@ String jenis event yang dipersistenkan mengikuti konvensi penamaan `{domain}.{ac
     | `system.message` | Menambahkan konteks tingkat sistem yang memiliki hak istimewa, yang berlaku untuk giliran yang menyertainya dan semua giliran berikutnya. Untuk model yang menerimanya, lihat [Model yang didukung](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#supported-models). Pada model utama yang tidak didukung, event ini ditolak dengan `model_does_not_support_mid_conversation_system`. |
   </Tab>
 
-  <Tab title="Event deltas">
+  <Tab title="Delta event">
     Event delta adalah event pratinjau yang hanya ada di stream. Event ini dikeluarkan pada koneksi stream (tingkat sesi atau per thread) yang memilih ikut serta dengan parameter `event_deltas` (curl: `event_deltas[]`; cli: `--event-delta`; java, php: `eventDeltas`; csharp, go: `EventDeltas`), dan tidak pernah dipersistenkan ke riwayat event sesi. Lihat [Pratinjau respons dengan event delta](https://platform.claude.com/docs/id/managed-agents/event-deltas) untuk cara memilih ikut serta, mengakumulasi, dan merekonsiliasinya.
 
     | Tipe          | Deskripsi                                                                                                                                                                                         |
@@ -149,10 +149,10 @@ Untuk informasi lebih lanjut tentang MCP dan membangun server MCP, lihat [dokume
 
 Endpoint Managed Agents dibatasi lajunya untuk setiap organisasi:
 
-| Operasi                                                  | Batas                      |
-| -------------------------------------------------------- | -------------------------- |
-| Endpoint pembuatan (seperti agen, sesi, dan environment) | 300 permintaan per menit   |
-| Endpoint pembacaan (seperti retrieve, list, dan stream)  | 1.200 permintaan per menit |
+| Operasi                                                      | Batas                      |
+| ------------------------------------------------------------ | -------------------------- |
+| Endpoint pembuatan (seperti agen, sesi, dan environment)     | 300 permintaan per menit   |
+| Endpoint pembacaan (seperti pengambilan, daftar, dan stream) | 1.200 permintaan per menit |
 
 [Batas pengeluaran dan batas laju tingkat penggunaan](https://platform.claude.com/docs/id/api/rate-limits) di tingkat organisasi juga berlaku.
 

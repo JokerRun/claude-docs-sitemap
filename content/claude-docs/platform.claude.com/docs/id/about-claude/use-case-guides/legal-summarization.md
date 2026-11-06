@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 91d619b26f86c63b51c549e0c86d522ee01f3a2a64a0d6d89a8e603fea2855ab
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 922ed18eada4d7ecac277d034591632b2416761c74498a04ea5101a7c3e22e4d
 ---
 
 ---
@@ -888,11 +888,11 @@ Berikut adalah beberapa pertimbangan tambahan yang perlu diingat saat Anda mener
 
 ## Tingkatkan performa
 
-Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan guna meningkatkan performa di luar [teknik prompt engineering](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) standar. Berikut adalah beberapa strategi lanjutan:
+Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan guna meningkatkan performa di luar [teknik rekayasa prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview) standar. Berikut adalah beberapa strategi lanjutan:
 
 ### Lakukan meta-peringkasan untuk meringkas dokumen panjang
 
-Peringkasan hukum sering kali melibatkan penanganan dokumen panjang atau banyak dokumen terkait sekaligus, sehingga Anda melampaui “context window” (jendela konteks) Claude. Anda dapat menggunakan metode chunking yang dikenal sebagai meta-peringkasan (meta-summarization) untuk menangani kasus penggunaan ini. Teknik ini melibatkan pemecahan dokumen menjadi potongan-potongan (chunk) yang lebih kecil dan mudah dikelola, lalu memproses setiap potongan secara terpisah. Anda kemudian dapat menggabungkan ringkasan setiap potongan untuk membuat meta-ringkasan dari keseluruhan dokumen.
+Peringkasan hukum sering kali melibatkan penanganan dokumen panjang atau banyak dokumen terkait sekaligus, sehingga Anda melampaui “context window” (jendela konteks) Claude. Anda dapat menggunakan metode pemotongan yang dikenal sebagai meta-peringkasan (meta-summarization) untuk menangani kasus penggunaan ini. Teknik ini melibatkan pemecahan dokumen menjadi potongan-potongan (chunk) yang lebih kecil dan mudah dikelola, lalu memproses setiap potongan secara terpisah. Anda kemudian dapat menggabungkan ringkasan setiap potongan untuk membuat meta-ringkasan dari keseluruhan dokumen.
 
 Berikut adalah contoh cara melakukan meta-peringkasan:
 
@@ -1366,6 +1366,6 @@ Teknik tingkat lanjut lainnya untuk meningkatkan kemampuan Claude dalam menghasi
   </Card>
 
   <Card title="Resep kutipan" icon="link" href="https://platform.claude.com/cookbook/misc-using-citations">
-    Jelajahi resep Citations untuk panduan tentang cara memastikan akurasi dan keterjelasan informasi.
+    Jelajahi resep Kutipan untuk panduan tentang cara memastikan akurasi dan keterjelasan informasi.
   </Card>
 </CardGroup>

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-config
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 736c92ceb4d7396a9c32087db9672ca7dcdbd6b0b3c2658a71904c6dfb234c1d
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 364e72b23055b7775a7ab07d12fba01b797c0d0b97ddf20a1af2a4c4b45ed394
 ---
 
 > ## Documentation Index
@@ -1658,7 +1658,7 @@ load_test_mode:
 | `reply_tokens` | No | Default `750`. Roughly how many tokens of text each canned reply carries, a whole number from 1 to 100000. |
 | `reply_seconds` | No | Default `9.5`. How long a streamed reply takes, from 0 to 600. `0` sends the whole reply at once. A reply to a non-streaming request always comes back at once. |
 
-A load test in this mode covers the gateway, your Postgres, and everything in front of the gateway. It doesn't cover the provider's limits, speed, or network path.
+A load test in this mode covers the gateway, your Postgres, and everything in front of the gateway. It doesn't cover the provider's limits, speed, and network path, or the wait at each replica's [limit on concurrent upstream requests](https://code.claude.com/docs/en/claude-apps-gateway-deploy.md#concurrent-upstream-requests). A replica still logs the `client requests are open` warning when more requests are open than that limit, the point where production requests start to wait.
 
 No model request is sent to the provider, so a replica's CPU per request is an estimate and reads lower than production, which also encrypts its traffic to the provider. Confirm a replica count with a small pilot against the real provider. Before v2.1.283, the estimate reads much lower.
 

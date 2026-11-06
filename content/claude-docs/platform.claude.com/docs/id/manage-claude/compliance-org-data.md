@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-org-data
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: edad657a57c99d1bc93241c4301b36f1a6f1009bb9f280497a4cff1e176538be
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: a3c51189cfcb2058bb609134af25364c96f8346c6a167b017237b4d4c85c17af
 ---
 
 ---
@@ -25,9 +25,9 @@ Endpoint di halaman ini mengekspos sisi direktori dari organisasi Claude Enterpr
 
 ## Daftar organisasi
 
-Endpoint [List organizations](https://platform.claude.com/docs/id/api/compliance/organizations/list) mengembalikan setiap organisasi di bawah induk tempat kunci tersebut terikat.
+Endpoint [Daftar organisasi](https://platform.claude.com/docs/id/api/compliance/organizations/list) mengembalikan setiap organisasi di bawah induk tempat kunci tersebut terikat.
 
-Panggilan berikut mendaftar setiap organisasi di bawah induk Anda. Responsnya adalah array `data` berisi catatan organisasi yang diurutkan berdasarkan `created_at` secara menaik, ditambah `has_more` dan `next_page` untuk paginasi. Ketika `has_more` bernilai `true`, teruskan kembali token `next_page` yang dikembalikan tanpa perubahan sebagai parameter query `page` pada permintaan berikutnya. Lihat [List organizations](https://platform.claude.com/docs/id/api/compliance/organizations/list) di referensi API untuk nilai default dan rentang parameter `limit` dan `page`.
+Panggilan berikut mendaftar setiap organisasi di bawah induk Anda. Responsnya adalah array `data` berisi catatan organisasi yang diurutkan berdasarkan `created_at` secara menaik, ditambah `has_more` dan `next_page` untuk paginasi. Ketika `has_more` bernilai `true`, teruskan kembali token `next_page` yang dikembalikan tanpa perubahan sebagai parameter query `page` pada permintaan berikutnya. Lihat [Daftar organisasi](https://platform.claude.com/docs/id/api/compliance/organizations/list) di referensi API untuk nilai default dan rentang parameter `limit` dan `page`.
 
 ```bash cURL
 curl --fail-with-body -sS \
@@ -71,11 +71,11 @@ Untuk melacak perubahan keanggotaan organisasi dari waktu ke waktu, daftar ulang
 
 ## Daftar pengguna organisasi
 
-Endpoint [List organization users](https://platform.claude.com/docs/id/api/compliance/organizations/users/list) mengembalikan daftar catatan pengguna berpaginasi untuk satu organisasi.
+Endpoint [Daftar pengguna organisasi](https://platform.claude.com/docs/id/api/compliance/organizations/users/list) mengembalikan daftar catatan pengguna berpaginasi untuk satu organisasi.
 
 Endpoint ini memerlukan `read:compliance_user_data`, bukan `read:compliance_org_data`. Buat Compliance Access Key dengan kedua cakupan jika Anda bermaksud menggunakannya untuk enumerasi direktori; jika tidak, panggilan akan mengembalikan [403 Forbidden](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden).
 
-Lihat [List organization users](https://platform.claude.com/docs/id/api/compliance/organizations/users/list) di referensi API untuk nilai default dan rentang parameter query `limit` dan `page`.
+Lihat [Daftar pengguna organisasi](https://platform.claude.com/docs/id/api/compliance/organizations/users/list) di referensi API untuk nilai default dan rentang parameter query `limit` dan `page`.
 
 Hasil diurutkan berdasarkan tanggal bergabung ke organisasi secara menaik. Berbeda dengan kursor `before_id`/`after_id` pada Activity Feed (lihat [Paginasi hasil](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#paginate-results)), endpoint direktori melakukan paginasi dengan token `next_page`: ketika `has_more` bernilai `true`, teruskan kembali `next_page` tanpa perubahan sebagai parameter query `page` pada permintaan berikutnya.
 
@@ -103,13 +103,13 @@ curl --fail-with-body -sS -G \
 }
 ```
 
-ID pengguna yang dikembalikan di sini adalah pengidentifikasi `user_...` yang sama dengan yang diterima oleh filter `actor_ids[]` pada [Query Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) dan filter `user_ids[]` pada [Mengambil chat dan pesan](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-chats-and-messages) serta [daftar sesi remote](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-remote-sessions); [daftar sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions) tidak memiliki filter pengguna, jadi atribusikan sesi lokal berdasarkan `user.id` pada setiap objek sesi. Field `organization_role` membawa tingkat keanggotaan bawaan pengguna dalam organisasi yang didaftar (salah satu dari `admin`, `billing`, `claude_code_user`, `developer`, `managed`, `membership_admin`, `owner`, `primary_owner`, atau `user`), sebuah sumbu yang independen dari penugasan peran RBAC kustom apa pun yang dikembalikan oleh [Daftar peran](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-roles). Alur eDiscovery yang umum mendaftar pengguna untuk satu atau lebih organisasi, memfilternya terhadap catatan eksternal Anda sendiri, dan memasukkan ID yang dihasilkan ke dalam query chat dan proyek.
+ID pengguna yang dikembalikan di sini adalah pengidentifikasi `user_...` yang sama dengan yang diterima oleh filter `actor_ids[]` pada [Mengkueri Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed). Filter `user_ids[]` pada [Mengambil chat dan pesan](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-chats-and-messages) dan [daftar sesi jarak jauh](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-remote-sessions) menerima pengidentifikasi yang sama. [Daftar sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions) tidak memiliki filter pengguna, jadi atribusikan sesi lokal berdasarkan `user.id` pada setiap objek sesi. Field `organization_role` memuat tingkat keanggotaan bawaan pengguna dalam organisasi yang tercantum (salah satu dari `admin`, `billing`, `claude_code_user`, `developer`, `managed`, `membership_admin`, `owner`, `primary_owner`, atau `user`), sebuah sumbu yang independen dari penetapan peran RBAC kustom apa pun yang dikembalikan oleh [Daftar peran](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-roles). Alur eDiscovery yang umum mencantumkan pengguna untuk satu atau beberapa organisasi, memfilternya terhadap catatan eksternal Anda sendiri, lalu memasukkan ID yang dihasilkan ke dalam kueri chat dan proyek.
 
 Seorang pengguna hanya muncul di sini selama mereka menjadi anggota aktif organisasi. Pengguna yang dihapus langsung dikeluarkan dari daftar. Aktivitas historis mereka tetap dapat di-query melalui Activity Feed selama jendela retensi penuh, diindeks dengan ID `user_...` yang sama.
 
 ## Mencantumkan preferensi pengguna
 
-Endpoint `GET /v1/compliance/organizations/{org_uuid}/user_preferences` mengembalikan teks yang disimpan oleh anggota saat ini dari satu organisasi sebagai **Instructions for Claude** di claude.ai (`conversation_preferences`) dan sebagai **Global instructions** di Cowork (`cowork_global_instructions`). Keduanya merupakan pengaturan tingkat akun, sehingga teks yang sama dikembalikan di bawah setiap organisasi tempat seorang anggota bergabung. Endpoint ini masih dalam tahap beta.
+Endpoint `GET /v1/compliance/organizations/{org_uuid}/user_preferences` mengembalikan teks yang disimpan oleh anggota saat ini dari satu organisasi sebagai **Instruksi untuk Claude** di claude.ai (`conversation_preferences`) dan sebagai **Instruksi global** di Cowork (`cowork_global_instructions`). Keduanya merupakan pengaturan tingkat akun, sehingga teks yang sama dikembalikan di bawah setiap organisasi tempat seorang anggota bergabung. Endpoint ini masih dalam tahap beta.
 
 Endpoint ini memerlukan `read:compliance_user_data`, bukan `read:compliance_org_data`; panggilan dengan kunci yang tidak memiliki `read:compliance_user_data` mengembalikan [403 Forbidden](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden).
 
@@ -141,7 +141,7 @@ curl --fail-with-body -sS \
 
 ## Daftar peran
 
-Endpoint [List Compliance Roles](https://platform.claude.com/docs/id/api/compliance/organizations/roles/list) mengembalikan daftar catatan peran berpaginasi yang didefinisikan pada satu organisasi, dan [Get Compliance Role](https://platform.claude.com/docs/id/api/compliance/organizations/roles/retrieve) mengembalikan satu peran berdasarkan ID.
+Endpoint [Daftar Peran Kepatuhan](https://platform.claude.com/docs/id/api/compliance/organizations/roles/list) mengembalikan daftar catatan peran berpaginasi yang didefinisikan pada satu organisasi, dan [Dapatkan Peran Kepatuhan](https://platform.claude.com/docs/id/api/compliance/organizations/roles/retrieve) mengembalikan satu peran berdasarkan ID.
 
 Kedua endpoint peran memerlukan `read:compliance_org_data`. Endpoint daftar menerima parameter `limit` dan `page` yang sama dengan [endpoint pengguna organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organization-users).
 
@@ -168,15 +168,15 @@ curl --fail-with-body -sS \
 }
 ```
 
-Lihat skema respons [List Compliance Roles](https://platform.claude.com/docs/id/api/compliance/organizations/roles/list) untuk bentuk lengkap catatan peran. Untuk mendaftar izin yang saat ini diberikan kepada suatu peran, gunakan [List Compliance Role Permissions](https://platform.claude.com/docs/id/api/compliance/organizations/roles/permissions/list). Untuk mengaudit penugasan peran historis dan perubahan izin, query tipe aktivitas RBAC (misalnya, `rbac_role_assigned` dan `rbac_role_permission_added`) melalui Activity Feed; lihat [Memfilter aktivitas](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#filter-activities).
+Lihat skema respons [Daftar Peran Kepatuhan](https://platform.claude.com/docs/id/api/compliance/organizations/roles/list) untuk bentuk lengkap catatan peran. Untuk mendaftar izin yang saat ini diberikan kepada suatu peran, gunakan [Daftar Izin Peran Kepatuhan](https://platform.claude.com/docs/id/api/compliance/organizations/roles/permissions/list). Untuk mengaudit penugasan peran historis dan perubahan izin, query tipe aktivitas RBAC (misalnya, `rbac_role_assigned` dan `rbac_role_permission_added`) melalui Activity Feed; lihat [Memfilter aktivitas](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#filter-activities).
 
 ## Daftar grup dan anggota
 
-Endpoint [List Compliance Groups](https://platform.claude.com/docs/id/api/compliance/groups/list) mengembalikan daftar berpaginasi grup RBAC dan grup yang disediakan melalui SCIM, dan [Get Compliance Group](https://platform.claude.com/docs/id/api/compliance/groups/retrieve) mengembalikan satu grup berdasarkan ID. Endpoint [List Compliance Group Members](https://platform.claude.com/docs/id/api/compliance/groups/members/list) mengembalikan anggota dari satu grup.
+Endpoint [Daftar Grup Kepatuhan](https://platform.claude.com/docs/id/api/compliance/groups/list) mengembalikan daftar berpaginasi grup RBAC dan grup yang disediakan melalui SCIM, dan [Dapatkan Grup Kepatuhan](https://platform.claude.com/docs/id/api/compliance/groups/retrieve) mengembalikan satu grup berdasarkan ID. Endpoint [Daftar Anggota Grup Kepatuhan](https://platform.claude.com/docs/id/api/compliance/groups/members/list) mengembalikan anggota dari satu grup.
 
 Endpoint daftar dan pengambilan grup memerlukan `read:compliance_org_data`. Endpoint anggota memerlukan `read:compliance_user_data`. Buat kunci dengan kedua cakupan untuk menelusuri grup dari ujung ke ujung. Kedua endpoint daftar menerima parameter `limit` dan `page` yang sama dengan [endpoint pengguna organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organization-users).
 
-Lihat skema respons [List Compliance Groups](https://platform.claude.com/docs/id/api/compliance/groups/list) untuk bentuk lengkap catatan grup. Array `roles` mendaftar ID peran yang ditugaskan ke grup, sesuai dengan ID dari [Daftar peran](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-roles). `source_type` adalah pembeda antara grup yang dibuat secara manual melalui claude.ai (`direct`) dan grup yang disinkronkan dari penyedia identitas eksternal melalui SCIM (`scim`).
+Lihat skema respons [Daftar Grup Kepatuhan](https://platform.claude.com/docs/id/api/compliance/groups/list) untuk bentuk lengkap catatan grup. Array `roles` mendaftar ID peran yang ditugaskan ke grup, sesuai dengan ID dari [Daftar peran](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-roles). `source_type` adalah pembeda antara grup yang dibuat secara manual melalui claude.ai (`direct`) dan grup yang disinkronkan dari penyedia identitas eksternal melalui SCIM (`scim`).
 
 Daftar grup, lalu untuk setiap grup daftar anggotanya:
 
@@ -229,13 +229,20 @@ curl --fail-with-body -sS -G \
 }
 ```
 
-Lihat skema respons [List Compliance Group Members](https://platform.claude.com/docs/id/api/compliance/groups/members/list) untuk bentuk lengkap catatan anggota. Field `user_id` adalah pengidentifikasi `user_...` yang sama dengan yang diterima Activity Feed, daftar chat, dan daftar sesi remote; field ini juga cocok dengan `user.id` pada objek sesi lokal dan pada objek sesi remote milik pengguna (sesi remote milik agen membawa ID manusianya di `started_by_user.id` sebagai gantinya). Untuk mendapatkan nama lengkap anggota, cari melalui daftar pengguna organisasi.
+Lihat skema respons [Daftar Anggota Grup Kepatuhan](https://platform.claude.com/docs/id/api/compliance/groups/members/list) untuk bentuk lengkap catatan anggota. Field `user_id` adalah pengidentifikasi `user_...` yang sama dengan yang diterima Activity Feed, daftar chat, dan daftar sesi jarak jauh; field ini juga cocok dengan `user.id` pada objek sesi lokal dan pada objek sesi jarak jauh milik pengguna (sesi jarak jauh milik agen membawa ID manusianya di `started_by_user.id` sebagai gantinya). Untuk mendapatkan nama lengkap anggota, cari melalui daftar pengguna organisasi.
 
 ## Mendapatkan pengaturan organisasi efektif
 
-Endpoint [Get effective organization settings](https://platform.claude.com/docs/id/api/compliance/organizations/settings/retrieve) mengembalikan pengaturan yang berlaku untuk satu organisasi di bawah induk Anda: status yang ditegakkan setelah pembatasan regulasi (seperti HIPAA), aturan ketersediaan fitur, default tipe organisasi, dan dependensi antarfitur diterapkan, yang dapat berbeda dari apa yang dikonfigurasi administrator. Gunakan endpoint ini untuk membuktikan bahwa jendela retensi, redaksi konten, penegakan single sign-on, allowlist IP, dan kontrol durasi sesi sesuai dengan baseline terdokumentasi Anda, tanpa akses Console administrator.
+Endpoint [Dapatkan pengaturan organisasi efektif](https://platform.claude.com/docs/id/api/compliance/organizations/settings/retrieve) mengembalikan pengaturan yang berlaku untuk satu organisasi di bawah induk Anda: status yang ditegakkan setelah pembatasan regulasi (seperti HIPAA), aturan ketersediaan fitur, default tipe organisasi, dan dependensi antarfitur diterapkan, yang dapat berbeda dari apa yang dikonfigurasi administrator. Gunakan endpoint ini untuk membuktikan bahwa jendela retensi, redaksi konten, penegakan single sign-on, allowlist IP, dan kontrol durasi sesi sesuai dengan baseline terdokumentasi Anda, tanpa akses Console administrator.
 
-Endpoint ini memerlukan `read:compliance_org_data`; kunci tanpa cakupan tersebut mengembalikan [403 Forbidden](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden). Target harus merupakan salah satu organisasi tertaut milik induk: organisasi induk itu sendiri bukan target yang valid. Organisasi yang tidak dikenal, ID organisasi yang bukan UUID valid, organisasi di luar pohon induk Anda, dan organisasi induk yang belum memiliki akses ke endpoint ini semuanya mengembalikan [404 Not Found](https://platform.claude.com/docs/id/manage-claude/compliance-errors#404-not-found) yang sama, sehingga 404 tidak mengungkapkan apakah suatu organisasi ada. Endpoint pengaturan diaktifkan per organisasi induk secara terpisah dari bagian Compliance API lainnya; jika setiap permintaan mengembalikan 404, hubungi perwakilan Anthropic Anda.
+Endpoint ini memerlukan `read:compliance_org_data`; kunci tanpa cakupan tersebut akan mengembalikan [403 Forbidden](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden). Target harus merupakan salah satu organisasi yang tertaut ke induk: organisasi induk itu sendiri bukan target yang valid. Semua hal berikut mengembalikan [404 Not Found](https://platform.claude.com/docs/id/manage-claude/compliance-errors#404-not-found) yang sama:
+
+* Organisasi yang tidak dikenal
+* ID organisasi yang bukan UUID valid
+* Organisasi di luar hierarki induk Anda
+* Organisasi induk yang belum memiliki akses ke endpoint ini
+
+Oleh karena itu, 404 tidak mengungkapkan apakah suatu organisasi ada. Endpoint pengaturan diaktifkan per organisasi induk secara terpisah dari bagian lain Compliance API; jika setiap permintaan mengembalikan 404, hubungi perwakilan Anthropic Anda.
 
 <Note>
   Sebelum 30 Juni 2026, endpoint ini memerlukan cakupan terpisah `read:compliance_org_settings`. Cakupan tersebut telah dipensiunkan: cakupan ini tidak dapat lagi dipilih atau diberikan saat membuat kunci, dan kunci yang hanya membawa cakupan yang dipensiunkan tersebut mengembalikan [403 Forbidden](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden). Buat Compliance Access Key baru dengan `read:compliance_org_data` sebagai gantinya.
@@ -292,13 +299,17 @@ Responsnya adalah daftar baris pengaturan bertipe, dan baris mana yang muncul be
 }
 ```
 
-Setiap baris membawa `name`, `type`, dan `value`; field `type` (`boolean`, `integer`, `string_list`, `provisioning_mode`, atau `data_retention`) memberi tahu Anda bentuk dari `value`. Daftar lengkap nama pengaturan, dan skema `value` untuk setiap tipe, terdapat di [Get effective organization settings](https://platform.claude.com/docs/id/api/compliance/organizations/settings/retrieve) di referensi API.
+Setiap baris membawa `name`, `type`, dan `value`; field `type` (`boolean`, `integer`, `string_list`, `provisioning_mode`, atau `data_retention`) memberi tahu Anda bentuk dari `value`. Daftar lengkap nama pengaturan, dan skema `value` untuk setiap tipe, terdapat di [Dapatkan pengaturan organisasi efektif](https://platform.claude.com/docs/id/api/compliance/organizations/settings/retrieve) di referensi API.
 
-Array `api_keys` mendaftar setiap Compliance Access Key yang dikonfigurasi untuk organisasi induk Anda, sehingga daftar yang sama dikembalikan terlepas dari organisasi tertaut mana yang Anda query. Setiap entri membawa `type` kunci (`compliance_api_key`), `id`, `name`, `scopes`, flag `is_active`, stempel waktu `created_at` dan `expires_at`, serta `created_by_id` (ID pengguna yang membuat kunci; dapat bernilai `null`). Nilai rahasia kunci tidak pernah dikembalikan. Kunci yang dinonaktifkan disertakan dengan `is_active: false` sehingga Anda dapat meninjau kunci yang sebelumnya memiliki akses, dan kunci yang hanya membawa cakupan `read:compliance_org_settings` yang telah dipensiunkan tetap ada dalam daftar untuk visibilitas audit dan pembersihan meskipun cakupan tersebut tidak lagi memberikan akses.
+Array `api_keys` mencantumkan setiap Compliance Access Key yang dikonfigurasi untuk organisasi induk Anda, sehingga daftar yang sama dikembalikan terlepas dari organisasi tertaut mana yang Anda kueri. Setiap entri memuat `type` kunci (`compliance_api_key`), `id`, `name`, `scopes`, flag `is_active`, timestamp `created_at` dan `expires_at`, serta `created_by_id` (ID pengguna yang membuat kunci tersebut, atau `null`). Nilai rahasia kunci tidak pernah dikembalikan. Kunci yang dinonaktifkan disertakan dengan `is_active: false` sehingga Anda dapat meninjau kunci yang sebelumnya memiliki akses, dan kunci yang hanya memiliki cakupan `read:compliance_org_settings` yang sudah dihentikan tetap ada dalam daftar untuk keperluan audit dan visibilitas pembersihan meskipun cakupan tersebut tidak lagi memberikan akses.
 
 `organization_id` tingkat atas adalah UUID polos organisasi: nilai yang sama dengan `uuid` dalam daftar organisasi, bukan bentuk berawalan `org_` yang dibawa `organization_id` pada catatan Activity Feed, chat, dan proyek (lihat [tabel pengidentifikasi organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organizations)).
 
-Baris mencerminkan status yang ditegakkan, bukan konfigurasi yang terakhir disimpan: misalnya, `sso_provisioning_mode` melaporkan mode SCIM yang dikonfigurasi hanya selama sinkronisasi direktori diaktifkan, `ip_allowlist_enabled` bernilai `true` hanya selama allowlist aktif dan memiliki setidaknya satu rentang aktif, dan `code_execution_network_egress_enabled` bernilai `false` setiap kali eksekusi kode nonaktif.
+Baris mencerminkan status yang diberlakukan, bukan konfigurasi yang terakhir disimpan, seperti dalam contoh berikut:
+
+* `sso_provisioning_mode` melaporkan mode SCIM yang dikonfigurasi hanya selama sinkronisasi direktori diaktifkan.
+* `ip_allowlist_enabled` bernilai `true` hanya selama allowlist aktif dan memiliki setidaknya satu rentang aktif.
+* `code_execution_network_egress_enabled` bernilai `false` setiap kali eksekusi kode dinonaktifkan.
 
 Respons mencerminkan status pada saat pembacaan; tidak ada yang di-snapshot. Perubahan pada sebagian besar pengaturan ini muncul sebagai peristiwa di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed); gunakan endpoint ini untuk status terselesaikan saat ini dan feed untuk mengaudit siapa yang mengubah apa, dan kapan.
 

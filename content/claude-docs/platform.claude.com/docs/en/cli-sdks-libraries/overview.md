@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/overview
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: edc5d7bbc93a49cf7d07ee5f3ec34fd2ab5e6494c628c0a5777f83a573b4c2c5
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: e179393071c7bc3b9a4f4aadd7b5b48c9e88bd9ad04098f3d9abf46da1bfb9a0
 ---
 
 ---
@@ -14,7 +14,7 @@ description: "Official tools for building with the Claude API: client SDKs in se
 Anthropic provides three kinds of official tooling for building with the Claude API:
 
 * **CLI:** The `ant` command-line tool for shell scripting and interactive use.
-* **Client SDKs:** General-purpose Messages API clients for Python, TypeScript, C#, Go, Java, PHP, and Ruby. Each SDK provides idiomatic interfaces, type safety, and built-in support for streaming, retries, error handling, and [OpenTelemetry tracing](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk).
+* **Client SDKs:** General-purpose Messages API clients for Python, TypeScript, C#, Go, Java, PHP, and Ruby. They also cover most of the [Admin API](https://platform.claude.com/docs/en/manage-claude/admin-api). Each SDK provides idiomatic interfaces, type safety, and built-in support for streaming, retries, error handling, and [OpenTelemetry tracing](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk).
 * **Libraries and integrations:** Packages and compatibility layers that expose Claude inside another framework’s API surface rather than the Messages API directly.
 
 <Info>
@@ -67,14 +67,14 @@ Each major version of a client SDK sends one [API version](https://platform.clau
 
 | Tool       | Latest version | Package                                                                                                     |
 | ---------- | -------------- | ----------------------------------------------------------------------------------------------------------- |
-| ant CLI    | `2.6.0`        | [`github.com/anthropics/anthropic-cli`](https://github.com/anthropics/anthropic-cli/releases)               |
-| Python     | `2.5.0`        | [`anthropic` on PyPI](https://pypi.org/project/anthropic/)                                                  |
-| TypeScript | `1.5.0`        | [`@anthropic-ai/sdk`](https://www.npmjs.com/package/@anthropic-ai/sdk)                                      |
-| C#         | `13.5.0`       | [`Anthropic`](https://www.nuget.org/packages/Anthropic)                                                     |
-| Go         | `2.6.0`        | [`github.com/anthropics/anthropic-sdk-go/v2`](https://pkg.go.dev/github.com/anthropics/anthropic-sdk-go/v2) |
-| Java       | `3.5.0`        | [`com.anthropic:anthropic-java`](https://central.sonatype.com/artifact/com.anthropic/anthropic-java)        |
-| PHP        | `1.5.0`        | [`anthropic-ai/sdk`](https://packagist.org/packages/anthropic-ai/sdk)                                       |
-| Ruby       | `2.5.0`        | [`anthropic` on RubyGems](https://rubygems.org/gems/anthropic)                                              |
+| ant CLI    | `2.7.0`        | [`github.com/anthropics/anthropic-cli`](https://github.com/anthropics/anthropic-cli/releases)               |
+| Python     | `2.6.0`        | [`anthropic` on PyPI](https://pypi.org/project/anthropic/)                                                  |
+| TypeScript | `1.6.0`        | [`@anthropic-ai/sdk`](https://www.npmjs.com/package/@anthropic-ai/sdk)                                      |
+| C#         | `13.6.0`       | [`Anthropic`](https://www.nuget.org/packages/Anthropic)                                                     |
+| Go         | `2.7.0`        | [`github.com/anthropics/anthropic-sdk-go/v2`](https://pkg.go.dev/github.com/anthropics/anthropic-sdk-go/v2) |
+| Java       | `3.6.0`        | [`com.anthropic:anthropic-java`](https://central.sonatype.com/artifact/com.anthropic/anthropic-java)        |
+| PHP        | `1.6.0`        | [`anthropic-ai/sdk`](https://packagist.org/packages/anthropic-ai/sdk)                                       |
+| Ruby       | `2.6.0`        | [`anthropic` on RubyGems](https://rubygems.org/gems/anthropic)                                              |
 
 The same versions are available as JSON at `https://platform.claude.com/docs/sdk-versions.json`.
 

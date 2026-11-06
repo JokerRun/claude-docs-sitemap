@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/search-results
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: c387cebe4b52d936b4a2bf208bd32df0944caa190b0bb451e28c3a80d18842aa
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: afec0c8ab52c4f485d7d825c6e2627f943a1efdc4e2d85c8274dd515f1eb2402
 ---
 
 ---
@@ -172,7 +172,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan Anda membangun 
       ]
 
 
-  # Bangun percakapan dalam sebuah list, dimulai dengan pertanyaan pengguna
+  # Bangun percakapan dalam sebuah daftar, dimulai dengan pertanyaan pengguna
   messages: list[MessageParam] = [
       {"role": "user", "content": "How do I configure the timeout settings?"}
   ]
@@ -271,7 +271,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan Anda membangun 
     ];
   }
 
-  // Bangun percakapan dalam sebuah list, dimulai dengan pertanyaan pengguna
+  // Bangun percakapan dalam sebuah daftar, dimulai dengan pertanyaan pengguna
   const messages: Anthropic.MessageParam[] = [
     { role: "user", content: "How do I configure the timeout settings?" }
   ];
@@ -363,7 +363,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan Anda membangun 
       ];
   }
 
-  // Bangun percakapan dalam sebuah list, dimulai dengan pertanyaan pengguna
+  // Bangun percakapan dalam sebuah daftar, dimulai dengan pertanyaan pengguna
   List<MessageParam> messages = [new UserMessageParam { Content = "How do I configure the timeout settings?" }];
 
   // Buat pesan dengan alat tersebut
@@ -544,7 +544,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan Anda membangun 
               .build())
           .build();
 
-      // Susun percakapan dalam sebuah list, dimulai dengan pertanyaan pengguna
+      // Susun percakapan dalam sebuah daftar, dimulai dengan pertanyaan pengguna
       List<MessageParam> messages = new ArrayList<>();
       messages.add(MessageParam.ofUser("How do I configure the timeout settings?"));
 
@@ -561,7 +561,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan Anda membangun 
 
       Message response = client.messages().create(params);
 
-      // Blok tool_use tidak selalu berada di awal: cari di dalam list content
+      // Blok tool_use tidak selalu berada di awal: cari di dalam daftar content
       response.content().stream()
           .flatMap(contentBlock -> contentBlock.toolUse().stream())
           .findFirst()
@@ -679,7 +679,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan Anda membangun 
       ];
   }
 
-  // Bangun percakapan dalam sebuah list, dimulai dengan pertanyaan pengguna
+  // Bangun percakapan dalam sebuah daftar, dimulai dengan pertanyaan pengguna
   $messages = [
       ['role' => 'user', 'content' => 'How do I configure the timeout settings?']
   ];
@@ -776,7 +776,7 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan Anda membangun 
     ]
   end
 
-  # Bangun percakapan dalam sebuah list, dimulai dengan pertanyaan pengguna
+  # Bangun percakapan dalam sebuah daftar, dimulai dengan pertanyaan pengguna
   messages = [
     { role: "user", content: "How do I configure the timeout settings?" }
   ]
@@ -1336,7 +1336,7 @@ Sitasi yang merujuk ke blok batas laju terlihat seperti:
 }
 ```
 
-Ketika hasil pencarian ini dikutip, `start_block_index` dan `end_block_index` mengidentifikasi blok mana yang dicakup oleh sitasi, dan `cited_text` berisi tepat teks dari blok-blok tersebut. Memecah konten menjadi blok-blok yang lebih kecil dan terfokus memberi Claude batas sitasi yang lebih halus; menggabungkan konten ke dalam satu blok berarti setiap sitasi mengembalikan teks lengkap. Ini adalah model yang sama yang digunakan oleh [dokumen konten kustom](https://platform.claude.com/docs/id/build-with-claude/citations#custom-content-documents) dalam fitur Citations.
+Ketika hasil pencarian ini dikutip, `start_block_index` dan `end_block_index` mengidentifikasi blok mana yang dicakup oleh sitasi, dan `cited_text` berisi tepat teks dari blok-blok tersebut. Memecah konten menjadi blok-blok yang lebih kecil dan terfokus memberi Claude batas sitasi yang lebih halus; menggabungkan konten ke dalam satu blok berarti setiap sitasi mengembalikan teks lengkap. Ini adalah model yang sama yang digunakan oleh [dokumen konten kustom](https://platform.claude.com/docs/id/build-with-claude/citations#custom-content-documents) dalam fitur Kutipan.
 
 ## Penggunaan lanjutan
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/summaries/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: e638f1cb3936d1a178a45c170816678eca1cc5a367d4c888b466498f95ea7058
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 3b4c1e748d23adf5af9810112b8ba9f50b23aac980ac0517e85ee9815921730e
 ---
 
 ---
@@ -129,15 +129,15 @@ Enterprise plan. Requires an API key with the `read:analytics` scope.
 
   - `chat_cowork_unified_daily_active_user_count: optional number or null`
 
-    Number of users with activity in Chat and Cowork unified on the requested day. Omitted from the response on deployments that do not offer Chat and Cowork unified.
+    Number of users with activity in Chat and Cowork unified on the requested day. Omitted from the response where Chat and Cowork unified is not available.
 
   - `chat_cowork_unified_monthly_active_user_count: optional number or null`
 
-    Number of users with activity in Chat and Cowork unified in the 28-day rolling window (30 days when the request filters by `rbac_group_id`). Omitted from the response on deployments that do not offer Chat and Cowork unified.
+    Number of users with activity in Chat and Cowork unified in the 28-day rolling window (30 days when the request filters by `rbac_group_id`). Omitted from the response where Chat and Cowork unified is not available.
 
   - `chat_cowork_unified_weekly_active_user_count: optional number or null`
 
-    Number of users with activity in Chat and Cowork unified in the 7-day rolling window. Omitted from the response on deployments that do not offer Chat and Cowork unified.
+    Number of users with activity in Chat and Cowork unified in the 7-day rolling window. Omitted from the response where Chat and Cowork unified is not available.
 
   - `chat_daily_active_user_count: optional number or null`
 

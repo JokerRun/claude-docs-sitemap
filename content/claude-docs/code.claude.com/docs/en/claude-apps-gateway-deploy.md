@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-deploy
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 8a6dd6e574087328135ef547ce7544b64ad2a1677fcb8f2498d29ba8192baa16
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 43a30220de521aeffc8de4adf40294c6be8b9187f1856299f334a29e0c8abfce
 ---
 
 > ## Documentation Index
@@ -208,6 +208,8 @@ If you autoscale on CPU, a replica at the limit queues requests without triggeri
 > [!WARNING]
 >
 > Every open request holds memory in the gateway process while it streams and while it waits for a slot. If you keep the limit at 256, memory on an overloaded replica still grows, because waiting requests keep their request bodies. Size the container's memory for the number of requests open at peak, and watch memory when you change the limit. A replica that runs out of memory is killed and drops every stream it holds.
+
+In a load test with [`load_test_mode`](https://code.claude.com/docs/en/claude-apps-gateway-config#load_test_mode), requests don't wait at this limit, but a replica still logs the `client requests are open` warning.
 
 ### Keep `API_TIMEOUT_MS` above the gateway's time to first byte
 

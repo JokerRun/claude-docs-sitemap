@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 14d779b28c2d09ce65c5ed32efc55ce9428168f0b6a3fdb8cbf79feee838273b
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 3cb4cd3cf1f02b3ad61289fd2d9e14d70687bda2695079a788c12d87cb012a05
 ---
 
 ---
@@ -53,7 +53,7 @@ Grader mengembalikan penjelasan yang merangkum kriteria mana yang lolos atau gag
 Rubrik adalah dokumen markdown yang menjelaskan penilaian per kriteria. Rubrik bersifat wajib.
 
 <Accordion title="Tips menulis rubrik yang efektif">
-  Susun rubrik sebagai kriteria yang eksplisit dan dapat dinilai, seperti “CSV berisi kolom price dengan nilai numerik” alih-alih “Datanya terlihat bagus.” Grader menilai setiap kriteria secara independen, sehingga kriteria yang samar menghasilkan evaluasi yang tidak konsisten.
+  Susun rubrik sebagai kriteria yang eksplisit dan dapat dinilai, seperti “CSV berisi kolom harga dengan nilai numerik” alih-alih “Datanya terlihat bagus.” Grader menilai setiap kriteria secara independen, sehingga kriteria yang samar menghasilkan evaluasi yang tidak konsisten.
 
   Jika Anda tidak memiliki rubrik, coba berikan Claude contoh artefak yang diketahui baik dan minta Claude menganalisis apa yang membuat konten tersebut baik, lalu ubah analisis itu menjadi rubrik. Pendekatan jalan tengah ini sering kali menghasilkan hasil yang lebih baik daripada menulis kriteria tanpa contoh sebagai titik awal.
 </Accordion>
@@ -317,7 +317,7 @@ Teruskan rubrik sebagai teks inline pada `user.define_outcome` (lihat [Membuat s
 
 ## Membuat sesi dengan outcome
 
-Contoh berikut membuat [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) untuk [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan [environment](https://platform.claude.com/docs/id/managed-agents/environments) yang sudah ada (keduanya dibuat secara terpisah), lalu mengirim event `user.define_outcome`. Agen langsung mulai bekerja. Tidak diperlukan event pesan pengguna tambahan.
+Contoh berikut membuat [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) untuk [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) dan [lingkungan](https://platform.claude.com/docs/id/managed-agents/environments) yang sudah ada (keduanya dibuat secara terpisah), lalu mengirim event `user.define_outcome`. Agen langsung mulai bekerja. Tidak diperlukan event pesan pengguna tambahan.
 
 <CodeGroup>
   ```bash cURL
@@ -559,7 +559,7 @@ Kemajuan pada sesi berorientasi outcome ditampilkan pada [stream](https://platfo
 * Event `user.interrupt` menjeda pekerjaan pada outcome saat ini dan menandai `result` (csharp, go: `Result`) dari event `span.outcome_evaluation_end` sebagai `interrupted`, sehingga Anda dapat memulai outcome baru.
 * Setelah evaluasi outcome terakhir, sesi dapat dilanjutkan sebagai sesi percakapan, atau outcome baru dapat dimulai. Sesi mempertahankan riwayat outcome sebelumnya.
 
-### Event pengguna define outcome
+### Event pengguna pendefinisian outcome
 
 <Note>
   Hanya satu outcome yang didukung pada satu waktu, tetapi Anda dapat merangkai outcome secara berurutan. Untuk melakukannya, kirim event `user.define_outcome` baru setelah event terminal `span.outcome_evaluation_end` dari outcome sebelumnya.
@@ -720,7 +720,7 @@ Anda dapat mendengarkan [stream event](https://platform.claude.com/docs/id/manag
 
 ## Mengambil deliverable
 
-Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk mengambilnya, daftarkan file melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dengan ID sesi sebagai `scope_id` (java: `scopeId`; php: `scopeID`; csharp, go: `ScopeID`), lalu unduh berdasarkan ID. Pemfilteran berdasarkan `scope_id` (java: `scopeId`; php: `scopeID`; csharp, go: `ScopeID`) memerlukan header beta `managed-agents-2026-04-01` pada permintaan list, sehingga contoh SDK dan CLI melakukan panggilan tersebut melalui namespace `beta` dan meneruskan header secara eksplisit. File muncul dalam daftar tidak lama setelah agen selesai menulisnya, terkadang beberapa detik setelah sesi menjadi idle. Jika file yang Anda harapkan belum tercantum, lakukan list lagi setelah jeda singkat; setelah file muncul dalam daftar, unggahannya sudah selesai.
+Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk mengambilnya, tampilkan daftar file melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dengan ID sesi sebagai `scope_id` (java: `scopeId`; php: `scopeID`; csharp, go: `ScopeID`), lalu unduh berdasarkan ID. Pemfilteran berdasarkan `scope_id` (java: `scopeId`; php: `scopeID`; csharp, go: `ScopeID`) memerlukan header beta `managed-agents-2026-04-01` pada permintaan list, sehingga contoh SDK dan CLI melakukan panggilan tersebut melalui namespace `beta` dan meneruskan header secara eksplisit. File muncul dalam daftar tidak lama setelah agen selesai menulisnya, terkadang beberapa detik setelah sesi menjadi idle. Jika file yang Anda harapkan belum tercantum, tampilkan daftarnya lagi setelah jeda singkat; setelah file muncul dalam daftar, unggahannya sudah selesai.
 
 <CodeGroup>
   ```bash cURL
@@ -781,7 +781,7 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
 
   ```csharp C#
   // Daftar file yang dihasilkan oleh sesi ini
-  // (pemfilteran scope_id memerlukan beta managed-agents pada request files)
+  // (pemfilteran scope_id memerlukan beta managed-agents pada permintaan files)
   var files = await client.Beta.Files.List(new()
   {
       ScopeID = session.ID,
@@ -835,7 +835,7 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Untuk meng
 
   ```java Java
   // Daftar file yang dihasilkan oleh sesi ini
-  // (pemfilteran scope_id memerlukan beta managed-agents pada request files)
+  // (pemfilteran scope_id memerlukan beta managed-agents pada permintaan files)
   var files = client.beta().files().list(
       FileListParams.builder()
           .scopeId(session.id())

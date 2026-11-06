@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/overview
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 2177ce1d93c473d13d9f37031e0cd8081d62b938579752428fcb7ef655c843df
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 2ad291e4a022c9dddb37346c03115a84f6eb549fd0cdfb16d0dd0227b7b8f0d4
 ---
 
 ---
@@ -87,7 +87,7 @@ Objek `capabilities` setiap model juga mencakup [`server_tools`](https://platfor
 
 Kemampuan [`code_execution`](https://platform.claude.com/docs/id/api/models#model_capabilities.code_execution) tingkat atas adalah pemeriksaan yang berbeda. Kemampuan ini melaporkan apakah kode yang dijalankan Claude di alat eksekusi kode dapat memanggil alat-alat lain dalam permintaan, seperti pada [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling). Untuk Claude Haiku 4.5, misalnya, Models API melaporkan `server_tools.code_execution.supported` sebagai `true` dan `code_execution.supported` sebagai `false`.
 
-Referensi API mencantumkan parameter dan respons lengkap dari endpoint List Models.
+Referensi API mencantumkan parameter dan respons lengkap dari endpoint Daftar Model.
 
 (See the `models/list` method in [the API reference](https://platform.claude.com/docs/id/api/models/list).)
 
@@ -96,7 +96,7 @@ Referensi API mencantumkan parameter dan respons lengkap dari endpoint List Mode
 Model Claude terkini unggul dalam:
 
 * **Kinerja:** Hasil kelas atas dalam penalaran, pengodean, tugas multibahasa, penanganan konteks panjang, kejujuran, dan pemrosesan gambar. Lihat [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices) untuk panduan prompting umum dan khusus model.
-* **Respons yang menarik:** Model Claude ideal untuk aplikasi yang membutuhkan interaksi yang kaya dan mirip manusia. Jika Anda lebih menyukai respons yang lebih ringkas, sesuaikan prompt Anda untuk mengarahkan model ke panjang output yang Anda inginkan. Lihat [panduan prompt engineering](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering) untuk detailnya.
+* **Respons yang menarik:** Model Claude ideal untuk aplikasi yang membutuhkan interaksi yang kaya dan mirip manusia. Jika Anda lebih menyukai respons yang lebih ringkas, sesuaikan prompt Anda untuk mengarahkan model ke panjang output yang Anda inginkan. Lihat [panduan rekayasa prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering) untuk detailnya.
 * **Kualitas output:** Saat bermigrasi dari generasi model sebelumnya, Anda mungkin melihat peningkatan yang lebih besar dalam kinerja secara keseluruhan. Jika Anda menggunakan Claude Opus 5 atau yang lebih lama, lihat [panduan migrasi Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide).
 
 ## Mulai menggunakan Claude

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: a70a1dae6192f0d752e2534a97b9360cb4bef3bbaf5e4169697dbc8e88f4395f
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 85611c9d01edec7ff86890fe370135b4ad1e6784b940bb7596f6e80cfc1ae55b
 ---
 
 ---
@@ -319,7 +319,7 @@ Ketika Skills membuat dokumen (Excel, PowerPoint, PDF, Word), Skills mengembalik
 3. Gunakan Files API untuk mengunduh konten file yang sebenarnya.
 4. Simpan secara lokal atau proses sesuai kebutuhan.
 
-Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file tersebut dengan Files API](https://platform.claude.com/docs/id/build-with-claude/files#uploading-a-file) dan referensikan dalam permintaan Anda dengan [blok container upload](https://platform.claude.com/docs/id/build-with-claude/files#container-upload-blocks).
+Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file tersebut dengan Files API](https://platform.claude.com/docs/id/build-with-claude/files#uploading-a-file) dan referensikan dalam permintaan Anda dengan [blok unggahan container](https://platform.claude.com/docs/id/build-with-claude/files#container-upload-blocks).
 
 **Contoh: membuat dan mengunduh file Excel**
 
@@ -1241,7 +1241,7 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
 
 ### Operasi yang berjalan lama
 
-Skills mungkin melakukan operasi yang memerlukan beberapa giliran. Tangani stop reason `pause_turn`:
+Skills mungkin melakukan operasi yang memerlukan beberapa giliran. Tangani alasan berhenti `pause_turn`:
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
@@ -1627,7 +1627,7 @@ Skills mungkin melakukan operasi yang memerlukan beberapa giliran. Tangani stop 
 </CodeGroup>
 
 <Note>
-  Respons mungkin menyertakan stop reason `pause_turn`, yang menunjukkan bahwa API menjeda operasi Skill yang berjalan lama. Anda dapat mengirimkan kembali respons tersebut apa adanya dalam permintaan berikutnya agar Claude dapat melanjutkan gilirannya, atau memodifikasi kontennya jika Anda ingin menginterupsi percakapan dan memberikan panduan tambahan. Kirimkan kembali ID container dari respons tersebut bersama permintaan itu, dalam objek `container` yang sama dengan Skills Anda, seperti yang ditunjukkan dalam contoh. Tanpa ID tersebut, permintaan akan berjalan di container baru, dan file dari bagian sebelumnya dalam giliran tersebut akan hilang.
+  Respons mungkin menyertakan alasan berhenti `pause_turn`, yang menunjukkan bahwa API menjeda operasi Skill yang berjalan lama. Anda dapat mengirimkan kembali respons tersebut apa adanya dalam permintaan berikutnya agar Claude dapat melanjutkan gilirannya, atau memodifikasi kontennya jika Anda ingin menginterupsi percakapan dan memberikan panduan tambahan. Kirimkan kembali ID container dari respons tersebut bersama permintaan itu, dalam objek `container` yang sama dengan Skills Anda, seperti yang ditunjukkan dalam contoh. Tanpa ID tersebut, permintaan akan berjalan di container baru, dan file dari bagian sebelumnya dalam giliran tersebut akan hilang.
 </Note>
 
 ### Menggunakan beberapa Skills
@@ -1956,7 +1956,7 @@ Gabungkan beberapa Skills dalam satu permintaan untuk menangani alur kerja yang 
 ## Mengelola Skills kustom
 
 <Warning id="workspace-scoped-access">
-  **Skills kustom dapat diakses oleh seluruh workspace Anda, tidak dibatasi pada satu pengguna akhir, percakapan, atau sesi.** Setiap kunci API yang memiliki akses ke sebuah workspace dapat membaca, menggunakan, dan menghapus setiap Skill kustom yang diunggah ke workspace tersebut. Setiap akun layanan, dan setiap pengguna yang peran organisasinya mengizinkan akses API, dapat menggunakan Default Workspace selain workspace mana pun tempat Anda menambahkan mereka. Karena itu, simpan Skills yang harus tetap terpisah di workspace-nya sendiri dan akses hanya dengan [kunci yang dibatasi pada workspace tersebut](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping).
+  **Skills kustom dapat diakses oleh seluruh workspace Anda, tidak dibatasi pada satu pengguna akhir, percakapan, atau sesi.** Setiap kunci API yang memiliki akses ke sebuah workspace dapat membaca, menggunakan, dan menghapus setiap Skill kustom yang diunggah ke workspace tersebut. Setiap akun layanan, dan setiap pengguna yang peran organisasinya mengizinkan akses API, dapat menggunakan workspace default selain workspace mana pun tempat Anda menambahkan mereka. Karena itu, simpan Skills yang harus tetap terpisah di workspace-nya sendiri dan akses hanya dengan [kunci yang dibatasi pada workspace tersebut](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping).
 
   Jika Anda membangun platform multitenant di atas Skills API, buat [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) terpisah untuk setiap tenant. Workspace adalah batas isolasi untuk Skills kustom, sehingga satu workspace untuk setiap tenant memberikan isolasi ketat bagi Skills tenant tersebut dari setiap tenant lainnya. Setiap organisasi dapat memiliki hingga 100 workspace secara default (lihat [Cara kerja workspace](https://platform.claude.com/docs/id/manage-claude/workspaces#how-workspaces-work)); jika Anda memerlukan lebih banyak untuk isolasi tenant, hubungi tim akun Anda.
 </Warning>
@@ -2267,7 +2267,7 @@ File diidentifikasi berdasarkan nama file yang Anda lampirkan (akhiran `;filenam
   * `name`: Maksimum 64 karakter, hanya huruf kecil/angka/tanda hubung, tanpa tag XML, tanpa kata yang dicadangkan (`anthropic`, `claude`)
   * `description`: Maksimum 1.024 karakter, tidak boleh kosong, tanpa tag XML
 
-Untuk skema permintaan/respons lengkap, lihat referensi API [Create Skill](https://platform.claude.com/docs/id/api/skills/create).
+Untuk skema permintaan/respons lengkap, lihat referensi API [Buat Skill](https://platform.claude.com/docs/id/api/skills/create).
 
 ### Mendaftar Skills
 
@@ -2413,7 +2413,7 @@ Ambil semua Skills yang tersedia untuk workspace Anda, termasuk Skills bawaan An
   ```
 </CodeGroup>
 
-Lihat [referensi API List Skills](https://platform.claude.com/docs/id/api/skills/list) untuk opsi paginasi dan pemfilteran.
+Lihat [referensi API Daftar Skill](https://platform.claude.com/docs/id/api/skills/list) untuk opsi paginasi dan pemfilteran.
 
 ### Mengambil Skill
 
@@ -3112,7 +3112,7 @@ Versi baru adalah snapshot lengkap, bukan delta: unggah seluruh kumpulan file Sk
   ```
 </CodeGroup>
 
-Lihat [referensi API Create Skill Version](https://platform.claude.com/docs/id/api/skills/versions/create) untuk detail lengkap.
+Lihat [referensi API Buat Versi Skill](https://platform.claude.com/docs/id/api/skills/versions/create) untuk detail lengkap.
 
 ***
 
@@ -3588,7 +3588,7 @@ Gabungkan Skills ketika tugas melibatkan beberapa jenis dokumen atau domain:
 
 Tab SDK di bagian ini menunjukkan nilai `container` yang perlu disertakan dalam permintaan Messages. Tab cURL dan CLI menunjukkan permintaan lengkapnya.
 
-**Untuk produksi:** sematkan versi tertentu, sehingga pembaruan Skill tidak pernah mengubah perilaku yang telah Anda deploy. Jika Anda menghilangkan `version` atau mengaturnya ke `"latest"`, permintaan akan menggunakan versi terbaru dari Skill, sehingga versi yang diunggah oleh [siapa pun di workspace](https://platform.claude.com/docs/id/build-with-claude/skills-guide#workspace-scoped-access) langsung mengubah apa yang dijalankan agen produksi Anda. ID versi berasal dari respons create-version di [Pembuatan versi](https://platform.claude.com/docs/id/build-with-claude/skills-guide#versioning) atau dari [List Skill Versions API](https://platform.claude.com/docs/id/api/skills/versions/list). ID tersebut selalu berupa string, jadi beri tanda kutip di JSON atau YAML meskipun terlihat seperti angka.
+**Untuk produksi:** sematkan versi tertentu, sehingga pembaruan Skill tidak pernah mengubah perilaku yang telah Anda deploy. Jika Anda menghilangkan `version` atau mengaturnya ke `"latest"`, permintaan akan menggunakan versi terbaru dari Skill, sehingga versi yang diunggah oleh [siapa pun di workspace](https://platform.claude.com/docs/id/build-with-claude/skills-guide#workspace-scoped-access) langsung mengubah apa yang dijalankan agen produksi Anda. ID versi berasal dari respons create-version di [Pembuatan versi](https://platform.claude.com/docs/id/build-with-claude/skills-guide#versioning) atau dari [API Daftar Versi Skill](https://platform.claude.com/docs/id/api/skills/versions/list). ID tersebut selalu berupa string, jadi beri tanda kutip di JSON atau YAML meskipun terlihat seperti angka.
 
 <CodeGroup>
   ```bash cURL

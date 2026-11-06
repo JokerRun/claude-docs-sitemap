@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 9e5c11551bdcd3c4df467a95f2d67ba922e71ea9b0a15f646ecca04ed3cb0b06
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: c28431c094c6dfee7d666b10d61166afa46c5e7676c972c297eb48baf813ff10
 ---
 
 ---
@@ -44,9 +44,9 @@ Perbedaannya terletak pada siapa yang mewujudkan store tersebut. Pada environmen
 ## Persyaratan
 
 * **Worker yang me-mount memory store:** Gunakan CLI `ant` versi 1.33.0 atau lebih baru, atau `EnvironmentWorker` dari SDK Python, TypeScript, atau Go.
-* **Sistem file POSIX:** Host Windows tidak didukung, karena worker memerlukan `O_NOFOLLOW` saat membuka file memori. Sistem file yang peka huruf besar-kecil (case-sensitive) direkomendasikan, agar path memori yang hanya berbeda dalam huruf besar-kecil tidak bertabrakan.
-* **Direktori `/mnt/memory` yang dapat ditulis:** Lihat [Menyiapkan host](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#prepare-the-host).
-* **Secret milik work item:** Jika kode Anda sendiri yang meluncurkan worker, [teruskan secret milik work item](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#forward-the-work-items-secret) ke worker tersebut.
+* **Sistem file POSIX:** Host Windows tidak didukung, karena worker memerlukan `O_NOFOLLOW` saat membuka file memori. Sistem file yang peka huruf besar-kecil disarankan, agar path memori yang hanya berbeda dalam huruf besar-kecil tidak bertabrakan. Volume macOS secara default tidak peka huruf besar-kecil, sehingga path semacam itu bertabrakan di sana.
+* **Direktori `/mnt/memory` yang dapat ditulisi:** Lihat [Menyiapkan host](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#prepare-the-host). Di macOS, lihat [Menyiapkan host macOS](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#prepare-a-macos-host).
+* **Secret milik item pekerjaan:** Jika kode Anda sendiri yang meluncurkan worker, [teruskan secret item pekerjaan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#forward-the-work-items-secret) ke worker tersebut.
 
 <Note>
   Memory store tidak dapat dilampirkan ke sesi pada environment self-hosted di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
@@ -55,6 +55,8 @@ Perbedaannya terletak pada siapa yang mewujudkan store tersebut. Pada environmen
 </Note>
 
 ## Menyiapkan host
+
+Di macOS, lewati perintah berikutnya dan ikuti [Menyiapkan host macOS](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#prepare-a-macos-host) sebagai gantinya.
 
 Sebelum Anda memulai worker, buat direktori induk dan jadikan direktori tersebut dapat ditulis oleh pengguna yang menjalankan worker:
 
@@ -66,13 +68,68 @@ Jangan membuat direktori per-store sendiri. Worker membuat direktori `mount_path
 
 Dalam [pola sandbox-per-sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#run-one-sandbox-per-session), image sandbox memerlukan `/mnt/memory` yang dapat ditulis. Anda tidak perlu melakukan bind-mount direktori memori ke host, karena worker mengunggah isinya ke store sebelum sandbox keluar.
 
+### Menyiapkan host macOS
+
+Di macOS, volume root bersifat hanya-baca, sehingga `mkdir` tidak dapat membuat `/mnt`. Sebagai gantinya, buat `/System/Volumes/Data/mnt/memory` di volume data, yang dapat ditulisi. Kemudian tambahkan satu baris ke `/etc/synthetic.conf`, sehingga macOS membuat `/mnt` sebagai tautan simbolik ke `/System/Volumes/Data/mnt`. Langkah-langkah ini memerlukan hak administrator.
+
+Tanpa pengaturan ini, worker tidak dapat membuat direktori store, sehingga item pekerjaan gagal. Sesi kemudian tetap idle tanpa event error. Lihat [Memory store gagal di-mount](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations#memory-stores-fail-to-mount).
+
+<Steps>
+  <Step title="Buat direktori di volume data">
+    Buat direktori `memory` dan jadikan pengguna worker sebagai pemiliknya. `$USER` adalah nama pengguna Anda sendiri. Jika worker berjalan sebagai pengguna lain, ganti `"$USER"` dengan nama pengguna tersebut.
+
+    ```bash
+    sudo mkdir -p /System/Volumes/Data/mnt/memory && sudo chown "$USER" /System/Volumes/Data/mnt/memory
+    ```
+
+    Lokasi ini hanyalah salah satu opsi. Jika Anda menggunakan lokasi lain, ubah path di baris `synthetic.conf` agar sesuai. Anthropic hanya menguji `/System/Volumes/Data/mnt`.
+  </Step>
+
+  <Step title="Tambahkan baris ke synthetic.conf">
+    Jalankan `cat -et /etc/synthetic.conf`, yang menampilkan setiap tab sebagai `^I` dan setiap akhir baris sebagai `$`.
+
+    * Jika ada baris yang berbunyi `mnt^ISystem/Volumes/Data/mnt$`, langkah ini sudah selesai. Lanjutkan ke langkah berikutnya.
+    * Jika ada baris lain yang diawali dengan `mnt`, berhenti. Sesuatu yang lain di Mac ini sudah mendefinisikan `/mnt`.
+    * Jika baris terakhir tidak diakhiri dengan `$`, jalankan `echo | sudo tee -a /etc/synthetic.conf` untuk mengakhirinya.
+    * Jika tidak ada yang ditampilkan atau muncul laporan `No such file or directory`, lanjutkan. Perintah `printf` akan membuat file tersebut jika belum ada.
+
+    Kemudian tambahkan baris tersebut, kecuali salah satu dari dua kasus pertama berlaku. Jalankan perintah ini hanya sekali, karena setiap kali dijalankan akan menambahkan baris lain.
+
+    ```bash
+    printf 'mnt\tSystem/Volumes/Data/mnt\n' | sudo tee -a /etc/synthetic.conf
+    ```
+
+    Perintah tersebut menampilkan baris yang ditambahkannya. Baris tersebut memetakan nama `mnt` ke direktori yang berisi `memory`. File memerlukan tab di antara kedua kolom, yang ditulis oleh `\t`.
+  </Step>
+
+  <Step title="Buat tautan">
+    Jalankan `apfs.util` dengan opsi `-t`. Perintah ini membuat tautan dari baris yang Anda tambahkan, tanpa perlu restart.
+
+    ```bash
+    sudo /System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util -t
+    ```
+  </Step>
+
+  <Step title="Periksa hasilnya">
+    Tampilkan daftar `/mnt` dan `/mnt/memory`.
+
+    ```bash
+    ls -ld /mnt /mnt/memory
+    ```
+
+    Baris pertama diakhiri dengan `/mnt -> System/Volumes/Data/mnt`. Baris kedua menampilkan pengguna worker sebagai pemilik `/mnt/memory`. Sekarang Anda dapat memulai worker.
+  </Step>
+</Steps>
+
+Anthropic telah menguji pengaturan ini di macOS 26.7.1 dengan worker `ant` CLI.
+
 ### Mengisolasi sesi yang berbagi store
 
 Dua sesi tidak dapat me-mount penyimpanan yang sama pada satu host secara bersamaan, karena keduanya memerlukan path yang sama. Jika sesi-sesi Anda melampirkan penyimpanan yang sama, jalankan satu sesi untuk setiap sistem file. Memberikan setiap sesi [sandbox-nya sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#run-one-sandbox-per-session) memenuhi aturan ini.
 
 ## Cara worker menangani memori
 
-Saat worker mengklaim work item yang sesinya memiliki memory store terlampir, worker akan:
+Saat worker mengklaim item pekerjaan yang sesinya memiliki memory store terlampir, worker akan:
 
 1. **Mengunduh setiap store ke `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`)-nya.** Ini adalah direktori yang sama di bawah `/mnt/memory/` yang digunakan sesi cloud, dan prompt sistem sesi menjelaskannya kepada agen. Misalnya, store bernama “User Preferences” ditempatkan di `/mnt/memory/user-preferences/`.
 2. **Membuka direktori tersebut untuk alat file.** Agen bekerja dengan memori menggunakan alat file yang sama dengan yang digunakannya di direktori kerja.
@@ -108,17 +165,17 @@ Interval yang lebih pendek mempersempit jendela waktu di mana sesi lain melihat 
 
 Nonaktifkan dukungan memori hanya pada worker yang sesinya tidak melampirkan memory store. Worker yang dinonaktifkan tidak mengunduh maupun menyinkronkan store, sehingga sesi dengan store terlampir berjalan tanpa store tersebut meskipun prompt sistemnya masih menjelaskannya.
 
-Selama dukungan memori diaktifkan, work item yang tiba tanpa `secret` (csharp, go: `Secret`) untuk sesi dengan store terlampir akan gagal alih-alih berjalan tanpa memori. Lihat [Memory store gagal di-mount](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations#memory-stores-fail-to-mount).
+Selama dukungan memori diaktifkan, item pekerjaan yang tiba tanpa `secret` (csharp, go: `Secret`) untuk sesi dengan store terlampir akan gagal alih-alih berjalan tanpa memori. Lihat [Memory store gagal di-mount](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations#memory-stores-fail-to-mount).
 
 ### Penghapusan
 
 `memory_sync_deletions` (typescript: `memorySyncDeletions`; go: `MemorySyncDeletions`) mengatur apakah file yang dihapus agen secara lokal juga dihapus dari store. Unggahan dan unduhan tidak terpengaruh.
 
-| Nilai                                                                 | Perilaku                                                                                                                                                                                  |
-| --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `"enabled"` (go: `environments.MemorySyncDeletionsEnabled`) (default) | Menghapus memori dari store setelah sinkronisasi berikutnya mengonfirmasi bahwa file tersebut masih tidak ada.                                                                            |
-| `"log_only"` (go: `environments.MemorySyncDeletionsLogOnly`)          | Menjalankan pemeriksaan yang sama tetapi hanya mencatat apa yang akan dihapusnya. Gunakan mode ini untuk memantau apa yang akan dihapus worker Anda sebelum Anda memercayai mode enabled. |
-| `"disabled"` (go: `environments.MemorySyncDeletionsDisabled`)         | Tidak pernah menghapus dari store.                                                                                                                                                        |
+| Nilai                                                                 | Perilaku                                                                                                                                                                                          |
+| --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `"enabled"` (go: `environments.MemorySyncDeletionsEnabled`) (default) | Menghapus memori dari store setelah sinkronisasi berikutnya mengonfirmasi bahwa file tersebut masih tidak ada.                                                                                    |
+| `"log_only"` (go: `environments.MemorySyncDeletionsLogOnly`)          | Menjalankan pemeriksaan yang sama tetapi hanya mencatat apa yang akan dihapusnya. Gunakan mode ini untuk memantau apa yang akan dihapus worker Anda sebelum Anda memercayai mode yang diaktifkan. |
+| `"disabled"` (go: `environments.MemorySyncDeletionsDisabled`)         | Tidak pernah menghapus dari store.                                                                                                                                                                |
 
 Misalnya, untuk menyinkronkan setiap 10 detik dan hanya mencatat penghapusan yang akan dilakukan worker:
 

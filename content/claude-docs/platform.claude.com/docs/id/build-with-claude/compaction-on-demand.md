@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: b0dd488fd2c32e1510056eb0c7d3213bf5cd385b6824f17fbb18c3e5a7f717b7
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: f1be26911d564c76036ed7064c5a77c24a9893928baa934bb5cdeadb2f412a08
 ---
 
 ---
@@ -75,7 +75,7 @@ Kirim percakapan apa adanya dengan `"compaction": {"type": "summarize"}`. API me
   ```bash CLI
   ant beta:messages create --beta compact-2026-09-04 <<'YAML'
   model: claude-opus-5-5
-  # max_tokens membatasi seluruh panggilan, termasuk proses thinking, jadi sediakan beberapa ribu token.
+  # max_tokens membatasi seluruh panggilan, termasuk proses pemikiran (thinking), jadi sediakan beberapa ribu token.
   max_tokens: 4096
   messages:
     - role: user
@@ -772,7 +772,7 @@ Runner menyusun permintaan compaction dari parameternya sendiri dan tidak menyer
 
 Anda dapat mengirim permintaan compaction setelah giliran apa pun yang telah selesai, jadi kode Andalah yang menentukan kapan.
 
-Untuk memperkirakan seberapa besar permintaan berikutnya, jumlahkan `input_tokens` dan `output_tokens` dari `usage` respons terakhir, seperti yang dilakukan loop. Dengan [“prompt caching” (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#tracking-cache-performance), `input_tokens` hanya menghitung token setelah cache breakpoint terakhir, jadi tambahkan juga `cache_read_input_tokens` dan `cache_creation_input_tokens`. Anda juga dapat mengirim pesan yang sama ke endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting).
+Untuk memperkirakan seberapa besar permintaan berikutnya, jumlahkan `input_tokens` dan `output_tokens` dari `usage` respons terakhir, seperti yang dilakukan loop. Dengan [“prompt caching” (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#tracking-cache-performance), `input_tokens` hanya menghitung token setelah breakpoint cache terakhir, jadi tambahkan juga `cache_read_input_tokens` dan `cache_creation_input_tokens`. Anda juga dapat mengirim pesan yang sama ke endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting).
 
 Bandingkan angka tersebut dengan batas yang Anda pilih, di bawah [jendela konteks](https://platform.claude.com/docs/id/build-with-claude/context-windows) model.
 
@@ -838,7 +838,7 @@ Anda kini memiliki loop yang berfungsi untuk melakukan compaction pada percakapa
 
 ## Ketersediaan
 
-Compaction on-demand dalam versi beta di model tertentu.
+Compaction sesuai permintaan dalam versi beta di model tertentu.
 
 ### Dukungan API
 

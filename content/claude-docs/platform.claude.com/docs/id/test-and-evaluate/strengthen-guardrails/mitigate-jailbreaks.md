@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: e595437bb23221c7336bc25e039080df24b372c12652d0aa75294c223b901a3a
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: f7b3c8e166a82706b82ce6947e012f90878aef20a5d6aa1831d2669fe5dba339
 ---
 
 ---
@@ -16,13 +16,13 @@ description: Lindungi aplikasi Anda dari jailbreak dan injeksi prompt dengan pen
 Serangan-serangan ini terbagi dalam dua kategori dengan model ancaman yang berbeda:
 
 * **Jailbreak dan injeksi prompt langsung**, di mana *pengguna* aplikasi Anda adalah pihak lawan dan menyusun input yang dimaksudkan untuk melewati pagar pengaman Anda.
-* **Prompt injection tidak langsung**, di mana pengguna tepercaya tetapi Claude memproses *konten pihak ketiga* (halaman web, email, dokumen, hasil alat) yang berisi instruksi berbahaya.
+* **Injeksi prompt tidak langsung**, di mana pengguna tepercaya tetapi Claude memproses *konten pihak ketiga* (halaman web, email, dokumen, hasil alat) yang berisi instruksi berbahaya.
 
 ## Jailbreak dan injeksi prompt langsung
 
 Dalam model ancaman ini, seorang pengguna dengan sengaja menyusun input untuk memanipulasi aplikasi Anda agar menghasilkan konten atau mengambil tindakan yang tidak Anda inginkan. Mitigasi berikut memperkuat pagar pengaman aplikasi Anda:
 
-* **Penyaringan keamanan (harmlessness screens):** Gunakan model ringan seperti Claude Haiku 5.5 untuk menyaring input pengguna terlebih dahulu sebelum mencapai percakapan utama Anda. Gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) untuk membatasi respons menjadi klasifikasi sederhana. Claude Haiku 5.5 menjalankan [pengklasifikasi keamanan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) yang dapat menolak permintaan penyaringan itu sendiri, jadi perlakukan respons dengan `stop_reason: "refusal"` sebagai putusan berbahaya.
+* **Penyaringan keamanan (harmlessness screens):** Gunakan model ringan seperti Claude Haiku 5.5 untuk menyaring input pengguna terlebih dahulu sebelum mencapai percakapan utama Anda. Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) untuk membatasi respons menjadi klasifikasi sederhana. Claude Haiku 5.5 menjalankan [pengklasifikasi keamanan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) yang dapat menolak permintaan penyaringan itu sendiri, jadi perlakukan respons dengan `stop_reason: "refusal"` sebagai putusan berbahaya.
 
   <Accordion title="Contoh: Penyaringan harmlessness untuk moderasi konten">
     ```text User wrap
@@ -164,13 +164,13 @@ Susun aplikasi Anda sehingga Claude dapat secara andal membedakan konten yang ti
 <Note>
   Jika Anda menggunakan 
 
-  [alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool)
+  [alat penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool)
 
    atau 
 
-  [alat browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool)
+  [alat penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool)
 
-  , Anthropic menjalankan pengklasifikasi tambahan pada apa yang dikembalikan alat tersebut, seperti tangkapan layar atau teks halaman. Pengklasifikasi memindai konten ini untuk potensi prompt injection dan mengarahkan Claude untuk memeriksa apakah instruksi tersebut benar-benar berasal dari Anda sebelum bertindak. Lihat halaman-halaman tersebut untuk detail dan informasi cara menonaktifkannya.
+  , Anthropic menjalankan pengklasifikasi tambahan pada apa yang dikembalikan alat tersebut, seperti tangkapan layar atau teks halaman. Pengklasifikasi memindai konten ini untuk potensi injeksi prompt dan mengarahkan Claude untuk memeriksa apakah instruksi tersebut benar-benar berasal dari Anda sebelum bertindak. Lihat halaman-halaman tersebut untuk detail dan informasi cara menonaktifkannya.
 </Note>
 
 ## Pemantauan berkelanjutan
@@ -211,7 +211,7 @@ Gabungkan strategi untuk perlindungan yang kokoh. Berikut contoh tingkat perusah
   Evaluate if this query violates SEC rules, FINRA guidelines, or client privacy.
   ```
 
-  Gunakan [structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) untuk membatasi respons menjadi klasifikasi Boolean.
+  Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) untuk membatasi respons menjadi klasifikasi Boolean.
 </Accordion>
 
 Dengan melapiskan strategi-strategi ini, Anda menciptakan pertahanan yang kokoh terhadap jailbreaking dan injeksi prompt, memastikan aplikasi Anda yang didukung Claude mempertahankan standar keamanan dan kepatuhan tertinggi.

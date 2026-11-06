@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/choosing-a-model
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 57b87c7bc97ea357650a38214ae0e23c3d757e86e803dc41839c67ebfaf5dd7a
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: a22ad2747ebe47b015228dfc765071a799e95a6e049230eb09387167d25ba30e
 ---
 
 ---
@@ -60,7 +60,7 @@ Pendekatan ini paling cocok untuk:
 * Aplikasi di mana akurasi lebih penting daripada pertimbangan biaya
 * Coding tingkat lanjut dan pekerjaan agentik dengan otonomi tinggi
 
-**Claude Opus 5.5** (`claude-opus-5-5`) dibangun untuk coding agentik dan pekerjaan pengetahuan yang berjalan lama, dengan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (pemikiran adaptif) yang selalu aktif. Jika integrasi Anda memaksa penggunaan alat (`tool_choice` dengan tipe `any` atau `tool`), menonaktifkan thinking, atau menggunakan alat computer use `computer_20251124`, lihat [Perubahan yang merusak kompatibilitas](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#breaking-changes) sebelum beralih.
+**Claude Opus 5.5** (`claude-opus-5-5`) dibangun untuk coding agentik dan pekerjaan pengetahuan yang berjalan lama, dengan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (pemikiran adaptif) yang selalu aktif. Jika integrasi Anda memaksa penggunaan alat (`tool_choice` dengan tipe `any` atau `tool`), menonaktifkan thinking, atau menggunakan alat penggunaan komputer `computer_20251124`, lihat [Perubahan yang merusak kompatibilitas](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#breaking-changes) sebelum beralih.
 
 **Claude Fable 5.1** (`claude-fable-5-1`) adalah model Anthropic paling mumpuni yang terbuka untuk semua pelanggan. Model ini memperluas Claude Fable 5 dengan coding agentik jangka panjang, pekerjaan pengetahuan, dan riset yang lebih kuat dengan harga input dan output yang sama, serta pembacaan cache dengan seperempat biaya. **Claude Mythos 5.1** (`claude-mythos-5-1`) menawarkan kemampuan yang sama hanya kepada organisasi yang telah diverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842). Kedua model menggunakan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) yang selalu aktif. Lihat [Yang baru di Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1) untuk detailnya.
 
@@ -70,12 +70,12 @@ Untuk jendela konteks, batas output, dan harga, lihat [tabel perbandingan model]
 
 Sebagian besar beban kerja dimulai dengan Claude Opus 5.5.
 
-| Ketika Anda membutuhkan...                                                         | Pertimbangkan untuk memulai dengan... | Contoh kasus penggunaan                                                                                                                                   |
-| ---------------------------------------------------------------------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Kemampuan tertinggi yang tersedia                                                  | Claude Fable 5.1                      | Sesi agen yang berjalan berjam-jam, riset mendalam multilangkah, analisis yang dituntaskan hingga menjadi dokumen, spreadsheet, atau deck yang selesai    |
-| Coding agentik yang kompleks dan pekerjaan enterprise                              | Claude Opus 5.5                       | Agen coding otonom yang berjalan berjam-jam, refactoring skala besar, rekayasa sistem yang kompleks, alur kerja yang banyak melibatkan visi, computer use |
-| Kecepatan dan kemampuan untuk beban kerja coding, agen, dan enterprise sehari-hari | Claude Sonnet 5.5                     | Pembuatan kode, analisis data, pembuatan konten, pemahaman visual, penggunaan alat agentik                                                                |
-| Latensi dan harga terendah                                                         | Claude Haiku 5.5                      | Aplikasi real-time, pemrosesan cerdas bervolume tinggi, deployment yang sensitif terhadap biaya yang membutuhkan penalaran kuat, tugas subagen            |
+| Ketika Anda membutuhkan...                                                         | Pertimbangkan untuk memulai dengan... | Contoh kasus penggunaan                                                                                                                                          |
+| ---------------------------------------------------------------------------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Kemampuan tertinggi yang tersedia                                                  | Claude Fable 5.1                      | Sesi agen yang berjalan berjam-jam, riset mendalam multilangkah, analisis yang dituntaskan hingga menjadi dokumen, spreadsheet, atau deck yang selesai           |
+| Coding agentik yang kompleks dan pekerjaan enterprise                              | Claude Opus 5.5                       | Agen coding otonom yang berjalan berjam-jam, refactoring skala besar, rekayasa sistem yang kompleks, alur kerja yang banyak melibatkan visi, penggunaan komputer |
+| Kecepatan dan kemampuan untuk beban kerja coding, agen, dan enterprise sehari-hari | Claude Sonnet 5.5                     | Pembuatan kode, analisis data, pembuatan konten, pemahaman visual, penggunaan alat agentik                                                                       |
+| Latensi dan harga terendah                                                         | Claude Haiku 5.5                      | Aplikasi real-time, pemrosesan cerdas bervolume tinggi, deployment yang sensitif terhadap biaya yang membutuhkan penalaran kuat, tugas subagen                   |
 
 ***
 

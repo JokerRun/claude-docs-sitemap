@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 90f82fafce71b170829503a585a63578cf5cdeae90b38e5b6ec8d630ea5b4a37
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: e8852b9f297b89fbd79b8e95e90c965e4a6b3a89a3b2467b2735b8ee8dd9e0cb
 ---
 
 ---
@@ -285,7 +285,7 @@ Untuk menangani `restart: true`, hentikan proses shell, mulai yang baru, dan kem
 
 ## Versi alat
 
-`bash_20250124` adalah versi alat saat ini, dan tidak memerlukan beta header. Setiap model mulai dari Claude Sonnet 3.7 ([dihentikan](https://platform.claude.com/docs/id/about-claude/model-deprecations)) dan seterusnya menerimanya, termasuk semua model Claude saat ini.
+`bash_20250124` adalah versi alat saat ini, dan tidak memerlukan header beta. Setiap model mulai dari Claude Sonnet 3.7 ([dihentikan](https://platform.claude.com/docs/id/about-claude/model-deprecations)) dan seterusnya menerimanya, termasuk semua model Claude saat ini.
 
 Versi `bash_20241022` hanya berfungsi dengan model Claude Sonnet 3.5 Oktober 2024 ([dihentikan](https://platform.claude.com/docs/id/about-claude/model-deprecations)). Permintaan yang menggunakannya memerlukan header `anthropic-beta: computer-use-2024-10-22`, dan SDK hanya mengeksposnya di namespace beta-nya. Integrasi baru sebaiknya menggunakan `bash_20250124`.
 
@@ -625,7 +625,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki seg
 
           private function start(): void
           {
-              // setsid memberi shell grup prosesnya sendiri: timeout dapat menghentikan setiap child
+              // setsid memberi shell grup prosesnya sendiri: timeout dapat menghentikan setiap proses anak
               $this->process = proc_open(
                   ['setsid', '/bin/bash'],
                   [0 => ['pipe', 'r'], 1 => ['pipe', 'w'], 2 => ['redirect', 1]], // interleave errors with output
@@ -799,7 +799,7 @@ Claude menentukan perintah mana yang akan dijalankan. Aplikasi Anda memiliki seg
       			result = bashSession.ExecuteCommand(input.Command)
       		}
 
-      		// Satu tool_result untuk setiap blok tool_use, semuanya dikembalikan dalam pesan user berikutnya
+      		// Satu tool_result untuk setiap blok tool_use, semuanya dikembalikan dalam pesan pengguna berikutnya
       		toolResults = append(toolResults, anthropic.NewToolResultBlock(block.ID, result, false))
       	}
       }

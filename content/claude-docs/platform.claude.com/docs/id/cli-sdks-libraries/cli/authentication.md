@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 498ad65ad3cefd22e3a12b7475a7e9541c90812ca97e4f47be8a7805d899bdf3
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 03e8843a673cb8be0547e24022bbc8a84ff9e0e30daf50fbd80df12c0721721c
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication
 description: Autentikasi CLI ant dengan login interaktif, kunci API, profil bernama, dan Workload Identity Federation.
 ---
 
-CLI `ant` mendukung beberapa sumber kredensial. [Quickstart](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart#authentication) membahas login satu perintah (`ant auth login`). Halaman ini membahas setiap opsi secara lengkap.
+CLI `ant` mendukung beberapa sumber kredensial. [Mulai cepat](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart#authentication) membahas login satu perintah (`ant auth login`). Halaman ini membahas setiap opsi secara lengkap.
 
 ## Login interaktif
 
@@ -48,7 +48,7 @@ ant auth login --profile admin --scope "org:admin"
 ant auth print-credentials --profile admin --access-token
 ```
 
-Scope `org:admin` hanya diberikan kepada anggota organisasi dengan peran admin, owner, atau primary owner. Token yang diterbitkan memiliki akses seluruh organisasi, dan pengikatan workspace apa pun pada profil tidak membatasinya. Jaga agar profil admin tetap terpisah dari profil sehari-hari Anda sehingga perintah rutin tidak pernah berjalan dengan akses yang ditingkatkan.
+Scope `org:admin` hanya diberikan kepada anggota organisasi dengan peran admin, pemilik, atau pemilik utama. Token yang diterbitkan memiliki akses seluruh organisasi, dan pengikatan workspace apa pun pada profil tidak membatasinya. Jaga agar profil admin tetap terpisah dari profil sehari-hari Anda sehingga perintah rutin tidak pernah berjalan dengan akses yang ditingkatkan.
 
 ## Kunci API
 

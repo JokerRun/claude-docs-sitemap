@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/claude-models-on-google-cloud-anthropic-managed-iam-permissions
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 9242d841b811f3f368f61643ce88bef60cafb18f1fce39dd5901ef2fbc9ddedd
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: eb9e0258dd807af4d25e3d418b3d16ba9afecc6e2473a2109513b74425061619
 ---
 
 ---
@@ -51,14 +51,14 @@ Kecuali suatu bagian menyatakan lain, jenis log audit setiap rute adalah Data Ac
 
 Beberapa rute dalam tabel-tabel berikut mungkin tidak tersedia untuk organisasi Anda. Untuk memeriksa fitur mana yang tersedia, lihat [Dukungan fitur](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#feature-support).
 
-### Messages
+### Pesan
 
 | Izin                   | Peran       | Rute yang diotorisasi            |
 | ---------------------- | ----------- | -------------------------------- |
 | `messages.create`      | Admin, User | `POST /v1/messages`              |
 | `messages.countTokens` | Admin, User | `POST /v1/messages/count_tokens` |
 
-### Message batches
+### Batch pesan
 
 | Izin                    | Peran               | Rute yang diotorisasi                                                                                    |
 | ----------------------- | ------------------- | -------------------------------------------------------------------------------------------------------- |
@@ -70,14 +70,14 @@ Beberapa rute dalam tabel-tabel berikut mungkin tidak tersedia untuk organisasi 
 
 `roles/claude.viewer` dapat membaca hasil batch. `messageBatches.get` mengotorisasi pembacaan metadata batch sekaligus pengunduhan hasilnya.
 
-### Models
+### Model
 
 | Izin          | Peran               | Rute yang diotorisasi       |
 | ------------- | ------------------- | --------------------------- |
 | `models.get`  | Admin, User, Viewer | `GET /v1/models/{model_id}` |
 | `models.list` | Admin, User, Viewer | `GET /v1/models`            |
 
-### Files
+### File
 
 | Izin           | Peran               | Rute yang diotorisasi                                            |
 | -------------- | ------------------- | ---------------------------------------------------------------- |
@@ -88,7 +88,7 @@ Beberapa rute dalam tabel-tabel berikut mungkin tidak tersedia untuk organisasi 
 
 `roles/claude.viewer` dapat mengunduh file. `files.get` mengotorisasi pembacaan metadata file sekaligus pengunduhan kontennya.
 
-### Skills
+### Skill
 
 | Izin            | Peran               | Rute yang diotorisasi                                                                                                                                                                 |
 | --------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -100,7 +100,7 @@ Beberapa rute dalam tabel-tabel berikut mungkin tidak tersedia untuk organisasi 
 
 Membuat atau menghapus versi skill memerlukan `skills.update`, bukan `skills.create` atau `skills.delete`.
 
-### Agents
+### Agen
 
 | Izin             | Peran               | Rute yang diotorisasi                                                 |
 | ---------------- | ------------------- | --------------------------------------------------------------------- |
@@ -112,7 +112,7 @@ Membuat atau menghapus versi skill memerlukan `skills.update`, bukan `skills.cre
 
 Anda dapat mengarsipkan agent tetapi tidak dapat menghapusnya.
 
-### Sessions
+### Sesi
 
 | Izin               | Peran               | Rute yang diotorisasi                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------------------ | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -131,7 +131,7 @@ Operasi sesi lainnya memerlukan izin berikut:
 * Menambahkan, mengubah, atau menghapus sumber daya sesi: `sessions.update`
 * Mengarsipkan thread: `sessions.archive`
 
-### Environments
+### Lingkungan
 
 | Izin                       | Peran               | Rute yang diotorisasi                                                                                                                                                                                                                                                                                                    |
 | -------------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -155,7 +155,7 @@ Izin ini terpisah dari `environments.update`. Membaca antrean pekerjaan dan stat
 
 Selain `environments.processWork`, worker memerlukan izin lain untuk menjalankan sesi, seperti `sessions.get` untuk membaca sesi dan event-nya, `sessions.update` untuk mengirim hasil alat, dan `skills.get` untuk mengunduh skill milik agen.
 
-### Vaults
+### Vault
 
 Google Cloud mencatat rute-rute ini dalam log audit Admin Activity, kecuali rute untuk `vaults.verify`, yang jenis log auditnya adalah Data Access.
 
@@ -178,7 +178,7 @@ Operasi kredensial memerlukan izin berikut:
 
 Dengan `vaults.get`, `roles/claude.viewer` dapat mencantumkan kredensial sebuah vault. Claude Models on Google Cloud (Anthropic managed) tidak pernah mengembalikan field rahasia dari sebuah kredensial. Untuk mempelajari lebih lanjut, lihat [Autentikasi dengan vault](https://platform.claude.com/docs/id/managed-agents/vaults).
 
-### Memory stores
+### Memory store
 
 | Izin                   | Peran               | Rute yang diotorisasi                                                                                                                                                                                                                                                                                                                      |
 | ---------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -195,7 +195,7 @@ Operasi memory store memerlukan izin berikut:
 * Membuat, mengubah, atau menghapus memori: `memoryStores.update`
 * Meredaksi versi memori: `memoryStores.update`
 
-### Deployments
+### Deployment
 
 | Izin                  | Peran               | Rute yang diotorisasi                                                                                                   |
 | --------------------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------- |

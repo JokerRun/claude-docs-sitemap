@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/glossary
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: b7b6fe0244d02127c211c6ebfa3e6f4f06d158f429379644e463b0c8a4c3a193
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: d0eaa6d7e99ad608577d3369c8d8ba2f8d2536a0521c9aa6bdc4728600899a5b
 ---
 
 ---
@@ -25,9 +25,9 @@ Lihat [panduan untuk memahami jendela konteks](https://platform.claude.com/docs/
 
 HHH (helpful, honest, harmless — membantu, jujur, tidak berbahaya) adalah kerangka penelitian yang mendasari bagaimana Claude dilatih agar bermanfaat bagi masyarakat. Ini berbeda dari slogan produk Claude, “AI assistant for life and work” (asisten AI untuk kehidupan dan pekerjaan).
 
-* AI yang **helpful** akan mencoba melakukan tugas atau menjawab pertanyaan yang diajukan sebaik-baiknya, memberikan informasi yang relevan dan berguna.
-* AI yang **honest** akan memberikan informasi yang akurat, dan tidak akan berhalusinasi atau mengada-ada. AI ini akan mengakui keterbatasan dan ketidakpastiannya ketika sesuai.
-* AI yang **harmless** tidak akan bersifat ofensif atau diskriminatif, dan ketika diminta untuk membantu dalam tindakan yang berbahaya atau tidak etis, AI harus dengan sopan menolak dan menjelaskan mengapa tidak dapat mematuhi.
+* AI yang **membantu** akan mencoba melakukan tugas atau menjawab pertanyaan yang diajukan sebaik-baiknya, memberikan informasi yang relevan dan berguna.
+* AI yang **jujur** akan memberikan informasi yang akurat, dan tidak akan berhalusinasi atau mengada-ada. AI ini akan mengakui keterbatasan dan ketidakpastiannya ketika sesuai.
+* AI yang **tidak berbahaya** tidak akan bersifat ofensif atau diskriminatif, dan ketika diminta untuk membantu dalam tindakan yang berbahaya atau tidak etis, AI harus dengan sopan menolak dan menjelaskan mengapa tidak dapat mematuhi.
 
 ## Latency
 
@@ -39,15 +39,15 @@ HHH (helpful, honest, harmless — membantu, jujur, tidak berbahaya) adalah kera
 
 ## MCP (Model Context Protocol)
 
-“Model Context Protocol”, atau MCP, adalah protokol terbuka yang menstandarkan bagaimana aplikasi memberikan konteks kepada LLM. Seperti port USB-C untuk aplikasi AI, MCP menyediakan cara terpadu untuk menghubungkan model AI ke berbagai sumber data dan alat. MCP memungkinkan sistem AI untuk mempertahankan konteks yang konsisten di seluruh interaksi dan mengakses sumber daya eksternal dengan cara yang terstandar. Lihat [dokumentasi MCP](https://modelcontextprotocol.io/) untuk mempelajari lebih lanjut.
+“Model Context Protocol”, atau MCP, adalah protokol terbuka yang menstandarkan cara aplikasi menyediakan konteks kepada LLM. Seperti port USB-C untuk aplikasi AI, MCP menyediakan cara terpadu untuk menghubungkan model AI ke berbagai sumber data dan alat. MCP memungkinkan sistem AI untuk mempertahankan konteks yang konsisten di seluruh interaksi dan mengakses sumber daya eksternal dengan cara yang terstandarisasi. Lihat [dokumentasi MCP](https://modelcontextprotocol.io/) untuk mempelajari lebih lanjut.
 
 ## MCP connector
 
-“MCP connector” (konektor MCP) adalah fitur yang memungkinkan pengguna API untuk terhubung ke server MCP secara langsung dari Messages API tanpa membangun klien MCP. Ini memungkinkan integrasi yang mulus dengan alat dan layanan yang kompatibel dengan MCP melalui Claude API. MCP connector mendukung fitur seperti pemanggilan alat dan tersedia dalam versi beta. Lihat dokumentasi [MCP connector](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) untuk mempelajari lebih lanjut.
+“MCP connector” (konektor MCP) adalah fitur yang memungkinkan pengguna API untuk terhubung ke server MCP secara langsung dari Messages API tanpa membangun klien MCP. Ini memungkinkan integrasi yang mulus dengan alat dan layanan yang kompatibel dengan MCP melalui Claude API. MCP connector mendukung fitur seperti pemanggilan alat dan tersedia dalam versi beta. Lihat dokumentasi [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) untuk mempelajari lebih lanjut.
 
 ## Pretraining
 
-“Pretraining” (pra-pelatihan) adalah proses awal pelatihan model bahasa pada corpus teks besar yang tidak berlabel. Dalam kasus Claude, model bahasa autoregresif (seperti model yang mendasari Claude) dilatih sebelumnya untuk memprediksi kata berikutnya, berdasarkan konteks teks sebelumnya dalam dokumen. Model yang telah dilatih sebelumnya ini pada dasarnya tidak pandai menjawab pertanyaan atau mengikuti instruksi, dan sering kali memerlukan keterampilan mendalam dalam prompt engineering untuk memunculkan perilaku yang Anda inginkan. Fine-tuning dan RLHF digunakan untuk menyempurnakan model yang telah dilatih sebelumnya ini, menjadikannya lebih berguna untuk berbagai macam tugas.
+“Pretraining” (pra-pelatihan) adalah proses awal pelatihan model bahasa pada corpus teks besar yang tidak berlabel. Dalam kasus Claude, model bahasa autoregresif (seperti model yang mendasari Claude) dilatih sebelumnya untuk memprediksi kata berikutnya, berdasarkan konteks teks sebelumnya dalam dokumen. Model yang telah dilatih sebelumnya ini pada dasarnya tidak pandai menjawab pertanyaan atau mengikuti instruksi, dan sering kali memerlukan keterampilan mendalam dalam rekayasa prompt untuk memunculkan perilaku yang Anda inginkan. Fine-tuning dan RLHF digunakan untuk menyempurnakan model yang telah dilatih sebelumnya ini, menjadikannya lebih berguna untuk berbagai macam tugas.
 
 ## RAG (retrieval augmented generation)
 
@@ -55,7 +55,7 @@ HHH (helpful, honest, harmless — membantu, jujur, tidak berbahaya) adalah kera
 
 ## RLHF
 
-“Reinforcement Learning from Human Feedback” (pembelajaran penguatan dari umpan balik manusia), atau RLHF, adalah teknik yang digunakan untuk melatih model bahasa yang telah melalui pretraining agar berperilaku dengan cara yang konsisten dengan preferensi manusia. Ini dapat mencakup membantu model mengikuti instruksi dengan lebih efektif atau bertindak lebih seperti chatbot. Umpan balik manusia terdiri dari pemeringkatan sekumpulan dua atau lebih contoh teks, dan proses pembelajaran penguatan mendorong model untuk lebih memilih output yang mirip dengan output yang berperingkat lebih tinggi. Claude telah dilatih menggunakan RLHF untuk menjadi asisten yang lebih membantu. Untuk detail lebih lanjut, Anda dapat membaca [makalah Anthropic tentang topik ini](https://arxiv.org/abs/2204.05862).
+“Reinforcement learning from human feedback” (pembelajaran penguatan dari umpan balik manusia), atau RLHF, adalah teknik yang digunakan untuk melatih model bahasa yang telah dilatih sebelumnya agar berperilaku dengan cara yang konsisten dengan preferensi manusia. Ini dapat mencakup membantu model mengikuti instruksi dengan lebih efektif atau bertindak lebih seperti chatbot. Umpan balik manusia terdiri dari pemeringkatan sekumpulan dua atau lebih contoh teks, dan proses pembelajaran penguatan mendorong model untuk lebih memilih output yang mirip dengan yang berperingkat lebih tinggi. Claude telah dilatih menggunakan RLHF untuk menjadi asisten yang lebih membantu. Untuk detail lebih lanjut, Anda dapat membaca [makalah Anthropic tentang RLHF](https://arxiv.org/abs/2204.05862).
 
 ## Temperature
 
@@ -65,7 +65,7 @@ Pengguna mungkin menemukan non-determinisme dalam API. Bahkan dengan temperature
 
 ## TTFT (time to first token)
 
-“Time to first token” (waktu hingga token pertama), atau TTFT, adalah metrik kinerja yang mengukur waktu yang diperlukan model bahasa untuk menghasilkan token pertama dari outputnya setelah menerima prompt. Ini adalah indikator penting dari responsivitas model dan sangat relevan untuk aplikasi interaktif, chatbot, dan sistem real-time di mana pengguna mengharapkan umpan balik awal yang cepat. TTFT yang lebih rendah menunjukkan bahwa model dapat mulai menghasilkan respons lebih cepat, memberikan pengalaman pengguna yang lebih mulus dan menarik. Faktor yang dapat mempengaruhi TTFT termasuk ukuran model, kemampuan hardware, kondisi jaringan, dan kompleksitas prompt.
+“Time to first token” (waktu hingga token pertama), atau TTFT, adalah metrik kinerja yang mengukur waktu yang diperlukan model bahasa untuk menghasilkan token pertama dari outputnya setelah menerima prompt. Ini adalah indikator penting dari responsivitas model dan sangat relevan untuk aplikasi interaktif, chatbot, dan sistem real-time di mana pengguna mengharapkan umpan balik awal yang cepat. TTFT yang lebih rendah menunjukkan bahwa model dapat mulai menghasilkan respons lebih cepat, memberikan pengalaman pengguna yang lebih mulus dan menarik. Faktor yang dapat mempengaruhi TTFT termasuk ukuran model, kemampuan perangkat keras, kondisi jaringan, dan kompleksitas prompt.
 
 ## Tokens
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/gcp
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 4a85059726d29e1465cb84e220c078d90a6e69f45e67cc948a49901292156e97
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: ad4f11b76e77ea4e2dd07dc23745a83cad79e9cace5512aab3fb39ddcfcc989b
 ---
 
 ---
@@ -11,24 +11,24 @@ url: https://platform.claude.com/docs/id/manage-claude/wif-providers/gcp
 description: Federasikan workload Google Cloud (Cloud Run, Cloud Functions, App Engine, GCE, GKE) ke Claude API menggunakan token identitas yang ditandatangani Google alih-alih kunci API statis.
 ---
 
-Setiap lingkungan komputasi Google Cloud yang memiliki akses ke server metadata instance (Cloud Run, Cloud Functions, App Engine, Compute Engine (GCE), dan GKE dengan Workload Identity) dapat meminta token identitas yang ditandatangani Google untuk service account yang terpasang padanya. Issuer token tersebut adalah `https://accounts.google.com`, dan Anthropic dapat memvalidasinya secara langsung melalui OIDC discovery standar, tanpa memerlukan konfigurasi Google Cloud tambahan.
+Setiap lingkungan komputasi Google Cloud yang memiliki akses ke server metadata instance (Cloud Run, Cloud Functions, App Engine, Compute Engine (GCE), dan GKE dengan Workload Identity) dapat meminta token identitas yang ditandatangani Google untuk akun layanan yang terpasang padanya. Issuer token tersebut adalah `https://accounts.google.com`, dan Anthropic dapat memvalidasinya secara langsung melalui OIDC discovery standar, tanpa memerlukan konfigurasi Google Cloud tambahan.
 
-Panduan ini menunjukkan cara mendaftarkan issuer Google ke Anthropic, mengikat service account Google ke service account Anthropic, dan membuat workload Anda menukarkan token identitasnya dengan token akses Claude API yang berumur pendek.
+Panduan ini menunjukkan cara mendaftarkan issuer Google ke Anthropic, mengikat akun layanan Google ke akun layanan Anthropic, dan membuat workload Anda menukarkan token identitasnya dengan token akses Claude API yang berumur pendek.
 
 ## Prasyarat
 
 * Pemahaman tentang [konsep WIF](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#concepts): service account, federation issuer, dan federation rule.
-* Sebuah project Google Cloud dengan workload yang berjalan di Cloud Run, Cloud Functions, App Engine, Compute Engine, atau GKE.
-* Sebuah service account Google yang dikelola pengguna dan terpasang pada workload tersebut (bukan service account default Compute Engine).
+* Sebuah proyek Google Cloud dengan workload yang berjalan di Cloud Run, Cloud Functions, App Engine, Compute Engine, atau GKE.
+* Sebuah akun layanan Google yang dikelola pengguna dan terpasang pada workload tersebut (bukan akun layanan default Compute Engine).
 * Izin untuk membuat service account, federation issuer, dan federation rule di Claude Console untuk organisasi Anthropic Anda.
 
 ## Mengonfigurasi Google Cloud
 
-Google menerbitkan token identitas secara otomatis untuk setiap workload yang memiliki service account terpasang. Tidak ada yang perlu diaktifkan di sisi Google selain memasang service account yang tepat, tetapi langkah-langkahnya sedikit berbeda antara komputasi standar dan GKE.
+Google menerbitkan token identitas secara otomatis untuk setiap workload yang memiliki akun layanan terpasang. Tidak ada yang perlu diaktifkan di sisi Google selain memasang akun layanan yang tepat, tetapi langkah-langkahnya sedikit berbeda antara komputasi standar dan GKE.
 
 <Tabs>
   <Tab title="Cloud Run, Cloud Functions, App Engine, GCE">
-    Pasang service account khusus ke layanan atau instance Anda:
+    Pasang akun layanan khusus ke layanan atau instance Anda:
 
     ```bash
     gcloud run deploy my-service \
@@ -66,11 +66,11 @@ Google menerbitkan token identitas secara otomatis untuk setiap workload yang me
     }
     ```
 
-    Klaim `sub` adalah ID unik numerik opaque milik service account Google. Klaim `email` adalah alamat service account yang dapat dibaca manusia. Cocokkan `sub` dan `email` keduanya dalam federation rule Anda.
+    Klaim `sub` adalah ID unik numerik opaque milik akun layanan Google. Klaim `email` adalah alamat akun layanan yang dapat dibaca manusia. Cocokkan `sub` dan `email` keduanya dalam aturan federasi Anda.
   </Tab>
 
   <Tab title="GKE dengan Workload Identity">
-    Aktifkan [GKE Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) pada cluster Anda dan ikat service account Kubernetes Anda ke service account Google dengan anotasi `iam.gke.io/gcp-service-account`:
+    Aktifkan [GKE Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) pada klaster Anda dan ikat akun layanan Kubernetes Anda ke akun layanan Google dengan anotasi `iam.gke.io/gcp-service-account`:
 
     ```yaml
     apiVersion: v1
@@ -84,7 +84,7 @@ Google menerbitkan token identitas secara otomatis untuk setiap workload yang me
 
     Dengan pengikatan ini, server metadata GKE mengembalikan token yang ditandatangani Google yang identik dengan kasus Cloud Run dan GCE: issuer `https://accounts.google.com` yang sama, klaim `email` yang sama, URL pengambilan yang sama. Konfigurasikan Anthropic persis seperti pada bagian berikutnya.
 
-    Token `format=full` dari GKE juga menyertakan klaim `google.compute_engine.project_id`, `google.compute_engine.zone`, dan `google.compute_engine.instance_name`, yang dapat Anda rujuk dalam pencocok `condition` aturan federasi (ekspresi CEL seperti `claims.google.compute_engine.project_id == "my-project"`) untuk membatasi akses ke cluster atau node pool tertentu.
+    Token `format=full` dari GKE juga menyertakan klaim `google.compute_engine.project_id`, `google.compute_engine.zone`, dan `google.compute_engine.instance_name`, yang dapat Anda rujuk dalam pencocok `condition` aturan federasi (ekspresi CEL seperti `claims.google.compute_engine.project_id == "my-project"`) untuk membatasi akses ke klaster atau node pool tertentu.
 
     <Note>
       Jika Anda tidak ingin mengikat service account Kubernetes ke service account Google, pod GKE dapat menggunakan issuer OIDC milik cluster itu sendiri (`https://container.googleapis.com/v1/projects/PROJECT/locations/REGION/clusters/CLUSTER`) dengan volume `serviceAccountToken` yang diproyeksikan. Jalur tersebut menggunakan issuer per-cluster alih-alih `accounts.google.com`. Lihat [Menggunakan WIF dengan Kubernetes](https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes) untuk pola tersebut.
@@ -94,11 +94,11 @@ Google menerbitkan token identitas secara otomatis untuk setiap workload yang me
 
 ## Mengonfigurasi Anthropic
 
-Di Claude Console, buka halaman [Workload identity](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`), klik **Connect workload**, lalu pilih tile **Google Cloud**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat federation rule.
+Di Claude Console, buka halaman [Identitas beban kerja](https://platform.claude.com/settings/workload-identity-federation) (`platform.claude.com/settings/workload-identity-federation`), klik **Hubungkan beban kerja**, lalu pilih tile **Google Cloud**. Wizard akan memandu Anda mendaftarkan issuer, membuat akun layanan, dan membuat aturan federasi.
 
 Wizard membuat sumber daya ini untuk Anda. Gunakan nilai-nilai berikut, baik Anda memasukkannya di wizard maupun mengirimkannya ke [Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api):
 
-**Federation issuer:** Google memublikasikan dokumen OIDC discovery-nya secara publik, jadi gunakan mode discovery. Satu issuer ini mencakup setiap permukaan Google Cloud (Cloud Run, GCE, Cloud Functions, App Engine, dan GKE dengan Workload Identity). Bedakan workload dengan rule, bukan dengan issuer.
+**Penerbit federasi:** Google memublikasikan dokumen OIDC discovery-nya secara publik, jadi gunakan mode discovery. Satu issuer ini mencakup setiap permukaan Google Cloud (Cloud Run, GCE, Cloud Functions, App Engine, dan GKE dengan Workload Identity). Bedakan workload dengan aturan, bukan dengan issuer.
 
 ```json
 {
@@ -108,7 +108,7 @@ Wizard membuat sumber daya ini untuk Anda. Gunakan nilai-nilai berikut, baik And
 }
 ```
 
-**Aturan federasi:** Cocokkan klaim `sub` dan `email` sekaligus. `email` adalah alamat service account yang dapat dibaca; `sub` adalah ID unik numerik service account, yang tidak pernah digunakan ulang oleh Google, sehingga mengunci nilainya melindungi aturan jika service account dihapus lalu service account baru dibuat kemudian dengan email yang sama. Temukan ID unik tersebut dengan `gcloud iam service-accounts describe inference-worker@my-project.iam.gserviceaccount.com --format='value(uniqueId)'`.
+**Aturan federasi:** Cocokkan klaim `sub` dan `email` sekaligus. `email` adalah alamat akun layanan yang dapat dibaca; `sub` adalah ID unik numerik akun layanan, yang tidak pernah digunakan ulang oleh Google, sehingga mengunci nilainya melindungi aturan jika akun layanan dihapus lalu akun layanan baru dibuat kemudian dengan email yang sama. Temukan ID unik tersebut dengan `gcloud iam service-accounts describe inference-worker@my-project.iam.gserviceaccount.com --format='value(uniqueId)'`.
 
 ```json
 {
@@ -133,7 +133,7 @@ Wizard membuat sumber daya ini untuk Anda. Gunakan nilai-nilai berikut, baik And
 
 ## Memperoleh dan menggunakan token
 
-Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata, tukarkan di `POST /v1/oauth/token`, dan gunakan bearer token yang dikembalikan untuk memanggil Claude API. Claude SDK menangani pertukaran dan loop refresh untuk Anda ketika Anda menyediakan `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider()`; java: `IdentityTokenConfig`), seperti yang ditunjukkan dalam contoh berikut. Kecuali di Java (lihat komentar dalam contoh tersebut), opsi itu menerima penyedia token yang mengembalikan token identitas baru dari server metadata.
+Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata, tukarkan di `POST /v1/oauth/token`, dan gunakan bearer token yang dikembalikan untuk memanggil Claude API. Claude SDK menangani pertukaran dan loop refresh untuk Anda ketika Anda menyediakan `identity_token_provider` (typescript: `identityTokenProvider`; php: `identityProvider`; csharp: `IdentityTokenProvider`; go: `option.WithFederationTokenProvider()`; java: `IdentityTokenConfig`), seperti yang ditunjukkan dalam contoh berikut. Kecuali di Java, di mana `IdentityTokenConfig` menerima token atau path file, opsi itu menerima penyedia token yang mengembalikan token identitas baru dari server metadata.
 
 <CodeGroup>
   ```bash cURL
@@ -176,8 +176,10 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
     "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/identity?audience=https://api.anthropic.com&format=full" \
     > "$ANTHROPIC_IDENTITY_TOKEN_FILE"
 
-  # ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
-  # ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID dibaca dari environment.
+  # ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID, dan
+  # ANTHROPIC_SERVICE_ACCOUNT_ID dibaca dari environment.
+  # Untuk aturan yang diaktifkan bagi semua workspace atau lebih dari satu, atur ANTHROPIC_PROFILE
+  # ke profil federasi yang menetapkan workspace_id.
   ant messages create \
     --model claude-opus-5-5 \
     --max-tokens 1024 \
@@ -460,11 +462,11 @@ Di dalam workload Google Cloud Anda, ambil token identitas dari server metadata,
   ```
 </CodeGroup>
 
-Token identitas Google kedaluwarsa setelah sekitar 1 jam. Kecuali di Java (lihat komentar dalam contoh tersebut), SDK memanggil penyedia token lagi dan melakukan penukaran ulang secara otomatis sebelum kedaluwarsa. Untuk skrip shell yang berjalan lebih lama dari `expires_in` token akses, lakukan penyegaran dengan timer dan ulangi penukaran.
+Token identitas Google kedaluwarsa setelah sekitar 1 jam. Kecuali di Java, di mana `IdentityTokenConfig` menerima token atau path file, SDK memanggil penyedia token lagi dan mengulangi penukaran secara otomatis sebelum kedaluwarsa. Untuk skrip shell yang berjalan lebih lama dari `expires_in` token akses, lakukan penyegaran dengan timer dan ulangi penukaran.
 
 ## Memverifikasi penyiapan
 
-Dari dalam workload Anda, dekode token identitas dan pastikan klaimnya cocok dengan rule Anda:
+Dari dalam workload Anda, dekode token identitas dan pastikan klaimnya cocok dengan aturan Anda:
 
 ```bash cURL
 curl -sS -H "Metadata-Flavor: Google" \
@@ -474,10 +476,10 @@ curl -sS -H "Metadata-Flavor: Google" \
 
 Periksa bahwa `iss` adalah `https://accounts.google.com`, `aud` adalah `https://api.anthropic.com`, dan `email` cocok dengan nilai dalam aturan federasi Anda. Kemudian jalankan penukaran dari bagian sebelumnya. Penukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika penukaran gagal dengan respons `401` `authentication_error` yang buram (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console untuk alasan penolakan dan lihat [Memecahkan masalah penukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange). Penyebab paling umum di sisi Google Cloud adalah klaim `email` yang tidak ada (minta token dengan `format=full` agar klaim tersebut disertakan).
 
-## Membatasi cakupan rule Anda
+## Membatasi cakupan aturan Anda
 
 <Warning>
-  Klaim `sub` Google adalah ID unik numerik opaque milik service account dan tidak memiliki prefiks yang stabil. `subject_prefix` dengan `*` di akhir akan cocok dengan service account sembarang di seluruh project Google Cloud, dan salah satu dari mereka dapat memperoleh token Anthropic terfederasi.
+  Klaim `sub` Google adalah ID unik numerik opaque milik akun layanan dan tidak memiliki prefiks yang stabil. `subject_prefix` dengan `*` di akhir akan cocok dengan akun layanan sembarang di seluruh proyek Google Cloud, dan salah satu dari mereka dapat memperoleh token Anthropic terfederasi.
 </Warning>
 
 Kunci blok `match` pada rule ke cakupan tersempit yang sesuai dengan kasus penggunaan Anda:
@@ -485,7 +487,7 @@ Kunci blok `match` pada rule ke cakupan tersempit yang sesuai dengan kasus pengg
 * **Cocokkan `sub` secara persis:** Tetapkan ID unik numerik lengkap di `claims.sub` dan jangan pernah menggunakan `subject_prefix` untuk token Google.
 * **Kunci klaim `email`:** Tambahkan `claims.email` bersama `sub` sehingga ID stabil dan alamat yang dapat dibaca keduanya harus cocok.
 * **Kunci audience:** Tetapkan `audience` ke nilai persis yang Anda minta dari server metadata sehingga token yang dicetak untuk konsumen lain ditolak.
-* **Kunci project pada GKE:** Untuk token `format=full`, tambahkan `condition` seperti `claims.google.compute_engine.project_id == "my-project"` untuk membatasi rule ke node milik satu project.
+* **Kunci proyek pada GKE:** Untuk token `format=full`, tambahkan `condition` seperti `claims.google.compute_engine.project_id == "my-project"` untuk membatasi aturan ke node milik satu proyek.
 
 ## Langkah selanjutnya
 

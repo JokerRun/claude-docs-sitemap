@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/overview
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 1e8f6c5c134dd77a08dbc41718befe38b74dbf6ec7b9179965bcbd6aa036b72c
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 029161728bf54268562fd44b29bb9ba28e4b7125bf94d04c8c6b6cef8c21ac5a
 ---
 
 ---
@@ -41,7 +41,7 @@ Panduan ini berfokus pada kriteria keberhasilan yang dapat dikendalikan melalui 
 
 ## Cara melakukan rekayasa prompt
 
-Semua teknik prompting (mulai dari kejelasan dan contoh hingga penstrukturan XML, role prompting, thinking, dan prompt chaining) dibahas dalam [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices). Itu adalah referensi yang terus diperbarui; mulailah dari sana.
+Semua teknik prompting (mulai dari kejelasan dan contoh hingga penstrukturan XML, role prompting, pemikiran, dan perangkaian prompt) dibahas dalam [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices). Itu adalah referensi yang terus diperbarui; mulailah dari sana.
 
 Untuk keahlian rekayasa prompt secara umum di luar teknik khusus Claude, lihat postingan blog tentang [praktik terbaik untuk rekayasa prompt](https://claude.com/blog/best-practices-for-prompt-engineering).
 

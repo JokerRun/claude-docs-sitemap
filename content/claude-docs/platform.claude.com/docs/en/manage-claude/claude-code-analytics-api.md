@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/claude-code-analytics-api
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: ce70a227306095e1eade5ccf9a03f4932c0fe89528ae601fef22813474125a46
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: d67929a346372f08c1cbca4cd8c2c930233ad5ee3066d3c276f9681fb741e3ae
 ---
 
 ---
@@ -30,7 +30,7 @@ This API allows you to better monitor, analyze, and optimize your Claude Code ad
 </Check>
 
 <Note>
-  **Claude Platform on AWS:** The Claude Code Analytics API is not currently available. View Claude Code usage on the **Usage** page in the Claude Console instead.
+  The Claude Code Analytics API is available on the Claude API. If you’re using Claude Platform on AWS, view Claude Code usage on the **Usage** page in the Claude Console instead.
 </Note>
 
 <Note>
@@ -55,7 +55,7 @@ limit=20" \
   If you’re building an integration, set your User-Agent header to help Anthropic understand usage patterns:
 
   ```text wrap
-  User-Agent: YourApp/1.0.0 (https://yourapp.com)
+  User-Agent: YourApp/1.0.0 (https://example.com)
   ```
 </Tip>
 
@@ -66,7 +66,7 @@ Track Claude Code usage, productivity metrics, and developer activity across you
 ### Key concepts
 
 * **Daily aggregation:** Returns metrics for a single day specified by the `starting_at` parameter
-* **User-level data:** Each record represents one user’s activity for the specified day
+* **Actor-level data:** An actor (a user or API key) can have several records for the specified day, one for each combination of `terminal_type`, `customer_type`, `subscription_type`, and `is_remote` values
 * **Productivity metrics:** Track sessions, lines of code, commits, pull requests, and tool usage
 * **Token and cost data:** Monitor usage and estimated costs broken down by Claude model
 * **Cursor-based pagination:** Handle large datasets with stable pagination using opaque cursors
@@ -113,7 +113,7 @@ page=page_MjAyNS0wNS0xNFQwMDowMDowMFo=" \
 
 ### Available metrics
 
-Each response record contains the following metrics for a single user on a single day:
+Each response record contains the following metrics for one combination of dimension values. An actor can have several records for the same day. Add up an actor’s records to get its daily totals.
 
 #### Dimensions
 
@@ -122,6 +122,8 @@ Each response record contains the following metrics for a single user on a singl
 * **organization\_id:** Organization UUID
 * **customer\_type:** Type of customer account (`api` or `subscription`); records cover only usage authenticated against your Claude Console organization
 * **terminal\_type:** Type of terminal or environment where Claude Code was used (for example, `vscode`, `iTerm.app`, `tmux`)
+* **subscription\_type:** Subscription type reported with the usage (`enterprise` or `team`), or `null` if there is none
+* **is\_remote:** Whether the usage came from remote Claude Code sessions (`true`) or local sessions (`false`)
 
 #### Core metrics
 
@@ -148,7 +150,7 @@ For each Claude model used:
 * **tokens.input/output:** Input and output token counts for this model
 * **tokens.cache\_read/cache\_creation:** Cache-related token usage for this model
 * **estimated\_cost.amount:** Estimated cost in cents USD for this model
-* **estimated\_cost.currency:** Currency code for the cost amount (currently always `USD`)
+* **estimated\_cost.currency:** Currency code for the cost amount (always `USD`)
 
 ### Response structure
 
@@ -161,11 +163,13 @@ The API returns data in the following format:
       "date": "2025-09-08T00:00:00Z",
       "actor": {
         "type": "user_actor",
-        "email_address": "developer@company.com"
+        "email_address": "developer@example.com"
       },
       "organization_id": "dc9f6c26-b22c-4831-8d01-0446bada88f1",
       "customer_type": "api",
       "terminal_type": "vscode",
+      "subscription_type": null,
+      "is_remote": false,
       "core_metrics": {
         "num_sessions": 5,
         "lines_of_code": {
@@ -240,7 +244,7 @@ The cursor encodes the position of the last record and ensures stable pagination
 
 Claude Code analytics data typically appears within 1 hour of user activity completion. To ensure consistent pagination results, only data older than 1 hour is included in responses.
 
-### Can I get real-time metrics?
+### Can this API return real-time metrics?
 
 No, this API provides daily aggregated metrics only. For real-time monitoring, consider using the [OpenTelemetry integration](https://code.claude.com/docs/en/monitoring-usage).
 
@@ -269,13 +273,13 @@ Historical Claude Code analytics data is retained and accessible through the API
 
 ### Which Claude Code deployments are supported?
 
-This API only tracks Claude Code usage on the Claude API. Usage through [Claude in Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock), [Claude in Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry), [Claude Models on Google Cloud](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/overview), or [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) is not included.
+This API only tracks Claude Code usage on the Claude API.
 
 ### What does it cost to use this API?
 
 The Claude Code Analytics API is free to use for all organizations with access to the Admin API.
 
-### How do I calculate tool acceptance rates?
+### How do you calculate tool acceptance rates?
 
 Tool acceptance rate = `accepted / (accepted + rejected)` for each tool type. For example, if the edit tool shows 45 accepted and 5 rejected, the acceptance rate is 90 percent.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-profiles-verification-portal
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: d32117eed0f12aaf2043314cf50c94c11e6273e32dc724793678b3b7aeb64f65
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 3d736cdc7b91e92d5410e06bdf0a3a02656eb1b1c3d983a89f50062a29ba91d4
 ---
 
 ---
@@ -148,7 +148,7 @@ Siapa pun yang memiliki tautan dapat menggunakannya hingga kedaluwarsa, jadi ber
 
 Jika Anda menggunakan Claude Platform on AWS, buat tautan dengan `POST /v1/user_profiles/{id}/enrollment_url` sebagai gantinya, dan kirimkan header `anthropic-beta: user-profiles-2026-08-18`. Permintaan tersebut tidak menerima body, dan responsnya memiliki field `url` dan `expires_at` yang sama. Di SDK dan CLI, panggilan tersebut berada di namespace beta: `client.beta.user_profiles.create_enrollment_url()` (typescript: `client.beta.userProfiles.createEnrollmentURL()`; csharp: `client.Beta.UserProfiles.CreateEnrollmentUrl()`; go: `client.Beta.UserProfiles.NewEnrollmentURL()`; java: `client.beta().userProfiles().createEnrollmentUrl()`; php: `$client->beta->userProfiles->createEnrollmentURL()`; cli: `ant beta:user-profiles create-enrollment-url`).
 
-`POST /v1/user_profiles/{id}/action_urls` tidak tersedia di Microsoft Foundry.
+Jika inferensi Anda berjalan pada deployment Microsoft Foundry yang di-hosting di Anthropic, buat tautan dari organisasi di Claude API yang membuat profil tersebut. `POST /v1/user_profiles/{id}/action_urls` tidak tersedia di Microsoft Foundry.
 
 ## Apa yang dilihat pelanggan akhir
 
@@ -167,10 +167,10 @@ Tautan membuka Verification Portal milik Anthropic di `portal.anthropic.com`. Se
     Portal menampilkan kartu berjudul **Link your partner profile**. Kartu ini menyebutkan platform Anda, ID profil, organisasi pelanggan akhir, dan kapan undangan kedaluwarsa. Pelanggan akhir memilih **Link profile** untuk menerima atau **Skip for now** untuk melanjutkan ke portal tanpa menautkan.
 
     <Frame caption="Pelanggan akhir mengonfirmasi ke organisasi mana profil tersebut ditautkan.">
-      ![Kartu Verification Portal berjudul Link your partner profile, yang menampilkan partner, ID profil, organisasi, dan waktu kedaluwarsa.](https://platform.claude.com/docs/images/user-profiles/portal-link-profile.png)
+      ![Kartu Verification Portal berjudul Link your partner profile, yang menampilkan mitra, ID profil, organisasi, dan waktu kedaluwarsa.](https://platform.claude.com/docs/images/user-profiles/portal-link-profile.png)
     </Frame>
 
-    Hanya admin atau pemilik organisasi yang dapat menautkan profil. Orang lain akan melihat **Admin access needed** dan tidak dapat menautkan profil. Mereka dapat beralih ke organisasi tempat mereka menjadi admin atau pemilik. Jika tidak, beri tahu pelanggan akhir bahwa admin atau pemilik organisasi Anthropic mereka harus membuka tautan tersebut.
+    Hanya admin atau pemilik organisasi yang dapat menautkan profil. Orang lain akan melihat **Admin access needed (Akses admin diperlukan)** dan tidak dapat menautkan profil. Mereka dapat beralih ke organisasi tempat mereka menjadi admin atau pemilik. Jika tidak, beri tahu pelanggan akhir bahwa admin atau pemilik organisasi Anthropic mereka harus membuka tautan tersebut.
   </Step>
 
   <Step title="Melihat konfirmasi">
@@ -184,7 +184,7 @@ Tautan membuka Verification Portal milik Anthropic di `portal.anthropic.com`. Se
 
 Jika tautan sudah kedaluwarsa saat admin atau pemilik membukanya dan masuk, portal menampilkan **This invitation has expired** dan meminta mereka untuk meminta tautan baru kepada Anda.
 
-Sebuah profil ditautkan ke satu organisasi. Jika profil sudah ditautkan ke organisasi lain, portal menampilkan **This partner profile is already linked to a different organization** dan tidak menautkannya. Admin atau pemilik organisasi tempat profil tersebut ditautkan dapat membatalkan penautannya di bawah **Linked accounts** di portal. Setelah itu, buat tautan baru dan kirimkan kepada pelanggan akhir.
+Sebuah profil ditautkan ke satu organisasi. Jika profil sudah ditautkan ke organisasi lain, portal menampilkan **This partner profile is already linked to a different organization** dan tidak menautkannya. Admin atau pemilik organisasi tempat profil tersebut ditautkan dapat membatalkan penautannya di bawah **Linked accounts (akun tertaut)** di portal. Setelah itu, buat tautan baru dan kirimkan kepada pelanggan akhir.
 
 ## Setelah pelanggan akhir menautkan profil
 
@@ -192,9 +192,9 @@ Portal tidak mengarahkan pelanggan akhir kembali ke produk Anda, dan Anthropic t
 
 Penautan tidak menyetujui apa pun dengan sendirinya. Penautan menghubungkan profil ke organisasi pelanggan akhir, sehingga program yang telah disetujui untuk organisasi tersebut berlaku untuk permintaan yang membawa ID profil, kecuali tingkat akses Cyber Verification Program, yang diaktifkan oleh pelanggan akhir untuk setiap profil tertaut di portal. Profil tidak memiliki field yang menyatakan bahwa profil tersebut tertaut.
 
-Untuk melihat program mana yang berlaku untuk sebuah profil, [ambil profil tersebut](https://platform.claude.com/docs/id/api/user_profiles/retrieve) dan baca `programs`. Field ini memiliki key untuk setiap program, seperti `cyber` dan `efs`, dan setiap profil memiliki semua key tersebut. Setiap key berisi salah satu dari berikut ini:
+Untuk melihat program mana yang berlaku untuk sebuah profil, [ambil profil tersebut](https://platform.claude.com/docs/id/api/user_profiles/retrieve) dan baca `programs`. Field ini memiliki kunci untuk setiap program, seperti `cyber` dan `efs`, dan setiap profil memiliki semua kunci tersebut. Setiap kunci berisi salah satu dari berikut ini:
 
-* `null`: Anthropic tidak memiliki status untuk dilaporkan bagi program tersebut. Setiap key bernilai `null` jika Anthropic belum mengaktifkan program untuk organisasi Anda.
+* `null`: Anthropic tidak memiliki status untuk dilaporkan bagi program tersebut. Setiap kunci bernilai `null` jika Anthropic belum mengaktifkan program untuk organisasi Anda.
 * Sebuah objek: `status`-nya adalah `active` ketika program berlaku untuk profil, jika tidak maka `pending` atau `rejected`.
 
 Pelanggan akhir dapat melihat profil yang ditautkan di bawah **Linked accounts** di portal.
@@ -203,6 +203,6 @@ Jika inferensi Anda berjalan di Claude Models on Google Cloud (Google managed) a
 
 ## Langkah selanjutnya
 
-Untuk setiap field yang terdapat dalam profil yang diambil, lihat referensi [Retrieve a profile](https://platform.claude.com/docs/id/api/user_profiles/retrieve).
+Untuk setiap field yang terdapat dalam profil yang diambil, lihat referensi [Mengambil profil](https://platform.claude.com/docs/id/api/user_profiles/retrieve).
 
 Untuk membuat profil, mengirimkan ID-nya pada permintaan Anda, dan menjaganya tetap terkini, lihat [Profil pengguna untuk atribusi pelanggan akhir](https://platform.claude.com/docs/id/manage-claude/user-profiles).

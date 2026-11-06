@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 78256148275a1924d2c524c7a5ffe310fab1e09b1280646d5cd136d070c8983b
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: daee50be6e2e67f53a91789e663d599120cc9d1a790d53f6d61871212acb4ce9
 ---
 
 ---
@@ -27,7 +27,7 @@ Respons memiliki `stop_reason` bernilai `tool_use` dan satu atau lebih blok kont
 * `name`: Nama alat yang digunakan.
 * `input`: Objek yang berisi input yang diteruskan ke alat, sesuai dengan `input_schema` alat tersebut.
 
-Blok `tool_use` untuk anggota dari toolset [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) atau [browser use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) juga membawa field `toolset_name` (`"computer"` atau `"browser"`). `name`-nya adalah alat anggota yang dipanggil Claude, seperti `screenshot` atau `navigate`, jadi lakukan dispatch blok-blok tersebut berdasarkan kedua field.
+Blok `tool_use` untuk anggota dari toolset [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) atau [penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) juga membawa field `toolset_name` (`"computer"` atau `"browser"`). `name`-nya adalah alat anggota yang dipanggil Claude, seperti `screenshot` atau `navigate`, jadi lakukan dispatch blok-blok tersebut berdasarkan kedua field.
 
 <Accordion title="Contoh respons API dengan blok konten `tool_use`">
   ```json JSON
@@ -79,7 +79,7 @@ Misalnya, hasil alat yang berhasil terlihat seperti ini:
 }
 ```
 
-`tool_result` yang menjawab blok anggota computer use atau browser use juga harus menggemakan nilai `toolset_name` yang sama dengan blok `tool_use`; hasil anggota yang menghilangkannya akan ditolak. `content`-nya juga lebih sempit: hasil anggota hanya boleh berisi blok `text` dan `image`, dan hasil browser use dapat menambahkan satu blok [`browser_state`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#track-tabs-and-page-state) ([anggota manajemen tab](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#tab-management-results) hanya mengembalikan blok tersebut).
+`tool_result` yang menjawab blok anggota penggunaan komputer atau penggunaan browser juga harus menggemakan nilai `toolset_name` yang sama dengan blok `tool_use`; hasil anggota yang menghilangkannya akan ditolak. `content`-nya juga lebih sempit: hasil anggota hanya boleh berisi blok `text` dan `image`, dan hasil penggunaan browser dapat menambahkan satu blok [`browser_state`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#track-tabs-and-page-state) ([anggota manajemen tab](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#tab-management-results) hanya mengembalikan blok tersebut).
 
 <Note>
   **Persyaratan pemformatan penting:**

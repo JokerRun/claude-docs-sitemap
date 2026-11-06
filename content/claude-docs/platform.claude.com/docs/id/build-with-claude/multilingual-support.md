@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/multilingual-support
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: d8152017b246f69b647ec63f65d139ef598b66bf4515607871f9c0d79d7da7f9
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 5cd064dfffddc4faac9decec72c0e0c6930a8d793f6cb41a42e45b73a1e76038
 ---
 
 ---
@@ -215,7 +215,7 @@ Jika aplikasi Anda memungkinkan pengguna memilih bahasa saat runtime, sisipkan p
 
 Saat bekerja dengan konten multibahasa:
 
-1. **Berikan konteks bahasa yang jelas:** Meskipun Claude dapat mendeteksi bahasa target secara otomatis, menyatakan bahasa input dan output yang Anda inginkan secara eksplisit akan meningkatkan keandalan. Untuk kefasihan yang lebih baik, Anda dapat meminta Claude untuk menggunakan “tuturan idiomatis seolah-olah ia adalah penutur asli.”
+1. **Berikan konteks bahasa yang jelas:** Meskipun Claude dapat mendeteksi bahasa target secara otomatis, menyatakan secara eksplisit bahasa input dan output yang Anda inginkan akan meningkatkan keandalan. Untuk kefasihan yang lebih baik, Anda dapat meminta Claude menggunakan “tuturan idiomatis seolah-olah ia adalah penutur asli.”
 2. **Gunakan aksara asli:** Kirimkan teks dalam aksara aslinya, bukan transliterasi, untuk hasil yang optimal.
 3. **Pertimbangkan konteks budaya:** Komunikasi yang efektif sering kali memerlukan kesadaran budaya dan regional di luar penerjemahan semata.
 

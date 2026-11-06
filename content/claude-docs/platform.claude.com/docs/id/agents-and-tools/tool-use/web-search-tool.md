@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: a381fd789170fab04b222bec6415cd236c331b1a015521349e9391777de61884
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 31b062a213eea2fad456d9a64db743dfdc46c7aa6c4401a5f1f751ad19ebf438
 ---
 
 ---
@@ -95,7 +95,7 @@ Claude menjawab langsung tanpa mencari ketika permintaan mengandalkan pengetahua
 * Analisis konten yang sudah diberikan dalam percakapan
 * Giliran percakapan dan salam
 
-Pemicuan dapat diarahkan melalui “system prompt” (prompt sistem) Anda: Anda dapat mendorong Claude untuk lebih mudah melakukan pencarian atau lebih memilih menjawab langsung. Untuk batasan yang ketat, gunakan `max_uses` untuk membatasi jumlah pencarian untuk setiap permintaan.
+Pemicuan dapat diarahkan melalui “system prompt” (prompt sistem) Anda: Anda dapat mendorong Claude untuk lebih mudah melakukan pencarian atau lebih memilih menjawab langsung. Untuk menerapkan batasan, gunakan [`max_uses`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#max-uses) untuk membatasi jumlah pencarian dalam satu giliran.
 
 ### Pemfilteran dinamis
 
@@ -244,7 +244,7 @@ Contoh-contoh berikut menggunakan `web_search_20260318`:
       messages: [
           ['role' => 'user', 'content' => 'Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.'],
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       tools: [
           [
               'type' => 'web_search_20260318',
@@ -292,7 +292,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
     -H "content-type: application/json" \
     -d '{
       "model": "claude-opus-5-5",
-      "max_tokens": 1024,
+      "max_tokens": 4096,
       "messages": [
         {
           "role": "user",
@@ -310,7 +310,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
   ```bash CLI
   ant messages create \
     --model claude-opus-5-5 \
-    --max-tokens 1024 \
+    --max-tokens 4096 \
     --message '{role: user, content: What is the weather in NYC?}' \
     --tool '{type: web_search_20250305, name: web_search, max_uses: 5}'
   ```
@@ -320,7 +320,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
 
   response = client.messages.create(
       model="claude-opus-5-5",
-      max_tokens=1024,
+      max_tokens=4096,
       messages=[{"role": "user", "content": "What's the weather in NYC?"}],
       tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 5}],
   )
@@ -332,7 +332,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
 
   const response = await client.messages.create({
     model: "claude-opus-5-5",
-    max_tokens: 1024,
+    max_tokens: 4096,
     messages: [
       {
         role: "user",
@@ -357,7 +357,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
   var parameters = new MessageCreateParams
   {
       Model = Model.ClaudeOpus5_5,
-      MaxTokens = 1024,
+      MaxTokens = 4096,
       Messages = [new UserMessageParam { Content = "What's the weather in NYC?" }],
       Tools = [new ToolUnion(new WebSearchTool20250305() { MaxUses = 5 })]
   };
@@ -371,7 +371,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
   	Model:     anthropic.ModelClaudeOpus5_5,
-  	MaxTokens: 1024,
+  	MaxTokens: 4096,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("What's the weather in NYC?")),
   	},
@@ -395,7 +395,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
 
       MessageCreateParams params = MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
-          .maxTokens(1024L)
+          .maxTokens(4096L)
           .addUserMessage("What's the weather in NYC?")
           .addTool(WebSearchTool20250305.builder()
               .maxUses(5L)
@@ -411,11 +411,11 @@ Sediakan alat pencarian web dalam permintaan API Anda:
   $client = new Client();
 
   $message = $client->messages->create(
-      maxTokens: 1024,
+      maxTokens: 4096,
       messages: [
           ['role' => 'user', 'content' => "What's the weather in NYC?"],
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       tools: [
           [
               'type' => 'web_search_20250305',
@@ -433,7 +433,7 @@ Sediakan alat pencarian web dalam permintaan API Anda:
 
   message = client.messages.create(
     model: Anthropic::Model::CLAUDE_OPUS_5_5,
-    max_tokens: 1024,
+    max_tokens: 4096,
     messages: [
       { role: "user", content: "What's the weather in NYC?" }
     ],
@@ -456,7 +456,7 @@ Alat pencarian web mendukung parameter berikut:
   "type": "web_search_20250305",
   "name": "web_search",
 
-  // Optional: Limit the number of searches for each request
+  // Optional: Limit the number of searches
   "max_uses": 5,
 
   // Optional: Only include results from these domains.
@@ -481,9 +481,11 @@ Semua versi alat pencarian web menerima `allowed_callers`, yang mengontrol apaka
 
 ### Penggunaan maksimum
 
-Parameter `max_uses` membatasi jumlah pencarian yang dilakukan. Jika Claude mencoba melakukan lebih banyak pencarian daripada yang diizinkan, `web_search_tool_result` berupa error dengan kode error `max_uses_exceeded`.
+Parameter `max_uses` membatasi jumlah pencarian dalam satu giliran. Kueri tentang satu fakta biasanya menggunakan 1–3 pencarian; riset komparatif atau multi-entitas dapat menggunakan 10 atau lebih.
 
-Kueri faktual sederhana biasanya menggunakan 1–3 pencarian; riset komparatif atau multi-entitas dapat menggunakan 10 atau lebih. Untuk panduan dalam memilih nilai, lihat [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools).
+Pencarian yang gagal turut dihitung terhadap batas. Jika Claude memanggil pencarian web secara langsung lebih banyak dari yang diizinkan, `web_search_tool_result` berupa error dengan kode error `max_uses_exceeded`. Jika Claude memanggil pencarian web dari eksekusi kode lebih banyak dari yang diizinkan, proses eksekusi kode berakhir dengan error.
+
+Satu giliran dapat mencakup beberapa permintaan. Sebuah permintaan melanjutkan giliran ketika permintaan tersebut dilanjutkan setelah [`pause_turn`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn) atau ketika pesan terakhirnya hanya berisi blok `tool_result`. Pencarian dari permintaan sebelumnya dalam giliran tersebut dihitung terhadap batas, kecuali Claude menjalankannya dari eksekusi kode melalui [pemfilteran dinamis](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#dynamic-filtering).
 
 ### Pemfilteran domain
 
@@ -511,7 +513,7 @@ Di Claude Managed Agents, entri `web_search` dari toolset agen juga menerima `us
   Memerlukan `web_search_20260318` atau yang lebih baru.
 </Note>
 
-Parameter `response_inclusion` mengontrol bagaimana blok hasil pencarian muncul dalam respons API ketika hasil tersebut dikonsumsi oleh panggilan [eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) yang telah selesai dalam giliran yang sama. Atur `"response_inclusion": "excluded"` untuk menghapus pasangan blok `server_tool_use` dan hasil bersarang tersebut sepenuhnya dari respons, sehingga mengurangi biaya token output untuk alur kerja agentik yang tidak perlu mengembalikan konten pencarian mentah ke klien. Nilai default-nya adalah `"full"`. Hasil dari panggilan langsung, atau dari panggilan eksekusi kode yang dijeda sebelum selesai, selalu dikembalikan secara lengkap agar dapat dikirim kembali pada giliran berikutnya.
+Parameter `response_inclusion` mengontrol bagaimana blok hasil pencarian muncul dalam respons API ketika hasil tersebut dikonsumsi oleh panggilan [eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) yang telah selesai dalam respons yang sama. Atur `"response_inclusion": "excluded"` untuk menghapus pasangan blok `server_tool_use` dan hasil bersarang tersebut sepenuhnya dari respons, untuk alur kerja agentik yang tidak memerlukan konten pencarian mentah. Penggunaan token tidak terpengaruh, karena Claude membaca output kode, bukan blok-blok ini. Nilai default-nya adalah `"full"`. API selalu mengembalikan hasil dari panggilan langsung, atau dari panggilan eksekusi kode yang dijeda sebelum selesai, secara lengkap agar Anda dapat mengirimkannya kembali pada permintaan berikutnya.
 
 ```json JSON
 {
@@ -603,7 +605,7 @@ Hasil pencarian mencakup:
 * `page_age`: Kapan situs terakhir diperbarui
 * `encrypted_content`: Konten terenkripsi yang harus Anda kirimkan kembali dalam percakapan multi-giliran
 
-Untuk melanjutkan percakapan yang berisi hasil pencarian, kirim kembali blok konten asisten persis seperti yang Anda terima, termasuk `encrypted_content` dari setiap hasil. API mendekripsi konten tersebut pada giliran berikutnya untuk memulihkan hasil pencarian dalam konteks Claude. Jika `encrypted_content` hilang atau dimodifikasi, permintaan gagal dengan error validasi 400.
+Untuk melanjutkan percakapan yang berisi hasil pencarian, kirim kembali blok konten asisten persis seperti yang Anda terima, termasuk `encrypted_content` dari setiap hasil. API mendekripsi konten tersebut pada permintaan berikutnya untuk memulihkan hasil pencarian dalam konteks Claude. Jika `encrypted_content` hilang atau dimodifikasi, permintaan gagal dengan error validasi 400.
 
 ### Kutipan
 
@@ -660,7 +662,7 @@ Untuk melakukan cache definisi alat di seluruh giliran, lihat [Penggunaan alat d
 
 ## Streaming
 
-Dengan streaming diaktifkan, Anda akan menerima event pencarian sebagai bagian dari stream. Ada jeda saat pencarian berjalan:
+Dengan streaming diaktifkan, Anda menerima event pencarian sebagai bagian dari stream. Ada jeda saat pencarian berjalan:
 
 ```sse Output
 event: message_start
@@ -689,7 +691,7 @@ data: {"type": "content_block_start", "index": 2, "content_block": {"type": "web
 
 ## Permintaan batch
 
-Anda dapat menyertakan alat pencarian web dalam [Messages Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing). Panggilan alat pencarian web melalui Messages Batches API dikenakan harga yang sama dengan yang ada di permintaan Messages API biasa.
+Anda dapat menyertakan alat pencarian web dalam [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing). Panggilan alat pencarian web melalui Message Batches API dikenakan harga yang sama dengan yang ada di permintaan Messages API biasa.
 
 Untuk melindungi kapasitas bersama, Batches API membatasi permintaan pencarian web untuk setiap organisasi, sehingga batch besar dengan banyak pencarian mungkin membutuhkan waktu lebih lama untuk selesai. Anda dapat melihat batas laju pencarian web organisasi Anda di halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console. Untuk meminta batas yang lebih tinggi, hubungi tim penjualan dari halaman tersebut.
 
@@ -711,9 +713,9 @@ Penggunaan web search (pencarian web) dikenakan biaya di luar penggunaan token:
 }
 ```
 
-Web search tersedia di Claude API seharga **$10 USD per 1.000 pencarian**, ditambah biaya token standar untuk konten yang dihasilkan pencarian. Hasil web search yang diambil sepanjang percakapan dihitung sebagai token input, baik dalam iterasi pencarian yang dijalankan selama satu giliran maupun dalam giliran percakapan berikutnya.
+Pencarian web tersedia di Claude API seharga **$10 USD per 1.000 pencarian**, ditambah biaya token standar untuk konten yang dihasilkan pencarian. Hasil pencarian web yang diambil sepanjang percakapan dihitung sebagai token input, baik dalam iterasi pencarian yang dijalankan selama satu giliran maupun dalam giliran percakapan berikutnya.
 
-Setiap pencarian web dihitung sebagai satu penggunaan, terlepas dari jumlah hasil yang dikembalikan. Jika terjadi kesalahan selama pencarian web, pencarian web tersebut tidak akan ditagih.
+Setiap pencarian web dihitung sebagai satu penggunaan, terlepas dari jumlah hasil yang dikembalikan. Pencarian web yang gagal karena kesalahan tidak ditagih.
 
 ## Langkah selanjutnya
 

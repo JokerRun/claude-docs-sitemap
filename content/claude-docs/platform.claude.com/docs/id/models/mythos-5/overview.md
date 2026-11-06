@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/mythos-5/overview
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 8b6ae728093eec8a60fb1d271f4599749ca4e6c4e3dc244e96a3bc65688b1e35
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 6653f189030955ba9df3298077934592e4c943d115d4d1c3449e42b7e55061f7
 ---
 
 ---
@@ -100,7 +100,7 @@ Claude Mythos 5 is available only to organizations verified through Anthropic’
 ## Referensi
 
 <CardGroup cols={3}>
-  <Card title="System card" icon="file" href="https://www.anthropic.com/claude-fable-5-mythos-5-system-card">
+  <Card title="Kartu sistem" icon="file" href="https://www.anthropic.com/claude-fable-5-mythos-5-system-card">
     Evaluasi keamanan dan keputusan deployment untuk Claude Fable 5 dan Claude Mythos 5.
   </Card>
 

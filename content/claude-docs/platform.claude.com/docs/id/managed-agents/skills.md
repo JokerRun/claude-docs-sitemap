@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/skills
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: eafb277e9c039a03fc432b0b36eb780125901f4a7cc647118564a8e962c64fb0
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: d400e218ba2157942f2bf1b852ec388747ea00b4ae0594a5fdaf6c4bbab86912
 ---
 
 ---
@@ -230,7 +230,7 @@ Contoh-contoh ini menghilangkan field opsional `display_name` (java, php: `displ
   ```
 </CodeGroup>
 
-Untuk mencantumkan, mengambil, menghapus, dan membuat versi skill kustom, lihat [Mengelola skill kustom](https://platform.claude.com/docs/id/build-with-claude/skills-guide#managing-custom-skills). Untuk skema permintaan dan respons lengkap, lihat referensi API [Create Skill](https://platform.claude.com/docs/id/api/skills/create). Bundel skill diunggah langsung ke Skills API, bukan melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files).
+Untuk mencantumkan, mengambil, menghapus, dan membuat versi skill kustom, lihat [Mengelola skill kustom](https://platform.claude.com/docs/id/build-with-claude/skills-guide#managing-custom-skills). Untuk skema permintaan dan respons lengkap, lihat referensi API [Buat Skill](https://platform.claude.com/docs/id/api/skills/create). Bundel skill diunggah langsung ke Skills API, bukan melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files).
 
 ## Melampirkan skill ke agen
 

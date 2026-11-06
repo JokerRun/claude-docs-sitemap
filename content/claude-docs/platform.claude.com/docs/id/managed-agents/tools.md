@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 645793bae3d1bd1de06a32607b090fba7e502554aad60fd2e3eb81b24747fb72
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 3efc7b7df7a3ac4799cbc9e1ce18ee906b31b68e90177fbedca2613dcbddff26
 ---
 
 ---
@@ -49,16 +49,16 @@ Claude Managed Agents juga mendukung alat kustom yang ditentukan pengguna. Aplik
 
 Toolset agen mencakup alat-alat berikut. Semuanya diaktifkan secara default saat Anda menyertakan toolset dalam konfigurasi agen.
 
-| Alat       | Nama         | Deskripsi                                                       |
-| ---------- | ------------ | --------------------------------------------------------------- |
-| Bash       | `bash`       | Menjalankan perintah bash dalam sesi shell                      |
-| Read       | `read`       | Membaca file dari filesystem sandbox                            |
-| Write      | `write`      | Menulis file ke filesystem sandbox                              |
-| Edit       | `edit`       | Melakukan penggantian string dalam sebuah file                  |
-| Glob       | `glob`       | Melakukan pencocokan pola file yang cepat menggunakan pola glob |
-| Grep       | `grep`       | Mencari teks menggunakan pola regex                             |
-| Web fetch  | `web_fetch`  | Mengambil konten dari sebuah URL                                |
-| Web search | `web_search` | Mencari informasi di web                                        |
+| Alat          | Nama         | Deskripsi                                                       |
+| ------------- | ------------ | --------------------------------------------------------------- |
+| Bash          | `bash`       | Menjalankan perintah bash dalam sesi shell                      |
+| Read          | `read`       | Membaca file dari filesystem sandbox                            |
+| Write         | `write`      | Menulis file ke filesystem sandbox                              |
+| Edit          | `edit`       | Melakukan penggantian string dalam sebuah file                  |
+| Glob          | `glob`       | Melakukan pencocokan pola file yang cepat menggunakan pola glob |
+| Grep          | `grep`       | Mencari teks menggunakan pola regex                             |
+| Web fetch     | `web_fetch`  | Mengambil konten dari sebuah URL                                |
+| Pencarian web | `web_search` | Mencari informasi di web                                        |
 
 Ketika output alat melebihi 100.000 karakter (sekitar 25.000 token), output tersebut secara otomatis ditulis ke sebuah file di [sandbox](https://platform.claude.com/docs/id/managed-agents/environments). Model menerima pratinjau terpotong beserta path file dan dapat membaca konten lengkapnya dari sana.
 
@@ -258,9 +258,9 @@ Objek `default_config` menetapkan baseline untuk setiap alat dalam set, dan entr
 }
 ```
 
-### Membatasi web search dan web fetch
+### Membatasi pencarian web dan web fetch
 
-Entri `web_search` dan `web_fetch` juga menerima daftar domain, batas konten yang diambil, dan lokasi pencarian. Lihat [Membatasi domain web search dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions).
+Entri `web_search` dan `web_fetch` juga menerima daftar domain, batas konten yang diambil, dan lokasi pencarian. Lihat [Membatasi domain pencarian web dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions).
 
 ### Jenis entri konfigurasi di SDK
 
@@ -515,7 +515,7 @@ Untuk sesi yang berjalan di sandbox self-hosted, environment worker dapat [melay
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Membatasi domain web search dan web fetch" icon="shield" href="https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions">
+  <Card title="Membatasi domain pencarian web dan web fetch" icon="shield" href="https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions">
     Kontrol situs mana yang dapat dijangkau alat web, batasi konten yang diambil, dan lokalkan hasil pencarian.
   </Card>
 

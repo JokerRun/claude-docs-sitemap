@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 329dca878b139119d143740e289963cd8943aed63fd1ecabbc1325934297364e
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 9c7e175ea860aaf78b4d27443a9f13b34f813489a9167d0b915496d533be93fa
 ---
 
 ---
@@ -22,7 +22,7 @@ Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang
 <Tabs>
   <Tab title="Gradle">
     ```kotlin
-    implementation("com.anthropic:anthropic-java:3.5.0")
+    implementation("com.anthropic:anthropic-java:3.6.0")
     ```
   </Tab>
 
@@ -31,7 +31,7 @@ Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java</artifactId>
-        <version>3.5.0</version>
+        <version>3.6.0</version>
     </dependency>
     ```
   </Tab>
@@ -44,8 +44,8 @@ Integrasi platform cloud dan helper MCP sisi klien tersedia sebagai artefak add-
 <Tabs>
   <Tab title="Gradle">
     ```kotlin
-    implementation("com.anthropic:anthropic-java:3.5.0")
-    implementation("com.anthropic:anthropic-java-mcp:3.5.0")
+    implementation("com.anthropic:anthropic-java:3.6.0")
+    implementation("com.anthropic:anthropic-java-mcp:3.6.0")
     ```
   </Tab>
 
@@ -54,12 +54,12 @@ Integrasi platform cloud dan helper MCP sisi klien tersedia sebagai artefak add-
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java</artifactId>
-        <version>3.5.0</version>
+        <version>3.6.0</version>
     </dependency>
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java-mcp</artifactId>
-        <version>3.5.0</version>
+        <version>3.6.0</version>
     </dependency>
     ```
   </Tab>
@@ -89,10 +89,10 @@ import com.anthropic.models.messages.Model;
 AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
 MessageCreateParams params = MessageCreateParams.builder()
-  .maxTokens(1024L)
-  .addUserMessage("Hello, Claude")
-  .model(Model.CLAUDE_OPUS_5_5)
-  .build();
+    .maxTokens(1024L)
+    .addUserMessage("Hello, Claude")
+    .model(Model.CLAUDE_OPUS_5_5)
+    .build();
 
 Message message = client.messages().create(params);
 ```
@@ -119,8 +119,8 @@ import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 
 AnthropicClient client = AnthropicOkHttpClient.builder()
-  .apiKey("my-anthropic-api-key")
-  .build();
+    .apiKey("my-anthropic-api-key")
+    .build();
 ```
 
 Atau gunakan kombinasi kedua pendekatan:
@@ -130,10 +130,10 @@ import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 
 AnthropicClient client = AnthropicOkHttpClient.builder()
-  // Mengonfigurasi menggunakan properti sistem atau variabel lingkungan
-  .fromEnv()
-  .apiKey("my-anthropic-api-key")
-  .build();
+    // Mengonfigurasi menggunakan properti sistem atau variabel lingkungan
+    .fromEnv()
+    .apiKey("my-anthropic-api-key")
+    .build();
 ```
 
 Untuk opsi autentikasi termasuk “Workload Identity Federation” (federasi identitas beban kerja), lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication). Jika kunci API Anda adalah [kunci akun pribadi atau akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada suatu workspace, atur ID workspace di header permintaan `anthropic-workspace-id`; [Pilih workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) menunjukkan opsi per permintaan untuk SDK ini.
@@ -163,8 +163,8 @@ import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
 AnthropicClient clientWithOptions = client.withOptions(optionsBuilder -> {
-  optionsBuilder.baseUrl("https://example.com");
-  optionsBuilder.maxRetries(42);
+    optionsBuilder.baseUrl("https://example.com");
+    optionsBuilder.maxRetries(42);
 });
 ```
 
@@ -184,10 +184,10 @@ import com.anthropic.models.messages.Model;
 AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
 MessageCreateParams params = MessageCreateParams.builder()
-  .maxTokens(1024L)
-  .addUserMessage("Hello, Claude")
-  .model(Model.CLAUDE_OPUS_5_5)
-  .build();
+    .maxTokens(1024L)
+    .addUserMessage("Hello, Claude")
+    .model(Model.CLAUDE_OPUS_5_5)
+    .build();
 
 CompletableFuture<Message> message = client.async().messages().create(params);
 ```
@@ -204,10 +204,10 @@ import com.anthropic.models.messages.Model;
 AnthropicClientAsync client = AnthropicOkHttpClientAsync.fromEnv();
 
 MessageCreateParams params = MessageCreateParams.builder()
-  .maxTokens(1024L)
-  .addUserMessage("Hello, Claude")
-  .model(Model.CLAUDE_OPUS_5_5)
-  .build();
+    .maxTokens(1024L)
+    .addUserMessage("Hello, Claude")
+    .model(Model.CLAUDE_OPUS_5_5)
+    .build();
 
 CompletableFuture<Message> message = client.messages().create(params);
 ```
@@ -296,12 +296,12 @@ import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 
 AnthropicClient client = AnthropicOkHttpClient.builder()
-  .fromEnv()
-  .streamHandlerExecutor(Executors.newFixedThreadPool(4))
-  .build();
+    .fromEnv()
+    .streamHandlerExecutor(Executors.newFixedThreadPool(4))
+    .build();
 ```
 
-### Streaming dengan message accumulator
+### Streaming dengan akumulator pesan
 
 `MessageAccumulator` dapat merekam stream event dalam respons saat event tersebut diproses dan mengakumulasi objek `Message` yang serupa dengan yang akan dikembalikan oleh API non-streaming.
 
@@ -318,10 +318,10 @@ MessageAccumulator messageAccumulator = MessageAccumulator.create();
 try (StreamResponse<RawMessageStreamEvent> streamResponse =
          client.messages().createStreaming(createParams)) {
     streamResponse.stream()
-            .peek(messageAccumulator::accumulate)
-            .flatMap(event -> event.contentBlockDelta().stream())
-            .flatMap(deltaEvent -> deltaEvent.delta().text().stream())
-            .forEach(textDelta -> IO.print(textDelta.text()));
+        .peek(messageAccumulator::accumulate)
+        .flatMap(event -> event.contentBlockDelta().stream())
+        .flatMap(deltaEvent -> deltaEvent.delta().text().stream())
+        .forEach(textDelta -> IO.print(textDelta.text()));
 }
 
 Message message = messageAccumulator.message();
@@ -336,27 +336,27 @@ import com.anthropic.models.messages.Message;
 MessageAccumulator messageAccumulator = MessageAccumulator.create();
 
 client.async().messages()
-        .createStreaming(createParams)
-        .subscribe(event -> messageAccumulator.accumulate(event).contentBlockDelta().stream()
-                .flatMap(deltaEvent -> deltaEvent.delta().text().stream())
-                .forEach(textDelta -> IO.print(textDelta.text())))
-        .onCompleteFuture()
-        .join();
+    .createStreaming(createParams)
+    .subscribe(event -> messageAccumulator.accumulate(event).contentBlockDelta().stream()
+        .flatMap(deltaEvent -> deltaEvent.delta().text().stream())
+        .forEach(textDelta -> IO.print(textDelta.text())))
+    .onCompleteFuture()
+    .join();
 
 Message message = messageAccumulator.message();
 ```
 
 `BetaMessageAccumulator` juga tersedia untuk mengakumulasi objek `BetaMessage`. Cara penggunaannya sama dengan `MessageAccumulator`.
 
-## Structured outputs
+## Output terstruktur
 
-Untuk dokumentasi lengkap “structured outputs” (output terstruktur) termasuk contoh Java, lihat [Structured outputs](https://platform.claude.com/docs/id/build-with-claude/structured-outputs).
+Untuk dokumentasi lengkap “structured outputs” (output terstruktur) termasuk contoh Java, lihat [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs).
 
 ## Penggunaan alat
 
 [“Tool use” (penggunaan alat) dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) memungkinkan Anda mengintegrasikan alat dan fungsi eksternal langsung ke dalam respons model AI. Alih-alih menghasilkan teks biasa, model dapat mengeluarkan instruksi (beserta parameter) untuk memanggil alat atau fungsi bila sesuai. Anda mendefinisikan skema JSON untuk alat, dan model menggunakan skema tersebut untuk menentukan kapan dan bagaimana menggunakan alat-alat ini.
 
-Fitur penggunaan alat mendukung mode “strict” yang menjamin bahwa output JSON dari model AI akan sesuai dengan skema JSON yang Anda berikan dalam parameter input.
+Fitur penggunaan alat mendukung mode “strict” yang menjamin bahwa output JSON dari model AI sesuai dengan skema JSON yang Anda berikan dalam parameter input.
 
 SDK dapat menurunkan alat dan parameternya secara otomatis dari struktur kelas Java apa pun: nama kelas (dikonversi ke snake case) menjadi nama alat, dan field kelas mendefinisikan parameter alat.
 
@@ -371,57 +371,57 @@ import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 enum Unit {
-  CELSIUS,
-  FAHRENHEIT;
+    CELSIUS,
+    FAHRENHEIT;
 
-  public String toString() {
-    return switch (this) {
-      case CELSIUS -> "C";
-      case FAHRENHEIT -> "F";
-    };
-  }
+    public String toString() {
+        return switch (this) {
+            case CELSIUS -> "C";
+            case FAHRENHEIT -> "F";
+        };
+    }
 
-  public double fromKelvin(double temperatureK) {
-    return switch (this) {
-      case CELSIUS -> temperatureK - 273.15;
-      case FAHRENHEIT -> (temperatureK - 273.15) * 1.8 + 32.0;
-    };
-  }
+    public double fromKelvin(double temperatureK) {
+        return switch (this) {
+            case CELSIUS -> temperatureK - 273.15;
+            case FAHRENHEIT -> (temperatureK - 273.15) * 1.8 + 32.0;
+        };
+    }
 }
 
 @JsonClassDescription("Get the weather in a given location")
 static class GetWeather {
 
-  @JsonPropertyDescription("The city and state, e.g. San Francisco, CA")
-  public String location;
+    @JsonPropertyDescription("The city and state, e.g. San Francisco, CA")
+    public String location;
 
-  @JsonPropertyDescription("The unit of temperature")
-  public Unit unit;
+    @JsonPropertyDescription("The unit of temperature")
+    public Unit unit;
 
-  public Weather execute() {
-    double temperatureK = switch (location) {
-      case "San Francisco, CA" -> 300.0;
-      case "New York, NY" -> 310.0;
-      case "Dallas, TX" -> 305.0;
-      default -> 295;
-    };
-    return new Weather(String.format("%.0f%s", unit.fromKelvin(temperatureK), unit));
-  }
+    public Weather execute() {
+        double temperatureK = switch (location) {
+            case "San Francisco, CA" -> 300.0;
+            case "New York, NY" -> 310.0;
+            case "Dallas, TX" -> 305.0;
+            default -> 295;
+        };
+        return new Weather(String.format("%.0f%s", unit.fromKelvin(temperatureK), unit));
+    }
 }
 
 static class Weather {
 
-  public String temperature;
+    public String temperature;
 
-  public Weather(String temperature) {
-    this.temperature = temperature;
-  }
+    public Weather(String temperature) {
+        this.temperature = temperature;
+    }
 }
 ```
 
 ### Memanggil alat
 
-Setelah kelas alat Anda didefinisikan, tambahkan ke parameter pesan menggunakan `MessageCreateParams.Builder.addTool(Class<T>)` lalu panggil alat tersebut jika diminta dalam respons model AI. `BetaToolUseBlock.input(Class<T>)` dapat digunakan untuk mengurai parameter alat dalam bentuk JSON menjadi instance kelas pendefinisi alat Anda.
+Setelah Anda mendefinisikan kelas alat, tambahkan ke parameter pesan menggunakan `MessageCreateParams.Builder.addTool(Class<T>)` lalu panggil jika diminta dalam respons model AI. `BetaToolUseBlock.input(Class<T>)` dapat digunakan untuk mengurai parameter alat dalam bentuk JSON menjadi instance kelas pendefinisi alat Anda.
 
 Setelah memanggil alat, gunakan `BetaToolResultBlockParam.Builder.contentAsJson(Object)` untuk mengirimkan hasil alat kembali ke model AI:
 
@@ -434,45 +434,45 @@ import com.anthropic.models.messages.Model;
 AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
 MessageCreateParams.Builder createParamsBuilder = MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_5_5)
-        .maxTokens(2048)
-        .addTool(GetWeather.class)
-        .addUserMessage("What's the temperature in New York?");
+    .model(Model.CLAUDE_OPUS_5_5)
+    .maxTokens(2048)
+    .addTool(GetWeather.class)
+    .addUserMessage("What's the temperature in New York?");
 
 client.beta().messages().create(createParamsBuilder.build()).content().stream()
-        .flatMap(contentBlock -> contentBlock.toolUse().stream())
-        .forEach(toolUseBlock -> createParamsBuilder
-              // Tambahkan pesan yang menunjukkan bahwa penggunaan alat telah diminta.
-              .addAssistantMessageOfContentBlockParams(
-                      List.of(BetaContentBlockParam.ofToolUse(BetaToolUseBlockParam.builder()
-                              .name(toolUseBlock.name())
-                              .id(toolUseBlock.id())
-                              .input(toolUseBlock._input())
-                              .build())))
-              // Tambahkan pesan berisi hasil dari penggunaan alat yang diminta.
-              .addUserMessageOfContentBlockParams(
-                      List.of(BetaContentBlockParam.ofToolResult(BetaToolResultBlockParam.builder()
-                              .toolUseId(toolUseBlock.id())
-                              .contentAsJson(callTool(toolUseBlock))
-                              .build()))));
+    .flatMap(contentBlock -> contentBlock.toolUse().stream())
+    .forEach(toolUseBlock -> createParamsBuilder
+        // Tambahkan pesan yang menunjukkan bahwa penggunaan alat telah diminta.
+        .addAssistantMessageOfContentBlockParams(
+            List.of(BetaContentBlockParam.ofToolUse(BetaToolUseBlockParam.builder()
+                .name(toolUseBlock.name())
+                .id(toolUseBlock.id())
+                .input(toolUseBlock._input())
+                .build())))
+        // Tambahkan pesan berisi hasil dari penggunaan alat yang diminta.
+        .addUserMessageOfContentBlockParams(
+            List.of(BetaContentBlockParam.ofToolResult(BetaToolResultBlockParam.builder()
+                .toolUseId(toolUseBlock.id())
+                .contentAsJson(callTool(toolUseBlock))
+                .build()))));
 
 client.beta().messages().create(createParamsBuilder.build()).content().stream()
-        .flatMap(contentBlock -> contentBlock.text().stream())
-        .forEach(textBlock -> IO.println(textBlock.text()));
+    .flatMap(contentBlock -> contentBlock.text().stream())
+    .forEach(textBlock -> IO.println(textBlock.text()));
 
 private static Object callTool(BetaToolUseBlock toolUseBlock) {
-  if (!"get_weather".equals(toolUseBlock.name())) {
-    throw new IllegalArgumentException("Unknown tool: " + toolUseBlock.name());
-  }
+    if (!"get_weather".equals(toolUseBlock.name())) {
+        throw new IllegalArgumentException("Unknown tool: " + toolUseBlock.name());
+    }
 
-  GetWeather tool = toolUseBlock.input(GetWeather.class);
-  return tool != null ? tool.execute() : new Weather("unknown");
+    GetWeather tool = toolUseBlock.input(GetWeather.class);
+    return tool != null ? tool.execute() : new Weather("unknown");
 }
 ```
 
 ### Konversi nama alat
 
-Nama alat diturunkan dari nama kelas alat dalam camel case (misalnya, `GetWeather`) dan dikonversi ke snake case (misalnya, `get_weather`). Batas kata dimulai di mana karakter saat ini bukan karakter pertama, berupa huruf besar, dan karakter sebelumnya berupa huruf kecil, atau karakter berikutnya berupa huruf kecil. Misalnya, `MyJSONParser` menjadi `my_json_parser` dan `ParseJSON` menjadi `parse_json`. Konversi ini dapat ditimpa menggunakan anotasi `@JsonTypeName`.
+Nama alat diturunkan dari nama kelas alat dalam camel case (misalnya, `GetWeather`) dan dikonversi ke snake case (misalnya, `get_weather`). Batas kata dimulai ketika karakter saat ini bukan karakter pertama, berhuruf kapital, dan karakter sebelumnya berhuruf kecil atau karakter berikutnya berhuruf kecil. Misalnya, `MyJSONParser` menjadi `my_json_parser` dan `ParseJSON` menjadi `parse_json`. Konversi ini dapat ditimpa menggunakan anotasi `@JsonTypeName`.
 
 ### Validasi skema JSON alat secara lokal
 
@@ -480,10 +480,10 @@ Anda dapat melakukan validasi lokal untuk memeriksa bahwa skema JSON yang dituru
 
 ```java
 MessageCreateParams.Builder createParamsBuilder = MessageCreateParams.builder()
-  .model(Model.CLAUDE_OPUS_5_5)
-  .maxTokens(2048)
-  .addTool(GetWeather.class, JsonSchemaLocalValidation.NO)
-  .addUserMessage("What's the temperature in New York?");
+    .model(Model.CLAUDE_OPUS_5_5)
+    .maxTokens(2048)
+    .addTool(GetWeather.class, JsonSchemaLocalValidation.NO)
+    .addUserMessage("What's the temperature in New York?");
 ```
 
 ### Menganotasi kelas alat
@@ -496,7 +496,7 @@ Anda dapat menggunakan anotasi untuk menambahkan informasi lebih lanjut tentang 
 * `@JsonIgnore` - Mengecualikan field atau metode getter `public` dari skema JSON yang dihasilkan untuk parameter alat.
 * `@JsonProperty` - Menyertakan field atau metode getter non-`public` dalam skema JSON yang dihasilkan untuk parameter alat.
 
-## Message batches
+## Batch pesan
 
 SDK menyediakan dukungan untuk [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing) di bawah namespace `client.messages().batches()`. Lihat [Paginasi](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#pagination) untuk cara menampilkan daftar dan melakukan paginasi melalui batch.
 
@@ -510,13 +510,13 @@ import com.anthropic.models.files.FileMetadata;
 import com.anthropic.models.files.FileUploadParams;
 
 FileUploadParams params = FileUploadParams.builder()
-  .file(
-    MultipartField.<InputStream>builder()
-      .value(Files.newInputStream(Paths.get("/path/to/file.pdf")))
-      .contentType("application/pdf")
-      .build()
-  )
-  .build();
+    .file(
+        MultipartField.<InputStream>builder()
+            .value(Files.newInputStream(Paths.get("/path/to/file.pdf")))
+            .contentType("application/pdf")
+            .build()
+    )
+    .build();
 
 FileMetadata fileMetadata = client.files().upload(params);
 ```
@@ -529,14 +529,14 @@ import com.anthropic.models.files.FileMetadata;
 import com.anthropic.models.files.FileUploadParams;
 
 FileUploadParams params = FileUploadParams.builder()
-  .file(
-    MultipartField.<InputStream>builder()
-      .value(URI.create("https://example.com/path/to/file").toURL().openStream())
-      .filename("document.pdf")
-      .contentType("application/pdf")
-      .build()
-  )
-  .build();
+    .file(
+        MultipartField.<InputStream>builder()
+            .value(URI.create("https://example.com/path/to/file").toURL().openStream())
+            .filename("document.pdf")
+            .contentType("application/pdf")
+            .build()
+    )
+    .build();
 
 FileMetadata fileMetadata = client.files().upload(params);
 ```
@@ -549,14 +549,14 @@ import com.anthropic.models.files.FileMetadata;
 import com.anthropic.models.files.FileUploadParams;
 
 FileUploadParams params = FileUploadParams.builder()
-  .file(
-    MultipartField.<InputStream>builder()
-      .value(new ByteArrayInputStream("content".getBytes()))
-      .filename("document.txt")
-      .contentType("text/plain")
-      .build()
-  )
-  .build();
+    .file(
+        MultipartField.<InputStream>builder()
+            .value(new ByteArrayInputStream("content".getBytes()))
+            .filename("document.txt")
+            .contentType("text/plain")
+            .build()
+    )
+    .build();
 
 FileMetadata fileMetadata = client.files().upload(params);
 ```
@@ -605,11 +605,11 @@ try (HttpResponse response = client.files().download(params)) {
 
 SDK melempar tipe exception unchecked kustom:
 
-* `AnthropicServiceException` - Kelas dasar untuk error HTTP.
-* `AnthropicIoException` - Error jaringan I/O.
-* `AnthropicRetryableException` - Error generik yang menunjukkan kegagalan yang dapat dicoba ulang.
-* `AnthropicInvalidDataException` - Kegagalan menginterpretasikan data yang berhasil diurai (misalnya, saat mengakses properti yang seharusnya wajib, tetapi API secara tak terduga menghilangkannya).
-* `AnthropicException` - Kelas dasar untuk semua exception.
+* `AnthropicServiceException` - Kelas dasar untuk error HTTP
+* `AnthropicIoException` - Error jaringan I/O
+* `AnthropicRetryableException` - Error umum yang menunjukkan kegagalan yang dapat dicoba ulang
+* `AnthropicInvalidDataException` - Kegagalan menginterpretasikan data yang berhasil diurai (misalnya, saat mengakses properti yang seharusnya wajib, tetapi API secara tak terduga menghilangkannya)
+* `AnthropicException` - Kelas dasar untuk semua exception
 
 ### Pemetaan kode status
 
@@ -655,7 +655,7 @@ HttpResponseFor<Message> message = client.messages().withRawResponse().create(pa
 Optional<String> requestId = message.requestId();
 ```
 
-Ini dapat digunakan untuk mencatat permintaan yang gagal dengan cepat dan melaporkannya kembali ke Anthropic. Untuk informasi lebih lanjut tentang debugging permintaan, lihat [ID Permintaan](https://platform.claude.com/docs/id/api/errors#request-id).
+Ini dapat digunakan untuk mencatat permintaan yang gagal dan melaporkannya kembali ke Anthropic. Untuk informasi lebih lanjut tentang debugging permintaan, lihat [ID Permintaan](https://platform.claude.com/docs/id/api/errors#request-id).
 
 ## Percobaan ulang
 
@@ -677,7 +677,10 @@ Untuk menetapkan jumlah percobaan ulang kustom, konfigurasikan klien menggunakan
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 
-AnthropicClient client = AnthropicOkHttpClient.builder().fromEnv().maxRetries(4).build();
+AnthropicClient client = AnthropicOkHttpClient.builder()
+    .fromEnv()
+    .maxRetries(4)
+    .build();
 ```
 
 ## Timeout
@@ -708,8 +711,10 @@ Untuk menetapkan timeout kustom per permintaan:
 import com.anthropic.models.messages.Message;
 
 Message message = client
-  .messages()
-  .create(params, RequestOptions.builder().timeout(Duration.ofSeconds(30)).build());
+    .messages()
+    .create(params, RequestOptions.builder()
+        .timeout(Duration.ofSeconds(30))
+        .build());
 ```
 
 Atau konfigurasikan default untuk semua panggilan metode di tingkat klien:
@@ -719,9 +724,9 @@ import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 
 AnthropicClient client = AnthropicOkHttpClient.builder()
-  .fromEnv()
-  .timeout(Duration.ofSeconds(30))
-  .build();
+    .fromEnv()
+    .timeout(Duration.ofSeconds(30))
+    .build();
 ```
 
 ## Permintaan panjang
@@ -840,13 +845,15 @@ import com.anthropic.models.messages.MessageCreateParams;
 import com.anthropic.models.messages.Model;
 
 MessageCreateParams params = MessageCreateParams.builder()
-  .maxTokens(1024L)
-  .addUserMessage("Hello, Claude")
-  .model(Model.CLAUDE_OPUS_5_5)
-  .build();
+    .maxTokens(1024L)
+    .addUserMessage("Hello, Claude")
+    .model(Model.CLAUDE_OPUS_5_5)
+    .build();
 
 // Buat salinan yang dimodifikasi menggunakan toBuilder()
-MessageCreateParams modified = params.toBuilder().maxTokens(2048L).build();
+MessageCreateParams modified = params.toBuilder()
+    .maxTokens(2048L)
+    .build();
 ```
 
 Karena setiap kelas bersifat immutable, modifikasi builder tidak pernah memengaruhi instance kelas yang sudah dibangun.
@@ -855,7 +862,7 @@ Karena setiap kelas bersifat immutable, modifikasi builder tidak pernah memengar
 
 Untuk mengirim permintaan ke Claude API, bangun instance dari suatu kelas `Params` dan teruskan ke metode klien yang sesuai. Saat respons diterima, respons tersebut dideserialisasi menjadi instance kelas Java.
 
-Misalnya, `client.messages().create(...)` harus dipanggil dengan instance `MessageCreateParams`, dan mengembalikan instance `Message`.
+Misalnya, `client.messages().create(...)` menerima instance `MessageCreateParams` dan mengembalikan instance `Message`.
 
 ### Parameter yang tidak terdokumentasi
 
@@ -866,19 +873,19 @@ import com.anthropic.core.JsonValue;
 import com.anthropic.models.messages.MessageCreateParams;
 
 MessageCreateParams params = MessageCreateParams.builder()
-  .putAdditionalHeader("Secret-Header", "42")
-  .putAdditionalQueryParam("secret_query_param", "42")
-  .putAdditionalBodyProperty("secretProperty", JsonValue.from("42"))
-  .build();
+    .putAdditionalHeader("Secret-Header", "42")
+    .putAdditionalQueryParam("secret_query_param", "42")
+    .putAdditionalBodyProperty("secretProperty", JsonValue.from("42"))
+    .build();
 ```
 
 Nilai-nilai ini dapat diakses pada objek yang telah dibangun nanti menggunakan metode `_additionalHeaders()`, `_additionalQueryParams()`, dan `_additionalBodyProperties()`.
 
 <Warning>
-  Nilai yang diteruskan ke metode-metode ini menimpa nilai yang diteruskan ke metode sebelumnya. Demi alasan keamanan, pastikan metode-metode ini hanya digunakan dengan data input yang tepercaya.
+  Nilai yang diteruskan ke metode-metode ini menimpa nilai yang diteruskan ke metode sebelumnya. Demi alasan keamanan, gunakan metode ini hanya dengan data input yang tepercaya.
 </Warning>
 
-Untuk menetapkan parameter yang tidak terdokumentasi pada kelas header, query param, atau body bersarang:
+Untuk menetapkan parameter yang tidak didokumentasikan pada kelas header, parameter query, atau body yang bersarang:
 
 ```java
 import com.anthropic.core.JsonValue;
@@ -886,10 +893,12 @@ import com.anthropic.models.messages.MessageCreateParams;
 import com.anthropic.models.messages.Metadata;
 
 MessageCreateParams params = MessageCreateParams.builder()
-  .metadata(
-    Metadata.builder().putAdditionalProperty("secretProperty", JsonValue.from("42")).build()
-  )
-  .build();
+    .metadata(
+        Metadata.builder()
+            .putAdditionalProperty("secretProperty", JsonValue.from("42"))
+            .build()
+    )
+    .build();
 ```
 
 Properti-properti ini dapat diakses pada objek bersarang yang telah dibangun nanti menggunakan metode `_additionalProperties()`.
@@ -902,10 +911,10 @@ import com.anthropic.models.messages.MessageCreateParams;
 import com.anthropic.models.messages.Model;
 
 MessageCreateParams params = MessageCreateParams.builder()
-  .maxTokens(JsonValue.from(3.14))
-  .addUserMessage("Hello, Claude")
-  .model(Model.CLAUDE_OPUS_5_5)
-  .build();
+    .maxTokens(JsonValue.from(3.14))
+    .addUserMessage("Hello, Claude")
+    .model(Model.CLAUDE_OPUS_5_5)
+    .build();
 ```
 
 ### Pembuatan JsonValue
@@ -945,10 +954,10 @@ import com.anthropic.models.messages.MessageCreateParams;
 import com.anthropic.models.messages.Model;
 
 MessageCreateParams params = MessageCreateParams.builder()
-  .addUserMessage("Hello, world")
-  .model(Model.CLAUDE_OPUS_5_5)
-  .maxTokens(JsonMissing.of())
-  .build();
+    .addUserMessage("Hello, world")
+    .model(Model.CLAUDE_OPUS_5_5)
+    .maxTokens(JsonMissing.of())
+    .build();
 ```
 
 ### Properti respons
@@ -959,9 +968,9 @@ Untuk mengakses properti respons yang tidak terdokumentasi, panggil metode `_add
 import com.anthropic.core.JsonValue;
 
 Map<String, JsonValue> additionalProperties = client
-  .messages()
-  .create(params)
-  ._additionalProperties();
+    .messages()
+    .create(params)
+    ._additionalProperties();
 
 JsonValue secretPropertyValue = additionalProperties.get("secretProperty");
 
@@ -996,16 +1005,16 @@ import com.anthropic.models.messages.StopReason;
 JsonField<StopReason> stopReason = client.messages().create(params)._stopReason();
 
 if (stopReason.isMissing()) {
-  // Properti tidak ada dalam respons JSON
+    // Properti tidak ada dalam respons JSON
 } else if (stopReason.isNull()) {
-  // Properti diatur ke null literal
+    // Properti diatur ke null literal
 } else {
-  // Periksa apakah nilai diberikan sebagai string
-  // Metode lainnya mencakup `asNumber()`, `asBoolean()`, dll.
-  Optional<String> jsonString = stopReason.asString();
+    // Periksa apakah nilai diberikan sebagai string
+    // Metode lainnya mencakup `asNumber()` dan `asBoolean()`.
+    Optional<String> jsonString = stopReason.asString();
 
-  // Coba deserialisasi ke tipe kustom
-  MyClass myObject = stopReason.asUnknown().orElseThrow().convert(MyClass.class);
+    // Coba deserialisasi ke tipe kustom
+    MyClass myObject = stopReason.asUnknown().orElseThrow().convert(MyClass.class);
 }
 ```
 
@@ -1027,8 +1036,10 @@ Atau konfigurasikan per permintaan:
 import com.anthropic.models.messages.Message;
 
 Message message = client
-  .messages()
-  .create(params, RequestOptions.builder().responseValidation(true).build());
+    .messages()
+    .create(params, RequestOptions.builder()
+        .responseValidation(true)
+        .build());
 ```
 
 Atau konfigurasikan default untuk semua panggilan metode di tingkat klien:
@@ -1038,9 +1049,9 @@ import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 
 AnthropicClient client = AnthropicOkHttpClient.builder()
-  .fromEnv()
-  .responseValidation(true)
-  .build();
+    .fromEnv()
+    .responseValidation(true)
+    .build();
 ```
 
 ## Kustomisasi klien HTTP
@@ -1053,9 +1064,9 @@ import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import java.net.Proxy;
 
 AnthropicClient client = AnthropicOkHttpClient.builder()
-  .fromEnv()
-  .proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress("https://example.com", 8080)))
-  .build();
+    .fromEnv()
+    .proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress("https://example.com", 8080)))
+    .build();
 ```
 
 ### Konfigurasi HTTPS / SSL
@@ -1069,18 +1080,18 @@ import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 
 AnthropicClient client = AnthropicOkHttpClient.builder()
-  .fromEnv()
-  .sslSocketFactory(yourSSLSocketFactory)
-  .trustManager(yourTrustManager)
-  .hostnameVerifier(yourHostnameVerifier)
-  .build();
+    .fromEnv()
+    .sslSocketFactory(yourSSLSocketFactory)
+    .trustManager(yourTrustManager)
+    .hostnameVerifier(yourHostnameVerifier)
+    .build();
 ```
 
 ### Klien HTTP kustom
 
 SDK terdiri dari tiga artefak:
 
-* `anthropic-java-core` - Berisi logika inti SDK, tidak bergantung pada OkHttp. Mengekspos `AnthropicClient`, `AnthropicClientAsync`, dan kelas implementasinya, yang semuanya dapat bekerja dengan klien HTTP apa pun.
+* `anthropic-java-core` - Berisi logika inti SDK dan tidak bergantung pada OkHttp. Mengekspos `AnthropicClient`, `AnthropicClientAsync`, dan kelas implementasinya, yang semuanya dapat bekerja dengan klien HTTP apa pun.
 * `anthropic-java-client-okhttp` - Bergantung pada OkHttp. Mengekspos `AnthropicOkHttpClient` dan `AnthropicOkHttpClientAsync`.
 * `anthropic-java` - Bergantung pada dan mengekspos API dari `anthropic-java-core` dan `anthropic-java-client-okhttp`. Tidak memiliki logika sendiri.
 
@@ -1151,10 +1162,10 @@ import com.anthropic.models.messages.Model;
 AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
 MessageCreateParams params = MessageCreateParams.builder()
-  .maxTokens(1024L)
-  .addUserMessage("Hello, Claude")
-  .model(Model.CLAUDE_OPUS_5_5)
-  .build();
+    .maxTokens(1024L)
+    .addUserMessage("Hello, Claude")
+    .model(Model.CLAUDE_OPUS_5_5)
+    .build();
 
 HttpResponseFor<Message> message = client.messages().withRawResponse().create(params);
 
@@ -1241,13 +1252,13 @@ Metode builder yang menerima tipe-tipe ini sering kali juga menyediakan overload
 import com.anthropic.models.messages.MessageCreateParams;
 
 MessageCreateParams params = MessageCreateParams.builder()
-  .model("some-new-model") // same as .model(Model.of("some-new-model"))
-  .maxTokens(1024L)
-  .addUserMessage("Hello, Claude")
-  .build();
+    .model("some-new-model") // same as .model(Model.of("some-new-model"))
+    .maxTokens(1024L)
+    .addUserMessage("Hello, Claude")
+    .build();
 ```
 
-Utamakan konstanta yang bertipe dengan baik (misalnya, `Model.CLAUDE_OPUS_5`) agar Anda mendapatkan autocomplete dan peringatan deprecation. Overload `String` dan `of(...)` terutama ditujukan untuk menetapkan field ke nilai yang tidak terdokumentasi atau belum didukung sambil menunggu rilis SDK yang menyertakannya.
+Utamakan konstanta yang bertipe dengan baik (misalnya, `Model.CLAUDE_OPUS_5`) agar Anda mendapatkan auto-complete dan peringatan penghentian. Overload `String` dan `of(...)` terutama ditujukan untuk menetapkan field ke nilai yang tidak didokumentasikan atau belum didukung sambil menunggu rilis SDK yang menyertakannya.
 
 ## Fitur beta
 
@@ -1289,11 +1300,11 @@ void main() {
 
     * Memungkinkan penggunaan fungsionalitas API yang tidak terdokumentasi
     * Memvalidasi respons API secara lazy terhadap bentuk yang diharapkan
-    * Merepresentasikan nilai yang tidak ada vs nilai null secara eksplisit
+    * Merepresentasikan nilai yang tidak ada versus nilai null secara eksplisit
   </Accordion>
 
   <Accordion title="Mengapa SDK tidak menggunakan data class?">
-    Menambahkan field baru ke data class tidak kompatibel ke belakang, dan SDK menghindari memperkenalkan breaking change setiap kali field ditambahkan ke suatu kelas.
+    Menambahkan field baru ke data class tidak kompatibel ke belakang, dan SDK menghindari memperkenalkan perubahan yang merusak kompatibilitas setiap kali field ditambahkan ke suatu kelas.
   </Accordion>
 
   <Accordion title="Mengapa SDK tidak menggunakan checked exception?">
@@ -1308,7 +1319,7 @@ void main() {
   </Accordion>
 </AccordionGroup>
 
-## Semantic versioning
+## Pembuatan versi semantik
 
 Paket ini umumnya mengikuti konvensi [SemVer](https://semver.org/spec/v2.0.0.html), meskipun perubahan tertentu yang tidak kompatibel ke belakang dapat dirilis sebagai versi minor:
 
@@ -1322,5 +1333,5 @@ Setiap permintaan ke Claude API menggunakan versi API. Dengan SDK ini, permintaa
 * [Repositori GitHub](https://github.com/anthropics/anthropic-sdk-java)
 * [Javadocs](https://javadoc.io/doc/com.anthropic/anthropic-java)
 * [Referensi API](https://platform.claude.com/docs/id/api/overview)
-* [Streaming Messages](https://platform.claude.com/docs/id/build-with-claude/streaming)
+* [Streaming pesan](https://platform.claude.com/docs/id/build-with-claude/streaming)
 * [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview)

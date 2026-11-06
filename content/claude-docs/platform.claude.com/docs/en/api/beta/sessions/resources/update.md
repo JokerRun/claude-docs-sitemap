@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/update
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 7339302cea3e94c330a74635f654a766512f61fb115573c22e8314d48c32ec05
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 3c66252811a4a8ab30b71f9957da6cad5e8d8ea6ff09bbab7fe3b8cdc2041345
 ---
 
 ---
@@ -204,7 +204,7 @@ Update Session Resource
 
         Full commit SHA to check out.
 
-        minLength: 7, maxLength: 64
+        minLength: 7, maxLength: 64, pattern: ^[0-9a-fA-F]+$
 
 - `BetaManagedAgentsFileResource object`
 
@@ -237,6 +237,8 @@ Update Session Resource
   - `memory_store_id: string`
 
     The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+    pattern: ^memstore_[a-zA-Z0-9_]+$
 
   - `access: optional "read_write" or "read_only" or null`
 

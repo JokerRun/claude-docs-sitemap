@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/unpause
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 725693ad858d50aa7252c8b2967e73d3635c28098c026a66f37291cbf8b0de22
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 22f6bdffe19a2da3e3f3c3a91f3752d43dd780c411f9c139ce3ae1044b0b2d0f
 ---
 
 ---
@@ -562,7 +562,7 @@ Unpause Deployment
 
             Full commit SHA to check out.
 
-            minLength: 7, maxLength: 64
+            minLength: 7, maxLength: 64, pattern: ^[0-9a-fA-F]+$
 
       - `mount_path: optional string or null`
 
@@ -667,6 +667,8 @@ Unpause Deployment
       - `amount: string`
 
         Amount in minor units of the currency, as an integer decimal string with no leading zeros: "2500" is $25.00 and "50" is fifty cents. A string rather than a number so no float rounding is ever applied.
+
+        pattern: ^(0|[1-9]\d*)$
 
       - `currency: BetaCurrency`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 3c58dc9b47927fcbd90ee8e36295a2fbbdf8c7f2b690939bcc240691d34941c9
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 30a35152d43c4ec32035fd35b172a7ef2bbe51b5f257deb11a1e5cd5928ca0eb
 ---
 
 ---
@@ -34,6 +34,10 @@ featureMetadata:
 
   * [Minta akses](https://claude.com/form/claude-managed-agents)
 </Note>
+
+<Tip>
+  Ingin kontrol lebih atas dreaming? Resep [Dreaming with a dynamic workflow](https://platform.claude.com/cookbook/managed-agents-cma-dreaming-with-a-dynamic-workflow) di Claude Cookbook menunjukkan cara membangun dream Anda sendiri dengan prompt dan model yang Anda pilih. Anda yang menentukan kapan dream dijalankan, transkrip mana yang dibacanya, dan apa yang dilakukannya terhadap transkrip tersebut.
+</Tip>
 
 Agen menulis ke [memory store](https://platform.claude.com/docs/id/managed-agents/memory) (penyimpanan memori) mereka saat bekerja, tetapi penulisan ini bersifat lokal dan inkremental: setelah banyak sesi, sebuah memory store mengakumulasi duplikat, kontradiksi, dan entri yang sudah usang.
 

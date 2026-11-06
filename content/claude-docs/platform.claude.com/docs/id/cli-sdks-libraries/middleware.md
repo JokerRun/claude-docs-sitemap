@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/middleware
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: f76cb0947f47f22a3267c6701c2e89d80c889bf5fbacba8128dcc6e08a0bd8eb
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 6c101dbd6ef37264d915a7b8f2345c389b89401fe1a6fe218d28d8c906cafdab
 ---
 
 ---
@@ -164,22 +164,26 @@ Setiap middleware adalah fungsi yang menerima permintaan keluar dan handler beri
       .build();
   ```
 
-  ```php PHP
-  $loggingMiddleware = function (RequestInterface $request, callable $next): ResponseInterface {
-      // Sebelum permintaan
-      error_log("-> {$request->getMethod()} {$request->getUri()}");
+  <CodeGroupItem>
+    ```php PHP
+    $loggingMiddleware = function (RequestInterface $request, callable $next): ResponseInterface {
+        // Sebelum permintaan
+        error_log("-> {$request->getMethod()} {$request->getUri()}");
 
-      // Teruskan permintaan ke sisa rantai
-      $response = $next($request);
+        // Teruskan permintaan ke sisa rantai
+        $response = $next($request);
 
-      // Setelah permintaan
-      error_log("<- {$response->getStatusCode()}");
+        // Setelah permintaan
+        error_log("<- {$response->getStatusCode()}");
 
-      return $response;
-  };
+        return $response;
+    };
 
-  $client = new Client(requestOptions: ['middleware' => [$loggingMiddleware]]);
-  ```
+    $client = new Client(requestOptions: ['middleware' => [$loggingMiddleware]]);
+    ```
+
+    Untuk kelas middleware, argumen opsi permintaan, serta cara middleware berinteraksi dengan percobaan ulang, error, dan penandatanganan permintaan, lihat [Middleware di PHP SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php#middleware).
+  </CodeGroupItem>
 
   ```ruby Ruby
   logging_middleware = lambda do |request, call_next|

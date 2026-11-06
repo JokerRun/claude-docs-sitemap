@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f85281ffb29651414d7286c61a703810501f5ac68060aadbc66fadf510f9b3aa
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: a2deb8c4329f79496178d22a50f63a2f531a7f2191d10dcc8c1417dc43ed07eb
 ---
 
 ---
@@ -77,7 +77,7 @@ Results are ordered by creation time (newest first). Use the
 
   - `geo: string`
 
-    Data residency geo. Selects the region that handles this key's encrypt/decrypt roundtrips.
+    Data residency geo. Selects the region this key is used in.
 
   - `provider_config: BetaAWSExternalKeyConfig or BetaGCPExternalKeyConfig or BetaAzureExternalKeyConfig`
 

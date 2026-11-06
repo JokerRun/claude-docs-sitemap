@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 35de5c5f7627086bbbfba85837cba2f040291f0f151f747de712f1cd4ed7d928
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 963253e64cb9294432760461f48474076d9c216c37bebdd015d5c86608a7cc8b
 ---
 
 ---
@@ -12,12 +12,12 @@ description: Akses analitik penggunaan Claude Code dan metrik produktivitas orga
 ---
 
 <Tip>
-  **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organization](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
+  **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organisasi](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
 </Tip>
 
-Claude Code Analytics Admin API menyediakan akses terprogram ke metrik penggunaan harian teragregasi untuk pengguna Claude Code, yang memungkinkan organisasi menganalisis produktivitas developer dan membangun dashboard kustom. API ini menyediakan detail yang lebih banyak daripada [dashboard Analytics](https://platform.claude.com/claude-code) dasar di Claude Console, tanpa kerumitan integrasi OpenTelemetry.
+Claude Code Analytics Admin API menyediakan akses terprogram ke metrik penggunaan harian teragregasi untuk pengguna Claude Code, memungkinkan organisasi menganalisis produktivitas developer dan membangun dashboard kustom. API ini memberikan detail lebih banyak dibandingkan [dashboard Analytics](https://platform.claude.com/claude-code) dasar di Claude Console, tanpa kompleksitas integrasi OpenTelemetry.
 
-API ini memungkinkan Anda untuk memantau, menganalisis, dan mengoptimalkan adopsi Claude Code Anda dengan lebih baik:
+API ini memungkinkan Anda untuk memantau, menganalisis, dan mengoptimalkan adopsi Claude Code dengan lebih baik:
 
 * **Analisis produktivitas developer:** Lacak sesi, baris kode yang ditambahkan/dihapus, commit, dan pull request yang dibuat menggunakan Claude Code
 * **Metrik penggunaan alat:** Pantau tingkat penerimaan dan penolakan untuk berbagai alat Claude Code (Edit, MultiEdit, Write, NotebookEdit)
@@ -30,7 +30,7 @@ API ini memungkinkan Anda untuk memantau, menganalisis, dan mengoptimalkan adops
 </Check>
 
 <Note>
-  **Claude Platform on AWS:** Claude Code Analytics API saat ini belum tersedia. Sebagai gantinya, lihat penggunaan Claude Code di halaman **Usage** di Claude Console.
+  Claude Code Analytics API tersedia di Claude API. Jika Anda menggunakan Claude Platform on AWS, lihat penggunaan Claude Code di halaman **Penggunaan** di Claude Console sebagai gantinya.
 </Note>
 
 <Note>
@@ -55,7 +55,7 @@ limit=20" \
   Jika Anda membangun integrasi, tetapkan header User-Agent Anda untuk membantu Anthropic memahami pola penggunaan:
 
   ```text wrap
-  User-Agent: YourApp/1.0.0 (https://yourapp.com)
+  User-Agent: YourApp/1.0.0 (https://example.com)
   ```
 </Tip>
 
@@ -66,7 +66,7 @@ Lacak penggunaan Claude Code, metrik produktivitas, dan aktivitas developer di s
 ### Konsep utama
 
 * **Agregasi harian:** Mengembalikan metrik untuk satu hari yang ditentukan oleh parameter `starting_at`
-* **Data tingkat pengguna:** Setiap record mewakili aktivitas satu pengguna untuk hari yang ditentukan
+* **Data tingkat actor:** Satu actor (pengguna atau kunci API) dapat memiliki beberapa catatan untuk hari yang ditentukan, satu untuk setiap kombinasi nilai `terminal_type`, `customer_type`, `subscription_type`, dan `is_remote`
 * **Metrik produktivitas:** Lacak sesi, baris kode, commit, pull request, dan penggunaan alat
 * **Data token dan biaya:** Pantau penggunaan dan estimasi biaya yang dirinci berdasarkan model Claude
 * **“Cursor-based pagination” (paginasi berbasis kursor):** Tangani dataset besar dengan paginasi yang stabil menggunakan kursor opaque
@@ -95,7 +95,7 @@ limit=20" \
   -H "anthropic-version: 2026-10-21" \
   -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 
-# Permintaan berikutnya menggunakan cursor dari respons
+# Permintaan berikutnya menggunakan kursor dari respons
 curl "https://api.anthropic.com/v1/organizations/usage_report/claude_code?\
 starting_at=2025-09-08&\
 page=page_MjAyNS0wNS0xNFQwMDowMDowMFo=" \
@@ -113,7 +113,7 @@ page=page_MjAyNS0wNS0xNFQwMDowMDowMFo=" \
 
 ### Metrik yang tersedia
 
-Setiap record respons berisi metrik berikut untuk satu pengguna pada satu hari:
+Setiap catatan respons berisi metrik berikut untuk satu kombinasi nilai dimensi. Satu actor dapat memiliki beberapa catatan untuk hari yang sama. Jumlahkan catatan milik suatu actor untuk mendapatkan total hariannya.
 
 #### Dimensi
 
@@ -122,6 +122,8 @@ Setiap record respons berisi metrik berikut untuk satu pengguna pada satu hari:
 * **organization\_id:** UUID organisasi
 * **customer\_type:** Jenis akun pelanggan (`api` atau `subscription`); record hanya mencakup penggunaan yang diautentikasi terhadap organisasi Claude Console Anda
 * **terminal\_type:** Jenis terminal atau lingkungan tempat Claude Code digunakan (misalnya, `vscode`, `iTerm.app`, `tmux`)
+* **subscription\_type:** Jenis langganan yang dilaporkan bersama penggunaan (`enterprise` atau `team`), atau `null` jika tidak ada
+* **is\_remote:** Apakah penggunaan berasal dari sesi Claude Code jarak jauh (`true`) atau sesi lokal (`false`)
 
 #### Metrik inti
 
@@ -148,7 +150,7 @@ Untuk setiap model Claude yang digunakan:
 * **tokens.input/output:** Jumlah token input dan output untuk model ini
 * **tokens.cache\_read/cache\_creation:** Penggunaan token terkait cache untuk model ini
 * **estimated\_cost.amount:** Estimasi biaya dalam sen USD untuk model ini
-* **estimated\_cost.currency:** Kode mata uang untuk jumlah biaya (saat ini selalu `USD`)
+* **estimated\_cost.currency:** Kode mata uang untuk jumlah biaya (selalu `USD`)
 
 ### Struktur respons
 
@@ -161,11 +163,13 @@ API mengembalikan data dalam format berikut:
       "date": "2025-09-08T00:00:00Z",
       "actor": {
         "type": "user_actor",
-        "email_address": "developer@company.com"
+        "email_address": "developer@example.com"
       },
       "organization_id": "dc9f6c26-b22c-4831-8d01-0446bada88f1",
       "customer_type": "api",
       "terminal_type": "vscode",
+      "subscription_type": null,
+      "is_remote": false,
       "core_metrics": {
         "num_sessions": 5,
         "lines_of_code": {
@@ -223,7 +227,7 @@ API mendukung paginasi berbasis kursor untuk organisasi dengan jumlah pengguna y
 2. Jika `has_more` bernilai `true` dalam respons, gunakan nilai `next_page` dalam permintaan berikutnya.
 3. Lanjutkan hingga `has_more` bernilai `false`.
 
-Kursor mengodekan posisi record terakhir dan memastikan paginasi yang stabil bahkan saat data baru masuk. Setiap sesi paginasi mempertahankan batas data yang konsisten untuk memastikan Anda tidak melewatkan atau menduplikasi record.
+Kursor mengodekan posisi catatan terakhir dan memastikan paginasi yang stabil bahkan saat data baru masuk. Setiap sesi paginasi mempertahankan batas data yang konsisten untuk memastikan Anda tidak melewatkan atau menduplikasi catatan.
 
 ## Kasus penggunaan umum
 
@@ -240,7 +244,7 @@ Kursor mengodekan posisi record terakhir dan memastikan paginasi yang stabil bah
 
 Data analitik Claude Code biasanya muncul dalam waktu 1 jam setelah aktivitas pengguna selesai. Untuk memastikan hasil paginasi yang konsisten, hanya data yang lebih lama dari 1 jam yang disertakan dalam respons.
 
-### Bisakah saya mendapatkan metrik real-time?
+### Bisakah API ini mengembalikan metrik real-time?
 
 Tidak, API ini hanya menyediakan metrik harian teragregasi. Untuk pemantauan real-time, pertimbangkan untuk menggunakan [integrasi OpenTelemetry](https://code.claude.com/docs/id/monitoring-usage).
 
@@ -251,7 +255,7 @@ Pengguna diidentifikasi melalui field `actor` dengan dua cara:
 * **`user_actor`:** Berisi `email_address` untuk pengguna yang melakukan autentikasi melalui OAuth (paling umum)
 * **`api_actor`:** Berisi `api_key_name` untuk pengguna yang melakukan autentikasi dengan kunci API
 
-Field `customer_type` bernilai `api` atau `subscription`. Setiap record, apa pun nilainya, menggambarkan penggunaan yang diautentikasi terhadap organisasi Claude Console Anda.
+Field `customer_type` bernilai `api` atau `subscription`. Setiap catatan, apa pun nilainya, menggambarkan penggunaan yang diautentikasi terhadap organisasi Claude Console Anda.
 
 ### Apakah API ini mencakup penggunaan dari paket langganan Claude?
 
@@ -269,7 +273,7 @@ Data analitik Claude Code historis disimpan dan dapat diakses melalui API. Tidak
 
 ### Deployment Claude Code mana yang didukung?
 
-API ini hanya melacak penggunaan Claude Code pada Claude API. Penggunaan melalui [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), [Claude Models on Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/overview), atau [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) tidak disertakan.
+API ini hanya melacak penggunaan Claude Code pada Claude API.
 
 ### Berapa biaya untuk menggunakan API ini?
 
@@ -277,7 +281,7 @@ Claude Code Analytics API gratis digunakan untuk semua organisasi yang memiliki 
 
 ### Bagaimana cara menghitung tingkat penerimaan alat?
 
-Tingkat penerimaan alat = `accepted / (accepted + rejected)` untuk setiap jenis alat. Misalnya, jika alat edit menunjukkan 45 diterima dan 5 ditolak, tingkat penerimaannya adalah 90%.
+Tingkat penerimaan alat = `accepted / (accepted + rejected)` untuk setiap jenis alat. Misalnya, jika alat edit menunjukkan 45 diterima dan 5 ditolak, tingkat penerimaannya adalah 90 persen.
 
 ### Zona waktu apa yang digunakan untuk parameter tanggal?
 

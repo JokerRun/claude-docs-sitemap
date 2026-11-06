@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/commerce-agents
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 723e37d67ba05d9e1d65e289e0c53001ddbebcff5b3ce984e4c41c74fb04a6dd
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 8232af51235e44e392519bab823b21a14a88adaf6d97e7c8e2a727c73524c20e
 ---
 
 ---
@@ -11,7 +11,11 @@ url: https://platform.claude.com/docs/id/about-claude/use-case-guides/commerce-a
 description: Bangun agen belanja dan agen merchant di Claude menggunakan Claude for commerce, sebuah blueprint open-source dengan implementasi yang berfungsi pada Messages API, Claude Agent SDK, dan Claude Managed Agents.
 ---
 
-Panduan ini menunjukkan cara membangun agen perdagangan di Claude: “shopping agent” (agen belanja) yang digunakan pelanggan di dalam aplikasi Anda, dan “merchant agent” (agen merchant) untuk orang-orang yang menjalankan toko, baik staf operasional bisnis itu sendiri maupun para penjual di platformnya. Panduan ini melakukannya melalui Claude for commerce, sebuah “blueprint” (cetak biru) open-source yang berisi implementasi yang berfungsi dari setiap agen pada [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages), [Claude Agent SDK](https://code.claude.com/docs/id/agent-sdk/overview), dan [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), contoh yang dapat dijalankan untuk ritel, perjalanan, telekomunikasi, dan hiburan, serta plugin Claude Code yang membuat kerangka desain yang sama untuk sistem Anda sendiri.
+Panduan ini menunjukkan cara membangun agen perdagangan di Claude: agen belanja yang digunakan pelanggan di dalam aplikasi Anda, dan agen merchant untuk orang-orang yang menjalankan toko, baik itu staf operasional bisnis itu sendiri maupun para penjual di platformnya. Panduan ini melakukannya melalui Claude for commerce, sebuah cetak biru open-source yang mencakup hal-hal berikut:
+
+* Implementasi yang berfungsi dari setiap agen di [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages), [Claude Agent SDK](https://code.claude.com/docs/id/agent-sdk/overview), dan [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+* Contoh yang dapat dijalankan untuk ritel, perjalanan, telekomunikasi, dan hiburan
+* Plugin Claude Code yang membuat kerangka desain yang sama terhadap sistem Anda sendiri
 
 Kode, instruksi penyiapan, dan dokumentasi keamanan tersedia di [repositori Claude for commerce di GitHub](https://github.com/anthropics/commerce-agents). Untuk mengetahui cara agen dibangun beserta alasannya, termasuk desain agen tunggal dengan skill, komponen UI sebagai alat, keamanan yang ditegakkan oleh harness, “prompt caching” (caching prompt), memori, dan eval, baca postingan engineering [Panduan anatomi agen perdagangan yang efektif](https://claude.com/blog/the-anatomy-of-effective-commerce-agents).
 
@@ -30,7 +34,7 @@ Agen belanja berada di dalam aplikasi Anda dan menjangkau sistem Anda melalui sa
 * Menjawab pertanyaan tentang pesanan, pengiriman, pengembalian, dan kebijakan dari sistem pesanan dan kebijakan Anda sendiri.
 * Mengingat apa yang diminta pelanggan untuk diingat dan menerapkannya di sesi berikutnya.
 
-Lima skill dimuat sesuai kebutuhan untuk mencakup pencarian dan penemuan, riset pembelian, perencanaan menuju suatu tujuan, layanan pelanggan, serta memori dan personalisasi. Aturan yang dibutuhkan agen di sebagian besar giliran, seperti grounding, semantik keranjang dan checkout, serta presentasi, ditempatkan di “system prompt” (prompt sistem) sebagai gantinya.
+Lima skill dimuat sesuai kebutuhan untuk mencakup pencarian dan penemuan, riset pembelian, perencanaan menuju suatu tujuan, layanan pelanggan, serta memori dan personalisasi. Aturan yang dibutuhkan agen di sebagian besar giliran, seperti landasan faktual, semantik keranjang dan checkout, serta presentasi, ditempatkan di “system prompt” (prompt sistem) sebagai gantinya.
 
 Agen menyebutkan produk, harga, ketersediaan, dan ketentuan toko hanya berdasarkan hasil alat dalam percakapan, dan penulisan ke keranjang hanya menerima ID produk yang dikembalikan oleh alat katalog atau pesanan dalam sesi tersebut. Checkout menyiapkan ringkasan yang dikonfirmasi pelanggan di aplikasi Anda. Jika Anda menggunakan checkout yang di-hosting, back end Anda mengembalikan URL-nya dan host merendernya tanpa meneruskannya melalui model.
 
@@ -71,7 +75,7 @@ Blueprint ini dilengkapi dengan plugin [Claude Code](https://code.claude.com/doc
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `/scaffold-commerce-agent` | Mewawancarai Anda tentang stack Anda, memaparkan kembali rencananya, dan membuat kerangka agen belanja, agen merchant, atau keduanya di atas paket referensi |
 | `/add-commerce-flow`       | Menambahkan satu alur ke agen yang sudah ada dengan menyalin skill-nya, menghubungkan alat yang dipanggilnya, dan menulis kasus eval pertamanya              |
-| `/author-commerce-evals`   | Membangun rangkaian eval dengan runner, kasus pertama terhadap katalog Anda sendiri, dan gerbang replay untuk CI                                             |
+| `/author-commerce-evals`   | Membangun rangkaian eval dengan runner, kasus pertama terhadap katalog Anda sendiri, dan gerbang pemutaran ulang untuk CI                                    |
 | `/review-commerce-agent`   | Memetakan agen yang sudah Anda jalankan, membandingkannya dengan referensi, dan mengonversi bagian yang Anda pilih                                           |
 
 Plugin ini juga membawa enam skill tentang arsitektur, caching prompt, UI sebagai alat, kepercayaan dan keamanan, eval, serta operasional merchant, yang dimuat setiap kali percakapan Claude Code cocok dengannya. Instruksi instalasi tersedia di README repositori.

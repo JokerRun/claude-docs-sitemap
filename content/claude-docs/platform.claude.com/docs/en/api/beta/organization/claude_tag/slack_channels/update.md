@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/slack_channels/update
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 21ccb8db672601da8bc321c57eab217d948d6a8c0538b2f30b70113cea7f26fa
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 3d5d539c897a22d98844edf590471583835adfd72b123651c28112240a553baf
 ---
 
 ---
@@ -204,7 +204,7 @@ Change the settings a Slack channel stores. The update is partial: a setting lef
 
   - `id: string`
 
-    The channel's identifier. Starts with `slch_`. It does not change for as long as the channel is set up, with one exception: a channel that is not configured gets a new one when claude.ai replaces its record, which happens only while the organization's read-only mode is off. A channel that is removed and set up again also has a new one. The old one keeps returning 404; look the channel up by its Slack identifiers for the new one.
+    The channel's identifier. Starts with `slch_`. It does not change for as long as the channel is set up, with one exception: a channel that is not configured can get a new one. A channel that is removed and set up again also has a new one. The old one keeps returning 404; look the channel up by its Slack identifiers for the new one.
 
   - `created_at: string`
 

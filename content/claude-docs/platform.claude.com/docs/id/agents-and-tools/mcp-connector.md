@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-connector
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 3da84065f3ef6c3b1c91834c3c034c6ec6a1acea56a9ddfd682ff0fddd7a2548
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 0509eee3ec416fb5c0fd0906342939c69a4754f125773a92f53953903bd204fe
 ---
 
 ---
@@ -387,7 +387,7 @@ MCPToolset berada dalam array `tools` dan mengonfigurasi alat mana dari server M
 | `mcp_server_name` | string | Ya    | Harus cocok dengan nama server yang didefinisikan dalam array `mcp_servers`.                                                           |
 | `default_config`  | object | Tidak | Konfigurasi default yang diterapkan ke semua alat dalam set ini. Konfigurasi alat individual dalam `configs` akan menimpa default ini. |
 | `configs`         | object | Tidak | Penimpaan konfigurasi per alat. Key berupa nama alat; value berupa objek konfigurasi.                                                  |
-| `cache_control`   | object | Tidak | Konfigurasi cache breakpoint [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk toolset ini. |
+| `cache_control`   | object | Tidak | Konfigurasi breakpoint cache [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk toolset ini. |
 
 Dengan header beta `mcp-client-2026-09-15`, MCPToolset juga menerima `tools`, yaitu salinan daftar alat server yang disematkan (pinned). Lihat [Menyematkan daftar alat server MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#pin-mcp-tool-list).
 
@@ -529,7 +529,7 @@ API menerapkan aturan validasi berikut:
 
 Ketika Claude menggunakan alat MCP, respons menyertakan dua tipe blok konten baru:
 
-### Blok MCP tool use
+### Blok penggunaan alat MCP
 
 ```json
 {
@@ -541,7 +541,7 @@ Ketika Claude menggunakan alat MCP, respons menyertakan dua tipe blok konten bar
 }
 ```
 
-### Blok MCP tool result
+### Blok hasil alat MCP
 
 ```json
 {
@@ -559,7 +559,7 @@ Ketika Claude menggunakan alat MCP, respons menyertakan dua tipe blok konten bar
 
 ## Menyematkan daftar alat server MCP (beta)
 
-Server MCP dapat mengubah alatnya kapan saja. Beta header `mcp-client-2026-09-15` mencatat daftar alat yang dikembalikan setiap server dan memungkinkan Anda menyematkannya, sehingga server yang mengubah alatnya tidak mengubah apa yang diterima Claude di tengah percakapan. Header ini mencakup semua yang dilakukan `mcp-client-2025-11-20`, jadi kirimkan header ini sebagai pengganti header tersebut. Header ini tersedia di Claude API.
+Server MCP dapat mengubah alatnya kapan saja. Header beta `mcp-client-2026-09-15` mencatat daftar alat yang dikembalikan setiap server dan memungkinkan Anda menyematkannya, sehingga server yang mengubah alatnya tidak mengubah apa yang diterima Claude di tengah percakapan. Header ini mencakup semua yang dilakukan `mcp-client-2025-11-20`, jadi kirimkan header ini sebagai pengganti header tersebut. Header ini tersedia di Claude API.
 
 Ketika API meminta daftar alat dari server MCP saat menghasilkan respons, respons diawali dengan blok `mcp_tool_listing` untuk server tersebut, satu blok untuk setiap server yang dimintai:
 
@@ -1214,11 +1214,11 @@ Dengan banyak alat yang tersedia, Claude memilih berdasarkan nama dan deskripsi 
 
 ## Autentikasi
 
-Untuk server MCP yang memerlukan autentikasi OAuth, Anda perlu mendapatkan access token. Konektor MCP beta mendukung pengiriman parameter `authorization_token` dalam definisi server MCP. Konsumen API diharapkan menangani alur OAuth dan mendapatkan access token sebelum melakukan panggilan API, serta memperbarui token sesuai kebutuhan.
+Untuk server MCP yang memerlukan autentikasi OAuth, Anda perlu mendapatkan token akses. Konektor MCP beta mendukung pengiriman parameter `authorization_token` dalam definisi server MCP. Konsumen API diharapkan menangani alur OAuth dan mendapatkan token akses sebelum melakukan panggilan API, serta memperbarui token sesuai kebutuhan.
 
-### Mendapatkan access token untuk pengujian
+### Mendapatkan token akses untuk pengujian
 
-MCP inspector dapat memandu Anda melalui proses mendapatkan access token untuk tujuan pengujian.
+MCP inspector dapat memandu Anda melalui proses mendapatkan token akses untuk tujuan pengujian.
 
 1. Jalankan inspector dengan perintah berikut. Anda memerlukan Node.js terinstal di mesin Anda.
 
@@ -1240,9 +1240,9 @@ MCP inspector dapat memandu Anda melalui proses mendapatkan access token untuk t
 
 8. Tempelkan ke field `authorization_token` dalam konfigurasi server MCP Anda.
 
-### Menggunakan access token
+### Menggunakan token akses
 
-Setelah Anda mendapatkan access token, Anda dapat menggunakannya dalam konfigurasi server MCP Anda:
+Setelah Anda mendapatkan token akses, Anda dapat menggunakannya dalam konfigurasi server MCP Anda:
 
 ```json
 {
@@ -1309,8 +1309,8 @@ Instal Anthropic SDK dan MCP SDK:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.5.0")
-        implementation("com.anthropic:anthropic-java-mcp:3.5.0")
+        implementation("com.anthropic:anthropic-java:3.6.0")
+        implementation("com.anthropic:anthropic-java-mcp:3.6.0")
         ```
       </Tab>
 
@@ -1319,12 +1319,12 @@ Instal Anthropic SDK dan MCP SDK:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.5.0</version>
+            <version>3.6.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-mcp</artifactId>
-            <version>3.5.0</version>
+            <version>3.6.0</version>
         </dependency>
         ```
       </Tab>
@@ -2021,15 +2021,13 @@ Anda dapat menyertakan `mcp_servers` dalam permintaan [Message Batches API](http
 
 Konektor MCP tidak tercakup dalam pengaturan ZDR. Data yang dipertukarkan dengan server MCP, termasuk definisi alat dan hasil eksekusi, disimpan sesuai dengan kebijakan retensi data standar Anthropic.
 
-Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
-
 ## Panduan migrasi
 
 Jika Anda menggunakan header beta `mcp-client-2025-04-04` yang sudah deprecated, ikuti panduan ini untuk bermigrasi ke versi baru.
 
 ### Perubahan utama
 
-1. **Beta header baru:** Ubah dari `mcp-client-2025-04-04` menjadi `mcp-client-2025-11-20`.
+1. **Header beta baru:** Ubah dari `mcp-client-2025-04-04` menjadi `mcp-client-2025-11-20`.
 2. **Konfigurasi alat dipindahkan:** Konfigurasi alat kini berada di array `tools` sebagai objek MCPToolset, bukan di definisi server MCP.
 3. **Konfigurasi yang lebih fleksibel:** Pola baru mendukung allowlist, denylist, dan konfigurasi per alat.
 
@@ -2131,11 +2129,11 @@ Versi sebelumnya dari konektor MCP menyertakan konfigurasi alat langsung di defi
 
 ### Deskripsi field deprecated
 
-| Properti                           | Tipe    | Deskripsi                                                                |
-| ---------------------------------- | ------- | ------------------------------------------------------------------------ |
-| `tool_configuration`               | object  | **Deprecated:** Gunakan MCPToolset dalam array `tools` sebagai gantinya  |
-| `tool_configuration.enabled`       | boolean | **Deprecated:** Gunakan `default_config.enabled` dalam MCPToolset        |
-| `tool_configuration.allowed_tools` | array   | **Deprecated:** Gunakan pola allowlist dengan `configs` dalam MCPToolset |
+| Properti                           | Tipe    | Deskripsi                                                                          |
+| ---------------------------------- | ------- | ---------------------------------------------------------------------------------- |
+| `tool_configuration`               | object  | **Tidak digunakan lagi:** Gunakan MCPToolset dalam array `tools` sebagai gantinya  |
+| `tool_configuration.enabled`       | boolean | **Tidak digunakan lagi:** Gunakan `default_config.enabled` dalam MCPToolset        |
+| `tool_configuration.allowed_tools` | array   | **Tidak digunakan lagi:** Gunakan pola allowlist dengan `configs` dalam MCPToolset |
 
 ## Ketersediaan
 

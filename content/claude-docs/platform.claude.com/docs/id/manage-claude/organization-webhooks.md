@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/organization-webhooks
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: adfb4957fcd70ee847fd7e02b8f66953c7a0989e99155f5b087524082a8ee19e
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 63b3d6bf102e4a16491f2d38a4e47e66666d1030d74ceabbfbe1e76242a9abfa
 ---
 
 ---
@@ -22,7 +22,7 @@ Endpoint webhook organisasi menerima sebuah event ketika Anthropic membatasi ata
   Pengiriman event belum aktif: Anthropic tidak mengirimkan kedua event tersebut, sehingga endpoint yang Anda daftarkan tidak menerima apa pun. Anda dapat mendaftarkan endpoint dan membangun handler Anda berdasarkan format event di halaman ini.
 </Note>
 
-Setiap anggota organisasi Anda dapat menampilkan daftar endpoint webhook organisasi dan melihatnya dengan API, tetapi hanya anggota dengan peran admin, owner, atau primary owner yang dapat membuat, mengubah, atau menghapusnya, atau mengganti signing secret-nya.
+Setiap anggota organisasi Anda dapat menampilkan daftar endpoint webhook organisasi dan melihatnya dengan API, tetapi hanya anggota dengan peran admin, pemilik, atau pemilik utama yang dapat membuat, mengubah, atau menghapusnya, atau mengganti signing secret-nya.
 
 ## Sebelum Anda memulai
 
@@ -79,18 +79,18 @@ Anthropic mengirimkan event hanya setelah profil menunjukkan perubahan tersebut,
 
 Endpoint webhook organisasi memiliki field-field berikut:
 
-| Field             | Tipe             | Deskripsi                                                                                                                                                                                                        |
-| ----------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`              | string           | ID endpoint, yang diawali dengan `wep_`. Ditetapkan oleh Anthropic.                                                                                                                                              |
-| `url`             | string           | Tempat Anthropic mengirimkan event. Harus HTTPS pada port 443, dengan nama domain publik, bukan alamat IP. Dua endpoint webhook organisasi yang diaktifkan di organisasi Anda tidak dapat berbagi URL yang sama. |
-| `enabled_events`  | array of strings | [Jenis event](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#event-types) yang diterima endpoint ini. Permintaan pembuatan harus mencantumkan setidaknya satu.                          |
-| `name`            | string           | Label opsional untuk penggunaan Anda sendiri.                                                                                                                                                                    |
-| `description`     | string           | Deskripsi opsional untuk penggunaan Anda sendiri.                                                                                                                                                                |
-| `state`           | string           | `enabled` atau `disabled`.                                                                                                                                                                                       |
-| `disabled_reason` | string           | Alasan Anthropic menonaktifkan endpoint. Kosong jika tidak.                                                                                                                                                      |
-| `created_at`      | string           | Waktu endpoint dibuat. Ditetapkan oleh Anthropic.                                                                                                                                                                |
-| `updated_at`      | string           | Waktu endpoint terakhir berubah. Ditetapkan oleh Anthropic.                                                                                                                                                      |
-| `signing_secret`  | string           | Secret berawalan `whsec_`, dibuat bersama endpoint. Hanya respons yang membuat endpoint atau mengganti secret yang menyertakannya, jadi simpanlah dengan aman.                                                   |
+| Field             | Tipe         | Deskripsi                                                                                                                                                                                                        |
+| ----------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | string       | ID endpoint, yang diawali dengan `wep_`. Ditetapkan oleh Anthropic.                                                                                                                                              |
+| `url`             | string       | Tempat Anthropic mengirimkan event. Harus HTTPS pada port 443, dengan nama domain publik, bukan alamat IP. Dua endpoint webhook organisasi yang diaktifkan di organisasi Anda tidak dapat berbagi URL yang sama. |
+| `enabled_events`  | array string | [Jenis event](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#event-types) yang diterima endpoint ini. Permintaan pembuatan harus mencantumkan setidaknya satu.                          |
+| `name`            | string       | Label opsional untuk penggunaan Anda sendiri.                                                                                                                                                                    |
+| `description`     | string       | Deskripsi opsional untuk penggunaan Anda sendiri.                                                                                                                                                                |
+| `state`           | string       | `enabled` atau `disabled`.                                                                                                                                                                                       |
+| `disabled_reason` | string       | Alasan Anthropic menonaktifkan endpoint. Kosong jika tidak.                                                                                                                                                      |
+| `created_at`      | string       | Waktu endpoint dibuat. Ditetapkan oleh Anthropic.                                                                                                                                                                |
+| `updated_at`      | string       | Waktu endpoint terakhir berubah. Ditetapkan oleh Anthropic.                                                                                                                                                      |
+| `signing_secret`  | string       | Secret berawalan `whsec_`, dibuat bersama endpoint. Hanya respons yang membuat endpoint atau mengganti secret yang menyertakannya, jadi simpanlah dengan aman.                                                   |
 
 ```json
 {

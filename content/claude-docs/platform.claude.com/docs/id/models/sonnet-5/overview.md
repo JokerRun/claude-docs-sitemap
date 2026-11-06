@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5/overview
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 0efaf6e34f05cc3339f5ea8c9404d91f574f8d9572d65160731a880b290dbe23
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: b97d4835063b5bae1d56a321f17ba6330e46b58c4bb3fe652ad69b57f7003d50
 ---
 
 ---
@@ -88,7 +88,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $2 / MTok
 
 ## Hal yang perlu diketahui
 
-* Pada [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing#extended-output-beta), Claude Sonnet 5 mendukung hingga 300k token output dengan beta header `output-300k-2026-03-24`.
+* Pada [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing#extended-output-beta), Claude Sonnet 5 mendukung hingga 300k token output dengan header beta `output-300k-2026-03-24`.
 * Mengatur `temperature`, `top_p`, atau `top_k` akan menghasilkan error 400.
 * Kueri batas dan kemampuan secara terprogram dengan [Models API](https://platform.claude.com/docs/id/api/models/list).
 
@@ -103,7 +103,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $2 / MTok
     Model Sonnet saat ini: ikhtisar, spesifikasi, dan sumber daya.
   </Card>
 
-  <Card title="Prompting Claude Sonnet 5" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5">
+  <Card title="Menulis prompt untuk Claude Sonnet 5" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5">
     Panduan prompting khusus model.
   </Card>
 
@@ -116,7 +116,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $2 / MTok
   </Card>
 
   <Card title="Jendela konteks" icon="stack" href="https://platform.claude.com/docs/id/build-with-claude/context-windows">
-    1M token secara default. Cara jendela dihitung dan dikelola.
+    Menampung 1M token secara default. Cara jendela dihitung dan dikelola.
   </Card>
 </CardGroup>
 
@@ -127,7 +127,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $2 / MTok
     Prompt sistem yang digunakan Claude Sonnet 5 di claude.ai dan aplikasi Claude.
   </Card>
 
-  <Card title="System card" icon="file" href="https://www.anthropic.com/claude-sonnet-5-system-card">
+  <Card title="Kartu sistem" icon="file" href="https://www.anthropic.com/claude-sonnet-5-system-card">
     Evaluasi keamanan dan keputusan penerapan untuk Claude Sonnet 5.
   </Card>
 

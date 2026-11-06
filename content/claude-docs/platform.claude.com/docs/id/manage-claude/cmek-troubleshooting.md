@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 0fb79d815002b4019dd2a017e12f8b0bccecabc917ee97761db324a62a0f697d
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: c4596fba7ea6ad3198be18f16658f7bb7cdb305118d75b334af7211e1c46178d
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting
 description: Temukan penyebab dan perbaikan untuk pesan kesalahan CMEK, verifikasi yang gagal, atau entri log yang tidak terduga.
 ---
 
-**Verify** di Claude Console, **Add** di claude.ai, dan panggilan validate pada Admin API semuanya menjalankan pemeriksaan yang sama. Jika pemeriksaan gagal (**Connection failed** di Claude Console), lihat penyebabnya untuk [AWS KMS](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#aws-kms), [Google Cloud KMS](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#google-cloud-kms), atau [Azure Key Vault](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#azure-key-vault).
+**Verifikasi** di Claude Console, **Tambahkan** di claude.ai, dan panggilan validate pada Admin API semuanya menjalankan pemeriksaan yang sama. Jika pemeriksaan gagal (**Koneksi gagal** di Claude Console), lihat penyebabnya untuk [AWS KMS](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#aws-kms), [Google Cloud KMS](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#google-cloud-kms), atau [Azure Key Vault](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#azure-key-vault).
 
 Jika suatu fitur berhenti berfungsi, mungkin fitur tersebut termasuk yang dinonaktifkan oleh “customer-managed encryption keys” (kunci enkripsi yang dikelola pelanggan), atau CMEK. Periksa [daftar Claude Platform](https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-platform#turned-off-or-changed) atau [daftar Claude Enterprise](https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise#turned-off-or-changed).
 
@@ -93,7 +93,7 @@ Jika Anda [mengganti kebijakan pada kunci](https://platform.claude.com/docs/id/m
 | Penyebab                                   | Perbaikan                                                                                                                                                                                      |
 | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Label organisasi salah                     | Kunci memerlukan [label organisasi](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms#organization-label), dengan ID organisasi Anthropic Anda dalam huruf kecil.        |
-| Domain restricted sharing                  | Kebijakan organisasi ini memblokir pemberian akses ke akun layanan Anthropic. [Tambahkan pengecualian](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms#prerequisites). |
+| Berbagi terbatas domain                    | Kebijakan organisasi ini memblokir pemberian akses ke akun layanan Anthropic. [Tambahkan pengecualian](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms#prerequisites). |
 | Versi kunci dinonaktifkan atau dimusnahkan | Versi utama kunci harus diaktifkan.                                                                                                                                                            |
 
 Untuk memeriksa pemberian akses, jalankan:
@@ -115,7 +115,7 @@ gcloud kms keys get-iam-policy <your-key-name> \
 
 ## Melampirkan gagal di Claude Platform on AWS
 
-Claude Platform on AWS tidak memiliki langkah **Verify**, sehingga masalah pada kunci akan terlihat saat Anda melampirkannya.
+Claude Platform on AWS tidak memiliki langkah **Verifikasi**, sehingga masalah pada kunci akan terlihat saat Anda melampirkannya.
 
 | Penyebab                       | Perbaikan                                                                                                                                                                                                                                                                                              |
 | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -124,7 +124,7 @@ Claude Platform on AWS tidak memiliki langkah **Verify**, sehingga masalah pada 
 | Status atau lokasi kunci       | Kunci harus diaktifkan, bersifat single-Region, dan berada di akun AWS serta region yang sama dengan workspace.                                                                                                                                                                                        |
 | Izin tidak ada                 | Principal yang Anda gunakan untuk masuk memerlukan `kms:DescribeKey`, `kms:Encrypt`, dan `kms:Decrypt` pada kunci.                                                                                                                                                                                     |
 
-Jika melampirkan masih gagal, temukan event `kms:` yang ditolak di CloudTrail pada akun kunci. Event tersebut menunjukkan principal yang memanggil dan, untuk panggilan kriptografis, konteks enkripsinya. Perbaiki penyebabnya, lalu klik **Save** lagi.
+Jika melampirkan masih gagal, temukan event `kms:` yang ditolak di CloudTrail pada akun kunci. Event tersebut menunjukkan principal yang memanggil dan, untuk panggilan kriptografis, konteks enkripsinya. Perbaiki penyebabnya, lalu klik **Simpan** lagi.
 
 ## Melampirkan atau menambahkan kunci ditolak
 
@@ -134,15 +134,15 @@ Jika melampirkan masih gagal, temukan event `kms:` yang ditolak di CloudTrail pa
 CMEK keys can only be attached to workspaces in this organization that have inference data retention enabled.
 ```
 
-[Organisasi Anda menggunakan “zero data retention” (tanpa retensi data), atau ZDR](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#zdr-organizations), dan kunci memerlukan workspace yang menyimpan data. Alihkan workspace ke **Standard data retention** terlebih dahulu.
+[Organisasi Anda menggunakan “zero data retention” (tanpa retensi data), atau ZDR](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#zdr-organizations), dan kunci memerlukan workspace yang menyimpan data. Alihkan workspace ke **Retensi data standar** terlebih dahulu.
 
-### Workspace tidak memiliki pengaturan Encryption key
+### Workspace tidak memiliki pengaturan Kunci enkripsi
 
-Hanya [workspace yang menyimpan data](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#data-retention) yang memiliki pengaturan ini, jadi pilih **Standard data retention** untuk workspace tersebut terlebih dahulu. Workspace default organisasi ZDR tidak dapat dialihkan, jadi gunakan workspace lain.
+Hanya [workspace yang menyimpan data](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#data-retention) yang memiliki pengaturan ini, jadi pilih **Retensi data standar** untuk workspace tersebut terlebih dahulu. Workspace default organisasi ZDR tidak dapat dialihkan, jadi gunakan workspace lain.
 
-### Tidak ada bagian Encryption keys
+### Tidak ada bagian Kunci enkripsi
 
-Di Claude Console, pilih **Organization** dari menu dropdown di bagian atas halaman Data retention. Jika bagian tersebut masih tidak ada, peran Anda tidak mencakupnya atau CMEK belum diaktifkan untuk organisasi Anda. Tim akun Anthropic Anda yang mengaktifkan CMEK.
+Di Claude Console, pilih **Organisasi** dari menu dropdown di bagian atas halaman Retensi data. Jika bagian tersebut masih tidak ada, peran Anda tidak mencakupnya atau CMEK belum diaktifkan untuk organisasi Anda. Tim akun Anthropic Anda yang mengaktifkan CMEK.
 
 ### Workspace sudah memiliki kunci
 
@@ -158,7 +158,7 @@ Kunci sebuah workspace tidak dapat diganti, jadi [buat workspace baru](https://p
 The encryption key couldn’t be added.
 ```
 
-Pemeriksaan pada kunci Anda gagal. Temukan penyebabnya untuk [AWS KMS](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#aws-kms), [Google Cloud KMS](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#google-cloud-kms), atau [Azure Key Vault](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#azure-key-vault). Untuk mencoba lagi, klik **Add key** lagi. Kotak dialog akan terbuka dengan detail Anda sebelumnya. Pilih kotak centang, klik **Continue**, lalu klik **Add**.
+Pemeriksaan pada kunci Anda gagal. Temukan penyebabnya untuk [AWS KMS](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#aws-kms), [Google Cloud KMS](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#google-cloud-kms), atau [Azure Key Vault](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#azure-key-vault). Untuk mencoba lagi, klik **Tambah kunci** lagi. Kotak dialog akan terbuka dengan detail Anda sebelumnya. Pilih kotak centang, klik **Lanjutkan**, lalu klik **Tambahkan**.
 
 ## Kesalahan yang diharapkan di CloudTrail
 

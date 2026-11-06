@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/increase_requests/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f0c153a5919baabcb19581b7ea2c25aa80bb0f582a66f4bf07e972e976107ed6
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 8bb23e9f747bfacdd37dbdf0c122e7a864e4b2ec4ab84d0a4040692953d5668e
 ---
 
 ---
@@ -61,7 +61,9 @@ Requests whose requester is no longer a member are excluded.
 
   - `id: string`
 
-  - `actor: BetaSpendLimitUserActor or BetaSpendLimitScopedAPIKeyActor`
+  - `actor: BetaSpendLimitIncreaseRequestActor`
+
+    Who submitted the increase request.
 
     - `BetaSpendLimitUserActor object`
 
@@ -119,7 +121,9 @@ Requests whose requester is no longer a member are excluded.
 
     format: date-time
 
-  - `resolved_by: BetaSpendLimitUserActor or BetaSpendLimitScopedAPIKeyActor or null`
+  - `resolved_by: BetaSpendLimitIncreaseRequestResolvedBy or null`
+
+    Who approved or denied the increase request.
 
     - `BetaSpendLimitUserActor object`
 

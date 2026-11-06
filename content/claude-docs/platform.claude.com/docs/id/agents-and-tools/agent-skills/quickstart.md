@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 8eaf5a98dba42aa18427e769f75c75800a4925e7eb4cb9c64f44e30e7ec98546
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: f721230182b0f888268cbf68835f6d8a2bbcacc86f969d4eb97b515fbceda95a
 ---
 
 ---
@@ -41,10 +41,10 @@ Anda memerlukan [SDK klien](https://platform.claude.com/docs/id/cli-sdks-librari
       </Tab>
 
       <Tab title="curl (Linux/WSL)">
-        Untuk lingkungan Linux, unduh binary rilis secara langsung.
+        Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
         ```bash
-        VERSION=2.6.0
+        VERSION=2.7.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -58,13 +58,13 @@ Anda memerlukan [SDK klien](https://platform.claude.com/docs/id/cli-sdks-librari
       </Tab>
 
       <Tab title="go install">
-        Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
+        Anda juga dapat menginstal CLI dari kode sumber menggunakan `go install`, yang memerlukan Go 1.26.10 atau yang lebih baru.
 
         ```bash
         go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
         ```
 
-        Binary ditempatkan di `$(go env GOPATH)/bin`. Tambahkan ke `PATH` Anda jika belum ada:
+        `go install` menempatkan biner di `$(go env GOPATH)/bin`. Tambahkan direktori tersebut ke `PATH` Anda jika belum ada:
 
         ```bash
         export PATH="$PATH:$(go env GOPATH)/bin"
@@ -110,10 +110,10 @@ Untuk menjalankan contoh CLI, instal CLI:
   </Tab>
 
   <Tab title="curl (Linux/WSL)">
-    Untuk lingkungan Linux, unduh binary rilis secara langsung.
+    Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
     ```bash
-    VERSION=2.6.0
+    VERSION=2.7.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -127,13 +127,13 @@ Untuk menjalankan contoh CLI, instal CLI:
   </Tab>
 
   <Tab title="go install">
-    Anda juga dapat menginstal CLI dari source menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
+    Anda juga dapat menginstal CLI dari kode sumber menggunakan `go install`, yang memerlukan Go 1.26.10 atau yang lebih baru.
 
     ```bash
     go install github.com/anthropics/anthropic-cli/v2/cmd/ant@latest
     ```
 
-    Binary ditempatkan di `$(go env GOPATH)/bin`. Tambahkan ke `PATH` Anda jika belum ada:
+    `go install` menempatkan biner di `$(go env GOPATH)/bin`. Tambahkan direktori tersebut ke `PATH` Anda jika belum ada:
 
     ```bash
     export PATH="$PATH:$(go env GOPATH)/bin"

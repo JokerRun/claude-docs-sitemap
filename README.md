@@ -29,7 +29,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/agent-sdk/agent-loop | 2026-11-04 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/claude-cod... | 2026-10-29 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/configuration | 2026-10-27 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/cost-tracking | 2026-11-02 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/cost-tracking | 2026-11-06 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/custom-tools | 2026-10-26 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/examples | 2026-10-21 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/file-check... | 2026-10-22 |  |
@@ -38,7 +38,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/agent-sdk/mcp | 2026-10-22 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/migration-... | 2026-10-09 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/modifying-... | 2026-10-27 |  |
-| ... | _(~1397 more rows)_ | | |
+| ... | _(~1437 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

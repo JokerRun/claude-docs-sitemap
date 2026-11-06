@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 445a382f2abc4de0123dc9227cf219d9b640359f059e04cb4cff91632d29ad5d
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 784f3bae58ccbc281d4ec0a3583ebe22170e1a304e164905606a8b08f8583840
 ---
 
 ---
@@ -33,7 +33,7 @@ Baca halaman ini ketika Anda membangun di atas salah satu model ini dan ingin pe
 
 Halaman terkait:
 
-* [Stop reason dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons): daftar lengkap nilai `stop_reason`
+* [Alasan berhenti dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons): daftar lengkap nilai `stop_reason`
 * [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit): cara menghindari membayar biaya cache prompt dua kali ketika Anda membangun percobaan ulang sendiri
 * [Middleware SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/middleware): helper SDK yang membungkus semua ini
 * [Resep fallback dan penagihan](https://platform.claude.com/cookbook/fable-5-fallback-billing-guide): contoh lengkap dari awal hingga akhir
@@ -201,14 +201,14 @@ Objek `stop_details` menjelaskan penolakan tersebut:
 * **`explanation`:** deskripsi yang dapat dibaca manusia. Teksnya tidak stabil, jadi tampilkan saja alih-alih mem-parse-nya.
 * **`recommended_model`:** hanya ada pada permintaan yang mengatur `fallbacks` ([fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback), beta). Field ini menyebutkan model untuk dicoba ulang secara langsung ketika API melewatkan percobaan fallback (misalnya, model fallback terkena batas laju), dan bernilai `null` jika tidak. Ini adalah petunjuk, bukan jaminan.
 * `category` dan `explanation` keduanya `null` ketika penolakan tidak terpetakan ke kategori bernama. Nilai `null` itu adalah nilai normal dan permanen, bukan placeholder.
-* `stop_details` sendiri bernilai `null` untuk setiap stop reason selain `refusal`.
+* `stop_details` sendiri bernilai `null` untuk setiap alasan berhenti selain `refusal`.
 
 | `category`               | Artinya                                                                                                                                                                                                                                                                                                                                                                                            | Ditagih sebelum ada output |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | `"cyber"`                | Permintaan dapat memungkinkan bahaya siber, seperti pengembangan malware atau exploit. Pekerjaan keamanan siber yang tidak berbahaya juga dapat memicu kategori ini.                                                                                                                                                                                                                               | Tidak                      |
 | `"bio"`                  | Permintaan dapat memungkinkan bahaya biologis, seperti metode laboratorium yang berbahaya. Pekerjaan ilmu hayati yang bermanfaat juga dapat memicu kategori ini.                                                                                                                                                                                                                                   | Ya                         |
 | `"frontier_llm"`         | Permintaan dapat membantu pengembangan model AI pesaing, yang dibatasi berdasarkan [ketentuan komersial Anthropic](https://www.anthropic.com/legal/commercial-terms). Pekerjaan machine learning yang tidak berbahaya juga dapat memicu kategori ini.                                                                                                                                              | Ya                         |
-| `"reasoning_extraction"` | Permintaan meminta model untuk mereproduksi penalaran internalnya dalam teks respons. Untuk mendapatkan penalaran dalam bentuk terstruktur, gunakan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking). Lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks). | Ya                         |
+| `"reasoning_extraction"` | Permintaan meminta model untuk mereproduksi penalaran internalnya dalam teks respons. Untuk mendapatkan penalaran dalam bentuk terstruktur, gunakan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking). Lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks). | Ya                         |
 | `"general_harms"`        | Permintaan termasuk dalam area kebijakan penggunaan di luar empat kategori bernama. Pekerjaan yang tidak berbahaya juga dapat memicu kategori ini.                                                                                                                                                                                                                                                 | Tidak                      |
 
 Penolakan dapat tiba sebelum output apa pun, atau di tengah stream setelah output parsial. Dalam kedua kasus, perlakukan output parsial apa pun sebagai tidak lengkap dan buang.
@@ -234,9 +234,9 @@ Aturan penagihan ini berlaku di setiap platform.
 
 **Penolakan di tengah stream:** Penolakan di tengah stream menagih token input dan output yang sudah di-stream dengan tarif normal.
 
-**Fallback:** Saat Anda menggunakan fallback, penolakan yang memicunya ditagih, selain permintaan fallback itu sendiri, jika penolakan tersebut terjadi di tengah stream atau termasuk dalam salah satu kategori yang ditagih. [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) mengompensasi cache miss prompt pada permintaan fallback, sehingga Anda tidak membayar untuk meng-cache percakapan dua kali. Penolakan Claude Haiku 5.5 tidak membawa kredit fallback, sehingga fallback setelahnya membayar biaya penuh untuk menulis prompt cache model fallback. Untuk cara fallback sisi server melaporkan setiap percobaan, lihat [Penagihan dan batas laju](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#billing-and-rate-limits).
+**Fallback:** Saat Anda menggunakan fallback, penolakan yang memicunya ditagih, selain permintaan fallback itu sendiri, jika penolakan tersebut terjadi di tengah stream atau termasuk dalam salah satu kategori yang ditagih. [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) mengompensasi cache miss prompt pada permintaan fallback, sehingga Anda tidak membayar untuk meng-cache percakapan dua kali. Penolakan Claude Haiku 5.5 tidak membawa kredit fallback, sehingga fallback setelahnya membayar biaya penuh untuk menulis cache prompt model fallback. Untuk cara fallback sisi server melaporkan setiap percobaan, lihat [Penagihan dan batas laju](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#billing-and-rate-limits).
 
-Kategori yang ditagih dapat berubah seiring Anthropic terus mengukur dan menyempurnakan tingkat positif palsu pengamanannya. Kolom **Ditagih sebelum output apa pun** dalam [tabel kategori penolakan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) mencantumkan kategori yang ditagih.
+Kategori yang ditagih dapat berubah seiring Anthropic terus mengukur dan menyempurnakan tingkat positif palsu pengamanannya. Kolom **Ditagih sebelum ada output** dalam [tabel kategori penolakan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) mencantumkan kategori yang ditagih.
 
 ## Memilih pendekatan fallback
 
@@ -252,7 +252,7 @@ Fallback sisi server dan middleware SDK menerapkan kredit fallback untuk Anda. A
 
 ## Fallback sisi server
 
-Fallback sisi server mencoba ulang permintaan yang ditolak di dalam satu panggilan API. Dalam mode default, ketika model utama menolak dan kategori penolakan memiliki fallback yang direkomendasikan, API menjalankan permintaan yang sama pada model yang direkomendasikan Anthropic untuk kategori tersebut. Sebagai gantinya, Anda dapat [menyebutkan hingga tiga model fallback Anda sendiri](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#naming-your-own-fallback-models). Dengan cara mana pun, Anda mendapatkan kembali satu respons yang menyebutkan model yang menjawab, sehingga pengguna Anda mendapatkan jawaban dalam satu round trip.
+Fallback sisi server mencoba ulang permintaan yang ditolak di dalam satu panggilan API. Dalam mode default, ketika model utama menolak dan kategori penolakan memiliki fallback yang direkomendasikan, API menjalankan permintaan yang sama pada model yang direkomendasikan Anthropic untuk kategori tersebut. Sebagai gantinya, Anda dapat [menyebutkan hingga tiga model fallback Anda sendiri](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#naming-your-own-fallback-models). Dengan cara mana pun, Anda mendapatkan kembali satu respons yang menyebutkan model yang menjawab, sehingga pengguna Anda mendapatkan jawaban dalam satu perjalanan bolak-balik.
 
 <Note>
   Fallback sisi server dalam beta di Claude API dan di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed). Pada platform tanpa fallback sisi server, gunakan [fallback sisi klien dengan middleware SDK](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) sebagai gantinya. Parameter `fallbacks` tidak didukung di [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing) (item batch yang menyertakannya kembali sebagai hasil error). Claude Haiku 5.5 tidak memiliki fallback sisi server: dengan `fallbacks: "default"`, permintaan yang ditolak tetap ditolak, dan daftar model fallback mengembalikan error 400.
@@ -260,9 +260,9 @@ Fallback sisi server mencoba ulang permintaan yang ditolak di dalam satu panggil
 
 ### Membuat permintaan
 
-Atur parameter `fallbacks` ke string `"default"` dan kirim header beta `server-side-fallback-2026-07-01`. API kemudian menerapkan routing default yang ditentukan server untuk model yang diminta, yang memilih model fallback yang direkomendasikan berdasarkan kategori penolakan yang dilaporkan classifier, sehingga permintaan yang ditolak dilayani tanpa Anda harus memelihara daftar model saat rekomendasi berubah.
+Atur parameter `fallbacks` ke string `"default"` dan kirim header beta `server-side-fallback-2026-07-01`. API kemudian menerapkan perutean default yang ditentukan server untuk model yang diminta, yang memilih model fallback yang direkomendasikan berdasarkan kategori penolakan yang dilaporkan classifier, sehingga permintaan yang ditolak dilayani tanpa Anda harus memelihara daftar model saat rekomendasi berubah.
 
-Routing default tidak pernah memunculkan [penolakan gambar berukuran berlebih](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#oversized-image-error) di awal untuk model yang tidak Anda pilih: model hasil routing yang akan mengubah ukuran gambar bertanda `"oversized_image": "error"` dikeluarkan dari routing, sehingga gambar yang ditandai tidak pernah disajikan dalam ukuran yang diubah.
+Perutean default tidak pernah memunculkan [penolakan gambar berukuran berlebih](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#oversized-image-error) di awal untuk model yang tidak Anda pilih: model hasil perutean yang akan mengubah ukuran gambar bertanda `"oversized_image": "error"` dikeluarkan dari perutean, sehingga gambar yang ditandai tidak pernah disajikan dalam ukuran yang diubah.
 
 <CodeGroup>
   ```bash cURL
@@ -431,7 +431,7 @@ Routing default tidak pernah memunculkan [penolakan gambar berukuran berlebih](h
   );
 
   // Entri usage fallback_message berarti model fallback yang menghasilkan
-  // respons; stop reason refusal berarti tidak ada model yang melayaninya.
+  // respons; alasan berhenti refusal berarti tidak ada model yang melayaninya.
   List<BetaUsage.Iteration> iterations =
       response.usage().iterations().orElse(List.of());
   boolean servedByFallback =
@@ -495,9 +495,9 @@ Routing default tidak pernah memunculkan [penolakan gambar berukuran berlebih](h
 
 Anthropic menetapkan perlindungan untuk setiap model secara individual dan untuk setiap kategori kebijakan, sesuai dengan kemampuan model: tergantung kategorinya, permintaan yang ditandai mungkin dialihkan ke model yang kurang mampu atau ditolak. Mode `"default"` mengodekan rekomendasi per model dan per kategori ini untuk Anda, sehingga permintaan yang ditolak dicoba ulang pada model yang direkomendasikan Anthropic untuk kategori tersebut. Fallback terlihat dalam kedua cara: respons menyebutkan model yang melayaninya, dan blok konten `fallback` menandai peralihannya.
 
-Routing diterapkan di sisi server dan tidak dipublikasikan untuk setiap model di [Models API](https://platform.claude.com/docs/id/api/models/list). Untuk melihat model mana yang melayani permintaan yang ditolak, periksa field `model` tingkat atas respons dan cari entri `fallback_message` di `usage.iterations`, seperti yang dilakukan contoh-contoh di halaman ini.
+Perutean diterapkan di sisi server dan tidak dipublikasikan untuk setiap model di [Models API](https://platform.claude.com/docs/id/api/models/list). Untuk melihat model mana yang melayani permintaan yang ditolak, periksa field `model` tingkat atas respons dan cari entri `fallback_message` di `usage.iterations`, seperti yang dilakukan contoh-contoh di halaman ini.
 
-Hanya penolakan safety classifier yang memicu fallback. Batas laju, overload, atau error server pada model yang diminta dikembalikan kepada Anda apa adanya.
+Hanya penolakan pengklasifikasi keamanan yang memicu fallback. Batas laju, overload, atau error server pada model yang diminta dikembalikan kepada Anda apa adanya.
 
 <Note>
   Header beta harus membawa tepat tanggal `2026-07-01`, yang mendukung baik `"default"` maupun bentuk daftar eksplisit, atau `2026-06-01`, yang hanya menerima bentuk daftar eksplisit. Dengan nilai `server-side-fallback-*` lainnya, parameter `fallbacks` ditolak dengan error 400. Jika Anda membangun berdasarkan pratinjau fitur ini yang lebih awal, perbarui header beta serta bentuk permintaan dan respons secara bersamaan ke yang ada di halaman ini.
@@ -505,11 +505,11 @@ Hanya penolakan safety classifier yang memicu fallback. Batas laju, overload, at
 
 ### Menyebutkan model fallback Anda sendiri
 
-Alih-alih routing default, Anda dapat mengatur `fallbacks` ke daftar hingga tiga model. Ketika model yang diminta menolak, API menjalankan model berikutnya dalam rantai pada permintaan yang sama. Gunakan bentuk ini ketika Anda ingin mengontrol dengan tepat model mana yang melayani permintaan yang ditolak, seperti mengunci model yang telah dikualifikasi oleh aplikasi Anda.
+Alih-alih perutean default, Anda dapat mengatur `fallbacks` ke daftar hingga tiga model. Ketika model yang diminta menolak, API menjalankan model berikutnya dalam rantai pada permintaan yang sama. Gunakan bentuk ini ketika Anda ingin mengontrol dengan tepat model mana yang melayani permintaan yang ditolak, seperti mengunci model yang telah dikualifikasi oleh aplikasi Anda.
 
-Model fallback yang disebutkan dihitung dalam [pemeriksaan gambar berukuran terlalu besar](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#oversized-image-error). Permintaan yang blok gambarnya mengatur `"oversized_image": "error"` diperiksa di awal terhadap model yang diminta dan setiap fallback yang disebutkan. Permintaan ditolak jika salah satu dari mereka akan mengubah ukuran gambar tersebut, dan target rescale yang dilaporkan dalam penolakan itu sesuai untuk semuanya.
+Model fallback yang disebutkan dihitung dalam [pemeriksaan gambar berukuran terlalu besar](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#oversized-image-error). Permintaan yang blok gambarnya mengatur `"oversized_image": "error"` diperiksa di awal terhadap model yang diminta dan setiap fallback yang disebutkan. Permintaan ditolak jika salah satu dari mereka akan mengubah ukuran gambar tersebut, dan target penskalaan ulang yang dilaporkan dalam penolakan itu sesuai untuk semuanya.
 
-Baris yang disorot adalah satu-satunya perbedaan dari permintaan routing default.
+Baris yang disorot adalah satu-satunya perbedaan dari permintaan perutean default.
 
 <CodeGroup>
   ```bash cURL
@@ -647,7 +647,7 @@ Baris yang disorot adalah satu-satunya perbedaan dari permintaan routing default
 Beberapa aturan berlaku untuk daftar `fallbacks`:
 
 * Entri dicoba secara berurutan. Setiap entri harus berbeda dari entri lainnya dan dari model yang diminta.
-* Setiap entri harus merupakan salah satu target yang diizinkan untuk model yang diminta. Dengan beta header diatur, daftar tersebut dipublikasikan sebagai `allowed_fallback_models` pada [entri model di Models API](https://platform.claude.com/docs/id/api/beta/models/list).
+* Setiap entri harus merupakan salah satu target yang diizinkan untuk model yang diminta. Dengan header beta diatur, daftar tersebut dipublikasikan sebagai `allowed_fallback_models` pada [entri model di Models API](https://platform.claude.com/docs/id/api/beta/models/list).
 * Setiap entri menyebutkan `model` dan dapat menimpa `max_tokens`, `thinking`, `output_config`, dan `speed` hanya untuk percobaan tersebut.
 * Permintaan harus valid sebagai permintaan langsung ke setiap model yang disebutkan. Jika model fallback tidak mendukung fitur yang digunakan permintaan, API menolak permintaan di awal. Dengan header `2026-07-01`, `thinking: {"type": "between_tools"}` adalah pengecualian: ketika permintaan Claude Sonnet 5.5 dialihkan ke Claude Sonnet 5, percobaan fallback berjalan dengan `thinking: {"type": "disabled"}` dan `display: "omitted"`. Dengan `2026-06-01`, atur `thinking` pada entri Claude Sonnet 5, atau permintaan akan ditolak di awal.
 * Sama seperti mode default, hanya penolakan oleh pengklasifikasi keamanan yang memicu fallback. Batas laju, kelebihan beban, atau error server pada model yang diminta dikembalikan kepada Anda apa adanya.
@@ -715,7 +715,7 @@ Pada penolakan sebelum output apa pun, blok `fallback` adalah blok konten pertam
 
 Array `usage.iterations` mencatat setiap percobaan. Model yang menolak muncul sebagai entri `message` biasa, dan model yang melayani giliran muncul sebagai entri `fallback_message`. Jika setiap model dalam rantai menolak, responsnya adalah penolakan model terakhir, dengan entri `message` untuk setiap hop sebelumnya dan entri `fallback_message` untuk yang terakhir.
 
-[Sticky routing](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#sticky-routing) dapat mengirim giliran berikutnya langsung ke model fallback. Giliran seperti itu tidak membawa blok konten `fallback`, karena tidak ada model yang menolak giliran tersebut. Identifikasi melalui entri `fallback_message` di `usage.iterations`, tidak adanya entri `message` untuk model yang diminta, dan field `model` pada respons.
+[Perutean persisten](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#sticky-routing) dapat mengirim giliran berikutnya langsung ke model fallback. Giliran seperti itu tidak membawa blok konten `fallback`, karena tidak ada model yang menolak giliran tersebut. Identifikasi melalui entri `fallback_message` di `usage.iterations`, tidak adanya entri `message` untuk model yang diminta, dan field `model` pada respons.
 
 ### Melanjutkan percakapan
 
@@ -741,7 +741,7 @@ Pada permintaan streaming, percobaan ulang terjadi pada stream yang sama, dan ti
 **Ketika penolakan terjadi sebelum ada output:**
 
 * `message_start` menyebutkan model fallback, dan blok `fallback` adalah blok konten pertama.
-* Karena `message_start` menunggu percobaan fallback dimulai, time to first byte mencakup percobaan yang ditolak.
+* Karena `message_start` menunggu percobaan fallback dimulai, waktu hingga byte pertama mencakup percobaan yang ditolak.
 
 **Ketika penolakan terjadi di tengah output:**
 
@@ -754,7 +754,7 @@ Pada permintaan streaming, percobaan ulang terjadi pada stream yang sama, dan ti
 Pada permintaan non-streaming, penolakan di tengah output berperilaku berbeda: respons menghilangkan output parsial model yang menolak, dan model fallback menjawab tanpa output tersebut sebagai konteks. Hasilnya terlihat seperti penolakan sebelum ada output, dengan blok `fallback` di urutan pertama. Percobaan yang ditolak dan token output-nya tetap muncul di `usage.iterations`.
 
 <Note>
-  **Penolakan selama penggunaan alat:** pekerjaan alat yang telah selesai tidak menghalangi fallback. Ketika penolakan terjadi setelah alat server (misalnya, web search atau code execution) selesai dieksekusi dalam sebuah permintaan, percobaan fallback berlanjut: hasil alat yang telah selesai terbawa, dan model fallback dapat terus memanggil alat server. Satu kasus yang tidak dicoba ulang adalah penolakan streaming yang terjadi saat blok tool-use tipe apa pun (alat klien, alat server, atau panggilan alat MCP) masih terbuka pada stream: penolakan itu dikembalikan secara langsung, dan jika header `fallback-credit-2026-07-01` diatur, penolakan tersebut tetap membawa token kredit yang dapat ditukarkan dengan melanjutkan respons parsial. Permintaan non-streaming tidak terpengaruh; API membersihkan pekerjaan parsial dan mencoba ulang sebelum merespons.
+  **Penolakan selama penggunaan alat:** pekerjaan alat yang telah selesai tidak menghalangi fallback. Ketika penolakan terjadi setelah alat server (misalnya, pencarian web atau eksekusi kode) selesai dieksekusi dalam sebuah permintaan, percobaan fallback berlanjut: hasil alat yang telah selesai terbawa, dan model fallback dapat terus memanggil alat server. Satu kasus yang tidak dicoba ulang adalah penolakan streaming yang terjadi saat blok tool-use tipe apa pun (alat klien, alat server, atau panggilan alat MCP) masih terbuka pada stream: penolakan itu dikembalikan secara langsung, dan jika header `fallback-credit-2026-07-01` diatur, penolakan tersebut tetap membawa token kredit yang dapat ditukarkan dengan melanjutkan respons parsial. Permintaan non-streaming tidak terpengaruh; API membersihkan pekerjaan parsial dan mencoba ulang sebelum merespons.
 </Note>
 
 ### Penagihan dan batas laju
@@ -763,21 +763,21 @@ Setiap percobaan mengikuti aturan di [Cara penolakan ditagih](https://platform.c
 
 Setiap percobaan yang berjalan, termasuk yang menolak, dihitung terhadap batas laju modelnya sendiri.
 
-### Sticky routing
+### Perutean persisten
 
 Setelah percakapan mengalami fallback, API mencatat model mana yang melayaninya. Permintaan berikutnya untuk percakapan tersebut yang menyertakan `fallbacks` langsung menuju model fallback itu, tanpa menjalankan model yang diminta. Ini menghindari pembayaran untuk percobaan yang dapat diprediksi akan ditolak lagi pada setiap giliran.
 
-Beberapa sifat keputusan routing:
+Beberapa sifat keputusan perutean:
 
 * Disimpan selama kurang lebih 1 jam dan dicakup ke organisasi Anda.
 * Disimpan sebagai hash konten dari prefiks percakapan ditambah model yang melayaninya. Konten pesan itu sendiri tidak disimpan.
 * Bersifat best-effort, sehingga kode Anda harus menangani kemungkinan model yang diminta dicoba lagi kapan saja.
 
-Sticky routing berlaku untuk permintaan streaming maupun non-streaming. Pada permintaan streaming, keputusan routing dibuat sebelum stream dibuka, sehingga field `model` pada event `message_start` sudah membawa ID model fallback.
+Perutean persisten berlaku untuk permintaan streaming maupun non-streaming. Pada permintaan streaming, keputusan perutean dibuat sebelum stream dibuka, sehingga field `model` pada event `message_start` sudah membawa ID model fallback.
 
 ## Fallback sisi klien dengan middleware SDK
 
-SDK menyertakan middleware refusal-fallback. Anda mengonfigurasinya sekali pada klien dengan daftar model fallback Anda. Panggilan melalui `client.beta.messages` (csharp, go: `client.Beta.Messages`; java: `client.beta().messages()`; php: `$client->beta->messages`) kemudian mencoba ulang permintaan yang ditolak secara otomatis, di platform apa pun. Middleware juga mengirim header beta `fallback-credit-2026-07-01` pada setiap permintaan yang ditanganinya, sehingga percobaan ulang dihitung ulang harganya tanpa penyiapan per permintaan. Penolakan Claude Haiku 5.5 tidak membawa kredit fallback, sehingga percobaan ulang setelahnya membayar biaya penuh untuk menulis prompt cache model fallback.
+SDK menyertakan middleware refusal-fallback. Anda mengonfigurasinya sekali pada klien dengan daftar model fallback Anda. Panggilan melalui `client.beta.messages` (csharp, go: `client.Beta.Messages`; java: `client.beta().messages()`; php: `$client->beta->messages`) kemudian mencoba ulang permintaan yang ditolak secara otomatis, di platform apa pun. Middleware juga mengirim header beta `fallback-credit-2026-07-01` pada setiap permintaan yang ditanganinya, sehingga percobaan ulang dihitung ulang harganya tanpa penyiapan per permintaan. Penolakan Claude Haiku 5.5 tidak membawa kredit fallback, sehingga percobaan ulang setelahnya membayar biaya penuh untuk menulis cache prompt model fallback.
 
 ### Menyiapkannya
 
@@ -1189,7 +1189,7 @@ Fallback sisi server tidak tersedia untuk batch (permintaan batch yang menyertak
     Hindari membayar biaya prompt-cache dua kali ketika Anda membangun percobaan ulang sendiri.
   </Card>
 
-  <Card title="Stop reason dan fallback" icon="code" href="https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons">
+  <Card title="Alasan berhenti dan fallback" icon="code" href="https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons">
     Setiap nilai `stop_reason` dan cara menanganinya.
   </Card>
 
@@ -1204,7 +1204,7 @@ Fallback sisi server tidak tersedia untuk batch (permintaan batch yang menyertak
 
 ## Ketersediaan
 
-Penolakan classifier tersedia atau dalam versi beta di model tertentu, tergantung pada API.
+Penolakan pengklasifikasi tersedia atau dalam versi beta di model tertentu, tergantung pada API.
 
 ### Dukungan API
 

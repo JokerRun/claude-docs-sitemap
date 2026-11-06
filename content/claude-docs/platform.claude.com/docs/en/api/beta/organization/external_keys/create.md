@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/create
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f9d0472f7a1fff7f9be02fa675c61a555ec038b78507dcdeace7909952ed309a
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 3b80332c5827a7be3e0f5722a34e4a0ed11abe566eb9a0f90fec4c764d451d5a
 ---
 
 ---
@@ -138,7 +138,7 @@ Create an external key config owned by the caller's organization.
 
   - `geo: string`
 
-    Data residency geo. Selects the region that handles this key's encrypt/decrypt roundtrips.
+    Data residency geo. Selects the region this key is used in.
 
   - `provider_config: BetaAWSExternalKeyConfig or BetaGCPExternalKeyConfig or BetaAzureExternalKeyConfig`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_groups/delete
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 47bb613a3cbe1713c40501f329cf1e33f9b90461ba318e17249a5e0abeac69cb
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 7dd338a8ec620b6ac6c5570cc1bb4cf8a22e315cf4b0a8a81443b22a2f3e2e11
 ---
 
 ---
@@ -34,17 +34,19 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
 
 ## Returns
 
-- `type: "rbac_group_deleted"`
+- `BetaDeletedRBACGroup object`
 
-  Deleted object type.
+  - `type: "rbac_group_deleted"`
 
-  For RBAC Groups, this is always `"rbac_group_deleted"`.
+    Deleted object type.
 
-  default: rbac_group_deleted
+    For RBAC Groups, this is always `"rbac_group_deleted"`.
 
-- `id: string`
+    default: rbac_group_deleted
 
-  ID of the RBAC Group.
+  - `id: string`
+
+    ID of the RBAC Group.
 
 ## Example
 

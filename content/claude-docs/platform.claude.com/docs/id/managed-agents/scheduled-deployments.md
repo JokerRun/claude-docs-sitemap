@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 8ab24973b5997b50f0f1ad328566bc3746b1426be4e5bcdafee9715ca84562da
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: 1d48f0dd7b33e7c45418778b62f3fa02dec95f48d131ccf6779052a7f9e3d58d
 ---
 
 ---
@@ -39,7 +39,7 @@ featureMetadata:
 
 **Deployment terjadwal** (“scheduled deployment”) memungkinkan [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) untuk memulai [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) secara otonom, sehingga agen dapat menyelesaikan tugas dengan ritme yang dapat diprediksi. Anda membuat dan mengelola deployment dengan Deployments API, bagian dari Claude API.
 
-Untuk konteks peluncuran dan contoh hal-hal yang dijalankan tim secara terjadwal, lihat [scheduled deployments and vaults in Claude Managed Agents](https://claude.com/blog/whats-new-in-claude-managed-agents) di blog.
+Untuk konteks peluncuran dan contoh hal-hal yang dijalankan tim secara terjadwal, lihat [deployment terjadwal dan vault di Claude Managed Agents](https://claude.com/blog/whats-new-in-claude-managed-agents) di blog.
 
 ## Membuat deployment terjadwal
 
@@ -50,11 +50,11 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](https://platform.cla
 * Di dalam `schedule` (csharp, go: `Schedule`), Anda mendefinisikan `expression` (csharp, go: `Expression`) cron dan `timezone` (csharp, go: `Timezone`). Granularitas maksimum yang didukung adalah tingkat menit.
 
 <Note>
-  Di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), setiap eksekusi membuat sesinya sebagai IAM role di akun AWS Anda. Sebelum Anda membuat deployment, atur `execution_identity` pada agen ke `{"type": "aws_role", "role_arn": "arn:aws:iam::123456789012:role/example-role"}`. Membuat deployment untuk agen tanpa field ini akan mengembalikan error 400.
+  Di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), setiap eksekusi membuat sesinya sebagai peran IAM di akun AWS Anda. Sebelum Anda membuat deployment, atur `execution_identity` pada agen ke `{"type": "aws_role", "role_arn": "arn:aws:iam::123456789012:role/example-role"}`. Membuat deployment untuk agen tanpa field ini akan mengembalikan error 400.
 
-  * **Trust policy:** Izinkan service principal `aws-external-anthropic.amazonaws.com` untuk memanggil `sts:AssumeRole` dan `sts:SetSourceIdentity`.
-  * **Izin role:** Izinkan `aws-external-anthropic:CreateSession`, `sts:GetWebIdentityToken`, dan `sts:TagGetWebIdentityToken`.
-  * **Izin pemanggil:** Principal IAM yang mengatur role pada agen memerlukan `iam:PassRole` pada role tersebut. Role harus berada di akun AWS yang sama. Tidak ada [kebijakan terkelola](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#managed-policies) yang memberikan `iam:PassRole`.
+  * **Kebijakan kepercayaan:** Izinkan service principal `aws-external-anthropic.amazonaws.com` untuk memanggil `sts:AssumeRole` dan `sts:SetSourceIdentity`.
+  * **Izin peran:** Izinkan `aws-external-anthropic:CreateSession`, `sts:GetWebIdentityToken`, dan `sts:TagGetWebIdentityToken`.
+  * **Izin pemanggil:** Principal IAM yang mengatur peran pada agen memerlukan `iam:PassRole` pada peran tersebut. Peran harus berada di akun AWS yang sama. Tidak ada [kebijakan terkelola](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#managed-policies) yang memberikan `iam:PassRole`.
 </Note>
 
 <CodeGroup defaultLanguage="CLI">
@@ -271,13 +271,13 @@ Timestamp eksekusi mendatang mencerminkan jadwal persis yang dikonfigurasi. Namu
 
 Maksimum **1.000 deployment terjadwal** didukung untuk setiap organisasi. Hubungi dukungan Anthropic jika Anda membutuhkan lebih banyak.
 
-Lihat referensi [Create Deployment](https://platform.claude.com/docs/id/api/beta/deployments/create) untuk parameter lengkap dan skema respons.
+Lihat referensi [Buat Deployment](https://platform.claude.com/docs/id/api/beta/deployments/create) untuk parameter lengkap dan skema respons.
 
 ### Semantik cron dan zona waktu
 
-* **Expression:** Cron POSIX standar (`minute hour day-of-month month day-of-week`). Anda dapat membuat dan memvalidasi ekspresi cron ini di [Claude Console](https://platform.claude.com/workspaces/default/deployments).
-* **Timezone:** Pengidentifikasi zona waktu IANA (misalnya, `"America/Los_Angeles"`).
-* **DST:** Jadwal cron menggunakan pencocokan waktu jam dinding secara literal, sehingga `"0 20 * * *"` di `America/New_York` dipicu pada pukul 20.00 waktu lokal terlepas dari apakah EST atau EDT sedang berlaku.
+* **Ekspresi:** Cron POSIX standar (`minute hour day-of-month month day-of-week`). Anda dapat membuat dan memvalidasi ekspresi cron ini di [Claude Console](https://platform.claude.com/workspaces/default/deployments).
+* **Zona waktu:** Pengidentifikasi zona waktu IANA (misalnya, `"America/Los_Angeles"`).
+* **Waktu musim panas (DST):** Jadwal cron menggunakan pencocokan waktu jam dinding secara literal, sehingga `"0 20 * * *"` di `America/New_York` dipicu pada pukul 20.00 waktu lokal terlepas dari apakah EST atau EDT sedang berlaku.
 
 <Note>
   Waktu jam dinding yang tidak ada pada hari pergeseran maju (seperti pukul 2 pagi) tidak dipicu. Waktu jam dinding yang terjadi dua kali pada hari pergeseran mundur akan dipicu dua kali. Jadwalkan di luar rentang pukul 1–3 pagi waktu lokal, atau gunakan UTC, jika eksekusi yang terlewat atau ganda tidak dapat diterima.
@@ -422,7 +422,7 @@ Contoh berikut menetapkan anggaran pada deployment yang sudah ada:
 
 Deployment dapat gagal dipicu karena berbagai alasan: misalnya, jika resource `environment` telah diarsipkan, atau jika pembuatan sesi terkena batas laju. Setiap percobaan menghasilkan catatan **deployment run** (eksekusi deployment), yang memungkinkan Anda melacak keberhasilan dan kegagalan secara independen dari siklus hidup sesi.
 
-Deployment yang berhasil menghasilkan sesi aktif, dan eksekusi deployment yang berhasil berisi `session_id` (java: `sessionId`; php: `sessionID`; csharp, go: `SessionID`) terkait. Untuk mengikuti siklus hidup sesi, lacak event sesi melalui [event stream](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) atau [webhook](https://platform.claude.com/docs/id/managed-agents/webhooks). Perubahan siklus hidup deployment dan hasil dari setiap eksekusi terjadwal juga dikirimkan sebagai event webhook, yang tercantum di tab **Deployment events** dan **Deployment run events** pada [Jenis event yang didukung](https://platform.claude.com/docs/id/managed-agents/webhooks#supported-event-types).
+Deployment yang berhasil menghasilkan sesi aktif, dan eksekusi deployment yang berhasil berisi `session_id` (java: `sessionId`; php: `sessionID`; csharp, go: `SessionID`) terkait. Untuk mengikuti siklus hidup sesi, lacak event sesi melalui [aliran event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) atau [webhook](https://platform.claude.com/docs/id/managed-agents/webhooks). Perubahan siklus hidup deployment dan hasil dari setiap eksekusi terjadwal juga dikirimkan sebagai event webhook, yang tercantum di tab **Event deployment** dan **Event eksekusi deployment** pada [Jenis event yang didukung](https://platform.claude.com/docs/id/managed-agents/webhooks#supported-event-types).
 
 Tampilkan daftar semua eksekusi deployment untuk sebuah deployment sebagai berikut:
 
@@ -596,7 +596,7 @@ Anda juga dapat memfilter eksekusi deployment yang mengalami error:
   ```
 </CodeGroup>
 
-Eksekusi yang gagal menyertakan `error` dengan `type` yang menjelaskan mengapa pembuatan sesi ditolak (misalnya, `environment_archived_error`, `agent_archived_error`, atau `session_rate_limited_error`). Lihat referensi [List Deployment Runs](https://platform.claude.com/docs/id/api/beta/deployment_runs/list) untuk semua parameter filter dan skema respons.
+Eksekusi yang gagal menyertakan `error` dengan `type` yang menjelaskan mengapa pembuatan sesi ditolak (misalnya, `environment_archived_error`, `agent_archived_error`, atau `session_rate_limited_error`). Lihat referensi [Daftar Eksekusi Deployment](https://platform.claude.com/docs/id/api/beta/deployment_runs/list) untuk semua parameter filter dan skema respons.
 
 ```json
 {
@@ -618,7 +618,7 @@ Untuk mengambil satu eksekusi berdasarkan ID, panggil [`GET /v1/deployment_runs/
 
 ## Mengelola siklus hidup deployment
 
-Setiap perubahan siklus hidup memancarkan [event webhook](https://platform.claude.com/docs/id/managed-agents/webhooks#supported-event-types), sehingga Anda dapat bereaksi terhadap deployment yang dijeda, dilanjutkan, atau diarsipkan tanpa polling; lihat tab **Deployment events**.
+Setiap perubahan siklus hidup memancarkan [event webhook](https://platform.claude.com/docs/id/managed-agents/webhooks#supported-event-types), sehingga Anda dapat bereaksi terhadap deployment yang dijeda, dilanjutkan, atau diarsipkan tanpa polling; lihat tab **Event deployment**.
 
 **Pause** (jeda) menahan pemicu terjadwal sejak saat itu; sesi yang sudah berjalan dari eksekusi deployment sebelumnya tetap berlanjut. Eksekusi manual melalui endpoint `run` tetap diizinkan saat dijeda. Menjeda mengatur `paused_reason` menjadi `{"type": "manual"}`; melanjutkan akan menghapusnya.
 
@@ -710,7 +710,7 @@ Setiap perubahan siklus hidup memancarkan [event webhook](https://platform.claud
   ```
 </CodeGroup>
 
-**Archive** (arsipkan), tidak seperti **pause**, bersifat final: jadwal berakhir dan deployment tidak dapat dimodifikasi.
+**Archive** (arsipkan), tidak seperti **jeda**, bersifat final: jadwal berakhir dan deployment tidak dapat dimodifikasi.
 
 <CodeGroup>
   ```bash cURL

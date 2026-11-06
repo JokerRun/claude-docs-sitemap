@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/claude-code/routines-fire
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 6691aa4a908b81c9b26f0bca8c755244f89f8968b216d67491346e992a1a45fd
+fetched_at: 2026-11-06T02:14:07.030986Z
+sha256: ce3e3a75f9cdeb19239ad1ecb417a890999a1aec2791b5a68bac39e2093364fb
 ---
 
 ---
@@ -39,7 +39,7 @@ Endpoint pemicu routine termasuk dalam permukaan produk Claude Code, yang berbed
 Untuk memanggil endpoint ini, Anda memerlukan:
 
 1. Sebuah routine yang dibuat di [claude.ai/code/routines](https://claude.ai/code/routines).
-2. Bearer token yang dihasilkan untuk routine tersebut: buka routine untuk diedit, klik **Add another trigger** di bawah **Select a trigger**, pilih **API**, lalu klik **Generate token** di jendela modal. Token hanya ditampilkan sekali dan tidak dapat diambil kembali nanti.
+2. Bearer token yang dihasilkan untuk routine tersebut: buka routine untuk diedit, klik **Tambahkan pemicu lain** di bawah **Pilih trigger**, pilih **API**, lalu klik **Buat token** di jendela modal. Token hanya ditampilkan sekali dan tidak dapat diambil kembali nanti.
 
 Lihat [Menambahkan pemicu API](https://code.claude.com/docs/id/routines#add-an-api-trigger) di dokumentasi Claude Code untuk panduan penyiapan lengkap.
 
@@ -152,7 +152,7 @@ Setiap permintaan yang berhasil membuat sesi baru. Tidak ada kunci idempotensi. 
 
 ## Batas laju
 
-Pemicuan melalui API dibatasi per jam. Setiap routine menerima hingga 30 pemicuan per jam. Kuota ini dibagi bersama antara pemicuan API, tombol **Run now** di UI web, dan pengaktifan ulang sekali jalan. Selain itu, setiap akun dapat melakukan hingga 100 pemicuan API per jam di seluruh routine. Sesi yang dihasilkan menggunakan kuota langganan Claude Code yang sama dengan sesi interaktif. Saat batas tercapai, endpoint mengembalikan `429 rate_limit_error` dengan header `Retry-After`.
+Pemicuan melalui API dibatasi per jam: setiap routine menerima hingga 30 pemicuan per jam (dibagi bersama antara pemicuan API, tombol **Jalankan sekarang** di UI web, dan pengaktifan ulang sekali jalan), dan setiap akun dapat melakukan hingga 100 pemicuan API per jam di seluruh routine. Sesi yang dihasilkan menggunakan kuota langganan Claude Code yang sama dengan sesi interaktif. Saat batas tercapai, endpoint mengembalikan `429 rate_limit_error` dengan header `Retry-After`.
 
 Untuk mempelajari bagaimana penggunaan routine berinteraksi dengan batas langganan dan penagihan penggunaan ekstra, lihat [Penggunaan dan batas](https://code.claude.com/docs/id/routines#usage-and-limits) di dokumentasi Claude Code.
 
@@ -163,4 +163,4 @@ Endpoint ini tidak tersedia di SDK Anthropic. Model tokennya berbeda dari autent
 ## Lihat juga
 
 * [Mengotomatiskan pekerjaan dengan routine](https://code.claude.com/docs/id/routines) di dokumentasi Claude Code
-* [Error](https://platform.claude.com/docs/id/api/errors)
+* [Error Claude API](https://platform.claude.com/docs/id/api/errors)
