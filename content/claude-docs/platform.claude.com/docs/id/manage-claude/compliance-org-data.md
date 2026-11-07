@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-org-data
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: a3c51189cfcb2058bb609134af25364c96f8346c6a167b017237b4d4c85c17af
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: 4a4c85ff00d088f7c99effe1955970d33d63867273efcb0b904acd86ab81c1b6
 ---
 
 ---
@@ -18,7 +18,7 @@ description: Enumerasi organisasi di bawah organisasi induk Anda (pengguna, pera
 <Check>
   **Cakupan yang diperlukan:** `read:compliance_org_data` pada Compliance Access Key. Endpoint pengguna, preferensi pengguna, dan anggota grup memerlukan `read:compliance_user_data` sebagai gantinya.
 
-  Compliance Access Key (`sk-ant-api01-...`) yang dibuat di claude.ai adalah satu-satunya jenis kunci yang diterima; lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access) untuk menyediakannya. Panggilan yang diautentikasi dengan kunci Admin API (`sk-ant-admin01-...`) mengembalikan [403 Forbidden](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden).
+  Compliance Access Key (`sk-ant-api01-...`) yang dibuat di claude.ai adalah satu-satunya jenis kunci yang diterima. Lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access) untuk menyediakannya. Panggilan yang diautentikasi dengan kunci Admin API (`sk-ant-admin01-...`) mengembalikan [403 Forbidden](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden).
 </Check>
 
 Endpoint di halaman ini mengekspos sisi direktori dari organisasi Claude Enterprise: organisasi tertautnya, pengguna di masing-masing organisasi, peran yang didefinisikan pada masing-masing, serta grup “role-based access control” (kontrol akses berbasis peran), atau RBAC, maupun grup yang disediakan melalui SCIM (System for Cross-domain Identity Management) beserta anggotanya. Gunakan endpoint ini untuk mengisi daftar pengguna eDiscovery, membangun dasbor pelaporan, dan merekonsiliasi keanggotaan grup terhadap sistem pencatatan eksternal. Compliance Access Key yang mencakup organisasi induk mengembalikan data dari setiap organisasi tertaut di bawahnya, sehingga satu kunci menjangkau seluruh pohon. [Endpoint pengaturan efektif](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#get-effective-organization-settings) melengkapi direktori: endpoint ini mengembalikan pengaturan privasi data, keamanan, dan kapabilitas yang benar-benar berlaku untuk satu organisasi.
@@ -315,16 +315,16 @@ Respons mencerminkan status pada saat pembacaan; tidak ada yang di-snapshot. Per
 
 ## Membaca plugin dan marketplace plugin
 
-Plugin dan marketplace plugin organisasi Anda merupakan bagian dari [Admin API](https://platform.claude.com/docs/id/manage-claude/plugins-api), bukan Compliance API, tetapi Compliance Access Key dengan `read:compliance_org_data` dapat memanggil endpoint baca Plugins API secara langsung:
+Plugin dan marketplace plugin organisasi Anda merupakan bagian dari [Plugins API](https://platform.claude.com/docs/id/manage-claude/plugins-api) milik Admin API, bukan Compliance API, tetapi Compliance Access Key dengan `read:compliance_org_data` dapat memanggil endpoint baca Plugins API secara langsung:
 
 * Mencantumkan plugin dan mengambil sebuah plugin
 * Mencantumkan versi plugin, mengambil sebuah versi, dan mengunduh file suatu versi
 * Mencantumkan pengaturan instalasi plugin dan pembagiannya (shares)
 * Mencantumkan marketplace plugin dan mengambil sebuah marketplace
 
-Kirimkan header `anthropic-beta: ce-plugins-2026-09-01` pada setiap permintaan; tanpa header tersebut, endpoint ini mengembalikan [404 Not Found](https://platform.claude.com/docs/id/manage-claude/plugins-api#error-responses). Setiap panggilan membaca satu organisasi: kunci yang mencakup organisasi induk membaca organisasi tertaut tempat kunci tersebut dibuat kecuali Anda meneruskan parameter query `organization_id` (UUID organisasi tertaut atau ID-nya dengan awalan `org_`) untuk [membaca organisasi lain](https://platform.claude.com/docs/id/manage-claude/plugins-api#reading-another-organization-under-the-same-parent), dan kunci yang dibatasi pada satu organisasi hanya membaca organisasi tersebut. Panggilan ini dihitung terhadap [batas laju](https://platform.claude.com/docs/id/manage-claude/plugins-api#rate-limiting) Admin API, bukan Compliance API.
+Kirimkan header `anthropic-beta: ce-plugins-2026-09-01` pada setiap permintaan; tanpa header tersebut, endpoint ini mengembalikan 404 Not Found (lihat [Respons error](https://platform.claude.com/docs/id/manage-claude/plugins-api#error-responses) pada Plugins API). Setiap panggilan membaca satu organisasi. Kunci yang mencakup organisasi induk membaca organisasi tertaut tempat kunci tersebut dibuat. Untuk [membaca organisasi lain](https://platform.claude.com/docs/id/manage-claude/plugins-api#reading-another-organization-under-the-same-parent), teruskan parameter query `organization_id` (UUID organisasi tertaut atau ID-nya dengan awalan `org_`). Kunci yang dibatasi pada satu organisasi hanya membaca organisasi tersebut. Panggilan ini dihitung terhadap [batas laju](https://platform.claude.com/docs/id/manage-claude/plugins-api#rate-limiting) Admin API, bukan Compliance API.
 
-Membuat atau mengubah plugin, pengaturan instalasinya, atau pengaturan marketplace memerlukan kunci Admin API dengan `write:plugins`. Dari panggilan baca tersebut, hanya pengunduhan file plugin di marketplace pribadi anggota yang mencatat peristiwa [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) (`claude_plugin_archive_accessed`). Lihat [panduan Plugins API](https://platform.claude.com/docs/id/manage-claude/plugins-api) untuk setiap endpoint, contoh permintaan, dan [peristiwa yang dicatat oleh API](https://platform.claude.com/docs/id/manage-claude/plugins-api#activity-feed-events).
+Membuat atau mengubah plugin, pengaturan instalasinya, atau pengaturan marketplace memerlukan kunci Admin API dengan `write:plugins`. Dari panggilan baca tersebut, hanya pengunduhan file plugin di marketplace pribadi anggota yang mencatat peristiwa [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) (`claude_plugin_archive_accessed`). Lihat panduan [Plugins API](https://platform.claude.com/docs/id/manage-claude/plugins-api) untuk setiap endpoint, contoh permintaan, dan [peristiwa yang dicatat oleh API](https://platform.claude.com/docs/id/manage-claude/plugins-api#activity-feed-events).
 
 ## Langkah selanjutnya
 

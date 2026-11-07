@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-management
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: eaa4830d5faef5737aeaec8f3997019fa56a8bd149c43390793a90386eab8bea
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: bb6aab3f7423a6fabbc57cad605065e28eae7d8782466dfd02ed43f0be4c2e6a
 ---
 
 ---
@@ -41,7 +41,7 @@ Anggota dan undangan menggunakan endpoint yang sama untuk kedua jenis organisasi
 <Check>
   **Memerlukan kunci Admin API dengan scope**
 
-  Endpoint ini memerlukan kunci Admin API dengan scope `read:members` (endpoint `GET` anggota dan undangan, serta semua endpoint peran kustom; tidak ada scope peran terpisah), scope `write:members` (endpoint `POST` dan `DELETE` anggota dan undangan), scope `read:rbac_groups` (endpoint `GET` grup), atau scope `write:rbac_groups` (endpoint `POST` dan `DELETE` grup). Menetapkan peran `managed`, atau grup pada undangan, memerlukan `write:rbac_groups` selain `write:members`. Kunci yang membawa scope `read:org_audit` (scope hanya-baca untuk integrasi audit keamanan) juga dapat memanggil setiap endpoint `GET` di halaman ini dan endpoint baca [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api). Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization) untuk mengetahui di mana pemilik utama Anda membuatnya dan scope mana yang harus dipilih. Kirimkan kunci di header `x-api-key` pada setiap permintaan, bersama dengan header [`anthropic-version`](https://platform.claude.com/docs/id/api/versioning).
+  Endpoint ini memerlukan kunci Admin API dengan scope yang sesuai dengan permintaan. Endpoint `GET` anggota dan undangan, serta semua endpoint peran kustom, memerlukan `read:members` (tidak ada scope peran terpisah). Endpoint `POST` dan `DELETE` anggota dan undangan memerlukan `write:members`. Endpoint `GET` grup memerlukan `read:rbac_groups`, dan endpoint `POST` dan `DELETE` grup memerlukan `write:rbac_groups`. Menetapkan peran `managed`, atau grup pada undangan, memerlukan `write:rbac_groups` selain `write:members`. Kunci yang membawa scope `read:org_audit` (scope hanya-baca untuk integrasi audit keamanan) juga dapat memanggil setiap endpoint `GET` di halaman ini dan endpoint baca [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api). Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization) untuk mengetahui di mana membuatnya dan scope mana yang harus dipilih. Kirimkan kunci di header `x-api-key` pada setiap permintaan, bersama dengan header [`anthropic-version`](https://platform.claude.com/docs/id/api/versioning).
 </Check>
 
 ## Ikhtisar
@@ -201,7 +201,7 @@ Jika paket organisasi Anda mengambil anggota dari kumpulan kursi (seat) terbatas
 
 ### Grup dan peran
 
-Grup menghubungkan anggota dengan peran kustom (“role-based access control” (kontrol akses berbasis peran), yaitu `rbac` dalam path endpoint dan nama scope). Grup dimiliki oleh enterprise Anda secara keseluruhan (organisasi induk beserta setiap organisasi di bawahnya), bukan oleh satu organisasi saja. Jadi, scope grup (`read:rbac_groups` dan `write:rbac_groups`) memerlukan kunci yang dibuat untuk semua organisasi yang tertaut. Setiap grup memiliki `source_type`: `direct` untuk grup yang dibuat di claude.ai, `scim` untuk grup yang disediakan oleh penyedia identitas Anda. Field `role_ids` pada grup mencantumkan ID peran kustom yang terlampir padanya. Uraikan ID tersebut menjadi nama dan izin dengan [endpoint peran kustom](https://platform.claude.com/docs/id/manage-claude/user-management#custom-roles). Katalog peran bersifat per organisasi, tetapi grup berlaku di seluruh enterprise. Jadi, mengambil peran yang dimiliki organisasi lain di enterprise Anda akan mengembalikan 404 untuk kunci Anda. Field `role_ids` bernilai `null` (bukan `[]`) ketika data peran untuk sementara tidak tersedia, jadi coba lagi untuk membedakan pembacaan yang terdegradasi dari grup yang tidak memiliki peran.
+Grup menghubungkan anggota dengan peran kustom (“role-based access control” (kontrol akses berbasis peran), yaitu `rbac` dalam path endpoint dan nama scope). Grup dimiliki oleh organisasi induk Anda beserta setiap organisasi di bawahnya, bukan oleh satu organisasi saja. Jadi, scope grup (`read:rbac_groups` dan `write:rbac_groups`) memerlukan kunci yang dibuat untuk semua organisasi yang tertaut. Setiap grup memiliki `source_type`: `direct` untuk grup yang dibuat di claude.ai, `scim` untuk grup yang disediakan oleh penyedia identitas Anda. Field `role_ids` pada grup mencantumkan ID peran kustom yang terlampir padanya. Uraikan ID tersebut menjadi nama dan izin dengan [endpoint peran kustom](https://platform.claude.com/docs/id/manage-claude/user-management#custom-roles). Setiap organisasi memiliki katalog perannya sendiri, tetapi grup digunakan bersama di seluruh organisasi induk Anda. Jadi, mengambil peran yang dimiliki organisasi lain di bawah organisasi induk Anda akan mengembalikan 404 untuk kunci Anda. Field `role_ids` bernilai `null` (bukan `[]`) ketika data peran untuk sementara tidak tersedia, jadi coba lagi untuk membedakan pembacaan yang terdegradasi dari grup yang tidak memiliki peran.
 
 ## Pembuatan versi
 
@@ -637,7 +637,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [Keluarkan pengguna](htt
 
 Pengeluaran sesi ini menjangkau seluruh akun Claude milik orang tersebut, termasuk sesi mereka di organisasi lain dan pada paket individu. Anggota tetap mempertahankan kursi dan perannya serta dapat masuk kembali saat itu juga. Untuk mencegah seseorang masuk, [hapus mereka](https://platform.claude.com/docs/id/manage-claude/user-management#remove-a-member) atau, jika organisasi Anda mewajibkan single sign-on, nonaktifkan akun mereka di penyedia identitas Anda. Menonaktifkan akun menghentikan proses masuk baru tetapi tetap mempertahankan mereka di daftar anggota Anda. Jika Anda menghapus seseorang dan membiarkan akun penyedia identitas mereka tetap aktif, penyediaan otomatis dapat menambahkan mereka kembali saat mereka masuk berikutnya. Jika penyedia identitas Anda mengelola keanggotaan, Anda hanya dapat menghapus anggota di sana.
 
-Buat kunci sebelum Anda membutuhkannya. Lihat [Membuat kunci untuk organisasi Claude Enterprise](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization). Kunci `write:members` hanya berfungsi di organisasi tempat kunci tersebut dibuat, sehingga setiap organisasi yang ditautkan memerlukan kuncinya sendiri. Pemilik utama organisasi tersebut yang membuatnya. Untuk mencari anggota berdasarkan alamat email dengan kunci yang sama, pilih juga scope `read:members`.
+Buat kunci sebelum Anda membutuhkannya. Lihat [Membuat kunci untuk organisasi Claude Enterprise](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization). Kunci `write:members` hanya berfungsi di organisasi tempat kunci tersebut dibuat, sehingga setiap organisasi yang tertaut memerlukan kuncinya sendiri. Pemilik utama organisasi tersebut yang membuatnya. Untuk mencari anggota berdasarkan alamat email dengan kunci yang sama, pilih juga scope `read:members`.
 
 Permintaan ini tidak memiliki body. Teruskan `id` anggota, yang dikembalikan oleh [Mendaftar anggota](https://platform.claude.com/docs/id/manage-claude/user-management#list-members):
 
@@ -2167,7 +2167,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [Menghapus anggota grup]
 
 ## Peran kustom
 
-Peran kustom bersifat hanya-baca melalui API: endpoint ini mengatalogkan peran kustom organisasi Anda (yang didefinisikan di [pengaturan organisasi claude.ai](https://claude.ai/admin-settings) atau disediakan oleh Anthropic) dan izin yang diberikan setiap peran. Pembacaan peran kustom menggunakan scope `read:members` (tidak ada scope peran terpisah) dan berfungsi dengan kunci tingkat organisasi: tidak seperti endpoint grup, endpoint ini tidak memerlukan kunci yang dibuat untuk semua organisasi yang tertaut, dan katalog yang dikembalikan adalah milik organisasi Anda sendiri.
+Peran kustom bersifat hanya-baca melalui API: endpoint ini mengatalogkan peran kustom organisasi Anda (yang didefinisikan di [pengaturan organisasi claude.ai](https://claude.ai/admin-settings) atau disediakan oleh Anthropic) dan izin yang diberikan setiap peran. Pembacaan peran kustom menggunakan scope `read:members` (tidak ada scope peran terpisah) dan berfungsi dengan kunci tingkat organisasi, dan katalog yang dikembalikan adalah milik organisasi Anda sendiri.
 
 Baca nama peran dari field `display_name`-nya. Untuk peran yang disediakan oleh Anthropic, `display_name` dapat berbeda dari label yang ditampilkan claude.ai, dan Anthropic mungkin mengubah namanya. Untuk menyimpan referensi permanen ke suatu peran, simpan `id`-nya.
 
@@ -2692,7 +2692,7 @@ Kunci tetap berfungsi. Kunci Admin API dicakup ke organisasi, bukan ke pengguna 
 
 <CardGroup cols={2}>
   <Card title="Membuat kunci Admin API" href="https://platform.claude.com/docs/id/manage-claude/admin-api-keys">
-    Tempat pemilik utama Anda membuat kunci dengan scope dan scope mana yang harus dipilih.
+    Tempat membuat kunci dengan scope dan scope mana yang harus dipilih.
   </Card>
 
   <Card title="Compliance API" href="https://platform.claude.com/docs/id/manage-claude/compliance-api">

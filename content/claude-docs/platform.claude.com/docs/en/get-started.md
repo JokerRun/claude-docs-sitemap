@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 358f58d56aa70f51535e226a4b46668b322182d7d8bb93c84488fe596d41c4ae
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: 3eb3e2502b23632b5ef99cd5716710ee6d75f1534c688a23513d71550a7c5094
 ---
 
 ---
@@ -40,7 +40,7 @@ description: Make your first API call to Claude and build a simple web search as
         For Linux environments, download the release binary directly.
 
         ```bash
-        VERSION=2.7.0
+        VERSION=2.7.1
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -187,7 +187,7 @@ description: Make your first API call to Claude and build a simple web search as
             For Linux environments, download the release binary directly.
 
             ```bash
-            VERSION=2.7.0
+            VERSION=2.7.1
             OS=$(uname -s | tr '[:upper:]' '[:lower:]')
             case $(uname -m) in
               x86_64) ARCH=amd64 ;;

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 9946065aee5eedcada8fe0a794dd1831b507cb6f7f52313f937607e4ae166b2e
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: b0bd3ccf7f974aeff36efd1919bfcb1937c2fa0428400d120a547908a302c106
 ---
 
 ---
@@ -11,15 +11,15 @@ url: https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe
 description: Autentikasi workload SPIFFE ke Claude API menggunakan JWT-SVID dari SPIRE atau penerbit lain yang sesuai dengan SPIFFE.
 ---
 
-[SPIFFE](https://spiffe.io/) adalah standar CNCF untuk menerbitkan identitas bagi workload. [SPIRE](https://spiffe.io/docs/latest/spire-about/) adalah implementasi referensi open-source-nya, dan beberapa produk komersial juga menerbitkan identitas yang sesuai dengan SPIFFE. Anthropic melakukan federasi dengan implementasi SPIFFE apa pun yang menghasilkan JWT-SVID yang kompatibel dengan OIDC. Untuk daftar implementasi terkini, lihat [Commercial software that implements SPIFFE](https://spiffe.io/docs/latest/spiffe-about/overview/#commercial-software-that-implements-spiffe) di situs proyek SPIFFE.
+[SPIFFE](https://spiffe.io/) adalah standar CNCF untuk menerbitkan identitas bagi workload. [SPIRE](https://spiffe.io/docs/latest/spire-about/) adalah implementasi referensi open-source-nya, dan beberapa produk komersial juga menerbitkan identitas yang sesuai dengan SPIFFE. Anthropic melakukan federasi dengan implementasi SPIFFE apa pun yang menghasilkan JWT-SVID yang kompatibel dengan OIDC. Untuk daftar implementasi, lihat [Commercial software that implements SPIFFE](https://spiffe.io/docs/latest/spiffe-about/overview/#commercial-software-that-implements-spiffe) di situs proyek SPIFFE.
 
-Federasi bekerja baik melalui dokumen discovery OIDC di URL HTTPS publik (mode `discovery`, tunduk pada [batasan URL](https://platform.claude.com/docs/id/manage-claude/wif-reference#url-fields)) atau dengan mendaftarkan JWKS secara langsung (mode `inline`).
+Dalam mode `discovery`, Anthropic membaca dokumen discovery OIDC di URL HTTPS publik, tunduk pada batasan di [Field URL](https://platform.claude.com/docs/id/manage-claude/wif-reference#url-fields). Dalam mode `inline`, Anda mendaftarkan “JSON Web Key Set” (set kunci web JSON), atau JWKS, secara langsung.
 
-Spesifikasi JWT-SVID mendefinisikan `sub` sebagai SPIFFE ID milik workload, dan SPIFFE Workload API mengharuskan pemanggil menyediakan `aud` pada saat pengambilan, sehingga klaim-klaim tersebut sama di semua implementasi. Anthropic juga mewajibkan `iss` dan `iat`, yang keduanya tidak diwajibkan oleh spesifikasi JWT-SVID, jadi konfigurasikan implementasi Anda untuk mengisi keduanya (di SPIRE, `iss` adalah pengaturan server `jwt_issuer` dan `iat` diatur secara otomatis). Dengan semua itu terpenuhi, bagian [Konfigurasi Anthropic](https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe#configure-anthropic), [Memperoleh dan menggunakan token](https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe#acquire-and-use-the-token), dan [Membatasi cakupan aturan Anda](https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe#scope-your-rule) dalam panduan ini berlaku untuk implementasi SPIFFE apa pun.
+Spesifikasi JWT-SVID mendefinisikan `sub` sebagai SPIFFE ID milik workload, dan SPIFFE Workload API mengharuskan pemanggil menyediakan `aud` pada saat pengambilan. Oleh karena itu, klaim-klaim tersebut sama di semua implementasi. Anthropic juga mewajibkan `iss` dan `iat`, dan keduanya tidak diwajibkan oleh spesifikasi JWT-SVID, jadi konfigurasikan implementasi Anda untuk mengisi keduanya. Di SPIRE, `iss` adalah pengaturan server `jwt_issuer`, dan SPIRE mengatur `iat` secara otomatis. Dengan semua itu terpenuhi, bagian [Konfigurasi Anthropic](https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe#configure-anthropic), [Memperoleh dan menggunakan token](https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe#acquire-and-use-the-token), dan [Membatasi cakupan aturan Anda](https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe#scope-your-rule) dalam panduan ini berlaku untuk implementasi SPIFFE apa pun.
 
-SPIFFE memberikan setiap workload sebuah URI identitas yang stabil dengan bentuk `spiffe://<trust-domain>/<path>`, dan SPIRE menerbitkan identitas tersebut sebagai JWT-SVID sesuai permintaan melalui Workload API. JWT-SVID adalah JWT bertanda tangan biasa yang klaim `sub`-nya adalah SPIFFE ID milik workload dan klaim `aud`-nya disediakan oleh workload pada saat pengambilan.
+SPIFFE memberikan setiap workload sebuah URI identitas yang stabil dengan bentuk `spiffe://<trust-domain>/<path>`, dan SPIRE menerbitkan identitas tersebut sebagai JWT-SVID sesuai permintaan melalui Workload API. JWT-SVID adalah “JSON Web Token” (token web JSON), atau JWT, bertanda tangan biasa.
 
-Jembatan dari trust domain SPIRE ke OIDC standar adalah [SPIRE OIDC Discovery Provider](https://github.com/spiffe/spire/blob/main/support/oidc-discovery-provider/README.md), sebuah helper mandiri yang memublikasikan `/.well-known/openid-configuration` dan endpoint JWKS untuk kunci penandatanganan JWT milik trust domain. Dengan discovery provider berjalan, JWT-SVID divalidasi seperti token OIDC lainnya: daftarkan URL discovery sebagai federation issuer (penerbit federasi), tulis federation rule (aturan federasi) yang cocok dengan SPIFFE ID milik workload, dan minta workload menyajikan JWT-SVID-nya ke endpoint token-exchange Anthropic.
+[SPIRE OIDC Discovery Provider](https://github.com/spiffe/spire/blob/main/support/oidc-discovery-provider/README.md) menghubungkan trust domain SPIRE ke OIDC standar. Helper mandiri ini memublikasikan `/.well-known/openid-configuration` dan endpoint JWKS untuk kunci penandatanganan JWT milik trust domain. Dengan discovery provider berjalan, JWT-SVID divalidasi seperti token OIDC lainnya. Daftarkan URL discovery sebagai federation issuer (penerbit federasi) dan tulis federation rule (aturan federasi) yang cocok dengan SPIFFE ID milik workload. Kemudian minta workload menyajikan JWT-SVID-nya ke endpoint token-exchange Anthropic.
 
 Contoh-contoh di halaman ini menggunakan SPIRE dan berlaku di mana pun SPIRE Agent berjalan: pod Kubernetes, mesin virtual, dan host bare-metal.
 
@@ -29,10 +29,10 @@ Contoh-contoh di halaman ini menggunakan SPIRE dan berlaku di mana pun SPIRE Age
 
 ## Prasyarat
 
-* Pemahaman tentang [konsep WIF](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#concepts): service account, federation issuer, dan federation rule.
-* Deployment SPIFFE dengan identitas workload yang telah diterbitkan (contoh di halaman ini menggunakan SPIRE Server dan Agent), serta registration entry untuk workload yang perlu memanggil Claude API.
+* Pemahaman tentang [konsep Workload Identity Federation (WIF)](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#concepts): service account, federation issuer, dan federation rule.
+* Deployment SPIFFE dengan identitas workload yang telah diterbitkan, serta registration entry untuk workload yang perlu memanggil Claude API. Contoh di halaman ini menggunakan SPIRE Server dan Agent.
 * Endpoint discovery OIDC untuk trust domain (di SPIRE, [OIDC Discovery Provider](https://github.com/spiffe/spire/blob/main/support/oidc-discovery-provider/README.md)) yang berjalan dengan endpoint HTTPS yang dapat dijangkau secara publik, atau JWKS yang diekspor untuk pendaftaran `inline`.
-* Penerbit SPIFFE Anda dikonfigurasi untuk mengatur klaim `iss` pada JWT-SVID ke nilai yang akan Anda daftarkan sebagai `issuer_url` milik federation issuer. Untuk mode `discovery`, ini adalah URL publik endpoint discovery (di SPIRE, pengaturan server `jwt_issuer`).
+* Penerbit SPIFFE Anda dikonfigurasi untuk mengatur klaim `iss` pada JWT-SVID ke nilai yang Anda daftarkan sebagai `issuer_url` milik federation issuer. Untuk mode `discovery`, ini adalah URL publik endpoint discovery (di SPIRE, pengaturan server `jwt_issuer`).
 * JWT-SVID tersedia bagi workload Anda. WIF hanya menerima JWT-SVID, bukan X.509-SVID.
 * Izin untuk membuat service account, federation issuer, dan federation rule di Claude Console untuk organisasi Anthropic Anda.
 
@@ -45,7 +45,7 @@ Instruksi di bagian ini khusus untuk SPIRE. Jika Anda menggunakan penerbit SPIFF
 Jika Anda sudah menjalankan SPIRE dengan OIDC Discovery Provider, federasi dengan Anthropic memerlukan tiga hal di sisi SPIRE:
 
 * `jwt_issuer` yang cocok dengan URL discovery
-* Entri registrasi untuk workload yang akan memanggil Claude API
+* Entri registrasi untuk workload yang memanggil Claude API
 * Cara bagi workload tersebut untuk mengambil JWT-SVID dengan audience Anthropic
 
 Subbagian berikut membahas masing-masing. Cuplikan konfigurasi hanya menampilkan pengaturan yang relevan dengan federasi Anthropic, bukan konfigurasi deployment SPIRE yang lengkap.
@@ -56,11 +56,11 @@ Subbagian berikut membahas masing-masing. Cuplikan konfigurasi hanya menampilkan
 
 ### Verifikasi JWT issuer
 
-Anthropic memvalidasi JWT-SVID dengan mencocokkan klaim `iss`-nya terhadap penerbit federasi yang terdaftar dan mengambil JWKS dari dokumen discovery milik issuer tersebut. Dua pengaturan SPIRE harus sepakat pada URL yang sama: `jwt_issuer` milik SPIRE Server (yang menjadi klaim `iss` di setiap JWT-SVID yang dicetak) dan daftar `domains` milik OIDC Discovery Provider (yang menentukan host tempat dokumen discovery dan JWKS disajikan). URL bersama itulah yang Anda daftarkan ke Anthropic.
+Anthropic memvalidasi JWT-SVID dengan mencocokkan klaim `iss`-nya terhadap penerbit federasi yang terdaftar dan mengambil JWKS dari dokumen discovery milik issuer tersebut. Dua pengaturan SPIRE harus sepakat pada URL yang sama. `jwt_issuer` milik SPIRE Server menjadi klaim `iss` di setiap JWT-SVID yang diterbitkan. Daftar `domains` milik OIDC Discovery Provider menentukan host yang menyajikan dokumen discovery dan JWKS. URL bersama itulah yang Anda daftarkan ke Anthropic.
 
 Trust domain dan URL issuer bersifat independen. Trust domain (`spiffe://prod.example.com`) membatasi cakupan klaim `sub`. URL issuer (`https://oidc-discovery.prod.example.com`) adalah tempat Anthropic mengambil kunci penandatanganan. Keduanya tidak perlu berbagi hostname.
 
-Pastikan `jwt_issuer` diatur dalam konfigurasi SPIRE Server dan mengarah ke URL publik discovery provider. Contoh berikut juga menampilkan masa berlaku JWT-SVID default. Default bawaan SPIRE adalah 5 menit, yang cukup singkat sehingga rotasi berkelanjutan diperlukan (lihat [Menjalankan spiffe-helper](https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe#run-spiffe-helper)). Endpoint token-exchange Anthropic menolak token identitas apa pun yang masa berlakunya melebihi maksimum yang dikonfigurasi pada federation issuer, yaitu 1 jam secara default (lihat [Aturan validasi](https://platform.claude.com/docs/id/manage-claude/wif-reference#validation-rules)). Pemeriksaan ini berlaku untuk setiap implementasi SPIFFE, bukan hanya SPIRE, jadi pertahankan `default_jwt_svid_ttl` (atau override per-entry apa pun) pada atau di bawah maksimum tersebut.
+Pastikan `jwt_issuer` diatur dalam konfigurasi SPIRE Server dan mengarah ke URL publik discovery provider. Contoh berikut juga menampilkan masa berlaku JWT-SVID default. Default bawaan SPIRE adalah 5 menit, yang cukup singkat sehingga memerlukan rotasi berkelanjutan (lihat [Menjalankan spiffe-helper](https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe#run-spiffe-helper)). Endpoint token-exchange Anthropic menolak token identitas apa pun yang masa berlakunya melebihi maksimum yang dikonfigurasi pada federation issuer, yaitu 1 jam secara default (lihat [Aturan validasi](https://platform.claude.com/docs/id/manage-claude/wif-reference#validation-rules)). Pemeriksaan ini berlaku untuk setiap implementasi SPIFFE, bukan hanya SPIRE, jadi pertahankan `default_jwt_svid_ttl` (atau override apa pun pada entri registrasi) pada atau di bawah maksimum tersebut.
 
 ```text server.conf
 server {
@@ -126,7 +126,7 @@ jwt_svids = [{
 }]
 ```
 
-Di Kubernetes, jalankan spiffe-helper sebagai container sidecar yang berbagi volume `emptyDir` berbasis memori (`medium: Memory`) dengan container aplikasi Anda sehingga bearer SVID tidak pernah tersimpan di disk node. Mount socket SPIRE Agent dari host ke dalam sidecar, mount volume bersama di `/var/run/secrets/anthropic.com` pada kedua container, dan atur `ANTHROPIC_IDENTITY_TOKEN_FILE=/var/run/secrets/anthropic.com/token` pada container aplikasi. Pada VM dan bare metal, jalankan spiffe-helper sebagai layanan sistem di samping workload dan arahkan keduanya ke direktori bersama.
+Di Kubernetes, jalankan spiffe-helper sebagai container sidecar yang berbagi volume `emptyDir` berbasis memori (`medium: Memory`) dengan container aplikasi Anda. Dengan begitu, bearer SVID tidak pernah mencapai disk node. Mount socket SPIRE Agent dari host ke dalam sidecar, mount volume bersama di `/var/run/secrets/anthropic.com` pada kedua container, dan atur `ANTHROPIC_IDENTITY_TOKEN_FILE=/var/run/secrets/anthropic.com/token` pada container aplikasi. Pada VM dan bare metal, jalankan spiffe-helper sebagai layanan sistem di samping workload dan arahkan keduanya ke direktori bersama.
 
 ## Konfigurasi Anthropic
 
@@ -144,15 +144,15 @@ Wizard membuat sumber daya ini untuk Anda. Gunakan nilai-nilai berikut, baik And
 }
 ```
 
-Jika discovery provider tidak dapat dijangkau dari internet publik, ambil JWKS sendiri (`curl https://oidc-discovery.prod.example.com/keys`) dan daftarkan issuer dengan `"jwks": {"type": "inline", "keys": [...]}` menggunakan isi array `keys` yang dikembalikan. Dalam mode `inline`, `issuer_url` hanya dibandingkan dengan klaim `iss` pada JWT-SVID. Anthropic tidak pernah mencoba menjangkaunya.
+Jika discovery provider tidak dapat dijangkau dari internet publik, ambil JWKS sendiri (`curl https://oidc-discovery.prod.example.com/keys`). Kemudian daftarkan issuer dengan `"jwks": {"type": "inline", "keys": [...]}`, menggunakan isi array `keys` yang dikembalikan. Dalam mode `inline`, Anthropic hanya membandingkan `issuer_url` dengan klaim `iss` pada JWT-SVID dan tidak pernah mencoba menjangkaunya.
 
 <Warning>
-  SPIRE sering merotasi kunci penandatanganan JWT, secara default dengan irama yang sama dengan CA (`ca_ttl`, 24 jam). Jika Anda mendaftarkan issuer dengan JWKS inline alih-alih URL discovery, Anda harus memperbarui JWKS setiap kali SPIRE melakukan rotasi: tambahkan kunci baru sebelum workload mulai menyajikannya, dan **hapus kunci yang sudah digantikan** setelah token yang ditandatangani dengannya kedaluwarsa. Kunci usang yang tertinggal di JWKS inline tetap dipercaya tanpa batas waktu.
+  SPIRE sering merotasi kunci penandatanganan JWT, secara default dengan jadwal yang sama dengan CA (`ca_ttl`, 24 jam). Jika Anda mendaftarkan issuer dengan JWKS inline alih-alih URL discovery, Anda harus memperbarui JWKS setiap kali SPIRE melakukan rotasi. Tambahkan kunci baru sebelum workload mulai menyajikannya, dan **hapus kunci yang sudah digantikan** setelah token yang ditandatangani dengannya kedaluwarsa. Kunci usang yang tertinggal di JWKS inline tetap dipercaya tanpa batas waktu.
 </Warning>
 
-Untuk mengotomatiskan pembaruan JWKS tanpa mengekspos endpoint discovery publik, konfigurasikan plugin [BundlePublisher](https://spiffe.io/docs/latest/deploying/spire_server/#built-in-plugins) SPIRE Server (`aws_s3`, `gcp_cloudstorage`, atau `k8s_configmap`) dengan `format = "jwks"` untuk mendorong kunci penandatanganan JWT ke penyimpanan eksternal pada setiap rotasi, lalu perbarui kunci inline milik issuer melalui [Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#federation-issuers).
+Untuk mengotomatiskan pembaruan JWKS tanpa mengekspos endpoint discovery publik, konfigurasikan plugin [BundlePublisher](https://spiffe.io/docs/latest/deploying/spire_server/#built-in-plugins) SPIRE Server (`aws_s3`, `gcp_cloudstorage`, atau `k8s_configmap`) dengan `format = "jwks"`. Plugin ini mendorong kunci penandatanganan JWT ke penyimpanan eksternal pada setiap rotasi. Kemudian perbarui kunci inline milik issuer melalui Admin API. Lihat [Penerbit federasi](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#federation-issuers).
 
-**Aturan federasi:** Cocokkan `sub` pada JWT-SVID (SPIFFE ID) dan `aud` yang Anda konfigurasikan untuk diminta oleh spiffe-helper. SPIFFE ID adalah string URI dan `subject_prefix` mencocokkannya sebagai teks opak, sehingga nilai persis maupun pencocokan prefiks dengan `*` di akhir sama-sama berfungsi. Untuk pola yang lebih kompleks, gunakan `condition` CEL.
+**Aturan federasi:** Cocokkan `sub` pada JWT-SVID (SPIFFE ID) dan `aud` yang Anda konfigurasikan untuk diminta oleh spiffe-helper. SPIFFE ID adalah string URI dan `subject_prefix` mencocokkannya sebagai teks opak, sehingga nilai persis maupun pencocokan prefiks dengan `*` di akhir sama-sama berfungsi. Untuk pola yang lebih kompleks, gunakan `condition` berbasis “Common Expression Language” (bahasa ekspresi umum), atau CEL.
 
 ```json
 {
@@ -178,11 +178,11 @@ Buatlah sespesifik yang dimungkinkan oleh workload. Longgarkan `subject_prefix` 
 
 ## Memperoleh dan menggunakan token
 
-Claude SDK dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau, kecuali di Java, memanggil SPIFFE Workload API secara langsung melalui penyedia token. Jalur file adalah integrasi paling sederhana dan berfungsi di setiap bahasa SDK. Jalur penyedia token menghilangkan sidecar tetapi memerlukan klien SPIFFE Workload API dalam bahasa aplikasi Anda.
+SDK dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau, kecuali di Java, memanggil SPIFFE Workload API secara langsung melalui penyedia token. Jalur file membutuhkan kode paling sedikit, dan SDK mendukungnya di setiap bahasa. Jalur penyedia token menghilangkan sidecar tetapi memerlukan klien SPIFFE Workload API dalam bahasa aplikasi Anda.
 
 <Tabs>
   <Tab title="Berbasis file dengan spiffe-helper">
-    Dengan spiffe-helper menulis JWT-SVID baru ke `/var/run/secrets/anthropic.com/token`, atur `ANTHROPIC_IDENTITY_TOKEN_FILE` ke path tersebut bersama dengan `ANTHROPIC_FEDERATION_RULE_ID`, `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_SERVICE_ACCOUNT_ID`, dan `ANTHROPIC_WORKSPACE_ID`. SDK membaca file tersebut pada setiap pertukaran token, sehingga selalu mengambil SVID yang paling baru dirotasi, dan memperbarui token akses Anthropic secara otomatis sebelum kedaluwarsa. Lihat [Variabel lingkungan](https://platform.claude.com/docs/id/manage-claude/wif-reference#environment-variables) untuk mengetahui asal setiap nilai.
+    Dengan spiffe-helper menulis JWT-SVID baru ke `/var/run/secrets/anthropic.com/token`, atur `ANTHROPIC_IDENTITY_TOKEN_FILE` ke path tersebut. Atur juga variabel lingkungan federasi lainnya yang dibaca oleh contoh berikut. SDK membaca file tersebut pada setiap pertukaran token, sehingga selalu mengambil SVID yang paling baru dirotasi. SDK juga memperbarui token akses Anthropic secara otomatis sebelum kedaluwarsa. Lihat [Variabel lingkungan](https://platform.claude.com/docs/id/manage-claude/wif-reference#environment-variables) untuk mengetahui asal setiap nilai.
 
     <CodeGroup>
       ```bash cURL
@@ -357,7 +357,7 @@ Claude SDK dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau, ke
   </Tab>
 
   <Tab title="Penyedia token melalui SPIFFE Workload API">
-    Kecuali di Java, workload yang menautkan klien SPIFFE Workload API secara langsung dapat melewati spiffe-helper dan memberikan SDK sebuah penyedia token yang mengambil JWT-SVID baru dari socket agent. SDK memanggil provider sebelum setiap pertukaran token, sehingga workload selalu menyajikan SVID yang belum kedaluwarsa. Python ([py-spiffe](https://github.com/HewlettPackard/py-spiffe)) dan Go ([go-spiffe](https://github.com/spiffe/go-spiffe)) memiliki klien Workload API yang matang.
+    Kecuali di Java, workload yang menautkan klien SPIFFE Workload API secara langsung dapat melewati spiffe-helper. Workload tersebut memberikan SDK sebuah penyedia token yang mengambil JWT-SVID baru dari socket agent. SDK memanggil provider sebelum setiap pertukaran token, sehingga workload selalu menyajikan SVID yang belum kedaluwarsa. Python ([py-spiffe](https://github.com/HewlettPackard/py-spiffe)) dan Go ([go-spiffe](https://github.com/spiffe/go-spiffe)) memiliki klien Workload API yang matang.
 
     <CodeGroup exclude="shell, typescript, java, csharp, php, ruby">
       ```python Python
@@ -453,7 +453,7 @@ Claude SDK dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau, ke
     </CodeGroup>
 
     <Note>
-      Untuk bahasa lain, ambil JWT-SVID dengan klien SPIFFE Workload API milik runtime Anda (atau jalankan `spire-agent api fetch jwt` melalui shell), tuliskan ke file, dan atur `ANTHROPIC_IDENTITY_TOKEN_FILE` ke path tersebut seperti pada tab berbasis file.
+      Untuk bahasa lain, ambil JWT-SVID dengan klien SPIFFE Workload API milik runtime Anda (atau jalankan `spire-agent api fetch jwt`) dan tuliskan ke file. Kemudian atur `ANTHROPIC_IDENTITY_TOKEN_FILE` ke path tersebut, seperti pada tab berbasis file.
     </Note>
   </Tab>
 </Tabs>
@@ -475,21 +475,21 @@ spire-agent api fetch jwt \
   | jq -rR 'split(".")[1] | gsub("-";"+") | gsub("_";"/") | @base64d | fromjson'
 ```
 
-Flag `-output json` mengembalikan respons SVID dan respons bundle sebagai array JSON dua elemen, sehingga `jq -r '.[0].svids[0].svid'` mengekstrak token mentah. Pada versi SPIRE lama tanpa `-output`, perintah tersebut mencetak blok berlabel. Dalam hal itu, salurkan output default melalui `awk '/^[[:space:]]*eyJ/{print $1; exit}'` untuk mengekstrak baris token. Periksa bahwa `iss` adalah URL OIDC Discovery Provider yang Anda daftarkan, `sub` adalah SPIFFE ID dari workload, dan `aud` berisi `https://api.anthropic.com`. Kemudian jalankan contoh di [Memperoleh dan menggunakan token](https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe#acquire-and-use-the-token). Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-`. Jika pertukaran gagal dengan respons `401` `authentication_error` yang opak (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console untuk alasan penolakan dan lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange). Penyebab paling umum di sisi SPIRE adalah ketidakcocokan antara `jwt_issuer` milik SPIRE Server dan URL yang didaftarkan sebagai penerbit federasi.
+Flag `-output json` mengembalikan respons SVID dan respons bundle sebagai array JSON dua elemen, sehingga `jq -r '.[0].svids[0].svid'` mengekstrak token mentah. Jika versi SPIRE Anda tidak memiliki flag `-output`, perintah tersebut mencetak blok berlabel. Dalam hal itu, salurkan output default melalui `awk '/^[[:space:]]*eyJ/{print $1; exit}'` untuk mengekstrak baris token. Periksa bahwa `iss` adalah URL OIDC Discovery Provider yang Anda daftarkan, `sub` adalah SPIFFE ID dari workload, dan `aud` berisi `https://api.anthropic.com`. Kemudian jalankan contoh di [Memperoleh dan menggunakan token](https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe#acquire-and-use-the-token). Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-`. Jika pertukaran gagal dengan respons `401` `authentication_error` yang opak (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console untuk alasan penolakan. Kemudian lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange). Penyebab paling umum di sisi SPIRE adalah ketidakcocokan antara `jwt_issuer` milik SPIRE Server dan URL yang Anda daftarkan sebagai penerbit federasi.
 
 ## Membatasi cakupan aturan Anda
 
 Konvensi path SPIFFE ID ditentukan oleh operator, sehingga matcher `subject_prefix` pada federation rule harus mencerminkan skema path yang digunakan registration entry Anda. Skema umum mencakup `spiffe://<trust-domain>/ns/<namespace>/sa/<service-account>` (default yang dihasilkan oleh resource `ClusterSPIFFEID` di spire-controller-manager) dan `spiffe://<trust-domain>/host/<hostname>/<service>` untuk workload VM dan bare-metal.
 
 <Warning>
-  `subject_prefix` berupa `spiffe://prod.example.com/*` cocok dengan setiap workload di trust domain. Tanpa matcher `audience`, aturan tersebut juga menerima JWT-SVID yang dicetak untuk audience apa pun, termasuk yang diminta workload untuk “relying party” (pihak pengandal) yang tidak terkait.
+  `subject_prefix` berupa `spiffe://prod.example.com/*` cocok dengan setiap workload di trust domain. Tanpa matcher `audience`, aturan tersebut juga menerima JWT-SVID yang diterbitkan untuk audience apa pun, termasuk yang diminta workload untuk “relying party” (pihak pengandal) yang tidak terkait.
 </Warning>
 
 Kunci blok `match` pada aturan ke cakupan tersempit yang sesuai dengan kasus penggunaan Anda:
 
 * **Sematkan ke satu workload:** Atur `subject_prefix` ke SPIFFE ID lengkap tanpa `*` di akhir.
-* **Selalu atur audience:** Wajibkan `audience` pada aturan dan konfigurasikan spiffe-helper (atau panggilan Workload API) dengan nilai yang sama sehingga SVID yang dicetak untuk pihak pengandal lain ditolak.
-* **Batasi cakupan berdasarkan segmen path:** Gunakan `spiffe://prod.example.com/ns/inference/*` untuk memberikan akses ke setiap workload yang terdaftar di bawah suatu namespace, dan buat aturan serta akun layanan Anthropic terpisah untuk setiap namespace alih-alih memperluas satu aturan.
+* **Selalu atur audience:** Wajibkan `audience` pada aturan dan konfigurasikan spiffe-helper (atau panggilan Workload API) dengan nilai yang sama sehingga Anthropic menolak SVID yang diterbitkan untuk pihak pengandal lain.
+* **Batasi cakupan berdasarkan segmen path:** Gunakan `spiffe://prod.example.com/ns/inference/*` untuk mencocokkan setiap workload yang terdaftar di bawah suatu namespace. Buat aturan serta akun layanan Anthropic terpisah untuk setiap namespace alih-alih memperluas satu aturan.
 * **Daftarkan satu issuer untuk setiap trust domain:** Setiap trust domain SPIRE memiliki kunci penandatanganan dan OIDC Discovery Provider sendiri. Daftarkan masing-masing sebagai penerbit federasi terpisah dan ikat aturan ke issuer yang memiliki SPIFFE ID yang dicocokkan aturan tersebut.
 
 ## Langkah selanjutnya

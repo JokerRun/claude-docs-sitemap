@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 639ee2fbd6e64bd3455b058e37772ce6df2527fcb4725e00aff8f3d770024d21
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: 6813de45b9d0cca4b9165a2d77d540f760c911255176e9bc6947cf2a95bf8e0e
 ---
 
 ---
@@ -920,7 +920,7 @@ Here are three example requests, each with different cache hits and cache misses
 
 ## Pre-warming the cache
 
-Cache pre-warming lets you load your system prompt or tool definitions into the prompt cache before a user triggers a real request. This eliminates the cache-miss latency penalty on the first user interaction, reducing time-to-first-token (TTFT) for latency-sensitive applications.
+Cache pre-warming lets you load your system prompt or tool definitions into the prompt cache before a user triggers a real request. This can reduce the cache-miss latency penalty on the first user interaction, lowering time-to-first-token (TTFT) for latency-sensitive applications.
 
 ### How it works
 

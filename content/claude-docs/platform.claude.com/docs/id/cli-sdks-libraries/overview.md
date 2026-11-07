@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/overview
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 0a929959f2cc3f8b8edf0184b65edc36ec0e09d1fc50b29bc98377234ad4b0e9
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: 0ece068d828f62bb983b58f6466aad35ef6eec90388a9460cef3c6e0294837e4
 ---
 
 ---
@@ -14,7 +14,7 @@ description: "Alat resmi untuk membangun dengan Claude API: SDK klien dalam tuju
 Anthropic menyediakan tiga jenis alat resmi untuk membangun dengan Claude API:
 
 * **CLI:** Alat baris perintah `ant` untuk scripting shell dan penggunaan interaktif.
-* **SDK klien:** Klien Messages API serbaguna untuk Python, TypeScript, C#, Go, Java, PHP, dan Ruby. SDK ini juga mencakup sebagian besar [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api). Setiap SDK menyediakan antarmuka yang idiomatis, keamanan tipe, serta dukungan bawaan untuk streaming, percobaan ulang, penanganan kesalahan, dan [tracing OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
+* **SDK klien:** Klien Messages API serbaguna untuk Python, TypeScript, C#, Go, Java, PHP, dan Ruby. SDK ini juga mencakup [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) dan sebagian besar [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api). Setiap SDK menyediakan antarmuka yang idiomatis, keamanan tipe, serta dukungan bawaan untuk streaming, percobaan ulang, penanganan kesalahan, dan [tracing OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
 * **Library dan integrasi:** Paket dan lapisan kompatibilitas yang mengekspos Claude di dalam permukaan API framework lain, alih-alih langsung melalui Messages API.
 
 <Info>
@@ -61,13 +61,13 @@ Anthropic menyediakan tiga jenis alat resmi untuk membangun dengan Claude API:
   </Card>
 </CardGroup>
 
-Setiap versi mayor SDK klien mengirimkan satu [versi API](https://platform.claude.com/docs/id/api/versioning) secara default, dan versi mayor baru hadir bersama setiap versi API baru. Untuk beralih ke `2026-10-21`, lihat [Beralih ke 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade).
+Setiap versi mayor SDK klien mengirimkan satu [versi API](https://platform.claude.com/docs/id/api/versioning) secara default. Untuk beralih ke versi API baru, tingkatkan ke versi mayor baru. Untuk `2026-10-21`, lihat [Beralih ke 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade).
 
 ## Versi terbaru
 
 | Alat       | Versi terbaru | Paket                                                                                                       |
 | ---------- | ------------- | ----------------------------------------------------------------------------------------------------------- |
-| ant CLI    | `2.7.0`       | [`github.com/anthropics/anthropic-cli`](https://github.com/anthropics/anthropic-cli/releases)               |
+| ant CLI    | `2.7.1`       | [`github.com/anthropics/anthropic-cli`](https://github.com/anthropics/anthropic-cli/releases)               |
 | Python     | `2.6.0`       | [`anthropic` di PyPI](https://pypi.org/project/anthropic/)                                                  |
 | TypeScript | `1.6.0`       | [`@anthropic-ai/sdk`](https://www.npmjs.com/package/@anthropic-ai/sdk)                                      |
 | C#         | `13.6.0`      | [`Anthropic`](https://www.nuget.org/packages/Anthropic)                                                     |
@@ -94,7 +94,7 @@ Library dan integrasi mengekspos Claude melalui permukaan API framework lain. Ke
 
 ## Membangun agen atau menggunakan Claude Code?
 
-CLI, SDK klien, dan library ditujukan untuk memanggil Claude API sendiri: Anda mengirim setiap permintaan dan menangani setiap respons. Claude Code, Claude Agent SDK, dan Claude Managed Agents bekerja pada tingkat yang lebih tinggi, menyediakan loop agen, eksekusi alat, dan runtime.
+CLI, SDK klien, dan library ditujukan untuk memanggil Claude API sendiri. Anda mengirim setiap permintaan dan menangani setiap respons. Claude Code, Claude Agent SDK, dan Claude Managed Agents bekerja pada tingkat yang lebih tinggi, menyediakan loop agen, eksekusi alat, dan runtime.
 
 <CardGroup cols={3}>
   <Card title="Claude Code" href="https://code.claude.com/docs/en/overview">

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/marketplace-reference
-fetched_at: 2026-10-26T02:24:48.652012Z
-sha256: 2b353a0f227f1637b8c5f5709d3de843054a31c81e38d769d00fb00544f3635c
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: ad61be88190946aaa69d5629d217fb9ba1001aaee94f2b86435b280dc9d5f4a3
 ---
 
 > ## Documentation Index
@@ -462,7 +462,7 @@ An `extraKnownMarketplaces` value is a map from marketplace name to an object wi
 
 ## Validation messages
 
-`claude plugin validate <path>` takes the marketplace root or the marketplace file itself. It prints errors and warnings. For exit codes and `--strict`, see [plugin validate](https://code.claude.com/docs/en/plugins/cli-reference.md#plugin-validate).
+`claude plugin validate <path>` takes the marketplace root or the marketplace file itself. To have that file [validated as a marketplace](https://code.claude.com/docs/en/plugins/cli-reference.md#validate-a-manifest-file) rather than a plugin manifest, name it `marketplace.json`. For exit codes and `--strict`, see [plugin validate](https://code.claude.com/docs/en/plugins/cli-reference.md#plugin-validate).
 
 A message names a plugin entry by its index, written as `plugins.1.source` or `plugins[1].source`.
 

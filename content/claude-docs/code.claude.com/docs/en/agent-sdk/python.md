@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 37e522135e99eb3cc7a36e3bbe665b85079ee851de12a5b5372bbc39890a8194
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: 9f3b472f55331fb37ca576943b9a3d3a0ab10754e5bc5f5d15cd6a34bf02d26e
 ---
 
 > ## Documentation Index
@@ -1392,7 +1392,7 @@ ThinkingConfig = ThinkingConfigAdaptive | ThinkingConfigEnabled | ThinkingConfig
 | `enabled` | `type`, `budget_tokens`, `display` | Enable thinking with a specific token budget |
 | `disabled` | `type` | Disable thinking |
 
-The optional `display` field controls whether thinking text is returned `"summarized"` or `"omitted"`. On Claude Opus 4.7 and later, the API default is `"omitted"`, so set `"summarized"` to receive thinking content in [`ThinkingBlock`](#thinkingblock) outputs. Claude Code doesn't pass your `display` value to some providers, such as Amazon Bedrock and Google Cloud's Agent Platform. On those providers, Opus 4.7 and later return empty `ThinkingBlock` outputs even when you set `display` to `"summarized"`.
+The optional `display` field controls whether thinking text is returned `"summarized"` or `"omitted"`. On Claude Opus 4.7 and later, the API default is `"omitted"`, so set `"summarized"` to receive thinking content in [`ThinkingBlock`](#thinkingblock) outputs. On providers such as Amazon Bedrock and Google Cloud's Agent Platform, Claude Code doesn't pass `display` for earlier models it recognizes. Those are Opus 4.6, Sonnet 4.6, Haiku 4.5, and earlier models, which use their default.
 
 Because these are `TypedDict` classes, they're plain dicts at runtime. Either construct them as dict literals or call the class like a constructor; both produce a `dict`. Access fields with `config["budget_tokens"]`, not `config.budget_tokens`:
 
@@ -2524,7 +2524,7 @@ class AsyncHookJSONOutput(TypedDict):
 
 ### Hook Usage Example
 
-This example registers two hooks: one that blocks dangerous Bash commands like `rm -rf /`, and another that logs all tool usage for auditing. The security hook only runs on Bash commands (via the `matcher`), while the logging hook runs on all tools.
+This example registers two hooks: one that blocks dangerous Bash commands like `rm -rf /`, and another that logs all tool usage for auditing. With its [`Bash` matcher](https://code.claude.com/docs/en/agent-sdk/hooks#matchers), the security hook runs on Bash tool calls. The logging hook has no matcher, so it runs on every tool call.
 
 ```python theme={null}
 import asyncio
@@ -3675,18 +3675,11 @@ class SandboxNetworkConfig(TypedDict, total=False):
 
 ### `SandboxIgnoreViolations`
 
-Configuration for ignoring specific sandbox violations.
+Violations to leave out of the sandbox's violation report. Each key matches part of a command, or `*` for every command, and each value lists text to match in a violation line: `{"*": ["/etc/hosts"]}` hides violations that mention `/etc/hosts`. A matching access is still blocked. See [`sandbox.ignoreViolations`](https://code.claude.com/docs/en/settings-reference#sandbox-ignoreviolations).
 
 ```python theme={null}
-class SandboxIgnoreViolations(TypedDict, total=False):
-    file: list[str]
-    network: list[str]
+SandboxIgnoreViolations = dict[str, list[str]]
 ```
-
-| Property | Type | Default | Description |
-| :- | :- | :- | :- |
-| `file` | `list[str]` | `[]` | File path patterns to ignore violations for |
-| `network` | `list[str]` | `[]` | Network patterns to ignore violations for |
 
 ### Permissions Fallback for Unsandboxed Commands
 

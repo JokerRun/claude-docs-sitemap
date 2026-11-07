@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: f9b474096729e972283f66023c8db5002453519a28cba7dcfc5ceb4a1e922e43
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: 973d95146fcdb268ea93213cbb6ec4077e62861a1b5798e8b0e037b233772680
 ---
 
 > ## Documentation Index
@@ -202,6 +202,7 @@ A client signed in through a [Claude apps gateway](#platform-availability) fetch
 * A cached [`prependPlugins`](https://code.claude.com/docs/en/settings-reference#prependplugins), [`appendPlugins`](https://code.claude.com/docs/en/settings-reference#appendplugins), or [`enabledPlugins`](https://code.claude.com/docs/en/settings-reference#enabledplugins) value can't remove the built-in guard, change its position, or turn it off until the session's fetch confirms the payload
 * On a machine where an [endpoint-managed source](https://code.claude.com/docs/en/managed-settings.md#choose-a-delivery-mechanism) lists or enables plugins of its own, a plugin that only a cached list enables counts as [the user's](https://code.claude.com/docs/en/plugins/mods/admin.md#install-your-organizations-mods), not your organization's, until the fetch confirms the payload
 * Claude Code fetches fresh settings in the background
+* If a session's provider isn't on the cached [`allowedProviders`](https://code.claude.com/docs/en/settings-reference#allowedproviders) list, Claude Code can wait for that fetch and check again before refusing. If the fetch fails, the session is refused
 * Cached settings persist through network failures. If the startup fetch fails, Claude Code warns in interactive sessions and in the Code tab that the cached policy is in effect
 * Until a fetch succeeds, the values withheld at startup stay withheld
 

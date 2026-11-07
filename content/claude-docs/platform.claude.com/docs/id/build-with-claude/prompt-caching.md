@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 2cb8cf3a94deda5a2de519adda104890672716f6dc164eaebe137ad8e535f182
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: e44196ae1b945c200909d8f150a6ded026da1d0e0a0835fbdbb31e531b85bb23
 ---
 
 ---
@@ -920,7 +920,7 @@ Berikut tiga contoh permintaan, yang masing-masing memiliki cache hit dan cache 
 
 ## Memanaskan cache terlebih dahulu
 
-“Cache pre-warming” (pemanasan cache terlebih dahulu) memungkinkan Anda memuat prompt sistem atau definisi alat ke dalam cache prompt sebelum pengguna memicu permintaan sebenarnya. Ini menghilangkan penalti latensi cache-miss pada interaksi pengguna pertama, sehingga mengurangi “time-to-first-token” (waktu hingga token pertama), atau TTFT, untuk aplikasi yang sensitif terhadap latensi.
+“Cache pre-warming” (pemanasan cache terlebih dahulu) memungkinkan Anda memuat prompt sistem atau definisi alat ke dalam cache prompt sebelum pengguna memicu permintaan sebenarnya. Ini dapat mengurangi penalti latensi cache-miss pada interaksi pengguna pertama, sehingga menurunkan “time-to-first-token” (waktu hingga token pertama), atau TTFT, untuk aplikasi yang sensitif terhadap latensi.
 
 ### Cara kerjanya
 

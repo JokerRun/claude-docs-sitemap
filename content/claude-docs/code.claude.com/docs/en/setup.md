@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 4c3cd110ffc0f00002b70a42ab0b6dc82f193cce52c9666c1184b33d98cd1471
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: 8dc9f85869815f261b64fed8cf8598e5d77d247d26efa99d32a7f15c61e274ba
 ---
 
 > ## Documentation Index
@@ -396,7 +396,7 @@ All repositories are signed with the [Claude Code release signing key](#binary-i
 > gpg --show-keys /etc/apt/keyrings/claude-code.asc
 > ```
 >
-> The fingerprint gpg prints should be `31DDDE24DDFAB679F42D7BD2BAA929FF1A7ECACE`. If gpg reports that the file can't be opened or contains no valid OpenPGP data, the download failed or returned the wrong content: confirm your network can reach `downloads.claude.ai`, then rerun the download command.
+> The only fingerprint gpg prints should be `31DDDE24DDFAB679F42D7BD2BAA929FF1A7ECACE`. If gpg reports that the file can't be opened or contains no valid OpenPGP data, the download failed or returned the wrong content. Confirm your network can reach `downloads.claude.ai`, then rerun the download command.
 >
 > Register the repository on the `stable` channel and install:
 >
@@ -543,12 +543,12 @@ curl -fsSLO "$REPO/$VERSION/manifest.json.sig"
 Verify the detached signature against the manifest.
 
 ```bash theme={null}
-gpg --verify manifest.json.sig manifest.json
+gpg --with-fingerprint --verify manifest.json.sig manifest.json
 ```
 
-A valid result reports `Good signature from "Anthropic Claude Code Release Signing <security@anthropic.com>"`.
+A valid result reports `Good signature from "Anthropic Claude Code Release Signing <security@anthropic.com>"`. With default settings, `gpg` also prints `WARNING: This key is not certified with a trusted signature!` for a freshly imported key. This is expected. The `Good signature` line confirms the cryptographic check passed.
 
-`gpg` also prints `WARNING: This key is not certified with a trusted signature!` for any freshly imported key. This is expected. The `Good signature` line confirms the cryptographic check passed. The fingerprint comparison in Step 1 confirms the key itself is authentic.
+To check that Anthropic's key signed the manifest, compare the `Primary key fingerprint` line at the end of the output with the fingerprint this page lists in Step 1. If they match and the output shows no `BAD signature`, continue to Step 4. Otherwise, don't use this manifest.
 
 **4. Check the binary against the manifest**
 

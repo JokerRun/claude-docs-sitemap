@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/overview
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: e179393071c7bc3b9a4f4aadd7b5b48c9e88bd9ad04098f3d9abf46da1bfb9a0
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: 15adb4066614b3eb10f7cacd9c554e2001d74c2e9e103b543800e0066bcc3963
 ---
 
 ---
@@ -14,7 +14,7 @@ description: "Official tools for building with the Claude API: client SDKs in se
 Anthropic provides three kinds of official tooling for building with the Claude API:
 
 * **CLI:** The `ant` command-line tool for shell scripting and interactive use.
-* **Client SDKs:** General-purpose Messages API clients for Python, TypeScript, C#, Go, Java, PHP, and Ruby. They also cover most of the [Admin API](https://platform.claude.com/docs/en/manage-claude/admin-api). Each SDK provides idiomatic interfaces, type safety, and built-in support for streaming, retries, error handling, and [OpenTelemetry tracing](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk).
+* **Client SDKs:** General-purpose Messages API clients for Python, TypeScript, C#, Go, Java, PHP, and Ruby. They also cover [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview) and most of the [Admin API](https://platform.claude.com/docs/en/manage-claude/admin-api). Each SDK provides idiomatic interfaces, type safety, and built-in support for streaming, retries, error handling, and [OpenTelemetry tracing](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk).
 * **Libraries and integrations:** Packages and compatibility layers that expose Claude inside another framework’s API surface rather than the Messages API directly.
 
 <Info>
@@ -61,13 +61,13 @@ Anthropic provides three kinds of official tooling for building with the Claude 
   </Card>
 </CardGroup>
 
-Each major version of a client SDK sends one [API version](https://platform.claude.com/docs/en/api/versioning) by default, and a new major version comes with each new API version. To move to `2026-10-21`, see [Switch to 2026-10-21](https://platform.claude.com/docs/en/api/migration-2026-10-21#upgrade).
+Each major version of a client SDK sends one [API version](https://platform.claude.com/docs/en/api/versioning) by default. To move to a new API version, upgrade to a new major version. For `2026-10-21`, see [Switch to 2026-10-21](https://platform.claude.com/docs/en/api/migration-2026-10-21#upgrade).
 
 ## Latest versions
 
 | Tool       | Latest version | Package                                                                                                     |
 | ---------- | -------------- | ----------------------------------------------------------------------------------------------------------- |
-| ant CLI    | `2.7.0`        | [`github.com/anthropics/anthropic-cli`](https://github.com/anthropics/anthropic-cli/releases)               |
+| ant CLI    | `2.7.1`        | [`github.com/anthropics/anthropic-cli`](https://github.com/anthropics/anthropic-cli/releases)               |
 | Python     | `2.6.0`        | [`anthropic` on PyPI](https://pypi.org/project/anthropic/)                                                  |
 | TypeScript | `1.6.0`        | [`@anthropic-ai/sdk`](https://www.npmjs.com/package/@anthropic-ai/sdk)                                      |
 | C#         | `13.6.0`       | [`Anthropic`](https://www.nuget.org/packages/Anthropic)                                                     |
@@ -94,7 +94,7 @@ Libraries and integrations expose Claude through another framework’s API surfa
 
 ## Building agents or using Claude Code?
 
-The CLI, client SDKs, and libraries are for calling the Claude API yourself: you send each request and handle each response. Claude Code, the Claude Agent SDK, and Claude Managed Agents work at a higher level, providing the agent loop, tool execution, and runtime.
+The CLI, client SDKs, and libraries are for calling the Claude API yourself. You send each request and handle each response. Claude Code, the Claude Agent SDK, and Claude Managed Agents work at a higher level, providing the agent loop, tool execution, and runtime.
 
 <CardGroup cols={3}>
   <Card title="Claude Code" href="https://code.claude.com/docs/en/overview">

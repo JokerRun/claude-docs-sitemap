@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 57683d0f600423f0da5cd63eb819c4f499d6e90871b8c51f0d1b5fb8401cede5
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: 826cd0b365a3ed3e5e7584150c338f9c1ee6dd2a569260c871eab835fd91cc67
 ---
 
 ---
@@ -39,7 +39,7 @@ Dibandingkan dengan `curl`, `ant` membangun body permintaan dari flag bertipe at
     Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
     ```bash
-    VERSION=2.7.0
+    VERSION=2.7.1
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/data-residency
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: bfbb70680876dd5a995c1c19171f3917a4090a678a9dff37250e80dc37943023
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: 456dacd9cc27952950fbe1ab0e3699891322e9ee887ea1419680776ad5e12873
 ---
 
 ---
@@ -281,7 +281,7 @@ Geografi ruang kerja ditetapkan saat Anda membuat workspace dan tidak dapat diub
 
 Untuk menetapkan geografi ruang kerja, buat workspace baru di [Console](https://platform.claude.com/):
 
-1. Buka [Workspaces di Claude Console](https://platform.claude.com/settings/workspaces) (`platform.claude.com/settings/workspaces`).
+1. Buka [Ruang kerja di Claude Console](https://platform.claude.com/settings/workspaces) (`platform.claude.com/settings/workspaces`).
 2. Klik **Buat ruang kerja** untuk membuka halaman [Buat ruang kerja](https://platform.claude.com/settings/workspaces/new) (`platform.claude.com/settings/workspaces/new`) di Console.
 3. Masukkan nama, konfirmasikan nilai di field **Geografi ruang kerja**, lalu klik **Buat ruang kerja**.
 

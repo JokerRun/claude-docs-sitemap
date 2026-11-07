@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-quickstart
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 76bfcc240a1e373b4ab2faa52cf1d01b8fd020b729d4dd94d1c93d07ec527cc3
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: 6b6b9b8d60680ca281a80b9e9ce4e47921a7a9a09aec641903b91cca5d5e275c
 ---
 
 > ## Documentation Index
@@ -19,7 +19,7 @@ sha256: 76bfcc240a1e373b4ab2faa52cf1d01b8fd020b729d4dd94d1c93d07ec527cc3
 
 A cloud session runs Claude Code on cloud infrastructure instead of your machine, Anthropic-managed by default. This quickstart starts one from [claude.ai/code](https://claude.ai/code) in your browser. You can also start one from the Claude mobile app, the Desktop app, or your terminal with `claude --cloud`.
 
-You'll need a GitHub repository to [get started](#connect-github). Claude clones it into an isolated virtual machine, makes changes, and pushes a branch for you to review. Sessions persist across devices, so a task you start on your laptop is ready to review from your phone later. Each session counts toward your plan's usage limits alongside the rest of your Claude and Claude Code usage, and there's no separate charge for the cloud VM.
+Claude clones the [GitHub repository](#connect-github) you select into an isolated virtual machine, makes changes, and pushes a branch for you to review. Sessions persist across devices, so a task you start on your laptop is ready to review from your phone later. Each session counts toward your plan's usage limits alongside the rest of your Claude and Claude Code usage, and there's no separate charge for the cloud VM.
 
 Cloud sessions work well for:
 
@@ -51,7 +51,7 @@ Claude Code behaves the same everywhere. What changes is where the session runs 
 | **You start it from** | claude.ai/code, the Claude mobile app, the Desktop app with **Cloud** selected, or `claude --cloud` | Your terminal, your IDE, or the Desktop app with **Local** selected | Your terminal, the VS Code extension, or the Desktop app |
 | **You chat from** | claude.ai, the mobile app, or the Desktop app | Where you started it | claude.ai or the mobile app, as well as where you started it |
 | **Uses your local config** | No, repo only | Yes | Yes |
-| **Requires GitHub** | Yes, or [bundle a local repo](https://code.claude.com/docs/en/claude-code-on-the-web.md#send-local-repositories-without-github) via `--cloud` | No | No |
+| **Requires GitHub** | Yes for a GitHub repository, unless `--cloud` [bundles your local repo](https://code.claude.com/docs/en/claude-code-on-the-web.md#send-local-repositories-without-github) | No | No |
 | **Keeps running if you disconnect** | Yes | No | While the session stays open on your machine |
 | **[Permission modes](https://code.claude.com/docs/en/permission-modes.md)** | Accept edits, Plan, Auto | All modes in the terminal; see [Switch permission modes](https://code.claude.com/docs/en/permission-modes.md#switch-permission-modes) for the IDE and Desktop app | Manual, Accept edits, Plan, or Auto from claude.ai and the mobile app |
 | **Network access** | Configurable per environment | Your machine's network | Your machine's network |
@@ -145,7 +145,7 @@ At claude.ai/code, to start Claude from a feature branch instead of the default,
 
 The [permission mode control](https://code.claude.com/docs/en/permission-modes.md#switch-permission-modes) shows the permission mode the session will run in:
 
-* **Auto**: a classifier reviews Claude's actions instead of asking you. Appears when your organization allows auto mode and the selected model supports it
+* **Auto**: a classifier reviews Claude's actions instead of asking you. Appears unless your organization turns off [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode). On claude.ai/code, if it's grayed out, select a model that supports auto mode
 * **Accept edits**: Claude makes changes and pushes a branch without stopping for approval
 * **Plan**: Claude proposes an approach and waits for you to approve it before editing files
 
@@ -216,7 +216,7 @@ If you connected with `/web-setup`, sessions reach every repository your `gh` to
 
 ### The page only shows a GitHub login button
 
-Cloud sessions require a connected GitHub account. Connect via the browser flow above, or run `/web-setup` from your terminal if you use the GitHub CLI. If you'd rather not connect GitHub at all, see [Remote Control](https://code.claude.com/docs/en/remote-control.md) to run Claude Code on your own machine and monitor it from your browser or phone.
+To work in a GitHub repository in a cloud session, [connect your GitHub account](#connect-github), or run `/web-setup` from your terminal if you use the GitHub CLI. If you'd rather not connect GitHub at all, see [Remote Control](https://code.claude.com/docs/en/remote-control.md) to run Claude Code on your own machine and monitor it from your browser or phone.
 
 ### "Claude Code isn't available on your account"
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 2389edb5f9364cbbe67fc50ee867c780bf207b8acab87177a8daab520c1b5649
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: 3cb13864577117f0f55df86fdf2f925650757530c205532617ad52b34c18cb7b
 ---
 
 ---
@@ -22,7 +22,7 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 ### 5 November 2026
 
 * Anda sekarang dapat menyiapkan “IP allowlist” (daftar izin IP) untuk organisasi Anda di Claude Console, dalam beta. Permintaan ke layanan yang tercakup dari alamat yang tidak ada dalam daftar Anda akan ditolak, sehingga membatasi tempat kunci API yang bocor dapat digunakan. Tambahkan alamat IPv4 dan IPv6 atau rentang CIDR, hingga 1.000 per organisasi. Lihat [Allowlist IP](https://platform.claude.com/docs/id/manage-claude/ip-allowlist) untuk mengetahui apa saja yang tercakup dan cara menyiapkannya.
-* Anda sekarang dapat mengeluarkan anggota organisasi **Claude Enterprise** (claude.ai) Anda dari Claude di mana saja dengan Admin API (lihat [referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization)). `POST /v1/organizations/users/{user_id}/sign_out` tersedia dalam versi beta, dan setiap permintaan harus menyertakan header beta `admin-user-sign-out-2026-10-08`. Endpoint ini mengakhiri sesi masuk dan perangkat tepercaya anggota di setiap browser dan perangkat, serta token OAuth mereka untuk organisasi Anda. Anggota tetap berada di organisasi dan dapat masuk kembali saat itu juga. Lihat [Mengeluarkan anggota dari semua sesi di mana saja](https://platform.claude.com/docs/id/manage-claude/user-management#sign-a-member-out-everywhere) untuk scope kunci yang diperlukan permintaan dan untuk apa yang tidak diakhirinya.
+* Anda sekarang dapat mengeluarkan anggota organisasi Claude Enterprise (claude.ai) Anda dari Claude di mana saja dengan Admin API. Kemampuan ini tersedia dalam versi beta. Lihat [referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization). Anggota tetap berada di organisasi dan dapat masuk kembali. Lihat [Mengeluarkan anggota dari semua sesi di mana saja](https://platform.claude.com/docs/id/manage-claude/user-management#sign-a-member-out-everywhere) untuk header beta dan untuk apa yang tidak diakhiri oleh permintaan tersebut.
 
 ### 3 November 2026
 
@@ -651,9 +651,7 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
 ### 5 Agustus 2025
 
-* Kami telah meluncurkan [Claude Opus 4.1](https://www.anthropic.com/news/claude-opus-4-1), pembaruan inkremental untuk Claude Opus 4 dengan kemampuan yang ditingkatkan dan peningkatan kinerja.<sup>\*</sup> Pelajari lebih lanjut di [Ikhtisar model](https://platform.claude.com/docs/id/models/overview).
-
-*<sup>\*Opus 4.1 tidak mengizinkan parameter `temperature` dan `top_p` ditentukan secara bersamaan. Gunakan salah satu saja.</sup>*
+* Kami telah meluncurkan [Claude Opus 4.1](https://www.anthropic.com/news/claude-opus-4-1), pembaruan inkremental untuk Claude Opus 4 dengan kemampuan yang ditingkatkan dan peningkatan kinerja. Opus 4.1 tidak mengizinkan parameter `temperature` dan `top_p` ditentukan secara bersamaan. Gunakan salah satu saja. Pelajari lebih lanjut di [Ikhtisar model](https://platform.claude.com/docs/id/models/overview).
 
 ### 28 Juli 2025
 
@@ -774,18 +772,18 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
 ### 17 Desember 2024
 
-Fitur-fitur berikut sekarang tersedia di Claude API tanpa header beta:
+* Fitur-fitur berikut sekarang tersedia di Claude API tanpa header beta:
 
-* [Models API](https://platform.claude.com/docs/id/api/models/list): Kueri model yang tersedia, validasi ID model, dan selesaikan [alias model](https://platform.claude.com/docs/id/models/overview) ke ID model kanoniknya.
-* [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing): Proses batch pesan dalam jumlah besar secara asinkron dengan biaya 50% dari biaya API standar.
-* [Token counting API](https://platform.claude.com/docs/id/build-with-claude/token-counting): Hitung jumlah token untuk Messages sebelum mengirimkannya ke Claude.
-* [Caching Prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching): Kurangi biaya hingga 90% dan “latency” (latensi) hingga 80% dengan melakukan caching dan menggunakan kembali konten prompt.
-* [Dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support): Proses PDF untuk menganalisis konten teks maupun visual di dalam dokumen.
+  * [Models API](https://platform.claude.com/docs/id/api/models/list): Kueri model yang tersedia, validasi ID model, dan selesaikan [alias model](https://platform.claude.com/docs/id/models/overview) ke ID model kanoniknya.
+  * [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing): Proses batch pesan dalam jumlah besar secara asinkron dengan biaya 50% dari biaya API standar.
+  * [Token counting API](https://platform.claude.com/docs/id/build-with-claude/token-counting): Hitung jumlah token untuk Messages sebelum mengirimkannya ke Claude.
+  * [Caching Prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching): Kurangi biaya hingga 90% dan “latency” (latensi) hingga 80% dengan melakukan caching dan menggunakan kembali konten prompt.
+  * [Dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support): Proses PDF untuk menganalisis konten teks maupun visual di dalam dokumen.
 
-Kami juga merilis SDK resmi baru:
+* Kami juga merilis SDK resmi baru:
 
-* [Java SDK](https://github.com/anthropics/anthropic-sdk-java) (alpha)
-* [Go SDK](https://github.com/anthropics/anthropic-sdk-go) (alpha)
+  * [Java SDK](https://github.com/anthropics/anthropic-sdk-java) (alpha)
+  * [Go SDK](https://github.com/anthropics/anthropic-sdk-go) (alpha)
 
 ### 4 Desember 2024
 

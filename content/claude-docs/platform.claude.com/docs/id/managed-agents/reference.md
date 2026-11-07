@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/reference
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 69a4c1223889fc057a1143b12fc1021d4d375fbd4f333291a1e73df62b58f2b2
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: 658d0696a329de8188cd15f1300fc6a8c95cbce4ee0b287c99697ee203128d40
 ---
 
 ---
@@ -74,7 +74,7 @@ String jenis event yang dipersistenkan mengikuti konvensi penamaan `{domain}.{ac
     | `agent.thread_message_received`  | Dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), pesan dari thread lain tiba di thread yang alirannya membawa event ini; pada thread utama, sebuah agen mengirim laporan atau pertanyaan kepada agen yang dijalankan oleh sesi.                                                                                                        |
     | `agent.thread_message_sent`      | Dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), thread yang alirannya membawa event ini mengirim pesan ke thread lain; pada thread utama, agen yang dijalankan oleh sesi mengirim tugas atau pesan tindak lanjut ke agen lain.                                                                                                        |
 
-    Konten pesan dalam event-event ini dapat menyertakan blok konten `redacted`, `{"type": "redacted"}`: sebuah placeholder untuk konten yang ditahan oleh kebijakan model Anthropic. Blok ini tidak membawa field lain. Blok yang disunting hanya muncul dalam konten yang dikeluarkan platform; event pengguna yang menyertakannya akan ditolak dengan error 400.
+    Konten pesan dalam event-event ini dapat menyertakan blok konten `redacted`, `{"type": "redacted"}`: sebuah placeholder untuk konten yang ditahan oleh kebijakan model Anthropic. Blok ini tidak membawa field lain. Blok yang disamarkan hanya muncul dalam konten yang dikeluarkan platform; event pengguna yang menyertakannya akan ditolak dengan error 400.
   </Tab>
 
   <Tab title="Event sesi">

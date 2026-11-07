@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments-configuration
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: f6fec2d5edecd373b64d6870f21a541ef29138239bcdf3ba87b1d39e9fa13fb3
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: 9b8485efb0d40f5c90cd249566ad53d2e56d6f70bac682d9b6be172f1661ba85
 ---
 
 > ## Documentation Index
@@ -336,6 +336,7 @@ The orchestrator runs `${hooks-dir}/spawn-runner` once per spawn request. The ho
 | `CLAUDE_RUNNER_REPO_SOURCES` | JSON array of `{url, revision}` for all the session's git sources, for hooks that route on a secondary repository. Empty when there are no sources. |
 | `CLAUDE_RUNNER_CORRELATION_ID` | The correlation ID supplied at session create, echoed back so the hook can map this work order to the request that created the session. Empty when the session has none. |
 | `CLAUDE_RUNNER_CLIENT_PLATFORM` | The client surface that created the session, such as `web_claude_ai`, `desktop_app`, `ios`, or `scheduled_trigger`, for adoption analytics. Unset when the session has no recorded or recognized surface, and for pre-warming requests; check it with `[ -n "${CLAUDE_RUNNER_CLIENT_PLATFORM:-}" ]`, which stays safe under `set -u`. |
+| `CLAUDE_RUNNER_SPAWN_REASON` | [Why Anthropic sent this spawn request](#find-out-why-a-spawn-request-was-sent), such as `runner_lost` or `resumed`. Unset when the request carries no well-formed reason, so read it as `"${CLAUDE_RUNNER_SPAWN_REASON:-}"`. Requires Claude Code v2.1.318 or later on the orchestrator |
 
 The spawned runner registers with the work order in place of the environment secret:
 

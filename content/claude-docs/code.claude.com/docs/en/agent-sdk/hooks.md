@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/hooks
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 5452d2b6d2316e2ab4829ea3fc2b3ecf20d0580a93c3310dc6ad9dfac096fcbf
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: ba09f63dbb2d125d50d6c49c5f3b0711164a5b23e66e4b193dac576bca5992cb
 ---
 
 > ## Documentation Index
@@ -233,7 +233,7 @@ SDK matchers follow the same rules as [matchers in settings files](https://code.
 | `timeout` | `number` | `undefined` | Timeout in seconds. When omitted, Claude Code applies the [event's default timeout](#hook-timeout). Your SDK callbacks follow the `command` hook defaults |
 | `onFailure` | `"continue" \| "block"` | `undefined` | What a failed callback does. Set `"block"` to [block the action when a callback fails](#block-the-action-when-a-callback-fails). In Python, use `on_failure` |
 
-Use the `matcher` pattern to target specific tools whenever possible. A matcher with `'Bash'` only runs for Bash commands, while omitting the pattern runs your callbacks for every occurrence of the event.
+Use the `matcher` pattern to target specific tools whenever possible. With a `'Bash'` matcher, your callbacks run for Bash commands. On Claude Code v2.1.314 or later, they also run on `PreToolUse` and `PermissionRequest` for Monitor commands, which they [can deny but not approve](https://code.claude.com/docs/en/hooks.md#match-monitor-commands). With no matcher, they run for every occurrence of the event.
 
 ### Callback functions
 

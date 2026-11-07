@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/remote-control
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 1625e58d7b546703314ce50ad32df13fadc34996ffa487ff4e02ab4b52cfa9de
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: 1b63db7c8f6256f660000ebee2a7a9abcd01453ee917aaba9a7cf7c091f1fd63
 ---
 
 > ## Documentation Index
@@ -153,6 +153,8 @@ If the connection fails in an interactive session, the indicator changes to show
 * **Another connection took over this session**: another device or Claude Code session has it now. Run `/remote-control` only if you want to take it back.
 * **This session was ended or archived from another device or app**: run `/remote-control` only if you want the session back. Claude Code reopens an archived session.
 * **The server no longer reports this session**: it may have been deleted from another device or app.
+
+If `/remote-control` opens a dialog that says `Remote Control isn't connected.`, follow the step the dialog gives, such as running `/login` or selecting **Continue** and trying again.
 
 ### Connect from another device
 
@@ -325,7 +327,7 @@ Claude Code offers several ways to work when you're not at your terminal. They d
 
 When Remote Control is active, Claude can send push notifications to your phone.
 
-Claude decides when to push. It typically sends one when a long-running task finishes or when it needs a decision from you to continue. You can also request a push in your prompt, for example `notify me when the tests finish`. Beyond the two on/off toggles below, there is no per-event configuration.
+A push can arrive when a long-running task finishes or when Claude needs a decision from you. You can also request a push in your prompt, for example `notify me when the tests finish`. Beyond the two on/off toggles below, there is no per-event configuration.
 
 To set up mobile push notifications:
 

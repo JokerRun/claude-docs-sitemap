@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 29429f2cd0a65caedc69d52c008060de9729b476536ce6bd65c06aaefb5c5e06
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: c318d2f977472491280820c8dea40367407b2491c94e5fc65307554a9640b378
 ---
 
 ---
@@ -18,14 +18,14 @@ kubectl get --raw /.well-known/openid-configuration | jq -r .issuer
 ```
 
 <Note>
-  Mekanisme di halaman ini (token service-account terproyeksi, API server klaster sebagai OIDC issuer) merupakan fitur bawaan Kubernetes itu sendiri, sehingga mendasari setiap distribusi Kubernetes. Jika Anda menjalankan layanan Kubernetes terkelola, panduan penyedia cloud menjelaskan di mana menemukan URL issuer yang dikelola penyedia: [AWS (EKS)](https://platform.claude.com/docs/id/manage-claude/wif-providers/aws#use-eks-projected-service-account-tokens), [Google Cloud (GKE)](https://platform.claude.com/docs/id/manage-claude/wif-providers/gcp), atau [Azure (AKS)](https://platform.claude.com/docs/id/manage-claude/wif-providers/azure). Jika klaster Anda menjalankan SPIRE, SPIRE OIDC Discovery Provider adalah issuer-nya, bukan API server klaster; lihat [Menggunakan WIF dengan SPIFFE](https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe). Untuk distribusi lain atau penyedia terkelola yang tidak tercantum di sana, ikuti panduan ini dan gunakan URL issuer yang dilaporkan klaster Anda.
+  Mekanisme di halaman ini merupakan fitur bawaan Kubernetes itu sendiri: pod mendapatkan token service-account terproyeksi, dan API server klaster bertindak sebagai OIDC issuer. Setiap distribusi Kubernetes menggunakannya. Jika Anda menjalankan layanan Kubernetes terkelola, panduan penyedia cloud menjelaskan di mana menemukan URL issuer yang dikelola penyedia: [AWS (EKS)](https://platform.claude.com/docs/id/manage-claude/wif-providers/aws#use-eks-projected-service-account-tokens), [Google Cloud (GKE)](https://platform.claude.com/docs/id/manage-claude/wif-providers/gcp), atau [Azure (AKS)](https://platform.claude.com/docs/id/manage-claude/wif-providers/azure#use-entra-workload-identity-on-aks). Jika klaster Anda menjalankan SPIRE, SPIRE OIDC Discovery Provider adalah issuer-nya, bukan API server klaster. Lihat [Menggunakan WIF dengan SPIFFE](https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe). Untuk distribusi lain atau penyedia terkelola yang tidak tercantum di sana, ikuti panduan ini dan gunakan URL issuer yang dilaporkan klaster Anda.
 </Note>
 
 ## Prasyarat
 
-* Pemahaman tentang [konsep WIF](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#concepts): service account, federation issuer, dan federation rule.
+* Pemahaman tentang [konsep Workload Identity Federation (WIF)](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#concepts): service account, federation issuer, dan federation rule.
 
-* Klaster Kubernetes dengan flag [`--service-account-issuer`](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/) yang dikonfigurasi pada API server. Sebagian besar distribusi mengatur ini secara default; klaster kubeadm biasanya menggunakan `https://kubernetes.default.svc.cluster.local`. Tim platform Anda dapat mengonfirmasi nilainya jika Anda tidak memiliki akses langsung ke konfigurasi API server.
+* Klaster Kubernetes dengan flag [`--service-account-issuer`](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/) yang dikonfigurasi pada API server. Sebagian besar distribusi mengatur ini secara default, dan klaster kubeadm biasanya menggunakan `https://kubernetes.default.svc.cluster.local`. Tim platform Anda dapat mengonfirmasi nilainya jika Anda tidak memiliki akses langsung ke konfigurasi API server.
 
 * Salah satu dari berikut ini agar Anthropic dapat memvalidasi tanda tangan token:
 
@@ -101,7 +101,7 @@ Kemudian konfigurasikan issuer dengan isi array `keys` yang dikembalikan (bukan 
 }
 ```
 
-Dalam mode `inline`, `issuer_url` hanya dibandingkan dengan klaim `iss` pada JWT; Anthropic tidak pernah mencoba menjangkaunya. Jika issuer Anda dapat dijangkau secara publik, gunakan `"jwks": {"type": "discovery"}` sebagai gantinya.
+Dalam mode `inline`, Anthropic hanya membandingkan `issuer_url` dengan klaim `iss` pada JWT dan tidak pernah mencoba menjangkaunya. Jika issuer Anda dapat dijangkau secara publik, gunakan `"jwks": {"type": "discovery"}` sebagai gantinya.
 
 <Warning>
   Dengan kunci `inline`, Anda bertanggung jawab memperbarui issuer ketika klaster merotasi kunci penandatanganan service account-nya. Rotasi jarang terjadi (biasanya hanya selama upgrade klaster), tetapi pertukaran token akan gagal dengan error tanda tangan sampai Anda mengirimkan JWKS yang baru.
@@ -300,7 +300,7 @@ Spesifikasi pod di [Mengonfigurasi Kubernetes](https://platform.claude.com/docs/
 
 ## Memverifikasi penyiapan
 
-Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika pertukaran gagal dengan respons `401` `authentication_error` yang buram (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console untuk alasan penolakan dan lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange). Penyebab paling umum di sisi Kubernetes adalah ketidakcocokan kunci JWKS (untuk mode `inline`, ambil ulang dengan `kubectl get --raw /openid/v1/jwks` dan perbarui issuer).
+Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika pertukaran gagal dengan respons `401` `authentication_error` yang buram (pesan `Authentication failed`), periksa [halaman riwayat autentikasi](https://platform.claude.com/settings/workload-identity-federation?tab=history) di Claude Console untuk alasan penolakan. Kemudian lihat [Memecahkan masalah pertukaran yang gagal](https://platform.claude.com/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange). Penyebab paling umum di sisi Kubernetes adalah ketidakcocokan kunci JWKS (untuk mode `inline`, ambil ulang dengan `kubectl get --raw /openid/v1/jwks` dan perbarui issuer).
 
 ## Membatasi cakupan aturan Anda
 
@@ -311,7 +311,7 @@ Pertukaran yang berhasil mengembalikan `access_token` yang diawali dengan `sk-an
 Kunci blok `match` pada rule ke cakupan tersempit yang sesuai dengan kasus penggunaan Anda:
 
 * **Tetapkan namespace dan nama service-account:** Gunakan nilai lengkap `system:serviceaccount:<namespace>:<name>` tanpa `*` di akhir.
-* **Selalu atur audience:** Wajibkan `audience` pada aturan dan atur nilai yang sama pada proyeksi `serviceAccountToken` pod sehingga token default-audience ditolak.
+* **Selalu atur audience:** Wajibkan `audience` pada aturan dan atur nilai yang sama pada proyeksi `serviceAccountToken` pod sehingga Anthropic menolak token default-audience.
 * **Gunakan aturan terpisah untuk setiap namespace:** Buat aturan dan akun layanan Anthropic yang berbeda untuk setiap namespace alih-alih memperluas satu aturan.
 * **Batasi issuer inline-JWKS ke satu klaster:** Ketika beberapa klaster berbagi URL issuer, daftarkan JWKS setiap klaster sebagai penerbit federasi tersendiri dan ikat rule hanya ke issuer tersebut.
 

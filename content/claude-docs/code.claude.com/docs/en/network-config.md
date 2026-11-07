@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/network-config
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 348db66ed5138aad4e5ddffd5904f67b833dc004af8c9a4dec713bdf6f2dd81b
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: f8772ba8eb25afded1255706e59abfee95ab4e3bf3ea456bbc564d32e3dc0921
 ---
 
 > ## Documentation Index
@@ -95,6 +95,13 @@ If your enterprise environment uses a custom CA, configure Claude Code to trust 
 ```bash theme={null}
 export NODE_EXTRA_CA_CERTS=/path/to/ca-cert.pem
 ```
+
+If you see either of these warnings, Claude Code couldn't load the `NODE_EXTRA_CA_CERTS` file as a whole, and connections that need a certificate it skipped can fail:
+
+* `Claude Code used only the certificates that it could read in full from the NODE_EXTRA_CA_CERTS file`
+* `Claude Code ignored all of the NODE_EXTRA_CA_CERTS file: it holds no certificate that Claude Code can read`
+
+The full text of each warning says how to fix the file. A skipped certificate that's also in the [CA certificate store](#ca-certificate-store) still works.
 
 ## mTLS authentication
 

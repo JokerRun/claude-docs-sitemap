@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/preserved-thinking
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 09cd235e74c960719a8fb65a162c9fba0e32e04bc40edfa2ef773a8f4a29fc36
+fetched_at: 2026-11-07T02:12:06.793583Z
+sha256: adc83b294cfa9857d0a883beab86ba5bab3c72ee439763164c425d754432e7f0
 ---
 
 ---
@@ -1225,7 +1225,7 @@ Untuk mengaktifkan alat yang Anda deklarasikan dengan `defer_loading: true`, tam
 }
 ```
 
-Terkadang Anda tidak dapat mendeklarasikan alat di awal karena Anda belum mengetahui skemanya: alat yang ditemukan aplikasi Anda saat runtime, atau server MCP yang terhubung setelah giliran pertama. Definisikan alat tersebut di dalam blok `tool_addition` alih-alih menyentuh `tools`. Dengan `inline-tools-2026-09-15`, `tool` pada blok dapat berupa `{"type": "tool_definition", "definition": {...}}`, yang membawa entri yang sama dengan yang akan Anda taruh di `tools`:
+Terkadang Anda tidak dapat mendeklarasikan alat di awal karena Anda belum mengetahui skemanya: alat yang ditemukan aplikasi Anda saat runtime, atau server MCP yang terhubung setelah giliran pertama. [Definisikan alat tersebut di dalam blok `tool_addition`](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta) alih-alih menyentuh `tools`. Dengan `inline-tools-2026-09-15`, `tool` pada blok dapat berupa `{"type": "tool_definition", "definition": {...}}`, yang membawa entri yang sama dengan yang akan Anda taruh di `tools`:
 
 ```json
 {
@@ -1252,7 +1252,7 @@ Terkadang Anda tidak dapat mendeklarasikan alat di awal karena Anda belum menget
 
 Alat baru tiba di `messages`, `tools` tidak pernah berubah, dan pemikiran sebelumnya tetap valid. Pertahankan setidaknya satu alat tanpa `defer_loading: true` di `tools`: jika setiap alat di sana ditangguhkan, alat pertama yang Anda definisikan dengan cara ini akan menyebabkan satu cache miss prompt penuh.
 
-Jika API terhubung ke server MCP untuk Anda melalui [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector), kirim juga `mcp-client-2026-09-15`. Header ini mencakup semua yang dilakukan `mcp-client-2025-11-20`, jadi kirimkan header ini sebagai pengganti header tersebut. `definition` pada blok kemudian dapat berupa `mcp_toolset` untuk server yang tercantum di `mcp_servers`. Ketika API harus mengambil daftar alat sebuah server, respons dimulai dengan blok `mcp_tool_listing` untuk server tersebut. Kirim kembali blok itu tanpa perubahan bersama sisa giliran asisten, dan tetap kirim `mcp-client-2026-09-15` pada setiap permintaan berikutnya yang membawanya. Blok tersebut mengunci toolset ke daftar itu, sehingga API tidak menghubungi server lagi untuk toolset tersebut. Fitur konektor MCP ini tersedia di Claude API.
+Jika API terhubung ke server MCP untuk Anda melalui [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector), kirim juga `mcp-client-2026-09-15`. Header ini mencakup semua yang dilakukan `mcp-client-2025-11-20`, jadi kirimkan header ini sebagai pengganti header tersebut. `definition` pada blok kemudian dapat berupa [`mcp_toolset` untuk server yang tercantum di `mcp_servers`](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#add-an-mcp-server-mid-conversation-beta). Ketika API harus mengambil daftar alat sebuah server, respons dimulai dengan blok `mcp_tool_listing` untuk server tersebut. Kirim kembali blok itu tanpa perubahan bersama sisa giliran asisten, dan tetap kirim `mcp-client-2026-09-15` pada setiap permintaan berikutnya yang membawanya. Blok tersebut mengunci toolset ke daftar itu, sehingga API tidak menghubungi server lagi untuk toolset tersebut. Fitur konektor MCP ini tersedia di Claude API.
 
 Dengan hanya header `mid-conversation-tool-changes-2026-07-01`, Anda dapat menambahkan alat yang Anda ketahui di tengah sesi ke `tools` dengan `defer_loading: true`, lalu menawarkannya dengan blok `tool_addition`. Itu aman karena pemeriksaan prefiks mengabaikan alat yang ditangguhkan hingga blok `tool_addition` mereferensikannya. Menambahkan alat tanpa `defer_loading: true` mengubah prefiks dan membuat pemikiran sebelumnya tidak valid.
 
@@ -1565,7 +1565,7 @@ Library, proxy, atau gateway berada di antara riwayat milik pihak lain dan API, 
   </Accordion>
 
   <Accordion title="Daftar alat saya berubah di tengah sesi. Bagaimana cara menghindari percakapan menjadi tidak valid?">
-    Jangan edit `tools`. Deklarasikan set lengkapnya di awal sesi, tandai alat yang belum tersedia dengan `defer_loading: true`, dan tawarkan atau tarik alat tersebut dengan blok `tool_addition` dan `tool_removal`. Jika Anda baru mengetahui skema suatu alat di tengah sesi, definisikan alat tersebut di dalam blok `tool_addition` (`inline-tools-2026-09-15`, ditambah `mcp-client-2026-09-15` untuk server yang dijangkau konektor MCP milik API) dan biarkan `tools` tidak berubah. Pesan `role: "system"` yang membawa blok-blok ini bergabung ke dalam prefiks untuk thinking berikutnya, jadi jangan pindahkan, ubah kata-katanya, atau hapus pesan tersebut setelahnya. Lihat [Menambahkan atau menghapus alat dengan `tool_addition` dan `tool_removal`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#tool-changes).
+    Jangan edit `tools`. Deklarasikan set lengkapnya di awal sesi, tandai alat yang belum tersedia dengan `defer_loading: true`, dan tawarkan atau tarik alat tersebut dengan blok `tool_addition` dan `tool_removal`. Jika Anda baru mengetahui skema suatu alat di tengah sesi, [definisikan alat tersebut di dalam blok `tool_addition`](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta) (`inline-tools-2026-09-15`, ditambah `mcp-client-2026-09-15` untuk [server yang dijangkau konektor MCP milik API](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#add-an-mcp-server-mid-conversation-beta)) dan biarkan `tools` tidak berubah. Pesan `role: "system"` yang membawa blok-blok ini bergabung ke dalam prefiks untuk thinking berikutnya, jadi jangan pindahkan, ubah kata-katanya, atau hapus pesan tersebut setelahnya. Lihat [Menambahkan atau menghapus alat dengan `tool_addition` dan `tool_removal`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#tool-changes).
   </Accordion>
 
   <Accordion title="Saya melakukan compaction dengan meringkas giliran lama dan mempertahankan giliran terbaru apa adanya. Apakah itu masih berfungsi?">
