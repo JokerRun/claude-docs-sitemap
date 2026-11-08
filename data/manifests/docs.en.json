@@ -738,15 +738,15 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/hooks",
     "local_path": "content/claude-docs/code.claude.com/docs/en/hooks.md",
-    "fetched_at": "2026-11-07T02:12:06.793583Z",
-    "sha256": "55757f0fbe69bc20bb184c53c41f9d606e15bb4f8c3cd2a9b088c06b4357b906"
+    "fetched_at": "2026-11-08T02:13:40.705305Z",
+    "sha256": "302eb7b421958a10745425535de466903450dc2f4ee601ab182d54e1f747fa56"
   },
   {
     "source": "code",
     "url": "https://code.claude.com/docs/en/hooks-guide",
     "local_path": "content/claude-docs/code.claude.com/docs/en/hooks-guide.md",
-    "fetched_at": "2026-11-07T02:12:06.793583Z",
-    "sha256": "a137a70720739938d89001a688a3e33f4516374dac8a1c2afbece1df61d37fb3"
+    "fetched_at": "2026-11-08T02:13:40.705305Z",
+    "sha256": "662e38ddd6af0fcc78f93ab64ecbbb8669a3827528f2a7dac60a73dcf1dc1aee"
   },
   {
     "source": "code",
@@ -836,8 +836,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/mcp",
     "local_path": "content/claude-docs/code.claude.com/docs/en/mcp.md",
-    "fetched_at": "2026-11-07T02:12:06.793583Z",
-    "sha256": "6ffdadb194bdceb4676f0bf6e52637942e1558916afbf4636fb3ef79b4e0e16a"
+    "fetched_at": "2026-11-08T02:13:40.705305Z",
+    "sha256": "08a59d3eeeb80da9f94a4f79f1f1179b5cd165c464e7805f8fdc8843ab9c6db7"
   },
   {
     "source": "code",
@@ -1186,8 +1186,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/sandboxing",
     "local_path": "content/claude-docs/code.claude.com/docs/en/sandboxing.md",
-    "fetched_at": "2026-11-04T02:12:37.489821Z",
-    "sha256": "6e1c321f48933ba638084de9533f72d007dc919240aed4195e07664bd2f8b3d7"
+    "fetched_at": "2026-11-08T02:13:40.705305Z",
+    "sha256": "5052f33f5c9ad369712da4a21e794f9e7b5fc87b9123deb9cb7e4919245e3bca"
   },
   {
     "source": "code",

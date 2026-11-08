@@ -316,10 +316,10 @@
   lastmod: '2026-10-29T20:15:35.066Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks
-  lastmod: '2026-11-06T20:48:25.474Z'
+  lastmod: '2026-11-07T19:18:37.804Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks-guide
-  lastmod: '2026-11-06T03:59:46.882Z'
+  lastmod: '2026-11-07T19:18:37.811Z'
 - source: code
   loc: https://code.claude.com/docs/en/how-claude-code-works
   lastmod: '2026-10-30T17:44:30.726Z'
@@ -358,7 +358,7 @@
   lastmod: '2026-11-03T02:14:49.217Z'
 - source: code
   loc: https://code.claude.com/docs/en/mcp
-  lastmod: '2026-11-06T20:32:16.971Z'
+  lastmod: '2026-11-07T19:18:58.051Z'
 - source: code
   loc: https://code.claude.com/docs/en/mcp-quickstart
   lastmod: '2026-10-28T19:51:18.251Z'
@@ -508,7 +508,7 @@
   lastmod: '2026-11-06T20:34:30.405Z'
 - source: code
   loc: https://code.claude.com/docs/en/sandboxing
-  lastmod: '2026-11-04T00:34:03.484Z'
+  lastmod: '2026-11-07T04:00:34.959Z'
 - source: code
   loc: https://code.claude.com/docs/en/scheduled-tasks
   lastmod: '2026-10-22T18:20:19.446Z'

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: 55757f0fbe69bc20bb184c53c41f9d606e15bb4f8c3cd2a9b088c06b4357b906
+fetched_at: 2026-11-08T02:13:40.705305Z
+sha256: 302eb7b421958a10745425535de466903450dc2f4ee601ab182d54e1f747fa56
 ---
 
 > ## Documentation Index
@@ -2173,7 +2173,7 @@ PreToolUse hooks run before every tool call, whether or not it needs permission.
 | Field | Description |
 | :- | :- |
 | `behavior` | `"allow"` grants the permission, `"deny"` denies it. [Deny and ask rules](https://code.claude.com/docs/en/permissions.md#manage-permissions) are still evaluated, so a hook returning `"allow"` doesn't override a matching deny rule |
-| `updatedInput` | For `"allow"` only: modifies the tool's input parameters before execution. Replaces the entire input object, so include unchanged fields alongside modified ones. The modified input is re-evaluated against deny and ask rules |
+| `updatedInput` | For `"allow"` only: modifies the tool's input parameters before execution. Replaces the entire input object, so include unchanged fields alongside modified ones. The modified input is re-evaluated against deny and ask rules. `AskUserQuestion` and `ExitPlanMode` [need this field](#allow-with-updatedinput) |
 | `updatedPermissions` | For `"allow"` only: array of [permission update entries](#permission-update-entries) to apply, such as adding an allow rule or changing the session permission mode |
 | `message` | For `"deny"` only: tells Claude why the permission was denied |
 | `interrupt` | For `"deny"` only: if `true`, stops Claude |

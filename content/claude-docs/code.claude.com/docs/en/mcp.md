@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: 6ffdadb194bdceb4676f0bf6e52637942e1558916afbf4636fb3ef79b4e0e16a
+fetched_at: 2026-11-08T02:13:40.705305Z
+sha256: 08a59d3eeeb80da9f94a4f79f1f1179b5cd165c464e7805f8fdc8843ab9c6db7
 ---
 
 > ## Documentation Index
@@ -603,7 +603,7 @@ If you build an MCP server, you can answer a long-running `tools/call` with a ta
 
 #### Answer the call with a task
 
-Answer with a task only when the request carries the extension, or Claude gets the tool error `Unsupported result type 'task' for tools/call`. Claude gets the same error when `taskId`, `status`, `createdAt`, `lastUpdatedAt`, or `ttlMs` is missing. The task object is the JSON-RPC `result` of your `tools/call` response, needs no `content` array, and here includes the optional `statusMessage` and `pollIntervalMs`:
+Answer with a task only when the request carries the extension, or the call fails with the tool error `Unsupported result type 'task' for tools/call`. The call fails the same way if your answer has no `taskId` or no valid `status`. The task object is the JSON-RPC `result` of your `tools/call` response, needs no `content` array, and here includes the optional `statusMessage` and `pollIntervalMs`:
 
 ```json theme={null}
 {
@@ -623,9 +623,11 @@ Answer with a task only when the request carries the extension, or Claude gets t
 | `resultType` | Set it to `"task"` to mark the reply as a task. Without it, Claude Code reads the reply as a plain result |
 | `taskId` | Required. At most 128 printable ASCII characters with no spaces, or Claude gets a tool error beginning `MCP server "<name>" returned a malformed task handle for tool "<tool>"`. Keep the ID answerable across connections, because after a resume Claude Code asks about it on a new connection |
 | `status` | Required. One of `working`, `input_required`, `completed`, `failed`, or `cancelled`. Another value gives the `Unsupported result type` error |
-| `createdAt`, `lastUpdatedAt`, `ttlMs` | Required, and `ttlMs` may be `null`. Claude Code doesn't drop a task because its `ttlMs` has passed |
-| `pollIntervalMs` | Optional, but not `null`. Milliseconds between `tasks/get` requests, clamped to between 250 and 30000. Claude Code uses 2000 when the field is absent, and reads the value again from each `tasks/get` response |
+| `createdAt`, `lastUpdatedAt`, `ttlMs` | Required by the tasks extension, and `ttlMs` may be `null`. Claude Code doesn't drop a task because its `ttlMs` has passed |
+| `pollIntervalMs` | Optional. Milliseconds between `tasks/get` requests, clamped to between 250 and 30000. Claude Code uses 2000 when the field is absent or `null`, and reads the value again from each `tasks/get` response |
 | `statusMessage` | Optional. `/tasks` shows the value from your latest `tasks/get` response, not this first one, and a response that omits the field clears it. A [status message from Claude Code](#status-messages-on-an-mcp-task) can take its place |
+
+Claude Code accepts a task answer that omits `createdAt`, `lastUpdatedAt`, or `ttlMs`, or that sets `pollIntervalMs` to `null`. Before v2.1.317, the call failed with the `Unsupported result type` error instead. To work with those versions too, send the three fields that the tasks extension requires, and send `pollIntervalMs` as a number or not at all.
 
 On an HTTP or claude.ai connector server, the task answer has to start within the [per-request timer](#time-limits-on-mcp-tool-calls), so accept the job and answer first, then do the work.
 
