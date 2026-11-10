@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: e07ef16eda379601114b810fce441f16db0fa0acd4cae0825629632d87ef1e37
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: d40c485900dd43867a8099f16335580191a4354146becc6362d8e8333116a155
 ---
 
 > ## Documentation Index
@@ -243,7 +243,7 @@ Developers usually bring limit questions to their admin, so it helps to know whi
   * Run `/usage-credits` to request usage beyond the allowance, if you have [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) turned on.
   * On Claude Code v2.1.234 or later, [wait and continue the interrupted task automatically after the reset](https://code.claude.com/docs/en/interactive-mode.md#wait-for-a-usage-limit-to-reset); that section lists when Claude Code starts the wait on its own and when the developer picks it from `/rate-limit-options`. To control for your fleet whether Claude Code starts that wait on its own, set [`autoContinueAtUsageLimit`](https://code.claude.com/docs/en/settings-reference#autocontinueatusagelimit) in [managed settings](https://code.claude.com/docs/en/settings.md#settings-precedence).
 * **"You've hit your individual spend limit", "org's monthly spend limit", or "team's shared budget"**: the developer's request would be billed to usage credits, and those credits have reached a spend limit you set. To let the developer continue, go to [**Organization settings > Usage**](https://claude.ai/admin-settings/usage) and increase the limit the message names. When the message also names a plan reset time, the developer can instead wait until then. See [the error reference](https://code.claude.com/docs/en/errors.md#youve-hit-your-monthly-spend-limit) for each variant.
-* **A spend limit message from a [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway)**: the developer passed a spend cap you set on your self-hosted gateway, and the gateway blocks their requests until the period resets or you raise the cap. See [gateway spend limits](https://code.claude.com/docs/en/claude-apps-gateway-spend-limits.md) for caps, reset schedules, and the message the developer sees.
+* **A spend limit message from a [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway)**: the developer passed a spend cap you set on your self-hosted gateway. The gateway blocks their requests until you raise the cap, or until the cap resets if it's above \$0. See [gateway spend limits](https://code.claude.com/docs/en/claude-apps-gateway-spend-limits.md) for caps, reset schedules, and the message the developer sees.
 * **A context or auto-compact warning**: not a usage limit. The conversation has grown close to the session's [auto-compact window](https://code.claude.com/docs/en/model-config.md#set-the-auto-compact-window), the threshold where Claude Code summarizes older history to free space. Point the developer at [reduce token usage](#reduce-token-usage).
 * **Unexpectedly high spend on an API or cloud-provider plan**: usually traces back to long sessions that were never cleared or to Opus left as the default model. The highest-impact habits to share are clearing between unrelated tasks and matching the model to the job, both covered in [reduce token usage](#reduce-token-usage).
 

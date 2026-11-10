@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/budgets
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: a58a869e4105fcc7c6b9fed2e5b7e699b8a8121527dbbcce7023cf24df105782
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 44320cd4d368cad70ec5b445599cba22add943e22c78ba8e6bc3b01cd931b2c0
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

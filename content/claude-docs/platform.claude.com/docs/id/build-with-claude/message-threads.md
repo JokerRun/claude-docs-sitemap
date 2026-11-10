@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/message-threads
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: ad65f1f4855d4aeb29502b48d2dca283f2d0aeb53ff7a6d13a550a8b7a4b4457
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 5c8e636cfa93dbff57de53a4d4f176d51e721ff26949bbf2a3e7ede2fa9d6638
 ---
 
 ---
@@ -16,6 +16,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Isi thread (percakapan, prompt sistem, dan alat) disimpan di memori, dienkripsi dengan kunci yang dikelola server, tidak pernah ditulis ke penyimpanan permanen, dan dihapus paling lambat 1 jam setelah thread terakhir digunakan. Menggunakan fitur ini tidak memengaruhi penggunaan Anda atas fitur lain yang memiliki kelayakan ZDR.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5
@@ -607,7 +609,7 @@ Jika Anda menggunakan [fallback sisi server](https://platform.claude.com/docs/id
 
 Untuk mengubah field khusus create atau field tetap, mulai thread baru: kirim percakapan lengkap dalam permintaan create dengan nilai-nilai baru.
 
-Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, mengubah `system` atau `tools` membuat blok `thinking` dan `redacted_thinking` yang sudah ada dalam percakapan menjadi tidak valid, dan permintaan create dapat mengembalikan error 400. Untuk menghindarinya, keluarkan semua blok `thinking` dan `redacted_thinking` dari percakapan yang Anda kirim. Model kemudian menjawab tanpa penalaran sebelumnya tersebut. Lihat [Apa yang dihitung sebagai edit](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#what-counts-as-an-edit), [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement), dan [Apa yang dilakukan API terhadap blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior).
+Pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, mengubah `system` atau `tools` membuat blok `thinking` dan `redacted_thinking` yang sudah ada dalam percakapan menjadi tidak valid, dan permintaan create dapat mengembalikan error 400. Untuk menghindarinya, keluarkan semua blok `thinking` dan `redacted_thinking` dari percakapan yang Anda kirim. Model kemudian menjawab tanpa penalaran sebelumnya tersebut. Lihat [Apa yang dihitung sebagai edit](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#what-counts-as-an-edit), [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement), dan [Apa yang dilakukan API terhadap blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior).
 
 Kirim hanya pesan-pesan baru pada permintaan continue. API tidak memeriksanya terhadap pesan-pesan yang sudah dimilikinya. Pesan yang Anda kirim ulang dapat muncul dua kali dalam percakapan, atau permintaan dapat mengembalikan error. Misalnya, permintaan continue yang dimulai dengan respons sebelumnya akan mengembalikan error.
 

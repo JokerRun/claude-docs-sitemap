@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: cb7b39743a199342d745e3793c484fd743f200a9ae379d53fcac810b55c3949f
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 4be4eb78ba2f50ff6dc8276f092dc2a998e958ab65d0e43956762568a7e7a7a6
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Alat sisi klien yang dijalankan di environment Anda.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

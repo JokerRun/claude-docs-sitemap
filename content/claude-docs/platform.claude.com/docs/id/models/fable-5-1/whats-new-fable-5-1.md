@@ -1,528 +1,148 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: e727091afe41fbae3f38ee37aed26939b80ce197234b30d23f2aa01f8c95ee0b
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: f0a00677d21c28083ffaaf139709be48a85e92210569a4cc7b94263efcf9dd88
 ---
 
 ---
-title: Yang baru di Claude Fable 5.1
-url: https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1
-description: Ikhtisar fitur baru, perubahan yang dapat merusak kompatibilitas, dan peningkatan kemampuan di Claude Fable 5.1 dan Claude Mythos 5.1.
+title: Claude Fable 5.1
+url: https://platform.claude.com/docs/id/models/fable-5-1/overview
+description: "Referensi Claude Fable 5.1: status siklus hidup, ID model di setiap platform, jendela konteks, batas output, harga, dan sumber daya migrasi. Claude Fable 5.1 adalah model lama, dan Claude Fable 5.2 adalah model Fable saat ini."
 ---
 
-Claude Fable 5.1 memperluas Claude Fable 5 dengan harga input dan output yang sama, dengan pembacaan cache seperempat dari biayanya, dan menghadirkan kemampuan yang lebih kuat untuk coding agentik jangka panjang, riset multilangkah, serta pekerjaan dokumen, spreadsheet, dan slide. Untuk sebagian besar beban kerja, mulailah dengan Claude Opus 5.5 (lihat [Memilih model](https://platform.claude.com/docs/id/about-claude/models/choosing-a-model)). Gunakan Claude Fable 5.1 untuk penalaran yang menuntut dan pekerjaan agentik jangka panjang, atau ketika eval Anda pada Claude Opus 5.5 dengan effort yang lebih tinggi masih belum memenuhi kebutuhan Anda. Claude Mythos 5.1 menawarkan kemampuan yang sama hanya untuk organisasi yang terverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842).
+**Legacy.** Released September 1, 2026.
 
-Jika Anda sudah memanggil Claude Fable 5, empat perubahan bersifat “breaking” (merusak kompatibilitas):
+For demanding reasoning and long-horizon agentic work
 
-* [Penggunaan alat paksa mengembalikan error](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#forced-tool-use-is-not-supported).
-* Hanya Claude Fable 5.1 dan Claude Mythos 5.1 yang dapat [membaca blok thinking Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#thinking-blocks-are-tied-to-the-model-that-produced-them).
-* [Mengedit giliran sebelumnya membatalkan validitas blok thinking](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#editing-earlier-turns-invalidates-thinking-blocks).
-* [Beberapa pasangan alat advisor tidak didukung](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#advisor-tool-pairings).
+Although Claude Fable 5.1 is still available, you should consider migrating to Claude Fable 5.2. [See Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview) · [Migrate to Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/migration-guide)
 
-Lima perubahan bersifat tambahan:
+Model ID: `claude-fable-5-1`
 
-* [Perubahan effort di tengah percakapan](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#change-effort-mid-conversation-beta) (beta)
-* [Pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#turn-scoped-system-messages-beta) (beta)
-* [Pembaruan kemajuan yang dapat dibaca di antara panggilan alat](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#progress-updates-between-tool-calls-beta) (`display: "updates"`, beta)
-* [Harga pembacaan cache yang lebih rendah](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#pricing)
-* [Asal-usul konten](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#content-provenance)
+Context window: 1M tokens · Max output: 128K tokens · Input pricing: $10 / MTok · Output pricing: $50 / MTok
 
-## Model
+[Announcement](https://www.anthropic.com/claude-fable-and-mythos-5-1)
 
-| Model             | ID Claude API     | Deskripsi                                                                                     | Ketersediaan                                                                                                                                              |
-| ----------------- | ----------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Claude Fable 5.1  | claude-fable-5-1  | Penerus Claude Fable 5, untuk coding agentik jangka panjang, pekerjaan pengetahuan, dan riset | Semua pelanggan, di Claude API dan platform mitra                                                                                                         |
-| Claude Mythos 5.1 | claude-mythos-5-1 | Kemampuan yang sama dengan Claude Fable 5.1. Penerus Claude Mythos 5.                         | Organisasi yang terverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842) |
+## Claude Fable 5.1 dan Claude Mythos 5.1
 
-Claude Fable 5.1 dan Claude Mythos 5.1 memiliki spesifikasi dan harga yang sama:
+[Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) menawarkan kemampuan yang sama hanya kepada organisasi yang telah diverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842). Model ini memiliki spesifikasi dan harga yang sama dengan Claude Fable 5.1. Untuk meminta akses, ajukan permohonan ke program yang mencakup kasus penggunaan Anda, atau hubungi tim akun Anthropic, AWS, atau Google Cloud Anda.
 
-* **Jendela konteks dan output:** [“context window” (jendela konteks) 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) (default dan maksimum) dengan harga standar per token di seluruh jendela, dan maksimum 128k token output.
-* **Pemikiran:** [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) selalu aktif. Gunakan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) untuk mengontrol kedalaman thinking.
-* **Harga:** sama dengan Claude Fable 5, kecuali [harga pembacaan cache yang lebih rendah](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#pricing).
-* **Tokenizer:** sama dengan Claude Fable 5 (diperkenalkan bersama Claude Opus 4.7). Dibandingkan dengan model yang lebih lama dari Claude Opus 4.7, teks yang sama menghasilkan sekitar 30 persen lebih banyak token. Lihat [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting).
+## Perbandingannya dengan jajaran model saat ini
 
-Untuk semua model saat ini, lihat [ikhtisar model](https://platform.claude.com/docs/id/models/overview).
+| Model                                                                               | Context | Max output | Price / MTok       | Thinking             | Default effort | Knowledge cutoff |
+| :---------------------------------------------------------------------------------- | :------ | :--------- | :----------------- | :------------------- | :------------- | :--------------- |
+| [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview)   | 1M      | 128K       | $8 / $40           | Adaptive (always on) | `high`         | Jun 2026         |
+| **Claude Fable 5.1** (this model)                                                   | 1M      | 128K       | $10 / $50          | Adaptive (always on) | `high`         | Jun 2026         |
+| [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)     | 1M      | 128K       | $4 / $20           | Adaptive (always on) | `medium`       | Jun 2026         |
+| [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) | 1M      | 128K       | $2 / $10           | Adaptive             | `high`         | Jun 2026         |
+| [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview)   | 1M      | 128K       | From $0.10 / $0.50 | Adaptive             | `medium`       | Jun 2026         |
 
-## Perubahan yang merusak kompatibilitas
+* **Context:** 1M tokens is roughly 555k words or 2.5M Unicode characters on the current tokenizer (introduced with Claude Opus 4.7); models before it fit about 750k words in 1M tokens. 200k tokens is roughly 150k words.
+* **Max output:** Synchronous Messages API limit. On the Message Batches API, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Haiku 5.5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 support up to 300k output tokens with the output-300k-2026-03-24 beta header.
+* **Price / MTok:** Input / output, base price per million tokens. Batch API requests are 50% off; prompt caching reads cost 10% of the base input price (2.5% on Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, and Claude Mythos 5.1, 5% on Claude Opus 5.5 and Claude Sonnet 5.5). See Pricing for the full list.
+* **Thinking:** Adaptive thinking lets the model decide how much to think, steered by effort. Extended thinking is the manual budget\_tokens mode on earlier models.
+* **Default effort:** The effort parameter’s default on the Claude API. Models without a value don’t support the parameter.
+* **Knowledge cutoff:** Reliable knowledge cutoff: the date through which the model’s knowledge is most extensive and reliable.
 
-### Penggunaan alat paksa tidak didukung
+## Spesifikasi
 
-Claude Fable 5.1 dan Claude Mythos 5.1 tidak mendukung “forced tool use” (penggunaan alat paksa). `tool_choice` yang diatur ke `{"type": "any"}` atau `{"type": "tool", "name": "..."}` mengembalikan `invalid_request_error` 400:
+### Model IDs
 
-```text wrap
-tool_choice: type "tool" and "any" are not supported for this model.
-```
-
-`tool_choice: {"type": "auto"}` (default) dan `{"type": "none"}` tidak berubah. Validasi yang sama berlaku untuk endpoint [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting).
-
-Thinking selalu aktif untuk model-model ini, dan panggilan alat paksa akan melewatinya. Model akan menuliskan proses pengerjaannya ke dalam argumen alat, yang menurunkan kualitas argumen. Untuk JSON yang valid terhadap skema, pertahankan `tool_choice: {"type": "auto"}` dan atur `strict: true` dengan [penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use), atau pindahkan skema ke [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs). Agar model memanggil alat alih-alih membalas dalam teks, nyatakan dalam prompt kapan alat tersebut berlaku (misalnya, “Use the `get_weather` tool to answer”). Claude Fable 5.1 mengikuti instruksi alat yang eksplisit dengan andal.
-
-### Hanya Claude Fable 5.1 dan Claude Mythos 5.1 yang membaca blok thinking Claude Fable 5.1
-
-Setiap blok thinking mencatat model mana yang menghasilkannya. Claude Fable 5.1 membaca blok thinking model sebelumnya, tetapi hanya Claude Fable 5.1 dan Claude Mythos 5.1 yang membaca blok milik Claude Fable 5.1. Percakapan yang berpindah ke Claude Fable 5.1 (dari Claude Opus 5, Claude Fable 5, atau model Claude sebelumnya) mempertahankan penalarannya. Percakapan yang berpindah dari Claude Fable 5.1 ke model lain kehilangan penalaran tersebut untuk giliran yang berjalan di sana.
-
-Ketika permintaan membawa blok yang tidak dapat dibaca oleh model target (misalnya router atau fallback yang berganti model di tengah percakapan), API membuang blok tersebut sebelum model menerimanya. Blok yang dibuang tidak dihitung dalam `input_tokens` dan tidak ditagih. Dengan header beta `thinking-binding-controls-2026-08-01`, pembuangan tersebut dilaporkan dalam array `input_transformations` tingkat atas. Tanpa header itu, pembuangan terjadi secara diam-diam. Lihat [Berganti model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
-
-### Mengedit giliran sebelumnya membatalkan validitas blok thinking
-
-Pada Claude Fable 5.1 dan Claude Mythos 5.1, blok thinking yang Anda kirim kembali tetap valid hanya selama semua yang ada sebelumnya tidak berubah: prompt `system`, `tools`, dan setiap pesan sebelumnya. Claude Code, claude.ai, [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), dan [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview) menjaga riwayat tersebut tetap utuh untuk Anda. Jika kode Anda membangun array `messages` sendiri, periksa sebelum Anda bermigrasi: [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking) menjelaskan pemeriksaan prefiks dan cara mengganti setiap pengeditan.
-
-Agar thinking tetap valid sepanjang sesi yang panjang, perlakukan percakapan sebagai append-only (hanya ditambahkan). Tambahkan instruksi dengan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages). Jika instruksi hanya berlaku untuk satu giliran, gunakan [pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#turn-scoped-system-messages-beta) sebagai gantinya. Ubah alat dengan [perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes) alih-alih mengedit `system` atau `tools`. Pangkas konteks dengan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) atau [compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) sisi server, yang tidak dihitung sebagai pengeditan. Pola-pola ini juga menjaga [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) tetap hangat. Untuk mengetahui apakah integrasi Anda mengedit riwayat, jalankan [pemeriksaan tiga langkah](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#fable-5-1-check-integration) dari panduan migrasi.
-
-Perubahan berikut membatalkan validitas setiap blok thinking setelahnya:
-
-* Mengedit, mengurutkan ulang, atau menghapus giliran sebelumnya sambil mempertahankan giliran berikutnya
-* Menyisipkan teks per permintaan ke giliran sebelumnya (pengingat atau baris status) yang Anda hapus pada permintaan berikutnya
-* Membangun ulang prompt `system` tingkat atas atau array `tools` di antara permintaan dalam percakapan yang sama
-* Menggunakan URL gambar atau dokumen yang menyajikan byte berbeda pada permintaan berikutnya (pemeriksaan prefiks mencakup byte, bukan URL, sehingga URL bertanda tangan yang berganti untuk file yang sama tidak masalah)
-* Menghapus blok thinking dari tengah riwayat sambil mempertahankan blok berikutnya
-
-Perubahan berikut menjaga blok berikutnya tetap valid:
-
-* Menghapus blok thinking tertua (dari awal riwayat), terbaru (dari akhir), atau semuanya
-* Membiarkan compaction atau pengeditan konteks sisi server memangkas riwayat
-* Memindahkan penanda `cache_control`
-* Mengubah `effort` di antara permintaan
-
-Ketika permintaan mengirim kembali blok yang tidak valid, `thinking.block_binding.prefix_mismatch_behavior` (header beta `thinking-binding-controls-2026-08-01`) menentukan apa yang terjadi. `"error"` menolak permintaan dengan error 400 yang pesannya berbunyi `The block is bound to a different conversation`. `"drop_block"` membuang blok tersebut dan setiap blok thinking setelahnya, dan permintaan berhasil. Respons mencantumkan setiap pembuangan dalam `input_transformations` dengan `reason: "prefix_binding_mismatch"`. Ketika permintaan tidak mengatur field tersebut, API mengembalikan error 400 pada Claude Mythos 5.1. Pada Claude Fable 5.1, API mengembalikan error untuk akun yang dibuat pada atau setelah 31 Agustus 2026. [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement) memuat tabel lengkapnya.
-
-### Beberapa pasangan alat advisor tidak didukung
-
-Dengan [alat advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool) (beta), advisor harus setidaknya sama mampunya dengan executor. Advisor Claude Mythos 5, Claude Fable 5, Claude Opus 5.5, dan Claude Opus 5 berfungsi dengan executor Claude Fable 5 atau Claude Mythos 5. Dengan executor Claude Fable 5.1 atau Claude Mythos 5.1, advisor tersebut mengembalikan `invalid_request_error` 400. Lihat [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) alat advisor.
-
-## Fitur baru
-
-### Mengubah effort di tengah percakapan (beta)
-
-Pada Claude Fable 5.1 Anda dapat mengubah tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) di tengah percakapan tanpa membatalkan validitas cache prompt. Naikkan untuk langkah yang sulit dan turunkan untuk langkah rutin. Effort per pesan masih dalam beta: sertakan header beta `mid-conversation-output-config-2026-07-01`. Untuk menggunakannya dengan Claude Fable 5.1 melalui [InvokeModel API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) Amazon Bedrock, kirim nilai tersebut dalam array `anthropic_beta` di badan permintaan sebagai gantinya. Untuk model dan platform yang mendukungnya, lihat [Mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#changing-effort-mid-conversation).
-
-<CodeGroup>
-  ```bash cURL
-  # Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-  curl https://api.anthropic.com/v1/messages \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2026-10-21" \
-    -H "anthropic-beta: mid-conversation-output-config-2026-07-01" \
-    -H "content-type: application/json" \
-    -d '{
-      "model": "claude-fable-5-1",
-      "max_tokens": 4096,
-      "output_config": {"effort": "high"},
-      "messages": [
-        {"role": "user", "content": "Plan a migration from SQLite to PostgreSQL in three short steps."},
-        {"role": "assistant", "content": "1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts."},
-        {"role": "system", "content": [], "output_config": {"effort": "low"}},
-        {"role": "user", "content": "Summarize the plan in one sentence."}
-      ]
-    }'
-  ```
-
-  ```bash CLI
-  ant beta:messages create \
-    --beta mid-conversation-output-config-2026-07-01 <<'YAML'
-  model: claude-fable-5-1
-  max_tokens: 4096
-  output_config:
-    effort: high
-  messages:
-    - role: user
-      content: Plan a migration from SQLite to PostgreSQL in three short steps.
-    - role: assistant
-      content: "1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts."
-    # Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-    - role: system
-      content: []
-      output_config:
-        effort: low
-    - role: user
-      content: Summarize the plan in one sentence.
-  YAML
-  ```
-
-  ```python Python
-  client = anthropic.Anthropic()
-
-  response = client.beta.messages.create(
-      model="claude-fable-5-1",
-      max_tokens=4096,
-      output_config={"effort": "high"},
-      messages=[
-          {
-              "role": "user",
-              "content": "Plan a migration from SQLite to PostgreSQL in three short steps.",
-          },
-          {
-              "role": "assistant",
-              "content": "1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts.",
-          },
-          # Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-          {"role": "system", "content": [], "output_config": {"effort": "low"}},
-          {"role": "user", "content": "Summarize the plan in one sentence."},
-      ],
-      betas=["mid-conversation-output-config-2026-07-01"],
-  )
-
-  for block in response.content:
-      if block.type == "text":
-          print(block.text)
-  ```
-
-  ```typescript TypeScript
-  const client = new Anthropic();
-
-  const response = await client.beta.messages.create({
-    model: "claude-fable-5-1",
-    max_tokens: 4096,
-    output_config: { effort: "high" },
-    messages: [
-      {
-        role: "user",
-        content: "Plan a migration from SQLite to PostgreSQL in three short steps."
-      },
-      {
-        role: "assistant",
-        content:
-          "1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts."
-      },
-      // Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-      { role: "system", content: [], output_config: { effort: "low" } },
-      { role: "user", content: "Summarize the plan in one sentence." }
-    ],
-    betas: ["mid-conversation-output-config-2026-07-01"]
-  });
-
-  for (const block of response.content) {
-    if (block.type === "text") {
-      console.log(block.text);
-    }
-  }
-  ```
-
-  ```csharp C#
-  using Anthropic.Models.Beta;
-  using Anthropic.Models.Beta.Messages;
-  using Model = Anthropic.Models.Messages.Model;
-
-  AnthropicClient client = new();
-
-  var response = await client.Beta.Messages.Create(new MessageCreateParams
-  {
-      Model = Model.ClaudeFable5_1,
-      MaxTokens = 4096,
-      OutputConfig = new() { Effort = Effort.High },
-      Messages =
-      [
-          new BetaUserMessageParam { Content = "Plan a migration from SQLite to PostgreSQL in three short steps." },
-          new BetaAssistantMessageParam { Content = "1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts." },
-          // Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-          new BetaSystemMessageParam
-          {
-              Content = new([]),
-              OutputConfig = new() { Effort = BetaSystemMessageOutputConfigEffort.Low },
-          },
-          new BetaUserMessageParam { Content = "Summarize the plan in one sentence." },
-      ],
-      Betas = [AnthropicBeta.MidConversationOutputConfig2026_07_01],
-  });
-
-  foreach (var block in response.Content)
-  {
-      if (block.TryPickText(out var textBlock))
-      {
-          Console.WriteLine(textBlock.Text);
-      }
-  }
-  ```
-
-  ```go Go
-  client := anthropic.NewClient()
-
-  response, err := client.Beta.Messages.New(context.Background(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeFable5_1,
-  	MaxTokens: 4096,
-  	OutputConfig: anthropic.BetaOutputConfigParam{
-  		Effort: anthropic.BetaOutputConfigEffortHigh,
-  	},
-  	Messages: []anthropic.BetaMessageParam{
-  		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Plan a migration from SQLite to PostgreSQL in three short steps.")),
-  		{OfAssistant: &anthropic.BetaAssistantMessageParam{
-  			Content: []anthropic.BetaContentBlockParamUnion{anthropic.NewBetaTextBlock("1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts.")},
-  		}},
-  		// Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-  		anthropic.NewBetaSystemMessage(anthropic.BetaSystemMessageOutputConfigParam{
-  			Effort: anthropic.BetaSystemMessageOutputConfigEffortLow,
-  		}),
-  		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Summarize the plan in one sentence.")),
-  	},
-  	Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaMidConversationOutputConfig2026_07_01},
-  })
-  if err != nil {
-  	log.Fatal(err)
-  }
-
-  for _, block := range response.Content {
-  	if textBlock, ok := block.AsAny().(anthropic.BetaTextBlock); ok {
-  		fmt.Println(textBlock.Text)
-  	}
-  }
-  ```
-
-  ```java Java
-  import com.anthropic.models.beta.AnthropicBeta;
-  import com.anthropic.models.beta.messages.BetaMessage;
-  import com.anthropic.models.beta.messages.BetaOutputConfig;
-  import com.anthropic.models.beta.messages.BetaSystemMessageOutputConfig;
-  import com.anthropic.models.beta.messages.BetaSystemMessageParam;
-  import com.anthropic.models.beta.messages.MessageCreateParams;
-  import com.anthropic.models.messages.Model;
-
-  void main() {
-      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-      MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_FABLE_5_1)
-          .maxTokens(4096L)
-          .addBeta(AnthropicBeta.MID_CONVERSATION_OUTPUT_CONFIG_2026_07_01)
-          .outputConfig(BetaOutputConfig.builder()
-              .effort(BetaOutputConfig.Effort.HIGH)
-              .build())
-          .addUserMessage("Plan a migration from SQLite to PostgreSQL in three short steps.")
-          .addAssistantMessage("1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts.")
-          // Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-          .addMessage(BetaSystemMessageParam.builder()
-              .contentOfBlocks(List.of())
-              .outputConfig(BetaSystemMessageOutputConfig.builder()
-                  .effort(BetaSystemMessageOutputConfig.Effort.LOW)
-                  .build())
-              .build())
-          .addUserMessage("Summarize the plan in one sentence.")
-          .build();
-
-      BetaMessage response = client.beta().messages().create(params);
-      response.content().stream()
-          .flatMap(block -> block.text().stream())
-          .forEach(textBlock -> IO.println(textBlock.text()));
-  }
-  ```
-
-  ```php PHP
-  use Anthropic\Beta\AnthropicBeta;
-  use Anthropic\Beta\Messages\BetaMessageParam;
-  use Anthropic\Beta\Messages\BetaOutputConfig;
-  use Anthropic\Beta\Messages\BetaSystemMessageOutputConfig;
-  use Anthropic\Client;
-
-  $client = new Client();
-
-  $response = $client->beta->messages->create(
-      model: 'claude-fable-5-1',
-      maxTokens: 4096,
-      outputConfig: BetaOutputConfig::with(effort: 'high'),
-      messages: [
-          BetaMessageParam::with(role: 'user', content: 'Plan a migration from SQLite to PostgreSQL in three short steps.'),
-          BetaMessageParam::with(role: 'assistant', content: '1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts.'),
-          // Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-          BetaMessageParam::with(
-              role: 'system',
-              content: [],
-              outputConfig: BetaSystemMessageOutputConfig::with(effort: 'low'),
-          ),
-          BetaMessageParam::with(role: 'user', content: 'Summarize the plan in one sentence.'),
-      ],
-      betas: [AnthropicBeta::MID_CONVERSATION_OUTPUT_CONFIG_2026_07_01],
-  );
-
-  foreach ($response->content as $block) {
-      if ($block->type === 'text') {
-          echo $block->text, PHP_EOL;
-      }
-  }
-  ```
-
-  ```ruby Ruby
-  client = Anthropic::Client.new
-
-  response = client.beta.messages.create(
-    model: Anthropic::Model::CLAUDE_FABLE_5_1,
-    max_tokens: 4096,
-    output_config: {effort: :high},
-    messages: [
-      {role: "user", content: "Plan a migration from SQLite to PostgreSQL in three short steps."},
-      {role: "assistant", content: "1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts."},
-      # Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-      {role: "system", content: [], output_config: {effort: :low}},
-      {role: "user", content: "Summarize the plan in one sentence."}
-    ],
-    betas: [Anthropic::AnthropicBeta::MID_CONVERSATION_OUTPUT_CONFIG_2026_07_01]
-  )
-
-  response.content.each do |block|
-    puts block.text if block.type == :text
-  end
-  ```
-</CodeGroup>
-
-Lihat [Effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) untuk detailnya.
-
-### Pesan sistem berlingkup giliran (beta)
-
-[Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) dapat dibatasi lingkupnya ke satu giliran. Atur `clear_at: "next_user_message"` pada pesan `role: "system"` dan teksnya membawa otoritas prompt sistem untuk giliran saat ini, lalu berhenti dirender setelah ada pesan `user` berikutnya. Pesan tetap berada di `messages` dan Anda terus mengirimkannya kembali apa adanya, sehingga tidak ada yang berubah di bagian awal percakapan. [Cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) tetap cocok, [blok thinking berikutnya tetap valid](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation), dan pesan yang telah dibersihkan tidak memakan token input. Gunakan untuk pengingat per giliran dalam loop alat (“check your inbox before running more code,” “the user can’t see that tool output”) alih-alih menyisipkan teks ke riwayat dan menghapusnya pada permintaan berikutnya. Pesan sistem berlingkup giliran masih dalam beta: sertakan header beta `mid-conversation-system-clear-at-2026-08-21`. Lihat [cara kerja pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) di Pesan sistem dan perubahan alat di tengah percakapan.
-
-```json
-{
-  "role": "system",
-  "clear_at": "next_user_message",
-  "content": "Results have landed in your inbox. Check it before running more code."
-}
-```
-
-### Pembaruan kemajuan di antara panggilan alat (beta)
-
-Seperti Claude Fable 5, Claude Fable 5.1 menulis pembaruan kemajuan singkat di antara panggilan alat tentang apa yang ditemukannya dan apa yang akan dilakukannya selanjutnya, meskipun jumlahnya lebih sedikit (lihat [Berubah dari Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#changed-from-claude-fable-5)). Setiap pembaruan tiba sebagai blok `thinking` tersendiri tepat sebelum panggilan alat. Dengan `thinking.display` default `"omitted"`, blok-blok tersebut dikembalikan kosong, seperti penalaran, sehingga giliran agentik yang panjang dapat terlihat diam bagi pengguna Anda. Yang baru adalah opsi `display: "updates"`: atur dengan header beta `thinking-display-updates-2026-08-18` untuk menerima pembaruan kemajuan sebagai teks sementara penalaran tetap tersembunyi. Setiap blok `thinking` dengan teks tidak kosong kemudian merupakan baris status yang dapat Anda tampilkan kepada pengguna. `"summarized"` juga mengembalikannya, bercampur dengan penalaran yang diringkas. Lihat [Pembaruan kemajuan di antara panggilan alat](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates).
-
-### Asal-usul konten
-
-Teks yang dihasilkan oleh Claude Fable 5.1 dan Claude Mythos 5.1 membawa watermark teks statistik Anthropic di setiap platform tempat model tersedia. File gambar, video, dan audio yang didukung yang dihasilkan Claude (misalnya melalui [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool)) membawa Content Credentials [C2PA](https://c2pa.org/) bertanda tangan ketika Anda mengambilnya melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) di Claude API.
-
-Watermark tidak mengubah makna, kualitas, atau keterbacaan output. Watermark tidak menambahkan token atau karakter tersembunyi, tidak membawa informasi tentang Anda atau organisasi Anda, dan tidak memerlukan perubahan pada permintaan atau respons Anda. Untuk latar belakang, lihat [Bagaimana Claude menandai konten yang dihasilkan AI](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) dan [How Claude’s text watermark works](https://www.anthropic.com/news/claude-text-watermark).
-
-## Perbedaan perilaku
-
-### Berubah dari Claude Fable 5
-
-Claude Fable 5.1 berbeda dari Claude Fable 5 dalam beberapa hal yang muncul tanpa perubahan kode apa pun. Masing-masing memiliki perbaikan prompting di [Menulis prompt untuk Claude Fable 5.1](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1):
-
-* **Pemanggilan alat paralel lebih bervariasi.** Claude Fable 5.1 mungkin mengeluarkan satu panggilan alat di setiap giliran di mana Claude Fable 5 menggabungkan beberapa. Hal ini muncul dalam loop agen yang panjang di mana pembacaan independen berikutnya hanya tersirat: agen coding kustom, harness bash-dan-editor, penggunaan komputer. Giliran tambahan memakan token, perjalanan bolak-balik, dan waktu nyata tetapi tidak menurunkan kualitas jawaban. Permintaan yang menyebutkan beberapa hal untuk diambil tetap berjalan secara paralel. Tambahkan instruksi batching satu baris dari [Kelompokkan panggilan alat yang independen dalam loop agen](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#batch-independent-tool-calls-in-agent-loops).
-* **Lebih sedikit pembaruan kemajuan selama eksekusi alat yang panjang.** Model menulis lebih sedikit teks untuk pengguna di antara panggilan alat, terutama pada effort yang lebih tinggi. Atur `thinking.display` ke `"updates"` (beta) untuk menerima [pembaruan kemajuan](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates) yang memang ditulisnya, dan hapus baris prompt apa pun yang menyuruhnya menahan temuan untuk respons akhir. Jika UI Anda bergantung pada narasi, mintalah secara eksplisit baris pembuka, pembaruan berkala, dan rekap penutup. Lihat [Minta pembaruan progres yang ditujukan kepada pengguna](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#ask-for-user-facing-progress-updates).
-* **Lebih sering menjawab dari ingatan pada effort `low`.** Pada tingkat effort terendah, model lebih jarang memanggil alat pencarian atau pengambilan. Naikkan effort untuk giliran yang membutuhkan informasi terkini, termasuk [di tengah percakapan](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#change-effort-mid-conversation-beta), atau tambahkan dorongan verifikasi dari [Pemicuan pencarian pada effort rendah](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#search-triggering-at-low-effort).
-* **Prosa lebih padat di beberapa bagian.** Dalam beberapa kasus prosanya lebih padat daripada Claude Fable 5, dengan kalimat yang lebih panjang dan lebih sedikit jeda paragraf. Lihat [Kepadatan tulisan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#writing-density).
-* **Lebih sedikit pemformatan dalam chat.** Model lebih jarang menggunakan huruf tebal, header, dan daftar dibandingkan model Claude sebelumnya, sehingga aturan anti-pemformatan yang ditulis untuk model-model tersebut dapat menekan struktur yang dibutuhkan konten. Lihat [Pemformatan dalam chat](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#formatting-in-chat).
-* **Kutipan tanpa penanda dalam ringkasan.** Saat meringkas dokumen, model lebih mungkin mereproduksi bagian dari sumber tanpa menandainya sebagai kutipan. Lihat [Mengutip sumber yang diambil](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#quoting-retrieved-sources).
-* **Penulisan ulang seluruh file untuk perubahan kecil.** Saat mengedit file teks, model lebih mungkin menulis ulang seluruh file daripada melakukan pengeditan yang terarah. Hasilnya biasanya sama, tetapi penulisan ulang memakan lebih banyak token output dan waktu. Lihat [Utamakan pengeditan terarah daripada penulisan ulang seluruh file](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#prefer-targeted-edits-over-whole-file-rewrites).
-
-### Tidak berubah dari Claude Fable 5
-
-Perilaku Messages API berikut dibawa dari Claude Fable 5 tanpa perubahan:
-
-* Pemikiran adaptif selalu aktif. `thinking: {"type": "enabled"}` dengan `budget_tokens` dan `thinking: {"type": "disabled"}` keduanya mengembalikan error 400. Hilangkan `thinking` atau kirim `{"type": "adaptive"}`.
-* `thinking.display` default ke `"omitted"`. `"summarized"` tersedia, dan rantai pemikiran mentah tidak pernah dikembalikan.
-* Penalaran di antara panggilan alat muncul di blok thinking alih-alih teks, dan [pemikiran berselang](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking) berlangsung otomatis tanpa header beta.
-* Prefilling respons asisten mengembalikan error 400.
-* Mengatur `temperature`, `top_p`, atau `top_k` mengembalikan error 400.
-* Panjang prompt minimum yang dapat di-cache adalah 512 token.
-* [Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) dan perubahan alat didukung.
-
-## Peningkatan kemampuan
-
-Claude Fable 5.1 lebih baik daripada Claude Fable 5, dan selisihnya paling lebar pada tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang lebih tinggi. Peningkatannya terkonsentrasi di enam area:
-
-* **Coding agentik dalam sesi panjang**, termasuk fitur multifile, refactor dan migrasi besar, debugging, dan tinjauan kode di seluruh sesi yang berjalan selama berjam-jam
-* **Pekerjaan pengetahuan dengan dokumen, spreadsheet, dan slide**, membawa analisis dari pertanyaan pertama hingga dokumen jadi, spreadsheet dengan formula aktif, atau slide deck yang dibangun dari halaman kosong
-* **Riset dan pencarian**, dengan akurasi lebih tinggi pada riset web multilangkah dan tugas deep-research yang menindaklanjuti temuannya
-* **Vision**, membaca grafik padat, dokumen laporan resmi, dan tabel bertingkat di PDF, termasuk dengan alat crop-and-zoom pada grafik
-* **Pekerjaan konteks panjang**, bernalar dan menghubungkan detail di seluruh [jendela konteks 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows)
-* **Penggunaan komputer**, mengoperasikan browser dan aplikasi desktop dengan lebih andal serta pulih dari langkah yang gagal
-
-Performa multibahasa berada pada tingkat yang sama dengan Claude Fable 5.
-
-## Penolakan, fallback, dan penagihan
-
-Claude Fable 5.1 menyertakan classifier keamanan yang mencakup kategori `stop_details` yang sama dengan Claude Fable 5, dan semua yang ada di [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) berlaku. Model ini dapat mengembalikan `stop_reason: "refusal"`, jadi tangani penolakan dan konfigurasikan fallback.
-
-* **Penolakan:** permintaan yang ditolak mengembalikan HTTP 200 dengan `stop_reason: "refusal"` dan objek [`stop_details`](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) yang menyebutkan area kebijakan yang terpicu.
-* **Fallback:** coba ulang permintaan yang ditolak pada model lain dengan [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback), [middleware SDK](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback), atau mekanisme percobaan ulang Anda sendiri. `fallbacks: "default"` (beta) mencoba ulang permintaan yang ditolak pada model yang direkomendasikan Anthropic untuk kategori tersebut. Target fallback yang diizinkan untuk Claude Fable 5.1 adalah Claude Opus 4.8 dan Claude Opus 5.
-* **Penagihan:** penolakan yang tiba sebelum output apa pun ditagih ketika berada dalam kategori dengan volume false positive yang rendah, untuk menggagalkan upaya mengakali perlindungan Anthropic dalam skala besar ([Cara penolakan ditagih](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#how-refusals-are-billed)). Sebelum 24 September 2026, penolakan ini tidak ditagih. Penolakan di tengah stream menagih token input dan output yang sudah di-stream dengan tarif normal. Untuk Claude Fable 5.1, [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) mengembalikan biaya cache prompt akibat berganti model.
-
-## Harga
-
-Claude Fable 5.1 dan Claude Mythos 5.1 memiliki harga yang sama dengan Claude Fable 5, kecuali pembacaan cache (harga dalam USD):
-
-| Input dasar | Penulisan cache 5m | Penulisan cache 1h | Pembacaan cache | Output     |
-| ----------- | ------------------ | ------------------ | --------------- | ---------- |
-| $10 / MTok  | $12,50 / MTok      | $20 / MTok         | $0,25 / MTok    | $50 / MTok |
-
-Pembacaan cache (hit dan refresh) berharga 0,025 kali harga input dasar pada model-model ini, dibandingkan dengan 0,05 pada Claude Opus 5.5 dan Claude Sonnet 5.5, dan 0,1 pada model Claude lainnya. Sesi agentik panjang yang membaca ulang prefiks yang di-cache membayar seperempat dari tarif Claude Fable 5. Penulisan cache dan [panjang prompt minimum yang dapat di-cache sebesar 512 token](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations) tidak berubah.
-
-[Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing) berharga $5 USD per juta token input dan $25 USD per juta token output. Lihat [Harga Claude](https://platform.claude.com/docs/id/about-claude/pricing) untuk residensi data dan harga alat.
-
-## Ketersediaan
-
-Claude Fable 5.1 tersedia di:
-
-* **Claude API:** semua pelanggan, sebagai `claude-fable-5-1`
-* **AWS:** [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), sebagai `anthropic.claude-fable-5-1`, dan [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), sebagai `claude-fable-5-1`
-* **Google Cloud:** [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), sebagai `claude-fable-5-1`, dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), sebagai `claude-fable-5-1`
-* **Microsoft Foundry:** [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), pada infrastruktur Anthropic
-
-Claude Mythos 5.1 hanya tersedia untuk organisasi yang terverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842). Untuk meminta akses, daftarlah ke program yang mencakup kasus penggunaan Anda, atau hubungi tim akun Anthropic, AWS, atau Google Cloud Anda.
-
-Claude Fable 5.1 dan Claude Mythos 5.1 memiliki retensi data 30 hari dan tidak tersedia di bawah zero data retention kecuali diizinkan secara tegas oleh Anthropic. Keduanya adalah [Covered Models](https://support.claude.com/en/articles/15425695), seperti Claude Fable 5 dan Claude Mythos 5. Lihat [Persyaratan retensi data khusus model](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
-
-## Migrasi dari Claude Fable 5
-
-Untuk bermigrasi dari Claude Fable 5, perbarui ID model Anda:
-
-<CodeGroup exclude="shell">
-  ```python Python
-  model = "claude-fable-5"  # Before
-  model = "claude-fable-5-1"  # After
-  ```
-
-  ```typescript TypeScript
-  let model = "claude-fable-5"; // Before
-  model = "claude-fable-5-1"; // After
-  ```
-
-  ```csharp C#
-  var model = Model.ClaudeFable5; // Before
-  model = Model.ClaudeFable5_1; // After
-  ```
-
-  ```go Go
-  model := anthropic.ModelClaudeFable5  // Before
-  model = anthropic.ModelClaudeFable5_1 // After
-  ```
-
-  ```java Java
-  Model model = Model.CLAUDE_FABLE_5; // Before
-  model = Model.CLAUDE_FABLE_5_1; // After
-  ```
-
-  ```php PHP
-  $model = 'claude-fable-5'; // Before
-  $model = 'claude-fable-5-1'; // After
-  ```
-
-  ```ruby Ruby
-  model = "claude-fable-5" # Before
-  model = "claude-fable-5-1" # After
-  ```
-</CodeGroup>
-
-Kemudian tinjau item-item berikut:
-
-1. Hapus `tool_choice` bertipe `any` atau `tool`. Pindahkan penegakan skema ke [penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) dengan `tool_choice: {"type": "auto"}` atau ke [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs).
-2. Jika Anda menggunakan alat advisor (beta), pilih advisor yang setidaknya sama mampunya dengan Claude Fable 5.1. Lihat [Beberapa pasangan alat advisor tidak didukung](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#advisor-tool-pairings).
-3. Kirim kembali blok thinking tanpa perubahan dan jaga riwayat tetap append-only. Jika kode Anda membangun array `messages` sendiri, jalankan [pemeriksaan tiga langkah](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#fable-5-1-check-integration) dari panduan migrasi. Pindahkan pengingat per giliran yang Anda sisipkan lalu hapus ke [pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#turn-scoped-system-messages-beta), dan pindahkan perubahan `system` dan `tools` ke pesan sistem di tengah percakapan. Pangkas konteks di sisi server, atau hapus blok thinking dari giliran yang Anda bawa melalui ringkasan sisi klien. Kemudian atur [`prefix_mismatch_behavior`](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking-controls) pada setiap permintaan produksi dan pantau `input_transformations`.
-4. Setel ulang effort dari default (`high`), dan pertimbangkan untuk [mengubahnya di tengah percakapan](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#change-effort-mid-conversation-beta) alih-alih mempertahankan satu tingkat untuk seluruh sesi.
-5. Dalam loop agen, perhatikan satu panggilan alat di setiap giliran di mana Claude Fable 5 menggabungkan beberapa, dan tambahkan catatan per giliran dari [Menulis prompt untuk Claude Fable 5.1](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1).
-6. Jalankan ulang eval Anda. Penanganan penolakan, fallback, kredit fallback, dan tokenizer dibawa tanpa perubahan. Pembacaan cache lebih murah (lihat [harga pembacaan cache](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#pricing)), dan perilaku default berbeda dalam hal-hal yang tercantum di [Berubah dari Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1#changed-from-claude-fable-5).
-
-Lihat [panduan migrasi](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide) untuk instruksi langkah demi langkah, termasuk dari Claude Opus 5 dan model sebelumnya.
-
-## Langkah selanjutnya
+| Platform                                                                                                                                                   | Model ID                     |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------- |
+| Claude API                                                                                                                                                 | `claude-fable-5-1`           |
+| [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)                                                           | `anthropic.claude-fable-5-1` |
+| [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)       | `claude-fable-5-1`           |
+| [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                                                     | `claude-fable-5-1`           |
+| [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)                                                     | `claude-fable-5-1`           |
+| [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | `claude-fable-5-1`           |
+
+### Pricing
+
+| Feature                                                                                | Value                            |
+| :------------------------------------------------------------------------------------- | :------------------------------- |
+| Input                                                                                  | $10 / MTok                       |
+| Output                                                                                 | $50 / MTok                       |
+| [5m cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $12.50 / MTok                    |
+| [1h cache write](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) | $20 / MTok                       |
+| [Cache read](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)     | $0.25 / MTok                     |
+| [Batch API](https://platform.claude.com/docs/id/build-with-claude/batch-processing)    | 50% discount on input and output |
+
+[Full price list](https://platform.claude.com/docs/id/about-claude/pricing)
+
+### Capabilities
+
+| Feature                                                                                 | Value                  |
+| :-------------------------------------------------------------------------------------- | :--------------------- |
+| [Context window](https://platform.claude.com/docs/id/build-with-claude/context-windows) | 1M tokens              |
+| Max output                                                                              | 128K tokens            |
+| [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking)              | Adaptive (always on)   |
+| [Default effort](https://platform.claude.com/docs/id/build-with-claude/effort)          | `high`                 |
+| Input → output                                                                          | Text and images → text |
+| Reliable knowledge cutoff                                                               | Jun 2026               |
+| Training data cutoff                                                                    | Jun 2026               |
+
+### Availability
+
+| Feature                                                                       | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| :---------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Status](https://platform.claude.com/docs/id/about-claude/model-deprecations) | Active (legacy)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Released                                                                      | September 1, 2026                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Retirement                                                                    | Not sooner than September 1, 2027                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Platforms                                                                     | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
+
+## Sumber daya
 
 <CardGroup cols={3}>
-  <Card title="Ikhtisar model" icon="arrow-right" href="https://platform.claude.com/docs/id/models/overview">
-    Spesifikasi dan harga untuk setiap model Claude saat ini.
+  <Card title="Migrasi ke Claude Fable 5.2" icon="arrows-left-right" href="https://platform.claude.com/docs/id/models/fable-5-2/migration-guide#migrating-from-claude-fable-5-1-to-claude-fable-5-2">
+    Apa yang berubah saat beralih dari Claude Fable 5.1 ke Claude Fable 5.2.
   </Card>
 
-  <Card title="Panduan migrasi" icon="code" href="https://platform.claude.com/docs/id/models/fable-5-1/migration-guide">
-    Migrasi dari Claude Fable 5, Claude Opus 5, dan model sebelumnya.
+  <Card title="Claude Fable 5.2" icon="arrow-right" href="https://platform.claude.com/docs/id/models/fable-5-2/overview">
+    Model Fable saat ini: ikhtisar, spesifikasi, dan sumber daya.
   </Card>
 
-  <Card title="Menulis prompt untuk Claude Fable 5.1" icon="terminal" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1">
-    Pola prompting khusus untuk Claude Fable 5.1.
+  <Card title="Menulis prompt untuk Claude Fable 5.1" icon="lightbulb" href="https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1">
+    Panduan prompting khusus model untuk pekerjaan jangka panjang dan agentik.
+  </Card>
+
+  <Card title="Pemikiran yang dipertahankan" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking">
+    Kapan blok pemikiran model ini tetap dapat digunakan: saat berganti model dan saat terjadi perubahan pada percakapan.
+  </Card>
+
+  <Card title="Effort per pesan" icon="sliders" href="https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta">
+    Ubah tingkat effort di tengah percakapan tanpa membatalkan cache prompt.
+  </Card>
+
+  <Card title="Penolakan dan fallback" icon="shield" href="https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback">
+    Tangani penolakan classifier dan coba ulang pada model Claude lain.
+  </Card>
+
+  <Card title="Pemikiran adaptif" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
+    Satu-satunya mode pemikiran pada Claude Fable 5.1. Atur kedalamannya dengan `effort`.
+  </Card>
+</CardGroup>
+
+## Referensi
+
+<CardGroup cols={3}>
+  <Card title="Prompt sistem" icon="text" href="https://platform.claude.com/docs/id/release-notes/system-prompts/claude-fable-5-1">
+    Prompt sistem yang digunakan Claude Fable 5.1 di claude.ai dan aplikasi Claude.
+  </Card>
+
+  <Card title="Kartu sistem" icon="file" href="https://www.anthropic.com/claude-fable-5-1-mythos-5-1-system-card">
+    Evaluasi keamanan dan keputusan deployment untuk Claude Fable 5.1 dan Claude Mythos 5.1.
+  </Card>
+
+  <Card title="Harga" icon="coins" href="https://platform.claude.com/docs/id/about-claude/pricing">
+    Daftar harga lengkap, termasuk diskon batch dan tarif caching prompt.
+  </Card>
+
+  <Card title="ID model dan pembuatan versi" icon="fingerprint" href="https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions">
+    Cara kerja ID model, alias, dan snapshot yang disematkan.
+  </Card>
+
+  <Card title="Penghentian model" icon="clock" href="https://platform.claude.com/docs/id/about-claude/model-deprecations">
+    Status siklus hidup dan komitmen penghentian untuk setiap model Claude.
   </Card>
 </CardGroup>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/claude_api_primer
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 4cb96dee488c7eef2a493ed98f995a62d92f2c17bb0e95b5537659f200c50518
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 101448b23c4377fecf82b28d2aee8d9de51cc77c1773c12fccb14420c10bf8a1
 ---
 
 ---
@@ -19,7 +19,7 @@ description: Panduan ini dirancang untuk memberikan Claude dasar-dasar penggunaa
 
 ```text wrap
 Recommended default for most work, including complex agentic coding: Claude Opus 5.5: claude-opus-5-5
-Step up for the hardest long-running agentic and research tasks, at 2.5x Claude Opus 5.5 pricing: Claude Fable 5.1: claude-fable-5-1
+Step up for the hardest long-running agentic and research tasks, at 2x Claude Opus 5.5 pricing: Claude Fable 5.2: claude-fable-5-2
 Previous Opus model: Claude Opus 5: claude-opus-5
 Smart model: Claude Sonnet 5.5: claude-sonnet-5-5
 Previous Sonnet model: Claude Sonnet 5: claude-sonnet-5
@@ -251,6 +251,8 @@ Thinking terkadang dapat membantu Claude dengan tugas yang sangat sulit. Mekanis
 
 Thinking didukung pada model-model berikut:
 
+* Claude Fable 5.2 (`claude-fable-5-2`, hanya pemikiran adaptif, selalu aktif)
+* Claude Mythos 5.2 (`claude-mythos-5-2`, hanya pemikiran adaptif, selalu aktif)
 * Claude Opus 5.5 (`claude-opus-5-5`, hanya pemikiran adaptif, selalu aktif)
 * Claude Sonnet 5.5 (`claude-sonnet-5-5`, hanya pemikiran adaptif, aktif secara default; `thinking: {"type": "disabled"}` mengembalikan error 400, jadi kirim `thinking: {"type": "between_tools"}` untuk menonaktifkan thinking di awal)
 * Claude Haiku 5.5 (`claude-haiku-5-5`, hanya pemikiran adaptif, aktif secara default)
@@ -579,7 +581,7 @@ Saat bekerja dengan parameter `tool_choice`, ada empat opsi yang mungkin:
 * `tool` memaksa Claude untuk selalu menggunakan alat tertentu.
 * `none` mencegah Claude menggunakan alat apa pun.
 
-Pada Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1, `any` dan `tool` mengembalikan error 400. Biarkan `tool_choice` pada `auto` dan atur `"strict": true` pada definisi alat untuk menjamin bahwa setiap pemanggilan yang dilakukan Claude sesuai dengan `input_schema` alat tersebut. Lihat [Penggunaan alat strict](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use).
+Pada Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1, `any` dan `tool` mengembalikan error 400. Biarkan `tool_choice` pada `auto` dan atur `"strict": true` pada definisi alat untuk menjamin bahwa setiap pemanggilan yang dilakukan Claude sesuai dengan `input_schema` alat tersebut. Lihat [Penggunaan alat strict](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use).
 
 ### Output JSON
 

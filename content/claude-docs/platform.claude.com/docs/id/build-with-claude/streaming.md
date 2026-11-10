@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 33e47f4f5ea0964866b2b7ed26ba5cf2f1dbd4f11d4b556f310fbec49b124c2f
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: a99806bc74cc6b7b7f24db4d93804084927f4c9e927720502a3cf8262e0e97b4
 ---
 
 ---
@@ -12,6 +12,8 @@ description: Lakukan streaming respons Messages API secara bertahap dengan serve
 featureMetadata:
   status: stable
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

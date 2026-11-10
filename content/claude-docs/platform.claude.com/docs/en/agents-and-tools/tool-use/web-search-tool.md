@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 834c754a74c461ad4921aa2c9c6b2334f29c3b1411e8103f8d1f2d7e9f8dbe2a
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 20617e55a88165a4ff5ff564991455487745c9d87d7360e23e5f9a98e9a00691
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Real-time web search results returned in the API response. Dynamic filtering for web search is not eligible for ZDR or HIPAA.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

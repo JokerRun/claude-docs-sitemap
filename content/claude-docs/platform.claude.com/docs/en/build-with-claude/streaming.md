@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 6b399a4915b5327366f18511c0498a34c2b4c1c83b83845adfcb61a8d33e27ee
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 8d926d62015642e1227d633806f6070ce55271f0adae81c3753efe5bb49432f9
 ---
 
 ---
@@ -12,6 +12,8 @@ description: Stream Messages API responses incrementally with server-sent events
 featureMetadata:
   status: stable
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

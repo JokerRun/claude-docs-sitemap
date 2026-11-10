@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: bc154faf80791d6bdfcdd1b421fc44da661c4a5d5d05c4ed842e321bfaba10e8
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: c5e6123615497196a78ded6b354c543f5b30b2e9e4c07d9ba152b28516147c3f
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: not-eligible
     note: 29-day retention; async storage required.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5
@@ -114,6 +116,8 @@ The Batches API offers significant cost savings. All usage is charged at 50 perc
 
 | Model                                                                                                                                                                  | Batch input  | Batch output  |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------- | :------------ |
+| Claude Fable 5.2                                                                                                                                                       | $4 / MTok    | $20 / MTok    |
+| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842))                                                                            | $4 / MTok    | $20 / MTok    |
 | Claude Fable 5.1                                                                                                                                                       | $5 / MTok    | $25 / MTok    |
 | Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842))                                                                            | $5 / MTok    | $25 / MTok    |
 | Claude Fable 5                                                                                                                                                         | $5 / MTok    | $25 / MTok    |

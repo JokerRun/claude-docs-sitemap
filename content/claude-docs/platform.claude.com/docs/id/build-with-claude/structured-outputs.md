@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: b4872ba4730c5d56618a4bd842b18a5b94b3de4da6a9cdf3ade820c53bcf5194
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 732f0a6897d6734e8011e1f94002635ab677f4998a8dd924d46a4c5321a00e1c
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: qualified
     note: "Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Prompt Anda dan output Claude tidak disimpan. Hanya JSON schema yang di-cache, hingga 24 jam sejak terakhir digunakan. Ini juga mencakup penggunaan alat ketat (`strict: true` pada alat), yang menggunakan pipeline grammar yang sama."
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

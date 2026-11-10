@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/mythos-5-1/overview
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 1767bb7d762a056bda6617b6aa04a67acba7fab82e9f596f2a1f327b26c8387d
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 7cdd3f64260dd7201767d719f4d87fea7f6a395bfa6a1405e79f636b74bd631d
 ---
 
 ---
 title: Claude Mythos 5.1
 url: https://platform.claude.com/docs/id/models/mythos-5-1/overview
-description: Claude Mythos 5.1 adalah model yang sama dengan Claude Fable 5.1, hanya tersedia bagi organisasi yang telah diverifikasi melalui program verifikasi Anthropic. ID model, spesifikasi, harga, dan cara meminta akses.
+description: "Referensi Claude Mythos 5.1: model yang sama dengan Claude Fable 5.1, hanya tersedia bagi organisasi yang telah diverifikasi melalui program verifikasi Anthropic. ID model, spesifikasi, harga, dan sumber daya migrasi. Claude Mythos 5.2 adalah model Mythos saat ini."
 ---
 
 **Verification required.** Released September 1, 2026.
@@ -19,24 +19,23 @@ Model ID: `claude-mythos-5-1`
 
 Context window: 1M tokens · Max output: 128K tokens · Input pricing: $10 / MTok · Output pricing: $50 / MTok
 
-[Announcement](https://www.anthropic.com/claude-fable-and-mythos-5-1) · [What’s new](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1) · [Migration guide](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#migrating-from-claude-mythos-5-to-claude-mythos-5-1)
+[Announcement](https://www.anthropic.com/claude-fable-and-mythos-5-1) · [Migration guide](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#migrating-from-claude-mythos-5-to-claude-mythos-5-1)
 
 Claude Mythos 5.1 is available only to organizations verified through Anthropic’s verification programs, such as the [Cyber Verification Program](https://support.claude.com/en/articles/14604842). It has the same specifications and pricing as Claude Fable 5.1. To request access, apply to the program that covers your use case. [See Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) · [How refusals and fallback work](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback)
 
 ## Perbandingannya
 
-| Model                                                                               | Context | Max output | Price / MTok       | Latency  | Thinking             | Default effort | Knowledge cutoff |
-| :---------------------------------------------------------------------------------- | :------ | :--------- | :----------------- | :------- | :------------------- | :------------- | :--------------- |
-| [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview)   | 1M      | 128K       | $10 / $50          | Slower   | Adaptive (always on) | `high`         | Jun 2026         |
-| **Claude Mythos 5.1** (this model)                                                  | 1M      | 128K       | $10 / $50          | Slower   | Adaptive (always on) | `high`         | Jun 2026         |
-| [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)     | 1M      | 128K       | $4 / $20           | Moderate | Adaptive (always on) | `medium`       | Jun 2026         |
-| [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) | 1M      | 128K       | $2 / $10           | Fast     | Adaptive             | `high`         | Jun 2026         |
-| [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview)   | 1M      | 128K       | From $0.10 / $0.50 | Fastest  | Adaptive             | `medium`       | Jun 2026         |
+| Model                                                                               | Context | Max output | Price / MTok       | Thinking             | Default effort | Knowledge cutoff |
+| :---------------------------------------------------------------------------------- | :------ | :--------- | :----------------- | :------------------- | :------------- | :--------------- |
+| [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview)   | 1M      | 128K       | $8 / $40           | Adaptive (always on) | `high`         | Jun 2026         |
+| **Claude Mythos 5.1** (this model)                                                  | 1M      | 128K       | $10 / $50          | Adaptive (always on) | `high`         | Jun 2026         |
+| [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)     | 1M      | 128K       | $4 / $20           | Adaptive (always on) | `medium`       | Jun 2026         |
+| [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) | 1M      | 128K       | $2 / $10           | Adaptive             | `high`         | Jun 2026         |
+| [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview)   | 1M      | 128K       | From $0.10 / $0.50 | Adaptive             | `medium`       | Jun 2026         |
 
 * **Context:** 1M tokens is roughly 555k words or 2.5M Unicode characters on the current tokenizer (introduced with Claude Opus 4.7); models before it fit about 750k words in 1M tokens. 200k tokens is roughly 150k words.
 * **Max output:** Synchronous Messages API limit. On the Message Batches API, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Haiku 5.5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 support up to 300k output tokens with the output-300k-2026-03-24 beta header.
-* **Price / MTok:** Input / output, base price per million tokens. Batch API requests are 50% off; prompt caching reads cost 10% of the base input price (2.5% on Claude Fable 5.1 and Claude Mythos 5.1, 5% on Claude Opus 5.5 and Claude Sonnet 5.5). See Pricing for the full list.
-* **Latency:** Comparative latency, relative to the current lineup, as published in the models overview. Actual latency depends on prompt length, output length, and thinking effort.
+* **Price / MTok:** Input / output, base price per million tokens. Batch API requests are 50% off; prompt caching reads cost 10% of the base input price (2.5% on Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, and Claude Mythos 5.1, 5% on Claude Opus 5.5 and Claude Sonnet 5.5). See Pricing for the full list.
 * **Thinking:** Adaptive thinking lets the model decide how much to think, steered by effort. Extended thinking is the manual budget\_tokens mode on earlier models.
 * **Default effort:** The effort parameter’s default on the Claude API. Models without a value don’t support the parameter.
 * **Knowledge cutoff:** Reliable knowledge cutoff: the date through which the model’s knowledge is most extensive and reliable.
@@ -73,7 +72,6 @@ Claude Mythos 5.1 is available only to organizations verified through Anthropic�
 | Max output                                                                              | 128K tokens            |
 | [Thinking](https://platform.claude.com/docs/id/build-with-claude/thinking)              | Adaptive (always on)   |
 | [Default effort](https://platform.claude.com/docs/id/build-with-claude/effort)          | `high`                 |
-| Comparative latency                                                                     | Slower                 |
 | Input → output                                                                          | Text and images → text |
 | Reliable knowledge cutoff                                                               | Jun 2026               |
 | Training data cutoff                                                                    | Jun 2026               |
@@ -87,13 +85,21 @@ Claude Mythos 5.1 is available only to organizations verified through Anthropic�
 | Retirement                                                                    | Not sooner than September 1, 2027                                                                                                                                                                                                                                                                                                                                          |
 | Platforms                                                                     | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
+## Sumber daya
+
+<CardGroup cols={3}>
+  <Card title="Migrasi ke Claude Mythos 5.2" icon="arrows-left-right" href="https://platform.claude.com/docs/id/models/fable-5-2/migration-guide#migrating-from-claude-mythos-5-1-to-claude-mythos-5-2">
+    Apa yang berubah saat beralih dari Claude Mythos 5.1 ke Claude Mythos 5.2.
+  </Card>
+
+  <Card title="Claude Mythos 5.2" icon="arrow-right" href="https://platform.claude.com/docs/id/models/mythos-5-2/overview">
+    Model Mythos saat ini: ikhtisar, spesifikasi, dan sumber daya.
+  </Card>
+</CardGroup>
+
 ## Referensi
 
 <CardGroup cols={3}>
-  <Card title="Migrasi dari Claude Mythos 5" icon="arrow-right" href="https://platform.claude.com/docs/id/models/fable-5-1/migration-guide#migrating-from-claude-mythos-5-to-claude-mythos-5-1">
-    Apa yang berubah saat Anda beralih dari Claude Mythos 5.
-  </Card>
-
   <Card title="Kartu sistem" icon="file" href="https://www.anthropic.com/claude-fable-5-1-mythos-5-1-system-card">
     Evaluasi keamanan dan keputusan deployment untuk Claude Fable 5.1 dan Claude Mythos 5.1.
   </Card>

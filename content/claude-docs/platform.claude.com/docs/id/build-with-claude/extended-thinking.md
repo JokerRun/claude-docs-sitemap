@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 24fff628ddb4d1f6db4be7fba23e5145db198d45d3893e10f57e283d86b5f0d6
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 70ac0c9163b24da906545fa2041cd30ef95d05390c0fed47716bb82c0e867581
 ---
 
 ---
@@ -370,7 +370,7 @@ Jika model Anda hanya mendukung pemikiran diperpanjang (Claude Sonnet 4.5 (depre
 Anda perlu bermigrasi dari `type: "enabled"` jika:
 
 * Anda menggunakan Claude Opus 4.6 atau Claude Sonnet 4.6, di mana `budget_tokens` sudah deprecated.
-* Anda menggunakan Claude 4.7 atau model yang lebih baru, seperti Claude Opus 5.5, Claude Sonnet 5, Claude Sonnet 5.5, Claude Fable 5.1, atau Claude Haiku 5.5, di mana `type: "enabled"` mengembalikan error 400.
+* Anda menggunakan Claude 4.7 atau model yang lebih baru, seperti Claude Opus 5.5, Claude Sonnet 5, Claude Sonnet 5.5, Claude Fable 5.2, Claude Fable 5.1, atau Claude Haiku 5.5, di mana `type: "enabled"` mengembalikan error 400.
 
 Pemetaannya sederhana: hapus `budget_tokens`, atur `thinking: {type: "adaptive"}`, dan kendalikan kedalaman penalaran dengan `output_config: {effort: ...}` alih-alih anggaran token.
 

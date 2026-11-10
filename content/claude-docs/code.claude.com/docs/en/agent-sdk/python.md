@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: 9f3b472f55331fb37ca576943b9a3d3a0ab10754e5bc5f5d15cd6a34bf02d26e
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 569c99cee9a3b178ee109a38e90841ac42fa462d886bfac2230235588bda1c13
 ---
 
 > ## Documentation Index
@@ -2794,7 +2794,7 @@ For what sets the foreground ceiling, see [Timeout and output limits](https://co
 
 Runs a background source and delivers each event to Claude so it can react without polling: `command` runs a script and emits one event per stdout line, and `ws` opens a WebSocket and emits one event per text frame. Provide exactly one of `command` or `ws`.
 
-When Monitor runs a command, it follows the same permission rules as Bash; a WebSocket watch prompts for approval separately. The `ws` source requires Claude Code v2.1.195 or later. See the [Monitor tool reference](https://code.claude.com/docs/en/tools-reference.md#monitor-tool) for behavior and provider availability.
+The `ws` source requires Claude Code v2.1.195 or later. When Monitor runs a command, it follows the same permission rules as Bash. See the [Monitor tool reference](https://code.claude.com/docs/en/tools-reference.md#monitor-tool) for WebSocket permissions, behavior, and provider availability.
 
 **Input:**
 

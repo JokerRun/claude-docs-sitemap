@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 3d432998083e7f1a0445a5a25c17ac5f1f0bd7896f2c96ae015638b41c441e76
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 6672129e89dc0dcb36e71eb608fc8040c5e475d553fdc1b51339f77c1f0cf841
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

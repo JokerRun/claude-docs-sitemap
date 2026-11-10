@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 4f4e2e11f088536257967b8d75b188281bd8ce293fe496fea6bd21d57d17042d
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 3c5023a4a2bcb74ccf0161e8b9892fd8a794dc39a211598bbc2259b8523e750f
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Client-side memory storage where you control data retention.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

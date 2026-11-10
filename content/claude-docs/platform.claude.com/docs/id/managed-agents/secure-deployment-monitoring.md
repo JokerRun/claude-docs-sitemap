@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/secure-deployment-monitoring
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 77685782665b06e017f8bcc807b93e5ee050c4b56a2174e2d88c498bbdd8f683
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: c38021fc04f023ac4eeabf08efa89868739a9b5d8218d9ed85cc643f009d7865
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

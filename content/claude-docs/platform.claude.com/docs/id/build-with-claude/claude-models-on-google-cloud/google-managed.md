@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 610c90fd8b20d36b38e98b6e792b76873cebdb0d273d8abaf8079f12c9335864
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: fe2c5ff6dfa22a6a24888ab488738bd9091db6436bd48252c95444fd3685db19
 ---
 
 ---
@@ -20,11 +20,11 @@ Untuk menggunakan Claude Models on Google Cloud (Google managed), Anda memerluka
 1. Proyek Google Cloud yang dapat menggunakan Agent Platform. Untuk langkah-langkah penyiapan, lihat halaman [Model Anthropic Claude di Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) dari Google Cloud.
 2. [gcloud CLI](https://cloud.google.com/sdk/docs/install) yang terinstal, untuk pengembangan lokal.
 3. Untuk identitas yang melakukan panggilan, peran IAM yang mencakup izin `aiplatform.endpoints.predict`, seperti Agent Platform User (`roles/aiplatform.user`). Untuk detailnya, lihat halaman [Model mitra Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/use-partner-models) dari Google Cloud.
-4. Kredensial Google Cloud untuk identitas tersebut. Untuk contoh SDK, Anda mungkin perlu menjalankan `gcloud auth application-default login` untuk melakukan autentikasi dengan Google Cloud. Contoh cURL untuk Claude Models on Google Cloud (Google managed) mendapatkan token-nya dengan `gcloud auth print-access-token`. Perintah tersebut menggunakan login milik gcloud CLI sendiri, bukan Application Default Credentials. Untuk contoh-contoh tersebut, jalankan `gcloud auth login` atau `gcloud init` terlebih dahulu.
+4. Kredensial Google Cloud untuk identitas tersebut. Untuk mengautentikasi SDK dengan Google Cloud, Anda mungkin perlu menjalankan `gcloud auth application-default login`. Permintaan cURL ke Claude Models on Google Cloud (Google managed) dapat memperoleh token-nya dari `gcloud auth print-access-token`. Perintah tersebut menggunakan login milik gcloud CLI sendiri, bukan Application Default Credentials, jadi jalankan `gcloud auth login` atau `gcloud init` sebelum Anda menggunakannya.
 
 ### Menginstal SDK
 
-[SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) Anthropic mendukung Claude Models on Google Cloud (Google managed) melalui `AnthropicVertex` (csharp: `AnthropicVertexClient`; go: `vertex.WithGoogleAuth()`; java: `VertexBackend`; php: `Anthropic\Vertex\Client`; ruby: `Anthropic::VertexClient`). Instal paket yang menyediakannya:
+[SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) mendukung Claude Models on Google Cloud (Google managed) melalui `AnthropicVertex` (csharp: `AnthropicVertexClient`; go: `vertex.WithGoogleAuth()`; java: `VertexBackend`; php: `Anthropic\Vertex\Client`; ruby: `Anthropic::VertexClient`). Instal paket yang menyediakannya:
 
 <Tabs>
   <Tab title="Python">
@@ -56,8 +56,8 @@ Untuk menggunakan Claude Models on Google Cloud (Google managed), Anda memerluka
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.6.0")
-        implementation("com.anthropic:anthropic-java-vertex:3.6.0")
+        implementation("com.anthropic:anthropic-java:3.7.0")
+        implementation("com.anthropic:anthropic-java-vertex:3.7.0")
         ```
       </Tab>
 
@@ -66,12 +66,12 @@ Untuk menggunakan Claude Models on Google Cloud (Google managed), Anda memerluka
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.6.0</version>
+            <version>3.7.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-vertex</artifactId>
-            <version>3.6.0</version>
+            <version>3.7.0</version>
         </dependency>
         ```
       </Tab>
@@ -250,8 +250,7 @@ Contoh-contoh berikut menggunakan endpoint global. Untuk jenis endpoint lainnya,
   ```
 
   ```php PHP
-  <?php
-
+  use Anthropic\Messages\Model;
   use Anthropic\Messages\TextBlock;
   use Anthropic\Vertex;
 
@@ -265,7 +264,7 @@ Contoh-contoh berikut menggunakan endpoint global. Untuk jenis endpoint lainnya,
       messages: [
           ['role' => 'user', 'content' => 'Hey Claude!']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   foreach ($message->content as $block) {
@@ -284,12 +283,12 @@ Contoh-contoh berikut menggunakan endpoint global. Untuk jenis endpoint lainnya,
   )
 
   message = client.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 100,
-    messages: [{role: "user", content: "Hey Claude!"}]
+    messages: [{ role: "user", content: "Hey Claude!" }]
   )
 
-  puts message.content.find { it.type == :text }.text
+  puts message.content.find { |block| block.is_a?(Anthropic::Models::TextBlock) }.text
   ```
 </CodeGroup>
 
@@ -297,6 +296,8 @@ Contoh-contoh berikut menggunakan endpoint global. Untuk jenis endpoint lainnya,
 
 | Model                                                                                                 | Agent Platform API model ID  |
 | :---------------------------------------------------------------------------------------------------- | :--------------------------- |
+| Claude Fable 5.2                                                                                      | `claude-fable-5-2`           |
+| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842))           | `claude-mythos-5-2`          |
 | Claude Fable 5.1                                                                                      | `claude-fable-5-1`           |
 | Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842))           | `claude-mythos-5-1`          |
 | Claude Fable 5                                                                                        | `claude-fable-5`             |
@@ -480,6 +481,8 @@ Fitur-fitur yang didukung di Claude Models on Google Cloud (Google managed) meli
 
 * [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
 
+* [“Fast mode” (mode cepat)](https://platform.claude.com/docs/id/build-with-claude/fast-mode) pada [model yang didukung](https://platform.claude.com/docs/id/build-with-claude/fast-mode#feature-availability)
+
 [Ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview) mencantumkan setiap fitur. Halaman masing-masing fitur menunjukkan apakah Claude Models on Google Cloud (Google managed) mendukungnya.
 
 ### Fitur yang tidak didukung
@@ -499,8 +502,12 @@ Sebagai pengganti fallback sisi server, gunakan [pola fallback sisi klien](https
 
 Claude Models on Google Cloud (Google managed) menawarkan [“context window” (jendela konteks) 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) untuk model-model berikut:
 
+* Claude Fable 5.2
+* Claude Mythos 5.2
 * Claude Fable 5.1
+* Claude Mythos 5.1
 * Claude Fable 5
+* Claude Mythos 5
 * Claude Opus 5.5
 * Claude Opus 5
 * Claude Opus 4.8

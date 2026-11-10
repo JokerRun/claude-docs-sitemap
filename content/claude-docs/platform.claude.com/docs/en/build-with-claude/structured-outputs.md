@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: a97a39ec51ed00d9467f7e7a0047ce12f13b0dccb75aef0655ff03be57af6781
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 9dc55ae46846151fd7fc139f4403f971ab2a30a73726ef1938d07445d78be931
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: qualified
     note: "Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Your prompts and Claude's outputs are not stored. Only the JSON schema is cached, for up to 24 hours since last use. This also covers strict tool use (`strict: true` on tools), which uses the same grammar pipeline."
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

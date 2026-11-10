@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/intro
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 1797201e5c8f2f09110ddf6c15771d1c36f91804f89cdee1062364adfad195c1
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: f8a5045f8ea45d6b87f717ff9ca7db913ce04d5dc88b3661234a56c0aed55105
 ---
 
 ---
@@ -26,9 +26,9 @@ Untuk mempelajari lebih lanjut tentang masing-masing, lihat [Menggunakan Message
 
 ## Jelajahi generasi terbaru model Claude
 
-Jika Anda tidak yakin model mana yang akan digunakan, mulailah dengan [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) untuk sebagian besar beban kerja. Gunakan [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) untuk penalaran yang menuntut dan pekerjaan agentik jangka panjang, atau ketika hasil evaluasi (evals) Anda pada Claude Opus 5.5 dengan tingkat effort yang lebih tinggi masih belum memadai. Semua model saat ini mendukung input teks dan gambar, output teks, kemampuan multibahasa, “vision” (penglihatan), dan “tool use” (penggunaan alat). Halaman setiap model mencantumkan platform tempat model tersebut tersedia.
+Jika Anda tidak yakin model mana yang akan digunakan, mulailah dengan [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) untuk sebagian besar beban kerja. Gunakan [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview) untuk penalaran yang menuntut dan pekerjaan agentik jangka panjang, atau ketika hasil evaluasi (evals) Anda pada Claude Opus 5.5 dengan tingkat effort yang lebih tinggi masih belum memadai. Semua model saat ini mendukung input teks dan gambar, output teks, kemampuan multibahasa, “vision” (penglihatan), dan “tool use” (penggunaan alat). Halaman setiap model mencantumkan platform tempat model tersebut tersedia.
 
-* [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview) (`claude-fable-5-1`) — New — *For demanding reasoning and long-horizon agentic work* — Most capable · Research · Multi-day tasks
+* [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview) (`claude-fable-5-2`) — New — *For demanding reasoning and long-horizon agentic work* — Most capable · Research · Multi-day tasks
 * [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) (`claude-opus-5-5`) — New — *For long-running agentic coding and knowledge work* — Complex projects · Agents · Coding
 * [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview) (`claude-sonnet-5-5`) — New — *The best combination of speed and intelligence* — Everyday tasks · Writing · Cost-efficient
 * [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) (`claude-haiku-5-5`) — New — *For high-volume, latency-sensitive tasks such as classification, extraction, and routing* — Fastest · Lowest cost · High volume

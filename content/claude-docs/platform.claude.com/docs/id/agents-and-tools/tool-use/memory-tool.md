@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 7ad9cfe36a373ad09528542e38b27aad9a0c3f05a0be9b6d436cf8dc1cef008f
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: bd7e5526997fb3600b7b11cc84c659108d5a77c9247ace6025cedc6bcccce5cc
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Penyimpanan memori sisi klien tempat Anda mengontrol retensi data.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

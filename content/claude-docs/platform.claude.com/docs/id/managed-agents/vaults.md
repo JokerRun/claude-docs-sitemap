@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 3e4a9a0d596c61a0d29762b34fc97284747d15c463623856c0f24c9cd240e606
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 140691b222ae35b72244b05a06b79e8815c403244f3bd95a13b5f6955a50d837
 ---
 
 ---
@@ -18,6 +18,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

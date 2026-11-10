@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/scheduled-deployments
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: f52d3d8f101752df15abfd4884d5224b9bf71566ea8d724437fca664717d3f90
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: b0311b79da181f8eadf8115d61db92f701db283e64b6349bf12b241a38d22e9c
 ---
 
 ---
@@ -18,6 +18,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

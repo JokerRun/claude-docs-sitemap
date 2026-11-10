@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/choosing-a-model
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: a22ad2747ebe47b015228dfc765071a799e95a6e049230eb09387167d25ba30e
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 81bc8862812bf715cb314a1805bb0e495f26d2fe16c87a6a4e4095c0a286e6f8
 ---
 
 ---
@@ -18,7 +18,7 @@ Saat memilih model Claude, pertimbangkan untuk terlebih dahulu mengevaluasi fakt
 * **Kemampuan:** Fitur atau kemampuan spesifik apa yang Anda perlukan dari model untuk memenuhi kebutuhan Anda?
 * **Kecepatan:** Seberapa cepat model perlu merespons dalam aplikasi Anda? [Fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (mode cepat) memberikan kecepatan output hingga 2,5x lebih tinggi dengan harga premium pada [model yang didukung](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models).
 * **Biaya:** Berapa anggaran Anda untuk penggunaan pengembangan maupun produksi?
-* **Effort:** Beberapa model Claude mendukung [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang menukar kecerdasan dengan “latency” (latensi) dan biaya dalam satu model. Menyetel effort sering kali merupakan pengungkit yang lebih baik daripada berganti model. Pada Claude Fable 5.1, Claude Opus 5, dan Claude Sonnet 5.5, mulailah dengan nilai default (`high`) dan sesuaikan naik atau turun berdasarkan eval Anda. Pada Claude Opus 5.5 dan Claude Haiku 5.5, nilai default-nya adalah `medium`; mulailah dari sana dan sesuaikan dengan cara yang sama. Pada Claude Opus 4.8 dan Claude Opus 4.7, tingkat effort `xhigh`, yang berada di antara `high` dan `max`, adalah pengaturan terbaik untuk sebagian besar kasus penggunaan coding dan agentik.
+* **Effort:** Beberapa model Claude mendukung [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang menukar kecerdasan dengan “latency” (latensi) dan biaya dalam satu model. Menyetel effort sering kali merupakan pengungkit yang lebih baik daripada berganti model. Pada Claude Fable 5.2, Claude Fable 5.1, Claude Opus 5, dan Claude Sonnet 5.5, mulailah dengan nilai default (`high`) dan sesuaikan naik atau turun berdasarkan eval Anda. Pada Claude Opus 5.5 dan Claude Haiku 5.5, nilai default-nya adalah `medium`; mulailah dari sana dan sesuaikan dengan cara yang sama. Pada Claude Opus 4.8 dan Claude Opus 4.7, tingkat effort `xhigh`, yang berada di antara `high` dan `max`, adalah pengaturan terbaik untuk sebagian besar kasus penggunaan coding dan agentik.
 
 ***
 
@@ -50,7 +50,7 @@ Untuk tugas kompleks di mana kecerdasan dan kemampuan tingkat lanjut sangat pent
 2. [Optimalkan prompt Anda](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5) untuk model ini.
 3. Evaluasi apakah kinerjanya memenuhi kebutuhan Anda.
 4. Pertimbangkan untuk meningkatkan efisiensi dengan menurunkan [effort](https://platform.claude.com/docs/id/build-with-claude/effort) atau beralih ke model yang lebih rendah seiring waktu dengan optimalisasi alur kerja yang lebih baik.
-5. Jika eval Anda pada effort `xhigh` atau `max` masih kurang memadai untuk penalaran yang menuntut atau pekerjaan agentik jangka panjang, beralihlah ke [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1).
+5. Jika eval Anda pada effort `xhigh` atau `max` masih kurang memadai untuk penalaran yang menuntut atau pekerjaan agentik jangka panjang, beralihlah ke [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/whats-new-fable-5-2).
 
 Pendekatan ini paling cocok untuk:
 
@@ -62,7 +62,7 @@ Pendekatan ini paling cocok untuk:
 
 **Claude Opus 5.5** (`claude-opus-5-5`) dibangun untuk coding agentik dan pekerjaan pengetahuan yang berjalan lama, dengan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (pemikiran adaptif) yang selalu aktif. Jika integrasi Anda memaksa penggunaan alat (`tool_choice` dengan tipe `any` atau `tool`), menonaktifkan thinking, atau menggunakan alat penggunaan komputer `computer_20251124`, lihat [Perubahan yang merusak kompatibilitas](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#breaking-changes) sebelum beralih.
 
-**Claude Fable 5.1** (`claude-fable-5-1`) adalah model Anthropic paling mumpuni yang terbuka untuk semua pelanggan. Model ini memperluas Claude Fable 5 dengan coding agentik jangka panjang, pekerjaan pengetahuan, dan riset yang lebih kuat dengan harga input dan output yang sama, serta pembacaan cache dengan seperempat biaya. **Claude Mythos 5.1** (`claude-mythos-5-1`) menawarkan kemampuan yang sama hanya kepada organisasi yang telah diverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842). Kedua model menggunakan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) yang selalu aktif. Lihat [Yang baru di Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1) untuk detailnya.
+**Claude Fable 5.2** (`claude-fable-5-2`) adalah model Anthropic paling mumpuni yang terbuka untuk semua pelanggan. Model ini dibangun untuk penalaran yang menuntut dan pekerjaan agentik jangka panjang. **Claude Mythos 5.2** (`claude-mythos-5-2`) menawarkan kemampuan yang sama hanya kepada organisasi yang telah diverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842). Kedua model menggunakan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) yang selalu aktif. Jika kode Anda mengedit giliran sebelumnya dalam percakapan, memindahkan percakapan antarmodel, menggunakan alat penggunaan komputer `computer_20251124`, atau menggunakan alat advisor, lihat [perubahan yang merusak kompatibilitas pada Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/whats-new-fable-5-2#breaking-changes) sebelum beralih.
 
 Untuk jendela konteks, batas output, dan harga, lihat [tabel perbandingan model](https://platform.claude.com/docs/id/models/overview#latest-models-comparison).
 
@@ -72,7 +72,7 @@ Sebagian besar beban kerja dimulai dengan Claude Opus 5.5.
 
 | Ketika Anda membutuhkan...                                                         | Pertimbangkan untuk memulai dengan... | Contoh kasus penggunaan                                                                                                                                          |
 | ---------------------------------------------------------------------------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Kemampuan tertinggi yang tersedia                                                  | Claude Fable 5.1                      | Sesi agen yang berjalan berjam-jam, riset mendalam multilangkah, analisis yang dituntaskan hingga menjadi dokumen, spreadsheet, atau deck yang selesai           |
+| Kemampuan tertinggi yang tersedia                                                  | Claude Fable 5.2                      | Sesi agen yang berjalan berjam-jam, riset mendalam multilangkah, analisis yang dituntaskan hingga menjadi dokumen, spreadsheet, atau deck yang selesai           |
 | Coding agentik yang kompleks dan pekerjaan enterprise                              | Claude Opus 5.5                       | Agen coding otonom yang berjalan berjam-jam, refactoring skala besar, rekayasa sistem yang kompleks, alur kerja yang banyak melibatkan visi, penggunaan komputer |
 | Kecepatan dan kemampuan untuk beban kerja coding, agen, dan enterprise sehari-hari | Claude Sonnet 5.5                     | Pembuatan kode, analisis data, pembuatan konten, pemahaman visual, penggunaan alat agentik                                                                       |
 | Latensi dan harga terendah                                                         | Claude Haiku 5.5                      | Aplikasi real-time, pemrosesan cerdas bervolume tinggi, deployment yang sensitif terhadap biaya yang membutuhkan penalaran kuat, tugas subagen                   |
@@ -106,8 +106,8 @@ Strategi multi-model memasangkan model berbiaya lebih rendah dengan model fronti
     Lihat spesifikasi dan harga terperinci untuk model Claude terbaru
   </Card>
 
-  <Card title="Yang baru di Claude Fable 5.1" icon="sparkle" href="https://platform.claude.com/docs/id/models/fable-5-1/whats-new-fable-5-1">
-    Dibangun untuk penalaran yang menuntut dan pekerjaan agentik jangka panjang
+  <Card title="Yang baru di Claude Fable 5.2" icon="sparkle" href="https://platform.claude.com/docs/id/models/fable-5-2/whats-new-fable-5-2">
+    Model Fable terbaru: perubahan yang merusak kompatibilitas, dukungan fitur, dan harga
   </Card>
 
   <Card title="Yang baru di Claude Opus 5.5" icon="sparkle" href="https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5">

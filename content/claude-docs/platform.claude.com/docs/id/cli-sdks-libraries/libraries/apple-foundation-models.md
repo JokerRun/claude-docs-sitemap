@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/apple-foundation-models
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: df6523b1280847dc5ed16eefdade722a0406c2761b147c7449c9a4dfeec8464f
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 6e100690f121fdfd949b53e46d423fb63f459a14e0439783ce450a159a6ae5ef
 ---
 
 ---
@@ -12,6 +12,8 @@ description: Gunakan Claude di platform Apple melalui framework Foundation Model
 featureMetadata:
   status: beta
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

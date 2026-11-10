@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-deploy
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 43a30220de521aeffc8de4adf40294c6be8b9187f1856299f334a29e0c8abfce
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: b98edf038b85f8fc25262bf6b9c37848cb68d1408ed41887db4902a115b5c3b8
 ---
 
 > ## Documentation Index
@@ -179,6 +179,20 @@ The gateway writes two streams to stderr, both JSON-friendly:
   * `guardrail.trace` records [which filter fired](https://code.claude.com/docs/en/claude-apps-gateway-config.md#log-which-guardrail-filter-fired), without the matched text
   * `admin.denied` records a rejected admin-API auth attempt with the client IP, method, path, and a reason, without the presented key material: `invalid_key` when an `x-api-key` was presented but matched no configured key, `bearer_rejected` when only an `Authorization` header was presented and it didn't verify as a gateway session in `admin.admin_groups`, or `no_credentials` when neither header was presented
 * **Operational logs**: human-readable `[gateway]`-prefixed lines for boot, warnings, and upstream errors. The `CLAUDE_GATEWAY_LOG_LEVEL` environment variable controls verbosity and accepts `debug`, `info`, `warn`, or `error`, with `info` as the default. At `debug`, each sign-in and refresh also logs the names, not the values, of the claims in the id\_token, plus the names of the userinfo claims when `userinfo_fallback` supplied any, so you can diagnose `email_claim` and `groups_claim` settings without logging PII. It doesn't affect audit events, which are always emitted.
+
+#### Write operational logs as JSON
+
+If your log collector reads each line's level from a JSON field, set `CLAUDE_GATEWAY_LOG_FORMAT=json` in the gateway's environment. Requires Claude Code v2.1.319 or later on the gateway server.
+
+Each operational log line is then one object with `severity`, `time`, and `message`:
+
+```json theme={null}
+{"severity":"INFO","time":"2026-11-04T17:03:21.512Z","message":"claude gateway listening on http://0.0.0.0:8080"}
+```
+
+`severity` is the log level in capitals, with `warn` written as `WARNING`. A failed start is an `ERROR` line.
+
+Audit events, which also go to stderr, don't change. They carry `ts` and `evt`, and no `severity`.
 
 ### Health
 

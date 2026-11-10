@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 45927f58209d56a7eabd81f04eb07bc5b5224709d53ff29583556bf54dd27526
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 5816239781231dc2e429740e4a79bb9034265928cf436bbacff6b682239ef461
 ---
 
 ---
@@ -679,7 +679,7 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
 </CodeGroup>
 
 <Note>
-  Prompt ini ditulis untuk Claude Haiku 5.5, yang di sini berjalan pada effort `low`. Pada Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, dan Claude Sonnet 5.5, mintalah maksud dan ringkasan satu kalimat dari permintaan tersebut sebagai gantinya. Lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).
+  Prompt ini ditulis untuk Claude Haiku 5.5, yang di sini berjalan pada effort `low`. Pada Claude Fable 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, dan Claude Sonnet 5.5, mintalah maksud dan ringkasan satu kalimat dari permintaan tersebut sebagai gantinya. Lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).
 </Note>
 
 Berikut adalah komponen utama dari prompt ini:

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 34c1a9ca2f7f862d53084a6e011f2677cfc0da67260a095ea679960cd4e0bc5d
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: d13f449655d993d3f2f34da8cf20c4a2bddae6009dc0c21d409801f316b1d481
 ---
 
 ---
@@ -18,6 +18,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

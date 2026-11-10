@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: fa7b41ed942556da98ecd8e2ecee8a88401343f5805091e7388d20f3bec2f926
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 2b4d52c0daa3e860c82481bbe948461359918ee9fd3edf2c5fda7ba9d09fe7b2
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Hitung token sebelum mengirim permintaan.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5
@@ -1432,10 +1434,10 @@ Blok gambar tersemat yang menetapkan [`"oversized_image": "error"`](https://plat
 
 ## Jumlah token pada model Claude Fable dan Claude Mythos
 
-Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5 berbagi tokenizer yang diperkenalkan bersama Claude Opus 4.7. Sebuah prompt dihitung sama pada keempat model tersebut, dan kira-kira 30 persen lebih tinggi dibandingkan model sebelum Claude Opus 4.7 (peningkatan pastinya bergantung pada konten). Endpoint penghitungan token menghitung berdasarkan tokenizer dari `model` yang Anda berikan. Untuk mengukur perbedaannya pada beban kerja Anda, hitung permintaan yang sama dua kali, sekali dengan model Anda saat ini dan sekali dengan model yang Anda rencanakan untuk beralih, lalu bandingkan kedua nilai `input_tokens` tersebut.
+Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5 berbagi tokenizer yang diperkenalkan bersama Claude Opus 4.7. Sebuah prompt dihitung sama pada keenam model tersebut, dan kira-kira 30 persen lebih tinggi dibandingkan model sebelum Claude Opus 4.7 (peningkatan pastinya bergantung pada konten). Endpoint penghitungan token menghitung berdasarkan tokenizer dari `model` yang Anda berikan. Untuk mengukur perbedaannya pada beban kerja Anda, hitung permintaan yang sama sekali dengan model Anda saat ini dan sekali dengan model yang Anda rencanakan untuk beralih. Lalu bandingkan kedua nilai `input_tokens` tersebut.
 
 <Note>
-  **Penagihan dan migrasi:** Penggunaan dan penagihan pada model-model ini mencerminkan jumlah dari tokenizer ini. Saat bermigrasi dari model sebelum Claude Opus 4.7, jangan gunakan kembali jumlah token yang diukur pada model lama untuk memperkirakan biaya atau kesesuaian jendela konteks. Hitung prompt Anda dengan ID `model` yang Anda rencanakan untuk digunakan (misalnya, `"claude-fable-5-1"`).
+  **Penagihan dan migrasi:** Penggunaan dan penagihan pada model-model ini mencerminkan jumlah dari tokenizer ini. Saat bermigrasi dari model sebelum Claude Opus 4.7, jangan gunakan kembali jumlah token yang diukur pada model lama untuk memperkirakan biaya atau kesesuaian jendela konteks. Hitung prompt Anda dengan ID `model` yang Anda rencanakan untuk digunakan (misalnya, `"claude-fable-5-2"`).
 </Note>
 
 ***

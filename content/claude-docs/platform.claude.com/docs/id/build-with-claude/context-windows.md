@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-windows
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 696101b21d052b128c0750935b14dd505a54411ef77eb2f3ee2f58ac7aacb3a3
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 0a13bf91e58a82bacb2fd0a84befbb44e898c0ad81b739232660b94d4bd36014
 ---
 
 ---
@@ -42,7 +42,7 @@ Semua yang ada dalam permintaan diperhitungkan terhadap jendela konteks: prompt 
 
 ## Ukuran jendela konteks berdasarkan model
 
-Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Haiku 5.5, dan [Claude Mythos Preview](https://anthropic.com/glasswing) memiliki jendela konteks 1M token. Satu permintaan ke salah satu model tersebut dapat menghasilkan hingga 128k token output (`max_tokens`). Model Claude lainnya, termasuk Claude Sonnet 4.5 (deprecated), memiliki jendela konteks 200k token.
+Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Haiku 5.5, dan [Claude Mythos Preview](https://anthropic.com/glasswing) memiliki jendela konteks 1M token. Satu permintaan ke salah satu model tersebut dapat menghasilkan hingga 128k token output (`max_tokens`). Model Claude lainnya, termasuk Claude Sonnet 4.5 (deprecated), memiliki jendela konteks 200k token.
 
 Untuk setiap model dengan jendela konteks 1M token, 1M adalah nilai default: Anda tidak memerlukan header beta, dan permintaan konteks panjang ditagih dengan [harga standar](https://platform.claude.com/docs/id/about-claude/pricing#long-context-pricing), kecuali pada Claude Haiku 5.5, di mana prompt lebih dari 100.000 token dikenakan biaya lebih tinggi.
 
@@ -56,7 +56,7 @@ Dengan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking
 
 Token thinking adalah bagian dari parameter `max_tokens` Anda, ditagih sebagai token output, dan diperhitungkan terhadap batas laju. Dengan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (pemikiran adaptif), Claude menentukan alokasi pemikirannya secara dinamis, sehingga penggunaan token thinking bervariasi dari satu permintaan ke permintaan lainnya.
 
-Apakah blok thinking dari giliran asisten sebelumnya tetap berada di jendela konteks bergantung pada modelnya. Pada Claude Opus 4.5 dan model Opus yang lebih baru, Claude Sonnet 4.6 dan model Sonnet yang lebih baru, Claude Haiku 5.5, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, dan Claude Mythos Preview, API mempertahankan blok thinking sebelumnya secara default, dan blok tersebut dihitung terhadap jendela konteks seperti token input lainnya. Pada model Opus dan Sonnet yang lebih lama serta semua model Haiku hingga Claude Haiku 4.5, API secara otomatis menghapus blok thinking sebelumnya dari riwayat percakapan saat Anda mengirimkannya kembali, yang menghemat kapasitas token untuk konten percakapan. Untuk default per model, lihat [preservasi blok pemikiran berdasarkan model](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-block-preservation-by-model). Untuk mengganti default ke arah mana pun, gunakan [pembersihan blok thinking](https://platform.claude.com/docs/id/build-with-claude/context-editing#thinking-block-clearing).
+Apakah blok thinking dari giliran asisten sebelumnya tetap berada di jendela konteks bergantung pada modelnya. Pada Claude Opus 4.5 dan model Opus yang lebih baru, Claude Sonnet 4.6 dan model Sonnet yang lebih baru, Claude Haiku 5.5, Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, dan Claude Mythos Preview, API mempertahankan blok thinking sebelumnya secara default, dan blok tersebut dihitung terhadap jendela konteks seperti token input lainnya. Pada model Opus dan Sonnet yang lebih lama serta semua model Haiku hingga Claude Haiku 4.5, API secara otomatis menghapus blok thinking sebelumnya dari riwayat percakapan saat Anda mengirimkannya kembali, yang menghemat kapasitas token untuk konten percakapan. Untuk default per model, lihat [preservasi blok pemikiran berdasarkan model](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-block-preservation-by-model). Untuk mengganti default ke arah mana pun, gunakan [pembersihan blok thinking](https://platform.claude.com/docs/id/build-with-claude/context-editing#thinking-block-clearing).
 
 Diagram berikut menunjukkan bagaimana token dikelola saat thinking diaktifkan pada model yang menghapus blok thinking sebelumnya:
 
@@ -134,7 +134,7 @@ Setelah setiap pemanggilan alat, API memberi Claude pembaruan tentang kapasitas 
 
 Token gambar termasuk dalam anggaran ini.
 
-Claude Opus 4.7 dan model Opus yang lebih baru, Claude Sonnet 5.5, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, dan Claude Haiku 5.5 tidak menerima tag yang disisipkan ini. Pada model-model ini, Anda dapat memberikan anggaran eksplisit kepada model dengan [“task budgets” (anggaran tugas)](https://platform.claude.com/docs/id/build-with-claude/task-budgets), yang masih dalam tahap beta.
+Claude Opus 4.7 dan model Opus yang lebih baru, Claude Sonnet 5.5, Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, dan Claude Haiku 5.5 tidak menerima tag yang disisipkan ini. Pada model-model ini, Anda dapat memberikan anggaran eksplisit kepada model dengan [“task budgets” (anggaran tugas)](https://platform.claude.com/docs/id/build-with-claude/task-budgets), yang masih dalam tahap beta.
 
 <Tip>
   Untuk agen yang mencakup beberapa sesi, rancang artefak state Anda agar pemulihan konteks berlangsung cepat saat sesi baru dimulai. [Pola multisesi alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#multisession-software-development-pattern) menjelaskan pendekatan konkret langkah demi langkah. Lihat juga [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).

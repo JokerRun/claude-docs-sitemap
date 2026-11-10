@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 8c864eb27b8c9fffb6ae38914240f7577c0b3daf8aed543df4dce279809837a6
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 301e3132e51de4221bd39f4b776322b99e163a7b95f390b5f413e20ac3484efd
 ---
 
 ---
@@ -16,6 +16,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Pratinjau riset. Halaman keamanan Tunnel MCP menjelaskan batas aliran data dan detail subprosesor.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

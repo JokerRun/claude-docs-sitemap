@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: c97177410e48abf45a562379ae2b966e65a0e9b457b9ce973a9c9643318a1c26
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 4a58b373e9c628fd264512d44bc2898c21aa4a094f3adc05f9a8312e97cc1cd5
 ---
 
 ---
@@ -12,6 +12,8 @@ description: Gunakan tool runner SDK untuk menangani loop agentik, pembungkusan 
 featureMetadata:
   status: beta
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

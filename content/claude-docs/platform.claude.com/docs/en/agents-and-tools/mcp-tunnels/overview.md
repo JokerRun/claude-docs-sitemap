@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 4385d13051a7f15cd1ed4c067171d1b53c1d178d8b40a82df2d49c3aef349ef8
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 07eebaf7bd68ace9650e980a9da0802ed63df8dc8b47b7c0600a18e621e67cb9
 ---
 
 ---
@@ -16,6 +16,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Research preview. The MCP tunnels security page describes the data-flow boundary and subprocessor details.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

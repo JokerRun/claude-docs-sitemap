@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/choosing-an-environment
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 519c05c86b04ffd9021f3b1618974edb594a3b3261d8cf14e53628ce9ff5c505
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: fc03b244ea7a5d1abb0ac2f44496be35b5eabeecaccf2a7dfaee9614965c7401
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

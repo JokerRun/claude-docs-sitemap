@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 448f49ae3a98bdf9510dd6b2f609ff34bf1d2811e25e949d3b471dcd635c7433
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 8edbc5d191ff7339f15b6e3893edcb2772c68007e3150c106f7306000013060b
 ---
 
 > ## Documentation Index
@@ -317,6 +317,7 @@ For a few keys whose values restrict a session, Claude Code honors a restrictive
 | [`isolatePeerMachines`](https://code.claude.com/docs/en/settings-reference#isolatepeermachines) | `true` from any scope | Honored even when a managed source sets `false` |
 | [`permissions.blockReadsOutsideWorkingDirectories`](https://code.claude.com/docs/en/settings-reference#permissions-blockreadsoutsideworkingdirectories) | `true` from any scope | Honored even when a managed source sets `false`. Requires Claude Code v2.1.257 or later |
 | [`permissions.blockWritesOutsideWorkingDirectories`](https://code.claude.com/docs/en/settings-reference#permissions-blockwritesoutsideworkingdirectories) | `true` from any scope | Honored even when a managed source sets `false`. Requires Claude Code v2.1.314 or later |
+| [`permissions.denyInsteadOfPrompting`](https://code.claude.com/docs/en/settings-reference#permissions-denyinsteadofprompting) | `true` from `~/.claude/settings.json` or `--settings` | Honored even when a managed source sets `false`. Requires Claude Code v2.1.319 or later |
 | [`autoMode.classifyAllShell`](https://code.claude.com/docs/en/settings-reference#automode-classifyallshell) | `true` from `~/.claude/settings.json` or `--settings` | Honored even when a managed source sets `false` |
 | [`remoteControlAtStartup`](https://code.claude.com/docs/en/settings-reference#remotecontrolatstartup) | `false` from `.claude/settings.json` or `.claude/settings.local.json` | Honored even when a managed source sets `true`; a project or local `true` is ignored |
 | [`crossSessionInbound`](https://code.claude.com/docs/en/settings-reference#crosssessioninbound) | A stricter value from `.claude/settings.json` or `.claude/settings.local.json`, on the `accept` \< `hold` \< `refuse` ladder | Honored over managed, `--settings`, and user values; a project or local value that isn't stricter is ignored |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/workflow-runs
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: f642c920dea840e3fe18d026061ec76515a299de4fbfdeec966b5e16293bd952
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: df7d4ae0900d99c9ba58fceacc31a7b95c6dfc2696b37f85ffbf80c4eea79d1d
 ---
 
 ---
@@ -18,6 +18,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

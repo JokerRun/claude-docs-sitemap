@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: 503f4687307e38f6d3f68895a3093a1f9f699c6afdf8f716dc1295fc72ec7125
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: fc6abf5638ba6c94fc0f9786a3f6bc8c64b5bcb8e2a3182c2c6c31e7dc9156e2
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5
@@ -468,7 +470,7 @@ Poller di host mengklaim pekerjaan dan memanggil skrip Anda sekali untuk setiap 
 
     ```dockerfile
     FROM your-base-image
-    ARG ANT_VERSION=2.7.1
+    ARG ANT_VERSION=2.8.0
     ARG TARGETARCH
     RUN ARCH=$([ "$TARGETARCH" = "arm64" ] && echo arm64 || echo amd64) && \
         curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${ANT_VERSION}/ant_${ANT_VERSION}_linux_${ARCH}.tar.gz" \

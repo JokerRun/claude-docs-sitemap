@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/define-outcomes
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 07b5e9e8fbd11ed25e3190c635ec8b6d991762cbd6449e246d65b4cf2dfea43c
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 433c09494c4095a1f1f0134ef47a4dfc27f7f034f005535fc46fe286c4f3980c
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/api-and-data-retention
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: f4bf49543a559ff76ab9a886fb172a8a335fcf5135310d7fd1a380e1cf7c27aa
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 75c7cc5b6be76d4ecc1fa5b6e4972cff1c00f7a227681b72c5999a995cf84f89
 ---
 
 ---
@@ -45,7 +45,7 @@ Organisasi dengan pengaturan ZDR tidak dapat memanggil Claude API secara langsun
 * **Produk konsumen Claude:** Paket Claude Free, Pro, Max, dan Ultra, termasuk ketika pelanggan pada paket tersebut menggunakan aplikasi web, desktop, atau seluler Claude atau Claude Code.
 * **Antarmuka produk Claude Teams dan Claude Enterprise:** Antarmuka ini tidak memenuhi syarat ZDR. Satu-satunya pengecualian adalah Claude Code di Claude Enterprise, yang memiliki penawaran ZDR tersendiri, terpisah dari pengaturan ZDR yang dijelaskan di halaman ini. Penawaran tersebut hanya tersedia untuk akun yang memenuhi syarat di Claude Enterprise dan memerlukan pengaktifan terpisah oleh Anthropic. Lihat [dokumentasi ZDR Claude Code](https://code.claude.com/docs/en/zero-data-retention), yang hanya berlaku untuk organisasi Claude Enterprise.
 * **Claude for Excel:** Saat ini tidak memenuhi syarat ZDR.
-* **Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5:** Model-model ini memerlukan retensi data 30 hari dan tidak tersedia di bawah ZDR kecuali diizinkan secara tegas oleh Anthropic. Lihat [Persyaratan retensi data khusus model](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+* **Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5:** Model-model ini memerlukan retensi data 30 hari dan tidak tersedia di bawah ZDR kecuali diizinkan secara tegas oleh Anthropic. Lihat [Persyaratan retensi data khusus model](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
 * **Integrasi pihak ketiga:** Data yang diproses oleh situs web, alat, atau integrasi pihak ketiga lainnya tidak tercakup, meskipun beberapa mungkin memiliki penawaran serupa. Tinjau praktik penanganan data dari setiap layanan.
 * **Konten yang ditandai dan penahanan hukum:** Lihat [Retensi terlepas dari pengaturan](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#retention-regardless-of-arrangement).
 
@@ -133,7 +133,7 @@ Jalur mana pun yang Anda gunakan, pastikan fitur mana yang didukung dalam [tabel
 
 ## Persyaratan retensi data khusus model
 
-Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5 ditetapkan sebagai Covered Models (lihat [artikel dukungan Covered Models](https://support.claude.com/en/articles/15425695)) dan memerlukan retensi data 30 hari; oleh karena itu ZDR tidak tersedia untuk model mana pun di antaranya kecuali diizinkan secara tegas oleh Anthropic. Di Claude API, permintaan ke Claude Fable 5 dari organisasi yang konfigurasi retensi datanya tidak memenuhi persyaratan ini akan mengembalikan `400 invalid_request_error`:
+Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5 ditetapkan sebagai Covered Models (lihat [artikel dukungan Covered Models](https://support.claude.com/en/articles/15425695)) dan memerlukan retensi data 30 hari; oleh karena itu ZDR tidak tersedia untuk model mana pun di antaranya kecuali diizinkan secara tegas oleh Anthropic. Di Claude API, permintaan ke Claude Fable 5 dari organisasi yang konfigurasi retensi datanya tidak memenuhi persyaratan ini akan mengembalikan `400 invalid_request_error`:
 
 ```json
 {

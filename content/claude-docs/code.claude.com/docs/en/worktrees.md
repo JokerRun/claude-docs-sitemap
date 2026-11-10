@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/worktrees
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 0574c192aca7bd4392e5e9f2281d31122bdd2210968024db7659215b554ddfce
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 1dff7f21b7ac31754d5e20ca3999cdcbf669e3e7d29a9d4eafb190124a4af878
 ---
 
 > ## Documentation Index
@@ -260,7 +260,7 @@ Configure a [`WorktreeCreate` hook](https://code.claude.com/docs/en/hooks#worktr
 
 A worktree gets its own files and branch, but it shares the following with the main checkout:
 
-* **The repository's `.git` directory**: git commands in a worktree write to the main repository's shared `.git` directory, and [sandboxing](https://code.claude.com/docs/en/sandboxing.md#filesystem-isolation) allows those writes, so commands such as `git commit` work from inside a worktree with the sandbox enabled.
+* **The repository's `.git` directory**: git commands in a worktree write to the main repository's shared `.git` directory. With the [sandbox](https://code.claude.com/docs/en/sandboxing.md#filesystem-isolation) enabled, commands such as `git commit` work in a session at the worktree's root, which is where `--worktree` starts one. By default, they [fail with an `index.lock` error if you run `claude` in a subdirectory of the worktree](https://code.claude.com/docs/en/sandboxing#git-index-lock).
 * **Plugins**: plugins installed at [project scope](https://code.claude.com/docs/en/plugins/loading.md#find-where-a-plugin-is-enabled) from the main checkout also load in worktrees of the same repository, so you don't need to reinstall them per worktree.
 * **Permission approvals**: choosing "Yes, and don't ask again" for a Bash command in a worktree session saves the rule to the main checkout's `.claude/settings.local.json`. The rule applies in the main checkout and in every other worktree of the repository, and it survives the worktree's removal.
 

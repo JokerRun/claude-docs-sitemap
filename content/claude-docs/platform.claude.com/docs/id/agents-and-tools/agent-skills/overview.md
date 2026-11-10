@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 3cea45a887742791ea7aa77c03230d30967e822d2e2191be3f74b90e1eaa9ea3
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: ee22a2fbd4792a22f60a59fe369fa120451456bd1729f71af6a065cc9efa3ae9
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Data skill disimpan sesuai kebijakan standar.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

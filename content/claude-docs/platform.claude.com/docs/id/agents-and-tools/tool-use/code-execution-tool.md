@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 2e10a93a0a9f0fb109aec271ec0e9fb9297aa4dd38c847714ee6eb062c715fb0
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 0e76021034a3cc3b7f015b8a7533672bd018ea98fd6fcc40f4290929260badf6
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Data kontainer disimpan hingga 30 hari.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

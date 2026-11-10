@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 683278e0e899710e12d0a0dd0a0247b9284294c2885144e74f14074fc1504384
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: de5cc5586a6844eefbea0c7f26bd07d14a64b595ae53bca56d9ec4dbd797eafb
 ---
 
 ---
@@ -15,13 +15,18 @@ featureMetadata:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Endpoint Messages API yang sama dengan inferensi lebih cepat. ZDR berlaku terlepas dari pengaturan kecepatan.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-opus-5-5
     - claude-opus-5
     - claude-opus-4-8
   supportedPlatforms:
     Claude API: stable
     Claude Models on Google Cloud (Anthropic managed): stable
-    Microsoft Foundry (hosted on Azure): stable
+    Claude Models on Google Cloud (Google managed): stable
+    Microsoft Foundry:
+      availability: stable
+      note: Di Microsoft Foundry, mode cepat adalah model terpisah yang ID-nya diakhiri dengan `-fast`. Kirim permintaan ke deployment model tersebut, dan jangan sertakan `speed`.
   details:
     - Mode cepat pada Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset dan memerlukan header beta `fast-mode-2026-02-01`.
 ---
@@ -31,7 +36,7 @@ featureMetadata:
 * **Messages API**: Atur `speed: "fast"` pada permintaan.
 * **Managed Agents**: Atur `speed` pada objek model agen, misalnya `{"id": "claude-opus-5-5", "speed": "fast"}`.
 
-“Fast mode” (mode cepat) menghasilkan token output per detik hingga 2,5x lebih tinggi dengan harga premium. Atur `speed: "fast"` pada permintaan Anda untuk ikut serta. Mode cepat tersedia di Claude Opus 5.5 dan dalam pratinjau riset di Claude Opus 5 serta Claude Opus 4.8.
+“Fast mode” (mode cepat) menghasilkan token output per detik hingga 2,5x lebih tinggi dengan harga premium. Atur `speed: "fast"` pada permintaan Anda untuk ikut serta. Mode cepat tersedia di Claude Fable 5.2 dan Claude Opus 5.5. Mode cepat untuk Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset. Claude Mythos 5.2 juga mendukung mode cepat.
 
 ## Cara kerja mode cepat
 
@@ -44,6 +49,8 @@ Mode cepat menjalankan model yang sama dengan konfigurasi inferensi yang lebih c
 ## Penggunaan dasar
 
 Mode cepat hanya berfungsi pada model yang didukung. Lihat [Ketersediaan](https://platform.claude.com/docs/id/build-with-claude/fast-mode#feature-availability) untuk detailnya, termasuk model mana yang memerlukan header beta.
+
+Di [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), mode cepat merupakan model terpisah, seperti `claude-opus-5-5-fast`. Untuk Claude Fable 5.2, modelnya adalah `claude-fable-5-2-fast`. Untuk Claude Mythos 5.2, modelnya adalah `claude-mythos-5-2-fast`. Kirim permintaan mode cepat ke deployment model cepat tersebut, dan jangan sertakan `speed`. Permintaan yang mengatur `speed` pada deployment model tanpa `-fast` akan mengembalikan error.
 
 <CodeGroup>
   ```bash cURL
@@ -194,20 +201,20 @@ Mode cepat hanya berfungsi pada model yang didukung. Lihat [Ketersediaan](https:
     model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     speed: "fast",
-    messages: [{role: "user", content: "Refactor this module to use dependency injection"}]
+    messages: [{ role: "user", content: "Refactor this module to use dependency injection" }]
   )
 
   response.content.each do |block|
-    puts block.text if block.type == :text
+    puts block.text if block.is_a?(Anthropic::Models::TextBlock)
   end
   ```
 </CodeGroup>
 
 ## Batas laju
 
-Mode cepat memiliki “rate limit” (batas laju) khusus yang terpisah dari batas laju Opus standar. Ketika batas laju mode cepat Anda terlampaui, API mengembalikan error `429` dengan header `retry-after` yang menunjukkan kapan kapasitas akan tersedia.
+Mode cepat memiliki “rate limit” (batas laju) khusus yang terpisah dari batas laju standar. Ketika Anda melampaui batas laju mode cepat Anda, API mengembalikan error `429` dengan header `retry-after` yang menunjukkan kapan kapasitas akan tersedia. Di [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed#rate-limits), Google Cloud mengelola batas laju dan kuota.
 
-Claude Opus 5.5 memiliki batas laju mode cepat default pada [tingkat penggunaan](https://platform.claude.com/docs/id/api/rate-limits) Start, Build, dan Scale, sehingga Anda tidak perlu meminta akses untuk menggunakan mode cepat dengannya. Organisasi pada tingkat Evaluation dapat menggunakan mode cepat dengan Claude Opus 5.5 setelah mereka pindah ke tingkat Start, Build, atau Scale.
+Claude Opus 5.5 memiliki batas laju mode cepat default pada [tingkat penggunaan](https://platform.claude.com/docs/id/api/rate-limits) Start, Build, dan Scale, sehingga Anda tidak perlu meminta akses untuk menggunakan mode cepat dengannya. Organisasi pada tingkat Evaluation dapat menggunakan mode cepat dengan Claude Opus 5.5 setelah mereka pindah ke tingkat Start, Build, atau Scale. Hal yang sama berlaku untuk Claude Fable 5.2. Hal ini juga berlaku untuk Claude Mythos 5.2.
 
 Respons menyertakan header yang menunjukkan status batas laju mode cepat Anda:
 
@@ -224,7 +231,7 @@ Untuk melihat batas laju mode cepat Anda, buka halaman [Batas laju](https://plat
 
 ## Memeriksa kecepatan yang digunakan
 
-Objek `usage` pada respons menyertakan field `speed` yang menunjukkan kecepatan yang digunakan, yaitu `"fast"` atau `"standard"`. Meminta `speed: "fast"` pada [model yang tidak mendukung mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#availability-feature-support) akan mengembalikan error, begitu pula jika melampaui batas laju atau kapasitas mode cepat (`429` atau `529`). Ketika permintaan dengan `speed: "fast"` berhasil, `usage.speed` bernilai `"fast"`. Claude Opus 4.6 merupakan pengecualian: alih-alih mengembalikan error, permintaan dengan `speed: "fast"` dan header beta `fast-mode-2026-02-01` berhasil, tetapi berjalan dengan kecepatan standar. Perilaku ini tercermin dengan benar di `usage.speed`, yang menampilkan `"standard"` dalam situasi ini. Di Claude Models on Google Cloud (Anthropic managed), permintaan Claude Opus 4.6 dengan `speed: "fast"` mengembalikan error `400` bahkan dengan header tersebut.
+Objek `usage` pada respons menyertakan field `speed` yang menunjukkan kecepatan yang digunakan, yaitu `"fast"` atau `"standard"`. Meminta `speed: "fast"` pada [model yang tidak mendukung mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#feature-availability) akan mengembalikan error, begitu pula jika melampaui batas laju atau kapasitas mode cepat (`429` atau `529`). Ketika permintaan dengan `speed: "fast"` berhasil, `usage.speed` bernilai `"fast"`. Claude Opus 4.6 merupakan pengecualian: alih-alih mengembalikan error, permintaan dengan `speed: "fast"` dan header beta `fast-mode-2026-02-01` berhasil, tetapi berjalan dengan kecepatan standar. Dalam situasi ini, `usage.speed` menampilkan `"standard"`. Di Claude Models on Google Cloud (Anthropic managed), permintaan Claude Opus 4.6 dengan `speed: "fast"` mengembalikan error `400` bahkan dengan header tersebut.
 
 <CodeGroup>
   ```bash cURL
@@ -369,17 +376,17 @@ Untuk melacak penggunaan dan biaya mode cepat di seluruh organisasi Anda, lihat 
 
 ### Percobaan ulang otomatis
 
-SDK secara otomatis mencoba ulang error `429` mode cepat hingga 2 kali secara default (dapat dikonfigurasi dengan `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries()`; csharp: `MaxRetries`; go: `option.WithMaxRetries()`)), dengan menunggu jeda yang ditentukan di header `retry-after` sebelum setiap percobaan ulang. Karena mode cepat menggunakan pengisian ulang token secara berkelanjutan, jeda `retry-after` biasanya singkat dan permintaan berhasil setelah kapasitas tersedia.
+SDK secara otomatis mencoba ulang error `429` mode cepat hingga dua kali secara default (dapat dikonfigurasi dengan `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries()`; csharp: `MaxRetries`; go: `option.WithMaxRetries()`)), dengan menunggu jeda yang ditentukan di header `retry-after` sebelum setiap percobaan ulang. Karena mode cepat menggunakan pengisian ulang token secara berkelanjutan, jeda `retry-after` biasanya singkat dan permintaan berhasil setelah kapasitas tersedia.
 
 ### Fallback ke kecepatan standar
 
-Jika Anda lebih suka beralih ke kecepatan standar daripada menunggu kapasitas mode cepat, tangkap error batas laju dan coba ulang tanpa `speed: "fast"`. Atur `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries()`; csharp: `MaxRetries`; go: `option.WithMaxRetries()`) ke `0` pada permintaan cepat awal untuk melewati percobaan ulang otomatis dan langsung gagal pada error batas laju.
+Jika Anda lebih suka beralih ke kecepatan standar daripada menunggu kapasitas mode cepat, tangkap error batas laju dan coba ulang tanpa `speed: "fast"`. Di Claude di Microsoft Foundry, deployment yang menentukan kecepatan, jadi coba ulang pada deployment model tanpa `-fast` sebagai gantinya. Atur `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries()`; csharp: `MaxRetries`; go: `option.WithMaxRetries()`) ke `0` pada permintaan cepat awal untuk melewati percobaan ulang otomatis dan langsung gagal pada error batas laju.
 
 <Note>
   Beralih dari kecepatan cepat ke standar mengakibatkan cache miss pada [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching). Permintaan dengan kecepatan berbeda tidak berbagi prefiks yang di-cache.
 </Note>
 
-Karena mengatur `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries()`; csharp: `MaxRetries`; go: `option.WithMaxRetries()`) ke `0` juga menonaktifkan percobaan ulang untuk error sementara lainnya (overloaded, error server internal), contoh berikut mengirim ulang permintaan asli dengan percobaan ulang default untuk kasus-kasus tersebut.
+Karena mengatur `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries()`; csharp: `MaxRetries`; go: `option.WithMaxRetries()`) ke `0` juga menonaktifkan percobaan ulang untuk error sementara lainnya (overloaded, error server internal), contoh berikut mengirim ulang permintaan setelah error tersebut.
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   ```python Python
@@ -598,6 +605,7 @@ Karena mengatur `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries
   use Anthropic\Core\Exceptions\APIConnectionException;
   use Anthropic\Core\Exceptions\InternalServerException;
   use Anthropic\Core\Exceptions\RateLimitException;
+  use Anthropic\Messages\Model;
   use Anthropic\RequestOptions;
   // ...
   $client = new Client();
@@ -632,7 +640,7 @@ Karena mengatur `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries
   $message = createMessageWithFastFallback(
       $client,
       [
-          'model' => 'claude-opus-5-5',
+          'model' => Model::CLAUDE_OPUS_5_5,
           'maxTokens' => 1024,
           'messages' => [['role' => 'user', 'content' => 'Hello']],
           'speed' => 'fast',
@@ -657,7 +665,7 @@ Karena mengatur `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries
 
   message = create_message_with_fast_fallback(
     client,
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello" }],
     speed: "fast",
@@ -673,10 +681,12 @@ Karena mengatur `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries
 
 ## Harga
 
-Harga mode cepat dihitung sebagai pengali dari tarif standar di seluruh “context window” (jendela konteks), termasuk permintaan dengan lebih dari 200k token input.
+Harga mode cepat dihitung sebagai pengali dari tarif standar di seluruh “context window” (jendela konteks), termasuk permintaan dengan lebih dari 200k token input. Di Claude Models on Google Cloud (Google managed), Google Cloud menetapkan harga mode cepat. Lihat [Harga platform cloud](https://platform.claude.com/docs/id/about-claude/pricing#cloud-platform-pricing).
 
 | Model                           | Input          | Output         |
 | ------------------------------- | -------------- | -------------- |
+| Claude Fable 5.2                | $16 USD / MTok | $80 USD / MTok |
+| Claude Mythos 5.2               | $16 USD / MTok | $80 USD / MTok |
 | Claude Opus 5.5                 | $8 USD / MTok  | $40 USD / MTok |
 | Claude Opus 5 / Claude Opus 4.8 | $10 USD / MTok | $50 USD / MTok |
 
@@ -706,10 +716,15 @@ Untuk mengakses mode cepat pada Claude Opus 5, hubungi manajer akun Anda atau [b
 * Ketersediaan: Tersedia
 * Penggunaan: Atur `speed: "fast"` pada permintaan.
 
-| Status          | Platform cloud                                                                                                                                                                                                                                                                                   | Model                                                                                                                                                        |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Tersedia        | Claude API, [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry (hosted on Azure)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)                                                                              |
-| Pratinjau riset | Claude API                                                                                                                                                                                                                                                                                       | [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
+| Status               | Platform cloud                                                                                                                                                                                                                                                                                                               | Model                                                                                                                                                                  |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tersedia             | Claude API, [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview) |
+| Tersedia<sup>1</sup> | [Microsoft Foundry (hosted on Anthropic)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                                                                                                                                                                                                 | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview) |
+| Tersedia             | Claude API, [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed)                                                                                                                                                       | [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)                                                                                        |
+| Tersedia<sup>1</sup> | [Microsoft Foundry (hosted on Azure)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                                                                                                                                                                                                     | [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)                                                                                        |
+| Pratinjau riset      | Claude API                                                                                                                                                                                                                                                                                                                   | [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview)           |
+
+1. Di Microsoft Foundry, mode cepat adalah model terpisah yang ID-nya diakhiri dengan `-fast`. Kirim permintaan ke deployment model tersebut, dan jangan sertakan `speed`.
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 

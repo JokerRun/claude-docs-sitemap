@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: d9aa652a6693c6f0544fbe9efea52941a677f3aff791256fe2048823f84eec39
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: f9c6c2634f5aa4c14d80a18bcff2300859ceffca3ee9a84d2e12ed58ecedd3e2
 ---
 
 ---
@@ -21,7 +21,7 @@ Halaman ini menelusuri perjalanan bolak-balik “tool use” (penggunaan alat) d
 
 Setiap tautan mengarah ke pernyataan lengkapnya di halaman Thinking:
 
-* [Batasi pilihan alat ke `auto` atau `none` dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use): opsi `tool_choice` yang memaksa penggunaan alat akan mengembalikan error dengan “extended thinking” (pemikiran diperpanjang) manual (`thinking: {type: "enabled"}`). Pemikiran adaptif mendukung penggunaan alat yang dipaksakan, kecuali pada Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1, yang mengembalikan error 400. Jika penggunaan alat yang dipaksakan diterima, thinking akan dilewati: respons dimulai dengan pemanggilan alat.
+* [Batasi pilihan alat ke `auto` atau `none` dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use): opsi `tool_choice` yang memaksa penggunaan alat akan mengembalikan error dengan “extended thinking” (pemikiran diperpanjang) manual (`thinking: {type: "enabled"}`). Pemikiran adaptif mendukung penggunaan alat yang dipaksakan, dengan pengecualian. Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, dan Claude Mythos 5.1 justru mengembalikan error 400. Jika penggunaan alat yang dipaksakan diterima, thinking akan dilewati: respons dimulai dengan pemanggilan alat.
 * [Pertahankan satu konfigurasi thinking per giliran asisten](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use): loop penggunaan alat adalah satu giliran asisten, jadi ubah konfigurasi hanya di antara giliran.
 * [Kirim kembali blok thinking secara lengkap dan tanpa modifikasi](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks): saat Anda mengembalikan hasil alat, blok thinking dari pesan asisten harus ikut dikembalikan bersamanya.
 * [Gemakan pesan asisten persis seperti yang diterima](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks): membangun ulang pesan atau menyaring blok `redacted_thinking` akan memicu error 400.
@@ -406,7 +406,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
         messages: [{ role: "user", content: "What's the weather in Paris?" }]
       });
 
-      // Ekstrak blok tool_use untuk mendapatkan ID-nya bagi tool_result
+      // Ekstrak blok penggunaan alat untuk mendapatkan ID-nya bagi hasil alat
       const toolUseBlock = response.content.find((block) => block.type === "tool_use");
 
       // Di sinilah panggilan API cuaca Anda yang sebenarnya akan ditempatkan
@@ -493,7 +493,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
           Tools = [weatherTool],
           Messages = [
               new UserMessageParam { Content = "What's the weather in Paris?" },
-              // response.Content mencakup blok thinking; mengirimkannya kembali wajib dilakukan
+              // response.Content mencakup blok thinking; blok ini wajib dikirimkan kembali
               new AssistantMessageParam { Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList() },
               new UserMessageParam
               {

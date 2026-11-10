@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/onboarding
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 2915e95f3e3d7e8b6c3000c3c6f121760aa1f1e865f2974464692ab97ba20263
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 8ed4bdcffdca6ae51d01186bd9420b5036628885cc067bb2e172fd36038dfcfc
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

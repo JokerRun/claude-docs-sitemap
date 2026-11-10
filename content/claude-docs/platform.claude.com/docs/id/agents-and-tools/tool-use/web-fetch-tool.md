@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: f745ee15d9d94f8d48f605e2fe30468d6eae33c970f438d94161e05dab7d6fda
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 0a2793e905daa533846295b295130bebd405980706de3431446bde5ea0e4f928
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Konten web yang diambil dikembalikan dalam respons API. Pemfilteran dinamis untuk web fetch tidak memenuhi syarat kelayakan ZDR atau HIPAA. Penerbit situs web mungkin menyimpan data permintaan (seperti URL yang diambil dan metadata permintaan) sesuai kebijakan mereka sendiri.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

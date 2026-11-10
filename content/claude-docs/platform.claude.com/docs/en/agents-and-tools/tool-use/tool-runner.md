@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: c6e3e628a1626ad7b8f4dd50e325716d1d34ca7b388179c5c16fbc0afdb05c33
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 56710580e2cf23a84228ca90181965a121f906135eb87b7e72ac70563ddae381
 ---
 
 ---
@@ -12,6 +12,8 @@ description: Use the SDK's tool runner to handle the agentic loop, error wrappin
 featureMetadata:
   status: beta
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

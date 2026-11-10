@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: ac2c39cafb14d4cf750bdd04b876c6375cf5f648ba2c3b961c0d079650a582a1
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: de841a15c03e9c41f16c48f4cab8f239d09a433bbfda65db0189d9ccb4fd85ce
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     url: https://platform.claude.com/docs/en/manage-claude/opentelemetry
   status: beta
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

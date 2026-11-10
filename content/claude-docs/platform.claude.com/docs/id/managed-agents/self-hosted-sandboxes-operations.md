@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 09c570a7be42164dab5372e551c74cb004ca441fdc5eba77e96af07eaa7f35c5
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: c496d521e48247b6cf24c8ff2782fb5966d9a80bb4be79103a89c0dd24878962
 ---
 
 ---
@@ -18,6 +18,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

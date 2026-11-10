@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/tools
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 4a107edb9b166b67136244f6ee888670bcc0ecdc42a53820a48b0be2d7ef0c9a
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 7f9f4cd253f9825be11a4a47be705362da84827a553fc4b96744d51c9843ab23
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

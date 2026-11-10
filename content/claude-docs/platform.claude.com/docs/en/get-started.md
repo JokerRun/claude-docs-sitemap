@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: 3eb3e2502b23632b5ef99cd5716710ee6d75f1534c688a23513d71550a7c5094
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: c8904b79354e728b7145410cb670aff1990ce6437993d000c6ee2956ed150c2f
 ---
 
 ---
@@ -40,7 +40,7 @@ description: Make your first API call to Claude and build a simple web search as
         For Linux environments, download the release binary directly.
 
         ```bash
-        VERSION=2.7.1
+        VERSION=2.8.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -187,7 +187,7 @@ description: Make your first API call to Claude and build a simple web search as
             For Linux environments, download the release binary directly.
 
             ```bash
-            VERSION=2.7.1
+            VERSION=2.8.0
             OS=$(uname -s | tr '[:upper:]' '[:lower:]')
             case $(uname -m) in
               x86_64) ARCH=amd64 ;;
@@ -512,7 +512,7 @@ description: Make your first API call to Claude and build a simple web search as
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:3.6.0")
+                implementation("com.anthropic:anthropic-java:3.7.0")
             }
 
             application {
@@ -538,7 +538,7 @@ description: Make your first API call to Claude and build a simple web search as
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>3.6.0</version>
+                  <version>3.7.0</version>
                 </dependency>
               </dependencies>
             </project>

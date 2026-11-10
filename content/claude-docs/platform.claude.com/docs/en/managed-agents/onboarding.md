@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/onboarding
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: c2cfff9841b47ca9a1285437927b69935c86da84b1d89c10910b72874cb61aa3
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 8f35054328dd974c60c1681134f065e3100b76e7e14c9add2edf61d2e6edbff0
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

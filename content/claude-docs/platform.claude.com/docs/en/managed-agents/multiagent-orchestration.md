@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 990c13186e19000f2b2d77291983cc29aa87fb8f4a7ffcf5b628d45b93df3947
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: f152275e61dab1d9a742184a267cbf31102a0d2e5f1f1df5867bacc23245c774
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

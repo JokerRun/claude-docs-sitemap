@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: e6ddc0421488090dc41cefd73469eefc63a043d2025c2f49bb4b3ee315f7e1e1
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 25ccbed8892a3928844ec56ddcc615e2e4fa3b85be718c1fca0f9f99b2931ada
 ---
 
 ---
@@ -116,7 +116,7 @@ Secara default, Claude Haiku 5.5 mengembalikan setiap blok `thinking` dengan fie
 
 Claude Haiku 5.5 menerima `tool_choice` yang dipaksakan (`any` atau alat bernama), tetapi respons dimulai dengan panggilan alat dan tidak memiliki blok `thinking`. Untuk membiarkan model berpikir sebelum memanggil alat, gunakan `tool_choice: {"type": "auto"}` dan sebutkan dalam prompt kapan harus menggunakan alat tersebut.
 
-Claude Haiku 5.5 membaca blok pemikiran dari Claude Sonnet 5, Claude Opus 4.8, Claude Haiku 4.5, dan model sebelumnya, sehingga percakapan yang Anda alihkan dari Claude Haiku 4.5 ke Claude Haiku 5.5 tetap mempertahankan penalarannya. Model ini tidak membaca blok dari Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5, atau model Claude Fable maupun Claude Mythos mana pun; API membuang blok tersebut tanpa error. Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Opus 5.5 dan Claude Sonnet 5.5 membaca blok dari Claude Haiku 5.5. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
+Claude Haiku 5.5 membaca blok pemikiran dari Claude Sonnet 5, Claude Opus 4.8, Claude Haiku 4.5, dan model sebelumnya. Dengan demikian, percakapan yang Anda alihkan dari Claude Haiku 4.5 ke Claude Haiku 5.5 tetap mempertahankan penalarannya. Model ini tidak membaca blok dari Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5, atau model Claude Fable maupun Claude Mythos mana pun; API membuang blok tersebut tanpa error. Di Claude API dan Claude Models on Google Cloud (Google managed), Claude Opus 5.5 dan Claude Sonnet 5.5 membaca blok dari Claude Haiku 5.5, demikian pula Claude Fable 5.2 dan Claude Mythos 5.2 di Claude API. Di Claude Models on Google Cloud (Google managed), Claude Fable 5.2 dan Claude Mythos 5.2 membaca blok yang sama seperti di Claude API. Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
 
 ## Hapus parameter sampling
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/migration
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 69f3243dfc98ac46f5781f2c1b8ff50ad0b638225a3482c0556ccd8889acc178
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 81d2e377a8d86b17b7060ba9de696c5da82be6c6901377f391e41b0d8f210527
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-caching
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: 29702480e9fab6834ab3bce0758c9eb45e25fe9c9e93f96716c20d08df2f50f2
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: f48bf98df587409a4a055989e6f0ce7d7dd990f554faae6468ca06c3af812cb5
 ---
 
 > ## Documentation Index
@@ -40,7 +40,7 @@ The prefix-match rule explains most of the behaviors on this page. [Plan mode](h
 Two settings don't appear in the layer table but still affect what stays cached:
 
 * **Model**: each model has its own cache. Switching models recomputes the entire request even when the content is identical. See [Switching models](#switching-models) below.
-* **Effort level**: on most models, each effort level has its own cache, so changing effort mid-session recomputes the entire request. On Opus 5.5, Sonnet 5.5, Haiku 5.5, and Fable 5.1 with an API key or a Claude subscription, the cache stays intact by default. See [Changing effort level](#changing-effort-level) below.
+* **Effort level**: on most models, each effort level has its own cache, so changing effort mid-session recomputes the entire request. With an API key or a Claude subscription, the cache stays intact by default on Fable 5.1 and later, Opus 5.5, Sonnet 5.5, and Haiku 5.5. See [Changing effort level](#changing-effort-level) below.
 
 > [!TIP]
 >
@@ -101,7 +101,7 @@ When a skill or command's frontmatter names a [`model`](https://code.claude.com/
 
 On most models, changing the [effort level](https://code.claude.com/docs/en/model-config.md#adjust-effort-level) mid-session means the next request reads the entire conversation history with no cache hits. While the cache is still warm, Claude Code asks you to confirm the change first.
 
-On Opus 5.5, Sonnet 5.5, Haiku 5.5, and Fable 5.1 with an API key or a Claude subscription, you keep the cache when you change effort. Claude Code [applies the new level](https://code.claude.com/docs/en/model-config.md#when-a-new-effort-level-starts) without asking. On Amazon Bedrock, Google Cloud's Agent Platform, or a [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway), or when you set [`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS`](https://code.claude.com/docs/en/llm-gateway-protocol#disable-pre-release-capabilities) or your organization has a HIPAA configuration, it works as on most models.
+With an API key or a Claude subscription, changing effort keeps the cache on Fable 5.1 and later, Opus 5.5, Sonnet 5.5, and Haiku 5.5. Claude Code [applies the new level](https://code.claude.com/docs/en/model-config.md#when-a-new-effort-level-starts) without asking. On Amazon Bedrock, Google Cloud's Agent Platform, or a [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway), or when you set [`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS`](https://code.claude.com/docs/en/llm-gateway-protocol#disable-pre-release-capabilities) or your organization has a HIPAA configuration, it works as on most models.
 
 Before v2.1.260, changing effort on Fable 5.1 with an API key or a Claude subscription also invalidated the cache.
 

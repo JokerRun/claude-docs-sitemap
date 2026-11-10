@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 658457e48675e45c55237757c65edcb55c35306505be2a97fb25f57315813fbd
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 91f699edff9bc7b84c081c48f9408cfbf864675cbb5ea1393bce48f8646dc8fe
 ---
 
 ---
@@ -184,8 +184,8 @@ Instal paket yang menyediakan klien tersebut:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.6.0")
-        implementation("com.anthropic:anthropic-java-google-cloud:3.6.0")
+        implementation("com.anthropic:anthropic-java:3.7.0")
+        implementation("com.anthropic:anthropic-java-google-cloud:3.7.0")
         ```
       </Tab>
 
@@ -194,12 +194,12 @@ Instal paket yang menyediakan klien tersebut:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.6.0</version>
+            <version>3.7.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-google-cloud</artifactId>
-            <version>3.6.0</version>
+            <version>3.7.0</version>
         </dependency>
         ```
       </Tab>
@@ -551,6 +551,7 @@ Models API dan fitur-fitur berikut tersedia di Claude Models on Google Cloud (An
 * [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking)
   * [Pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost)
   * [Pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/extended-thinking)
+  * [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking)
 * [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting)
 * [Tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner) (Beta)
 * [Vision (gambar)](https://platform.claude.com/docs/id/build-with-claude/vision)
@@ -577,7 +578,6 @@ Untuk mengaktifkan atau menonaktifkan [Compliance API](https://platform.claude.c
   * [Thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads) (Beta)
 * [Outcome](https://platform.claude.com/docs/id/managed-agents/define-outcomes) (Beta)
 * [Kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) (Beta)
-* [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking)
 * [Deployment terjadwal](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments) (Beta)
 * [Sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) (Beta)
 * [Anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) (Beta)

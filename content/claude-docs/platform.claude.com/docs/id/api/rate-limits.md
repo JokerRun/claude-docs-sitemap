@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/rate-limits
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: ea17225a7e62d7a1298838040dd170e78a4c9ad60dee84cf637e7f0f84adf026
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 431f2686abd04d10a05db1e1fd87fb9f359ac300cb3de2487e18266d8dad4af1
 ---
 
 ---
@@ -137,45 +137,48 @@ Setiap baris dalam tabel berikut memiliki batas RPM, ITPM, dan OTPM tersendiri. 
 
 <Tabs>
   <Tab title="Tingkat Start">
-    | Model                         | Permintaan maksimum per menit (RPM) | Token input maksimum per menit (ITPM) | Token output maksimum per menit (OTPM) |
-    | ----------------------------- | ----------------------------------- | ------------------------------------- | -------------------------------------- |
-    | Claude Fable 5.x<sup>1</sup>  | 4.000                               | 500.000                               | 100.000                                |
-    | Claude Opus 5.5               | 4.000                               | 2.000.000                             | 400.000                                |
-    | Claude Opus 5                 | 1.000                               | 2.000.000                             | 400.000                                |
-    | Claude Opus 4.x<sup>2</sup>   | 1.000                               | 2.000.000                             | 400.000                                |
-    | Claude Sonnet 5.5             | 4.000                               | 2.000.000                             | 400.000                                |
-    | Claude Sonnet 5               | 1.000                               | 2.000.000                             | 400.000                                |
-    | Claude Sonnet 4.x<sup>3</sup> | 1.000                               | 2.000.000                             | 400.000                                |
-    | Claude Haiku 5.5              | 4.000                               | 2.000.000                             | 400.000                                |
-    | Claude Haiku 4.5              | 1.000                               | 2.000.000                             | 400.000                                |
+    | Model                                           | Permintaan maksimum per menit (RPM) | Token input maksimum per menit (ITPM) | Token output maksimum per menit (OTPM) |
+    | ----------------------------------------------- | ----------------------------------- | ------------------------------------- | -------------------------------------- |
+    | Claude Fable 5.2                                | 4.000                               | 500.000                               | 100.000                                |
+    | Claude Fable 5.1 dan Claude Fable 5<sup>1</sup> | 4.000                               | 500.000                               | 100.000                                |
+    | Claude Opus 5.5                                 | 4.000                               | 2.000.000                             | 400.000                                |
+    | Claude Opus 5                                   | 1.000                               | 2.000.000                             | 400.000                                |
+    | Claude Opus 4.x<sup>2</sup>                     | 1.000                               | 2.000.000                             | 400.000                                |
+    | Claude Sonnet 5.5                               | 4.000                               | 2.000.000                             | 400.000                                |
+    | Claude Sonnet 5                                 | 1.000                               | 2.000.000                             | 400.000                                |
+    | Claude Sonnet 4.x<sup>3</sup>                   | 1.000                               | 2.000.000                             | 400.000                                |
+    | Claude Haiku 5.5                                | 4.000                               | 2.000.000                             | 400.000                                |
+    | Claude Haiku 4.5                                | 1.000                               | 2.000.000                             | 400.000                                |
   </Tab>
 
   <Tab title="Tingkat Build">
-    | Model                         | Permintaan maksimum per menit (RPM) | Token input maksimum per menit (ITPM) | Token output maksimum per menit (OTPM) |
-    | ----------------------------- | ----------------------------------- | ------------------------------------- | -------------------------------------- |
-    | Claude Fable 5.x<sup>1</sup>  | 10.000                              | 1.500.000                             | 300.000                                |
-    | Claude Opus 5.5               | 10.000                              | 5.000.000                             | 1.000.000                              |
-    | Claude Opus 5                 | 5.000                               | 5.000.000                             | 1.000.000                              |
-    | Claude Opus 4.x<sup>2</sup>   | 5.000                               | 5.000.000                             | 1.000.000                              |
-    | Claude Sonnet 5.5             | 10.000                              | 5.000.000                             | 1.000.000                              |
-    | Claude Sonnet 5               | 5.000                               | 5.000.000                             | 1.000.000                              |
-    | Claude Sonnet 4.x<sup>3</sup> | 5.000                               | 5.000.000                             | 1.000.000                              |
-    | Claude Haiku 5.5              | 10.000                              | 5.000.000                             | 1.000.000                              |
-    | Claude Haiku 4.5              | 5.000                               | 5.000.000                             | 1.000.000                              |
+    | Model                                           | Permintaan maksimum per menit (RPM) | Token input maksimum per menit (ITPM) | Token output maksimum per menit (OTPM) |
+    | ----------------------------------------------- | ----------------------------------- | ------------------------------------- | -------------------------------------- |
+    | Claude Fable 5.2                                | 10.000                              | 1.500.000                             | 300.000                                |
+    | Claude Fable 5.1 dan Claude Fable 5<sup>1</sup> | 10.000                              | 1.500.000                             | 300.000                                |
+    | Claude Opus 5.5                                 | 10.000                              | 5.000.000                             | 1.000.000                              |
+    | Claude Opus 5                                   | 5.000                               | 5.000.000                             | 1.000.000                              |
+    | Claude Opus 4.x<sup>2</sup>                     | 5.000                               | 5.000.000                             | 1.000.000                              |
+    | Claude Sonnet 5.5                               | 10.000                              | 5.000.000                             | 1.000.000                              |
+    | Claude Sonnet 5                                 | 5.000                               | 5.000.000                             | 1.000.000                              |
+    | Claude Sonnet 4.x<sup>3</sup>                   | 5.000                               | 5.000.000                             | 1.000.000                              |
+    | Claude Haiku 5.5                                | 10.000                              | 5.000.000                             | 1.000.000                              |
+    | Claude Haiku 4.5                                | 5.000                               | 5.000.000                             | 1.000.000                              |
   </Tab>
 
   <Tab title="Tingkat Scale">
-    | Model                         | Permintaan maksimum per menit (RPM) | Token input maksimum per menit (ITPM) | Token output maksimum per menit (OTPM) |
-    | ----------------------------- | ----------------------------------- | ------------------------------------- | -------------------------------------- |
-    | Claude Fable 5.x<sup>1</sup>  | 13.000                              | 4.000.000                             | 800.000                                |
-    | Claude Opus 5.5               | 13.000                              | 10.000.000                            | 2.000.000                              |
-    | Claude Opus 5                 | 10.000                              | 10.000.000                            | 2.000.000                              |
-    | Claude Opus 4.x<sup>2</sup>   | 10.000                              | 10.000.000                            | 2.000.000                              |
-    | Claude Sonnet 5.5             | 13.000                              | 10.000.000                            | 2.000.000                              |
-    | Claude Sonnet 5               | 10.000                              | 10.000.000                            | 2.000.000                              |
-    | Claude Sonnet 4.x<sup>3</sup> | 10.000                              | 10.000.000                            | 2.000.000                              |
-    | Claude Haiku 5.5              | 13.000                              | 10.000.000                            | 2.000.000                              |
-    | Claude Haiku 4.5              | 10.000                              | 10.000.000                            | 2.000.000                              |
+    | Model                                           | Permintaan maksimum per menit (RPM) | Token input maksimum per menit (ITPM) | Token output maksimum per menit (OTPM) |
+    | ----------------------------------------------- | ----------------------------------- | ------------------------------------- | -------------------------------------- |
+    | Claude Fable 5.2                                | 13.000                              | 4.000.000                             | 800.000                                |
+    | Claude Fable 5.1 dan Claude Fable 5<sup>1</sup> | 13.000                              | 4.000.000                             | 800.000                                |
+    | Claude Opus 5.5                                 | 13.000                              | 10.000.000                            | 2.000.000                              |
+    | Claude Opus 5                                   | 10.000                              | 10.000.000                            | 2.000.000                              |
+    | Claude Opus 4.x<sup>2</sup>                     | 10.000                              | 10.000.000                            | 2.000.000                              |
+    | Claude Sonnet 5.5                               | 13.000                              | 10.000.000                            | 2.000.000                              |
+    | Claude Sonnet 5                                 | 10.000                              | 10.000.000                            | 2.000.000                              |
+    | Claude Sonnet 4.x<sup>3</sup>                   | 10.000                              | 10.000.000                            | 2.000.000                              |
+    | Claude Haiku 5.5                                | 13.000                              | 10.000.000                            | 2.000.000                              |
+    | Claude Haiku 4.5                                | 10.000                              | 10.000.000                            | 2.000.000                              |
   </Tab>
 
   <Tab title="Tingkat Custom">
@@ -183,7 +186,7 @@ Setiap baris dalam tabel berikut memiliki batas RPM, ITPM, dan OTPM tersendiri. 
   </Tab>
 </Tabs>
 
-*<sup>1 Batas laju Fable adalah batas total yang berlaku untuk lalu lintas gabungan di Claude Fable 5.1 dan Claude Fable 5. Claude Mythos 5.1 dan Claude Mythos 5 berbagi batas gabungan terpisah dengan ketentuan yang sama.</sup>*
+*<sup>1 Batas laju Fable adalah batas total yang berlaku untuk lalu lintas gabungan di Claude Fable 5.1 dan Claude Fable 5. Claude Fable 5.2 memiliki batas laju terpisah dan bukan bagian dari kelompok gabungan ini. Claude Mythos 5.2, Claude Mythos 5.1, dan Claude Mythos 5 berbagi batas gabungan terpisah.</sup>*
 
 *<sup>2 Batas laju Opus adalah batas total yang berlaku untuk lalu lintas gabungan di Claude Opus 4.8, Opus 4.7, Opus 4.6, dan Opus 4.5. Claude Opus 5.5 dan Claude Opus 5 masing-masing memiliki batas laju terpisah dan bukan bagian dari kelompok gabungan ini.</sup>*
 
@@ -232,7 +235,7 @@ Permintaan [Files API](https://platform.claude.com/docs/id/build-with-claude/fil
 
 ### Batas laju mode cepat
 
-Saat menggunakan [mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) dengan `speed: "fast"` pada Claude Opus 5.5, Claude Opus 5, atau Claude Opus 4.8, berlaku batas laju khusus yang terpisah dari batas laju Opus standar. Claude Opus 5.5 memiliki batas laju mode cepat default di tingkat Start, Build, dan Scale, sehingga Anda tidak perlu meminta akses untuk menggunakan mode cepat dengannya. Organisasi di tingkat Evaluation dapat menggunakan mode cepat dengan Claude Opus 5.5 setelah mereka berpindah ke tingkat Start, Build, atau Scale. Mode cepat untuk Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset. Untuk melihat batas laju mode cepat Anda, buka halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console. Ketika batas laju mode cepat terlampaui, API mengembalikan error `429` dengan header `retry-after`.
+Saat Anda menggunakan [mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) dengan `speed: "fast"` pada Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Opus 5, atau Claude Opus 4.8, berlaku batas laju khusus. Batas ini terpisah dari batas laju standar. Claude Opus 5.5 memiliki batas laju mode cepat default di tingkat Start, Build, dan Scale, sehingga Anda tidak perlu meminta akses untuk menggunakan mode cepat dengannya. Organisasi di tingkat Evaluation dapat menggunakan mode cepat dengan Claude Opus 5.5 setelah mereka berpindah ke tingkat Start, Build, atau Scale. Hal yang sama berlaku untuk Claude Fable 5.2. Hal ini juga berlaku untuk Claude Mythos 5.2. Mode cepat untuk Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset. Untuk melihat batas laju mode cepat Anda, buka halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console. Ketika Anda melampaui batas laju mode cepat Anda, API mengembalikan error `429` dengan header `retry-after`.
 
 Respons menyertakan header `anthropic-fast-*` yang menunjukkan status batas laju mode cepat Anda. Lihat [Batas laju mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#rate-limits) untuk detail tentang header ini.
 

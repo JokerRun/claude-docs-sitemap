@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments-reference
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 094a12dd1585674b4bad7f70f2351951a35e9b7115b8c2c84e9791fa2e43e8ca
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: c40022ec55bf32c175ff7e0bd433d90779106a77b3cff66e6653cc3da197b473
 ---
 
 > ## Documentation Index
@@ -148,7 +148,7 @@ One control is specific to self-hosted environments: `CLAUDE_CODE_BYOC_ENABLE_DA
 
 ## Health endpoint
 
-The runner serves `GET /healthz` on the configured health port. The response is `200 OK` whenever the process is alive, whatever state the poll loop is in, so an HTTP probe on this endpoint detects a dead process only. The JSON body describes current state:
+The runner serves `GET /healthz` on the configured health port once it has registered and finished its startup checks. From then on, the response is `200 OK` whenever the process is alive, whatever state the poll loop is in, so an HTTP probe on this endpoint detects a dead process only. The JSON body describes current state:
 
 ```json theme={null}
 {

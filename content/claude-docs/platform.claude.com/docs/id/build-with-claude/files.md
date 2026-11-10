@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 5e058a8986a23aa608e6166e3e3cf0b308e7b63aff4f654fa58ffd5b68a17587
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 80ab277b2352c6e8f541f33d9984052d244ac539f383803ae8e08d91e4c4476f
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: not-eligible
     note: File disimpan hingga dihapus secara eksplisit atau mencapai masa kedaluwarsa yang dikonfigurasi.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

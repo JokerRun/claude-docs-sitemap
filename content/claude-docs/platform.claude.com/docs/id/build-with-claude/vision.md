@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 03ab38877894896dac9186ec917098b317a43affc22734152cfd35ce3e59fed3
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 31ee4404352f9d66035d5eabfc9245b864e5c47047ba9e8d7ab101f9a3e15148
 ---
 
 ---
@@ -12,6 +12,8 @@ description: Kemampuan vision Claude memungkinkannya memproses dan menganalisis 
 featureMetadata:
   status: stable
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 54421a0848e38c92db07acd8e67ad0a5c0bcfef16bc5b2fe4757551d91e2b2e1
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 83b77e4bcd8e1585bbb5bc5efd712caeaccd62f283920a6033cbfb9337678d1f
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: qualified
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Prompt Anda dan output Claude tidak disimpan. Fingerprint berupa hash kriptografis dan estimasi jumlah token disimpan sebentar untuk memungkinkan perbandingan dengan permintaan berikutnya.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

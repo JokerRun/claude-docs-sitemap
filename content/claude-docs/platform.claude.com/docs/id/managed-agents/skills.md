@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/skills
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: d400e218ba2157942f2bf1b852ec388747ea00b4ae0594a5fdaf6c4bbab86912
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: edecf0470518a63b22cf1fc640087c0bfd325735bf56137bed66597bfccb6b0a
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

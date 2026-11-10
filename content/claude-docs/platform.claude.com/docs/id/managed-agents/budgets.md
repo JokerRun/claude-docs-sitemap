@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/budgets
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 4a91495748ad380a8a8c7e99e089446effbef06fcdecbccd2715701c437a7702
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 05431fb74844fc84c49c2bfdf786276f835f534558601c8028937d7fcb42813f
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

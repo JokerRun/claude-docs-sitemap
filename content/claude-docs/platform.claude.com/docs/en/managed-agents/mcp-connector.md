@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/mcp-connector
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 04a0d1d594658730566584e013746036eb761b970ef9c9524e51f68c066b1665
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 349cd0b17da58afa2a5e2b34034e492a7525e681c9b698abd65530b156fc02e1
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

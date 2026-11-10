@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 472ece3edaac2cbcf0eef2c0f9f813ae46de001e1451f08481b20af355de0aa0
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 82ce03401ed4bd93f668b4b7388b33c214dda57bae76069c9953083408cd5694
 ---
 
 ---
@@ -859,7 +859,7 @@ Jika Anda mengirim header beta `fine-grained-tool-streaming-2025-05-14`, hapus h
 
 ### Alat advisor menerima lebih sedikit advisor
 
-Dengan [alat advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool), executor Claude Sonnet 5.5 memerlukan salah satu advisor berikut: Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5, Claude Fable 5.1, Claude Mythos 5, atau Claude Mythos 5.1. Advisor Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, Claude Sonnet 4.6, dan Claude Haiku 5.5 mengembalikan error 400. Saran dikembalikan dalam bentuk terenkripsi sebagai blok `advisor_redacted_result`, sehingga teksnya tidak dapat dibaca dalam respons. Lihat [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility).
+Dengan [alat advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool), executor Claude Sonnet 5.5 memerlukan salah satu advisor berikut: Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5, Claude Fable 5.1, Claude Fable 5.2, Claude Mythos 5, Claude Mythos 5.1, atau Claude Mythos 5.2. Advisor Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, Claude Sonnet 4.6, dan Claude Haiku 5.5 mengembalikan error 400. Saran dikembalikan dalam bentuk terenkripsi sebagai blok `advisor_redacted_result`, sehingga teksnya tidak dapat dibaca dalam respons. Lihat [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility).
 
 ### Teks di antara pemanggilan alat dikembalikan dalam blok pemikiran
 

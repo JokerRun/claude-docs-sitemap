@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: 714b1c9ab93fc05c9628e241f32b66b66aaca62c593867426a1a9062047f60ec
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: dfc038d1138c48685019c5c9d8a33cfd234a61ccad0245ca38e834dd33bf84cf
 ---
 
 > ## Documentation Index
@@ -179,7 +179,7 @@ Boot is fail-closed for the config, the Postgres connection, OIDC discovery, and
 
 A successful boot doesn't validate the inference path, because Amazon Bedrock and Google Cloud's Agent Platform instance credentials resolve on the first request, not at boot.
 
-Watch stderr for the boot sequence. Log lines use the format `[gateway] <timestamp> <level> <message>`, audit events are single-line JSON with an `evt` field, and a startup banner, omitted below, prints between the migration and listening lines. A fresh database prints one `migration N applied` line per schema migration; an already-migrated database prints none. You should see, in order:
+Watch stderr for the boot sequence. By default, log lines use the format `[gateway] <timestamp> <level> <message>`, and a startup banner, omitted below, prints between the migration and listening lines. Audit events are single-line JSON with an `evt` field. A fresh database prints one `migration N applied` line per schema migration; an already-migrated database prints none. You should see, in order:
 
 ```text theme={null}
 {"ts":"2026-06-10T17:03:21.114Z","evt":"config.load","path":"/etc/claude/gateway.yaml","sha256":"…"}

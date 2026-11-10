@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-actions
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 5d695320e5381dd90cbe88a7c7df35407a75c4ccbd177e26572ac190731e41f4
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 8172d38514e1bd1e7f95cf58676c7073738bd8ec8600d21d98819f07fd6991d8
 ---
 
 > ## Documentation Index
@@ -142,6 +142,7 @@ When you install the app, you grant the following permissions:
 | Merge queues | Read |
 | Metadata | Read |
 | Pull requests | Read and write |
+| Repository creation | Read and write |
 | Repository hooks | Read and write |
 | Statuses | Read |
 | Workflows | Read and write |

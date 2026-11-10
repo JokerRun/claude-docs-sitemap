@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-editing
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 58fa5d1cc8348417a94fb1c976797077fce14bc811ed9fe672d294d9b28749c3
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: d6b8048d1356725605c488c0bf9c8ae6d2cc9b120aad3d9d2ea32dbc7390d441
 ---
 
 ---
@@ -16,6 +16,8 @@ featureMetadata:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Edit konteks (penghapusan penggunaan alat dan penghapusan pemikiran) diterapkan secara real time.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

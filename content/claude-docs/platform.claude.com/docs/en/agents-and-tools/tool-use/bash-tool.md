@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 78bda69f275bf05bebb2c3fda11823afc056b0453dc84cb1c8c7d7389cd890c2
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: ef02de0cc1f007bb93f9121cbfdb1af4b5599e0e985c490474c2e8cdeae98407
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Client-side tool run in your environment.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

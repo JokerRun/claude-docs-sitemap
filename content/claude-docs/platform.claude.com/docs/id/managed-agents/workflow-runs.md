@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/workflow-runs
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 099539cdb76134edb14d55ca7442beb7a03d7c55f5129e6d809b6ec17d7ca448
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: b2595150172a2d90f48c7a9dca38a80865e381303579989f49d3fb3f316f1ffd
 ---
 
 ---
@@ -18,6 +18,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

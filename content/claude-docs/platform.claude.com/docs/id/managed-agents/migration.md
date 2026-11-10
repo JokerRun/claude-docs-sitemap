@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/migration
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 8f3ab8e7809c6de907d0687cbedf185f6265aecb1b03f97cf4cb2b21cb48835d
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 62b34812bf2e59de3017ddf399aab160af68c3ecbf962a650bb241a5188a0e7e
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

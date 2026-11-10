@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: b5254deb7e2089e9e1fbd79477883ba438557e71d15dd9eb5fd1ee5531781251
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 7bbb8845c07c3a3901998e6b467389044d4ffc99a0ed6709aaacec3f17227b9d
 ---
 
 ---
@@ -755,9 +755,9 @@ Alat server berjalan di infrastruktur Anthropic, tanpa kode handler di aplikasi 
 
 Permintaan “tool use” (penggunaan alat) dikenai harga berdasarkan:
 
-1. Jumlah total token input yang dikirim ke model (termasuk dalam parameter `tools`)
-2. Jumlah token output yang dihasilkan
-3. Untuk alat sisi server, harga tambahan berbasis penggunaan (misalnya, pencarian web mengenakan biaya per pencarian yang dilakukan)
+1. Jumlah total token input yang dikirim ke model (termasuk dalam parameter `tools`).
+2. Jumlah token output yang dihasilkan.
+3. Untuk alat sisi server, harga tambahan berbasis penggunaan (misalnya, pencarian web mengenakan biaya per pencarian yang dilakukan).
 
 Alat sisi klien dikenai harga yang sama seperti permintaan Claude API lainnya, meskipun alat sisi server dapat menimbulkan biaya tambahan berdasarkan penggunaan spesifiknya.
 
@@ -767,7 +767,7 @@ Token tambahan dari penggunaan alat berasal dari:
 * Blok konten `tool_use` dalam permintaan dan respons API
 * Blok konten `tool_result` dalam permintaan API
 
-Saat Anda menggunakan `tools`, API juga secara otomatis menyertakan “system prompt” (prompt sistem) khusus untuk model yang memungkinkan penggunaan alat. Jumlah token penggunaan alat yang diperlukan untuk setiap model tercantum dalam tabel berikut (tidak termasuk token tambahan yang disebutkan sebelumnya). Perhatikan bahwa tabel ini mengasumsikan setidaknya 1 alat disediakan. Jika tidak ada `tools` yang disediakan, maka pilihan alat `none` menggunakan 0 token prompt sistem tambahan.
+Saat Anda menggunakan `tools`, API juga secara otomatis menyertakan “system prompt” (prompt sistem) khusus untuk model yang memungkinkan penggunaan alat. Tabel berikut mencantumkan jumlah token penggunaan alat yang diperlukan setiap model (tidak termasuk token tambahan yang disebutkan sebelumnya). Tabel ini mengasumsikan bahwa Anda menyediakan setidaknya satu alat. Jika Anda tidak menyediakan `tools`, pilihan alat `none` menggunakan 0 token prompt sistem tambahan.
 
 | Model                                                                                                                                                                  | Tool use system prompt tokens: auto, none | Tool use system prompt tokens: any, tool |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------- | :--------------------------------------- |

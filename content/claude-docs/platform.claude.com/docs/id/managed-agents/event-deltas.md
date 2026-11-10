@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/event-deltas
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: ceb2ae2472ed005962091b21066d1e1a64b134e5a059176d0c7fce040cd4364c
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: fbffbab7a77adfb66851503631ef1608c9b17b1cd27e2ac45ab4cfc1d263a7b1
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

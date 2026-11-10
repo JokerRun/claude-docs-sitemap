@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: c1f2ae2f7cb107b4a184ed96c22226579011f8bd277bd83171b8b17614cc7c70
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 4b79ee32b8fa678a197ff425d34c5d6780d21eb738d7e994c28e096b40d2bac5
 ---
 
 ---
@@ -679,7 +679,7 @@ Here’s an example ticket routing classification prompt:
 </CodeGroup>
 
 <Note>
-  This prompt is written for Claude Haiku 5.5, which runs here at `low` effort. On Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, and Claude Sonnet 5.5, ask for the intent and a one-sentence summary of the request instead. See [Keep reasoning in thinking blocks](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).
+  This prompt is written for Claude Haiku 5.5, which runs here at `low` effort. On Claude Fable 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, and Claude Sonnet 5.5, ask for the intent and a one-sentence summary of the request instead. See [Keep reasoning in thinking blocks](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).
 </Note>
 
 Here are the key components of this prompt:

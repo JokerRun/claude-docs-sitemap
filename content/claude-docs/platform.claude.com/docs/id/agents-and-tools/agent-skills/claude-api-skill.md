@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 536e1ee604c2f128e20153c967b718ab726def1436dcac6fca1c2053250f0b84
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 4f9ef071b7f48aedd504fa577edc1331c3df30881dcb020c5c4a533e5a2cfbe3
 ---
 
 ---
@@ -33,7 +33,7 @@ Saat dipicu, skill ini membekali Claude dengan:
 * **Pola streaming:** Detail implementasi untuk membangun UI chat dan menangani tampilan inkremental
 * **Pemrosesan batch:** Pemrosesan batch offline dengan biaya 50 persen
 * **Caching prompt:** Desain stabilitas prefiks, penempatan breakpoint, dan audit terhadap penyebab invalidasi diam-diam
-* **Migrasi model:** Panduan langkah demi langkah untuk bermigrasi ke model Claude yang lebih baru (termasuk perubahan yang merusak kompatibilitas dan pergeseran perilaku pada [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-5), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide), dan [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide))
+* **Migrasi model:** Panduan langkah demi langkah untuk bermigrasi ke model Claude yang lebih baru (termasuk perubahan yang merusak kompatibilitas dan pergeseran perilaku pada [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-5), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide), dan [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/migration-guide))
 * **Migrasi pemikiran yang dipertahankan:** Menemukan, mengukur, dan memperbaiki pengeditan riwayat yang membuat blok `thinking` tidak valid, tersedia melalui subperintah `/claude-api preserved-thinking-migration`
 * **Informasi model terkini:** ID model, ukuran “context window” (jendela konteks), dan harga
 * **Kesalahan umum:** Panduan terperinci untuk menghindari kesalahan yang sering terjadi saat berintegrasi dengan API
@@ -152,11 +152,11 @@ Skill ini menangani:
 * **Kalibrasi effort**, merekomendasikan titik awal `output_config.effort` untuk model target (misalnya, nilai default `high` pada Claude Opus 5, dan `xhigh` untuk kasus penggunaan coding dan agentik pada Claude Opus 4.8 dan Claude Opus 4.7)
 * **Penyetelan perilaku prompt**, menandai prompt pengendali panjang, pemicu alat, subagen, dan kepatuhan instruksi yang mungkin berperilaku berbeda pada model target
 * **Penanganan default yang berubah diam-diam**, mengaktifkan kembali ringkasan pemikiran (`thinking.display: "summarized"`) ketika penalaran ditampilkan kepada pengguna pada Claude Opus 4.8 dan Claude Opus 4.7
-* **Konfigurasi fallback penolakan**, menambahkan penanganan `stop_reason: "refusal"` sebelum membaca konten respons dan menyiapkan [jalur percobaan ulang fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) ketika targetnya adalah Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, atau Claude Sonnet 5.5 (parameter `fallbacks` sisi server, biasanya dalam mode `"default"`, middleware fallback penolakan SDK, atau percobaan ulang dengan kredit fallback), serta memperbarui kode fallback yang ditulis berdasarkan bentuk pratinjau sebelumnya
+* **Konfigurasi fallback penolakan**, menambahkan penanganan `stop_reason: "refusal"` sebelum membaca konten respons dan menyiapkan [jalur percobaan ulang fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) ketika targetnya adalah Claude Fable 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, atau Claude Sonnet 5.5 (parameter `fallbacks` sisi server, biasanya dalam mode `"default"`, middleware fallback penolakan SDK, atau percobaan ulang dengan kredit fallback), serta memperbarui kode fallback yang ditulis berdasarkan bentuk pratinjau sebelumnya
 
 Saat mengedit, skill ini menjelaskan setiap perubahan dan motivasinya secara inline. Setelah selesai, skill ini menghasilkan daftar periksa item yang memerlukan verifikasi manual (biasanya tes integrasi, penyetelan prompt kontrol panjang, dan penetapan ulang baseline biaya/”rate limit” (batas laju)).
 
-Untuk daftar lengkap perubahan khusus model yang diterapkan skill ini, lihat [Migrasi ke Claude Opus 5.5 dari Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Migrasi ke Claude Opus 5.5 dari Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8), [Migrasi ke Claude Sonnet 5.5 dari Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-5), [panduan migrasi Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide), dan [panduan migrasi Claude Fable 5.1 dan Claude Mythos 5.1](https://platform.claude.com/docs/id/models/fable-5-1/migration-guide).
+Untuk daftar lengkap perubahan khusus model yang diterapkan skill ini, lihat [Migrasi ke Claude Opus 5.5 dari Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Migrasi ke Claude Opus 5.5 dari Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8), [Migrasi ke Claude Sonnet 5.5 dari Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-5), [panduan migrasi Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide), dan [panduan migrasi Claude Fable 5.2 dan Claude Mythos 5.2](https://platform.claude.com/docs/id/models/fable-5-2/migration-guide).
 
 ## Memeriksa integrasi untuk pemikiran yang dipertahankan
 

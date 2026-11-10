@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/service-tiers
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 94326d7b025e1051dc5b11507b83bf061241e802f84a808efc9ca623e443215e
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: dfb4f5f8649cd47c67c7dc050fe05d1b4035c6eaf263ca9a0076727e6d5b18be
 ---
 
 ---
@@ -12,6 +12,8 @@ description: Berbagai tingkat layanan memungkinkan Anda menyeimbangkan ketersedi
 featureMetadata:
   status: stable
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5
@@ -260,7 +262,7 @@ Priority Tier menargetkan uptime 99,5 persen dengan sumber daya komputasi yang d
 
 ### Model yang didukung
 
-Priority Tier didukung pada semua model Claude yang tersedia kecuali Claude Fable 5.1, Claude Haiku 5.5, Claude Mythos 5.1, Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Sonnet 5.
+Priority Tier didukung pada semua model Claude yang tersedia kecuali Claude Fable 5.2, Claude Fable 5.1, Claude Haiku 5.5, Claude Mythos 5.2, Claude Mythos 5.1, Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Sonnet 5.
 
 Lihat [Ikhtisar model](https://platform.claude.com/docs/id/models/overview) untuk detail lebih lanjut tentang model yang tersedia.
 

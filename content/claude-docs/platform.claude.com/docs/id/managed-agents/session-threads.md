@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-threads
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: b347eef1f5b10c1c912904851b24870ea51722cdc2d8b2c9f423f3ce5725f1a8
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: e12bf7479fe9f482f2126027837a3d7273f983d00976981af93e885e36993f6a
 ---
 
 ---
@@ -18,6 +18,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

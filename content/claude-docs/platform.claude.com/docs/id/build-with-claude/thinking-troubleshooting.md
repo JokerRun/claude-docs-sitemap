@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 9c125fd9dcda916653d98aef254df62d1a825d18a3fafce1e13be8064d79ca03
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: e0af54996c50028d3796035b96d290cb0e4e624f264369d10da55bf3b0479ae8
 ---
 
 ---
@@ -27,6 +27,8 @@ Tabel ini mencantumkan apa yang didukung setiap model, nilai default-nya, dan ni
 
 | Model                 | Jenis thinking                            | Default      | Ditolak dengan 400                    |
 | --------------------- | ----------------------------------------- | ------------ | ------------------------------------- |
+| Claude Fable 5.2      | Hanya adaptif                             | Selalu aktif | `"enabled"`, `"disabled"`             |
+| Claude Mythos 5.2     | Hanya adaptif                             | Selalu aktif | `"enabled"`, `"disabled"`             |
 | Claude Fable 5.1      | Hanya adaptif                             | Selalu aktif | `"enabled"`, `"disabled"`             |
 | Claude Mythos 5.1     | Hanya adaptif                             | Selalu aktif | `"enabled"`, `"disabled"`             |
 | Claude Fable 5        | Hanya adaptif                             | Selalu aktif | `"enabled"`, `"disabled"`             |
@@ -49,9 +51,9 @@ Tabel ini mencantumkan apa yang didukung setiap model, nilai default-nya, dan ni
 *<sup>2</sup> Claude Opus 5 dan Claude Haiku 5.5 menerima `"disabled"` pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `high` atau lebih rendah; menggabungkannya dengan effort `xhigh` atau `max` mengembalikan error 400. Pada Claude Opus 5, pembatasan ini diberlakukan pada setiap permintaan. Pada Claude Haiku 5.5, effort per pesan yang berbeda dari level yang sedang berlaku juga mengembalikan error 400.*\
 *<sup>3</sup> Claude Sonnet 5.5 menerima `"between_tools"` pada effort `high` atau lebih rendah. Menggabungkannya dengan effort `xhigh` atau `max` mengembalikan error 400, begitu pula effort per pesan yang berbeda dari level yang sedang berlaku.*
 
-Model yang ditandai `Selalu aktif` tidak dapat menonaktifkan thinking. Model yang ditandai `Aktif` menggunakan thinking secara default. Claude Opus 5, Claude Sonnet 5, dan Claude Haiku 5.5 menerima `thinking: {type: "disabled"}`. Pada Claude Sonnet 5.5, kirim `thinking: {type: "between_tools"}` untuk menonaktifkan thinking di awal.
+Model yang ditandai `Always on` (Selalu aktif) tidak dapat menonaktifkan thinking. Model yang ditandai `On` (Aktif) menggunakan thinking secara default. Claude Opus 5, Claude Sonnet 5, dan Claude Haiku 5.5 menerima `thinking: {type: "disabled"}`. Pada Claude Sonnet 5.5, kirim `thinking: {type: "between_tools"}` untuk menonaktifkan thinking di awal.
 
-Model Claude 4 yang lebih lama (Claude Opus 4.1, Claude Sonnet 4, dan Claude Opus 4) hanya mendukung pemikiran diperpanjang. Lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations) untuk ketersediaannya. Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5 tidak tersedia di bawah [zero data retention](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements) kecuali diizinkan secara tegas oleh Anthropic.
+Model Claude 4 yang lebih lama (Claude Opus 4.1, Claude Sonnet 4, dan Claude Opus 4) hanya mendukung pemikiran diperpanjang. Lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations) untuk ketersediaannya. Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5 tidak tersedia di bawah [zero data retention](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements) kecuali diizinkan secara tegas oleh Anthropic.
 
 ## Error 400 menyatakan `"thinking.type.enabled"` tidak didukung
 
@@ -67,7 +69,7 @@ Ubah permintaan ke `thinking: {type: "adaptive"}` dan arahkan kedalaman thinking
 
 ## Error 400 setelah mengirim `thinking: {type: "disabled"}`
 
-Permintaan gagal dengan error 400. Pada Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Opus 5.5, dan Claude Mythos 5, pesannya berbunyi:
+Permintaan gagal dengan error 400. Pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Opus 5.5, dan Claude Mythos 5, pesannya berbunyi:
 
 ```text wrap
 "thinking.type.disabled" is not supported for this model. Use "thinking.type.adaptive" and "output_config.effort" to control thinking behavior.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 04fa6a1311cab7848e697c51f8d854a82ae67feb06a77304141db896417c1a0b
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: c4899513803ed643da4f183ab10d3eae1bf8ed62c87555086116d24f36bacfb7
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     url: https://platform.claude.com/docs/en/manage-claude/opentelemetry
   status: beta
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5
@@ -108,7 +110,7 @@ Instal atau tingkatkan ke versi terbaru Claude SDK:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.6.0")
+        implementation("com.anthropic:anthropic-java:3.7.0")
         ```
       </Tab>
 
@@ -117,7 +119,7 @@ Instal atau tingkatkan ke versi terbaru Claude SDK:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.6.0</version>
+            <version>3.7.0</version>
         </dependency>
         ```
       </Tab>

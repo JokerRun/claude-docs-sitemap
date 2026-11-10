@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/events-and-streaming
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: bce37961b239ffdca4e1ec4b6328d9a5eeac005defa99f4695d2ef0262c4a8db
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 93e4ca937950f925ac28d288c68b388de6d3998e90c17aaeb7343d1b50f3353f
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5
@@ -1755,6 +1757,8 @@ The event’s `content` (csharp, go: `Content`) accepts 1–1,000 text items. Th
 
 `system.message` is supported by these models:
 
+* Claude Fable 5.2
+* Claude Mythos 5.2
 * Claude Fable 5.1
 * Claude Mythos 5.1
 * Claude Fable 5

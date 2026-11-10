@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 974654feeaf65832d3c51615670ce51d872128d61cac98ba9f0e7bd2bfcd447d
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 6929ca3b4562cdfff73c35f4829186ad63ade4be7cbe5ae6b8806189bbf3126c
 ---
 
 ---
@@ -11,6 +11,8 @@ url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails
 description: Deteksi dan tangani alasan berhenti penolakan dalam respons streaming, serta coba ulang permintaan yang ditolak pada model cadangan.
 featureMetadata:
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

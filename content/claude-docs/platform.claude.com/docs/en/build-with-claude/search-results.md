@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 53497db729115c49c030e7a80e03c082c7eb652008df97bc5cb0d613fcfa1ada
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: f6532b1c9245ebe6207c8f79333ddf3ffe993a1b6066a7a3fd5ec183f6d82890
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

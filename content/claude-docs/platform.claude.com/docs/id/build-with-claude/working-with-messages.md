@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: d38833e8b041051913423f13904d8f799532a59d2f19c116ff00c2f78fa3d090
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 474ab0721959a999aa1afe3dc1375d2e8d1ddcf7a24a1132f2acdd473305a63a
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Panggilan API standar untuk menghasilkan respons Claude.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5
@@ -359,7 +361,7 @@ Dengan [thread pesan](https://platform.claude.com/docs/id/build-with-claude/mess
 
 ### Peran sistem dalam pesan
 
-Pada Claude Fable 5.1, [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), Claude Fable 5, [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Opus 5.5, Claude Opus 4.8, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5, Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran pengguna (dengan tunduk pada [aturan penempatan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) untuk menambahkan instruksi sistem baru di tengah percakapan. Pesan `system` yang membawa konten tidak dapat menjadi entri pertama dalam `messages`. Gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
+Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran pengguna untuk menambahkan instruksi sistem baru di tengah percakapan, dengan tunduk pada [aturan penempatan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations). Ini berfungsi pada Claude Fable 5.2, [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), Claude Fable 5.1, [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), Claude Fable 5, [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Opus 5.5, Claude Opus 4.8, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5. Pesan `system` yang membawa konten tidak dapat menjadi entri pertama dalam `messages`. Gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
 
 Pesan sistem di tengah percakapan memiliki otoritas yang sama dengan field `system` tingkat atas, tetapi karena pesan tersebut ditambahkan ke akhir riwayat pesan, pesan tersebut tidak membatalkan prefiks yang di-cache sebelumnya. Gunakan field `system` tingkat atas untuk instruksi yang harus berlaku sejak giliran pertama, dan pesan sistem di tengah percakapan untuk instruksi yang baru menjadi relevan kemudian.
 

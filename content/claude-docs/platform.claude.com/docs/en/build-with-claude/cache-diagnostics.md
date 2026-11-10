@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 77077bbf93fc2d38e965618e5b5c47616776ae01b0a6fbb1f791a4c3bc03c670
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: aa3c2cddf3d32338a2e79030c81ea42a9a3c1b04a05454e13cd4c69b5d36404e
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: qualified
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Your prompts and Claude's outputs are not stored. A fingerprint of cryptographic hashes and token-count estimates is retained briefly to allow comparison against the next request.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

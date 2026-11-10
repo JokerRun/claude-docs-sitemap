@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/system-prompts/overview
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: dbf4ba50d8ffe564791711894ad0fb73785089867775ea89f94dbbde124e475e
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: dd216dd83d018484c81089789f580778519f374d2cb45053dd216185d40b02ee
 ---
 
 ---
@@ -14,6 +14,8 @@ description: See updates to the core system prompts on [claude.ai](https://claud
 Claude’s web interface ([claude.ai](https://claude.ai)) and mobile apps use a system prompt to provide up-to-date information, such as the current date, to Claude at the start of every conversation. The system prompt also encourages certain behaviors, such as always providing code snippets in Markdown. This prompt is periodically updated to improve Claude’s responses. These system prompt updates do not apply to the Claude API. Some models have multiple dated entries on their pages.
 
 <CardGroup cols={3}>
+  <Card id="claude-fable-5-2" title="Claude Fable 5.2" icon="file" href="https://platform.claude.com/docs/en/release-notes/system-prompts/claude-fable-5-2" />
+
   <Card id="claude-haiku-5-5" title="Claude Haiku 5.5" icon="file" href="https://platform.claude.com/docs/en/release-notes/system-prompts/claude-haiku-5-5" />
 
   <Card id="claude-sonnet-5-5" title="Claude Sonnet 5.5" icon="file" href="https://platform.claude.com/docs/en/release-notes/system-prompts/claude-sonnet-5-5" />

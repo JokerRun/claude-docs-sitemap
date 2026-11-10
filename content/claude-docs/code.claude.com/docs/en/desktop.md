@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-11-09T02:13:52.492019Z
-sha256: 68301c0f4a4caa2b54f3c3e6e4c220d64c6d1629b056ba40f633ee5dcc2fb112
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: dbab072979414ae68190781576a48f53c8bd47141607a97dfd8a0b346e072b21
 ---
 
 > ## Documentation Index
@@ -1389,7 +1389,7 @@ File edits and some tools can fail while Desktop is disconnected. If the task ne
 
 > [accordion] When edits in a worktree keep working
 >
-> On a Linux or macOS remote machine, the check doesn't go through Desktop, so edits inside the worktree keep working while Desktop is disconnected. Before Claude Desktop v2.37337.0, this holds on a Linux remote machine only.
+> On a Linux or macOS remote machine, edits inside the worktree can keep working while Desktop is disconnected, because the check on each edit can run without Desktop. Before [Claude Desktop v2.37337.0](#check-your-version), this works on a Linux remote machine only.
 >
 > Edits still fail in some cases, including these:
 >

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 31b062a213eea2fad456d9a64db743dfdc46c7aa6c4401a5f1f751ad19ebf438
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: ff78aa9e95a9a685668ce45fd1c9f5da561d882f93cc69991e032ae385e2b7cc
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Hasil pencarian web real-time dikembalikan dalam respons API. Pemfilteran dinamis untuk pencarian web tidak memenuhi syarat kelayakan ZDR atau HIPAA.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

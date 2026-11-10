@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/opentelemetry/api
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 5e28924fc2a1e199202558428c3ee48abbc024393467cd925f9d071e07a62141
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: f908f56ddf996e625d7acedc49ca586eebd65668ab53c41c2dd73ca6716647e5
 ---
 
 ---
@@ -18,6 +18,8 @@ featureMetadata:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Beta. Spans have the same ZDR eligibility as the feature that produces them. HIPAA organizations can export metadata. SDK spans go directly from your environment to your exporter. After delivery, the data is held by the service that you chose, outside Anthropic, under that service's retention and access controls.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

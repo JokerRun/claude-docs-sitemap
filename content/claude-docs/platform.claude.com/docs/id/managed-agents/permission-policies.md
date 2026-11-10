@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: bf331e37aa4e48bca1389d467a821d39aa99d8f83023b81daed347e1efaae71d
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: df550d960f29ce6f251ebee414459d45fafed8accedd6a60ee78ec33424523f5
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

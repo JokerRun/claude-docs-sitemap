@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 7d4b12c451c913714d54d0c4ec7356419f779824ce12fe02bac40d1d73991f89
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 46369bd5ad3ee9960d004d41831cdd1afce1ee2078333a74de634f5e7af928fc
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

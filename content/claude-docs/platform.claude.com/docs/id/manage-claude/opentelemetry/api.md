@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/api
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 684097ed9d47b2895cb1d12e0bbc408e14112192c9b4b580ad50d2f86ecc7d3d
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 45fe618cbc4e3b63fb5a4d692c27bfad8fbac12df0c1b883d9a6fc0c2b31c67c
 ---
 
 ---
@@ -18,6 +18,8 @@ featureMetadata:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Beta. Span memiliki kelayakan ZDR yang sama dengan fitur yang menghasilkannya. Organisasi HIPAA dapat mengekspor metadata. Span SDK dikirim langsung dari environment Anda ke exporter Anda. Setelah dikirim, data disimpan oleh layanan yang Anda pilih, di luar Anthropic, di bawah kontrol retensi dan akses layanan tersebut.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

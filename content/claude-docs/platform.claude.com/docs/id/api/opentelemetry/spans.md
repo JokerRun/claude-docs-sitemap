@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/opentelemetry/spans
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: 167d1626cf1e639a340e1dacaf9d3a6f81250229293421572e1bc03ddd2c2a9c
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: a121fc533130386dd04d8daf41d9ec4409cc742eaa7f98864dcfdfbe2ee21d67
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     url: https://platform.claude.com/docs/en/manage-claude/opentelemetry
   status: beta
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

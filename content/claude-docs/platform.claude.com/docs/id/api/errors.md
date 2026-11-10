@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 37f0d7f875812b464c6640ba3f59fc564e4268b8c95b77f5865e16c6377e0886
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 323ae541e0c6c43300a009ea9a197d469f46a171baecf8ed6842ee0735eda199
 ---
 
 ---
@@ -463,7 +463,7 @@ Dengan “tool use” (penggunaan alat), kirim kembali setiap blok `thinking` da
 
 ### Pemikiran diperpanjang tidak didukung
 
-Model Claude 4.7 dan yang lebih baru telah menghapus “extended thinking” (pemikiran diperpanjang). Mengirim `thinking: {"type": "enabled"}` ke salah satu model ini akan mengembalikan 400 `invalid_request_error`:
+Model Claude 4.7 dan yang lebih baru tidak mendukung “extended thinking” (pemikiran diperpanjang). Mengirim `thinking: {"type": "enabled"}` ke salah satu model ini akan mengembalikan 400 `invalid_request_error`:
 
 ```text wrap
 "thinking.type.enabled" is not supported for this model. Use "thinking.type.adaptive" and "output_config.effort" to control thinking behavior.
@@ -483,7 +483,7 @@ Gunakan `thinking: {"type": "enabled", "budget_tokens": N}` pada model-model ini
 
 ### Thinking tidak dapat dinonaktifkan
 
-Pada Claude Fable 5.1, [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), Claude Fable 5, [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Opus 5.5, dan [Claude Mythos Preview](https://anthropic.com/glasswing), thinking selalu aktif. Mengirim `thinking: {"type": "disabled"}` ke salah satu model ini akan mengembalikan 400 `invalid_request_error`. Pada semua model ini kecuali Claude Mythos Preview, pesannya berbunyi:
+Pada Claude Fable 5.2, [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), Claude Fable 5.1, [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), Claude Fable 5, [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Opus 5.5, dan [Claude Mythos Preview](https://anthropic.com/glasswing), thinking selalu aktif. Mengirim `thinking: {"type": "disabled"}` ke salah satu model ini akan mengembalikan 400 `invalid_request_error`. Pada semua model ini kecuali Claude Mythos Preview, pesannya berbunyi:
 
 ```text wrap
 "thinking.type.disabled" is not supported for this model. Use "thinking.type.adaptive" and "output_config.effort" to control thinking behavior.
@@ -515,7 +515,7 @@ messages.N: output_config.effort 'low' differs from the 'high' in effect before 
 
 Claude Haiku 5.5 menerima `thinking: {"type": "disabled"}` dan menerapkan dua batas effort yang sama yang berlaku untuk `between_tools`: pada effort `xhigh` atau `max`, atau dengan `output_config.effort` per pesan yang berbeda dari level yang berlaku, permintaan akan mengembalikan error 400 `invalid_request_error` dengan pesan yang sesuai seperti yang ditunjukkan sebelumnya.
 
-Dalam kedua pesan tersebut, “enable thinking” berarti pemikiran adaptif: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Claude Sonnet 5.5 dan Claude Haiku 5.5 menolak `"enabled"` dengan error 400. Untuk memvariasikan effort di setiap giliran, gunakan pemikiran adaptif.
+Dalam kedua pesan tersebut, “enable thinking” berarti pemikiran adaptif: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Claude Sonnet 5.5 dan Claude Haiku 5.5 juga menolak `"enabled"` dengan error 400. Untuk memvariasikan effort di setiap giliran, gunakan pemikiran adaptif.
 
 Mengirim `thinking: {"type": "between_tools"}` ke model apa pun selain Claude Sonnet 5.5 akan mengembalikan 400 `invalid_request_error`:
 
@@ -529,7 +529,7 @@ Hilangkan parameter `thinking` dan permintaan akan berjalan dengan pemikiran ada
 
 ### Penggunaan alat paksa tidak didukung
 
-Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) tidak mendukung penggunaan alat paksa. Mengirim `tool_choice: {"type": "any"}` atau `tool_choice: {"type": "tool", "name": "..."}` ke salah satu model ini, termasuk pada [endpoint penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting), akan mengembalikan 400 `invalid_request_error`:
+Claude Fable 5.2, [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) tidak mendukung penggunaan alat paksa. Mengirim `tool_choice: {"type": "any"}` atau `tool_choice: {"type": "tool", "name": "..."}` ke salah satu model ini, termasuk pada [endpoint penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting), akan mengembalikan 400 `invalid_request_error`:
 
 ```text wrap
 tool_choice: type "tool" and "any" are not supported for this model.
@@ -539,15 +539,15 @@ tool_choice: type "tool" and "any" are not supported for this model.
 
 ### Versi alat penggunaan komputer tidak didukung
 
-Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 mengembalikan error 400 untuk versi alat [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) apa pun yang tidak mereka terima. Di Claude API, itu termasuk `computer_20251124` dengan header beta-nya. Model-model ini tidak menerima `computer_20250124` di platform mana pun. Pesan `invalid_request_error` dari Claude API menyebutkan jenis yang ditolak dan, setelah `Did you mean one of`, mencantumkan jenis alat yang diterima model. Untuk Claude Opus 5.5, pesannya dimulai dengan:
+Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 mengembalikan error 400 untuk versi alat [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) apa pun yang tidak mereka terima. Di Claude API, itu termasuk `computer_20251124` dengan header beta-nya. Model-model ini tidak menerima `computer_20250124` di platform mana pun. Pesan `invalid_request_error` dari Claude API menyebutkan jenis yang ditolak dan, setelah `Did you mean one of`, mencantumkan jenis alat yang diterima model. Untuk Claude Opus 5.5, pesannya dimulai dengan:
 
 ```text wrap
 'claude-opus-5-5' does not support tool types: computer_20251124.
 ```
 
-Claude API mengembalikan pesan yang sama untuk jenis alat yang didefinisikan Anthropic apa pun yang tidak didukung oleh model yang diminta. Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 mendukung penggunaan komputer melalui toolset `computer_toolset_20260801`. Deklarasikan `{"type": "computer_toolset_20260801"}` tanpa header beta dan perbarui loop agen Anda seperti yang dijelaskan di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Untuk beralih dari `computer_20250124`, lihat [Pindahkan penggunaan komputer ke toolset](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset) di panduan migrasi Claude Haiku 5.5.
+Claude API mengembalikan pesan yang sama untuk jenis alat yang didefinisikan Anthropic apa pun yang tidak didukung oleh model yang diminta. Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 mendukung penggunaan komputer melalui toolset `computer_toolset_20260801`. Deklarasikan `{"type": "computer_toolset_20260801"}` tanpa header beta dan perbarui loop agen Anda seperti yang dijelaskan di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Untuk beralih dari `computer_20250124`, lihat [Pindahkan penggunaan komputer ke toolset](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset) di panduan migrasi Claude Haiku 5.5.
 
-Di Amazon Bedrock, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 juga menerima alat `computer_20251124` dengan header beta `computer-use-2025-11-24`. [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) mencantumkan model yang digunakan dengan setiap versi sebelumnya.
+Di Amazon Bedrock, Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 juga menerima alat `computer_20251124` dengan header beta `computer-use-2025-11-24`. [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) mencantumkan model yang digunakan dengan setiap versi sebelumnya.
 
 ### Blok thinking yang terikat ke percakapan yang berbeda
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: fad041657c81812b2b382f90877aa9bf64aa0a83e1c43953a516900a5ee498d2
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 9baefff7159deb38a8f3f4bccbd1651fbfc8eec684fe59faf4b2408aa8bba651
 ---
 
 ---
@@ -11,6 +11,8 @@ url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool
 description: Aktifkan, format, dan nonaktifkan panggilan alat paralel, dengan panduan riwayat pesan dan pemecahan masalah.
 featureMetadata:
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5
@@ -1163,7 +1165,7 @@ Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_to
 
 ### Tepat satu panggilan alat
 
-Ketika tipe `tool_choice` adalah `any` atau `tool`, mengatur `disable_parallel_tool_use: true` berarti Claude memanggil tepat satu alat. Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1 tidak mendukung tipe `tool_choice` ini (lihat [Memaksa penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use)). Contoh berikut menggunakan `any`. Field yang sama berfungsi dengan `tool`:
+Ketika tipe `tool_choice` adalah `any` atau `tool`, mengatur `disable_parallel_tool_use: true` berarti Claude memanggil tepat satu alat. Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1 tidak mendukung tipe `tool_choice` ini (lihat [Memaksa penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use)). Contoh berikut menggunakan `any`. Field yang sama berfungsi dengan `tool`:
 
 <CodeGroup>
   ```bash cURL
@@ -1601,7 +1603,7 @@ Untuk memverifikasi bahwa panggilan alat paralel berfungsi:
   total_tool_calls = tool_call_messages.sum { |message| message.content.count { |block| block.type == :tool_use } }
   avg_tools_per_message = tool_call_messages.empty? ? 0.0 : total_tool_calls.to_f / tool_call_messages.size
   puts "Average tools per message: #{avg_tools_per_message}"
-  # Seharusnya > 1,0 jika panggilan paralel berfungsi
+  # Seharusnya > 1.0 jika panggilan paralel berfungsi
   ```
 </CodeGroup>
 

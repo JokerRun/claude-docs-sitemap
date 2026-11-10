@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/middleware
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 6c101dbd6ef37264d915a7b8f2345c389b89401fe1a6fe218d28d8c906cafdab
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 2a551d19baf96e2aaf1d84987d957217d541a21d589e9e47c155f87e9caa821f
 ---
 
 ---
@@ -11,6 +11,8 @@ url: https://platform.claude.com/docs/id/cli-sdks-libraries/middleware
 description: Mencegat dan memodifikasi permintaan dan respons SDK.
 featureMetadata:
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

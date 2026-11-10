@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 5666179c4839251a936892b70e1c9c15b0d0281f660e08c3f5b009497090917b
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: d5d0c41e43b95b1e68cca40994628a68a5f63c96bc573a1cda65dc736c5c7e1d
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Files retained until explicitly deleted or they reach their configured expiration.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

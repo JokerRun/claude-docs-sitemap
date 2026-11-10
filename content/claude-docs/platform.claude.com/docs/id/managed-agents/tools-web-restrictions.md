@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 76c4645af5595e7892f15f918b3f40df8d63645e8b156e2d883e5de83bd2cdae
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 60ee4926b808c79f79924b0ad6bd1bcba742783268081faff8ca3f2a6ccd573d
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     url: https://platform.claude.com/docs/en/managed-agents/overview
   betaHeader: managed-agents-2026-04-01
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

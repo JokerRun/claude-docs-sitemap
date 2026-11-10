@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 8ada12255ae051cae8659c3043769fb0395dde05a8083ea5256ffbe4029ea63f
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 6e701f90d41071ffedc337214830fa0da833cd65f002b87a5e1323f15e731375
 ---
 
 ---
@@ -12,6 +12,8 @@ description: Claude's vision capabilities allow it to process and analyze images
 featureMetadata:
   status: stable
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

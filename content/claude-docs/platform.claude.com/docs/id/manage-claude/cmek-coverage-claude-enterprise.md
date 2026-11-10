@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 240e54e1797a4c0df3e5dc00573cea27df4a9f25ef603f6c4e2a539f6caadd87
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 80c6709b6b1ad16581781bd8e06e79f4c30b365dfae630654e276144843e345e
 ---
 
 ---
@@ -20,6 +20,7 @@ Untuk Claude Platform, lihat [Cakupan CMEK di Claude Platform](https://platform.
 * Artifacts, termasuk Claude Design, Claude Slides, dan Claude Docs dalam percakapan dan tab **Artefak**.
 * Claude Code di CLI, termasuk konten pesan.
 * Cowork di Claude Desktop.
+* Chat dalam pengalaman Claude terpadu, hanya di web. **Computer access** dinonaktifkan.
 * Office agents, termasuk Claude for Outlook (beta).
 * Claude in Chrome.
 * Claude Science, yang masih dalam versi beta.
@@ -46,7 +47,7 @@ Daftar ini tidak lengkap. Tinjau daftar ini bersama tim Anda sebelum Anda menyia
 | Claude in Slack (beta)                                                                                                                      | Nonaktif. Claude menolak permintaan, meskipun admin mengaktifkan produk tersebut.                                                                                                                                                                                                             |
 | Analitik: laporan pintar dan metrik kontribusi                                                                                              | Nonaktif. Analitik tertentu dinonaktifkan, terlepas dari pengaturan admin: laporan pintar Claude (di claude.ai/analytics/insights) dan metrik kontribusi Claude Code dari GitHub (beta, di claude.ai/analytics/claude-code).                                                                  |
 | Claude Security (beta)                                                                                                                      | Nonaktif. Fitur beta, dinonaktifkan terlepas dari pengaturan admin.                                                                                                                                                                                                                           |
-| Tugas terjadwal cloud (pratinjau riset)                                                                                                     | Nonaktif. Fitur pratinjau riset, dinonaktifkan terlepas dari pengaturan admin.                                                                                                                                                                                                                |
+| Tugas terjadwal cloud (pratinjau riset)                                                                                                     | Nonaktif. Admin dapat mengaktifkannya untuk pengalaman Claude terpadu.                                                                                                                                                                                                                        |
 | Aplikasi Claude Design mandiri (sedang dihentikan)                                                                                          | Tidak didukung. Lihat [Dienkripsi dengan kunci Anthropic](https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise#encrypted-with-anthropics-key).                                                                                                                   |
 
 ## Dienkripsi dengan kunci Anthropic

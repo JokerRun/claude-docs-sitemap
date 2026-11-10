@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: f50683e8fcba164b0e3f0f095b86cd3c13a642116a0b9d2b8ca8161712ef7d83
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 1a9d924a5cb6a839077d9af4d7000af44ba82954f49a2bfa7bd5a588ecc0bdd0
 ---
 
 ---
@@ -320,8 +320,8 @@ Klien memerlukan region untuk menandatangani permintaan dengan SigV4 dan untuk m
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.6.0")
-        implementation("com.anthropic:anthropic-java-aws:3.6.0")
+        implementation("com.anthropic:anthropic-java:3.7.0")
+        implementation("com.anthropic:anthropic-java-aws:3.7.0")
         ```
       </Tab>
 
@@ -330,12 +330,12 @@ Klien memerlukan region untuk menandatangani permintaan dengan SigV4 dan untuk m
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.6.0</version>
+            <version>3.7.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-aws</artifactId>
-            <version>3.6.0</version>
+            <version>3.7.0</version>
         </dependency>
         ```
       </Tab>
@@ -365,6 +365,7 @@ Model berikut tersedia di Claude Platform on AWS:
 
 | Model                                                                                                 | Model ID            |
 | :---------------------------------------------------------------------------------------------------- | :------------------ |
+| Claude Fable 5.2                                                                                      | `claude-fable-5-2`  |
 | Claude Fable 5.1                                                                                      | `claude-fable-5-1`  |
 | Claude Fable 5                                                                                        | `claude-fable-5`    |
 | Claude Opus 5.5                                                                                       | `claude-opus-5-5`   |

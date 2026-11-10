@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/mcp
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 245c0674abd533062a38fc6593631c9a7716e98b903169bc226dbedabc407305
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 0163d83baa2a5802847161b80dd85386cb604bdb25edb89412152ff37b79b546
 ---
 
 > ## Documentation Index
@@ -212,7 +212,7 @@ Use the full tool names in `allowedTools` and in [MCP permission rules](https://
 
 ### Auto-approve with allowedTools
 
-Use `allowedTools` to auto-approve specific MCP tools so Claude can use them without a permission prompt:
+Use `allowedTools` to auto-approve specific MCP tools:
 
 ```typescript TypeScript hidelines={1,-1} theme={null}
 const _ = {

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 6b5ee9c5e0f7f0b75079310938c01859d225b2e15df26c4be149dbf96941eca1
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 88719f14a63e63da438d2e0670599079d93a4f584cdad92b461d129d7acbae4f
 ---
 
 ---
@@ -184,8 +184,8 @@ Install the package that provides the client:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.6.0")
-        implementation("com.anthropic:anthropic-java-google-cloud:3.6.0")
+        implementation("com.anthropic:anthropic-java:3.7.0")
+        implementation("com.anthropic:anthropic-java-google-cloud:3.7.0")
         ```
       </Tab>
 
@@ -194,12 +194,12 @@ Install the package that provides the client:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.6.0</version>
+            <version>3.7.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-google-cloud</artifactId>
-            <version>3.6.0</version>
+            <version>3.7.0</version>
         </dependency>
         ```
       </Tab>
@@ -551,6 +551,7 @@ The Models API and the following features are available on Claude Models on Goog
 * [Thinking](https://platform.claude.com/docs/en/build-with-claude/thinking)
   * [Adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking-steering-and-cost)
   * [Extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking)
+  * [Preserved thinking](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking)
 * [Token counting](https://platform.claude.com/docs/en/build-with-claude/token-counting)
 * [Tool runner](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner) (Beta)
 * [Vision (images)](https://platform.claude.com/docs/en/build-with-claude/vision)
@@ -577,7 +578,6 @@ Customer-managed encryption keys (CMEK) are available with Google Cloud KMS keys
   * [Session threads](https://platform.claude.com/docs/en/managed-agents/session-threads) (Beta)
 * [Outcomes](https://platform.claude.com/docs/en/managed-agents/define-outcomes) (Beta)
 * [Permission policies](https://platform.claude.com/docs/en/managed-agents/permission-policies) (Beta)
-* [Preserved thinking](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking)
 * [Scheduled deployments](https://platform.claude.com/docs/en/managed-agents/scheduled-deployments) (Beta)
 * [Self-hosted sandboxes](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes) (Beta)
 * [Session budgets](https://platform.claude.com/docs/en/managed-agents/budgets) (Beta)

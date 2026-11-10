@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/choosing-an-environment
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: f97f16648928b01b7f39713075b853928b4e3592e54a04ab08f76cdd9bb14eb0
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 57af474be6e6a97428ae0e54b25896a669f13b6bfec24a71175a57596d867f12
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

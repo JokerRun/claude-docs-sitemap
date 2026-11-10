@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/webhooks
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 686224fc07dd12347cf6ef6c862f6f5ac9198de415b81df9e90ce082bb0ef9d2
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: e4db530d2f224dad0e7525886b16bd89672cdd1b1d11d4c087eae17d2daa9337
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

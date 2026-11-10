@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 396c26f6f87600222bc85a5f6d6479e515e1a310b7cc952bd2fa2d1ffeb976d9
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 48db0ba11aeb76b319fd50fa35af47c9f5e59c9378807d53fd92f2f15f174f6f
 ---
 
 ---
@@ -21,6 +21,8 @@ Tabel berikut menunjukkan harga untuk semua model Claude:
 
 | Model                                                                                                                                                                  | Base input tokens     | 5m cache writes | 1h cache writes | Cache hits and refreshes | Output tokens          |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------- | :-------------- | :-------------- | :----------------------- | :--------------------- |
+| Claude Fable 5.2                                                                                                                                                       | $8 / MTok             | $10 / MTok      | $16 / MTok      | $0.20 / MTok<sup>1</sup> | $40 / MTok             |
+| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842))                                                                            | $8 / MTok             | $10 / MTok      | $16 / MTok      | $0.20 / MTok<sup>1</sup> | $40 / MTok             |
 | Claude Fable 5.1                                                                                                                                                       | $10 / MTok            | $12.50 / MTok   | $20 / MTok      | $0.25 / MTok<sup>1</sup> | $50 / MTok             |
 | Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842))                                                                            | $10 / MTok            | $12.50 / MTok   | $20 / MTok      | $0.25 / MTok<sup>1</sup> | $50 / MTok             |
 | Claude Fable 5                                                                                                                                                         | $10 / MTok            | $12.50 / MTok   | $20 / MTok      | $1 / MTok                | $50 / MTok             |
@@ -42,7 +44,7 @@ Tabel berikut menunjukkan harga untuk semua model Claude:
 | Claude Haiku 5.5 (for prompts over 100,000 tokens)                                                                                                                     | $0.50 / MTok          | $0.625 / MTok   | $1 / MTok       | $0.05 / MTok             | $2.50 / MTok           |
 | Claude Haiku 4.5                                                                                                                                                       | $1 / MTok             | $1.25 / MTok    | $2 / MTok       | $0.10 / MTok             | $5 / MTok              |
 
-*<sup>1 Cache hits and refreshes on Claude Fable 5.1 and Claude Mythos 5.1 are priced at 0.025x the base input price.</sup>*
+*<sup>1 Cache hits and refreshes on Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, and Claude Mythos 5.1 are priced at 0.025x the base input price.</sup>*
 
 *<sup>2 Cache hits and refreshes on Claude Opus 5.5 and Claude Sonnet 5.5 are priced at 0.05x the base input price.</sup>*
 
@@ -78,7 +80,7 @@ Untuk harga resmi di [Claude Models on Google Cloud (Google managed)](https://pl
 
   Endpoint regional dan multi-region dikenakan premi 10 persen di atas endpoint global. Claude API (first-party) bersifat global secara default; untuk opsi dan harga residensi data first-party, lihat [Harga residensi data](https://platform.claude.com/docs/id/about-claude/pricing#data-residency-pricing).
 
-  **Cakupan:** Struktur harga ini berlaku untuk Claude Sonnet 4.5 (deprecated), Haiku 4.5, Opus 4.5, dan semua model mendatang. Model sebelumnya (Claude Opus 4.1 dan rilis sebelumnya) mempertahankan harga yang sudah ada.
+  **Cakupan:** Struktur harga ini berlaku untuk Claude Sonnet 4.5 (deprecated), Haiku 4.5, Opus 4.5, dan model-model selanjutnya. Struktur harga ini tidak berlaku untuk model sebelumnya (Claude Opus 4.1 dan rilis sebelumnya).
 
   Untuk detail implementasi dan contoh kode:
 
@@ -149,13 +151,13 @@ Ada dua cara untuk mengaktifkan caching prompt:
 
 Caching prompt menggunakan pengali harga berikut relatif terhadap tarif token input dasar:
 
-| Operasi cache           | Pengali                                                                                                                       | Durasi                                       |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| Penulisan cache 5 menit | 1,25x harga input dasar                                                                                                       | Cache berlaku selama 5 menit                 |
-| Penulisan cache 1 jam   | 2x harga input dasar                                                                                                          | Cache berlaku selama 1 jam                   |
-| Pembacaan cache (hit)   | 0,1x harga input dasar (0,025x pada Claude Fable 5.1 dan Claude Mythos 5.1; 0,05x pada Claude Opus 5.5 dan Claude Sonnet 5.5) | Durasi yang sama dengan penulisan sebelumnya |
+| Operasi cache           | Pengali                                                                                                                                                             | Durasi                                       |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| Penulisan cache 5 menit | 1,25x harga input dasar                                                                                                                                             | Cache berlaku selama 5 menit                 |
+| Penulisan cache 1 jam   | 2x harga input dasar                                                                                                                                                | Cache berlaku selama 1 jam                   |
+| Pembacaan cache (hit)   | 0,1x harga input dasar (0,025x pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, dan Claude Mythos 5.1; 0,05x pada Claude Opus 5.5 dan Claude Sonnet 5.5) | Durasi yang sama dengan penulisan sebelumnya |
 
-Token penulisan cache dikenakan biaya saat konten pertama kali disimpan. Token pembacaan cache dikenakan biaya saat permintaan berikutnya mengambil konten yang di-cache. Cache hit berbiaya 10% dari harga input standar, yang berarti caching menguntungkan setelah satu kali pembacaan cache untuk durasi 5 menit (penulisan 1,25x), atau setelah dua kali pembacaan cache untuk durasi 1 jam (penulisan 2x). Pada Claude Fable 5.1 dan Claude Mythos 5.1, cache hit berbiaya 2,5% dari harga input standar ($0,25 USD per juta token). Pada Claude Opus 5.5 dan Claude Sonnet 5.5, cache hit berbiaya 5% dari harga input standar ($0,20 USD per juta token pada Claude Opus 5.5, $0,10 USD pada Claude Sonnet 5.5).
+Token penulisan cache dikenakan biaya saat konten pertama kali disimpan. Token pembacaan cache dikenakan biaya saat permintaan berikutnya mengambil konten yang di-cache. Cache hit berbiaya 10 persen dari harga input standar, yang berarti caching menguntungkan setelah satu kali pembacaan cache untuk durasi 5 menit (penulisan 1,25x), atau setelah dua kali pembacaan cache untuk durasi 1 jam (penulisan 2x). Pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, dan Claude Mythos 5.1, cache hit berbiaya 2,5 persen dari harga input standar ($0,20 USD per juta token pada Claude Fable 5.2 dan Claude Mythos 5.2, $0,25 USD pada Claude Fable 5.1 dan Claude Mythos 5.1). Pada Claude Opus 5.5 dan Claude Sonnet 5.5, cache hit berbiaya 5 persen dari harga input standar ($0,20 USD per juta token pada Claude Opus 5.5, $0,10 USD pada Claude Sonnet 5.5).
 
 Pengali ini bertumpuk dengan pengubah harga lainnya, termasuk diskon Batch API dan residensi data.
 
@@ -171,10 +173,20 @@ Untuk informasi lebih lanjut, lihat [Residensi data](https://platform.claude.com
 
 ### Harga mode cepat
 
-[Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) menyediakan output yang jauh lebih cepat untuk Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8 dengan harga premium. Mode cepat untuk Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset. Harga mode cepat berlaku di seluruh “context window” (jendela konteks), termasuk permintaan di atas 200k token input. Mode cepat tersedia di Claude API (first-party) dan, untuk Claude Opus 5.5, di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#billing) serta di [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Azure.
+[Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) menyediakan output yang jauh lebih cepat untuk Claude Fable 5.2, Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8 dengan harga premium. Mode cepat untuk Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset. Harga mode cepat berlaku di seluruh “context window” (jendela konteks), termasuk permintaan di atas 200k token input. Mode cepat tersedia di Claude API (first-party). Untuk Claude Opus 5.5, mode cepat juga tersedia di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#billing) serta di [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Azure.
+
+Mode cepat untuk Claude Fable 5.2 juga tersedia di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#billing).
+
+Mode cepat untuk Claude Fable 5.2 juga tersedia di [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed). Google Cloud menetapkan harganya di sana. Lihat [Harga platform cloud](https://platform.claude.com/docs/id/about-claude/pricing#cloud-platform-pricing).
+
+Mode cepat untuk Claude Fable 5.2 juga tersedia di Claude di Microsoft Foundry untuk deployment yang di-hosting di Anthropic. Lihat [Harga Claude in Microsoft Foundry](https://platform.claude.com/docs/id/about-claude/pricing#claude-in-microsoft-foundry-pricing).
+
+Mode cepat juga tersedia untuk Claude Mythos 5.2 di Claude API. [Ketersediaan mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#feature-availability) mencantumkan setiap platform tempat Claude Mythos 5.2 memiliki mode cepat.
 
 | Model                           | Input          | Output         |
 | ------------------------------- | -------------- | -------------- |
+| Claude Fable 5.2                | $16 USD / MTok | $80 USD / MTok |
+| Claude Mythos 5.2               | $16 USD / MTok | $80 USD / MTok |
 | Claude Opus 5.5                 | $8 USD / MTok  | $40 USD / MTok |
 | Claude Opus 5 / Claude Opus 4.8 | $10 USD / MTok | $50 USD / MTok |
 
@@ -193,6 +205,8 @@ Batch API memungkinkan pemrosesan asinkron untuk permintaan dalam volume besar d
 
 | Model                                                                                                                                                                  | Batch input  | Batch output  |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------- | :------------ |
+| Claude Fable 5.2                                                                                                                                                       | $4 / MTok    | $20 / MTok    |
+| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842))                                                                            | $4 / MTok    | $20 / MTok    |
 | Claude Fable 5.1                                                                                                                                                       | $5 / MTok    | $25 / MTok    |
 | Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842))                                                                            | $5 / MTok    | $25 / MTok    |
 | Claude Fable 5                                                                                                                                                         | $5 / MTok    | $25 / MTok    |
@@ -230,9 +244,9 @@ Harga Claude Haiku 5.5 ditentukan berdasarkan panjang prompt: permintaan yang pr
 
 Permintaan “tool use” (penggunaan alat) dikenai harga berdasarkan:
 
-1. Jumlah total token input yang dikirim ke model (termasuk dalam parameter `tools`)
-2. Jumlah token output yang dihasilkan
-3. Untuk alat sisi server, harga tambahan berbasis penggunaan (misalnya, pencarian web mengenakan biaya per pencarian yang dilakukan)
+1. Jumlah total token input yang dikirim ke model (termasuk dalam parameter `tools`).
+2. Jumlah token output yang dihasilkan.
+3. Untuk alat sisi server, harga tambahan berbasis penggunaan (misalnya, pencarian web mengenakan biaya per pencarian yang dilakukan).
 
 Alat sisi klien dikenai harga yang sama seperti permintaan Claude API lainnya, meskipun alat sisi server dapat menimbulkan biaya tambahan berdasarkan penggunaan spesifiknya.
 
@@ -242,7 +256,7 @@ Token tambahan dari penggunaan alat berasal dari:
 * Blok konten `tool_use` dalam permintaan dan respons API
 * Blok konten `tool_result` dalam permintaan API
 
-Saat Anda menggunakan `tools`, API juga secara otomatis menyertakan “system prompt” (prompt sistem) khusus untuk model yang memungkinkan penggunaan alat. Jumlah token penggunaan alat yang diperlukan untuk setiap model tercantum dalam tabel berikut (tidak termasuk token tambahan yang disebutkan sebelumnya). Perhatikan bahwa tabel ini mengasumsikan setidaknya 1 alat disediakan. Jika tidak ada `tools` yang disediakan, maka pilihan alat `none` menggunakan 0 token prompt sistem tambahan.
+Saat Anda menggunakan `tools`, API juga secara otomatis menyertakan “system prompt” (prompt sistem) khusus untuk model yang memungkinkan penggunaan alat. Tabel berikut mencantumkan jumlah token penggunaan alat yang diperlukan setiap model (tidak termasuk token tambahan yang disebutkan sebelumnya). Tabel ini mengasumsikan bahwa Anda menyediakan setidaknya satu alat. Jika Anda tidak menyediakan `tools`, pilihan alat `none` menggunakan 0 token prompt sistem tambahan.
 
 | Model                                                                                                                                                                  | Tool use system prompt tokens: auto, none | Tool use system prompt tokens: any, tool |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------- | :--------------------------------------- |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-observability
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 678eadd5109df5c87cd4ee88815249a4d145d9a5e79b21cda7b3cb7574c8e5e9
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 5db7fcd95d4333509fd235657deb9c9213ef5feba00ab7c0cbf1a5030f2b4609
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

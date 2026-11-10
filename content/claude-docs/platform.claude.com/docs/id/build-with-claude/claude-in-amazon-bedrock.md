@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 9efd483679ac61dfa8a0cc06913d40cf008838aca9838c2776d6ad6fc1eb17a3
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 45fe389cafaef573293c788b2099dc99bc29550a5b5c9f1af88f1f1563f60a61
 ---
 
 ---
@@ -107,8 +107,8 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.6.0")
-        implementation("com.anthropic:anthropic-java-bedrock:3.6.0")
+        implementation("com.anthropic:anthropic-java:3.7.0")
+        implementation("com.anthropic:anthropic-java-bedrock:3.7.0")
         ```
       </Tab>
 
@@ -117,12 +117,12 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.6.0</version>
+            <version>3.7.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-bedrock</artifactId>
-            <version>3.6.0</version>
+            <version>3.7.0</version>
         </dependency>
         ```
       </Tab>
@@ -341,6 +341,8 @@ ID model di Claude di Amazon Bedrock memiliki prefiks penyedia `anthropic.`. Kem
 
 | Model                                                                                       | Model ID                      | Access                                                                                              |
 | :------------------------------------------------------------------------------------------ | :---------------------------- | :-------------------------------------------------------------------------------------------------- |
+| Claude Fable 5.2                                                                            | `anthropic.claude-fable-5-2`  | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
+| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842)) | `anthropic.claude-mythos-5-2` | Active (verification required)                                                                      |
 | Claude Fable 5.1                                                                            | `anthropic.claude-fable-5-1`  | Open                                                                                                |
 | Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842)) | `anthropic.claude-mythos-5-1` | Active (verification required)                                                                      |
 | Claude Fable 5                                                                              | `anthropic.claude-fable-5`    | Open                                                                                                |
@@ -391,7 +393,7 @@ Claude di Amazon Bedrock tersedia di region AWS berikut. Amazon Bedrock menawark
 * **Global:** perutean dinamis di seluruh region yang tersedia untuk ketersediaan maksimum. Tanpa premi harga.
 * **Regional:** endpoint mengarah ke satu region AWS yang Anda tentukan, untuk kebutuhan residensi data. Endpoint regional dikenakan premi harga 10 persen dibandingkan endpoint global. Untuk merutekan ke beberapa region dalam satu wilayah geografis, gunakan [profil inferensi](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html) (US, EU, JP, atau AU). Region yang ditandai **Hanya dalam region** dalam tabel mendukung perutean langsung ke satu region tanpa profil inferensi.
 
-Endpoint global tersedia untuk Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5.5, Claude Sonnet 5, Claude Haiku 5.5, dan Claude Haiku 4.5. Untuk Claude Fable 5.1, endpoint regional hanya tersedia di `us-east-1`.
+Endpoint global tersedia untuk Claude Fable 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5.5, Claude Sonnet 5, Claude Haiku 5.5, dan Claude Haiku 4.5.
 
 | Region AWS       | Lokasi                      | Jenis endpoint                 |
 | ---------------- | --------------------------- | ------------------------------ |

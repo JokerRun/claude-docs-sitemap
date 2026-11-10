@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/thinking-tool-workflows
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: b8fa616a727b2a7002ee9f5590d212d27a4b900b67670ccd4576cdcc46d0b6e0
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 060de8cf0d3d70f35892c8500846467a11660dd6389b4b950986681b236a4b18
 ---
 
 ---
@@ -21,7 +21,7 @@ This page walks through a complete two-turn tool-use round trip with thinking en
 
 Each link leads to the full statement on the Thinking page:
 
-* [Limit tool choice to `auto` or `none` in manual mode](https://platform.claude.com/docs/en/build-with-claude/thinking#thinking-with-tool-use): `tool_choice` options that force tool use return an error with manual extended thinking (`thinking: {type: "enabled"}`). Adaptive thinking supports forced tool use, except on Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, and Claude Mythos 5.1, which return a 400 error. Where forced tool use is accepted, it skips thinking: the response starts with the tool call.
+* [Limit tool choice to `auto` or `none` in manual mode](https://platform.claude.com/docs/en/build-with-claude/thinking#thinking-with-tool-use): `tool_choice` options that force tool use return an error with manual extended thinking (`thinking: {type: "enabled"}`). Adaptive thinking supports forced tool use, with exceptions. Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, and Claude Mythos 5.1 return a 400 error instead. Where forced tool use is accepted, it skips thinking: the response starts with the tool call.
 * [Keep one thinking configuration per assistant turn](https://platform.claude.com/docs/en/build-with-claude/thinking#thinking-with-tool-use): a tool-use loop is one assistant turn, so change the configuration only between turns.
 * [Pass thinking blocks back complete and unmodified](https://platform.claude.com/docs/en/build-with-claude/thinking#preserving-thinking-blocks): when you return a tool result, the thinking blocks from the assistant message must come back with it.
 * [Echo the assistant message exactly as received](https://platform.claude.com/docs/en/build-with-claude/thinking#preserving-thinking-blocks): rebuilding the message or filtering out `redacted_thinking` blocks triggers a 400 error.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/event-deltas
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 5fd6dc7a841318a39af1af91c9f5b378c70b9604e05b19e12f3c144351a25e79
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: a110363f67c9ff4a2b9aadfd91df1a74209aace778e5334cd187cc2928729c3a
 ---
 
 ---
@@ -19,6 +19,8 @@ featureMetadata:
     eligibility: not-eligible
     note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5

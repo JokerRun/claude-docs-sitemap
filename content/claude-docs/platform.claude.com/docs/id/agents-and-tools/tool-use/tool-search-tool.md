@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 37911aa6ef4544a7b080ce792e8469e2dcae2fa7af1aabbbf1a58665ad29babc
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 6ec781d4468f58af61f81dc717527292ab5f94237c6e6dcbc5ea421f47249b93
 ---
 
 ---
@@ -15,6 +15,8 @@ featureMetadata:
     eligibility: eligible
     note: Excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Alat sisi server yang dijalankan oleh Anthropic; definisi alat dalam permintaan dicari di memori per panggilan dan tidak ada yang disimpan setelah respons.
   supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5
@@ -76,6 +78,8 @@ Kedua varian pencarian alat tersedia pada model berikut:
 
 | Model                                                                                                                                                                 | Versi alat                                                          |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| Claude Fable 5.2 (claude-fable-5-2)                                                                                                                                   | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Mythos 5.2 (claude-mythos-5-2)                                                                                                                                 | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Fable 5.1 (claude-fable-5-1)                                                                                                                                   | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Mythos 5.1 (claude-mythos-5-1)                                                                                                                                 | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Fable 5 (claude-fable-5)                                                                                                                                       | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |

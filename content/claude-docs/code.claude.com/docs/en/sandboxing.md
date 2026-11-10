@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-11-08T02:13:40.705305Z
-sha256: 5052f33f5c9ad369712da4a21e794f9e7b5fc87b9123deb9cb7e4919245e3bca
+fetched_at: 2026-11-10T02:13:26.049428Z
+sha256: 5820694e70a4f8abff451ddca7b29c61eea102673ebf96b8ca1c6e652f636a63
 ---
 
 > ## Documentation Index
@@ -909,6 +909,10 @@ When Claude pipes text to one of these tools, adding the tool to [`excludedComma
 * Outside the directories the sandbox lets commands write to at all
 
 After the failure, Claude may [offer to rerun the command outside the sandbox](#the-unsandboxed-retry-escape-hatch). Approve that retry, or run the git command yourself in another terminal. If you've set `allowUnsandboxedCommands` to `false`, Claude can't offer the retry, so run the command yourself.
+
+### A git command fails with `Unable to create '…/index.lock'`
+
+If you started Claude Code in a repository's subdirectory, this error can mean `.git` is outside [what sandboxed commands can write to](#filesystem-isolation). Start Claude Code from the repository root instead, or from the worktree's root in a [linked worktree](https://code.claude.com/docs/en/worktrees.md).
 
 ### A folder named `objects` or `refs` disappears after a command
 
