@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: c4de8284d6ddbeacb49777f36a3576d6079f7b740af76ecb60fb5f6689076a0c
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: c5ab84bfb17bbd9c5cbcd42d4049e8006331a780b0bd885b33e85b879dc69860
 ---
 
 ---
@@ -149,6 +149,8 @@ List Vaults
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

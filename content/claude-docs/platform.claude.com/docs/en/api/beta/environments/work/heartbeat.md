@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/heartbeat
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: c8aced52af8c85aaed374f19346837ee3974a9a378a36f900fd3d9fa89eb8b4d
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 4b7974f5d4c7373ef82b60c6eba5d2ca5c9a7f7a9a859f7b61e0e7018a88be97
 ---
 
 ---
@@ -32,7 +32,7 @@ Record a heartbeat for a work item to maintain the lease.
 
 - `expected_last_heartbeat: optional string`
 
-  Expected last_heartbeat for conditional update (optimistic concurrency). Use literal 'NO_HEARTBEAT' to claim an unclaimed lease (first heartbeat). For subsequent heartbeats, echo the server's previous last_heartbeat value exactly. Returns 412 Precondition Failed if the actual value doesn't match.
+  Expected last_heartbeat for conditional update (optimistic concurrency). Use literal 'NO_HEARTBEAT' to claim an unclaimed lease (first heartbeat). For subsequent heartbeats, echo the server's previous last_heartbeat value exactly. Returns 412 Precondition Failed if the actual value doesn't match. The server does not compare the value when the work item is 'stopping' or 'stopped'.
 
 ## Headers
 
@@ -151,6 +151,8 @@ Record a heartbeat for a work item to maintain the lease.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

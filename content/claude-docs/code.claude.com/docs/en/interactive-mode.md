@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: a65ae049ed86648acb993fcf1810b7c71f15e1c20f3187200c17e104735689f4
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: e6c0fc8874099bb1f3d590fb7813a91d0f57409207b714f47a62d3866a7412c9
 ---
 
 > ## Documentation Index
@@ -258,7 +258,7 @@ Press `v` for character-wise selection or `V` for line-wise selection. Motions e
 | `d`/`x` | Delete selection |
 | `y` | Yank selection |
 | `c`/`s` | Change selection |
-| `p` | Replace selection with register contents |
+| `p`/`P` | Replace selection with register contents |
 | `r{char}` | Replace every selected character with `{char}` |
 | `~`/`u`/`U` | Toggle, lowercase, or uppercase selection |
 | `>`/`<` | Indent or dedent selected lines |
@@ -310,6 +310,8 @@ In the dialog, press `Ctrl+S` to cycle the scope through this session, this proj
    * Press `Backspace` on empty search to cancel
 
 Accepting a match or canceling the search takes effect immediately, even while Claude Code is still loading the history.
+
+To find an earlier prompt when all you remember is something long you pasted into it, such as an error log, press `Ctrl+R` and type a word from the paste. Requires Claude Code v2.1.314 or later.
 
 ## Background Bash commands
 

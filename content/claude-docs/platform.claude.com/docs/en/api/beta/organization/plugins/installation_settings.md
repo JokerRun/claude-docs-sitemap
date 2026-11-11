@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/installation_settings
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 1a8b1a72f738b0dc1c3b20f3bc1941f1815495e23bf9c682e022b0dd271aad32
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 40f133d17df621c8728b1f72f6a0380b0d4e2ad7ea425298eeb248a5317d3b0a
 ---
 
 ---
@@ -63,7 +63,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 ### Headers
 
-- `"anthropic-beta": optional array of AnthropicBeta`
+- `"anthropic-beta": array of AnthropicBeta`
 
   This endpoint is in beta: requests must send `ce-plugins-2026-09-01` in this header.
 
@@ -172,6 +172,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -320,7 +322,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 ### Headers
 
-- `"anthropic-beta": optional array of AnthropicBeta`
+- `"anthropic-beta": array of AnthropicBeta`
 
   This endpoint is in beta: requests must send `ce-plugins-2026-09-01` in this header.
 
@@ -429,6 +431,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -594,7 +598,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 ### Headers
 
-- `"anthropic-beta": optional array of AnthropicBeta`
+- `"anthropic-beta": array of AnthropicBeta`
 
   This endpoint is in beta: requests must send `ce-plugins-2026-09-01` in this header.
 
@@ -703,6 +707,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

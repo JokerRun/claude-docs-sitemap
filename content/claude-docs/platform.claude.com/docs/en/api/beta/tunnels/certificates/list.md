@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 3f1e3e1560c7161bdcde3690bf337d25dd0e4e3c1cd53963fde098fb65a31b2f
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 73fd94cf8a16208c0f6d1516e40487370cc06b7d139e76e3e47b6d348f951c67
 ---
 
 ---
@@ -157,6 +157,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

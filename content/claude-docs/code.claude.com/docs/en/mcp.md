@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-11-08T02:13:40.705305Z
-sha256: 08a59d3eeeb80da9f94a4f79f1f1179b5cd165c464e7805f8fdc8843ab9c6db7
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: a8b8fc23a127eac879a736e635ea5ca533d437334e0201718a0870a24c0e8a39
 ---
 
 > ## Documentation Index
@@ -1806,8 +1806,6 @@ On Google Cloud's Agent Platform, Claude Code decides by model generation:
 
 * **Claude Opus 4.5, Sonnet 4.5, Haiku 4.5, and later**: tool search is on by default, the same as on the Anthropic API.
 * **Earlier Agent Platform models**: Claude Code loads all MCP tools upfront, because their serving stacks reject the required beta header. `ENABLE_TOOL_SEARCH=true` doesn't override this.
-
-Before v2.1.221, Claude Code disabled tool search for all models on Google Cloud's Agent Platform unless you set `ENABLE_TOOL_SEARCH=true`.
 
 Control tool search behavior with the `ENABLE_TOOL_SEARCH` environment variable:
 

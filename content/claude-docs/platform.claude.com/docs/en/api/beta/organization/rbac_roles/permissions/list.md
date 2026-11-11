@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_roles/permissions/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 5d7b7d9ef1c18dda9cdfaf4e6edaa31aed90fd8fca1a939f57c9ddf644627c83
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: a606c4873ba4e7af9d8cca8bfc7eefeba39e235a861ec0ae71f1e2c52b1c32fc
 ---
 
 ---
@@ -67,8 +67,8 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
     permission entitlement (`permission_*`), or a blanket capability-access
     mode — `capability_access_all` grants every product-feature entitlement
     except `inference_hooks_inspection`, which a role holds only through its
-    own row, and `capability_access_all_ga` grants the generally-available
-    subset of those as it stands at permission-check time; neither mode grants
+    own row, and `capability_access_all_ga` grants the subset of those for
+    stable features as it stands at permission-check time; neither mode grants
     model-access entitlements. A consumer enumerating a role's per-feature grants should
     treat a blanket row as granting every product-feature entitlement it
     covers, or it will under-report the role's effective access. A `connector_tool` grant carries

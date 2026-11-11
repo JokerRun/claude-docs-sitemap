@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/delete
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 4577fdafdf5303429506a29110a03b01fc48b3cabdde4f310dc084e6eaeb9ff5
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: bbb7f60c24c1cb9cfd378a9a5c8fcf89b0b9378cfa60cf181545238f3aaa5bf1
 ---
 
 ---
@@ -151,6 +151,8 @@ Delete a Memory
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

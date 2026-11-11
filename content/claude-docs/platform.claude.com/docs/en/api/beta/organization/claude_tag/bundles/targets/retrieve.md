@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/bundles/targets/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 6e335427d034433f733004fd57443fcae8ce8ea561e11fe7c3a61abee7d9738d
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 92cd15b488e0f8d8fcc3867a6aabb3f6705665e43e17315794c52fa6af29649c
 ---
 
 ---
@@ -143,6 +143,8 @@ Get one Bundle Target. Returns 404 when `target_id` is the identifier of another
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/delete
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f6681820742fcbae7770e040c0590fa2ee7b46d2a9130507de42e4a9978a036e
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 3c5fed7acb3c46d9505fa28753033cc0288d1030c2c006fe0daf71b25b38dfc1
 ---
 
 ---
@@ -139,6 +139,8 @@ Delete File
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

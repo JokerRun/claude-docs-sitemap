@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-api
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 56dbedc41c216195e8e54cd1a4ede6e957cb0a3d934360c587a18f0fd158ed44
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 97f51aac38d1598d9c5ba0dcbda69e7401d935393cdc0231ab5cfb8f87d6213d
 ---
 
 ---
@@ -121,6 +121,10 @@ Anthropic menyediakan dua API analitik: Claude Enterprise Analytics API dan [Cla
 
   <Card href="https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns" title="Merancang integrasi kepatuhan Anda">
     Pilih pola konsumsi feed, rencanakan korelasi SIEM, dan tentukan pendekatan retensi Anda.
+  </Card>
+
+  <Card href="https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/overview" title="Security posture di Compliance API">
+    Masukkan perubahan dari halaman Security posture ke SIEM dan alat keamanan Anda lainnya.
   </Card>
 
   <Card href="https://platform.claude.com/docs/id/manage-claude/compliance-errors" title="Menangani error Compliance API">

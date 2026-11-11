@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations/workspaces/remove
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 5d03c0fe7cbd48bf96340f6bc6a9e4245c27b62788dd857f0bb8288fdd920f33
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 4845e3a97d196753d38cd2197e8e9b26477873f223b570825218b43de39e8912
 ---
 
 ---
@@ -149,6 +149,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

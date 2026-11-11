@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/update
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 3c66252811a4a8ab30b71f9957da6cad5e8d8ea6ff09bbab7fe3b8cdc2041345
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 954585f99104ea8b65f9d066ebec7c64a36517266d398387773c4085c094edae
 ---
 
 ---
@@ -139,6 +139,8 @@ Update Session Resource
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

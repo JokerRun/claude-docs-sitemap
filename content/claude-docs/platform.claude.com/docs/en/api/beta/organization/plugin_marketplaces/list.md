@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugin_marketplaces/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 02f9ba8877fd963e8ca123876940384c023a4c3b44df9d237f5bf19f2f57afd3
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 5b3f15ec3466569b013ad36036be54ce961ea279be6c7d79ad5f896c28ac590e
 ---
 
 ---
@@ -70,7 +70,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 ## Headers
 
-- `"anthropic-beta": optional array of AnthropicBeta`
+- `"anthropic-beta": array of AnthropicBeta`
 
   This endpoint is in beta: requests must send `ce-plugins-2026-09-01` in this header.
 
@@ -179,6 +179,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

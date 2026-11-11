@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/reference
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 9b35af4e854825d31dae029d2387512b0e8bbbd7677ef699324a0076a8634823
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: bc7505fb08059f096e464ce7ca01e73401cc27d1fa65f1cfcfba5c3a5d76ce3b
 ---
 
 > ## Documentation Index
@@ -46,8 +46,7 @@ A mod registers each of its hooks, which are event handlers, by calling `on` ins
 | `next.origin` | `{ plugin, tier }` of whoever fired the event. Claude Code itself is `{ plugin: 'engine', tier: 'core' }`. A mod's `tier` is its priority group in the [order mods run in](https://code.claude.com/docs/en/plugins/mods/events.md#the-order-mods-run-in): `prepend`, `user`, `append`, or `builtin`. |
 | `next.budget` | The hook's time limit in milliseconds: `next.budget.ms` is the whole limit, and `next.budget.remainingMs` is what's left now |
 | `next.to(e, tier)` | Skips to a later tier, which is `append`, `builtin`, or `core`. `next.to(e, 'append')` skips the mods a user installed. Only a mod in `prependPlugins` or `appendPlugins` can call it. |
-| `next.error` | In a `.catch` handler only. `kind` is `throw` or `timeout` when the hook failed, and `message` is the error's text. `kind` is `re-entry` when the hook was skipped because the event came from inside a mods API call by that hook or by your mod's code outside its hooks. `re-entry` requires Claude Code v2.1.292 or later. |
-| `next.error.cause` | Set only when `kind` is `re-entry`. `rewritten` if a `tool.call` or [`PreToolUse`](https://code.claude.com/docs/en/hooks#pretooluse) hook changed the mods API call the event came from, or an `agent.spawn` hook changed an agent started by that call. `lent` when a method another mod adds to the mods API fired that event, unless `rewritten` also applies. `lent` requires Claude Code v2.1.292 or later and `rewritten` v2.1.300 or later. |
+| `next.error` | In a `.catch` handler only. `kind` is `throw` or `timeout`, and `message` is the error's text. |
 | `next.called` | In a `.catch` handler only. `true` when the hook had called `next`. |
 
 ## Events
@@ -259,15 +258,15 @@ Rendering in the VS Code extension requires extension version 2.1.299 or later. 
 | [`AbovePrompt`](https://code.claude.com/docs/en/plugins/mods/interface#pick-where-to-draw) | `hasSurvey`, `isWorking`, `maxRows`, `bodyColumns`, `scroll`, `view` | One instance | Terminal, Desktop |
 | [`Placed`](https://code.claude.com/docs/en/plugins/mods/interface#place-a-row-in-the-transcript) | `id`, `plugin`, `onScreen` | The `requestId` that `$.ui.place` returned | Terminal |
 | [`Backdrop`](https://code.claude.com/docs/en/plugins/mods/interface#put-a-backdrop-behind-the-conversation) | `id`, `plugin`, `glass`, `colorScheme` | `backdrop` | `desktop` and `mobile` surfaces. Your hook runs when the Desktop or mobile app asks to draw a backdrop. |
-| `UserMessage` | `text`, `origin`, `isExpanded`, and `task` or `from` by origin | The message id | Terminal, Desktop, VS Code |
-| `AssistantMessage` | The reply's text | The message id | Terminal, Desktop, VS Code |
+| `UserMessage` | `text`, `origin`, `isExpanded`, and `task` or `from` by origin | The drawn row's id | Terminal, Desktop, VS Code |
+| `AssistantMessage` | The reply's text | The drawn row's id | Terminal, Desktop, VS Code |
 | `ToolUse`, `ToolResult`, `ToolGroup` | The tool's name, input, and result | The tool call id | Terminal, Desktop, VS Code |
-| `CommandOutput` | `command`, `text` | The message id | Terminal, Desktop |
+| `CommandOutput` | `command`, `text` | The drawn row's id | Terminal, Desktop |
 | [`AskUserQuestion`](https://code.claude.com/docs/en/plugins/mods/interface#change-what-claude-code-already-draws) | The question and options | The tool call id | Terminal, Desktop, VS Code |
 | `ToolProgress` | `kind` | The tool call id | Terminal |
 | [`Spinner`](https://code.claude.com/docs/en/plugins/mods/interface#change-what-claude-code-already-draws) | `word`, `message`, `suffix`, `mode` | The agent id | Terminal, Desktop, VS Code |
-| `TurnDuration` | `word`, `durationMs` | The message id | Terminal |
-| `InfoNotice` | `text`, `command` | The message id | Terminal |
+| `TurnDuration` | `word`, `durationMs` | The drawn row's id | Terminal |
+| `InfoNotice` | `text`, `command` | The notice's `text` prefixed with `notice:` | Terminal |
 | `SessionMode` | `modes` | One instance | Terminal, Desktop |
 | `PromptHint` | `isDraft`, `isWorking`, `hint` | One instance | Terminal, Desktop |
 

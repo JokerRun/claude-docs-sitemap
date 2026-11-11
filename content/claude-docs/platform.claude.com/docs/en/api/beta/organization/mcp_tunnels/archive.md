@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/archive
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 05c1c74a5ba58bbb0ab33cb07368f073bbfbfe192bc6caf355cb6394a2e4fef7
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 426cea085c08312256d53e623b7580a3adcfb24a4ed8b00f2fd38948c28ef926
 ---
 
 ---
@@ -148,6 +148,8 @@ tunnel returns the existing record unchanged.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

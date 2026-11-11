@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 9da09c71a50fedac42e186a14fe05bbc639686746fe536c5fe2972d33db1f4b0
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 3b7d413db89f8cefe2732fa8762df6c002c93c8edcdd67eb020662f87fec2103
 ---
 
 ---
@@ -13,6 +13,7 @@ featureMetadata:
   topic:
     title: Managed Agents
     url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
@@ -37,6 +38,10 @@ featureMetadata:
     - claude-sonnet-4-6
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Claude Models on Google Cloud (Anthropic managed): beta
 ---
 
 **Deployment terjadwal** (“scheduled deployment”) memungkinkan [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup) untuk memulai [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) secara otonom, sehingga agen dapat menyelesaikan tugas dengan ritme yang dapat diprediksi. Anda membuat dan mengelola deployment dengan Deployments API, bagian dari Claude API.
@@ -813,7 +818,7 @@ Untuk menjalankan deployment di luar jadwalnya, panggil [endpoint `run`](https:/
 
 ## Ketersediaan
 
-Deployment terjadwal tersedia di semua model.
+Deployment terjadwal dalam versi beta di semua model.
 
 ### Dukungan API
 
@@ -821,9 +826,9 @@ Deployment terjadwal tersedia di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status   | Platform cloud                                                                                                                                                                                                                                                                 | Model                                                              |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
+| Status | Platform cloud                                                                                                                                                                                                                                                                 | Model                                                              |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
 ### Header beta yang diperlukan
 

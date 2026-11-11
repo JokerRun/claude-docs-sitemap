@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f874475582163079aa4f0105f67a2118b03d295b5c58b5b1adf105dfcaa87511
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 16132a4f8186e88d87da2128f4c0df10e04693e2f1236a0c38f6ce4c299abd42
 ---
 
 ---
@@ -27,6 +27,10 @@ List Workspaces
 - `before_id: optional string`
 
   ID of the object to use as a cursor for pagination. When provided, returns the page of results immediately before this object.
+
+- `ids: optional array of string`
+
+  Only the Workspaces with these IDs, at most 100. `include_archived` and `include_default` still apply, and IDs of Workspaces the caller can't list are left out.
 
 - `include_archived: optional boolean`
 
@@ -331,6 +335,8 @@ Create Workspace
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -2424,6 +2430,8 @@ omitted from the results.
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -2638,6 +2646,8 @@ accounts cannot be added and are rejected.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -2870,6 +2880,8 @@ account returns 404.
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -3077,6 +3089,8 @@ rejected.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -3302,6 +3316,8 @@ membership. Archived workspaces return 400.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

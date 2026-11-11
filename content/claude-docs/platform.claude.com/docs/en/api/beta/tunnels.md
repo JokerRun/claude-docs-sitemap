@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 061ff7b6fdfbeb452d4b4804cb3fbeae4737985fc76c3eec2c69624696132565
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 35d78245e7527663532d457dcf69834c3bf1cd29fb5cc82b73cb20984ab7fe7f
 ---
 
 ---
@@ -137,6 +137,8 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -346,6 +348,8 @@ Fetches a tunnel by ID.
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -554,6 +558,8 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -761,6 +767,8 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -960,6 +968,8 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -1139,6 +1149,8 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -1381,6 +1393,8 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -1601,6 +1615,8 @@ Fetches a tunnel certificate by ID.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -1823,6 +1839,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -2040,6 +2058,8 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

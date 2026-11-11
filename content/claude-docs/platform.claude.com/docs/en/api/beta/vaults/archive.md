@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/archive
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 4e098949ba5861153212b258a56e6793c12d2f87d473e518e68fa5f9aeb20c9c
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 4aefbbde00ce07b5ad87ee906981297da071dc22d383f9797d2f99423fa10078
 ---
 
 ---
@@ -139,6 +139,8 @@ Archive a Vault
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stop
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 728c2050f5f8e47b354434e3847c2e15a954cec8b1061bd3ff47382e0e53be2c
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 63bf609b509cc8c92ba6f1b4904828b6924f5076e4ca2101fa93591e262f4e53
 ---
 
 ---
@@ -141,6 +141,8 @@ Stop a work item, initiating graceful or forced shutdown.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/create
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 3d5fd6f41dbcd87296243ffe068c1b7c473a1f0d3dc87e640e2dcee09f196d68
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 3697e05410b8e481239bdc6e561fb9aae9038a271e7345c08e9aab2cd3c1bdb9
 ---
 
 ---
@@ -138,6 +138,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -260,7 +262,7 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   By default the dream writes its result to a new memory store and doesn't change the input memory store. With `output_behavior` set to `update_existing`, it writes its result into the input memory store instead.
 
-  The Dreams API is in research preview: the request and response shapes are volatile and may change without the deprecation period that applies to generally-available endpoints.
+  The Dreams API is in research preview: the request and response shapes are volatile and may change without the deprecation period that applies to stable endpoints.
 
   See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams?sdk_languages=http#how-it-works) for what a dream reads and produces.
 

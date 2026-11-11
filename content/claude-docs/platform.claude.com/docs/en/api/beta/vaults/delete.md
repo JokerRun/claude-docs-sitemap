@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/delete
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: cf19ea4640b5dd1f508ece02cd4723eb597440c9660f3a0915580b5802bf1c20
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 0d50cc1a19376d8ab18872be129234612fc68b6be94f0d15dd09650c3f7f83f8
 ---
 
 ---
@@ -139,6 +139,8 @@ Delete a Vault
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

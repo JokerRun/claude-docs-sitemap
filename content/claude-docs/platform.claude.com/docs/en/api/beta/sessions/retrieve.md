@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/retrieve
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 6baa9a71ec0f84a126f5d3a32907e1b368ebaf641b76c0534ebda328ee18cdb5
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: da0033fb86cce9dc96771d20138514642e07dfc6ee696a836c22436b6a859acb
 ---
 
 ---
@@ -138,6 +138,8 @@ Get Session
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -207,6 +209,10 @@ Get Session
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5-2"`
+
+          Built for the most ambitious work in coding, enterprise workflows, and the sciences
 
         - `"claude-haiku-5-5"`
 

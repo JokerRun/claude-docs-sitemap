@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: b0f3dec06bac8167f17edd25417aebda8e3d42dc022232991bfe279330e372a6
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 238d10925ea270743c47b771bd10f2490589a6b54eb9b089b369d4750fe959c1
 ---
 
 ---
@@ -143,6 +143,8 @@ Retrieve a Credential
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/webhooks/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 8f629dcc09cfb924ef9405ec22f9db5e31210e48e6624edda8448df9a99a754f
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 3560d149b54b78b92acc59999e69d4436a4d6e50fffe109a08a314e8b5edd716
 ---
 
 ---
@@ -34,7 +34,7 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
-- `"anthropic-beta": optional array of AnthropicBeta`
+- `"anthropic-beta": array of AnthropicBeta`
 
   This endpoint is in beta: requests must send `webhooks-2026-10-07` in this header.
 
@@ -144,6 +144,8 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -175,13 +177,15 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
     Why Anthropic disabled the endpoint automatically. An empty string when the endpoint is enabled, or when you disabled it.
 
-  - `enabled_events: array of "user_profile.enforcement_action_opened" or "user_profile.enforcement_action_resolved"`
+  - `enabled_events: array of "user_profile.enforcement_action_opened" or "user_profile.enforcement_action_resolved" or "user_profile.program_status_updated"`
 
     The event types delivered to the endpoint.
 
     - `"user_profile.enforcement_action_opened"`
 
     - `"user_profile.enforcement_action_resolved"`
+
+    - `"user_profile.program_status_updated"`
 
   - `name: string`
 

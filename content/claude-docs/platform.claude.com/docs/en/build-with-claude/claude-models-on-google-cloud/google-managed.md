@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: bfccd49ab324afb4db495c4c77c04b75bd1b56af0e9d2185dc3bcf8dbc0dae07
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: bab35c8c50956dd55a13edbef3cb5c4013853507463f1565922dd91086667540
 ---
 
 ---
@@ -56,8 +56,8 @@ The [client SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.7.0")
-        implementation("com.anthropic:anthropic-java-vertex:3.7.0")
+        implementation("com.anthropic:anthropic-java:3.8.0")
+        implementation("com.anthropic:anthropic-java-vertex:3.8.0")
         ```
       </Tab>
 
@@ -66,12 +66,12 @@ The [client SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.7.0</version>
+            <version>3.8.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-vertex</artifactId>
-            <version>3.7.0</version>
+            <version>3.8.0</version>
         </dependency>
         ```
       </Tab>

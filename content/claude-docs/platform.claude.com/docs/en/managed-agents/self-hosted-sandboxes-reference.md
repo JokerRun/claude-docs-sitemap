@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-reference
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 9d82a9b9e0ff7248be802fdd3b294643b9901a4788d8a08607f69e23fb17b614
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 67e8725560c3e25a6464db557edb61d1b34edb32b5a51fb97e1e0f1d0c669260
 ---
 
 ---
@@ -13,6 +13,7 @@ featureMetadata:
   topic:
     title: Managed Agents
     url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
@@ -37,6 +38,10 @@ featureMetadata:
     - claude-sonnet-4-6
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Claude Models on Google Cloud (Anthropic managed): beta
 ---
 
 This page documents the pre-built workers that serve a `self_hosted` environment. For task-oriented guides, start with [Self-hosted sandboxes](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes) and [Deploy self-hosted workers](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-workers).

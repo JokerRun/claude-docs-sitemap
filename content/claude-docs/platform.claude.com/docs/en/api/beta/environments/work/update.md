@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/update
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 74d1f1e20a49e7dba610b4e2f9af123ae5ce51090d8be792341aed4edca3ee4f
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 725593e463552978ee06b66d394cc7baf68e9749c85d416ea35014922aeef235
 ---
 
 ---
@@ -141,6 +141,8 @@ Update work item metadata with merge semantics.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

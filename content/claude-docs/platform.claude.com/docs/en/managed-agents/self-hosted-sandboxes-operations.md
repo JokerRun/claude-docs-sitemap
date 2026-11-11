@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-operations
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 6d9e984bcf19db20fa5d45e9d20202b96998479fbb591a58348154ca87607ccd
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 28a622e4da10b0c78cd8204c49c8d5972d30b49b85bcb2e92f7208bf2ddac8c5
 ---
 
 ---
@@ -13,6 +13,7 @@ featureMetadata:
   topic:
     title: Managed Agents
     url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
@@ -37,6 +38,10 @@ featureMetadata:
     - claude-sonnet-4-6
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Claude Models on Google Cloud (Anthropic managed): beta
 ---
 
 The queue statistics and stop calls on this page run from your monitoring or operations tooling, authenticated with your organization API key. The worker helpers handle the claim and keep-alive loop, so you don’t call those endpoints directly.

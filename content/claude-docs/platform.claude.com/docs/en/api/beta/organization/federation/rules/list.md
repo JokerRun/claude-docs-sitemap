@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 725e972e61d1e4d2bf20aaa0d8d46ec91fdec6bc32ef0e5dbdb72354be61f32c
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 55bfb2612bac3c251041894d772abb9a1572cb8937c6ccafeb69caf697ef3628
 ---
 
 ---
@@ -160,6 +160,8 @@ unless `include_archived=true`.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

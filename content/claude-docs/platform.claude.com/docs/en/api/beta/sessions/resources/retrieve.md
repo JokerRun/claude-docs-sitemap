@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/retrieve
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: ce3780e116952c4d5b3a32dd7877a4371544351e542ea50be31feb4298e8ac23
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 6b9ca2a368cc8d45567034dda492df2a9a9a71a6075368577c32bcd918bec6a7
 ---
 
 ---
@@ -139,6 +139,8 @@ Get Session Resource
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

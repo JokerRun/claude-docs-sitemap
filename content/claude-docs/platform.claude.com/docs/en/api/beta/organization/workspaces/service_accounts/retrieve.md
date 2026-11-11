@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 385c0d25660bbd49455eb06aea13d95a45a5b107971e9a9c15e23cb779a4ee54
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 2b286add9ac6953e4ad51c4ae1b86c935fede34ee52d09ed75baf219bcdd5164
 ---
 
 ---
@@ -152,6 +152,8 @@ account returns 404.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

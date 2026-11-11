@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/retrieve
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 453b4189f43064ded1dad4804ddb1815379cb4616b75da3a6dd4bc44133ed36f
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 380f8f0f3862994fd242d9c70b76e692bc84e05865c9d148ab15b7c0b8cfcce1
 ---
 
 ---
@@ -139,6 +139,8 @@ Get Deployment
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

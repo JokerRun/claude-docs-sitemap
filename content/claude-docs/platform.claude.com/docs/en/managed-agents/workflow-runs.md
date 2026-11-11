@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/workflow-runs
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: df7d4ae0900d99c9ba58fceacc31a7b95c6dfc2696b37f85ffbf80c4eea79d1d
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: b028b6a555091b3b81fe1c24f0967261aa9c9683afa25631b5fbc2e67a3a90ae
 ---
 
 ---
@@ -13,6 +13,7 @@ featureMetadata:
   topic:
     title: Managed Agents
     url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
@@ -37,6 +38,10 @@ featureMetadata:
     - claude-sonnet-4-6
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Claude Models on Google Cloud (Anthropic managed): beta
 ---
 
 A **workflow** is a program that an agent writes to run many agents and combine what they return. A **workflow run** is the execution of one workflow. **[Dynamic workflows](https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration#dynamic-workflows)** is the feature that lets an agent write workflows and start runs. You turn it on or off with the `workflows` (csharp, go: `Workflows`) setting in the agent’s `multiagent` (csharp, go: `Multiagent`) block.
@@ -848,7 +853,7 @@ The server also limits how much all of your organization’s sessions do each mi
 
 ## Availability
 
-Dynamic workflows are available on every model.
+Dynamic workflows are in beta on every model.
 
 ### API support
 
@@ -856,9 +861,9 @@ Dynamic workflows are available on every model.
 
 * Availability: Available
 
-| Status    | Cloud platforms         |
-| --------- | ----------------------- |
-| Available | All supported platforms |
+| Status | Cloud platforms         |
+| ------ | ----------------------- |
+| Beta   | All supported platforms |
 
 ### Required beta headers
 

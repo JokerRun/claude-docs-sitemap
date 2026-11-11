@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 7be63254a4caf591fe035c53da0a006ba7a0d78df0121cfc28ac2fc332c929d3
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: a814a6af12f8de1ba6e2b33ea4c698e515492edb5a1cf4784bc0af038ab4fe4e
 ---
 
 ---
@@ -141,6 +141,8 @@ The Models API response can be used to determine information about a specific mo
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

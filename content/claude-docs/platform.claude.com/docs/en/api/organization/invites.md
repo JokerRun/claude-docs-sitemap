@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/invites
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 0fa4c9e5924aaf50a9a7cf4dcc1d59e4bf5968e7686d09226c49c39d961a46f8
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: b46b2a3f1800b71966264648d2d448ccd14529dfe6895b9052e823266154a0d2
 ---
 
 ---
@@ -515,6 +515,38 @@ curl https://api.anthropic.com/v1/organizations/invites/$INVITE_ID \
 ```
 
 ## Domain types
+
+### Already Member Error Details
+
+- `AlreadyMemberErrorDetails object`
+
+  The email address already belongs to a user in the organization. The message names the user.
+
+  - `error_code: "already_member"`
+
+### Cannot Invite Emails With Unverified Domains Error Details
+
+- `CannotInviteEmailsWithUnverifiedDomainsErrorDetails object`
+
+  The email address's domain is not one of the verified domains of the organization's parent organization.
+
+  - `error_code: "cannot_invite_emails_with_unverified_domains"`
+
+### Email Domain Not Allowed Error Details
+
+- `EmailDomainNotAllowedErrorDetails object`
+
+  The organization restricts invites to an allowed list of email domains, and the list is empty or does not include the email address's domain.
+
+  - `error_code: "email_domain_not_allowed"`
+
+### Invite Already Exists Error Details
+
+- `InviteAlreadyExistsErrorDetails object`
+
+  A pending invite already exists for the email address. The message names the invite.
+
+  - `error_code: "invite_already_exists"`
 
 ### Organization Invite
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/create
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 9275c70eb877aeaea3767b2e1a0db035edcb30ec663090225367c2715d26aa14
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 2a52b72c3a2296aa2a95f09845af830b96f98c33865f22c6936f2544edeb9f4e
 ---
 
 ---
@@ -149,6 +149,8 @@ manage rules whose `oauth_scope` is `workspace:developer` or
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

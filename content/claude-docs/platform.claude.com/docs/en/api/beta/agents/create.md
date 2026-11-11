@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/create
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 71c25dea657197c0b9e69823530dfebbbd242c5e790bff663df84addc9cf93cd
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 488b91652be7e253933823e6b453fb23dd3c44ccabce3f9442af8d253b5edf7f
 ---
 
 ---
@@ -134,6 +134,8 @@ Create Agent
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -152,11 +154,15 @@ Create Agent
 
   Model identifier. Accepts the [model string](https://platform.claude.com/docs/en/about-claude/models/overview?sdk_languages=http#latest-models-comparison), e.g. `claude-opus-5-5`, or a `model_config` object for additional configuration control
 
-  - `BetaManagedAgentsModel = "claude-haiku-5-5" or "claude-sonnet-5-5" or "claude-opus-5-5" or 14 more or string`
+  - `BetaManagedAgentsModel = "claude-fable-5-2" or "claude-haiku-5-5" or "claude-sonnet-5-5" or 15 more or string`
 
     The model that will power your agent.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-fable-5-2"`
+
+      Built for the most ambitious work in coding, enterprise workflows, and the sciences
 
     - `"claude-haiku-5-5"`
 
@@ -1158,6 +1164,10 @@ Create Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `"claude-fable-5-2"`
+
+        Built for the most ambitious work in coding, enterprise workflows, and the sciences
+
       - `"claude-haiku-5-5"`
 
         Fastest model for high-volume, real-time tasks
@@ -1898,6 +1908,12 @@ curl https://api.anthropic.com/v1/agents \
           "description": "A general-purpose starter agent.",
           "metadata": {
             "foo": "bar"
+          },
+          "multiagent": {
+            "type": "multiagent_20261001",
+            "workflows": {
+              "type": "enabled"
+            }
           },
           "system": "You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user'\''s task end to end.",
           "tools": [

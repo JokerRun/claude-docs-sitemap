@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 961a216ecf7726e91552d42e061640e450c57fe55c8af3365851382e04d42b9c
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 19b13ace17560ff84602215b278cca0dd1f75fbf4cb5ecbdd97a4fb069ab6572
 ---
 
 ---
@@ -569,6 +569,14 @@ curl https://api.anthropic.com/v1/skills/$SKILL_ID \
     ISO 8601 timestamp of when the skill was last updated.
 
     format: date-time
+
+### Skill Read Blocked Undecryptable Error Details
+
+- `SkillReadBlockedUndecryptableErrorDetails object`
+
+  A custom skill the request names is stored under an encryption key state the workspace cannot currently decrypt.
+
+  - `error_code: "skill_read_blocked_undecryptable"`
 
 ### Skill Source
 

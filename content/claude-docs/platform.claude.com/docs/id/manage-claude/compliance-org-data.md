@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-org-data
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: 4a4c85ff00d088f7c99effe1955970d33d63867273efcb0b904acd86ab81c1b6
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: ffe040180ca0dd263b153d41cf9b5394efcc6a72c3b8ee6f3db91fe21ee6aa0c
 ---
 
 ---
@@ -311,7 +311,7 @@ Baris mencerminkan status yang diberlakukan, bukan konfigurasi yang terakhir dis
 * `ip_allowlist_enabled` bernilai `true` hanya selama allowlist aktif dan memiliki setidaknya satu rentang aktif.
 * `code_execution_network_egress_enabled` bernilai `false` setiap kali eksekusi kode dinonaktifkan.
 
-Respons mencerminkan status pada saat pembacaan; tidak ada yang di-snapshot. Perubahan pada sebagian besar pengaturan ini muncul sebagai peristiwa di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed); gunakan endpoint ini untuk status terselesaikan saat ini dan feed untuk mengaudit siapa yang mengubah apa, dan kapan.
+Respons mencerminkan status pada saat pembacaan; tidak ada yang di-snapshot. Perubahan pada sebagian besar pengaturan ini muncul sebagai peristiwa di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed); gunakan endpoint ini untuk status terselesaikan saat ini dan feed untuk mengaudit siapa yang mengubah apa, dan kapan. Untuk hasil saat ini dari kontrol keamanan yang direkomendasikan Anthropic, lihat [Security posture di Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/overview).
 
 ## Membaca plugin dan marketplace plugin
 

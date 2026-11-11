@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/archive
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 1b2128b217cbaf4d2ccb8b5d825b2ef610d763013867d8e2ec5b7749c4caf6b4
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: b3e60a82bebecfcb7cba1270af0ad9d79e5b423f1c9318b8946ba585cb6237a0
 ---
 
 ---
@@ -143,6 +143,8 @@ Archive a Credential
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

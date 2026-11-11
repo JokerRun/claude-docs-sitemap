@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: e2c2fe4b03038bde011cfaa55fed456a5b12ed602699b3e7ddb6e2c43552a8a9
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: de98b6b639534546b12820d9485a59d6476edd202c5374d56c408a97882d43a2
 ---
 
 ---
@@ -32,6 +32,7 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
 ### 5 November 2026
 
+* [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) kini menyertakan data Security posture, dalam versi beta untuk organisasi Claude Enterprise. [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) mencatat perubahan pada atestasi di halaman **Security posture** dalam **Pengaturan organisasi** claude.ai. Endpoint `GET /v1/compliance/organizations/{organization_id}/security_posture` mengembalikan hasil Security posture terkini dari sebuah organisasi. Lihat [Security posture di Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/overview).
 * Anda sekarang dapat menyiapkan “IP allowlist” (daftar izin IP) untuk organisasi Anda di Claude Console, dalam beta. Permintaan ke layanan yang tercakup dari alamat yang tidak ada dalam daftar Anda akan ditolak, sehingga membatasi tempat kunci API yang bocor dapat digunakan. Tambahkan alamat IPv4 dan IPv6 atau rentang CIDR, hingga 1.000 per organisasi. Lihat [Allowlist IP](https://platform.claude.com/docs/id/manage-claude/ip-allowlist) untuk mengetahui apa saja yang tercakup dan cara menyiapkannya.
 * Anda sekarang dapat mengeluarkan anggota organisasi Claude Enterprise (claude.ai) Anda dari Claude di mana saja dengan Admin API. Kemampuan ini tersedia dalam versi beta. Lihat [referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization). Anggota tetap berada di organisasi dan dapat masuk kembali. Lihat [Mengeluarkan anggota dari semua sesi di mana saja](https://platform.claude.com/docs/id/manage-claude/user-management#sign-a-member-out-everywhere) untuk header beta dan untuk apa yang tidak diakhiri oleh permintaan tersebut.
 

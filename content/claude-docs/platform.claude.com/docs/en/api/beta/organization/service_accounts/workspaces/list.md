@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 4c72cab14137458bed96e27642164635dc3a2280f6da8121f93c6c4aaa78b93c
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: db7d0a1e4debbb73317471d719d0b1fb435acd83b49fb1b40d7f834594c310b2
 ---
 
 ---
@@ -167,6 +167,8 @@ page to recover.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

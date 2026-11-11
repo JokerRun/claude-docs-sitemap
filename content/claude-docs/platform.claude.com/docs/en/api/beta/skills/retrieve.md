@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 082ee52cbf3ad019c8695b962a68bf6aa4b455a73ddafacb4f5f80b553184544
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: f44e8167b5217e6ee23074810b8f06994b609a4b21091555d6f9c96e16bac995
 ---
 
 ---
@@ -141,6 +141,8 @@ Get Skill
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

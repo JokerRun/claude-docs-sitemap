@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 8dd7626286a658e2fa69903555f1e542f1719fc7506b4f892f0600a2b4fbd9c1
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 0e859ef81b786b71bfa8c31cdadae66cf5ae9d006e1519058b05ff127f81426f
 ---
 
 > ## Documentation Index
@@ -54,7 +54,7 @@ To make a gateway reached through `ANTHROPIC_BASE_URL` the only destination a ma
 
 While a [gateway credential variable](https://code.claude.com/docs/en/llm-gateway-connect.md#set-the-credential-variable) or `apiKeyHelper` is active, requests carry that credential in place of a developer's claude.ai subscription login, and the subscription's usage limits don't apply to them. Claude Code keeps a saved claude.ai login on the machine but doesn't send it with those requests. That traffic is billed per token to whoever owns the credential the gateway forwards, such as your organization's Anthropic Console account, or your Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry account when the gateway routes there.
 
-[`ANTHROPIC_BASE_URL`](https://code.claude.com/docs/en/llm-gateway-connect#set-the-base-url-and-credential) is the variable that points Claude Code at the gateway. Setting only that variable, without a gateway credential, doesn't replace the subscription. Requests still route through the gateway, but a saved claude.ai login remains the active credential, so its usage limits and billing apply. Gateways that pass this traffic on to Anthropic must forward the OAuth capability in `anthropic-beta`; see the [request headers reference](https://code.claude.com/docs/en/llm-gateway-protocol.md#request-headers).
+[`ANTHROPIC_BASE_URL`](https://code.claude.com/docs/en/llm-gateway-connect#set-the-base-url-and-credential) is the variable that points Claude Code at the gateway. Setting only that variable, without a gateway credential, doesn't replace the subscription. Requests still route through the gateway, but a saved claude.ai login remains the active credential, so its usage limits and billing apply. Gateways that pass this traffic on to Anthropic must forward `Authorization` and the OAuth capability in `anthropic-beta`; see the [request headers reference](https://code.claude.com/docs/en/llm-gateway-protocol.md#request-headers).
 
 ## Related pages
 

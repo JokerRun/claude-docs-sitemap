@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/update
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 5465409086b70c63101cbd1063242b64627be876ea0620c2de689d6360578ef7
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 1fc55c770514e91fa05176892e6683d5674160e5006a44de5fa80ab9875f4a59
 ---
 
 ---
@@ -139,6 +139,8 @@ Update User Profile
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/list
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 230c1dee448f0b8aaecbc3478c62095c3c232067d0810ceba3e4b510ce36ba75
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: e937f2fd9fa61e6c68106d39eb0a9caa20806f8bae314e80a1980941f0b18476
 ---
 
 ---
@@ -265,6 +265,8 @@ List Events
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -2063,6 +2065,10 @@ List Events
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-fable-5-2"`
+
+            Built for the most ambitious work in coding, enterprise workflows, and the sciences
 
           - `"claude-haiku-5-5"`
 

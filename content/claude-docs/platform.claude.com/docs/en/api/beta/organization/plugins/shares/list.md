@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/shares/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 6b57cddcf251508a10ad1f1aacd062aa38b45901b0a6767d06bf96e6c87addbc
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: cb75385e8fe45a4597d08fab50ead09e24a82e12a67c7cb30df1a0663ea42b39
 ---
 
 ---
@@ -64,7 +64,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 ## Headers
 
-- `"anthropic-beta": optional array of AnthropicBeta`
+- `"anthropic-beta": array of AnthropicBeta`
 
   This endpoint is in beta: requests must send `ce-plugins-2026-09-01` in this header.
 
@@ -174,6 +174,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -238,7 +240,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 - `next_page: string or null`
 
-  Token to provide in as `page` in the subsequent request to retrieve the next page of data.
+  Token to provide in as `page` in the subsequent request to retrieve the next page of data. A page may hold fewer than `limit` shares, even none, while this is set; keep following it until it is null.
 
 ## Example
 

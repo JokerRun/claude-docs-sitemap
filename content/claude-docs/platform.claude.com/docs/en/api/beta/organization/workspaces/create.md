@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/create
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 7ee4a9705ca5cd40c8a6f0386b69c699421f170c2b4377a5e800e741f0ff6294
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: afc7fad98f0b0742c4689715f63c2ca2983369d933a6c25fa6c8d2ea2c95e9b1
 ---
 
 ---
@@ -133,6 +133,8 @@ Create Workspace
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

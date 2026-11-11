@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/opentelemetry/spans
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: a121fc533130386dd04d8daf41d9ec4409cc742eaa7f98864dcfdfbe2ee21d67
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: c2b11ec9812c433b43e1f5413e1bf4f742e70033ca8017afc3ca358125af4c78
 ---
 
 ---
@@ -75,23 +75,31 @@ Atribut menggunakan [konvensi semantik OpenTelemetry untuk AI generatif](https:/
 
 ### Atribut umum
 
-Setiap span untuk sebuah permintaan memiliki atribut berikut, kecuali jika deskripsinya menyatakan lain. Span lain hanya dapat memiliki tiga atribut pertama:
+Setiap span dapat memiliki atribut berikut:
 
-| Atribut                     | Tipe     | Deskripsi                                                                                                                                                                    |
-| --------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `gen_ai.provider.name`      | `string` | `anthropic`. Ada di setiap span.<br />**SDK:** `aws.bedrock` pada klien Amazon Bedrock (termasuk Mantle) dan `gcp.vertex_ai` pada klien untuk Google Cloud’s Agent Platform. |
-| `anthropic.organization.id` | `string` | ID organisasi.                                                                                                                                                               |
-| `anthropic.workspace.id`    | `string` | ID workspace tempat pekerjaan dijalankan.                                                                                                                                    |
-| `anthropic.request.id`      | `string` | Nilai header respons `request-id`.                                                                                                                                           |
-| `http.request.method`       | `string` | Metode HTTP dari permintaan, misalnya `POST`.                                                                                                                                |
-| `http.route`                | `string` | Path dari endpoint, dengan placeholder untuk parameter path-nya, misalnya `/v1/sessions/{session_id}`.                                                                       |
-| `http.response.status_code` | `int`    | Kode status HTTP dari respons akhir. Untuk stream, kode status yang dikirim bersama header. Tidak ada jika tidak ada respons.                                                |
-| `server.address`            | `string` | Host tujuan pengiriman permintaan, misalnya `api.anthropic.com`.                                                                                                             |
-| `server.port`               | `int`    | Port dari URL permintaan, atau port default dari skemanya ketika URL tidak memilikinya.                                                                                      |
-| `url.scheme`                | `string` | Skema dari URL, misalnya `https`.                                                                                                                                            |
-| `url.path`                  | `string` | Path dari URL, misalnya `/v1/messages`.                                                                                                                                      |
-| `url.query`                 | `string` | Query string dari URL, hanya berisi parameter query yang didefinisikan oleh endpoint. Tidak disertakan ketika tidak ada parameter tersebut.                                  |
-| `url.full`                  | `string` | URL permintaan.                                                                                                                                                              |
+| Atribut                     | Tipe     | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| --------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `gen_ai.provider.name`      | `string` | Platform yang melayani permintaan: `aws.bedrock` pada Amazon Bedrock (termasuk Mantle), `gcp.vertex_ai` pada Google Cloud’s Agent Platform, dan `anthropic` di tempat lainnya. Ada di setiap span.                                                                                                                                                                                                                                                                                                                                             |
+| `anthropic.organization.id` | `string` | ID organisasi.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `anthropic.workspace.id`    | `string` | ID workspace tempat pekerjaan dijalankan.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `user.id`                   | `string` | ID pengguna akhir Anda, jika Anda mengaturnya di header W3C [`baggage`](https://www.w3.org/TR/baggage/) (misalnya, `baggage: user.id=4f2a`). Atribut ini muncul pada span API dari permintaan dan pada setiap span API di bawahnya, seperti giliran sesi yang dimulai oleh permintaan tersebut.<br />Gunakan ID yang buram (opaque), seperti kunci database Anda untuk pengguna tersebut.<br />**Jangan masukkan alamat email ke dalam nilai ini.** Untuk melindungi privasi pengguna, API membuang setiap `user.id` yang berisi alamat email. |
+
+### Atribut span permintaan
+
+Setiap span untuk sebuah permintaan juga memiliki atribut berikut, kecuali jika deskripsinya menyatakan lain:
+
+| Atribut                     | Tipe     | Deskripsi                                                                                                                                   |
+| --------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `anthropic.request.id`      | `string` | Nilai header respons `request-id`.                                                                                                          |
+| `http.request.method`       | `string` | Metode HTTP dari permintaan, misalnya `POST`.                                                                                               |
+| `http.route`                | `string` | Path dari endpoint, dengan placeholder untuk parameter path-nya, misalnya `/v1/sessions/{session_id}`.                                      |
+| `http.response.status_code` | `int`    | Kode status HTTP dari respons akhir. Untuk stream, kode status yang dikirim bersama header. Tidak ada jika tidak ada respons.               |
+| `server.address`            | `string` | Host tujuan pengiriman permintaan, misalnya `api.anthropic.com`.                                                                            |
+| `server.port`               | `int`    | Port dari URL permintaan, atau port default dari skemanya ketika URL tidak memilikinya.                                                     |
+| `url.scheme`                | `string` | Skema dari URL, misalnya `https`.                                                                                                           |
+| `url.path`                  | `string` | Path dari URL, misalnya `/v1/messages`.                                                                                                     |
+| `url.query`                 | `string` | Query string dari URL, hanya berisi parameter query yang didefinisikan oleh endpoint. Tidak disertakan ketika tidak ada parameter tersebut. |
+| `url.full`                  | `string` | URL permintaan.                                                                                                                             |
 
 Span API untuk permintaan yang dikirim melalui platform cloud, seperti Claude Platform on AWS, tidak memiliki `server.address`, `server.port`, atau `url.full`.
 

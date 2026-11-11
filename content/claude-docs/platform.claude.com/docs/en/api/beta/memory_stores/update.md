@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/update
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: a8e9e7fb21a24c6360c234d20a75cd81103c1aa93d7b91105afda8575d3cf1a0
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: e9e2869894a861c8152eb7c8191f3c591b6e10563f1d5420476e654f5f3b24a4
 ---
 
 ---
@@ -141,6 +141,8 @@ Update a Memory Store
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

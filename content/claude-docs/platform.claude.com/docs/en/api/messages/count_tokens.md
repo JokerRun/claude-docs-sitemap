@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/count_tokens
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 86274575e8087e5008247eba0f11d710a1b178a2c4170dcb1bc703e518098241
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: fd1c67c60dcc6d15133b567a919675365bbb94353171119344a4deb6d705efb1
 ---
 
 ---
@@ -1097,6 +1097,14 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
   The model that will complete your prompt.
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+  - `"claude-fable-5-2"`
+
+    Built for the most ambitious work in coding, enterprise workflows, and the sciences
+
+  - `"claude-mythos-5-2"`
+
+    Built for the most demanding cybersecurity and life sciences research, available through verification programs
 
   - `"claude-haiku-5-5"`
 

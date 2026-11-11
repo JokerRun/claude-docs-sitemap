@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/create
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: ace7eb03807ee5b3f99e1d7f457451d8b930dd27bca95759fc73d12d36dc3919
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 1a9bfcb30e1c95df1e0e5d27e4feffbed35bf646dc3512782a79d23d4544d7d4
 ---
 
 ---
@@ -133,6 +133,8 @@ Create Skill
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

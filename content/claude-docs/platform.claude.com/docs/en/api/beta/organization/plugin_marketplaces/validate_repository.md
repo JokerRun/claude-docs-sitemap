@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugin_marketplaces/validate_repository
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: dd60cd53726aeac864473e94e7b3d03846f47b31e2e9bd3ca1cd4e7c508679f8
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: b9a731273ed2517081d92701bfaba64fe71c91b484f8c939712c0e602fabf07f
 ---
 
 ---
@@ -37,7 +37,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 ## Headers
 
-- `"anthropic-beta": optional array of AnthropicBeta`
+- `"anthropic-beta": array of AnthropicBeta`
 
   This endpoint is in beta: requests must send `ce-plugins-2026-09-01` in this header.
 
@@ -146,6 +146,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

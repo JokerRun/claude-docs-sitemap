@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 078c716a1003ad6fa8c55486c1f5db286c4ccaa6a342491805887dd2c82f26c7
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: dca8799b9900862794d30a6658ebe80bfebf0088023c41c64c1e022ffa2ded40
 ---
 
 > ## Documentation Index
@@ -374,7 +374,7 @@ On the Amazon Bedrock [Invoke API](https://docs.aws.amazon.com/bedrock/latest/AP
 | `ap-*` | `apac.` |
 | All other regions | `global.` |
 
-Set `ANTHROPIC_BEDROCK_REGION_PREFIX` to choose the prefix Claude Code tries first; when Claude Code can check profile availability and finds no matching profile for a model, it falls back as described in the resolution order below. Valid values are `us`, `eu`, `apac`, `jp`, `au`, and `global`. For example, set it to `global` when your account has `global.` profiles enabled but Claude Code would derive a geography-specific one from your AWS region. Requires Claude Code v2.1.224 or later.
+Set `ANTHROPIC_BEDROCK_REGION_PREFIX` to choose the prefix Claude Code tries first. Valid values are `us`, `eu`, `apac`, `jp`, `au`, and `global`. For example, set it to `global` when your account has `global.` profiles enabled but Claude Code would derive a geography-specific one from your AWS region.
 
 This example routes the default models through `global.` profiles:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: efef67af824de62b13b72b5d216940164ce41b1ba68658714317588cbc009bb9
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: d40f44652203ee69b92e8d8f05a3fb43fa115cc1fd48fda3e44c97d40d2454fb
 ---
 
 ---
@@ -13,6 +13,7 @@ featureMetadata:
   topic:
     title: Managed Agents
     url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
@@ -37,6 +38,10 @@ featureMetadata:
     - claude-sonnet-4-6
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Claude Models on Google Cloud (Anthropic managed): beta
 ---
 
 “Self-hosted sandboxes” (sandbox yang di-host sendiri) memindahkan eksekusi alat agen dari sandbox cloud yang dikelola Anthropic ke infrastruktur yang Anda kendalikan, sementara Anthropic tetap menjalankan agen. Untuk mempelajari apa artinya dan memutuskan apakah ini cocok untuk agen Anda, lihat [Memilih lingkungan agen](https://platform.claude.com/docs/id/managed-agents/choosing-an-environment).
@@ -225,7 +230,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
         Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
         ```bash
-        VERSION=2.8.0
+        VERSION=2.9.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -652,7 +657,7 @@ Halaman-halaman ini menjelaskan cara membangun worker di platform sandboxing apa
 
 ## Ketersediaan
 
-Sandbox yang di-host sendiri tersedia di semua model.
+Sandbox yang di-host sendiri dalam versi beta di semua model.
 
 ### Dukungan API
 
@@ -660,9 +665,9 @@ Sandbox yang di-host sendiri tersedia di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status   | Platform cloud                                                                                                                                                                                                                                                                 | Model                                                              |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
+| Status | Platform cloud                                                                                                                                                                                                                                                                 | Model                                                              |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
 ### Header beta yang diperlukan
 

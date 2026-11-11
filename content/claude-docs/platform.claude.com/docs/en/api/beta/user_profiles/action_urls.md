@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/action_urls
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 77ecc22fe0289a417b2d9825cfa995791580f5420493dd4f8d0a2646e2499b23
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 4570d44a0eb3d3899e2901a17f74fb2ffd661079f1fc23955ff8552588df9c37
 ---
 
 ---
@@ -141,6 +141,8 @@ Create Action URL
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

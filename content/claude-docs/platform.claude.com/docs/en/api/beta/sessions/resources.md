@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 87c60f48b337b81fdec2aeca22d957483a13960e2bb9ba1cbc35c64eb1f85890
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 3191700e7e3e94f777953e0692d2ac3a6ac9b71fde56ee54c95e151c2e8ffae9
 ---
 
 ---
@@ -139,6 +139,8 @@ Add Session Resource
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -359,6 +361,8 @@ List Session Resources
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -655,6 +659,8 @@ Get Session Resource
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -928,6 +934,8 @@ Update Session Resource
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -1214,6 +1222,8 @@ Delete Session Resource
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

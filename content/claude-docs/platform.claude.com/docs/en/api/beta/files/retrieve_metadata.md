@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/retrieve_metadata
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f21de56925dce2b9089528802b37a1b541c217dabd6aae986c2e8011020dcf62
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 0cc4d8c584c6e6839ede4b4ed5f00c596548641445f6241d8e2b0679a0b4352a
 ---
 
 ---
@@ -139,6 +139,8 @@ Get File Metadata
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

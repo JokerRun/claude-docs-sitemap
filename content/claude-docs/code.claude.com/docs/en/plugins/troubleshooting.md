@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/troubleshooting
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 643893cf568951d8550c490c6154ba4f9a83d38e772acba6e4bcd4a63667c446
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: f57c03ad31251843a898add4847f3e954e17725383f712d6f2d169206d5098b8
 ---
 
 > ## Documentation Index
@@ -329,7 +329,7 @@ If the repository has large git submodules, update Claude Code. On v2.1.295 and 
 
 ### Marketplace updates keep failing offline
 
-You work in an environment where the marketplace's git host is unreachable, and every session repeats a failed refresh in the background. Your existing checkout of the marketplace stays in place and startup isn't delayed.
+You work in an environment where the marketplace's git host is unreachable, and every session repeats a failed refresh in the background. Your existing checkout of the marketplace stays in place.
 
 Each session, for a marketplace with [auto-update on](https://code.claude.com/docs/en/plugins/loading.md#which-marketplaces-and-plugins-auto-update), Claude Code checks the marketplace's git host for new commits in the background. When that check can't reach the host, it tries to clone the marketplace again, and offline that clone fails too.
 
@@ -682,15 +682,21 @@ Before v2.1.246, the skills count in that summary included only a plugin's `comm
 
 ### `Plugin "<name>" not cached at <path>`
 
-The **Errors** tab shows this line with the guidance `Run /plugin to refresh the plugin cache`. Claude Code has an install record for the plugin, but the directory the record points at is missing, for example after you cleared the cache.
+The **Errors** tab shows this line with the guidance `Run /plugin to refresh the plugin cache`. It means Claude Code found no usable copy of the plugin. For example, you cleared the cache, so the directory its install record points at is missing. Or you opened a repository whose settings enable the plugin, and you haven't installed it.
 
-Reinstall the plugin from your shell. `claude plugin install <name>@<marketplace>` re-downloads a plugin whose install directory is missing even though its record exists:
+Install the plugin from your shell. If you opened a repository whose `.claude/settings.json` enables the plugin, run this from the project with the plugin's key from `enabledPlugins`, as [Enabled in project settings but not installed](https://code.claude.com/docs/en/plugins/loading.md#enabled-in-project-settings-but-not-installed) describes:
+
+```shell theme={null}
+claude plugin install <name>@<marketplace> --scope project
+```
+
+Otherwise, run this, which re-downloads a plugin whose install directory is missing even though its record exists:
 
 ```shell theme={null}
 claude plugin install <name>@<marketplace>
 ```
 
-Then run `/reload-plugins` in your session. The **Errors** tab entry disappears and the plugin is back under **Installed**.
+Then run `/reload-plugins` in your session. The **Errors** tab entry disappears and the plugin is listed under **Installed**.
 
 ### `installed_plugins.json holds a record under "<id>" that this version of Claude Code cannot read`
 

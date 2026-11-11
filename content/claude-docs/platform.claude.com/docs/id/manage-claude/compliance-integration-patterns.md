@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: d306ac885c7597d73e1efc6eabb3fd7f36f368c5ae8392d80fdf3a0ae3f08c0a
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 33d9a7e6139ae021947160bbec0dfad16cc96a9a268857a8c06a71c7ca674b38
 ---
 
 ---
@@ -62,7 +62,7 @@ Ketika respons memiliki `has_more: true`, jendela berisi lebih dari satu halaman
 Bahkan dengan penyusunan yang rapi, aktivitas yang terindeks setelah jendelanya ditutup tidak akan pernah muncul di jendela berikutnya. Lakukan deduplikasi pada `id` aktivitas dan perlebar setiap jendela baru sehingga tumpang tindih dengan jendela sebelumnya selama beberapa menit, atau jalankan proses rekonsiliasi periodik yang mengueri ulang jendela yang lebih lama.
 
 <Warning>
-  Batas `created_at.lt` yang terlalu dekat dengan saat ini akan secara diam-diam dan permanen menghilangkan aktivitas yang terindeks terlambat: begitu `created_at.gte` maju melewatinya, tidak ada jendela berikutnya yang dapat memulihkannya. Perlakukan angka keterkuerian 1 menit sebagai jeda pengindeksan yang terdokumentasi, bukan rekomendasi lunak.
+  Batas `created_at.lt` yang terlalu dekat dengan saat ini akan secara diam-diam dan permanen menghilangkan aktivitas yang terindeks terlambat: begitu `created_at.gte` maju melewatinya, tidak ada jendela berikutnya yang dapat memulihkannya. Perlakukan angka keterkuerian 1 menit sebagai jeda pengindeksan yang terdokumentasi, bukan rekomendasi lunak. Aktivitas Security posture dapat memerlukan waktu lebih dari 1 menit hingga dapat dikueri; lihat [Mengirim peristiwa Security posture ke SIEM Anda](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/send-events#run-it-on-a-schedule).
 </Warning>
 
 ### Pembacaan inkremental berbasis kursor

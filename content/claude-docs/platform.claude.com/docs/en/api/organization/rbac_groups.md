@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/rbac_groups
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 7133a8b88f264a08a155fbba33f46ed6063a5f3a4a8cd742e0feeccc5fde4bc8
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 083a1a605ae5f1e125ade094897beb7734b4de4d7d0bd43ba825d7dba470afd3
 ---
 
 ---
@@ -529,6 +529,22 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$RBAC_GROUP_ID \
     RFC 3339 timestamp of when the RBAC Group was last updated.
 
     format: date-time
+
+### RBAC Group Grants Owner Access Error Details
+
+- `RBACGroupGrantsOwnerAccessErrorDetails object`
+
+  A role attached to an RBAC Group in the request grants owner access, so this API does not add members to that group (directly or through an invite), remove its members, or delete it. Make the change in the organization's admin settings in Claude.
+
+  - `error_code: "rbac_group_grants_owner_access"`
+
+### RBAC Group Owner Access Unconfirmed Error Details
+
+- `RBACGroupOwnerAccessUnconfirmedErrorDetails object`
+
+  The API could not finish checking whether an RBAC Group in the request grants owner access, so it made no change. Retrying the same request will not help. Make the change in the organization's admin settings in Claude.
+
+  - `error_code: "rbac_group_owner_access_unconfirmed"`
 
 ## RBAC Groups › Members
 

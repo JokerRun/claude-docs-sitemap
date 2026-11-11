@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/reveal_token
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 1f8e7ab0ce47dd4d2e41167a342067e1a154536b7f80f3ce6249830432046da0
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 3ef6e23b525d25323b9530c9d2bce10b570af74fd9980c5e63bd7474aec24119
 ---
 
 ---
@@ -148,6 +148,8 @@ access logs.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

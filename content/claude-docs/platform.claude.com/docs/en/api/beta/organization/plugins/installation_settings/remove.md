@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/installation_settings/remove
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 6e9e143cabf20ec891258f1a5ff27b8af6f0be43d62d20701cd2a1b8c81415e0
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 96d815d1583f0592eabf4edd6c4ce4d8c3fb3930385ab2e27370010892d05e2e
 ---
 
 ---
@@ -48,7 +48,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
 ## Headers
 
-- `"anthropic-beta": optional array of AnthropicBeta`
+- `"anthropic-beta": array of AnthropicBeta`
 
   This endpoint is in beta: requests must send `ce-plugins-2026-09-01` in this header.
 
@@ -157,6 +157,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

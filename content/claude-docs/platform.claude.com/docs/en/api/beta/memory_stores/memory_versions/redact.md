@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 1948eeed9c8390f9ba747ec43d9d769ea4adc5c13fa79e47df8291983eaf839c
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: e92297920416bbcca0f1f4174a57534b9a2eb1d297cb0d3e553dccdf0a2165cc
 ---
 
 ---
@@ -143,6 +143,8 @@ Redact a Memory Version
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

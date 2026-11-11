@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: fc5050c55ef310896cedfc5eaf6faed740696c91f95fc902dada0d97d8337686
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 1f0e68163c60e2ad416ea6ab99d7c3e9b9c9060c22b270d60c6e2a7bdd846065
 ---
 
 ---
@@ -143,6 +143,8 @@ Validate an MCP OAuth Credential
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

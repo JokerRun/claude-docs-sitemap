@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/users
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 1b9d7f95be88e82572f6d79922ff264a9628e4f70ef5c4ca2ea21b5e0caff9e4
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 0dd603c0375444da494c839f60abbd50654aeb063d11082d2569948e4f78121f
 ---
 
 ---
@@ -409,6 +409,14 @@ curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
 ```
 
 ## Domain types
+
+### Cannot Remove Last Member Error Details
+
+- `CannotRemoveLastMemberErrorDetails object`
+
+  The user is the organization's only member. Add another member before removing this one.
+
+  - `error_code: "cannot_remove_last_member"`
 
 ### Organization User
 

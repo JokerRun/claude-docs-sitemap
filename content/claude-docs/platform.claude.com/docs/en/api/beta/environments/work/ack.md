@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/ack
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: ba47132d89f9556384afe8ea33fcd3bd4c1322a05d537e4af6d865817b1f3f8e
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 4ad4179c6baca4798eb2cafa7f8820cec406990a48897b04f1f9d2ce0f59b194
 ---
 
 ---
@@ -141,6 +141,8 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

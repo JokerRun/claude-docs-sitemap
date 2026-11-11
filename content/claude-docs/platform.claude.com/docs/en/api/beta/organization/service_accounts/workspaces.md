@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 7e71a2abf035d5af52cf5754886c4af365d10167579c41adc1d575d102bcc924
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 7a6dcbcd17a52330930b9e64987bcc46405023e37ee6d2095f500ab93f00ee99
 ---
 
 ---
@@ -150,6 +150,8 @@ rejected.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -397,6 +399,8 @@ page to recover.
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -614,6 +618,8 @@ to the implicit `workspace_user` membership. Archived workspaces return
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

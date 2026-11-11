@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/code
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: ec3d49579f621f2d3948bf05d8863d06a9b1e7618ccefbe07135a659d9a2fb1e
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: ec05664dc8696d528c76677081a7a85163a132c244f36d35e724601b7aa03e5a
 ---
 
 ---
@@ -59,7 +59,7 @@ returned.
 
   - `gte: optional string`
 
-    Return only Artifacts updated at or after this time (RFC 3339 format). Time filters match an eventually-consistent index and Artifacts published before this field was recorded never match — omit the time filter for compliance-complete enumeration. For incremental export, apply a generous overlap margin between windows and dedupe by `id`: adjacent tiling silently misses items whose index update lagged their publish.
+    Return only Artifacts updated at or after this time (RFC 3339 format). Time filters match an eventually-consistent index and Artifacts published before this field was recorded never match — omit the time filter for compliance-complete enumeration. For incremental export, apply a generous overlap margin between windows and dedupe by `id`: adjacent tiling silently misses items whose index update lagged their publish. Folder changes, such as sharing or unsharing a folder or moving an Artifact or folder, can change `read_mode` without changing `updated_at`, so time filters do not pick up those changes. To see an Artifact's current `read_mode`, omit the time filter.
 
     format: date-time
 

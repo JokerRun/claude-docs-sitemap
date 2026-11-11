@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: c937f98713793f26365d1e9e38c9838dbcbfd6887bc3ad5c02a36f87d42d9f23
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 9cb2703d2915c742a8e4573103b1a2e9d15259001c23bbe50ed7dc9e4dfaf84e
 ---
 
 ---
@@ -135,6 +135,8 @@ Upload File
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -401,6 +403,8 @@ List Files
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -645,6 +649,8 @@ Download File
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -794,6 +800,8 @@ Get File Metadata
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -1027,6 +1035,8 @@ Delete File
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

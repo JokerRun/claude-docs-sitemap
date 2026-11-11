@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: d13f449655d993d3f2f34da8cf20c4a2bddae6009dc0c21d409801f316b1d481
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 894cf2341dac8a694d2d06affc69b334cff1557348b0ec23531ae7f9fac1e29c
 ---
 
 ---
@@ -13,6 +13,7 @@ featureMetadata:
   topic:
     title: Managed Agents
     url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
@@ -37,6 +38,10 @@ featureMetadata:
     - claude-sonnet-4-6
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Claude Models on Google Cloud (Anthropic managed): beta
 ---
 
 Sandbox cloud berjalan sebagai kontainer Linux terisolasi pada infrastruktur yang dikelola Anthropic. Sandbox ini sudah dilengkapi dengan serangkaian lengkap bahasa pemrograman, database, dan utilitas yang telah terinstal sebelumnya. Agen dapat langsung menggunakannya tanpa langkah instalasi apa pun.

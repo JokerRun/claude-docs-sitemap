@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/bundles/targets/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 5dc7521a1a1897b6155466f7e11f71d9fc5f7b50ffa9a7ed13fc13808060cb74
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 393d11ac6e1d9184799cb2c517a2321ec942973463e9d44c45f3bb6ec61741c0
 ---
 
 ---
@@ -151,6 +151,8 @@ List the Slack channels and Slack workspaces a Bundle is attached to, newest fir
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

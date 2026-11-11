@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/create
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: ff43aec6c94252f8337100245f869d35ff7babb9e3971ad984c6fd94c6c722ae
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: cee4a3642335f04ad47c1e2fd0f68d33de1f3aefee57a98d636f2133fd0b2eec
 ---
 
 ---
@@ -137,6 +137,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -3133,6 +3135,14 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
                         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+                        - `"claude-fable-5-2"`
+
+                          Built for the most ambitious work in coding, enterprise workflows, and the sciences
+
+                        - `"claude-mythos-5-2"`
+
+                          Built for the most demanding cybersecurity and life sciences research, available through verification programs
+
                         - `"claude-haiku-5-5"`
 
                           Fastest model for high-volume, real-time tasks
@@ -3483,14 +3493,20 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
           Accepted in `messages[].content` and not rendered into the prompt; not
           validated against the request's `fallbacks` chain or top-level `model`.
 
-          Echo the assistant turn back verbatim, including this block in its
+          When you send the assistant turn back, keep this block in its
           original position. The block marks the boundary between content produced
           before and after a fallback hop, and the server relies on that boundary
           to validate the turn: when thinking runs flank the boundary, omitting
           the block merges them into one span the server cannot validate (the
           request is rejected), and moving it into the middle of a single run is
           likewise rejected; between non-thinking blocks the block's placement has
-          no validation effect.
+          no effect on thinking validation.
+
+          Some blocks from before the turn's final `fallback` block must be left
+          out when you send the turn back, and no `tool_result` is sent for a
+          `tool_use` block you left out.
+
+          See the [refusals and fallback guide](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback?sdk_languages=http#continuing-the-conversation) to learn which blocks to keep.
 
           - `type: "fallback"`
 
@@ -7053,6 +7069,14 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
                     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+                    - `"claude-fable-5-2"`
+
+                      Built for the most ambitious work in coding, enterprise workflows, and the sciences
+
+                    - `"claude-mythos-5-2"`
+
+                      Built for the most demanding cybersecurity and life sciences research, available through verification programs
+
                     - `"claude-haiku-5-5"`
 
                       Fastest model for high-volume, real-time tasks
@@ -8602,7 +8626,7 @@ curl https://api.anthropic.com/v1/messages \
         "cache_creation_input_tokens": 0,
         "cache_read_input_tokens": 0,
         "input_tokens": 0,
-        "model": "claude-haiku-5-5",
+        "model": "claude-fable-5-2",
         "output_tokens": 0,
         "type": "message"
       }

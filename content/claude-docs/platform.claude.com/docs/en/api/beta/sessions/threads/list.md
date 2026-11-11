@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/list
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 646253fad9a1e68b0164aa8219242fe95351db9e68b45e016c2b8d8c2c8ca74e
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 11e2be8b134e155429dd26e158560a8e0c28130fe8c49c7f6400fba75fcc03f4
 ---
 
 ---
@@ -164,6 +164,8 @@ List Session Threads
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -239,6 +241,10 @@ List Session Threads
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-fable-5-2"`
+
+            Built for the most ambitious work in coding, enterprise workflows, and the sciences
 
           - `"claude-haiku-5-5"`
 

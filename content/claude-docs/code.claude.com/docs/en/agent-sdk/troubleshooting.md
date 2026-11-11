@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/troubleshooting
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 75c8372f86eaaa636f2d40336e526caaaf07bb668e9cab7eb4ecbdc779bbef12
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: f4e3f4205ba2e68bb9a1c21be910ea95ce02a1ef41da21d9153e4f70c3942c01
 ---
 
 > ## Documentation Index
@@ -149,7 +149,7 @@ The text after the colon is the CLI's report of what went wrong, so start there 
 
 A result message can end with `subtype: "success"` while `structured_output` is `None` in Python or `undefined` in TypeScript. The run completes, but no validated output exists.
 
-Treat this result as a failure in application code. Check both that `subtype` is `success` and that `structured_output` is present before using it. The [Error handling](https://code.claude.com/docs/en/agent-sdk/structured-outputs.md#error-handling) section shows this pattern for both SDKs. Then check for these causes:
+Treat this result as a failure in application code. The [Error handling](https://code.claude.com/docs/en/agent-sdk/structured-outputs.md#error-handling) section shows this pattern for both SDKs. Then check for these causes:
 
 * **A request that Claude declined**: to detect this case in your code, check the result message's `stop_reason` for `"refusal"`. For what to try next, see [Usage Policy refusal](https://code.claude.com/docs/en/errors.md#usage-policy-refusal).
 * **A schema no output can satisfy**: for example, a string whose `minLength` is greater than its `maxLength`. If `structured_output` is missing repeatedly with a schema you believe is correct, look for constraints that contradict each other. If you find none, simplify the schema until outputs validate, then reintroduce your constraints one at a time.

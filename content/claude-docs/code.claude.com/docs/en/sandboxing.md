@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 5820694e70a4f8abff451ddca7b29c61eea102673ebf96b8ca1c6e652f636a63
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: f679b137a6c4d0dbe672150820af58197c058e769b6b25fb17383dbf14ab8d04
 ---
 
 > ## Documentation Index
@@ -746,7 +746,7 @@ This configuration sandboxes the commands Claude runs. A developer can still typ
 
 The sandbox doesn't run on native Windows, so with `failIfUnavailable` set, Claude Code exits at startup on those machines. If your fleet includes Windows hosts, you can:
 
-* **Deliver the configuration by operating system**: deploy it through your MDM or as a [managed settings file](https://code.claude.com/docs/en/managed-settings.md#delivery-mechanisms) on macOS and Linux machines only. [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md#current-limitations) apply to all users in the organization
+* **Deliver the configuration by operating system**: deploy it through your MDM or as a [managed settings file](https://code.claude.com/docs/en/managed-settings.md#delivery-mechanisms) on macOS and Linux machines only. [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md#give-groups-different-settings) follow the member, not the device.
 * **Move Windows users into a supported environment**: have them run Claude Code inside WSL2 or a container
 
 ### Keep developers from widening the policy

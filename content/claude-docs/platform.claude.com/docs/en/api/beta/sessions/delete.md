@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/delete
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 7d63d0790adaef6dd1aed4188b05c69356259b1bfdbbc52411ef794ce5651449
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 3d0303c8b080a6e8237ab825bdec2ffd0c91106033e77429e7481ddcffbd6c83
 ---
 
 ---
@@ -137,6 +137,8 @@ Delete Session
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

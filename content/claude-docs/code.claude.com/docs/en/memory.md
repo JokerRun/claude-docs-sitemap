@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 275fe39e8501741ad308ab8ecd4552327cf34e53654841d7a121de80fbe6b595
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 524cff77043d4b230e427dfcebce29a5284fcd2e3f4678abb2ef9b6e856c5ff8
 ---
 
 > ## Documentation Index
@@ -170,7 +170,7 @@ CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1 claude --add-dir ../shared-config
 
 The inline form sets the variable for that one launch in Bash or Zsh. To keep it on for every session, add it to the `env` block in `~/.claude/settings.json` as shown in [Set environment variables](https://code.claude.com/docs/en/env-vars.md#set-environment-variables).
 
-This loads `CLAUDE.md`, `.claude/CLAUDE.md`, `.claude/rules/*.md`, and `CLAUDE.local.md` from the additional directory. `CLAUDE.local.md` is skipped if you exclude `local` from [`--setting-sources`](https://code.claude.com/docs/en/cli-reference).
+With the variable set, Claude Code loads the additional directory's `CLAUDE.md`, `.claude/CLAUDE.md`, `CLAUDE.local.md`, and `.claude/rules/*.md` files except rules that set a [`paths` field](#path-specific-rules). `CLAUDE.local.md` is skipped if you exclude `local` from [`--setting-sources`](https://code.claude.com/docs/en/cli-reference).
 
 ### Organize rules with `.claude/rules/`
 

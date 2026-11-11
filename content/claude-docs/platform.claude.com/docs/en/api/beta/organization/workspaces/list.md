@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 69cd5fdcf79e3b9ed6fd705ce733322e78bd8a43c55eee3a1e9834618347ad99
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 73adfeb1731f9fab21da654cf23e5bc3745101b25650f35ffc0eb601c9cfef74
 ---
 
 ---
@@ -25,6 +25,10 @@ List Workspaces
 - `before_id: optional string`
 
   ID of the object to use as a cursor for pagination. When provided, returns the page of results immediately before this object.
+
+- `ids: optional array of string`
+
+  Only the Workspaces with these IDs, at most 100. `include_archived` and `include_default` still apply, and IDs of Workspaces the caller can't list are left out.
 
 - `include_archived: optional boolean`
 

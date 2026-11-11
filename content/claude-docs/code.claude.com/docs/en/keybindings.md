@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-10-25T02:20:50.950770Z
-sha256: 7619c12e48223c41e5a0175043dfda4c91669ed1e1251b0589f79217394c7a78
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: e446761f481da5f6ff7550415264e8c85edf6509e793c5fcde4d0832022d6adc
 ---
 
 > ## Documentation Index
@@ -312,7 +312,7 @@ Before v2.1.283, this list ignored `Select` bindings and had its own actions: `m
 
 ### Diff actions
 
-These actions reach only Claude Code's earlier diff viewer, which `/diff` opens outside [fullscreen rendering](https://code.claude.com/docs/en/fullscreen.md) after you disable the [`cc-plugin-diff` mod](https://code.claude.com/docs/en/plugins/mods/overview#mods-built-into-claude-code) in `/plugin`. While that mod is enabled, `/diff` opens the [diff dialog](https://code.claude.com/docs/en/interactive-mode.md#diff-dialog) instead. A `keybindings.json` that names these actions loads without errors either way.
+These actions reach only Claude Code's earlier diff viewer, which `/diff` opens outside [fullscreen rendering](https://code.claude.com/docs/en/fullscreen.md) after you disable the [`cc-plugin-diff` mod](https://code.claude.com/docs/en/plugins/mods/overview#mods-built-into-claude-code) in `/plugin`. While that mod is enabled, `/diff` opens the [diff dialog](https://code.claude.com/docs/en/interactive-mode.md#diff-dialog) instead.
 
 Actions available in the `DiffDialog` context:
 

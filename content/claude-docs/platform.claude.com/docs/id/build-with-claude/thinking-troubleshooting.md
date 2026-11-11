@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: e0af54996c50028d3796035b96d290cb0e4e624f264369d10da55bf3b0479ae8
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: aea1998e4e94eca5a3e6f9a997022afa87b5f5bf156140c15544bf4d65b77b7b
 ---
 
 ---
@@ -161,7 +161,7 @@ Gemakan kembali giliran asisten secara verbatim, termasuk blok thinking. Lihat [
 
 ## Error 400 menyatakan signature blok thinking tidak valid
 
-Permintaan yang memutar ulang blok thinking sebelumnya ke model Claude 5.1 dan yang lebih baru dapat gagal dengan 400 `invalid_request_error` yang pesannya berbunyi:
+Permintaan yang memutar ulang blok thinking sebelumnya ke Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, atau Claude Haiku 5.5 dapat gagal dengan 400 `invalid_request_error` yang pesannya berbunyi:
 
 ```text wrap
 messages.{i}.content.{j}: Invalid `signature` in `thinking` block. The block is bound to a different conversation. Remove the block, or set `thinking.block_binding.prefix_mismatch_behavior` to "drop_block".
@@ -180,7 +180,7 @@ Model-model ini hanya menerima blok thinking yang diputar ulang selama prompt `s
 * Prompt `system` atau array `tools` yang dibangun ulang
 * Pemadatan di sisi klien yang mempertahankan giliran terbaru beserta thinking-nya secara verbatim
 
-[Compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) sisi server dan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) tidak pernah memicu error ini. Untuk permintaan yang tidak menetapkan `thinking.block_binding.prefix_mismatch_behavior`, lihat [Saat `prefix_mismatch_behavior` tidak ditetapkan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement).
+[Compaction pada ambang token](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold) sisi server dan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) tidak pernah memicu error ini. Dengan [compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand), thinking dalam giliran yang Anda pertahankan setelah ringkasan akan memicunya ketika salah satu [syarat agar thinking yang dipertahankan tetap valid](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid) tidak terpenuhi. Untuk permintaan yang tidak menetapkan `thinking.block_binding.prefix_mismatch_behavior`, lihat [Saat `prefix_mismatch_behavior` tidak ditetapkan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement).
 
 Mencoba ulang dengan isi permintaan yang sama tidak akan menghilangkan error tersebut. Begitu pula dengan memperbaiki kode Anda, karena riwayat yang tersimpan masih memuat hasil edit tersebut. Untuk melanjutkan percakapan, lakukan salah satu dari hal berikut:
 

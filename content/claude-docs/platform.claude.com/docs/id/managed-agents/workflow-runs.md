@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/workflow-runs
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: b2595150172a2d90f48c7a9dca38a80865e381303579989f49d3fb3f316f1ffd
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 1f167c90e42ae3a329c52bc2e0c7ab64387e835bcf194e6adce7a501d6c274a8
 ---
 
 ---
@@ -13,6 +13,7 @@ featureMetadata:
   topic:
     title: Managed Agents
     url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
@@ -37,6 +38,10 @@ featureMetadata:
     - claude-sonnet-4-6
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Claude Models on Google Cloud (Anthropic managed): beta
 ---
 
 **Workflow** (alur kerja) adalah program yang ditulis agen untuk menjalankan banyak agen dan menggabungkan apa yang mereka kembalikan. **Workflow run** (eksekusi workflow) adalah satu kali jalannya sebuah workflow. **[Dynamic workflows](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#dynamic-workflows)** (alur kerja dinamis) adalah fitur yang memungkinkan agen menulis workflow dan memulai eksekusi. Anda mengaktifkan atau menonaktifkannya dengan pengaturan `workflows` (csharp, go: `Workflows`) di blok `multiagent` (csharp, go: `Multiagent`) milik agen.
@@ -848,7 +853,7 @@ Server juga membatasi seberapa banyak yang dilakukan semua sesi organisasi Anda 
 
 ## Ketersediaan
 
-Alur kerja dinamis tersedia di semua model.
+Alur kerja dinamis dalam versi beta di semua model.
 
 ### Dukungan API
 
@@ -856,9 +861,9 @@ Alur kerja dinamis tersedia di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
-| Tersedia | Semua platform yang didukung |
+| Status | Platform cloud               |
+| ------ | ---------------------------- |
+| Beta   | Semua platform yang didukung |
 
 ### Header beta yang diperlukan
 

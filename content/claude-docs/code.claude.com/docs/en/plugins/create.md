@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/create
-fetched_at: 2026-10-29T02:15:48.406163Z
-sha256: fbddf82076d0132e8a118d71e52b987ffa3f9a93ebaf08e494045dc0f0c00038
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 4a8524269c7ac3d7baf0223d9bd081b04d76399e2848b82f70248c0f26e19977
 ---
 
 > ## Documentation Index
@@ -176,7 +176,13 @@ If two plugins loaded in different ways share a name, see [Name conflicts](https
 
 ### Load a plugin for one session
 
-You can load a plugin for a single session in three ways: from a directory or `.zip` archive on disk with `--plugin-dir`, from a URL with `--plugin-url`, or from an environment variable when you can't add a flag. Each plugin loads for that session only, and nothing is written to your settings for it. When you edit the plugin's files during the session, run `/reload-plugins` to load the changes.
+You can load a plugin for a single session in three ways:
+
+* From a directory or `.zip` archive on disk with `--plugin-dir`
+* From a URL with `--plugin-url`
+* From an environment variable when you can't add a flag
+
+When you edit the plugin's files during the session, run `/reload-plugins` to load the changes.
 
 #### Load a plugin from a directory or `.zip`
 

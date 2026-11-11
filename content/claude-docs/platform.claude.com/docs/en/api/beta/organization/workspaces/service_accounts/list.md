@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 59b646138bb962edc5aa2057a6cf7c62868007bf3568eafa7421e3da75f9c4a6
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 51bd5103246ff8deb446f8f6ea6cc0767ebf67bdedd89f537b70fecbf23499ae
 ---
 
 ---
@@ -160,6 +160,8 @@ omitted from the results.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: c4899513803ed643da4f183ab10d3eae1bf8ed62c87555086116d24f36bacfb7
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 688f98897c807bf919c30e0d4c748fbdbce28897310af043366ee1be05a098fe
 ---
 
 ---
@@ -110,7 +110,7 @@ Instal atau tingkatkan ke versi terbaru Claude SDK:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.7.0")
+        implementation("com.anthropic:anthropic-java:3.8.0")
         ```
       </Tab>
 
@@ -119,7 +119,7 @@ Instal atau tingkatkan ke versi terbaru Claude SDK:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.7.0</version>
+            <version>3.8.0</version>
         </dependency>
         ```
       </Tab>
@@ -263,8 +263,8 @@ Contoh berikut mendaftarkan tracer provider yang mencetak setiap span ke konsol 
   	defer provider.Shutdown(ctx)
   	otel.SetTracerProvider(provider)
   	// OpenTelemetry untuk Go tidak mendaftarkan propagator secara default, jadi
-  	// daftarkan propagator W3C trace context.
-  	otel.SetTextMapPropagator(propagation.TraceContext{})
+  	// daftarkan propagator W3C trace context dan baggage.
+  	otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{}))
 
   	client := anthropic.NewClient()
 
@@ -286,8 +286,10 @@ Contoh berikut mendaftarkan tracer provider yang mencetak setiap span ke konsol 
   import com.anthropic.client.okhttp.AnthropicOkHttpClient;
   import com.anthropic.models.messages.MessageCreateParams;
   import com.anthropic.models.messages.Model;
+  import io.opentelemetry.api.baggage.propagation.W3CBaggagePropagator;
   import io.opentelemetry.api.trace.propagation.W3CTraceContextPropagator;
   import io.opentelemetry.context.propagation.ContextPropagators;
+  import io.opentelemetry.context.propagation.TextMapPropagator;
   import io.opentelemetry.exporter.logging.LoggingSpanExporter;
   import io.opentelemetry.sdk.OpenTelemetrySdk;
   import io.opentelemetry.sdk.trace.SdkTracerProvider;
@@ -301,8 +303,9 @@ Contoh berikut mendaftarkan tracer provider yang mencetak setiap span ke konsol 
       OpenTelemetrySdk.builder()
           .setTracerProvider(tracerProvider)
           // OpenTelemetry untuk Java tidak mendaftarkan propagator saat Anda membangunnya
-          // di dalam kode, jadi daftarkan propagator W3C trace context.
-          .setPropagators(ContextPropagators.create(W3CTraceContextPropagator.getInstance()))
+          // di kode, jadi daftarkan propagator W3C trace context dan baggage.
+          .setPropagators(ContextPropagators.create(TextMapPropagator.composite(
+              W3CTraceContextPropagator.getInstance(), W3CBaggagePropagator.getInstance())))
           .buildAndRegisterGlobal();
 
       var client = AnthropicOkHttpClient.fromEnv();
@@ -321,7 +324,9 @@ Contoh berikut mendaftarkan tracer provider yang mencetak setiap span ke konsol 
   ```php PHP
   use Anthropic\Client;
   use Anthropic\Messages\Model;
+  use OpenTelemetry\API\Baggage\Propagation\BaggagePropagator;
   use OpenTelemetry\API\Trace\Propagation\TraceContextPropagator;
+  use OpenTelemetry\Context\Propagation\MultiTextMapPropagator;
   use OpenTelemetry\SDK\Sdk;
   use OpenTelemetry\SDK\Trace\SpanExporter\ConsoleSpanExporterFactory;
   use OpenTelemetry\SDK\Trace\SpanProcessor\SimpleSpanProcessor;
@@ -334,8 +339,11 @@ Contoh berikut mendaftarkan tracer provider yang mencetak setiap span ke konsol 
   Sdk::builder()
       ->setTracerProvider($tracerProvider)
       // OpenTelemetry untuk PHP tidak mendaftarkan propagator saat Anda membangunnya
-      // di dalam kode, jadi daftarkan propagator W3C trace context.
-      ->setPropagator(TraceContextPropagator::getInstance())
+      // di dalam kode, jadi daftarkan propagator W3C trace context dan baggage.
+      ->setPropagator(new MultiTextMapPropagator([
+          TraceContextPropagator::getInstance(),
+          BaggagePropagator::getInstance(),
+      ]))
       ->buildAndRegisterGlobal();
 
   $client = new Client();
@@ -601,7 +609,7 @@ Ketika worker mengirim hasil alat, span API dari permintaan tersebut bersarang d
 
 ## Konteks trace dan baggage
 
-Pada setiap permintaan, SDK menggunakan propagator aplikasi Anda untuk mengirim konteks trace ke API dalam header seperti `traceparent`. Jika propagator tersebut juga menulis baggage, SDK juga mengirim baggage Anda. Untuk mengirim konteks trace tanpa baggage, daftarkan hanya propagator konteks trace W3C.
+Pada setiap permintaan, SDK menggunakan propagator aplikasi Anda untuk mengirim konteks trace ke API dalam header seperti `traceparent`. Jika propagator tersebut juga menulis baggage, SDK juga mengirim baggage Anda, yang merupakan cara Anda dapat [mengidentifikasi pengguna akhir Anda](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk#identify-your-end-users). Untuk mengirim konteks trace tanpa baggage, daftarkan hanya propagator konteks trace W3C.
 
 Agar SDK tidak mengirim header ini, misalnya ketika instrumentasi klien HTTP Anda sudah mengirimnya, nonaktifkan propagasi SDK:
 
@@ -675,6 +683,145 @@ Agar SDK tidak mengirim header ini, misalnya ketika instrumentasi klien HTTP And
 </CodeGroup>
 
 Saat SDK memanggil [alat MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#client-side-mcp-helpers), span alat milik SDK adalah span saat ini. Beberapa pustaka klien MCP mengirim konteks trace ke server MCP di `_meta`, sehingga server yang membacanya dapat menambahkan span-nya ke trace Anda di bawah span alat tersebut. Paket Python `mcp` mulai versi 2.0 dan paket C# `ModelContextProtocol` melakukannya. SDK MCP untuk TypeScript, Go, Java, Ruby, dan PHP tidak melakukannya sendiri.
+
+### Identifikasi pengguna akhir Anda
+
+[Baggage](https://opentelemetry.io/docs/concepts/signals/baggage/) adalah sekumpulan pasangan kunci-nilai yang dibawa oleh sebuah permintaan dalam header W3C `baggage`-nya. Untuk mengatur atribut [`user.id`](https://platform.claude.com/docs/id/api/opentelemetry/spans#user.id) pada span API untuk sebuah permintaan, kirim permintaan dengan entri baggage `user.id` yang diatur ke ID pengguna akhir Anda. Gunakan ID yang buram (opaque), bukan alamat email: untuk melindungi privasi pengguna, API membuang setiap `user.id` yang berisi alamat email.
+
+<CodeGroup>
+  ```bash cURL
+  curl https://api.anthropic.com/v1/messages \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2026-10-21" \
+    -H "content-type: application/json" \
+    -H "baggage: user.id=4f2a" \
+    -d '{
+      "model": "claude-opus-5-5",
+      "max_tokens": 1024,
+      "messages": [
+        {"role": "user", "content": "Hello, Claude"}
+      ]
+    }'
+  ```
+
+  ```bash CLI
+  ANTHROPIC_CUSTOM_HEADERS="baggage: user.id=4f2a" ant messages create \
+    --model claude-opus-5-5 \
+    --max-tokens 1024 \
+    --message '{role: user, content: "Hello, Claude"}'
+  ```
+
+  ```python Python
+  from opentelemetry import baggage, context
+
+  client = Anthropic()
+
+  token = context.attach(baggage.set_baggage("user.id", "4f2a"))
+  try:
+      message = client.messages.create(
+          model="claude-opus-5-5",
+          max_tokens=1024,
+          messages=[{"role": "user", "content": "Hello, Claude"}],
+      )
+  finally:
+      context.detach(token)
+  ```
+
+  ```typescript TypeScript
+  import { context, propagation } from "@opentelemetry/api";
+
+  const client = new Anthropic();
+
+  const userBaggage = propagation.createBaggage({ "user.id": { value: "4f2a" } });
+  const message = await context.with(propagation.setBaggage(context.active(), userBaggage), () =>
+    client.messages.create({
+      model: "claude-opus-5-5",
+      max_tokens: 1024,
+      messages: [{ role: "user", content: "Hello, Claude" }]
+    })
+  );
+  ```
+
+  ```csharp C#
+  using System.Diagnostics;
+  // ...
+  // Daftarkan sumber ini dengan AddSource pada tracer provider Anda agar aktivitasnya direkam.
+  ActivitySource source = new("MyApp");
+  AnthropicClient client = new();
+
+  // SDK mengirimkan baggage dari aktivitas saat ini.
+  using var activity = source.StartActivity("chat");
+  activity?.SetBaggage("user.id", "4f2a");
+  var message = await client.Messages.Create(new MessageCreateParams
+  {
+      Model = Model.ClaudeOpus5_5,
+      MaxTokens = 1024,
+      Messages = [new UserMessageParam { Content = "Hello, Claude" }],
+  });
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  member, _ := baggage.NewMember("user.id", "4f2a")
+  userBaggage, _ := baggage.New(member)
+  ctx := baggage.ContextWithBaggage(context.Background(), userBaggage)
+  message, err := client.Messages.New(ctx, anthropic.MessageNewParams{
+  	Model:     anthropic.ModelClaudeOpus5_5,
+  	MaxTokens: 1024,
+  	Messages: []anthropic.MessageParam{
+  		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
+  	},
+  })
+  ```
+
+  ```java Java
+  import io.opentelemetry.api.baggage.Baggage;
+
+  void main() {
+      var client = AnthropicOkHttpClient.fromEnv();
+
+      try (var scope = Baggage.current().toBuilder().put("user.id", "4f2a").build().makeCurrent()) {
+          var message = client.messages().create(MessageCreateParams.builder()
+              .model(Model.CLAUDE_OPUS_5_5)
+              .maxTokens(1024)
+              .addUserMessage("Hello, Claude")
+              .build());
+      }
+  }
+  ```
+
+  ```php PHP
+  use OpenTelemetry\API\Baggage\Baggage;
+
+  $client = new Client();
+
+  $scope = Baggage::getBuilder()->set('user.id', '4f2a')->build()->activate();
+  try {
+      $message = $client->messages->create(
+          maxTokens: 1024,
+          messages: [['role' => 'user', 'content' => 'Hello, Claude']],
+          model: Model::CLAUDE_OPUS_5_5,
+      );
+  } finally {
+      $scope->detach();
+  }
+  ```
+
+  ```ruby Ruby
+  require "opentelemetry/sdk"
+
+  client = Anthropic::Client.new
+
+  OpenTelemetry::Context.with_current(OpenTelemetry::Baggage.set_value("user.id", "4f2a")) do
+    client.messages.create(
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
+      max_tokens: 1024,
+      messages: [{role: "user", content: "Hello, Claude"}]
+    )
+  end
+  ```
+</CodeGroup>
 
 ## Pemecahan masalah
 

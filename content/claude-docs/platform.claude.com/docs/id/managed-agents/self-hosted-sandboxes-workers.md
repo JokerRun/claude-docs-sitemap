@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: fc6abf5638ba6c94fc0f9786a3f6bc8c64b5bcb8e2a3182c2c6c31e7dc9156e2
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 8b81e564a84c94384f00ce4207c836fe316429074deb0083b527f80bbe9d0fe9
 ---
 
 ---
@@ -470,7 +470,7 @@ Poller di host mengklaim pekerjaan dan memanggil skrip Anda sekali untuk setiap 
 
     ```dockerfile
     FROM your-base-image
-    ARG ANT_VERSION=2.8.0
+    ARG ANT_VERSION=2.9.0
     ARG TARGETARCH
     RUN ARCH=$([ "$TARGETARCH" = "arm64" ] && echo arm64 || echo amd64) && \
         curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${ANT_VERSION}/ant_${ANT_VERSION}_linux_${ARCH}.tar.gz" \

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 1263e186c0b5e771adab2737a82a33a58e8b5d2eeff7cd4ef24957fae396247d
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 40285df538e7dddc0359455fe613dee5ad57faa22b249586a37f95b7b802be79
 ---
 
 ---
@@ -67,7 +67,7 @@ come in a fixed order that is not creation order.
 
   Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
 
-- `"anthropic-beta": optional array of AnthropicBeta`
+- `"anthropic-beta": array of AnthropicBeta`
 
   This endpoint is in beta: requests must send `spend-limit-reads-2026-09-26` in this header.
 
@@ -176,6 +176,8 @@ come in a fixed order that is not creation order.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

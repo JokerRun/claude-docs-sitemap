@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/create
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 27200e7376808ef7dc53bc22877512dd55c0f32015d7245598da0406b7e5727a
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: b8dc4ad85890aec26ffa8059c99c5e364fcea03490f03634ab3bd64a13e2e76a
 ---
 
 ---
@@ -133,6 +133,8 @@ Create Deployment
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

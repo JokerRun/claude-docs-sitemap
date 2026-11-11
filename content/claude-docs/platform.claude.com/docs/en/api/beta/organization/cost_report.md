@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/cost_report
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 88b715da54b2b54268da219d8c8daf03a78d4ce9ae68e2ad8429200a46f1464a
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 3961ee3e5b13f8483c66b7d4898f30adce32aaa75c371187eb1f94840e8eb74b
 ---
 
 ---
@@ -177,6 +177,8 @@ This endpoint is part of the legacy Usage and Cost API. For new integrations, us
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -246,7 +248,7 @@ This endpoint is part of the legacy Usage and Cost API. For new integrations, us
 
       - `model: string or null`
 
-        Model name used. `null` if not grouping by description or for non-token costs.
+        Model name used. `null` if not grouping by description, for non-token costs, or for token costs with no model ID.
 
       - `service_tier: "batch" or "standard" or null`
 
@@ -399,7 +401,7 @@ curl https://api.anthropic.com/v1/organizations/cost_report \
 
       - `model: string or null`
 
-        Model name used. `null` if not grouping by description or for non-token costs.
+        Model name used. `null` if not grouping by description, for non-token costs, or for token costs with no model ID.
 
       - `service_tier: "batch" or "standard" or null`
 

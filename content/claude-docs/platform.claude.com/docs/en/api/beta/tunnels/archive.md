@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/archive
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f67f1049b46ff9cba7ab2c3dd81770c0371189316cda0f500a84c5cf7a3fbce9
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 1cfe4afa17a4f663bfda3dc6fc5fa0fd7a37b48048fbf65dc48137bfa992add5
 ---
 
 ---
@@ -141,6 +141,8 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

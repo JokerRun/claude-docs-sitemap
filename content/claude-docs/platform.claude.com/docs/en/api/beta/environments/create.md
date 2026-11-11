@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/create
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 2b260a41c8e12e4da3fca06015ba200b5d8a3db3c4eb8c64bee12f492c1ad9f2
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: a82941e41ccb2a60c5c3fef8977507ca314b9c002c09458ba668de0feebea77d
 ---
 
 ---
@@ -133,6 +133,8 @@ Create a new environment with the specified configuration.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

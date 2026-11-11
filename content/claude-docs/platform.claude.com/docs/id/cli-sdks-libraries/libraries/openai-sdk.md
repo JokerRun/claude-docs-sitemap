@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 3f81509d1401a2646412641c2e719679e21d4ac5ad8d1565e39ad4cafa4b332a
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: fc038e99285ef4d27b9ba68583e75cc29ad2cebd47dd2899a0e8a407d5df7094
 ---
 
 ---
@@ -218,6 +218,7 @@ Berikut adalah perbedaan paling substansial dibandingkan menggunakan OpenAI:
 * `response_format` hanya menerima `json_schema` dengan `strict: true`. Permintaan yang menetapkan `json_object` atau `text` mengembalikan error 400.
 * Input audio dan file tidak didukung. Permintaan yang menyertakan bagian konten `input_audio` atau `file` mengembalikan error 400.
 * Caching prompt tidak didukung, tetapi didukung di [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview).
+* API tidak memancarkan [span OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry) untuk permintaan yang melalui lapisan kompatibilitas. Untuk mendapatkan span ini, gunakan Claude API native.
 * Pesan sistem/developer diangkat (hoisted) dan digabungkan ke dalam field `system` tingkat atas, di mana pun pesan tersebut muncul dalam percakapan. Untuk menambahkan instruksi sistem di tengah percakapan, gunakan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) di Claude API native.
 * Tergantung pada model, teks yang dihasilkan untuk permintaan yang menetapkan `temperature` atau `top_p` ke nilai selain default Claude API mungkin tidak membawa [watermark teks](https://platform.claude.com/docs/id/build-with-claude/text-watermark#sampling-settings). Jika Anda mengandalkan watermark, hilangkan kedua parameter tersebut.
 

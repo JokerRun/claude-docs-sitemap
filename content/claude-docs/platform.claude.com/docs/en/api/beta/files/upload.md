@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/upload
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 3c1e7557208bfa00319b49f0e7a499730ccae2dd797b4da48c3bfc2431e9627f
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: a8283613cfcb033f2ae5c105503df2f47c2499d9927960ec551171dab2265926
 ---
 
 ---
@@ -133,6 +133,8 @@ Upload File
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

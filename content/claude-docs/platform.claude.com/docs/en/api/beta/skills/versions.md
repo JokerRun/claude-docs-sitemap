@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 7ac75c03eac79519c8f457b8c18c8b8ec496807f347770c65b505332c2c98a0d
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 27951d7b509605a85e159facb3ec23b46816fb94fda249257c524247408d9952
 ---
 
 ---
@@ -143,6 +143,8 @@ Create Skill Version
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -375,6 +377,8 @@ List Skill Versions
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -601,6 +605,8 @@ Download a skill version's content as a zip archive.
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -758,6 +764,8 @@ Get Skill Version
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -971,6 +979,8 @@ Delete Skill Version
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

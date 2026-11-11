@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/archive
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 77fe0541a61265f4caab2f6eb45ebc79038c0aeafff5f6a8ce221a3d1829c381
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: be23532701280bdeaeb2fbac3e494a68cbe9c45d713a710045dd3d14f2f0d460
 ---
 
 ---
@@ -146,6 +146,8 @@ those rules first or change their target to another service account.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

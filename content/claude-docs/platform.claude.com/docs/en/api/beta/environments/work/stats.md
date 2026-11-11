@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stats
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: cd485c27f941e1da6f2cc73d222272392882a07021cc2a2fc64b39e41595adb3
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 5e4a118bf009edc6130b6b806001b982c515453d1f6440b965233c7211241ffc
 ---
 
 ---
@@ -137,6 +137,8 @@ Get statistics about the work queue for an environment.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

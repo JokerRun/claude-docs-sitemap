@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 3acec977e6c47c49af0edcb9e72b7ff521414fc49e1168f8a29550c4482af6ed
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 5d0538b4c3d7f6392e0372ef0d5d33e652b97b48c469dc887bd0212d27185ca3
 ---
 
 ---
@@ -13,6 +13,7 @@ featureMetadata:
   topic:
     title: Managed Agents
     url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
@@ -37,6 +38,10 @@ featureMetadata:
     - claude-sonnet-4-6
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Claude Models on Google Cloud (Anthropic managed): beta
 ---
 
 [Alat kustom](https://platform.claude.com/docs/id/managed-agents/tools#custom-tools) adalah alat yang dijalankan oleh kode Anda sendiri: agen memancarkan event `agent.custom_tool_use` dan menunggu `user.custom_tool_result` yang sesuai. Worker Anda dapat menjadi kode tersebut. Karena berjalan di dalam sandbox Anda, alat tersebut menjangkau layanan internal, kredensial, dan “network egress” (lalu lintas jaringan keluar) yang Anda konfigurasikan untuk sandbox, dan tidak lebih dari itu.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-security
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 829037c5ecf1eb60b4eef6bc0d134aab2380812e3fa3d602d0ae34c634b63aea
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: bce8bec276700ef041b2bee17762d1816db71af5c0c6c8b65a82e2186290d5f5
 ---
 
 ---
@@ -13,6 +13,7 @@ featureMetadata:
   topic:
     title: Managed Agents
     url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
@@ -37,6 +38,10 @@ featureMetadata:
     - claude-sonnet-4-6
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Claude Models on Google Cloud (Anthropic managed): beta
 ---
 
 In every environment, Anthropic secures the parts it runs: session and work queue integrity, multitenant isolation, and agent-context minimization. When you self-host sandboxes, the following responsibilities fall to you.

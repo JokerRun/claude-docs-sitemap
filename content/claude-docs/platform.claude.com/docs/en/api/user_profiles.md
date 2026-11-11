@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/user_profiles
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 4205d092eb16b955e39c564b1e720eb19f863391c3fecc67296ba3a472bcb9c5
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: a871cd31ae832370671269f7fef999b89e44397d0c07cebc208089e56b22f7cc
 ---
 
 ---
@@ -2522,6 +2522,14 @@ curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID \
   - `"name"`
 
     Sort by `name`, ignoring the case of ASCII letters. Profiles without a name come last in either direction.
+
+### User Profile Not Found Error Details
+
+- `UserProfileNotFoundErrorDetails object`
+
+  The request depends on a user profile that does not exist in the organization or is no longer active. The request either names this user profile by ID, or names a resource, such as an External Key, that is bound to it.
+
+  - `error_code: "user_profile_not_found"`
 
 ### User Profile Program Status
 

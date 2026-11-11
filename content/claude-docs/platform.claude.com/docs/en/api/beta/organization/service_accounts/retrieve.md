@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 99fbf94f4fabc2a76711c80b4c60a9ee8d900d88f27ad7a2fd99746bb7763311
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 40c6ac3c065c3ef90b4ec16cbb41ad4907d45357f53cbb2f1e2d72128cee8e02
 ---
 
 ---
@@ -141,6 +141,8 @@ Retrieve a service account by its ID (`svac_...`).
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

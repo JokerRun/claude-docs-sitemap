@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/update
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 659b8b3ee9c471feb1b75c7ba2e738cc852cd7ee0f9a3b11d901d150c96aa204
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: d0b6e04a29e03670b9ad8e9d9f25a5458310e0e87920dbf14a7c6db8be42830e
 ---
 
 ---
@@ -137,6 +137,8 @@ Update an existing environment's configuration.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

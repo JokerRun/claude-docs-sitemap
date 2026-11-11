@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/retrieve
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 09b1d052356c2cf1e8c2ded2284c676967342e28ca0048c73be5448fffa0779b
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 1d11ed8e9f45158915bdc62dd93fbd5a982f4e1d09fa1436d40297214e0e5508
 ---
 
 ---
@@ -148,6 +148,8 @@ Get Agent
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -223,6 +225,10 @@ Get Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-fable-5-2"`
+
+        Built for the most ambitious work in coding, enterprise workflows, and the sciences
 
       - `"claude-haiku-5-5"`
 

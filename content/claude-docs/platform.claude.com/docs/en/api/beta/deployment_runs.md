@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployment_runs
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 5b87c677e1e74a6c18c5fb237351c0d512c7f85970e900a51392cf799fb8a9da
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: aa9cc04e6cecb5b75d4f85aefc69b25017cc43d61995f2bc5ab72196e197f723
 ---
 
 ---
@@ -191,6 +191,8 @@ List Deployment Runs
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -600,6 +602,8 @@ Get Deployment Run
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

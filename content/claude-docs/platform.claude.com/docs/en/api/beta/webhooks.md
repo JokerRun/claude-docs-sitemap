@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/webhooks
-fetched_at: 2026-10-22T02:21:21.745661Z
-sha256: 441bc51924318786cf2f9fd0c2247efdf828ad88dec0608e24d0dc14db905fb4
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 4cd56ce0e1baa7102c4876dc192792f635e1bac01264b4faf2fb03db30af9fc7
 ---
 
 ---
@@ -856,9 +856,19 @@ url: https://platform.claude.com/docs/en/api/beta/webhooks
 
       - `organization_id: string`
 
+    - `BetaWebhookUserProfileProgramStatusUpdatedEventData object`
+
+      - `type: "user_profile.program_status_updated"`
+
+      - `id: string`
+
+        ID of the user profile that triggered the event.
+
+      - `organization_id: string`
+
 ### Beta Webhook Event Data
 
-- `BetaWebhookEventData = BetaWebhookSessionCreatedEventData or BetaWebhookSessionPendingEventData or BetaWebhookSessionRunningEventData or 43 more`
+- `BetaWebhookEventData = BetaWebhookSessionCreatedEventData or BetaWebhookSessionPendingEventData or BetaWebhookSessionRunningEventData or 44 more`
 
   - `BetaWebhookSessionCreatedEventData object`
 
@@ -1444,6 +1454,16 @@ url: https://platform.claude.com/docs/en/api/beta/webhooks
 
     - `organization_id: string`
 
+  - `BetaWebhookUserProfileProgramStatusUpdatedEventData object`
+
+    - `type: "user_profile.program_status_updated"`
+
+    - `id: string`
+
+      ID of the user profile that triggered the event.
+
+    - `organization_id: string`
+
 ### Beta Webhook Memory Store Archived Event Data
 
 - `BetaWebhookMemoryStoreArchivedEventData object`
@@ -1765,6 +1785,18 @@ url: https://platform.claude.com/docs/en/api/beta/webhooks
   - `enforcement_action_id: string`
 
     ID (`enac_...`) of the enforcement action that was opened or resolved.
+
+  - `organization_id: string`
+
+### Beta Webhook User Profile Program Status Updated Event Data
+
+- `BetaWebhookUserProfileProgramStatusUpdatedEventData object`
+
+  - `type: "user_profile.program_status_updated"`
+
+  - `id: string`
+
+    ID of the user profile that triggered the event.
 
   - `organization_id: string`
 

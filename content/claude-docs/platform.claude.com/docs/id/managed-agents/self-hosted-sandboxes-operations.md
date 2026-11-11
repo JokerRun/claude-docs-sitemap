@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: c496d521e48247b6cf24c8ff2782fb5966d9a80bb4be79103a89c0dd24878962
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 5bad73294fa250f56949bbe20428e6a5d7fb2ed8bb22b4bc64ea983b2bc642f4
 ---
 
 ---
@@ -13,6 +13,7 @@ featureMetadata:
   topic:
     title: Managed Agents
     url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
@@ -37,6 +38,10 @@ featureMetadata:
     - claude-sonnet-4-6
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Claude Models on Google Cloud (Anthropic managed): beta
 ---
 
 Panggilan statistik antrean dan penghentian di halaman ini dijalankan dari alat pemantauan atau operasional Anda, diautentikasi dengan kunci API organisasi Anda. Helper worker menangani loop klaim dan keep-alive, sehingga Anda tidak memanggil endpoint tersebut secara langsung.

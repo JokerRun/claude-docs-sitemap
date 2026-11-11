@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/openai-sdk
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: bd4a193ec677260ce0b1342d07ce13b843dcdeefdd061fd12c66dde10bd249a5
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 85ff087d107ebd49a8ce75e610925f98e5d1406cf749399c3caa582a353d98d7
 ---
 
 ---
@@ -218,6 +218,7 @@ Here are the most substantial differences from using OpenAI:
 * `response_format` accepts only `json_schema` with `strict: true`. A request that sets `json_object` or `text` returns a 400 error.
 * Audio and file inputs are not supported. A request that includes an `input_audio` or `file` content part returns a 400 error.
 * Prompt caching is not supported, but it is supported in the [Anthropic SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries/overview).
+* The API doesn’t emit [OpenTelemetry spans](https://platform.claude.com/docs/en/manage-claude/opentelemetry) for requests through the compatibility layer. To get these spans, use the native Claude API.
 * System/developer messages are hoisted and concatenated into the top-level `system` field, wherever they appear in the conversation. To add system instructions partway through a conversation, use [mid-conversation system messages](https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages) in the native Claude API.
 * Depending on the model, text generated for a request that sets `temperature` or `top_p` to a value other than the Claude API’s default might not carry the [text watermark](https://platform.claude.com/docs/en/build-with-claude/text-watermark#sampling-settings). If you rely on the watermark, omit both parameters.
 

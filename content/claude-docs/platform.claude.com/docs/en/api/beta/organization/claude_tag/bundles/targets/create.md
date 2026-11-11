@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/bundles/targets/create
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 0cf66b382a786296e0ce5f42d80e944343652bb8e0dfe8a1176fd6c157dd7a4a
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 24c1fb9a500d74907bdc3107ee22a9cb9484a3b3edb5f35405b2e7cb3a9fdb54
 ---
 
 ---
@@ -139,6 +139,8 @@ Attach a Bundle to a Slack channel or a Slack workspace. A Bundle attached to a 
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

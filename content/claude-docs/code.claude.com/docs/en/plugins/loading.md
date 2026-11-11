@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/loading
-fetched_at: 2026-10-26T02:24:48.652012Z
-sha256: 4384e0e85677682e34e68362a70b06e4a6ef74a7f03e3ad044c0e817b1c35c0e
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 4739c47a58a0dc53702d10ee748795c114a3c1e30e4ecaf475e2c95c65b42d41
 ---
 
 > ## Documentation Index
@@ -180,13 +180,43 @@ If you set a plugin to `false` in `~/.claude/settings.json` and it still loads, 
 
 To opt out of a project-enabled plugin on your machine, set the id to `false` in `.claude/settings.local.json`, which has higher precedence than the project file.
 
+### Enabled in an `--add-dir` directory but not loaded
+
+Claude Code reads an `enabledPlugins` entry of `true` in one of the added directory's files only when that file's setting sources are on:
+
+* **`.claude/settings.json`**: `project`
+* **`.claude/settings.local.json`**: `project` and `local`
+
+Check which setting sources the session loads. You set them with [`--setting-sources`](https://code.claude.com/docs/en/cli-reference#cli-flags). In the CLI, `user`, `project`, and `local` are all on by default.
+
+For example, if you run `claude --setting-sources user --add-dir ./shared` in your shell, Claude Code reads neither file in `./shared`. Pass the flag for the file that holds the `true`:
+
+* **`settings.json`**: `--setting-sources user,project`
+* **`settings.local.json`**: `--setting-sources user,project,local`
+
 ### Enabled in project settings but not installed
 
-When a plugin's only `true` is in the project's `.claude/settings.json`, Claude Code doesn't fetch it onto a machine where it isn't installed, unless its marketplace entry has a [relative-path source](https://code.claude.com/docs/en/plugins/marketplace-reference.md#plugin-sources) or a [seed directory](https://code.claude.com/docs/en/plugins/org.md#seed-containers-and-ci) already holds it. Instead, the `/plugin` **Errors** tab shows `Plugin "<name>" is enabled in project settings but isn't installed here`.
+By default, a plugin enabled only in your project's `.claude/settings.json` doesn't load at session start until you install it on your machine. With the marketplace on your machine, the `/plugin` **Errors** tab shows [`Plugin "<name>" is enabled in project settings but isn't installed here`](https://code.claude.com/docs/en/plugins/troubleshooting#plugin-is-enabled-in-project-settings-but-isnt-installed-here) or [`Plugin "<name>" not cached at <path>`](https://code.claude.com/docs/en/plugins/troubleshooting#plugin-not-cached-at).
 
-A relative-path plugin needs no install record because it loads from the marketplace itself.
+> [!NOTE]
+>
+> If the tab shows neither message, [add the marketplace](https://code.claude.com/docs/en/plugins/install.md#add-a-marketplace) before you install. Find its source in the `extraKnownMarketplaces` setting of `.claude/settings.json`, or ask your maintainer.
 
-Claude Code fetches a plugin with an external source only when one of these sources sets it to `true`:
+To install, run this in a shell from the project, using the plugin's key in `enabledPlugins`:
+
+```shell theme={null}
+claude plugin install <name>@<marketplace> --scope project
+```
+
+To load the plugin, run `/reload-plugins` in your session or start a new session. Repeat the install in each of your clones, or use `--scope user` to cover all your projects.
+
+You can load a plugin without an install in these cases:
+
+* **In a [seed directory](https://code.claude.com/docs/en/plugins/org.md#seed-containers-and-ci)**: you have nothing to run
+* **Listed by a [relative path](https://code.claude.com/docs/en/plugins/marketplace-reference.md#plugin-sources) in a marketplace you added from a local path**: you have nothing to run, because the plugin loads at session start
+* **Listed by a relative path, such as `./plugins/formatter`, in the `marketplace.json` of a git marketplace you've added**: run `/reload-plugins` to load it for the current session only. To load it for one [non-interactive `-p` run](https://code.claude.com/docs/en/headless), set [`CLAUDE_CODE_SYNC_PLUGIN_INSTALL=1`](https://code.claude.com/docs/en/env-vars).
+
+Claude Code fetches a plugin with an external source only when one of these sources sets the plugin to `true`:
 
 * Your user settings
 * A `.claude/settings.local.json` that git doesn't track

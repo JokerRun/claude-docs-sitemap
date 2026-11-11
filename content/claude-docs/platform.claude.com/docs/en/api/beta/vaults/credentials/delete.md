@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/delete
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f43829270e4ec426358ee433a286ed95a38556302aa4256b27d3de80a94575d2
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 99f43fe5cbd6252e7e2f8a41ef9bf453c6e6fd15d8ceb5029a41d82715b4a818
 ---
 
 ---
@@ -143,6 +143,8 @@ Delete a Credential
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

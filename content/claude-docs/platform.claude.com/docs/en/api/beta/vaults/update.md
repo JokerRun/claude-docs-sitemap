@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/update
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 884111a08cba2ce9b3bc3b486c2eda9e966a0ff1edec6eaea77035fa7c754d9b
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: ba33e4b82945800009997ad7637781593941e0d467f37167f5e3332ca6a4d517
 ---
 
 ---
@@ -139,6 +139,8 @@ Update a Vault
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

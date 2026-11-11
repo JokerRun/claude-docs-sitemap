@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-threads
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 8ba5d47c1046a054a8df772143287f0cac57a176e04a121a98f0bbda4f3fd9f0
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 53cb80620f67ae506e9170c7feb40660aa18dcbe2387c11aead24f57b7ef3dfa
 ---
 
 ---
@@ -13,6 +13,7 @@ featureMetadata:
   topic:
     title: Managed Agents
     url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
@@ -37,6 +38,10 @@ featureMetadata:
     - claude-sonnet-4-6
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Claude Models on Google Cloud (Anthropic managed): beta
 ---
 
 In a [multiagent session](https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration), each agent works in its own **session thread**. This page covers how to list, interrupt, and archive threads, the events they send, and how tool permissions work across them. A [workflow run](https://platform.claude.com/docs/en/managed-agents/workflow-runs) creates session threads too.
@@ -809,7 +814,7 @@ The previous pattern answers the calls that an idle event lists. On the primary 
 
 ## Availability
 
-Session threads are available on every model.
+Session threads are in beta on every model.
 
 ### API support
 
@@ -817,9 +822,9 @@ Session threads are available on every model.
 
 * Availability: Always on
 
-| Status    | Cloud platforms         |
-| --------- | ----------------------- |
-| Available | All supported platforms |
+| Status | Cloud platforms         |
+| ------ | ----------------------- |
+| Beta   | All supported platforms |
 
 ### Required beta headers
 

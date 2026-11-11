@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: b9557a0e64174e83c972c20607e41b2fce55515b929a2fce2d7ee496df83a0f0
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 6d89fba875a97e4a8db59eb95f832ad99e2b059267d2ec9dd38eb0ce59a52ac3
 ---
 
 ---
@@ -155,6 +155,8 @@ Archived issuers are excluded unless `include_archived=true`.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

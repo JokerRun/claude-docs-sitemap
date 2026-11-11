@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/create
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 40e60e8823ff705c08bf71e1dc1a916bac5ab5d5c3b44a59a87f1a5df1534dc1
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 84ff37f8c96a5063f48cb447a3a3a30077e3d65a254487eb941a776c1f5b5d60
 ---
 
 ---
@@ -139,6 +139,8 @@ Create a Credential
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 958ffc0d7b1e519b05571f234fbe176535b4466b806ee9e673d1623baa6e97db
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: e370abeb564d0335bef88b8227fcabe5158c9b3e44d63139b4ae877cd7403524
 ---
 
 ---
@@ -147,6 +147,8 @@ Retrieve a single certificate registered on a tunnel by ID.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 9b295d1d575e42c56f9ed7e433dc6a5a0290952492a4fe207b7279329ef67cf6
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 26f13f08582f5836d7f6597bf805631a1825373cd8ca2798133aa39cddec3b8a
 ---
 
 ---
@@ -161,6 +161,8 @@ List Memory Stores
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

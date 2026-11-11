@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 16ffa7fdae16601074650414e2db4659953ed5e8869fda1f53d3f006fe5eef67
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: fcfe62706adcef0820377463a89fcc3ec7a5e84bbb2d7d0acac6c8c66acb63b8
 ---
 
 ---
@@ -155,6 +155,8 @@ List Credentials
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

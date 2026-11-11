@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: d0189ebfd5e57a6f2d5682ff482e34ec02f9122409fd7fa68d1782525f18dbdd
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: f4379d9fda112b4efa53b9f767ff0e29ccece1e2ecb504b884223bc3366e75a2
 ---
 
 ---
@@ -139,6 +139,8 @@ Get User Profile
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 8edbc5d191ff7339f15b6e3893edcb2772c68007e3150c106f7306000013060b
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: e180e905de3bbf69dd932eb37a2ea9af8d7e937ade9cc98fdcd493df85ca18cc
 ---
 
 > ## Documentation Index
@@ -73,7 +73,7 @@ Claude Code also keeps a fifth file, [`~/.claude.json`](https://code.claude.com/
 
 ### Share settings with your team
 
-Commit `.claude/settings.json` so everyone who clones the repository gets the same permissions, hooks, and plugins. Each teammate can still override it for themselves in their own `.claude/settings.local.json`, so personal exceptions don't need a commit. For a complete team file, see [a team's shared settings](https://code.claude.com/docs/en/settings-example.md#a-teams-shared-settings).
+Commit `.claude/settings.json` so everyone who clones the repository gets the same permissions, hooks, and plugin settings. Each teammate can still override it for themselves in their own `.claude/settings.local.json`, so personal exceptions don't need a commit. For a complete team file, see [a team's shared settings](https://code.claude.com/docs/en/settings-example.md#a-teams-shared-settings).
 
 Some of what you commit waits until each teammate [trusts the folder](https://code.claude.com/docs/en/permissions.md#project-allow-rules-and-workspace-trust), and a few keys never take effect from a repository file; [Troubleshoot a setting that doesn't apply](#common-cases) covers both.
 
@@ -206,7 +206,7 @@ If you mistype JSON or set a key to a value Claude Code doesn't accept, Claude C
 * **Settings Error**: a user, project, or local file has invalid JSON or a value the schema rejects. At the start of an interactive session Claude Code shows a dialog that lets you fix the file with Claude's help, exit, or continue without the broken settings.
 * **Settings Warning**: only individual entries fail, such as a malformed permission rule or an unknown hook event name. Claude Code skips those values and keeps the rest of the file in effect.
 * **Managed settings**: Claude Code keeps enforcing the rest of the file. [Invalid entries in managed settings](https://code.claude.com/docs/en/managed-settings.md#invalid-entries-in-managed-settings) says what it drops and which keys fall back to a stricter value until you fix them. For a managed settings document that isn't valid JSON, see [Managed settings document could not be parsed](https://code.claude.com/docs/en/errors.md#managed-settings-document-could-not-be-parsed).
-* **Configuration error**: [`~/.claude.json`](https://code.claude.com/docs/en/claude-directory#ce-claude-json) can't be parsed. A `claude -p` run exits, and your file is unchanged. See [Configuration error in \~/.claude.json](https://code.claude.com/docs/en/errors.md#configuration-error-in-claude-json) to restore an earlier copy. Claude Code copies the broken file to `~/.claude/backups/.claude.json.corrupted.<timestamp>`, and in an interactive session asks whether to exit and fix it or reset to the default configuration. When the file is blank and there's no backup to restore, Claude Code starts with default settings.
+* **Configuration error**: [`~/.claude.json`](https://code.claude.com/docs/en/claude-directory#ce-claude-json) can't be parsed. A `claude -p` run exits. See [Configuration error in \~/.claude.json](https://code.claude.com/docs/en/errors.md#configuration-error-in-claude-json) to restore an earlier copy. Claude Code copies the broken file to `~/.claude/backups/.claude.json.corrupted.<timestamp>`, and in an interactive session asks whether to exit and fix it or reset to the default configuration. When the file is blank and there's no backup to restore, Claude Code starts with default settings.
 
 After you continue, run `/status` to see the affected files and `claude doctor` for the details of each error.
 

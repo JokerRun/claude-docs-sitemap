@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 095a108bb0e639794a76c87f822e30bd61c01b359d4b63033c836496d6c8906c
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 1556bdf173ae240781158c5e1615cf5d474d7e32daf95e364392a0d37e8353e1
 ---
 
 ---
@@ -94,7 +94,7 @@ Create an external key config owned by the caller's organization.
 
 - `user_profile_id: optional string or null`
 
-  ID of a user profile to bind the key to. Omit this field for a key that isn't bound to a user profile. Such a key can be attached to a Workspace whatever its user profile. The binding cannot be changed later. A key bound to a user profile can only be attached to a Workspace that has the same user profile.
+  ID of a user profile to bind the key to. A user profile represents one of your customers: bind a customer's key to that customer's user profile. A key bound to a user profile can only be attached to a Workspace that has the same user profile, and the binding cannot be changed later. Omit this field only for your organization's own key, because a key created without a user profile ID can be attached to any Workspace, including another customer's.
 
 ### Returns
 

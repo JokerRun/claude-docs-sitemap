@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f3605c094ae0212e66d477d6f13134da15520507a670202819364fac9c3e8363
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 1268a2f3e072076c65de377b2f155a2d7719c1ff58bd1d75d97e19735997c523
 ---
 
 ---
@@ -159,6 +159,8 @@ Retrieve a Memory
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

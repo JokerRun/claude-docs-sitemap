@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/results
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 4c4161479f6458dc2b4c93678a3242ef3d54524a24b38be61ce0436e11f8dded
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 75def2bdb40478fc6b5c7c99162c2750557633d980517ffc7ed5f0f4cf1f00d5
 ---
 
 ---
@@ -143,6 +143,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -2919,6 +2921,14 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+                          - `"claude-fable-5-2"`
+
+                            Built for the most ambitious work in coding, enterprise workflows, and the sciences
+
+                          - `"claude-mythos-5-2"`
+
+                            Built for the most demanding cybersecurity and life sciences research, available through verification programs
+
                           - `"claude-haiku-5-5"`
 
                             Fastest model for high-volume, real-time tasks
@@ -4060,9 +4070,13 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `type: "invalid_request_error"`
 
+              The broad category of the error.
+
               default: invalid_request_error
 
             - `message: string`
+
+              A human-readable explanation of the error. Its wording can change, so don't match on it.
 
               default: Invalid request
 
@@ -4070,9 +4084,13 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `type: "authentication_error"`
 
+              The broad category of the error.
+
               default: authentication_error
 
             - `message: string`
+
+              A human-readable explanation of the error. Its wording can change, so don't match on it.
 
               default: Authentication error
 
@@ -4080,9 +4098,13 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `type: "billing_error"`
 
+              The broad category of the error.
+
               default: billing_error
 
             - `message: string`
+
+              A human-readable explanation of the error. Its wording can change, so don't match on it.
 
               default: Billing error
 
@@ -4090,9 +4112,13 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `type: "permission_error"`
 
+              The broad category of the error.
+
               default: permission_error
 
             - `message: string`
+
+              A human-readable explanation of the error. Its wording can change, so don't match on it.
 
               default: Permission denied
 
@@ -4100,9 +4126,13 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `type: "not_found_error"`
 
+              The broad category of the error.
+
               default: not_found_error
 
             - `message: string`
+
+              A human-readable explanation of the error. Its wording can change, so don't match on it.
 
               default: Not found
 
@@ -4110,9 +4140,13 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `type: "rate_limit_error"`
 
+              The broad category of the error.
+
               default: rate_limit_error
 
             - `message: string`
+
+              A human-readable explanation of the error. Its wording can change, so don't match on it.
 
               default: Rate limited
 
@@ -4120,9 +4154,13 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `type: "timeout_error"`
 
+              The broad category of the error.
+
               default: timeout_error
 
             - `message: string`
+
+              A human-readable explanation of the error. Its wording can change, so don't match on it.
 
               default: Request timeout
 
@@ -4130,9 +4168,13 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `type: "api_error"`
 
+              The broad category of the error.
+
               default: api_error
 
             - `message: string`
+
+              A human-readable explanation of the error. Its wording can change, so don't match on it.
 
               default: Internal server error
 
@@ -4140,9 +4182,13 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `type: "overloaded_error"`
 
+              The broad category of the error.
+
               default: overloaded_error
 
             - `message: string`
+
+              A human-readable explanation of the error. Its wording can change, so don't match on it.
 
               default: Overloaded
 

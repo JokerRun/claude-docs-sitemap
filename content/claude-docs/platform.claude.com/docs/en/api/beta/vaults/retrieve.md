@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 2b530d99e5e69e3d51bee966a12744ff1baa6abed3155c7237a7a5913055080c
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: abe39cf944e4651ee70db3f1f8a8d7f8eeb6be9e3d6c282f77bdaffe22608475
 ---
 
 ---
@@ -139,6 +139,8 @@ Retrieve a Vault
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

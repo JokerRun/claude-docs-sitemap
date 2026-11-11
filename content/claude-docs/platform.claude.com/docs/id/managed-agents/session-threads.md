@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-threads
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: e12bf7479fe9f482f2126027837a3d7273f983d00976981af93e885e36993f6a
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 395f0c7133d8e8fb4ea38ef8bc5112711f4a5a86f3d0c7c8ea7c05b866bac93e
 ---
 
 ---
@@ -13,6 +13,7 @@ featureMetadata:
   topic:
     title: Managed Agents
     url: https://platform.claude.com/docs/en/managed-agents/overview
+  status: beta
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
@@ -37,6 +38,10 @@ featureMetadata:
     - claude-sonnet-4-6
     - claude-opus-4-5-20251101
     - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: beta
+    Claude Platform on AWS: beta
+    Claude Models on Google Cloud (Anthropic managed): beta
 ---
 
 Dalam [sesi multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), setiap agen bekerja di **session thread** (thread sesi) miliknya sendiri. Halaman ini membahas cara mencantumkan, menginterupsi, dan mengarsipkan thread, event yang dikirimkannya, serta cara kerja izin alat di seluruh thread tersebut. Sebuah [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs) juga membuat thread sesi.
@@ -809,7 +814,7 @@ Pola sebelumnya menjawab panggilan yang dicantumkan oleh event idle. Pada aliran
 
 ## Ketersediaan
 
-Thread sesi tersedia di semua model.
+Thread sesi dalam versi beta di semua model.
 
 ### Dukungan API
 
@@ -817,9 +822,9 @@ Thread sesi tersedia di semua model.
 
 * Ketersediaan: Selalu aktif
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
-| Tersedia | Semua platform yang didukung |
+| Status | Platform cloud               |
+| ------ | ---------------------------- |
+| Beta   | Semua platform yang didukung |
 
 ### Header beta yang diperlukan
 

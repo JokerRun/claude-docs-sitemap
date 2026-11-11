@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/pause
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 295a4c3de9b651742f3d7578996f39dbe1eda43191b6c58f1d28bedbf8914a25
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 8b9991831952270c8f22474f9317f284c04f9e57f2f4f5d7aba7af8c7278c87d
 ---
 
 ---
@@ -139,6 +139,8 @@ Pause Deployment
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

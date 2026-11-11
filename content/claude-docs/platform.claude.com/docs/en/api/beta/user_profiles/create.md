@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 64f5731ed4a9b47ef57210af4d92f3c144b66add32b36570b95c7f9e476e8d3f
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 4e2f3a85ccf75f8ddc728aad83b99bfe116b108f95d2ec9ae7d54200ab03602a
 ---
 
 ---
@@ -133,6 +133,8 @@ Create User Profile
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

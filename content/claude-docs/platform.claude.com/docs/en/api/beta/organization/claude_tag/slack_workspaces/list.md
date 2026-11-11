@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/slack_workspaces/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 5f08929eed0b004c52a9b74429cc4712af1013cb7b12fbc67b250df6ca97fa53
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 768f37ef594bad1ac805de8e61b09fe01c7409549f221da1a3970316b3db757f
 ---
 
 ---
@@ -154,6 +154,8 @@ List the set-up Slack workspaces the organization owns, newest first by `created
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -219,6 +221,34 @@ List the set-up Slack workspaces the organization owns, newest first by `created
     - `model: string or null`
 
       The model Claude uses: a model identifier or the name of a model line. The nearest settings level that sets it decides. When none does, Claude uses the product's default model.
+
+    - `reply_mode: BetaClaudeTagReplyMode or null`
+
+      How Claude takes part in the channel. Only a channel stores one, and no settings level passes one on, so it is always null on a workspace. Null on a channel means the channel stores none yet: Claude then follows the reply mode chosen in Slack, if one was, else `automatic`. A stored reply mode can be changed but never cleared.
+
+      - `BetaClaudeTagReplyModeAutomatic object`
+
+        Claude reads along and joins in when it can help, and pauses on its own in quiet or busy channels.
+
+        - `type: "automatic"`
+
+      - `BetaClaudeTagReplyModeMentionOnly object`
+
+        Claude replies only when it is @-mentioned.
+
+        - `type: "mention_only"`
+
+      - `BetaClaudeTagReplyModeAlwaysAwake object`
+
+        Like `automatic`, but Claude never pauses on its own. Available where it is enabled for the channel.
+
+        - `type: "always_awake"`
+
+      - `BetaClaudeTagReplyModeThread object`
+
+        Every new top-level message in the channel gets its own reply from Claude, in a thread under it. Available where it is enabled for the channel, and only once Claude has been used in the channel.
+
+        - `type: "thread"`
 
   - `slack: BetaClaudeTagSlackWorkspaceIdentifiers`
 
@@ -340,6 +370,10 @@ List the set-up Slack workspaces the organization owns, newest first by `created
 
       The settings level `model` comes from.
 
+    - `reply_mode: BetaClaudeTagSettingSource or null`
+
+      The settings level `reply_mode` comes from: the channel when it stores one. With `include_inherited=true` and no stored mode it is `default`.
+
   - `updated_at: string`
 
     Time Claude Tag's record of the workspace last changed. It moves on every change to a setting, and can also move when something no response holds changes, so a later value says to read the workspace again, not that a setting changed. Attaching or detaching a Bundle does not by itself move it.
@@ -374,7 +408,10 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/slack_workspaces \
           "type": "allow"
         },
         "instructions": "instructions",
-        "model": "model"
+        "model": "model",
+        "reply_mode": {
+          "type": "automatic"
+        }
       },
       "slack": {
         "workspace_id": "workspace_id"
@@ -399,6 +436,10 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/slack_workspaces \
           }
         ],
         "model": {
+          "slack_channel_id": "slack_channel_id",
+          "type": "slack_channel"
+        },
+        "reply_mode": {
           "slack_channel_id": "slack_channel_id",
           "type": "slack_channel"
         }

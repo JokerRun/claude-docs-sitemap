@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: bea0fca416edc3f77b1825f113459227bd5cd6325e1e80ce4e2b11e5401e27dd
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 428de7adf005c4940432c49b6700df7efb259665c46cbfd4dc15c9aaa9eb6909
 ---
 
 ---
@@ -137,6 +137,8 @@ Retrieve a specific environment by ID.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

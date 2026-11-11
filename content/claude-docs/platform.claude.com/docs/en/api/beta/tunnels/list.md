@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 1d20aac0f832b843953a543c6acb6b4a63dea51fb32d2e9e6b7d5f3e2068d36d
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: bf0d18dd88a83e3bd0098673b8dfb5aa6d0fbeef6bcc68e26fad2db48025199c
 ---
 
 ---
@@ -151,6 +151,8 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 13e77d2c0e322c70af1d6b954c34f46088faaa2e21127dba5d5aeb9992d87b64
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 84d56f095c6250fb8cd935f6b86b1d753ec10e09f72394751fa9d375e71da577
 ---
 
 ---
@@ -21,7 +21,7 @@ description: Ambil, filter, dan paginasi Activity Feed Compliance API organisasi
   Baik Compliance Access Key (`sk-ant-api01-...`) yang membawa scope ini maupun kunci Admin API (`sk-ant-admin01-...`) dapat memanggil Activity Feed. Lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access) untuk kondisi di mana setiap jenis kunci membawa scope tersebut.
 </Check>
 
-Activity Feed mencatat aktivitas autentikasi, obrolan, file, proyek, administratif, dan platform di seluruh organisasi Anda dan mengembalikannya dalam urutan kronologis terbalik. Aktivitas dapat dikueri dalam 1 menit setelah terjadi dan disimpan selama 6 tahun. Pencatatan tidak berlaku surut: pencatatan dimulai saat Compliance API pertama kali diaktifkan untuk organisasi Anda, dan aktivitas dari sebelum pengaktifan tidak diisi ulang. Peristiwa Access Transparency merupakan pengecualian. Jika organisasi Anda terdaftar dalam [Access Transparency](https://platform.claude.com/docs/id/manage-claude/access-transparency), peristiwa ini dicatat bahkan saat Compliance API nonaktif. Oleh karena itu, feed dapat menyertakan beberapa peristiwa dari sebelum Compliance API pertama kali diaktifkan.
+Activity Feed mencatat aktivitas autentikasi, obrolan, file, proyek, administratif, dan platform di seluruh organisasi Anda dan mengembalikannya dalam urutan kronologis terbalik. Aktivitas dapat dikueri dalam 1 menit setelah terjadi dan disimpan selama 6 tahun. Aktivitas Security posture dapat memerlukan waktu lebih dari 1 menit untuk dapat dikueri; lihat [Kirim peristiwa Security posture ke SIEM Anda](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/send-events#run-it-on-a-schedule). Pencatatan tidak berlaku surut: pencatatan dimulai saat Compliance API pertama kali diaktifkan untuk organisasi Anda, dan aktivitas dari sebelum pengaktifan tidak diisi ulang. Peristiwa Access Transparency merupakan pengecualian. Jika organisasi Anda terdaftar dalam [Access Transparency](https://platform.claude.com/docs/id/manage-claude/access-transparency), peristiwa ini dicatat bahkan saat Compliance API nonaktif. Oleh karena itu, feed dapat menyertakan beberapa peristiwa dari sebelum Compliance API pertama kali diaktifkan.
 
 ```bash cURL
 curl --fail-with-body -sS \

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 88719f14a63e63da438d2e0670599079d93a4f584cdad92b461d129d7acbae4f
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: fa81c616548ec25aca5ccebd6d600f8a1f2b206d2d228207565a470d9ad54fad
 ---
 
 ---
@@ -184,8 +184,8 @@ Install the package that provides the client:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.7.0")
-        implementation("com.anthropic:anthropic-java-google-cloud:3.7.0")
+        implementation("com.anthropic:anthropic-java:3.8.0")
+        implementation("com.anthropic:anthropic-java-google-cloud:3.8.0")
         ```
       </Tab>
 
@@ -194,12 +194,12 @@ Install the package that provides the client:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.7.0</version>
+            <version>3.8.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-google-cloud</artifactId>
-            <version>3.7.0</version>
+            <version>3.8.0</version>
         </dependency>
         ```
       </Tab>

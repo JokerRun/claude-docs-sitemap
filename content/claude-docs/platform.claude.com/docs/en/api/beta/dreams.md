@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: bc2af3248134996c578b046b80ef5fc8f6bebda15cad20c97cb7098c3458aad6
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 8b0a3e0e78b3eaab6afeb6666b093ec6aa3ebe6d9b3f3fcebb2fbbe532427a52
 ---
 
 ---
@@ -140,6 +140,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -262,7 +264,7 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   By default the dream writes its result to a new memory store and doesn't change the input memory store. With `output_behavior` set to `update_existing`, it writes its result into the input memory store instead.
 
-  The Dreams API is in research preview: the request and response shapes are volatile and may change without the deprecation period that applies to generally-available endpoints.
+  The Dreams API is in research preview: the request and response shapes are volatile and may change without the deprecation period that applies to stable endpoints.
 
   See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams?sdk_languages=http#how-it-works) for what a dream reads and produces.
 
@@ -731,6 +733,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -1157,6 +1161,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -1177,7 +1183,7 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   By default the dream writes its result to a new memory store and doesn't change the input memory store. With `output_behavior` set to `update_existing`, it writes its result into the input memory store instead.
 
-  The Dreams API is in research preview: the request and response shapes are volatile and may change without the deprecation period that applies to generally-available endpoints.
+  The Dreams API is in research preview: the request and response shapes are volatile and may change without the deprecation period that applies to stable endpoints.
 
   See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams?sdk_languages=http#how-it-works) for what a dream reads and produces.
 
@@ -1578,6 +1584,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -1598,7 +1606,7 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   By default the dream writes its result to a new memory store and doesn't change the input memory store. With `output_behavior` set to `update_existing`, it writes its result into the input memory store instead.
 
-  The Dreams API is in research preview: the request and response shapes are volatile and may change without the deprecation period that applies to generally-available endpoints.
+  The Dreams API is in research preview: the request and response shapes are volatile and may change without the deprecation period that applies to stable endpoints.
 
   See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams?sdk_languages=http#how-it-works) for what a dream reads and produces.
 
@@ -2000,6 +2008,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -2020,7 +2030,7 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   By default the dream writes its result to a new memory store and doesn't change the input memory store. With `output_behavior` set to `update_existing`, it writes its result into the input memory store instead.
 
-  The Dreams API is in research preview: the request and response shapes are volatile and may change without the deprecation period that applies to generally-available endpoints.
+  The Dreams API is in research preview: the request and response shapes are volatile and may change without the deprecation period that applies to stable endpoints.
 
   See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams?sdk_languages=http#how-it-works) for what a dream reads and produces.
 
@@ -2298,7 +2308,7 @@ curl https://api.anthropic.com/v1/dreams/$DREAM_ID/archive \
 
   By default the dream writes its result to a new memory store and doesn't change the input memory store. With `output_behavior` set to `update_existing`, it writes its result into the input memory store instead.
 
-  The Dreams API is in research preview: the request and response shapes are volatile and may change without the deprecation period that applies to generally-available endpoints.
+  The Dreams API is in research preview: the request and response shapes are volatile and may change without the deprecation period that applies to stable endpoints.
 
   See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams?sdk_languages=http#how-it-works) for what a dream reads and produces.
 
@@ -2750,9 +2760,13 @@ curl https://api.anthropic.com/v1/dreams/$DREAM_ID/archive \
 
     - `type: "invalid_request_error"`
 
+      The broad category of the error.
+
       default: invalid_request_error
 
     - `message: string`
+
+      A human-readable explanation of the error. Its wording can change, so don't match on it.
 
       default: Invalid request
 
@@ -2760,9 +2774,13 @@ curl https://api.anthropic.com/v1/dreams/$DREAM_ID/archive \
 
     - `type: "authentication_error"`
 
+      The broad category of the error.
+
       default: authentication_error
 
     - `message: string`
+
+      A human-readable explanation of the error. Its wording can change, so don't match on it.
 
       default: Authentication error
 
@@ -2770,9 +2788,13 @@ curl https://api.anthropic.com/v1/dreams/$DREAM_ID/archive \
 
     - `type: "billing_error"`
 
+      The broad category of the error.
+
       default: billing_error
 
     - `message: string`
+
+      A human-readable explanation of the error. Its wording can change, so don't match on it.
 
       default: Billing error
 
@@ -2780,9 +2802,13 @@ curl https://api.anthropic.com/v1/dreams/$DREAM_ID/archive \
 
     - `type: "permission_error"`
 
+      The broad category of the error.
+
       default: permission_error
 
     - `message: string`
+
+      A human-readable explanation of the error. Its wording can change, so don't match on it.
 
       default: Permission denied
 
@@ -2790,9 +2816,13 @@ curl https://api.anthropic.com/v1/dreams/$DREAM_ID/archive \
 
     - `type: "not_found_error"`
 
+      The broad category of the error.
+
       default: not_found_error
 
     - `message: string`
+
+      A human-readable explanation of the error. Its wording can change, so don't match on it.
 
       default: Not found
 
@@ -2800,9 +2830,13 @@ curl https://api.anthropic.com/v1/dreams/$DREAM_ID/archive \
 
     - `type: "rate_limit_error"`
 
+      The broad category of the error.
+
       default: rate_limit_error
 
     - `message: string`
+
+      A human-readable explanation of the error. Its wording can change, so don't match on it.
 
       default: Rate limited
 
@@ -2810,9 +2844,13 @@ curl https://api.anthropic.com/v1/dreams/$DREAM_ID/archive \
 
     - `type: "timeout_error"`
 
+      The broad category of the error.
+
       default: timeout_error
 
     - `message: string`
+
+      A human-readable explanation of the error. Its wording can change, so don't match on it.
 
       default: Request timeout
 
@@ -2820,9 +2858,13 @@ curl https://api.anthropic.com/v1/dreams/$DREAM_ID/archive \
 
     - `type: "api_error"`
 
+      The broad category of the error.
+
       default: api_error
 
     - `message: string`
+
+      A human-readable explanation of the error. Its wording can change, so don't match on it.
 
       default: Internal server error
 
@@ -2830,9 +2872,13 @@ curl https://api.anthropic.com/v1/dreams/$DREAM_ID/archive \
 
     - `type: "overloaded_error"`
 
+      The broad category of the error.
+
       default: overloaded_error
 
     - `message: string`
+
+      A human-readable explanation of the error. Its wording can change, so don't match on it.
 
       default: Overloaded
 
@@ -2845,8 +2891,6 @@ curl https://api.anthropic.com/v1/dreams/$DREAM_ID/archive \
     - `type: "conflict_error"`
 
     - `message: optional string`
-
-      A human-readable explanation of why the memory store can't be used yet, with the ID of the dream that is using it when the server can identify it.
 
 ### Beta Output Behavior
 
@@ -2913,5 +2957,3 @@ curl https://api.anthropic.com/v1/dreams/$DREAM_ID/archive \
   - `type: "conflict_error"`
 
   - `message: optional string`
-
-    A human-readable explanation of why the memory store can't be used yet, with the ID of the dream that is using it when the server can identify it.

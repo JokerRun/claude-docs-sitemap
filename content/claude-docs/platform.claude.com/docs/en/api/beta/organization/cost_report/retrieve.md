@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/cost_report/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 9e9d9bdee420bae6361d78cfa1eabf9feb4a7e6be4dd19f6ceeb70823ef7aea3
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: ee4bf98603087efc359393735065014f6c73638bd164a082ee4521f872181c8b
 ---
 
 ---
@@ -175,6 +175,8 @@ This endpoint is part of the legacy Usage and Cost API. For new integrations, us
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -244,7 +246,7 @@ This endpoint is part of the legacy Usage and Cost API. For new integrations, us
 
       - `model: string or null`
 
-        Model name used. `null` if not grouping by description or for non-token costs.
+        Model name used. `null` if not grouping by description, for non-token costs, or for token costs with no model ID.
 
       - `service_tier: "batch" or "standard" or null`
 

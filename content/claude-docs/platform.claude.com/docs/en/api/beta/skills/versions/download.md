@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/download
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 8d56c676ebfb02add9f1a4baa171d4d85ce47ab75da95fc60503df82f119dcf6
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: e578d16960af1d560453c78625475a6a9b8dd9989a205d2901f7eed05767266a
 ---
 
 ---
@@ -147,6 +147,8 @@ Download a skill version's content as a zip archive.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

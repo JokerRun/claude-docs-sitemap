@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 0dbf2ba9afe6f4af9bd679666abeae2507274b3e29ba08b0547dbf59c419ac5e
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: c42d2668e7adc48b86d5482adb51f7e39aabec450f7f9ee23c8e506752d92efd
 ---
 
 ---
@@ -143,6 +143,8 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -365,6 +367,8 @@ Fetches a tunnel certificate by ID.
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -586,6 +590,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -803,6 +809,8 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

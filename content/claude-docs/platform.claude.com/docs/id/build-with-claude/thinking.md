@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 202ac7d8378a9b9c8a6851d95701482bb94176e3ab64ecdbd47d4c487a19e5d1
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: a6d5dede6c6ec86fbea0fc02b06955de0aad5268227bd2967f0b4ee444e63c50
 ---
 
 ---
@@ -1113,14 +1113,14 @@ Konsekuensinya adalah penggunaan konteks: percakapan panjang menghabiskan lebih 
 
 ## Pemikiran yang dipertahankan
 
-[Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking) menentukan apakah model dapat menggunakan blok pemikiran yang Anda kirimkan kembali dari giliran sebelumnya. Mulai dari Claude Fable 5.1, API memeriksa `signature` dari setiap blok `thinking` atau `redacted_thinking` dalam permintaan untuk dua hal:
+[Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking) menentukan apakah model dapat menggunakan blok pemikiran yang Anda kirimkan kembali dari giliran sebelumnya. API memeriksa `signature` dari setiap blok `thinking` atau `redacted_thinking` dalam permintaan untuk dua hal:
 
 * **Model yang menghasilkannya.** Setiap model membaca blok pemikiran miliknya sendiri dan blok dari sekumpulan model lain yang tetap. Claude Fable 5.1 membaca blok dari Claude Opus 5 dan, pada Claude API, dari Claude Opus 5.5; baik Claude Opus 5 maupun Claude Opus 5.5 tidak membaca blok dari Claude Fable 5.1. API membuang blok yang tidak dapat dibaca oleh model saat ini, tanpa error dan tanpa menagihnya. Lihat [Berpindah model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
 * **Semua yang dikirim sebelumnya.** Sebuah blok tetap valid hanya selama prompt `system` tingkat atas, `tools`, dan pesan-pesan sebelumnya tidak berubah. Jika salah satunya berubah, blok tersebut dan setiap blok pemikiran setelahnya akan gagal dalam pemeriksaan prefiks. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check).
 
 Blok pemikiran dari Claude Sonnet 5.5, Claude Haiku 5.5, Claude Fable 5.2, dan Claude Mythos 5.2 juga terikat pada akun yang menghasilkannya. Lihat [Blok pemikiran tetap berada pada akun yang menghasilkannya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking) untuk mengetahui di mana hal ini berlaku.
 
-Pemeriksaan prefiks berjalan pada Claude 5.1 dan model yang lebih baru. Buat integrasi Anda bersifat append-only (hanya-tambah) agar blok pemikiran yang Anda kirim kembali lolos pemeriksaan tersebut. [Apa yang dilakukan API terhadap blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior) menjelaskan apa yang terjadi ketika suatu blok gagal.
+Pemeriksaan prefiks berjalan pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5. Buat integrasi Anda bersifat append-only (hanya-tambah) agar blok pemikiran yang Anda kirim kembali lolos pemeriksaan tersebut. [Apa yang dilakukan API terhadap blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior) menjelaskan apa yang terjadi ketika suatu blok gagal.
 
 Agar pemikiran tetap valid, kirimkan kembali setiap giliran asisten persis seperti saat Anda menerimanya dan tambahkan pesan baru hanya di akhir `messages`. Jika kode Anda membangun array `messages` sendiri, halaman Pemikiran yang dipertahankan mencakup:
 

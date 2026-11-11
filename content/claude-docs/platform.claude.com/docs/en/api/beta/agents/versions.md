@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/versions
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 410a070ef291905b21585447deeef551d5bc34b73ed96feeaf56c885454be381
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: ff62e7e9e94495d785fbb0754a8e937e88844e5f63b742df84758928e0c0dc51
 ---
 
 ---
@@ -154,6 +154,8 @@ List Agent Versions
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -229,6 +231,10 @@ List Agent Versions
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-fable-5-2"`
+
+        Built for the most ambitious work in coding, enterprise workflows, and the sciences
 
       - `"claude-haiku-5-5"`
 

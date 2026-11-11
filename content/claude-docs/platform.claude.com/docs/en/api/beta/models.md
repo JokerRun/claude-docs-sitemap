@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 0f5cced53fb2b2eaf035847552c2ae27ff5e09e46031f32ade521a877890bd4b
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 393d4b2f0e988eaf7479ece19a295509b9a75832190720f6a65edc8a07667e54
 ---
 
 ---
@@ -167,6 +167,8 @@ The Models API response can be used to determine which models are available for 
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -656,6 +658,8 @@ The Models API response can be used to determine information about a specific mo
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

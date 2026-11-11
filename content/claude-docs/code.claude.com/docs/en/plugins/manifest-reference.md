@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/manifest-reference
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: b0f8e2f9c1e5c05b3fd975f15a6c85fb9bae15cc81b07b90137b065af09b7fce
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: d78c502c30849c7405c61dce1080243d0ce2f0682310634d06d5babbf5bcfd27
 ---
 
 > ## Documentation Index
@@ -196,7 +196,7 @@ A version string, not checked against semver. Setting it pins the plugin to that
 
 ### `metadata`
 
-A free-form object for your own data, such as catalog or entitlement fields. Claude Code doesn't read it. Requires Claude Code v2.1.222 or later.
+A free-form object for your own data, such as catalog or entitlement fields. Claude Code doesn't read it.
 
 ### Directory listing fields
 
@@ -401,7 +401,7 @@ A monitor `command` can't reference `${user_config.*}`. See [Fields that run thr
 
 Every component path in a manifest is relative to the plugin root and must start with `./`. A path such as `commands/foo.md` fails validation. `skills` and `mcpServers` each accept one form outside that rule:
 
-* **`skills`**: also accepts `"."`. Both `"."` and `"./"` denote the plugin root. Before v2.1.221, `"."` failed manifest validation, so use `"./"` when the plugin must load on earlier versions
+* **`skills`**: also accepts `"."`. Both `"."` and `"./"` denote the plugin root
 * **`mcpServers`**: also accepts an `https://` bundle URL
 
 `experimental.evals` isn't a component path, so the rules in this section don't cover it, and `claude plugin eval` checks the value when it runs instead. It names a directory below the plugin root, such as `"quality/evals"`, with or without the `./` prefix. With an array, only the first entry is used. For what the value accepts and what happens with an unusable one, see [Use a different eval directory](https://code.claude.com/docs/en/plugin-evals.md#use-a-different-eval-directory).
@@ -410,7 +410,7 @@ Every component path in a manifest is relative to the plugin root and must start
 
 Every component path must resolve inside the plugin root and must exist. `claude plugin validate` checks the paths under every component key:
 
-* **Containment**: a path that resolves outside the plugin root doesn't load, and the `/plugin` **Errors** tab shows `<component> path escapes plugin directory: <path>`. A path containing `..` is the usual case, and `claude plugin validate` reports the error `Path contains ".." which could be a path traversal attempt`
+* **Containment**: a path that resolves outside the plugin root doesn't load, and the `/plugin` **Errors** tab shows `<component> path escapes plugin directory: <path>`. A path containing `..` is the usual case, and `claude plugin validate` reports the error `Path contains ".." which could be a path traversal attempt`. For an `mcpServers` or `lspServers` file, a [`path not read`](https://code.claude.com/docs/en/errors#server-file-path-not-read) message means the path is absolute or contains `..`
 * **Existence**: a path that doesn't exist doesn't load, and the `/plugin` **Errors** tab shows `<component> path not found: <path>`. `claude plugin validate` reports the error `Path not found`
 
 For `outputStyles`, `lspServers`, `monitors`, and `themes` paths, the `claude plugin validate` check requires Claude Code v2.1.283 or later.

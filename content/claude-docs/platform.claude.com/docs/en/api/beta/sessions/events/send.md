@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/send
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 58508936004967141d5ddf35d8726027188d3b4d4cff8f10cd53a3fce87d975f
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: c3ef0c8790f32a69a1253bee083507a2409123d9667374b83e2a7e328e861caa
 ---
 
 ---
@@ -137,6 +137,8 @@ Send Events
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: b52141415b8ca44e977ebf8c57c0408a6d9f3ac1b510d1e66b55cb1a219eea44
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 30cd206306a15a09c8ae2a4cfb99491f30d79b86f35b29ff0f754a228b544ec4
 ---
 
 ---
@@ -151,6 +151,8 @@ List work items in an environment.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

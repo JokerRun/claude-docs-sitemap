@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: d5b633dc8c834ffed70e3e8f87a8f536824af121172eb8b1008d592251fb6278
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 1181b3b48e53f9034956d7f7477a11ab930901d316bb2b9556ae493929d594ab
 ---
 
 ---
@@ -141,6 +141,8 @@ Fetches a tunnel by ID.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

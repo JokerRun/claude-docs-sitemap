@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/bundles/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f29dd51c9a0d90e636b84988736ab7e5b8944c920e4b89774da2b1dca686727b
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: ca796646ff8b683599f1dc0c16a4ad12c1a4e5cf2790193cd6455b4063856e20
 ---
 
 ---
@@ -145,6 +145,8 @@ List the organization's Bundles, newest first by `created_at`. A Bundle that Cla
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

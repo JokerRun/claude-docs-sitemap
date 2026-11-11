@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-view
-fetched_at: 2026-11-05T02:13:10.463673Z
-sha256: 1e15b773d73b82c488ace7882eb5087f49d77ce4d2c94d1cfa7c6d3a01005aed
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 9b25fce624c484b9d78bd3bd6ad8e7825087d976b8b0ba1f405ed88f4cc202bd
 ---
 
 > ## Documentation Index
@@ -176,7 +176,9 @@ A working row shows what the session says it's doing, and a blocked row shows th
 
 When the list is [grouped by directory](#organize-the-list), the summary opens with the session's state as a colored word, such as `Needs input · double jump or wall climb?`. In the default state grouping, the group header already names the state, so the row shows only the summary.
 
-The end-of-turn summary and each mid-turn rewrite are one short Haiku-class request through your normal provider, billed and handled under the same [data usage terms](https://code.claude.com/docs/en/data-usage.md) as the session itself. The 15-second updates between model rewrites reuse the session's own output and don't send a request. On a third-party provider or gateway with no Haiku-class model configured, the request uses the session's main model instead; set [`ANTHROPIC_DEFAULT_HAIKU_MODEL`](https://code.claude.com/docs/en/model-config#environment-variables) to choose one.
+#### Cost of row summaries
+
+The end-of-turn summary and each mid-turn rewrite are one short request through your normal provider, billed and handled under the same [data usage terms](https://code.claude.com/docs/en/data-usage.md) as the session itself. On a third-party provider or gateway, summaries use the model you set in [`ANTHROPIC_DEFAULT_HAIKU_MODEL`](https://code.claude.com/docs/en/model-config#environment-variables). With it unset, they use your provider's model for background tasks: see [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock.md#4-pin-model-versions), [Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai.md#5-pin-model-versions), [Microsoft Foundry](https://code.claude.com/docs/en/microsoft-foundry.md#4-pin-model-versions), or your [gateway](https://code.claude.com/docs/en/llm-gateway-protocol.md#requests-and-defaults-by-connection-method).
 
 ### Pull request status
 
@@ -898,8 +900,6 @@ Each background session has the `CLAUDE_JOB_DIR` environment variable set to its
 To inspect this state without reading the files directly, run `claude daemon status`. It reports whether the supervisor is reachable, its process ID and version, the socket directory, and how many background sessions are live.
 
 The command also warns when the running supervisor is on a different version than the `claude` you invoked, which happens after an update the supervisor hasn't restarted into yet. The warning shows both versions and tells you to run `claude daemon stop --any` to pick up the new version.
-
-Sessions survive that version mismatch intact: an older Claude Code version that updates a session's `state.json` preserves fields it doesn't recognize and keeps the session listed. The session list in `roster.json` follows the same rule, so sessions started by the newer version stay reachable and keep accepting input after the supervisor restarts.
 
 ### Turn off agent view
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/archive
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: cbef8128599066cd0811c79d72e42b057504d450abf33a2170bff5bc378fc452
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 8b9c61934ef28ecf06f3191f6197362d03a0dcf7a8c3d590850f5217cb16d6a9
 ---
 
 ---
@@ -138,6 +138,8 @@ Archive Session
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -207,6 +209,10 @@ Archive Session
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5-2"`
+
+          Built for the most ambitious work in coding, enterprise workflows, and the sciences
 
         - `"claude-haiku-5-5"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-integration-patterns
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 54fed76b3a5f78ee25b87137a7ed878eae092eb002798e6f07ca74f6b3025b89
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 2faf085493d82c4792feb1c4cc5a9a7aad453bb92d6f5962144683a0f93b175e
 ---
 
 ---
@@ -62,7 +62,7 @@ When the response has `has_more: true`, the window contains more than one page o
 Even with clean tiling, an activity that indexes after its window has closed never appears in a later window. Deduplicate on the activity `id` and either widen each new window so it overlaps the previous one by a few minutes or run a periodic reconciliation pass that re-queries an older window.
 
 <Warning>
-  A `created_at.lt` bound too close to the present silently and permanently drops late-indexed activities: once `created_at.gte` advances past them, no later window can recover them. Treat the 1-minute queryability figure as the documented indexing lag, not a soft recommendation.
+  A `created_at.lt` bound too close to the present silently and permanently drops late-indexed activities: once `created_at.gte` advances past them, no later window can recover them. Treat the 1-minute queryability figure as the documented indexing lag, not a soft recommendation. Security posture activities can take longer than 1 minute to become queryable; see [Send Security posture events to your SIEM](https://platform.claude.com/docs/en/manage-claude/compliance-security-posture/send-events#run-it-on-a-schedule).
 </Warning>
 
 ### Cursor-driven incremental reads

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: b1059d8e42dd45a1c6176ebe2690741ce17057f244f3e19de9533ab2c1637304
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: ee3ae70deb3cd135e2deeb4ec6391b9d0fcb196f16da4b59463ecf69bb66bd48
 ---
 
 > ## Documentation Index
@@ -16,6 +16,12 @@ sha256: b1059d8e42dd45a1c6176ebe2690741ce17057f244f3e19de9533ab2c1637304
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md). Longer releases are grouped by type of change, with long lists of improvements and bug fixes collapsed.
 
 Run `claude --version` to check your installed version.
+
+**2.1.322**
+
+November 10, 2026
+
+* Added fast mode on Vertex in the global, us and eu regions, falling back to standard speed if Vertex refuses it
 
 **2.1.321**
 

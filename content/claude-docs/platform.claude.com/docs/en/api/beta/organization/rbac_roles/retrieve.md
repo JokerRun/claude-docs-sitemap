@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_roles/retrieve
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: b5fae9415b67e76f4433512ca7712edf79a95138937d6e73c24346246ef17e22
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 3b3e2981a083604e6cfda3e5f63c4897991a827962f8eb630cf0d0bd191df2e7
 ---
 
 ---
@@ -56,7 +56,7 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 
   - `display_name: string`
 
-    Name of the RBAC Role. For a role created by Anthropic, this name can differ from the label claude.ai shows, and Anthropic may change the name. To keep a lasting reference to a role, store its `id`.
+    Name of the RBAC Role. For a role created by Anthropic, this is Anthropic's name for the access that the role grants. Anthropic may change this name, so to keep a lasting reference to a role, store its `id`.
 
   - `updated_at: string`
 

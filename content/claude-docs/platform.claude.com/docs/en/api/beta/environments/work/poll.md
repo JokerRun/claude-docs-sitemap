@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/poll
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 182ae7bb8bcce69661691e4b29150d35b6461dc3f5eb4afa2f09b8d3e516a507
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 0f65f41e11e30adb631aab32626bf74587272fbb86da40244e199f196fff781f
 ---
 
 ---
@@ -153,6 +153,8 @@ Long poll for work items in the queue.
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

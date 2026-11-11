@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/bundles
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 0c6d3324ad6779688e665a3161a933b49ec38aee6260c511c9660d20e413fad1
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 3f01d12989c2225f087cbed8c0185d45298fc92a0858dd0fbac3733abb166794
 ---
 
 ---
@@ -147,6 +147,8 @@ List the organization's Bundles, newest first by `created_at`. A Bundle that Cla
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -346,6 +348,8 @@ Get one Bundle. What the Bundle grants (connectors, repositories and credentials
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -585,6 +589,8 @@ List the Slack channels and Slack workspaces a Bundle is attached to, newest fir
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -795,6 +801,8 @@ Attach a Bundle to a Slack channel or a Slack workspace. A Bundle attached to a 
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -1035,6 +1043,8 @@ Get one Bundle Target. Returns 404 when `target_id` is the identifier of another
 
   - `"webhooks-2026-10-07"`
 
+  - `"admin-user-sign-out-2026-10-08"`
+
   - `"message-threads-2026-08-12"`
 
   - `"analytics-usage-cost-2026-08-24"`
@@ -1240,6 +1250,8 @@ Detach a Bundle from a Slack channel or a Slack workspace. A repeated detach ret
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

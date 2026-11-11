@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 323ae541e0c6c43300a009ea9a197d469f46a171baecf8ed6842ee0735eda199
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: a86a6da98f82cf553e562f03625d8367e16f225d306eb443b85348aee97037fb
 ---
 
 ---
@@ -551,7 +551,7 @@ Di Amazon Bedrock, Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude 
 
 ### Blok thinking yang terikat ke percakapan yang berbeda
 
-Error 400 `invalid_request_error` ini biasanya berarti blok thinking yang Anda kirim kembali gagal dalam pemeriksaan prefiks: sesuatu sebelum blok tersebut berubah setelah blok itu dihasilkan, seperti prompt `system`, `tools`, atau pesan sebelumnya. Model Claude 5.1 dan yang lebih baru menjalankan pemeriksaan ini. Untuk permintaan yang tidak mengatur `prefix_mismatch_behavior`, [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement) menunjukkan permintaan mana yang mendapatkan error ini. Pesan error diawali dengan posisi blok pertama yang gagal:
+Error 400 `invalid_request_error` ini biasanya berarti blok thinking yang Anda kirim kembali gagal dalam pemeriksaan prefiks: sesuatu sebelum blok tersebut berubah setelah blok itu dihasilkan, seperti prompt `system`, `tools`, atau pesan sebelumnya. Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 menjalankan pemeriksaan ini. Untuk permintaan yang tidak mengatur `prefix_mismatch_behavior`, [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement) menunjukkan permintaan mana yang mendapatkan error ini. Pesan error diawali dengan posisi blok pertama yang gagal:
 
 ```text wrap
 messages.{i}.content.{j}: Invalid `signature` in `thinking` block. The block is bound to a different conversation. Remove the block, or set `thinking.block_binding.prefix_mismatch_behavior` to "drop_block".

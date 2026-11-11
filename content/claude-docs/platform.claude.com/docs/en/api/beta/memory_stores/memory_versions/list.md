@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/list
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: d78d3a011ae171b23c49d35758ff74e7453dd6851342f79542c7ef62f0d5b426
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 968fa9628a314712e912a08974315d49c4bbb4883576c0f5bcec9e50e2f156fb
 ---
 
 ---
@@ -213,6 +213,8 @@ List Memory Versions
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 

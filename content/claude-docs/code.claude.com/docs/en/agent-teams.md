@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-teams
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: fdbb78401f8731b26e865a8eb57f433805bbae0ef931bbda47f92fa09ab860b9
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: a03340d7283bf79fec4d2918ba480ada4f7cd661334f811fa1f77b9e377e2c5d
 ---
 
 > ## Documentation Index
@@ -15,7 +15,7 @@ sha256: fdbb78401f8731b26e865a8eb57f433805bbae0ef931bbda47f92fa09ab860b9
 
 > [!WARNING]
 >
-> Agent teams are experimental and disabled by default. Enable them by setting `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` in your [settings.json](https://code.claude.com/docs/en/settings.md) or environment. Without that variable, no team is set up at session start, no team directories are written, and Claude does not spawn or propose teammates. Agent teams have [known limitations](#limitations) around session resumption, task coordination, and shutdown behavior.
+> Agent teams are experimental and disabled by default. Enable them by setting `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` in your [settings.json](https://code.claude.com/docs/en/settings.md) or environment. Agent teams have [known limitations](#limitations) around session resumption, task coordination, and shutdown behavior.
 
 Agent teams let you coordinate multiple Claude Code instances working together. One session acts as the team lead, coordinating work, assigning tasks, and synthesizing results. Teammates work independently, each in its own context window, and communicate directly with each other. You can also talk to any teammate directly without going through the lead.
 

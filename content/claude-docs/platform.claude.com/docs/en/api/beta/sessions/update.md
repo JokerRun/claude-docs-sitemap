@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/update
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: c2d0a3203607b1a0c5f6d6289ca9403be7048799b14b373c57d1a8d7ae68b8e6
+fetched_at: 2026-11-11T02:12:04.616753Z
+sha256: 84cff73b242dcef2f1c34e7ec9bdd7a6d8d340cefeb87fe332d50c856fe863f8
 ---
 
 ---
@@ -137,6 +137,8 @@ Update Session
   - `"telemetry-destinations-2026-08-11"`
 
   - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
 
   - `"message-threads-2026-08-12"`
 
@@ -793,6 +795,10 @@ Update Session
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5-2"`
+
+          Built for the most ambitious work in coding, enterprise workflows, and the sciences
 
         - `"claude-haiku-5-5"`
 
