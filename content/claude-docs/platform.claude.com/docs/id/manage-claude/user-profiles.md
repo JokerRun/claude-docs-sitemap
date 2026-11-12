@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-profiles
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 46d7200cb36f98d573b8ff88336e09a701ef6d20d1aeb8ea51f0104baf06c33f
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 1769922127dbc2858198b62b00f489444498aa697d5a5a80ec57aacf696bdfdb
 ---
 
 ---
@@ -373,7 +373,7 @@ Message Batches adalah pengecualian: pembuatan batch hanya memeriksa format ID. 
 
 ### Atribusikan permintaan di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock
 
-ID profil dari kedua jenis akses juga berfungsi di Claude Models on Google Cloud (Google managed) dan di [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). ID ini tidak berfungsi dengan [integrasi Amazon Bedrock sebelumnya](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) yang Anda panggil dengan `InvokeModel` atau `Converse`. Anda menggunakan kredensial organisasi Anthropic Anda hanya untuk membuat dan mengelola profil. Inferensi tetap menggunakan kredensial AWS atau Google Cloud Anda yang sudah ada.
+ID profil dari kedua jenis akses juga berfungsi di Claude Models on Google Cloud (Google managed) dan di [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). ID ini tidak berfungsi di [Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), yang Anda panggil dengan `InvokeModel` atau `Converse`. Anda menggunakan kredensial organisasi Anthropic Anda hanya untuk membuat dan mengelola profil. Inferensi tetap menggunakan kredensial AWS atau Google Cloud Anda yang sudah ada.
 
 | Platform                                                                                                                                                   | Membuat profil                                                                                                                                                             | Kirim ID profil di                         |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 3169b8b80688df05e1ee9765e92812c7312dd43041fd02c612d4c03959b9c99a
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 84bfd749ce1696a3ac7d72c4c1ce8c301c7c3f68af99e241318272fa9197eeee
 ---
 
 ---
@@ -1122,8 +1122,8 @@ Untuk menggunakan klien HTTP yang sepenuhnya kustom:
 <Note>
   Untuk panduan penyiapan platform terperinci beserta contoh kode, lihat:
 
-  * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
-  * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
+  * [Amazon Bedrock (`bedrock-mantle`)](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
+  * [Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
   * [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
   * [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)
   * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
@@ -1134,11 +1134,9 @@ Untuk menggunakan klien HTTP yang sepenuhnya kustom:
 Java SDK mendukung platform berikut melalui dependensi terpisah yang menyediakan implementasi `Backend` khusus platform:
 
 * **Claude Models on Google Cloud (Google managed):** `com.anthropic:anthropic-java-vertex`: Gunakan `VertexBackend.builder()` atau `VertexBackend.fromEnv()`. `fromEnv()` membaca `CLOUD_ML_REGION` dan `ANTHROPIC_VERTEX_PROJECT_ID` serta menggunakan Application Default Credentials.
-* **Bedrock:** `com.anthropic:anthropic-java-bedrock`: Gunakan `BedrockMantleBackend.fromEnv()` atau `BedrockMantleBackend.builder()` untuk endpoint Bedrock Messages-API, atau `BedrockBackend.fromEnv()` / `BedrockBackend.builder()` (jalur `bedrock-runtime`).
+* **Bedrock:** `com.anthropic:anthropic-java-bedrock`: Gunakan `BedrockMantleBackend.fromEnv()` atau `BedrockMantleBackend.builder()` untuk endpoint `bedrock-mantle`, atau `BedrockBackend.fromEnv()` atau `BedrockBackend.builder()` untuk API `InvokeModel` pada endpoint `bedrock-runtime`.
 * **Claude Platform on AWS:** `com.anthropic:anthropic-java-aws`: Gunakan `AwsBackend.fromEnv()` (membaca `ANTHROPIC_AWS_WORKSPACE_ID` serta region/rantai kredensial default AWS) atau `AwsBackend.builder()`. Tersedia dalam beta.
 * **Foundry:** `com.anthropic:anthropic-java-foundry`: Gunakan `FoundryBackend.fromEnv()` atau `FoundryBackend.builder()`.
-
-Gunakan `BedrockMantleBackend` untuk proyek baru; `BedrockBackend` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
 
 Java SDK juga mendukung Claude Models on Google Cloud (Anthropic managed) melalui `GoogleCloudBackend`, dari dependensi `com.anthropic:anthropic-java-google-cloud`. Backend ini masih dalam tahap beta. Buat backend ini dengan `GoogleCloudBackend.builder()` atau `GoogleCloudBackend.fromEnv()`. `fromEnv()` membaca `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`, `ANTHROPIC_GOOGLE_CLOUD_PROJECT`, dan Google Application Default Credentials. Lihat [Resolusi proyek, lokasi, dan workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution).
 
@@ -1220,7 +1218,7 @@ export ANTHROPIC_LOG=debug
 
 ### Tracing OpenTelemetry
 
-Saat aplikasi Anda mendaftarkan tracer provider OpenTelemetry, SDK memancarkan span untuk setiap permintaan yang dikirimnya. Untuk mengirim span ke platform observabilitas Anda, lihat [Menyiapkan OpenTelemetry dengan Claude SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
+Saat aplikasi Anda mendaftarkan tracer provider OpenTelemetry, SDK memancarkan span untuk setiap permintaan yang dikirimnya. Untuk mengirim span ke platform observabilitas Anda, lihat [Menyiapkan OpenTelemetry dengan Anthropic SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
 
 ### Fungsionalitas API yang tidak terdokumentasi
 

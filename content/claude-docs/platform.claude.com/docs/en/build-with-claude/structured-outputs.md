@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 9dc55ae46846151fd7fc139f4403f971ab2a30a73726ef1938d07445d78be931
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 57e8f1070ecd83062c76460ceeed696199a9ef37686aa70b31e9c20786b36d7d
 ---
 
 ---
@@ -36,10 +36,10 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (bedrock-runtime): stable
     Claude Platform on AWS: stable
     Claude Models on Google Cloud (Anthropic managed): stable
-    Amazon Bedrock: stable
-    Amazon Bedrock (InvokeModel): stable
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
 ---

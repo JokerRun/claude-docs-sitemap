@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/choosing-a-model
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 81bc8862812bf715cb314a1805bb0e495f26d2fe16c87a6a4e4095c0a286e6f8
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 661d5d06d7adafaf6383811eed2eba5a75079d59d5ef8794610acaca3f800080
 ---
 
 ---
@@ -50,7 +50,7 @@ Untuk tugas kompleks di mana kecerdasan dan kemampuan tingkat lanjut sangat pent
 2. [Optimalkan prompt Anda](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5) untuk model ini.
 3. Evaluasi apakah kinerjanya memenuhi kebutuhan Anda.
 4. Pertimbangkan untuk meningkatkan efisiensi dengan menurunkan [effort](https://platform.claude.com/docs/id/build-with-claude/effort) atau beralih ke model yang lebih rendah seiring waktu dengan optimalisasi alur kerja yang lebih baik.
-5. Jika eval Anda pada effort `xhigh` atau `max` masih kurang memadai untuk penalaran yang menuntut atau pekerjaan agentik jangka panjang, beralihlah ke [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/whats-new-fable-5-2).
+5. Jika eval Anda pada effort `xhigh` atau `max` masih kurang memadai untuk penalaran yang menuntut atau pekerjaan agentik jangka panjang, beralihlah ke [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview).
 
 Pendekatan ini paling cocok untuk:
 
@@ -62,9 +62,9 @@ Pendekatan ini paling cocok untuk:
 
 **Claude Opus 5.5** (`claude-opus-5-5`) dibangun untuk coding agentik dan pekerjaan pengetahuan yang berjalan lama, dengan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (pemikiran adaptif) yang selalu aktif. Jika integrasi Anda memaksa penggunaan alat (`tool_choice` dengan tipe `any` atau `tool`), menonaktifkan thinking, atau menggunakan alat penggunaan komputer `computer_20251124`, lihat [Perubahan yang merusak kompatibilitas](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#breaking-changes) sebelum beralih.
 
-**Claude Fable 5.2** (`claude-fable-5-2`) adalah model Anthropic paling mumpuni yang terbuka untuk semua pelanggan. Model ini dibangun untuk penalaran yang menuntut dan pekerjaan agentik jangka panjang. **Claude Mythos 5.2** (`claude-mythos-5-2`) menawarkan kemampuan yang sama hanya kepada organisasi yang telah diverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842). Kedua model menggunakan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) yang selalu aktif. Jika kode Anda mengedit giliran sebelumnya dalam percakapan, memindahkan percakapan antarmodel, menggunakan alat penggunaan komputer `computer_20251124`, atau menggunakan alat advisor, lihat [perubahan yang merusak kompatibilitas pada Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/whats-new-fable-5-2#breaking-changes) sebelum beralih.
+**Claude Fable 5.2** (`claude-fable-5-2`) adalah model Anthropic paling mumpuni yang terbuka untuk semua pelanggan. Model ini dibangun untuk penalaran yang menuntut dan pekerjaan agentik jangka panjang. **Claude Mythos 5.2** (`claude-mythos-5-2`) menawarkan kemampuan yang sama hanya kepada organisasi yang telah diverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842). Kedua model menggunakan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) yang selalu aktif. Jika kode Anda mengubah `system`, `tools`, atau pesan sebelumnya dalam percakapan, memindahkan percakapan antarmodel, menggunakan alat penggunaan komputer `computer_20251124`, atau menggunakan alat advisor, lihat [perubahan yang merusak kompatibilitas pada Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/whats-new-fable-5-2#breaking-changes) sebelum beralih.
 
-Untuk jendela konteks, batas output, dan harga, lihat [tabel perbandingan model](https://platform.claude.com/docs/id/models/overview#latest-models-comparison).
+Untuk jendela konteks, batas output, dan harga, lihat tabel [Semua model](https://platform.claude.com/docs/id/models/overview#all-models).
 
 ## Matriks pemilihan model
 
@@ -81,7 +81,7 @@ Sebagian besar beban kerja dimulai dengan Claude Opus 5.5.
 
 ## Putuskan apakah perlu meningkatkan atau mengganti model
 
-Untuk menentukan apakah Anda perlu meningkatkan atau mengganti model, Anda sebaiknya:
+Untuk memutuskan apakah perlu meningkatkan atau mengganti model:
 
 1. [Buat tes benchmark](https://platform.claude.com/docs/id/test-and-evaluate/develop-tests) yang spesifik untuk kasus penggunaan Anda. Memiliki set evaluasi yang baik adalah langkah terpenting dalam proses ini.
 
@@ -97,7 +97,7 @@ Untuk menentukan apakah Anda perlu meningkatkan atau mengganti model, Anda sebai
 
 ## Gabungkan model
 
-Strategi multi-model memasangkan model berbiaya lebih rendah dengan model frontier sehingga sebagian besar token ditagih dengan tarif yang lebih rendah. Dua pola yang umum adalah eksekutor yang mengeskalasi keputusan sulit ke penasihat, dan orkestrator yang mendelegasikan pekerjaan massal ke pekerja berbiaya lebih rendah. Lihat [Mengoptimalkan biaya dan kecerdasan](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence) untuk kedua strategi tersebut, contoh terukur, dan opsi implementasi.
+Strategi multimodel memasangkan model berbiaya lebih rendah dengan model frontier sehingga sebagian besar token ditagih dengan tarif yang lebih rendah. Dua pola yang umum adalah eksekutor yang mengeskalasi keputusan sulit ke penasihat, dan orkestrator yang mendelegasikan pekerjaan massal ke pekerja berbiaya lebih rendah. Lihat [Mengoptimalkan biaya dan kecerdasan](https://platform.claude.com/docs/id/about-claude/models/optimizing-for-cost-and-intelligence) untuk kedua strategi tersebut, contoh terukur, dan opsi implementasi.
 
 ## Langkah selanjutnya
 

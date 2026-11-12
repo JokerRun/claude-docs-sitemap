@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/migration-guide
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: b0d666b7a7882ae598c48676d3fa1a90c42dd6cfc1ebb4030e8e398281dcab52
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 62db4207706e41e685bedb4d854b349f4cdde2f18cc76bbc485c04cc6d55d2cc
 ---
 
 ---
@@ -23,7 +23,7 @@ Biarkan Claude Code memigrasikan kode Anda
 
 Halaman ini mencantumkan perubahan kode untuk berpindah ke Claude Opus 5.5 dari [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-47), [Claude Opus 4.6 dan model Opus sebelumnya](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-46), atau [Claude Sonnet 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-sonnet-5). Setiap pembaca memerlukan [Yang harus dipenuhi setiap permintaan ke Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#request-requirements) dan [Menangani pemikiran di setiap respons](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#thinking-in-every-response). Kemudian buka bagian untuk model Anda saat ini: kalimat pertamanya menyebutkan bagian lain yang berlaku untuk Anda. [Daftar periksa migrasi](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migration-checklist) mencantumkan setiap perubahan berdasarkan model awal.
 
-Claude Opus 5.5 lebih murah daripada Claude Opus 5 ($4 / $20 USD per juta token input / output, dibandingkan dengan $5 / $25 USD; lihat [harga Claude](https://platform.claude.com/docs/id/about-claude/pricing)). Untuk dukungan fitur, lihat [Yang baru di Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#feature-support). Untuk perbedaan perilaku dan pola prompting khusus model, lihat [Menulis prompt untuk Claude Opus 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5).
+Claude Opus 5.5 lebih murah daripada Claude Opus 5 ($4 / $20 USD per juta token input / output, dibandingkan dengan $5 / $25 USD; lihat [Harga](https://platform.claude.com/docs/id/about-claude/pricing)). Untuk dukungan fitur, lihat [Yang baru di Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#feature-support). Untuk perbedaan perilaku dan pola prompting khusus model, lihat [Menulis prompt untuk Claude Opus 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5).
 
 ## Yang harus dipenuhi setiap permintaan ke Claude Opus 5.5
 
@@ -36,7 +36,7 @@ Dari model mana pun Anda berasal, permintaan ke `claude-opus-5-5` harus memenuhi
 * **Parameter sampling:** Hilangkan `temperature`, `top_p`, dan `top_k`. Gunakan prompting untuk mengarahkan perilaku model.
 * **Prefill:** Jangan akhiri `messages` dengan giliran asisten yang di-prefill: ini akan ditolak. Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) atau instruksi prompt sistem sebagai gantinya.
 * **Penggunaan komputer:** Deklarasikan penggunaan komputer sebagai toolset `computer_toolset_20260801`. Di Amazon Bedrock, `computer_20251124` juga berfungsi. Lihat [perubahan yang merusak kompatibilitas pada penggunaan komputer](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#computer-use-toolset).
-* **Jendela konteks:** Tidak diperlukan header beta jendela konteks. [Jendela konteks 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) adalah default, dan header yang dikirim untuk model lama tidak berpengaruh.
+* **Jendela konteks:** [Jendela konteks 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) adalah default. Header beta jendela konteks yang dikirim untuk model lama tidak berpengaruh.
 
 Permintaan berikut memenuhi setiap item dalam daftar: effort diatur, dan tidak ada field `thinking`. Di bagian contoh yang mencetak teks, contoh tersebut menemukan blok teks berdasarkan tipenya, karena blok `thinking` muncul lebih dulu.
 
@@ -155,25 +155,21 @@ Permintaan berikut memenuhi setiap item dalam daftar: effort diatur, dan tidak a
   ```
 
   ```java Java
-  import com.anthropic.models.messages.OutputConfig;
+  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  void main() {
-      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  MessageCreateParams params = MessageCreateParams.builder()
+      .model(Model.CLAUDE_OPUS_5_5)
+      .maxTokens(4096L)
+      .addUserMessage("Analyze the trade-offs between microservices and monolithic architectures")
+      .outputConfig(OutputConfig.builder()
+          .effort(OutputConfig.Effort.MEDIUM)
+          .build())
+      .build();
 
-      MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5_5)
-          .maxTokens(4096L)
-          .addUserMessage("Analyze the trade-offs between microservices and monolithic architectures")
-          .outputConfig(OutputConfig.builder()
-              .effort(OutputConfig.Effort.MEDIUM)
-              .build())
-          .build();
-
-      Message response = client.messages().create(params);
-      response.content().stream()
-          .flatMap(block -> block.text().stream())
-          .forEach(textBlock -> IO.println(textBlock.text()));
-  }
+  Message response = client.messages().create(params);
+  response.content().stream()
+      .flatMap(block -> block.text().stream())
+      .forEach(textBlock -> IO.println(textBlock.text()));
   ```
 
   ```php PHP
@@ -184,12 +180,12 @@ Permintaan berikut memenuhi setiap item dalam daftar: effort diatur, dan tidak a
       messages: [
           ['role' => 'user', 'content' => 'Analyze the trade-offs between microservices and monolithic architectures']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       outputConfig: ['effort' => 'medium'],
   );
 
   foreach ($message->content as $block) {
-      if ($block->type === 'text') {
+      if ($block instanceof \Anthropic\Messages\TextBlock) {
           echo $block->text, PHP_EOL;
       }
   }
@@ -210,7 +206,7 @@ Permintaan berikut memenuhi setiap item dalam daftar: effort diatur, dan tidak a
   )
 
   message.content.each do |block|
-    puts block.text if block.type == :text
+    puts block.text if block.is_a?(Anthropic::Models::TextBlock)
   end
   ```
 </CodeGroup>
@@ -286,8 +282,8 @@ Telusuri grup-grup ini dari atas ke bawah dan berhentilah setelah grup yang meny
 * Hapus `thinking: {"type": "disabled"}` dan `thinking: {"type": "enabled", ...}`; pilih level effort sebagai gantinya.
 * Atur `effort` secara eksplisit: defaultnya adalah `medium`, sedangkan default Claude Opus 5 adalah `high`.
 * Ganti tipe `tool_choice` `any` dan `tool` dengan `auto` ditambah penggunaan alat ketat atau output terstruktur.
-* Jika Anda menggunakan versi alat penggunaan komputer yang lebih lama, deklarasikan `computer_toolset_20260801` (tanpa header beta) sebagai gantinya dan perbarui loop agen Anda untuk toolset tersebut. Di Amazon Bedrock, `computer_20251124` juga berfungsi.
-* Jika router atau fallback dapat memindahkan percakapan dari Claude Opus 5.5 ke model lain, perkirakan bahwa model tersebut akan berjalan tanpa blok thinking dari Claude Opus 5.5. Claude Fable 5.1 dan Claude Mythos 5.1 di Claude API adalah pengecualian dan mempertahankannya. Begitu pula Claude Fable 5.2 dan Claude Mythos 5.2 di sana. Di Claude Models on Google Cloud (Google managed), Claude Fable 5.2 dan Claude Mythos 5.2 membaca blok yang sama seperti di Claude API. Claude Opus 5.5 sendiri membaca thinking dari Claude Opus 5 dan dari model Opus, Sonnet, dan Haiku sebelumnya. Di Claude API dan Claude Models on Google Cloud (Google managed), model ini juga membaca thinking dari Claude Sonnet 5.5 dan Claude Haiku 5.5. Model ini tidak membaca thinking dari model Claude Fable atau Claude Mythos.
+* Jika Anda menggunakan versi alat penggunaan komputer yang lebih lama, deklarasikan `computer_toolset_20260801` sebagai gantinya, hapus header beta versi tersebut, dan perbarui loop agen Anda untuk toolset tersebut. Di Amazon Bedrock, `computer_20251124` juga berfungsi. Lihat [perubahan yang merusak kompatibilitas pada penggunaan komputer](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#computer-use-toolset).
+* Jika router atau fallback dapat memindahkan percakapan keluar dari Claude Opus 5.5, perkirakan bahwa model baru tersebut akan berjalan tanpa blok thinking dari Claude Opus 5.5. Claude Fable 5.1 dan Claude Mythos 5.1 mempertahankannya di Claude API. Claude Fable 5.2 dan Claude Mythos 5.2 mempertahankannya di Claude API dan Claude Models on Google Cloud (Google managed). Claude Opus 5.5 sendiri membaca thinking dari Claude Opus 5 dan dari model Opus, Sonnet, dan Haiku sebelumnya. Di Claude API dan Claude Models on Google Cloud (Google managed), model ini juga membaca thinking dari Claude Sonnet 5.5 dan Claude Haiku 5.5. Model ini tidak membaca thinking dari model Claude Fable atau Claude Mythos.
 * Baca blok konten berdasarkan `type`, dan kirim kembali blok `thinking` tanpa modifikasi dalam loop penggunaan alat.
 * Jika antarmuka Anda merender teks di antara pemanggilan alat, atur `display: "updates"` (beta) atau `"summarized"` dan render blok `thinking` yang tidak kosong.
 * Jika kode Anda mengedit giliran sebelumnya, prompt `system`, atau `tools` di tengah percakapan, ikuti [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking).
@@ -302,7 +298,7 @@ Telusuri grup-grup ini dari atas ke bawah dan berhentilah setelah grup yang meny
 * Tinjau prompt yang mendekati batas minimum caching: prompt sepanjang 512 token atau lebih dapat membuat entri cache.
 * Jika organisasi Anda memiliki komitmen [Priority Tier](https://platform.claude.com/docs/id/api/service-tiers#supported-models), rencanakan kapasitas secara terpisah: Priority Tier tidak didukung di Claude Opus 5.5.
 * Jika Anda menjalankan pada effort `xhigh` atau `max`, naikkan `max_tokens` menjadi setidaknya 64k sebagai titik awal.
-* Untuk beban kerja agentik, pertimbangkan [anggaran tugas](https://platform.claude.com/docs/id/build-with-claude/task-budgets) (beta) dan perubahan alat di tengah percakapan (beta).
+* Untuk beban kerja agentik, pertimbangkan [anggaran tugas](https://platform.claude.com/docs/id/build-with-claude/task-budgets) dan perubahan alat di tengah percakapan. Keduanya masih dalam beta.
 
 ### Claude Opus 4.7 atau sebelumnya
 
@@ -310,7 +306,7 @@ Telusuri grup-grup ini dari atas ke bawah dan berhentilah setelah grup yang meny
 * Hapus header beta jendela konteks apa pun.
 * Jika Anda menyusun ulang riwayat percakapan untuk memperbarui instruksi, pertimbangkan untuk beralih ke pesan sistem di tengah percakapan untuk mempertahankan cache hit prompt.
 * Verifikasi bahwa penanganan alasan berhenti Anda membaca `stop_details` pada penolakan.
-* Jika Anda menginginkan mode cepat, yang ditolak Claude Opus 4.7, atur `speed: "fast"` pada permintaan Claude API Anda. Claude Opus 5.5 tidak memerlukan header beta.
+* Jika Anda menginginkan mode cepat, yang ditolak Claude Opus 4.7, atur `speed: "fast"` pada permintaan Claude API Anda.
 
 ### Claude Opus 4.6 atau sebelumnya
 
@@ -598,7 +594,7 @@ Sebelum. Claude Opus 5 menerima permintaan ini, dan Claude Opus 5.5 menolaknya d
         }
       }],
       "tool_choice": {"type": "tool", "name": "get_weather"},
-      "messages": [{"role": "user", "content": "What'\''s the weather in Paris?"}]
+      "messages": [{"role": "user", "content": "What is the weather in Paris?"}]
     }'
   ```
 
@@ -706,7 +702,7 @@ Sesudah:
 
 <CodeGroup>
   ```bash cURL
-  # penggunaan alat ketat: setiap panggilan sesuai dengan input_schema milik alat
+  # penggunaan alat ketat: setiap panggilan cocok dengan input_schema alat
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21" \
@@ -733,7 +729,7 @@ Sesudah:
       "tool_choice": {"type": "auto"},
       "messages": [{
         "role": "user",
-        "content": "What'\''s the weather in Paris? Use the get_weather tool."
+        "content": "What is the weather in Paris? Use the get_weather tool."
       }]
     }'
   ```
@@ -800,7 +796,7 @@ Sesudah:
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      // penggunaan alat ketat (strict tool use): setiap panggilan cocok dengan input_schema alat
+      // strict tool use (penggunaan alat ketat): setiap panggilan cocok dengan input_schema alat
       Tools = [.. tools.Select(tool => tool with { Strict = true })],
       ToolChoice = new ToolChoiceAuto(),
       Messages =
@@ -883,7 +879,11 @@ Sesudah:
 
 #### Blok pemikiran terikat pada model dan percakapan
 
-Di Claude API, Claude Fable 5.1 dan Claude Mythos 5.1 membaca blok pemikiran Claude Opus 5.5. Begitu pula Claude Fable 5.2 dan Claude Mythos 5.2 di Claude API. Di Claude Models on Google Cloud (Google managed), Claude Fable 5.2 dan Claude Mythos 5.2 membaca blok yang sama seperti di Claude API. Tidak ada model lain yang melakukannya. Router atau fallback yang memindahkan percakapan dari Claude Opus 5.5 ke model lain mana pun akan menjalankan giliran-giliran tersebut tanpa blok pemikiran itu. Sebaliknya, Claude Opus 5.5 membaca blok pemikiran dari Claude Opus 5 dan dari model Opus, Sonnet, dan Haiku sebelumnya. Di Claude API dan Claude Models on Google Cloud (Google managed), model ini juga membacanya dari Claude Sonnet 5.5 dan Claude Haiku 5.5. Model ini tidak membacanya dari model Claude Fable atau Claude Mythos. Pertahankan percakapan agar bersifat append-only (tanpa pengeditan pada prompt `system`, `tools`, atau pesan sebelumnya di tengah percakapan) sehingga blok-blok tersebut tetap valid; Claude Code, claude.ai, Claude Managed Agents, dan Claude Agent SDK sudah melakukannya. Pada akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC, di Claude API dan di platform cloud, permintaan yang memutar ulang blok pemikiran setelah pengeditan semacam itu dan membiarkan `thinking.block_binding.prefix_mismatch_behavior` tidak diatur akan mendapatkan error 400. Tidak ada perubahan kode untuk integrasi yang bersifat append-only. Lihat [Blok pemikiran terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them) dan [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking).
+Claude Fable 5.1 dan Claude Mythos 5.1 membaca blok pemikiran Claude Opus 5.5 di Claude API. Claude Fable 5.2 dan Claude Mythos 5.2 membacanya di Claude API dan Claude Models on Google Cloud (Google managed). Tidak ada model lain yang melakukannya. Router atau fallback yang memindahkan percakapan dari Claude Opus 5.5 ke model lain mana pun akan menjalankan giliran-giliran tersebut tanpa blok pemikiran itu.
+
+Sebaliknya, Claude Opus 5.5 membaca blok pemikiran dari Claude Opus 5 dan dari model Opus, Sonnet, dan Haiku sebelumnya. Di Claude API dan Claude Models on Google Cloud (Google managed), model ini juga membacanya dari Claude Sonnet 5.5 dan Claude Haiku 5.5. Model ini tidak membacanya dari model Claude Fable atau Claude Mythos.
+
+Pertahankan percakapan agar bersifat append-only (tanpa pengeditan pada prompt `system`, `tools`, atau pesan sebelumnya di tengah percakapan) sehingga blok-blok tersebut tetap valid. Claude Code, claude.ai, Claude Managed Agents, dan Claude Agent SDK sudah melakukannya. Jika sebuah permintaan memutar ulang blok pemikiran setelah pengeditan semacam itu, dengan `thinking.block_binding.prefix_mismatch_behavior` tidak diatur, permintaan tersebut akan mendapatkan error 400. Ini berlaku untuk akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC. [Ketersediaan pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#feature-availability) mencantumkan platform tempat hal ini berlaku. Tidak ada perubahan kode untuk integrasi yang bersifat append-only. Lihat [Blok pemikiran terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them) dan [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking).
 
 #### Beberapa versi alat penggunaan komputer tidak didukung
 
@@ -914,17 +914,18 @@ Sebelum. Claude Opus 5 menerima permintaan ini, dan Claude Opus 5.5 menolaknya d
   ```
 
   ```bash CLI
-  ant beta:messages create \
-    --model claude-opus-5 \
-    --max-tokens 4096 \
-    --beta computer-use-2025-11-24 \
-    --tool '{
-      type: computer_20251124,
-      name: computer,
-      display_width_px: 1024,
+  ant beta:messages create --beta computer-use-2025-11-24 <<'YAML'
+  model: claude-opus-5
+  max_tokens: 4096
+  tools:
+    - type: computer_20251124
+      name: computer
+      display_width_px: 1024
       display_height_px: 768
-    }' \
-    --message '{role: user, content: "Open the display settings."}'
+  messages:
+    - role: user
+      content: Open the display settings.
+  YAML
   ```
 
   ```python Python
@@ -1157,7 +1158,7 @@ Claude Opus 5.5 dapat mengembalikan `stop_reason: "refusal"` dengan kategori `st
 
 ### Perubahan yang direkomendasikan
 
-1. **Jalankan ulang sweep effort Anda.** Effort adalah satu-satunya kontrol pemikiran di Claude Opus 5.5, dan defaultnya adalah `medium` sedangkan default Claude Opus 5 adalah `high`, sehingga permintaan yang menghilangkan `effort` kini berjalan pada `medium`. Turunkan level di tempat kualitas tetap terjaga, dan naikkan untuk pekerjaan yang paling menuntut. Lihat [Effort](https://platform.claude.com/docs/id/build-with-claude/effort).
+1. **Jalankan ulang sweep effort Anda.** Effort adalah satu-satunya kontrol pemikiran di Claude Opus 5.5, dan defaultnya adalah `medium` sedangkan default Claude Opus 5 adalah `high`, sehingga permintaan yang menghilangkan `effort` berjalan pada `medium`. Turunkan level di tempat kualitas tetap terjaga, dan naikkan untuk pekerjaan yang paling menuntut. Lihat [Effort](https://platform.claude.com/docs/id/build-with-claude/effort).
 2. **Evaluasi ulang instruksi prompt khusus model.** Instruksi yang disesuaikan untuk perilaku Claude Opus 5 mungkin tidak lagi diperlukan; lihat [Menulis prompt untuk Claude Opus 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5). Jika Anda berjalan dengan pemikiran dinonaktifkan, lihat juga [Prompt yang ditulis untuk pemikiran yang dinonaktifkan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#prompts-written-for-thinking-disabled).
 3. **Uji di lingkungan pengembangan** sebelum mengalihkan lalu lintas produksi.
 
@@ -1181,7 +1182,7 @@ Bagian ini menambahkan apa yang berubah antara Claude Opus 4.8 dan Claude Opus 5
 
 ### Perubahan yang direkomendasikan
 
-Perubahan ini tidak wajib tetapi akan meningkatkan pengalaman Anda:
+Perubahan ini bersifat opsional, dan dapat meningkatkan pengalaman Anda:
 
 1. **Pertimbangkan anggaran tugas (beta):** Untuk beban kerja agentik, [anggaran tugas](https://platform.claude.com/docs/id/build-with-claude/task-budgets) memberi tahu model berapa banyak token yang dimilikinya untuk satu loop agentik penuh. Fitur ini memerlukan header beta `task-budgets-2026-03-13`.
 
@@ -1199,13 +1200,13 @@ Tidak satu pun dari item ini menambahkan perubahan yang merusak di luar yang ada
 
 1. **Tingkat effort dikalibrasi ulang:** Alokasi token di balik setiap tingkat effort berubah pada Claude Opus 5.5 dibandingkan dengan Claude Opus 4.7. Nilai default-nya adalah `medium`, sedangkan pada Claude Opus 4.7 adalah `high`. Jalankan sweep effort baru pada eval Anda sendiri alih-alih membawa pengaturan yang disetel untuk Claude Opus 4.7. Lihat [Effort](https://platform.claude.com/docs/id/build-with-claude/effort).
 
-2. **Jendela konteks 1M adalah default:** Claude Opus 5.5 menyediakan [jendela konteks](https://platform.claude.com/docs/id/build-with-claude/context-windows) penuh sebesar 1M token secara default tanpa header beta. Jika klien Anda mengirimkan header beta jendela konteks demi kompatibilitas dengan model yang lebih lama, hapus header tersebut.
+2. **Jendela konteks 1M adalah default:** Claude Opus 5.5 menyediakan [jendela konteks](https://platform.claude.com/docs/id/build-with-claude/context-windows) penuh sebesar 1M token secara default. Jika klien Anda mengirimkan header beta jendela konteks demi kompatibilitas dengan model yang lebih lama, hapus header tersebut.
 
 3. **Pesan sistem di tengah percakapan:** Di Claude API, Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), dan Claude Models on Google Cloud (Google managed), Claude Opus 5.5 menerima pesan `role: "system"` tepat setelah giliran pengguna dalam array `messages` (dengan tunduk pada [aturan penempatan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)). Gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal. Claude Opus 4.7 menolak `role: "system"` di dalam `messages` dengan error 400. Jika Anda memelihara jalur kode yang membangun ulang seluruh riwayat pesan untuk memperbarui instruksi, Anda dapat menyederhanakannya dan mempertahankan hit [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) pada giliran sebelumnya.
 
-4. **Detail penghentian penolakan:** Ketika model menolak suatu permintaan, Claude Opus 5.5 mengembalikan objek `stop_details` yang menyebutkan kategori penolakan, bersama dengan alasan penghentian `refusal`. Claude Opus 4.7 mengembalikan objek yang sama, jadi hal ini hanya penting jika penanganan alasan penghentian Anda belum membacanya. Tidak diperlukan header beta, dan tidak ada opsi untuk menonaktifkannya. Jika penanganan alasan penghentian Anda belum membacanya, lihat [Menangani alasan penghentian](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons). Claude Opus 5.5 menolak dalam lebih banyak kategori; lihat [Pengklasifikasi keamanan dan fallback](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#safety-classifiers-and-fallback).
+4. **Detail penghentian penolakan:** Ketika model menolak suatu permintaan, Claude Opus 5.5 mengembalikan objek `stop_details` yang menyebutkan kategori penolakan, bersama dengan alasan penghentian `refusal`. Claude Opus 4.7 mengembalikan objek yang sama, jadi hal ini hanya penting jika penanganan alasan penghentian Anda belum membacanya; jika demikian, lihat [Alasan berhenti dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons). Tidak ada opsi untuk menonaktifkannya. Claude Opus 5.5 menolak dalam lebih banyak kategori; lihat [Pengklasifikasi keamanan dan fallback](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#safety-classifiers-and-fallback).
 
-5. **Mode cepat:** Claude Opus 5.5 mendukung [mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) di Claude API. Mode cepat tidak tersedia di Claude Opus 4.7, di mana permintaan dengan `speed: "fast"` mengembalikan error. Atur `speed: "fast"` pada permintaan Anda. Claude Opus 5.5 tidak memerlukan header beta.
+5. **Mode cepat:** Claude Opus 5.5 mendukung [mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) di Claude API. Mode cepat tidak tersedia di Claude Opus 4.7, di mana permintaan dengan `speed: "fast"` mengembalikan error. Atur `speed: "fast"` pada permintaan Anda.
 
 6. **Toolset penggunaan komputer dan alat penggunaan browser:** Claude Opus 5.5 mendukung [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) sebagai toolset `computer_toolset_20260801` dan [alat penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) untuk tugas di dalam halaman web. Claude Opus 4.7 tidak mendukung keduanya. Untuk memindahkan integrasi `computer_20251124` ke toolset, lihat [perubahan yang merusak kompatibilitas pada penggunaan komputer](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#computer-use-toolset).
 
@@ -1275,9 +1276,6 @@ Bagian ini menambahkan apa yang berubah di Claude Opus 4.7, dengan `claude-opus-
      ```
 
      ```csharp C#
-     using Anthropic;
-     using Anthropic.Models.Messages;
-
      AnthropicClient client = new();
 
      var parameters = new MessageCreateParams
@@ -1329,8 +1327,8 @@ Bagian ini menambahkan apa yang berubah di Claude Opus 4.7, dengan `claude-opus-
      $message = $client->messages->create(
          maxTokens: 16000,
          messages: [['role' => 'user', 'content' => '...']],
-         model: 'claude-opus-4-6',
-         thinking: ['type' => 'enabled', 'budget_tokens' => 10000],
+         model: Model::CLAUDE_OPUS_4_6,
+         thinking: ['type' => 'enabled', 'budgetTokens' => 10000],
      );
      ```
 
@@ -1338,7 +1336,7 @@ Bagian ini menambahkan apa yang berubah di Claude Opus 4.7, dengan `claude-opus-
      client = Anthropic::Client.new
 
      message = client.messages.create(
-       model: "claude-opus-4-6",
+       model: Anthropic::Model::CLAUDE_OPUS_4_6,
        max_tokens: 16000,
        thinking: {
          type: "enabled",
@@ -1412,9 +1410,6 @@ Bagian ini menambahkan apa yang berubah di Claude Opus 4.7, dengan `claude-opus-
      ```
 
      ```csharp C#
-     using Anthropic;
-     using Anthropic.Models.Messages;
-
      AnthropicClient client = new();
 
      var parameters = new MessageCreateParams
@@ -1524,7 +1519,7 @@ Claude Opus 4.7 memperkenalkan perbedaan perilaku dari Claude Opus 4.6 yang buka
 
 3. **Dukungan gambar resolusi tinggi:** Claude Opus 4.7 adalah model Claude pertama dengan dukungan gambar resolusi tinggi. Resolusi gambar maksimum adalah 2.576 piksel pada sisi panjang, naik dari 1.568 piksel pada model sebelumnya. Hal ini membuka peningkatan pada beban kerja yang banyak menggunakan vision dan sangat berharga untuk penggunaan komputer, pemahaman screenshot, dan analisis dokumen.
 
-   Dukungan resolusi tinggi bersifat otomatis dan tidak memerlukan header beta atau opt-in di sisi klien. Dua hal yang perlu direncanakan:
+   Dukungan resolusi tinggi bersifat otomatis. Rencanakan dua hal:
 
    * Gambar resolusi penuh dapat menggunakan hingga sekitar 3x lebih banyak token gambar dibandingkan pada model sebelumnya (hingga 4.784 token untuk setiap gambar, dibandingkan batas sebelumnya sekitar 1.600 token). Anggarkan ulang `max_tokens` dan ekspektasi biaya untuk beban kerja yang banyak menggunakan gambar, atau lakukan downsample sebelum mengirim jika Anda tidak memerlukan fidelitas tambahan.
    * Koordinat penunjukan dan bounding-box yang dikembalikan oleh model bersifat 1:1 dengan piksel gambar sebenarnya pada Claude Opus 4.7, sehingga tidak diperlukan konversi faktor skala.
@@ -1559,7 +1554,10 @@ Butir pertama wajib pada Claude Opus 5.5; sisanya direkomendasikan.
 
 ### Migrasi dari Claude 4.1 atau sebelumnya
 
-Jika Anda bermigrasi dari Claude Opus 4.1 atau model sebelumnya langsung ke Claude Opus 5.5, pertama terapkan semua yang ada di [Migrasi dari Claude Opus 4.5 atau sebelumnya](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-45). Subbagian tersebut dimulai dengan setiap bagian sebelumnya, sehingga pada dasarnya Anda membaca halaman ini dari atas. Kemudian terapkan perubahan tambahan dalam subbagian ini.
+Untuk bermigrasi dari Claude Opus 4.1 atau model sebelumnya langsung ke Claude Opus 5.5:
+
+1. Kerjakan halaman ini dari atas, sesuai urutan halaman, hingga dan termasuk [Migrasi dari Claude Opus 4.5 atau sebelumnya](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-45).
+2. Terapkan perubahan tambahan dalam subbagian ini.
 
 #### Perubahan tambahan yang merusak kompatibilitas
 
@@ -1631,10 +1629,10 @@ Jika Anda bermigrasi dari Claude Opus 4.1 atau model sebelumnya langsung ke Clau
 
      ```ruby Ruby
      # Sebelum
-     legacy_tools = [{type: "text_editor_20250124", name: "str_replace_editor"}]
+     legacy_tools = [{ type: "text_editor_20250124", name: "str_replace_editor" }]
 
      # Sesudah
-     tools = [{type: "text_editor_20250728", name: "str_replace_based_edit_tool"}]
+     tools = [{ type: "text_editor_20250728", name: "str_replace_based_edit_tool" }]
      ```
    </CodeGroup>
 

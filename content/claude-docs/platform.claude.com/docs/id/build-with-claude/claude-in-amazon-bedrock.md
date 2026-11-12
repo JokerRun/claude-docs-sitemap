@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 9459bfadb39f9829cc233c94d311cd4954bfc1423516a47f33d784026e3289e2
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 85958bbada45f78029382204565c35dc1a2d153eae4821b96c6d4c345271f47e
 ---
 
 ---
-title: Claude di Amazon Bedrock (Opus 4.7 dan yang lebih baru)
+title: Claude di Amazon Bedrock (bedrock-mantle)
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-description: Akses model Claude melalui Amazon Bedrock dengan autentikasi, penagihan, dan batas keamanan native AWS.
+description: Panggil Claude melalui Messages API pada endpoint bedrock-mantle milik Amazon Bedrock, dengan autentikasi, penagihan, dan batas keamanan native AWS.
 ---
 
 Panduan ini memandu Anda dalam menyiapkan dan melakukan panggilan API ke Claude di Amazon Bedrock. Claude di Amazon Bedrock berjalan pada infrastruktur yang dikelola AWS dengan akses operator nol: personel Anthropic tidak memiliki akses ke infrastruktur inferensi. Anda dapat membangun aplikasi sensitif sepenuhnya di dalam batas keamanan AWS, dengan bentuk Messages API yang sama dengan yang Anda gunakan pada Claude API.
 
 <Note>
-  Halaman ini membahas Claude di Amazon Bedrock, yang menyajikan Claude melalui Messages API di `/anthropic/v1/messages` pada infrastruktur yang dikelola AWS. API `InvokeModel` dan `Converse` dengan pengidentifikasi model berversi ARN didokumentasikan di [Claude di Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy). Untuk alternatif yang dioperasikan Anthropic di AWS dengan penagihan AWS Marketplace, lihat [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
+  Halaman ini membahas Claude di Amazon Bedrock, yang menyajikan Claude melalui Messages API di `/anthropic/v1/messages` pada endpoint `bedrock-mantle`. Endpoint tersebut berjalan pada infrastruktur yang dikelola AWS. API `InvokeModel` dan `Converse`, pada endpoint `bedrock-runtime`, didokumentasikan di [Claude di Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy). Untuk alternatif yang dioperasikan Anthropic di AWS dengan penagihan AWS Marketplace, lihat [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
 </Note>
 
 ## Akses
@@ -337,12 +337,10 @@ Untuk kredensial, klien menggunakan apa yang Anda teruskan saat membuatnya. Jika
 
 ## Model yang didukung
 
-ID model di Claude di Amazon Bedrock memiliki prefiks penyedia `anthropic.`. Kemampuan dan perilaku model didokumentasikan di halaman [Ikhtisar model](https://platform.claude.com/docs/id/models/overview).
+ID model di Claude di Amazon Bedrock memiliki prefiks penyedia `anthropic.`. Untuk kemampuan dan perilaku model, lihat [Ikhtisar model](https://platform.claude.com/docs/id/models/overview). Claude Fable 5.2 dan Claude Mythos 5.2 tidak tersedia di Claude di Amazon Bedrock. Amazon Bedrock menyajikannya hanya pada endpoint `bedrock-runtime`. Untuk ID model keduanya, lihat [ID model API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids). Untuk melihat endpoint mana yang menyajikan setiap model, lihat [Endpoint availability by models](https://docs.aws.amazon.com/bedrock/latest/userguide/models-endpoint-availability.html) di dokumentasi AWS.
 
 | Model                                                                                       | Model ID                      | Access                                                                                              |
 | :------------------------------------------------------------------------------------------ | :---------------------------- | :-------------------------------------------------------------------------------------------------- |
-| Claude Fable 5.2                                                                            | `anthropic.claude-fable-5-2`  | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
-| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842)) | `anthropic.claude-mythos-5-2` | Active (verification required)                                                                      |
 | Claude Fable 5.1                                                                            | `anthropic.claude-fable-5-1`  | Open                                                                                                |
 | Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842)) | `anthropic.claude-mythos-5-1` | Active (verification required)                                                                      |
 | Claude Fable 5                                                                              | `anthropic.claude-fable-5`    | Open                                                                                                |
@@ -393,7 +391,7 @@ Claude di Amazon Bedrock tersedia di region AWS berikut. Amazon Bedrock menawark
 * **Global:** perutean dinamis di seluruh region yang tersedia untuk ketersediaan maksimum. Tanpa premi harga.
 * **Regional:** endpoint mengarah ke satu region AWS yang Anda tentukan, untuk kebutuhan residensi data. Endpoint regional dikenakan premi harga 10 persen dibandingkan endpoint global. Untuk merutekan ke beberapa region dalam satu wilayah geografis, gunakan [profil inferensi](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html) (US, EU, JP, atau AU). Region yang ditandai **Hanya dalam region** dalam tabel mendukung perutean langsung ke satu region tanpa profil inferensi.
 
-Endpoint global tersedia untuk Claude Fable 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5.5, Claude Sonnet 5, Claude Haiku 5.5, dan Claude Haiku 4.5.
+Endpoint global tersedia untuk Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5.5, Claude Sonnet 5, Claude Haiku 5.5, dan Claude Haiku 4.5.
 
 | Region AWS       | Lokasi                      | Jenis endpoint                 |
 | ---------------- | --------------------------- | ------------------------------ |

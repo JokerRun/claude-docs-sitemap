@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 45d20ee01d3db00a0064d87ddbf9a91448a4ade8fc3d09aa74c90fea8fa125a3
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: d78716115309b1f11f188e604d0d343c78142ab7143da3ee739eeabfac832125
 ---
 
 ---
@@ -36,9 +36,9 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: stable
-    Claude Platform on AWS: stable
     Amazon Bedrock: stable
-    Amazon Bedrock (InvokeModel): stable
+    Amazon Bedrock (bedrock-runtime): stable
+    Claude Platform on AWS: stable
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
 ---
@@ -1190,9 +1190,9 @@ Strict tool use is available on every model and eligible for HIPAA readiness.
 
 * Availability: Available
 
-| Status    | Cloud platforms                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Models                                                            |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry) | [All models](https://platform.claude.com/docs/en/models/overview) |
+| Status    | Cloud platforms                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Models                                                            |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Available | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry) | [All models](https://platform.claude.com/docs/en/models/overview) |
 
 ### Data handling
 

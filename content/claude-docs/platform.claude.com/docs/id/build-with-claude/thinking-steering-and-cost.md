@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 5ad1a224cdaca85c0672056ba893d82557d0e29f8201c207b37fab16e5747576
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 86ce8b7ca05d4397aca4a965c030659834c9624e54ca1886bb06722a2515cf13
 ---
 
 ---
@@ -31,7 +31,7 @@ Kontrol utama atas penentuan ini adalah parameter [effort](https://platform.clau
 
 Jika Anda ingin Claude lebih jarang berpikir, turunkan tingkat effort sebelum beralih ke pengarahan berbasis prompt.
 
-Pemikiran juga berselang-seling dengan “tool use” (penggunaan alat) secara otomatis: Claude dapat berpikir di antara pemanggilan alat, mengevaluasi setiap hasil alat sebelum menentukan apa yang harus dilakukan selanjutnya ([pemikiran berselang-seling](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking)). Anda tidak memerlukan header beta atau konfigurasi tambahan apa pun untuk ini.
+Pemikiran juga berselang-seling dengan “tool use” (penggunaan alat) secara otomatis: Claude dapat berpikir di antara pemanggilan alat, mengevaluasi setiap hasil alat sebelum menentukan apa yang harus dilakukan selanjutnya ([pemikiran berselang-seling](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking)).
 
 Untuk detail lengkap tentang bagaimana konfigurasi pemikiran dan parameter effort berinteraksi, lihat [Pemikiran dan effort](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-effort).
 
@@ -103,7 +103,7 @@ Anda juga dapat mengarahkan pemikiran per pesan dari giliran pengguna, terlepas 
 
 Pengarahan per pesan berguna ketika hanya beberapa permintaan dalam percakapan yang memerlukan penalaran yang diperpanjang. Sebuah harness agen, misalnya, dapat menambahkan frasa pendorong pada langkah perencanaan dan frasa pencegah pada konfirmasi rutin, tanpa menyentuh prompt sistem atau mengubah parameter permintaan apa pun di antara giliran.
 
-Pada Claude Haiku 5.5, frasa yang tidak menganjurkan tersebut tidak secara andal mengurangi pemikiran. Jika platform Anda mendukungnya, jalankan giliran rutin pada model tersebut dengan pemikiran yang lebih sedikit menggunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) sebagai gantinya, yang juga mempertahankan “prompt cache” (cache prompt). Hal yang sama berlaku untuk Claude Fable 5.2. Dalam pengujian Anthropic, frasa yang tidak menganjurkan tersebut tidak menghentikan model dari berpikir pada effort `medium` dan di atasnya. Jika platform Anda mendukungnya, gunakan perubahan effort per pesan untuk giliran-giliran tersebut.
+Pada Claude Haiku 5.5 dan Claude Fable 5.2, frasa yang tidak menganjurkan tersebut tidak secara andal mengurangi pemikiran. Dalam pengujian Anthropic, frasa tersebut tidak menghentikan Claude Fable 5.2 dari berpikir pada effort `medium` dan di atasnya. Jika platform Anda mendukungnya, jalankan giliran rutin pada model-model tersebut dengan pemikiran yang lebih sedikit menggunakan perubahan [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) sebagai gantinya. Fitur beta ini juga mempertahankan “prompt cache” (cache prompt).
 
 ### Verifikasi pengarahan pada beban kerja Anda
 
@@ -121,30 +121,30 @@ Tiga mekanisme mengikuti dari Claude yang mengelola pemikirannya sendiri: valida
 
 Giliran asisten tidak perlu dimulai dengan blok pemikiran. (Model yang menggunakan anggaran pemikiran manual lama mewajibkan giliran asisten terakhir dari permintaan dengan pemikiran aktif dimulai dengan blok pemikiran; lihat [Struktur giliran dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#turn-structure-in-manual-mode).)
 
-Untuk aplikasi multi-giliran, ini berarti Anda dapat mengirimkan kembali riwayat percakapan dalam bentuk apa pun yang Anda miliki:
+Untuk aplikasi multi-giliran, ini berarti Anda dapat mengirimkan kembali riwayat percakapan dalam salah satu bentuk berikut:
 
 * Giliran asisten yang dihasilkan Claude tanpa pemikiran adalah riwayat yang valid apa adanya.
 * Anda dapat melanjutkan percakapan yang dimulai tanpa pemikiran, atau yang menggunakan konfigurasi pemikiran berbeda, tanpa menulis ulang riwayatnya.
 * Riwayat yang disusun dari sumber campuran tidak perlu blok pemikiran disisipkan kembali di awal setiap giliran asisten agar lolos validasi.
 
-Pelonggaran ini berkaitan dengan validasi, bukan tentang apa yang harus Anda kirim. Ketika Anda memiliki blok pemikiran, kirimkan kembali tanpa dimodifikasi, terutama selama penggunaan alat, di mana blok tersebut membawa penalaran di balik pemanggilan alat Claude. Lihat ikhtisar [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking) untuk aturan lengkapnya.
+Aturan ini berkaitan dengan validasi, bukan tentang apa yang harus Anda kirim. Ketika Anda memiliki blok pemikiran, kirimkan kembali tanpa dimodifikasi, terutama selama penggunaan alat, di mana blok tersebut membawa penalaran di balik pemanggilan alat Claude. Lihat ikhtisar [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking) untuk aturan lengkapnya.
 
 ### Caching prompt
 
 Permintaan berturut-turut yang mempertahankan konfigurasi pemikiran dan tingkat effort yang sama akan mempertahankan “prompt caching” (caching prompt); lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching) untuk aturan lengkapnya. Nilai effort yang ditetapkan dirender ke dalam prompt, sehingga mengubahnya di antara permintaan akan membatalkan breakpoint cache, sama seperti mengubah parameter lama [`budget_tokens`](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#extended-thinking-with-prompt-caching) pada model yang menggunakannya. Menetapkan `effort` secara eksplisit ke nilai default model setara dengan menghilangkannya dan tidak merusak cache.
 
-Konsekuensi praktisnya: pilih konfigurasi pemikiran dan tingkat effort tingkat atas untuk setiap percakapan dan pertahankan. Jika beberapa giliran memerlukan pemikiran lebih banyak atau lebih sedikit, gunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) pada model yang mendukungnya, atau arahkan dengan [prompting per pesan](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost#tuning-thinking-behavior). Keduanya membiarkan breakpoint cache sebelumnya tetap utuh, sedangkan perubahan pada konfigurasi pemikiran atau tingkat effort tingkat atas tidak.
+Konsekuensi praktisnya: pilih konfigurasi pemikiran dan tingkat effort tingkat atas untuk setiap percakapan dan pertahankan. Jika beberapa giliran memerlukan pemikiran lebih banyak atau lebih sedikit, gunakan perubahan [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message), yang masih dalam tahap beta, pada model yang mendukungnya, atau arahkan dengan [prompting per pesan](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost#tuning-thinking-behavior). Keduanya membiarkan breakpoint cache sebelumnya tetap utuh, sedangkan perubahan pada konfigurasi pemikiran atau tingkat effort tingkat atas tidak.
 
 Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multi-giliran yang dapat Anda jalankan sendiri:
 
 <Accordion title="Perubahan effort membatalkan cache prompt">
   <CodeGroup exclude="shell:cURL, shell:CLI">
     <CodeGroupItem language="cURL">
-      Alur kerja ini memerlukan logika lebih dari satu perintah shell. Gunakan Claude SDK untuk menjalankannya; permintaan HTTP per giliran mengikuti contoh di halaman [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
+      Alur kerja ini memerlukan logika lebih dari satu perintah shell. Gunakan Anthropic SDK untuk menjalankannya; permintaan HTTP per giliran mengikuti contoh di halaman [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
     </CodeGroupItem>
 
     <CodeGroupItem language="CLI">
-      Alur kerja ini memerlukan logika lebih dari satu perintah shell. Gunakan Claude SDK untuk menjalankannya; perintah CLI per giliran mengikuti contoh di halaman [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
+      Alur kerja ini memerlukan logika lebih dari satu perintah shell. Gunakan Anthropic SDK untuk menjalankannya; perintah CLI per giliran mengikuti contoh di halaman [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
     </CodeGroupItem>
 
     ```python Python
@@ -628,7 +628,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multi-giliran 
                 ]
             ]
         ]],
-        model: 'claude-opus-5-5',
+        model: Model::CLAUDE_OPUS_5_5,
         thinking: ['type' => 'adaptive'],
     );
 
@@ -661,7 +661,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multi-giliran 
                 'content' => 'Analyze the characters in this passage.'
             ]
         ],
-        model: 'claude-opus-5-5',
+        model: Model::CLAUDE_OPUS_5_5,
         thinking: ['type' => 'adaptive'],
     );
 
@@ -702,7 +702,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multi-giliran 
                 'content' => 'Analyze the setting in this passage.'
             ]
         ],
-        model: 'claude-opus-5-5',
+        model: Model::CLAUDE_OPUS_5_5,
         thinking: ['type' => 'adaptive'],
         outputConfig: ['effort' => 'low'],
     );
@@ -731,7 +731,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multi-giliran 
 
     puts "First request - establishing cache"
     response1 = client.messages.create(
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 16000,
       thinking: {
         type: "adaptive"
@@ -756,7 +756,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multi-giliran 
 
     puts "\nSecond request - same configuration (cache hit expected)"
     response2 = client.messages.create(
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 16000,
       thinking: {
         type: "adaptive"
@@ -791,7 +791,7 @@ Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multi-giliran 
 
     puts "\nThird request - different effort level (cache miss expected)"
     response3 = client.messages.create(
-      model: "claude-opus-5-5",
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
       max_tokens: 16000,
       thinking: {
         type: "adaptive"
@@ -878,7 +878,7 @@ Pemikiran dikenakan biaya untuk:
 * Token output teks standar
 
 <Note>
-  Ketika pemikiran aktif, prompt sistem khusus secara otomatis disertakan untuk mendukung fitur ini.
+  Ketika pemikiran aktif, API secara otomatis menyertakan prompt sistem khusus untuk mendukung fitur ini.
 </Note>
 
 Apa yang ditagihkan kepada Anda sama terlepas dari pengaturan `display`; hanya apa yang Anda lihat yang berubah:

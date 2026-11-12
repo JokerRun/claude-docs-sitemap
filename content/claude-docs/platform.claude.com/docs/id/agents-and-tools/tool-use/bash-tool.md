@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 13a41cf621a6e90790cc481fe4b2cc69df28d852afcabd4bfeac474469ee6bf4
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: fb40543d7ac6f17ab7a457863598e7260ecd4c683529b19ca0590b207a9409be
 ---
 
 ---
@@ -36,9 +36,9 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: stable
-    Claude Platform on AWS: stable
     Amazon Bedrock: stable
-    Amazon Bedrock (InvokeModel): stable
+    Amazon Bedrock (bedrock-runtime): stable
+    Claude Platform on AWS: stable
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
 ---
@@ -2020,9 +2020,9 @@ Alat bash tersedia di semua model dan layak untuk retensi data nol dan kesiapan 
 
 * Ketersediaan: Tersedia
 
-| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tersedia | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
 ### Penanganan data
 

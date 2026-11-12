@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 4e863023780097ae85e6257927f71bd81d104285fa9ec1c212d2ec902b6b6ddc
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 8f9c53e51da6ec8739842f0a861541da8af415dd60d97a90a9241edc60ee0229
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Query token usage and cost for your Claude Console or Claude Enterp
 ---
 
 <Tip>
-  **The Admin API is unavailable for individual accounts.** To collaborate with teammates and add members, set up your organization on the [Organization](https://platform.claude.com/settings/organization) page (`platform.claude.com/settings/organization`) in the Claude Console.
+  **The Admin API isn’t available to organizations on the claude.ai Team plan or to individual Claude Console accounts.** If your company also has a Claude Console organization, you can use the API with that organization; see [Create an Admin API key](https://platform.claude.com/docs/en/manage-claude/admin-api-keys). An individual Console account must first set up an organization on the [Organization](https://platform.claude.com/settings/organization) page (`platform.claude.com/settings/organization`) in the Claude Console.
 </Tip>
 
 The Usage and Cost Analytics API reports historical token usage and cost for your organization, broken down by the dimensions you choose, such as model, workspace, API key, or the user or service account behind each request. For Claude Console organizations, this data is similar to what the [Usage](https://platform.claude.com/usage) and [Cost](https://platform.claude.com/cost) pages of the Claude Console show.

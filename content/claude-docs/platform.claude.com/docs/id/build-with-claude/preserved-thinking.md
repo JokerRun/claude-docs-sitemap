@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/preserved-thinking
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: f082801f3bbf5cd5262f4286da993be7dcd9efce1e980f2e7e97a308c8e80bb4
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 1597a80899e122aa66e989a044f8261787afc082792019e25a14d37449cb86ca
 ---
 
 ---
@@ -21,9 +21,10 @@ featureMetadata:
     - claude-haiku-5-5
   supportedPlatforms:
     Claude API: stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (bedrock-runtime): stable
     Claude Platform on AWS: stable
     Claude Models on Google Cloud (Anthropic managed): stable
-    Amazon Bedrock: stable
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
 ---
@@ -457,11 +458,11 @@ Kemudian konfirmasikan dengan API. Tambahkan header beta `thinking-binding-contr
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -762,11 +763,11 @@ Jalankan contoh berikut dari [akun yang dibuat sebelum 31 Agustus 2026](https://
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -1233,7 +1234,7 @@ Pesan `role: "system"` yang membawa blok-blok ini menjadi bagian dari prefiks un
 
 ### Ubah effort dengan `output_config` per pesan
 
-Mengubah `output_config.effort` tingkat atas di antara permintaan tidak membatalkan thinking, karena effort bukan bagian dari prefiks. Mengubah effort tingkat atas memang memulai ulang cache prompt. Jika model dan platform mendukung [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta), gunakan itu sebagai gantinya: tambahkan pesan `role: "system"` dengan `content` kosong dan level yang baru. Ini memerlukan header beta `mid-conversation-output-config-2026-07-01`. Pada Claude Haiku 5.5, effort per pesan memerlukan pemikiran adaptif.
+Mengubah `output_config.effort` tingkat atas di antara permintaan tidak membatalkan thinking, karena effort bukan bagian dari prefiks. Mengubah effort tingkat atas memang memulai ulang cache prompt. Jika model dan platform mendukung [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message), gunakan itu sebagai gantinya: tambahkan pesan `role: "system"` dengan `content` kosong dan level yang baru. Ini memerlukan header beta `mid-conversation-output-config-2026-07-01`. Pada Claude Haiku 5.5, effort per pesan memerlukan pemikiran adaptif.
 
 ```json
 { "role": "system", "content": [], "output_config": { "effort": "low" } }
@@ -1653,7 +1654,8 @@ Pemikiran yang dipertahankan tersedia di model tertentu.
 | Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                   | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) |
-| Tersedia | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)                                                                                                                                                                                                                                                                                 | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview)                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Tersedia | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)                                                                                                                                                                                                                                                                                 | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview)                                                                                                                                                                                                                                                              |
+| Tersedia | [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)                                                                                                                                                                                                                                                        | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview)                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Tersedia | [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed)                                                                                                                                                                                                                       | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview)                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)

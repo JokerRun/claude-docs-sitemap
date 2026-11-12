@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/intro
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: efa09926cda96afb69e8fe52272781d205a6ebbc52d105da4693f78fbdfd3fd0
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 297b737e4e8a49cf2320f044a10901933b17eb0cbf122b61a60aa72634adadd1
 ---
 
 ---
@@ -26,7 +26,7 @@ To learn more about each, see [Using the Messages API](https://platform.claude.c
 
 ## Explore the latest generation of Claude models
 
-If you’re unsure which model to use, start with [Claude Opus 5.5](https://platform.claude.com/docs/en/models/opus-5-5/overview) for most workloads. Use [Claude Fable 5.2](https://platform.claude.com/docs/en/models/fable-5-2/overview) for demanding reasoning and long-horizon agentic work, or when your evals on Claude Opus 5.5 at higher effort still fall short. All current models support text and image input, text output, multilingual capabilities, vision, and tool use. Each model’s page lists the platforms it’s available on.
+If you’re unsure which model to use, start with [Claude Opus 5.5](https://platform.claude.com/docs/en/models/opus-5-5/overview) for most workloads. Use [Claude Fable 5.2](https://platform.claude.com/docs/en/models/fable-5-2/overview) for demanding reasoning and long-horizon agentic work, or when your evals on Claude Opus 5.5 at higher effort still fall short. All current models support text and image input, text output, multilingual capabilities, vision, and tool use.
 
 * [Claude Fable 5.2](https://platform.claude.com/docs/en/models/fable-5-2/overview) (`claude-fable-5-2`) — New — *For demanding reasoning and long-horizon agentic work* — Most capable · Research · Multi-day tasks
 * [Claude Opus 5.5](https://platform.claude.com/docs/en/models/opus-5-5/overview) (`claude-opus-5-5`) — New — *For long-running agentic coding and knowledge work* — Complex projects · Agents · Coding

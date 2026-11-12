@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 1c0abe514169252ae63e15119389463796dead6e1b951a03fe931073282e0ef3
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 3f08175915b6840dbbe85da87c220a43d567479dfd5a2817a61ad74eff5c5b19
 ---
 
 ---
@@ -28,7 +28,7 @@ Claude Opus 5.5 menghasilkan token output lebih dari 30 persen lebih cepat darip
 * Output frontend terlihat generik: [Default desain frontend](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#frontend-design-defaults)
 
 <Note>
-  Untuk empat perubahan API yang merusak kompatibilitas saat bermigrasi dari Claude Opus 5, lihat [panduan migrasi](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5).
+  Untuk empat perubahan API yang merusak kompatibilitas saat bermigrasi dari Claude Opus 5, lihat [Panduan migrasi Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5).
 </Note>
 
 ## Kemampuan yang relevan untuk prompting
@@ -50,7 +50,7 @@ Pada level tertentu, Claude Opus 5.5 cenderung berpikir lebih banyak per giliran
 * Gunakan `xhigh` dan `max` hanya untuk pekerjaan di mana Anda telah mengukur adanya peningkatan kualitas.
 * Untuk mendapatkan thinking yang lebih sedikit, turunkan level effort terlebih dahulu. Menurunkan effort mengurangi thinking, dan bersamanya biaya dan latensi, secara lebih andal daripada instruksi prompt.
 
-Mengubah nilai `effort` tingkat atas di antara permintaan akan membatalkan cache prompt. Untuk mengubah level di tengah percakapan, gunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) sebagai gantinya, yang mempertahankan cache. Perubahan berlaku untuk setiap giliran berikutnya hingga perubahan lain menggantikannya.
+Mengubah nilai `effort` tingkat atas di antara permintaan akan membatalkan cache prompt. Untuk mengubah level di tengah percakapan, gunakan perubahan [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) sebagai gantinya, yang mempertahankan cache. Effort per pesan masih dalam beta. Perubahan berlaku untuk setiap giliran berikutnya hingga perubahan lain menggantikannya.
 
 ## Prompt yang ditulis untuk thinking yang dinonaktifkan
 
@@ -101,10 +101,10 @@ Kedua, jika model mungkin perlu menyerahkan sesuatu secara verbatim kepada pengg
 
 Ketiga, jika Anda menginginkan pembaruan yang lebih sering atau dapat diprediksi, seperti pernyataan niat satu baris sebelum pemanggilan alat pertama dan rekap singkat di akhir, nyatakan hal itu dalam prompt sistem; model responsif terhadap instruksi semacam itu. Ini paling membantu dalam pekerjaan human-in-the-loop.
 
-Keempat, jika giliran pemanggilan alat yang panjang masih senyap lebih lama dari yang Anda inginkan, minta harness Anda meminta pembaruan. Dengan `display: "updates"` diatur (tuas pertama), hitung langkah pemanggilan alat berturut-turut yang tidak memberikan apa pun untuk dibaca pengguna: tidak ada blok `text` dan tidak ada teks pembaruan progres. Setelah beberapa kali berturut-turut (misalnya lima), tambahkan pengingat seperti berikut setelah hasil alat terbaru, sebagai [pesan sistem dengan cakupan giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (`clear_at: "next_user_message"`, dalam beta dengan header `mid-conversation-system-clear-at-2026-08-21`). Jika giliran tetap senyap, berhentilah setelah dua atau tiga pengingat alih-alih mengirim lebih banyak. Karena setiap pengingat ditambahkan dan dibiarkan di tempatnya, alih-alih disisipkan untuk satu permintaan dan dihapus pada permintaan berikutnya, cache prompt tetap cocok dan [blok thinking](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#per-turn-reminders) yang mengikutinya tetap valid. Dalam pengujian Anthropic pada tugas coding agentik, ini kira-kira mengurangi separuh porsi tugas dengan rentang senyap yang panjang, tanpa perubahan biaya yang terukur.
+Keempat, jika giliran pemanggilan alat yang panjang masih senyap lebih lama dari yang Anda inginkan, minta harness Anda meminta pembaruan. Dengan `display: "updates"` diatur (pengungkit pertama), hitung langkah pemanggilan alat berturut-turut yang tidak memberikan apa pun untuk dibaca pengguna: tidak ada blok `text` dan tidak ada teks pembaruan progres. Setelah beberapa kali berturut-turut (misalnya lima), tambahkan pengingat seperti berikut setelah hasil alat terbaru, sebagai [pesan sistem dengan cakupan giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (`clear_at: "next_user_message"`, dalam beta dengan header `mid-conversation-system-clear-at-2026-08-21`). Jika giliran tetap senyap, berhentilah setelah dua atau tiga pengingat alih-alih mengirim lebih banyak. Karena setiap pengingat ditambahkan dan dibiarkan di tempatnya, alih-alih disisipkan untuk satu permintaan dan dihapus pada permintaan berikutnya, cache prompt tetap cocok dan blok thinking yang mengikutinya tetap valid (lihat [Kirim pengingat per giliran sebagai pesan sistem bercakupan giliran](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#per-turn-reminders)). Dalam pengujian Anthropic pada tugas coding agentik, ini kira-kira mengurangi separuh porsi tugas dengan rentang senyap yang panjang, tanpa perubahan biaya yang terukur.
 
 ```text wrap
-The user hasn't heard from you in a while — say in a few words what you're doing, then continue.
+The user hasn't heard from you in a while: say in a few words what you're doing, then continue.
 ```
 
 ## Jelajahi konteks dalam alur kerja multiaplikasi
@@ -112,7 +112,7 @@ The user hasn't heard from you in a while — say in a few words what you're doi
 Dalam otomatisasi alur kerja di beberapa aplikasi yang terhubung, seperti email, dokumen, spreadsheet, dan catatan CRM, informasi yang dibutuhkan sebuah tugas sering berada di tempat yang tidak disebutkan secara eksplisit dalam permintaan: misalnya, kebijakan dalam thread email lama, aturan di tab spreadsheet lain, atau catatan pada data pelanggan. Claude Opus 5.5 cenderung langsung mulai bekerja, dan pada tugas yang dispesifikasikan secara longgar, memberi tahu model untuk menelusuri sumber yang relevan sebelum bertindak akan membantu. Jika agen Anda bekerja di beberapa aplikasi untuk tugas seperti ini, satu kalimat dalam prompt sistem membuatnya melihat-lihat terlebih dahulu sebelum mengubah apa pun:
 
 ```text wrap
-Before taking any action, explore broadly with tool calls: list and open the emails, documents, spreadsheet tabs and records across the available apps that could be relevant to this task, including ones the task does not explicitly mention, and use what you find.
+Before taking any action, explore broadly with tool calls: list and open the emails, documents, spreadsheet tabs, and records across the available apps that could be relevant to this task, including ones the task does not explicitly mention, and use what you find.
 ```
 
 Dalam pengujian Anthropic pada tugas otomasi multiaplikasi, Claude Opus 5.5 menyelesaikan lebih banyak tugas dengan benar secara nyata dengan instruksi ini, pada effort `medium` maupun `max`, dengan biaya sedikit lebih banyak pemanggilan alat dan token. Karena instruksi ini menyuruh model bertindak berdasarkan apa yang ditemukannya, jauhkan konten yang tidak tepercaya dari data yang dicarinya.

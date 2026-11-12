@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 53cf5762001c37c54296a139eece76df7084f9be3fb2a820e58b30a5cc912f08
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 94e670fd3e597182ebe1f8233116ecf0bf18c823e9719032c86bf4044ed555e5
 ---
 
 ---
@@ -350,7 +350,7 @@ Kecuali dinyatakan lain, kelas-kelas lain dalam SDK tidak memiliki lock yang mel
 
 ## Tracing OpenTelemetry
 
-Saat aplikasi Anda mendaftarkan tracer provider OpenTelemetry, SDK memancarkan span untuk setiap permintaan yang dikirimnya. Untuk mengirim span ke platform observabilitas Anda, lihat [Menyiapkan OpenTelemetry dengan Claude SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
+Saat aplikasi Anda mendaftarkan tracer provider OpenTelemetry, SDK memancarkan span untuk setiap permintaan yang dikirimnya. Untuk mengirim span ke platform observabilitas Anda, lihat [Menyiapkan OpenTelemetry dengan Anthropic SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
 
 ## Membuat permintaan kustom atau yang tidak terdokumentasi
 
@@ -403,8 +403,8 @@ response = anthropic.request(
 <Note>
   Untuk panduan penyiapan platform terperinci dengan contoh kode, lihat:
 
-  * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
-  * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
+  * [Amazon Bedrock (`bedrock-mantle`)](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
+  * [Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
   * [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
   * [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)
   * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
@@ -419,7 +419,7 @@ Ruby SDK mendukung platform berikut:
 * **Claude Platform on AWS:** Bagian dari gem utama `anthropic` (memerlukan gem `aws-sdk-core`). Menyediakan `Anthropic::AWSClient`. Teruskan `workspace_id:` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID` (lihat [Workspace](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#workspaces)). Tersedia dalam beta.
 * **Foundry:** Bagian dari gem utama `anthropic`. Menyediakan `Anthropic::FoundryClient`. Teruskan `resource:` dan `api_key:` (atau `azure_ad_token_provider:` untuk Microsoft Entra ID) ke konstruktor, atau atur variabel lingkungan `ANTHROPIC_FOUNDRY_RESOURCE` dan `ANTHROPIC_FOUNDRY_API_KEY`.
 
-Gunakan `Anthropic::BedrockMantleClient` untuk proyek baru; `Anthropic::BedrockClient` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
+Gunakan `Anthropic::BedrockMantleClient` dengan endpoint `bedrock-mantle`, dan `Anthropic::BedrockClient` dengan API `InvokeModel` pada endpoint `bedrock-runtime`.
 
 Ruby SDK juga mendukung Claude Models on Google Cloud (Anthropic managed) melalui `Anthropic::GoogleCloudClient`. Klien ini masih dalam tahap beta. Klien ini disertakan dalam gem utama `anthropic` dan memerlukan gem `googleauth`. Berikan `workspace_id:` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`. Lihat [Resolusi proyek, lokasi, dan workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution) untuk mengetahui cara klien menentukan ID workspace.
 

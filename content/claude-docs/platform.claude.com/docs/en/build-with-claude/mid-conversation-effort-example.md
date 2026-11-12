@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: dfc42eb65af70c153a98840f9469a422ecdaf35633dde1413ef4637575585f09
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 30245aae1ceae241e20f1bc3b55610da3aae54f2c7d473c0e2b15e4a2e4746af
 ---
 
 ---
@@ -1451,11 +1451,11 @@ Each workflow subtask becomes its own small agent loop with the bash tool, runni
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    The full example needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    The full example needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    The full example needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    The full example needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   ```python Python
@@ -2302,11 +2302,11 @@ The fan-out accepts up to `MAX_TOTAL_SUBTASKS` prompts, runs them through the jo
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    The full example needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    The full example needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    The full example needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    The full example needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   ```python Python
@@ -3846,11 +3846,11 @@ The agent appends the user’s message first, then any system messages that are 
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    The full example needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    The full example needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    The full example needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    The full example needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   ```python Python

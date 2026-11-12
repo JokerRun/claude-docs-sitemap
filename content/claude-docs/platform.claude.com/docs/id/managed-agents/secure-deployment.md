@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/secure-deployment
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 39cfada9f6b1b74326edfa78d9b50deddbebcc6c7f9efec192fee4ccd29f83de
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: a8a92b7b595b13cd963e7e42549baa816aac90484b014e7bcea47782509c6793
 ---
 
 ---
@@ -354,6 +354,8 @@ Toolset di [Berikan agen set alat terkecil](https://platform.claude.com/docs/id/
 Sesi yang dijeda menunggu tanpa batas waktu, sehingga sesi tanpa pengawasan memerlukan klien yang menjawab panggilan yang dijeda atau menginterupsi sesi.
 
 Tinjau setiap panggilan yang dijeda sebelum Anda mengizinkannya. Klien yang mengizinkan setiap panggilan tanpa menunjukkannya kepada seseorang sama dengan `always_allow`. Lihat [Merespons permintaan konfirmasi](https://platform.claude.com/docs/id/managed-agents/permission-policies#respond-to-confirmation-requests) dan [Melihat bagaimana setiap panggilan dievaluasi](https://platform.claude.com/docs/id/managed-agents/permission-policies#see-how-each-call-was-evaluated).
+
+Minta seseorang menyetujui setiap panggilan ke alat yang dapat memindahkan uang, seperti alat untuk pembayaran, penarikan, transfer, atau pencairan dana. Jika alat tersebut menerima kebijakan izin, tetapkan ke `always_ask`, bukan `always_allow` atau `auto`. Jika alat tersebut adalah alat kustom, jangan jalankan panggilan sampai seseorang telah menyetujuinya. Untuk teks yang dapat ditambahkan ke prompt sistem agen, lihat [Pembayaran, nomor rekening, dan catatan keuangan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#payments-account-numbers-and-financial-records).
 
 ## Berikan agen set alat terkecil
 

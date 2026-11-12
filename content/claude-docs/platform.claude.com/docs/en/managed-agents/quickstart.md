@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: dc73fed2c8e18cee6c5d68726073bfe51fd6a4e11f30480f82722afccd9979cb
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: b87b2fb199b75ddce834e6913c863823f8bec3d48a7928c1165356337cb07a7e
 ---
 
 ---
@@ -888,11 +888,11 @@ To run the CLI examples, install the CLI:
 
     <CodeGroup exclude="shell">
       <CodeGroupItem language="cURL">
-        This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+        This workflow needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
       </CodeGroupItem>
 
       <CodeGroupItem language="CLI">
-        This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+        This workflow needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
       </CodeGroupItem>
 
       ```python Python

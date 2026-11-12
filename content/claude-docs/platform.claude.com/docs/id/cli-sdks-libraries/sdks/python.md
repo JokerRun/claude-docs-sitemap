@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 06eaf2f6464daf09760c0ec5f292101875c5b655f6654abd5ddc4228596c6f2b
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 6dca5df00e2925af8d1dc6fdd84ad722252580405add0e8ee3eeb97895d2473d
 ---
 
 ---
@@ -652,7 +652,7 @@ export ANTHROPIC_LOG=debug
 
 ### Tracing OpenTelemetry
 
-Saat aplikasi Anda mendaftarkan tracer provider OpenTelemetry, SDK memancarkan span untuk setiap permintaan yang dikirimnya. Untuk mengirim span ke platform observabilitas Anda, lihat [Menyiapkan OpenTelemetry dengan Claude SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
+Saat aplikasi Anda mendaftarkan tracer provider OpenTelemetry, SDK memancarkan span untuk setiap permintaan yang dikirimnya. Untuk mengirim span ke platform observabilitas Anda, lihat [Menyiapkan OpenTelemetry dengan Anthropic SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
 
 ### Membuat permintaan kustom/tidak terdokumentasi
 
@@ -751,8 +751,8 @@ response = client.beta.messages.create(
 <Note>
   Untuk panduan penyiapan platform terperinci beserta contoh kode, lihat:
 
-  * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
-  * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
+  * [Amazon Bedrock (`bedrock-mantle`)](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
+  * [Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
   * [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
   * [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)
   * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
@@ -773,7 +773,7 @@ Keenam kelas klien disertakan dalam paket dasar `anthropic`:
 
 Klien `AnthropicAWS` masih dalam tahap beta. Berikan `workspace_id` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID`. Klien `AnthropicGoogleCloud` juga masih dalam tahap beta. Berikan `workspace_id` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`. Lihat [Resolusi proyek, lokasi, dan workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution) untuk mengetahui cara klien menentukan ID workspace.
 
-Gunakan `AnthropicBedrockMantle` untuk proyek baru; `AnthropicBedrock` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
+Gunakan `AnthropicBedrockMantle` dengan endpoint `bedrock-mantle`, dan `AnthropicBedrock` dengan API `InvokeModel` pada endpoint `bedrock-runtime`.
 
 ## Pembuatan versi semantik
 

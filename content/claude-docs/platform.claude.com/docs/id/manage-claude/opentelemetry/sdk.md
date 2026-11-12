@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 688f98897c807bf919c30e0d4c748fbdbce28897310af043366ee1be05a098fe
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 29286e06a45c89db8a423b6a433292594d3464fd09c172b2743f1fb6f9d1b794
 ---
 
 ---
-title: Menyiapkan OpenTelemetry dengan Claude SDK
+title: Menyiapkan OpenTelemetry dengan Anthropic SDK
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk
-description: Lacak permintaan dan penggunaan alat Claude SDK di Python, TypeScript, C#, Go, Java, PHP, atau Ruby, lalu kirim span ke platform observabilitas Anda.
+description: Lacak permintaan dan penggunaan alat Anthropic SDK di Python, TypeScript, C#, Go, Java, PHP, atau Ruby, lalu kirim span ke platform observabilitas Anda.
 featureMetadata:
   topic:
     title: OpenTelemetry
@@ -36,14 +36,14 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: beta
-    Claude Platform on AWS: beta
     Amazon Bedrock: beta
-    Amazon Bedrock (InvokeModel): beta
+    Amazon Bedrock (bedrock-runtime): beta
+    Claude Platform on AWS: beta
     Claude Models on Google Cloud (Google managed): beta
     Microsoft Foundry: beta
 ---
 
-Dengan OpenTelemetry, Claude SDK dapat memancarkan “span” (rentang) untuk setiap permintaan yang dikirimnya dan setiap penggunaan alat yang dijalankan oleh [tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner). Anda dapat melihat span ini di platform observabilitas Anda, bersarang di dalam trace Anda sendiri.
+Dengan OpenTelemetry, Anthropic SDK dapat memancarkan “span” (rentang) untuk setiap permintaan yang dikirimnya dan setiap penggunaan alat yang dijalankan oleh [tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner). Anda dapat melihat span ini di platform observabilitas Anda, bersarang di dalam trace Anda sendiri.
 
 SDK memancarkan span di aplikasi Anda. “Exporter” (pengekspor) OpenTelemetry aplikasi Anda mengirimkannya ke platform observabilitas Anda.
 
@@ -53,7 +53,7 @@ SDK memancarkan span di aplikasi Anda. “Exporter” (pengekspor) OpenTelemetry
 
 ## 1. Instal SDK
 
-Instal atau tingkatkan ke versi terbaru Claude SDK:
+Instal atau tingkatkan ke versi terbaru Anthropic SDK:
 
 <Tabs>
   <Tab title="Python">
@@ -105,7 +105,7 @@ Instal atau tingkatkan ke versi terbaru Claude SDK:
   </Tab>
 
   <Tab title="Java">
-    Tambahkan Claude SDK ke dependensi Anda, atau perbarui setidaknya ke versi berikut jika file build Anda sudah mendeklarasikannya:
+    Tambahkan Anthropic SDK ke dependensi Anda, atau perbarui setidaknya ke versi berikut jika file build Anda sudah mendeklarasikannya:
 
     <Tabs>
       <Tab title="Gradle">
@@ -844,9 +844,9 @@ Tracing SDK dalam versi beta di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Status | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Beta   | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 

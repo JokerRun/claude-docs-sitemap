@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/middleware
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 2a551d19baf96e2aaf1d84987d957217d541a21d589e9e47c155f87e9caa821f
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: c6d5c3044515d99d19c49dd45cf71e60e21fc95f8d2768c0604b233d73989ca7
 ---
 
 ---
@@ -32,15 +32,15 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (bedrock-runtime): stable
     Claude Platform on AWS: stable
     Claude Models on Google Cloud (Anthropic managed): stable
-    Amazon Bedrock: stable
-    Amazon Bedrock (InvokeModel): stable
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
 ---
 
-Claude SDK menyediakan hook “middleware” (perantara), atau interceptor, yang memungkinkan Anda menjalankan kode sebelum permintaan dikirim dan setelah respons diterima. Gunakan middleware untuk kebutuhan lintas bagian seperti logging, percobaan ulang kustom, anotasi permintaan, dan penanganan fallback penolakan.
+Anthropic SDK menyediakan hook “middleware” (perantara), atau interceptor, yang menjalankan kode Anda sebelum SDK mengirim permintaan dan setelah SDK menerima respons. Gunakan middleware untuk kebutuhan lintas bagian seperti logging, percobaan ulang kustom, anotasi permintaan, dan mencoba ulang permintaan yang ditolak pada [model fallback](https://platform.claude.com/docs/id/cli-sdks-libraries/middleware#built-in-middleware).
 
 ```mermaid
 sequenceDiagram
@@ -209,7 +209,7 @@ Setiap middleware adalah fungsi yang menerima permintaan keluar dan handler beri
 
 Ketika Anda mendaftarkan beberapa middleware, middleware tersebut diterapkan sesuai urutan yang diberikan: kode “sebelum” dari middleware pertama dijalankan paling awal, dan kode “setelah”-nya dijalankan paling akhir. Middleware yang didaftarkan pada klien dijalankan sebelum middleware yang diteruskan sebagai opsi per permintaan.
 
-Di SDK Go, pemanggilan `option.WithMiddleware` yang berulang akan digabungkan (klien terlebih dahulu, lalu metode). Di SDK lainnya, teruskan sebuah array; entri yang lebih akhir membungkus bagian dalam.
+Untuk mendaftarkan lebih dari satu middleware, teruskan semuanya, seperti pada `middleware=[first, second]` (typescript, ruby: `middleware: [first, second]`; csharp: `Handlers = [first, second]`; go: `option.WithMiddleware(first, second)`; java: `.addInterceptor(first).addInterceptor(second)`; php: `'middleware' => [$first, $second]`).
 
 ## Mengganti klien HTTP
 

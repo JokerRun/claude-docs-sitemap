@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/workflow-runs
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: b028b6a555091b3b81fe1c24f0967261aa9c9683afa25631b5fbc2e67a3a90ae
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: f0eafd6e991a9e5052810ab63ecd680a1e324216a73a5762941eb7af10eb6506
 ---
 
 ---
@@ -204,11 +204,11 @@ This sample follows a session from your message to the agent’s answer. It open
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
-    This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    This workflow needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    This workflow needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   ```python Python

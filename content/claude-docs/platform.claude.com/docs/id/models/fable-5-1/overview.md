@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-1/overview
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: f0a00677d21c28083ffaaf139709be48a85e92210569a4cc7b94263efcf9dd88
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 5efc30fa1faca7969e444d3e49a2ce1744eb1c7a939f27283f0c6c8353acf778
 ---
 
 ---
@@ -13,9 +13,7 @@ description: "Referensi Claude Fable 5.1: status siklus hidup, ID model di setia
 
 **Legacy.** Released September 1, 2026.
 
-For demanding reasoning and long-horizon agentic work
-
-Although Claude Fable 5.1 is still available, you should consider migrating to Claude Fable 5.2. [See Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview) · [Migrate to Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/migration-guide)
+Although Claude Fable 5.1 is still available, you should consider migrating to Claude Fable 5.2. [See Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview) · [Migrate to Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/migration-guide#migrating-from-claude-fable-5-1-to-claude-fable-5-2)
 
 Model ID: `claude-fable-5-1`
 
@@ -110,7 +108,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $10 / MTo
     Kapan blok pemikiran model ini tetap dapat digunakan: saat berganti model dan saat terjadi perubahan pada percakapan.
   </Card>
 
-  <Card title="Effort per pesan" icon="sliders" href="https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta">
+  <Card title="Effort per pesan" icon="sliders" href="https://platform.claude.com/docs/id/build-with-claude/effort-per-message">
     Ubah tingkat effort di tengah percakapan tanpa membatalkan cache prompt.
   </Card>
 

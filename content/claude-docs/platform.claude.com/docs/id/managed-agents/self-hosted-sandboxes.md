@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: d40f44652203ee69b92e8d8f05a3fb43fa115cc1fd48fda3e44c97d40d2454fb
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: c2397d037acf2ed342f11ec41e6ab8fe1ff57bff2d679271bdf7fc86aff35c10
 ---
 
 ---
@@ -56,7 +56,7 @@ Lingkungan `self_hosted` berfungsi sebagai antrean kerja. Anda menjalankan **env
 
 Input dan output alat tetap mengalir ke Managed Agents di sisi Anthropic, sehingga model dapat menerima hasil dan menentukan apa yang harus dilakukan selanjutnya. Anthropic menyimpan skill dan memory store. Sandbox Anda menyimpan salinannya untuk sesi tersebut. Untuk mengetahui di mana setiap bagian sesi berjalan, lihat [Apa yang dapat dan tidak dapat dilakukan oleh sandbox](https://platform.claude.com/docs/id/managed-agents/secure-deployment-risks#what-the-sandbox-can-and-cannot-do).
 
-Sandbox yang di-host sendiri mendukung setiap model Claude yang tersedia di Managed Agents. Model dikonfigurasi pada agen, bukan pada lingkungan.
+Sandbox yang di-host sendiri mendukung setiap model Claude yang tersedia di Managed Agents. Anda mengonfigurasi model pada agen, bukan pada lingkungan.
 
 CLI `ant` serta SDK Python, TypeScript, dan Go menyertakan worker siap pakai. Penyedia sandbox seperti Cloudflare, Daytona, dan Modal juga menerbitkan [panduan platform](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#platform-guides) mereka sendiri.
 
@@ -69,12 +69,12 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
 * **Sebuah agen:** Jika Anda belum memilikinya, selesaikan [Memulai dengan Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/quickstart) terlebih dahulu dan catat ID agen tersebut.
 * **Host Linux atau macOS:** Host memerlukan `/bin/bash` tepat di path tersebut. Worker hanya memerlukan HTTPS keluar.
 * **Kunci API Claude:** Anda menggunakannya dari mesin Anda sendiri untuk membuat sesi dan membaca statistik antrean. Jauhkan kunci ini dari host worker, tempat panggilan alat agen dapat membacanya.
-* **CLI `ant` atau SDK di mesin Anda sendiri:** Langkah statistik dan sesi dalam quickstart ini dijalankan di sana, bukan di host worker. Instal CLI dengan cara yang sama seperti [langkah instalasi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-your-first-session) untuk worker, atau instal [SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview).
+* **CLI `ant` atau SDK di mesin Anda sendiri:** Langkah statistik dan sesi dalam quickstart ini dijalankan di sana, bukan di host worker. Instal CLI dengan cara yang sama seperti Anda menginstalnya di host worker pada [Jalankan sesi pertama Anda](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-your-first-session), atau instal SDK seperti yang dijelaskan di [SDK, CLI, dan library](https://platform.claude.com/docs/id/cli-sdks-libraries/overview).
 
 <Note>
   Di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), worker melakukan autentikasi dengan AWS IAM (SigV4) atau [kunci API yang dibuat di AWS Console](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#api-key-authentication), bukan kunci lingkungan. Lampirkan kebijakan terkelola [`AnthropicSelfHostedEnvironmentAccess`](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#managed-policies) ke principal IAM yang digunakan worker Anda. Kunci lingkungan yang dibuat di Claude Console tidak berfungsi dengan endpoint Claude Platform on AWS.
 
-  Di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), worker melakukan autentikasi dengan [kredensial Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#authentication), bukan dengan kunci lingkungan. Berikan identitas Google Cloud yang digunakan worker Anda peran `roles/claude.user` atau `roles/claude.admin` pada proyek. Kedua peran tersebut mencakup [`environments.processWork`](https://platform.claude.com/docs/id/api/claude-models-on-google-cloud-anthropic-managed-iam-permissions#environments), yang dibutuhkan worker untuk melakukan polling dan mengelola item pekerjaan, serta izin sesi dan skill yang dibutuhkannya untuk menjalankan sesi. Kunci lingkungan yang dibuat di Claude Console tidak berfungsi dengan endpoint Claude Models on Google Cloud (Anthropic managed). Worker bawaan di CLI `ant` dan di SDK Python, TypeScript, dan Go tidak mendukung Claude Models on Google Cloud (Anthropic managed), jadi implementasikan worker Anda sendiri yang memanggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work) secara langsung. Lihat [Fitur yang tidak didukung](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#features-not-supported).
+  Di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), worker melakukan autentikasi dengan [kredensial Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#authentication), bukan dengan kunci lingkungan. Berikan identitas Google Cloud yang digunakan worker Anda peran `roles/claude.user` atau `roles/claude.admin` pada proyek. Kedua peran tersebut mencakup [`environments.processWork`](https://platform.claude.com/docs/id/api/claude-models-on-google-cloud-anthropic-managed-iam-permissions#environments), yang dibutuhkan worker untuk melakukan polling dan mengelola item pekerjaan. Keduanya juga mencakup izin sesi dan skill yang dibutuhkan worker untuk menjalankan sesi. Kunci lingkungan yang dibuat di Claude Console tidak berfungsi dengan endpoint Claude Models on Google Cloud (Anthropic managed). Alih-alih menggunakan worker siap pakai, implementasikan worker Anda sendiri yang memanggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work) secara langsung. Lihat [Fitur yang tidak didukung](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#features-not-supported).
 </Note>
 
 <Note>
@@ -613,7 +613,7 @@ Gunakan keduanya ketika Anda ingin eksekusi dan akses alat tetap berada di dalam
 
 ## Panduan platform
 
-Halaman-halaman ini menjelaskan cara membangun worker di platform sandboxing apa pun. Panduan khusus platform juga tersedia:
+Halaman-halaman sandbox yang di-host sendiri menjelaskan cara membangun worker di platform sandboxing apa pun. Penyedia berikut juga menerbitkan panduan untuk platform mereka sendiri:
 
 * [AWS Lambda MicroVMs](https://docs.aws.amazon.com/lambda/latest/dg/microvms-integrations-claude-managed-agents.html)
 * [Blaxel](https://docs.blaxel.ai/Tutorials/Claude-Managed-Agents)

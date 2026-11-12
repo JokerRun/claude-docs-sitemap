@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/migration
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 81d2e377a8d86b17b7060ba9de696c5da82be6c6901377f391e41b0d8f210527
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 528e36a73a242eec3584c47a50b807b436ada649508ad349765d5862054d800b
 ---
 
 ---
@@ -277,11 +277,11 @@ If you built an agent by calling `client.messages.create()` (csharp: `client.Mes
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    This workflow needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    This workflow needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   ```python Python

@@ -1,22 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 0332b33928f79fcc9b6e22f72d676313a6e207ef6557156d4c40fce02ab105ff
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: d82ce5c10368b88f6925c5bb173caddb999a882de2e08ddcc7d016f4998f559b
 ---
 
 ---
-title: Claude di Amazon Bedrock (Opus 4.6 dan sebelumnya)
+title: Claude di Amazon Bedrock (bedrock-runtime)
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy
-description: Integrasi Amazon Bedrock lama untuk model Claude, menggunakan API InvokeModel dan Converse dengan pengidentifikasi model berversi ARN.
+description: Gunakan model Claude di endpoint bedrock-runtime Amazon Bedrock, melalui API InvokeModel dan Converse.
 ---
 
 <Note>
-  Halaman ini membahas integrasi Amazon Bedrock lama: API `InvokeModel` dan `Converse` dengan pengidentifikasi model berversi ARN dan encoding event-stream AWS. Untuk model yang tersedia di endpoint Bedrock Messages-API, lihat [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), yang menggunakan Messages API di `/anthropic/v1/messages` dengan streaming SSE. Untuk alternatif yang dioperasikan Anthropic dengan penagihan AWS Marketplace dan akses fitur yang biasanya di hari yang sama, lihat [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws). Pengguna Bedrock yang sudah ada dapat mengikuti [panduan migrasi](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#migrating-from-amazon-bedrock).
+  Halaman ini membahas endpoint `bedrock-runtime` Amazon Bedrock: API `InvokeModel` dan `Converse`, dengan encoding event-stream AWS. Untuk model yang tersedia di endpoint `bedrock-mantle`, lihat [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), yang menggunakan Messages API di `/anthropic/v1/messages` dengan streaming SSE. Untuk alternatif yang dioperasikan Anthropic dengan penagihan AWS Marketplace dan akses fitur yang biasanya di hari yang sama, lihat [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws). Pengguna Bedrock yang sudah ada dapat mengikuti [panduan migrasi](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#migrating-from-amazon-bedrock).
 </Note>
 
 <Warning>
-  Versi terbaru SDK mengirimkan versi API `2026-10-21` secara default, termasuk melalui Amazon Bedrock. Model dengan versi ARN dalam tabel model di halaman ini tidak mendukung `2026-10-21` di Bedrock, dan permintaan ke model tersebut yang mengirimkannya dapat mengembalikan error 400. Jika Anda memanggil model tersebut melalui SDK, tetap gunakan versi SDK yang Anda gunakan saat ini, dan kunci (pin) versi tersebut di tempat Anda menginstalnya agar instalasi berikutnya tidak meng-upgrade-nya. Contoh Boto3 menetapkan `anthropic_version` dalam isi permintaannya dan tidak terpengaruh.
+  Versi terbaru SDK mengirimkan versi API `2026-10-21` secara default, termasuk melalui Amazon Bedrock. Model bernomor 4.6 atau lebih rendah dalam tabel model di halaman ini tidak mendukung `2026-10-21` di Bedrock, dan permintaan ke model tersebut yang mengirimkannya dapat mengembalikan error 400. Jika Anda memanggil model tersebut melalui SDK, tetap gunakan versi SDK yang Anda gunakan saat ini, dan kunci (pin) versi tersebut di tempat Anda menginstalnya agar instalasi berikutnya tidak meng-upgrade-nya. Jika Anda memanggil `InvokeModel` melalui SDK AWS seperti Boto3, Anda sendiri yang menetapkan `anthropic_version` dalam isi permintaan. Default baru Anthropic SDK tidak berlaku untuk permintaan tersebut.
 
   Untuk menginstal SDK untuk model-model ini, gunakan perintah di [Instal SDK untuk mengakses Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#install-an-sdk-for-accessing-bedrock), yang menginstal versi mayor terakhir sebelum versi API `2026-10-21`.
 </Warning>
@@ -156,7 +156,7 @@ Buka [AWS Console > Bedrock > Akses model](https://console.aws.amazon.com/bedroc
 #### ID model API
 
 <Note>
-  Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Haiku 5.5, Claude Opus 4.8, dan Claude Opus 4.7 dapat dijangkau melalui `InvokeModel` di `bedrock-runtime`. Permintaan ini dilayani oleh infrastruktur yang sama dengan endpoint [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). Untuk bentuk permintaan Messages API native dan paritas fitur penuh, gunakan halaman tersebut. Model-model ini dihilangkan dari tabel model di halaman ini karena tidak memiliki ID model berversi ARN.
+  Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Haiku 5.5, Claude Opus 4.8, dan Claude Opus 4.7 dapat dijangkau melalui `InvokeModel` di `bedrock-runtime`. Permintaan ini dilayani oleh infrastruktur yang sama dengan endpoint [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). Untuk bentuk permintaan Messages API native dan paritas fitur penuh, gunakan halaman tersebut. Model-model ini dihilangkan dari tabel model di halaman ini. Tabel tersebut mencantumkan Claude Fable 5.2 dan Claude Mythos 5.2, karena `bedrock-runtime` adalah satu-satunya endpoint Amazon Bedrock yang melayani keduanya.
 </Note>
 
 Istilah siklus hidup (Deprecated, Retired) didefinisikan di [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations). Tanggal siklus hidup di platform yang dioperasikan mitra ditetapkan oleh mitra dan dapat berbeda dari jadwal Claude API. Untuk tanggal penghentian terkini dari model apa pun di Amazon Bedrock, lihat [halaman siklus hidup model Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html).
@@ -171,6 +171,8 @@ Untuk memanggil model-model ini, teruskan “inference profile” (profil infere
 
 | Model                                                                                                 | Base Bedrock model ID                       | `global` | `us` | `eu` | `jp` | `apac` |
 | :---------------------------------------------------------------------------------------------------- | :------------------------------------------ | :------- | :--- | :--- | :--- | :----- |
+| Claude Fable 5.2                                                                                      | `anthropic.claude-fable-5-2`                | Yes      | Yes  | No   | No   | No     |
+| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842))           | `anthropic.claude-mythos-5-2`               | Yes      | Yes  | No   | No   | No     |
 | Claude Opus 4.6                                                                                       | `anthropic.claude-opus-4-6-v1`              | Yes      | Yes  | Yes  | Yes  | Yes    |
 | Claude Opus 4.5                                                                                       | `anthropic.claude-opus-4-5-20251101-v1:0`   | Yes      | Yes  | Yes  | No   | No     |
 | Claude Opus 4.1 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))   | `anthropic.claude-opus-4-1-20250805-v1:0`   | No       | Yes  | No   | No   | No     |
@@ -792,9 +794,9 @@ Untuk menggunakan salah satunya, tambahkan entri bertipe `computer_toolset_20260
 
 ### Pesan sistem di tengah percakapan di Bedrock
 
-[Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) tersedia melalui InvokeModel API untuk Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Sonnet 5.5, dan Claude Haiku 5.5. Seperti yang dijelaskan dalam catatan di bawah [ID model API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids), permintaan ini dilayani oleh infrastruktur yang sama dengan endpoint [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). Tidak diperlukan header beta untuk pesan sistem di tengah percakapan. Fitur ini tidak tersedia di Claude Sonnet 5. Gunakan field `system` tingkat atas sebagai gantinya. Fitur ini tidak tersedia untuk model berversi ARN dalam tabel model di halaman ini.
+[Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) tersedia melalui InvokeModel API untuk Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Sonnet 5.5, dan Claude Haiku 5.5. Fitur ini tidak tersedia di Claude Sonnet 5. Gunakan field `system` tingkat atas sebagai gantinya. Fitur ini tidak tersedia untuk model lainnya dalam tabel model di halaman ini.
 
-Pesan `role: "system"` juga dapat menetapkan `output_config.effort` untuk [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) di Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, dan Claude Opus 5.5. Ini masih dalam beta: tambahkan `mid-conversation-output-config-2026-07-01` ke array `anthropic_beta` di body permintaan. Tanpa nilai tersebut, atau di Claude Fable 5, Claude Opus 5, atau Claude Opus 4.8, permintaan mengembalikan error 400: `messages.N.output_config: Extra inputs are not permitted`. Dalam error tersebut, `N` adalah indeks pesan `system` di `messages`.
+Pesan `role: "system"` juga dapat menetapkan `output_config.effort` untuk [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) di Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, dan Claude Opus 5.5. Ini masih dalam beta: tambahkan `mid-conversation-output-config-2026-07-01` ke array `anthropic_beta` di body permintaan. Tanpa nilai tersebut, atau di Claude Fable 5, Claude Opus 5, atau Claude Opus 4.8, permintaan mengembalikan error 400: `messages.N.output_config: Extra inputs are not permitted`. Dalam error tersebut, `N` adalah indeks pesan `system` di `messages`.
 
 **Bagi pengguna Converse API:** Converse API menerima instruksi sistem melalui [parameter `system`](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html) tingkat atasnya. Untuk menambahkan instruksi sistem di tengah percakapan, gunakan InvokeModel API.
 

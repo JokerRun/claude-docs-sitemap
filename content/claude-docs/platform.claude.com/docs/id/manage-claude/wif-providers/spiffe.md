@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/spiffe
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: b0bd3ccf7f974aeff36efd1919bfcb1937c2fa0428400d120a547908a302c106
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 0fccd0e177be54d43d1e573cc2feec83c539290672f32d3d94fe4a25945285ef
 ---
 
 ---
@@ -178,7 +178,10 @@ Buatlah sespesifik yang dimungkinkan oleh workload. Longgarkan `subject_prefix` 
 
 ## Memperoleh dan menggunakan token
 
-SDK dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau, kecuali di Java, memanggil SPIFFE Workload API secara langsung melalui penyedia token. Jalur file membutuhkan kode paling sedikit, dan SDK mendukungnya di setiap bahasa. Jalur penyedia token menghilangkan sidecar tetapi memerlukan klien SPIFFE Workload API dalam bahasa aplikasi Anda.
+SDK dapat memperoleh JWT-SVID dengan dua cara:
+
+* **Dari file.** spiffe-helper menyimpan JWT-SVID di sebuah file, dan SDK membaca file tersebut. Cara ini membutuhkan kode paling sedikit dan berfungsi di setiap bahasa SDK.
+* **Dari penyedia token.** Anda memberikan SDK sebuah penyedia token yang mengambil JWT-SVID dari SPIFFE Workload API, sehingga Anda tidak memerlukan spiffe-helper. Cara ini memerlukan library klien SPIFFE Workload API dalam bahasa aplikasi Anda; Python dan Go memiliki library yang matang. SDK Java tidak menerima penyedia token, jadi di Java, gunakan file.
 
 <Tabs>
   <Tab title="Berbasis file dengan spiffe-helper">
@@ -357,7 +360,7 @@ SDK dapat membaca JWT-SVID dari file yang dikelola spiffe-helper atau, kecuali d
   </Tab>
 
   <Tab title="Penyedia token melalui SPIFFE Workload API">
-    Kecuali di Java, workload yang menautkan klien SPIFFE Workload API secara langsung dapat melewati spiffe-helper. Workload tersebut memberikan SDK sebuah penyedia token yang mengambil JWT-SVID baru dari socket agent. SDK memanggil provider sebelum setiap pertukaran token, sehingga workload selalu menyajikan SVID yang belum kedaluwarsa. Python ([py-spiffe](https://github.com/HewlettPackard/py-spiffe)) dan Go ([go-spiffe](https://github.com/spiffe/go-spiffe)) memiliki klien Workload API yang matang.
+    Workload yang menggunakan library klien SPIFFE Workload API dapat melewati spiffe-helper, di setiap bahasa SDK kecuali Java. Workload tersebut memberikan SDK sebuah penyedia token yang mengambil JWT-SVID baru dari socket agent. SDK memanggil provider sebelum setiap pertukaran token, sehingga workload selalu menyajikan SVID yang belum kedaluwarsa. Python ([py-spiffe](https://github.com/HewlettPackard/py-spiffe)) dan Go ([go-spiffe](https://github.com/spiffe/go-spiffe)) memiliki klien Workload API yang matang.
 
     <CodeGroup exclude="shell, typescript, java, csharp, php, ruby">
       ```python Python

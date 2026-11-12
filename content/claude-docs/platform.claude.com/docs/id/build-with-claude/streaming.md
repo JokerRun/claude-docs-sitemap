@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: a99806bc74cc6b7b7f24db4d93804084927f4c9e927720502a3cf8262e0e97b4
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 76fcc5171a7547e9a97a5296f568aed6ba901e4cf2f3a5efa041904d94964ec2
 ---
 
 ---
@@ -33,12 +33,12 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (bedrock-runtime):
+      availability: stable
+      note: Endpoint `bedrock-runtime` Amazon Bedrock tidak melakukan streaming server-sent event biasa.
     Claude Platform on AWS: stable
     Claude Models on Google Cloud (Anthropic managed): stable
-    Amazon Bedrock: stable
-    Amazon Bedrock (InvokeModel):
-      availability: stable
-      note: Integrasi InvokeModel Amazon Bedrock yang lebih lama tidak melakukan streaming server-sent event biasa.
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
 ---
@@ -1582,7 +1582,7 @@ Streaming pesan tersedia di semua model.
 
 | Status               | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tersedia             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
-| Tersedia<sup>1</sup> | [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Tersedia             | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Tersedia<sup>1</sup> | [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
-1. Integrasi InvokeModel Amazon Bedrock yang lebih lama tidak melakukan streaming server-sent event biasa.
+1. Endpoint `bedrock-runtime` Amazon Bedrock tidak melakukan streaming server-sent event biasa.

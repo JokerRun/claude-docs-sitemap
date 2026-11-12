@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 8596ed0eccfd5079d970f592d074193ada56bfcb65dd9ef157e7fef5f5acf73f
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 617660c4fe71f590e4b76aec009df974134b43fc9fb53879c140024f330760b4
 ---
 
 ---
@@ -1451,11 +1451,11 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Contoh lengkap ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Contoh lengkap ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Contoh lengkap ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Contoh lengkap ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -2302,11 +2302,11 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Contoh lengkap ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Contoh lengkap ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Contoh lengkap ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Contoh lengkap ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -3846,11 +3846,11 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Contoh lengkap ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Contoh lengkap ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Contoh lengkap ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Contoh lengkap ini memerlukan lebih banyak logika daripada satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python

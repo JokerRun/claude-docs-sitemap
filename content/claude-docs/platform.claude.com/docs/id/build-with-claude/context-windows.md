@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-windows
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 0a13bf91e58a82bacb2fd0a84befbb44e898c0ad81b739232660b94d4bd36014
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 4ca64b3eff08c8a91ae312a01b69273113b3062e8329ce5318fd3ebc8433ef05
 ---
 
 ---
@@ -48,7 +48,7 @@ Untuk setiap model dengan jendela konteks 1M token, 1M adalah nilai default: And
 
 Satu permintaan dapat menyertakan hingga 600 gambar atau halaman PDF (100 untuk model dengan jendela konteks 200k token). Jika Anda mengirim banyak gambar atau dokumen besar, Anda mungkin mencapai [batas ukuran permintaan](https://platform.claude.com/docs/id/api/overview#request-size-limits) sebelum batas token.
 
-Lihat tabel [perbandingan model](https://platform.claude.com/docs/id/models/overview#latest-models-comparison) untuk daftar ukuran jendela konteks berdasarkan model.
+Lihat tabel [Semua model](https://platform.claude.com/docs/id/models/overview#all-models) untuk daftar ukuran jendela konteks berdasarkan model.
 
 ## Jendela konteks dengan thinking
 
@@ -172,8 +172,8 @@ Untuk tetap berada dalam batas jendela konteks, gunakan [API penghitungan token]
     Kelola konteks percakapan secara otomatis seiring pertumbuhannya dengan pengeditan konteks.
   </Card>
 
-  <Card title="Tabel perbandingan model" icon="scales" href="https://platform.claude.com/docs/id/models/overview#latest-models-comparison">
-    Lihat tabel perbandingan model untuk daftar ukuran jendela konteks dan harga token input/output berdasarkan model.
+  <Card title="Tabel Semua model" icon="scales" href="https://platform.claude.com/docs/id/models/overview#all-models">
+    Lihat tabel Semua model untuk daftar ukuran jendela konteks dan harga token input/output berdasarkan model.
   </Card>
 
   <Card title="Pemikiran" icon="settings" href="https://platform.claude.com/docs/id/build-with-claude/thinking">

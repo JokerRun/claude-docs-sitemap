@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: e47a836c0b27875e69fc322f2686da9b89e3a3e3dd8151d146247c6dd796d9e5
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: cf9a0b8ef937028ae9a2d75b6ec61e91ec9e6d56176f56a053cfe42baf3b047b
 ---
 
 ---
@@ -27,11 +27,11 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude menen
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -851,11 +851,11 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -1614,11 +1614,11 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dilakukan, Claud
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -2424,11 +2424,11 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -3326,11 +3326,11 @@ SDK menyediakan helper yang mengubah fungsi biasa menjadi alat yang dapat dijala
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Tool runner adalah helper di [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview). Permintaan HTTP mentah tidak memiliki padanannya.
+    Tool runner adalah helper di [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview). Permintaan HTTP mentah tidak memiliki padanannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Tool runner adalah helper di [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview). CLI `ant` tidak memiliki padanannya.
+    Tool runner adalah helper di [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview). CLI `ant` tidak memiliki padanannya.
   </CodeGroupItem>
 
   ```python Python

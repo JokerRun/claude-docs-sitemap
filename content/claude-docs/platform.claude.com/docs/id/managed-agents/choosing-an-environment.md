@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/choosing-an-environment
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: fc03b244ea7a5d1abb0ac2f44496be35b5eabeecaccf2a7dfaee9614965c7401
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 30c588c9d01c18c21db7271cdc2ed85997431e16594de92becafe0257b199528
 ---
 
 ---
@@ -49,7 +49,7 @@ Sebuah “environment” (lingkungan) menentukan tempat alat dan kode agen Anda 
 * **Lingkungan cloud:** Anthropic menjalankan sandbox untuk Anda. Setiap sesi mendapatkan container Linux baru miliknya sendiri di infrastruktur yang dikelola Anthropic, dengan bahasa pemrograman, database, dan utilitas umum yang sudah terinstal. Anda memilih aturan jaringannya dan paket tambahan apa pun yang akan diinstal.
 * **Sandbox yang di-host sendiri:** Anda menjalankan sandbox di infrastruktur Anda sendiri. Claude tetap berjalan di sisi Anthropic dan menentukan alat mana yang akan dipanggil berikutnya. Sebuah program yang Anda jalankan, yang disebut “worker” (pekerja), menjalankan panggilan alat bash dan file milik agen di mesin Anda dan mengirimkan setiap hasilnya kembali. Program ini juga dapat menyajikan alat kustom.
 
-Definisi agen tetap sama apa pun pilihan Anda. Anda mengatur model, prompt, dan alat pada [agen](https://platform.claude.com/docs/id/managed-agents/agent-setup), bukan pada lingkungan.
+Definisi agen tetap sama apa pun pilihan Anda. Anda mengatur model, prompt, dan alat pada agen, bukan pada lingkungan, seperti yang dijelaskan dalam [Mendefinisikan agen Anda](https://platform.claude.com/docs/id/managed-agents/agent-setup).
 
 ## Mulai dengan lingkungan cloud
 
@@ -105,7 +105,7 @@ Jika Anda menggunakan Claude Managed Agents melalui Claude Models on Google Clou
 
 Untuk beralih ke sandbox yang di-host sendiri, Anda mempertahankan agen, membuat lingkungan `self_hosted`, dan mereferensikan ID-nya di sesi dan deployment baru.
 
-* **Apa yang tetap terbawa:** Definisi agen, kunci API, kredensial Google Cloud, atau kredensial AWS yang digunakan aplikasi Anda, skill Anda, server MCP Anda, dan [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory) Anda.
+* **Apa yang tetap terbawa:** Definisi agen, kredensial yang digunakan aplikasi Anda (kunci API, kredensial AWS, atau kredensial Google Cloud), skill Anda, server MCP Anda, dan [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory) Anda.
 * **Apa yang baru:** Lingkungan `self_hosted`, kunci lingkungan yang Anda buat di Claude Console, dan worker yang Anda jalankan. [Panduan memulai cepat sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#quickstart) mencakup ketiganya.
 * **Apa yang berhenti berfungsi:** Fitur-fitur yang tercantum di [Apa yang Anda tanggung dan lepaskan dengan sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/choosing-an-environment#what-you-take-on-and-give-up-with-a-self-hosted-sandbox).
 

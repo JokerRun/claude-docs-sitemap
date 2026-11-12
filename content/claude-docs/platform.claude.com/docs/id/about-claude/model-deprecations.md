@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/model-deprecations
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: abb75d878f69e4b544ab0609b36d9f44eeaa78ac0546197d4cccc418aed567a4
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: fa5325af949357ee2e12b1cc1aa1b8685aee5cc087f1c3dcc2f5d5f354be0d15
 ---
 
 ---
@@ -28,7 +28,7 @@ Anthropic menggunakan istilah berikut untuk menjelaskan siklus hidup model:
   Model yang dihentikan kemungkinan kurang andal dibandingkan model aktif. Pindahkan beban kerja ke model aktif untuk mempertahankan tingkat dukungan dan keandalan tertinggi.
 </Warning>
 
-Tanggal di halaman ini berlaku untuk platform yang dioperasikan Anthropic: Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Platform yang dioperasikan mitra, yaitu Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, menetapkan jadwal pensiun mereka sendiri, sehingga status siklus hidup dan tanggal suatu model dapat berbeda. Lihat tabel model [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#supported-models), [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids), dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed#api-model-ids).
+Tanggal di halaman ini berlaku untuk platform yang dioperasikan Anthropic: Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Platform yang dioperasikan mitra, yaitu Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, menetapkan jadwal pensiun mereka sendiri, sehingga status siklus hidup dan tanggal suatu model dapat berbeda. Lihat tabel model [Amazon Bedrock (`bedrock-mantle`)](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#supported-models), [Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids), dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed#api-model-ids).
 
 ## Bermigrasi ke pengganti
 

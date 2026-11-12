@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-latency
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 7fa9179ccb4330cf67cd582509cd38c5cd86ba90eefd1a902e5169b9c2813aaa
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: ff59b344dc7a2b5c6d0a9dca1bad838508b57163ba469882217acee24736acbd
 ---
 
 ---
@@ -203,7 +203,7 @@ For speed-critical applications, **Claude Haiku 5.5** offers the fastest respons
   ```
 </CodeGroup>
 
-For more details about model metrics, see the [models overview](https://platform.claude.com/docs/en/models/overview) page.
+For more details about model metrics, see [Models overview](https://platform.claude.com/docs/en/models/overview).
 
 ### 2. Optimize prompt and output length
 
@@ -226,7 +226,7 @@ Here are some tips to help you optimize your prompts and outputs:
 
     `max_tokens`
 
-     tokens, the response will be cut off, perhaps mid-sentence or mid-word, so this is a blunt technique that might require post-processing and is usually most appropriate for multiple choice or short answer responses where the answer comes right at the beginning.
+     tokens, the API cuts it off, perhaps mid-sentence or mid-word. This is a blunt technique that might require post-processing. It’s usually most appropriate for multiple-choice or short-answer responses where the answer comes right at the beginning.
   </Note>
 
 Finding the right balance among prompt clarity, output quality, and token count might require some experimentation.

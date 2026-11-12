@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/analytics-api
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 5ede53629300cb9df9bb14ef0e24da2fbc75db869961d341435df35a84729a43
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 2c136cf831cb00d6e9500afaedf4de8d5edf1a8db30b815fbd62370b5391d3ae
 ---
 
 ---
@@ -136,7 +136,7 @@ Ketika Anda memfilter aktivitas pengguna berdasarkan proyek, aktivitas proyek se
 
 ## Pembuatan versi
 
-Kirim header `anthropic-version` pada setiap permintaan; lihat [Versi](https://platform.claude.com/docs/id/api/versioning) untuk versi yang tersedia.
+Kirim header `anthropic-version` pada setiap permintaan; lihat [Versi API](https://platform.claude.com/docs/id/api/versioning) untuk versi yang tersedia.
 
 ## Keterbatasan yang diketahui
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/migration
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 62b34812bf2e59de3017ddf399aab160af68c3ecbf962a650bb241a5188a0e7e
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: fd1e6fa696d3f1597a228be52f287395c600f69afcd262131539215d82ad866e
 ---
 
 ---
@@ -277,11 +277,11 @@ Jika Anda membangun agen dengan memanggil `client.messages.create()` (csharp: `c
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python

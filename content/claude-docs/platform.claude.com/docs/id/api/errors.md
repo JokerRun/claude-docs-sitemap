@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: a86a6da98f82cf553e562f03625d8367e16f225d306eb443b85348aee97037fb
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: a44d5c569773dcb1c0bf93cf4300abec300c6b2a0eb6933cbb660d98e5dbc39e
 ---
 
 ---
@@ -274,13 +274,13 @@ Hindari menetapkan nilai `max_tokens` yang besar tanpa menggunakan [Messages API
 
 Jika Anda membangun integrasi API langsung, menetapkan [TCP socket keep-alive](https://tldp.org/HOWTO/TCP-Keepalive-HOWTO/programming.html) dapat mengurangi dampak timeout koneksi idle pada beberapa jaringan.
 
-[Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) memvalidasi bahwa permintaan Messages API non-streaming Anda tidak diperkirakan melebihi timeout 10 menit. SDK juga menetapkan opsi socket untuk TCP keep-alive.
+[Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) memvalidasi bahwa permintaan Messages API non-streaming Anda tidak diperkirakan melebihi timeout 10 menit. SDK juga menetapkan opsi socket untuk TCP keep-alive.
 
 Jika Anda tidak perlu memproses event secara bertahap, SDK dapat mengonsumsi stream untuk Anda dan mengembalikan objek `Message` lengkap, identik dengan yang dikembalikan oleh panggilan non-streaming:
 
 <CodeGroup exclude="shell:cURL">
   <CodeGroupItem language="cURL">
-    Permintaan curl mencetak event stream mentah dan tidak dapat menggabungkannya menjadi pesan akhir. Untuk mendapatkan objek `Message` lengkap dari stream, gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview).
+    Permintaan curl mencetak event stream mentah dan tidak dapat menggabungkannya menjadi pesan akhir. Untuk mendapatkan objek `Message` lengkap dari stream, gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview).
   </CodeGroupItem>
 
   ```bash CLI
@@ -547,7 +547,7 @@ Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, dan Cla
 
 Claude API mengembalikan pesan yang sama untuk jenis alat yang didefinisikan Anthropic apa pun yang tidak didukung oleh model yang diminta. Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 mendukung penggunaan komputer melalui toolset `computer_toolset_20260801`. Deklarasikan `{"type": "computer_toolset_20260801"}` tanpa header beta dan perbarui loop agen Anda seperti yang dijelaskan di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Untuk beralih dari `computer_20250124`, lihat [Pindahkan penggunaan komputer ke toolset](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset) di panduan migrasi Claude Haiku 5.5.
 
-Di Amazon Bedrock, Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 juga menerima alat `computer_20251124` dengan header beta `computer-use-2025-11-24`. [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) mencantumkan model yang digunakan dengan setiap versi sebelumnya.
+Di Amazon Bedrock, Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 juga menerima alat `computer_20251124` dengan header beta `computer-use-2025-11-24`. Dengan InvokeModel API dari Amazon Bedrock, kirim `computer-use-2025-11-24` dalam array `anthropic_beta` pada body permintaan alih-alih di header. Untuk API tersebut, lihat [Claude di Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy). [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) mencantumkan model yang digunakan dengan setiap versi sebelumnya.
 
 ### Blok thinking yang terikat ke percakapan yang berbeda
 

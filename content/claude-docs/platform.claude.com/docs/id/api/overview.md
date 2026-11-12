@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/overview
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 44eeacf06cf16a7daac546ed810247dd4d4bd74792d3ab0fe85eccc3f1363cbf
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 1f3cd0a49af11a990d835bed79102a897ead1d262fd4498089f16e31eb039140
 ---
 
 ---
@@ -97,13 +97,13 @@ Akses Claude melalui AWS, Google Cloud, atau Microsoft Azure:
 * **Ketersediaan fitur bervariasi menurut platform:** Platform yang dioperasikan Anthropic mencakup [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry); platform yang dioperasikan mitra mencakup Claude Models on Google Cloud (Google managed) dan Amazon Bedrock. Lihat halaman setiap platform untuk ketersediaan dan waktu fitur.
 * **Terbaik untuk:** Komitmen cloud yang sudah ada, persyaratan kepatuhan tertentu, penagihan cloud terkonsolidasi
 
-| Platform                                          | Penyedia                                 | Dokumentasi                                                                                                                                                |
-| ------------------------------------------------- | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Claude Models on Google Cloud (Google managed)    | Google Cloud                             | [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)       |
-| Amazon Bedrock                                    | AWS                                      | [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)                                                 |
-| Claude Platform on AWS                            | AWS (dioperasikan Anthropic)             | [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)                                                     |
-| Claude Models on Google Cloud (Anthropic managed) | Google Cloud (dioperasikan Anthropic)    | [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
-| Microsoft Foundry                                 | Microsoft Azure (dioperasikan Anthropic) | [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                                           |
+| Platform                                          | Penyedia                                 | Dokumentasi                                                                                                                                                                                                                                                             |
+| ------------------------------------------------- | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Claude Models on Google Cloud (Google managed)    | Google Cloud                             | [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)                                                                                                                    |
+| Amazon Bedrock                                    | AWS                                      | [Claude di Amazon Bedrock (`bedrock-mantle`)](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) dan [Claude di Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) |
+| Claude Platform on AWS                            | AWS (dioperasikan Anthropic)             | [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)                                                                                                                                                                  |
+| Claude Models on Google Cloud (Anthropic managed) | Google Cloud (dioperasikan Anthropic)    | [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed)                                                                                                              |
+| Microsoft Foundry                                 | Microsoft Azure (dioperasikan Anthropic) | [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                                                                                                                                                        |
 
 <Note>
   Claude Managed Agents tersedia melalui Claude API pihak pertama, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed). Untuk ketersediaan fitur di seluruh platform, lihat [Ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview).
@@ -173,7 +173,7 @@ API menerapkan batas laju dan batas pengeluaran untuk mencegah penyalahgunaan da
 * **Batas pengeluaran:** Biaya bulanan maksimum untuk penggunaan API
 * **Batas laju:** Jumlah maksimum permintaan per menit (RPM) dan token per menit (TPM)
 
-Anda dapat melihat batas laju Anda di [Batas laju di Claude Console](https://platform.claude.com/usage/limits) dan batas pengeluaran Anda di halaman [Penagihan](https://platform.claude.com/settings/billing) Console. Untuk batas laju yang lebih tinggi atau batas pengeluaran bulanan yang lebih tinggi, gunakan **Minta kenaikan tingkat** di halaman **Batas laju**.
+Anda dapat melihat batas laju Anda di [Batas laju di Claude Console](https://platform.claude.com/usage/limits). Batas pengeluaran Anda ada di [Batas pengeluaran di Claude Console](https://platform.claude.com/settings/spend-limits) (`platform.claude.com/settings/spend-limits`). Untuk batas laju yang lebih tinggi atau batas pengeluaran bulanan yang lebih tinggi, gunakan **Minta kenaikan tingkat** di halaman **Batas laju**.
 
 Untuk informasi terperinci tentang batas, tingkatan, dan algoritma token bucket yang digunakan untuk pembatasan laju, lihat [Batas laju](https://platform.claude.com/docs/id/api/rate-limits).
 

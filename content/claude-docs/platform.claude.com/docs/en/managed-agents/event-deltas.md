@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/event-deltas
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: a110363f67c9ff4a2b9aadfd91df1a74209aace778e5334cd187cc2928729c3a
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: e88426ac229f980814add149e8b7620d79a52ceccf77829220713113f732219c
 ---
 
 ---
@@ -143,11 +143,11 @@ The following examples opt in to `agent.message` previews and reconcile them wit
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    This workflow needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    This workflow needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   ```python Python

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/workflow-runs
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 1f167c90e42ae3a329c52bc2e0c7ab64387e835bcf194e6adce7a501d6c274a8
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 65beeda6ae96fd309d02daf3cf861314daffa5a4fc8bd67692916db9b242acd8
 ---
 
 ---
@@ -204,11 +204,11 @@ Contoh ini mengikuti sesi dari pesan Anda hingga jawaban agen. Contoh ini membuk
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python

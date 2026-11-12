@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/user-management
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: ebaf4461fe70cfdd03989352128e4906cbadf90faa2ef2b1773e751d03230e82
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 353ff7b05670559f63e26eaf046f4bea638e85e071859aaf8f8c56b77fb2708e
 ---
 
 ---
@@ -205,7 +205,7 @@ Groups connect members to custom roles (role-based access control, the `rbac` in
 
 ## Versioning
 
-Send the `anthropic-version` header on every request; see [Versions](https://platform.claude.com/docs/en/api/versioning) for the available versions.
+Send the `anthropic-version` header on every request; see [API versions](https://platform.claude.com/docs/en/api/versioning) for the available versions.
 
 ## Rate limits
 

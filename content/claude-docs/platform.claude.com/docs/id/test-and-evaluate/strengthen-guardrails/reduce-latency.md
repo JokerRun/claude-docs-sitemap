@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-latency
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: da3ed2ef9d02d508df85c02e7d60722c074fb0ce376364ff5b48d08108d35a3f
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 68775fa3c3b28fdfe12f6e9f897860bfab4eeed4c6abb8e1d2da71863b06160e
 ---
 
 ---
@@ -203,7 +203,7 @@ Untuk aplikasi yang mengutamakan kecepatan, **Claude Haiku 5.5** menawarkan wakt
   ```
 </CodeGroup>
 
-Untuk detail lebih lanjut tentang metrik model, lihat halaman [ikhtisar model](https://platform.claude.com/docs/id/models/overview).
+Untuk detail lebih lanjut tentang metrik model, lihat [Ikhtisar model](https://platform.claude.com/docs/id/models/overview).
 
 ### 2. Optimalkan panjang prompt dan output
 
@@ -226,7 +226,7 @@ Berikut beberapa tips untuk membantu Anda mengoptimalkan prompt dan output Anda:
 
     `max_tokens`
 
-     token, respons akan terpotong, mungkin di tengah kalimat atau di tengah kata, sehingga ini adalah teknik kasar yang mungkin memerlukan pasca-pemrosesan dan biasanya paling sesuai untuk respons pilihan ganda atau jawaban singkat di mana jawabannya muncul tepat di awal.
+     token, API akan memotongnya, mungkin di tengah kalimat atau di tengah kata. Ini adalah teknik kasar yang mungkin memerlukan pasca-pemrosesan. Teknik ini biasanya paling sesuai untuk respons pilihan ganda atau jawaban singkat di mana jawabannya muncul tepat di awal.
   </Note>
 
 Menemukan keseimbangan yang tepat antara kejelasan prompt, kualitas output, dan jumlah token mungkin memerlukan beberapa eksperimen.

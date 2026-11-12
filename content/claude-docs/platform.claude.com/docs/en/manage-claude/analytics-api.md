@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/analytics-api
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: dd3e2252dd073b2d82e6a0eb44fa0b5a6d3c2eba618cf796fa82f270e71097cd
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: c11cd80b56c8cde59fdfc7a5bf7c3193b64ccebfc4ef461bfcb27453108dd62a
 ---
 
 ---
@@ -136,7 +136,7 @@ When you filter user activity by project, each day’s project activity is count
 
 ## Versioning
 
-Send the `anthropic-version` header on every request; see [Versions](https://platform.claude.com/docs/en/api/versioning) for the available versions.
+Send the `anthropic-version` header on every request; see [API versions](https://platform.claude.com/docs/en/api/versioning) for the available versions.
 
 ## Known limitations
 

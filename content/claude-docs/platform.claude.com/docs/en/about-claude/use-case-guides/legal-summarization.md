@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 349efd384b24db25b716037c08da361d70c0cf6312dad9735fd1c0577f2f0c76
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 7251b05d23d1b7b1525809b2913999ac2f71cd540a9b099c1e73bc97fb1cc0af
 ---
 
 ---
@@ -484,11 +484,11 @@ Here’s an example of how to create a prompt that ensures the generated summari
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
-    This workflow needs more logic than a single shell command. Use the Claude SDK to run it.
+    This workflow needs more logic than a single shell command. Use the Anthropic SDK to run it.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    This workflow needs more logic than a single shell command. Use the Claude SDK to run it.
+    This workflow needs more logic than a single shell command. Use the Anthropic SDK to run it.
   </CodeGroupItem>
 
   ```python Python
@@ -898,11 +898,11 @@ Here’s an example of how to perform meta-summarization:
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
-    This workflow needs more logic than a single shell command. Use the Claude SDK to run it.
+    This workflow needs more logic than a single shell command. Use the Anthropic SDK to run it.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    This workflow needs more logic than a single shell command. Use the Claude SDK to run it.
+    This workflow needs more logic than a single shell command. Use the Anthropic SDK to run it.
   </CodeGroupItem>
 
   ```python Python

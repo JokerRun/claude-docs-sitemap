@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 41b8b5cad0fdee14f642bb3e9a292362251f97deb5718985912a402842844100
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 67da9d557fbd4bab22d4d9f6e49c25f7a9dfe6da339195cd8944d4625a8dffb2
 ---
 
 ---
@@ -26,7 +26,7 @@ Prompt Claude Haiku 4.5 yang sudah ada seharusnya berkinerja baik tanpa perubaha
 * Permintaan mengembalikan `stop_reason: "refusal"`: [Penolakan safeguard](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#safeguard-refusals)
 
 <Note>
-  Untuk perubahan API yang merusak kompatibilitas saat bermigrasi dari Claude Haiku 4.5, lihat [panduan migrasi](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide).
+  Untuk perubahan API yang merusak kompatibilitas saat bermigrasi dari Claude Haiku 4.5, lihat [Panduan migrasi Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide).
 
   Beberapa bagian di halaman ini menyarankan teks untuk ditambahkan ke “system prompt” (prompt sistem) Anda. Tambahkan hanya ke percakapan baru. Permintaan yang mengirimkan kembali blok thinking setelah `system` berubah dapat mengembalikan error 400, sehingga percakapan tersimpan yang dilanjutkan dengan prompt sistem baru dapat gagal. Untuk mengubah instruksi di tengah percakapan, [letakkan instruksi tersebut di giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#changing-context). Di Claude API, Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), dan Claude Models on Google Cloud (Google managed), Anda dapat sebagai gantinya [menambahkan pesan sistem ke percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#new-instructions).
 </Note>
@@ -45,7 +45,7 @@ Claude Haiku 5.5 adalah model Haiku pertama dengan tingkat effort. Thinking beke
 * Thinking aktif secara default dan dihitung terhadap `max_tokens`, yang dapat mencapai hingga 128.000. Nilai `max_tokens` yang disesuaikan untuk permintaan Claude Haiku 4.5 yang berjalan tanpa thinking dapat memotong balasan, jadi sisakan ruang untuk thinking.
 * Untuk mengurangi thinking, turunkan tingkat effort. Dalam pengujian Anthropic, menginstruksikan model di dalam prompt untuk menjawab secara langsung tidak menghentikannya dari berpikir. Anda juga dapat menonaktifkan thinking dengan `thinking: {"type": "disabled"}`. Ini hanya berfungsi pada `low`, `medium`, dan `high`. Pada `xhigh` dan `max`, permintaan akan mengembalikan error 400.
 * Pada effort `xhigh` dalam obrolan multi-giliran, model terkadang menulis seluruh jawabannya di dalam thinking-nya dan mengakhiri giliran tanpa teks yang terlihat. Jika Anda melihat perilaku ini, periksa setiap respons untuk balasan yang kosong.
-* Mengubah nilai `effort` tingkat atas di antara permintaan akan membatalkan cache prompt untuk pesan-pesan dalam percakapan. Jika platform Anda mendukungnya, Anda dapat mengubah tingkat effort di tengah percakapan dengan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta), yang mempertahankan cache. Sebuah perubahan berlaku untuk setiap giliran berikutnya hingga digantikan oleh perubahan lain. Fitur ini memerlukan header beta `mid-conversation-output-config-2026-07-01` dan pemikiran adaptif, yang merupakan default. Dengan thinking dinonaktifkan, perubahan effort per pesan akan mengembalikan error 400.
+* Mengubah nilai `effort` tingkat atas di antara permintaan akan membatalkan cache prompt untuk pesan-pesan dalam percakapan. Jika platform Anda mendukungnya, Anda dapat mengubah tingkat effort di tengah percakapan dengan perubahan [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message), yang mempertahankan cache. Sebuah perubahan berlaku untuk setiap giliran berikutnya hingga digantikan oleh perubahan lain. Fitur ini memerlukan header beta `mid-conversation-output-config-2026-07-01` dan pemikiran adaptif, yang merupakan default. Dengan thinking dinonaktifkan, perubahan effort per pesan akan mengembalikan error 400.
 
 ## Hasil pencarian yang akurat
 
@@ -60,7 +60,7 @@ Render tanggal sekali, saat percakapan dimulai, dan kirim `system` dan `tools` y
 Model juga terkadang memerlukan dorongan tambahan untuk melakukan pencarian. Hal ini paling sering terjadi pada effort `low` dan dengan prompt sistem yang panjang. Untuk mengatasinya, tambahkan teks ini tepat setelah tanggal:
 
 ```text wrap
-Your training data ends well before today's date. Records, office holders, prices, versions, rules and anything "latest" may have changed since then, so search for those before you answer, even when you feel sure. Facts that can't change need no search. When the answer depends on where the user is, put the user's country or region in the search query.
+Your training data ends well before today's date. Records, office holders, prices, versions, rules, and anything "latest" may have changed since then, so search for those before you answer, even when you feel sure. Facts that can't change need no search. When the answer depends on where the user is, put the user's country or region in the search query.
 ```
 
 Dalam pengujian Anthropic, teks ini meningkatkan tingkat pencarian pada pertanyaan yang jawabannya telah berubah. Pada prompt yang tidak memerlukan pencarian, teks ini hanya menambahkan pencarian pada 0–3 persen percobaan.
@@ -101,7 +101,7 @@ Menaikkan effort juga mengurangi penghentian dini, baik secara tersendiri maupun
 Pada effort `low` dan `medium`, Claude Haiku 5.5 terkadang melaporkan perubahan kode sebagai selesai tanpa menjalankan pemeriksaan. Jika Anda melihat model melaporkan hasil tanpa memeriksa pekerjaannya, tambahkan paragraf ini, atau yang serupa, ke prompt sistem Anda:
 
 ```text wrap
-When you change code that can be run, built, or type-checked, run a real check that exercises the change before reporting it done: the project's tests, type-checker, or build, or the changed command itself. A syntax-only check, or a check command that failed to start, does not count; if all that is missing is the project's declared dependencies, install them with its own package manager and lockfile (e.g. npm install, pip install -r requirements.txt), never via sudo or the system package manager, unless told not to. Only if no real check can run here, say which one you did not run and why instead of reporting the change as done.
+When you change code that can be run, built, or type-checked, run a real check that exercises the change before reporting it done: the project's tests, type-checker, or build, or the changed command itself. A syntax-only check, or a check command that failed to start, does not count; if all that is missing is the project's declared dependencies, install them with its own package manager and lockfile (for example, npm install or pip install -r requirements.txt), never through sudo or the system package manager, unless told not to. Only if no real check can run here, say which one you did not run and why instead of reporting the change as done.
 ```
 
 Dalam pengujian Anthropic, model lebih sering memeriksa perubahannya dengan teks ini, dan kinerjanya meningkat, dengan biaya token yang lebih banyak.
@@ -141,4 +141,4 @@ Claude Haiku 5.5 menjalankan “safety classifiers” (pengklasifikasi keamanan)
 
 Jika Anda beralih dari Claude Haiku 4.5, penolakan ini merupakan hal baru.
 
-Claude Haiku 5.5 tidak memiliki [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) (beta). Jika permintaan ditolak, tangani `stop_reason: "refusal"` di klien Anda. Mengirim permintaan yang sama ke Claude Haiku 5.5 lagi biasanya akan mengembalikan penolakan lain.
+Claude Haiku 5.5 tidak memiliki [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback). Jika permintaan ditolak, tangani `stop_reason: "refusal"` di klien Anda. Mengirim permintaan yang sama ke Claude Haiku 5.5 lagi biasanya akan mengembalikan penolakan lain.

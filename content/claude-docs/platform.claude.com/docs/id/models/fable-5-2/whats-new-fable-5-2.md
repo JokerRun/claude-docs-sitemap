@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-2/whats-new-fable-5-2
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 1d1b91f5b9a7d98b07198847235a643ec38aba762de8d43f6e60997235a5698a
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: bb82e160cc3593640d43183d5f5246b45c697d836825cebaaaa1825172a8aad2
 ---
 
 ---
@@ -39,11 +39,25 @@ Untuk semua model saat ini, lihat [Ikhtisar model](https://platform.claude.com/d
 
 ### Mengedit giliran sebelumnya membatalkan blok thinking di setiap akun
 
-Pemeriksaan prefix API (lihat [Menjaga prefix tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check)) menguji apakah ada sesuatu sebelum blok thinking Claude Fable 5.2 atau Claude Mythos 5.2 yang telah berubah sejak model menghasilkannya: prompt `system`, `tools`, atau pesan sebelumnya. Pada Claude Fable 5.2 dan Claude Mythos 5.2, permintaan yang mengirim kembali blok thinking yang tidak valid dan membiarkan `prefix_mismatch_behavior` tidak diatur akan mendapatkan error 400, berapa pun usia akunnya (lihat [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement)). Pada Claude Fable 5.1, permintaan seperti itu mendapatkan error tersebut pada akun yang dibuat pada atau setelah 31 Agustus 2026. Claude Mythos 5.1 sudah mengembalikannya di setiap akun, pada platform yang dicantumkan di [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement). Jadi kode pada Claude Fable 5.1 yang mengedit riwayatnya dapat berjalan tanpa error pada akun yang lebih lama sebelum peralihan dan gagal setelahnya.
+Pemeriksaan prefix API (lihat [Menjaga prefix tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check)) menguji apakah ada sesuatu sebelum blok thinking Claude Fable 5.2 atau Claude Mythos 5.2 yang telah berubah sejak model menghasilkannya: prompt `system`, `tools`, atau pesan sebelumnya. Pada Claude Fable 5.2 dan Claude Mythos 5.2, permintaan yang mengirim kembali blok thinking yang tidak valid dan membiarkan `prefix_mismatch_behavior` tidak diatur akan mendapatkan error 400, berapa pun usia akunnya (lihat [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement)). Pada Claude Fable 5.1, permintaan seperti itu mendapatkan error tersebut pada akun yang dibuat pada atau setelah 31 Agustus 2026. Di Claude API, Claude Mythos 5.1 sudah mengembalikannya di setiap akun. Jadi kode pada Claude Fable 5.1 yang mengedit riwayatnya dapat berjalan tanpa error pada akun yang lebih lama sebelum peralihan dan gagal setelahnya.
 
 Ketika pemeriksaan gagal, permintaan mengembalikan error 400 yang pesannya menyatakan `The block is bound to a different conversation`. Untuk membuang blok yang terpengaruh dan melanjutkan, kirim header beta `thinking-binding-controls-2026-08-01` dan atur `thinking.block_binding.prefix_mismatch_behavior` ke `"drop_block"`. Respons kemudian mencantumkan setiap blok yang dibuang dalam array `input_transformations` tingkat atas. Perlakukan `"drop_block"` sebagai solusi sementara selagi Anda memperbaiki pengeditan, karena [membuang blok dapat meningkatkan token output](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#drop-block-cost).
 
-Tidak ada yang berubah bagi Anda jika Claude Code, claude.ai, [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), atau [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview) yang membangun permintaan Anda. Hal yang sama berlaku jika kode Anda menjaga `system` dan `tools` tetap sama selama satu sesi dan hanya menambahkan ke `messages`. Jika tidak, jalankan pengujian dalam panduan migrasi sebelum Anda beralih: [bagian pemeriksaan prefix](https://platform.claude.com/docs/id/models/fable-5-2/migration-guide#fable-5-2-preserved-thinking) untuk kode pada Claude Fable 5.1, atau [Migrasi ke Claude Mythos 5.2 dari Claude Mythos 5.1](https://platform.claude.com/docs/id/models/fable-5-2/migration-guide#migrating-from-claude-mythos-5-1-to-claude-mythos-5-2) untuk kode pada Claude Mythos 5.1. [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking) mencantumkan apa yang dianggap sebagai pengeditan dan cara melakukan setiap perubahan tanpa pengeditan.
+Tidak ada yang berubah bagi Anda jika Claude Code, claude.ai, [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), atau [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview) yang membangun permintaan Anda.
+
+Jika kode Anda sendiri yang membangun permintaan Anda, tidak ada yang berubah bagi Anda juga, selama semua hal berikut benar:
+
+* Kode Anda menjaga `system` dan `tools` tetap sama selama seluruh percakapan.
+* Kode Anda hanya menambahkan ke `messages`. Kode tersebut tidak pernah mengubah, menyusun ulang, atau menghapus pesan sebelumnya.
+* Kode Anda [mengirim kembali setiap giliran asisten persis seperti yang dikembalikan API](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#append-assistant-turns-exactly-as-returned): setiap blok, dalam urutan yang sama.
+* Kode Anda tidak melakukan satu pun hal yang dicantumkan di [Apa yang perlu diperiksa dalam integrasi Anda](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#what-to-check).
+
+Jika tidak, uji kode Anda sebelum Anda beralih:
+
+* **Kode pada Claude Fable 5.1:** Ikuti [bagian pemeriksaan prefix](https://platform.claude.com/docs/id/models/fable-5-2/migration-guide#fable-5-2-preserved-thinking) dalam panduan migrasi.
+* **Kode pada Claude Mythos 5.1:** Ikuti [Migrasi ke Claude Mythos 5.2 dari Claude Mythos 5.1](https://platform.claude.com/docs/id/models/fable-5-2/migration-guide#migrating-from-claude-mythos-5-1-to-claude-mythos-5-2).
+
+[Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking) menjelaskan apa yang dianggap sebagai pengeditan. Halaman tersebut juga menunjukkan cara melakukan setiap perubahan tanpa pengeditan.
 
 ### Hanya Claude Fable 5.2 dan Claude Mythos 5.2 yang dapat membaca blok thinking Claude Fable 5.2
 
@@ -56,7 +70,7 @@ Ketika permintaan membawa blok yang tidak dapat dibaca oleh model saat ini, API 
 
 ### Gunakan toolset computer use alih-alih `computer_20251124`
 
-Claude Fable 5.1 menerima [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) baik sebagai toolset `computer_toolset_20260801` maupun, dengan header beta `computer-use-2025-11-24`, sebagai alat `computer_20251124` yang lama. Claude Fable 5.2 dan Claude Mythos 5.2 mendukung computer use melalui toolset. Permintaan ke salah satu model yang mendeklarasikan alat `computer_20251124` mengembalikan 400 `invalid_request_error` di setiap platform kecuali Amazon Bedrock, tempat alat lama berfungsi seperti pada Claude Fable 5.1.
+Claude Fable 5.1 menerima [computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) baik sebagai toolset `computer_toolset_20260801` maupun, dengan header beta `computer-use-2025-11-24`, sebagai alat `computer_20251124` yang lama. Claude Fable 5.2 dan Claude Mythos 5.2 mendukung computer use melalui toolset. Permintaan ke salah satu model yang mendeklarasikan alat `computer_20251124` mengembalikan 400 `invalid_request_error` di setiap platform kecuali Amazon Bedrock. Di sana, kedua model menerima alat lama: dengan InvokeModel API, kirim `computer-use-2025-11-24` dalam array `anthropic_beta` di badan permintaan.
 
 Untuk memindahkan integrasi yang ada, ikuti [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124).
 
@@ -80,7 +94,7 @@ Claude Fable 5.2 mendukung fitur API berikut, di antara fitur lainnya:
 * **Effort:** kelima [tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort#effort-levels): `low`, `medium`, `high`, `xhigh`, dan `max`. Default API adalah `high`. Mulailah dari sana, karena sebagian besar peningkatan kemampuan sudah ada pada `high`. Naikkan ke `xhigh` untuk pekerjaan coding dan agentik jangka panjang Anda yang paling sulit, tempat Anda telah mengukur adanya peningkatan. Simpan `max` untuk mengukur batas kemampuan model dan untuk tugas langka ketika waktu dan token tidak menjadi masalah. Lihat [Tingkat effort yang direkomendasikan untuk Claude Fable 5.2](https://platform.claude.com/docs/id/build-with-claude/effort#recommended-effort-levels-for-claude-fable-5-2).
 * **Compaction sesuai permintaan (beta):** dengan header beta `compact-2026-09-04`, Anda memilih kapan mengganti giliran lama dengan ringkasan. Lihat [Compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand).
 * **Perubahan alat di tengah percakapan (beta):** Anda menambahkan atau menghapus alat dalam pesan `role: "system"` alih-alih mengedit `tools`. Di Claude API, Claude Platform on AWS, dan Claude Models on Google Cloud (Anthropic managed), kirim header beta `inline-tools-2026-09-15`. Header `mid-conversation-tool-changes-2026-07-01` berfungsi untuk perubahan yang menyebut alat berdasarkan referensi, pada platform yang dicantumkan di [Pesan sistem dan perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages). Lihat [Perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes).
-* **Computer use:** melalui toolset `computer_toolset_20260801`. Alat `computer_20251124` yang lama mengembalikan error 400 di setiap platform kecuali Amazon Bedrock, tempat kedua model juga menerima alat lama tersebut (lihat [perubahan computer use yang merusak kompatibilitas](https://platform.claude.com/docs/id/models/fable-5-2/whats-new-fable-5-2#computer-20251124-is-not-supported)). Lihat [Alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool).
+* **Computer use:** melalui toolset `computer_toolset_20260801`. Alat `computer_20251124` yang lama mengembalikan error 400 di setiap platform kecuali Amazon Bedrock. Di sana, Claude Fable 5.2 dan Claude Mythos 5.2 juga menerima alat lama tersebut. Lihat [perubahan computer use yang merusak kompatibilitas](https://platform.claude.com/docs/id/models/fable-5-2/whats-new-fable-5-2#computer-20251124-is-not-supported) dan [Alat computer use](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool).
 
 Compaction sesuai permintaan dan perubahan alat di tengah percakapan membantu Anda menjaga riwayat agar hanya ditambahkan (append-only), yang diwajibkan oleh [pemeriksaan prefix](https://platform.claude.com/docs/id/models/fable-5-2/whats-new-fable-5-2#editing-earlier-turns-invalidates-thinking-blocks). Lihat halaman masing-masing fitur untuk ketersediaan model dan platform.
 
@@ -107,7 +121,7 @@ Beberapa perilaku Claude Fable 5.2 muncul tanpa perubahan kode apa pun. Periksal
 * **Apa yang dikatakan prompt tentang kepemilikan kode itu penting.** Dalam pengujian Anthropic pada tugas coding kecil, ketika prompt tidak menyebutkan siapa pemilik kode, model cenderung menambah struktur yang ada dan melaporkan masalah di sekitarnya alih-alih memperbaikinya. Lihat [Nyatakan siapa pemilik kode](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-2#say-who-owns-the-code).
 * **Rangkaian panjang panggilan alat dapat berlangsung dengan sedikit teks yang terlihat oleh pengguna.** Model mungkin juga melakukan panggilan alat pertamanya tanpa mengatakan apa yang akan dilakukannya. Lihat [Jaga agar pengguna tetap mendapat informasi selama giliran yang panjang](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-2#keep-users-informed-during-long-turns).
 * **Seberapa banyak model mendelegasikan ke subagen bergantung pada harness dan tugas Anda.** Dalam produk coding agentik yang prompt-nya mengundang delegasi, model mendelegasikan dengan mudah. Subagen dapat menyumbang porsi besar biaya sebuah sesi. Lihat [Tetapkan ekspektasi untuk subagen](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-2#set-expectations-for-subagents).
-* **Model mengikuti aturan gaya dengan ketat.** Batas keras pada panjang kalimat dapat membuat prosa model terputus-putus. Lihat [Tinjau instruksi yang ditulis untuk model sebelumnya](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-2#review-instructions-written-for-earlier-models).
+* **Model mengikuti aturan gaya dengan ketat.** Batas keras pada panjang kalimat dapat membuat prosa model terputus-putus. Lihat [Tinjau prompt dan harness yang dirancang untuk model sebelumnya](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-2#review-instructions-written-for-earlier-models).
 
 ## Penolakan, fallback, dan penagihan
 
@@ -125,21 +139,22 @@ Claude Fable 5.2 dan Claude Mythos 5.2 memiliki harga yang sama berikut, dalam U
 | ----------- | ------------------ | ------------------ | --------------- | ---------- |
 | $8 / MTok   | $10 / MTok         | $16 / MTok         | $0,20 / MTok    | $40 / MTok |
 
-Input dan output lebih murah dibandingkan pada Claude Fable 5.1 dan Claude Mythos 5.1, yang berharga $10 USD per juta token input dan $50 USD per juta token output. Pembacaan cache (hit dan refresh) berharga 0,025 kali harga input dasar, pengali yang sama seperti pada model-model tersebut. [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing) berharga $4 USD per juta token input dan $20 USD per juta token output. [Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) untuk Claude Fable 5.2 berharga $16 USD per juta token input dan $80 USD per juta token output. Lihat [Harga mode cepat](https://platform.claude.com/docs/id/about-claude/pricing#fast-mode-pricing). Mode cepat untuk Claude Mythos 5.2 berharga $16 USD per juta token input dan $80 USD per juta token output. Lihat [Harga](https://platform.claude.com/docs/id/about-claude/pricing) untuk harga residensi data dan alat.
+Input dan output lebih murah dibandingkan pada Claude Fable 5.1 dan Claude Mythos 5.1. Claude Fable 5.1 dan Claude Mythos 5.1 berharga $10 USD per juta token input dan $50 USD per juta token output. Pembacaan cache (hit dan refresh) berharga 0,025 kali harga input dasar, pengali yang sama seperti pada model-model tersebut. [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing) berharga $4 USD per juta token input dan $20 USD per juta token output. [Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) untuk Claude Fable 5.2 dan Claude Mythos 5.2 berharga $16 USD per juta token input dan $80 USD per juta token output. Lihat [Harga mode cepat](https://platform.claude.com/docs/id/about-claude/pricing#fast-mode-pricing). Lihat [Harga](https://platform.claude.com/docs/id/about-claude/pricing) untuk harga residensi data dan alat.
 
 ## Ketersediaan
 
 Claude Fable 5.2 tersedia di:
 
 * **Claude API:** semua pelanggan, sebagai `claude-fable-5-2`
-* **AWS:** [Claude in Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), sebagai `anthropic.claude-fable-5-2`, dan [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), sebagai `claude-fable-5-2`
+* **AWS:** [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), sebagai `claude-fable-5-2`
+* **Amazon Bedrock:** `global.anthropic.claude-fable-5-2` atau `us.anthropic.claude-fable-5-2`, hanya di [endpoint `bedrock-runtime`](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids)
 * **Google Cloud:** [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), sebagai `claude-fable-5-2`, dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), sebagai `claude-fable-5-2`
 * **Microsoft Foundry:** [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), sebagai `claude-fable-5-2`, di infrastruktur Anthropic (lihat [Opsi hosting](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#hosting-options))
 
 Claude Mythos 5.2 hanya tersedia untuk organisasi yang terverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842). Model ini tersedia di:
 
 * **Claude API:** sebagai `claude-mythos-5-2`
-* **AWS:** [Claude in Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), sebagai `anthropic.claude-mythos-5-2`
+* **Amazon Bedrock:** `global.anthropic.claude-mythos-5-2` atau `us.anthropic.claude-mythos-5-2`, hanya di [endpoint `bedrock-runtime`](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids)
 * **Google Cloud:** [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), sebagai `claude-mythos-5-2`, dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), sebagai `claude-mythos-5-2`
 * **Microsoft Foundry:** [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), sebagai `claude-mythos-5-2`, di infrastruktur Anthropic
 

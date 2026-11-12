@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 912194d17d2c3702e575666ca1e5fb414250c02820d186d67e9d406cf9ce9f38
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: b9ce7391ce24aa16ac9b99ac0277d38b4598efe0f09c6176af0d6cb3ec09080f
 ---
 
 ---
@@ -633,7 +633,7 @@ const client = new Anthropic({
 
 ### Tracing OpenTelemetry
 
-Saat aplikasi Anda mendaftarkan tracer provider OpenTelemetry, SDK memancarkan span untuk setiap permintaan yang dikirimnya. Untuk mengirim span ke platform observabilitas Anda, lihat [Menyiapkan OpenTelemetry dengan Claude SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
+Saat aplikasi Anda mendaftarkan tracer provider OpenTelemetry, SDK memancarkan span untuk setiap permintaan yang dikirimnya. Untuk mengirim span ke platform observabilitas Anda, lihat [Menyiapkan OpenTelemetry dengan Anthropic SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
 
 ### Membuat request kustom/tidak terdokumentasi
 
@@ -782,8 +782,8 @@ const response = await client.beta.messages.create({
 <Note>
   Untuk panduan penyiapan platform terperinci beserta contoh kode, lihat:
 
-  * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
-  * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
+  * [Amazon Bedrock (`bedrock-mantle`)](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
+  * [Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
   * [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
   * [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)
   * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
@@ -798,7 +798,7 @@ TypeScript SDK mendukung platform berikut:
 * **Claude Platform on AWS:** `npm install @anthropic-ai/aws-sdk`: Menyediakan klien `AnthropicAws`. Teruskan `workspaceId` ke constructor atau atur variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID`. Tersedia dalam beta.
 * **Foundry:** `npm install @anthropic-ai/foundry-sdk`: Menyediakan klien `AnthropicFoundry`
 
-Gunakan `AnthropicBedrockMantle` untuk proyek baru; `AnthropicBedrock` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan Bedrock `InvokeModel` API.
+Gunakan `AnthropicBedrockMantle` dengan endpoint `bedrock-mantle`, dan `AnthropicBedrock` dengan `InvokeModel` API pada endpoint `bedrock-runtime`.
 
 TypeScript SDK juga mendukung Claude Models on Google Cloud (Anthropic managed) melalui klien `AnthropicGoogleCloud`. Klien ini masih dalam tahap beta. Untuk menginstalnya, jalankan `npm install @anthropic-ai/google-cloud-sdk`. Teruskan `workspaceId` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`. Lihat [Resolusi proyek, lokasi, dan workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution) untuk mengetahui cara klien menentukan ID workspace.
 

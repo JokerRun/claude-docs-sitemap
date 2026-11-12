@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 4f9ef071b7f48aedd504fa577edc1331c3df30881dcb020c5c4a533e5a2cfbe3
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 249470d427fb56113c0b335057862eb780ef6c0be85e7128e10f113d1cd2b807
 ---
 
 ---
@@ -145,14 +145,32 @@ Ketika cakupannya ambigu (misalnya, `/claude-api migrate to claude-opus-5-5` tan
 Skill ini menangani:
 
 * **Penggantian ID model**, termasuk konstanta SDK bertipe (`Model.CLAUDE_OPUS_4_8` → `Model.CLAUDE_OPUS_5_5`) di semua bahasa yang didukung, serta mengklasifikasikan setiap file sebagai pemanggil, pendefinisi model, atau referensi string buram sebelum mengedit
+
 * **Deteksi platform cloud**, mempertahankan format ID model khusus platform (misalnya, prefiks `anthropic.` di Amazon Bedrock) dan melewati perubahan untuk fitur yang tidak tersedia di platform yang dioperasikan mitra
+
 * **Perubahan parameter yang merusak kompatibilitas**, seperti menghapus `temperature`, `top_p`, dan `top_k` untuk Claude Opus 4.8 dan Claude Opus 4.7, serta mengonversi `thinking: {type: "enabled", budget_tokens: N}` menjadi `thinking: {type: "adaptive"}`
+
 * **Penggantian prefill**, mengonversi pola prefill pesan asisten menjadi [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) jika memungkinkan
+
 * **Pembersihan header beta**, menghapus header beta yang tidak diperlukan oleh model target (misalnya, `effort-2025-11-24`, `fine-grained-tool-streaming-2025-05-14`, `interleaved-thinking-2025-05-14`) dan beralih kembali dari `client.beta.messages.create()` (go: `client.Beta.Messages.New()`; java: `client.beta().messages().create()`; csharp: `client.Beta.Messages.Create()`; php: `$client->beta->messages->create()`) ke `client.messages.create()` (go: `client.Messages.New()`; java: `client.messages().create()`; csharp: `client.Messages.Create()`; php: `$client->messages->create()`)
+
 * **Kalibrasi effort**, merekomendasikan titik awal `output_config.effort` untuk model target (misalnya, nilai default `high` pada Claude Opus 5, dan `xhigh` untuk kasus penggunaan coding dan agentik pada Claude Opus 4.8 dan Claude Opus 4.7)
+
 * **Penyetelan perilaku prompt**, menandai prompt pengendali panjang, pemicu alat, subagen, dan kepatuhan instruksi yang mungkin berperilaku berbeda pada model target
+
 * **Penanganan default yang berubah diam-diam**, mengaktifkan kembali ringkasan pemikiran (`thinking.display: "summarized"`) ketika penalaran ditampilkan kepada pengguna pada Claude Opus 4.8 dan Claude Opus 4.7
-* **Konfigurasi fallback penolakan**, menambahkan penanganan `stop_reason: "refusal"` sebelum membaca konten respons dan menyiapkan [jalur percobaan ulang fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) ketika targetnya adalah Claude Fable 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, atau Claude Sonnet 5.5 (parameter `fallbacks` sisi server, biasanya dalam mode `"default"`, middleware fallback penolakan SDK, atau percobaan ulang dengan kredit fallback), serta memperbarui kode fallback yang ditulis berdasarkan bentuk pratinjau sebelumnya
+
+* **Konfigurasi fallback penolakan**, dalam tiga bagian:
+
+  * Menambahkan penanganan `stop_reason: "refusal"` sebelum membaca konten respons.
+
+  * Memperbarui kode fallback yang ditulis berdasarkan bentuk pratinjau sebelumnya.
+
+  * Menyiapkan [jalur percobaan ulang fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) untuk enam model target. Model-model tersebut adalah Claude Fable 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, dan Claude Sonnet 5.5. Jalur tersebut menggunakan salah satu dari berikut ini:
+
+    * [Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback): parameter `fallbacks`, biasanya dalam mode `"default"`.
+    * [Fallback sisi klien dengan middleware SDK](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback).
+    * Percobaan ulang yang menukarkan [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit).
 
 Saat mengedit, skill ini menjelaskan setiap perubahan dan motivasinya secara inline. Setelah selesai, skill ini menghasilkan daftar periksa item yang memerlukan verifikasi manual (biasanya tes integrasi, penyetelan prompt kontrol panjang, dan penetapan ulang baseline biaya/”rate limit” (batas laju)).
 

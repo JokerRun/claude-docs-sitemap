@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: d5e76e380eebf6db3421b92b2bd9fc7de1b2e722526e3db6f0a1d8105f9cdf34
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: b2e7060b05fa944874453f5a48697cb803ba7b495eb4d1c1dead33301cffbfc4
 ---
 
 ---
@@ -66,7 +66,7 @@ Anda juga dapat menimpa `model` (csharp, go: `Model`), `system` (csharp, go: `Sy
 
 ## Buat agen
 
-Contoh berikut mendefinisikan agen coding yang menggunakan model Claude Opus terbaru dengan akses ke toolset agen bawaan. Toolset ini memungkinkan agen menulis kode, membaca file, mencari di web, dan lainnya. Lihat [referensi alat agen](https://platform.claude.com/docs/id/managed-agents/tools) untuk daftar lengkap alat yang didukung.
+Contoh berikut mendefinisikan agen coding yang menggunakan model Claude Opus terbaru dengan akses ke toolset agen bawaan. Toolset ini memungkinkan agen menulis kode, membaca file, mencari di web, dan lainnya. Lihat [Alat](https://platform.claude.com/docs/id/managed-agents/tools) untuk daftar lengkap alat yang didukung.
 
 Contoh-contoh ini menggunakan curl, CLI `ant`, atau SDK. Jika Anda belum menyiapkan salah satunya, [panduan memulai cepat](https://platform.claude.com/docs/id/managed-agents/quickstart#before-you-begin) membahas instalasi dan penyiapan klien.
 
@@ -220,11 +220,11 @@ Respons menggemakan konfigurasi Anda dan menambahkan bidang `id`, `type`, `versi
 `default_config` pada toolset menunjukkan [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) default-nya, `always_allow`, yang berlaku kecuali Anda mengonfigurasinya.
 
 <Tip>
-  Untuk menggunakan Claude Opus 5.5, Claude Opus 5, atau Claude Opus 4.8 dengan [mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode), berikan `model` sebagai objek, misalnya: `{"id": "claude-opus-5-5", "speed": "fast"}`. Lihat [model yang didukung](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models) di halaman mode cepat.
+  Untuk menggunakan [mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode), berikan `model` (csharp, go: `Model`) sebagai objek, misalnya: `{"id": "claude-opus-5-5", "speed": "fast"}`. Mode cepat pada Claude Opus 4.8 sudah usang (deprecated). Lihat [model yang didukung](https://platform.claude.com/docs/id/build-with-claude/fast-mode#supported-models) di halaman mode cepat untuk model yang mendukungnya di Claude Managed Agents.
 </Tip>
 
 <Tip>
-  Untuk mengatur tingkat effort model, berikan `model` sebagai objek, misalnya: `{"id": "claude-opus-5-5", "effort": "high"}`. Bidang `effort` menerima string tingkat (`low`, `medium`, `high`, `xhigh`, atau `max`) atau objek seperti `{"type": "high"}`. Lihat [Tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort#effort-levels) untuk mengetahui fungsi setiap tingkat.
+  Untuk mengatur tingkat effort model, berikan `model` (csharp, go: `Model`) sebagai objek, misalnya: `{"id": "claude-opus-5-5", "effort": "high"}`. Bidang `effort` (csharp, go: `Effort`) menerima string tingkat (`low`, `medium`, `high`, `xhigh`, atau `max`) atau objek seperti `{"type": "high"}`. Lihat [Tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort#effort-levels) untuk mengetahui fungsi setiap tingkat.
 </Tip>
 
 ### Sematkan geo inferensi
@@ -369,8 +369,6 @@ Mengatur `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`)
 
 Memperbarui agen menghasilkan versi baru ketika konfigurasi berubah. Bidang `version` (csharp, go: `Version`) bersifat opsional: berikan untuk konkurensi optimistis (ketidakcocokan mengembalikan 409), atau hilangkan untuk menerapkan pembaruan tanpa syarat (penulisan terakhir yang menang). Pembaruan pada agen yang diarsipkan akan ditolak.
 
-Dengan CLI, edit file agen dan jalankan `ant apply` lagi; apply memberikan `version` untuk Anda.
-
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
   curl -fsSL "https://api.anthropic.com/v1/agents/$AGENT_ID" \
@@ -401,6 +399,8 @@ Dengan CLI, edit file agen dan jalankan `ant apply` lagi; apply memberikan `vers
       You are a helpful coding agent. Always write tests.
       ```
     </File>
+
+    Edit file agen dan jalankan `ant apply` lagi. Perintah ini memberikan `version` untuk Anda.
   </CodeGroupItem>
 
   ```python Python
@@ -477,7 +477,7 @@ Dengan CLI, edit file agen dan jalankan `ant apply` lagi; apply memberikan `vers
   ```
 </CodeGroup>
 
-Contoh sebelumnya memberikan `version` (csharp, go: `Version`) dari respons pembuatan, sehingga pembaruan hanya diterapkan jika tidak ada hal lain yang mengubah agen sejak Anda membacanya. Untuk menerapkan pembaruan tanpa syarat, hilangkan `version` (csharp, go: `Version`) dari permintaan:
+Contoh sebelumnya memberikan `version` (csharp, go: `Version`), sehingga pembaruan hanya diterapkan jika agen masih berada pada versi tersebut. Untuk menerapkan pembaruan tanpa syarat, hilangkan `version` (csharp, go: `Version`) dari permintaan:
 
 <CodeGroup>
   ```bash cURL
@@ -732,7 +732,7 @@ Pembaruan berikut menghapus deskripsi, menghapus kunci `team` dari `metadata` (c
 
 ### Daftar versi
 
-Ambil riwayat versi lengkap untuk melacak bagaimana agen berubah dari waktu ke waktu. Hasil dipaginasi, dan contoh SDK mengambil setiap halaman secara otomatis.
+Ambil riwayat versi lengkap untuk melacak bagaimana agen berubah dari waktu ke waktu. Hasil dipaginasi, dan SDK dapat mengambil setiap halaman untuk Anda.
 
 <CodeGroup>
   ```bash cURL

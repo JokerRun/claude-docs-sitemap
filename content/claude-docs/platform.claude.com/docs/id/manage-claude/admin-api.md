@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: a9ff1bac0029fb8368d134fd40f6207738430b609b43b4760afbdde99be7ddbb
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: dd1bff387b809aaa22caca8bbf7ab7886ce2ba95e8fccd0aa2bf904cb4ab91b2
 ---
 
 ---
@@ -15,7 +15,7 @@ description: Kelola anggota organisasi, workspace, undangan, dan kunci API secar
 
 ## Ketersediaan
 
-Admin API tidak tersedia untuk akun individu. Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organisasi](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
+Admin API tersedia untuk organisasi Claude Console dan Claude Enterprise. Admin API tidak tersedia untuk organisasi dengan paket Team claude.ai atau untuk akun Console individu. Akun Console individu harus terlebih dahulu menyiapkan organisasi di halaman [Organisasi](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console. Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys) untuk mengetahui tempat setiap jenis organisasi membuat kuncinya.
 
 Organisasi Claude Enterprise (claude.ai) memanggil Admin API dengan kunci API ber-scope yang dibuat di claude.ai. Dari halaman ini, hanya endpoint anggota dan undangan yang berlaku untuk mereka. Mereka juga dapat memanggil [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api), yang masih dalam tahap beta dan memerlukan kunci dengan scope `read:analytics`. Mereka juga mendapatkan endpoint khusus Enterprise: pembacaan grup dan peran kustom, serta [batas pengeluaran](https://platform.claude.com/docs/id/manage-claude/spend-limits-api). [Plugins API](https://platform.claude.com/docs/id/manage-claude/plugins-api), yang juga khusus Enterprise, masih dalam tahap beta. Begitu pula [Claude Tag API](https://platform.claude.com/docs/id/manage-claude/claude-tag-api). Lihat [Manajemen pengguna](https://platform.claude.com/docs/id/manage-claude/user-management).
 
@@ -227,7 +227,7 @@ Lakukan autentikasi dengan kredensial apa pun dari [Autentikasi](https://platfor
 * Undangan organisasi
 * Workspace dan anggotanya
 * Kunci API
-* Service account, federation issuer, dan federation rule (hanya token OAuth `org:admin`)
+* Akun layanan, penerbit federasi, dan aturan federasi (hanya token OAuth `org:admin`)
 
 Penggunaan umum mencakup otomatisasi onboarding dan offboarding, pengelolaan akses workspace, dan audit kunci API.
 
@@ -1656,11 +1656,11 @@ Buat dan kelola akun layanan (`svac_...`), identitas non-manusia yang diwakili o
 
 ### Penerbit federasi
 
-Daftarkan penyedia identitas OIDC (`fdis_...`) yang tokennya dapat menegaskan identitas beban kerja untuk organisasi Anda. Lihat [Federation issuer di Mengelola WIF dengan Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#federation-issuers).
+Daftarkan penyedia identitas OIDC (`fdis_...`) yang tokennya dapat menegaskan identitas beban kerja untuk organisasi Anda. Lihat [Penerbit federasi di Mengelola WIF dengan Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#federation-issuers).
 
 ### Aturan federasi
 
-Kelola aturan (`fdrl_...`) yang memetakan token issuer ke akun layanan dan scope. Lihat [Federation rule di Mengelola WIF dengan Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#federation-rules).
+Kelola aturan (`fdrl_...`) yang memetakan token penerbit ke akun layanan dan scope. Lihat [Aturan federasi di Mengelola WIF dengan Admin API](https://platform.claude.com/docs/id/manage-claude/wif-admin-api#federation-rules).
 
 ## Mengakses info organisasi
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/legal-summarization
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 922ed18eada4d7ecac277d034591632b2416761c74498a04ea5101a7c3e22e4d
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: c93827c0b65eea5c36c2cb4dae8e1ad9994cf9dc1b4f4548e51eaad223c62026
 ---
 
 ---
@@ -484,11 +484,11 @@ Berikut adalah contoh cara membuat prompt yang memastikan ringkasan yang dihasil
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Claude SDK untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Anthropic SDK untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Claude SDK untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Anthropic SDK untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -898,11 +898,11 @@ Berikut adalah contoh cara melakukan meta-peringkasan:
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Claude SDK untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Anthropic SDK untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Claude SDK untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Anthropic SDK untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python

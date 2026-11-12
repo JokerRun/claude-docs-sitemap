@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/versioning
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 42a5e3243620b2aa490e7a388471540745dbc94c01ae55474f475cbfa4c6c5be
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 4df534f19a03ad2e2c64791ca8fdc1efa924e58d37d1c41a0b7faa692901e6e8
 ---
 
 ---
-title: Versi
+title: Versi API
 url: https://platform.claude.com/docs/id/api/versioning
-description: "Saat membuat permintaan API, Anda harus mengirimkan header permintaan `anthropic-version`. Misalnya, `anthropic-version: 2026-10-21`. Jika Anda menggunakan [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview), hal ini ditangani secara otomatis untuk Anda."
+description: "Saat membuat permintaan API, Anda harus mengirimkan header permintaan `anthropic-version`. Misalnya, `anthropic-version: 2026-10-21`. Jika Anda menggunakan [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview), SDK akan mengatur header ini untuk Anda."
 ---
 
 Untuk versi API tertentu, Anthropic mempertahankan:
@@ -33,7 +33,7 @@ Anthropic merekomendasikan penggunaan versi API terbaru bila memungkinkan.
 
   * [Migrasi ke versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21) menunjukkan cara melakukan upgrade.
 
-  * Tersedia di Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed). Di [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), versi ini tersedia untuk Claude 4.7 dan model yang lebih baru. Untuk model lain di Bedrock, lihat [panduan migrasi untuk versi API 2026-10-21](https://platform.claude.com/docs/id/api/migration-2026-10-21#upgrade).
+  * Tersedia di Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Amazon Bedrock, versi ini tersedia untuk Claude 4.7 dan model yang lebih baru. Untuk model Claude yang lebih lama di Bedrock, [tetap gunakan versi API yang Anda gunakan saat ini](https://platform.claude.com/docs/id/api/migration-2026-10-21#availability).
 
   * Messages API:
 
@@ -47,7 +47,7 @@ Anthropic merekomendasikan penggunaan versi API terbaru bila memungkinkan.
     * [Anggota grup RBAC](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/members/list), serta respons saat menghapus salah satunya, tidak lagi mengembalikan `group_id`. Gunakan `rbac_group_id` sebagai gantinya.
     * [Peran RBAC](https://platform.claude.com/docs/id/api/beta/organization/rbac_roles/list) tidak lagi mengembalikan `name`. Gunakan `display_name` sebagai gantinya.
     * Entri “rate limit” (batas laju) [organisasi](https://platform.claude.com/docs/id/api/organization/rate_limits/list) dan [workspace](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/list), serta respons untuk [mengatur batas laju workspace](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/update), tidak lagi mengembalikan `group_type`. Gunakan `group.type` sebagai gantinya.
-    * [Kunci API](https://platform.claude.com/docs/id/api/organization/api_keys/list) tidak lagi mengembalikan `workspace_id`. Gunakan `scope.workspace_id` sebagai gantinya, yang memberikan ID sebenarnya dari workspace bahkan untuk workspace default (kunci untuk semua workspace tidak memiliki `workspace_id` dalam `scope`).
+    * [Kunci API](https://platform.claude.com/docs/id/api/organization/api_keys/list) tidak lagi mengembalikan `workspace_id`. Gunakan `scope.workspace_id` sebagai gantinya. Field ini berisi ID workspace dari kunci tersebut, termasuk Default Workspace. Kunci untuk semua workspace tidak memiliki `scope.workspace_id`.
 
   * Claude Enterprise Analytics API:
 

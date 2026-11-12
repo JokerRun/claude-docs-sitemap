@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-threshold
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 692c315436839e3c00e46f4b7054ed43615e6fddd5011884899305a325a9590c
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 5d27907fae3257a30829b889308508b1e18706e967e351e5a448b592511cbe7a
 ---
 
 ---
@@ -35,9 +35,9 @@ featureMetadata:
     - claude-sonnet-4-6
   supportedPlatforms:
     Claude API: beta
-    Claude Platform on AWS: beta
     Amazon Bedrock: beta
-    Amazon Bedrock (InvokeModel): beta
+    Amazon Bedrock (bedrock-runtime): beta
+    Claude Platform on AWS: beta
     Claude Models on Google Cloud (Google managed): beta
     Microsoft Foundry: beta
 ---
@@ -742,7 +742,7 @@ Anda dapat memberikan instruksi kustom melalui parameter `instructions`. Instruk
   ```
 </CodeGroup>
 
-Pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, permintaan dengan `instructions` kustom hanya meringkas dari percakapan yang terlihat: blok thinking sebelumnya tidak menjadi bagian dari input peringkas.
+Pada beberapa model, permintaan dengan `instructions` kustom hanya meringkas dari percakapan yang terlihat, tanpa blok thinking sebelumnya. Model-model tersebut adalah Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5.
 
 ### Berhenti sejenak setelah compaction
 
@@ -1404,11 +1404,11 @@ Anda harus mengirimkan kembali blok `compaction` ke API pada permintaan berikutn
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -2492,11 +2492,11 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -2785,17 +2785,25 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
   ```
 </CodeGroup>
 
-Pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, blok thinking di giliran asisten mana pun yang Anda sisipkan kembali setelah blok compaction akan gagal dalam [pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation), karena blok tersebut dihasilkan ketika riwayat lengkap masih ada. Hapus blok `thinking` dan `redacted_thinking` dari giliran tersebut. Sebagai alternatif, kirim `thinking.block_binding.prefix_mismatch_behavior: "drop_block"` dengan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01`. Blok teks dan alat yang dipertahankan dapat tetap seperti apa adanya. Membiarkan API merangkum semuanya, tanpa menyisipkan kembali giliran sebelumnya, akan menghindari masalah ini. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan pengaturan thinking lainnya pada model-model tersebut, hapus blok-blok tersebut.
+Ketika Anda menyisipkan kembali giliran asisten sebelumnya setelah blok compaction, blok thinking pada giliran tersebut akan gagal dalam [pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation) pada beberapa model. Model-model tersebut adalah Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5. Blok tersebut gagal karena dihasilkan ketika riwayat lengkap masih ada.
+
+Untuk menghindari kegagalan ini, lakukan salah satu hal berikut:
+
+* **Hapus blok-blok tersebut:** Hapus blok `thinking` dan `redacted_thinking` dari giliran yang Anda sisipkan kembali. Blok teks dan alat yang dipertahankan dapat tetap seperti apa adanya.
+* **Biarkan API membuang blok-blok tersebut:** Kirim `thinking.block_binding.prefix_mismatch_behavior: "drop_block"`. Ini memerlukan header beta `thinking-binding-controls-2026-08-01` (lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers)).
+* **Jangan sisipkan kembali giliran sebelumnya:** Biarkan API merangkum semuanya.
+
+Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan pengaturan thinking lainnya pada kedua model tersebut, hapus blok-blok tersebut.
 
 Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertahankan pertukaran sebelumnya dan pesan pengguna saat ini (total tiga pesan) alih-alih meringkasnya. Contoh ini mempertahankan blok teks dan blok alatnya tanpa perubahan, menghapus blok `thinking` dan `redacted_thinking` dari giliran asisten yang dipertahankan, dan membuang giliran tersebut jika tidak ada lagi yang tersisa:
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -3464,9 +3472,10 @@ Compaction ambang batas dalam versi beta di model tertentu dan layak untuk reten
 * Ketersediaan: Tersedia
 * Penggunaan: Aktifkan dengan edit `compact_20260112` di `context_management.edits`. Compaction dimulai saat token input mencapai pemicu, 150.000 secara default dan minimal 50.000.
 
-| Status | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview) |
+| Status | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Beta   | Claude API, [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview) |
+| Beta   | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)                                                                                                                                                                                                                                                                                                                                                                                                            | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview)                                                                                                                                                                                                                                                                                                                                                                      |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 

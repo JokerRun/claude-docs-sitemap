@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/fable-5/overview
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 8cce8d89699c22e75b02ef3e9de21aa804f9881bb391df26526a97afd9122ba8
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 24e9635dc87f3d6f39c4a94b54347e196fda2094d48051e8af680d897d0e1165
 ---
 
 ---
@@ -13,7 +13,7 @@ description: "Claude Fable 5 reference: lifecycle status, model IDs on every pla
 
 **Legacy.** Released June 9, 2026.
 
-Although Claude Fable 5 is still available, you should consider migrating to Claude Fable 5.2. [See Claude Fable 5.2](https://platform.claude.com/docs/en/models/fable-5-2/overview) · [Migrate to Claude Fable 5.2](https://platform.claude.com/docs/en/models/fable-5-2/migration-guide)
+Although Claude Fable 5 is still available, you should consider migrating to Claude Fable 5.2. [See Claude Fable 5.2](https://platform.claude.com/docs/en/models/fable-5-2/overview) · [Migrate to Claude Fable 5.2](https://platform.claude.com/docs/en/models/fable-5-2/migration-guide#migrating-from-claude-fable-5-to-claude-fable-5-2)
 
 Model ID: `claude-fable-5`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/secure-deployment
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: dca0c8d0875c981d4231d17efa4acd629080aa6cbd3897b207b38ae4cfd8f079
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: fd508ea5565ec673f2b6dbc47e94243eb7c978ad50040ea825c6b4435e9b8d8f
 ---
 
 ---
@@ -354,6 +354,8 @@ The [`auto` policy](https://platform.claude.com/docs/en/managed-agents/permissio
 A paused session waits indefinitely, so an unattended session needs a client that answers paused calls or interrupts the session.
 
 Review each paused call before you allow it. A client that allows every call without showing it to a person is the same as `always_allow`. See [Respond to confirmation requests](https://platform.claude.com/docs/en/managed-agents/permission-policies#respond-to-confirmation-requests) and [See how each call was evaluated](https://platform.claude.com/docs/en/managed-agents/permission-policies#see-how-each-call-was-evaluated).
+
+Have a person approve each call to a tool that can move money, such as a tool for payments, withdrawals, transfers, or payouts. If the tool takes a permission policy, set it to `always_ask`, not `always_allow` or `auto`. If it’s a custom tool, don’t run a call until a person has approved it. For text to add to the agent’s system prompt, see [Payments, account numbers, and financial records](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#payments-account-numbers-and-financial-records).
 
 ## Give the agent the smallest tool set
 

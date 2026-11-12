@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: bd7e5526997fb3600b7b11cc84c659108d5a77c9247ace6025cedc6bcccce5cc
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 158e96143f12b5c4fa1ebdba9c7be8cb3c4cb2d9f4dbf0a30ba5908e99b76978
 ---
 
 ---
@@ -36,10 +36,10 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (bedrock-runtime): stable
     Claude Platform on AWS: stable
     Claude Models on Google Cloud (Anthropic managed): stable
-    Amazon Bedrock: stable
-    Amazon Bedrock (InvokeModel): stable
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
 ---

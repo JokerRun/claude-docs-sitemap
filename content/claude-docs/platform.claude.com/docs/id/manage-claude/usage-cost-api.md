@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/usage-cost-api
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: f70d069cec29904c49cabd4c1112403773d756eece359d77f9375f65544a9aed
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 8149223f3105058e65897cdd11b8bcb10ab3ca1da8812dd73b6c800902e952b6
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Endpoint laporan penggunaan dan biaya Admin API lama untuk organisa
 ---
 
 <Tip>
-  **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organisasi](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
+  **Admin API tidak tersedia untuk organisasi pada paket Team claude.ai atau untuk akun Claude Console individu.** Jika perusahaan Anda juga memiliki organisasi Claude Console, Anda dapat menggunakan API tersebut dengan organisasi itu; lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys). Akun Console individu harus terlebih dahulu menyiapkan organisasi di halaman [Organisasi](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
 </Tip>
 
 <Note>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 83b77e4bcd8e1585bbb5bc5efd712caeaccd62f283920a6033cbfb9337678d1f
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 4a6056532a819e28e60cd8425d0a7f990cdbab3f0955d7e01f49ce981dd63d5a
 ---
 
 ---
@@ -723,13 +723,13 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
 <Tabs>
   <Tab title="cURL">
     <Info>
-      Alur kerja ini tidak cocok diterjemahkan menjadi perintah shell sekali jalan. Gunakan Claude SDK untuk menjalankan loop; permintaan HTTP per giliran identik dengan [Penggunaan dasar](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics#basic-usage).
+      Alur kerja ini memerlukan logika yang lebih banyak daripada satu perintah shell. Gunakan Anthropic SDK untuk menjalankan loop. Setiap giliran mengirimkan permintaan HTTP yang sama seperti di [Penggunaan dasar](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics#basic-usage).
     </Info>
   </Tab>
 
   <Tab title="CLI">
     <Info>
-      Alur kerja ini tidak cocok diterjemahkan menjadi perintah shell sekali jalan. Gunakan Claude SDK untuk menjalankan loop; perintah CLI per giliran identik dengan [Penggunaan dasar](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics#basic-usage).
+      Alur kerja ini memerlukan logika yang lebih banyak daripada satu perintah shell, jadi gunakan Anthropic SDK untuk menjalankan loop. Setiap giliran mengirimkan permintaan yang sama seperti perintah CLI di [Penggunaan dasar](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics#basic-usage).
     </Info>
   </Tab>
 

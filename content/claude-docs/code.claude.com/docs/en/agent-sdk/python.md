@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 05bcb04a4586de2587ba0f61a717236b803191c79181cb16b86402976175bb26
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 3b0864a09edad8c5f7d04b4e9ce2ad866dd20d29abe3f38eb8a6afa52e3c3c1f
 ---
 
 > ## Documentation Index
@@ -1390,7 +1390,7 @@ ThinkingConfig = ThinkingConfigAdaptive | ThinkingConfigEnabled | ThinkingConfig
 | :- | :- | :- |
 | `adaptive` | `type`, `display` | Claude adaptively decides when to think |
 | `enabled` | `type`, `budget_tokens`, `display` | Enable thinking with a specific token budget |
-| `disabled` | `type` | Disable thinking |
+| `disabled` | `type` | Turn thinking off [where the model and provider allow it](https://code.claude.com/docs/en/model-config.md#where-you-cant-turn-thinking-off) |
 
 The optional `display` field controls whether thinking text is returned `"summarized"` or `"omitted"`. On Claude Opus 4.7 and later, the API default is `"omitted"`, so set `"summarized"` to receive thinking content in [`ThinkingBlock`](#thinkingblock) outputs. On providers such as Amazon Bedrock and Google Cloud's Agent Platform, Claude Code doesn't pass `display` for earlier models it recognizes. Those are Opus 4.6, Sonnet 4.6, Haiku 4.5, and earlier models, which use their default.
 

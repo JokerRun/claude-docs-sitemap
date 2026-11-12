@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: d3989cc76dcb3a966aa424fb8c0f6db9cdbdf78e0270b71049c24e149c894e8d
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 83566175268d78ee61df338dbe8ab15b182b9ab3e2a4ffd88304281653584819
 ---
 
 ---
@@ -895,11 +895,11 @@ Claude berhenti karena mencapai batas [`max_tokens`](https://platform.claude.com
 
   <CodeGroup exclude="shell:cURL, shell:CLI">
     <CodeGroupItem language="cURL">
-      Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+      Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
     </CodeGroupItem>
 
     <CodeGroupItem language="CLI">
-      Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+      Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
     </CodeGroupItem>
 
     ```python Python
@@ -1906,7 +1906,7 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
 
 Pada penolakan, objek [`stop_details`](https://platform.claude.com/docs/id/api/messages/create#message.stop_details) mengidentifikasi kategori kebijakan yang memicunya. Kategori-kategori tersebut dan bentuk lengkap respons penolakan dibahas dalam [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response). `stop_details` bernilai `null` untuk semua alasan berhenti selain `refusal`.
 
-Anda biasanya dapat memperoleh respons atas permintaan yang ditolak dengan mencoba ulang pada model Claude lain. Cara ini berlaku untuk Claude Fable 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5. [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) menunjukkan cara menyiapkan percobaan ulang tersebut, di sisi server atau di klien Anda. Claude Haiku 5.5 tidak memiliki fallback sisi server, jadi siapkan percobaan ulangnya dengan [fallback sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback). Jika Anda membangun sendiri percobaan ulang dari salah satu model ini kecuali Claude Haiku 5.5, [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) menjelaskan cara menghindari membayar biaya cache prompt dua kali.
+Anda biasanya dapat memperoleh respons atas permintaan yang ditolak dengan mencoba ulang pada model Claude lain. Cara ini berlaku untuk Claude Fable 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5. [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) menunjukkan cara menyiapkan percobaan ulang tersebut, di sisi server atau di klien Anda. Claude Haiku 5.5 tidak memiliki fallback sisi server, jadi siapkan percobaan ulangnya dengan [fallback sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback). Jika Anda membangun sendiri percobaan ulang dari salah satu model ini kecuali Claude Haiku 5.5, [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) menjelaskan cara menghindari membayar biaya cache prompt dua kali.
 
 ### model\_context\_window\_exceeded
 
@@ -2344,11 +2344,11 @@ Ketika Anda menggunakan [server tool](https://platform.claude.com/docs/id/agents
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python

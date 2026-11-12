@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 80c09e7df72a983ea99f2ccfc3a6da71a7b15b78f210da95283bd5db2f60d29c
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 6535a7334cf05e928f4d060d6998f33f8b8ecd358d9c7c0582ee7a9c9b133e9e
 ---
 
 ---
@@ -151,11 +151,11 @@ Here’s that round trip in full for a client tool. The first request defines a 
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    This workflow needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    This workflow needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   ```python Python
@@ -793,7 +793,7 @@ When you use `tools`, the API also automatically includes a special system promp
 
 These token counts are added to your normal input and output tokens to calculate the total cost of a request.
 
-See the [Models overview](https://platform.claude.com/docs/en/models/overview#latest-models-comparison) table for current per-model prices.
+See the [All models](https://platform.claude.com/docs/en/models/overview#all-models) table for current per-model prices.
 
 When you send a tool use prompt, like any other API request, the response includes both input and output token counts in the reported `usage` metrics.
 

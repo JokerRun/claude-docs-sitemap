@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction-threshold
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 13a4e12a00998606ccc0fddbe36e789714dc3ba25d30ef0134f6f0df323d9fee
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 936c502762e2b7bf66104482222ee86eca3a7e97148a42670b35de32b4574630
 ---
 
 ---
@@ -35,9 +35,9 @@ featureMetadata:
     - claude-sonnet-4-6
   supportedPlatforms:
     Claude API: beta
-    Claude Platform on AWS: beta
     Amazon Bedrock: beta
-    Amazon Bedrock (InvokeModel): beta
+    Amazon Bedrock (bedrock-runtime): beta
+    Claude Platform on AWS: beta
     Claude Models on Google Cloud (Google managed): beta
     Microsoft Foundry: beta
 ---
@@ -226,23 +226,26 @@ Enable compaction by adding the `compact_20260112` strategy to `context_manageme
   import com.anthropic.models.beta.messages.BetaContextManagementConfig;
   import com.anthropic.models.beta.messages.BetaCompact20260112Edit;
   // ...
-          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          MessageCreateParams params = MessageCreateParams.builder()
-              .addBeta("compact-2026-01-12")
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(4096L)
-              .addUserMessage("Help me build a website")
-              .contextManagement(BetaContextManagementConfig.builder()
-                  .addEdit(BetaCompact20260112Edit.builder().build())
-                  .build())
-              .build();
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          BetaMessage response = client.beta().messages().create(params);
+      MessageCreateParams params = MessageCreateParams.builder()
+          .addBeta("compact-2026-01-12")
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(4096L)
+          .addUserMessage("Help me build a website")
+          .contextManagement(BetaContextManagementConfig.builder()
+              .addEdit(BetaCompact20260112Edit.builder().build())
+              .build())
+          .build();
 
-          // Append the response (including any compaction block) to continue the conversation
-          // by including it in the next request's messages
-          System.out.println(response);
+      BetaMessage response = client.beta().messages().create(params);
+
+      // To continue the conversation, add response.toParam() (including any
+      // compaction block) to the next request's messages
+      System.out.println(response);
+  }
   ```
 
   ```php PHP
@@ -320,7 +323,7 @@ Configure when compaction triggers using the `trigger` parameter:
       "messages": [
         {
           "role": "user",
-          "content": "Hello, Claude"
+          "content": "Help me build a website"
         }
       ],
       "context_management": {
@@ -343,7 +346,7 @@ Configure when compaction triggers using the `trigger` parameter:
   max_tokens: 4096
   messages:
     - role: user
-      content: Hello, Claude
+      content: Help me build a website
   context_management:
     edits:
       - type: compact_20260112
@@ -355,7 +358,7 @@ Configure when compaction triggers using the `trigger` parameter:
 
   ```python Python
   client = anthropic.Anthropic()
-  messages = [{"role": "user", "content": "Hello, Claude"}]
+  messages = [{"role": "user", "content": "Help me build a website"}]
   response = client.beta.messages.create(
       betas=["compact-2026-01-12"],
       model="claude-opus-5-5",
@@ -375,7 +378,7 @@ Configure when compaction triggers using the `trigger` parameter:
   ```typescript TypeScript
   const client = new Anthropic();
   const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [
-    { role: "user", content: "Hello, Claude" }
+    { role: "user", content: "Help me build a website" }
   ];
 
   const response = await client.beta.messages.create({
@@ -399,7 +402,7 @@ Configure when compaction triggers using the `trigger` parameter:
 
   ```csharp C#
   AnthropicClient client = new();
-  List<BetaMessageParam> messages = [new BetaUserMessageParam { Content = "Hello" }];
+  List<BetaMessageParam> messages = [new BetaUserMessageParam { Content = "Help me build a website" }];
 
   var parameters = new MessageCreateParams
   {
@@ -422,7 +425,7 @@ Configure when compaction triggers using the `trigger` parameter:
 
   ```go Go
   client := anthropic.NewClient()
-  messages := []anthropic.BetaMessageParam{anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello, Claude"))}
+  messages := []anthropic.BetaMessageParam{anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Help me build a website"))}
 
   response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
   	Model:     anthropic.ModelClaudeOpus5_5,
@@ -448,29 +451,32 @@ Configure when compaction triggers using the `trigger` parameter:
   import com.anthropic.models.beta.messages.BetaCompact20260112Edit;
   import com.anthropic.models.beta.messages.BetaInputTokensTrigger;
   // ...
-          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          MessageCreateParams params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(4096L)
-              .addBeta("compact-2026-01-12")
-              .addUserMessage("Hello, Claude")
-              .contextManagement(BetaContextManagementConfig.builder()
-                  .addEdit(BetaCompact20260112Edit.builder()
-                      .trigger(BetaInputTokensTrigger.builder()
-                          .value(150000L)
-                          .build())
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      MessageCreateParams params = MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(4096L)
+          .addBeta("compact-2026-01-12")
+          .addUserMessage("Help me build a website")
+          .contextManagement(BetaContextManagementConfig.builder()
+              .addEdit(BetaCompact20260112Edit.builder()
+                  .trigger(BetaInputTokensTrigger.builder()
+                      .value(150000L)
                       .build())
                   .build())
-              .build();
+              .build())
+          .build();
 
-          BetaMessage response = client.beta().messages().create(params);
-          System.out.println(response);
+      BetaMessage response = client.beta().messages().create(params);
+      System.out.println(response);
+  }
   ```
 
   ```php PHP
   $client = new Client();
-  $messages = [['role' => 'user', 'content' => 'Hello, Claude']];
+  $messages = [['role' => 'user', 'content' => 'Help me build a website']];
 
   $message = $client->beta->messages->create(
       maxTokens: 4096,
@@ -495,7 +501,7 @@ Configure when compaction triggers using the `trigger` parameter:
 
   ```ruby Ruby
   client = Anthropic::Client.new
-  messages = [{ role: "user", content: "Hello, Claude" }]
+  messages = [{ role: "user", content: "Help me build a website" }]
 
   response = client.beta.messages.create(
     betas: ["compact-2026-01-12"],
@@ -520,7 +526,7 @@ Configure when compaction triggers using the `trigger` parameter:
 
 ### Custom summarization instructions
 
-The default summarization prompt varies by model. Each default instructs Claude to write a summary inside `<summary></summary>` tags with the information needed to continue the task in a future context window. For example, some models use the following prompt:
+The default summarization prompt varies by model. Each default instructs Claude to write a summary inside `<summary></summary>` tags with the information needed to continue the task in a future context window. For example, this is one of the default prompts:
 
 ```text wrap
 You have written a partial transcript for the initial task above. Please write a summary of the transcript. The purpose of this summary is to provide continuity so you can continue to make progress towards solving the task in a future context, where the raw history above may not be accessible and will be replaced with this summary. Write down anything that would be helpful, including the state, next steps, learnings etc. You must wrap your summary in a <summary></summary> block.
@@ -541,7 +547,7 @@ You can provide custom instructions through the `instructions` parameter. Custom
       "messages": [
         {
           "role": "user",
-          "content": "Hello, Claude"
+          "content": "Help me build a website"
         }
       ],
       "context_management": {
@@ -561,7 +567,7 @@ You can provide custom instructions through the `instructions` parameter. Custom
   max_tokens: 4096
   messages:
     - role: user
-      content: Hello, Claude
+      content: Help me build a website
   context_management:
     edits:
       - type: compact_20260112
@@ -573,7 +579,7 @@ You can provide custom instructions through the `instructions` parameter. Custom
 
   ```python Python
   client = anthropic.Anthropic()
-  messages = [{"role": "user", "content": "Hello, Claude"}]
+  messages = [{"role": "user", "content": "Help me build a website"}]
   response = client.beta.messages.create(
       betas=["compact-2026-01-12"],
       model="claude-opus-5-5",
@@ -593,7 +599,7 @@ You can provide custom instructions through the `instructions` parameter. Custom
   ```typescript TypeScript
   const client = new Anthropic();
   const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [
-    { role: "user", content: "Hello, Claude" }
+    { role: "user", content: "Help me build a website" }
   ];
 
   const response = await client.beta.messages.create({
@@ -670,24 +676,27 @@ You can provide custom instructions through the `instructions` parameter. Custom
   import com.anthropic.models.beta.messages.BetaContextManagementConfig;
   import com.anthropic.models.beta.messages.BetaCompact20260112Edit;
   // ...
-          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          MessageCreateParams params = MessageCreateParams.builder()
-              .addBeta("compact-2026-01-12")
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(4096L)
-              .addUserMessage("Help me build a Python web scraper")
-              .addAssistantMessage("I'll help you build a web scraper...")
-              .addUserMessage("Add support for JavaScript-rendered pages")
-              .contextManagement(BetaContextManagementConfig.builder()
-                  .addEdit(BetaCompact20260112Edit.builder()
-                      .instructions("Focus on preserving code snippets, variable names, and technical decisions.")
-                      .build())
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      MessageCreateParams params = MessageCreateParams.builder()
+          .addBeta("compact-2026-01-12")
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(4096L)
+          .addUserMessage("Help me build a Python web scraper")
+          .addAssistantMessage("I'll help you build a web scraper...")
+          .addUserMessage("Add support for JavaScript-rendered pages")
+          .contextManagement(BetaContextManagementConfig.builder()
+              .addEdit(BetaCompact20260112Edit.builder()
+                  .instructions("Focus on preserving code snippets, variable names, and technical decisions.")
                   .build())
-              .build();
+              .build())
+          .build();
 
-          BetaMessage response = client.beta().messages().create(params);
-          System.out.println(response);
+      BetaMessage response = client.beta().messages().create(params);
+      System.out.println(response);
+  }
   ```
 
   ```php PHP
@@ -742,7 +751,7 @@ You can provide custom instructions through the `instructions` parameter. Custom
   ```
 </CodeGroup>
 
-On Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, and Claude Haiku 5.5, a request with custom `instructions` summarizes from the visible conversation only: earlier thinking blocks are not part of the summarizer’s input.
+On some models, a request with custom `instructions` summarizes from the visible conversation only, without earlier thinking blocks. Those models are Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, and Claude Haiku 5.5.
 
 ### Pausing after compaction
 
@@ -753,9 +762,8 @@ When enabled, the API returns a message with the `compaction` stop reason after 
 <CodeGroup>
   ```bash cURL
   # pause_after_compaction stops the response right after the compaction
-  # summary so you can adjust the messages before continuing. The continue
-  # step doesn't translate well to a one-off shell command; see the SDK tabs
-  # for the full pause-and-continue flow. Single paused request:
+  # summary so you can adjust the messages before continuing. Continuing
+  # needs more logic than a one-off shell command. Single paused request:
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21" \
@@ -767,7 +775,7 @@ When enabled, the API returns a message with the `compaction` stop reason after 
       "messages": [
         {
           "role": "user",
-          "content": "Hello, Claude"
+          "content": "Help me build a website"
         }
       ],
       "context_management": {
@@ -783,15 +791,14 @@ When enabled, the API returns a message with the `compaction` stop reason after 
 
   ```bash CLI
   # pause_after_compaction stops the response right after the compaction
-  # summary so you can adjust the messages before continuing. The continue
-  # step doesn't translate well to a one-off CLI command; see the SDK tabs
-  # for the full pause-and-continue flow. Single paused request:
-  ant beta:messages create --beta compact-2026-01-12 --format jsonl <<'YAML'
+  # summary so you can adjust the messages before continuing. Continuing
+  # needs more logic than a one-off CLI command. Single paused request:
+  ant beta:messages create --beta compact-2026-01-12 <<'YAML'
   model: claude-opus-5-5
   max_tokens: 4096
   messages:
     - role: user
-      content: Hello, Claude
+      content: Help me build a website
   context_management:
     edits:
       - type: compact_20260112
@@ -801,7 +808,7 @@ When enabled, the API returns a message with the `compaction` stop reason after 
 
   ```python Python
   client = anthropic.Anthropic()
-  messages = [{"role": "user", "content": "Hello, Claude"}]
+  messages = [{"role": "user", "content": "Help me build a website"}]
   response = client.beta.messages.create(
       betas=["compact-2026-01-12"],
       model="claude-opus-5-5",
@@ -830,7 +837,7 @@ When enabled, the API returns a message with the `compaction` stop reason after 
   ```typescript TypeScript
   const client = new Anthropic();
   const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [
-    { role: "user", content: "Hello, Claude" }
+    { role: "user", content: "Help me build a website" }
   ];
 
   let response = await client.beta.messages.create({
@@ -873,7 +880,7 @@ When enabled, the API returns a message with the `compaction` stop reason after 
   var client = new AnthropicClient();
   var messages = new List<BetaMessageParam>
   {
-      new BetaUserMessageParam { Content = "Hello, Claude" }
+      new BetaUserMessageParam { Content = "Help me build a website" }
   };
 
   var parameters = new MessageCreateParams
@@ -920,7 +927,7 @@ When enabled, the API returns a message with the `compaction` stop reason after 
 
   ```go Go
   client := anthropic.NewClient()
-  messages := []anthropic.BetaMessageParam{anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello, Claude"))}
+  messages := []anthropic.BetaMessageParam{anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Help me build a website"))}
 
   compactEdit := anthropic.BetaContextManagementConfigParam{
   	Edits: []anthropic.BetaContextManagementConfigEditUnionParam{
@@ -968,52 +975,55 @@ When enabled, the API returns a message with the `compaction` stop reason after 
   import com.anthropic.models.beta.messages.BetaCompact20260112Edit;
   import com.anthropic.models.beta.messages.BetaStopReason;
   // ...
-          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          MessageCreateParams params = MessageCreateParams.builder()
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      MessageCreateParams params = MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(4096L)
+          .addBeta("compact-2026-01-12")
+          .addUserMessage("Help me build a website")
+          .contextManagement(BetaContextManagementConfig.builder()
+              .addEdit(BetaCompact20260112Edit.builder()
+                  .pauseAfterCompaction(true)
+                  .build())
+              .build())
+          .build();
+
+      BetaMessage response = client.beta().messages().create(params);
+
+      // Check if compaction triggered a pause
+      if (response.stopReason().isPresent()
+              && response.stopReason().get().equals(BetaStopReason.COMPACTION)) {
+          // Append the compaction block and continue the request
+          // by building a new request with the compacted context
+          MessageCreateParams continueParams = MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(4096L)
               .addBeta("compact-2026-01-12")
               .addUserMessage("Help me build a website")
+              .addMessage(response)
               .contextManagement(BetaContextManagementConfig.builder()
-                  .addEdit(BetaCompact20260112Edit.builder()
-                      .pauseAfterCompaction(true)
-                      .build())
+                  .addEdit(BetaCompact20260112Edit.builder().build())
                   .build())
               .build();
 
-          BetaMessage response = client.beta().messages().create(params);
+          response = client.beta().messages().create(continueParams);
+      }
 
-          // Check if compaction triggered a pause
-          if (response.stopReason().isPresent()
-                  && response.stopReason().get().equals(BetaStopReason.COMPACTION)) {
-              // Append the compaction block and continue the request
-              // by building a new request with the compacted context
-              MessageCreateParams continueParams = MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_5_5)
-                  .maxTokens(4096L)
-                  .addBeta("compact-2026-01-12")
-                  .addUserMessage("Help me build a website")
-                  .addMessage(response)
-                  .contextManagement(BetaContextManagementConfig.builder()
-                      .addEdit(BetaCompact20260112Edit.builder().build())
-                      .build())
-                  .build();
-
-              response = client.beta().messages().create(continueParams);
-          }
-
-          System.out.println(response);
+      System.out.println(response);
+  }
   ```
 
   ```php PHP
   $client = new Client();
-  $messages = [['role' => 'user', 'content' => 'Hello, Claude']];
+  $messages = [['role' => 'user', 'content' => 'Help me build a website']];
 
   $response = $client->beta->messages->create(
       maxTokens: 4096,
       messages: $messages,
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['compact-2026-01-12'],
       contextManagement: [
           'edits' => [
@@ -1034,7 +1044,7 @@ When enabled, the API returns a message with the `compaction` stop reason after 
       $response = $client->beta->messages->create(
           maxTokens: 4096,
           messages: $messages,
-          model: 'claude-opus-5-5',
+          model: Model::CLAUDE_OPUS_5_5,
           betas: ['compact-2026-01-12'],
           contextManagement: [
               'edits' => [
@@ -1049,7 +1059,7 @@ When enabled, the API returns a message with the `compaction` stop reason after 
 
   ```ruby Ruby
   client = Anthropic::Client.new
-  messages = [{ role: "user", content: "Hello, Claude" }]
+  messages = [{ role: "user", content: "Help me build a website" }]
 
   response = client.beta.messages.create(
     betas: ["compact-2026-01-12"],
@@ -1090,12 +1100,20 @@ The API pauses even if no summary is generated. The `compaction` block’s `cont
 
 When a model works on long tasks with many tool-use iterations, total token consumption can grow significantly. You can combine `pause_after_compaction` with a compaction counter to estimate cumulative usage and gracefully conclude the task once a budget is reached.
 
-This example appears in the SDK languages only: its value is the budget-tracking logic around the request. The raw request combines the `trigger` from [Trigger configuration](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold#trigger-configuration) with `pause_after_compaction` from [Pausing after compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold#pausing-after-compaction).
+The request combines the `trigger` from [Trigger configuration](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold#trigger-configuration) with `pause_after_compaction` from [Pausing after compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-threshold#pausing-after-compaction).
 
-<CodeGroup exclude="shell">
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    This workflow needs more logic than a single shell command. Use the Anthropic SDK to run it.
+  </CodeGroupItem>
+
+  <CodeGroupItem language="CLI">
+    This workflow needs more logic than a single shell command. Use the Anthropic SDK to run it.
+  </CodeGroupItem>
+
   ```python Python
   client = anthropic.Anthropic()
-  messages = [{"role": "user", "content": "Hello, Claude"}]
+  messages = [{"role": "user", "content": "Help me build a website"}]
   TRIGGER_THRESHOLD = 100_000
   TOTAL_TOKEN_BUDGET = 3_000_000
   n_compactions = 0
@@ -1133,7 +1151,7 @@ This example appears in the SDK languages only: its value is the budget-tracking
   ```typescript TypeScript
   const client = new Anthropic();
   const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [
-    { role: "user", content: "Hello, Claude" }
+    { role: "user", content: "Help me build a website" }
   ];
   const TRIGGER_THRESHOLD = 100_000;
   const TOTAL_TOKEN_BUDGET = 3_000_000;
@@ -1171,7 +1189,7 @@ This example appears in the SDK languages only: its value is the budget-tracking
 
   ```csharp C#
   AnthropicClient client = new();
-  List<BetaMessageParam> messages = [new BetaUserMessageParam { Content = "Hello, Claude" }];
+  List<BetaMessageParam> messages = [new BetaUserMessageParam { Content = "Help me build a website" }];
 
   const int TriggerThreshold = 100_000;
   const int TotalTokenBudget = 3_000_000;
@@ -1216,7 +1234,7 @@ This example appears in the SDK languages only: its value is the budget-tracking
 
   ```go Go
   client := anthropic.NewClient()
-  messages := []anthropic.BetaMessageParam{anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello, Claude"))}
+  messages := []anthropic.BetaMessageParam{anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Help me build a website"))}
 
   const triggerThreshold = 100_000
   const totalTokenBudget = 3_000_000
@@ -1259,45 +1277,48 @@ This example appears in the SDK languages only: its value is the budget-tracking
   import com.anthropic.models.beta.messages.BetaInputTokensTrigger;
   import com.anthropic.models.beta.messages.BetaStopReason;
   // ...
-          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          long triggerThreshold = 100_000;
-          long totalTokenBudget = 3_000_000;
-          int compactionCount = 0;
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          List<BetaMessageParam> messages = new ArrayList<>();
-          messages.add(BetaMessageParam.ofUser("Hello, Claude"));
+      long triggerThreshold = 100_000;
+      long totalTokenBudget = 3_000_000;
+      int compactionCount = 0;
 
-          MessageCreateParams params = MessageCreateParams.builder()
-              .addBeta("compact-2026-01-12")
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(4096L)
-              .messages(messages)
-              .contextManagement(BetaContextManagementConfig.builder()
-                  .addEdit(BetaCompact20260112Edit.builder()
-                      .trigger(BetaInputTokensTrigger.builder()
-                          .value(triggerThreshold)
-                          .build())
-                      .pauseAfterCompaction(true)
+      List<BetaMessageParam> messages = new ArrayList<>();
+      messages.add(BetaMessageParam.ofUser("Help me build a website"));
+
+      MessageCreateParams params = MessageCreateParams.builder()
+          .addBeta("compact-2026-01-12")
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(4096L)
+          .messages(messages)
+          .contextManagement(BetaContextManagementConfig.builder()
+              .addEdit(BetaCompact20260112Edit.builder()
+                  .trigger(BetaInputTokensTrigger.builder()
+                      .value(triggerThreshold)
                       .build())
+                  .pauseAfterCompaction(true)
                   .build())
-              .build();
+              .build())
+          .build();
 
-          BetaMessage response = client.beta().messages().create(params);
+      BetaMessage response = client.beta().messages().create(params);
 
-          if (response.stopReason().isPresent()
-                  && response.stopReason().get().equals(BetaStopReason.COMPACTION)) {
-              compactionCount += 1;
-              messages.add(response.toParam());
+      if (response.stopReason().isPresent()
+              && response.stopReason().get().equals(BetaStopReason.COMPACTION)) {
+          compactionCount += 1;
+          messages.add(response.toParam());
 
-              // Estimate total tokens consumed; prompt wrap-up if over budget
-              if (compactionCount * triggerThreshold >= totalTokenBudget) {
-                  messages.add(BetaMessageParam.ofUser(
-                      "Please wrap up your current work and summarize the final state."));
-              }
+          // Estimate total tokens consumed; prompt wrap-up if over budget
+          if (compactionCount * triggerThreshold >= totalTokenBudget) {
+              messages.add(BetaMessageParam.ofUser(
+                  "Please wrap up your current work and summarize the final state."));
           }
+      }
 
-          System.out.println(response);
+      System.out.println(response);
+  }
   ```
 
   ```php PHP
@@ -1307,12 +1328,12 @@ This example appears in the SDK languages only: its value is the budget-tracking
   $totalTokenBudget = 3_000_000;
   $compactionCount = 0;
 
-  $messages = [['role' => 'user', 'content' => 'Hello, Claude']];
+  $messages = [['role' => 'user', 'content' => 'Help me build a website']];
 
   $response = $client->beta->messages->create(
       maxTokens: 4096,
       messages: $messages,
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['compact-2026-01-12'],
       contextManagement: [
           'edits' => [
@@ -1341,7 +1362,7 @@ This example appears in the SDK languages only: its value is the budget-tracking
 
   ```ruby Ruby
   client = Anthropic::Client.new
-  messages = [{ role: "user", content: "Hello, Claude" }]
+  messages = [{ role: "user", content: "Help me build a website" }]
   TRIGGER_THRESHOLD = 100_000
   TOTAL_TOKEN_BUDGET = 3_000_000
   compaction_count = 0
@@ -1404,42 +1425,46 @@ You must pass the `compaction` block back to the API on subsequent requests to c
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    This workflow needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    This workflow needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
-  ```python Python
-  client = anthropic.Anthropic()
-  messages = [{"role": "user", "content": "Hello, Claude"}]
-  response = client.beta.messages.create(
-      betas=["compact-2026-01-12"],
-      model="claude-opus-5-5",
-      max_tokens=4096,
-      messages=messages,
-      context_management={"edits": [{"type": "compact_20260112"}]},
-  )
-  # After receiving a response with a compaction block
-  messages.append({"role": "assistant", "content": response.content})
+  <CodeGroupItem>
+    ```python Python
+    client = anthropic.Anthropic()
+    messages = [{"role": "user", "content": "Help me build a website"}]
+    response = client.beta.messages.create(
+        betas=["compact-2026-01-12"],
+        model="claude-opus-5-5",
+        max_tokens=4096,
+        messages=messages,
+        context_management={"edits": [{"type": "compact_20260112"}]},
+    )
+    # After receiving a response with a compaction block
+    messages.append({"role": "assistant", "content": response.content})
 
-  # Continue the conversation
-  messages.append({"role": "user", "content": "Now add error handling"})
+    # Continue the conversation
+    messages.append({"role": "user", "content": "Now add error handling"})
 
-  response = client.beta.messages.create(
-      betas=["compact-2026-01-12"],
-      model="claude-opus-5-5",
-      max_tokens=4096,
-      messages=messages,
-      context_management={"edits": [{"type": "compact_20260112"}]},
-  )
-  ```
+    response = client.beta.messages.create(
+        betas=["compact-2026-01-12"],
+        model="claude-opus-5-5",
+        max_tokens=4096,
+        messages=messages,
+        context_management={"edits": [{"type": "compact_20260112"}]},
+    )
+    ```
+
+    In Python, use `client.beta.messages`, as the samples on this page do. If you call `client.messages` and serialize blocks yourself, a plain `model_dump()` adds `text: null` and `citations: null` to the `compaction` block. The API then rejects the request with a 400 error (`Extra inputs are not permitted`). Use `to_dict()` or `model_dump(exclude_none=True)` instead.
+  </CodeGroupItem>
 
   ```typescript TypeScript
   const client = new Anthropic();
   const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [
-    { role: "user", content: "Hello, Claude" }
+    { role: "user", content: "Help me build a website" }
   ];
 
   const response = await client.beta.messages.create({
@@ -1560,36 +1585,39 @@ You must pass the `compaction` block back to the API on subsequent requests to c
   import com.anthropic.models.beta.messages.BetaContextManagementConfig;
   import com.anthropic.models.beta.messages.BetaCompact20260112Edit;
   // ...
-          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          // First request
-          BetaMessage response = client.beta().messages().create(
-              MessageCreateParams.builder()
-                  .addBeta("compact-2026-01-12")
-                  .model(Model.CLAUDE_OPUS_5_5)
-                  .maxTokens(4096L)
-                  .addUserMessage("Help me build a web scraper")
-                  .contextManagement(BetaContextManagementConfig.builder()
-                      .addEdit(BetaCompact20260112Edit.builder().build())
-                      .build())
-                  .build());
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          // After receiving a response with a compaction block, append the full
-          // content (including compaction blocks) and continue the conversation
-          BetaMessage nextResponse = client.beta().messages().create(
-              MessageCreateParams.builder()
-                  .addBeta("compact-2026-01-12")
-                  .model(Model.CLAUDE_OPUS_5_5)
-                  .maxTokens(4096L)
-                  .addUserMessage("Help me build a web scraper")
-                  .addMessage(response)
-                  .addUserMessage("Now add error handling")
-                  .contextManagement(BetaContextManagementConfig.builder()
-                      .addEdit(BetaCompact20260112Edit.builder().build())
-                      .build())
-                  .build());
+      // First request
+      BetaMessage response = client.beta().messages().create(
+          MessageCreateParams.builder()
+              .addBeta("compact-2026-01-12")
+              .model(Model.CLAUDE_OPUS_5_5)
+              .maxTokens(4096L)
+              .addUserMessage("Help me build a web scraper")
+              .contextManagement(BetaContextManagementConfig.builder()
+                  .addEdit(BetaCompact20260112Edit.builder().build())
+                  .build())
+              .build());
 
-          System.out.println(nextResponse);
+      // After receiving a response with a compaction block, append the full
+      // content (including compaction blocks) and continue the conversation
+      BetaMessage nextResponse = client.beta().messages().create(
+          MessageCreateParams.builder()
+              .addBeta("compact-2026-01-12")
+              .model(Model.CLAUDE_OPUS_5_5)
+              .maxTokens(4096L)
+              .addUserMessage("Help me build a web scraper")
+              .addMessage(response)
+              .addUserMessage("Now add error handling")
+              .contextManagement(BetaContextManagementConfig.builder()
+                  .addEdit(BetaCompact20260112Edit.builder().build())
+                  .build())
+              .build());
+
+      System.out.println(nextResponse);
+  }
   ```
 
   ```php PHP
@@ -1602,7 +1630,7 @@ You must pass the `compaction` block back to the API on subsequent requests to c
   $response = $client->beta->messages->create(
       maxTokens: 4096,
       messages: $messages,
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['compact-2026-01-12'],
       contextManagement: [
           'edits' => [['type' => 'compact_20260112']]
@@ -1616,7 +1644,7 @@ You must pass the `compaction` block back to the API on subsequent requests to c
   $nextResponse = $client->beta->messages->create(
       maxTokens: 4096,
       messages: $messages,
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['compact-2026-01-12'],
       contextManagement: [
           'edits' => [['type' => 'compact_20260112']]
@@ -1661,8 +1689,6 @@ You must pass the `compaction` block back to the API on subsequent requests to c
   ```
 </CodeGroup>
 
-In Python, use `client.beta.messages`, as the samples on this page do. If you call `client.messages` and serialize blocks yourself, a plain `model_dump()` adds `text: null` and `citations: null` to the `compaction` block. The API then rejects the request with a 400 error (`Extra inputs are not permitted`). Use `to_dict()` or `model_dump(exclude_none=True)` instead. [Continue from the summary](https://platform.claude.com/docs/en/build-with-claude/compaction-on-demand#continue-from-the-summary) gives the same advice for on-demand compaction.
-
 When the API receives a `compaction` block, all content blocks before it are ignored. You can either:
 
 * Keep the original messages in your list and let the API handle removing the compacted content
@@ -1690,7 +1716,7 @@ The compaction block streams differently from text blocks. You receive a `conten
       "messages": [
         {
           "role": "user",
-          "content": "Hello, Claude"
+          "content": "Help me build a website"
         }
       ],
       "context_management": {
@@ -1712,7 +1738,7 @@ The compaction block streams differently from text blocks. You receive a `conten
   max_tokens: 4096
   messages:
     - role: user
-      content: Hello, Claude
+      content: Help me build a website
   context_management:
     edits:
       - type: compact_20260112
@@ -1721,7 +1747,7 @@ The compaction block streams differently from text blocks. You receive a `conten
 
   ```python Python
   client = anthropic.Anthropic()
-  messages = [{"role": "user", "content": "Hello, Claude"}]
+  messages = [{"role": "user", "content": "Help me build a website"}]
 
   with client.beta.messages.stream(
       betas=["compact-2026-01-12"],
@@ -1756,7 +1782,7 @@ The compaction block streams differently from text blocks. You receive a `conten
   ```typescript TypeScript
   const client = new Anthropic();
   const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [
-    { role: "user", content: "Hello, Claude" }
+    { role: "user", content: "Help me build a website" }
   ];
 
   const stream = await client.beta.messages.stream({
@@ -1804,7 +1830,7 @@ The compaction block streams differently from text blocks. You receive a `conten
 
   ```csharp C#
   var client = new AnthropicClient();
-  List<BetaMessageParam> messages = [new BetaUserMessageParam { Content = "Hello" }];
+  List<BetaMessageParam> messages = [new BetaUserMessageParam { Content = "Help me build a website" }];
 
   var parameters = new MessageCreateParams
   {
@@ -1847,7 +1873,7 @@ The compaction block streams differently from text blocks. You receive a `conten
 
   ```go Go
   client := anthropic.NewClient()
-  messages := []anthropic.BetaMessageParam{anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello, Claude"))}
+  messages := []anthropic.BetaMessageParam{anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Help me build a website"))}
 
   stream := client.Beta.Messages.NewStreaming(context.TODO(), anthropic.BetaMessageNewParams{
   	Model:     anthropic.ModelClaudeOpus5_5,
@@ -1889,39 +1915,44 @@ The compaction block streams differently from text blocks. You receive a `conten
   import com.anthropic.models.beta.messages.BetaContextManagementConfig;
   import com.anthropic.models.beta.messages.BetaCompact20260112Edit;
   // ...
-          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          MessageCreateParams params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(4096L)
-              .addBeta("compact-2026-01-12")
-              .addUserMessage("Hello, Claude")
-              .contextManagement(BetaContextManagementConfig.builder()
-                  .addEdit(BetaCompact20260112Edit.builder().build())
-                  .build())
-              .build();
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          try (var streamResponse = client.beta().messages().createStreaming(params)) {
-              streamResponse.stream().forEach(event -> {
-                  event.contentBlockStart().ifPresent(startEvent -> {
-                      startEvent.contentBlock().compaction().ifPresent(compactionBlock ->
-                          System.out.println("Compaction started...")
-                      );
-                      startEvent.contentBlock().text().ifPresent(textBlock ->
-                          System.out.println("Text response started...")
-                      );
-                  });
+      MessageCreateParams params = MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(4096L)
+          .addBeta("compact-2026-01-12")
+          .addUserMessage("Help me build a website")
+          .contextManagement(BetaContextManagementConfig.builder()
+              .addEdit(BetaCompact20260112Edit.builder().build())
+              .build())
+          .build();
 
-                  event.contentBlockDelta().ifPresent(deltaEvent -> {
-                      deltaEvent.delta().compaction().ifPresent(compactionDelta ->
-                          System.out.println("Compaction complete: " + compactionDelta.content().map(String::length).orElse(0) + " chars")
-                      );
-                      deltaEvent.delta().text().ifPresent(textDelta ->
-                          System.out.print(textDelta.text())
-                      );
-                  });
-              });
-          }
+      try (var streamResponse = client.beta().messages().createStreaming(params)) {
+          streamResponse.stream().forEach(event -> {
+              switch (event.type().value()) {
+                  case CONTENT_BLOCK_START -> {
+                      var block = event.asContentBlockStart().contentBlock();
+                      switch (block.type().value()) {
+                          case COMPACTION -> System.out.println("Compaction started...");
+                          case TEXT -> System.out.println("Text response started...");
+                          default -> {}
+                      }
+                  }
+                  case CONTENT_BLOCK_DELTA -> {
+                      var delta = event.asContentBlockDelta().delta();
+                      switch (delta.type().value()) {
+                          case COMPACTION_DELTA -> System.out.println("Compaction complete: " + delta.asCompaction().content().map(String::length).orElse(0) + " chars");
+                          case TEXT_DELTA -> System.out.print(delta.asText().text());
+                          default -> {}
+                      }
+                  }
+                  default -> {}
+              }
+          });
+      }
+  }
   ```
 
   ```php PHP
@@ -1934,7 +1965,7 @@ The compaction block streams differently from text blocks. You receive a `conten
   use Anthropic\Messages\Model;
 
   $client = new Client();
-  $messages = [['role' => 'user', 'content' => 'Hello, Claude']];
+  $messages = [['role' => 'user', 'content' => 'Help me build a website']];
 
   $stream = $client->beta->messages->createStream(
       maxTokens: 4096,
@@ -1976,7 +2007,7 @@ The compaction block streams differently from text blocks. You receive a `conten
 
   ```ruby Ruby
   client = Anthropic::Client.new
-  messages = [{ role: "user", content: "Hello, Claude" }]
+  messages = [{ role: "user", content: "Help me build a website" }]
 
   stream = client.beta.messages.stream(
     betas: ["compact-2026-01-12"],
@@ -2062,7 +2093,7 @@ To maximize cache hit rates, add a `cache_control` breakpoint at the end of your
       "messages": [
         {
           "role": "user",
-          "content": "Hello, Claude"
+          "content": "Help me build a website"
         }
       ],
       "context_management": {
@@ -2086,7 +2117,7 @@ To maximize cache hit rates, add a `cache_control` breakpoint at the end of your
         type: ephemeral
   messages:
     - role: user
-      content: Hello, Claude
+      content: Help me build a website
   context_management:
     edits:
       - type: compact_20260112
@@ -2095,7 +2126,7 @@ To maximize cache hit rates, add a `cache_control` breakpoint at the end of your
 
   ```python Python
   client = anthropic.Anthropic()
-  messages = [{"role": "user", "content": "Hello, Claude"}]
+  messages = [{"role": "user", "content": "Help me build a website"}]
   response = client.beta.messages.create(
       betas=["compact-2026-01-12"],
       model="claude-opus-5-5",
@@ -2117,7 +2148,7 @@ To maximize cache hit rates, add a `cache_control` breakpoint at the end of your
   ```typescript TypeScript
   const client = new Anthropic();
   const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [
-    { role: "user", content: "Hello, Claude" }
+    { role: "user", content: "Help me build a website" }
   ];
 
   const response = await client.beta.messages.create({
@@ -2154,7 +2185,7 @@ To maximize cache hit rates, add a `cache_control` breakpoint at the end of your
               CacheControl = new BetaCacheControlEphemeral()
           }
       },
-      Messages = [new BetaUserMessageParam { Content = "Hello, Claude" }],
+      Messages = [new BetaUserMessageParam { Content = "Help me build a website" }],
       ContextManagement = new BetaContextManagementConfig
       {
           Edits = [new BetaCompact20260112Edit()]
@@ -2177,7 +2208,7 @@ To maximize cache hit rates, add a `cache_control` breakpoint at the end of your
   			CacheControl: anthropic.NewBetaCacheControlEphemeralParam(),
   		},
   	},
-  	Messages: []anthropic.BetaMessageParam{anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello, Claude"))},
+  	Messages: []anthropic.BetaMessageParam{anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Help me build a website"))},
   	ContextManagement: anthropic.BetaContextManagementConfigParam{
   		Edits: []anthropic.BetaContextManagementConfigEditUnionParam{
   			{OfCompact20260112: &anthropic.BetaCompact20260112EditParam{}},
@@ -2196,26 +2227,29 @@ To maximize cache hit rates, add a `cache_control` breakpoint at the end of your
   import com.anthropic.models.beta.messages.BetaCompact20260112Edit;
   import com.anthropic.models.beta.messages.BetaCacheControlEphemeral;
   // ...
-          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          MessageCreateParams params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(4096L)
-              .addBeta("compact-2026-01-12")
-              .systemOfBetaTextBlockParams(List.of(
-                  BetaTextBlockParam.builder()
-                      .text("You are a helpful coding assistant...")
-                      .cacheControl(BetaCacheControlEphemeral.builder().build())
-                      .build()
-              ))
-              .addUserMessage("Hello, Claude")
-              .contextManagement(BetaContextManagementConfig.builder()
-                  .addEdit(BetaCompact20260112Edit.builder().build())
-                  .build())
-              .build();
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          BetaMessage response = client.beta().messages().create(params);
-          System.out.println(response);
+      MessageCreateParams params = MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(4096L)
+          .addBeta("compact-2026-01-12")
+          .systemOfBetaTextBlockParams(List.of(
+              BetaTextBlockParam.builder()
+                  .text("You are a helpful coding assistant...")
+                  .cacheControl(BetaCacheControlEphemeral.builder().build())
+                  .build()
+          ))
+          .addUserMessage("Help me build a website")
+          .contextManagement(BetaContextManagementConfig.builder()
+              .addEdit(BetaCompact20260112Edit.builder().build())
+              .build())
+          .build();
+
+      BetaMessage response = client.beta().messages().create(params);
+      System.out.println(response);
+  }
   ```
 
   ```php PHP
@@ -2223,7 +2257,7 @@ To maximize cache hit rates, add a `cache_control` breakpoint at the end of your
 
   $response = $client->beta->messages->create(
       maxTokens: 4096,
-      messages: [['role' => 'user', 'content' => 'Hello, Claude']],
+      messages: [['role' => 'user', 'content' => 'Help me build a website']],
       model: Model::CLAUDE_OPUS_5_5,
       betas: ['compact-2026-01-12'],
       system: [
@@ -2261,7 +2295,7 @@ To maximize cache hit rates, add a `cache_control` breakpoint at the end of your
         }
       }
     ],
-    messages: [{ role: "user", content: "Hello, Claude" }],
+    messages: [{ role: "user", content: "Help me build a website" }],
     context_management: {
       edits: [{ type: "compact_20260112" }]
     }
@@ -2302,7 +2336,7 @@ The `iterations` array shows usage for each sampling iteration. When compaction 
 <Note>
   The top-level `input_tokens` and `output_tokens` do not include compaction iteration usage. They reflect the sum of all non-compaction iterations. To calculate total tokens consumed and billed for a request, sum across all entries in the `usage.iterations` array.
 
-  If you previously relied on `usage.input_tokens` and `usage.output_tokens` for cost tracking or auditing, you’ll need to update your tracking logic to aggregate across `usage.iterations` when compaction is enabled. With the compaction beta enabled, every response includes `usage.iterations`, even if no compaction occurred. A `compaction` entry appears only when a new compaction is triggered during the request. Re-applying a previous `compaction` block incurs no additional compaction cost, and the top-level usage fields remain accurate in that case.
+  To track cost or audit usage when compaction is enabled, aggregate across `usage.iterations` instead of reading only `usage.input_tokens` and `usage.output_tokens`. With the compaction beta enabled, every response includes `usage.iterations`, even if no compaction occurred. A `compaction` entry appears only when a new compaction is triggered during the request. Re-applying a previous `compaction` block incurs no additional compaction cost, and the top-level usage fields remain accurate in that case.
 </Note>
 
 ## Combining with other features
@@ -2327,7 +2361,7 @@ The token counting endpoint (`/v1/messages/count_tokens`) applies existing `comp
       "messages": [
         {
           "role": "user",
-          "content": "Hello, Claude"
+          "content": "Help me build a website"
         }
       ],
       "context_management": {
@@ -2345,7 +2379,7 @@ The token counting endpoint (`/v1/messages/count_tokens`) applies existing `comp
   model: claude-opus-5-5
   messages:
     - role: user
-      content: Hello, Claude
+      content: Help me build a website
   context_management:
     edits:
       - type: compact_20260112
@@ -2354,7 +2388,7 @@ The token counting endpoint (`/v1/messages/count_tokens`) applies existing `comp
 
   ```python Python
   client = anthropic.Anthropic()
-  messages = [{"role": "user", "content": "Hello, Claude"}]
+  messages = [{"role": "user", "content": "Help me build a website"}]
   count_response = client.beta.messages.count_tokens(
       betas=["compact-2026-01-12"],
       model="claude-opus-5-5",
@@ -2387,7 +2421,7 @@ The token counting endpoint (`/v1/messages/count_tokens`) applies existing `comp
 
   ```csharp C#
   AnthropicClient client = new();
-  List<BetaMessageParam> messages = [new BetaUserMessageParam { Content = "Hello" }];
+  List<BetaMessageParam> messages = [new BetaUserMessageParam { Content = "Help me build a website" }];
 
   var countParams = new MessageCountTokensParams
   {
@@ -2407,7 +2441,7 @@ The token counting endpoint (`/v1/messages/count_tokens`) applies existing `comp
 
   ```go Go
   client := anthropic.NewClient()
-  messages := []anthropic.BetaMessageParam{anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello, Claude"))}
+  messages := []anthropic.BetaMessageParam{anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Help me build a website"))}
 
   countResponse, err := client.Beta.Messages.CountTokens(context.TODO(), anthropic.BetaMessageCountTokensParams{
   	Model:    anthropic.ModelClaudeOpus5_5,
@@ -2433,29 +2467,32 @@ The token counting endpoint (`/v1/messages/count_tokens`) applies existing `comp
   import com.anthropic.models.beta.messages.BetaContextManagementConfig;
   import com.anthropic.models.beta.messages.BetaCompact20260112Edit;
   // ...
-          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          MessageCountTokensParams params = MessageCountTokensParams.builder()
-              .model(Model.CLAUDE_OPUS_5_5)
-              .addUserMessage("Hello, Claude")
-              .contextManagement(BetaContextManagementConfig.builder()
-                  .addEdit(BetaCompact20260112Edit.builder().build())
-                  .build())
-              .addBeta("compact-2026-01-12")
-              .build();
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          BetaMessageTokensCount countResponse = client.beta().messages().countTokens(params);
-          System.out.println("Current tokens: " + countResponse.inputTokens());
-          System.out.println("Original tokens: " + countResponse.contextManagement().get().originalInputTokens());
+      MessageCountTokensParams params = MessageCountTokensParams.builder()
+          .model(Model.CLAUDE_OPUS_5_5)
+          .addUserMessage("Help me build a website")
+          .contextManagement(BetaContextManagementConfig.builder()
+              .addEdit(BetaCompact20260112Edit.builder().build())
+              .build())
+          .addBeta("compact-2026-01-12")
+          .build();
+
+      BetaMessageTokensCount countResponse = client.beta().messages().countTokens(params);
+      System.out.println("Current tokens: " + countResponse.inputTokens());
+      System.out.println("Original tokens: " + countResponse.contextManagement().get().originalInputTokens());
+  }
   ```
 
   ```php PHP
   $client = new Client();
-  $messages = [['role' => 'user', 'content' => 'Hello, Claude']];
+  $messages = [['role' => 'user', 'content' => 'Help me build a website']];
 
   $countResponse = $client->beta->messages->countTokens(
       messages: $messages,
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       betas: ['compact-2026-01-12'],
       contextManagement: [
           'edits' => [
@@ -2470,7 +2507,7 @@ The token counting endpoint (`/v1/messages/count_tokens`) applies existing `comp
 
   ```ruby Ruby
   client = Anthropic::Client.new
-  messages = [{ role: "user", content: "Hello, Claude" }]
+  messages = [{ role: "user", content: "Help me build a website" }]
 
   count_response = client.beta.messages.count_tokens(
     betas: ["compact-2026-01-12"],
@@ -2492,11 +2529,11 @@ Here’s a complete example of a long-running conversation with compaction:
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    This workflow needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    This workflow needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   ```python Python
@@ -2675,43 +2712,43 @@ Here’s a complete example of a long-running conversation with compaction:
   import com.anthropic.models.beta.messages.BetaCompact20260112Edit;
   import com.anthropic.models.beta.messages.BetaInputTokensTrigger;
   // ...
-      private static final AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-      private static final List<BetaMessageParam> messages = new ArrayList<>();
+  final AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  final List<BetaMessageParam> messages = new ArrayList<>();
 
-      public static void main(String[] args) {
-          System.out.println(chat("Briefly, help me build a Python web scraper"));
-          System.out.println(chat("Briefly, add support for JavaScript-rendered pages"));
-          System.out.println(chat("Briefly, add rate limiting and error handling"));
-      }
+  void main() {
+      System.out.println(chat("Briefly, help me build a Python web scraper"));
+      System.out.println(chat("Briefly, add support for JavaScript-rendered pages"));
+      System.out.println(chat("Briefly, add rate limiting and error handling"));
+  }
 
-      private static String chat(String userMessage) {
-          messages.add(BetaMessageParam.ofUser(userMessage));
+  String chat(String userMessage) {
+      messages.add(BetaMessageParam.ofUser(userMessage));
 
-          MessageCreateParams params = MessageCreateParams.builder()
-              .addBeta("compact-2026-01-12")
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(4096L)
-              .messages(messages)
-              .contextManagement(BetaContextManagementConfig.builder()
-                  .addEdit(BetaCompact20260112Edit.builder()
-                      .trigger(BetaInputTokensTrigger.builder()
-                          .value(100000L)
-                          .build())
+      MessageCreateParams params = MessageCreateParams.builder()
+          .addBeta("compact-2026-01-12")
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(4096L)
+          .messages(messages)
+          .contextManagement(BetaContextManagementConfig.builder()
+              .addEdit(BetaCompact20260112Edit.builder()
+                  .trigger(BetaInputTokensTrigger.builder()
+                      .value(100000L)
                       .build())
                   .build())
-              .build();
+              .build())
+          .build();
 
-          BetaMessage response = client.beta().messages().create(params);
+      BetaMessage response = client.beta().messages().create(params);
 
-          // Append response (compaction blocks are automatically included)
-          messages.add(response.toParam());
+      // Append response (compaction blocks are automatically included)
+      messages.add(response.toParam());
 
-          return response.content().stream()
-              .filter(block -> block.text().isPresent())
-              .map(block -> block.text().get().text())
-              .findFirst()
-              .orElse("");
-      }
+      return response.content().stream()
+          .flatMap(block -> block.text().stream())
+          .map(textBlock -> textBlock.text())
+          .findFirst()
+          .orElse("");
+  }
   ```
 
   ```php PHP
@@ -2725,7 +2762,7 @@ Here’s a complete example of a long-running conversation with compaction:
       $response = $client->beta->messages->create(
           maxTokens: 4096,
           messages: $messages,
-          model: 'claude-opus-5-5',
+          model: Model::CLAUDE_OPUS_5_5,
           betas: ['compact-2026-01-12'],
           contextManagement: [
               'edits' => [
@@ -2740,7 +2777,7 @@ Here’s a complete example of a long-running conversation with compaction:
       $messages[] = ['role' => 'assistant', 'content' => $response->content];
 
       foreach ($response->content as $block) {
-          if ($block->type === 'text') {
+          if ($block instanceof \Anthropic\Beta\Messages\BetaTextBlock) {
               return $block->text;
           }
       }
@@ -2785,17 +2822,25 @@ Here’s a complete example of a long-running conversation with compaction:
   ```
 </CodeGroup>
 
-On Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, and Claude Haiku 5.5, thinking blocks in any assistant turn you reinsert after the compaction block fail the [prefix check](https://platform.claude.com/docs/en/build-with-claude/thinking#preserved-in-conversation), because they were produced when the full history was present. Strip the `thinking` and `redacted_thinking` blocks from those turns. Alternatively, send `thinking.block_binding.prefix_mismatch_behavior: "drop_block"` with the `thinking-binding-controls-2026-08-01` [beta header](https://platform.claude.com/docs/en/api/beta-headers). The preserved text and tool blocks can stay as they are. Letting the API summarize everything, without reinserting earlier turns, avoids this. On Claude Sonnet 5.5 and Claude Haiku 5.5, `block_binding` works only with `thinking: {"type": "adaptive"}`. With any other thinking setting on those models, strip the blocks.
+When you reinsert an earlier assistant turn after the compaction block, that turn’s thinking blocks fail the [prefix check](https://platform.claude.com/docs/en/build-with-claude/thinking#preserved-in-conversation) on some models. Those models are Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, and Claude Haiku 5.5. The blocks fail because they were produced when the full history was present.
+
+To avoid the failure, do one of the following:
+
+* **Strip the blocks:** Remove the `thinking` and `redacted_thinking` blocks from the turns you reinsert. The preserved text and tool blocks can stay as they are.
+* **Have the API drop the blocks:** Send `thinking.block_binding.prefix_mismatch_behavior: "drop_block"`. This needs the `thinking-binding-controls-2026-08-01` beta header (see [Beta headers](https://platform.claude.com/docs/en/api/beta-headers)).
+* **Don’t reinsert earlier turns:** Let the API summarize everything.
+
+On Claude Sonnet 5.5 and Claude Haiku 5.5, `block_binding` works only with `thinking: {"type": "adaptive"}`. With any other thinking setting on those two models, strip the blocks.
 
 Here’s an example that uses `pause_after_compaction` to preserve the prior exchange and the current user message (three messages total) instead of summarizing them. It keeps their text and tool blocks unchanged, removes the `thinking` and `redacted_thinking` blocks from the preserved assistant turn, and drops that turn if nothing else is left:
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    This workflow needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    This workflow needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   ```python Python
@@ -2849,7 +2894,9 @@ Here’s an example that uses `pause_after_compaction` to preserve the prior exc
               else message
               for message in messages[-3:]
           ]
-          preserved_messages = [m for m in preserved_messages if m["content"]]
+          preserved_messages = [
+              message for message in preserved_messages if message["content"]
+          ]
 
           # Build new message list: compaction + preserved messages
           new_assistant_content = [compaction_block]
@@ -3185,93 +3232,93 @@ Here’s an example that uses `pause_after_compaction` to preserve the prior exc
   import com.anthropic.models.beta.messages.BetaCompact20260112Edit;
   import com.anthropic.models.beta.messages.BetaInputTokensTrigger;
   // ...
-      private static final AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-      private static final List<BetaMessageParam> messages = new ArrayList<>();
+  final AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  final List<BetaMessageParam> messages = new ArrayList<>();
 
-      public static String chat(String userMessage) {
-          messages.add(BetaMessageParam.ofUser(userMessage));
+  String chat(String userMessage) {
+      messages.add(BetaMessageParam.ofUser(userMessage));
 
-          MessageCreateParams params = MessageCreateParams.builder()
+      MessageCreateParams params = MessageCreateParams.builder()
+          .addBeta("compact-2026-01-12")
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(4096L)
+          .messages(messages)
+          .contextManagement(BetaContextManagementConfig.builder()
+              .addEdit(BetaCompact20260112Edit.builder()
+                  .trigger(BetaInputTokensTrigger.builder()
+                      .value(100000L)
+                      .build())
+                  .pauseAfterCompaction(true)
+                  .build())
+              .build())
+          .build();
+
+      BetaMessage response = client.beta().messages().create(params);
+
+      // Look for the compaction block, not the stop reason:
+      // stopReason() is REFUSAL, not COMPACTION, if the summary was blocked
+      var compactionBlock = response.content().stream()
+          .flatMap(block -> block.compaction().stream())
+          .findFirst();
+
+      // Replace the history only if a summary was generated
+      if (compactionBlock.flatMap(block -> block.content()).isPresent()) {
+          // Preserve the prior exchange + current user message (3 messages),
+          // without thinking blocks; an assistant turn left empty is dropped
+          List<BetaMessageParam> preservedMessages = new ArrayList<>();
+          for (BetaMessageParam message : messages.subList(Math.max(0, messages.size() - 3), messages.size())) {
+              if (message.isAssistant() && message.asAssistant().content().isContentBlockParams()) {
+                  var keptBlocks = message.asAssistant().content().asContentBlockParams().stream()
+                      .filter(block -> !block.isThinking() && !block.isRedactedThinking())
+                      .toList();
+                  if (keptBlocks.isEmpty()) {
+                      continue;
+                  }
+                  message = BetaMessageParam.ofAssistantOfContentBlockParams(keptBlocks);
+              }
+              preservedMessages.add(message);
+          }
+
+          // Build new message list: compaction + preserved messages
+          List<BetaMessageParam> messagesAfterCompaction = new ArrayList<>();
+          messagesAfterCompaction.add(response.toParam());
+          messagesAfterCompaction.addAll(preservedMessages);
+
+          // Update the message list to reflect the compaction
+          messages.clear();
+          messages.addAll(messagesAfterCompaction);
+      }
+
+      if (compactionBlock.isPresent()) {
+          // Continue the request, with the full history if there is no summary
+          MessageCreateParams continueParams = MessageCreateParams.builder()
               .addBeta("compact-2026-01-12")
               .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(4096L)
               .messages(messages)
               .contextManagement(BetaContextManagementConfig.builder()
-                  .addEdit(BetaCompact20260112Edit.builder()
-                      .trigger(BetaInputTokensTrigger.builder()
-                          .value(100000L)
-                          .build())
-                      .pauseAfterCompaction(true)
-                      .build())
+                  .addEdit(BetaCompact20260112Edit.builder().build())
                   .build())
               .build();
 
-          BetaMessage response = client.beta().messages().create(params);
-
-          // Look for the compaction block, not the stop reason:
-          // stopReason() is REFUSAL, not COMPACTION, if the summary was blocked
-          var compactionBlock = response.content().stream()
-              .flatMap(block -> block.compaction().stream())
-              .findFirst();
-
-          // Replace the history only if a summary was generated
-          if (compactionBlock.flatMap(block -> block.content()).isPresent()) {
-              // Preserve the prior exchange + current user message (3 messages),
-              // without thinking blocks; an assistant turn left empty is dropped
-              List<BetaMessageParam> preservedMessages = new ArrayList<>();
-              for (BetaMessageParam message : messages.subList(Math.max(0, messages.size() - 3), messages.size())) {
-                  if (message.isAssistant() && message.asAssistant().content().isContentBlockParams()) {
-                      var keptBlocks = message.asAssistant().content().asContentBlockParams().stream()
-                          .filter(block -> !block.isThinking() && !block.isRedactedThinking())
-                          .toList();
-                      if (keptBlocks.isEmpty()) {
-                          continue;
-                      }
-                      message = BetaMessageParam.ofAssistantOfContentBlockParams(keptBlocks);
-                  }
-                  preservedMessages.add(message);
-              }
-
-              // Build new message list: compaction + preserved messages
-              List<BetaMessageParam> messagesAfterCompaction = new ArrayList<>();
-              messagesAfterCompaction.add(response.toParam());
-              messagesAfterCompaction.addAll(preservedMessages);
-
-              // Update the message list to reflect the compaction
-              messages.clear();
-              messages.addAll(messagesAfterCompaction);
-          }
-
-          if (compactionBlock.isPresent()) {
-              // Continue the request, with the full history if there is no summary
-              MessageCreateParams continueParams = MessageCreateParams.builder()
-                  .addBeta("compact-2026-01-12")
-                  .model(Model.CLAUDE_OPUS_5_5)
-                  .maxTokens(4096L)
-                  .messages(messages)
-                  .contextManagement(BetaContextManagementConfig.builder()
-                      .addEdit(BetaCompact20260112Edit.builder().build())
-                      .build())
-                  .build();
-
-              response = client.beta().messages().create(continueParams);
-          }
-
-          // Append the final response
-          messages.add(response.toParam());
-
-          return response.content().stream()
-              .filter(block -> block.text().isPresent())
-              .map(block -> block.text().get().text())
-              .findFirst()
-              .orElse("");
+          response = client.beta().messages().create(continueParams);
       }
 
-      public static void main(String[] args) {
-          System.out.println(chat("Briefly, help me build a Python web scraper"));
-          System.out.println(chat("Briefly, add support for JavaScript-rendered pages"));
-          System.out.println(chat("Briefly, add rate limiting and error handling"));
-      }
+      // Append the final response
+      messages.add(response.toParam());
+
+      return response.content().stream()
+          .flatMap(block -> block.text().stream())
+          .map(textBlock -> textBlock.text())
+          .findFirst()
+          .orElse("");
+  }
+
+  void main() {
+      System.out.println(chat("Briefly, help me build a Python web scraper"));
+      System.out.println(chat("Briefly, add support for JavaScript-rendered pages"));
+      System.out.println(chat("Briefly, add rate limiting and error handling"));
+  }
   ```
 
   ```php PHP
@@ -3285,7 +3332,7 @@ Here’s an example that uses `pause_after_compaction` to preserve the prior exc
       $response = $client->beta->messages->create(
           maxTokens: 4096,
           messages: $messages,
-          model: 'claude-opus-5-5',
+          model: Model::CLAUDE_OPUS_5_5,
           betas: ['compact-2026-01-12'],
           contextManagement: [
               'edits' => [
@@ -3335,7 +3382,7 @@ Here’s an example that uses `pause_after_compaction` to preserve the prior exc
           $response = $client->beta->messages->create(
               maxTokens: 4096,
               messages: $messages,
-              model: 'claude-opus-5-5',
+              model: Model::CLAUDE_OPUS_5_5,
               betas: ['compact-2026-01-12'],
               contextManagement: [
                   'edits' => [['type' => 'compact_20260112']]
@@ -3346,7 +3393,7 @@ Here’s an example that uses `pause_after_compaction` to preserve the prior exc
       $messages[] = ['role' => 'assistant', 'content' => $response->content];
 
       foreach ($response->content as $block) {
-          if ($block->type === 'text') {
+          if ($block instanceof \Anthropic\Beta\Messages\BetaTextBlock) {
               return $block->text;
           }
       }
@@ -3464,9 +3511,10 @@ Threshold compaction is in beta on select models and eligible for zero data rete
 * Availability: Available
 * Usage: Opt in with a `compact_20260112` edit in `context_management.edits`. Compaction starts when input tokens reach the trigger, 150,000 by default and at least 50,000.
 
-| Status | Cloud platforms                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Models                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry) | [Claude Fable 5.2](https://platform.claude.com/docs/en/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/en/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/en/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/en/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/en/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/en/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/en/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/en/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/en/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/en/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/en/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/en/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/en/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/en/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/en/models/sonnet-4-6/overview) |
+| Status | Cloud platforms                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Models                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Beta   | Claude API, [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry) | [Claude Fable 5.2](https://platform.claude.com/docs/en/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/en/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/en/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/en/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/en/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/en/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/en/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/en/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/en/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/en/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/en/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/en/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/en/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/en/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/en/models/sonnet-4-6/overview) |
+| Beta   | [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock)                                                                                                                                                                                                                                                                                                                                                                                                            | [Claude Fable 5.1](https://platform.claude.com/docs/en/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/en/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/en/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/en/models/mythos-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/en/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/en/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/en/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/en/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/en/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/en/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/en/models/opus-4-7/overview)                                                                                                                                                                                                                                                                                                                                                                      |
 
 #### [Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview)
 

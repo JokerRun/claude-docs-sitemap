@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/opentelemetry/api
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: f908f56ddf996e625d7acedc49ca586eebd65668ab53c41c2dd73ca6716647e5
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 4128a90f382dec6028f9d2576b977197d5c49a27764a523edfc225aec188c67c
 ---
 
 ---
@@ -264,7 +264,7 @@ By default, the API spans for a Messages API request or a Managed Agents session
 The API reads each request’s trace context from the W3C [`traceparent` header](https://www.w3.org/TR/trace-context/). If the sampled flag in the header is off, the API doesn’t emit the request’s span or the spans under it.
 
 <Tabs>
-  <Tab title="With the Claude SDK">
+  <Tab title="With the Anthropic SDK">
     To connect the API spans, [set up SDK tracing](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk) in your application and call the SDK from inside one of your own spans. Your span then contains the SDK span, which contains the API span. Send all of these spans to the same observability platform, so that it can show them as one trace. See the example traces of [a Messages API request](https://platform.claude.com/docs/en/manage-claude/opentelemetry#a-messages-api-request) and [a Managed Agents session](https://platform.claude.com/docs/en/manage-claude/opentelemetry#a-managed-agents-session).
 
     The following example sends a user message to a session inside your own span:

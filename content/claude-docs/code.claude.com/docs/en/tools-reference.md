@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/tools-reference
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 0bd9feb89bc2f4cc25af4459f397f5202b04083aeaee89f4ac9e1ee7d857e4e2
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 03aefabd00df3af010667bfef9178529b8f64fe89e9beac03ad40c3c7362f4c8
 ---
 
 > ## Documentation Index
@@ -204,7 +204,7 @@ The time limit requires Claude Code v2.1.285 or later. Before v2.1.288, it appli
 The time limit counts from the moment the command enters the background:
 
 * A command that Claude starts in the background gets 30 minutes, or the `timeout` Claude passes with `run_in_background`, up to a maximum of 2 hours
-* A command that starts in the foreground and then moves to the background, for example at its timeout, gets 30 minutes from the move
+* A command that starts in the foreground and then moves to the background at its timeout gets 30 minutes from the move
 
 In a run with the `-p` flag whose prompt you pass as text rather than with `--input-format stream-json`, both defaults are 10 minutes instead of 30, because the run [waits for background commands after its result](https://code.claude.com/docs/en/headless.md#background-tasks-at-exit).
 

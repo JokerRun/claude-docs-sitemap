@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 40e04295d34645ab548be2823dd553c6fdb7829cff0d05e5c099e77e2768f362
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 1fb90cdc632117d58d36b5dfa8faff7019b3f7782f6b0c4645141d64cb8f6d1f
 ---
 
 ---
@@ -38,6 +38,8 @@ anthropic.claude-{name}-{major}[-{minor}]
 Contohnya: `anthropic.claude-sonnet-4-6`, `anthropic.claude-sonnet-5`, `anthropic.claude-opus-4-7`, `anthropic.claude-opus-4-8`, `anthropic.claude-opus-5`
 
 Claude Opus 4.6 adalah ID model Bedrock terakhir yang menyertakan sufiks `-v1` (`anthropic.claude-opus-4-6-v1`). Anthropic menghapus sufiks tersebut mulai dari Claude Sonnet 4.6.
+
+Di endpoint `bedrock-runtime`, model yang disajikan AWS melalui inferensi lintas wilayah, termasuk Claude Fable 5.2 dan Claude Mythos 5.2, menggunakan ID profil inferensi: ID model dasar dengan prefiks seperti `global.` atau `us.`, misalnya `global.anthropic.claude-fable-5-2`. Lihat [ID model API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids).
 
 Di Claude Models on Google Cloud (Google managed), formatnya sama dengan Claude API.
 

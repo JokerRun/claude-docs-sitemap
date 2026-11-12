@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: ff0a3972998b43a8af3be23ae0d1f962923305d403062451fceec8a08f2a5c7f
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 0e4196a2e94386c66e5bee1391c68ef86e0ba543dd3ce1cac8874d5490796b72
 ---
 
 ---
@@ -28,7 +28,7 @@ Prompt Claude Sonnet 5 yang sudah ada seharusnya tetap berkinerja baik tanpa per
 * Permintaan mengembalikan `stop_reason: "refusal"`: [Penolakan safeguard](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#safeguard-refusals)
 
 <Note>
-  Untuk lima perubahan API yang merusak kompatibilitas saat bermigrasi dari Claude Sonnet 5, lihat [panduan migrasi](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-5).
+  Untuk lima perubahan API yang merusak kompatibilitas saat bermigrasi dari Claude Sonnet 5, lihat [Panduan migrasi Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-5).
 </Note>
 
 ## Kalibrasi effort
@@ -43,7 +43,7 @@ Tiga penyesuaian dapat membantu:
 * Simpan `xhigh` dan `max` untuk pekerjaan di mana Anda telah mengukur peningkatan kualitas, karena pemikiran dan balasan menjadi jauh lebih panjang di level tersebut. Pada level tersebut, `between_tools` tidak diterima, sehingga pemikiran di awal tidak dapat dinonaktifkan.
 * Untuk mendapatkan pemikiran yang lebih sedikit, turunkan level effort. Meminta model dalam prompt sistem untuk berpikir lebih sedikit tidak secara andal mengurangi pemikirannya.
 
-Mengubah nilai `effort` tingkat atas di antara permintaan akan membatalkan cache prompt. Untuk mengubah level di tengah percakapan, gunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) (beta) sebagai gantinya, yang mempertahankan cache. Suatu perubahan berlaku untuk setiap giliran berikutnya hingga perubahan lain menggantikannya. Misalnya, dalam sesi interaktif pada `low`, tambahkan perubahan ke `high` sebelum masalah sulit yang diajukan pengguna, dan perubahan kembali ke `low` setelah Claude menjawabnya. Perubahan effort per pesan memerlukan pemikiran adaptif. Dengan `between_tools`, perubahan tersebut mengembalikan error 400, seperti yang dijelaskan dalam [Berjalan tanpa pemikiran di awal](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#running-without-up-front-thinking).
+Mengubah nilai `effort` tingkat atas di antara permintaan akan membatalkan cache prompt. Untuk mengubah level di tengah percakapan, gunakan perubahan [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) sebagai gantinya, yang mempertahankan cache. Effort per pesan masih dalam versi beta. Suatu perubahan berlaku untuk setiap giliran berikutnya hingga perubahan lain menggantikannya. Misalnya, dalam sesi interaktif pada `low`, tambahkan perubahan ke `high` sebelum masalah sulit yang diajukan pengguna, dan perubahan kembali ke `low` setelah Claude menjawabnya. Perubahan effort per pesan memerlukan pemikiran adaptif. Dengan `between_tools`, perubahan tersebut mengembalikan error 400, seperti yang dijelaskan dalam [Berjalan tanpa pemikiran di awal](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#running-without-up-front-thinking).
 
 ## Arahkan inisiatif dan cakupan
 
@@ -54,7 +54,7 @@ Seberapa jauh Claude Sonnet 5.5 bertindak sendiri bergantung pada level effort d
 ```text wrap
 Keep working until everything the user asked for is done, and only stop to ask when you can't go on without the user or before a risky step.
 
-When the work the user asked for is done and checked, stop and report. Don't add features, tests, files, docs or refactors that weren't asked for. If you think one would help, mention it at the end instead of doing it.
+When the work the user asked for is done and checked, stop and report. Don't add features, tests, files, docs, or refactors that weren't asked for. If you think one would help, mention it at the end instead of doing it.
 ```
 
 Dengan prompt ini, model menuntaskan lebih banyak pekerjaan pada effort `low` dan `medium`, sehingga sesi pada level tersebut berjalan lebih lama dan lebih mahal. Prompt ini tidak menggantikan aturan Anda sendiri tentang tindakan yang berisiko atau tidak dapat dibatalkan. Tetap simpan aturan tersebut dalam prompt sistem Anda.
@@ -64,7 +64,7 @@ Dengan prompt ini, model menuntaskan lebih banyak pekerjaan pada effort `low` da
 **Ketelitian pada effort `xhigh` dan `max`.** Pada level ini model sangat teliti. Setelah menyelesaikan tugas, model dapat memulai putaran tinjauan dan verifikasinya sendiri, terkadang dengan subagen jika harness Anda menyediakannya. Model juga dapat membuat perbaikan terkait yang diperhatikannya di sepanjang jalan. Ini memakan lebih banyak waktu dan token, jadi jalankan pekerjaan rutin pada `high` atau di bawahnya, di mana hal ini jarang terjadi. Jika Anda memang menginginkan ketelitian ekstra dari level effort ini, tetapi ingin mengarahkannya ke tugas itu sendiri, tambahkan ini ke prompt sistem Anda:
 
 ```text wrap
-When the work the user asked for is done and its checks pass, stop and report. Don't start extra rounds of review or hardening on your own, and don't launch reviewer sub-agents unless the user asked for a review. If you think a deeper review is worth doing, say so at the end.
+When the work the user asked for is done and its checks pass, stop and report. Don't start extra rounds of review or hardening on your own, and don't launch reviewer subagents unless the user asked for a review. If you think a deeper review is worth doing, say so at the end.
 ```
 
 Dalam pengujian pada tugas coding dengan effort `max`, ini menghentikan model meluncurkan subagen peninjau dan memangkas biaya sesi sekitar sepertiga, tanpa perubahan kualitas. Ini membuat putaran tinjauan yang dimulai sendiri oleh agen utama lebih jarang tetapi tidak menghilangkannya sepenuhnya.
@@ -72,7 +72,7 @@ Dalam pengujian pada tugas coding dengan effort `max`, ini menghentikan model me
 **Permintaan terbuka.** Ketika permintaan bersifat terbuka, misalnya “tunjukkan apa yang bisa Anda lakukan dengan ini,” model dapat mulai membuat presentasi, laporan, atau video padahal Anda hanya menginginkan ide. Jika Anda menginginkan ide atau rencana terlebih dahulu, sebutkan dalam permintaan, atau tambahkan ini ke prompt sistem Anda:
 
 ```text wrap
-When the user asks for ideas, options or a plan, give them that and stop. Don't start building or changing anything until they say to go ahead.
+When the user asks for ideas, options, or a plan, give them that and stop. Don't start building or changing anything until they say to go ahead.
 ```
 
 ## Berjalan tanpa pemikiran di awal
@@ -117,10 +117,10 @@ Untuk menampilkan catatan ini, atur `display: "updates"` (beta, header `thinking
 
 Selanjutnya, hapus instruksi lama seperti “simpan semua temuan untuk respons akhir.” Jika Anda kemudian menginginkan pembaruan pada titik-titik yang dapat diprediksi, misalnya satu baris tentang apa yang akan dilakukan model sebelum pemanggilan alat pertamanya dan rekap singkat di akhir, sebutkan dalam prompt sistem. Model mengikuti instruksi seperti ini. Pembaruan pada titik-titik yang ditetapkan paling membantu dalam pekerjaan human-in-the-loop.
 
-Jika giliran pemanggilan alat yang panjang masih sunyi lebih lama dari yang Anda inginkan, harness Anda dapat memicu pembaruan. Minta harness menghitung langkah pemanggilan alat berturut-turut yang tidak mengirimkan teks atau pembaruan progres kepada pengguna. Setelah beberapa langkah berturut-turut, misalnya lima, tambahkan pengingat satu giliran setelah hasil alat terbaru. Kirimkan sebagai [pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (beta), dengan teks seperti berikut:
+Jika giliran pemanggilan alat yang panjang masih sunyi lebih lama dari yang Anda inginkan, harness Anda dapat memicu pembaruan. Minta harness menghitung langkah pemanggilan alat berturut-turut yang tidak mengirimkan teks atau pembaruan progres kepada pengguna. Setelah beberapa langkah berturut-turut, misalnya lima, tambahkan pengingat satu giliran setelah hasil alat terbaru. Kirimkan sebagai [pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (dalam versi beta), dengan teks seperti berikut:
 
 ```text wrap
-The user hasn't heard from you in a while — say in a few words what you're doing, then continue.
+The user hasn't heard from you in a while: say in a few words what you're doing, then continue.
 ```
 
 Jika giliran tetap sunyi, berhenti mengirim pengingat setelah yang kedua atau ketiga. Teks harness yang sering muncul setelah hasil alat dapat membuat model memperlakukan teks tersebut sebagai kemungkinan injeksi prompt, seperti yang dijelaskan dalam [Pesan pengguna di tengah giliran](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#mid-turn-user-messages-and-task-budgets). Biarkan setiap pengingat tetap ada di `messages` pada permintaan berikutnya. Karena pengingat ditambahkan di akhir alih-alih disisipkan lalu dihapus, cache prompt dan [pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking) tetap utuh. Pada effort `high`, dengan tersedianya alat untuk mengirim pesan kepada pengguna, pengingat membuat model lebih sering memperbarui pengguna dan memperpendek periode sunyi terpanjangnya, tanpa perubahan terukur pada kualitas tugas.
@@ -132,7 +132,7 @@ Pada tugas chat dan pekerjaan pengetahuan, Claude Sonnet 5.5 terkadang menjawab 
 Pertama, periksa prompt Anda untuk bahasa yang menghambat penggunaan alat, seperti “hanya gunakan alat jika benar-benar diperlukan” atau “minimalkan pemanggilan alat,” lalu hapus. Kemudian, jika produk Anda memberi model alat pencarian, tambahkan ini ke prompt sistem Anda:
 
 ```text wrap
-Use the search tool to check specifics that may have changed since your training, such as what is allowed, required or charged, even when you feel confident. For researched work such as a report or a comparison, gather current sources rather than writing from your training knowledge.
+Use the search tool to check specifics that may have changed since your training, such as what is allowed, required, or charged, even when you feel confident. For researched work such as a report or a comparison, gather current sources rather than writing from your training knowledge.
 ```
 
 Hal ini paling penting untuk produk riset dan dukungan, di mana jawaban bergantung pada detail terkini.
@@ -146,7 +146,7 @@ Hitung mundur token yang ditambahkan harness Anda setelah setiap hasil alat dapa
 * Jangan pernah menempatkan teks pengguna di dalam blok `tool_result`. Model paling sering salah menafsirkan penempatan tersebut.
 * Sampaikan input pengguna di tengah giliran sebagai giliran pengguna. Tambahkan kata-kata pengguna sebagai blok teks dalam pesan pengguna yang membawa blok `tool_result`, setelah `tool_result` terakhir.
 * Simpan pemberitahuan harness, seperti pengingat, dalam pesan sistem di tengah percakapan yang terpisah setelah kata-kata pengguna. Jangan pernah menempatkan pemberitahuan dan kata-kata pengguna dalam blok yang sama.
-* Dalam sesi interaktif di mana pengguna dapat mengetik di tengah giliran, jangan tambahkan hitungan mundur token atau anggaran Anda sendiri setelah hasil alat. [Task budgets](https://platform.claude.com/docs/id/build-with-claude/task-budgets) (anggaran tugas) (beta) menambahkan hitungan mundur serupa, tetapi belum terlihat menyebabkan salah tafsir ini. Jika Anda melihat salah tafsir saat anggaran tugas diatur, coba sesi tanpa anggaran tugas.
+* Dalam sesi interaktif di mana pengguna dapat mengetik di tengah giliran, jangan tambahkan hitungan mundur token atau anggaran Anda sendiri setelah hasil alat. [Task budgets](https://platform.claude.com/docs/id/build-with-claude/task-budgets) (anggaran tugas) (dalam versi beta) menambahkan hitungan mundur serupa, tetapi belum terlihat menyebabkan salah tafsir ini. Jika Anda melihat salah tafsir saat anggaran tugas diatur, coba sesi tanpa anggaran tugas.
 
 ## Verifikasi pada tugas coding
 
@@ -155,7 +155,7 @@ Pada tugas coding agentik, Claude Sonnet 5.5 umumnya memeriksa pekerjaannya sebe
 Jika Anda melihat perubahan dilaporkan selesai tanpa output tes atau build dalam transkrip, tambahkan paragraf ini, atau yang serupa, ke prompt sistem. Pada effort `low`, paragraf ini membuat pemeriksaan yang dilewati atau dangkal menjadi jarang, tanpa perubahan kualitas tugas yang terukur dan hanya dengan biaya per tugas yang sedikit lebih tinggi:
 
 ```text wrap
-When you change code that can be run, built, or type-checked, run a real check that exercises the change before reporting it done: the project's tests, type-checker, or build, or the changed command itself. A syntax-only check, or a check command that failed to start, does not count; if all that is missing is the project's declared dependencies, install them with its own package manager and lockfile (e.g. npm install, pip install -r requirements.txt), never via sudo or the system package manager, unless told not to. Only if no real check can run here, say which one you did not run and why instead of reporting the change as done.
+When you change code that can be run, built, or type-checked, run a real check that exercises the change before reporting it done: the project's tests, type-checker, or build, or the changed command itself. A syntax-only check, or a check command that failed to start, does not count; if all that is missing is the project's declared dependencies, install them with its own package manager and lockfile (for example, npm install or pip install -r requirements.txt), never through sudo or the system package manager, unless told not to. Only if no real check can run here, say which one you did not run and why instead of reporting the change as done.
 ```
 
 ## Penanganan pemanggilan alat yang toleran
@@ -181,6 +181,6 @@ Claude Sonnet 5.5 menjalankan pengklasifikasi keamanan yang dapat menolak permin
 
 Jika pengklasifikasi `cyber` memblokir pekerjaan keamanan yang sah di organisasi Anda, Anda dapat mendaftar ke [Cyber Verification Program](https://support.claude.com/en/articles/14604842). Jika pengklasifikasi `bio` memblokir pekerjaan ilmu hayati organisasi Anda, Anda dapat mendaftar ke [Life Sciences Verification Program](https://www.anthropic.com/news/life-sciences-verification-program).
 
-Jika Anda mengaktifkan [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) (beta), fitur ini mencoba ulang penolakan `cyber` dan `frontier_llm` pada Claude Sonnet 5. Fitur ini tidak mencoba ulang penolakan `bio`, `reasoning_extraction`, atau `general_harms`. Lihat [Penolakan, fallback, dan penagihan](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#refusals-fallback-and-billing).
+Jika Anda mengaktifkan [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) (dalam versi beta), fitur ini mencoba ulang penolakan `cyber` dan `frontier_llm` pada Claude Sonnet 5. Fitur ini tidak mencoba ulang penolakan `bio`, `reasoning_extraction`, atau `general_harms`. Lihat [Penolakan, fallback, dan penagihan](https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5#refusals-fallback-and-billing).
 
 Jika prompt Anda meminta model untuk menyertakan penalarannya dalam respons, hapus instruksi tersebut, karena instruksi itu mengundang penolakan `reasoning_extraction`. Dengan pemikiran adaptif, baca penalaran dari blok [pemikiran yang diringkas](https://platform.claude.com/docs/id/build-with-claude/thinking#summarized-thinking) sebagai gantinya (`display: "summarized"`). Anda tetap dapat meminta penjelasan singkat tentang jawaban atau ringkasan tindakan yang diambil; lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).

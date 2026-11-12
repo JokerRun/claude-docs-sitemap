@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/api
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 45fe618cbc4e3b63fb5a4d692c27bfad8fbac12df0c1b883d9a6fc0c2b31c67c
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 075df1cf9f814ba2c322abb0f353b04252a7c51877810723f04ea6fea1596ece
 ---
 
 ---
@@ -264,7 +264,7 @@ Secara default, span API dari permintaan Messages API atau sesi Managed Agents b
 API membaca konteks trace dari setiap permintaan dari [header `traceparent`](https://www.w3.org/TR/trace-context/) W3C. Jika flag sampled di header tersebut nonaktif, API tidak memancarkan span dari permintaan tersebut maupun span di bawahnya.
 
 <Tabs>
-  <Tab title="Dengan Claude SDK">
+  <Tab title="Dengan Anthropic SDK">
     Untuk menghubungkan span API, [siapkan tracing SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk) di aplikasi Anda dan panggil SDK dari dalam salah satu span Anda sendiri. Span Anda kemudian berisi span SDK, yang berisi span API. Kirim semua span ini ke platform observabilitas yang sama, sehingga platform tersebut dapat menampilkannya sebagai satu trace. Lihat contoh trace dari [permintaan Messages API](https://platform.claude.com/docs/id/manage-claude/opentelemetry#a-messages-api-request) dan [sesi Managed Agents](https://platform.claude.com/docs/id/manage-claude/opentelemetry#a-managed-agents-session).
 
     Contoh berikut mengirimkan pesan pengguna ke sebuah sesi di dalam span Anda sendiri:

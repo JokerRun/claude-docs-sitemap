@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: d5e69f6256d3e741aebb26f7e1ec8acda9a4bd70fa17edb169d8a1ba926d214c
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 12401fd0a069a524bb3098d6c02ebca22918d9b68682909ff793d9669f52c064
 ---
 
 > ## Documentation Index
@@ -406,6 +406,8 @@ If a notice in place of the prompt box says the conversation is still open somew
 
 If the reload interrupted Claude mid-step, Claude continues that step when the conversation comes back, and a notice in the chat marks the continuation. Requires Claude Code v2.1.274 or later. If the step was interrupted more than an hour ago or the session is open elsewhere, the conversation comes back idle instead.
 
+When a notice in the chat includes `plan mode is now off, so Claude did not continue on its own`, the step was interrupted in plan mode. To keep planning, select **Plan** in the mode indicator before you send your next message.
+
 #### Turn off continuation after a reload
 
 To stop Claude from continuing an interrupted step after a reload, open the [Continue After Reload setting](vscode://settings/claudeCode.continueAfterReload) and uncheck it.
@@ -633,7 +635,7 @@ When a subagent shows as one status line with no tool calls, type `/tasks` in th
 
 ## VS Code commands and shortcuts
 
-To open the Command Palette, press `Cmd+Shift+P` on Mac or `Ctrl+Shift+P` on Windows/Linux. Type "Claude Code" there to see all available VS Code commands for the Claude Code extension.
+To open the Command Palette, press `Cmd+Shift+P` on Mac or `Ctrl+Shift+P` on Windows/Linux. Type "Claude Code" there to see the extension's Command Palette commands.
 
 Some shortcuts depend on which panel is "focused" (receiving keyboard input). When your cursor is in a code file, the editor is focused. When your cursor is in Claude's prompt box, Claude is focused. Use `Cmd+Esc` / `Ctrl+Esc` to toggle between them.
 
@@ -658,6 +660,7 @@ Some shortcuts depend on which panel is "focused" (receiving keyboard input). Wh
 | Rename Session Tab | - | Rename the session in the active Claude tab. Requires Claude Code v2.1.257 or later |
 | Add Session Tab to Group | - | Add the session in the active Claude tab to a [session group](#organize-sessions-into-groups) you pick or create. Requires Claude Code v2.1.257 or later |
 | Mark Session as Unread | - | Mark the session in the active Claude tab as unread in the sessions list. Requires Claude Code v2.1.257 or later |
+| `claude-vscode.toggleDictation` | `Cmd+D` (Mac) / `Ctrl+D` (Windows/Linux) | Start or stop [voice dictation](https://code.claude.com/docs/en/voice-dictation.md). The shortcut requires Claude to be focused. This command isn't in the Command Palette |
 | Show Logs | - | View extension debug logs |
 | Logout | - | Sign out of your Anthropic account |
 

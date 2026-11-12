@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 4a58b373e9c628fd264512d44bc2898c21aa4a094f3adc05f9a8312e97cc1cd5
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 4a3b34f20f4229a19ec849db5742b74e48caaff71f5adfca555b92565aea6529
 ---
 
 ---
@@ -33,10 +33,10 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: beta
+    Amazon Bedrock: beta
+    Amazon Bedrock (bedrock-runtime): beta
     Claude Platform on AWS: beta
     Claude Models on Google Cloud (Anthropic managed): beta
-    Amazon Bedrock: beta
-    Amazon Bedrock (InvokeModel): beta
     Claude Models on Google Cloud (Google managed): beta
     Microsoft Foundry: beta
 ---

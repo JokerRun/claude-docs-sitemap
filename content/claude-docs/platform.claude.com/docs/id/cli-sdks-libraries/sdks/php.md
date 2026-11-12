@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: a15b2a50c1ad131f266208a6a21ae3a03ed80e5d5ff2b9c02e65bc9a35bdf97e
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: eb4c30a7c55f107be9cf94dcd3dd20b3c0ed4d0ceef5a26af0b82db2adb58345
 ---
 
 ---
@@ -176,7 +176,7 @@ foreach ($page->pagingEachItem() as $item) {
 
 ### Tracing OpenTelemetry
 
-Saat aplikasi Anda mendaftarkan tracer provider OpenTelemetry, SDK memancarkan span untuk setiap permintaan yang dikirimnya. Untuk mengirim span ke platform observabilitas Anda, lihat [Menyiapkan OpenTelemetry dengan Claude SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
+Saat aplikasi Anda mendaftarkan tracer provider OpenTelemetry, SDK memancarkan span untuk setiap permintaan yang dikirimnya. Untuk mengirim span ke platform observabilitas Anda, lihat [Menyiapkan OpenTelemetry dengan Anthropic SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk).
 
 ### Properti yang tidak terdokumentasi
 
@@ -262,8 +262,8 @@ Saat runtime:
 <Note>
   Untuk panduan pengaturan platform terperinci beserta contoh kode, lihat:
 
-  * [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
-  * [Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
+  * [Amazon Bedrock (`bedrock-mantle`)](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)
+  * [Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)
   * [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)
   * [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)
   * [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)
@@ -274,12 +274,10 @@ Saat runtime:
 PHP SDK mendukung platform berikut:
 
 * **Claude Models on Google Cloud (Google managed):** `Anthropic\Vertex\Client`. Gunakan `::fromEnvironment()`.
-* **Bedrock:** `Anthropic\Bedrock\MantleClient`. Gunakan `new MantleClient(awsRegion: ...)`.
-* **Bedrock (lama):** `Anthropic\Bedrock\Client`. Gunakan `::fromEnvironment()` atau `::withCredentials()`.
+* **Amazon Bedrock (`bedrock-mantle`):** `Anthropic\Bedrock\MantleClient`. Gunakan `new MantleClient(awsRegion: ...)`.
+* **Amazon Bedrock (`bedrock-runtime`):** `Anthropic\Bedrock\Client`, untuk API `InvokeModel`. Gunakan `::fromEnvironment()` atau `::withCredentials()`.
 * **Claude Platform on AWS:** `Anthropic\Aws\Client` (memerlukan `aws/aws-sdk-php` sebagai dependensi lunak). Gunakan `new Anthropic\Aws\Client(workspaceId: ...)` atau atur `ANTHROPIC_AWS_WORKSPACE_ID`. Tersedia dalam beta.
 * **Foundry:** `Anthropic\Foundry\Client`. Gunakan `::withCredentials()`.
-
-Gunakan `MantleClient` untuk proyek baru; `Anthropic\Bedrock\Client` tetap tersedia untuk aplikasi yang sudah ada yang menggunakan API `InvokeModel` Bedrock.
 
 PHP SDK juga mendukung Claude Models on Google Cloud (Anthropic managed) melalui `Anthropic\GoogleCloud\Client`. Klien ini masih dalam tahap beta. `Anthropic\GoogleCloud\Client` memerlukan `google/auth` sebagai “soft dependency” (dependensi opsional). Gunakan `new Anthropic\GoogleCloud\Client(workspaceId: ...)` atau atur variabel lingkungan `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`. Lihat [Resolusi proyek, lokasi, dan workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution).
 

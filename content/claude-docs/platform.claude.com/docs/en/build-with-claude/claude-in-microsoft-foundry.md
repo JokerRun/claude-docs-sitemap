@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 3426a6dc43f94da5fc6a247ccbcc4bac686c5430f3924d27b7bb9a1575681e6d
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: d3ce63c04d61521cfb7e1cf76ea5f1a80174e3ef45524739cbee770a95cb71ba
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-f
 description: Access Claude models through Microsoft Foundry with Azure-native endpoints and authentication.
 ---
 
-This guide shows you how to set up and make API calls to Claude in Microsoft Foundry using one of Anthropic’s client SDKs or direct HTTP requests. When you access Claude in Microsoft Foundry, you are billed for Claude usage in the Azure Marketplace. You can use Claude models including Claude Fable 5.2, Claude Fable 5.1, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Sonnet 5.5, Claude Sonnet 5, and Claude Haiku 5.5, and features such as the [1M-token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows). You manage costs through your Azure subscription.
+This guide shows you how to set up Claude in Microsoft Foundry and make API calls to it. You can use one of Anthropic’s client SDKs or direct HTTP requests. When you access Claude in Microsoft Foundry, you are billed for Claude usage in the Azure Marketplace. The available models include Claude Fable 5.2, Claude Fable 5.1, Claude Opus 5.5, Claude Opus 5, and Claude Opus 4.8. They also include Claude Sonnet 5.5, Claude Sonnet 5, and Claude Haiku 5.5. Features such as the [1M-token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows) are also available. You manage costs through your Azure subscription.
 
 Claude is available in Global Standard and US Data Zone Standard deployment types in Foundry resources, billed in Claude Consumption Units through the Azure Marketplace. Visit [Claude in Microsoft Foundry pricing](https://platform.claude.com/docs/en/about-claude/pricing#claude-in-microsoft-foundry-pricing) for details.
 

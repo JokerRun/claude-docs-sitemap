@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 6184f5790360ef2989440d715ee055583a2b0e4e1bcaf115effaa75c22c02013
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 5449d207b270f80802465c73167c866e834e28745b77faf2b0c6c920bf384230
 ---
 
 ---
@@ -33,10 +33,10 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (bedrock-runtime): stable
     Claude Platform on AWS: stable
     Claude Models on Google Cloud (Anthropic managed): stable
-    Amazon Bedrock: stable
-    Amazon Bedrock (InvokeModel): stable
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
 ---
@@ -596,10 +596,10 @@ In some cases, you might want Claude to use a specific tool to answer the user�
 
 Not every model and setting supports forced tool use. Where it isn’t supported, `tool_choice: {"type": "any"}` and `tool_choice: {"type": "tool", "name": "..."}` fail, whereas `tool_choice: {"type": "auto"}` (the default) and `tool_choice: {"type": "none"}` still work:
 
-| Model or setting                                                                                                                                                                                                                                     | Restriction                                                                                                         | What to use instead                                                                                                                                                                                                                                                                                                                                                                                                             |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Manual [extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking) (`thinking: {type: "enabled"}`)                                                                                                                  | `any` and `tool` are not supported and result in an error                                                           | `auto` or `none`. [Adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) itself doesn’t block forced tool use (models with thinking on by default, such as Claude Opus 5 and Claude Haiku 5.5, accept it, but a forced call skips thinking: the response starts with the tool call and has no `thinking` block); the models in the next row reject forced tool use regardless of thinking settings |
-| Claude Fable 5.2, [Claude Mythos 5.2](https://platform.claude.com/docs/en/models/mythos-5-2/overview), Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, and [Claude Mythos 5.1](https://platform.claude.com/docs/en/models/mythos-5-1/overview) | `any` and `tool` return a [400 error](https://platform.claude.com/docs/en/api/errors#forced-tool-use-not-supported) | `auto` with [strict tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use) to guarantee schema-valid tool inputs, or [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) when you need a response in a fixed JSON shape. Prompting still influences which tool `auto` picks. `none` is also supported                                              |
+| Model or setting                                                                                                                                                                                                                                     | Restriction                                                                                                                                            | What to use instead                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Manual [extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking) (`thinking: {type: "enabled"}`)                                                                                                                  | `any` and `tool` are not supported and result in an error                                                                                              | `auto` or `none`. [Adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) itself doesn’t block forced tool use (models with thinking on by default, such as Claude Opus 5 and Claude Haiku 5.5, accept it, but a forced call skips thinking: the response starts with the tool call and has no `thinking` block); the models in the next row reject forced tool use regardless of thinking settings |
+| Claude Fable 5.2, [Claude Mythos 5.2](https://platform.claude.com/docs/en/models/mythos-5-2/overview), Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, and [Claude Mythos 5.1](https://platform.claude.com/docs/en/models/mythos-5-1/overview) | `any` and `tool` return a 400 error. See [Forced tool use not supported](https://platform.claude.com/docs/en/api/errors#forced-tool-use-not-supported) | `auto` with [strict tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use) to guarantee schema-valid tool inputs, or [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) when you need a response in a fixed JSON shape. Prompting still influences which tool `auto` picks. `none` is also supported                                              |
 
 On models that support it, the highlighted lines are the only difference from a standard tool use request:
 

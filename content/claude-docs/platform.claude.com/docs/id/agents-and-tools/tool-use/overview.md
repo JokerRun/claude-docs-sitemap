@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 7bbb8845c07c3a3901998e6b467389044d4ffc99a0ed6709aaacec3f17227b9d
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 58e500e93caf7c3cc562855cd4049590a38a963720ae89992eb9861704528de4
 ---
 
 ---
@@ -151,11 +151,11 @@ Berikut adalah siklus bolak-balik tersebut secara lengkap untuk alat klien. Perm
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -793,7 +793,7 @@ Saat Anda menggunakan `tools`, API juga secara otomatis menyertakan “system pr
 
 Jumlah token ini ditambahkan ke token input dan output normal Anda untuk menghitung total biaya suatu permintaan.
 
-Lihat tabel [Ikhtisar model](https://platform.claude.com/docs/id/models/overview#latest-models-comparison) untuk harga per model saat ini.
+Lihat tabel [Semua model](https://platform.claude.com/docs/id/models/overview#all-models) untuk harga per model saat ini.
 
 Ketika Anda mengirim prompt penggunaan alat, sama seperti permintaan API lainnya, respons menyertakan jumlah token input dan output dalam metrik `usage` yang dilaporkan.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 474ab0721959a999aa1afe3dc1375d2e8d1ddcf7a24a1132f2acdd473305a63a
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: a2e3a626824b9a1f20eeb72e239d798c2d65b46fdad8390d6b0e6856634db74f
 ---
 
 ---
@@ -36,10 +36,10 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (bedrock-runtime): stable
     Claude Platform on AWS: stable
     Claude Models on Google Cloud (Anthropic managed): stable
-    Amazon Bedrock: stable
-    Amazon Bedrock (InvokeModel): stable
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
 ---
@@ -190,7 +190,7 @@ Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permi
 }
 ```
 
-Respons penolakan (`stop_reason: "refusal"`) juga menyertakan objek `stop_details` yang mengidentifikasi kategori kebijakan yang memicu penolakan, pada setiap model. Lihat [Menangani alasan berhenti](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk referensi field dan contoh kode penanganan.
+Respons penolakan (`stop_reason: "refusal"`) juga menyertakan objek `stop_details` yang mengidentifikasi kategori kebijakan yang memicu penolakan, pada setiap model. Lihat [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk referensi field dan contoh kode penanganan.
 
 ## Beberapa giliran percakapan
 
@@ -361,18 +361,18 @@ Dengan [thread pesan](https://platform.claude.com/docs/id/build-with-claude/mess
 
 ### Peran sistem dalam pesan
 
-Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran pengguna untuk menambahkan instruksi sistem baru di tengah percakapan, dengan tunduk pada [aturan penempatan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations). Ini berfungsi pada Claude Fable 5.2, [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), Claude Fable 5.1, [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), Claude Fable 5, [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Opus 5.5, Claude Opus 4.8, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5. Pesan `system` yang membawa konten tidak dapat menjadi entri pertama dalam `messages`. Gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
+Untuk menambahkan instruksi sistem baru di tengah percakapan, sertakan pesan dengan `"role": "system"` tepat setelah giliran pengguna. Pesan tersebut tidak dapat menjadi entri pertama dalam `messages`. Ini berfungsi pada Claude Fable 5.2, [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), Claude Fable 5.1, [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), Claude Fable 5, [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Sonnet 5.5, dan Claude Haiku 5.5. Lihat [aturan penempatan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations) lengkap.
 
 Pesan sistem di tengah percakapan memiliki otoritas yang sama dengan field `system` tingkat atas, tetapi karena pesan tersebut ditambahkan ke akhir riwayat pesan, pesan tersebut tidak membatalkan prefiks yang di-cache sebelumnya. Gunakan field `system` tingkat atas untuk instruksi yang harus berlaku sejak giliran pertama, dan pesan sistem di tengah percakapan untuk instruksi yang baru menjadi relevan kemudian.
 
-Lihat [Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) untuk panduan lengkap, termasuk cara menggabungkannya dengan [“prompt caching” (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
+Lihat [Pesan sistem dan perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) untuk panduan lengkap, termasuk cara menggabungkannya dengan [“prompt caching” (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
 
 ## Prefill respons Claude
 
 Anda dapat melakukan prefill sebagian respons Claude di posisi terakhir daftar pesan input. Gunakan teknik ini untuk membentuk respons Claude. Contoh berikut menggunakan `"max_tokens": 1` untuk mendapatkan satu jawaban pilihan ganda dari Claude.
 
 <Warning>
-  Prefill tidak didukung pada model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). Permintaan yang menggunakan prefill dengan model-model ini akan mengembalikan error 400. Sebagai gantinya, gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, atau instruksi prompt sistem. Lihat [panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
+  Prefill tidak didukung pada model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). Permintaan yang menggunakan prefill dengan model-model ini akan mengembalikan error 400. Sebagai gantinya, gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, atau instruksi prompt sistem. Lihat [Panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
 </Warning>
 
 <CodeGroup>

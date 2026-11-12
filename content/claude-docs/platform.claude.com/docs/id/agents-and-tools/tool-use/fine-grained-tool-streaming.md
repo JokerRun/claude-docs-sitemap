@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 46369bd5ad3ee9960d004d41831cdd1afce1ee2078333a74de634f5e7af928fc
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: e0d682dcf46277a75fc7054546590953dcd71e8f4e6a86fab44a2a09d0348e94
 ---
 
 ---
@@ -36,9 +36,9 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: stable
-    Claude Platform on AWS: stable
     Amazon Bedrock: stable
-    Amazon Bedrock (InvokeModel): stable
+    Amazon Bedrock (bedrock-runtime): stable
+    Claude Platform on AWS: stable
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
 ---
@@ -531,11 +531,11 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
-    Mengakumulasi fragmen input dari setiap blok `tool_use` membutuhkan logika yang lebih banyak daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk ini. Untuk melihat fragmen mentah saat di-streaming, jalankan permintaan di [Cara menggunakan streaming alat fine-grained](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming#how-to-use-fine-grained-tool-streaming).
+    Mengakumulasi fragmen input dari setiap blok `tool_use` membutuhkan logika yang lebih banyak daripada satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk ini. Untuk melihat fragmen mentah saat di-streaming, jalankan permintaan di [Cara menggunakan streaming alat fine-grained](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming#how-to-use-fine-grained-tool-streaming).
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Mengakumulasi fragmen input dari setiap blok `tool_use` membutuhkan logika yang lebih banyak daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk ini. Untuk melihat fragmen mentah saat di-streaming, jalankan permintaan di [Cara menggunakan streaming alat fine-grained](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming#how-to-use-fine-grained-tool-streaming).
+    Mengakumulasi fragmen input dari setiap blok `tool_use` membutuhkan logika yang lebih banyak daripada satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk ini. Untuk melihat fragmen mentah saat di-streaming, jalankan permintaan di [Cara menggunakan streaming alat fine-grained](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming#how-to-use-fine-grained-tool-streaming).
   </CodeGroupItem>
 
   ```python Python
@@ -982,9 +982,9 @@ Streaming alat fine-grained tersedia di semua model dan layak untuk retensi data
 
 * Ketersediaan: Tersedia
 
-| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tersedia | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
 ### Penanganan data
 

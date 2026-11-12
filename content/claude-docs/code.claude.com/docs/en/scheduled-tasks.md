@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/scheduled-tasks
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 19aa98405d02326e5b7eb7a79185f6bada9cec3a9bbac633bd3fd18fdd087b93
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: ef9be1d49e12d3b25196cdf892b6982290677ac4ee86ae43393c7dd5803379ca
 ---
 
 > ## Documentation Index
@@ -236,7 +236,7 @@ When both day-of-month and day-of-week are constrained, a date matches if either
 
 ## Disable session-scoped scheduled tasks
 
-Set `CLAUDE_CODE_DISABLE_CRON=1` in your environment to disable the scheduler entirely. The cron tools and `/loop` become unavailable, and any already-scheduled tasks stop firing. See [Environment variables](https://code.claude.com/docs/en/env-vars.md) for the full list of disable flags.
+Set `CLAUDE_CODE_DISABLE_CRON=1` in your environment to disable the scheduler entirely. `CronCreate` and `/loop` become unavailable, and any already-scheduled tasks stop firing. While the project's `.claude/scheduled_tasks.json` file holds tasks, `CronList` and `CronDelete` stay available, so you can still ask Claude to list or cancel them. See [Environment variables](https://code.claude.com/docs/en/env-vars.md) for the full list of disable flags.
 
 ## Limitations
 

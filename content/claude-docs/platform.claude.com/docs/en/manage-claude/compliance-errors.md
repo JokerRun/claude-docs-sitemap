@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-errors
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: dac35bd0f71f563bb2ea2ba11f78d604f85ab490002eb02fbbd42e2b4eae9232
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 73a150a4b5276a6ffd134a5bc4e385469a96055951b548db540216e2650c88cf
 ---
 
 ---
@@ -509,7 +509,7 @@ Too many large session transcripts are being read at once. This is not a limit o
 
 ## 500 Internal Server Error
 
-A 500 from the Compliance API carries an `x-should-retry: false` response header when the failure is deterministic. The Claude SDK honors this header automatically. If you use a generic HTTP retry library that retries on every 5xx, suppress retries when `x-should-retry` is `false`; retrying this error fails identically on every attempt.
+A 500 from the Compliance API carries an `x-should-retry: false` response header when the failure is deterministic. The Anthropic SDK honors this header automatically. If you use a generic HTTP retry library that retries on every 5xx, suppress retries when `x-should-retry` is `false`; retrying this error fails identically on every attempt.
 
 A 500 without the `x-should-retry: false` header is transient: retry with exponential backoff (start at 1 second, double up to 60 seconds). The same applies to 502, 503, 504, and 529 responses. The exception is a small set of local session 503s, described next, that depend on an organization’s settings or encryption key rather than on load. See [Claude API errors](https://platform.claude.com/docs/en/api/errors) for the platform-wide retry semantics.
 

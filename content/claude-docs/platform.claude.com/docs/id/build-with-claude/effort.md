@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/effort
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: efa84372f090223b28f38e8a7842ff79a38e1fc41bae5b81879a75abca128bb8
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: a63ae0352db531ccbdb209f3e537a8559d788b050a0b139cdbea3efa8f2b87db
 ---
 
 ---
@@ -34,10 +34,10 @@ featureMetadata:
     - claude-opus-4-5-20251101
   supportedPlatforms:
     Claude API: stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (bedrock-runtime): stable
     Claude Platform on AWS: stable
     Claude Models on Google Cloud (Anthropic managed): stable
-    Amazon Bedrock: stable
-    Amazon Bedrock (InvokeModel): stable
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
 ---
@@ -47,7 +47,7 @@ featureMetadata:
 * **Messages API**: Atur `output_config.effort` pada permintaan. Tanpa nilai, level default model yang berlaku.
 * **Managed Agents**: Atur `effort` pada objek model agen, atau dalam override model sesi. Tanpa nilai, Managed Agents mengisi default model.
 
-Parameter effort memungkinkan Anda mengendalikan berapa banyak token yang dihabiskan Claude saat merespons permintaan. Anda dapat menyeimbangkan antara ketelitian respons dan efisiensi token dengan satu model. Parameter effort tingkat atas tersedia di semua model yang didukung tanpa memerlukan header beta. [Effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) masih dalam tahap beta.
+Parameter effort memungkinkan Anda mengendalikan berapa banyak token yang dihabiskan Claude saat merespons permintaan. Anda dapat menyeimbangkan antara ketelitian respons dan efisiensi token dengan satu model.
 
 <Tip>
   Untuk mempelajari bagaimana effort berinteraksi dengan pemikiran dan kontrol mana yang sebaiknya digunakan, lihat [Pemikiran dan effort](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-effort). Jika pemikiran adaptif tersedia, effort adalah cara yang direkomendasikan untuk mengendalikan kedalaman pemikiran.
@@ -194,6 +194,10 @@ Atur `output_config.effort` pada permintaan. Contoh berikut menjalankan satu per
   ```
 
   ```php PHP
+  use Anthropic\Client;
+  use Anthropic\Messages\Model;
+  use Anthropic\Messages\TextBlock;
+
   $client = new Client();
 
   $message = $client->messages->create(
@@ -201,12 +205,12 @@ Atur `output_config.effort` pada permintaan. Contoh berikut menjalankan satu per
       messages: [
           ['role' => 'user', 'content' => 'Analyze the trade-offs between microservices and monolithic architectures']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       outputConfig: ['effort' => 'medium'],
   );
 
   foreach ($message->content as $block) {
-      if ($block->type === 'text') {
+      if ($block instanceof TextBlock) {
           echo $block->text, PHP_EOL;
       }
   }
@@ -227,7 +231,10 @@ Atur `output_config.effort` pada permintaan. Contoh berikut menjalankan satu per
   )
 
   message.content.each do |block|
-    puts block.text if block.type == :text
+    case block
+    when Anthropic::Models::TextBlock
+      puts block.text
+    end
   end
   ```
 </CodeGroup>
@@ -272,13 +279,13 @@ Rekomendasi per model berikut menggantikan tabel ini jika terdapat perbedaan.
 
 Claude Fable 5.2 mendukung kelima tingkat effort. Default API adalah `high`. Pemikiran adaptif selalu aktif, sehingga effort adalah kontrol utama Anda untuk kedalaman pemikiran, latensi, dan biaya. Mulailah dengan `high`. Sebagian besar peningkatan kapabilitas sudah ada pada `high`, dan di atasnya, peningkatannya tidak merata dan bergantung pada tugas. Naikkan ke `xhigh` untuk pekerjaan coding dan agentik berjalan lama yang paling sulit, di mana Anda telah mengukur adanya peningkatan. Turunkan ke `medium` atau `low` jika eval Anda menunjukkan bahwa kualitas tetap terjaga. Khususkan `max` untuk mengukur batas atas model dan untuk tugas langka di mana waktu dan token tidak menjadi masalah. Pada `max`, model mengoptimalkan kapabilitas tanpa memperhatikan biaya token. Model berjalan lebih lambat dan lebih mahal dibandingkan pada `xhigh`, sering kali hanya untuk peningkatan kecil. Jalankan sweep effort pada eval Anda sendiri alih-alih membawa pengaturan dari Claude Fable 5.1. Pada `high` ke atas, atur `max_tokens` yang besar. Ini adalah batas keras pada total output (pemikiran ditambah teks respons). Effort hampir tidak mengubah panjang balasan model, jadi gunakan prompt Anda untuk mengubah panjang dan nada balasan. Rekomendasi yang sama berlaku untuk Claude Mythos 5.2.
 
-Jika platform Anda mendukungnya, Claude Fable 5.2 dan Claude Mythos 5.2 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) dengan `output_config` per pesan, yang mempertahankan cache prompt.
+Jika platform Anda mendukungnya, Claude Fable 5.2 dan Claude Mythos 5.2 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) dengan `output_config` per pesan, yang mempertahankan cache prompt.
 
 See also: [Menulis prompt untuk Claude Fable 5.2](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-2#calibrate-effort)
 
 **[Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)** — *For long-running agentic coding and knowledge work*
 
-Claude Opus 5.5 mendukung kelima tingkat effort, dan `medium` adalah default-nya (Claude Opus 5 dan model Opus sebelumnya menggunakan default `high`, sehingga permintaan yang tidak menyertakan `effort` berjalan satu tingkat lebih rendah dibandingkan pada Claude Opus 5). Pemikiran adaptif selalu aktif dan tidak dapat dimatikan, sehingga effort adalah kontrol utama untuk seberapa banyak model bernalar dan berapa biaya suatu permintaan. Jalankan sweep effort pada eval Anda sendiri alih-alih membawa pengaturan dari model sebelumnya, dan atur `max_tokens` yang besar pada tingkat yang lebih tinggi: ini adalah batas keras pada total output (pemikiran ditambah teks respons). Permintaan yang mengatur `thinking: {"type": "disabled"}` mengembalikan error 400 di setiap tingkat effort. Claude Opus 5.5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) dengan `output_config` per pesan, yang mempertahankan cache prompt.
+Claude Opus 5.5 mendukung kelima tingkat effort, dan `medium` adalah default-nya (Claude Opus 5 dan model Opus sebelumnya menggunakan default `high`, sehingga permintaan yang tidak menyertakan `effort` berjalan satu tingkat lebih rendah dibandingkan pada Claude Opus 5). Pemikiran adaptif selalu aktif dan tidak dapat dimatikan, sehingga effort adalah kontrol utama untuk seberapa banyak model bernalar dan berapa biaya suatu permintaan. Jalankan sweep effort pada eval Anda sendiri alih-alih membawa pengaturan dari model sebelumnya, dan atur `max_tokens` yang besar pada tingkat yang lebih tinggi: ini adalah batas keras pada total output (pemikiran ditambah teks respons). Permintaan yang mengatur `thinking: {"type": "disabled"}` mengembalikan error 400 di setiap tingkat effort. Claude Opus 5.5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) dengan `output_config` per pesan, yang mempertahankan cache prompt.
 
 See also: [Menulis prompt untuk Claude Opus 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5)
 
@@ -288,7 +295,7 @@ Claude Sonnet 5.5 mendukung kelima tingkat effort, dan `high` adalah default pad
 
 Untuk mematikan thinking di awal, kirim `thinking: {"type": "between_tools"}` alih-alih `"disabled"`. Ini adalah pengaturan thinking terendah pada Claude Sonnet 5.5, dan berfungsi pada effort `low`, `medium`, dan `high`. Pada `xhigh` atau `max`, permintaan dengan pengaturan ini mengembalikan error 400, jadi gunakan pemikiran adaptif pada tingkat tersebut: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Lihat [Berjalan tanpa thinking di awal](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#running-without-up-front-thinking).
 
-Claude Sonnet 5.5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) dengan `output_config` per pesan, yang mempertahankan cache prompt. Dengan `between_tools`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari tingkat yang sedang berlaku mengembalikan error 400. Untuk memvariasikan effort di setiap giliran, gunakan pemikiran adaptif.
+Jika platform Anda mendukungnya, Claude Sonnet 5.5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) dengan `output_config` per pesan, yang mempertahankan cache prompt. Dengan `between_tools`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari tingkat yang sedang berlaku mengembalikan error 400. Untuk memvariasikan effort di setiap giliran, gunakan pemikiran adaptif.
 
 See also: [Prompting untuk Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#calibrate-effort)
 
@@ -298,7 +305,7 @@ Claude Haiku 5.5 mendukung kelima tingkat effort, dan `medium` adalah default-ny
 
 Untuk mendapatkan lebih sedikit thinking, turunkan tingkat effort. Anda juga dapat mengirim `thinking: {"type": "disabled"}` pada effort `high` atau di bawahnya. Pada `xhigh` atau `max`, ini mengembalikan error 400, jadi gunakan pemikiran adaptif di sana: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`.
 
-Jika platform Anda mendukungnya, Claude Haiku 5.5 juga memungkinkan Anda [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) dengan `output_config` per pesan, yang mempertahankan cache prompt. Dengan `thinking: {"type": "disabled"}`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari tingkat yang sedang berlaku mengembalikan error 400. Untuk memvariasikan effort di setiap giliran, gunakan pemikiran adaptif.
+Jika platform Anda mendukungnya, Claude Haiku 5.5 juga memungkinkan Anda [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) dengan `output_config` per pesan, yang mempertahankan cache prompt. Dengan `thinking: {"type": "disabled"}`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari tingkat yang sedang berlaku mengembalikan error 400. Untuk memvariasikan effort di setiap giliran, gunakan pemikiran adaptif.
 
 See also: [Menulis prompt untuk Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#use-effort-to-control-thinking)
 
@@ -306,7 +313,7 @@ See also: [Menulis prompt untuk Claude Haiku 5.5](https://platform.claude.com/do
 
 Claude Fable 5.1 mendukung kelima tingkat effort. **Mulailah dengan `high`, yang merupakan default.** Naikkan ke `xhigh` atau `max` untuk pekerjaan agentik dan coding yang paling sensitif terhadap kapabilitas, dan turunkan ke `medium` atau `low` untuk pekerjaan rutin atau yang sensitif terhadap latensi setelah eval Anda menunjukkan bahwa kualitas tetap terjaga. Pada `high` ke atas, atur `max_tokens` yang besar. Ini adalah batas keras pada total output (pemikiran ditambah teks respons).
 
-Claude Fable 5.1 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) dengan `output_config` per pesan, yang mempertahankan cache prompt.
+Claude Fable 5.1 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) dengan `output_config` per pesan, yang mempertahankan cache prompt.
 
 See also: [Menulis prompt untuk Claude Fable 5.1](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-1#consider-all-effort-levels)
 
@@ -330,7 +337,7 @@ Pada Claude Opus 5, thinking tidak dapat dinonaktifkan pada effort `xhigh` atau 
 
 Saat menjalankan Claude Opus 5 pada effort `xhigh` atau `max`, atur `max_tokens` yang besar agar model memiliki ruang untuk berpikir dan bertindak di seluruh subagen dan pemanggilan alat. Memulai dari 64k token dan menyesuaikan dari sana adalah default yang wajar.
 
-Claude Opus 5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) dengan `output_config` per pesan, yang mempertahankan cache prompt. Effort per pesan tidak tersedia untuk Claude Opus 5 di Amazon Bedrock.
+Jika platform Anda mendukungnya, Claude Opus 5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) dengan `output_config` per pesan, yang mempertahankan cache prompt.
 
 See also: [Menulis prompt untuk Claude Opus 5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5)
 
@@ -413,287 +420,11 @@ Untuk ketersediaan pemikiran per model, lihat [tabel konfigurasi per model](http
 
 ## Mengubah effort di tengah percakapan
 
-Anda dapat menjalankan giliran selanjutnya dari suatu percakapan pada tingkat effort yang berbeda dengan dua cara. Pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5, gunakan perubahan effort per pesan, yang mempertahankan cache prompt. Pada model lain, atur nilai tingkat atas yang baru pada permintaan berikutnya, yang memulai ulang cache.
+Anda dapat menjalankan giliran selanjutnya dari suatu percakapan pada tingkat effort yang berbeda dengan dua cara: perubahan effort per pesan, yang mempertahankan cache prompt, atau nilai tingkat atas yang baru pada permintaan berikutnya, yang memulai ulang cache.
 
-### Effort per pesan (beta)
+### Effort per pesan
 
-Effort per pesan masih dalam beta. Pada Claude API dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), fitur ini tersedia pada Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5. Pada Claude API, fitur ini juga tersedia pada Claude Fable 5.2 dan Claude Mythos 5.2. Pada Claude Models on Google Cloud (Google managed), fitur ini juga tersedia pada Claude Fable 5.2 dan Claude Mythos 5.2. Pada [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) dan [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), fitur ini tersedia pada Claude Fable 5.2, Claude Fable 5.1, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5. Pada [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), fitur ini tersedia pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, dan Claude Opus 5.5. Fitur ini memerlukan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `mid-conversation-output-config-2026-07-01`. Dengan [InvokeModel API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) Amazon Bedrock, fitur ini tersedia pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, dan Claude Opus 5.5, dan sebagai gantinya Anda mengirim nilai tersebut dalam array `anthropic_beta` pada body permintaan.
-
-Tanpa nilai beta, `output_config` per pesan mengembalikan error 400: `messages.N.output_config: Extra inputs are not permitted`, di mana `N` adalah indeks pesan `system` dalam `messages`. Dengan nilai beta, model tanpa effort per pesan, termasuk Claude Fable 5, mengembalikan error 400: `output_config.effort requires a model that supports per-turn effort; this model does not`. Pada Amazon Bedrock, model-model tersebut dan Claude Opus 5 mengembalikan error `Extra inputs are not permitted` sebagai gantinya. Pada Claude Sonnet 5.5 dengan `thinking: {"type": "between_tools"}` dan pada Claude Haiku 5.5 dengan `thinking: {"type": "disabled"}`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari tingkat yang berlaku mengembalikan error 400. Untuk memvariasikan effort di setiap giliran, gunakan pemikiran adaptif.
-
-Tambahkan pesan `role: "system"` dengan `content` kosong dan tingkat baru di `output_config.effort`. Jika ditempatkan langsung setelah giliran `user` dengan input baru, pesan ini mengatur tingkat untuk balasan Claude pada giliran tersebut. Jika ditempatkan di tempat lain, seperti di antara giliran `assistant` dan giliran `user` berikutnya seperti pada contoh berikut, pesan ini berlaku mulai dari giliran `user` berikutnya dengan input baru. Giliran `user` yang hanya berisi blok `tool_result` tidak dihitung sebagai input baru, sehingga perubahan yang ditempatkan setelahnya dalam loop penggunaan alat menunggu giliran `user` berikutnya dengan input baru. Tingkat baru kemudian berlaku hingga pesan berikutnya mengubahnya. Semua yang ada sebelum pesan tersebut tidak berubah, sehingga prefiks yang di-cache tetap cocok.
-
-Contoh berikut dimulai pada `high`, lalu turun ke `low` untuk tindak lanjut rutin:
-
-<CodeGroup>
-  ```bash cURL
-  # Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-  curl https://api.anthropic.com/v1/messages \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2026-10-21" \
-    -H "anthropic-beta: mid-conversation-output-config-2026-07-01" \
-    -H "content-type: application/json" \
-    -d '{
-      "model": "claude-fable-5-1",
-      "max_tokens": 4096,
-      "output_config": {"effort": "high"},
-      "messages": [
-        {"role": "user", "content": "Plan a migration from SQLite to PostgreSQL in three short steps."},
-        {"role": "assistant", "content": "1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts."},
-        {"role": "system", "content": [], "output_config": {"effort": "low"}},
-        {"role": "user", "content": "Summarize the plan in one sentence."}
-      ]
-    }'
-  ```
-
-  ```bash CLI
-  ant beta:messages create \
-    --beta mid-conversation-output-config-2026-07-01 <<'YAML'
-  model: claude-fable-5-1
-  max_tokens: 4096
-  output_config:
-    effort: high
-  messages:
-    - role: user
-      content: Plan a migration from SQLite to PostgreSQL in three short steps.
-    - role: assistant
-      content: "1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts."
-    # Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-    - role: system
-      content: []
-      output_config:
-        effort: low
-    - role: user
-      content: Summarize the plan in one sentence.
-  YAML
-  ```
-
-  ```python Python
-  client = anthropic.Anthropic()
-
-  response = client.beta.messages.create(
-      model="claude-fable-5-1",
-      max_tokens=4096,
-      output_config={"effort": "high"},
-      messages=[
-          {
-              "role": "user",
-              "content": "Plan a migration from SQLite to PostgreSQL in three short steps.",
-          },
-          {
-              "role": "assistant",
-              "content": "1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts.",
-          },
-          # Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-          {"role": "system", "content": [], "output_config": {"effort": "low"}},
-          {"role": "user", "content": "Summarize the plan in one sentence."},
-      ],
-      betas=["mid-conversation-output-config-2026-07-01"],
-  )
-
-  for block in response.content:
-      if block.type == "text":
-          print(block.text)
-  ```
-
-  ```typescript TypeScript
-  const client = new Anthropic();
-
-  const response = await client.beta.messages.create({
-    model: "claude-fable-5-1",
-    max_tokens: 4096,
-    output_config: { effort: "high" },
-    messages: [
-      {
-        role: "user",
-        content: "Plan a migration from SQLite to PostgreSQL in three short steps."
-      },
-      {
-        role: "assistant",
-        content:
-          "1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts."
-      },
-      // Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-      { role: "system", content: [], output_config: { effort: "low" } },
-      { role: "user", content: "Summarize the plan in one sentence." }
-    ],
-    betas: ["mid-conversation-output-config-2026-07-01"]
-  });
-
-  for (const block of response.content) {
-    if (block.type === "text") {
-      console.log(block.text);
-    }
-  }
-  ```
-
-  ```csharp C#
-  using Anthropic.Models.Beta;
-  using Anthropic.Models.Beta.Messages;
-  using Model = Anthropic.Models.Messages.Model;
-
-  AnthropicClient client = new();
-
-  var response = await client.Beta.Messages.Create(new MessageCreateParams
-  {
-      Model = Model.ClaudeFable5_1,
-      MaxTokens = 4096,
-      OutputConfig = new() { Effort = Effort.High },
-      Messages =
-      [
-          new BetaUserMessageParam { Content = "Plan a migration from SQLite to PostgreSQL in three short steps." },
-          new BetaAssistantMessageParam { Content = "1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts." },
-          // Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-          new BetaSystemMessageParam
-          {
-              Content = new([]),
-              OutputConfig = new() { Effort = BetaSystemMessageOutputConfigEffort.Low },
-          },
-          new BetaUserMessageParam { Content = "Summarize the plan in one sentence." },
-      ],
-      Betas = [AnthropicBeta.MidConversationOutputConfig2026_07_01],
-  });
-
-  foreach (var block in response.Content)
-  {
-      if (block.TryPickText(out var textBlock))
-      {
-          Console.WriteLine(textBlock.Text);
-      }
-  }
-  ```
-
-  ```go Go
-  client := anthropic.NewClient()
-
-  response, err := client.Beta.Messages.New(context.Background(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeFable5_1,
-  	MaxTokens: 4096,
-  	OutputConfig: anthropic.BetaOutputConfigParam{
-  		Effort: anthropic.BetaOutputConfigEffortHigh,
-  	},
-  	Messages: []anthropic.BetaMessageParam{
-  		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Plan a migration from SQLite to PostgreSQL in three short steps.")),
-  		{OfAssistant: &anthropic.BetaAssistantMessageParam{
-  			Content: []anthropic.BetaContentBlockParamUnion{anthropic.NewBetaTextBlock("1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts.")},
-  		}},
-  		// Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-  		anthropic.NewBetaSystemMessage(anthropic.BetaSystemMessageOutputConfigParam{
-  			Effort: anthropic.BetaSystemMessageOutputConfigEffortLow,
-  		}),
-  		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Summarize the plan in one sentence.")),
-  	},
-  	Betas: []anthropic.AnthropicBeta{anthropic.AnthropicBetaMidConversationOutputConfig2026_07_01},
-  })
-  if err != nil {
-  	log.Fatal(err)
-  }
-
-  for _, block := range response.Content {
-  	if textBlock, ok := block.AsAny().(anthropic.BetaTextBlock); ok {
-  		fmt.Println(textBlock.Text)
-  	}
-  }
-  ```
-
-  ```java Java
-  import com.anthropic.models.beta.AnthropicBeta;
-  import com.anthropic.models.beta.messages.BetaMessage;
-  import com.anthropic.models.beta.messages.BetaOutputConfig;
-  import com.anthropic.models.beta.messages.BetaSystemMessageOutputConfig;
-  import com.anthropic.models.beta.messages.BetaSystemMessageParam;
-  import com.anthropic.models.beta.messages.MessageCreateParams;
-  import com.anthropic.models.messages.Model;
-
-  void main() {
-      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-      MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_FABLE_5_1)
-          .maxTokens(4096L)
-          .addBeta(AnthropicBeta.MID_CONVERSATION_OUTPUT_CONFIG_2026_07_01)
-          .outputConfig(BetaOutputConfig.builder()
-              .effort(BetaOutputConfig.Effort.HIGH)
-              .build())
-          .addUserMessage("Plan a migration from SQLite to PostgreSQL in three short steps.")
-          .addAssistantMessage("1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts.")
-          // Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-          .addMessage(BetaSystemMessageParam.builder()
-              .contentOfBlocks(List.of())
-              .outputConfig(BetaSystemMessageOutputConfig.builder()
-                  .effort(BetaSystemMessageOutputConfig.Effort.LOW)
-                  .build())
-              .build())
-          .addUserMessage("Summarize the plan in one sentence.")
-          .build();
-
-      BetaMessage response = client.beta().messages().create(params);
-      response.content().stream()
-          .flatMap(block -> block.text().stream())
-          .forEach(textBlock -> IO.println(textBlock.text()));
-  }
-  ```
-
-  ```php PHP
-  use Anthropic\Beta\AnthropicBeta;
-  use Anthropic\Beta\Messages\BetaMessageParam;
-  use Anthropic\Beta\Messages\BetaOutputConfig;
-  use Anthropic\Beta\Messages\BetaSystemMessageOutputConfig;
-  use Anthropic\Client;
-
-  $client = new Client();
-
-  $response = $client->beta->messages->create(
-      model: 'claude-fable-5-1',
-      maxTokens: 4096,
-      outputConfig: BetaOutputConfig::with(effort: 'high'),
-      messages: [
-          BetaMessageParam::with(role: 'user', content: 'Plan a migration from SQLite to PostgreSQL in three short steps.'),
-          BetaMessageParam::with(role: 'assistant', content: '1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts.'),
-          // Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-          BetaMessageParam::with(
-              role: 'system',
-              content: [],
-              outputConfig: BetaSystemMessageOutputConfig::with(effort: 'low'),
-          ),
-          BetaMessageParam::with(role: 'user', content: 'Summarize the plan in one sentence.'),
-      ],
-      betas: [AnthropicBeta::MID_CONVERSATION_OUTPUT_CONFIG_2026_07_01],
-  );
-
-  foreach ($response->content as $block) {
-      if ($block->type === 'text') {
-          echo $block->text, PHP_EOL;
-      }
-  }
-  ```
-
-  ```ruby Ruby
-  client = Anthropic::Client.new
-
-  response = client.beta.messages.create(
-    model: Anthropic::Model::CLAUDE_FABLE_5_1,
-    max_tokens: 4096,
-    output_config: {effort: :high},
-    messages: [
-      {role: "user", content: "Plan a migration from SQLite to PostgreSQL in three short steps."},
-      {role: "assistant", content: "1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts."},
-      # Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-      {role: "system", content: [], output_config: {effort: :low}},
-      {role: "user", content: "Summarize the plan in one sentence."}
-    ],
-    betas: [Anthropic::AnthropicBeta::MID_CONVERSATION_OUTPUT_CONFIG_2026_07_01]
-  )
-
-  response.content.each do |block|
-    puts block.text if block.type == :text
-  end
-  ```
-</CodeGroup>
-
-Pesan sistem yang hanya berisi effort tidak membawa teks, sehingga [aturan penempatan untuk pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations) tidak berlaku. Pesan ini dapat muncul di mana saja dalam `messages`, termasuk sebagai entri pertama atau di antara giliran `assistant` dan giliran `user` berikutnya. Nilainya adalah nama tingkat (`low`, `medium`, `high`, `xhigh`, dan `max`).
-
-Utamakan bentuk ini dibandingkan mengubah nilai tingkat atas di antara permintaan. Perubahan tingkat atas memulai ulang cache dan, pada Claude Fable 5.1, juga mengarahkan model dengan kurang andal: balasan sebelumnya ditulis pada tingkat sebelumnya, dan model cenderung tetap konsisten dengannya.
+[Effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) mengatur tingkat baru dengan pesan `system` di dalam `messages`.
 
 ### Effort tingkat atas pada permintaan berikutnya
 
@@ -705,7 +436,7 @@ Utamakan bentuk ini dibandingkan mengubah nilai tingkat atas di antara permintaa
 2. **Gunakan low untuk tugas yang sensitif terhadap kecepatan atau sederhana:** Ketika latensi penting atau tugas bersifat langsung, effort rendah dapat secara signifikan mengurangi waktu respons dan biaya.
 3. **Uji kasus penggunaan Anda:** Dampak tingkat effort bervariasi menurut jenis tugas. Evaluasi performa pada kasus penggunaan spesifik Anda sebelum melakukan deployment.
 4. **Pertimbangkan effort dinamis:** Sesuaikan effort berdasarkan kompleksitas tugas. Kueri sederhana mungkin memerlukan effort rendah, sedangkan coding agentik dan penalaran kompleks mendapat manfaat dari effort tinggi. Lihat poin berikutnya sebelum memvariasikannya dalam satu percakapan.
-5. **Pertahankan effort tingkat atas tetap konstan dalam percakapan yang di-cache:** Mengubah nilai effort tingkat atas di antara permintaan membatalkan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching), jadi variasikan di seluruh beban kerja alih-alih dalam percakapan yang mengandalkan cache hit. Pada model yang mendukungnya, gunakan [perubahan effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) sebagai gantinya, yang mempertahankan cache. Lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching).
+5. **Pertahankan effort tingkat atas tetap konstan dalam percakapan yang di-cache:** Mengubah nilai effort tingkat atas di antara permintaan membatalkan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching), jadi variasikan di seluruh beban kerja alih-alih dalam percakapan yang mengandalkan cache hit. Pada model yang mendukungnya, gunakan perubahan [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) sebagai gantinya, yang mempertahankan cache. Lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching).
 
 ## Langkah selanjutnya
 

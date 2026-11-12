@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/chrome
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f490542401437f93c6b7d08313afef2766054e8a6c6c228b037b5e5c29165f73
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 9ebc85dc1ca87f75bcbfd0e0bd17b7b25c3d0c47b2e63a7c06ebd810a0e15dc0
 ---
 
 > ## Documentation Index
@@ -135,7 +135,7 @@ In a session that connected to your browser at start because [Enabled by default
 
 ### Browser tools in plan mode
 
-In [plan mode](https://code.claude.com/docs/en/permission-modes.md#analyze-before-you-edit-with-plan-mode), a permission prompt appears before Claude records a GIF, opens a new tab, or runs a shortcut. In an interactive CLI session, if [bypass permissions mode is available](https://code.claude.com/docs/en/permission-modes.md#skip-all-checks-with-bypasspermissions-mode) and [feature-flag fetching](https://code.claude.com/docs/en/env-vars.md#features-that-need-feature-flag-fetching) is off, these calls run without a prompt.
+In [plan mode](https://code.claude.com/docs/en/permission-modes.md#analyze-before-you-edit-with-plan-mode), a permission prompt appears before Claude records a GIF or opens a new tab. In an interactive CLI session, if [bypass permissions mode is available](https://code.claude.com/docs/en/permission-modes.md#skip-all-checks-with-bypasspermissions-mode) and [feature-flag fetching](https://code.claude.com/docs/en/env-vars.md#features-that-need-feature-flag-fetching) is off, these calls run without a prompt.
 
 A `tabs_context_mcp` call also prompts when it sets `createIfEmpty`, and so does a `browser_batch` call that includes any of these actions.
 

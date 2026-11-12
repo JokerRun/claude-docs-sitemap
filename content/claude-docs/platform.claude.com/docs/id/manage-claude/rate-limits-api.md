@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/rate-limits-api
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: 54a567e4df985debc89dc63e2c999853e9f2444cb62d8ebf59d4d60dd8545240
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 3893e1645082dacbb174d9791850bd03e77275cdb21c3401e7e7245dcc7ce34e
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Baca batas laju API organisasi Anda secara terprogram dan atur bata
 ---
 
 <Tip>
-  **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organisasi](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
+  **Admin API tidak tersedia untuk organisasi pada paket Team claude.ai atau untuk akun Claude Console individu.** Jika perusahaan Anda juga memiliki organisasi Claude Console, Anda dapat menggunakan API tersebut dengan organisasi itu; lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys). Akun Console individu harus terlebih dahulu menyiapkan organisasi di halaman [Organisasi](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
 </Tip>
 
 Rate Limits API menyediakan akses terprogram ke “rate limit” (batas laju) yang dikonfigurasi untuk organisasi Anda dan workspace-nya. Ini adalah informasi yang sama dengan yang ditampilkan di [halaman Batas laju di Claude Console](https://platform.claude.com/usage/limits). Anda juga dapat menggunakannya untuk mengatur dan menghapus batas laju sebuah workspace.

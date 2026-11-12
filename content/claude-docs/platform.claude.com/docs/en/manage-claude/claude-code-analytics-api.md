@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/claude-code-analytics-api
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: d67929a346372f08c1cbca4cd8c2c930233ad5ee3066d3c276f9681fb741e3ae
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 4b0df690d175251e2ed69a6390ac2b4f7f43cd9a1171a8c55aaabe5e7c792135
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Programmatically access your organization's Claude Code usage analy
 ---
 
 <Tip>
-  **The Admin API is unavailable for individual accounts.** To collaborate with teammates and add members, set up your organization on the [Organization](https://platform.claude.com/settings/organization) page (`platform.claude.com/settings/organization`) in the Claude Console.
+  **The Admin API isn’t available to organizations on the claude.ai Team plan or to individual Claude Console accounts.** If your company also has a Claude Console organization, you can use the API with that organization; see [Create an Admin API key](https://platform.claude.com/docs/en/manage-claude/admin-api-keys). An individual Console account must first set up an organization on the [Organization](https://platform.claude.com/settings/organization) page (`platform.claude.com/settings/organization`) in the Claude Console.
 </Tip>
 
 The Claude Code Analytics Admin API provides programmatic access to daily aggregated usage metrics for Claude Code users, allowing organizations to analyze developer productivity and build custom dashboards. This API provides more detail than the basic [Analytics dashboard](https://platform.claude.com/claude-code) in the Claude Console, without the complexity of the OpenTelemetry integration.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 86c69ba6a35945358e72c8eb53dd6d91dc186850010b5f3d671de50645f7995b
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 4d4ccce09fab7a9a255bc407a97274926fa94979cb4e1dd6b6643dc04857881f
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-f
 description: Akses model Claude melalui Microsoft Foundry dengan endpoint dan autentikasi native Azure.
 ---
 
-Panduan ini menunjukkan cara menyiapkan dan melakukan panggilan API ke Claude di Microsoft Foundry menggunakan salah satu SDK klien Anthropic atau permintaan HTTP langsung. Saat Anda mengakses Claude di Microsoft Foundry, Anda ditagih untuk penggunaan Claude di Azure Marketplace. Anda dapat menggunakan model Claude termasuk Claude Fable 5.2, Claude Fable 5.1, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Sonnet 5.5, Claude Sonnet 5, dan Claude Haiku 5.5, serta fitur seperti [“context window” (jendela konteks) 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows). Anda mengelola biaya melalui langganan Azure Anda.
+Panduan ini menunjukkan cara menyiapkan Claude di Microsoft Foundry dan melakukan panggilan API ke Claude. Anda dapat menggunakan salah satu SDK klien Anthropic atau permintaan HTTP langsung. Saat Anda mengakses Claude di Microsoft Foundry, Anda ditagih untuk penggunaan Claude di Azure Marketplace. Model yang tersedia termasuk Claude Fable 5.2, Claude Fable 5.1, Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8. Model tersebut juga mencakup Claude Sonnet 5.5, Claude Sonnet 5, dan Claude Haiku 5.5. Fitur seperti [“context window” (jendela konteks) 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) juga tersedia. Anda mengelola biaya melalui langganan Azure Anda.
 
 Claude tersedia dalam jenis deployment Global Standard dan US Data Zone Standard di resource Foundry, ditagih dalam Claude Consumption Units melalui Azure Marketplace. Kunjungi [harga Claude di Microsoft Foundry](https://platform.claude.com/docs/id/about-claude/pricing#claude-in-microsoft-foundry-pricing) untuk detailnya.
 

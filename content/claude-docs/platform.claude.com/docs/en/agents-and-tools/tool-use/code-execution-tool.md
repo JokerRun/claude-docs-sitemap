@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 896f3593315d7feb1699c40df0d02e3906806b2ce91e299e026fb9e5abd8d7b9
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: fc2ed3832a19c52848b478b60ff7be3e493a274f03272fd23496a331ce3e7f4d
 ---
 
 ---
@@ -571,11 +571,11 @@ When Claude saves files to its output directory during code execution (see [How 
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
-    Downloading every generated file takes a loop over the file IDs in the tool result, which needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) for this.
+    Downloading every generated file takes a loop over the file IDs in the tool result, which needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) for this.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Downloading every generated file takes a loop over the file IDs in the tool result, which needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) for this.
+    Downloading every generated file takes a loop over the file IDs in the tool result, which needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) for this.
   </CodeGroupItem>
 
   ```python Python

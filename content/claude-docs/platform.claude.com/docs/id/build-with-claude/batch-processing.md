@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 07eb7308dddf6f671348a79e9fae157c37ed032d1a8f4a9c84dfdae198dda982
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: a4e93fbda3ab85998d8be5a57f111285df7a7599d6ad29f352c7e8549ae78eee
 ---
 
 ---
@@ -77,7 +77,7 @@ Ini sangat berguna untuk operasi massal yang tidak memerlukan hasil langsung, se
 * Hasil batch tersedia selama 29 hari setelah pembuatan. Setelah itu, Anda masih dapat melihat Batch tersebut, tetapi hasilnya tidak lagi tersedia untuk diunduh.
 * Batch tercakup dalam sebuah [Workspace](https://platform.claude.com/settings/workspaces) di Claude Console. Anda dapat melihat semua batch (dan hasilnya) yang dibuat di dalam Workspace tempat permintaan Anda dijalankan.
 * “Rate limit” (batas laju) berlaku untuk permintaan HTTP Batches API maupun jumlah permintaan di dalam batch yang menunggu untuk diproses. Lihat [batas laju Message Batches API](https://platform.claude.com/docs/id/api/rate-limits#message-batches-api). Selain itu, pemrosesan dapat melambat berdasarkan permintaan saat ini dan volume permintaan Anda. Dalam hal ini, Anda mungkin melihat lebih banyak permintaan yang kedaluwarsa setelah 24 jam.
-* Karena throughput yang tinggi dan pemrosesan bersamaan, batch dapat sedikit melampaui [batas pengeluaran](https://platform.claude.com/settings/billing) yang dikonfigurasi di Claude Console untuk Workspace Anda.
+* Karena throughput yang tinggi dan pemrosesan bersamaan, batch dapat sedikit melampaui [batas pengeluaran](https://platform.claude.com/docs/id/manage-claude/workspaces#setting-workspace-limits) yang dikonfigurasi di Claude Console untuk Workspace Anda.
 * Setiap permintaan dalam batch harus memiliki [`max_tokens`](https://platform.claude.com/docs/id/api/messages/create#create.max_tokens) setidaknya `1`. `max_tokens: 0` ([pre-warming cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pre-warming-the-cache)) tidak didukung di dalam batch, karena entri cache sementara yang ditulis selama pemrosesan batch kemungkinan besar akan kedaluwarsa sebelum permintaan lanjutan dijalankan.
 
 ### Model yang didukung
@@ -753,7 +753,7 @@ Hasil batch tersedia untuk diunduh di properti [`results_url`](https://platform.
 <CodeGroup>
   ```bash cURL
   # Melakukan streaming hasil .jsonl dari batch, satu hasil per baris.
-  # Untuk penanganan per hasil (percobaan ulang, kesalahan validasi), gunakan Claude SDK.
+  # Untuk penanganan per hasil (percobaan ulang, kesalahan validasi), gunakan Anthropic SDK.
   curl "https://api.anthropic.com/v1/messages/batches/msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d/results" \
     -H "anthropic-version: 2026-10-21" \
     -H "x-api-key: $ANTHROPIC_API_KEY"
@@ -761,7 +761,7 @@ Hasil batch tersedia untuk diunduh di properti [`results_url`](https://platform.
 
   ```bash CLI
   # Mencetak satu hasil per baris, misalnya `{"custom_id":"test-1","result":{"type":"succeeded",…}}`.
-  # Untuk penanganan per hasil (percobaan ulang, error validasi), gunakan contoh Claude SDK
+  # Untuk penanganan per hasil (percobaan ulang, error validasi), gunakan contoh Anthropic SDK
   # di tab lainnya.
   ant messages:batches results \
     --message-batch-id msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d \

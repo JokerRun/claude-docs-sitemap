@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/api-and-data-retention
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 75c7cc5b6be76d4ecc1fa5b6e4972cff1c00f7a227681b72c5999a995cf84f89
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 9713771faa428dd023f9d80a34b5558d89dbfd733241d31f40b406df40188167
 ---
 
 ---
@@ -121,7 +121,7 @@ Ada dua cara untuk menyiapkan akses API yang siap HIPAA. Sebagian besar organisa
 
 #### Hubungi tim penjualan (BAA kustom)
 
-Jika organisasi Anda memerlukan BAA hasil negosiasi atau kustom, atau jika pengaktifan mandiri tidak tersedia untuk organisasi Anda, hubungi [tim penjualan Anthropic](https://claude.com/contact-sales). Anthropic akan menandatangani BAA dan mengaktifkan kesiapan HIPAA untuk organisasi Anda.
+Jika organisasi Anda memerlukan BAA hasil negosiasi atau kustom, atau jika pengaktifan mandiri tidak tersedia untuk organisasi Anda, hubungi [tim penjualan Anthropic](https://claude.com/contact-sales). Anthropic menandatangani BAA dan mengaktifkan kesiapan HIPAA untuk organisasi Anda.
 
 #### Bangun dengan fitur yang memenuhi syarat
 
@@ -133,7 +133,7 @@ Jalur mana pun yang Anda gunakan, pastikan fitur mana yang didukung dalam [tabel
 
 ## Persyaratan retensi data khusus model
 
-Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5 ditetapkan sebagai Covered Models (lihat [artikel dukungan Covered Models](https://support.claude.com/en/articles/15425695)) dan memerlukan retensi data 30 hari; oleh karena itu ZDR tidak tersedia untuk model mana pun di antaranya kecuali diizinkan secara tegas oleh Anthropic. Di Claude API, permintaan ke Claude Fable 5 dari organisasi yang konfigurasi retensi datanya tidak memenuhi persyaratan ini akan mengembalikan `400 invalid_request_error`:
+Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5 ditetapkan sebagai Covered Models. Lihat [artikel dukungan Covered Models](https://support.claude.com/en/articles/15425695). Model-model ini memerlukan retensi data 30 hari. Oleh karena itu ZDR tidak tersedia untuk model mana pun di antaranya kecuali diizinkan secara tegas oleh Anthropic. Di Claude API, permintaan ke Claude Fable 5 dari organisasi yang konfigurasi retensi datanya tidak memenuhi persyaratan ini akan mengembalikan `400 invalid_request_error`:
 
 ```json
 {
@@ -177,7 +177,7 @@ Setiap kolom kelayakan menggunakan tiga nilai:
 
 ### Fitur platform
 
-Fitur yang terkait dengan [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) maupun [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview). Beberapa hanya tersedia di salah satunya. Tabel ini memberikan kelayakan setiap fitur di Messages API. Di Claude Managed Agents, tidak ada fitur yang memenuhi syarat untuk ZDR atau kesiapan HIPAA; lihat baris Claude Managed Agents di bawah [Fitur Managed Agents](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#managed-agents-features).
+Bagian ini mencantumkan fitur yang terkait dengan [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) maupun [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview). Beberapa hanya tersedia di salah satunya. Tabel ini memberikan kelayakan setiap fitur di Messages API. Di Claude Managed Agents, tidak ada fitur yang memenuhi syarat untuk ZDR atau kesiapan HIPAA; lihat baris Claude Managed Agents di bawah [Fitur Managed Agents](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#managed-agents-features).
 
 | Fitur                                                                                                                          | Endpoint                                           | Layak ZDR      | Layak HIPAA | Detail                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | :----------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------- | :------------- | :---------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

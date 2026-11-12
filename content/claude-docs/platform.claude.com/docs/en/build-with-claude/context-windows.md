@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-windows
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 94c12e86311c27f93a726a3bcabf688b6c01fce4b8b9ab276bf28312d7f90a94
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: dd5e48db1caccf2049b77d7c75fd1325956d333715473cdf62fe99ced93f20b0
 ---
 
 ---
@@ -48,7 +48,7 @@ For every model with a 1M-token context window, 1M is the default: you don’t n
 
 A single request can include up to 600 images or PDF pages (100 for models with a 200k-token context window). If you send many images or large documents, you might reach [request size limits](https://platform.claude.com/docs/en/api/overview#request-size-limits) before the token limit.
 
-See the [model comparison](https://platform.claude.com/docs/en/models/overview#latest-models-comparison) table for a list of context window sizes by model.
+See the [All models](https://platform.claude.com/docs/en/models/overview#all-models) table for a list of context window sizes by model.
 
 ## The context window with thinking
 
@@ -172,8 +172,8 @@ To stay within context window limits, use the [token counting API](https://platf
     Automatically manage conversation context as it grows with context editing.
   </Card>
 
-  <Card title="Model comparison table" icon="scales" href="https://platform.claude.com/docs/en/models/overview#latest-models-comparison">
-    See the model comparison table for a list of context window sizes and input/output token pricing by model.
+  <Card title="All models table" icon="scales" href="https://platform.claude.com/docs/en/models/overview#all-models">
+    See the All models table for a list of context window sizes and input/output token pricing by model.
   </Card>
 
   <Card title="Thinking" icon="settings" href="https://platform.claude.com/docs/en/build-with-claude/thinking">

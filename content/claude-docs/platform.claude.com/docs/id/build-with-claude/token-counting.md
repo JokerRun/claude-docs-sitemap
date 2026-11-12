@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 2b4d52c0daa3e860c82481bbe948461359918ee9fd3edf2c5fda7ba9d09fe7b2
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 72ac6d1d3d273a96ea2776885cca505c7b7e0c951cf06952ec791490a7eb2d82
 ---
 
 ---
@@ -36,10 +36,10 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (bedrock-runtime): stable
     Claude Platform on AWS: stable
     Claude Models on Google Cloud (Anthropic managed): stable
-    Amazon Bedrock: stable
-    Amazon Bedrock (InvokeModel): stable
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
 ---

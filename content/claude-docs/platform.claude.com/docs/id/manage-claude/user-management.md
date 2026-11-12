@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-management
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: bb6aab3f7423a6fabbc57cad605065e28eae7d8782466dfd02ed43f0be4c2e6a
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 0eb64b2c5b0bc8dce482c6db32433fc01c9472cd894e7b960f2601780964842f
 ---
 
 ---
@@ -205,7 +205,7 @@ Grup menghubungkan anggota dengan peran kustom (“role-based access control” 
 
 ## Pembuatan versi
 
-Kirimkan header `anthropic-version` pada setiap permintaan; lihat [Versi](https://platform.claude.com/docs/id/api/versioning) untuk versi yang tersedia.
+Kirimkan header `anthropic-version` pada setiap permintaan; lihat [Versi API](https://platform.claude.com/docs/id/api/versioning) untuk versi yang tersedia.
 
 ## Batas laju
 
@@ -795,7 +795,7 @@ Respons error mengikuti bentuk standar yang didokumentasikan di [Error Claude AP
 
 #### Tempat pengeluaran sesi dicatat
 
-Setiap pengeluaran sesi yang selesai dicatat sebagai `org_user_trusted_devices_revoked`, event yang sama yang dicatat oleh tindakan **Keluar dari semua perangkat**. Event ini muncul di [ekspor log audit](https://platform.claude.com/docs/id/manage-claude/compliance-api#export-audit-logs) yang diunduh owner di claude.ai. Jika organisasi Anda memiliki Compliance API, event ini juga muncul di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed), dengan jumlah perangkat tepercaya dan sesi yang diakhiri oleh permintaan. Permintaan yang berhenti di tengah jalan juga muncul di Activity Feed, dengan `completed` diatur ke `false`, dan tidak muncul di log audit.
+Setiap pengeluaran sesi yang selesai dicatat sebagai `org_user_trusted_devices_revoked`, event yang sama yang dicatat oleh tindakan **Keluar dari semua perangkat**. Event ini muncul di [ekspor log audit](https://platform.claude.com/docs/id/manage-claude/compliance-api#export-audit-logs) yang diunduh pemilik di claude.ai. Jika organisasi Anda memiliki Compliance API, event ini juga muncul di [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed), dengan jumlah perangkat tepercaya dan sesi yang diakhiri oleh permintaan. Permintaan yang berhenti di tengah jalan juga muncul di Activity Feed, dengan `completed` diatur ke `false`, dan tidak muncul di log audit.
 
 ## Undangan
 

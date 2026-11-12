@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/migration-2026-10-21
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 1ba92baeb922a87f4721c76869bf151b4318dd89de0d66ff2d44f891b48c92f3
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 8065860a9158f3684b281a3ad883963c371effd339582dd8e04acc6b4982620a
 ---
 
 ---
@@ -94,7 +94,7 @@ The easiest way to upgrade your code
     </Tabs>
 
     <Warning>
-      On Amazon Bedrock, `2026-10-21` is available only for Claude 4.7 and later models. If you call an older model on Bedrock, listed in [Claude on Amazon Bedrock (Opus 4.6 and earlier)](https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy), stay on the SDK version you use today, or, if you set the API version yourself, keep sending the version you send today. To move those calls to `2026-10-21`, first switch them to a Claude 4.7 or later model.
+      On Amazon Bedrock, `2026-10-21` is available only for Claude 4.7 and later models. You might call a model numbered 4.6 or lower on Bedrock (see [Claude on Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy)). If so, keep those calls on the API version they use today. If you use an SDK, stay on the SDK version you use today. If you set the API version yourself, keep sending the version you send today. To move those calls to `2026-10-21`, first switch them to a Claude 4.7 or later model.
     </Warning>
 
     Release the upgrade together with your fixes from the next step.

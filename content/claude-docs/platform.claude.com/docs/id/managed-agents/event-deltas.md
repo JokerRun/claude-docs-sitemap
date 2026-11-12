@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/event-deltas
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: fbffbab7a77adfb66851503631ef1608c9b17b1cd27e2ac45ab4cfc1d263a7b1
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: b1ac6bac7e9210c568f92533816a7f11f249d6e7df1eb464a0180222f0b865e7
 ---
 
 ---
@@ -143,11 +143,11 @@ Contoh-contoh berikut mengaktifkan pratinjau `agent.message` dan merekonsiliasin
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python

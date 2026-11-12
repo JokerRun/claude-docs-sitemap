@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 6672129e89dc0dcb36e71eb608fc8040c5e475d553fdc1b51339f77c1f0cf841
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 9e171390ccedbc3431f03478f4fb26d54b9f82d4a107cfd0e831153e503dfa6e
 ---
 
 ---
@@ -36,14 +36,14 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: stable
-    Claude Platform on AWS: stable
-    Claude Models on Google Cloud (Anthropic managed): stable
     Amazon Bedrock:
       availability: stable
       note: Hanya sumber base64.
-    Amazon Bedrock (InvokeModel):
+    Amazon Bedrock (bedrock-runtime):
       availability: stable
       note: Hanya sumber base64.
+    Claude Platform on AWS: stable
+    Claude Models on Google Cloud (Anthropic managed): stable
     Claude Models on Google Cloud (Google managed):
       availability: stable
       note: Hanya sumber base64.
@@ -2002,7 +2002,7 @@ Dukungan PDF tersedia di semua model dan layak untuk retensi data nol dan kesiap
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Tersedia             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
 | Tersedia<sup>1</sup> | [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                                                                                                                                                                         |
-| Tersedia<sup>2</sup> | [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)                                                                                                                                                          |
+| Tersedia<sup>2</sup> | [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)                                                                                                                                                      |
 | Tersedia<sup>2</sup> | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)                         |
 
 1. Sumber `file_id` memerlukan deployment Hosted on Anthropic.

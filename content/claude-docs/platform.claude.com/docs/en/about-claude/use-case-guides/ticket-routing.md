@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 4b79ee32b8fa678a197ff425d34c5d6780d21eb738d7e994c28e096b40d2bac5
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 0efdccc26771f590a008922b1f18a4843eefcdd49b24ebf303a14d9b9d01af18
 ---
 
 ---
@@ -13,7 +13,7 @@ description: This guide walks through how to use Claude's advanced natural langu
 
 ## Prerequisites
 
-* A Claude API key and the Claude SDK installed
+* A Claude API key and the Anthropic SDK installed
 * Access to, and familiarity with, your existing support ticketing system
 * A sample set of historical support tickets for testing
 
@@ -700,11 +700,11 @@ Build the deployment structure. Start by defining the function signature for wra
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
-    This workflow needs more logic than a single shell command. Use the Claude SDK to run it.
+    This workflow needs more logic than a single shell command. Use the Anthropic SDK to run it.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    This workflow needs more logic than a single shell command. Use the Claude SDK to run it.
+    This workflow needs more logic than a single shell command. Use the Anthropic SDK to run it.
   </CodeGroupItem>
 
   ```python Python
@@ -1048,11 +1048,11 @@ To assess this, first modify the script so that it compares the predicted intent
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
-    This workflow needs more logic than a single shell command. Use the Claude SDK to run it.
+    This workflow needs more logic than a single shell command. Use the Anthropic SDK to run it.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    This workflow needs more logic than a single shell command. Use the Claude SDK to run it.
+    This workflow needs more logic than a single shell command. Use the Anthropic SDK to run it.
   </CodeGroupItem>
 
   ```python Python

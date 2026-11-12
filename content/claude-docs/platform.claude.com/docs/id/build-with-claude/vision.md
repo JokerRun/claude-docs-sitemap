@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 31ee4404352f9d66035d5eabfc9245b864e5c47047ba9e8d7ab101f9a3e15148
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: d6df66ef74d19b9ee5f282c5deab59f9ae218c689cbe0ad6e95b386445541bb5
 ---
 
 ---
@@ -33,14 +33,14 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: stable
-    Claude Platform on AWS: stable
-    Claude Models on Google Cloud (Anthropic managed): stable
     Amazon Bedrock:
       availability: stable
       note: Hanya sumber gambar base64; batas per gambar 5 MB (ter-encode base64) dan ukuran total permintaan yang lebih kecil.
-    Amazon Bedrock (InvokeModel):
+    Amazon Bedrock (bedrock-runtime):
       availability: stable
       note: Hanya sumber gambar base64; batas per gambar 5 MB (ter-encode base64) dan ukuran total permintaan yang lebih kecil.
+    Claude Platform on AWS: stable
+    Claude Models on Google Cloud (Anthropic managed): stable
     Claude Models on Google Cloud (Google managed):
       availability: stable
       note: Hanya sumber gambar base64; batas per gambar 5 MB (ter-encode base64) dan ukuran total permintaan yang lebih kecil.
@@ -1438,7 +1438,7 @@ Vision (gambar) tersedia di semua model.
 | Status               | Platform cloud                                                                                                                                                                                                                                                                                                                                                                         |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Tersedia             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
-| Tersedia<sup>1</sup> | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)          |
+| Tersedia<sup>1</sup> | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)      |
 
 1. Hanya sumber gambar base64; batas per gambar 5 MB (ter-encode base64) dan ukuran total permintaan yang lebih kecil.
 

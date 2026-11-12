@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/search-results
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 9aebce6b46c50d6a1e8f1bf21f05367e201d20bdc57abe8b9fa57bd28b85312c
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 5baa9bb3242eb4d4db63bcee084c60412c2bfadd5e533ee7d27c808da65a9e08
 ---
 
 ---
@@ -36,9 +36,9 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: stable
-    Claude Platform on AWS: stable
     Amazon Bedrock: stable
-    Amazon Bedrock (InvokeModel): stable
+    Amazon Bedrock (bedrock-runtime): stable
+    Claude Platform on AWS: stable
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
 ---
@@ -113,11 +113,11 @@ Mengembalikan hasil pencarian dari alat kustom Anda memungkinkan Anda membangun 
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
-    Alur pemanggilan alat memerlukan logika pencarian di aplikasi Anda, yang membutuhkan lebih dari satu perintah shell. Gunakan Claude SDK untuk alur lengkapnya. Untuk bentuk permintaan mentah dari percakapan alat dengan hasil pencarian, lihat [Menggabungkan kedua metode](https://platform.claude.com/docs/id/build-with-claude/search-results#combining-both-methods). Untuk menyediakan hasil pencarian langsung di pesan pengguna, lihat [Metode 2: Hasil pencarian sebagai konten tingkat atas](https://platform.claude.com/docs/id/build-with-claude/search-results#method-2-search-results-as-top-level-content).
+    Alur pemanggilan alat memerlukan logika pencarian di aplikasi Anda, yang membutuhkan lebih dari satu perintah shell. Gunakan Anthropic SDK untuk alur lengkapnya. Untuk bentuk permintaan mentah dari percakapan alat dengan hasil pencarian, lihat [Menggabungkan kedua metode](https://platform.claude.com/docs/id/build-with-claude/search-results#combining-both-methods). Untuk menyediakan hasil pencarian langsung di pesan pengguna, lihat [Metode 2: Hasil pencarian sebagai konten tingkat atas](https://platform.claude.com/docs/id/build-with-claude/search-results#method-2-search-results-as-top-level-content).
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur pemanggilan alat memerlukan logika pencarian di aplikasi Anda, yang membutuhkan lebih dari satu perintah shell. Gunakan Claude SDK untuk alur lengkapnya. Untuk bentuk permintaan mentah dari percakapan alat dengan hasil pencarian, lihat [Menggabungkan kedua metode](https://platform.claude.com/docs/id/build-with-claude/search-results#combining-both-methods). Untuk menyediakan hasil pencarian langsung di pesan pengguna, lihat [Metode 2: Hasil pencarian sebagai konten tingkat atas](https://platform.claude.com/docs/id/build-with-claude/search-results#method-2-search-results-as-top-level-content).
+    Alur pemanggilan alat memerlukan logika pencarian di aplikasi Anda, yang membutuhkan lebih dari satu perintah shell. Gunakan Anthropic SDK untuk alur lengkapnya. Untuk bentuk permintaan mentah dari percakapan alat dengan hasil pencarian, lihat [Menggabungkan kedua metode](https://platform.claude.com/docs/id/build-with-claude/search-results#combining-both-methods). Untuk menyediakan hasil pencarian langsung di pesan pengguna, lihat [Metode 2: Hasil pencarian sebagai konten tingkat atas](https://platform.claude.com/docs/id/build-with-claude/search-results#method-2-search-results-as-top-level-content).
   </CodeGroupItem>
 
   ```python Python
@@ -2227,9 +2227,9 @@ Hasil pencarian tersedia di semua model dan layak untuk retensi data nol dan kes
 * Ketersediaan: Tersedia
 * Penggunaan: Kirim blok `search_result` dalam hasil alat atau langsung dalam pesan pengguna.
 
-| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tersedia | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/overview
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 216460785e56f845b731df9afc107dc7add914cd245b27178b3a3a8486cdb5df
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 25e8cb4219f34bd3ae28e26bf3323c9616f9f874e11cb0c058093c610329eefa
 ---
 
 ---
@@ -98,7 +98,7 @@ Claude Managed Agents dibangun di atas empat konsep:
   </Step>
 
   <Step title="Kirim event dan stream respons">
-    Kirim pesan pengguna sebagai event. Claude secara otonom menjalankan alat dan melakukan streaming hasilnya kembali melalui “server-sent events” (event yang dikirim server), atau SSE. Riwayat event disimpan di sisi server dan dapat diambil secara lengkap.
+    Kirim pesan pengguna sebagai event. Claude secara otonom menjalankan alat dan melakukan streaming hasilnya kembali melalui “server-sent events” (event yang dikirim server), atau SSE. Layanan Managed Agents menyimpan riwayat event, dan Anda dapat mengambilnya secara lengkap.
   </Step>
 
   <Step title="Arahkan atau interupsi">
@@ -131,16 +131,16 @@ Lihat [Alat](https://platform.claude.com/docs/id/managed-agents/tools) untuk daf
 ## Akses beta
 
 <Note>
-  Claude Managed Agents sedang dalam tahap beta. Semua endpoint Managed Agents memerlukan header beta `managed-agents-2026-04-01`. SDK menetapkan header beta secara otomatis. Perilaku dapat disempurnakan antar rilis untuk meningkatkan output.
+  Claude Managed Agents sedang dalam tahap beta. Semua endpoint Managed Agents memerlukan header beta `managed-agents-2026-04-01`. SDK menetapkan header beta secara otomatis. Anthropic dapat menyempurnakan perilaku antar rilis untuk meningkatkan output.
 </Note>
 
 Untuk memulai, Anda memerlukan:
 
-1. Sebuah [kunci API Claude](https://platform.claude.com/settings/keys) dari Claude Console
-2. Header beta `managed-agents-2026-04-01` pada semua permintaan
-3. Akses ke Claude Managed Agents (diaktifkan secara default untuk semua akun API)
+1. Sebuah [kunci API Claude](https://platform.claude.com/settings/keys) dari Claude Console.
+2. Header beta `managed-agents-2026-04-01` pada semua permintaan.
+3. Akses ke Claude Managed Agents (diaktifkan secara default untuk semua akun API).
 
-Dalam beta ini, [Tunnel MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview) dan [dreaming](https://platform.claude.com/docs/id/managed-agents/dreams) berada dalam pratinjau riset yang lebih terbatas. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mengaktifkannya.
+Dalam beta ini, [Tunnel MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview) dan [dreaming](https://platform.claude.com/docs/id/managed-agents/dreams) berada dalam pratinjau riset yang lebih terbatas. Untuk mengaktifkannya, [minta akses ke pratinjau riset](https://claude.com/form/claude-managed-agents).
 
 Claude Managed Agents dirancang bersifat stateful: sesi berjalan lama, dapat dilanjutkan dengan mulus setelah jeda, dan menyimpan riwayat percakapan, status sandbox, serta output di sisi server. Karena itu, Managed Agents saat ini tidak memenuhi syarat untuk [Zero Data Retention](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) atau cakupan HIPAA Business Associate Agreement (BAA). Anda tetap memegang kendali atas data ini: Anda dapat [menghapus sesi](https://platform.claude.com/docs/id/managed-agents/session-operations#deleting-a-session), dan secara terpisah menghapus [file](https://platform.claude.com/docs/id/build-with-claude/files#delete-a-file) apa pun yang Anda unggah, kapan saja melalui API. Untuk kelayakan di seluruh fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility).
 

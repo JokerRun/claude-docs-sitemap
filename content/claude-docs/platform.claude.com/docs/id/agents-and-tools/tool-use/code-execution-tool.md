@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 0e76021034a3cc3b7f015b8a7533672bd018ea98fd6fcc40f4290929260badf6
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 01a96497531ff72b8f7cd4ff7b27abd64cc862e0c1656781e23223e7b40a3982
 ---
 
 ---
@@ -571,11 +571,11 @@ Ketika Claude menyimpan file ke direktori output-nya selama eksekusi kode (lihat
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
-    Mengunduh setiap file yang dihasilkan memerlukan loop atas ID file dalam hasil alat, yang membutuhkan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk ini.
+    Mengunduh setiap file yang dihasilkan memerlukan loop atas ID file dalam hasil alat, yang membutuhkan lebih banyak logika daripada satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk ini.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Mengunduh setiap file yang dihasilkan memerlukan loop atas ID file dalam hasil alat, yang membutuhkan lebih banyak logika daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk ini.
+    Mengunduh setiap file yang dihasilkan memerlukan loop atas ID file dalam hasil alat, yang membutuhkan lebih banyak logika daripada satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk ini.
   </CodeGroupItem>
 
   ```python Python

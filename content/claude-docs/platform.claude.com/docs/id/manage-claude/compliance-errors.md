@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-errors
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 95a3c08ad78a583ea715a8cd349597b1bd17109aa94d794c2e4e85f9a09af1b5
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: ed7ff463b8e0d8226b372c1edefadb3e6c6be69a987d0d5362911271ec8f91a0
 ---
 
 ---
@@ -509,7 +509,7 @@ Too many large session transcripts are being read at once. This is not a limit o
 
 ## 500 Internal Server Error
 
-500 dari Compliance API membawa header respons `x-should-retry: false` ketika kegagalannya bersifat deterministik. Claude SDK mematuhi header ini secara otomatis. Jika Anda menggunakan library percobaan ulang HTTP generik yang mencoba ulang pada setiap 5xx, nonaktifkan percobaan ulang ketika `x-should-retry` bernilai `false`; mencoba ulang error ini akan gagal dengan cara yang sama pada setiap percobaan.
+500 dari Compliance API membawa header respons `x-should-retry: false` ketika kegagalannya bersifat deterministik. Anthropic SDK mematuhi header ini secara otomatis. Jika Anda menggunakan library percobaan ulang HTTP generik yang mencoba ulang pada setiap 5xx, nonaktifkan percobaan ulang ketika `x-should-retry` bernilai `false`; mencoba ulang error ini akan gagal dengan cara yang sama pada setiap percobaan.
 
 500 tanpa header `x-should-retry: false` bersifat sementara: coba lagi dengan backoff eksponensial (mulai dari 1 detik, gandakan hingga 60 detik). Hal yang sama berlaku untuk respons 502, 503, 504, dan 529. Pengecualiannya adalah sekumpulan kecil 503 sesi lokal, yang dijelaskan berikutnya, yang bergantung pada pengaturan atau kunci enkripsi organisasi, bukan pada beban. Lihat [Error Claude API](https://platform.claude.com/docs/id/api/errors) untuk semantik percobaan ulang di seluruh platform.
 

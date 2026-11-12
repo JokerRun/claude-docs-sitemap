@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: aea1998e4e94eca5a3e6f9a997022afa87b5f5bf156140c15544bf4d65b77b7b
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: e294d5da68b51ff57da2216059fe917626fb53b321dd1f9975264d007ddabe08
 ---
 
 ---
@@ -69,7 +69,7 @@ Ubah permintaan ke `thinking: {type: "adaptive"}` dan arahkan kedalaman thinking
 
 ## Error 400 setelah mengirim `thinking: {type: "disabled"}`
 
-Permintaan gagal dengan error 400. Pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Opus 5.5, dan Claude Mythos 5, pesannya berbunyi:
+Permintaan gagal dengan error 400. Pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, dan Claude Opus 5.5, pesannya berbunyi:
 
 ```text wrap
 "thinking.type.disabled" is not supported for this model. Use "thinking.type.adaptive" and "output_config.effort" to control thinking behavior.
@@ -123,7 +123,7 @@ Claude Haiku 5.5 mengembalikan pesan yang sama ketika permintaan mengirim `think
 
 ## Error 400 menyatakan effort tidak dapat berubah saat thinking dinonaktifkan
 
-Pada Claude Sonnet 5.5, permintaan dengan `thinking: {type: "between_tools"}` yang [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta)-nya mengubah level gagal dengan error 400 yang pesannya berbunyi:
+Pada Claude Sonnet 5.5, permintaan dengan `thinking: {type: "between_tools"}` yang [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message)-nya mengubah level gagal dengan error 400 yang pesannya berbunyi:
 
 ```text wrap
 messages.N: output_config.effort 'low' differs from the 'high' in effect before it; effort cannot change when thinking is disabled on this model. Use effort 'high', or enable thinking.

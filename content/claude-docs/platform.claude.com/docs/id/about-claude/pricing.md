@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 48db0ba11aeb76b319fd50fa35af47c9f5e59c9378807d53fd92f2f15f174f6f
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 6a207dda82c3ba1b7b82709a0e44fb00fbe6d40740f842e2dbb4592b36b191f7
 ---
 
 ---
@@ -13,7 +13,7 @@ description: Pelajari struktur harga Anthropic untuk model dan fitur
 
 Halaman ini menyediakan informasi harga terperinci untuk model dan fitur Anthropic. Semua harga dalam USD.
 
-Untuk informasi harga terkini, kunjungi [claude.com/pricing](https://claude.com/pricing).
+Untuk informasi harga terkini, lihat halaman [Harga Claude](https://claude.com/pricing).
 
 ## Harga model
 
@@ -84,7 +84,7 @@ Untuk harga resmi di [Claude Models on Google Cloud (Google managed)](https://pl
 
   Untuk detail implementasi dan contoh kode:
 
-  * [Endpoint global versus regional Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#regions) untuk Opus 4.7, Haiku 4.5, dan model-model selanjutnya, atau [integrasi lama](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#global-vs-regional-endpoints) untuk semua model lain di Bedrock
+  * Endpoint global versus regional Amazon Bedrock: [Claude di Amazon Bedrock (`bedrock-mantle`)](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#regions) atau [Claude di Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#global-vs-regional-endpoints), tergantung apakah Anda memanggil `bedrock-mantle` atau `bedrock-runtime`
   * [Endpoint global, multi-region, dan regional Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed#global-multi-region-and-regional-endpoints)
 </Note>
 
@@ -151,13 +151,28 @@ Ada dua cara untuk mengaktifkan caching prompt:
 
 Caching prompt menggunakan pengali harga berikut relatif terhadap tarif token input dasar:
 
-| Operasi cache           | Pengali                                                                                                                                                             | Durasi                                       |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| Penulisan cache 5 menit | 1,25x harga input dasar                                                                                                                                             | Cache berlaku selama 5 menit                 |
-| Penulisan cache 1 jam   | 2x harga input dasar                                                                                                                                                | Cache berlaku selama 1 jam                   |
-| Pembacaan cache (hit)   | 0,1x harga input dasar (0,025x pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, dan Claude Mythos 5.1; 0,05x pada Claude Opus 5.5 dan Claude Sonnet 5.5) | Durasi yang sama dengan penulisan sebelumnya |
+| Operasi cache           | Pengali                                          | Durasi                                       |
+| ----------------------- | ------------------------------------------------ | -------------------------------------------- |
+| Penulisan cache 5 menit | 1,25x harga input dasar                          | Cache berlaku selama 5 menit                 |
+| Penulisan cache 1 jam   | 2x harga input dasar                             | Cache berlaku selama 1 jam                   |
+| Pembacaan cache (hit)   | 0,1x harga input dasar pada sebagian besar model | Durasi yang sama dengan penulisan sebelumnya |
 
-Token penulisan cache dikenakan biaya saat konten pertama kali disimpan. Token pembacaan cache dikenakan biaya saat permintaan berikutnya mengambil konten yang di-cache. Cache hit berbiaya 10 persen dari harga input standar, yang berarti caching menguntungkan setelah satu kali pembacaan cache untuk durasi 5 menit (penulisan 1,25x), atau setelah dua kali pembacaan cache untuk durasi 1 jam (penulisan 2x). Pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, dan Claude Mythos 5.1, cache hit berbiaya 2,5 persen dari harga input standar ($0,20 USD per juta token pada Claude Fable 5.2 dan Claude Mythos 5.2, $0,25 USD pada Claude Fable 5.1 dan Claude Mythos 5.1). Pada Claude Opus 5.5 dan Claude Sonnet 5.5, cache hit berbiaya 5 persen dari harga input standar ($0,20 USD per juta token pada Claude Opus 5.5, $0,10 USD pada Claude Sonnet 5.5).
+Token penulisan cache dikenakan biaya saat konten pertama kali disimpan. Token pembacaan cache dikenakan biaya saat permintaan berikutnya mengambil konten yang di-cache.
+
+Caching menghemat biaya setelah sejumlah kecil pembacaan cache:
+
+* **Durasi 5 menit (penulisan 1,25x):** setelah satu kali pembacaan cache
+* **Durasi 1 jam (penulisan 2x):** setelah dua kali pembacaan cache
+
+Biaya cache hit bergantung pada model:
+
+| Model                                  | Pengali cache hit | Harga cache hit per juta token                                                              |
+| -------------------------------------- | ----------------- | ------------------------------------------------------------------------------------------- |
+| Claude Fable 5.2 dan Claude Mythos 5.2 | 0,025x            | $0,20 USD                                                                                   |
+| Claude Fable 5.1 dan Claude Mythos 5.1 | 0,025x            | $0,25 USD                                                                                   |
+| Claude Opus 5.5                        | 0,05x             | $0,20 USD                                                                                   |
+| Claude Sonnet 5.5                      | 0,05x             | $0,10 USD                                                                                   |
+| Semua model lainnya                    | 0,1x              | Lihat [Harga model](https://platform.claude.com/docs/id/about-claude/pricing#model-pricing) |
 
 Pengali ini bertumpuk dengan pengubah harga lainnya, termasuk diskon Batch API dan residensi data.
 
@@ -167,13 +182,17 @@ Untuk detail implementasi, model yang didukung, dan contoh kode, lihat [Caching 
 
 Untuk model Claude 4.6 dan yang lebih baru, menentukan inferensi khusus AS melalui parameter `inference_geo` dikenakan pengali 1,1x pada semua kategori harga token, termasuk token input, token output, penulisan cache, dan pembacaan cache. Pada Claude Haiku 5.5, pengali ini juga berlaku untuk harga yang lebih tinggi bagi prompt di atas 100.000 token (lihat [Harga konteks panjang](https://platform.claude.com/docs/id/about-claude/pricing#long-context-pricing)). Perutean global (default) menggunakan harga standar.
 
-Ini berlaku untuk Claude API (first-party), Claude Platform on AWS, dan Claude Models on Google Cloud (Anthropic managed). Pada Claude in Microsoft Foundry, pengali 1,1x yang sama berlaku untuk deployment yang menggunakan jenis deployment US Data Zone Standard (lihat [Geografi inferensi](https://platform.claude.com/docs/id/about-claude/pricing#foundry-inference-geography)). Platform yang dioperasikan mitra, Claude Models on Google Cloud (Google managed) dan Bedrock, memiliki harga regional tersendiri. Lihat [harga Bedrock](https://aws.amazon.com/bedrock/pricing/) dan [harga Google Cloud](https://cloud.google.com/vertex-ai/generative-ai/pricing#claude-models) untuk detailnya. Model-model sebelumnya tidak mendukung parameter `inference_geo` dan selalu menggunakan harga standar; permintaan yang menyertakan parameter tersebut pada model-model ini akan mengembalikan error 400.
+Ini berlaku untuk Claude API (first-party), Claude Platform on AWS, dan Claude Models on Google Cloud (Anthropic managed). Pada Claude in Microsoft Foundry, pengali 1,1x yang sama berlaku untuk deployment yang menggunakan jenis deployment US Data Zone Standard (lihat [Geografi inferensi](https://platform.claude.com/docs/id/about-claude/pricing#foundry-inference-geography)). Platform yang dioperasikan mitra, Claude Models on Google Cloud (Google managed) dan Bedrock, memiliki harga regional tersendiri. Lihat [harga Amazon Bedrock](https://aws.amazon.com/bedrock/pricing/) dan [harga Google Cloud](https://cloud.google.com/vertex-ai/generative-ai/pricing#claude-models) untuk detailnya. Model-model sebelumnya tidak mendukung parameter `inference_geo` dan selalu menggunakan harga standar; permintaan yang menyertakan parameter tersebut pada model-model ini akan mengembalikan error 400.
 
 Untuk informasi lebih lanjut, lihat [Residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency).
 
 ### Harga mode cepat
 
-[Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) menyediakan output yang jauh lebih cepat untuk Claude Fable 5.2, Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8 dengan harga premium. Mode cepat untuk Claude Opus 5 dan Claude Opus 4.8 berada dalam pratinjau riset. Harga mode cepat berlaku di seluruh “context window” (jendela konteks), termasuk permintaan di atas 200k token input. Mode cepat tersedia di Claude API (first-party). Untuk Claude Opus 5.5, mode cepat juga tersedia di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#billing) serta di [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Azure.
+[Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) menyediakan token output per detik hingga 2,5x lebih tinggi dengan harga premium. Mode cepat tersedia untuk Claude Fable 5.2, Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8. Mode cepat berada dalam pratinjau riset untuk Claude Opus 5 dan usang (deprecated) untuk Claude Opus 4.8.
+
+Harga mode cepat berlaku di seluruh “context window” (jendela konteks), termasuk permintaan di atas 200k token input.
+
+Mode cepat tersedia di Claude API (first-party). Untuk Claude Opus 5.5, mode cepat juga tersedia di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#billing) serta di [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Azure.
 
 Mode cepat untuk Claude Fable 5.2 juga tersedia di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#billing).
 
@@ -284,7 +303,7 @@ Jumlah token ini ditambahkan ke token input dan output normal Anda untuk menghit
 
 Untuk harga per model terkini, lihat bagian [harga model](https://platform.claude.com/docs/id/about-claude/pricing#model-pricing).
 
-Untuk informasi lebih lanjut tentang implementasi dan praktik terbaik “tool use” (penggunaan alat), lihat [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
+Untuk informasi lebih lanjut tentang implementasi dan praktik terbaik “tool use” (penggunaan alat), lihat [Penggunaan alat dengan Claude](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
 
 ### Harga alat tertentu
 
@@ -522,14 +541,14 @@ Untuk pelanggan enterprise dengan kebutuhan khusus:
 * Dukungan khusus
 * Ketentuan khusus
 
-Hubungi tim penjualan di [sales@anthropic.com](mailto:sales@anthropic.com) atau melalui [Claude Console](https://platform.claude.com/usage/limits) untuk mendiskusikan opsi harga enterprise.
+Hubungi tim penjualan di [sales@anthropic.com](mailto:sales@anthropic.com) atau melalui [Batas laju di Claude Console](https://platform.claude.com/usage/limits) untuk mendiskusikan opsi harga enterprise.
 
 ## Penagihan dan pembayaran
 
 * Penagihan didasarkan pada penggunaan bulanan aktual.
 * Semua pembayaran dalam USD.
 * Opsi kartu kredit dan faktur tersedia.
-* Pelacakan penggunaan tersedia di Claude Console di [platform.claude.com](https://platform.claude.com/).
+* Pelacakan penggunaan tersedia di [Claude Console](https://platform.claude.com/).
 
 ## Pertanyaan yang sering diajukan
 

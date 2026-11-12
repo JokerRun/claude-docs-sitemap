@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/opentelemetry/spans
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 4c7541321311f9c3f02c078247d4058653fe5d42f6c4a3ca38ad1cfa3fe43b22
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 0f4ddaf8ca7d067bbad1e0c02cfa092f874bf91e66d55fdea5267ab41b593702
 ---
 
 ---
 title: OpenTelemetry span reference
 url: https://platform.claude.com/docs/en/api/opentelemetry/spans
-description: The OpenTelemetry spans and span attributes that the Claude API and the Claude SDK emit.
+description: The OpenTelemetry spans and span attributes that the Claude API and the Anthropic SDK emit.
 featureMetadata:
   topic:
     title: OpenTelemetry
@@ -36,10 +36,10 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: beta
+    Amazon Bedrock: beta
+    Amazon Bedrock (bedrock-runtime): beta
     Claude Platform on AWS: beta
     Claude Models on Google Cloud (Anthropic managed): beta
-    Amazon Bedrock: beta
-    Amazon Bedrock (InvokeModel): beta
     Claude Models on Google Cloud (Google managed): beta
     Microsoft Foundry: beta
 ---
@@ -48,7 +48,7 @@ featureMetadata:
   OpenTelemetry export is in beta. It’s provided under your agreement with Anthropic, including the Beta Services section of the [Service Specific Terms](https://www.anthropic.com/legal/service-specific-terms). Span names and attributes can change during the beta.
 </Note>
 
-To get spans, see [Set up OpenTelemetry with the Claude SDK](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk) and [Set up OpenTelemetry with the Claude API](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api).
+To get spans, see [Set up OpenTelemetry with the Anthropic SDK](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk) and [Set up OpenTelemetry with the Claude API](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api).
 
 ## Span names and kinds
 

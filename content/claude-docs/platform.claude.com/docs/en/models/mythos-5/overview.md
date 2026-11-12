@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/mythos-5/overview
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 606b2adfc6b01080056b3534227c86b5c047fb8c831af2ee9a557ed847220e9d
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: b2fc7560dc5bd748c9f887212f3b1c19cc37497cda3b44a4f91ffa1e1a113e78
 ---
 
 ---
@@ -19,7 +19,7 @@ Model ID: `claude-mythos-5`
 
 Context window: 1M tokens · Max output: 128K tokens · Input pricing: $10 / MTok · Output pricing: $50 / MTok
 
-[Announcement](https://www.anthropic.com/news/claude-fable-5-mythos-5) · [Migration guide](https://platform.claude.com/docs/en/models/fable-5-1/migration-guide#migrating-from-claude-mythos-5-to-claude-mythos-5-1)
+[Announcement](https://www.anthropic.com/news/claude-fable-5-mythos-5) · [Migration guide](https://platform.claude.com/docs/en/models/fable-5-2/migration-guide#migrating-from-claude-mythos-5-to-claude-mythos-5-2)
 
 Claude Mythos 5 is available only to organizations verified through Anthropic’s verification programs, such as the [Cyber Verification Program](https://support.claude.com/en/articles/14604842). It has the same specifications and pricing as Claude Fable 5. To request access, apply to the program that covers your use case. [See Claude Fable 5](https://platform.claude.com/docs/en/models/fable-5/overview) · [How refusals and fallback work](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback)
 

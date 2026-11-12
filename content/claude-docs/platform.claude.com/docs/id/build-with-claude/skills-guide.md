@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 85611c9d01edec7ff86890fe370135b4ad1e6784b940bb7596f6e80cfc1ae55b
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 5203818b28b8c85217916a3ece12f9cf1bb9181eaf0b4406c6e38fb6b99d4afd
 ---
 
 ---
@@ -325,11 +325,11 @@ Untuk menyediakan file input yang akan dikerjakan oleh Skills, [unggah file ters
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -876,11 +876,11 @@ Objek `container` pada respons membawa `id` container dan timestamp `expires_at`
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Penggunaan ulang container multi-giliran memerlukan logika lebih dari sekadar satu perintah shell, jadi gunakan Claude SDK untuk itu. Untuk membangun permintaan sendiri, ambil `container.id` dari respons pertama. Kemudian teruskan nilai tersebut dalam permintaan berikutnya sebagai `"container": {"id": "...", "skills": [...]}`, bersama dengan riwayat percakapan.
+    Penggunaan ulang container multi-giliran memerlukan logika lebih dari sekadar satu perintah shell, jadi gunakan Anthropic SDK untuk itu. Untuk membangun permintaan sendiri, ambil `container.id` dari respons pertama. Kemudian teruskan nilai tersebut dalam permintaan berikutnya sebagai `"container": {"id": "...", "skills": [...]}`, bersama dengan riwayat percakapan.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -1245,11 +1245,11 @@ Skills mungkin melakukan operasi yang memerlukan beberapa giliran. Tangani alasa
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -4270,11 +4270,11 @@ Tangani error terkait Skill dengan baik:
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    Alur penanganan error ini memerlukan logika lebih dari sekadar satu perintah shell, jadi gunakan Claude SDK untuk itu. Permintaan yang gagal karena masalah Skill mengembalikan HTTP 400. Field `error.message` dalam body respons JSON menjelaskan masalahnya.
+    Alur penanganan error ini memerlukan logika lebih dari sekadar satu perintah shell, jadi gunakan Anthropic SDK untuk itu. Permintaan yang gagal karena masalah Skill mengembalikan HTTP 400. Field `error.message` dalam body respons JSON menjelaskan masalahnya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 6ec781d4468f58af61f81dc717527292ab5f94237c6e6dcbc5ea421f47249b93
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: a3181f3f4f80176aec0f4463f745b31d1137cac60848e97a91b85c9453827da6
 ---
 
 ---
@@ -36,11 +36,11 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: stable
-    Claude Platform on AWS: stable
     Amazon Bedrock: stable
-    Amazon Bedrock (InvokeModel):
+    Amazon Bedrock (bedrock-runtime):
       availability: stable
       note: Di Amazon Bedrock, alat ini tidak tersedia melalui Converse API.
+    Claude Platform on AWS: stable
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
 ---
@@ -923,8 +923,8 @@ Alat pencarian alat tersedia di semua model dan layak untuk retensi data nol.
 
 | Status               | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Model                                                              |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| Tersedia             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
-| Tersedia<sup>1</sup> | [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)                                                                                                                                                                                                                                                                                                                                                              | [Semua model](https://platform.claude.com/docs/id/models/overview) |
+| Tersedia             | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
+| Tersedia<sup>1</sup> | [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)                                                                                                                                                                                                                                                                                                                                                          | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
 1. Di Amazon Bedrock, alat ini tidak tersedia melalui Converse API.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 70ac0c9163b24da906545fa2041cd30ef95d05390c0fed47716bb82c0e867581
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 7993895e183bdb786ac239cf1b291f7c4046543680ca879893b7efb26802beee
 ---
 
 ---
@@ -19,10 +19,10 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: stable
+    Amazon Bedrock: stable
+    Amazon Bedrock (bedrock-runtime): stable
     Claude Platform on AWS: stable
     Claude Models on Google Cloud (Anthropic managed): stable
-    Amazon Bedrock: stable
-    Amazon Bedrock (InvokeModel): stable
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
 ---
@@ -370,7 +370,7 @@ Jika model Anda hanya mendukung pemikiran diperpanjang (Claude Sonnet 4.5 (depre
 Anda perlu bermigrasi dari `type: "enabled"` jika:
 
 * Anda menggunakan Claude Opus 4.6 atau Claude Sonnet 4.6, di mana `budget_tokens` sudah deprecated.
-* Anda menggunakan Claude 4.7 atau model yang lebih baru, seperti Claude Opus 5.5, Claude Sonnet 5, Claude Sonnet 5.5, Claude Fable 5.2, Claude Fable 5.1, atau Claude Haiku 5.5, di mana `type: "enabled"` mengembalikan error 400.
+* Anda menggunakan model bernomor 4.7 atau lebih tinggi, di mana `type: "enabled"` mengembalikan error 400. Contohnya termasuk Claude Opus 5.5, Claude Sonnet 5, Claude Sonnet 5.5, Claude Fable 5.2, Claude Fable 5.1, dan Claude Haiku 5.5.
 
 Pemetaannya sederhana: hapus `budget_tokens`, atur `thinking: {type: "adaptive"}`, dan kendalikan kedalaman penalaran dengan `output_config: {effort: ...}` alih-alih anggaran token.
 

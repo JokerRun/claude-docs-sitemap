@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 5816239781231dc2e429740e4a79bb9034265928cf436bbacff6b682239ef461
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 42e62eabe5de68c95f20671e16deb1836077a3a08858db914470c9671004322c
 ---
 
 ---
@@ -13,7 +13,7 @@ description: Panduan ini menjelaskan cara menggunakan kemampuan pemahaman bahasa
 
 ## Prasyarat
 
-* Kunci API Claude dan Claude SDK yang sudah terinstal
+* Kunci API Claude dan Anthropic SDK yang sudah terinstal
 * Akses ke, dan pemahaman tentang, sistem tiket dukungan Anda yang sudah ada
 * Sekumpulan sampel tiket dukungan historis untuk pengujian
 
@@ -700,11 +700,11 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature fungsi untuk
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Claude SDK untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Anthropic SDK untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Claude SDK untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Anthropic SDK untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -1048,11 +1048,11 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip agar membandingkan maksud y
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Claude SDK untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Anthropic SDK untuk menjalankannya.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Claude SDK untuk menjalankannya.
+    Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan Anthropic SDK untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 053a618047dd794f28836d3abf1e6e6d00d88bd7574063c2d2edd72b4a76b463
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 2c77447513e4e36564306cd45fd40c2eda6a1dad4eb6733a4fc84ce0c082cea8
 ---
 
 ---
@@ -36,9 +36,9 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: stable
-    Claude Platform on AWS: stable
     Amazon Bedrock: stable
-    Amazon Bedrock (InvokeModel): beta
+    Amazon Bedrock (bedrock-runtime): stable
+    Claude Platform on AWS: stable
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
   details:
@@ -496,15 +496,15 @@ Inti dari penggunaan komputer adalah “loop agen”: sebuah siklus di mana Clau
               tools=TOOLS,
           )
 
-          # Tambahkan respons Claude ke riwayat percakapan
+          # Add Claude's response to the conversation history
           messages.append({"role": "assistant", "content": response.content})
 
-          # Jalankan aksi yang diminta Claude, secara berurutan, dan kumpulkan hasilnya
+          # Run the actions Claude requested, in order, and collect the results
           tool_results = process_tool_calls(response)
           if not tool_results:
               return messages  # No more tool use; task complete
 
-          # Kirim semua hasil kembali ke Claude dalam satu pesan user
+          # Send every result back to Claude in a single user message
           messages.append({"role": "user", "content": tool_results})
 
       return messages
@@ -516,9 +516,9 @@ Inti dari penggunaan komputer adalah “loop agen”: sebuah siklus di mana Clau
     messages: Anthropic.MessageParam[],
     maxIterations = 10
   ): Promise<Anthropic.MessageParam[]> {
-    // Jalankan loop agen computer-use hingga Claude berhenti meminta alat
-    // atau batas iterasi tercapai.
-    for (let i = 0; i < maxIterations; i++) {
+    // Run the computer-use agent loop until Claude stops requesting tools
+    // or the iteration limit is reached.
+    for (let iteration = 0; iteration < maxIterations; iteration++) {
       const response = await client.messages.create({
         model,
         max_tokens: 4096,
@@ -526,16 +526,16 @@ Inti dari penggunaan komputer adalah “loop agen”: sebuah siklus di mana Clau
         tools
       });
 
-      // Tambahkan respons Claude ke riwayat percakapan
+      // Add Claude's response to the conversation history
       messages.push({ role: "assistant", content: response.content });
 
-      // Jalankan alat apa pun yang diminta Claude dan kumpulkan hasilnya
+      // Run any tools Claude requested and collect results
       const toolResults = processToolCalls(response);
       if (toolResults.length === 0) {
         return messages; // No more tool use; task complete
       }
 
-      // Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
+      // Send tool results back to Claude for the next iteration
       messages.push({ role: "user", content: toolResults });
     }
 
@@ -550,9 +550,9 @@ Inti dari penggunaan komputer adalah “loop agen”: sebuah siklus di mana Clau
       int maxIterations = 10
   )
   {
-      // Jalankan loop agen computer-use hingga Claude berhenti meminta alat
-      // atau batas iterasi tercapai.
-      for (var i = 0; i < maxIterations; i++)
+      // Run the computer-use agent loop until Claude stops requesting tools
+      // or the iteration limit is reached.
+      for (var iteration = 0; iteration < maxIterations; iteration++)
       {
           var response = await client.Messages.Create(
               new MessageCreateParams
@@ -564,7 +564,7 @@ Inti dari penggunaan komputer adalah “loop agen”: sebuah siklus di mana Clau
               }
           );
 
-          // Tambahkan respons Claude ke riwayat percakapan
+          // Add Claude's response to the conversation history
           messages.Add(
               new AssistantMessageParam
               {
@@ -574,14 +574,14 @@ Inti dari penggunaan komputer adalah “loop agen”: sebuah siklus di mana Clau
               }
           );
 
-          // Jalankan alat apa pun yang diminta Claude dan kumpulkan hasilnya
+          // Run any tools Claude requested and collect results
           var toolResults = ProcessToolCalls(response);
           if (toolResults.Count == 0)
           {
               return messages; // No more tool use; task complete
           }
 
-          // Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
+          // Send tool results back to Claude for the next iteration
           messages.Add(new UserMessageParam { Content = toolResults });
       }
 
@@ -590,8 +590,8 @@ Inti dari penggunaan komputer adalah “loop agen”: sebuah siklus di mana Clau
   ```
 
   ```go Go
-  // samplingLoop menjalankan loop agen computer-use hingga Claude berhenti
-  // meminta alat atau batas iterasi tercapai.
+  // samplingLoop runs the computer-use agent loop until Claude stops
+  // requesting tools or the iteration limit is reached.
   func samplingLoop(ctx context.Context, model anthropic.Model, messages []anthropic.MessageParam, maxIterations int) ([]anthropic.MessageParam, error) {
   	for range maxIterations {
   		response, err := client.Messages.New(ctx, anthropic.MessageNewParams{
@@ -604,16 +604,16 @@ Inti dari penggunaan komputer adalah “loop agen”: sebuah siklus di mana Clau
   			return nil, err
   		}
 
-  		// Tambahkan respons Claude ke riwayat percakapan
+  		// Add Claude's response to the conversation history
   		messages = append(messages, response.ToParam())
 
-  		// Jalankan aksi yang diminta Claude secara berurutan, dan kumpulkan hasilnya
+  		// Run the actions Claude requested, in order, and collect the results
   		toolResults := processToolCalls(response)
   		if len(toolResults) == 0 {
   			return messages, nil // No more tool use; task complete
   		}
 
-  		// Kirim semua hasil kembali ke Claude dalam satu pesan pengguna
+  		// Send every result back to Claude in a single user message
   		messages = append(messages, anthropic.NewUserMessage(toolResults...))
   	}
   	return messages, nil
@@ -626,7 +626,7 @@ Inti dari penggunaan komputer adalah “loop agen”: sebuah siklus di mana Clau
    * or the iteration limit is reached.
    */
   List<MessageParam> samplingLoop(Model model, List<MessageParam> messages, int maxIterations) {
-      for (int i = 0; i < maxIterations; i++) {
+      for (int iteration = 0; iteration < maxIterations; iteration++) {
           Message response = client.messages().create(MessageCreateParams.builder()
               .model(model)
               .maxTokens(4096)
@@ -634,16 +634,16 @@ Inti dari penggunaan komputer adalah “loop agen”: sebuah siklus di mana Clau
               .addTool(COMPUTER_TOOLSET)
               .build());
 
-          // Tambahkan respons Claude ke riwayat percakapan
+          // Add Claude's response to the conversation history
           messages.add(response.toParam());
 
-          // Jalankan alat apa pun yang diminta Claude dan kumpulkan hasilnya
+          // Run any tools Claude requested and collect results
           List<ContentBlockParam> toolResults = processToolCalls(response);
           if (toolResults.isEmpty()) {
               return messages; // No more tool use; task complete
           }
 
-          // Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
+          // Send tool results back to Claude for the next iteration
           messages.add(MessageParam.ofUserOfContentBlockParams(toolResults));
       }
       return messages;
@@ -655,11 +655,11 @@ Inti dari penggunaan komputer adalah “loop agen”: sebuah siklus di mana Clau
    * Run the computer-use agent loop until Claude stops requesting tools
    * or the iteration limit is reached.
    */
-  function samplingLoop(string $model, array $messages, int $maxIterations = 10): array
+  function samplingLoop(Model|string $model, array $messages, int $maxIterations = 10): array
   {
       global $client, $tools;
 
-      for ($i = 0; $i < $maxIterations; $i++) {
+      for ($iteration = 0; $iteration < $maxIterations; $iteration++) {
           $response = $client->messages->create(
               model: $model,
               maxTokens: 4096,
@@ -667,16 +667,16 @@ Inti dari penggunaan komputer adalah “loop agen”: sebuah siklus di mana Clau
               tools: $tools,
           );
 
-          // Tambahkan respons Claude ke riwayat percakapan
+          // Add Claude's response to the conversation history
           $messages[] = MessageParam::with(role: Role::ASSISTANT, content: $response->content);
 
-          // Jalankan alat yang diminta Claude dan kumpulkan hasilnya
+          // Run any tools Claude requested and collect results
           $toolResults = processToolCalls($response);
           if ($toolResults === []) {
               return $messages; // No more tool use; task complete
           }
 
-          // Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
+          // Send tool results back to Claude for the next iteration
           $messages[] = MessageParam::with(role: Role::USER, content: $toolResults);
       }
 
@@ -685,8 +685,8 @@ Inti dari penggunaan komputer adalah “loop agen”: sebuah siklus di mana Clau
   ```
 
   ```ruby Ruby
-  # Jalankan loop agen computer-use hingga Claude berhenti meminta alat
-  # atau batas iterasi tercapai.
+  # Run the computer-use agent loop until Claude stops requesting tools
+  # or the iteration limit is reached.
   def sampling_loop(model, messages, max_iterations: 10)
     max_iterations.times do
       response = CLIENT.messages.create(
@@ -696,14 +696,14 @@ Inti dari penggunaan komputer adalah “loop agen”: sebuah siklus di mana Clau
         tools: TOOLS
       )
 
-      # Tambahkan respons Claude ke riwayat percakapan
+      # Add Claude's response to the conversation history
       messages << { role: "assistant", content: response.content }
 
-      # Jalankan aksi yang diminta Claude, secara berurutan, dan kumpulkan hasilnya
+      # Run the actions Claude requested, in order, and collect the results
       tool_results = process_tool_calls(response)
       return messages if tool_results.empty? # No more tool use; task complete
 
-      # Kirim semua hasil kembali ke Claude dalam satu pesan pengguna
+      # Send every result back to Claude in a single user message
       messages << { role: "user", content: tool_results }
     end
 
@@ -923,12 +923,12 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
 
     <CodeGroup exclude="shell">
       ```python Python
-      # Data gambar placeholder; executor sungguhan menangkap layar dan mengembalikan byte PNG
+      # Placeholder image data; a real executor captures the screen and returns the PNG bytes
       PLACEHOLDER_PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
 
 
       def capture_screenshot() -> list[ImageBlockParam]:
-          # screenshot menjawab dengan blok gambar, bukan teks: kembalikan daftar konten hasil
+          # screenshot answers with an image block rather than text: return the result content list
           return [
               {
                   "type": "image",
@@ -957,21 +957,21 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
               case "screenshot":
                   return capture_screenshot()
               case "left_click":
-                  # coordinate bersifat opsional; tanpanya, klik di posisi kursor saat ini
+                  # coordinate is optional; without it, click where the cursor already is
                   return click(tool_input.get("coordinate"))
               case "type":
                   return type_text(tool_input["text"])
-          # Tangani aksi lain sesuai kebutuhan
+          # Handle other actions as needed
           raise ValueError(f"Unknown or unimplemented member: {name}")
       ```
 
       ```typescript TypeScript
-      // Data gambar placeholder; eksekutor nyata menangkap layar sebagai byte PNG
+      // Placeholder image data; a real executor captures the screen as PNG bytes
       const PLACEHOLDER_PNG =
         "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==";
 
       function captureScreenshot(): Anthropic.ImageBlockParam[] {
-        // screenshot menjawab dengan blok gambar, bukan teks
+        // screenshot answers with an image block rather than text
         return [
           {
             type: "image",
@@ -1005,7 +1005,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
           case "screenshot":
             return captureScreenshot();
           case "left_click":
-            // coordinate bersifat opsional pada toolset; tanpanya, klik di posisi kursor
+            // coordinate is optional on the toolset; without one, click at the cursor
             if ("coordinate" in params && Array.isArray(params.coordinate)) {
               const [x, y] = params.coordinate;
               return clickAt(x, y);
@@ -1017,16 +1017,16 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
             }
             break;
         }
-        // Tangani aksi lain sesuai kebutuhan
+        // Handle other actions as needed
         throw new Error(`Unknown or unimplemented member: ${action}`);
       }
       ```
 
       ```csharp C#
-      // Data gambar placeholder; eksekutor nyata menangkap layar dan mengembalikan byte PNG
+      // Placeholder image data; a real executor captures the screen and returns the PNG bytes
       const string PlaceholderPng = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==";
 
-      // screenshot menjawab dengan blok gambar, bukan teks: kembalikan daftar konten hasil
+      // screenshot answers with an image block rather than text: return the result content list
       List<Block> CaptureScreenshot() =>
           [
               new ImageBlockParam(
@@ -1047,24 +1047,24 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
           action switch
           {
               "screenshot" => CaptureScreenshot(),
-              // coordinate bersifat opsional pada anggota click; tanpanya, klik di posisi kursor saat ini
+              // coordinate is optional on click members; without it, click where the cursor is
               "left_click" when input.TryGetValue("coordinate", out var xy) => ClickAt(
                   xy[0].GetInt32(),
                   xy[1].GetInt32()
               ),
               "left_click" => ClickAtCursor(),
               "type" => TypeText(input["text"].GetString()!),
-              // Tangani aksi lain sesuai kebutuhan
+              // Handle other actions as needed
               _ => throw new NotSupportedException($"Unknown or unimplemented member: {action}"),
           };
       ```
 
       ```go Go
-      // placeholderPNG menggantikan tangkapan layar nyata: executor mengembalikan
-      // layar sebagai data PNG yang dienkode base64.
+      // placeholderPNG stands in for a real capture: an executor returns the
+      // screen as base64-encoded PNG data.
       const placeholderPNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
 
-      // captureScreenshot mengembalikan blok gambar, bukan teks.
+      // captureScreenshot returns an image block rather than text.
       func captureScreenshot() []anthropic.ToolResultBlockParamContentUnion {
       	return []anthropic.ToolResultBlockParamContentUnion{{
       		OfImage: &anthropic.ImageBlockParam{
@@ -1078,7 +1078,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       	}}
       }
 
-      // textContent membungkus teks sebagai konten tool_result.
+      // textContent wraps text as tool_result content.
       func textContent(text string) []anthropic.ToolResultBlockParamContentUnion {
       	return []anthropic.ToolResultBlockParamContentUnion{
       		{OfText: &anthropic.TextBlockParam{Text: text}},
@@ -1102,7 +1102,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       	case "screenshot":
       		return captureScreenshot(), nil
       	case "left_click":
-      		// coordinate bersifat opsional; tanpanya, klik di posisi kursor saat ini
+      		// coordinate is optional; without it, click where the cursor already is
       		coord, ok := params["coordinate"].([]any)
       		if !ok {
       			return textContent(clickAtCursor()), nil
@@ -1118,11 +1118,11 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       		if text, ok := params["text"].(string); ok {
       			return textContent(typeText(text)), nil
       		}
-      	// Tangani aksi lain sesuai kebutuhan
+      	// Handle other actions as needed
       	default:
       		return nil, fmt.Errorf("unknown or unimplemented member: %s", action)
       	}
-      	// Tercapai saat input anggota tidak memiliki field atau field bertipe salah
+      	// Reached when a member's input is missing a field or a field has the wrong type
       	return nil, fmt.Errorf("invalid input for %s", action)
       }
       ```
@@ -1171,7 +1171,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
                   yield clickAt(x, y);
               }
               case "type" -> typeText(input.get("text").asStringOrThrow());
-              // Tangani aksi lain sesuai kebutuhan
+              // Handle other actions as needed
               default -> throw new UnsupportedOperationException("Unknown or unimplemented member: " + action);
           };
           return ToolResultBlockParam.Content.ofString(output);
@@ -1179,12 +1179,12 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       ```
 
       ```php PHP
-      // Pengganti untuk byte PNG asli; eksekutor nyata menangkap layar
+      // Stand-in for real PNG bytes; a real executor captures the screen
       const PLACEHOLDER_PNG = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==';
 
       function captureScreenshot(): array
       {
-          // screenshot menjawab dengan blok gambar, bukan teks, jadi kembalikan daftar konten hasil
+          // screenshot answers with an image block rather than text, so return the result content list
           $image = [
               'type' => 'image',
               'source' => ['type' => 'base64', 'media_type' => 'image/png', 'data' => PLACEHOLDER_PNG],
@@ -1195,7 +1195,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
 
       function clickAt(?array $coordinate): string
       {
-          // left_click boleh tanpa coordinate; jika demikian, klik terjadi di posisi kursor saat ini
+          // left_click may omit coordinate, in which case the click lands where the cursor already is
           if ($coordinate === null) {
               return 'clicked at current cursor';
           }
@@ -1215,17 +1215,17 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
               'screenshot' => captureScreenshot(),
               'left_click' => clickAt($input['coordinate'] ?? null),
               'type' => typeText($input['text']),
-              // Tangani aksi lain sesuai kebutuhan
+              // Handle other actions as needed
               default => throw new \RuntimeException("Unknown or unimplemented member: {$name}"),
           };
       }
       ```
 
       ```ruby Ruby
-      # Data gambar pengganti; eksekutor nyata menangkap layar sebagai PNG.
+      # Stand-in image data; a real executor captures the screen as a PNG.
       PLACEHOLDER_PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
 
-      # screenshot menjawab dengan blok gambar, bukan teks
+      # screenshot answers with an image block rather than text
       def capture_screenshot
         [
           {
@@ -1251,11 +1251,11 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
         when "screenshot"
           capture_screenshot
         when "left_click"
-          # coordinate bersifat opsional; tanpanya, klik di posisi kursor saat ini
+          # coordinate is optional; without it, click where the cursor already is
           click(input[:coordinate])
         when "type"
           type_text(input[:text])
-        # Tangani aksi lain sesuai kebutuhan
+        # Handle other actions as needed
         else
           raise ArgumentError, "Unknown or unimplemented member: #{name}"
         end
@@ -1281,7 +1281,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
           tool_results: list[ToolResultBlockParam] = []
           failed = False
           for block in response.content:
-              # Hanya toolset computer yang dideklarasikan; arahkan alat lain ke sini jika Anda menambahkannya
+              # Only the computer toolset is declared; route other tools here if you add them
               if block.type != "tool_use" or block.toolset_name != "computer":
                   continue
               result: ToolResultBlockParam = {
@@ -1294,7 +1294,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
                   result["is_error"] = True
               else:
                   try:
-                      # Sebuah string, atau daftar blok konten seperti gambar screenshot
+                      # A string, or a list of content blocks such as the screenshot image
                       result["content"] = handle_computer_action(block.name, block.input)
                   except Exception as err:
                       result["content"] = f"Error: {err}"
@@ -1329,17 +1329,17 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
             continue;
           }
           if (block.toolset_name !== "computer") {
-            // Contoh ini hanya mendeklarasikan toolset computer; arahkan alat lain
-            // ke sini jika Anda menambahkannya.
+            // This example declares only the computer toolset; route other tools
+            // here if you add them.
             continue;
           }
           if (failed) {
-            // Batch berhenti pada kegagalan pertama; jawab aksi berikutnya tanpa menjalankannya
+            // A batch stops at its first failure; answer later actions without running them
             toolResults.push(computerResult(block.id, HALT_TEXT, true));
             continue;
           }
           try {
-            // Sebuah string, atau daftar blok gambar yang dikembalikan screenshot
+            // A string, or the image block list that screenshot returns
             const result = handleComputerAction(block.name, block.input);
             toolResults.push(computerResult(block.id, result));
           } catch (error) {
@@ -1368,14 +1368,14 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
 
               if (toolUse.ToolsetName != "computer")
               {
-                  // Contoh ini hanya mendeklarasikan toolset computer; arahkan alat lain
-                  // ke sini jika Anda menambahkannya.
+                  // This example declares only the computer toolset; route other tools
+                  // here if you add them.
                   continue;
               }
 
               if (failed)
               {
-                  // Batch berhenti pada kegagalan pertamanya; jawab aksi berikutnya tanpa menjalankannya
+                  // A batch stops at its first failure; answer later actions without running them
                   toolResults.Add(
                       new ToolResultBlockParam(toolUse.ID)
                       {
@@ -1389,7 +1389,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
 
               try
               {
-                  // Sebuah string, atau daftar blok gambar yang dikembalikan screenshot
+                  // A string, or the image block list that screenshot returns
                   var result = HandleComputerAction(toolUse.Name, toolUse.Input);
                   toolResults.Add(
                       new ToolResultBlockParam(toolUse.ID) { Content = result, ToolsetName = "computer" }
@@ -1415,8 +1415,8 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       ```go Go
       const notExecuted = "Not executed: an earlier computer action in this turn failed."
 
-      // computerToolResult membangun hasil untuk satu aksi komputer. Berbeda dengan
-      // hasil alat biasa, ia harus menyertakan kembali nama toolset.
+      // computerToolResult builds the result for one computer action. Unlike an
+      // ordinary tool result, it must echo the toolset name.
       func computerToolResult(toolUseID string, content []anthropic.ToolResultBlockParamContentUnion, isError bool) anthropic.ContentBlockParamUnion {
       	result := anthropic.ToolResultBlockParam{
       		ToolUseID:   toolUseID,
@@ -1429,16 +1429,16 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       	return anthropic.ContentBlockParamUnion{OfToolResult: &result}
       }
 
-      // processToolCalls menjalankan aksi komputer dalam respons Claude secara berurutan dan
-      // membangun satu tool_result untuk setiap blok tool_use. Setelah kegagalan pertama, sisanya
-      // dilewati: Claude merencanakannya dengan asumsi aksi sebelumnya berhasil.
+      // processToolCalls runs the computer actions in Claude's response in order and
+      // builds one tool_result for each tool_use block. After the first failure it skips
+      // the rest: Claude planned them assuming the earlier actions succeeded.
       func processToolCalls(response *anthropic.Message) []anthropic.ContentBlockParamUnion {
       	var toolResults []anthropic.ContentBlockParamUnion
       	failed := false
       	for _, block := range response.Content {
       		switch variant := block.AsAny().(type) {
       		case anthropic.ToolUseBlock:
-      			// Contoh ini hanya mendeklarasikan toolset komputer; arahkan alat lain ke sini jika Anda menambahkannya.
+      			// This example declares only the computer toolset; route other tools here if you add them.
       			if variant.ToolsetName != "computer" {
       				continue
       			}
@@ -1450,7 +1450,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       			var content []anthropic.ToolResultBlockParamContentUnion
       			err := json.Unmarshal(variant.Input, &input)
       			if err == nil {
-      				// Teks, atau blok gambar yang dikembalikan screenshot
+      				// Text, or the image block that screenshot returns
       				content, err = handleComputerAction(variant.Name, input)
       			}
       			if err != nil {
@@ -1484,7 +1484,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
           List<ContentBlockParam> toolResults = new ArrayList<>();
           boolean failed = false;
           for (ContentBlock block : response.content()) {
-              // Contoh ini hanya mendeklarasikan toolset computer; arahkan alat lain ke sini jika Anda menambahkannya.
+              // This example declares only the computer toolset; route other tools here if you add them.
               if (!block.isToolUse() || !block.asToolUse().toolsetName().equals(Optional.of("computer"))) {
                   continue;
               }
@@ -1499,7 +1499,7 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
                   try {
                       Map<String, JsonValue> input =
                           (Map<String, JsonValue>) toolUse._input().asObject().get();
-                      // Sebuah string, atau blok gambar yang dikembalikan oleh screenshot
+                      // A string, or the image block that screenshot returns
                       ToolResultBlockParam.Content output = handleComputerAction(toolUse.name(), input);
                       result = computerResult(toolUse)
                           .content(output)
@@ -1526,18 +1526,18 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
           $toolResults = [];
           $failed = false;
           foreach ($response->content as $block) {
-              // Contoh ini hanya mendeklarasikan toolset computer; arahkan alat lain ke sini jika Anda menambahkannya.
+              // This example declares only the computer toolset; route other tools here if you add them.
               if (!($block instanceof \Anthropic\Messages\ToolUseBlock) || $block->toolsetName !== 'computer') {
                   continue;
               }
               $result = ['type' => 'tool_result', 'tool_use_id' => $block->id, 'toolset_name' => 'computer'];
               if ($failed) {
-                  // Batch berhenti pada kegagalan pertama; aksi sisanya dijawab tanpa dijalankan
+                  // A batch stops at its first failure; the remaining actions are answered without running
                   $toolResults[] = [...$result, 'content' => HALT_TEXT, 'is_error' => true];
                   continue;
               }
               try {
-                  // Sebuah string, atau daftar blok gambar yang dikembalikan screenshot
+                  // A string, or the image block list that screenshot returns
                   $toolResults[] = [...$result, 'content' => handleComputerAction($block->name, $block->input)];
               } catch (\Throwable $e) {
                   $failed = true;
@@ -1552,23 +1552,23 @@ Alat penggunaan komputer diimplementasikan sebagai alat tanpa skema. Saat menggu
       ```ruby Ruby
       NOT_EXECUTED = "Not executed: an earlier computer action in this turn failed."
 
-      # Jalankan aksi komputer dalam respons Claude secara berurutan dan buat satu
-      # tool_result untuk setiap blok tool_use. Setelah kegagalan pertama, lewati sisanya:
-      # Claude merencanakannya dengan asumsi aksi sebelumnya berhasil.
+      # Run the computer actions in Claude's response in order and build one
+      # tool_result for each tool_use block. After the first failure, skip the rest:
+      # Claude planned them assuming the earlier actions succeeded.
       def process_tool_calls(response)
         tool_results = []
         failed = false
         response.content.each do |block|
-          # Contoh ini hanya mendeklarasikan toolset komputer; arahkan alat lain ke sini
-          # jika Anda menambahkannya.
-          next unless block.type == :tool_use && block.toolset_name == "computer"
+          # This example declares only the computer toolset; route other tools here
+          # if you add them.
+          next unless block.is_a?(Anthropic::Models::ToolUseBlock) && block.toolset_name == "computer"
 
           result = { type: "tool_result", tool_use_id: block.id, toolset_name: "computer" }
           if failed
             result.update(content: NOT_EXECUTED, is_error: true)
           else
             begin
-              # Sebuah String, atau blok konten gambar yang dikembalikan screenshot
+              # A String, or the image content blocks that screenshot returns
               result[:content] = handle_computer_action(block.name, block.input)
             rescue => e
               result.update(content: "Error: #{e.message}", is_error: true)
@@ -1836,8 +1836,14 @@ Saat Anda memilih resolusi layar dan mengembalikan screenshot:
 Untuk menjaga [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) tetap efektif sambil membatasi konteks:
 
 * Tempatkan satu breakpoint `cache_control` setelah prompt sistem dan definisi alat, dan hingga tiga lagi pada blok `tool_result` terakhir dari masing-masing giliran terbaru, dan geser setiap giliran. Dalam sebuah [aksi batch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#batch-actions), penanda pada beberapa blok bertindak sebagai satu breakpoint, tetapi masing-masing tetap dihitung terhadap batas empat, jadi gunakan paling banyak satu di setiap giliran.
+
 * Pangkas screenshot lama secara *batch*, bukan satu per giliran. Menghapus screenshot setiap giliran mengubah prefiks setiap giliran dan membatalkan cache. Default yang wajar adalah menyimpan tiga screenshot terakhir dan memangkas setiap 25 giliran, sehingga prefiks tetap identik secara byte di antara peristiwa pemangkasan; jika screenshot Anda melebihi batas yang lebih ketat, pilih interval yang menjaga setiap permintaan berisi 20 gambar atau kurang.
-* Pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, hindari pemangkasan di sisi klien: menghapus screenshot sebelumnya dari sebuah permintaan [membatalkan setiap blok pemikiran berikutnya](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation) dalam permintaan tersebut dan dalam setiap permintaan berikutnya. Sebagai gantinya, ubah ukuran screenshot agar tetap di bawah batas yang lebih ketat dan gunakan [pembersihan hasil alat](https://platform.claude.com/docs/id/build-with-claude/context-editing#tool-result-clearing) di sisi server untuk menghapus screenshot lama dari konteks. Jika Anda harus memangkas, tetap atur [`prefix_mismatch_behavior: "drop_block"`](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking-controls) sejak saat itu; setelah setiap pemangkasan, Claude melanjutkan tanpa pemikiran yang dihasilkan sejak screenshot yang dipangkas, pada permintaan tersebut dan setiap permintaan berikutnya. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan pengaturan pemikiran lainnya pada model-model tersebut, pertahankan riwayat sebagai append-only atau hapus setiap blok `thinking` dan `redacted_thinking` setelah screenshot yang dipangkas.
+
+* Hindari pemangkasan di sisi klien pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, dan Claude Mythos 5.1. Hal yang sama berlaku untuk Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5. Pada model-model ini, menghapus screenshot sebelumnya dari sebuah permintaan [membatalkan setiap blok pemikiran berikutnya](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation) dalam permintaan tersebut dan dalam setiap permintaan berikutnya.
+
+  * **Sebagai gantinya:** Ubah ukuran screenshot agar tetap di bawah batas yang lebih ketat. Gunakan [pembersihan hasil alat](https://platform.claude.com/docs/id/build-with-claude/context-editing#tool-result-clearing) di sisi server untuk menghapus screenshot lama dari konteks.
+  * **Jika Anda harus memangkas:** Tetap atur [`prefix_mismatch_behavior: "drop_block"`](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking-controls) sejak saat itu. Setelah setiap pemangkasan, API menghapus blok pemikiran yang dibatalkan, pada permintaan tersebut dan setiap permintaan berikutnya. Jadi Claude melanjutkan tanpa pemikiran yang dihasilkannya setelah screenshot yang dipangkas.
+  * **Jika Anda harus memangkas pada Claude Sonnet 5.5 atau Claude Haiku 5.5:** `prefix_mismatch_behavior` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan pengaturan pemikiran lainnya pada model-model tersebut, pertahankan riwayat sebagai append-only atau hapus setiap blok `thinking` dan `redacted_thinking` setelah screenshot yang dipangkas.
 
 ### Diagnosis masalah klik
 
@@ -2191,7 +2197,7 @@ Dua versi sebelumnya dari alat penggunaan komputer tersedia dalam beta. Masing-m
 | `computer_20251124` | `computer-use-2025-11-24` | Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5                                                                                                                                                                                                                                                                                                                                                                                                                                                             | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
 | `computer_20250124` | `computer-use-2025-01-24` | Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Haiku 4.5, Claude Opus 4.1 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed) dan Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Sonnet 4 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed) dan Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)), dan Claude Opus 4 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
 
-Di Amazon Bedrock, Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 juga menerima alat `computer_20251124` dengan header beta `computer-use-2025-11-24`.
+Di Amazon Bedrock, Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 juga menerima alat `computer_20251124` dengan header beta `computer-use-2025-11-24`. Dengan InvokeModel API dari Amazon Bedrock, kirimkan `computer-use-2025-11-24` dalam array `anthropic_beta` pada body permintaan, bukan dalam header. Untuk API tersebut, lihat [Claude di Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy).
 
 ***
 
@@ -2272,11 +2278,13 @@ Alat penggunaan komputer tersedia atau dalam versi beta di model tertentu dan la
 
 * Ketersediaan: Tersedia
 
-| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tersedia | Claude API, [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)                                                                                                                                                                                                                                                                                                                                                                                                                                          | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
-| Tersedia | [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                                                                                                                                                                                                                                                                                          | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview)                        |
-| Beta     | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview), [Claude Opus 4.5](https://platform.claude.com/docs/id/models/opus-4-5/overview), [Claude Sonnet 4.5](https://platform.claude.com/docs/id/models/sonnet-4-5/overview)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tersedia | Claude API, [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)                                                                                                                                                                                                                                                                                                                                                                                                                                              | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
+| Tersedia | [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                                                                                                                                                                                                                                                                                                                                                                                                | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview)                        |
+| Tersedia | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview)                                                                                                                                                                                                |
+| Tersedia | [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview)                                                                                                                                                                                              |
+| Beta     | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview), [Claude Opus 4.5](https://platform.claude.com/docs/id/models/opus-4-5/overview), [Claude Sonnet 4.5](https://platform.claude.com/docs/id/models/sonnet-4-5/overview)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/content-moderation
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: e87b0068653c0183ad966cb2b653e9e4d1ab8f41b6ffa8437cf11aa9f6bbc33e
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 8794004f5299ab8cd9b8f857a0103620731aa47dcedbe6371536de9c2757ac81
 ---
 
 ---
@@ -2735,7 +2735,7 @@ Untuk mengurangi biaya dalam situasi di mana moderasi real-time tidak diperlukan
   ```
 </CodeGroup>
 
-Dalam contoh ini, fungsi `batch_moderate_messages` menangani moderasi seluruh batch pesan dengan satu panggilan Claude API. Di dalam fungsi, sebuah prompt dibuat yang mencakup daftar pesan yang akan dievaluasi dan kategori konten tidak aman. Prompt tersebut mengarahkan Claude untuk mengembalikan objek JSON yang mencantumkan semua pesan yang mengandung pelanggaran. Setiap pesan dalam respons diidentifikasi oleh `id`-nya, yang sesuai dengan posisi pesan dalam batch. Perlu diingat bahwa menemukan ukuran batch yang optimal untuk kebutuhan spesifik Anda mungkin memerlukan beberapa eksperimen. Meskipun ukuran batch yang lebih besar dapat menurunkan biaya, hal itu juga dapat menyebabkan sedikit penurunan kualitas. Selain itu, Anda mungkin perlu meningkatkan parameter `max_tokens` dalam panggilan Claude API untuk mengakomodasi respons yang lebih panjang. Untuk detail tentang jumlah maksimum token yang dapat dihasilkan oleh model pilihan Anda, lihat [tabel perbandingan model](https://platform.claude.com/docs/id/models/overview#latest-models-comparison).
+Dalam contoh ini, fungsi `batch_moderate_messages` menangani moderasi seluruh batch pesan dengan satu panggilan Claude API. Di dalam fungsi, sebuah prompt dibuat yang mencakup daftar pesan yang akan dievaluasi dan kategori konten tidak aman. Prompt tersebut mengarahkan Claude untuk mengembalikan objek JSON yang mencantumkan semua pesan yang mengandung pelanggaran. Setiap pesan dalam respons diidentifikasi oleh `id`-nya, yang sesuai dengan posisi pesan dalam batch. Perlu diingat bahwa menemukan ukuran batch yang optimal untuk kebutuhan spesifik Anda mungkin memerlukan beberapa eksperimen. Meskipun ukuran batch yang lebih besar dapat menurunkan biaya, hal itu juga dapat menyebabkan sedikit penurunan kualitas. Selain itu, Anda mungkin perlu meningkatkan parameter `max_tokens` dalam panggilan Claude API untuk mengakomodasi respons yang lebih panjang. Untuk detail tentang jumlah maksimum token yang dapat dihasilkan oleh model pilihan Anda, lihat [tabel Semua model](https://platform.claude.com/docs/id/models/overview#all-models).
 
 <CardGroup cols={2}>
   <Card title="Resep moderasi konten" icon="link" href="https://platform.claude.com/cookbook/misc-building-moderation-filter">

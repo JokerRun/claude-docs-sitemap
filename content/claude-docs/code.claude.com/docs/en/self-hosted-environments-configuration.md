@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments-configuration
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 16bfb51cbd17037127fd00856674c91266a5680da23207d714621ef9530c1c37
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: f707d56312f40c78bab1b62027faa5260b4e7d905cc6ea07b8f74f76b09aa693
 ---
 
 > ## Documentation Index
@@ -190,10 +190,10 @@ The hook fails when it exits non-zero, or exits 0 without leaving a usable check
 
 * **A repository the session pushes results to**: the runner fails the session, and on a non-zero exit surfaces the tail of the script's stderr to the user. Write the reason to stderr as one short line, write it last, and then exit non-zero. Don't print secrets to stderr, and remove `set -x` before you deploy the hook.
 
-  If git's `couldn't find remote ref` appears in roughly the last 4 KB of the hook's stderr, the runner reports a deleted branch instead. The session's error message then says the branch no longer exists on the remote and asks the user to restore it. If that branch exists, see [A session fails with `no longer exists on the remote` or `couldn't find remote ref`](https://code.claude.com/docs/en/self-hosted-environments-deploy#no-longer-exists-on-the-remote).
+  If git's `couldn't find remote ref` appears in roughly the last 4 KB of the hook's stderr, the runner reports a missing branch instead. If that branch exists, see [A session fails with `couldn't be found in the remote repository` or `couldn't find remote ref`](https://code.claude.com/docs/en/self-hosted-environments-deploy#no-longer-exists-on-the-remote).
 * **A repository the session only reads from**, such as a repository added to a running session: the runner skips it and continues with the remaining repositories. The runner posts a `Skipped` step to the session and removes whatever the hook left at the checkout path.
 
-  When the `Skipped` step mentions the checkout hook, find the failure detail on the `[runner:warn] checkout hook failed` line in the runner's log. When the step says a source ref `no longer exists on remote`, see [A session fails with `no longer exists on the remote` or `couldn't find remote ref`](https://code.claude.com/docs/en/self-hosted-environments-deploy#no-longer-exists-on-the-remote). If skipping leaves the session with no repository at all, the runner fails the session anyway.
+  When the `Skipped` step mentions the checkout hook, find the failure detail on the `[runner:warn] checkout hook failed` line in the runner's log. When the step says a source ref `no longer exists on remote`, see [A session fails with `couldn't be found in the remote repository` or `couldn't find remote ref`](https://code.claude.com/docs/en/self-hosted-environments-deploy#no-longer-exists-on-the-remote). If skipping leaves the session with no repository at all, the runner fails the session anyway.
 
 When the hook succeeds, the runner removes the checkout path after the session ends.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/fable-5-1/overview
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 392f638d7df75b9de019ef43d3101e210f733ccab10ff21d00ecdcbbe1fa05c3
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 3a9b4fcfa4bb72a721382f0e294b6e015e784cdb143e3221c86e8104d040a3f6
 ---
 
 ---
@@ -13,9 +13,7 @@ description: "Claude Fable 5.1 reference: lifecycle status, model IDs on every p
 
 **Legacy.** Released September 1, 2026.
 
-For demanding reasoning and long-horizon agentic work
-
-Although Claude Fable 5.1 is still available, you should consider migrating to Claude Fable 5.2. [See Claude Fable 5.2](https://platform.claude.com/docs/en/models/fable-5-2/overview) · [Migrate to Claude Fable 5.2](https://platform.claude.com/docs/en/models/fable-5-2/migration-guide)
+Although Claude Fable 5.1 is still available, you should consider migrating to Claude Fable 5.2. [See Claude Fable 5.2](https://platform.claude.com/docs/en/models/fable-5-2/overview) · [Migrate to Claude Fable 5.2](https://platform.claude.com/docs/en/models/fable-5-2/migration-guide#migrating-from-claude-fable-5-1-to-claude-fable-5-2)
 
 Model ID: `claude-fable-5-1`
 
@@ -110,7 +108,7 @@ Context window: 1M tokens · Max output: 128K tokens · Input pricing: $10 / MTo
     When this model’s thinking blocks stay usable: across model switches and across changes to the conversation.
   </Card>
 
-  <Card title="Per-message effort" icon="sliders" href="https://platform.claude.com/docs/en/build-with-claude/effort#change-effort-mid-conversation-beta">
+  <Card title="Per-message effort" icon="sliders" href="https://platform.claude.com/docs/en/build-with-claude/effort-per-message">
     Change the effort level partway through a conversation without invalidating the prompt cache.
   </Card>
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: e0b6e7d5ff9922bbeefb1bcc2f0f68813f3322e460702dac2960ba0fe7814e72
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 423440bfe36229a89f3e4666b77a936888c6271cf03fe6ead58fd63827e29602
 ---
 
 ---
@@ -751,10 +751,19 @@ Kirimkan kembali konten asisten lengkap, termasuk blok `advisor_tool_result`, ke
   ```
 </CodeGroup>
 
-Anda dapat menghapus alat advisor dari `tools` pada permintaan lanjutan sementara riwayat pesan masih berisi blok `advisor_tool_result`, selama tidak ada panggilan advisor yang [masih tertunda](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#resuming-a-paused-turn). API menerima permintaan dan mempertahankan blok historis, tetapi model tidak dapat memanggil advisor pada permintaan tersebut. Anda tetap harus mengirim header beta `advisor-tool-2026-03-01` agar blok riwayat tersebut diterima. Hal itu mencakup blok `advisor_tool_result`, bukan blok thinking. Menghapus alat advisor, atau mengubah `model` atau `caching`-nya, merupakan [suntingan terhadap `tools`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#what-counts-as-an-edit), dan hal itu membatalkan validitas blok thinking yang sudah ada dalam riwayat. Di mana API menerapkan [pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check), permintaan tersebut kemudian mengembalikan error 400. API menerapkannya pada setiap akun ketika executor adalah Claude Fable 5.2 atau Claude Mythos 5.2, dan untuk executor lain di mana pun tabel dalam [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement) menunjukkannya. Untuk membuang blok tersebut dan melanjutkan, atur `thinking.block_binding.prefix_mismatch_behavior` ke `"drop_block"` (beta, header `thinking-binding-controls-2026-08-01`) pada permintaan tersebut dan pada setiap permintaan berikutnya dalam percakapan.
+Anda dapat menghapus alat advisor dari `tools` pada permintaan lanjutan sementara riwayat pesan masih berisi blok `advisor_tool_result`. API menerima permintaan dan mempertahankan blok historis, tetapi model tidak dapat memanggil advisor pada permintaan tersebut. Dua ketentuan berlaku:
+
+* **Tidak ada panggilan advisor yang masih tertunda.** Lihat [Melanjutkan giliran yang dijeda](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#resuming-a-paused-turn).
+* **Anda tetap mengirim header beta `advisor-tool-2026-03-01`.** API memerlukannya agar blok riwayat tersebut diterima. Header itu mencakup blok `advisor_tool_result`, bukan blok thinking.
+
+**Pengecualian: riwayat yang juga berisi blok thinking.** Menghapus alat advisor merupakan [suntingan terhadap `tools`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#what-counts-as-an-edit). Demikian pula mengubah `model` atau `caching`-nya. Suntingan terhadap `tools` membatalkan validitas blok thinking yang sudah ada dalam riwayat.
+
+* **Apa yang terjadi:** Di mana API menerapkan [pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check), permintaan tersebut mengembalikan error 400.
+* **Di mana API menerapkannya:** Pada setiap akun ketika executor adalah Claude Fable 5.2 atau Claude Mythos 5.2. Untuk executor lain, lihat tabel dalam [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement).
+* **Cara melanjutkan:** Atur `thinking.block_binding.prefix_mismatch_behavior` ke `"drop_block"` pada permintaan tersebut dan pada setiap permintaan berikutnya dalam percakapan. API kemudian membuang blok thinking tersebut. Pengaturan ini masih dalam tahap beta dan memerlukan header beta `thinking-binding-controls-2026-08-01`.
 
 <Note>
-  Alat advisor tidak memiliki batas tingkat percakapan bawaan. Untuk membatasi panggilan advisor di seluruh percakapan, hitung panggilan tersebut di sisi klien. Saat Anda mencapai batas Anda, hapus alat advisor dari array `tools` Anda. Anda tidak perlu menghapus blok `advisor_tool_result` dari riwayat pesan Anda. Di mana pemeriksaan prefiks diterapkan, baca paragraf sebelumnya terlebih dahulu: permintaan mengembalikan error 400 kecuali Anda mengatur `"drop_block"`.
+  Alat advisor tidak memiliki batas tingkat percakapan bawaan. Untuk membatasi panggilan advisor di seluruh percakapan, hitung panggilan tersebut di sisi klien. Saat Anda mencapai batas Anda, hapus alat advisor dari array `tools` Anda. Anda tidak perlu menghapus blok `advisor_tool_result` dari riwayat pesan Anda. Jika riwayat Anda juga berisi blok thinking, baca pengecualian sebelumnya terlebih dahulu. Dalam kasus tersebut, di mana pemeriksaan prefiks diterapkan, permintaan mengembalikan error 400 kecuali Anda mengatur `"drop_block"`.
 </Note>
 
 ### Melanjutkan giliran yang dijeda
@@ -1431,7 +1440,7 @@ Prompt advisor pada panggilan ke-N adalah prompt panggilan ke-(N-1) dengan satu 
 
 **Kapan mengaktifkannya:** Biaya penulisan cache lebih besar daripada penghematan dari pembacaan ketika advisor dipanggil dua kali atau kurang dalam setiap percakapan. Caching mencapai titik impas pada sekitar tiga panggilan advisor dan membaik dari sana. Aktifkan untuk loop agen yang panjang, dan matikan untuk tugas pendek.
 
-**Jaga konsistensi:** Tetapkan `caching` sekali dan biarkan selama seluruh percakapan. Mematikan dan menyalakannya kembali di tengah percakapan menyebabkan cache miss. Di mana pemeriksaan prefiks diterapkan, pengubahan tersebut juga merupakan suntingan terhadap `tools`, dan permintaan berikutnya mengembalikan error 400 kecuali Anda mengatur `"drop_block"`, seperti yang dijelaskan dalam [Percakapan multi-giliran](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#multi-turn-conversations).
+**Jaga konsistensi:** Tetapkan `caching` sekali dan biarkan selama seluruh percakapan. Mematikan dan menyalakannya kembali di tengah percakapan menyebabkan cache miss. Setiap pengubahan juga merupakan suntingan terhadap `tools`. Suntingan tersebut dapat membuat permintaan berikutnya mengembalikan error 400. [Percakapan multi-giliran](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#multi-turn-conversations) menjelaskan kapan hal ini terjadi dan apa yang perlu diatur.
 
 <Warning>
   [`clear_thinking`](https://platform.claude.com/docs/id/build-with-claude/context-editing) dengan nilai `keep` selain `"all"` menggeser transkrip yang dikutip advisor setiap giliran, menyebabkan cache miss di sisi advisor. Dampaknya hanya pada biaya (biaya naik). Kualitas saran tidak terpengaruh. Ketika pemikiran aktif tanpa konfigurasi `clear_thinking` eksplisit, API secara default menggunakan `keep: {type: "thinking_turns", value: 1}`, yang memicu perilaku ini (default pada model Opus dan Sonnet sebelumnya serta pada model Haiku hingga Claude Haiku 4.5, sedangkan pada Claude Opus 4.5 dan model Opus yang lebih baru, Claude Sonnet 4.6 dan model Sonnet yang lebih baru, serta Claude Haiku 5.5, defaultnya adalah mempertahankan semua giliran). Tetapkan `keep: "all"` untuk menjaga stabilitas cache advisor.

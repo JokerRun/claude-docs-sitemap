@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: ef70648e671286f35e1551fe6dc77f6b9716eeffb5e7c38baffce76c9f2d0c7f
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: ebb8e6a8edbdf997f9637389d31cd0d8c0f23eb4e7053f6c6bbad490cea8dea3
 ---
 
 > ## Documentation Index
@@ -2348,7 +2348,7 @@ The example below replaces the output of a `Bash` call. The replacement value ma
 
 #### Annotate a result for the auto mode classifier
 
-Return `classifierContext` to send a short note about the tool call's result to the [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode) classifier rather than to Claude. The classifier [never receives tool results themselves](https://code.claude.com/docs/en/permission-modes.md#how-the-classifier-evaluates-actions), so this field is the supported way to tell it something about what a call returned before it reviews later actions. The field requires Claude Code v2.1.236 or later.
+Return `classifierContext` to send a short note about the tool call's result to the [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode) classifier rather than to Claude. The note is for the classifier's review of later actions. The field requires Claude Code v2.1.236 or later.
 
 The example below tells the classifier where a query's output came from:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 83698f7457f8b8ee38ff3476a9b48a83dbda0c8fffaaa013127cf04942cc74da
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 5688c7faab789b27705ab8ebb8cca6b01f2b0d5deae8decb6328164d36d7266b
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Kueri penggunaan token dan biaya untuk organisasi Claude Console at
 ---
 
 <Tip>
-  **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, siapkan organisasi Anda di halaman [Organisasi](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
+  **Admin API tidak tersedia untuk organisasi pada paket Team claude.ai atau untuk akun Claude Console individu.** Jika perusahaan Anda juga memiliki organisasi Claude Console, Anda dapat menggunakan API tersebut dengan organisasi itu; lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys). Akun Console individu harus terlebih dahulu menyiapkan organisasi di halaman [Organisasi](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console.
 </Tip>
 
 Usage and Cost Analytics API melaporkan riwayat penggunaan token dan biaya untuk organisasi Anda, yang dirinci berdasarkan dimensi yang Anda pilih, seperti model, workspace, kunci API, atau pengguna atau akun layanan di balik setiap permintaan. Untuk organisasi Claude Console, data ini serupa dengan yang ditampilkan oleh halaman [Penggunaan](https://platform.claude.com/usage) dan [Biaya](https://platform.claude.com/cost) di Claude Console.

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: fcd7053b20f22e66dbd7b08c3661f0b678a9fe499e5a24e3acf0be1d7f9f54dc
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 16a0b3b401c36f1fac7ae43d2a00c99c636fde70fbf906703d5a637428ee909a
 ---
 
 > ## Documentation Index
@@ -473,7 +473,7 @@ Work on a feature in one terminal while Claude fixes a bug in another, without t
 claude --worktree feature-auth
 ```
 
-Run the same command with a different name in a second terminal to start an isolated parallel session. In a repository with no commits, the command fails with `Failed to resolve base branch "HEAD": git rev-parse failed`. See [Worktrees](https://code.claude.com/docs/en/worktrees.md) for cleanup, `.worktreeinclude`, and non-git VCS support. To monitor parallel sessions from one screen instead of separate terminals, see [background agents](https://code.claude.com/docs/en/agent-view.md).
+Run the same command with a different name in a second terminal to start an isolated parallel session. See [Worktrees](https://code.claude.com/docs/en/worktrees.md) for cleanup, `.worktreeinclude`, and non-git VCS support. To monitor parallel sessions from one screen instead of separate terminals, see [background agents](https://code.claude.com/docs/en/agent-view.md).
 
 ## Plan before editing
 

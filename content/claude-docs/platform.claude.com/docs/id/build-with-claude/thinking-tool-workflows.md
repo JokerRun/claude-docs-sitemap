@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: f9c6c2634f5aa4c14d80a18bcff2300859ceffca3ee9a84d2e12ed58ecedd3e2
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: f2ae72bd92a69ea8e3414aef39e98ccc80ae3dff60778cc12f9d75655e946607
 ---
 
 ---
@@ -21,9 +21,17 @@ Halaman ini menelusuri perjalanan bolak-balik “tool use” (penggunaan alat) d
 
 Setiap tautan mengarah ke pernyataan lengkapnya di halaman Thinking:
 
-* [Batasi pilihan alat ke `auto` atau `none` dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use): opsi `tool_choice` yang memaksa penggunaan alat akan mengembalikan error dengan “extended thinking” (pemikiran diperpanjang) manual (`thinking: {type: "enabled"}`). Pemikiran adaptif mendukung penggunaan alat yang dipaksakan, dengan pengecualian. Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, dan Claude Mythos 5.1 justru mengembalikan error 400. Jika penggunaan alat yang dipaksakan diterima, thinking akan dilewati: respons dimulai dengan pemanggilan alat.
+* [Batasi pilihan alat ke `auto` atau `none` dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use): dengan “extended thinking” (pemikiran diperpanjang) manual (`thinking: {type: "enabled"}`), opsi `tool_choice` yang memaksa penggunaan alat akan mengembalikan error.
+
+* [Periksa penggunaan alat yang dipaksakan pada model Anda dalam mode adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use): dengan pemikiran adaptif, hasilnya bergantung pada model:
+
+  * **Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, dan Claude Mythos 5.1:** Penggunaan alat yang dipaksakan mengembalikan error 400.
+  * **Model lainnya:** Penggunaan alat yang dipaksakan diterima, dan thinking akan dilewati. Respons dimulai dengan pemanggilan alat.
+
 * [Pertahankan satu konfigurasi thinking per giliran asisten](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use): loop penggunaan alat adalah satu giliran asisten, jadi ubah konfigurasi hanya di antara giliran.
+
 * [Kirim kembali blok thinking secara lengkap dan tanpa modifikasi](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks): saat Anda mengembalikan hasil alat, blok thinking dari pesan asisten harus ikut dikembalikan bersamanya.
+
 * [Gemakan pesan asisten persis seperti yang diterima](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks): membangun ulang pesan atau menyaring blok `redacted_thinking` akan memicu error 400.
 
 Contoh-contoh ini menggunakan pemikiran adaptif; pada model yang hanya mendukung pemikiran diperpanjang, ganti dengan `thinking: {type: "enabled", budget_tokens: N}`. Aturan perjalanan bolak-baliknya identik.
@@ -322,11 +330,11 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
 
     <CodeGroup exclude="shell:cURL, shell:CLI">
       <CodeGroupItem language="cURL">
-        Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+        Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
       </CodeGroupItem>
 
       <CodeGroupItem language="CLI">
-        Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+        Alur kerja ini memerlukan logika lebih dari sekadar satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
       </CodeGroupItem>
 
       ```python Python

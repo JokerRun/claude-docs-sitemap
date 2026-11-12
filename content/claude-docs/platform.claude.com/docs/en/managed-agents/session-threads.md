@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-threads
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 53cb80620f67ae506e9170c7feb40660aa18dcbe2387c11aead24f57b7ef3dfa
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: ec5155007fe93fcde7a2bc4bf9c0e64968296ef7427b3b3a1880a0b579f68e45
 ---
 
 ---
@@ -709,11 +709,11 @@ The following example goes inside the event loop of the [tool confirmation handl
 
 <CodeGroup exclude="shell:cURL, shell:CLI">
   <CodeGroupItem language="cURL">
-    This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    This workflow needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    This workflow needs more logic than a single shell command. Use the [Claude SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
+    This workflow needs more logic than a single shell command. Use the [Anthropic SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) to run it.
   </CodeGroupItem>
 
   ```python Python

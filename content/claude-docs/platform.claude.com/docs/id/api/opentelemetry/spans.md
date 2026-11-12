@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/opentelemetry/spans
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: c2b11ec9812c433b43e1f5413e1bf4f742e70033ca8017afc3ca358125af4c78
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: ab737bf9087a5ef5dbaea0bcdac793d9729e23a5c712ddd8d890fe0b0c33cf86
 ---
 
 ---
 title: Referensi span OpenTelemetry
 url: https://platform.claude.com/docs/id/api/opentelemetry/spans
-description: Span OpenTelemetry dan atribut span yang dipancarkan oleh Claude API dan Claude SDK.
+description: Span OpenTelemetry dan atribut span yang dipancarkan oleh Claude API dan Anthropic SDK.
 featureMetadata:
   topic:
     title: OpenTelemetry
@@ -36,10 +36,10 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: beta
+    Amazon Bedrock: beta
+    Amazon Bedrock (bedrock-runtime): beta
     Claude Platform on AWS: beta
     Claude Models on Google Cloud (Anthropic managed): beta
-    Amazon Bedrock: beta
-    Amazon Bedrock (InvokeModel): beta
     Claude Models on Google Cloud (Google managed): beta
     Microsoft Foundry: beta
 ---
@@ -48,7 +48,7 @@ featureMetadata:
   Ekspor OpenTelemetry sedang dalam tahap beta. Fitur ini disediakan berdasarkan perjanjian Anda dengan Anthropic, termasuk bagian Beta Services dari [Ketentuan Khusus Layanan](https://www.anthropic.com/legal/service-specific-terms). Nama span dan atribut dapat berubah selama masa beta.
 </Note>
 
-Untuk mendapatkan span, lihat [Menyiapkan OpenTelemetry dengan Claude SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk) dan [Menyiapkan OpenTelemetry dengan Claude API](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api).
+Untuk mendapatkan span, lihat [Menyiapkan OpenTelemetry dengan Anthropic SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk) dan [Menyiapkan OpenTelemetry dengan Claude API](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api).
 
 ## Nama dan jenis span
 

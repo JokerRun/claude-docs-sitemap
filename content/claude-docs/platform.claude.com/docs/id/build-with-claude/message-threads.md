@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/message-threads
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 5c8e636cfa93dbff57de53a4d4f176d51e721ff26949bbf2a3e7ede2fa9d6638
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 600e79380ef7f59dcea81251f4b9bb7232f1d5de9be54b0a43f92456a5821b92
 ---
 
 ---
@@ -235,7 +235,7 @@ Contoh ini memiliki dua giliran. Helper membuat thread pada giliran pertama dan 
   $second = $thread->send(['role' => 'user', 'content' => 'How long does standard shipping usually take?']);
 
   foreach ($second->content as $block) {
-      if ($block instanceof BetaTextBlock) {
+      if ($block instanceof \Anthropic\Beta\Messages\BetaTextBlock) {
           echo $block->text, PHP_EOL;
       }
   }
@@ -556,7 +556,7 @@ Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran k
   );
 
   foreach ($second->content as $block) {
-      if ($block instanceof BetaTextBlock) {
+      if ($block instanceof \Anthropic\Beta\Messages\BetaTextBlock) {
           echo $block->text, PHP_EOL;
       }
   }
@@ -609,7 +609,10 @@ Jika Anda menggunakan [fallback sisi server](https://platform.claude.com/docs/id
 
 Untuk mengubah field khusus create atau field tetap, mulai thread baru: kirim percakapan lengkap dalam permintaan create dengan nilai-nilai baru.
 
-Pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, mengubah `system` atau `tools` membuat blok `thinking` dan `redacted_thinking` yang sudah ada dalam percakapan menjadi tidak valid, dan permintaan create dapat mengembalikan error 400. Untuk menghindarinya, keluarkan semua blok `thinking` dan `redacted_thinking` dari percakapan yang Anda kirim. Model kemudian menjawab tanpa penalaran sebelumnya tersebut. Lihat [Apa yang dihitung sebagai edit](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#what-counts-as-an-edit), [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement), dan [Apa yang dilakukan API terhadap blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior).
+**Jika Anda mengubah `system` atau `tools`:** Pada model-model berikut, keluarkan semua blok `thinking` dan `redacted_thinking` dari percakapan yang Anda kirim dalam permintaan create baru: Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5. Model kemudian menjawab tanpa penalaran sebelumnya tersebut.
+
+* **Alasannya:** Mengubah `system` atau `tools` membuat blok `thinking` dan `redacted_thinking` yang sudah ada dalam percakapan menjadi tidak valid. Lihat [Apa yang dihitung sebagai edit](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#what-counts-as-an-edit).
+* **Jika Anda tetap mengirim blok tersebut:** Permintaan create dapat mengembalikan error 400. Apakah hal itu terjadi bergantung pada model dan akun Anda. Lihat [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement) dan [Apa yang dilakukan API terhadap blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior).
 
 Kirim hanya pesan-pesan baru pada permintaan continue. API tidak memeriksanya terhadap pesan-pesan yang sudah dimilikinya. Pesan yang Anda kirim ulang dapat muncul dua kali dalam percakapan, atau permintaan dapat mengembalikan error. Misalnya, permintaan continue yang dimulai dengan respons sebelumnya akan mengembalikan error.
 
@@ -822,8 +825,8 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](https://platfor
 ## Lihat juga
 
 * [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
-* [Streaming](https://platform.claude.com/docs/id/build-with-claude/streaming)
-* [Error](https://platform.claude.com/docs/id/api/errors)
+* [Streaming pesan](https://platform.claude.com/docs/id/build-with-claude/streaming)
+* [Error Claude API](https://platform.claude.com/docs/id/api/errors)
 
 ## Ketersediaan
 

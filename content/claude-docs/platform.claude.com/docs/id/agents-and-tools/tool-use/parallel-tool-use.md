@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 9baefff7159deb38a8f3f4bccbd1651fbfc8eec684fe59faf4b2408aa8bba651
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: d6256f8a26dbec36d2a15c7fddc51b15859043e182dd547f49b2a17c1b329238
 ---
 
 ---
@@ -32,9 +32,9 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: stable
-    Claude Platform on AWS: stable
     Amazon Bedrock: stable
-    Amazon Bedrock (InvokeModel): stable
+    Amazon Bedrock (bedrock-runtime): stable
+    Claude Platform on AWS: stable
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
 ---
@@ -70,11 +70,11 @@ Skrip berikut mengirim permintaan yang seharusnya memicu panggilan alat paralel,
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
-    Pengujian end-to-end ini membutuhkan logika lebih banyak daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya. Permintaan yang dikirimnya adalah permintaan penggunaan alat standar dengan dua alat yang didefinisikan.
+    Pengujian end-to-end ini membutuhkan logika lebih banyak daripada satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya. Permintaan yang dikirimnya adalah permintaan penggunaan alat standar dengan dua alat yang didefinisikan.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Pengujian end-to-end ini membutuhkan logika lebih banyak daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
+    Pengujian end-to-end ini membutuhkan logika lebih banyak daripada satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk menjalankannya.
   </CodeGroupItem>
 
   ```python Python
@@ -1165,7 +1165,7 @@ Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_to
 
 ### Tepat satu panggilan alat
 
-Ketika tipe `tool_choice` adalah `any` atau `tool`, mengatur `disable_parallel_tool_use: true` berarti Claude memanggil tepat satu alat. Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1 tidak mendukung tipe `tool_choice` ini (lihat [Memaksa penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use)). Contoh berikut menggunakan `any`. Field yang sama berfungsi dengan `tool`:
+Ketika tipe `tool_choice` adalah `any` atau `tool`, mengatur `disable_parallel_tool_use: true` berarti Claude memanggil tepat satu alat. Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, dan Claude Sonnet 5.5 tidak mendukung tipe `tool_choice` ini (lihat [Memaksa penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use)). Contoh berikut menggunakan `any`. Field yang sama berfungsi dengan `tool`:
 
 <CodeGroup>
   ```bash cURL
@@ -1486,11 +1486,11 @@ Untuk memverifikasi bahwa panggilan alat paralel berfungsi:
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
-    Untuk mengukur penggunaan alat paralel, kode Anda menganalisis respons yang sudah dikumpulkannya. Ini membutuhkan logika lebih banyak daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk ini.
+    Untuk mengukur penggunaan alat paralel, kode Anda menganalisis respons yang sudah dikumpulkannya. Ini membutuhkan logika lebih banyak daripada satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk ini.
   </CodeGroupItem>
 
   <CodeGroupItem language="CLI">
-    Untuk mengukur penggunaan alat paralel, kode Anda menganalisis respons yang sudah dikumpulkannya. Ini membutuhkan logika lebih banyak daripada satu perintah shell. Gunakan [Claude SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk ini.
+    Untuk mengukur penggunaan alat paralel, kode Anda menganalisis respons yang sudah dikumpulkannya. Ini membutuhkan logika lebih banyak daripada satu perintah shell. Gunakan [Anthropic SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) untuk ini.
   </CodeGroupItem>
 
   ```python Python
@@ -1638,9 +1638,9 @@ Penggunaan alat paralel tersedia atau dalam versi beta, tergantung pada API.
 * Ketersediaan: Aktif secara default
 * Penggunaan: Untuk menonaktifkannya, atur `disable_parallel_tool_use: true` di dalam `tool_choice`.
 
-| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (InvokeModel)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tersedia | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 

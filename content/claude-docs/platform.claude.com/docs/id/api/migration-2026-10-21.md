@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/migration-2026-10-21
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 85940b2e23398005ef6f5aab1b861ad52fad8bffc0fe8daf22f8310ab99e74dd
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: ec3bdff916a9cbd623a0cce12a9a4f7b2e5e29a800e36be164355ed98862fd86
 ---
 
 ---
@@ -94,7 +94,7 @@ Cara termudah untuk meningkatkan kode Anda
     </Tabs>
 
     <Warning>
-      Di Amazon Bedrock, `2026-10-21` hanya tersedia untuk model Claude 4.7 dan yang lebih baru. Jika Anda memanggil model lama di Bedrock, yang tercantum dalam [Claude di Amazon Bedrock (Opus 4.6 dan sebelumnya)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), tetaplah pada versi SDK yang Anda gunakan saat ini, atau, jika Anda mengatur versi API sendiri, tetap kirim versi yang Anda kirim saat ini. Untuk memindahkan panggilan tersebut ke `2026-10-21`, alihkan terlebih dahulu ke model Claude 4.7 atau yang lebih baru.
+      Di Amazon Bedrock, `2026-10-21` hanya tersedia untuk model Claude 4.7 dan yang lebih baru. Anda mungkin memanggil model bernomor 4.6 atau lebih rendah di Bedrock (lihat [Claude di Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)). Jika demikian, pertahankan panggilan tersebut pada versi API yang digunakannya saat ini. Jika Anda menggunakan SDK, tetaplah pada versi SDK yang Anda gunakan saat ini. Jika Anda mengatur versi API sendiri, tetap kirim versi yang Anda kirim saat ini. Untuk memindahkan panggilan tersebut ke `2026-10-21`, alihkan terlebih dahulu ke model Claude 4.7 atau yang lebih baru.
     </Warning>
 
     Rilis peningkatan ini bersamaan dengan perbaikan Anda dari langkah berikutnya.

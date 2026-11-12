@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: d4be70a8136856141b44d61918a0483a023c6ccd81d006d0d8b7f3c3efe7e3be
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: da0ddc82bc31f5748380b53afc5fe915652f0fdc97f8e2a924f9d584b4da02a5
 ---
 
 ---
@@ -36,7 +36,7 @@ featureMetadata:
     Microsoft Foundry: beta
 ---
 
-Lewati halaman ini kecuali Anda mengirim “thinking blocks” (blok pemikiran) kembali ke model dengan [“preserved thinking” (pemikiran yang dipertahankan)](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking) dan mempertahankan giliran setelah blok “compaction” (pemadatan). “Kept turns” (giliran yang dipertahankan) adalah giliran yang mengikuti blok tersebut: giliran terbaru yang Anda keluarkan dari permintaan compaction, seperti dalam [Compaction yang mempertahankan giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/compaction-keep-recent-turns), atau giliran yang tiba saat ringkasan sedang ditulis, seperti dalam [Compaction di latar belakang](https://platform.claude.com/docs/id/build-with-claude/compaction-background).
+Lewati halaman ini kecuali Anda mengirim “thinking blocks” (blok pemikiran) kembali ke model dengan [“preserved thinking” (pemikiran yang dipertahankan)](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking) dan mempertahankan giliran setelah blok “compaction” (pemadatan). “Kept turns” (giliran yang dipertahankan) adalah giliran yang mengikuti blok tersebut. Giliran tersebut adalah giliran terbaru yang Anda keluarkan dari permintaan compaction, seperti dalam [Compaction yang mempertahankan giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/compaction-keep-recent-turns), atau giliran yang tiba saat API sedang menulis ringkasan, seperti dalam [Compaction di latar belakang](https://platform.claude.com/docs/id/build-with-claude/compaction-background).
 
 Model dengan pemikiran yang dipertahankan memeriksa blok thinking sebelumnya terhadap percakapan yang menghasilkannya. Ringkasan menggantikan sebagian percakapan tersebut, tetapi pemeriksaan menerima pertukaran itu ketika API yang menulis ringkasannya, sehingga thinking dalam giliran yang dipertahankan dapat tetap valid.
 
@@ -46,9 +46,9 @@ Blok thinking dalam giliran yang dipertahankan tetap valid selama semua hal beri
 
 * **Permintaan compaction berjalan pada model dengan pemikiran yang dipertahankan.** Syarat ini mencakup setiap permintaan compaction sejak blok thinking dihasilkan, bukan hanya yang terbaru. Salah satu cara untuk memenuhinya adalah mengirim setiap permintaan compaction ke model yang digunakan oleh percakapan.
 * **Giliran yang dipertahankan langsung mengikuti pesan yang diringkas, dan Anda mengirimnya tanpa perubahan.** Kirim setiap pesan yang dipertahankan persis seperti yang ada dalam riwayat Anda. Jangan melewatkan atau menambahkan pesan di antara pesan terakhir yang diringkas dan pesan pertama yang dipertahankan. Pesan pertama yang dipertahankan juga harus memiliki peran yang berbeda dari pesan terakhir yang diringkas, dan tidak boleh berupa pesan `role: "system"` di tengah percakapan. Jika tidak, API akan menggabungkannya ke dalam pesan terakhir yang diringkas. Salah satu cara untuk mendapatkan pesan pertama yang dipertahankan dengan benar adalah melakukan compaction tepat pada `messages` dari permintaan yang sudah Anda kirim. Giliran yang dipertahankan kemudian dimulai dengan balasan Claude terhadap permintaan tersebut.
-* **`system` dan `tools` yang tidak ditandai `defer_loading: true` tidak berubah.** Keduanya sama pada permintaan compaction seperti pada permintaan yang menghasilkan thinking yang dipertahankan, dan tetap sama pada permintaan-permintaan berikutnya. [Mengubah prompt sistem atau alat](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#change-the-system-prompt-or-tools) menjelaskan cara mengubahnya dengan aman.
+* **`system` dan `tools` tidak berubah.** Keduanya sama pada permintaan compaction seperti pada permintaan yang menghasilkan thinking yang dipertahankan, dan tetap sama pada permintaan-permintaan berikutnya. Pengecualiannya adalah alat yang ditandai `defer_loading: true` yang belum direferensikan oleh apa pun dalam percakapan. [Mengubah prompt sistem atau alat](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#change-the-system-prompt-or-tools) menjelaskan cara mengubahnya dengan aman.
 
-Jika suatu kondisi tidak terpenuhi, tidak ada yang gagal saat Anda melakukan compaction, dan API tetap menerima blok compaction pada permintaan berikutnya. Yang gagal adalah pemikiran yang dipertahankan, pada permintaan berikutnya yang pertama kali mengirimkannya. [Apa yang dilakukan API terhadap blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior) menjelaskan apa yang terjadi saat itu, dan [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement) membahas permintaan yang tidak mengatur field tersebut, termasuk item Message Batches.
+Jika suatu kondisi tidak terpenuhi, API tetap menerima blok compaction pada permintaan berikutnya. Yang gagal adalah pemikiran yang dipertahankan, pada permintaan berikutnya yang pertama kali mengirimkannya. Permintaan compaction menjalankan pemeriksaan yang sama pada blok thinking yang dibawanya, sehingga `system` atau `tools` yang berubah, atau pesan yang diedit, juga dapat membuat permintaan tersebut gagal. [Apa yang dilakukan API terhadap blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior) menjelaskan apa yang terjadi saat itu, dan [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement) membahas permintaan yang tidak mengatur field tersebut, termasuk item Message Batches.
 
 ## Melakukan compaction lagi tanpa merusak thinking yang lebih lama
 
@@ -66,7 +66,30 @@ Untuk mengubah `system` atau `tools` tanpa membuat thinking yang dipertahankan m
 
 Untuk menambahkan instruksi atau mengubah alat yang tersedia tanpa menyentuh `system` atau `tools`, tambahkan perubahan tersebut ke `messages`, seperti yang dijelaskan dalam [Melakukan perubahan tanpa mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#replace-prefix-edits).
 
-Pesan sistem di tengah percakapan di dalam giliran yang diringkas juga ikut diringkas, sehingga instruksi teksnya berhenti berlaku setelah pertukaran. Level [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort#change-effort-mid-conversation-beta) yang ditetapkannya juga tidak terbawa: hingga pesan berikutnya menetapkan level, giliran berjalan pada `output_config.effort` tingkat atas permintaan, atau default model jika Anda tidak menetapkannya. Untuk menjaga instruksi atau level effort tetap berlaku, nyatakan kembali dalam pesan `role: "system"` tepat setelah giliran `user` baru pertama yang mengikuti giliran yang dipertahankan. Perubahan alat di dalam giliran tersebut terbawa dengan sendirinya ketika permintaan compaction juga membawa `inline-tools-2026-09-15`: blok yang dikembalikan mencatat efek bersihnya dalam field `tool_changes`, jadi kirim kembali blok tersebut tanpa modifikasi. Jika blok tidak memiliki field `tool_changes`, nyatakan kembali perubahan alat tersebut dengan cara yang sama. Pesan sistem yang ditempatkan di antara blok dan giliran yang dipertahankan akan merusak thinking-nya.
+Giliran yang diringkas dapat mencakup pesan sistem di tengah percakapan, yaitu entri `role: "system"` dalam `messages` (lihat [Pesan sistem dan perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages)). Pesan-pesan tersebut ikut diringkas bersama bagian lainnya. Apa yang terjadi selanjutnya bergantung pada apa yang dibawa oleh pesan tersebut:
+
+* **Instruksi teks** berhenti berlaku.
+* **Level [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message)** juga berhenti berlaku. Giliran kemudian berjalan pada `output_config.effort` tingkat atas permintaan. Jika permintaan tidak menetapkannya, giliran berjalan pada default model. Pesan berikutnya dapat menetapkan level lagi.
+* **Perubahan alat** dapat terbawa. Lihat langkah-langkah berikut.
+
+Untuk membawa perubahan alat:
+
+1. Kirim header beta `inline-tools-2026-09-15` pada permintaan compaction. Blok yang dikembalikan kemudian mencatat perubahan tersebut dalam field `tool_changes`.
+2. Kirim kembali blok tersebut tanpa modifikasi. API kemudian menerapkan perubahan yang tercatat pada setiap permintaan yang menyertakan blok tersebut. Jika field tersebut tidak ada, API menerima blok tersebut tetapi tidak menerapkan apa pun.
+3. Kirim header yang sama pada setiap permintaan yang menyertakan blok tersebut.
+
+Jika giliran yang diringkas mengubah alat Anda dan blok yang dikembalikan tidak memiliki field `tool_changes`, perubahan tersebut tidak tercatat. Nyatakan kembali perubahan tersebut, seperti yang dijelaskan berikut.
+
+Anda dapat menyatakan kembali instruksi, level effort, atau perubahan alat. Letakkan dalam pesan `role: "system"` di akhir permintaan Anda berikutnya, tepat setelah pesan `user`. `messages` permintaan tersebut kemudian berjalan dengan urutan ini:
+
+1. Blok compaction.
+2. Giliran yang dipertahankan, jika ada.
+3. Pesan `user` Anda.
+4. Pesan `role: "system"`.
+
+Pada permintaan berikutnya, biarkan entri-entri tersebut apa adanya, dan tambahkan giliran baru setelah pesan sistem.
+
+Jangan letakkan pesan sistem sebelum atau di antara giliran yang dipertahankan. Di posisi itu, pesan sistem akan membuat setiap blok thinking yang dipertahankan setelahnya menjadi tidak valid.
 
 ## Memeriksa bahwa thinking yang dipertahankan tetap valid
 
@@ -81,17 +104,25 @@ Field `prefix_mismatch_behavior` memerlukan header beta `thinking-binding-contro
 
 Program berikut menjalankan keempat langkah tersebut. Program ini mencetak berapa banyak blok thinking yang ada dalam giliran yang dipertahankan dan berapa banyak entri yang dimiliki `input_transformations`; tidak adanya entri berarti thinking yang dipertahankan tetap valid:
 
-<CodeGroup exclude="shell">
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika yang lebih banyak daripada satu perintah shell. Gunakan Anthropic SDK untuk menjalankannya.
+  </CodeGroupItem>
+
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika yang lebih banyak daripada satu perintah shell. Gunakan Anthropic SDK untuk menjalankannya.
+  </CodeGroupItem>
+
   ```python Python
   from anthropic.types.beta import BetaMessageParam, BetaThinkingConfigParam
 
   client = anthropic.Anthropic()
 
-  # Claude Fable 5.1 adalah model pertama yang memeriksa thinking yang dikirim balik terhadap percakapan.
+  # Claude Fable 5.1 adalah model pertama yang memeriksa thinking yang dikirim kembali terhadap percakapan.
   MODEL = "claude-fable-5-1"
   BETAS = ["compact-2026-09-04", "thinking-binding-controls-2026-08-01"]
   SYSTEM = "You help plan a recipe app's release. Keep answers short."
-  # Dengan "error", blok thinking yang gagal pemeriksaan membuat permintaan gagal dengan kode 400.
+  # Dengan "error", blok thinking yang gagal dalam pemeriksaan membuat permintaan gagal dengan 400.
   THINKING: BetaThinkingConfigParam = {
       "type": "adaptive",
       "block_binding": {"prefix_mismatch_behavior": "error"},
@@ -141,7 +172,7 @@ Program berikut menjalankan keempat langkah tersebut. Program ini mencetak berap
   if summary.stop_reason != "compaction":
       raise SystemExit(f"No summary: {summary.stop_reason}")
 
-  # 3. Letakkan blok di depan giliran yang dipertahankan, lalu ajukan pertanyaan berikutnya.
+  # 3. Letakkan blok di depan giliran yang dipertahankan lalu ajukan pertanyaan berikutnya.
   history = [
       {"role": "assistant", "content": summary.content},
       *history[2:],
@@ -156,8 +187,8 @@ Program berikut menjalankan keempat langkah tersebut. Program ini mencetak berap
       messages=history,
   )
 
-  # 4. Respons 200 tanpa blok yang dibuang berarti thinking yang dipertahankan tetap berlaku.
-  print(f"Dropped thinking blocks: {len(third.input_transformations)}")
+  # 4. Respons 200 tanpa blok yang dibuang berarti thinking yang dipertahankan tetap valid.
+  print(f"Dropped thinking blocks: {len(third.input_transformations or [])}")
   ```
 
   ```typescript TypeScript

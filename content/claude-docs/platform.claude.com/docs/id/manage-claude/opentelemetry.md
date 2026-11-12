@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: de841a15c03e9c41f16c48f4cab8f239d09a433bbfda65db0189d9ccb4fd85ce
+fetched_at: 2026-11-12T02:13:38.637181Z
+sha256: 3ac3041c993d01aee96f3552d8afeb2cdf7d1aba9657599378bfa09dff4a5542
 ---
 
 ---
 title: Tracing OpenTelemetry untuk Claude API
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry
-description: Lacak permintaan Messages API, penggunaan alat, dan sesi Managed Agents Anda dengan span OpenTelemetry dari Claude SDK dan Claude API.
+description: Lacak permintaan Messages API, penggunaan alat, dan sesi Managed Agents Anda dengan span OpenTelemetry dari Anthropic SDK dan Claude API.
 featureMetadata:
   topic:
     title: OpenTelemetry
@@ -36,10 +36,10 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: beta
+    Amazon Bedrock: beta
+    Amazon Bedrock (bedrock-runtime): beta
     Claude Platform on AWS: beta
     Claude Models on Google Cloud (Anthropic managed): beta
-    Amazon Bedrock: beta
-    Amazon Bedrock (InvokeModel): beta
     Claude Models on Google Cloud (Google managed): beta
     Microsoft Foundry: beta
 ---
@@ -65,7 +65,7 @@ Anda dapat menyiapkan tracing SDK, tracing API, atau keduanya. Siapkan keduanya 
 Biarkan Claude Code menyiapkan fitur ini untuk Anda
 
 ```text
-Siapkan tracing OpenTelemetry dengan Claude API dan Claude SDK
+Siapkan tracing OpenTelemetry dengan Claude API dan Anthropic SDK
 ```
 
 <CardGroup cols={3}>
