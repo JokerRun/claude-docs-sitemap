@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 6a207dda82c3ba1b7b82709a0e44fb00fbe6d40740f842e2dbb4592b36b191f7
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 48a6354ac7f7efab50bca5428acc110d7ed19dea19d813313d17e86c74c906c6
 ---
 
 ---
@@ -450,6 +450,8 @@ Penggunaan browser mengikuti [harga penggunaan alat](https://platform.claude.com
 ## Harga Claude Managed Agents
 
 [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) ditagih berdasarkan dua dimensi: token dan runtime sesi.
+
+Untuk harga [Claude Managed Agents yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted), hubungi tim akun Anthropic Anda.
 
 ### Token
 

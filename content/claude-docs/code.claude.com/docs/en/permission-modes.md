@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permission-modes
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 5393e96425fed2a604976c1c987446fc8859b436d3a92c01091d740ec58124c6
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 823ae5f9a434fde8c0e4a697113d2b5913a82590f8cf846f616ae40adeeec8c1
 ---
 
 > ## Documentation Index
@@ -311,7 +311,7 @@ Enter plan mode by pressing `Shift+Tab` or prefixing a single prompt with `/plan
 claude --permission-mode plan
 ```
 
-Press `Shift+Tab` again to leave plan mode without approving a plan.
+With no approval prompt open, press `Shift+Tab` again to leave plan mode. At the approval prompt, press `Esc` first, since pressing `Shift+Tab` there approves the plan.
 
 ### Review and approve a plan
 

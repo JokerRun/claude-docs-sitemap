@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 67da9d557fbd4bab22d4d9f6e49c25f7a9dfe6da339195cd8944d4625a8dffb2
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 96678f18f7a28579173f54a57fc2c261f28b5816572e303a83d8c7c409b16e67
 ---
 
 ---
@@ -28,24 +28,24 @@ Prompt Claude Haiku 4.5 yang sudah ada seharusnya berkinerja baik tanpa perubaha
 <Note>
   Untuk perubahan API yang merusak kompatibilitas saat bermigrasi dari Claude Haiku 4.5, lihat [Panduan migrasi Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide).
 
-  Beberapa bagian di halaman ini menyarankan teks untuk ditambahkan ke “system prompt” (prompt sistem) Anda. Tambahkan hanya ke percakapan baru. Permintaan yang mengirimkan kembali blok thinking setelah `system` berubah dapat mengembalikan error 400, sehingga percakapan tersimpan yang dilanjutkan dengan prompt sistem baru dapat gagal. Untuk mengubah instruksi di tengah percakapan, [letakkan instruksi tersebut di giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#changing-context). Di Claude API, Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), dan Claude Models on Google Cloud (Google managed), Anda dapat sebagai gantinya [menambahkan pesan sistem ke percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#new-instructions).
+  Beberapa bagian di halaman ini menyarankan teks untuk ditambahkan ke “system prompt” (prompt sistem) Anda. Tambahkan hanya ke percakapan baru. Jika Anda melanjutkan percakapan tersimpan dengan prompt sistem baru dan mengirimkan kembali blok thinking-nya, permintaan dapat mengembalikan error 400. Untuk mengubah instruksi di tengah percakapan, [letakkan instruksi tersebut di giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/change-tools-or-instructions#changing-context). Di [platform yang mendukung pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#feature-availability), Anda dapat sebagai gantinya [menambahkan pesan sistem ke percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/change-tools-or-instructions#new-instructions).
 </Note>
 
 ## Gunakan effort untuk mengontrol thinking
 
-[Effort](https://platform.claude.com/docs/id/build-with-claude/effort) adalah kontrol utama untuk seberapa banyak Claude Haiku 5.5 berpikir. Effort menggantikan anggaran thinking (`budget_tokens`) yang digunakan Claude Haiku 4.5, sehingga tidak ada pengaturan lama yang perlu dibawa. Bandingkan dua atau tiga tingkat berikut pada eval Anda sendiri:
+[Effort](https://platform.claude.com/docs/id/build-with-claude/effort) adalah kontrol utama untuk seberapa banyak Claude Haiku 5.5 berpikir. Claude Haiku 4.5 menggunakan anggaran thinking (`budget_tokens`) sebagai gantinya, sehingga tidak ada pengaturan effort yang perlu dibawa. Pada Claude Haiku 5.5, permintaan yang menetapkan `budget_tokens` akan mengembalikan error 400. Bandingkan dua atau tiga tingkat berikut pada eval Anda sendiri:
 
 * `low` adalah tingkat termurah dan tercepat. Gunakan untuk chat, tugas alat yang singkat, dan permintaan sederhana bervolume tinggi. Dalam prompt agen yang panjang, model lebih mungkin melewatkan pencarian, berhenti lebih awal, atau melewatkan pemeriksaan pada tingkat ini.
 * `medium` adalah default. Mulailah dari sini untuk sebagian besar pekerjaan, termasuk coding agentik.
 * `high` cocok untuk pekerjaan berbasis pengetahuan, tugas agen yang lebih panjang, dan kepatuhan instruksi yang ketat.
 * `xhigh` dan `max` ditujukan untuk pekerjaan di mana peningkatan kualitas pada eval Anda sepadan dengan biayanya. Thinking dan balasan menjadi jauh lebih panjang pada tingkat ini, jadi jalankan juga eval Anda pada Claude Sonnet 5.5 dan bandingkan kinerja, biaya, dan kecepatannya.
 
-Claude Haiku 5.5 adalah model Haiku pertama dengan tingkat effort. Thinking bekerja sebagai berikut:
+Thinking bekerja sebagai berikut:
 
 * Thinking aktif secara default dan dihitung terhadap `max_tokens`, yang dapat mencapai hingga 128.000. Nilai `max_tokens` yang disesuaikan untuk permintaan Claude Haiku 4.5 yang berjalan tanpa thinking dapat memotong balasan, jadi sisakan ruang untuk thinking.
 * Untuk mengurangi thinking, turunkan tingkat effort. Dalam pengujian Anthropic, menginstruksikan model di dalam prompt untuk menjawab secara langsung tidak menghentikannya dari berpikir. Anda juga dapat menonaktifkan thinking dengan `thinking: {"type": "disabled"}`. Ini hanya berfungsi pada `low`, `medium`, dan `high`. Pada `xhigh` dan `max`, permintaan akan mengembalikan error 400.
 * Pada effort `xhigh` dalam obrolan multi-giliran, model terkadang menulis seluruh jawabannya di dalam thinking-nya dan mengakhiri giliran tanpa teks yang terlihat. Jika Anda melihat perilaku ini, periksa setiap respons untuk balasan yang kosong.
-* Mengubah nilai `effort` tingkat atas di antara permintaan akan membatalkan cache prompt untuk pesan-pesan dalam percakapan. Jika platform Anda mendukungnya, Anda dapat mengubah tingkat effort di tengah percakapan dengan perubahan [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message), yang mempertahankan cache. Sebuah perubahan berlaku untuk setiap giliran berikutnya hingga digantikan oleh perubahan lain. Fitur ini memerlukan header beta `mid-conversation-output-config-2026-07-01` dan pemikiran adaptif, yang merupakan default. Dengan thinking dinonaktifkan, perubahan effort per pesan akan mengembalikan error 400.
+* Mengubah nilai `output_config.effort` tingkat atas di antara permintaan akan membatalkan cache prompt untuk pesan-pesan dalam percakapan. Di [platform yang didukung](https://platform.claude.com/docs/id/build-with-claude/effort-per-message#feature-availability), Anda dapat mengubah tingkat effort di tengah percakapan dengan perubahan [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message), yang mempertahankan cache. Sebuah perubahan berlaku untuk setiap giliran berikutnya hingga digantikan oleh perubahan lain. Fitur ini memerlukan header beta `mid-conversation-output-config-2026-07-01` dan pemikiran adaptif, mode thinking default. Dengan thinking dinonaktifkan, perubahan effort per pesan akan mengembalikan error 400.
 
 ## Hasil pencarian yang akurat
 
@@ -55,7 +55,7 @@ Saat Anda memberikan alat pencarian kepada Claude Haiku 5.5, berikan juga tangga
 The current date is {{current_date}}.
 ```
 
-Render tanggal sekali, saat percakapan dimulai, dan kirim `system` dan `tools` yang sama pada setiap permintaan berikutnya dalam percakapan tersebut (lihat [Pertahankan giliran sebelumnya tidak berubah](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#keep-earlier-turns-unchanged)). Ketika percakapan berlanjut pada hari berikutnya, [berikan tanggal baru di giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#changing-context) sebagai gantinya.
+Render tanggal sekali, saat percakapan dimulai, dan kirim `system` dan `tools` yang sama pada setiap permintaan berikutnya dalam percakapan tersebut (lihat [Pertahankan giliran sebelumnya tidak berubah](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#keep-earlier-turns-unchanged)). Ketika percakapan berlanjut pada hari berikutnya, [berikan tanggal baru di giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/change-tools-or-instructions#changing-context) sebagai gantinya.
 
 Model juga terkadang memerlukan dorongan tambahan untuk melakukan pencarian. Hal ini paling sering terjadi pada effort `low` dan dengan prompt sistem yang panjang. Untuk mengatasinya, tambahkan teks ini tepat setelah tanggal:
 
@@ -139,6 +139,6 @@ Claude Haiku 5.5 menjalankan “safety classifiers” (pengklasifikasi keamanan)
 * `bio`: permintaan dapat memungkinkan bahaya biologis, seperti metode laboratorium yang berbahaya. Pertanyaan kesehatan sehari-hari dan pertanyaan edukatif tidak terpengaruh. Jika pengklasifikasi `bio` memblokir pekerjaan ilmu hayati di organisasi Anda, Anda dapat mendaftar ke [Life Sciences Verification Program](https://www.anthropic.com/news/life-sciences-verification-program).
 * `general_harms`: permintaan termasuk dalam area kebijakan penggunaan selain ketiga kategori sebelumnya. Pekerjaan yang tidak berbahaya juga dapat memicu kategori ini.
 
-Jika Anda beralih dari Claude Haiku 4.5, penolakan ini merupakan hal baru.
+Claude Haiku 4.5 tidak mengembalikan penolakan ini.
 
 Claude Haiku 5.5 tidak memiliki [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback). Jika permintaan ditolak, tangani `stop_reason: "refusal"` di klien Anda. Mengirim permintaan yang sama ke Claude Haiku 5.5 lagi biasanya akan mengembalikan penolakan lain.

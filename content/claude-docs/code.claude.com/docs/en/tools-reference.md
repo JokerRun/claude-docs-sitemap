@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/tools-reference
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 03aefabd00df3af010667bfef9178529b8f64fe89e9beac03ad40c3c7362f4c8
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: a43b17bed39226e902e122e3a0298ca45f5e8ab14a82dba0703903afcf6f47e2
 ---
 
 > ## Documentation Index
@@ -133,8 +133,6 @@ To [limit what a subagent can reach](https://code.claude.com/docs/en/sub-agents.
 ## AskUserQuestion tool behavior
 
 Claude uses `AskUserQuestion` to ask you multiple-choice questions when it needs a decision or a clarification. Answer by picking an option, or type your own text through the `Other` row or the notes field.
-
-When you answer by typing your own text, Claude Code relays the answer with neutral wording so Claude follows what you wrote, including a request to wait or explain first.
 
 ### Question auto-continue timeout
 
@@ -532,7 +530,7 @@ The PowerShell tool has the following known limitations during the preview:
 
 ## Read tool behavior
 
-The Read tool takes a file path and returns the contents with line numbers. Claude is instructed to always pass absolute paths.
+The Read tool takes a file path and returns the contents with line numbers.
 
 Reading an empty file returns a notice that the file exists but its contents are empty, and an `offset` past the last line returns a notice giving the file's line count.
 

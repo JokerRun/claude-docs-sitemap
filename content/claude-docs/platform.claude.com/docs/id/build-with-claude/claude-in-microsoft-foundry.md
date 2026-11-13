@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 4d4ccce09fab7a9a255bc407a97274926fa94979cb4e1dd6b6643dc04857881f
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 4a827e0b24e9f704e9c9d607e975393f0e1ef2c2451bf41689a469743bcdf79c
 ---
 
 ---
@@ -25,8 +25,6 @@ Model Claude di Microsoft Foundry tersedia dalam dua opsi hosting. Anda memilih 
 | Ketersediaan model        | Model terbaru dalam keluarga Opus, Sonnet, dan Haiku                     | Semua model Claude yang tersedia di Microsoft Foundry                                                                                                                                                |
 | Jenis deployment          | Global Standard, US Data Zone Standard                                   | Global Standard                                                                                                                                                                                      |
 | Direkomendasikan untuk    | Sebagian besar beban kerja                                               | [Akses ke fitur atau model yang belum di-hosting di Azure](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure) |
-
-Claude Sonnet 5.5 hanya mendukung deployment Global Standard.
 
 <Note>
   Anthropic bertindak sebagai pemroses independen untuk Microsoft. Pelanggan yang menggunakan Claude melalui Microsoft Foundry tunduk pada ketentuan penggunaan data Anthropic. Untuk deployment yang di-hosting di Azure, prompt dan completion tetap berada di dalam Azure. Hanya metadata penggunaan dan konten yang ditandai oleh sistem keamanan Anthropic yang keluar ke Anthropic. Anthropic tetap memberikan komitmen keamanan dan datanya.
@@ -152,7 +150,7 @@ Setelah membuat sumber daya, deploy model Claude agar tersedia untuk panggilan A
 5. Konfigurasikan deployment:
 
    * **Deployment name:** Default-nya adalah ID model, tetapi Anda dapat menyesuaikannya (misalnya, `my-claude-deployment`). Nama deployment tidak dapat diubah setelah dibuat.
-   * **Region scope:** Pilih **Global**, atau untuk model yang di-hosting di Azure, **Data Zone**. Memilih **Data Zone** akan membuat deployment US Data Zone Standard, yang menjaga inferensi tetap di dalam Amerika Serikat dan setara dengan menetapkan [`inference_geo: "us"`](https://platform.claude.com/docs/id/manage-claude/data-residency#inference-geo) pada Claude API. Untuk Claude Sonnet 5.5, pilih **Global**.
+   * **Region scope:** Pilih **Global**, atau untuk model yang di-hosting di Azure, **Data Zone**. Memilih **Data Zone** akan membuat deployment US Data Zone Standard, yang menjaga inferensi tetap di dalam Amerika Serikat dan setara dengan menetapkan [`inference_geo: "us"`](https://platform.claude.com/docs/id/manage-claude/data-residency#inference-geo) pada Claude API.
    * **Model version:** Perluas **Model version settings** dan pilih versi dari menu dropdown **Model version**. Setiap [opsi hosting](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#hosting-options) dicantumkan sebagai versi model terpisah, diberi label dengan opsi hostingnya (misalnya, versi 1 untuk Hosted on Anthropic, versi 2 untuk Hosted on Azure).
 
 6. Pilih **Deploy** dan tunggu hingga provisioning selesai.
@@ -595,7 +593,7 @@ Autentikasi Entra ID memungkinkan Anda mengelola akses dengan Azure RBAC, berint
   require "anthropic"
 
   # Dapatkan token Microsoft Entra ID dari Azure CLI. Klien memanggil lambda
-  # ini untuk setiap permintaan dan percobaan ulang, jadi di produksi, cache token
+  # ini untuk setiap permintaan dan percobaan ulang, jadi di produksi, simpan token di cache
   # hingga mendekati waktu kedaluwarsanya.
   token_provider = lambda do
     `az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv`

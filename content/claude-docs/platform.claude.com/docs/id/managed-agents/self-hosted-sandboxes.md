@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: c2397d037acf2ed342f11ec41e6ab8fe1ff57bff2d679271bdf7fc86aff35c10
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 0ea0056b4417a01a712f2b8e5f36936fa757fedbaaee6fa0bc9f7930595cbe15
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
+    note: Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya.
   supportedModels:
     - claude-fable-5-2
     - claude-mythos-5-2
@@ -45,6 +45,8 @@ featureMetadata:
 ---
 
 “Self-hosted sandboxes” (sandbox yang di-host sendiri) memindahkan eksekusi alat agen dari sandbox cloud yang dikelola Anthropic ke infrastruktur yang Anda kendalikan, sementara Anthropic tetap menjalankan agen. Untuk mempelajari apa artinya dan memutuskan apakah ini cocok untuk agen Anda, lihat [Memilih lingkungan agen](https://platform.claude.com/docs/id/managed-agents/choosing-an-environment).
+
+Untuk menjalankan seluruh layanan Managed Agents di infrastruktur Anda sendiri, bukan hanya sandbox-nya, lihat [Claude Managed Agents yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted).
 
 ## Cara kerjanya
 
@@ -681,10 +683,10 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                          | HIPAA                                                                               |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                               | Tidak layak                                                                         |
-| Detail | Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. | Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. |
+| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:
 

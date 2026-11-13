@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: d09b172b56558006be6213bb7decec61fcb90040473b0d3915e77e189f716a23
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: fec4d53dd932ca2882a64273283bfafe0205011af67b8fb3621099e6791a6020
 ---
 
 > ## Documentation Index
@@ -322,7 +322,7 @@ Here's the formatter rule as a `PostToolUse` hook. It runs after every `Edit` or
       {
         "matcher": "Edit|Write",
         "hooks": [
-          { "type": "command", "command": "npx prettier --write --ignore-unknown \"$(jq -r '.tool_input.file_path')\"" }
+          { "type": "command", "command": "f=$(jq -r '.tool_input.file_path') && npx prettier --write --ignore-unknown \"$f\"" }
         ]
       }
     ]

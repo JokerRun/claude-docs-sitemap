@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 378ef0d04f60c6b5e2f2dae27f1cc3e42a2d9b3fb7848e730704d261c4cd2793
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 99098118e26ee30f8bcb9210dcc5427cf7ad0e52c9ac39f9a66465bdf25876dd
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
+    note: Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya.
   supportedModels:
     - claude-fable-5-2
     - claude-mythos-5-2

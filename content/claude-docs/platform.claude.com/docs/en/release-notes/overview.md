@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 344bfa56bd710a09d3a7490f809ce5e48c537b230b6a4f609a36910a2a2ea384
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 4b5978d5f3279d18e175d80d6fd116bec1a403812e15ed46538340162022108f
 ---
 
 ---
@@ -18,6 +18,10 @@ The Claude Platform release notes list changes to the Claude API, the client SDK
 
   For updates to Claude Code, see the [complete CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) in the `claude-code` repository.
 </Tip>
+
+### November 12, 2026
+
+* We’ve launched [self-hosted Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/self-hosted). You run the whole Managed Agents service, not only [self-hosted sandboxes](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes), on your own infrastructure, and you store agents, sessions, and session history there. The server sends model requests to the provider that you choose, which is Anthropic by default. To request access, contact your Anthropic account team.
 
 ### November 9, 2026
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 0460da544391a69dc8ad9786927e54ceb866a24de869b0b8eef6d1d9c383cf88
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 0cf09833417323c4bd7fc753cc48c3596aec1cf74da0d54cbcbebb45df3ac73b
 ---
 
 > ## Documentation Index
@@ -159,7 +159,7 @@ If the Search tool, `@file` mentions, custom agents, or custom skills aren't fin
 > apk add ripgrep
 > ```
 >
-> `ripgrep` is in Alpine's community repository. If `apk` reports that the package is missing, see [Alpine Linux setup](https://code.claude.com/docs/en/setup.md#alpine-linux-and-musl-based-distributions).
+> `ripgrep` is in Alpine's community repository.
 
 > [tab] Arch
 >

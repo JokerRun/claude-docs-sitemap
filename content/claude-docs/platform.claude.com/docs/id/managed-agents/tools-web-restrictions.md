@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 60ee4926b808c79f79924b0ad6bd1bcba742783268081faff8ca3f2a6ccd573d
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 5730fe02a6c3e93327a00c82050b195c68546a93f3c17ea3d37262e6d5c7963d
 ---
 
 ---
@@ -62,7 +62,7 @@ Pengaturan web fetch organisasi Anda di halaman yang sama juga berlaku untuk `we
 
 ## Menetapkan daftar domain pada agen
 
-Contoh berikut membuat agen yang membatasi `web_search` ke dua situs dan memblokir satu host untuk `web_fetch`. Contoh ini juga menetapkan `user_location` (java, php: `userLocation`; csharp, go: `UserLocation`) dan `max_content_tokens` (java, php: `maxContentTokens`; csharp, go: `MaxContentTokens`), yang dijelaskan di [Pengaturan](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#settings). Respons menampilkan kembali array `configs` (csharp, go: `Configs`).
+Contoh berikut membuat agen yang membatasi `web_search` ke dua situs dan memblokir satu host untuk `web_fetch`. Contoh ini juga menetapkan `user_location` (java, php: `userLocation`; csharp, go: `UserLocation`) dan `max_content_tokens` (java, php: `maxContentTokens`; csharp, go: `MaxContentTokens`). [Pengaturan](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#settings) menjelaskan keduanya.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -128,7 +128,7 @@ Contoh berikut membuat agen yang membatasi `web_search` ke dua situs dan memblok
       ```
     </File>
 
-    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) membuat agen dan mencetak ID-nya, bukan array `configs`.
+    [`ant apply`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply) membuat agen dan mencetak ID-nya.
   </CodeGroupItem>
 
   ```python Python
@@ -333,6 +333,7 @@ Contoh berikut membuat agen yang membatasi `web_search` ke dua situs dan memblok
   ```php PHP
   use Anthropic\Beta\Agents\BetaManagedAgentsAgentToolset20260401;
   use Anthropic\Beta\Agents\BetaManagedAgentsAgentToolset20260401Params;
+  use Anthropic\Beta\Agents\BetaManagedAgentsModel;
   use Anthropic\Beta\Agents\BetaManagedAgentsUserLocation;
   use Anthropic\Beta\Agents\BetaManagedAgentsWebFetchToolConfigParams;
   use Anthropic\Beta\Agents\BetaManagedAgentsWebSearchToolConfigParams;
@@ -342,7 +343,7 @@ Contoh berikut membuat agen yang membatasi `web_search` ke dua situs dan memblok
 
   $agent = $client->beta->agents->create(
       name: 'Research Agent',
-      model: 'claude-opus-5-5',
+      model: BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
       tools: [
           BetaManagedAgentsAgentToolset20260401Params::with(
               configs: [
@@ -374,7 +375,7 @@ Contoh berikut membuat agen yang membatasi `web_search` ke dua situs dan memblok
 
   agent = client.beta.agents.create(
     name: "Research Agent",
-    model: "claude-opus-5-5",
+    model: Anthropic::Beta::BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
     tools: [
       {
         type: :agent_toolset_20260401,
@@ -394,9 +395,10 @@ Contoh berikut membuat agen yang membatasi `web_search` ke dua situs dan memblok
     ]
   )
 
-  case agent.tools.first
-  in Anthropic::Models::Beta::BetaManagedAgentsAgentToolset20260401 => toolset
-    puts JSON.pretty_generate(toolset.configs.map(&:to_h))
+  agent.tools.each do |tool|
+    if tool.is_a?(Anthropic::Beta::BetaManagedAgentsAgentToolset20260401)
+      puts JSON.pretty_generate(tool.configs.map(&:to_h))
+    end
   end
   ```
 </CodeGroup>
@@ -424,7 +426,7 @@ Untuk tipe yang digunakan SDK untuk entri-entri ini, lihat [Jenis entri konfigur
 
 ## Aturan daftar domain
 
-Aturan-aturan ini berlaku sama untuk `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`) dan `blocked_domains` (java, php: `blockedDomains`; csharp, go: `BlockedDomains`). Permintaan yang melanggar salah satunya akan ditolak, seperti yang dijelaskan di [Error validasi](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#validation-errors).
+Aturan-aturan ini berlaku sama untuk `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`) dan `blocked_domains` (java, php: `blockedDomains`; csharp, go: `BlockedDomains`). API menolak permintaan yang melanggar salah satu aturan ini, seperti yang dijelaskan di [Error validasi](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#validation-errors).
 
 * **Paling banyak satu daftar per entri:** Tetapkan `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`) atau `blocked_domains` (java, php: `blockedDomains`; csharp, go: `BlockedDomains`) pada sebuah entri, bukan keduanya.
 * **Ukuran daftar:** Setiap daftar berisi 1 hingga 64 domain, masing-masing 1 hingga 255 karakter.
@@ -454,7 +456,7 @@ Setiap domain adalah nama domain yang dapat didaftarkan, atau subdomainnya, yang
 | Nama satu label                                                                              | `intranet`               | Domain lengkap seperti `example.co.uk` |
 | Karakter non-ASCII, seperti pada nama domain internasional                                   |                          | Bentuk `xn--` (Punycode)               |
 
-Domain juga ditolak jika berisi kredensial atau spasi, atau jika salah satu labelnya diawali atau diakhiri dengan tanda hubung. `localhost` dan host yang berakhiran `.localhost`, `.local`, `.internal`, `.localdomain`, atau `.invalid` juga ditolak.
+API juga menolak domain yang berisi kredensial atau spasi, atau yang memiliki label yang diawali atau diakhiri dengan tanda hubung. API juga menolak `localhost` dan host yang berakhiran `.localhost`, `.local`, `.internal`, `.localdomain`, atau `.invalid`.
 
 ### Sufiks path pada domain pencarian web
 
@@ -466,19 +468,19 @@ Utamakan hostname polos untuk `web_search` juga. Penyedia pencarian mencocokkan 
 
 API memvalidasi pengaturan ini saat Anda [membuat agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#create-an-agent) atau [memperbarui agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent). API juga memvalidasinya saat Anda membuat atau memperbarui sesi yang menyertakan `tools` (csharp, go: `Tools`).
 
-Pelanggaran format dan batas ditolak dengan 400 `invalid_request_error`:
+API menolak pelanggaran format dan batas dengan 400 `invalid_request_error`:
 
-| Pelanggaran                            | Pesan error                                                                                                                                                                    |
-| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Sebuah entri menetapkan kedua daftar.  | Menyertakan `Only one of allowed_domains or blocked_domains may be set.`                                                                                                       |
-| Sebuah daftar kosong.                  | Menyertakan `allowed_domains: Empty list of domains is ambiguous. Provide at least one domain or null.`                                                                        |
-| Sebuah domain melanggar aturan format. | Menyebutkan daftar domain tersebut dan posisinya yang berbasis nol. Misalnya, `allowed_domains.0: IP addresses are not supported; provide a plain hostname like "example.com"` |
+| Pelanggaran                            | Pesan error                                                                                                                                                                        |
+| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sebuah entri menetapkan kedua daftar.  | Menyertakan `Only one of allowed_domains or blocked_domains may be set.`                                                                                                           |
+| Sebuah daftar kosong.                  | Menyertakan `allowed_domains: Empty list of domains is ambiguous. Provide at least one domain or null.`                                                                            |
+| Sebuah domain melanggar aturan format. | Menyebutkan daftar domain tersebut dan posisinya yang berbasis nol, seperti dalam `allowed_domains.0: IP addresses are not supported; provide a plain hostname like "example.com"` |
 
 Pada permintaan yang sama, API juga menolak tiga pengaturan yang bergantung pada penyedia pencarian dan pengambilan:
 
 * Domain dalam `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`) yang tidak diizinkan untuk diakses oleh crawler Anthropic.
-* `user_location.country` yang tidak didukung oleh penyedia pencarian. Pesannya diakhiri dengan `user_location.country: not a country the search provider supports`.
-* `user_location.timezone` yang bukan nama IANA yang valid.
+* `user_location.country` (java, php: `userLocation.country`; csharp, go: `UserLocation.Country`) yang tidak didukung oleh penyedia pencarian. Pesannya diakhiri dengan `user_location.country: not a country the search provider supports`.
+* `user_location.timezone` (java, php: `userLocation.timezone`; csharp, go: `UserLocation.Timezone`) yang bukan nama zona waktu IANA yang valid.
 
 Dalam environment cloud dengan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, pembuatan dan pembaruan sesi juga memeriksa `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`) terhadap `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) milik environment. Lihat aturannya di [Menetapkan daftar domain pada agen](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#set-domain-lists-on-an-agent).
 

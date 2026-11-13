@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 894cf2341dac8a694d2d06affc69b334cff1557348b0ec23531ae7f9fac1e29c
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: af1ad2b03a0019812ac8879a34d1dd431b70e79f11f6e27afa7f20171863c39f
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
+    note: Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya.
   supportedModels:
     - claude-fable-5-2
     - claude-mythos-5-2

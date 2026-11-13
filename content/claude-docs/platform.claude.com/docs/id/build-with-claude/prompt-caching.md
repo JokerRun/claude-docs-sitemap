@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: eca9caa0ae4ee441a352194745497ce823dcb665a266f53ba4a1f772d01965e7
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 5bc04f83b079175d65753c64efe93cb76b255fdd7250b58cf8ecfe037bf17d65
 ---
 
 ---
@@ -55,7 +55,7 @@ Ada dua cara untuk mengaktifkan caching prompt:
 * **[Caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching):** Tambahkan satu field `cache_control` di tingkat teratas permintaan Anda. Sistem secara otomatis menerapkan “cache breakpoint” (titik henti cache) ke blok terakhir yang dapat di-cache dan memindahkannya maju seiring percakapan bertambah. Paling cocok untuk percakapan multi-giliran di mana riwayat pesan yang terus bertambah harus di-cache secara otomatis.
 * **[Cache breakpoint eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints):** Tempatkan `cache_control` langsung pada blok konten individual untuk kontrol yang lebih rinci atas apa saja yang di-cache.
 
-Cara paling sederhana untuk memulai adalah dengan caching otomatis:
+Salah satu cara untuk memulai adalah dengan caching otomatis:
 
 <CodeGroup>
   ```bash cURL
@@ -247,17 +247,9 @@ Secara default, cache memiliki masa hidup 5 menit. Cache diperbarui tanpa biaya 
 
 Masa hidup diukur sejak awal permintaan yang menulis atau membaca entri cache, bukan sejak akhir responsnya. Waktu yang dihabiskan untuk menghasilkan respons dihitung terhadap masa hidup: jika respons membutuhkan 4 menit untuk di-stream, permintaan lanjutan yang menggunakan kembali prefiks yang di-cache yang sama harus dimulai dalam waktu sekitar 1 menit setelah respons tersebut selesai.
 
-<Note>
-  Jika Anda merasa 5 menit terlalu singkat, Anthropic juga menawarkan durasi cache 1 jam [dengan biaya tambahan](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing).
+Jika 5 menit terlalu singkat, Anda dapat menggunakan [durasi cache 1 jam](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration) dengan biaya tambahan (lihat [Harga](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing)).
 
-  Untuk informasi lebih lanjut, lihat [Durasi cache 1 jam](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration).
-</Note>
-
-<Tip>
-  **Caching prompt meng-cache seluruh prefiks**
-
-  Caching prompt mereferensikan seluruh prompt: `tools`, `system`, dan `messages` (dalam urutan tersebut), hingga dan termasuk blok yang ditandai dengan `cache_control`.
-</Tip>
+Caching prompt mencakup seluruh prefiks: `tools`, `system`, dan `messages` (dalam urutan tersebut), hingga dan termasuk blok yang ditandai dengan `cache_control`.
 
 ***
 
@@ -316,7 +308,7 @@ Caching prompt (baik otomatis maupun eksplisit) didukung pada semua [model Claud
 
 ## Caching otomatis
 
-Caching otomatis adalah cara paling sederhana untuk mengaktifkan caching prompt. Alih-alih menempatkan `cache_control` pada blok konten individual, tambahkan satu field `cache_control` di tingkat teratas body permintaan Anda. Sistem secara otomatis menerapkan breakpoint cache ke blok terakhir yang dapat di-cache.
+Caching otomatis mengaktifkan caching prompt dengan satu field. Alih-alih menempatkan `cache_control` pada blok konten individual, tambahkan satu field `cache_control` di tingkat teratas body permintaan Anda. Sistem secara otomatis menerapkan breakpoint cache ke blok terakhir yang dapat di-cache.
 
 <CodeGroup>
   ```bash cURL
@@ -635,19 +627,19 @@ Pada Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/bu
 * 1.024 token untuk Claude Opus 4.8, Claude Sonnet 5, Claude Sonnet 4.6, Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Opus 4.1 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed) dan Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Opus 4 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)), dan Claude Sonnet 4 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed) dan Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations))
 * 4.096 token untuk Claude Haiku 4.5
 
-Batas minimum ini berlaku di setiap platform tempat masing-masing model tersedia.
+Batas minimum ini berlaku di masing-masing platform tersebut tempat model tersedia.
 
 Prompt yang lebih pendek tidak dapat di-cache, bahkan jika ditandai dengan `cache_control`. Setiap permintaan untuk meng-cache kurang dari jumlah token ini diproses tanpa caching, dan tidak ada error yang dikembalikan. Untuk memeriksa apakah prompt di-cache, lihat [field usage respons](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#tracking-cache-performance): jika `cache_creation_input_tokens` dan `cache_read_input_tokens` keduanya 0, prompt tidak di-cache (kemungkinan karena tidak memenuhi persyaratan panjang minimum).
 
 Jika prompt Anda sedikit kurang dari batas minimum untuk model dan platform Anda, memperluas konten yang di-cache untuk mencapai ambang batas sering kali sepadan. Pembacaan cache jauh lebih murah daripada token input yang tidak di-cache, sehingga mencapai batas minimum dapat mengurangi biaya untuk prompt yang sering digunakan kembali.
 
 <Note>
-  [Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) adalah platform yang dioperasikan oleh AWS. Di Bedrock, lihat [dokumentasi caching prompt Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-caching.html) untuk batas minimum per model, perilaku kegagalan, dan nama field usage yang berlaku.
+  [Amazon Bedrock (`bedrock-mantle`)](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) adalah platform yang dioperasikan oleh AWS. Di Amazon Bedrock, lihat [dokumentasi caching prompt Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-caching.html) untuk batas minimum per model, perilaku kegagalan, dan nama field usage yang berlaku.
 </Note>
 
 Untuk permintaan bersamaan, perhatikan bahwa entri cache baru tersedia setelah respons pertama dimulai. Jika Anda memerlukan cache hit untuk permintaan paralel, tunggu respons pertama sebelum mengirim permintaan berikutnya.
 
-Saat ini, `ephemeral` adalah satu-satunya jenis cache yang didukung, yang secara default memiliki masa hidup 5 menit.
+`ephemeral` adalah satu-satunya jenis cache yang didukung, yang secara default memiliki masa hidup 5 menit.
 
 ### Apa yang dapat di-cache
 
@@ -681,18 +673,18 @@ Seperti dijelaskan dalam [Menyusun prompt Anda](https://platform.claude.com/docs
 
 Tabel berikut menunjukkan bagian cache mana yang dibatalkan oleh berbagai jenis perubahan. ✘ menunjukkan bahwa cache dibatalkan, sedangkan ✓ menunjukkan bahwa cache tetap valid.
 
-| Apa yang berubah                                                  | Cache alat     | Cache sistem   | Cache pesan    | Dampak                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| ----------------------------------------------------------------- | -------------- | -------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Definisi alat**                                                 | ✘              | ✘              | ✘              | Memodifikasi definisi alat (nama, deskripsi, parameter) membatalkan seluruh cache                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| **Toggle pencarian web**                                          | ✓              | ✘              | ✘              | Mengaktifkan/menonaktifkan pencarian web memodifikasi prompt sistem                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| **Toggle kutipan**                                                | ✓              | ✘              | ✘              | Mengaktifkan/menonaktifkan kutipan memodifikasi prompt sistem                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| **Pengaturan kecepatan**                                          | ✓              | ✘              | ✘              | Beralih antara [`speed: "fast"` dan kecepatan standar](https://platform.claude.com/docs/id/build-with-claude/fast-mode) membatalkan cache sistem dan pesan                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| **Pilihan alat**                                                  | ✓              | ✓              | ✘              | Perubahan pada parameter `tool_choice` hanya memengaruhi blok pesan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| **Gambar**                                                        | ✓              | ✓              | ✘              | Menambahkan/menghapus gambar di mana pun dalam prompt memengaruhi blok pesan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| **Parameter pemikiran**                                           | Spesifik model | Spesifik model | ✘              | Konfigurasi pemikiran (mode, dan `budget_tokens` dalam mode diperpanjang) dirender ke dalam prompt, sehingga mengubahnya selalu membatalkan blok pesan; cache alat dan sistem juga dibatalkan pada model yang merender konfigurasi sebelum keduanya. Lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching).                                                                                                                                                                                                                   |
-| **Pengaturan effort**                                             | Spesifik model | Spesifik model | ✘              | Mengubah nilai [`output_config.effort`](https://platform.claude.com/docs/id/build-with-claude/effort) selalu membatalkan blok pesan, dengan efek spesifik model yang sama pada cache alat dan sistem seperti parameter pemikiran. Mengatur effort secara eksplisit ke nilai default model setara dengan menghilangkannya dan tidak membatalkan cache. Pada model yang mendukung [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message), perubahan effort yang dibawa dalam pesan `role: "system"` di dalam `messages` membiarkan prefiks yang di-cache tetap utuh. |
-| **Hasil non-alat yang diteruskan ke permintaan dengan pemikiran** | ✓              | ✓              | Spesifik model | Pada Opus 4.5+, Sonnet 4.6+, dan Haiku 5.5, blok pemikiran dipertahankan secara default, sehingga cache tetap valid (✓). Pada model Opus/Sonnet sebelumnya dan model Haiku hingga Claude Haiku 4.5, semua blok pemikiran yang sebelumnya di-cache dihapus dari konteks, dan pesan apa pun yang mengikuti blok pemikiran tersebut dihapus dari cache (✘). Untuk detail lebih lanjut, lihat [Caching dengan blok pemikiran](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#caching-with-thinking-blocks).                                                                            |
-| **Blok pemikiran yang dibuang**                                   | ✓              | ✓              | ✘              | Ketika API membuang blok pemikiran yang tidak [dipertahankan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking) pada permintaan tersebut, prefiks yang di-cache berubah mulai dari posisi blok tersebut dan seterusnya pada permintaan tersebut. Blok yang dapat dibaca oleh model penerima, yang diteruskan kembali tanpa perubahan, menjaga cache tetap utuh.                                                                                                                                                                                                         |
+| Apa yang berubah                                                  | Cache alat     | Cache sistem   | Cache pesan    | Dampak                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ----------------------------------------------------------------- | -------------- | -------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Definisi alat**                                                 | ✘              | ✘              | ✘              | Memodifikasi definisi alat (nama, deskripsi, parameter) membatalkan seluruh cache                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| **Toggle pencarian web**                                          | ✓              | ✘              | ✘              | Mengaktifkan/menonaktifkan pencarian web memodifikasi prompt sistem                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| **Toggle kutipan**                                                | ✓              | ✘              | ✘              | Mengaktifkan/menonaktifkan kutipan memodifikasi prompt sistem                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **Pengaturan kecepatan**                                          | ✓              | ✘              | ✘              | Beralih antara [`speed: "fast"` dan kecepatan standar](https://platform.claude.com/docs/id/build-with-claude/fast-mode) membatalkan cache sistem dan pesan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| **Pilihan alat**                                                  | ✓              | ✓              | ✘              | Perubahan pada parameter `tool_choice` hanya memengaruhi blok pesan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| **Gambar**                                                        | ✓              | ✓              | ✘              | Menambahkan/menghapus gambar di mana pun dalam prompt memengaruhi blok pesan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| **Parameter pemikiran**                                           | Spesifik model | Spesifik model | ✘              | Konfigurasi pemikiran (mode, dan `budget_tokens` dalam mode diperpanjang) dirender ke dalam prompt, sehingga mengubahnya selalu membatalkan blok pesan; cache alat dan sistem juga dibatalkan pada model yang merender konfigurasi sebelum keduanya. Lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching).                                                                                                                                                                                                                                                                                                            |
+| **Pengaturan effort**                                             | Spesifik model | Spesifik model | ✘              | Mengubah nilai [`output_config.effort`](https://platform.claude.com/docs/id/build-with-claude/effort) dapat membatalkan blok pesan, dan pada beberapa model juga cache alat dan sistem (lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching)). Mengatur effort secara eksplisit ke nilai default model setara dengan menghilangkannya dan tidak membatalkan cache. Pada model yang mendukung [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message), perubahan effort yang dibawa dalam pesan `role: "system"` di dalam `messages` membiarkan prefiks yang di-cache tetap utuh. |
+| **Hasil non-alat yang diteruskan ke permintaan dengan pemikiran** | ✓              | ✓              | Spesifik model | Pada Claude Opus 4.5 dan model Opus yang lebih baru, Claude Sonnet 4.6 dan model Sonnet yang lebih baru, Claude Haiku 5.5, serta setiap model Claude Fable dan Claude Mythos, blok pemikiran dipertahankan secara default, sehingga cache tetap valid (✓). Pada model lain, semua blok pemikiran yang sebelumnya di-cache dihapus dari konteks, dan pesan apa pun yang mengikuti blok pemikiran tersebut dihapus dari cache (✘). Untuk detail lebih lanjut, lihat [Caching dengan blok pemikiran](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#caching-with-thinking-blocks).                                                                                             |
+| **Blok pemikiran yang tidak disertakan**                          | ✓              | ✓              | ✘              | Ketika API tidak menyertakan blok pemikiran yang tidak [dipertahankan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking) pada permintaan tersebut, prefiks yang di-cache berubah mulai dari posisi blok tersebut dan seterusnya pada permintaan tersebut. Blok yang dapat dibaca oleh model penerima, yang diteruskan kembali tanpa perubahan, menjaga cache tetap utuh.                                                                                                                                                                                                                                                                                         |
 
 Pada model yang mendukung [perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes), header beta `inline-tools-2026-09-15` memungkinkan Anda menambahkan alat, atau mengubah definisi alat, di tengah percakapan tanpa mengedit `tools`. Kirim definisi dalam blok `tool_addition` di pesan sistem di tengah percakapan dan biarkan `tools` persis seperti yang pertama kali Anda kirim. Prefiks yang di-cache tetap cocok, sehingga hanya pesan yang ditambahkan yang diproses sebagai input baru. Satu-satunya pengecualian adalah array `tools` tanpa alat non-deferred, di mana alat pertama yang didefinisikan dengan cara ini menyebabkan satu cache miss penuh pada permintaan tersebut. Lihat [Mendefinisikan alat dalam pesan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta).
 
@@ -746,8 +738,8 @@ Saat menggunakan [pemikiran](https://platform.claude.com/docs/id/build-with-clau
 **Pola pembatalan cache:**
 
 * Cache tetap valid saat hanya hasil alat yang diberikan sebagai pesan pengguna.
-* Pada Opus 4.5+, Sonnet 4.6+, dan Haiku 5.5, blok pemikiran dipertahankan secara default bahkan saat konten pengguna yang bukan hasil alat ditambahkan, sehingga cache tetap valid.
-* Pada model Opus/Sonnet sebelumnya dan model Haiku hingga Claude Haiku 4.5, cache dibatalkan saat konten pengguna yang bukan hasil alat ditambahkan, menyebabkan semua blok pemikiran sebelumnya dihapus dari konteks.
+* Pada Claude Opus 4.5 dan model Opus yang lebih baru, Claude Sonnet 4.6 dan model Sonnet yang lebih baru, Claude Haiku 5.5, serta setiap model Claude Fable dan Claude Mythos, blok pemikiran dipertahankan secara default bahkan saat konten pengguna yang bukan hasil alat ditambahkan, sehingga cache tetap valid.
+* Pada model lain, menambahkan konten pengguna yang bukan hasil alat membatalkan cache dan menghapus semua blok pemikiran sebelumnya dari konteks.
 * Perilaku caching ini terjadi bahkan tanpa penanda `cache_control` eksplisit.
 
 Untuk detail lebih lanjut tentang pembatalan cache, lihat [Apa yang membatalkan cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#what-invalidates-the-cache).
@@ -775,7 +767,7 @@ User: [Text response, cache=True]
 # Depending on the model, this non-tool-result user block either keeps prior thinking blocks or strips them (see the next paragraph)
 ```
 
-Pada model Opus/Sonnet sebelumnya dan model Haiku hingga Claude Haiku 4.5, semua blok pemikiran sebelumnya dihapus dari konteks pada titik ini. Pada Opus 4.5+, Sonnet 4.6+, dan Haiku 5.5, blok pemikiran sebelumnya dipertahankan secara default dan tetap menjadi bagian dari prefiks yang di-cache.
+Pada [model yang mempertahankan pemikiran sebelumnya](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#caching-with-thinking-blocks), blok pemikiran sebelumnya tetap berada dalam konteks secara default dan tetap menjadi bagian dari prefiks yang di-cache. Pada model lain, semua blok pemikiran sebelumnya dihapus dari konteks pada titik ini.
 
 Untuk informasi lebih rinci, lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching).
 
@@ -838,7 +830,7 @@ Jika Anda mengalami perilaku yang tidak terduga:
 
 ## Durasi cache 1 jam
 
-Jika Anda merasa 5 menit terlalu singkat, Anthropic juga menawarkan durasi cache 1 jam [dengan biaya tambahan](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing).
+Jika Anda merasa 5 menit terlalu singkat, Anthropic juga menawarkan durasi cache 1 jam dengan biaya tambahan (lihat [Harga](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing)).
 
 <Note>
   Durasi cache 1 jam tersedia di Claude API, [Amazon Bedrock (`bedrock-mantle`)](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry).
@@ -2500,12 +2492,32 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
           system=[
               {
                   "type": "text",
-                  "text": "You are a helpful research assistant with access to a document knowledge base.\n\n# Instructions\n- Always search for relevant documents before answering\n- Provide citations for your sources\n- Be objective and accurate in your responses\n- If multiple documents contain relevant information, synthesize them\n- Acknowledge when information is not available in the knowledge base",
+                  "text": """You are a helpful research assistant with access to a document knowledge base.
+
+      # Instructions
+      - Always search for relevant documents before answering
+      - Provide citations for your sources
+      - Be objective and accurate in your responses
+      - If multiple documents contain relevant information, synthesize them
+      - Acknowledge when information is not available in the knowledge base""",
                   "cache_control": {"type": "ephemeral"},
               },
               {
                   "type": "text",
-                  "text": "# Knowledge Base Context\n\nHere are the relevant documents for this conversation:\n\n## Document 1: Solar System Overview\nThe solar system consists of the Sun and all objects that orbit it...\n\n## Document 2: Planetary Characteristics\nEach planet has unique features. Mercury is the smallest planet...\n\n## Document 3: Mars Exploration\nMars has been a target of exploration for decades...\n\n[Additional documents...]",
+                  "text": """# Knowledge Base Context
+
+      Here are the relevant documents for this conversation:
+
+      ## Document 1: Solar System Overview
+      The solar system consists of the Sun and all objects that orbit it...
+
+      ## Document 2: Planetary Characteristics
+      Each planet has unique features. Mercury is the smallest planet...
+
+      ## Document 3: Mars Exploration
+      Mars has been a target of exploration for decades...
+
+      [Additional documents...]""",
                   "cache_control": {"type": "ephemeral"},
               },
           ],
@@ -2599,12 +2611,32 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
         system: [
           {
             type: "text",
-            text: "You are a helpful research assistant with access to a document knowledge base.\n\n# Instructions\n- Always search for relevant documents before answering\n- Provide citations for your sources\n- Be objective and accurate in your responses\n- If multiple documents contain relevant information, synthesize them\n- Acknowledge when information is not available in the knowledge base",
+            text: `You are a helpful research assistant with access to a document knowledge base.
+
+      # Instructions
+      - Always search for relevant documents before answering
+      - Provide citations for your sources
+      - Be objective and accurate in your responses
+      - If multiple documents contain relevant information, synthesize them
+      - Acknowledge when information is not available in the knowledge base`,
             cache_control: { type: "ephemeral" }
           },
           {
             type: "text",
-            text: "# Knowledge Base Context\n\nHere are the relevant documents for this conversation:\n\n## Document 1: Solar System Overview\nThe solar system consists of the Sun and all objects that orbit it...\n\n## Document 2: Planetary Characteristics\nEach planet has unique features. Mercury is the smallest planet...\n\n## Document 3: Mars Exploration\nMars has been a target of exploration for decades...\n\n[Additional documents...]",
+            text: `# Knowledge Base Context
+
+      Here are the relevant documents for this conversation:
+
+      ## Document 1: Solar System Overview
+      The solar system consists of the Sun and all objects that orbit it...
+
+      ## Document 2: Planetary Characteristics
+      Each planet has unique features. Mercury is the smallest planet...
+
+      ## Document 3: Mars Exploration
+      Mars has been a target of exploration for decades...
+
+      [Additional documents...]`,
             cache_control: { type: "ephemeral" }
           }
         ],
@@ -2703,12 +2735,36 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
           {
               new TextBlockParam()
               {
-                  Text = "You are a helpful research assistant with access to a document knowledge base.\n\n# Instructions\n- Always search for relevant documents before answering\n- Provide citations for your sources\n- Be objective and accurate in your responses\n- If multiple documents contain relevant information, synthesize them\n- Acknowledge when information is not available in the knowledge base",
+                  Text = """
+                      You are a helpful research assistant with access to a document knowledge base.
+
+                      # Instructions
+                      - Always search for relevant documents before answering
+                      - Provide citations for your sources
+                      - Be objective and accurate in your responses
+                      - If multiple documents contain relevant information, synthesize them
+                      - Acknowledge when information is not available in the knowledge base
+                      """,
                   CacheControl = new CacheControlEphemeral(),
               },
               new TextBlockParam()
               {
-                  Text = "# Knowledge Base Context\n\nHere are the relevant documents for this conversation:\n\n## Document 1: Solar System Overview\nThe solar system consists of the Sun and all objects that orbit it...\n\n## Document 2: Planetary Characteristics\nEach planet has unique features. Mercury is the smallest planet...\n\n## Document 3: Mars Exploration\nMars has been a target of exploration for decades...\n\n[Additional documents...]",
+                  Text = """
+                      # Knowledge Base Context
+
+                      Here are the relevant documents for this conversation:
+
+                      ## Document 1: Solar System Overview
+                      The solar system consists of the Sun and all objects that orbit it...
+
+                      ## Document 2: Planetary Characteristics
+                      Each planet has unique features. Mercury is the smallest planet...
+
+                      ## Document 3: Mars Exploration
+                      Mars has been a target of exploration for decades...
+
+                      [Additional documents...]
+                      """,
                   CacheControl = new CacheControlEphemeral(),
               },
           }),
@@ -2764,73 +2820,93 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
       ```
 
       ```go Go
-      client := anthropic.NewClient()
+      	client := anthropic.NewClient()
 
-      response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-      	Model:     anthropic.ModelClaudeOpus5_5,
-      	MaxTokens: 1024,
-      	Tools: []anthropic.ToolUnionParam{
-      		{OfTool: &anthropic.ToolParam{
-      			Name:        "search_documents",
-      			Description: anthropic.String("Search through the knowledge base"),
-      			InputSchema: anthropic.ToolInputSchemaParam{
-      				Properties: map[string]any{
-      					"query": map[string]any{
-      						"type":        "string",
-      						"description": "Search query",
+      	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
+      		Model:     anthropic.ModelClaudeOpus5_5,
+      		MaxTokens: 1024,
+      		Tools: []anthropic.ToolUnionParam{
+      			{OfTool: &anthropic.ToolParam{
+      				Name:        "search_documents",
+      				Description: anthropic.String("Search through the knowledge base"),
+      				InputSchema: anthropic.ToolInputSchemaParam{
+      					Properties: map[string]any{
+      						"query": map[string]any{
+      							"type":        "string",
+      							"description": "Search query",
+      						},
       					},
+      					Required: []string{"query"},
       				},
-      				Required: []string{"query"},
-      			},
-      		}},
-      		{OfTool: &anthropic.ToolParam{
-      			Name:        "get_document",
-      			Description: anthropic.String("Retrieve a specific document by ID"),
-      			InputSchema: anthropic.ToolInputSchemaParam{
-      				Properties: map[string]any{
-      					"doc_id": map[string]any{
-      						"type":        "string",
-      						"description": "Document ID",
+      			}},
+      			{OfTool: &anthropic.ToolParam{
+      				Name:        "get_document",
+      				Description: anthropic.String("Retrieve a specific document by ID"),
+      				InputSchema: anthropic.ToolInputSchemaParam{
+      					Properties: map[string]any{
+      						"doc_id": map[string]any{
+      							"type":        "string",
+      							"description": "Document ID",
+      						},
       					},
+      					Required: []string{"doc_id"},
       				},
-      				Required: []string{"doc_id"},
+      				CacheControl: anthropic.NewCacheControlEphemeralParam(),
+      			}},
+      		},
+      		System: []anthropic.TextBlockParam{
+      			{
+      				Text: `You are a helpful research assistant with access to a document knowledge base.
+
+      # Instructions
+      - Always search for relevant documents before answering
+      - Provide citations for your sources
+      - Be objective and accurate in your responses
+      - If multiple documents contain relevant information, synthesize them
+      - Acknowledge when information is not available in the knowledge base`,
+      				CacheControl: anthropic.NewCacheControlEphemeralParam(),
       			},
-      			CacheControl: anthropic.NewCacheControlEphemeralParam(),
-      		}},
-      	},
-      	System: []anthropic.TextBlockParam{
-      		{
-      			Text:         "You are a helpful research assistant with access to a document knowledge base.\n\n# Instructions\n- Always search for relevant documents before answering\n- Provide citations for your sources\n- Be objective and accurate in your responses\n- If multiple documents contain relevant information, synthesize them\n- Acknowledge when information is not available in the knowledge base",
-      			CacheControl: anthropic.NewCacheControlEphemeralParam(),
+      			{
+      				Text: `# Knowledge Base Context
+
+      Here are the relevant documents for this conversation:
+
+      ## Document 1: Solar System Overview
+      The solar system consists of the Sun and all objects that orbit it...
+
+      ## Document 2: Planetary Characteristics
+      Each planet has unique features. Mercury is the smallest planet...
+
+      ## Document 3: Mars Exploration
+      Mars has been a target of exploration for decades...
+
+      [Additional documents...]`,
+      				CacheControl: anthropic.NewCacheControlEphemeralParam(),
+      			},
       		},
-      		{
-      			Text:         "# Knowledge Base Context\n\nHere are the relevant documents for this conversation:\n\n## Document 1: Solar System Overview\nThe solar system consists of the Sun and all objects that orbit it...\n\n## Document 2: Planetary Characteristics\nEach planet has unique features. Mercury is the smallest planet...\n\n## Document 3: Mars Exploration\nMars has been a target of exploration for decades...\n\n[Additional documents...]",
-      			CacheControl: anthropic.NewCacheControlEphemeralParam(),
+      		Messages: []anthropic.MessageParam{
+      			anthropic.NewUserMessage(anthropic.NewTextBlock("Can you search for information about Mars rovers?")),
+      			anthropic.NewAssistantMessage(anthropic.NewToolUseBlock(
+      				"tool_1",
+      				map[string]any{"query": "Mars rovers"},
+      				"search_documents",
+      			)),
+      			anthropic.NewUserMessage(anthropic.NewToolResultBlock(
+      				"tool_1",
+      				"Found 3 relevant documents: Document 3 (Mars Exploration), Document 7 (Rover Technology), Document 9 (Mission History)",
+      				false,
+      			)),
+      			anthropic.NewAssistantMessage(anthropic.NewTextBlock("I found 3 relevant documents about Mars rovers. Let me get more details from the Mars Exploration document.")),
+      			anthropic.NewUserMessage(anthropic.ContentBlockParamUnion{OfText: &anthropic.TextBlockParam{
+      				Text:         "Yes, please tell me about the Perseverance rover specifically.",
+      				CacheControl: anthropic.NewCacheControlEphemeralParam(),
+      			}}),
       		},
-      	},
-      	Messages: []anthropic.MessageParam{
-      		anthropic.NewUserMessage(anthropic.NewTextBlock("Can you search for information about Mars rovers?")),
-      		anthropic.NewAssistantMessage(anthropic.NewToolUseBlock(
-      			"tool_1",
-      			map[string]any{"query": "Mars rovers"},
-      			"search_documents",
-      		)),
-      		anthropic.NewUserMessage(anthropic.NewToolResultBlock(
-      			"tool_1",
-      			"Found 3 relevant documents: Document 3 (Mars Exploration), Document 7 (Rover Technology), Document 9 (Mission History)",
-      			false,
-      		)),
-      		anthropic.NewAssistantMessage(anthropic.NewTextBlock("I found 3 relevant documents about Mars rovers. Let me get more details from the Mars Exploration document.")),
-      		anthropic.NewUserMessage(anthropic.ContentBlockParamUnion{OfText: &anthropic.TextBlockParam{
-      			Text:         "Yes, please tell me about the Perseverance rover specifically.",
-      			CacheControl: anthropic.NewCacheControlEphemeralParam(),
-      		}}),
-      	},
-      })
-      if err != nil {
-      	log.Fatal(err)
-      }
-      fmt.Println(response.Usage.RawJSON())
+      	})
+      	if err != nil {
+      		log.Fatal(err)
+      	}
+      	fmt.Println(response.Usage.RawJSON())
       ```
 
       ```java Java
@@ -2862,7 +2938,7 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
           MessageCreateParams params = MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(1024)
-              // Alat dengan kontrol cache pada alat terakhir
+              // Alat dengan cache control pada alat terakhir
               .addTool(
                   Tool.builder()
                       .name("search_documents")
@@ -2878,18 +2954,40 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
                       .cacheControl(CacheControlEphemeral.builder().build())
                       .build()
               )
-              // Prompt sistem dengan kontrol cache terpisah pada instruksi dan konteks
+              // Prompt sistem dengan cache control terpisah pada instruksi dan konteks
               .systemOfTextBlockParams(
                   List.of(
                       TextBlockParam.builder()
                           .text(
-                              "You are a helpful research assistant with access to a document knowledge base.\n\n# Instructions\n- Always search for relevant documents before answering\n- Provide citations for your sources\n- Be objective and accurate in your responses\n- If multiple documents contain relevant information, synthesize them\n- Acknowledge when information is not available in the knowledge base"
+                              """
+                              You are a helpful research assistant with access to a document knowledge base.
+
+                              # Instructions
+                              - Always search for relevant documents before answering
+                              - Provide citations for your sources
+                              - Be objective and accurate in your responses
+                              - If multiple documents contain relevant information, synthesize them
+                              - Acknowledge when information is not available in the knowledge base"""
                           )
                           .cacheControl(CacheControlEphemeral.builder().build())
                           .build(),
                       TextBlockParam.builder()
                           .text(
-                              "# Knowledge Base Context\n\nHere are the relevant documents for this conversation:\n\n## Document 1: Solar System Overview\nThe solar system consists of the Sun and all objects that orbit it...\n\n## Document 2: Planetary Characteristics\nEach planet has unique features. Mercury is the smallest planet...\n\n## Document 3: Mars Exploration\nMars has been a target of exploration for decades...\n\n[Additional documents...]"
+                              """
+                              # Knowledge Base Context
+
+                              Here are the relevant documents for this conversation:
+
+                              ## Document 1: Solar System Overview
+                              The solar system consists of the Sun and all objects that orbit it...
+
+                              ## Document 2: Planetary Characteristics
+                              Each planet has unique features. Mercury is the smallest planet...
+
+                              ## Document 3: Mars Exploration
+                              Mars has been a target of exploration for decades...
+
+                              [Additional documents...]"""
                           )
                           .cacheControl(CacheControlEphemeral.builder().build())
                           .build()
@@ -3003,12 +3101,36 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
           system: [
               [
                   'type' => 'text',
-                  'text' => "You are a helpful research assistant with access to a document knowledge base.\n\n# Instructions\n- Always search for relevant documents before answering\n- Provide citations for your sources\n- Be objective and accurate in your responses\n- If multiple documents contain relevant information, synthesize them\n- Acknowledge when information is not available in the knowledge base",
+                  'text' => <<<'TEXT'
+                      You are a helpful research assistant with access to a document knowledge base.
+
+                      # Instructions
+                      - Always search for relevant documents before answering
+                      - Provide citations for your sources
+                      - Be objective and accurate in your responses
+                      - If multiple documents contain relevant information, synthesize them
+                      - Acknowledge when information is not available in the knowledge base
+                      TEXT,
                   'cache_control' => ['type' => 'ephemeral']
               ],
               [
                   'type' => 'text',
-                  'text' => "# Knowledge Base Context\n\nHere are the relevant documents for this conversation:\n\n## Document 1: Solar System Overview\nThe solar system consists of the Sun and all objects that orbit it...\n\n## Document 2: Planetary Characteristics\nEach planet has unique features. Mercury is the smallest planet...\n\n## Document 3: Mars Exploration\nMars has been a target of exploration for decades...\n\n[Additional documents...]",
+                  'text' => <<<'TEXT'
+                      # Knowledge Base Context
+
+                      Here are the relevant documents for this conversation:
+
+                      ## Document 1: Solar System Overview
+                      The solar system consists of the Sun and all objects that orbit it...
+
+                      ## Document 2: Planetary Characteristics
+                      Each planet has unique features. Mercury is the smallest planet...
+
+                      ## Document 3: Mars Exploration
+                      Mars has been a target of exploration for decades...
+
+                      [Additional documents...]
+                      TEXT,
                   'cache_control' => ['type' => 'ephemeral']
               ]
           ],
@@ -3088,12 +3210,36 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
         system_: [
           {
             type: "text",
-            text: "You are a helpful research assistant with access to a document knowledge base.\n\n# Instructions\n- Always search for relevant documents before answering\n- Provide citations for your sources\n- Be objective and accurate in your responses\n- If multiple documents contain relevant information, synthesize them\n- Acknowledge when information is not available in the knowledge base",
+            text: <<~TEXT.chomp,
+              You are a helpful research assistant with access to a document knowledge base.
+
+              # Instructions
+              - Always search for relevant documents before answering
+              - Provide citations for your sources
+              - Be objective and accurate in your responses
+              - If multiple documents contain relevant information, synthesize them
+              - Acknowledge when information is not available in the knowledge base
+            TEXT
             cache_control: { type: "ephemeral" }
           },
           {
             type: "text",
-            text: "# Knowledge Base Context\n\nHere are the relevant documents for this conversation:\n\n## Document 1: Solar System Overview\nThe solar system consists of the Sun and all objects that orbit it...\n\n## Document 2: Planetary Characteristics\nEach planet has unique features. Mercury is the smallest planet...\n\n## Document 3: Mars Exploration\nMars has been a target of exploration for decades...\n\n[Additional documents...]",
+            text: <<~TEXT.chomp,
+              # Knowledge Base Context
+
+              Here are the relevant documents for this conversation:
+
+              ## Document 1: Solar System Overview
+              The solar system consists of the Sun and all objects that orbit it...
+
+              ## Document 2: Planetary Characteristics
+              Each planet has unique features. Mercury is the smallest planet...
+
+              ## Document 3: Mars Exploration
+              Mars has been a target of exploration for decades...
+
+              [Additional documents...]
+            TEXT
             cache_control: { type: "ephemeral" }
           }
         ],
@@ -3263,7 +3409,7 @@ Representasi cache KV (key-value) dan hash kriptografis dari konten yang di-cach
   </Accordion>
 
   <Accordion title="Bagaimana caching prompt bekerja dengan thinking?">
-    Mengubah parameter pemikiran (beralih mode, atau mengubah anggaran dalam mode diperpanjang) membatalkan prefiks pesan yang di-cache, dan juga dapat membatalkan prompt sistem dan alat yang di-cache, karena konfigurasi pemikiran dirender ke dalam prompt. Nilai [`output_config.effort`](https://platform.claude.com/docs/id/build-with-claude/effort) berperilaku dengan cara yang sama.
+    Mengubah parameter pemikiran (beralih mode, atau mengubah anggaran dalam mode diperpanjang) membatalkan prefiks pesan yang di-cache, dan juga dapat membatalkan prompt sistem dan alat yang di-cache, karena konfigurasi pemikiran dirender ke dalam prompt. Mengubah nilai [`output_config.effort`](https://platform.claude.com/docs/id/build-with-claude/effort) dapat memberikan efek yang sama.
 
     Untuk detail lebih lanjut tentang pembatalan cache, lihat [Apa yang membatalkan cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#what-invalidates-the-cache).
 
@@ -3284,8 +3430,8 @@ Representasi cache KV (key-value) dan hash kriptografis dari konten yang di-cach
     Caching prompt memiliki harganya sendiri: penulisan cache 5 menit berbiaya 25 persen lebih mahal dari token input dasar, penulisan cache 1 jam berbiaya 2x token input dasar, dan cache hit berbiaya [sebagian kecil dari harga token input dasar](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing), dengan pengali untuk setiap model.
   </Accordion>
 
-  <Accordion title="Bisakah saya menghapus cache secara manual?">
-    Saat ini, tidak ada cara untuk menghapus cache secara manual. Prefiks yang di-cache secara otomatis kedaluwarsa setelah minimal 5 menit tidak aktif.
+  <Accordion title="Bisakah saya membersihkan cache secara manual?">
+    Tidak ada cara untuk membersihkan cache secara manual. Prefiks yang di-cache secara otomatis kedaluwarsa setelah minimal 5 menit tidak aktif.
   </Accordion>
 
   <Accordion title="Bagaimana saya dapat melacak efektivitas strategi caching saya?">

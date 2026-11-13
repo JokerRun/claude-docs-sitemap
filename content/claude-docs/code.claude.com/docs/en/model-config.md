@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 37edc7e03c00d7511a1b2d85d9208961223364166b10368e37e28118885f5bd4
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: b48fe2c7801147806634fbf8fb8e8edd48e92915d40a53b8d5a17630953ad60a
 ---
 
 > ## Documentation Index
@@ -164,9 +164,11 @@ A model you pick for the new launch with `--model` or `ANTHROPIC_MODEL` still ta
 
 When the active model at startup comes from project or managed settings rather than your own selection, the startup header shows which settings file set it. Run `/model` to override; the project or managed setting reapplies on the next launch. On platforms that embed Claude Code and set [`CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST`](https://code.claude.com/docs/en/env-vars), the host's model configuration takes precedence over managed model settings, while a managed `availableModels` allowlist stays in force unless the host supplies its own; [Exceptions to managed settings precedence](https://code.claude.com/docs/en/settings.md#exceptions-to-managed-settings-precedence) says which keys and variables the host overrides.
 
-If you or your organization configure [PreModelSwitch hooks](https://code.claude.com/docs/en/hooks.md#premodelswitch), they run before a requested switch applies and can block it or ask you to confirm.
+If you or your organization configure [PreModelSwitch hooks](https://code.claude.com/docs/en/hooks.md#premodelswitch), they run before a requested switch applies and can block it or ask you to confirm. To find out why a hook blocked a switch and what to do, see [Model switch was blocked by a PreModelSwitch hook](https://code.claude.com/docs/en/errors.md#model-switch-was-blocked-by-a-premodelswitch-hook).
 
-When Claude Code can't tell which PreModelSwitch hooks your organization's [managed plugins](https://code.claude.com/docs/en/settings-reference.md#enabledplugins) deliver, for example because a managed plugin failed to load, it refuses the switch rather than apply it unchecked, and it checks again on each new attempt. See [Model switch was blocked by a PreModelSwitch hook](https://code.claude.com/docs/en/errors.md#model-switch-was-blocked-by-a-premodelswitch-hook) for the message and recovery.
+If a [managed plugin](https://code.claude.com/docs/en/settings-reference.md#enabledplugins) or its hooks fail to load, you can still switch models. The plugin's PreModelSwitch hooks don't run, so a switch that one of them would have blocked can go ahead. Other PreModelSwitch hooks that loaded still run and can block it. If Claude Code before v2.1.323 refuses the switch with `so organization-managed PreModelSwitch hooks could not be checked`, update Claude Code.
+
+To see what failed, run `/plugin` in your session and open the [**Errors** tab](https://code.claude.com/docs/en/plugins/troubleshooting.md#failed-to-load-hooks-from-and-hooks-that-dont-fire). If nothing is listed there, start a new session with `claude --debug` from your shell and switch to a different model, then read the [debug log](https://code.claude.com/docs/en/hooks.md#debug-hooks). After you fix the plugin, or a [plugin update](https://code.claude.com/docs/en/plugins/install.md#keep-plugins-updated) brings your admin's fix to your machine, run `/reload-plugins` in your session to get its hooks running.
 
 When you switch models through the [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview.md) `setModel()` method, through an app such as the [Desktop app](https://code.claude.com/docs/en/desktop.md), or from a device connected through [Remote Control](https://code.claude.com/docs/en/remote-control.md), Claude Code checks the value at the switch:
 
@@ -910,7 +912,7 @@ See the [`idleCompaction`](https://code.claude.com/docs/en/settings-reference#id
 
 ### Correct the window for a gateway or custom model ID
 
-Either of these startup warnings means Claude Code doesn't recognize your session's model ID, so it can't tell the model's context window and assumes 200K tokens:
+Either of these warnings means Claude Code doesn't recognize your session's model ID, so it can't tell the model's context window and assumes 200K tokens:
 
 ```text theme={null}
 ⚠ Model "my-gateway-opus" isn't recognized · context assumed to be 200k tokens · ...

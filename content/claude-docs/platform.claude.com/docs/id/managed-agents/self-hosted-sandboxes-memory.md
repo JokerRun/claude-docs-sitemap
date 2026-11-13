@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: daaf6721d28919977376ba4922641961895a4325cf2ff6f5b90bee0d1f590439
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 44163f40f2ba5c5b4be0741160b76f3a7b7f94b11cbf8b929d42bb4245e8aaab
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
+    note: Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya.
   supportedModels:
     - claude-fable-5-2
     - claude-mythos-5-2
@@ -51,14 +51,12 @@ Perbedaannya terletak pada siapa yang mewujudkan store tersebut. Pada environmen
 ## Persyaratan
 
 * **Worker yang me-mount memory store:** Gunakan CLI `ant` versi 1.33.0 atau lebih baru, atau `EnvironmentWorker` dari SDK Python, TypeScript, atau Go.
-* **Sistem file POSIX:** Host Windows tidak didukung, karena worker memerlukan `O_NOFOLLOW` saat membuka file memori. Sistem file yang peka huruf besar-kecil disarankan, agar path memori yang hanya berbeda dalam huruf besar-kecil tidak bertabrakan. Volume macOS secara default tidak peka huruf besar-kecil, sehingga path semacam itu bertabrakan di sana.
+* **Sistem file POSIX:** Host Windows tidak didukung, karena worker memerlukan `O_NOFOLLOW` saat membuka file memori. Anthropic menyarankan sistem file yang peka huruf besar-kecil, agar path memori yang hanya berbeda dalam huruf besar-kecil tidak bertabrakan. Volume macOS secara default tidak peka huruf besar-kecil, sehingga path semacam itu bertabrakan di sana.
 * **Direktori `/mnt/memory` yang dapat ditulisi:** Lihat [Menyiapkan host](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#prepare-the-host). Di macOS, lihat [Menyiapkan host macOS](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#prepare-a-macos-host).
 * **Secret milik item pekerjaan:** Jika kode Anda sendiri yang meluncurkan worker, [teruskan secret item pekerjaan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#forward-the-work-items-secret) ke worker tersebut.
 
 <Note>
-  Memory store tidak dapat dilampirkan ke sesi pada environment self-hosted di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
-
-  Di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), memory store tidak didukung untuk sesi pada environment self-hosted.
+  Memory store tidak tersedia untuk sesi pada environment self-hosted di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) atau [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
 </Note>
 
 ## Menyiapkan host

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 4a6056532a819e28e60cd8425d0a7f990cdbab3f0955d7e01f49ce981dd63d5a
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 5bc5d74a11e286baceee2e2277441441dfcf261d3af96d8e8e0a985cd031364b
 ---
 
 ---
@@ -40,7 +40,7 @@ featureMetadata:
 
 [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) memangkas latensi dan biaya secara signifikan, tetapi hanya ketika bagian awal prompt Anda identik byte demi byte dengan permintaan terbaru. Alat yang diurutkan ulang, timestamp yang diinterpolasi ke dalam “system prompt” (prompt sistem) Anda, atau pengeditan pada pesan sebelumnya dapat secara diam-diam membatalkan cache. Tanpa diagnostik cache, satu-satunya sinyal adalah `usage.cache_read_input_tokens` yang turun menjadi nol, tanpa indikasi apa pun tentang apa yang berubah.
 
-Diagnostik cache menutup celah tersebut. Teruskan `id` dari respons sebelumnya, dan API akan membandingkan kedua permintaan serta memberi tahu Anda di mana keduanya menyimpang (model, prompt sistem, alat, atau riwayat pesan) sehingga Anda dapat memperbaiki akar masalahnya alih-alih menebak-nebak.
+Diagnostik cache menutup celah tersebut. Teruskan `id` dari respons sebelumnya, dan API akan membandingkan kedua permintaan. API memberi tahu Anda di mana keduanya menyimpang (model, prompt sistem, alat, atau riwayat pesan), sehingga Anda dapat memperbaiki akar masalahnya alih-alih menebak-nebak.
 
 ## Cara kerja diagnostik cache
 
@@ -52,7 +52,7 @@ Fingerprint hanya berisi hash dan estimasi jumlah token (tidak pernah berisi kon
 
 ## Penggunaan dasar
 
-Sertakan objek `diagnostics` pada setiap giliran. Objek inilah yang menjadi tanda keikutsertaan (opt-in): API hanya menyimpan fingerprint untuk permintaan yang menyertakannya. Pada giliran pertama, berikan `"previous_message_id": null` untuk ikut serta tanpa pesan sebelumnya sebagai pembanding. Pada giliran-giliran berikutnya, berikan `id` dari respons sebelumnya. “Beta header” (header beta) `cache-diagnosis-2026-04-07` tidak lagi diperlukan, dan permintaan yang mengirimkannya berfungsi seperti sebelumnya.
+Sertakan objek `diagnostics` pada setiap giliran. Objek inilah yang menjadi tanda keikutsertaan (opt-in): API hanya menyimpan fingerprint untuk permintaan yang menyertakannya. Pada giliran pertama, berikan `"previous_message_id": null` untuk ikut serta tanpa pesan sebelumnya sebagai pembanding. Pada giliran-giliran berikutnya, berikan `id` dari respons sebelumnya.
 
 <CodeGroup>
   ```bash cURL
@@ -201,6 +201,10 @@ Sertakan objek `diagnostics` pada setiap giliran. Objek inilah yang menjadi tand
   ```
 
   ```csharp C#
+  using Anthropic.Models.Beta;
+  using Anthropic.Models.Beta.Messages;
+  using Messages = Anthropic.Models.Messages;
+
   AnthropicClient client = new();
 
   var system = "You are an AI assistant analyzing a large document. <document>...</document>";
@@ -298,46 +302,57 @@ Sertakan objek `diagnostics` pada setiap giliran. Objek inilah yang menjadi tand
   ```
 
   ```java Java
-  var client = AnthropicOkHttpClient.fromEnv();
+  import com.anthropic.models.beta.messages.BetaCacheControlEphemeral;
+  import com.anthropic.models.beta.messages.BetaDiagnosticsParam;
+  import com.anthropic.models.beta.messages.MessageCreateParams;
+  import com.anthropic.models.messages.Model;
 
-  var system = "You are an AI assistant analyzing a large document. <document>...</document>";
+  void main() {
+      var client = AnthropicOkHttpClient.fromEnv();
 
-  var r1 = client.beta().messages().create(
-      MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5_5)
-          .maxTokens(1024)
-          .cacheControl(BetaCacheControlEphemeral.builder().build())
-          .system(system)
-          .addUserMessage("Summarize section 1.")
-          // Berikan null pada giliran pertama untuk ikut serta tanpa pesan sebelumnya sebagai pembanding.
-          .diagnostics(BetaDiagnosticsParam.builder().previousMessageId((String) null).build())
-          .build()
-  );
+      var system = "You are an AI assistant analyzing a large document. <document>...</document>";
 
-  var r2 = client.beta().messages().create(
-      MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_5_5)
-          .maxTokens(1024)
-          .cacheControl(BetaCacheControlEphemeral.builder().build())
-          .system(system)
-          .addUserMessage("Summarize section 1.")
-          .addMessage(r1)
-          .addUserMessage("Now summarize section 2.")
-          .diagnostics(BetaDiagnosticsParam.builder().previousMessageId(r1.id()).build())
-          .build()
-  );
+      var r1 = client.beta().messages().create(
+          MessageCreateParams.builder()
+              .model(Model.CLAUDE_OPUS_5_5)
+              .maxTokens(1024)
+              .cacheControl(BetaCacheControlEphemeral.builder().build())
+              .system(system)
+              .addUserMessage("Summarize section 1.")
+              // Berikan null pada giliran pertama untuk ikut serta tanpa pesan sebelumnya sebagai pembanding.
+              .diagnostics(BetaDiagnosticsParam.builder().previousMessageId((String) null).build())
+              .build()
+      );
 
-  if (r2.diagnostics().isEmpty()) {
-      IO.println("No divergence detected.");
-  } else if (r2.diagnostics().get().cacheMissReason().isEmpty()) {
-      IO.println("Comparison still pending.");
-  } else {
-      var reason = r2.diagnostics().get().cacheMissReason().get();
-      IO.println("cache_miss_reason: " + reason.type().asString());
+      var r2 = client.beta().messages().create(
+          MessageCreateParams.builder()
+              .model(Model.CLAUDE_OPUS_5_5)
+              .maxTokens(1024)
+              .cacheControl(BetaCacheControlEphemeral.builder().build())
+              .system(system)
+              .addUserMessage("Summarize section 1.")
+              .addMessage(r1)
+              .addUserMessage("Now summarize section 2.")
+              .diagnostics(BetaDiagnosticsParam.builder().previousMessageId(r1.id()).build())
+              .build()
+      );
+
+      if (r2.diagnostics().isEmpty()) {
+          IO.println("No divergence detected.");
+      } else if (r2.diagnostics().get().cacheMissReason().isEmpty()) {
+          IO.println("Comparison still pending.");
+      } else {
+          var reason = r2.diagnostics().get().cacheMissReason().get();
+          IO.println("cache_miss_reason: " + reason.type().asString());
+      }
   }
   ```
 
   ```php PHP
+  use Anthropic\Beta\Messages\BetaCacheControlEphemeral;
+  use Anthropic\Beta\Messages\BetaDiagnosticsParam;
+  use Anthropic\Messages\Model;
+
   $client = new Client();
 
   $system = 'You are an AI assistant analyzing a large document. <document>...</document>';
@@ -379,7 +394,7 @@ Sertakan objek `diagnostics` pada setiap giliran. Objek inilah yang menjadi tand
   SYSTEM = "You are an AI assistant analyzing a large document. <document>...</document>"
 
   r1 = client.beta.messages.create(
-    model: :"claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     cache_control: {type: "ephemeral"},
     system_: SYSTEM,
@@ -390,7 +405,7 @@ Sertakan objek `diagnostics` pada setiap giliran. Objek inilah yang menjadi tand
   )
 
   r2 = client.beta.messages.create(
-    model: :"claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     cache_control: {type: "ephemeral"},
     system_: SYSTEM,
@@ -683,7 +698,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   ```ruby Ruby
   # Giliran 2: streaming, merujuk ke id respons sebelumnya
   stream = client.beta.messages.stream(
-    model: :"claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     cache_control: {type: "ephemeral"},
     system_: SYSTEM,
@@ -720,264 +735,271 @@ Event `message_start` membawa field `diagnostics` lengkap; lihat [Format respons
 
 Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `previous_message_id` pada setiap giliran. Iterasi pertama meneruskan `null` untuk ikut serta; setiap iterasi berikutnya meneruskan `id` dari respons sebelumnya.
 
-<Tabs>
-  <Tab title="cURL">
-    <Info>
-      Alur kerja ini memerlukan logika yang lebih banyak daripada satu perintah shell. Gunakan Anthropic SDK untuk menjalankan loop. Setiap giliran mengirimkan permintaan HTTP yang sama seperti di [Penggunaan dasar](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics#basic-usage).
-    </Info>
-  </Tab>
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika yang lebih banyak daripada satu perintah shell. Gunakan Anthropic SDK untuk menjalankan loop. Setiap giliran mengirimkan permintaan HTTP yang sama seperti di [Penggunaan dasar](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics#basic-usage).
+  </CodeGroupItem>
 
-  <Tab title="CLI">
-    <Info>
-      Alur kerja ini memerlukan logika yang lebih banyak daripada satu perintah shell, jadi gunakan Anthropic SDK untuk menjalankan loop. Setiap giliran mengirimkan permintaan yang sama seperti perintah CLI di [Penggunaan dasar](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics#basic-usage).
-    </Info>
-  </Tab>
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika yang lebih banyak daripada satu perintah shell. Gunakan Anthropic SDK untuk menjalankan loop. Setiap giliran mengirimkan permintaan yang sama seperti di [Penggunaan dasar](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics#basic-usage).
+  </CodeGroupItem>
 
-  <Tab title="Python">
-    ```python
-    client = anthropic.Anthropic()
+  ```python Python
+  client = anthropic.Anthropic()
 
-    SYSTEM = "You are an AI assistant analyzing a large document. <document>...</document>"
+  SYSTEM = "You are an AI assistant analyzing a large document. <document>...</document>"
 
-    messages = []
-    prev_id = None
+  messages = []
+  prev_id = None
 
-    for i, user_message in enumerate(
-        ["Summarize section 1.", "Now section 2.", "Now section 3."]
-    ):
-        messages.append({"role": "user", "content": user_message})
+  for turn, user_message in enumerate(
+      ["Summarize section 1.", "Now section 2.", "Now section 3."]
+  ):
+      messages.append({"role": "user", "content": user_message})
 
-        r = client.beta.messages.create(
-            model="claude-opus-5-5",
-            max_tokens=1024,
-            cache_control={"type": "ephemeral"},
-            system=SYSTEM,
-            messages=messages,
-            diagnostics={"previous_message_id": prev_id},
-        )
-
-        if r.diagnostics is not None and r.diagnostics.cache_miss_reason is not None:
-            print(f"Turn {i + 1} cache_miss_reason: {r.diagnostics.cache_miss_reason.type}")
-
-        messages.append({"role": "assistant", "content": r.content})
-        prev_id = r.id
-    ```
-  </Tab>
-
-  <Tab title="TypeScript">
-    ```typescript
-    const client = new Anthropic();
-
-    const SYSTEM = "You are an AI assistant analyzing a large document. <document>...</document>";
-
-    const prompts = ["Summarize section 1.", "Now section 2.", "Now section 3."];
-
-    const messages: BetaMessageParam[] = [];
-    let prevId: string | null = null;
-
-    for (const [i, prompt] of prompts.entries()) {
-      messages.push({ role: "user", content: prompt });
-
-      const r: BetaMessage = await client.beta.messages.create({
-        model: "claude-opus-5-5",
-        max_tokens: 1024,
-        cache_control: { type: "ephemeral" },
-        system: SYSTEM,
-        messages,
-        diagnostics: { previous_message_id: prevId }
-      });
-
-      if (r.diagnostics?.cache_miss_reason) {
-        console.log(`Turn ${i + 1} cache_miss_reason: ${r.diagnostics.cache_miss_reason.type}`);
-      }
-
-      messages.push({ role: "assistant", content: r.content });
-      prevId = r.id;
-    }
-    ```
-  </Tab>
-
-  <Tab title="C#">
-    ```csharp
-    AnthropicClient client = new();
-
-    var system = "You are an AI assistant analyzing a large document. <document>...</document>";
-
-    List<BetaMessageParam> messages = [];
-    string? prevId = null;
-    string[] prompts = ["Summarize section 1.", "Now section 2.", "Now section 3."];
-
-    for (int i = 0; i < prompts.Length; i++)
-    {
-        messages.Add(new BetaUserMessageParam { Content = prompts[i] });
-
-        var r = await client.Beta.Messages.Create(
-            new()
-            {
-                Model = Messages::Model.ClaudeOpus5_5,
-                MaxTokens = 1024,
-                CacheControl = new(),
-                System = system,
-                Messages = messages,
-                Diagnostics = new() { PreviousMessageID = prevId },
-            }
-        );
-
-        if (r.Diagnostics?.CacheMissReason is { Type: var type })
-        {
-            Console.WriteLine($"Turn {i + 1} cache_miss_reason: {type.Raw()}");
-        }
-
-        messages.Add(
-            new BetaAssistantMessageParam
-            {
-                Content = r.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList(),
-            }
-        );
-        prevId = r.ID;
-    }
-    ```
-  </Tab>
-
-  <Tab title="Go">
-    ```go
-    client := anthropic.NewClient()
-    ctx := context.Background()
-
-    system := []anthropic.BetaTextBlockParam{
-    	{Text: "You are an AI assistant analyzing a large document. <document>...</document>"},
-    }
-
-    prompts := []string{"Summarize section 1.", "Now section 2.", "Now section 3."}
-
-    var messages []anthropic.BetaMessageParam
-    prevID := param.Null[string]()
-
-    for turn, prompt := range prompts {
-    	messages = append(messages, anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(prompt)))
-
-    	r, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
-    		Model:        anthropic.ModelClaudeOpus5_5,
-    		MaxTokens:    1024,
-    		CacheControl: anthropic.BetaCacheControlEphemeralParam{},
-    		System:       system,
-    		Messages:     messages,
-    		Diagnostics: anthropic.BetaDiagnosticsParam{
-    			PreviousMessageID: prevID,
-    		},
-    	})
-    	if err != nil {
-    		panic(err)
-    	}
-
-    	if r.JSON.Diagnostics.Valid() && r.Diagnostics.JSON.CacheMissReason.Valid() {
-    		fmt.Printf("Turn %d cache_miss_reason: %s\n", turn+1, r.Diagnostics.CacheMissReason.Type)
-    	}
-
-    	messages = append(messages, r.ToParam())
-    	prevID = anthropic.String(r.ID)
-    }
-    ```
-  </Tab>
-
-  <Tab title="Java">
-    ```java
-    var client = AnthropicOkHttpClient.fromEnv();
-
-    var system = "You are an AI assistant analyzing a large document. <document>...</document>";
-    var prompts = List.of("Summarize section 1.", "Now section 2.", "Now section 3.");
-
-    var messages = new ArrayList<BetaMessageParam>();
-    String prevId = null;
-
-    for (var turn = 0; turn < prompts.size(); turn++) {
-        messages.add(BetaMessageParam.ofUser(prompts.get(turn)));
-
-        var r = client.beta().messages().create(
-            MessageCreateParams.builder()
-                .model(Model.CLAUDE_OPUS_5_5)
-                .maxTokens(1024)
-                .cacheControl(BetaCacheControlEphemeral.builder().build())
-                .system(system)
-                .messages(messages)
-                .diagnostics(BetaDiagnosticsParam.builder().previousMessageId(prevId).build())
-                .build()
-        );
-
-        if (r.diagnostics().isPresent() && r.diagnostics().get().cacheMissReason().isPresent()) {
-            var reason = r.diagnostics().get().cacheMissReason().get();
-            IO.println("Turn " + (turn + 1) + " cache_miss_reason: " + reason.type().asString());
-        }
-
-        messages.add(r.toParam());
-        prevId = r.id();
-    }
-    ```
-  </Tab>
-
-  <Tab title="PHP">
-    ```php
-    $client = new Client();
-
-    $system = 'You are an AI assistant analyzing a large document. <document>...</document>';
-
-    $messages = [];
-    $prevId = null;
-
-    foreach (['Summarize section 1.', 'Now section 2.', 'Now section 3.'] as $i => $userMsg) {
-        $turn = $i + 1;
-        $messages[] = ['role' => 'user', 'content' => $userMsg];
-
-        $r = $client->beta->messages->create(
-            model: Model::CLAUDE_OPUS_5_5,
-            maxTokens: 1024,
-            cacheControl: new BetaCacheControlEphemeral,
-            system: $system,
-            messages: $messages,
-            diagnostics: (new BetaDiagnosticsParam)->withPreviousMessageID($prevId),
-        );
-
-        if ($r->diagnostics?->cacheMissReason !== null) {
-            echo "Turn {$turn} cache_miss_reason: {$r->diagnostics->cacheMissReason->type}\n";
-        }
-
-        $messages[] = ['role' => 'assistant', 'content' => $r->content];
-        $prevId = $r->id;
-    }
-    ```
-  </Tab>
-
-  <Tab title="Ruby">
-    ```ruby
-    client = Anthropic::Client.new
-
-    SYSTEM = "You are an AI assistant analyzing a large document. <document>...</document>"
-
-    messages = []
-    prev_id = nil
-
-    ["Summarize section 1.", "Now section 2.", "Now section 3."].each_with_index do |user_msg, i|
-      messages << {role: "user", content: user_msg}
-
-      r = client.beta.messages.create(
-        model: :"claude-opus-5-5",
-        max_tokens: 1024,
-        cache_control: {type: "ephemeral"},
-        system_: SYSTEM,
-        messages: messages,
-        diagnostics: {previous_message_id: prev_id}
+      response = client.beta.messages.create(
+          model="claude-opus-5-5",
+          max_tokens=1024,
+          cache_control={"type": "ephemeral"},
+          system=SYSTEM,
+          messages=messages,
+          diagnostics={"previous_message_id": prev_id},
       )
 
-      if (reason = r.diagnostics&.cache_miss_reason)
-        puts "Turn #{i + 1} cache_miss_reason: #{reason.type}"
-      end
+      if (
+          response.diagnostics is not None
+          and response.diagnostics.cache_miss_reason is not None
+      ):
+          print(
+              f"Turn {turn + 1} cache_miss_reason: {response.diagnostics.cache_miss_reason.type}"
+          )
 
-      messages << {role: "assistant", content: r.content}
-      prev_id = r.id
+      messages.append({"role": "assistant", "content": response.content})
+      prev_id = response.id
+  ```
+
+  ```typescript TypeScript
+  import type { BetaMessage, BetaMessageParam } from "@anthropic-ai/sdk/resources/beta";
+
+  const client = new Anthropic();
+
+  const SYSTEM = "You are an AI assistant analyzing a large document. <document>...</document>";
+
+  const prompts = ["Summarize section 1.", "Now section 2.", "Now section 3."];
+
+  const messages: BetaMessageParam[] = [];
+  let prevId: string | null = null;
+
+  for (const [turn, prompt] of prompts.entries()) {
+    messages.push({ role: "user", content: prompt });
+
+    const response: BetaMessage = await client.beta.messages.create({
+      model: "claude-opus-5-5",
+      max_tokens: 1024,
+      cache_control: { type: "ephemeral" },
+      system: SYSTEM,
+      messages,
+      diagnostics: { previous_message_id: prevId }
+    });
+
+    if (response.diagnostics?.cache_miss_reason) {
+      console.log(
+        `Turn ${turn + 1} cache_miss_reason: ${response.diagnostics.cache_miss_reason.type}`
+      );
+    }
+
+    messages.push({ role: "assistant", content: response.content });
+    prevId = response.id;
+  }
+  ```
+
+  ```csharp C#
+  using Anthropic.Models.Beta;
+  using Anthropic.Models.Beta.Messages;
+  using Messages = Anthropic.Models.Messages;
+
+  AnthropicClient client = new();
+
+  var system = "You are an AI assistant analyzing a large document. <document>...</document>";
+
+  List<BetaMessageParam> messages = [];
+  string? prevId = null;
+  string[] prompts = ["Summarize section 1.", "Now section 2.", "Now section 3."];
+
+  for (int turn = 0; turn < prompts.Length; turn++)
+  {
+      messages.Add(new BetaUserMessageParam { Content = prompts[turn] });
+
+      var response = await client.Beta.Messages.Create(
+          new()
+          {
+              Model = Messages::Model.ClaudeOpus5_5,
+              MaxTokens = 1024,
+              CacheControl = new(),
+              System = system,
+              Messages = messages,
+              Diagnostics = new() { PreviousMessageID = prevId },
+          }
+      );
+
+      if (response.Diagnostics?.CacheMissReason is { Type: var type })
+      {
+          Console.WriteLine($"Turn {turn + 1} cache_miss_reason: {type.Raw()}");
+      }
+
+      messages.Add(
+          new BetaAssistantMessageParam
+          {
+              Content = response.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList(),
+          }
+      );
+      prevId = response.ID;
+  }
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+  ctx := context.Background()
+
+  system := []anthropic.BetaTextBlockParam{
+  	{Text: "You are an AI assistant analyzing a large document. <document>...</document>"},
+  }
+
+  prompts := []string{"Summarize section 1.", "Now section 2.", "Now section 3."}
+
+  var messages []anthropic.BetaMessageParam
+  prevID := param.Null[string]()
+
+  for turn, prompt := range prompts {
+  	messages = append(messages, anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(prompt)))
+
+  	response, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
+  		Model:        anthropic.ModelClaudeOpus5_5,
+  		MaxTokens:    1024,
+  		CacheControl: anthropic.BetaCacheControlEphemeralParam{},
+  		System:       system,
+  		Messages:     messages,
+  		Diagnostics: anthropic.BetaDiagnosticsParam{
+  			PreviousMessageID: prevID,
+  		},
+  	})
+  	if err != nil {
+  		panic(err)
+  	}
+
+  	if response.JSON.Diagnostics.Valid() && response.Diagnostics.JSON.CacheMissReason.Valid() {
+  		fmt.Printf("Turn %d cache_miss_reason: %s\n", turn+1, response.Diagnostics.CacheMissReason.Type)
+  	}
+
+  	messages = append(messages, response.ToParam())
+  	prevID = anthropic.String(response.ID)
+  }
+  ```
+
+  ```java Java
+  import com.anthropic.models.beta.messages.BetaCacheControlEphemeral;
+  import com.anthropic.models.beta.messages.BetaDiagnosticsParam;
+  import com.anthropic.models.beta.messages.BetaMessageParam;
+  import com.anthropic.models.beta.messages.MessageCreateParams;
+  import com.anthropic.models.messages.Model;
+
+  void main() {
+      var client = AnthropicOkHttpClient.fromEnv();
+
+      var system = "You are an AI assistant analyzing a large document. <document>...</document>";
+      var prompts = List.of("Summarize section 1.", "Now section 2.", "Now section 3.");
+
+      var messages = new ArrayList<BetaMessageParam>();
+      String prevId = null;
+
+      for (var turn = 0; turn < prompts.size(); turn++) {
+          messages.add(BetaMessageParam.ofUser(prompts.get(turn)));
+
+          var response = client.beta().messages().create(
+              MessageCreateParams.builder()
+                  .model(Model.CLAUDE_OPUS_5_5)
+                  .maxTokens(1024)
+                  .cacheControl(BetaCacheControlEphemeral.builder().build())
+                  .system(system)
+                  .messages(messages)
+                  .diagnostics(BetaDiagnosticsParam.builder().previousMessageId(prevId).build())
+                  .build()
+          );
+
+          if (response.diagnostics().isPresent() && response.diagnostics().get().cacheMissReason().isPresent()) {
+              var reason = response.diagnostics().get().cacheMissReason().get();
+              IO.println("Turn " + (turn + 1) + " cache_miss_reason: " + reason.type().asString());
+          }
+
+          messages.add(response.toParam());
+          prevId = response.id();
+      }
+  }
+  ```
+
+  ```php PHP
+  use Anthropic\Beta\Messages\BetaCacheControlEphemeral;
+  use Anthropic\Beta\Messages\BetaDiagnosticsParam;
+  use Anthropic\Messages\Model;
+
+  $client = new Client();
+
+  $system = 'You are an AI assistant analyzing a large document. <document>...</document>';
+
+  $messages = [];
+  $prevId = null;
+
+  foreach (['Summarize section 1.', 'Now section 2.', 'Now section 3.'] as $index => $userMsg) {
+      $turn = $index + 1;
+      $messages[] = ['role' => 'user', 'content' => $userMsg];
+
+      $response = $client->beta->messages->create(
+          model: Model::CLAUDE_OPUS_5_5,
+          maxTokens: 1024,
+          cacheControl: new BetaCacheControlEphemeral,
+          system: $system,
+          messages: $messages,
+          diagnostics: (new BetaDiagnosticsParam)->withPreviousMessageID($prevId),
+      );
+
+      if ($response->diagnostics?->cacheMissReason !== null) {
+          echo "Turn {$turn} cache_miss_reason: {$response->diagnostics->cacheMissReason->type}\n";
+      }
+
+      $messages[] = ['role' => 'assistant', 'content' => $response->content];
+      $prevId = $response->id;
+  }
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  SYSTEM = "You are an AI assistant analyzing a large document. <document>...</document>"
+
+  messages = []
+  prev_id = nil
+
+  ["Summarize section 1.", "Now section 2.", "Now section 3."].each_with_index do |user_msg, turn|
+    messages << {role: "user", content: user_msg}
+
+    response = client.beta.messages.create(
+      model: Anthropic::Model::CLAUDE_OPUS_5_5,
+      max_tokens: 1024,
+      cache_control: {type: "ephemeral"},
+      system_: SYSTEM,
+      messages: messages,
+      diagnostics: {previous_message_id: prev_id}
+    )
+
+    if (reason = response.diagnostics&.cache_miss_reason)
+      puts "Turn #{turn + 1} cache_miss_reason: #{reason.type}"
     end
-    ```
-  </Tab>
-</Tabs>
+
+    messages << {role: "assistant", content: response.content}
+    prev_id = response.id
+  end
+  ```
+</CodeGroup>
 
 ## Format respons
 
@@ -985,7 +1007,7 @@ Field `diagnostics` pada `Message` respons memiliki tiga kemungkinan nilai:
 
 | Nilai                          | Arti                                                                                                                                                                                                                         |
 | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `null`                         | Permintaan tidak menyertakan objek `diagnostics`, `previous_message_id` bernilai `null` (giliran pertama, tidak ada yang dibandingkan), atau perbandingan telah dijalankan dan tidak menemukan penyimpangan.                 |
+| `null`                         | Permintaan tidak menyertakan objek `diagnostics`, `previous_message_id` bernilai `null` (giliran pertama, tidak ada yang dibandingkan), atau tidak ada yang menyimpang sebelum breakpoint terakhir.                          |
 | `{"cache_miss_reason": null}`  | Perbandingan masih berjalan ketika respons diserialisasi. Hal ini dapat terjadi ketika respons dimulai dengan sangat cepat. Anggap hasilnya tidak meyakinkan dan periksa giliran berikutnya.                                 |
 | `{"cache_miss_reason": {...}}` | Sebuah `cache_miss_reason` dilampirkan. Untuk tipe `*_changed`, ini mengidentifikasi titik penyimpangan pertama; `previous_message_not_found` dan `unavailable` adalah kasus di mana tidak ada perbandingan yang dihasilkan. |
 
@@ -1019,7 +1041,7 @@ Ketika `cache_miss_reason` tidak null, bentuknya seperti ini:
 | Tipe                         | Artinya                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Yang perlu diubah                                                                                                                                                                                                                                                                                                                       |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `model_changed`              | `model` berbeda dari permintaan sebelumnya (misalnya, router, pengujian A/B, atau fallback memilih model yang berbeda). Cache bersifat per-model.                                                                                                                                                                                                                                                                                                                        | Pertahankan model tetap konstan dalam percakapan yang di-cache.                                                                                                                                                                                                                                                                         |
-| `system_changed`             | Parameter `system` berbeda. Biasanya timestamp, ID permintaan, atau nilai per-permintaan lainnya diinterpolasi ke dalam prompt sistem.                                                                                                                                                                                                                                                                                                                                   | Jadikan prompt sistem sebagai konstanta yang stabil secara byte dan pindahkan data dinamis ke pesan `user` pertama setelah breakpoint cache Anda.                                                                                                                                                                                       |
+| `system_changed`             | Parameter `system` berbeda. Biasanya timestamp, ID permintaan, atau nilai per-permintaan lainnya diinterpolasi ke dalam prompt sistem.                                                                                                                                                                                                                                                                                                                                   | Jadikan prompt sistem sebagai konstanta yang stabil secara byte dan letakkan nilai yang berubah di pesan `user` yang akan Anda kirim.                                                                                                                                                                                                   |
 | `tools_changed`              | Array `tools` berbeda: alat ditambahkan, dihapus, atau diurutkan ulang antar giliran, atau JSON `input_schema` alat diserialisasi secara non-deterministik.                                                                                                                                                                                                                                                                                                              | Kirim daftar alat yang sama pada setiap giliran dalam urutan tetap dengan skema yang diserialisasi secara deterministik (misalnya, urutkan kunci).                                                                                                                                                                                      |
 | `messages_changed`           | Model, prompt sistem, dan alat semuanya cocok, tetapi entri sebelumnya dalam `messages` diubah, diurutkan ulang, atau dihapus alih-alih ditambahkan di akhir. Biasanya riwayat percakapan dipotong atau diedit, atau giliran asisten dan blok `tool_result` diserialisasi ulang secara berbeda saat dikirim kembali.                                                                                                                                                     | Perlakukan riwayat sebagai append-only; kembalikan `content` asisten dan hasil alat secara verbatim.                                                                                                                                                                                                                                    |
 | `previous_message_not_found` | Tidak ada fingerprint tersimpan untuk `previous_message_id` yang diberikan. Ini bukan bukti bahwa permintaan Anda berubah. Biasanya permintaan sebelumnya tidak menyertakan objek `diagnostics`, berasal dari workspace yang berbeda, atau sudah terlalu lama sejak dikirim.                                                                                                                                                                                             | Sertakan objek `diagnostics` pada setiap giliran dan jaga agar giliran-giliran berturut-turut berdekatan waktunya.                                                                                                                                                                                                                      |
@@ -1031,20 +1053,20 @@ Ketika `cache_miss_reason` tidak null, bentuknya seperti ini:
 
 ## Membaca diagnostik bersama usage
 
-`diagnostics` menjawab “apakah permintaan saya berubah?” sedangkan `usage.cache_read_input_tokens` menjawab “apakah cache hit?” Menggabungkan keduanya memberi tahu Anda di mana harus mencari.
+`diagnostics` memberi tahu Anda apakah permintaan Anda berubah, dan `usage.cache_read_input_tokens` memberi tahu Anda apakah cache hit. Menggabungkan keduanya memberi tahu Anda di mana harus mencari.
 
 Matriks ini berlaku untuk giliran di mana Anda meneruskan `previous_message_id` yang nyata. Pada giliran pertama (`previous_message_id: null`), `diagnostics` selalu `null` dan `cache_read_input_tokens` biasanya nol karena cache sedang ditulis, bukan dibaca; tidak diperlukan pemecahan masalah. Matriks ini juga tidak berlaku ketika `cache_miss_reason` bernilai `null` (perbandingan masih tertunda; periksa giliran berikutnya) atau ketika `type`-nya adalah `previous_message_not_found` atau `unavailable` (tidak ada perbandingan yang dihasilkan).
 
-| Hasil diagnostik                            | Token pembacaan cache | Interpretasi                                                                                                                                                                                                                                      |
-| ------------------------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `null`                                      | tinggi                | Berfungsi sesuai harapan. Prefiks Anda stabil dan cache hit.                                                                                                                                                                                      |
-| `null`                                      | rendah atau nol       | Permintaan Anda cocok tetapi entri cache tidak lagi tersedia. Pertimbangkan untuk memperpendek jeda antar giliran atau menggunakan [TTL cache 1 jam](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration). |
-| `cache_miss_reason` adalah tipe `*_changed` | rendah atau nol       | Permintaan berubah; perbaiki penyebab yang ditunjukkan oleh `type`.                                                                                                                                                                               |
-| `cache_miss_reason` bertipe `*_changed`     | tinggi                | Jarang. Perubahan terjadi di bagian akhir prompt tetapi breakpoint `cache_control` sebelumnya masih hit. Layak diperbaiki, tetapi dampaknya rendah.                                                                                               |
+| Hasil diagnostik                            | Token pembacaan cache | Interpretasi                                                                                                                                                                                                                                                     |
+| ------------------------------------------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `null`                                      | tinggi                | Cache hit.                                                                                                                                                                                                                                                       |
+| `null`                                      | rendah atau nol       | Permintaan Anda cocok, tetapi tidak ada entri cache untuk dibaca: entri tersebut telah kedaluwarsa, atau prompt lebih pendek dari [panjang minimum yang dapat di-cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations). |
+| `cache_miss_reason` adalah tipe `*_changed` | rendah atau nol       | Permintaan berubah; perbaiki penyebab yang ditunjukkan oleh `type`.                                                                                                                                                                                              |
+| `cache_miss_reason` adalah tipe `*_changed` | tinggi                | Jarang. Perubahan terjadi di bagian akhir prompt tetapi breakpoint `cache_control` sebelumnya masih hit. Layak diperbaiki, tetapi dampaknya rendah.                                                                                                              |
 
 ## Keterbatasan
 
-* **Hanya Claude API:** Tidak tersedia di Claude Models on Google Cloud (Google managed) atau Amazon Bedrock.
+* **Hanya Claude API:** Diagnostik cache tersedia di Claude API.
 * **Retensi terbatas:** Fingerprint untuk pencarian `previous_message_id` kedaluwarsa setelah periode singkat. Jalankan perbandingan diagnostik antara permintaan yang berdekatan waktunya.
 * **Workspace yang sama:** Permintaan sebelumnya harus dijalankan dalam organisasi dan workspace yang sama. Untuk memeriksanya, bandingkan [header respons](https://platform.claude.com/docs/id/api/overview#response-headers) `anthropic-workspace-id` pada kedua respons.
 * **Cakupan perbandingan:** Untuk percakapan yang sangat panjang ketika satu-satunya perubahan berada jauh di dalam daftar pesan, respons mungkin berupa `unavailable` alih-alih lokasi yang tepat.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 5d0538b4c3d7f6392e0372ef0d5d33e652b97b48c469dc887bd0212d27185ca3
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: dcf0d16bc183537fa55bef49ce14a68fd88c0b927ae842a97a29f60d104a4679
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
+    note: Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya.
   supportedModels:
     - claude-fable-5-2
     - claude-mythos-5-2
@@ -49,7 +49,7 @@ featureMetadata:
 Kunci lingkungan mengotorisasi pengiriman hasil alat kustom, sehingga kunci API Claude Anda tetap berada di luar host worker.
 
 <Note>
-  Melayani alat kustom memerlukan worker SDK. Worker CLI `ant` tidak memiliki cara untuk mendaftarkan implementasi alat kustom. Dalam pola sandbox-per-sesi, [jalankan worker SDK di dalam sandbox](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#run-the-sdk-worker-inside-the-sandbox).
+  Untuk melayani alat kustom, Anda memerlukan worker SDK. Worker CLI `ant` tidak memiliki cara untuk mendaftarkan implementasi alat kustom. Dalam pola sandbox-per-sesi, [jalankan worker SDK di dalam sandbox](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#run-the-sdk-worker-inside-the-sandbox).
 </Note>
 
 ## Melayani alat kustom
@@ -223,7 +223,7 @@ Kunci lingkungan mengotorisasi pengiriman hasil alat kustom, sehingga kunci API 
   </Step>
 </Steps>
 
-Worker hanya menjawab alat yang didaftarkan padanya. Jika sebuah alat dideklarasikan pada agen tetapi tidak ada worker atau klien yang melayaninya, sesi akan dijeda dengan alasan berhenti `requires_action`. Sesi tetap dijeda hingga ada sesuatu yang mengirimkan hasilnya. Lihat [Menjawab panggilan alat yang menjeda sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#answer-tool-calls-that-pause-the-session) untuk alur event-nya.
+Worker hanya menjawab alat yang didaftarkan padanya. Jika Anda mendeklarasikan sebuah alat pada agen tetapi tidak ada worker atau klien yang melayaninya, sesi akan dijeda dengan alasan berhenti `requires_action`. Sesi tetap dijeda hingga ada sesuatu yang mengirimkan hasilnya. Lihat [Menjawab panggilan alat yang menjeda sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#answer-tool-calls-that-pause-the-session) untuk alur event-nya.
 
 ## Membungkus server MCP sebagai alat kustom
 
@@ -863,7 +863,7 @@ Helper MCP mempertahankan nama dan deskripsi server, dan sebagian besar skema di
 
 | Field                    | Aturan                                                                                                                                                                                                                                                                                                                           |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`                   | Unik per agen. Huruf, angka, garis bawah, dan tanda hubung, 1–128 karakter. Tidak boleh sama dengan alat agen bawaan seperti `bash` atau `read`, atau menggunakan prefiks cadangan `mcp__` atau `ant__`.                                                                                                                         |
+| `name`                   | Unik dalam agen. Huruf, angka, garis bawah, dan tanda hubung, 1–128 karakter. Tidak boleh sama dengan alat agen bawaan seperti `bash` atau `read`, atau menggunakan prefiks cadangan `mcp__` atau `ant__`.                                                                                                                       |
 | `description`            | Wajib dan tidak boleh kosong.                                                                                                                                                                                                                                                                                                    |
 | `input_schema`           | Menerima kata kunci JSON Schema yang umum dipancarkan oleh server MCP, seperti `additionalProperties` dan `title`. Menolak kata kunci referensi seperti `$ref` di mana pun, serta `oneOf`, `anyOf`, dan `allOf` di tingkat teratas. Nama properti menggunakan huruf, angka, garis bawah, titik, dan tanda hubung, 1–64 karakter. |
 | Array `tools` milik agen | Paling banyak 256 entri. Setiap alat yang dibungkus adalah satu entri, dan toolset bawaan adalah satu entri lagi.                                                                                                                                                                                                                |

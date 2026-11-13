@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-editing
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 1260942fe948ed4533a27fca5a73ad12acc328b9769be0a1af9783ecfe66ea98
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 705687737dda34a04ea1bb1c80a0c40b9549ed460bc76356cc16e35af1337654
 ---
 
 ---
@@ -50,10 +50,10 @@ featureMetadata:
   Untuk sebagian besar kasus penggunaan, [kompaksi sisi server](https://platform.claude.com/docs/id/build-with-claude/compaction) adalah strategi utama untuk mengelola konteks dalam percakapan yang berjalan lama. Strategi di halaman ini berguna untuk skenario tertentu di mana Anda memerlukan kontrol yang lebih terperinci atas konten apa yang dibersihkan.
 </Note>
 
-“Context editing” (pengeditan konteks) memungkinkan Anda untuk secara selektif menghapus konten tertentu dari riwayat percakapan seiring pertumbuhannya. Selain mengoptimalkan biaya dan tetap berada dalam batas, ini tentang secara aktif mengkurasi apa yang diterima Claude: konteks adalah sumber daya terbatas dengan hasil yang semakin berkurang, dan konten yang tidak relevan menurunkan fokus model. Pengeditan konteks memberi Anda kontrol runtime yang terperinci atas kurasi tersebut. Untuk prinsip-prinsip yang lebih luas di balik manajemen konteks, lihat [Rekayasa konteks yang efektif](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents). Halaman ini mencakup:
+“Context editing” (pengeditan konteks) memungkinkan Anda untuk secara selektif membersihkan konten tertentu dari riwayat percakapan seiring pertumbuhannya. Selain mengoptimalkan biaya dan tetap berada dalam batas, ini tentang secara aktif mengkurasi apa yang diterima Claude: konteks adalah sumber daya terbatas dengan hasil yang semakin berkurang, dan konten yang tidak relevan menurunkan fokus model. Pengeditan konteks memberi Anda kontrol runtime yang terperinci atas kurasi tersebut. Untuk prinsip-prinsip yang lebih luas di balik manajemen konteks, lihat [Rekayasa konteks yang efektif](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents). Halaman ini mencakup:
 
-* **Penghapusan hasil alat:** Paling cocok untuk alur kerja agentik dengan penggunaan alat yang intensif di mana hasil alat lama tidak lagi diperlukan
-* **Penghapusan blok pemikiran:** Untuk mengelola blok pemikiran dari giliran sebelumnya, dengan opsi untuk mempertahankan pemikiran terbaru demi kesinambungan konteks
+* **Pembersihan hasil alat:** Paling cocok untuk alur kerja agentik dengan penggunaan alat yang intensif di mana hasil alat lama tidak lagi diperlukan
+* **Pembersihan blok pemikiran:** Untuk mengelola blok pemikiran dari giliran sebelumnya, dengan opsi untuk mempertahankan pemikiran terbaru demi kesinambungan konteks
 * **Compaction SDK sisi klien:** Alternatif berbasis SDK untuk manajemen konteks berbasis ringkasan (compaction sisi server umumnya lebih disarankan)
 
 | Pendekatan      | Tempat berjalan | Strategi                                                                                                        | Cara kerjanya                                                                                                                                                                                                                                                                                                                                                                                                          |
@@ -71,7 +71,7 @@ featureMetadata:
 
 ### Pembersihan hasil alat
 
-Strategi `clear_tool_uses_20250919` menghapus hasil alat ketika konteks percakapan tumbuh melampaui ambang batas yang Anda konfigurasi. Ini sangat berguna untuk alur kerja agentik dengan penggunaan alat yang intensif. Hasil alat yang lebih lama (seperti isi file atau hasil pencarian) tidak lagi diperlukan setelah Claude memprosesnya.
+Strategi `clear_tool_uses_20250919` membersihkan hasil alat ketika konteks percakapan tumbuh melampaui ambang batas yang Anda konfigurasi. Ini sangat berguna untuk alur kerja agentik dengan penggunaan alat yang intensif. Hasil alat yang lebih lama (seperti isi file atau hasil pencarian) tidak lagi diperlukan setelah Claude memprosesnya.
 
 Saat diaktifkan, API secara otomatis membersihkan hasil alat terlama dalam urutan kronologis. API mengganti setiap hasil yang dibersihkan dengan teks placeholder yang menunjukkan kepada Claude bahwa hasil tersebut telah dihapus. Secara default, hanya hasil alat yang dibersihkan. Anda dapat secara opsional membersihkan hasil alat dan panggilan alat (parameter penggunaan alat) dengan mengatur `clear_tool_inputs` ke `true`.
 
@@ -98,7 +98,9 @@ Satu giliran percakapan asisten dapat mencakup beberapa blok konten (misalnya, s
 
 Pengeditan konteks diterapkan di sisi server sebelum prompt mencapai Claude. Aplikasi klien Anda mempertahankan riwayat percakapan lengkap yang tidak dimodifikasi. Anda tidak perlu menyinkronkan status klien Anda dengan versi yang telah diedit. Lanjutkan mengelola riwayat percakapan lengkap Anda secara lokal seperti biasa.
 
-Pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, manajemen konteks di sisi server tidak pernah membatalkan validitas blok pemikiran. Pengeditan di sisi klien terhadap giliran sebelumnya dapat membatalkan validitas blok pemikiran di setiap giliran asisten berikutnya. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check).
+Pada [model dengan pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#outcomes), manajemen konteks di sisi server tidak pernah membatalkan validitas blok pemikiran. Pengeditan di sisi klien terhadap giliran sebelumnya dapat membatalkan validitas blok pemikiran di setiap giliran asisten berikutnya. Lihat [Apa yang harus tetap sama, dan mengapa](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#prefix-check).
+
+Model dengan “preserved thinking” (Pemikiran yang dipertahankan) adalah Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5.
 
 ### Pengeditan konteks dan caching prompt
 
@@ -106,7 +108,7 @@ Interaksi pengeditan konteks dengan [“prompt caching” (caching prompt)](http
 
 * **Pembersihan hasil alat:** Membatalkan validitas prefiks prompt yang di-cache ketika konten dibersihkan. Untuk mengantisipasi hal ini, bersihkan token yang cukup agar pembatalan cache sepadan. Gunakan parameter `clear_at_least` untuk memastikan jumlah minimum token dibersihkan setiap kali. Anda akan dikenai biaya penulisan cache setiap kali konten dibersihkan, tetapi permintaan berikutnya dapat menggunakan kembali prefiks yang baru di-cache.
 
-* **Penghapusan blok pemikiran:** Ketika blok pemikiran **disimpan** dalam konteks (tidak dihapus), cache prompt dipertahankan, memungkinkan cache hit dan mengurangi biaya token input. Ketika blok pemikiran **dihapus**, cache dibatalkan validitasnya pada titik di mana penghapusan terjadi. Konfigurasikan parameter `keep` berdasarkan apakah Anda ingin memprioritaskan kinerja cache atau ketersediaan jendela konteks.
+* **Pembersihan blok pemikiran:** Ketika blok pemikiran **dipertahankan** dalam konteks (tidak dibersihkan), cache prompt dipertahankan, memungkinkan cache hit dan mengurangi biaya token input. Ketika blok pemikiran **dibersihkan**, cache dibatalkan validitasnya pada titik di mana pembersihan terjadi. Konfigurasikan parameter `keep` berdasarkan apakah Anda ingin memprioritaskan kinerja cache atau ketersediaan jendela konteks.
 
 ## Model yang didukung
 
@@ -114,7 +116,7 @@ Pengeditan konteks tersedia di semua model Claude yang didukung.
 
 ## Penggunaan pembersihan hasil alat
 
-Cara paling sederhana untuk mengaktifkan pembersihan hasil alat adalah dengan hanya menentukan tipe strategi. Semua [opsi konfigurasi](https://platform.claude.com/docs/id/build-with-claude/context-editing#configuration-options-for-tool-result-clearing) lainnya menggunakan nilai defaultnya:
+Salah satu cara untuk mengaktifkan pembersihan hasil alat adalah dengan hanya menentukan tipe strategi. Semua [opsi konfigurasi](https://platform.claude.com/docs/id/build-with-claude/context-editing#configuration-options-for-tool-result-clearing) lainnya menggunakan nilai defaultnya:
 
 <CodeGroup>
   ```bash cURL
@@ -1765,7 +1767,7 @@ Anda dapat menggunakan pembersihan blok pemikiran dan pembersihan hasil alat sec
 
 | Opsi konfigurasi    | Default             | Deskripsi                                                                                                                                                                                                                                                                      |
 | ------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `trigger`           | 100.000 token input | Menentukan kapan strategi pengeditan konteks diaktifkan. Setelah prompt melampaui ambang batas ini, penghapusan dimulai. Anda dapat menentukan nilai ini dalam `input_tokens` atau `tool_uses`.                                                                                |
+| `trigger`           | 100.000 token input | Menentukan kapan strategi pengeditan konteks diaktifkan. Setelah prompt melampaui ambang batas ini, pembersihan dimulai. Anda dapat menentukan nilai ini dalam `input_tokens` atau `tool_uses`.                                                                                |
 | `keep`              | 3 penggunaan alat   | Menentukan berapa banyak pasangan penggunaan/hasil alat terbaru yang disimpan setelah pembersihan terjadi. API menghapus interaksi alat terlama terlebih dahulu, mempertahankan yang terbaru.                                                                                  |
 | `clear_at_least`    | Tidak ada           | Memastikan jumlah minimum token dibersihkan setiap kali strategi diaktifkan. Jika API tidak dapat membersihkan setidaknya jumlah yang ditentukan, strategi tidak akan diterapkan. Ini membantu menentukan apakah pembersihan konteks sepadan dengan merusak cache prompt Anda. |
 | `exclude_tools`     | Tidak ada           | Daftar nama alat yang penggunaan dan hasil alatnya tidak boleh dibersihkan. Berguna untuk mempertahankan konteks penting.                                                                                                                                                      |
@@ -2122,13 +2124,13 @@ Respons menunjukkan jumlah token akhir setelah manajemen konteks diterapkan (`in
 
 ## Penggunaan dengan alat memori
 
-Pengeditan konteks dapat digabungkan dengan [alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool). Ketika konteks percakapan Anda mendekati ambang batas penghapusan yang dikonfigurasi, Claude menerima peringatan otomatis untuk menyimpan informasi penting. Ini memungkinkan Claude menyimpan hasil alat atau konteks ke file memorinya sebelum dihapus dari riwayat percakapan.
+Pengeditan konteks dapat digabungkan dengan [alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool). Ketika konteks percakapan Anda mendekati ambang batas pembersihan yang dikonfigurasi, Claude menerima peringatan otomatis untuk menyimpan informasi penting. Ini memungkinkan Claude menyimpan hasil alat atau konteks ke file memorinya sebelum dibersihkan dari riwayat percakapan.
 
 Kombinasi ini memungkinkan Anda untuk:
 
-* **Mempertahankan konteks penting:** Claude dapat menulis informasi penting dari hasil alat ke file memori sebelum hasil tersebut dihapus.
+* **Mempertahankan konteks penting:** Claude dapat menulis informasi penting dari hasil alat ke file memori sebelum hasil tersebut dibersihkan.
 * **Mempertahankan alur kerja yang berjalan lama:** Claude dapat melanjutkan alur kerja agentik yang jika tidak akan melampaui batas konteks dengan memindahkan informasi ke penyimpanan persisten.
-* **Mengakses informasi sesuai kebutuhan:** Claude dapat mencari informasi yang sebelumnya dihapus dari file memori saat diperlukan, alih-alih menyimpan semuanya di jendela konteks aktif.
+* **Mengakses informasi sesuai kebutuhan:** Claude dapat mencari informasi yang sebelumnya dibersihkan dari file memori saat diperlukan, alih-alih menyimpan semuanya di jendela konteks aktif.
 
 Misalnya, dalam alur kerja pengeditan file di mana Claude melakukan banyak operasi, Claude dapat merangkum perubahan yang telah selesai ke file memori seiring pertumbuhan konteks. Ketika hasil alat dibersihkan, Claude tetap memiliki akses ke informasi tersebut melalui sistem memorinya dan dapat terus bekerja secara efektif.
 
@@ -2529,7 +2531,7 @@ Ambang batas menentukan kapan kompaksi terjadi. Ambang batas yang lebih rendah b
       max_tokens: 1024,
       tools: [readFile],
       messages: [{ role: "user", content: "What's in config.json?" }],
-      // Nilai lebih rendah memicu pemadatan lebih sering; naikkan ke 150000 jika tugas butuh lebih banyak konteks
+      // Nilai lebih rendah memicu compaction lebih sering; naikkan ke 150000 jika tugas butuh lebih banyak konteks
       compactionControl: { enabled: true, contextTokenThreshold: 50000 }
     });
 
@@ -2572,7 +2574,7 @@ Ambang batas menentukan kapan kompaksi terjadi. Ambang batas yang lebih rendah b
       max_tokens: 1024,
       tools: [ReadFile.new],
       messages: [{ role: "user", content: "What's in config.json?" }],
-      # Nilai lebih rendah membuat pemadatan lebih sering; naikkan ke 150000 jika tugas butuh lebih banyak konteks
+      # Nilai lebih rendah membuat compaction lebih sering; naikkan ke 150000 jika tugas butuh lebih banyak konteks
       compaction_control: { enabled: true, context_token_threshold: 50000 }
     )
 
@@ -2858,7 +2860,7 @@ SDK menghitung total penggunaan sebagai 63.000 + 0 + 270.000 + 1.400 = 334.400 t
 
 #### Kasus tepi penggunaan alat
 
-Ketika SDK memicu kompaksi saat respons penggunaan alat masih tertunda, SDK menghapus blok penggunaan alat dari riwayat pesan sebelum menghasilkan ringkasan. Claude akan mengeluarkan kembali panggilan alat setelah melanjutkan dari ringkasan jika masih diperlukan.
+Ketika SDK memicu kompaksi saat respons penggunaan alat masih tertunda, SDK menghapus blok penggunaan alat dari riwayat pesan sebelum menghasilkan ringkasan. Setelah melanjutkan dari ringkasan, Claude mengeluarkan kembali panggilan alat jika masih membutuhkannya.
 
 ### Memantau kompaksi
 

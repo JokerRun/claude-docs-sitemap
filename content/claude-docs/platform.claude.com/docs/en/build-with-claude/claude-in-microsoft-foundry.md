@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: d3ce63c04d61521cfb7e1cf76ea5f1a80174e3ef45524739cbee770a95cb71ba
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: a32a925d8c05ac1f1f27a2c55c0a6d02ec0165de4f281a2428fa63b35d962f67
 ---
 
 ---
@@ -25,8 +25,6 @@ Claude models in Microsoft Foundry are available in two hosting options. You cho
 | Model availability   | The latest models in the Opus, Sonnet, and Haiku families  | All Claude models available on Microsoft Foundry                                                                                                                                                 |
 | Deployment types     | Global Standard, US Data Zone Standard                     | Global Standard                                                                                                                                                                                  |
 | Recommended for      | Most workloads                                             | [Access to features or models not yet hosted on Azure](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure) |
-
-Claude Sonnet 5.5 supports only Global Standard deployments.
 
 <Note>
   Anthropic acts as an independent processor for Microsoft. Customers using Claude through Microsoft Foundry are subject to Anthropic’s data use terms. For deployments hosted on Azure, prompts and completions remain within Azure. Only usage metadata and content flagged by Anthropic’s safety systems egress to Anthropic. Anthropic continues to provide its safety and data commitments.
@@ -152,7 +150,7 @@ After creating your resource, deploy a Claude model to make it available for API
 5. Configure the deployment:
 
    * **Deployment name:** Defaults to the model ID, but you can customize it (for example, `my-claude-deployment`). The deployment name cannot be changed after creation.
-   * **Region scope:** Select **Global**, or for models hosted on Azure, **Data Zone**. Selecting **Data Zone** creates a US Data Zone Standard deployment, which keeps inference within the United States and is equivalent to setting [`inference_geo: "us"`](https://platform.claude.com/docs/en/manage-claude/data-residency#inference-geo) on the Claude API. For Claude Sonnet 5.5, select **Global**.
+   * **Region scope:** Select **Global**, or for models hosted on Azure, **Data Zone**. Selecting **Data Zone** creates a US Data Zone Standard deployment, which keeps inference within the United States and is equivalent to setting [`inference_geo: "us"`](https://platform.claude.com/docs/en/manage-claude/data-residency#inference-geo) on the Claude API.
    * **Model version:** Expand **Model version settings** and select a version from the **Model version** dropdown menu. Each [hosting option](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry#hosting-options) is listed as a separate model version, labeled with its hosting option (for example, version 1 for Hosted on Anthropic, version 2 for Hosted on Azure).
 
 6. Select **Deploy** and wait for provisioning to complete.

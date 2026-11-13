@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/agent-loop
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 7a2fe2fc5eb8a5629b3893ad0f07638330eebd5cbe12496de63239701c736d91
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 0668f2f6378432f95974710c16c14a966a0b60e1239edadbf1e3730a09eb285e
 ---
 
 > ## Documentation Index
@@ -261,7 +261,7 @@ Here's how each component affects context in the SDK:
 | Source | When it loads | Impact |
 | :- | :- | :- |
 | **System prompt** | Every request | Small fixed cost, always present |
-| **CLAUDE.md files** | Session start, via [`settingSources`](https://code.claude.com/docs/en/agent-sdk/claude-code-features) | Full content in every request (but prompt-cached, so only the first request pays full cost) |
+| **CLAUDE.md files** | Session start, via [`settingSources`](https://code.claude.com/docs/en/agent-sdk/claude-code-features) | Full content in every request (but prompt-cached) |
 | **Tool definitions** | Every request for core built-in tools such as Bash, Read, and Edit; on demand for MCP tools and other built-in tools, which [tool search](https://code.claude.com/docs/en/agent-sdk/mcp.md#mcp-tool-search) defers by default | Every schema loads upfront in the cases under [Configure tool search](https://code.claude.com/docs/en/agent-sdk/tool-search.md#configure-tool-search) |
 | **Conversation history** | Accumulates over turns | Grows with each turn: prompts, responses, tool inputs, tool outputs |
 | **Skill descriptions** | Session start, via setting sources | Short summaries; full content loads only when invoked |

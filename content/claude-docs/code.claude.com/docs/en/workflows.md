@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/workflows
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 5b262faf3ba1bb40315a27d560371bed5b4969b7ad6855bbcecf284487a49b54
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 33558c422cd91d485cadb8a6d8e066e09019b7af16f8f72ee0a51981f2b39683
 ---
 
 > ## Documentation Index
@@ -81,8 +81,6 @@ Claude Code includes `/deep-research` as a built-in workflow:
 | Command | What it does |
 | :- | :- |
 | `/deep-research <question>` | Fans out web searches on a question across several angles, fetches and cross-checks the sources it finds, votes on each claim, and returns a cited report with claims that didn't survive cross-checking filtered out. Requires the [WebSearch tool](https://code.claude.com/docs/en/tools-reference.md#websearch-tool-behavior) to be available |
-
-`/deep-research` runs only when you invoke it.
 
 [Workflows you save](#save-the-workflow-for-reuse) yourself become commands the same way and appear in `/` autocomplete alongside the bundled ones.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: ee1024afd9aa1c1938ad7de9a2e390eb1b6ec6c72944e788d148834bb49927a8
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 606ed0aa64e2b3aeb40abe314d497a5b580fa5f22e1f9ae8d1da47125883b664
 ---
 
 ---
@@ -474,9 +474,9 @@ Kerjakan grup-grup ini dari atas ke bawah dan berhenti setelah grup yang menyebu
 
 * Ubah ID model menjadi `claude-sonnet-5-5`.
 * [Baca blok konten berdasarkan `type`](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#thinking-in-responses), dan kirimkan kembali blok `thinking` tanpa perubahan.
-* Agar tetap berjalan tanpa pemikiran di awal, kirimkan [pengaturan thinking terendah](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#turn-off-up-front-thinking) pada effort `high` atau di bawahnya.
+* Agar tetap berjalan tanpa pemikiran di awal, kirimkan [pengaturan pemikiran terendah](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#turn-off-up-front-thinking) pada effort `high` atau di bawahnya.
 * Ganti [“forced tool use” (penggunaan alat yang dipaksakan)](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#forced-tool-use) dengan `auto` dan alat strict.
-* Pertahankan percakapan agar bersifat [“append-only” (hanya-tambah)](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#thinking-blocks).
+* Pertahankan percakapan tetap [“append-only” (hanya-tambah)](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#thinking-blocks).
 * Pindahkan penggunaan komputer ke [toolset](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#computer-use-toolset), tanpa header beta `fine-grained-tool-streaming-2025-05-14`. Di Amazon Bedrock, `computer_20251124` juga berfungsi.
 * [Pasangkan alat advisor](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#advisor-tool) dengan advisor yang didukung, dan harapkan saran yang terenkripsi.
 * Baca [teks di antara pemanggilan alat](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#text-between-tool-calls) dari blok `thinking`.
@@ -845,15 +845,23 @@ Contoh ini menandai setiap alat dalam daftar sebagai strict. Sebuah permintaan d
 
 ### Blok pemikiran terikat pada model dan percakapan
 
-Claude Sonnet 5.5 membaca blok pemikiran dari Claude Sonnet 5, Claude Opus 4.8, Claude Haiku 4.5, dan model sebelumnya, serta, di Claude API dan Claude Models on Google Cloud (Google managed), dari Claude Haiku 5.5. Model ini tidak membaca blok dari Claude Opus 5, Claude Opus 5.5, atau model Claude Fable maupun Claude Mythos mana pun. API membuang blok yang tidak dapat dibaca oleh model. Permintaan tetap mengembalikan 200, dan blok yang dibuang tidak ditagih. Lihat [Berganti model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
+Claude Sonnet 5.5 membaca blok pemikiran dari Claude Sonnet 5, Claude Opus 4.8, Claude Haiku 4.5, dan [model sebelumnya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#earlier-models). Di Claude API dan Claude Models on Google Cloud (Google managed), model ini juga membacanya dari Claude Haiku 5.5. Model ini tidak membaca blok dari Claude Opus 5, Claude Opus 5.5, atau model Claude Fable maupun Claude Mythos mana pun.
 
-Setiap blok pemikiran Claude Sonnet 5.5 juga ditandatangani atas percakapan yang mendahuluinya. Pertahankan percakapan agar hanya bersifat append-only (hanya ditambahkan), dan ubah instruksi atau alat dengan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages). Sebuah permintaan dapat memutar ulang sebuah blok setelah pengeditan pada riwayat sebelumnya dan membiarkan `thinking.block_binding.prefix_mismatch_behavior` tidak diatur. Pada akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC, permintaan tersebut akan mendapatkan error 400. [Ketersediaan pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#feature-availability) mencantumkan platform tempat hal ini berlaku. Blok pemikiran yang dihasilkan Claude Sonnet 5.5 hanya berfungsi di akun yang menghasilkannya atau di akun yang ditautkan dengannya. Lihat [Blok pemikiran tetap berada di akun yang menghasilkannya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking).
+API tidak menyertakan blok yang tidak dapat dibaca oleh model. Permintaan mengembalikan 200, dan blok yang tidak disertakan tidak ditagih. Lihat [Beralih model dan kembali lagi](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models).
+
+Pertahankan percakapan tetap append-only (hanya-tambah), sehingga blok pemikiran lolos [pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#prefix-check). Untuk mengubah instruksi atau alat, lihat [Pesan sistem dan perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages).
+
+Gagal dalam [pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#prefix-check) mungkin menghasilkan atau mungkin tidak menghasilkan [error 400](https://platform.claude.com/docs/id/api/errors#thinking-block-conversation-mismatch). Untuk mengidentifikasi dan menangani kedua kasus tersebut, lihat [Pemeriksaan prefiks pada blok pemikiran](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks).
+
+Pemeriksaan prefiks berjalan di Claude API dan di [beberapa platform cloud](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#feature-availability).
+
+Blok pemikiran Claude Sonnet 5.5 hanya berfungsi di akun yang menghasilkannya atau di akun yang ditautkan dengannya. Lihat [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking).
 
 ### Beberapa versi alat penggunaan komputer tidak didukung
 
 Claude Sonnet 5.5 mendukung penggunaan komputer melalui toolset `computer_toolset_20260801`. Di Amazon Bedrock, Claude Sonnet 5.5 juga menerima alat `computer_20251124` dengan header beta `computer-use-2025-11-24`. Claude Sonnet 5.5 mengembalikan error 400 untuk versi alat penggunaan komputer apa pun yang tidak diterimanya, seperti `computer_20251124` di Claude API. Model ini tidak menerima `computer_20250124` di platform mana pun.
 
-Integrasi yang menggunakan toolset tidak memerlukan perubahan. Untuk beralih ke toolset, ganti `computer_20251124` atau `computer_20250124` dengan `computer_toolset_20260801`, dan hapus header beta versi tersebut. [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124) mencantumkan perubahan pada permintaan dan agent loop.
+Integrasi yang menggunakan toolset tidak memerlukan perubahan. Untuk beralih ke toolset, ganti `computer_20251124` atau `computer_20250124` dengan `computer_toolset_20260801`, dan jangan lagi sertakan header beta versi tersebut. Untuk perubahan pada permintaan dan agent loop, lihat [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124).
 
 Jika Anda mengirim header beta `fine-grained-tool-streaming-2025-05-14`, hapus header tersebut saat Anda beralih ke toolset. Bersama entri toolset, header tersebut mengembalikan error 400. Sebagai gantinya, tetapkan `eager_input_streaming: true` pada setiap alat yang memerlukannya.
 
@@ -1194,7 +1202,7 @@ Sesudah (Claude Sonnet 5.5):
 ### Perubahan lainnya
 
 * **Sekitar 30 persen lebih banyak token:** Claude Sonnet 5.5 menggunakan tokenizer Claude Sonnet 5. Dibandingkan dengan Claude Sonnet 4.6, Claude Sonnet 4.5, dan Claude Haiku 4.5, teks yang sama menghasilkan sekitar 30 persen lebih banyak token, tergantung pada kontennya. Hitung ulang dengan [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting), dan tinjau kembali `max_tokens` serta biaya.
-* **Effort:** `xhigh` merupakan tingkat baru, dan tingkat-tingkatnya dikalibrasi ulang. Lihat [Perubahan yang direkomendasikan](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#recommended-changes).
+* **Effort:** Claude Sonnet 5.5 mendukung `xhigh`, dan tingkat-tingkatnya dikalibrasi ulang. Lihat [Perubahan yang direkomendasikan](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#recommended-changes).
 * **Gambar:** Claude Sonnet 5.5 menggunakan tingkat gambar resolusi tinggi, hingga 2.576 piksel pada sisi panjang dan hingga 4.784 token visual untuk satu gambar. Claude Sonnet 4.6, Claude Sonnet 4.5, dan Claude Haiku 4.5 berhenti pada 1.568 piksel dan 1.568 token. Gambar 2000×1500 membutuhkan sekitar 2,5 kali lebih banyak token di Claude Sonnet 5.5. Lihat [Resolusi dan biaya token](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size).
 
 ### Migrasi dari Claude Sonnet 4.5 atau sebelumnya
@@ -1219,7 +1227,7 @@ Ganti setiap prefill sesuai dengan tujuannya:
 
 **Penggunaan komputer.** Claude Sonnet 5.5 tidak menerima `computer_20250124`. Lihat [Beberapa versi alat penggunaan komputer tidak didukung](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#computer-use-toolset).
 
-**Effort.** Claude Sonnet 4.5 tidak memiliki parameter effort. Tetapkan tingkat effort secara eksplisit, sebagaimana dijelaskan dalam [Perubahan yang direkomendasikan](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#recommended-changes).
+**Effort.** Claude Sonnet 4.5 tidak memiliki parameter effort. Tetapkan tingkat effort secara eksplisit (lihat [Perubahan yang direkomendasikan](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#recommended-changes)).
 
 **Konteks dan output.** Claude Sonnet 5.5 memiliki jendela konteks yang lebih besar dan batas output yang lebih tinggi. Lihat halaman model [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview). Hapus header beta jendela konteks apa pun.
 
@@ -1245,4 +1253,4 @@ Pertama, terapkan setiap bagian hingga dan termasuk [Migrasi dari Claude Sonnet 
 * **Biaya:** Harga per token lebih tinggi, dan teks yang sama menghasilkan lebih banyak token. Hitung ulang token dan tetapkan ulang baseline biaya. Lihat [Harga](https://platform.claude.com/docs/id/about-claude/pricing).
 * **Caching prompt:** Prompt minimum yang dapat di-cache turun dari 4.096 token ke [minimum Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#other-changes-from-claude-sonnet-5).
 * **Pemikiran yang disisipkan:** Pemikiran adaptif berjalan di antara panggilan alat secara otomatis.
-* **Perutean:** Claude Sonnet 5.5 membaca blok pemikiran Claude Haiku 4.5. Percakapan yang naik tingkat mempertahankan penalarannya. Percakapan yang kembali turun ke Claude Haiku 4.5 membuang blok milik Claude Sonnet 5.5.
+* **Perutean:** Claude Sonnet 5.5 membaca blok pemikiran Claude Haiku 4.5. Percakapan yang naik tingkat mempertahankan penalarannya. Percakapan yang kembali turun ke Claude Haiku 4.5 tidak menyertakan blok milik Claude Sonnet 5.5.

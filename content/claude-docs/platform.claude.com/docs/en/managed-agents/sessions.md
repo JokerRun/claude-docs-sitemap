@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/sessions
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 17b9eace226c7866ca98411471114fe6f186fd06dc66e410207649c0768c8db7
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: ee5249426c20d83bb74d78dae8a5526b60936a907c199028b2ed9ebe6fc76af5
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+    note: Not eligible for ZDR, except for self-hosted Managed Agents. Sessions are stateful resources; transcripts persist until you delete them.
   supportedModels:
     - claude-fable-5-2
     - claude-mythos-5-2

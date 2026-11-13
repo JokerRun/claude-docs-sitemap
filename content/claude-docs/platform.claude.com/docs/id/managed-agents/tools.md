@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 56305a67e687c41ffc086f6d117906f7158bbdbd0c4c44fc78f1f75c760c3a1f
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: aaba919c8c85e71ef1b460ecc0536cf4836cbaa149c56d7bbb21659f546f0c99
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
+    note: Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya.
   supportedModels:
     - claude-fable-5-2
     - claude-mythos-5-2
@@ -68,7 +68,7 @@ Ketika output alat melebihi 100.000 karakter (sekitar 25.000 token), output ters
 
 Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Gunakan array `configs` (csharp, go: `Configs`) untuk menonaktifkan alat tertentu atau menimpa pengaturannya. Setiap entri diidentifikasi oleh `name` (csharp, go: `Name`)-nya, yang mengambil nilai dari kolom Nama di [Alat yang tersedia](https://platform.claude.com/docs/id/managed-agents/tools#available-tools). Sebuah entri juga menerima field `type` (csharp, go: `Type`) opsional dengan nilai yang sama.
 
-Setiap entri konfigurasi juga dapat menetapkan `permission_policy` (java, php: `permissionPolicy`; csharp, go: `PermissionPolicy`). Kebijakan ini mengontrol apakah panggilan alat berjalan tanpa konfirmasi, memerlukan konfirmasi, atau dievaluasi secara individual oleh server. Lihat [Kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) untuk jenis kebijakan yang tersedia.
+Setiap entri konfigurasi juga dapat menetapkan `permission_policy` (java, php: `permissionPolicy`; csharp, go: `PermissionPolicy`). Kebijakan ini mengontrol apakah panggilan alat berjalan tanpa konfirmasi, memerlukan konfirmasi, atau diteruskan ke server, yang mengevaluasi setiap panggilan. Lihat [Kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) untuk jenis kebijakan yang tersedia.
 
 Contoh berikut mengaktifkan toolset dan menonaktifkan `web_fetch`:
 
@@ -431,6 +431,7 @@ Contoh berikut membuat agen dengan satu alat kustom, `get_weather`, dan tanpa al
   ```
 
   ```java Java
+  import com.anthropic.core.JsonValue;
   import com.anthropic.models.beta.agents.*;
   import java.util.Map;
 
@@ -493,7 +494,7 @@ Contoh berikut membuat agen dengan satu alat kustom, `get_weather`, dan tanpa al
   ```
 </CodeGroup>
 
-Nama alat kustom tidak boleh diawali dengan `mcp__` atau `ant__`, atau sama dengan nama alat agen bawaan. Permintaan yang melanggar aturan ini mengembalikan error 400. Agen yang sudah memiliki alat kustom dengan nama yang diawali `ant__` hanya menerima pembaruan jika pembaruan tersebut mengirim `tools` (csharp, go: `Tools`) tanpa nama tersebut, jadi ganti nama atau hapus alat tersebut pada pembaruan Anda berikutnya. Sesi baru ditolak dengan error 400 jika alat semacam itu ada pada agennya (setelah [penimpaan](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) apa pun), pada agen dalam daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `subagents` (csharp, go: `Subagents`), atau pada agen dalam daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `workflows` (csharp, go: `Workflows`). Sesi yang sudah ada tidak terpengaruh.
+Nama alat kustom baru tidak boleh diawali dengan `mcp__` atau `ant__`, atau sama dengan nama alat agen bawaan. Permintaan yang melanggar aturan ini mengembalikan error 400. Namun, alat kustom yang sudah ada mungkin diawali dengan `ant__`. Agen yang memiliki alat semacam itu hanya menerima pembaruan jika pembaruan tersebut mengirim `tools` (csharp, go: `Tools`) tanpa nama tersebut, jadi ganti nama atau hapus alat tersebut pada pembaruan Anda berikutnya. Sesi baru ditolak dengan error 400 jika alat semacam itu ada pada agennya (setelah [penimpaan](https://platform.claude.com/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) apa pun), pada agen dalam daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `subagents` (csharp, go: `Subagents`), atau pada agen dalam daftar `predefined_agents` (java, php: `predefinedAgents`; csharp, go: `PredefinedAgents`) dari `workflows` (csharp, go: `Workflows`). Sesi yang sudah ada tidak terpengaruh.
 
 Agen memanggil alat kustomnya selama sesi. Untuk menerima panggilan dan mengembalikan hasil, lihat [Menjawab panggilan alat yang menjeda sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls).
 
@@ -560,10 +561,10 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                          | HIPAA                                                                               |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                               | Tidak layak                                                                         |
-| Detail | Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. | Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. |
+| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:
 

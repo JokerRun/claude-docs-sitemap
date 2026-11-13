@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: df550d960f29ce6f251ebee414459d45fafed8accedd6a60ee78ec33424523f5
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 1f355412211cee77ab9a1aa50453aea61f603b515fd2770a422ef4ea4871e8a9
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
+    note: Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya.
   supportedModels:
     - claude-fable-5-2
     - claude-mythos-5-2
@@ -44,7 +44,7 @@ featureMetadata:
     Claude Models on Google Cloud (Anthropic managed): beta
 ---
 
-“Permission policies” (kebijakan izin) mengontrol apakah alat yang dieksekusi server (toolset agen bawaan dan toolset MCP) berjalan secara otomatis, menunggu persetujuan Anda, atau setiap panggilannya dievaluasi oleh server. Alat kustom dijalankan oleh aplikasi Anda dan dikendalikan oleh Anda, sehingga tidak diatur oleh kebijakan izin.
+“Permission policies” (kebijakan izin) berlaku untuk alat yang dieksekusi server: toolset agen bawaan dan toolset MCP. Sebuah kebijakan menentukan apakah panggilan sebuah alat berjalan secara otomatis, menunggu persetujuan Anda, atau diteruskan ke server, yang mengevaluasi setiap panggilan. Alat kustom dijalankan di aplikasi Anda, di bawah kendali Anda, sehingga kebijakan izin tidak berlaku untuk alat kustom.
 
 ## Jenis kebijakan izin
 
@@ -662,7 +662,7 @@ Gunakan array `configs` (csharp, go: `Configs`) untuk mengganti default untuk al
   ```
 </CodeGroup>
 
-Teruskan konfigurasi `tools` (csharp, go: `Tools`) ini dalam permintaan pembuatan agen (tab CLI menampilkan perintah lengkapnya). Toolset MCP mendukung penggantian per alat yang sama, dengan `name` (csharp, go: `Name`) diatur ke nama alat yang dilaporkan oleh server MCP. Lihat [Mengonfigurasi alat MCP mana yang tersedia](https://platform.claude.com/docs/id/managed-agents/mcp-connector#configure-which-mcp-tools-are-available).
+Teruskan konfigurasi `tools` (csharp, go: `Tools`) ini saat Anda membuat agen. Toolset MCP mendukung penggantian per alat yang sama, dengan `name` (csharp, go: `Name`) diatur ke nama alat yang dilaporkan oleh server MCP. Lihat [Mengonfigurasi alat MCP mana yang tersedia](https://platform.claude.com/docs/id/managed-agents/mcp-connector#configure-which-mcp-tools-are-available).
 
 ## Biarkan server mengevaluasi setiap panggilan dengan `auto`
 
@@ -672,7 +672,7 @@ Dengan kebijakan izin `auto`, server mengevaluasi setiap panggilan sebelum dijal
 * **Panggilan ditolak.** Ketika server mengevaluasi panggilan sebagai berisiko tinggi, alat tidak dijalankan. Agen menerima hasil alat berupa error dengan konten `Permission to use {tool_name} has been denied.` dan `is_error: true`. Sesi tetap berjalan, dan klien Anda tidak dapat menimpa penolakan tersebut.
 * **Panggilan dijeda untuk meminta persetujuan Anda.** Ketika server tidak mencapai keputusan, sesi dijeda seperti di bawah `always_ask`. Lihat [Menanggapi permintaan konfirmasi](https://platform.claude.com/docs/id/managed-agents/permission-policies#respond-to-confirmation-requests).
 
-Untuk mengaktifkan `auto`, atur `permission_policy` ke `{"type": "auto"}`. Pengaturan ini ditempatkan di dua tempat yang sama dengan kebijakan lainnya: [`default_config` (java, php: `defaultConfig`; csharp, go: `DefaultConfig`)](https://platform.claude.com/docs/id/managed-agents/permission-policies#set-a-policy-for-a-toolset) sebuah toolset untuk seluruh toolset, atau [entri `configs` (csharp, go: `Configs`)](https://platform.claude.com/docs/id/managed-agents/permission-policies#override-an-individual-tool-policy) untuk satu alat. Toolset agen dan toolset MCP sama-sama menerimanya. Tidak ada toolset yang menggunakan `auto` secara default.
+Untuk mengaktifkan `auto`, atur `permission_policy` (java, php: `permissionPolicy`; csharp, go: `PermissionPolicy`) ke `{"type": "auto"}`. Pengaturan ini ditempatkan di dua tempat yang sama dengan kebijakan lainnya: [`default_config` (java, php: `defaultConfig`; csharp, go: `DefaultConfig`)](https://platform.claude.com/docs/id/managed-agents/permission-policies#set-a-policy-for-a-toolset) sebuah toolset untuk seluruh toolset, atau [entri `configs` (csharp, go: `Configs`)](https://platform.claude.com/docs/id/managed-agents/permission-policies#override-an-individual-tool-policy) untuk satu alat. Toolset agen dan toolset MCP sama-sama menerimanya. Tidak ada toolset yang menggunakan `auto` secara default.
 
 Contoh berikut menetapkan `auto` sebagai default untuk toolset agen dan untuk toolset MCP `github`, serta menimpa `bash` menjadi `always_ask`:
 
@@ -1075,8 +1075,8 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
 
 <CodeGroup>
   ```bash cURL
-  # Izinkan alat untuk dijalankan
-  curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
+  # Izinkan alat untuk berjalan
+  curl -fsSL https://api.anthropic.com/v1/sessions/sesn_011CZkZAtmR3yMPDzynEDxu7/events \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -1085,14 +1085,14 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
       "events": [
         {
           "type": "user.tool_confirmation",
-          "tool_use_id": "'$AGENT_TOOL_USE_EVENT_ID'",
+          "tool_use_id": "sevt_011CZkZbMpR8aS3Wtv5Yq2Ln",
           "result": "allow"
         }
       ]
     }'
 
-  # Atau tolak dengan disertai penjelasan
-  curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
+  # Tolak panggilan lain disertai penjelasan
+  curl -fsSL https://api.anthropic.com/v1/sessions/sesn_011CZkZAtmR3yMPDzynEDxu7/events \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -1101,9 +1101,9 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
       "events": [
         {
           "type": "user.tool_confirmation",
-          "tool_use_id": "'$MCP_TOOL_USE_EVENT_ID'",
+          "tool_use_id": "sevt_011CZkZcNqT9bT4Xuw6Zr3Mo",
           "result": "deny",
-          "deny_message": "Don'\''t create issues in the production project. Use the staging project."
+          "deny_message": "Do not create issues in the production project. Use the staging project."
         }
       ]
     }'
@@ -1112,92 +1112,93 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
   ```bash CLI
   # Izinkan alat untuk dijalankan
   ant beta:sessions:events send \
-    --session-id "$SESSION_ID" \
-    --event "{type: user.tool_confirmation, tool_use_id: $AGENT_TOOL_USE_EVENT_ID, result: allow}"
+    --session-id sesn_011CZkZAtmR3yMPDzynEDxu7 \
+    --event '{type: user.tool_confirmation, tool_use_id: sevt_011CZkZbMpR8aS3Wtv5Yq2Ln, result: allow}'
 
-  # Atau tolak dengan penjelasan
+  # Tolak panggilan lain dengan penjelasan
   ant beta:sessions:events send \
-    --session-id "$SESSION_ID" \
-    --event "{type: user.tool_confirmation, tool_use_id: $MCP_TOOL_USE_EVENT_ID, result: deny,
-      deny_message: Don't create issues in the production project. Use the staging project.}"
+    --session-id sesn_011CZkZAtmR3yMPDzynEDxu7 \
+    --event '{type: user.tool_confirmation, tool_use_id: sevt_011CZkZcNqT9bT4Xuw6Zr3Mo, result: deny, deny_message: "Do not create issues in the production project. Use the staging project."}'
   ```
 
   ```python Python
-  # Izinkan alat untuk dijalankan
+  # Izinkan alat untuk berjalan
   client.beta.sessions.events.send(
-      session.id,
+      "sesn_011CZkZAtmR3yMPDzynEDxu7",
       events=[
           {
               "type": "user.tool_confirmation",
-              "tool_use_id": agent_tool_use_event.id,
+              "tool_use_id": "sevt_011CZkZbMpR8aS3Wtv5Yq2Ln",
               "result": "allow",
           },
       ],
   )
 
-  # Atau tolak dengan penjelasan
+  # Tolak panggilan lain disertai penjelasan
   client.beta.sessions.events.send(
-      session.id,
+      "sesn_011CZkZAtmR3yMPDzynEDxu7",
       events=[
           {
               "type": "user.tool_confirmation",
-              "tool_use_id": mcp_tool_use_event.id,
+              "tool_use_id": "sevt_011CZkZcNqT9bT4Xuw6Zr3Mo",
               "result": "deny",
-              "deny_message": "Don't create issues in the production project. Use the staging project.",
+              "deny_message": "Do not create issues in the production project. Use the staging project.",
           },
       ],
   )
   ```
 
   ```typescript TypeScript
-  // Izinkan alat untuk berjalan
-  await client.beta.sessions.events.send(session.id, {
+  // Izinkan alat untuk dijalankan
+  await client.beta.sessions.events.send("sesn_011CZkZAtmR3yMPDzynEDxu7", {
     events: [
       {
         type: "user.tool_confirmation",
-        tool_use_id: agent_tool_use_event.id,
+        tool_use_id: "sevt_011CZkZbMpR8aS3Wtv5Yq2Ln",
         result: "allow"
       }
     ]
   });
 
-  // Atau tolak dengan penjelasan
-  await client.beta.sessions.events.send(session.id, {
+  // Tolak panggilan lain dengan penjelasan
+  await client.beta.sessions.events.send("sesn_011CZkZAtmR3yMPDzynEDxu7", {
     events: [
       {
         type: "user.tool_confirmation",
-        tool_use_id: mcp_tool_use_event.id,
+        tool_use_id: "sevt_011CZkZcNqT9bT4Xuw6Zr3Mo",
         result: "deny",
-        deny_message: "Don't create issues in the production project. Use the staging project."
+        deny_message: "Do not create issues in the production project. Use the staging project."
       }
     ]
   });
   ```
 
   ```csharp C#
+  using Anthropic.Models.Beta.Sessions.Events;
+
   // Izinkan alat untuk dijalankan
-  await client.Beta.Sessions.Events.Send(session.ID, new()
+  await client.Beta.Sessions.Events.Send("sesn_011CZkZAtmR3yMPDzynEDxu7", new()
   {
       Events =
       [
           new BetaManagedAgentsUserToolConfirmationEventParams
           {
-              ToolUseID = agentToolUseEvent.ID,
+              ToolUseID = "sevt_011CZkZbMpR8aS3Wtv5Yq2Ln",
               Result = "allow",
           },
       ],
   });
 
-  // Atau tolak dengan penjelasan
-  await client.Beta.Sessions.Events.Send(session.ID, new()
+  // Tolak panggilan lain disertai penjelasan
+  await client.Beta.Sessions.Events.Send("sesn_011CZkZAtmR3yMPDzynEDxu7", new()
   {
       Events =
       [
           new BetaManagedAgentsUserToolConfirmationEventParams
           {
-              ToolUseID = mcpToolUseEvent.ID,
+              ToolUseID = "sevt_011CZkZcNqT9bT4Xuw6Zr3Mo",
               Result = "deny",
-              DenyMessage = "Don't create issues in the production project. Use the staging project.",
+              DenyMessage = "Do not create issues in the production project. Use the staging project.",
           },
       ],
   });
@@ -1205,10 +1206,10 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
 
   ```go Go
   // Izinkan alat untuk berjalan
-  _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
+  _, err := client.Beta.Sessions.Events.Send(ctx, "sesn_011CZkZAtmR3yMPDzynEDxu7", anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserToolConfirmation: &anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
-  			ToolUseID: agentToolUseEvent.ID,
+  			ToolUseID: "sevt_011CZkZbMpR8aS3Wtv5Yq2Ln",
   			Result:    anthropic.BetaManagedAgentsUserToolConfirmationEventParamsResultAllow,
   		},
   	}},
@@ -1217,13 +1218,13 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
   	panic(err)
   }
 
-  // Atau tolak dengan penjelasan
-  _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
+  // Tolak panggilan lain disertai penjelasan
+  _, err = client.Beta.Sessions.Events.Send(ctx, "sesn_011CZkZAtmR3yMPDzynEDxu7", anthropic.BetaSessionEventSendParams{
   	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
   		OfUserToolConfirmation: &anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
-  			ToolUseID:   mcpToolUseEvent.ID,
+  			ToolUseID:   "sevt_011CZkZcNqT9bT4Xuw6Zr3Mo",
   			Result:      anthropic.BetaManagedAgentsUserToolConfirmationEventParamsResultDeny,
-  			DenyMessage: anthropic.String("Don't create issues in the production project. Use the staging project."),
+  			DenyMessage: anthropic.String("Do not create issues in the production project. Use the staging project."),
   		},
   	}},
   })
@@ -1233,28 +1234,31 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
   ```
 
   ```java Java
+  import com.anthropic.models.beta.sessions.events.BetaManagedAgentsUserToolConfirmationEventParams;
+  import com.anthropic.models.beta.sessions.events.EventSendParams;
+
   // Izinkan alat untuk dijalankan
   client.beta().sessions().events().send(
-      session.id(),
+      "sesn_011CZkZAtmR3yMPDzynEDxu7",
       EventSendParams.builder()
           .addEvent(
               BetaManagedAgentsUserToolConfirmationEventParams.builder()
-                  .toolUseId(agentToolUseEvent.id())
+                  .toolUseId("sevt_011CZkZbMpR8aS3Wtv5Yq2Ln")
                   .result(BetaManagedAgentsUserToolConfirmationEventParams.Result.ALLOW)
                   .build()
           )
           .build()
   );
 
-  // Atau tolak dengan penjelasan
+  // Tolak panggilan lain dengan disertai penjelasan
   client.beta().sessions().events().send(
-      session.id(),
+      "sesn_011CZkZAtmR3yMPDzynEDxu7",
       EventSendParams.builder()
           .addEvent(
               BetaManagedAgentsUserToolConfirmationEventParams.builder()
-                  .toolUseId(mcpToolUseEvent.id())
+                  .toolUseId("sevt_011CZkZcNqT9bT4Xuw6Zr3Mo")
                   .result(BetaManagedAgentsUserToolConfirmationEventParams.Result.DENY)
-                  .denyMessage("Don't create issues in the production project. Use the staging project.")
+                  .denyMessage("Do not create issues in the production project. Use the staging project.")
                   .build()
           )
           .build()
@@ -1264,25 +1268,25 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
   ```php PHP
   use Anthropic\Beta\Sessions\Events\ManagedAgentsUserToolConfirmationEventParams;
 
-  // Izinkan alat dijalankan
+  // Izinkan alat untuk dijalankan
   $client->beta->sessions->events->send(
-      $session->id,
+      'sesn_011CZkZAtmR3yMPDzynEDxu7',
       events: [
           ManagedAgentsUserToolConfirmationEventParams::with(
-              toolUseID: $agentToolUseEvent->id,
+              toolUseID: 'sevt_011CZkZbMpR8aS3Wtv5Yq2Ln',
               result: 'allow',
           ),
       ],
   );
 
-  // Atau tolak dengan penjelasan
+  // Tolak panggilan lain disertai penjelasan
   $client->beta->sessions->events->send(
-      $session->id,
+      'sesn_011CZkZAtmR3yMPDzynEDxu7',
       events: [
           ManagedAgentsUserToolConfirmationEventParams::with(
-              toolUseID: $mcpToolUseEvent->id,
+              toolUseID: 'sevt_011CZkZcNqT9bT4Xuw6Zr3Mo',
               result: 'deny',
-              denyMessage: "Don't create issues in the production project. Use the staging project.",
+              denyMessage: 'Do not create issues in the production project. Use the staging project.',
           ),
       ],
   );
@@ -1291,25 +1295,25 @@ Dalam contoh berikut, ID event penggunaan alat berasal dari array `stop_reason.e
   ```ruby Ruby
   # Izinkan alat untuk dijalankan
   client.beta.sessions.events.send_(
-    session.id,
+    "sesn_011CZkZAtmR3yMPDzynEDxu7",
     events: [
       {
         type: "user.tool_confirmation",
-        tool_use_id: agent_tool_use_event.id,
+        tool_use_id: "sevt_011CZkZbMpR8aS3Wtv5Yq2Ln",
         result: "allow"
       }
     ]
   )
 
-  # Atau tolak dengan penjelasan
+  # Tolak panggilan lain disertai penjelasan
   client.beta.sessions.events.send_(
-    session.id,
+    "sesn_011CZkZAtmR3yMPDzynEDxu7",
     events: [
       {
         type: "user.tool_confirmation",
-        tool_use_id: mcp_tool_use_event.id,
+        tool_use_id: "sevt_011CZkZcNqT9bT4Xuw6Zr3Mo",
         result: "deny",
-        deny_message: "Don't create issues in the production project. Use the staging project."
+        deny_message: "Do not create issues in the production project. Use the staging project."
       }
     ]
   )
@@ -1358,10 +1362,10 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                          | HIPAA                                                                               |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                               | Tidak layak                                                                         |
-| Detail | Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. | Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. |
+| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:
 

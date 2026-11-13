@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/skills
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: e1a865f45a9bb1ee4299139c182db792670b110bd71f249254ee641e0aca56b9
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 10ea1b47499b0c8c89201b884c46726cb360412343aa306c40116fb5012c7241
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+    note: Not eligible for ZDR, except for self-hosted Managed Agents. Sessions are stateful resources; transcripts persist until you delete them.
   supportedModels:
     - claude-fable-5-2
     - claude-mythos-5-2
@@ -57,7 +57,7 @@ To learn how to author custom skills, see [Agent Skills](https://platform.claude
 
 A custom skill is a directory containing a `SKILL.md` file plus any supporting files, uploaded to your workspace as a zip archive or as individual files. Creating the skill returns the `skill_*` ID you reference when attaching it to an agent. Anthropic pre-built skills are already available in every workspace and don’t require this step. To use only pre-built skills, skip to [Attach skills to an agent](https://platform.claude.com/docs/en/managed-agents/skills#attach-skills-to-an-agent).
 
-These examples omit the optional `display_name` (java, php: `displayName`; csharp, go: `DisplayName`) field, so the skill’s display name is derived from the `name` field in `SKILL.md`. An explicit `display_name` (java, php: `displayName`; csharp, go: `DisplayName`) can be up to 255 characters and doesn’t need to be unique within your workspace.
+These examples omit the optional `display_name` (java, php: `displayName`; csharp, go: `DisplayName`) field, so the skill’s display name comes from the `name` field in `SKILL.md`. An explicit `display_name` (java, php: `displayName`; csharp, go: `DisplayName`) can be up to 255 characters and doesn’t need to be unique within your workspace.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -390,9 +390,11 @@ Each entry in the `skills` (csharp, go: `Skills`) array uses the following field
   ```
 
   ```php PHP
+  use Anthropic\Beta\Agents\BetaManagedAgentsModel;
+
   $agent = $client->beta->agents->create(
       name: 'Financial Analyst',
-      model: 'claude-opus-5-5',
+      model: BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
       system: 'You are a financial analysis agent.',
       skills: [
           ['type' => 'anthropic', 'skillID' => 'xlsx'],
@@ -404,7 +406,7 @@ Each entry in the `skills` (csharp, go: `Skills`) array uses the following field
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Financial Analyst",
-    model: "claude-opus-5-5",
+    model: Anthropic::Beta::BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
     system_: "You are a financial analysis agent.",
     skills: [
       {type: "anthropic", skill_id: "xlsx"},
@@ -416,7 +418,7 @@ Each entry in the `skills` (csharp, go: `Skills`) array uses the following field
 
 ## Load skills from a GitHub repository
 
-Skills can also live in your code base. When a session mounts a repository through the [`github_repository` resource](https://platform.claude.com/docs/en/managed-agents/github), the repository’s root `.claude/skills` directory is scanned at session start, and each skill found there becomes available to the agent. No upload and no entry in the agent’s `skills` (csharp, go: `Skills`) array are required. The agent receives each discovered skill’s name, description, and path in the sandbox, and reads the skill’s `SKILL.md` when a task matches, including any scripts and resources the skill ships. Discovery relies on the agent’s `read` tool from the [agent toolset](https://platform.claude.com/docs/en/managed-agents/tools), which is enabled by default; an agent with `read` disabled doesn’t load repository skills.
+Skills can also live in your code base. When a session mounts a repository through the [`github_repository` resource](https://platform.claude.com/docs/en/managed-agents/github), a scan of the repository’s root `.claude/skills` directory runs at session start. Each skill found there becomes available to the agent. You don’t need to upload these skills or add them to the agent’s `skills` (csharp, go: `Skills`) array. The agent receives each discovered skill’s name, description, and path in the sandbox. When a task matches, the agent reads the skill’s `SKILL.md`, including any scripts and resources the skill ships. Discovery relies on the agent’s `read` tool from the [agent toolset](https://platform.claude.com/docs/en/managed-agents/tools), which is enabled by default; an agent with `read` disabled doesn’t load repository skills.
 
 <Warning>
   Repository skills are agent instructions, so a mounted repository is part of your agent’s trust boundary. Anyone who can commit to the repository (a merged external pull request, a compromised dependency, a contributor) can add or change a skill. The platform loads that skill at session start without a review step, and session tools such as `bash` and `web_fetch` give its instructions real reach. Mount only repositories you trust, and review `.claude/skills` before mounting a repository that accepts outside contributions.
@@ -605,7 +607,7 @@ For private repositories, the resource’s `authorization_token` (java, php: `au
 
 Discovered skills follow the checked-out state of the repository: the `checkout` (csharp, go: `Checkout`) branch or commit when the resource sets one, otherwise the repository’s default branch. The scan runs once, when the session starts. Commits pushed mid-session are not picked up; to load updated skills, start a new session.
 
-Repository skills work alongside skills attached through the agent’s `skills` (csharp, go: `Skills`) array. If a repository skill shares a name with an attached skill, or with a skill from another mounted repository, both are available; each is announced with its own path.
+Repository skills work alongside skills attached through the agent’s `skills` (csharp, go: `Skills`) array. If a repository skill shares a name with an attached skill, or with a skill from another mounted repository, both are available. The agent receives each one with its own path.
 
 ## Next steps
 

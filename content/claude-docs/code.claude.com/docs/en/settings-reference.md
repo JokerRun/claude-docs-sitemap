@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings-reference
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 7f0be22ed906e5c3d3df18c791b8716d87f6702a59754b711f98fdb84e2ec2c2
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 9919f8c3be6189a8552f62c5b9f3e791749a72f57aee40760689ccbb0b4f3731
 ---
 
 > ## Documentation Index
@@ -1204,7 +1204,7 @@ With the setting on, Claude Code also stops these requests for an answer:
 * **Question and plan tools**: Claude Code leaves out [`AskUserQuestion`](https://code.claude.com/docs/en/tools-reference#askuserquestion-tool-behavior), `EnterPlanMode`, and `ExitPlanMode`, so a session in plan mode can't leave it on its own. A teammate in an agent team keeps `EnterPlanMode` and `ExitPlanMode`
 * **MCP elicitation**: Claude Code cancels an [elicitation request](https://code.claude.com/docs/en/mcp.md#respond-to-mcp-elicitation-requests) unless an [`Elicitation` hook](https://code.claude.com/docs/en/hooks#elicitation) answers it
 * **Permission hosts**: Claude Code doesn't ask your [`canUseTool` callback](https://code.claude.com/docs/en/agent-sdk/user-input) or [`--permission-prompt-tool`](https://code.claude.com/docs/en/cli-reference#cli-flags). To approve calls from code, answer from a `PermissionRequest` hook. Some calls are denied before any hook is asked, such as a [critical-path removal](https://code.claude.com/docs/en/permission-modes.md#critical-path-removals-in-each-permission-mode) in `auto` mode that no ask rule covers.
-* **Classifier billing notice**: where the [notice about billed classifier requests](https://code.claude.com/docs/en/auto-mode-classifier-billing.md#actions-denied-in-place-of-the-notice) would open a dialog, Claude Code doesn't show it and denies the actions that need those requests
+* **Classifier billing notice**: where the [notice about billed classifier requests](https://code.claude.com/docs/en/auto-mode-classifier-billing.md) would open a dialog, Claude Code doesn't show it and denies the actions that need those requests
 
 A session can still wait on the [workspace trust dialog](https://code.claude.com/docs/en/permissions.md#project-allow-rules-and-workspace-trust) and on [project MCP server approval](https://code.claude.com/docs/en/mcp.md#project-server-approvals-and-workspace-trust). Answer both before you leave the session running.
 
@@ -1539,6 +1539,8 @@ This lets a build write under `/tmp/build` and lets `kubectl` update your kubeco
   }
 }
 ```
+
+On Linux and WSL2, an entry for a path that doesn't exist yet has no effect, so create the path first.
 
 Claude Code merges `allowWrite` entries and the paths from your `Edit(...)` allow permission rules across the settings scopes the session loads, leaving out the ones from repository settings while [`permissions.blockReadsOutsideWorkingDirectories`](#sandboxed-commands-under-the-block) is on. [Repository locks](https://code.claude.com/docs/en/sandboxing.md#repository-settings-under-an-admin-required-sandbox) can leave out a repository's entries too. An `allowWrite` entry can't lift a [protected path](https://code.claude.com/docs/en/sandboxing.md#protected-paths).
 

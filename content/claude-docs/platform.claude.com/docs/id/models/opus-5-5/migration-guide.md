@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/migration-guide
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 62db4207706e41e685bedb4d854b349f4cdde2f18cc76bbc485c04cc6d55d2cc
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: a823d0993a92ff58f058c737b4c7cf409bd229e6bb87033202f53bad2b3fb689
 ---
 
 ---
@@ -30,8 +30,8 @@ Claude Opus 5.5 lebih murah daripada Claude Opus 5 ($4 / $20 USD per juta token 
 Dari model mana pun Anda berasal, permintaan ke `claude-opus-5-5` harus memenuhi hal-hal berikut. Jika suatu item menyatakan sebuah pengaturan ditolak, API mengembalikan error 400.
 
 * **ID model:** Gunakan `claude-opus-5-5`, ID model tetap tanpa akhiran tanggal. Di Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), Claude Models on Google Cloud (Google managed), dan Microsoft Foundry, gunakan ID model platform tersebut; lihat [Ketersediaan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#availability).
-* **Pemikiran:** Jangan kirim field `thinking`, atau kirim `thinking: {"type": "adaptive"}`, yang setara: [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (pemikiran adaptif) selalu aktif. `thinking: {"type": "disabled"}` dan anggaran thinking manual (`thinking: {"type": "enabled", "budget_tokens": N}`) ditolak. Lihat [sebelum dan sesudah untuk thinking](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#thinking-cant-be-disabled).
-* **Effort:** Kendalikan kedalaman thinking dengan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort), satu-satunya parameter permintaan yang mengendalikannya. Kelima level (`low`, `medium`, `high`, `xhigh`, `max`) didukung, dan defaultnya adalah `medium`. Lihat [Level effort yang direkomendasikan untuk Claude Opus 5.5](https://platform.claude.com/docs/id/build-with-claude/effort#recommended-effort-levels-for-claude-opus-5-5).
+* **Pemikiran:** Jangan kirim field `thinking`, atau kirim `thinking: {"type": "adaptive"}`, yang setara: [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (pemikiran adaptif) selalu aktif. `thinking: {"type": "disabled"}` dan anggaran pemikiran manual (`thinking: {"type": "enabled", "budget_tokens": N}`) ditolak. Lihat [sebelum dan sesudah untuk pemikiran](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#thinking-cant-be-disabled).
+* **Effort:** Kendalikan kedalaman pemikiran dengan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort), satu-satunya parameter permintaan yang mengendalikannya. Kelima level (`low`, `medium`, `high`, `xhigh`, `max`) didukung, dan defaultnya adalah `medium`. Lihat [Level effort yang direkomendasikan untuk Claude Opus 5.5](https://platform.claude.com/docs/id/build-with-claude/effort#recommended-effort-levels-for-claude-opus-5-5).
 * **Pilihan alat:** Gunakan `tool_choice` `{"type": "auto"}` (default) atau `{"type": "none"}`. Memaksa pemanggilan alat dengan `{"type": "any"}` atau `{"type": "tool", "name": "..."}` akan ditolak. Lihat [sebelum dan sesudah untuk pilihan alat](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#forced-tool-use).
 * **Parameter sampling:** Hilangkan `temperature`, `top_p`, dan `top_k`. Gunakan prompting untuk mengarahkan perilaku model.
 * **Prefill:** Jangan akhiri `messages` dengan giliran asisten yang di-prefill: ini akan ditolak. Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) atau instruksi prompt sistem sebagai gantinya.
@@ -128,7 +128,13 @@ Permintaan berikut memenuhi setiap item dalam daftar: effort diatur, dan tidak a
   };
 
   var message = await client.Messages.Create(parameters);
-  Console.WriteLine(message);
+  foreach (var block in message.Content)
+  {
+      if (block.TryPickText(out var textBlock))
+      {
+          Console.WriteLine(textBlock.Text);
+      }
+  }
   ```
 
   ```go Go
@@ -219,7 +225,7 @@ Pemikiran berjalan pada setiap permintaan Claude Opus 5.5, sehingga setiap respo
 
 2. **Respons diawali dengan blok pemikiran:** Sebuah respons dapat diawali dengan satu atau lebih blok `thinking` sebelum blok `text` pertama. Kode yang membaca balasan berdasarkan posisi, seperti `content[0].text` atau handler stream yang memperlakukan event `content_block_start` pertama sebagai teks, akan rusak pada respons ini. Pilih blok konten berdasarkan field `type`-nya: baca `text` dari blok yang `type`-nya `"text"`, dan lakukan percabangan berdasarkan tipe blok saat menangani event stream.
 
-3. **Kembalikan blok pemikiran tanpa modifikasi dalam loop penggunaan alat:** Jika Anda menjalankan loop penggunaan alat, kirimkan kembali blok `thinking` dari setiap respons asisten ke API secara lengkap dan tanpa modifikasi saat Anda mengembalikan hasil alat, termasuk blok yang field `thinking`-nya kosong. Kembalikan pesan asisten sebagaimana diterima, alih-alih memfilter blok kontennya berdasarkan tipe atau menyusunnya ulang: API menolak blok pemikiran yang diedit, diurutkan ulang, atau sebagian dihapus dengan error 400. Lihat [Mempertahankan blok pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks).
+3. **Kembalikan blok pemikiran tanpa modifikasi dalam loop penggunaan alat:** Jika Anda menjalankan loop penggunaan alat, kirimkan kembali blok `thinking` dari setiap respons asisten ke API secara lengkap dan tanpa modifikasi saat Anda mengembalikan hasil alat, termasuk blok yang field `thinking`-nya kosong. Kembalikan pesan asisten sebagaimana diterima, alih-alih memfilter blok kontennya berdasarkan tipe atau menyusunnya ulang: API menolak dengan error 400 blok pemikiran yang diedit, diurutkan ulang, atau sebagian tidak disertakan. Lihat [Mempertahankan blok pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks).
 
 4. **Teks pemikiran dihilangkan secara default:** `thinking.display` default-nya adalah `"omitted"`, sehingga blok `thinking` tiba dengan field `thinking` kosong bersama `signature`-nya. Perlakukan field `thinking` hanya sebagai teks tampilan. Untuk menerima ringkasan yang dapat dibaca, atur `thinking.display` ke `"summarized"`:
 
@@ -282,14 +288,14 @@ Telusuri grup-grup ini dari atas ke bawah dan berhentilah setelah grup yang meny
 * Hapus `thinking: {"type": "disabled"}` dan `thinking: {"type": "enabled", ...}`; pilih level effort sebagai gantinya.
 * Atur `effort` secara eksplisit: defaultnya adalah `medium`, sedangkan default Claude Opus 5 adalah `high`.
 * Ganti tipe `tool_choice` `any` dan `tool` dengan `auto` ditambah penggunaan alat ketat atau output terstruktur.
-* Jika Anda menggunakan versi alat penggunaan komputer yang lebih lama, deklarasikan `computer_toolset_20260801` sebagai gantinya, hapus header beta versi tersebut, dan perbarui loop agen Anda untuk toolset tersebut. Di Amazon Bedrock, `computer_20251124` juga berfungsi. Lihat [perubahan yang merusak kompatibilitas pada penggunaan komputer](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#computer-use-toolset).
-* Jika router atau fallback dapat memindahkan percakapan keluar dari Claude Opus 5.5, perkirakan bahwa model baru tersebut akan berjalan tanpa blok thinking dari Claude Opus 5.5. Claude Fable 5.1 dan Claude Mythos 5.1 mempertahankannya di Claude API. Claude Fable 5.2 dan Claude Mythos 5.2 mempertahankannya di Claude API dan Claude Models on Google Cloud (Google managed). Claude Opus 5.5 sendiri membaca thinking dari Claude Opus 5 dan dari model Opus, Sonnet, dan Haiku sebelumnya. Di Claude API dan Claude Models on Google Cloud (Google managed), model ini juga membaca thinking dari Claude Sonnet 5.5 dan Claude Haiku 5.5. Model ini tidak membaca thinking dari model Claude Fable atau Claude Mythos.
+* Jika Anda menggunakan versi alat penggunaan komputer yang lebih lama, deklarasikan `computer_toolset_20260801` sebagai gantinya, jangan lagi sertakan header beta versi tersebut, dan perbarui loop agen Anda untuk toolset tersebut. Di Amazon Bedrock, `computer_20251124` juga berfungsi. Lihat [perubahan yang merusak kompatibilitas pada penggunaan komputer](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#computer-use-toolset).
+* Jika router atau fallback dapat memindahkan percakapan keluar dari Claude Opus 5.5, perkirakan bahwa model baru tersebut akan berjalan tanpa blok pemikiran dari Claude Opus 5.5. Claude Fable 5.1 dan Claude Mythos 5.1 mempertahankannya di Claude API. Claude Fable 5.2 dan Claude Mythos 5.2 mempertahankannya di Claude API dan Claude Models on Google Cloud (Google managed). Claude Opus 5.5 sendiri membaca pemikiran dari Claude Opus 5 dan dari [model Claude Opus, Claude Sonnet, dan Claude Haiku sebelumnya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#earlier-models). Di Claude API dan Claude Models on Google Cloud (Google managed), model ini juga membaca pemikiran dari Claude Sonnet 5.5 dan Claude Haiku 5.5. Model ini tidak membaca pemikiran dari model Claude Fable atau Claude Mythos.
 * Baca blok konten berdasarkan `type`, dan kirim kembali blok `thinking` tanpa modifikasi dalam loop penggunaan alat.
 * Jika antarmuka Anda merender teks di antara pemanggilan alat, atur `display: "updates"` (beta) atau `"summarized"` dan render blok `thinking` yang tidak kosong.
 * Jika kode Anda mengedit giliran sebelumnya, prompt `system`, atau `tools` di tengah percakapan, ikuti [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking).
 * Tangani `stop_reason: "refusal"` dan konfigurasikan fallback.
 * Tetapkan ulang baseline biaya dan latensi pada level effort yang Anda pilih.
-* Jika kode Anda menonaktifkan thinking, tinjau kembali `max_tokens`, yang mencakup thinking ditambah teks respons; pada effort `xhigh` atau `max`, mulailah dari 64k. Lihat [Tangani thinking di setiap respons](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#thinking-in-every-response).
+* Jika kode Anda menonaktifkan pemikiran, tinjau kembali `max_tokens`, yang mencakup pemikiran ditambah teks respons; pada effort `xhigh` atau `max`, mulailah dari 64k. Lihat [Menangani pemikiran di setiap respons](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#thinking-in-every-response).
 
 ### Claude Opus 4.8 atau sebelumnya
 
@@ -304,7 +310,7 @@ Telusuri grup-grup ini dari atas ke bawah dan berhentilah setelah grup yang meny
 
 * Jalankan sweep [effort](https://platform.claude.com/docs/id/build-with-claude/effort) baru pada eval Anda sendiri alih-alih membawa pengaturan yang disesuaikan untuk model sebelumnya.
 * Hapus header beta jendela konteks apa pun.
-* Jika Anda menyusun ulang riwayat percakapan untuk memperbarui instruksi, pertimbangkan untuk beralih ke pesan sistem di tengah percakapan untuk mempertahankan cache hit prompt.
+* Jika Anda menyusun ulang riwayat percakapan untuk memperbarui instruksi, beralihlah ke pesan sistem di tengah percakapan. Setelah penyusunan ulang, sebuah permintaan dapat mendapatkan error 400, dan hit cache prompt hilang.
 * Verifikasi bahwa penanganan alasan berhenti Anda membaca `stop_details` pada penolakan.
 * Jika Anda menginginkan mode cepat, yang ditolak Claude Opus 4.7, atur `speed: "fast"` pada permintaan Claude API Anda.
 
@@ -337,12 +343,12 @@ Telusuri grup-grup ini dari atas ke bawah dan berhentilah setelah grup yang meny
 * Tangani alasan berhenti `refusal`.
 * Tangani alasan berhenti `model_context_window_exceeded`.
 * Verifikasi penanganan parameter string alat untuk baris baru di akhir.
-* Hapus beta header `token-efficient-tools-2025-02-19` dan `output-128k-2025-02-19`.
+* Hapus header beta `token-efficient-tools-2025-02-19` dan `output-128k-2025-02-19`.
 * Tinjau dan perbarui prompt mengikuti [praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
 
 ### Hanya Claude Sonnet 5
 
-* Jika Anda menyusun ulang riwayat percakapan untuk memperbarui instruksi, pertimbangkan untuk beralih ke pesan sistem di tengah percakapan untuk mempertahankan cache hit prompt.
+* Jika Anda menyusun ulang riwayat percakapan untuk memperbarui instruksi, beralihlah ke pesan sistem di tengah percakapan. Setelah penyusunan ulang, sebuah permintaan dapat mendapatkan error 400, dan hit cache prompt hilang.
 * Tinjau prompt yang mendekati batas minimum caching: prompt sepanjang 512 token atau lebih dapat membuat entri cache.
 
 ## Migrasi ke Claude Opus 5.5 dari Claude Opus 5
@@ -358,9 +364,9 @@ model = "claude-opus-5-5"  # After
 
 `claude-opus-5-5` adalah ID model tetap tanpa akhiran tanggal, dengan skema yang sama seperti `claude-opus-5`. Di Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), Claude Models on Google Cloud (Google managed), dan Microsoft Foundry, gunakan ID model platform tersebut; lihat [Ketersediaan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#availability).
 
-### Perubahan yang merusak
+### Perubahan yang merusak kompatibilitas
 
-Setiap perubahan dijelaskan di bawah [Perubahan yang merusak](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#breaking-changes) dalam Yang baru di Claude Opus 5.5; bagian ini memberikan perubahan kode untuk masing-masing.
+Setiap perubahan dijelaskan di bawah [Perubahan yang merusak kompatibilitas](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#breaking-changes) dalam Yang baru di Claude Opus 5.5; bagian ini memberikan perubahan kode untuk masing-masing.
 
 #### Pemikiran tidak dapat dinonaktifkan
 
@@ -618,7 +624,7 @@ Sebelum. Claude Opus 5 menerima permintaan ini, dan Claude Opus 5.5 menolaknya d
     name: get_weather
   messages:
     - role: user
-      content: What's the weather in Paris?
+      content: What is the weather in Paris?
   YAML
   ```
 
@@ -628,7 +634,7 @@ Sebelum. Claude Opus 5 menerima permintaan ini, dan Claude Opus 5.5 menolaknya d
       max_tokens=1024,
       tools=tools,
       tool_choice={"type": "tool", "name": "get_weather"},
-      messages=[{"role": "user", "content": "What's the weather in Paris?"}],
+      messages=[{"role": "user", "content": "What is the weather in Paris?"}],
   )
   ```
 
@@ -638,7 +644,7 @@ Sebelum. Claude Opus 5 menerima permintaan ini, dan Claude Opus 5.5 menolaknya d
     max_tokens: 1024,
     tools,
     tool_choice: { type: "tool", name: "get_weather" },
-    messages: [{ role: "user", content: "What's the weather in Paris?" }]
+    messages: [{ role: "user", content: "What is the weather in Paris?" }]
   });
   ```
 
@@ -649,7 +655,7 @@ Sebelum. Claude Opus 5 menerima permintaan ini, dan Claude Opus 5.5 menolaknya d
       MaxTokens = 1024,
       Tools = [.. tools],
       ToolChoice = new ToolChoiceTool { Name = "get_weather" },
-      Messages = [new UserMessageParam { Content = "What's the weather in Paris?" }],
+      Messages = [new UserMessageParam { Content = "What is the weather in Paris?" }],
   });
   ```
 
@@ -660,7 +666,7 @@ Sebelum. Claude Opus 5 menerima permintaan ini, dan Claude Opus 5.5 menolaknya d
   	Tools:      tools,
   	ToolChoice: anthropic.ToolChoiceParamOfTool("get_weather"),
   	Messages: []anthropic.MessageParam{
-  		anthropic.NewUserMessage(anthropic.NewTextBlock("What's the weather in Paris?")),
+  		anthropic.NewUserMessage(anthropic.NewTextBlock("What is the weather in Paris?")),
   	},
   })
   ```
@@ -671,7 +677,7 @@ Sebelum. Claude Opus 5 menerima permintaan ini, dan Claude Opus 5.5 menolaknya d
       .maxTokens(1024L)
       .tools(tools)
       .toolChoice(ToolChoiceTool.of("get_weather"))
-      .addUserMessage("What's the weather in Paris?")
+      .addUserMessage("What is the weather in Paris?")
       .build();
 
   client.messages().create(params);
@@ -683,7 +689,7 @@ Sebelum. Claude Opus 5 menerima permintaan ini, dan Claude Opus 5.5 menolaknya d
       maxTokens: 1024,
       tools: $tools,
       toolChoice: ToolChoiceTool::with(name: 'get_weather'),
-      messages: [['role' => 'user', 'content' => "What's the weather in Paris?"]],
+      messages: [['role' => 'user', 'content' => 'What is the weather in Paris?']],
   );
   ```
 
@@ -693,7 +699,7 @@ Sebelum. Claude Opus 5 menerima permintaan ini, dan Claude Opus 5.5 menolaknya d
     max_tokens: 1024,
     tools: tools,
     tool_choice: Anthropic::ToolChoiceTool.new(name: "get_weather"),
-    messages: [{ role: "user", content: "What's the weather in Paris?" }]
+    messages: [{ role: "user", content: "What is the weather in Paris?" }]
   )
   ```
 </CodeGroup>
@@ -749,13 +755,13 @@ Sesudah:
             description: The city and state, e.g. San Francisco, CA
         required: [location]
         additionalProperties: false
-      # penggunaan alat ketat: setiap panggilan cocok dengan input_schema alat
+      # penggunaan alat ketat: setiap panggilan sesuai dengan input_schema milik alat
       strict: true
   tool_choice:
     type: auto
   messages:
     - role: user
-      content: What's the weather in Paris? Use the get_weather tool.
+      content: What is the weather in Paris? Use the get_weather tool.
   YAML
   ```
 
@@ -769,7 +775,7 @@ Sesudah:
       messages=[
           {
               "role": "user",
-              "content": "What's the weather in Paris? Use the get_weather tool.",
+              "content": "What is the weather in Paris? Use the get_weather tool.",
           }
       ],
   )
@@ -779,13 +785,13 @@ Sesudah:
   await client.messages.create({
     model: "claude-opus-5-5",
     max_tokens: 1024,
-    // penggunaan alat ketat: setiap panggilan sesuai dengan input_schema alat
+    // penggunaan alat ketat: setiap panggilan sesuai dengan input_schema milik alat
     tools: tools.map((tool) => ({ ...tool, strict: true })),
     tool_choice: { type: "auto" },
     messages: [
       {
         role: "user",
-        content: "What's the weather in Paris? Use the get_weather tool."
+        content: "What is the weather in Paris? Use the get_weather tool."
       }
     ]
   });
@@ -796,18 +802,18 @@ Sesudah:
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      // strict tool use (penggunaan alat ketat): setiap panggilan cocok dengan input_schema alat
+      // penggunaan alat ketat: setiap panggilan sesuai dengan input_schema milik alat
       Tools = [.. tools.Select(tool => tool with { Strict = true })],
       ToolChoice = new ToolChoiceAuto(),
       Messages =
       [
-          new UserMessageParam { Content = "What's the weather in Paris? Use the get_weather tool." },
+          new UserMessageParam { Content = "What is the weather in Paris? Use the get_weather tool." },
       ],
   });
   ```
 
   ```go Go
-  // penggunaan alat ketat: setiap panggilan cocok dengan input_schema alat
+  // penggunaan alat strict: setiap panggilan sesuai dengan input_schema alat
   var strictTools []anthropic.ToolUnionParam
   for _, tool := range tools {
   	strictTool := *tool.OfTool
@@ -821,7 +827,7 @@ Sesudah:
   	ToolChoice: anthropic.ToolChoiceUnionParam{OfAuto: &anthropic.ToolChoiceAutoParam{}},
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(
-  			anthropic.NewTextBlock("What's the weather in Paris? Use the get_weather tool."),
+  			anthropic.NewTextBlock("What is the weather in Paris? Use the get_weather tool."),
   		),
   	},
   })
@@ -831,7 +837,7 @@ Sesudah:
   MessageCreateParams params = MessageCreateParams.builder()
       .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024L)
-      // penggunaan alat ketat: setiap panggilan sesuai dengan input_schema alat
+      // penggunaan alat ketat: setiap panggilan cocok dengan input_schema alat
       .tools(tools.stream()
           .map(tool -> tool.tool()
               .map(customTool -> customTool.toBuilder()
@@ -841,7 +847,7 @@ Sesudah:
               .orElse(tool))
           .toList())
       .toolChoice(ToolChoiceAuto.builder().build())
-      .addUserMessage("What's the weather in Paris? Use the get_weather tool.")
+      .addUserMessage("What is the weather in Paris? Use the get_weather tool.")
       .build();
 
   client.messages().create(params);
@@ -851,13 +857,13 @@ Sesudah:
   $client->messages->create(
       model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 1024,
-      // penggunaan alat ketat: setiap panggilan sesuai dengan input_schema milik alat
+      // penggunaan alat ketat: setiap panggilan cocok dengan input_schema milik alat
       tools: array_map(fn (Tool $tool) => $tool->withStrict(true), $tools),
       toolChoice: ToolChoiceAuto::with(),
       messages: [
           [
               'role' => 'user',
-              'content' => "What's the weather in Paris? Use the get_weather tool.",
+              'content' => 'What is the weather in Paris? Use the get_weather tool.',
           ],
       ],
   );
@@ -871,7 +877,7 @@ Sesudah:
     tools: tools.map { |tool| tool.merge(strict: true) },
     tool_choice: Anthropic::ToolChoiceAuto.new,
     messages: [
-      { role: "user", content: "What's the weather in Paris? Use the get_weather tool." }
+      { role: "user", content: "What is the weather in Paris? Use the get_weather tool." }
     ]
   )
   ```
@@ -879,17 +885,19 @@ Sesudah:
 
 #### Blok pemikiran terikat pada model dan percakapan
 
-Claude Fable 5.1 dan Claude Mythos 5.1 membaca blok pemikiran Claude Opus 5.5 di Claude API. Claude Fable 5.2 dan Claude Mythos 5.2 membacanya di Claude API dan Claude Models on Google Cloud (Google managed). Tidak ada model lain yang melakukannya. Router atau fallback yang memindahkan percakapan dari Claude Opus 5.5 ke model lain mana pun akan menjalankan giliran-giliran tersebut tanpa blok pemikiran itu.
+Pertahankan percakapan agar bersifat append-only (tanpa pengeditan pada prompt `system`, `tools`, atau pesan sebelumnya di tengah percakapan) sehingga blok pemikiran lolos [pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#prefix-check). Claude Code, claude.ai, Claude Managed Agents, dan Claude Agent SDK melakukan hal ini. Tidak ada perubahan kode untuk integrasi yang bersifat append-only.
 
-Sebaliknya, Claude Opus 5.5 membaca blok pemikiran dari Claude Opus 5 dan dari model Opus, Sonnet, dan Haiku sebelumnya. Di Claude API dan Claude Models on Google Cloud (Google managed), model ini juga membacanya dari Claude Sonnet 5.5 dan Claude Haiku 5.5. Model ini tidak membacanya dari model Claude Fable atau Claude Mythos.
+Gagal dalam [pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#prefix-check) mungkin menghasilkan atau mungkin tidak menghasilkan [error 400](https://platform.claude.com/docs/id/api/errors#thinking-block-conversation-mismatch). Untuk mengidentifikasi dan menangani kedua kasus tersebut, lihat [Pemeriksaan prefiks pada blok pemikiran](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks).
 
-Pertahankan percakapan agar bersifat append-only (tanpa pengeditan pada prompt `system`, `tools`, atau pesan sebelumnya di tengah percakapan) sehingga blok-blok tersebut tetap valid. Claude Code, claude.ai, Claude Managed Agents, dan Claude Agent SDK sudah melakukannya. Jika sebuah permintaan memutar ulang blok pemikiran setelah pengeditan semacam itu, dengan `thinking.block_binding.prefix_mismatch_behavior` tidak diatur, permintaan tersebut akan mendapatkan error 400. Ini berlaku untuk akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC. [Ketersediaan pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#feature-availability) mencantumkan platform tempat hal ini berlaku. Tidak ada perubahan kode untuk integrasi yang bersifat append-only. Lihat [Blok pemikiran terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them) dan [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking).
+[Ketersediaan pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#feature-availability) mencantumkan platform tempat hal ini berlaku.
+
+Setiap blok pemikiran juga mencatat model mana yang menghasilkannya. Router atau fallback dapat memindahkan percakapan dari Claude Opus 5.5 ke model yang tidak membaca blok pemikiran Claude Opus 5.5. API tidak menyertakan blok-blok tersebut dalam permintaan itu sebelum model tersebut melihatnya, dan permintaan berhasil. Untuk mengetahui model mana yang membaca blok mana, lihat [Blok pemikiran terikat pada model dan percakapan](https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5#thinking-blocks-are-tied-to-the-model-that-produced-them) dalam Yang baru di Claude Opus 5.5. Lihat juga [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking).
 
 #### Beberapa versi alat penggunaan komputer tidak didukung
 
 Claude Opus 5.5 mendukung penggunaan komputer melalui toolset `computer_toolset_20260801`. Di Amazon Bedrock, Claude Opus 5.5 juga menerima alat `computer_20251124` dengan header beta `computer-use-2025-11-24`. Claude Opus 5.5 mengembalikan error 400 untuk versi alat penggunaan komputer apa pun yang tidak diterimanya, seperti `computer_20251124` di Claude API. Model ini tidak menerima `computer_20250124` di platform mana pun. Di Claude API, pesan error diawali dengan `'claude-opus-5-5' does not support tool types: computer_20251124.` lalu mencantumkan tipe alat yang diterima model.
 
-Integrasi yang menggunakan toolset tidak memerlukan perubahan. Untuk memindahkan integrasi `computer_20251124` ke toolset, hapus header beta dan kirim entri `computer_toolset_20260801` tanpa `name` atau dimensi tampilan. Dalam loop agen Anda, tangani setiap blok `tool_use` anggota dalam satu giliran dan sertakan kembali `toolset_name` di setiap hasil. Baca aksi dari `name` setiap blok, bukan dari `input.action`. [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124) mencantumkan perubahan loop agen.
+Integrasi yang menggunakan toolset tidak memerlukan perubahan. Untuk memindahkan integrasi `computer_20251124` ke toolset, jangan lagi sertakan header beta dan kirim entri `computer_toolset_20260801` tanpa `name` atau dimensi tampilan. Dalam loop agen Anda, tangani setiap blok `tool_use` anggota dalam satu giliran dan sertakan kembali `toolset_name` di setiap hasil. Baca aksi dari `name` setiap blok, bukan dari `input.action`. [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124) mencantumkan perubahan loop agen.
 
 Sebelum. Claude Opus 5 menerima permintaan ini, dan Claude Opus 5.5 menolaknya dengan error 400 di Claude API:
 
@@ -1158,19 +1166,19 @@ Claude Opus 5.5 dapat mengembalikan `stop_reason: "refusal"` dengan kategori `st
 
 ### Perubahan yang direkomendasikan
 
-1. **Jalankan ulang sweep effort Anda.** Effort adalah satu-satunya kontrol pemikiran di Claude Opus 5.5, dan defaultnya adalah `medium` sedangkan default Claude Opus 5 adalah `high`, sehingga permintaan yang menghilangkan `effort` berjalan pada `medium`. Turunkan level di tempat kualitas tetap terjaga, dan naikkan untuk pekerjaan yang paling menuntut. Lihat [Effort](https://platform.claude.com/docs/id/build-with-claude/effort).
+1. **Jalankan ulang sweep effort Anda.** Effort adalah satu-satunya parameter permintaan yang mengendalikan kedalaman pemikiran di Claude Opus 5.5. Defaultnya adalah `medium`. Default Claude Opus 5 adalah `high`, sehingga permintaan yang menghilangkan `effort` berjalan satu level lebih rendah dibandingkan di Claude Opus 5. Turunkan level di tempat kualitas tetap terjaga, dan naikkan untuk pekerjaan yang paling menuntut. Lihat [Effort](https://platform.claude.com/docs/id/build-with-claude/effort).
 2. **Evaluasi ulang instruksi prompt khusus model.** Instruksi yang disesuaikan untuk perilaku Claude Opus 5 mungkin tidak lagi diperlukan; lihat [Menulis prompt untuk Claude Opus 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5). Jika Anda berjalan dengan pemikiran dinonaktifkan, lihat juga [Prompt yang ditulis untuk pemikiran yang dinonaktifkan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#prompts-written-for-thinking-disabled).
 3. **Uji di lingkungan pengembangan** sebelum mengalihkan lalu lintas produksi.
 
 ## Migrasi ke Claude Opus 5.5 dari Claude Opus 4.8
 
-Pertama, kerjakan [Yang harus dipenuhi setiap permintaan ke Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#request-requirements), [Menangani pemikiran di setiap respons](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#thinking-in-every-response), dan [Migrasi ke Claude Opus 5.5 dari Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5). Gunakan `claude-opus-4-8` sebagai ID model yang Anda ganti. Bagian terakhir tersebut berlaku untuk kode di Claude Opus 4.8 sebagaimana tertulis, karena Claude Opus 4.8, seperti Claude Opus 5:
+Pertama, kerjakan [Yang harus dipenuhi setiap permintaan ke Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#request-requirements), [Menangani pemikiran di setiap respons](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#thinking-in-every-response), dan [Migrasi ke Claude Opus 5.5 dari Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), dengan `claude-opus-4-8` sebagai ID model yang Anda ganti. Semua yang ada di bagian Claude Opus 5 juga berlaku untuk Anda, karena Claude Opus 4.8, seperti Claude Opus 5:
 
 * Menerima `thinking: {"type": "disabled"}`, pilihan alat paksa, dan alat `computer_20251124`.
 * Mengembalikan teks di antara pemanggilan alat sebagai blok `text`.
 * Menggunakan effort `high` sebagai default.
 
-Bagian ini menambahkan apa yang berubah antara Claude Opus 4.8 dan Claude Opus 5. Untuk daftar periksa, lihat dua grup pertama dari [daftar periksa migrasi](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migration-checklist).
+Kemudian baca [Apa yang berubah](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#what-changed-from-claude-opus-4-8), yang mencantumkan apa yang mulai berlaku antara Claude Opus 4.8 dan Claude Opus 5. Untuk daftar periksa, lihat dua grup pertama dari [daftar periksa migrasi](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migration-checklist).
 
 ### Apa yang berubah
 
@@ -1186,35 +1194,38 @@ Perubahan ini bersifat opsional, dan dapat meningkatkan pengalaman Anda:
 
 1. **Pertimbangkan anggaran tugas (beta):** Untuk beban kerja agentik, [anggaran tugas](https://platform.claude.com/docs/id/build-with-claude/task-budgets) memberi tahu model berapa banyak token yang dimilikinya untuk satu loop agentik penuh. Fitur ini memerlukan header beta `task-budgets-2026-03-13`.
 
-2. **Pertimbangkan perubahan alat di tengah percakapan (beta):** Perubahan alat di tengah percakapan memungkinkan Anda menambahkan atau menghapus alat di antara giliran percakapan tanpa membatalkan hit [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) pada giliran sebelumnya. Mengubah array `tools` itu sendiri akan membatalkan prefiks yang di-cache. Di Claude API, Claude Platform on AWS, dan Claude Models on Google Cloud (Anthropic managed), kirimkan header beta `inline-tools-2026-09-15`. Header `mid-conversation-tool-changes-2026-07-01` berfungsi untuk perubahan yang menyebut alat berdasarkan referensi, di Claude API, Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), dan Claude Models on Google Cloud (Google managed).
+2. **Pertimbangkan perubahan alat di tengah percakapan (beta):** Fitur ini memungkinkan Anda menambahkan atau menghapus alat di antara giliran dengan pesan `role: "system"` dan mempertahankan hit [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) pada giliran sebelumnya. Mengubah array `tools` akan menghilangkan hit tersebut. Dua header beta mengaktifkan perubahan alat di tengah percakapan. Jika keduanya berfungsi di platform Anda, kirimkan `inline-tools-2026-09-15`:
+
+   * `inline-tools-2026-09-15` berfungsi di Claude API, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), dan Microsoft Foundry.
+   * `mid-conversation-tool-changes-2026-07-01` berfungsi di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, serta di empat platform yang tercantum untuk `inline-tools-2026-09-15`. Header ini tidak mencakup [mendefinisikan alat di dalam blok `tool_addition`](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta).
 
 ## Migrasi ke Claude Opus 5.5 dari Claude Opus 4.7
 
-Pertama, kerjakan [Yang harus dipenuhi setiap permintaan ke Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#request-requirements), [Menangani pemikiran di setiap respons](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#thinking-in-every-response), [Migrasi ke Claude Opus 5.5 dari Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), dan [Migrasi ke Claude Opus 5.5 dari Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8). Gunakan `claude-opus-4-7` sebagai ID model yang Anda ganti. Bagian-bagian tersebut berlaku untuk kode di Claude Opus 4.7 sebagaimana tertulis. Seperti Claude Opus 4.8, model ini menerima `thinking: {"type": "disabled"}`, pilihan alat paksa, dan alat `computer_20251124`. Model ini menggunakan effort `high` sebagai default dan berjalan tanpa pemikiran kecuali Anda memintanya.
+Pertama, kerjakan [Yang harus dipenuhi setiap permintaan ke Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#request-requirements), [Menangani pemikiran di setiap respons](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#thinking-in-every-response), [Migrasi ke Claude Opus 5.5 dari Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), dan [Migrasi ke Claude Opus 5.5 dari Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8), dengan `claude-opus-4-7` sebagai ID model yang Anda ganti. Semuanya juga berlaku untuk Anda: seperti Claude Opus 4.8, Claude Opus 4.7 menerima `thinking: {"type": "disabled"}`, pilihan alat paksa, dan alat `computer_20251124`. Model ini menggunakan effort `high` sebagai default dan berjalan tanpa pemikiran kecuali Anda memintanya.
 
-Bagian ini menambahkan apa yang berubah setelah Claude Opus 4.7. Jika kode Anda menggunakan Claude Opus 4.6 atau sebelumnya, lanjutkan dengan [Migrasi ke Claude Opus 5.5 dari Claude Opus 4.6 dan model Opus sebelumnya](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-46) setelah bagian ini. Bagian tersebut menambahkan perubahan yang merusak yang mulai berlaku di Claude Opus 4.7. Untuk daftar periksa, lihat tiga grup pertama dari [daftar periksa migrasi](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migration-checklist).
+Kemudian periksa item-item berikut. Jika kode Anda menggunakan Claude Opus 4.6 atau sebelumnya, lanjutkan dengan [Migrasi ke Claude Opus 5.5 dari Claude Opus 4.6 dan model Opus sebelumnya](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-46). Bagian tersebut berisi perubahan yang merusak kompatibilitas yang mulai berlaku di Claude Opus 4.7. Untuk daftar periksa, lihat tiga grup pertama dari [daftar periksa migrasi](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migration-checklist).
 
 ### Apa yang berubah
 
-Tidak satu pun dari item ini menambahkan perubahan yang merusak di luar yang ada di bagian-bagian sebelumnya; item-item ini layak diperiksa setelah Anda mengganti ID model.
+Item-item ini tidak menambahkan perubahan yang merusak kompatibilitas di luar yang ada di bagian-bagian sebelumnya. Periksa item-item ini setelah Anda mengganti ID model.
 
-1. **Tingkat effort dikalibrasi ulang:** Alokasi token di balik setiap tingkat effort berubah pada Claude Opus 5.5 dibandingkan dengan Claude Opus 4.7. Nilai default-nya adalah `medium`, sedangkan pada Claude Opus 4.7 adalah `high`. Jalankan sweep effort baru pada eval Anda sendiri alih-alih membawa pengaturan yang disetel untuk Claude Opus 4.7. Lihat [Effort](https://platform.claude.com/docs/id/build-with-claude/effort).
+1. **Level effort dikalibrasi ulang:** Setiap level effort mengalokasikan token secara berbeda pada Claude Opus 5.5 dibandingkan pada Claude Opus 4.7. Defaultnya adalah `medium`, sedangkan pada Claude Opus 4.7 adalah `high`. Jalankan sweep effort baru pada eval Anda sendiri alih-alih membawa pengaturan yang disesuaikan untuk Claude Opus 4.7. Lihat [Effort](https://platform.claude.com/docs/id/build-with-claude/effort).
 
 2. **Jendela konteks 1M adalah default:** Claude Opus 5.5 menyediakan [jendela konteks](https://platform.claude.com/docs/id/build-with-claude/context-windows) penuh sebesar 1M token secara default. Jika klien Anda mengirimkan header beta jendela konteks demi kompatibilitas dengan model yang lebih lama, hapus header tersebut.
 
-3. **Pesan sistem di tengah percakapan:** Di Claude API, Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), dan Claude Models on Google Cloud (Google managed), Claude Opus 5.5 menerima pesan `role: "system"` tepat setelah giliran pengguna dalam array `messages` (dengan tunduk pada [aturan penempatan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)). Gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal. Claude Opus 4.7 menolak `role: "system"` di dalam `messages` dengan error 400. Jika Anda memelihara jalur kode yang membangun ulang seluruh riwayat pesan untuk memperbarui instruksi, Anda dapat menyederhanakannya dan mempertahankan hit [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) pada giliran sebelumnya.
+3. **Pesan sistem di tengah percakapan:** Di [platform yang didukung](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#feature-availability), Claude Opus 5.5 menerima pesan `role: "system"` tepat setelah giliran pengguna dalam array `messages` (dengan tunduk pada [aturan penempatan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)). Gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal. Claude Opus 4.7 menolak `role: "system"` di dalam `messages` dengan error 400. Jika Anda memelihara jalur kode yang membangun ulang seluruh riwayat pesan untuk memperbarui instruksi, alihkan jalur tersebut ke pesan sistem. Setelah pembangunan ulang, sebuah permintaan dapat mendapatkan error 400, dan hit [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) hilang.
 
-4. **Detail penghentian penolakan:** Ketika model menolak suatu permintaan, Claude Opus 5.5 mengembalikan objek `stop_details` yang menyebutkan kategori penolakan, bersama dengan alasan penghentian `refusal`. Claude Opus 4.7 mengembalikan objek yang sama, jadi hal ini hanya penting jika penanganan alasan penghentian Anda belum membacanya; jika demikian, lihat [Alasan berhenti dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons). Tidak ada opsi untuk menonaktifkannya. Claude Opus 5.5 menolak dalam lebih banyak kategori; lihat [Pengklasifikasi keamanan dan fallback](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#safety-classifiers-and-fallback).
+4. **Detail penghentian penolakan:** Ketika model menolak suatu permintaan, Claude Opus 5.5 mengembalikan objek `stop_details` yang menyebutkan kategori penolakan, bersama dengan alasan berhenti `refusal`. Anda tidak dapat menonaktifkannya. Claude Opus 4.7 mengembalikan objek yang sama, jadi tidak ada yang perlu diubah jika penanganan alasan berhenti Anda sudah membacanya. Jika belum, lihat [Alasan berhenti dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons). Claude Opus 5.5 menolak dalam lebih banyak kategori; lihat [Classifier keamanan dan fallback](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#safety-classifiers-and-fallback).
 
-5. **Mode cepat:** Claude Opus 5.5 mendukung [mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) di Claude API. Mode cepat tidak tersedia di Claude Opus 4.7, di mana permintaan dengan `speed: "fast"` mengembalikan error. Atur `speed: "fast"` pada permintaan Anda.
+5. **Mode cepat:** Claude Opus 5.5 mendukung [mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) di Claude API dan di [beberapa platform cloud](https://platform.claude.com/docs/id/build-with-claude/fast-mode#feature-availability). Mode cepat tidak tersedia di Claude Opus 4.7, di mana permintaan dengan `speed: "fast"` mengembalikan error. Untuk menggunakannya di Claude API, atur `speed: "fast"` pada permintaan Anda.
 
 6. **Toolset penggunaan komputer dan alat penggunaan browser:** Claude Opus 5.5 mendukung [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) sebagai toolset `computer_toolset_20260801` dan [alat penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) untuk tugas di dalam halaman web. Claude Opus 4.7 tidak mendukung keduanya. Untuk memindahkan integrasi `computer_20251124` ke toolset, lihat [perubahan yang merusak kompatibilitas pada penggunaan komputer](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#computer-use-toolset).
 
 ## Migrasi ke Claude Opus 5.5 dari Claude Opus 4.6 dan model Opus sebelumnya
 
-Pertama, kerjakan setiap bagian sebelumnya, sesuai urutan halaman. Bagian-bagian tersebut adalah [Yang harus dipenuhi setiap permintaan ke Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#request-requirements), [Menangani pemikiran di setiap respons](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#thinking-in-every-response), dan bagian untuk [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8), dan [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-47). Bagian-bagian tersebut berlaku untuk kode pada Claude Opus 4.6 sebagaimana tertulis. Seperti Claude Opus 4.7, model ini menerima `thinking: {"type": "disabled"}`, pemilihan alat paksa (forced tool choice), dan alat `computer_20251124`. Model ini menggunakan effort `high` secara default dan berjalan tanpa pemikiran kecuali Anda memintanya. Claude Opus 4.5 dan model Opus sebelumnya juga menerima `thinking: {"type": "disabled"}` dan pemilihan alat paksa, serta berjalan tanpa pemikiran kecuali Anda memintanya, sehingga bagian-bagian tersebut juga berlaku untuk model-model itu.
+Pertama, kerjakan setiap bagian sebelumnya, sesuai urutan halaman: [Yang harus dipenuhi setiap permintaan ke Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#request-requirements), [Menangani pemikiran di setiap respons](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#thinking-in-every-response), dan bagian untuk [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8), dan [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-47). Semuanya juga berlaku untuk Anda, karena Claude Opus 4.6 dan model Opus sebelumnya menerima `thinking: {"type": "disabled"}` dan pilihan alat paksa serta berjalan tanpa pemikiran kecuali Anda memintanya. Claude Opus 4.6 juga menerima alat `computer_20251124` dan menggunakan effort `high` sebagai default.
 
-Bagian ini menambahkan apa yang berubah di Claude Opus 4.7, dengan `claude-opus-4-6` sebagai ID model yang Anda ganti. Dua subbagiannya menambahkan apa yang berubah sebelum itu, untuk pembaca yang menggunakan [Claude Opus 4.5 atau sebelumnya](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-45) dan [Claude 4.1 atau sebelumnya](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-4-1-or-earlier). Untuk daftar periksa, lihat [daftar periksa migrasi](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migration-checklist) hingga grup yang menyebutkan model Anda.
+Kemudian terapkan perubahan berikut, yang mulai berlaku di Claude Opus 4.7. ID model yang Anda ganti adalah `claude-opus-4-6`. Dua subbagiannya menambahkan perubahan sebelumnya, untuk pembaca yang menggunakan [Claude Opus 4.5 atau sebelumnya](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-45) dan [Claude 4.1 atau sebelumnya](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-4-1-or-earlier). Untuk daftar periksa, lihat [daftar periksa migrasi](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migration-checklist) dan berhentilah setelah grup yang menyebutkan model Anda.
 
 ### Perubahan yang merusak kompatibilitas
 
@@ -1513,7 +1524,7 @@ Bagian ini menambahkan apa yang berubah di Claude Opus 4.7, dengan `claude-opus-
 
 Claude Opus 4.7 memperkenalkan perbedaan perilaku dari Claude Opus 4.6 yang bukan merupakan perubahan API yang merusak kompatibilitas. Tiga perubahan berikut memengaruhi kode atau scaffolding:
 
-1. **Pembaruan progres bawaan dalam jejak agentik:** Claude Opus 4.7 memberikan pembaruan yang lebih teratur dan berkualitas lebih tinggi kepada pengguna sepanjang jejak agentik yang panjang. Jika Anda telah menambahkan scaffolding untuk memaksa pesan status sementara (“Setelah setiap 3 panggilan alat, rangkum progres”), coba hapus. Pada Claude Opus 5.5, pembaruan ini muncul dalam blok `thinking`, yang kosong pada `thinking.display` default. Untuk menerimanya, lihat [Teks di antara panggilan alat dikembalikan dalam blok pemikiran](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#text-between-tool-calls). Untuk membentuk panjang dan isinya, lihat [Pembaruan progres yang ditampilkan kepada pengguna](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#user-facing-progress-updates).
+1. **Pembaruan progres bawaan dalam jejak agentik:** Claude Opus 4.7 memberikan pembaruan yang lebih teratur dan berkualitas lebih tinggi kepada pengguna sepanjang jejak agentik yang panjang. Jika Anda telah menambahkan scaffolding untuk memaksa pesan status sementara (“Setelah setiap 3 panggilan alat, rangkum progres”), coba hapus. Pada Claude Opus 5.5, pembaruan ini muncul dalam blok `thinking`, yang kosong pada `thinking.display` default. Untuk menerimanya, lihat [Teks di antara pemanggilan alat dikembalikan dalam blok pemikiran](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#text-between-tool-calls). Untuk membentuk panjang dan isinya, lihat [Pembaruan progres yang ditampilkan kepada pengguna](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#user-facing-progress-updates).
 
 2. **Perlindungan keamanan siber real-time:** Perlindungan ini baru di Claude Opus 4.7: permintaan yang melibatkan topik terlarang atau berisiko tinggi dapat menyebabkan penolakan. Untuk pekerjaan keamanan yang sah seperti pengujian penetrasi, riset kerentanan, atau red-teaming, ajukan permohonan ke [Cyber Verification Program](https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet) untuk meminta pembatasan yang dikurangi. Jalur pengajuan bergantung pada cara Anda mengakses Claude.
 
@@ -1530,7 +1541,11 @@ Untuk perbedaan di sisi prompt, lihat [Menulis prompt untuk Claude Opus 5.5](htt
 
 ### Migrasi dari Claude Opus 4.5 atau sebelumnya
 
-Jika Anda bermigrasi dari Claude Opus 4.5, Claude Opus 4.1, atau model sebelumnya langsung ke Claude Opus 5.5, baca halaman ini dari atas: pertama, kerjakan setiap bagian sebelumnya, sesuai urutan halaman. Kemudian kerjakan [perubahan yang merusak kompatibilitas untuk migrasi dari Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#opus-46-breaking-changes) yang ada sebelumnya di bagian ini. Kemudian terapkan perubahan kumulatif berikut, yang mulai berlaku antara Claude Opus 4.5 dan Claude Opus 4.7. Jika Anda menggunakan Claude Opus 4.1 atau sebelumnya, lanjutkan dengan [Migrasi dari Claude 4.1 atau sebelumnya](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-4-1-or-earlier) setelah subbagian ini.
+Untuk bermigrasi dari Claude Opus 4.5, Claude Opus 4.1, atau model sebelumnya langsung ke Claude Opus 5.5:
+
+1. Kerjakan halaman ini dari atas, sesuai urutan halaman, hingga subbagian ini. Itu termasuk [perubahan yang merusak kompatibilitas untuk migrasi dari Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#opus-46-breaking-changes).
+2. Terapkan perubahan dalam subbagian ini, yang mulai berlaku antara Claude Opus 4.5 dan Claude Opus 4.7.
+3. Jika Anda menggunakan Claude Opus 4.1 atau sebelumnya, lanjutkan dengan [Migrasi dari Claude 4.1 atau sebelumnya](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-4-1-or-earlier).
 
 #### Perubahan yang merusak kompatibilitas
 
@@ -1550,7 +1565,7 @@ Butir pertama wajib pada Claude Opus 5.5; sisanya direkomendasikan.
 
 4. **Hapus header beta pemikiran berselang:** Dengan pemikiran adaptif, pemikiran berselang bersifat otomatis pada setiap model yang mendukung pemikiran adaptif. Hapus beta `interleaved-thinking-2025-05-14` dari permintaan Anda.
 
-5. **Migrasi ke output\_config.format:** Jika menggunakan output terstruktur, perbarui `output_format={...}` menjadi `output_config={"format": {...}}`. Parameter `output_format` sudah deprecated dan akan dihapus di masa mendatang. Untuk tetap menggunakannya, tambahkan header beta `structured-outputs-2025-11-13`. Tanpa header tersebut, API mengembalikan error 400. Python SDK (v1.0 dan yang lebih baru) tidak menerima `output_format={...}` pada `client.beta.messages.create()` atau `count_tokens()`. Argumen `output_format=Model` dari helper `parse()` dan `stream()` tidak berubah.
+5. **Migrasi ke `output_config.format`:** Jika Anda menggunakan output terstruktur, perbarui `output_format={...}` menjadi `output_config={"format": {...}}`. Parameter `output_format` sudah deprecated dan akan dihapus di masa mendatang. Untuk tetap menggunakannya, tambahkan header beta `structured-outputs-2025-11-13`. Tanpa header tersebut, API mengembalikan error 400. Di Python SDK (v1.0 dan yang lebih baru), dictionary skema yang diteruskan sebagai `output_format={...}` memunculkan `TypeError`, jadi gunakan `output_config`. Model Pydantic yang diteruskan sebagai `output_format=Model` ke `parse()` atau `stream()` berfungsi tanpa perubahan dan tanpa header beta, karena SDK mengirimkannya sebagai `output_config`.
 
 ### Migrasi dari Claude 4.1 atau sebelumnya
 
@@ -1706,7 +1721,7 @@ Untuk bermigrasi dari Claude Opus 4.1 atau model sebelumnya langsung ke Claude O
 
 4. **Tangani alasan berhenti `model_context_window_exceeded`**
 
-   Model Claude 4.5 dan yang lebih baru mengembalikan alasan berhenti `model_context_window_exceeded` ketika pembuatan berhenti karena mencapai batas jendela konteks, bukan batas `max_tokens` yang diminta. Perbarui aplikasi Anda untuk menangani alasan berhenti baru ini:
+   Model Claude 4.5 dan yang lebih baru mengembalikan alasan berhenti `model_context_window_exceeded` ketika pembuatan berhenti pada batas jendela konteks, bukan pada batas `max_tokens` yang diminta. Perbarui aplikasi Anda untuk menangani alasan berhenti ini:
 
    <CodeGroup exclude="shell">
      ```python Python
@@ -1778,21 +1793,21 @@ Untuk bermigrasi dari Claude Opus 4.1 atau model sebelumnya langsung ke Claude O
 
 #### Perubahan tambahan yang direkomendasikan
 
-* **Beta header:** Hapus `token-efficient-tools-2025-02-19` dan `output-128k-2025-02-19`. Semua model Claude 4 dan yang lebih baru memiliki “tool use” (penggunaan alat) hemat token bawaan dan header-header ini tidak berpengaruh.
+* **Beta header:** Hapus `token-efficient-tools-2025-02-19` dan `output-128k-2025-02-19`. Semua model Claude 4 dan yang lebih baru memiliki “tool use” (penggunaan alat) hemat token bawaan, dan header-header ini tidak berpengaruh.
 
 ## Migrasi ke Claude Opus 5.5 dari Claude Sonnet 5
 
-Kerjakan [Yang harus dipenuhi setiap permintaan ke Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#request-requirements), [Menangani pemikiran di setiap respons](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#thinking-in-every-response), dan [Migrasi ke Claude Opus 5.5 dari Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5). Gunakan `claude-sonnet-5` sebagai ID model yang Anda ganti. Bagian terakhir tersebut berlaku untuk kode pada Claude Sonnet 5 sebagaimana tertulis, karena Claude Sonnet 5, seperti Claude Opus 5:
+Kerjakan [Yang harus dipenuhi setiap permintaan ke Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#request-requirements), [Menangani pemikiran di setiap respons](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#thinking-in-every-response), dan [Migrasi ke Claude Opus 5.5 dari Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), dengan `claude-sonnet-5` sebagai ID model yang Anda ganti. Semua yang ada di bagian Claude Opus 5 juga berlaku untuk Anda, karena Claude Sonnet 5, seperti Claude Opus 5:
 
-* Berjalan dengan pemikiran aktif secara default dan menerima `thinking: {"type": "disabled"}`, dalam kasusnya pada tingkat effort apa pun.
+* Berjalan dengan pemikiran aktif secara default dan menerima `thinking: {"type": "disabled"}`. Tidak seperti Claude Opus 5, model ini menerimanya pada tingkat effort apa pun.
 * Menerima pemilihan alat paksa dan alat `computer_20251124`.
 * Mengembalikan teks di antara panggilan alat sebagai blok `text`.
 * Menggunakan effort `high` secara default.
 
-Pemikiran diperpanjang manual, parameter sampling, dan prefill asisten mengembalikan error 400 pada kedua model, sehingga tidak ada yang berubah di sana. Tidak ada perubahan wajib dalam bagian untuk Claude Opus 4.8, Claude Opus 4.7, dan Claude Opus 4.6 yang berlaku untuk Anda.
+Pemikiran diperpanjang manual, parameter sampling, dan prefill asisten mengembalikan error 400 pada Claude Sonnet 5 maupun Claude Opus 5.5, sehingga tidak ada yang berubah di sana. Tidak ada perubahan wajib dalam bagian untuk Claude Opus 4.8, Claude Opus 4.7, dan Claude Opus 4.6 yang berlaku untuk Anda.
 
 ### Apa yang berubah
 
-1. **Pesan sistem di tengah percakapan:** Di Claude API, Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), dan Claude Models on Google Cloud (Google managed), Claude Opus 5.5 menerima pesan `role: "system"` tepat setelah giliran pengguna dalam array `messages` (dengan tunduk pada [aturan penempatan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)). Fitur ini tidak tersedia di Claude Sonnet 5. Jika Anda memelihara jalur kode yang membangun ulang seluruh riwayat pesan untuk memperbarui instruksi, Anda dapat menyederhanakannya dan mempertahankan hit [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) pada giliran sebelumnya.
+1. **Pesan sistem di tengah percakapan:** Di [platform yang didukung](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#feature-availability), Claude Opus 5.5 menerima pesan `role: "system"` tepat setelah giliran pengguna dalam array `messages` (dengan tunduk pada [aturan penempatan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)). Fitur ini tidak tersedia di Claude Sonnet 5. Jika Anda memelihara jalur kode yang membangun ulang seluruh riwayat pesan untuk memperbarui instruksi, alihkan jalur tersebut ke pesan sistem. Setelah pembangunan ulang, sebuah permintaan dapat mendapatkan error 400, dan hit [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) hilang.
 
-2. **Batas minimum caching prompt yang lebih rendah:** Panjang prompt minimum yang dapat di-cache pada Claude Opus 5.5 adalah 512 token, turun dari 1.024 token pada Claude Sonnet 5. Prompt yang sebelumnya terlalu pendek untuk di-cache pada Claude Sonnet 5 kini dapat membuat entri cache, tanpa memerlukan perubahan kode. Lihat [“Prompt caching” (caching prompt)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations) untuk batas minimum per model.
+2. **Batas minimum caching prompt yang lebih rendah:** Panjang prompt minimum yang dapat di-cache pada Claude Opus 5.5 adalah 512 token, turun dari 1.024 token pada Claude Sonnet 5. Prompt yang terlalu pendek untuk di-cache pada Claude Sonnet 5 dapat membuat entri cache, tanpa perubahan kode yang diperlukan. Lihat [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations) untuk batas minimum per model.

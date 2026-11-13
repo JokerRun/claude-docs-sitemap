@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/send-events
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 5d2ab3a845c5b008830c154a3e33fee351cbc256510102baeccde3c6d1f44212
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 8c430814c0bdef942ca2aea3d93211c5935a1e7cc4b2a28a6bd4b9a9dc584912
 ---
 
 ---
@@ -47,7 +47,7 @@ Setiap elemen array `data` dalam respons adalah aktivitas seperti ini.
   "organization_uuid": "91012d09-e48b-438e-a489-1bebfd8fa6f9",
   "actor": {
     "type": "user_actor",
-    "email_address": "jane.doe@example.com",
+    "email_address": "priya@example.com",
     "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
     "ip_address": "192.0.2.34",
     "user_agent": "Mozilla/5.0..."

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-actions-cloud-providers
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: e2c1efea36bfd297d2ad1dd478ed7dac887473bd560f8060d529291f132118c4
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 77564003566f66f8f8f81734883dc077284abd03431481e79e04b08b851fabf7
 ---
 
 > ## Documentation Index
@@ -91,7 +91,7 @@ Configure your cloud to trust the OIDC token that GitHub issues to the workflow,
 > Create a Microsoft Entra application with a federated credential for your repository, following [Microsoft's guide to authenticating from GitHub Actions](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure-openid-connect):
 >
 > * Register a Microsoft Entra application and add a federated identity credential that trusts tokens GitHub issues to your repository. A user-assigned managed identity works in place of an application. Both have the client ID you note below
-> * Assign the application the `Azure AI User` role on your Foundry resource. See [Azure RBAC configuration](https://code.claude.com/docs/en/microsoft-foundry.md#azure-rbac-configuration) for a narrower custom role
+> * Assign the application the `Foundry User` role on your Foundry resource. See [Azure RBAC configuration](https://code.claude.com/docs/en/microsoft-foundry.md#azure-rbac-configuration) for the other built-in role and custom roles
 >
 > Note the application's client ID, your tenant ID, and your subscription ID. You add them as secrets in the next step.
 

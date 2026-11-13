@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/choosing-an-environment
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 30c588c9d01c18c21db7271cdc2ed85997431e16594de92becafe0257b199528
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 3169a7c4507899ac5ddd37be1d44f27f906834ebcea89f72e3b5c2f052296365
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
+    note: Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya.
   supportedModels:
     - claude-fable-5-2
     - claude-mythos-5-2
@@ -81,6 +81,10 @@ Sandbox yang di-host sendiri cocok ketika agen perlu melakukan salah satu hal be
 ## Apa yang tidak diubah oleh sandbox yang di-host sendiri
 
 Dengan opsi mana pun, riwayat percakapan dan hasil alat dikirim ke layanan Managed Agents, yang dioperasikan oleh Anthropic. Begitulah cara model menerima hasil dari setiap panggilan alat. Alat pencarian web dan web fetch juga berjalan di sisi Anthropic, bukan di sandbox. Lihat [Membatasi domain pencarian web dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions). Tidak ada opsi yang mengubah cakupan kepatuhan Managed Agents atau berapa lama layanan tersebut menyimpan riwayat percakapan. Lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility).
+
+<Note>
+  Dengan [Claude Managed Agents yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted), Anda menjalankan seluruh layanan Managed Agents, bukan hanya sandbox-nya. Anda menyimpan agen, sesi, dan riwayat sesi di infrastruktur Anda sendiri. Secara default, setiap permintaan model tetap mengirimkan riwayat percakapan dan hasil alat ke Anthropic. Untuk meminta akses, hubungi tim akun Anthropic Anda.
+</Note>
 
 ## Apa yang Anda tanggung dan lepaskan dengan sandbox yang di-host sendiri
 

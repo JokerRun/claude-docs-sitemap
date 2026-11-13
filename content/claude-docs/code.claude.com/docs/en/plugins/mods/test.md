@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/test
-fetched_at: 2026-10-27T02:22:08.565782Z
-sha256: 65d8154fd43d809a68bbb0436fda364f16ccc0b01c7a599097204ad033620ed7
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: ff23ed76b32338248276c4148b0fca9608b2eda696aa37ac8f87724c612ee4a7
 ---
 
 > ## Documentation Index
@@ -201,7 +201,9 @@ This table lists the ones mods use most. The first column is the call your mod m
 | `session.receive` | `($, e) => ({ text: e.text })`. Fire it with `$.session.receive({ origin: { kind: 'peer-send-message' }, text })`. |
 | `ui.render` | `() => ({ type: 'Text', props: {}, children: ['...'] })` |
 
-`expect` has the assertions `toBe`, `toEqual`, `toMatch`, `toMatchObject`, `toContain`, `toBeDefined`, `toBeUndefined`, and `toThrow`, and `.not` before any of them.
+### Check a result with `expect`
+
+`expect` has its own set of assertions, such as `toEqual` and `toHaveLength`, which go after the value you're checking, as in `expect(answer.text).toBe('ok')`. For the full list, search `claude-code/index.d.ts` in [the types for your build](https://code.claude.com/docs/en/plugins/mods/create.md#get-the-types-for-your-build) for `type Matchers`. Put `.not` before the assertion to check the opposite. To check what a promise settles with, put `.resolves` or `.rejects` right after `expect(...)` and `await` the line, as in `await expect(promise).rejects.toThrow()`.
 
 When an `expect` fails inside a stub or hook that you passed to `on` as a plain function rather than an async generator, the test fails. The engine skips that hook, and the failure output names it, such as `in the test's store.set hook`.
 

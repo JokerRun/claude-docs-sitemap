@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-windows
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 4ca64b3eff08c8a91ae312a01b69273113b3062e8329ce5318fd3ebc8433ef05
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: cfcf7f8966ff7699260ad9151d2995182d8944c02d3efa599976bb2e49f1d6a2
 ---
 
 ---
@@ -56,7 +56,17 @@ Dengan [thinking](https://platform.claude.com/docs/id/build-with-claude/thinking
 
 Token thinking adalah bagian dari parameter `max_tokens` Anda, ditagih sebagai token output, dan diperhitungkan terhadap batas laju. Dengan [adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (pemikiran adaptif), Claude menentukan alokasi pemikirannya secara dinamis, sehingga penggunaan token thinking bervariasi dari satu permintaan ke permintaan lainnya.
 
-Apakah blok thinking dari giliran asisten sebelumnya tetap berada di jendela konteks bergantung pada modelnya. Pada Claude Opus 4.5 dan model Opus yang lebih baru, Claude Sonnet 4.6 dan model Sonnet yang lebih baru, Claude Haiku 5.5, Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, dan Claude Mythos Preview, API mempertahankan blok thinking sebelumnya secara default, dan blok tersebut dihitung terhadap jendela konteks seperti token input lainnya. Pada model Opus dan Sonnet yang lebih lama serta semua model Haiku hingga Claude Haiku 4.5, API secara otomatis menghapus blok thinking sebelumnya dari riwayat percakapan saat Anda mengirimkannya kembali, yang menghemat kapasitas token untuk konten percakapan. Untuk default per model, lihat [preservasi blok pemikiran berdasarkan model](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-block-preservation-by-model). Untuk mengganti default ke arah mana pun, gunakan [pembersihan blok thinking](https://platform.claude.com/docs/id/build-with-claude/context-editing#thinking-block-clearing).
+Apakah blok thinking dari giliran asisten sebelumnya tetap berada di jendela konteks bergantung pada modelnya.
+
+API mempertahankan blok thinking sebelumnya secara default pada model-model berikut, di mana blok tersebut dihitung terhadap jendela konteks seperti token input lainnya:
+
+* Claude Opus 4.5 dan model Opus yang lebih baru
+* Claude Sonnet 4.6 dan model Sonnet yang lebih baru
+* Claude Haiku 5.5
+* Claude Fable 5.2, Claude Fable 5.1, dan Claude Fable 5
+* Claude Mythos 5.2, Claude Mythos 5.1, Claude Mythos 5, dan Claude Mythos Preview
+
+Pada model Opus dan Sonnet yang lebih lama serta semua model Haiku hingga Claude Haiku 4.5, API secara otomatis menghapus blok thinking sebelumnya dari riwayat percakapan saat Anda mengirimkannya kembali. Hal ini menghemat kapasitas token untuk konten percakapan. Untuk default per model, lihat [preservasi blok pemikiran berdasarkan model](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-block-preservation-by-model). Untuk mengganti default ke arah mana pun, gunakan [pembersihan blok thinking](https://platform.claude.com/docs/id/build-with-claude/context-editing#thinking-block-clearing).
 
 Diagram berikut menunjukkan bagaimana token dikelola saat thinking diaktifkan pada model yang menghapus blok thinking sebelumnya:
 
@@ -87,13 +97,13 @@ Diagram berikut mengilustrasikan bagaimana token dikelola saat Anda menggabungka
   </Step>
 
   <Step title="Penanganan hasil alat (giliran 2)">
-    * **Komponen input:** Setiap blok pada giliran pertama dan `tool_result`. Anda harus mengembalikan blok thinking bersama hasil alat yang bersesuaian. Ini adalah satu-satunya kasus di mana Anda harus mengembalikan blok thinking.
+    * **Komponen input:** Setiap blok pada giliran pertama dan `tool_result`. Kembalikan blok thinking bersama hasil alat yang bersesuaian.
     * **Komponen output:** Setelah hasil alat dikirimkan kembali ke Claude, Claude merespons hanya dengan teks (tanpa thinking tambahan hingga pesan `user` berikutnya, kecuali [pemikiran berselang](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking) diaktifkan).
     * **Perhitungan token:** Semua komponen input dan output diperhitungkan terhadap jendela konteks, dan semua komponen output ditagih sebagai token output.
   </Step>
 
   <Step title="Giliran pengguna baru (giliran 3)">
-    * **Komponen input:** Semua input dan output dari giliran sebelumnya dibawa ke depan. Blok thinking dari siklus penggunaan alat yang telah selesai tidak lagi harus tetap berada dalam konteks: pada model yang menghapus blok thinking sebelumnya, API membuangnya secara otomatis saat Anda mengirimkannya kembali, dan pada model yang mempertahankan blok thinking sebelumnya, blok tersebut tetap ada kecuali Anda membersihkannya dengan [pembersihan blok thinking](https://platform.claude.com/docs/id/build-with-claude/context-editing#thinking-block-clearing). Di sini juga Anda menambahkan giliran `user` berikutnya.
+    * **Komponen input:** Semua input dan output dari giliran sebelumnya dibawa ke depan. Blok thinking dari siklus penggunaan alat yang telah selesai tidak lagi harus tetap berada dalam konteks: pada model yang menghapus blok thinking sebelumnya, API secara otomatis tidak menyertakannya saat Anda mengirimkannya kembali, dan pada model yang mempertahankan blok thinking sebelumnya, blok tersebut tetap ada kecuali Anda membersihkannya dengan [pembersihan blok thinking](https://platform.claude.com/docs/id/build-with-claude/context-editing#thinking-block-clearing). Di sini juga Anda menambahkan giliran `user` berikutnya.
     * **Komponen output:** Karena ada giliran `user` baru di luar siklus penggunaan alat, Claude menghasilkan blok thinking baru dan melanjutkan dari sana.
     * **Perhitungan token:** Pada model yang menghapus blok thinking sebelumnya, token thinking sebelumnya tidak lagi diperhitungkan terhadap jendela konteks. Semua blok sebelumnya yang lain masih diperhitungkan terhadap jendela konteks, begitu pula blok thinking pada giliran `assistant` saat ini.
   </Step>
@@ -101,8 +111,8 @@ Diagram berikut mengilustrasikan bagaimana token dikelola saat Anda menggabungka
 
 * **Pertimbangan untuk penggunaan alat dengan thinking:**
 
-  * Saat Anda mengirim hasil alat, Anda harus menyertakan seluruh blok thinking yang tidak dimodifikasi yang menyertai permintaan alat tersebut, termasuk signature-nya.
-  * API menggunakan signature kriptografis untuk memverifikasi keaslian blok thinking. Jika Anda memodifikasi blok thinking, API mengembalikan error.
+  * Saat Anda mengirim hasil alat, sertakan seluruh blok thinking yang tidak dimodifikasi yang menyertai permintaan alat tersebut, termasuk signature-nya.
+  * API menggunakan signature kriptografis untuk memverifikasi keaslian blok thinking.
 
 <Note>
   Sebagian besar model Claude saat ini mendukung [pemikiran berselang-seling](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking), yang memungkinkan Claude berpikir di antara pemanggilan alat, termasuk setelah menerima hasil alat. Fitur ini otomatis pada model dengan pemikiran adaptif; Claude Opus 4.5, Claude Sonnet 4.5 (deprecated), dan model Claude 4 yang lebih lama memerlukan header beta `interleaved-thinking-2025-05-14`, dan Claude Haiku 4.5 tidak mendukungnya.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: f2ae72bd92a69ea8e3414aef39e98ccc80ae3dff60778cc12f9d75655e946607
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 3e7700aef746f6adfc98b049d826a1bc5069afa9e68f23d0a21caa711ead6d41
 ---
 
 ---
@@ -15,11 +15,11 @@ description: Telusuri perjalanan bolak-balik penggunaan alat dua giliran yang le
   Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-Halaman ini menelusuri perjalanan bolak-balik “tool use” (penggunaan alat) dua giliran yang lengkap dengan thinking diaktifkan: Claude berpikir, meminta pemanggilan alat, menerima hasilnya, dan menyelesaikan jawabannya, dengan blok thinking ditangani dengan benar di setiap langkah. Aturan lengkapnya ada di halaman [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking), di [Thinking dengan penggunaan alat](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use) dan [Mempertahankan blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks); halaman ini menunjukkan aturan-aturan tersebut diterapkan dalam kode yang dapat dijalankan.
+Halaman ini menelusuri perjalanan bolak-balik “tool use” (penggunaan alat) dua giliran yang lengkap dengan thinking diaktifkan. Claude berpikir, meminta pemanggilan alat, menerima hasilnya, dan menyelesaikan jawabannya. Di setiap langkah, kode Anda menangani blok thinking dengan benar. Aturan lengkapnya ada di halaman Pemikiran, di [Thinking dengan penggunaan alat](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use) dan [Mempertahankan blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks).
 
 ## Aturan yang diterapkan dalam panduan ini
 
-Setiap tautan mengarah ke pernyataan lengkapnya di halaman Thinking:
+Setiap aturan tertaut ke pernyataan lengkapnya:
 
 * [Batasi pilihan alat ke `auto` atau `none` dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use): dengan “extended thinking” (pemikiran diperpanjang) manual (`thinking: {type: "enabled"}`), opsi `tool_choice` yang memaksa penggunaan alat akan mengembalikan error.
 
@@ -32,9 +32,9 @@ Setiap tautan mengarah ke pernyataan lengkapnya di halaman Thinking:
 
 * [Kirim kembali blok thinking secara lengkap dan tanpa modifikasi](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks): saat Anda mengembalikan hasil alat, blok thinking dari pesan asisten harus ikut dikembalikan bersamanya.
 
-* [Gemakan pesan asisten persis seperti yang diterima](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks): membangun ulang pesan atau menyaring blok `redacted_thinking` akan memicu error 400.
+* [Gemakan pesan asisten persis seperti yang diterima](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks): tidak menyertakan blok thinking akan menghilangkan penalaran di dalamnya, bahkan tanpa error.
 
-Contoh-contoh ini menggunakan pemikiran adaptif; pada model yang hanya mendukung pemikiran diperpanjang, ganti dengan `thinking: {type: "enabled", budget_tokens: N}`. Aturan perjalanan bolak-baliknya identik.
+Contoh-contoh ini menggunakan pemikiran adaptif. Pada Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, dan model Claude 4 sebelumnya, ganti dengan `thinking: {type: "enabled", budget_tokens: N}`. Gemakan giliran asisten dengan cara yang sama.
 
 ## Menelusuri perjalanan bolak-balik penggunaan alat dua giliran
 
@@ -501,7 +501,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
           Tools = [weatherTool],
           Messages = [
               new UserMessageParam { Content = "What's the weather in Paris?" },
-              // response.Content mencakup blok thinking; blok ini wajib dikirimkan kembali
+              // response.Content mencakup blok pemikiran; blok ini wajib dikirimkan kembali
               new AssistantMessageParam { Content = response.Content.Select(block => new ContentBlockParam(block.Json)).ToList() },
               new UserMessageParam
               {
@@ -766,7 +766,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
   </Step>
 
   <Step title="Baca respons akhir">
-    Anda akan melihat Claude menyelesaikan giliran dengan teks. Karena [pemikiran berselang](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking) bersifat otomatis dalam mode adaptive, kelanjutannya juga dapat dibuka dengan blok thinking baru sebelum teks akhir:
+    Anda akan melihat Claude menyelesaikan giliran dengan teks. Karena [pemikiran berselang](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking) bersifat otomatis dalam mode adaptif, kelanjutannya juga dapat dibuka dengan blok thinking baru sebelum teks akhir:
 
     ```json Output
     {
@@ -783,7 +783,7 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
 
 ## Bagaimana pemikiran berselang mengubah alur
 
-“Interleaved thinking” (pemikiran berselang-seling) memungkinkan Claude berpikir di antara pemanggilan alat, bernalar tentang setiap hasil alat sebelum menindaklanjutinya. Konsep dan ketersediaan per model dibahas di [Pemikiran berselang](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking) pada halaman Thinking; interleaving mengubah di mana blok thinking muncul, bukan apakah pemanggilan alat dapat dirangkai. Perbandingan berikut menunjukkan apa yang diubah oleh pemikiran berselang dalam alur kerja dua alat:
+“Interleaved thinking” (pemikiran berselang) memungkinkan Claude berpikir di antara pemanggilan alat, bernalar tentang setiap hasil alat sebelum menindaklanjutinya. Konsep dan ketersediaan per model dibahas di [Pemikiran berselang](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking) pada halaman Thinking; interleaving mengubah di mana blok thinking muncul, bukan apakah pemanggilan alat dapat dirangkai. Perbandingan berikut menunjukkan apa yang diubah oleh pemikiran berselang dalam alur kerja dua alat:
 
 <AccordionGroup>
   <Accordion title="Penggunaan alat tanpa pemikiran berselang">
@@ -843,6 +843,6 @@ Contoh ini mendefinisikan alat `get_weather`, membiarkan Claude berpikir dan mem
   </Card>
 
   <Card title="Pemikiran diperpanjang" icon="clock" href="https://platform.claude.com/docs/id/build-with-claude/extended-thinking">
-    Anggaran thinking manual pada model lama: mekanisme `budget_tokens` dan migrasi ke adaptive.
+    Anggaran thinking manual: mekanisme `budget_tokens` dan migrasi ke pemikiran adaptif.
   </Card>
 </CardGroup>

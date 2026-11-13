@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/security_posture/retrieve
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 9dd94402fa803bb3e6f5b9c3140f4ecbc6d1edde020ada54f7fec89e18959973
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: fae8cf6750bf56b898f08402804e5f03b8ddfd87c2bffab38659bbae75ba6ab1
 ---
 
 ---
@@ -22,7 +22,8 @@ in one `controls` list, which is not paginated. A control can have no entry, for
 example when it is about a feature that the organization cannot have, so a missing
 control is not a pass.
 
-The `anthropic-version` header is required: a request without it returns 400.
+The `anthropic-version` header is required: a request without it, or with a value
+that is not an available version, returns 400.
 The endpoint takes no query parameters, so there is no filter, and a request with
 any query parameter also returns 400. A request also returns 400 when the Compliance
 API is not enabled for the API key's parent organization.
@@ -43,11 +44,11 @@ that the evaluation did not finish in time, and the request can be tried again.
 
 ## Headers
 
-- `"anthropic-version": optional string`
+- `"anthropic-version": string`
 
-  The version of the Claude API you want to use.
+  The version of the Claude API to use. A request that omits this header, or sends a value that is not an available version, returns a 400 error.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+  See [API versions](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http) for the available versions.
 
 - `"x-api-key": optional string`
 
@@ -285,7 +286,7 @@ that the evaluation did not finish in time, and the request can be tried again.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/security_posture \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

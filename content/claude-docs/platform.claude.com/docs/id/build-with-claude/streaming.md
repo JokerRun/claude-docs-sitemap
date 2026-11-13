@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 76fcc5171a7547e9a97a5296f568aed6ba901e4cf2f3a5efa041904d94964ec2
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 7fcb0011e059c0480135f8e64eaa0ce7a80fc0b07eac07ca19675ef9f204028d
 ---
 
 ---
@@ -332,8 +332,8 @@ Setiap server-sent event menyertakan jenis event bernama dan data JSON terkait. 
 
 Setiap stream menggunakan alur event berikut:
 
-1. `message_start`: berisi objek `Message` dengan `content` kosong. Di bawah header beta [`thinking-binding-controls-2026-08-01`](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking-controls), objek `Message` ini juga membawa array `input_transformations`. Setelah [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) di tengah stream, event `message_delta` terakhir membawa array tersebut lagi dengan entri dari model yang melayani.
-2. Serangkaian blok konten, yang masing-masing memiliki event `content_block_start`, satu atau lebih event `content_block_delta`, dan event `content_block_stop`. Setiap blok konten memiliki `index` yang sesuai dengan indeksnya dalam array `content` Message akhir. Satu pengecualian: selama respons [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback), blok konten `fallback` tiba di setiap batas model sebagai pasangan `content_block_start` dan `content_block_stop` tanpa delta di antaranya.
+1. `message_start`: berisi objek `Message` dengan `content` kosong. Di bawah header beta [`thinking-binding-controls-2026-08-01`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#preserved-thinking-controls), objek `Message` ini juga membawa array `input_transformations`. Setelah [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) di tengah stream, event `message_delta` terakhir membawa array tersebut lagi dengan entri dari model yang melayani.
+2. Serangkaian blok konten, yang masing-masing memiliki event `content_block_start`, sejumlah event `content_block_delta` (berapa pun jumlahnya), dan event `content_block_stop`. Setiap blok konten memiliki `index` yang sesuai dengan indeksnya dalam array `content` Message akhir. Beberapa blok tiba secara utuh, tanpa delta: blok `redacted_thinking`, hasil alat server seperti `web_search_tool_result`, dan blok `fallback` di setiap batas model dari [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback).
 3. Satu atau lebih event `message_delta`, yang menunjukkan perubahan tingkat atas pada objek `Message` akhir.
 4. Event `message_stop` terakhir.
 
@@ -384,7 +384,7 @@ event: content_block_delta
 data: {"type": "content_block_delta","index": 1,"delta": {"type": "input_json_delta","partial_json": "{\"location\": \"San Fra"}}}
 ```
 
-Catatan: Model saat ini hanya mendukung pengiriman satu properti kunci dan nilai lengkap dari `input` dalam satu waktu. Oleh karena itu, saat menggunakan alat, mungkin ada jeda antar event streaming selama model sedang bekerja. Setelah kunci dan nilai `input` terakumulasi, keduanya dikirim sebagai beberapa event `content_block_delta` dengan JSON parsial yang dipecah-pecah sehingga format ini dapat secara otomatis mendukung granularitas yang lebih halus pada model mendatang.
+Secara default, API melakukan buffering pada setiap kunci dan nilai dalam `input` hingga lengkap. Dengan alat, mungkin ada jeda antar event streaming selama model menghasilkan sebuah nilai. Setelah API memiliki kunci dan nilai `input` yang lengkap, API mengirimkannya sebagai beberapa event `content_block_delta` dengan JSON parsial yang dipecah-pecah.
 
 ### Delta thinking
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-deploy
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 1356247750e1998228b1aba2a9393fc8802a0ffd7f63470876222c2dba443eff
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: ee899958f319f6a444324493552953b30452ba4f651e2740ac32b8c75248c635
 ---
 
 > ## Documentation Index
@@ -99,7 +99,7 @@ Mirror the release into your internal registry if your builds can't reach the re
 
 Beyond the binary, the image needs:
 
-* **A glibc-based image**: the glibc build's only dynamic dependencies are glibc libraries. Musl-based images need the `linux-x64-musl` or `linux-arm64-musl` build plus additional packages; see [Alpine Linux setup](https://code.claude.com/docs/en/setup.md#alpine-linux-and-musl-based-distributions).
+* **A glibc-based image**: the glibc build's only dynamic dependencies are glibc libraries. Musl-based images need the `linux-x64-musl` or `linux-arm64-musl` build, whose only dynamic dependency is musl.
 * **A writable state directory**: the gateway runs as any user, but minimal images have no writable home. Set `CLAUDE_CONFIG_DIR` to a writable path such as `/tmp/.claude`.
 * **The container command**: `claude gateway --config /etc/claude/gateway.yaml`, with the config file mounted read-only and secrets supplied as environment variables; the gateway listens on `listen.port`, default `8080`.
 

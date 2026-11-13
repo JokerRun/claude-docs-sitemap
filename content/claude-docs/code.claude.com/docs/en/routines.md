@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/routines
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 771d695d4bb11166b6d6905f4f8148d31d0806a17e6194e3efffc402559f631f
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 6c2a01fd75155be1f82389bc0cbb63629e6ff0e69f8cf75a8ae85dcb4ba3b8fd
 ---
 
 > ## Documentation Index
@@ -438,7 +438,7 @@ In every other case, including a run that an API or GitHub trigger starts, Claud
 
 Each scheduled task uses a [cloud environment](https://code.claude.com/docs/en/cloud-environments.md) that controls network access, environment variables, and setup scripts. The task inherits the environment's network policy on every run.
 
-The **Default** environment uses **Limited** access with **Allow package managers** checked, so its runs reach the [default allowlist](https://code.claude.com/docs/en/cloud-environments.md#default-allowed-domains). A request to a blocked host fails with `403` and `x-deny-reason: host_not_allowed`. MCP connector traffic is routed through Anthropic's servers, so the connectors you add to the task work without adding their hosts to **Allowed domains**. Remove any connectors you don't need under [Connectors](#connectors).
+The **Default** environment uses **Limited** access with **Allow package managers** checked, so its runs reach the [default allowlist](https://code.claude.com/docs/en/cloud-environments.md#default-allowed-domains). A request to a blocked host fails with [an error such as a `403` or `ENOTFOUND`](https://code.claude.com/docs/en/errors#host-not-allowed-in-a-cloud-session). MCP connector traffic is routed through Anthropic's servers, so the connectors you add to the task work without adding their hosts to **Allowed domains**. Remove any connectors you don't need under [Connectors](#connectors).
 
 To allow additional domains on one of your own environments, follow these steps. An [organization-shared environment](https://code.claude.com/docs/en/cloud-environments.md#organization-shared-environments) opens read-only here, so an Owner changes its network access from the **Cloud environments** page in [admin settings](https://claude.ai/admin-settings) instead.
 

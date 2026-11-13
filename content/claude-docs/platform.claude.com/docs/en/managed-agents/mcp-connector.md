@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/mcp-connector
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 349cd0b17da58afa2a5e2b34034e492a7525e681c9b698abd65530b156fc02e1
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 8c67b90ebb737052bb9e8b47392c19b6e936046039ec236ae2eebc80093fb142
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+    note: Not eligible for ZDR, except for self-hosted Managed Agents. Sessions are stateful resources; transcripts persist until you delete them.
   supportedModels:
     - claude-fable-5-2
     - claude-mythos-5-2
@@ -49,13 +49,13 @@ Claude Managed Agents supports connecting [Model Context Protocol (MCP)](https:/
 MCP configuration is split across two steps:
 
 1. **Agent creation** declares which MCP servers the agent connects to, by name and URL.
-2. **Session creation** supplies authentication for those servers by referencing a pre-registered vault (see [Authenticate with vaults](https://platform.claude.com/docs/en/managed-agents/vaults)).
+2. **Session creation** supplies authentication for those servers by referencing a preregistered vault (see [Authenticate with vaults](https://platform.claude.com/docs/en/managed-agents/vaults)).
 
 This separation keeps secrets out of reusable agent definitions while letting each session authenticate with its own credentials.
 
 ## Declare MCP servers on the agent
 
-Specify MCP servers in the `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`) array when creating an agent. Each server has a `type` (csharp, go: `Type`) of `url`, a unique `name` (csharp, go: `Name`), and a `url` (csharp: `Url`; go: `URL`). No authentication tokens are provided at this stage.
+Specify MCP servers in the `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`) array when creating an agent. Each server has a `type` (csharp, go: `Type`) of `url`, a unique `name` (csharp, go: `Name`), and a `url` (csharp: `Url`; go: `URL`). You don’t provide authentication tokens at this stage.
 
 Each declared server also needs a matching `mcp_toolset` entry in the `tools` (csharp, go: `Tools`) array. The toolset’s `mcp_server_name` (java, php: `mcpServerName`; csharp: `McpServerName`; go: `MCPServerName`) must match the server’s `name` (csharp, go: `Name`).
 
@@ -267,7 +267,7 @@ Constraints:
 
 The `mcp_toolset` entry supports a `default_config` (java, php: `defaultConfig`; csharp, go: `DefaultConfig`) object and a `configs` (csharp, go: `Configs`) array, applied to the tools the MCP server exposes. Each `configs` (csharp, go: `Configs`) entry accepts only `name` (csharp, go: `Name`), `enabled` (csharp, go: `Enabled`), and `permission_policy` (java, php: `permissionPolicy`; csharp, go: `PermissionPolicy`). Unlike entries in the built-in agent toolset, MCP tool entries do not take a `type` (csharp, go: `Type`) field, and the [web settings](https://platform.claude.com/docs/en/managed-agents/tools-web-restrictions#settings) available on `web_search` and `web_fetch` do not apply to MCP tools. The `name` (csharp, go: `Name`) in each `configs` (csharp, go: `Configs`) entry is the bare tool name as reported by the server.
 
-By default all tools exposed by the MCP server are enabled. To enable only specific tools, set `default_config.enabled` to `false` and explicitly enable the tools you want:
+By default, all tools that the MCP server exposes are enabled. To enable only specific tools, set `default_config.enabled` (java, php: `defaultConfig.enabled`; csharp, go: `DefaultConfig.Enabled`) to `false` and explicitly enable the tools you want:
 
 ```json
 {
@@ -284,7 +284,7 @@ By default all tools exposed by the MCP server are enabled. To enable only speci
 
 This pattern is useful when a server exposes many tools but the agent only needs a few, or when you want tools added by the server operator to stay off until you review them.
 
-To disable specific tools while keeping the rest enabled, omit `default_config` and set `enabled: false` on individual entries:
+To disable specific tools while keeping the rest enabled, omit `default_config` (java, php: `defaultConfig`; csharp, go: `DefaultConfig`) and set `enabled: false` on individual entries:
 
 ```json
 {
@@ -294,7 +294,7 @@ To disable specific tools while keeping the rest enabled, omit `default_config` 
 }
 ```
 
-See [configuring the toolset](https://platform.claude.com/docs/en/managed-agents/tools#configuring-the-toolset) for the general `default_config` (java, php: `defaultConfig`; csharp, go: `DefaultConfig`) / `configs` (csharp, go: `Configs`) pattern, and [MCP toolset permissions](https://platform.claude.com/docs/en/managed-agents/permission-policies#mcp-toolset-permissions) for setting `permission_policy` (java, php: `permissionPolicy`; csharp, go: `PermissionPolicy`) on MCP tools and handling confirmation requests.
+See [Configuring the toolset](https://platform.claude.com/docs/en/managed-agents/tools#configuring-the-toolset) for the general `default_config` (java, php: `defaultConfig`; csharp, go: `DefaultConfig`) / `configs` (csharp, go: `Configs`) pattern, and [MCP toolset permissions](https://platform.claude.com/docs/en/managed-agents/permission-policies#mcp-toolset-permissions) for setting `permission_policy` (java, php: `permissionPolicy`; csharp, go: `PermissionPolicy`) on MCP tools and handling confirmation requests.
 
 ### MCP tool output handling
 
@@ -304,7 +304,7 @@ When an MCP tool output exceeds 100,000 characters (about 25,000 tokens), it is 
 
 When starting a session, pass `vault_ids` (java: `vaultIds`; php: `vaultIDs`; csharp: `VaultIds`; go: `VaultIDs`) to provide credentials for your MCP servers. Vaults are collections of credentials that you register once and reference by ID. See [Authenticate with vaults](https://platform.claude.com/docs/en/managed-agents/vaults) for how to create vaults and manage credentials.
 
-With a `limited` [environment](https://platform.claude.com/docs/en/managed-agents/environments#networking), session creation fails with a 400 error when the agent declares an MCP server whose host is not in `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Setting `allow_mcp_servers` (java: `allowMcpServers`; php: `allowMCPServers`; csharp: `AllowMcpServers`; go: `AllowMCPServers`) to `true` in the environment’s networking turns this check off.
+With `limited` networking, session creation fails with a 400 error when the agent declares an MCP server whose host is not in `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Setting `allow_mcp_servers` (java: `allowMcpServers`; php: `allowMCPServers`; csharp: `AllowMcpServers`; go: `AllowMCPServers`) to `true` in the environment’s networking turns this check off. See [Networking](https://platform.claude.com/docs/en/managed-agents/environments#networking) in Cloud environment setup.
 
 <CodeGroup>
   ```bash cURL
@@ -394,7 +394,7 @@ Credentials are matched by URL, so the vault must contain a credential whose `mc
 
 ### Handle connection and authentication failures
 
-Session creation does not validate MCP connectivity or credentials. It does check each declared server’s host against the environment’s networking: with a `limited` environment, session creation fails with a 400 error when a host is not allowed, as described under [Provide authentication at session creation](https://platform.claude.com/docs/en/managed-agents/mcp-connector#provide-authentication-at-session-creation). If an MCP server is unreachable or rejects the supplied credential, the session still starts and interaction remains possible. A [`session.error`](https://platform.claude.com/docs/en/managed-agents/reference#event-types) event is emitted with the `mcp_server_name` (java, php: `mcpServerName`; csharp: `McpServerName`; go: `MCPServerName`) of the affected server and a `retry_status` (java, php: `retryStatus`; csharp, go: `RetryStatus`):
+Session creation does not validate MCP connectivity or credentials. It does check each declared server’s host against the environment’s networking. With `limited` networking, session creation fails with a 400 error when a host is not allowed, as described under [Provide authentication at session creation](https://platform.claude.com/docs/en/managed-agents/mcp-connector#provide-authentication-at-session-creation). If an MCP server is unreachable or rejects the supplied credential, the session still starts, and you can still interact with it. The session emits a [`session.error`](https://platform.claude.com/docs/en/managed-agents/reference#event-types) event with the `mcp_server_name` (java, php: `mcpServerName`; csharp: `McpServerName`; go: `MCPServerName`) of the affected server and a `retry_status` (java, php: `retryStatus`; csharp, go: `RetryStatus`):
 
 | Error type                        | Meaning                                                                                                                                                                                                                 |
 | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

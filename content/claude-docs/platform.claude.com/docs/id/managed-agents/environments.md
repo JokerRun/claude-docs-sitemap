@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: fab56ff397bad05d4b288c62289fca2adbaa21b7e60eddf5ce17acf7b6ffb26b
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 6bc1986db4c5af8856de3c25487ab39f72a28f7d8b5697a967d031f053150321
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
+    note: Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya.
   supportedModels:
     - claude-fable-5-2
     - claude-mythos-5-2
@@ -186,7 +186,7 @@ Gunakan `name` (csharp, go: `Name`) yang unik dan deskriptif agar Anda dapat mem
 
 ## Menggunakan environment dalam sesi
 
-Teruskan ID environment sebagai string saat [membuat sesi](https://platform.claude.com/docs/id/managed-agents/sessions).
+Teruskan ID environment sebagai string saat Anda membuat sesi (lihat [Memulai sesi](https://platform.claude.com/docs/id/managed-agents/sessions)).
 
 <CodeGroup>
   ```bash cURL
@@ -265,7 +265,7 @@ Teruskan ID environment sebagai string saat [membuat sesi](https://platform.clau
 
 ### Paket
 
-Field `packages` (csharp, go: `Packages`) melakukan pra-instalasi paket ke dalam sandbox sebelum agen dimulai. Paket diinstal oleh manajer paket masing-masing dan di-cache di seluruh sesi yang berbagi environment yang sama. Ketika beberapa manajer paket ditentukan, manajer paket tersebut berjalan dalam urutan abjad (apt, cargo, gem, go, npm, pip). Anda dapat secara opsional mengunci versi tertentu. Paket yang tidak dikunci akan menginstal versi terbaru. Jika environment menggunakan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, atur juga `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) di `networking` (csharp, go: `Networking`) ke `true`; jika tidak, permintaan akan ditolak dengan error 400.
+Field `packages` (csharp, go: `Packages`) menginstal paket ke dalam sandbox sebelum agen menggunakannya. Manajer paket berjalan dalam urutan abjad (apt, cargo, gem, go, npm, pip). Anda dapat mengunci versi tertentu. Jika environment menggunakan [jaringan](https://platform.claude.com/docs/id/managed-agents/environments#networking) `limited`, atur juga `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) di `networking` (csharp, go: `Networking`) ke `true`; jika tidak, API akan menolak permintaan dengan error 400.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -616,16 +616,16 @@ Contoh berikut membuat environment dengan jaringan `limited`:
 </CodeGroup>
 
 <Info>
-  Gunakan jaringan `limited` dengan daftar `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) yang eksplisit. Ikuti prinsip hak akses minimum (least privilege) dengan hanya memberikan akses jaringan minimum yang dibutuhkan agen Anda, dan audit domain yang diizinkan secara berkala.
+  Gunakan jaringan `limited` dengan daftar `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) yang eksplisit. Ikuti prinsip hak akses minimum (least privilege) dengan hanya memberikan akses jaringan minimum yang dibutuhkan agen Anda, dan audit host yang diizinkan secara berkala.
 </Info>
 
 Dengan jaringan `limited` dan tanpa field lain yang diatur, tidak ada host yang diizinkan. File, memory store, dan repositori GitHub yang Anda lampirkan ke sesi tetap tersedia. Ketika permintaan dari sandbox pada port 80 atau 443 ditolak karena host-nya tidak diizinkan, responsnya adalah 403 yang menyebutkan host yang diblokir.
 
 Saat menggunakan jaringan `limited`:
 
-* `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) menentukan domain yang dapat dijangkau sandbox. Tentukan hostname saja atau pola wildcard (seperti `*.example.com`). Jangan sertakan skema URL, port, atau path. Hostname tanpa wildcard hanya cocok dengan host yang persis sama: `example.com` tidak cocok dengan `www.example.com`. `*.example.com` cocok dengan setiap subdomain dari `example.com`, tetapi tidak dengan `example.com` itu sendiri.
+* `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) menentukan host yang dapat dijangkau sandbox. Tentukan hostname saja atau pola wildcard (seperti `*.example.com`). Jangan sertakan skema URL, port, atau path. Hostname tanpa wildcard hanya cocok dengan host yang persis sama: `example.com` tidak cocok dengan `www.example.com`. `*.example.com` cocok dengan setiap subdomain dari `example.com`, tetapi tidak dengan `example.com` itu sendiri.
 * `allow_mcp_servers` (java: `allowMcpServers`; php: `allowMCPServers`; csharp: `AllowMcpServers`; go: `AllowMCPServers`) mengizinkan akses keluar ke endpoint server MCP yang dikonfigurasi pada agen, di luar yang tercantum dalam array `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Default-nya `false`. Selama nilainya `false`, pembuatan sesi gagal dengan error 400 jika agen mendeklarasikan server MCP yang host-nya tidak ada di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Hal yang sama berlaku untuk [agen yang dapat menerima delegasi tugas darinya](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration). Untuk memperbaikinya, tambahkan host tersebut ke `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) atau atur `allow_mcp_servers` (java: `allowMcpServers`; php: `allowMCPServers`; csharp: `AllowMcpServers`; go: `AllowMCPServers`) ke `true`.
-* `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) mengizinkan akses keluar ke sekumpulan registri paket publik dan host kode di luar yang tercantum dalam array `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Lihat [Host manajer paket](https://platform.claude.com/docs/id/managed-agents/environments#package-manager-hosts) untuk daftarnya. Default-nya `false`. Atur ke `true` setiap kali environment menentukan `packages` (csharp, go: `Packages`); jika tidak, permintaan akan ditolak dengan error 400, bahkan jika host registri tercantum di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`).
+* `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) mengizinkan akses keluar ke sekumpulan registri paket publik dan host kode di luar yang tercantum dalam array `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Lihat [Host manajer paket](https://platform.claude.com/docs/id/managed-agents/environments#package-manager-hosts) untuk daftarnya. Default-nya `false`. Atur ke `true` setiap kali environment menentukan `packages` (csharp, go: `Packages`). Jika tidak, API akan menolak permintaan dengan error 400, bahkan jika `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) mencantumkan host registri.
 
 #### Host manajer paket
 
@@ -676,7 +676,7 @@ Gunakan `unrestricted` hanya ketika agen harus menjangkau situs yang tidak dapat
 
 ## Siklus hidup environment
 
-* Environment tetap ada hingga diarsipkan atau dihapus secara eksplisit.
+* Environment tetap ada hingga Anda mengarsipkan atau menghapusnya.
 * Setiap sesi mendapatkan instance sandbox-nya sendiri, bahkan ketika beberapa sesi mereferensikan environment yang sama. Sesi tidak berbagi state filesystem.
 * Environment tidak memiliki versi. Jika Anda sering memperbarui environment, simpan catatan perubahan Anda sendiri agar Anda dapat mengetahui konfigurasi mana yang digunakan setiap sesi.
 
@@ -821,7 +821,7 @@ Gunakan `unrestricted` hanya ketika agen harus menjangkau situs yang tidak dapat
 
 ## Runtime pra-instal
 
-Sandbox cloud sudah menyertakan runtime bahasa umum, database, dan alat command-line secara bawaan. Lihat [Referensi sandbox cloud](https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference) untuk daftar lengkapnya.
+Sandbox cloud sudah menyertakan runtime bahasa umum, database, dan alat command-line. Lihat [Referensi sandbox cloud](https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference) untuk daftar lengkapnya.
 
 ## Langkah selanjutnya
 
@@ -861,10 +861,10 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                          | HIPAA                                                                               |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                               | Tidak layak                                                                         |
-| Detail | Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. | Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. |
+| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:
 

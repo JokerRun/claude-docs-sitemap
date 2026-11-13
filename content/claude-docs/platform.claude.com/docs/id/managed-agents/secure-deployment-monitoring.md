@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/secure-deployment-monitoring
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: c38021fc04f023ac4eeabf08efa89868739a9b5d8218d9ed85cc643f009d7865
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 1aff6b06633a5a31eae7e4d8ed1974d9156937873b1a529d03183d99eed14c26
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
+    note: Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya.
   supportedModels:
     - claude-fable-5-2
     - claude-mythos-5-2
@@ -48,7 +48,7 @@ Secara opsional, tinjau event setiap sesi dengan job offline. Pantau webhook unt
 
 ## Secara opsional, minta peninjau offline membaca setiap transkrip
 
-“Offline reviewer” (peninjau offline) adalah job yang Anda jalankan, terpisah dari sesi yang ditinjaunya, yang membaca event setiap sesi setelah event tersebut ditulis. Sesi yang panjang memiliki terlalu banyak event untuk dibaca oleh seseorang, sehingga job tersebut meminta Claude untuk membacanya. Tinjauan ini menandai perilaku di luar apa yang diberikan kepada agen. Untuk prompt tinjauan, langkah penyiapan, dan kode yang berfungsi, lihat [resep tinjauan keamanan](https://platform.claude.com/cookbook/managed-agents-cma-agent-security-review) di Claude Cookbook.
+“Offline reviewer” (peninjau offline) adalah job yang Anda jalankan, terpisah dari sesi yang ditinjaunya, yang membaca event setiap sesi setelah event tersebut ditulis. Sesi yang panjang memiliki terlalu banyak event untuk dibaca oleh seseorang, sehingga job tersebut meminta Claude untuk membacanya. Tinjauan ini menandai perilaku di luar apa yang Anda berikan kepada agen. Untuk prompt tinjauan, langkah penyiapan, dan kode yang berfungsi, lihat [resep tinjauan keamanan](https://platform.claude.com/cookbook/managed-agents-cma-agent-security-review) di Claude Cookbook.
 
 ## Pantau sesi dan tinjau retensi
 
@@ -60,13 +60,13 @@ Berlangganan webhook yang memberi tahu Anda ketika sebuah sesi memerlukan perhat
 | Sesi yang mencapai anggaran atau berhenti                   | Webhook `session.budget_reached` dan `session.status_terminated`                                                                                                                                                                                                                                     |
 | Eksekusi terjadwal yang gagal memulai sesi                  | Webhook `deployment_run.failed` dan `deployment.paused`                                                                                                                                                                                                                                              |
 | Kredensial OAuth MCP yang tidak dapat diperbarui            | Webhook `vault_credential.refresh_failed`                                                                                                                                                                                                                                                            |
-| Panggilan alat yang ditolak atau dijeda oleh server         | `evaluated_permission` pada event `agent.tool_use` dan `agent.mcp_tool_use`. Dalam sesi multiagen, daftarkan juga event setiap thread                                                                                                                                                                |
+| Panggilan alat yang ditolak atau dijeda oleh server         | `evaluated_permission` (java, php: `evaluatedPermission`; csharp, go: `EvaluatedPermission`) pada event `agent.tool_use` dan `agent.mcp_tool_use`. Dalam sesi multiagen, ambil juga daftar event setiap thread                                                                                       |
 | Apa yang dilakukan agen dalam sebuah sesi                   | Penampil sesi Claude Console                                                                                                                                                                                                                                                                         |
-| Perilaku di luar apa yang diberikan kepada agen             | Job tinjauan offline opsional yang Anda jalankan yang membaca event setiap sesi. Lihat [Secara opsional, minta peninjau offline membaca setiap transkrip](https://platform.claude.com/docs/id/managed-agents/secure-deployment-monitoring#optionally-have-an-offline-reviewer-read-every-transcript) |
+| Perilaku di luar apa yang Anda berikan kepada agen          | Job tinjauan offline opsional yang Anda jalankan yang membaca event setiap sesi. Lihat [Secara opsional, minta peninjau offline membaca setiap transkrip](https://platform.claude.com/docs/id/managed-agents/secure-deployment-monitoring#optionally-have-an-offline-reviewer-read-every-transcript) |
 
-Untuk melihat mengapa sebuah sesi menjadi idle, daftarkan event-nya dengan `types` diatur ke `session.status_idle`, `order` diatur ke `desc`, dan `limit` diatur ke `1`. Event tersebut bernama `session.status_idle`, dan webhook-nya bernama `session.status_idled`. Jika `stop_reason.type` adalah `requires_action`, sesi sedang menunggu Anda, dan `stop_reason.event_ids` mencantumkan event yang sedang ditunggunya. Untuk menjawabnya, lihat [Menjawab panggilan alat yang menjeda sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#answer-tool-calls-that-pause-the-session). Dalam sandbox self-hosted, event `agent.tool_use` dapat menunggu sandbox Anda mengembalikan hasil alat. Dengan eksekusi workflow yang terbuka, panggilan alat dapat menunggu jawaban Anda sementara sesi tetap `running`. Jawab setiap panggilan ketika event-nya tiba. Lihat [Selama eksekusi terbuka](https://platform.claude.com/docs/id/managed-agents/workflow-runs#while-a-run-is-open).
+Untuk melihat mengapa sebuah sesi menjadi idle, ambil daftar event-nya dengan `types` (curl: `types[]`; cli: `--type`; csharp, go: `Types`) diatur ke `session.status_idle`, `order` (csharp, go: `Order`) diatur ke `desc`, dan `limit` (csharp, go: `Limit`) diatur ke `1`. Event tersebut bernama `session.status_idle`, dan webhook-nya bernama `session.status_idled`. Jika `stop_reason.type` adalah `requires_action`, sesi sedang menunggu Anda, dan `stop_reason.event_ids` mencantumkan event yang sedang ditunggunya. Untuk menjawabnya, lihat [Menjawab panggilan alat yang menjeda sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#answer-tool-calls-that-pause-the-session). Dalam sandbox self-hosted, event `agent.tool_use` dapat menunggu sandbox Anda mengembalikan hasil alat. Dengan eksekusi workflow yang terbuka, panggilan alat dapat menunggu jawaban Anda sementara sesi tetap `running`. Jawab setiap panggilan ketika event-nya tiba. Lihat [Selama eksekusi terbuka](https://platform.claude.com/docs/id/managed-agents/workflow-runs#while-a-run-is-open).
 
-Pengiriman webhook bisa terlewat, jadi daftarkan juga sesi Anda sesuai jadwal dan periksa sesi yang idle.
+Anda bisa melewatkan pengiriman webhook, jadi ambil juga daftar sesi Anda sesuai jadwal dan periksa sesi yang idle.
 
 Lihat [Berlangganan webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) dan [Memeriksa sesi dan melacak penggunaan](https://platform.claude.com/docs/id/managed-agents/session-observability#inspect-a-session-in-the-console).
 

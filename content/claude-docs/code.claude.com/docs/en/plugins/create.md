@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/create
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 4a8524269c7ac3d7baf0223d9bd081b04d76399e2848b82f70248c0f26e19977
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 6e8585ad16b07151d7255c772da3996b31c3aa04af2a38c702c97dae6aa25069
 ---
 
 > ## Documentation Index
@@ -351,7 +351,7 @@ This example shows the shape with one hook that runs a linter on each file Claud
     "PostToolUse": [
       {
         "matcher": "Write|Edit",
-        "hooks": [{ "type": "command", "command": "jq -r '.tool_input.file_path' | xargs npm run lint:fix" }]
+        "hooks": [{ "type": "command", "command": "f=$(jq -r '.tool_input.file_path') && npm run lint:fix -- \"$f\"" }]
       }
     ]
   }

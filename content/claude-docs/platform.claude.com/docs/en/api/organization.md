@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 1b9438a98a815d5dea8feca5fd53d15fb237639cdd95a1b2a7ede02dd81ff6dd
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 9dfff74abd6c1903feddbe0d09c35c04d14593eb047a08b9c0b73a8df36b7ef0
 ---
 
 ---
@@ -127,6 +127,14 @@ curl https://api.anthropic.com/v1/organizations/me \
   - `"primary_owner"`
 
   - `"user"`
+
+### RBAC Role Not Found Error Details
+
+- `RBACRoleNotFoundErrorDetails object`
+
+  No RBAC Role with this ID was found.
+
+  - `error_code: "rbac_role_not_found"`
 
 ## Organization › API Keys
 
@@ -9078,6 +9086,18 @@ Enterprise plan. Requires an API key with the `read:analytics` scope.
 
     Number of users with Claude Design activity in the 7-day rolling window. Omitted from the response while the per-product breakdown is not enabled for this organization.
 
+  - `claude_tag_daily_active_user_count: optional number or null`
+
+    Number of Slack users active in Claude Tag on the requested day. Counts distinct Slack users, including users who have not linked a Claude account, so it can exceed `daily_active_user_count` and `assigned_seat_count`. Null on a day with no measured value, when Claude Tag data cannot be read for the request, and when the response is scoped to an RBAC group, because an unlinked user belongs to no group. Omitted from the response on deployments that do not offer Claude Tag reporting.
+
+  - `claude_tag_monthly_active_user_count: optional number or null`
+
+    Number of Slack users active in Claude Tag in the 28-day rolling window. Counts distinct Slack users, including users who have not linked a Claude account, so it can exceed `daily_active_user_count` and `assigned_seat_count`. Null on a day with no measured value, when Claude Tag data cannot be read for the request, and when the response is scoped to an RBAC group, because an unlinked user belongs to no group. Omitted from the response on deployments that do not offer Claude Tag reporting.
+
+  - `claude_tag_weekly_active_user_count: optional number or null`
+
+    Number of Slack users active in Claude Tag in the 7-day rolling window. Counts distinct Slack users, including users who have not linked a Claude account, so it can exceed `daily_active_user_count` and `assigned_seat_count`. Null on a day with no measured value, when Claude Tag data cannot be read for the request, and when the response is scoped to an RBAC group, because an unlinked user belongs to no group. Omitted from the response on deployments that do not offer Claude Tag reporting.
+
   - `office_agent_daily_active_user_count: optional number or null`
 
     Number of users with Claude in Office activity on the requested day. Omitted from the response while the per-product breakdown is not enabled for this organization.
@@ -9149,6 +9169,9 @@ curl https://api.anthropic.com/v1/organizations/analytics/summaries \
       "claude_design_daily_active_user_count": 0,
       "claude_design_monthly_active_user_count": 0,
       "claude_design_weekly_active_user_count": 0,
+      "claude_tag_daily_active_user_count": 0,
+      "claude_tag_monthly_active_user_count": 0,
+      "claude_tag_weekly_active_user_count": 0,
       "office_agent_daily_active_user_count": 0,
       "office_agent_monthly_active_user_count": 0,
       "office_agent_weekly_active_user_count": 0,
@@ -9674,6 +9697,18 @@ the `read:analytics` scope.
 
         Same measure as `cowork_metrics.write_tool_count`, for activity recorded while members had Chat and Cowork unified turned on.
 
+  - `claude_tag_metrics: optional AnalyticsClaudeTagMetrics or null`
+
+    Claude Tag activity in Slack by a user who has linked a Claude account. Activity by Slack users who have not linked an account appears only in the `/summaries` Claude Tag counts, so these rows do not add up to those counts. Omitted from the response on deployments that do not offer Claude Tag reporting.
+
+    - `active_day_count: number or null`
+
+      1 on a day the user was active in Claude Tag in Slack, otherwise 0. Summed over the window in date-range mode, so it is the number of active days; on grouped rows, the total of each member's active days. Null when Claude Tag data cannot be read for the request. Otherwise, 0 on a row filtered by project, and null on any other row when no covered day was measured.
+
+    - `active_message_count: number or null`
+
+      Number of the user's Slack messages that made them active: @-mentions, direct messages, group direct message asks, and thread posts Claude answered. Other messages are not counted. Null when Claude Tag data cannot be read for the request. Otherwise, 0 on a row filtered by project, and null on any other row when no covered day was measured.
+
   - `last_activity_date: optional string or null`
 
     Most recent UTC day (YYYY-MM-DD) on which the user had any counted activity, within the requested window: equal to the requested `date` in single-day mode, and to the latest active day from `starting_date` (inclusive) to `ending_date` (exclusive) in date-range rollup mode — never a day earlier than the window start. On filtered requests (`filter[]`) only days matching the filter count: with `filter[]=rbac_group_id:{id}` it is the last day the user was active while a member of that group, consistent with the row's other metrics. On grouped (`group_by[]`) rows it is the latest day any member of the group was active (the requested `date` in single-day mode). Omitted from the response while last-activity reporting is not enabled for this organization.
@@ -9857,6 +9892,10 @@ curl https://api.anthropic.com/v1/organizations/analytics/users \
           "skills_used_count": 0,
           "write_tool_count": 0
         }
+      },
+      "claude_tag_metrics": {
+        "active_day_count": 0,
+        "active_message_count": 0
       },
       "last_activity_date": "2019-12-27",
       "rbac_group_id": "rbac_group_id",
@@ -13314,7 +13353,27 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 
   - `display_name: string`
 
-    Name of the RBAC Role. For a role created by Anthropic, this is Anthropic's name for the access that the role grants. Anthropic may change this name, so to keep a lasting reference to a role, store its `id`.
+    Name of the RBAC Role. For a built-in role, this is Anthropic's name for the access that the role grants. Anthropic may change this name, so to keep a lasting reference to a role, store its `id`.
+
+  - `source: RBACRoleSource`
+
+    Whether the RBAC Role is built-in or custom. More values of `type` may be added, so do not treat every role that is not `built_in` as `custom`.
+
+    - `RBACRoleSourceBuiltIn object`
+
+      - `type: "built_in"`
+
+        Anthropic provisions the RBAC Role, and the organization's administrators cannot change or delete it.
+
+        default: built_in
+
+    - `RBACRoleSourceCustom object`
+
+      - `type: "custom"`
+
+        The organization's administrators can change and delete the RBAC Role.
+
+        default: custom
 
   - `updated_at: string`
 
@@ -13348,6 +13407,9 @@ curl https://api.anthropic.com/v1/organizations/rbac_roles \
       "id": "rbac_role_016J8xVtKpDq3Wy9ZmN2hR4s",
       "created_at": "2024-10-30T23:58:27.427722Z",
       "display_name": "Project Editor",
+      "source": {
+        "type": "built_in"
+      },
       "type": "rbac_role",
       "updated_at": "2024-10-30T23:58:27.427722Z"
     }
@@ -13403,7 +13465,27 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 
   - `display_name: string`
 
-    Name of the RBAC Role. For a role created by Anthropic, this is Anthropic's name for the access that the role grants. Anthropic may change this name, so to keep a lasting reference to a role, store its `id`.
+    Name of the RBAC Role. For a built-in role, this is Anthropic's name for the access that the role grants. Anthropic may change this name, so to keep a lasting reference to a role, store its `id`.
+
+  - `source: RBACRoleSource`
+
+    Whether the RBAC Role is built-in or custom. More values of `type` may be added, so do not treat every role that is not `built_in` as `custom`.
+
+    - `RBACRoleSourceBuiltIn object`
+
+      - `type: "built_in"`
+
+        Anthropic provisions the RBAC Role, and the organization's administrators cannot change or delete it.
+
+        default: built_in
+
+    - `RBACRoleSourceCustom object`
+
+      - `type: "custom"`
+
+        The organization's administrators can change and delete the RBAC Role.
+
+        default: custom
 
   - `updated_at: string`
 
@@ -13426,6 +13508,9 @@ curl https://api.anthropic.com/v1/organizations/rbac_roles/$RBAC_ROLE_ID \
   "id": "rbac_role_016J8xVtKpDq3Wy9ZmN2hR4s",
   "created_at": "2024-10-30T23:58:27.427722Z",
   "display_name": "Project Editor",
+  "source": {
+    "type": "built_in"
+  },
   "type": "rbac_role",
   "updated_at": "2024-10-30T23:58:27.427722Z"
 }

@@ -1,21 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: e294d5da68b51ff57da2216059fe917626fb53b321dd1f9975264d007ddabe08
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 15580052266d414d90d49d7e4954d488357ab032c6828cc7c0ea61d4f3aa4bb3
 ---
 
 ---
 title: Pemecahan masalah thinking
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting
-description: "Diagnosis dan perbaiki kegagalan thinking yang paling umum: error 400 konfigurasi, blok thinking kosong atau hilang, penghentian max_tokens, dan cache miss."
+description: "Diagnosis dan perbaiki kegagalan thinking: error 400 konfigurasi, blok thinking kosong atau hilang, penghentian max_tokens, dan cache miss."
 ---
 
 <Note>
   Untuk mempelajari bagaimana “zero data retention” (retensi data nol), atau ZDR, berlaku untuk fitur ini, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 </Note>
 
-Halaman ini membahas kegagalan paling umum saat mengonfigurasi thinking atau melakukan round-trip blok thinking (mengirim kembali blok thinking yang dikembalikan dalam permintaan berikutnya). Bagian pertama memetakan setiap model ke konfigurasi thinking yang didukungnya dan yang ditolaknya; bagian-bagian setelahnya masing-masing dimulai dari gejala yang Anda amati, sehingga Anda dapat mencocokkan pesan error atau respons yang tidak terduga langsung dengan penyebab dan perbaikannya. Untuk mempelajari cara kerja thinking, lihat ikhtisar [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking).
+Halaman ini membahas kegagalan saat mengonfigurasi thinking atau melakukan round-trip blok thinking (mengirim kembali blok thinking yang dikembalikan dalam permintaan berikutnya). Bagian pertama memetakan setiap model ke konfigurasi thinking yang didukungnya dan yang ditolaknya. Setiap bagian setelahnya dimulai dari gejala yang Anda amati, sehingga Anda dapat mencocokkan pesan error atau respons yang tidak terduga langsung dengan penyebab dan perbaikannya. Untuk mempelajari cara kerja thinking, lihat ikhtisar [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking).
 
 ## Dukungan thinking, default, dan konfigurasi yang ditolak per model
 
@@ -63,7 +63,7 @@ Permintaan gagal dengan error 400 yang pesannya berbunyi:
 "thinking.type.enabled" is not supported for this model. Use "thinking.type.adaptive" and "output_config.effort" to control thinking behavior.
 ```
 
-Ini terjadi karena model yang Anda minta telah menghapus pemikiran diperpanjang (lihat [tabel konfigurasi per model](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#rejected-configurations)).
+Ini terjadi karena model yang Anda minta tidak mendukung pemikiran diperpanjang (lihat [tabel konfigurasi per model](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#rejected-configurations)).
 
 Ubah permintaan ke `thinking: {type: "adaptive"}` dan arahkan kedalaman thinking dengan `effort` alih-alih `budget_tokens`. [Migrasi ke pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#migrating-to-adaptive-thinking) memandu Anda melalui konversinya.
 
@@ -115,7 +115,7 @@ Pada Claude Sonnet 5.5, permintaan dengan `thinking: {type: "between_tools"}` pa
 output_config.effort 'xhigh' is not supported when thinking is disabled on this model. Use effort 'high' or below, or enable thinking.
 ```
 
-Ini terjadi karena Claude Sonnet 5.5 menerima `between_tools` hanya pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `high` atau lebih rendah. Pesan tersebut menyatakan thinking dinonaktifkan karena `between_tools` tidak memiliki thinking di awal, meskipun permintaan tidak mengirim `"disabled"`. Pesan tersebut menyebutkan level yang dikirim permintaan.
+Ini terjadi karena Claude Sonnet 5.5 menerima `between_tools` hanya pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `high` atau lebih rendah. Pesan error tersebut menyatakan thinking dinonaktifkan karena `between_tools` tidak memiliki thinking di awal, meskipun permintaan tidak mengirim `"disabled"`. Pesan tersebut menyebutkan level yang dikirim permintaan.
 
 Turunkan effort ke `high` atau lebih rendah. Untuk berjalan pada `xhigh` atau `max`, gunakan pemikiran adaptif: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Itulah yang dimaksud pesan tersebut dengan “enable thinking.” Claude Sonnet 5.5 menolak `"enabled"` dengan error 400.
 
@@ -129,7 +129,7 @@ Pada Claude Sonnet 5.5, permintaan dengan `thinking: {type: "between_tools"}` ya
 messages.N: output_config.effort 'low' differs from the 'high' in effect before it; effort cannot change when thinking is disabled on this model. Use effort 'high', or enable thinking.
 ```
 
-Pesan tersebut menyatakan thinking dinonaktifkan karena `between_tools` tidak memiliki thinking di awal. Dengan `between_tools`, effort tidak dapat berubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari level yang sedang berlaku mengembalikan error 400. `messages.N` adalah posisi pesan yang menetapkan level baru.
+Pesan error tersebut menyatakan thinking dinonaktifkan karena `between_tools` tidak memiliki thinking di awal. Dengan `between_tools`, effort tidak dapat berubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari level yang sedang berlaku mengembalikan error 400. `messages.N` adalah posisi pesan yang menetapkan level baru.
 
 Hapus effort per pesan tersebut, atau atur ke level yang berlaku. Untuk memvariasikan effort pada setiap giliran, gunakan pemikiran adaptif: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Itulah yang dimaksud pesan tersebut dengan “enable thinking.”
 
@@ -155,7 +155,9 @@ Permintaan yang mengembalikan hasil alat gagal dengan 400 `invalid_request_error
 `thinking` or `redacted_thinking` blocks in the latest assistant message cannot be modified
 ```
 
-Dalam percakapan multi-giliran dan penggunaan alat, Anda mengirim pesan asisten sebelumnya, termasuk blok `thinking` dan `redacted_thinking`-nya, kembali ke API, dan API memverifikasi bahwa pesan tersebut tiba tanpa modifikasi. Error ini terjadi ketika pesan asisten yang Anda kirim kembali berbeda dari yang dikembalikan API, paling sering karena kode Anda memfilter blok konten berdasarkan jenis dan membuang blok `redacted_thinking`, atau menyusun ulang pesan asisten alih-alih mengirimkannya kembali apa adanya.
+Dalam percakapan multi-giliran dan penggunaan alat, Anda mengirim pesan asisten sebelumnya kembali ke API, termasuk blok `thinking` dan `redacted_thinking`-nya. API memverifikasi signature-nya.
+
+Error ini dapat berarti bahwa blok thinking dalam permintaan tidak cocok dengan yang dikembalikan API. Ketidakcocokan tersebut dapat terjadi di giliran asisten mana pun, meskipun pesan error menyebutkan “latest.”
 
 Gemakan kembali giliran asisten secara verbatim, termasuk blok thinking. Lihat [Mempertahankan blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks) untuk aturannya, dan contoh perjalanan bolak-balik lengkap di [Thinking dalam alur kerja alat dan multi-giliran](https://platform.claude.com/docs/id/build-with-claude/thinking-tool-workflows#two-turn-tool-use-round-trip) untuk kode yang benar di setiap SDK.
 
@@ -167,39 +169,39 @@ Permintaan yang memutar ulang blok thinking sebelumnya ke Claude Fable 5.2, Clau
 messages.{i}.content.{j}: Invalid `signature` in `thinking` block. The block is bound to a different conversation. Remove the block, or set `thinking.block_binding.prefix_mismatch_behavior` to "drop_block".
 ```
 
-Jika permintaan tidak mengirim header beta `thinking-binding-controls-2026-08-01`, pesan tersebut menambahkan ``That setting requires the `thinking-binding-controls-2026-08-01` value in the `anthropic-beta` header.``
+Jika permintaan tidak mengirim header beta `thinking-binding-controls-2026-08-01`, pesan error tersebut menambahkan ``That setting requires the `thinking-binding-controls-2026-08-01` value in the `anthropic-beta` header.``
 
-Pesan tersebut biasanya diakhiri dengan kalimat yang menyebutkan apa yang berubah: prompt `system`, daftar `tools`, pesan atau blok pertama yang berbeda, konten yang hilang atau baru, atau blok thinking sebelumnya yang hilang atau tidak berurutan. Kalimat tersebut ditujukan untuk manusia dan log. Kata-katanya dapat berubah, jadi jangan mencocokkannya di dalam kode.
+Pesan error tersebut dapat diakhiri dengan kalimat yang menyebutkan apa yang berubah: prompt `system`, daftar `tools`, pesan atau blok pertama yang berbeda, konten yang hilang atau baru, atau blok thinking sebelumnya yang hilang atau tidak berurutan. Kalimat tersebut ditujukan untuk manusia dan log. Kata-katanya dapat berubah, jadi jangan mencocokkannya di dalam kode.
 
-Jika pesan berhenti setelah ``Invalid `signature` in `thinking` block``, signature itu sendiri tidak terverifikasi: signature terpotong, diubah, atau dikirim kembali dalam keadaan kosong, dan `prefix_mismatch_behavior` tidak berlaku. Teks thinking yang diedit mengembalikan error yang berbeda. Lihat [Error 400 menyatakan blok thinking tidak dapat dimodifikasi](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-blocks-modified).
+Jika pesan error berhenti setelah ``Invalid `signature` in `thinking` block``, signature itu sendiri tidak terverifikasi: signature terpotong, diubah, atau dikirim kembali dalam keadaan kosong, dan `prefix_mismatch_behavior` tidak berlaku.
 
-Model-model ini hanya menerima blok thinking yang diputar ulang selama prompt `system`, `tools`, dan pesan-pesan yang mendahuluinya tidak berubah. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check). Error ini berarti ada sesuatu di bagian awal percakapan yang berubah di antara permintaan. Penyebab umumnya meliputi hal-hal berikut:
+Blok thinking yang diputar ulang hanya lolos pemeriksaan prefiks selama prompt `system`, `tools`, dan pesan-pesan yang mendahuluinya tidak berubah. Lihat [Apa yang harus tetap sama, dan mengapa](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#prefix-check). Error ini berarti ada sesuatu di bagian awal percakapan yang berubah di antara permintaan. Penyebabnya meliputi hal-hal berikut:
 
 * Giliran yang diedit, diurutkan ulang, atau dihapus
 * Pengingat per giliran yang disisipkan lalu kemudian dihapus
 * Prompt `system` atau array `tools` yang dibangun ulang
-* Pemadatan di sisi klien yang mempertahankan giliran terbaru beserta thinking-nya secara verbatim
+* Compaction di sisi klien yang mempertahankan giliran terbaru beserta thinking-nya secara verbatim
 
-[Compaction pada ambang token](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold) sisi server dan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) tidak pernah memicu error ini. Dengan [compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand), thinking dalam giliran yang Anda pertahankan setelah ringkasan akan memicunya ketika salah satu [syarat agar thinking yang dipertahankan tetap valid](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid) tidak terpenuhi. Untuk permintaan yang tidak menetapkan `thinking.block_binding.prefix_mismatch_behavior`, lihat [Saat `prefix_mismatch_behavior` tidak ditetapkan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement).
+[Compaction pada ambang token](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold) sisi server dan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) tidak pernah memicu error ini. Dengan [compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand), thinking dalam giliran yang Anda pertahankan setelah ringkasan akan memicunya ketika salah satu [syarat untuk thinking yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid) tidak terpenuhi. Untuk permintaan yang tidak menetapkan `thinking.block_binding.prefix_mismatch_behavior`, lihat [Model mana yang menjalankan pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#enforcement).
 
-Mencoba ulang dengan isi permintaan yang sama tidak akan menghilangkan error tersebut. Begitu pula dengan memperbaiki kode Anda, karena riwayat yang tersimpan masih memuat hasil edit tersebut. Untuk melanjutkan percakapan, lakukan salah satu dari hal berikut:
+Mencoba ulang dengan isi permintaan yang sama tidak akan menghilangkan error tersebut. Begitu pula dengan memperbaiki kode Anda jika riwayat yang tersimpan masih memuat hasil edit tersebut. Untuk melanjutkan percakapan, lakukan salah satu dari hal berikut:
 
 * Kirimkan header beta `thinking-binding-controls-2026-08-01` dan atur `thinking.block_binding.prefix_mismatch_behavior` ke `"drop_block"` pada percobaan ulang dan setiap permintaan berikutnya. Permintaan kemudian akan berhasil tanpa penalaran yang sudah tidak valid. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`. Dengan pengaturan thinking lainnya pada model tersebut, Anda tidak dapat mengirim `block_binding`, jadi gunakan opsi berikutnya.
-* Hapus blok yang disebutkan dalam error dan setiap blok `thinking` dan `redacted_thinking` setelahnya, biarkan blok lain di setiap giliran tetap di tempatnya, lalu coba ulang satu kali.
+* Hapus blok yang disebutkan dalam error dan setiap blok `thinking` dan `redacted_thinking` setelahnya, biarkan blok lain di setiap giliran tetap di tempatnya. Coba ulang, dan jangan sertakan blok yang dihapus tersebut dalam permintaan berikutnya.
 
-Kemudian perbaiki penyebabnya agar percakapan baru tidak mengalami error tersebut. Pertahankan riwayat agar append-only: kirimkan kembali giliran sebelumnya persis seperti yang dikirim dan diterima, tambahkan instruksi dengan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) alih-alih mengedit `system` atau `tools`, dan biarkan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) atau [compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) di sisi server yang melakukan pemangkasan.
+Kemudian perbaiki penyebabnya agar percakapan baru tidak mengalami error tersebut. Jaga agar riwayat tetap append-only (hanya ditambah di akhir): kirimkan kembali giliran sebelumnya persis seperti yang dikirim dan diterima, tambahkan instruksi dengan [pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) alih-alih mengedit `system` atau `tools`, dan biarkan [pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) atau [compaction](https://platform.claude.com/docs/id/build-with-claude/compaction) di sisi server yang melakukan pemangkasan.
 
-Blok dari model yang tidak dapat dibaca oleh model target tidak pernah menghasilkan error ini: API membuangnya dan, di bawah header beta, melaporkannya dalam `input_transformations`.
+Blok dari model yang tidak dapat dibaca oleh model target tidak pernah menghasilkan error ini: API tidak menyertakannya dan, di bawah header beta, melaporkannya dalam `input_transformations`.
 
 ## Field thinking kosong dalam respons
 
 Respons berisi blok `thinking`, tetapi field `thinking`-nya adalah string kosong dan hanya field `signature` yang terisi.
 
-Ini terjadi karena `display` secara default bernilai `"omitted"` pada model yang lebih baru, yang mengembalikan blok thinking tanpa teksnya.
+Ini terjadi karena `display` secara default bernilai `"omitted"` pada beberapa model (lihat [Mengontrol tampilan thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#controlling-thinking-display)), yang mengembalikan blok thinking tanpa teksnya.
 
-Atur `display: "summarized"` dalam konfigurasi thinking Anda untuk menerima teks thinking yang diringkas. Lihat [Mengontrol tampilan thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#controlling-thinking-display) untuk default setiap model. Jika Anda hanya menginginkan baris status singkat yang ditulis beberapa model di antara pemanggilan alat, dan bukan penalarannya, atur `display: "updates"` (beta) sebagai gantinya. Lihat [Pembaruan progres di antara pemanggilan alat](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates).
+Atur `display: "summarized"` dalam konfigurasi thinking Anda untuk menerima teks thinking yang diringkas. Lihat [Mengontrol tampilan thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#controlling-thinking-display) untuk default setiap model. Jika Anda hanya menginginkan baris status singkat yang ditulis beberapa model di antara pemanggilan alat, dan bukan penalarannya, atur `display: "updates"`, yang masih dalam beta, sebagai gantinya. Lihat [Pembaruan progres di antara pemanggilan alat](https://platform.claude.com/docs/id/build-with-claude/thinking#progress-updates).
 
-Blok yang field `thinking`-nya kosong tetap lengkap, karena `signature` menyimpan penalarannya. Kirim kembali blok tersebut bersama gilirannya seperti blok lainnya. Lihat [Kirim kembali giliran asisten persis seperti yang dikembalikan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#append-assistant-turns-exactly-as-returned).
+Blok yang field `thinking`-nya kosong tetap lengkap: `signature` menyimpan penalarannya. Kirim kembali blok tersebut bersama gilirannya seperti blok lainnya. Lihat [Kirim kembali giliran asisten persis apa adanya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/change-tools-or-instructions#append-assistant-turns-exactly-as-returned).
 
 ## Tidak ada blok thinking yang muncul pada beberapa giliran
 
@@ -231,7 +233,7 @@ Naikkan `max_tokens` untuk menyisakan ruang bagi thinking dan teks, atau turunka
 
 `cache_read_input_tokens` turun menjadi nol pada permintaan yang sebelumnya mengenai cache.
 
-Ini terjadi karena konfigurasi thinking dan level effort (atau defaultnya) merupakan bagian dari prefiks prompt yang di-cache, sehingga mengubah salah satunya memulai prefiks baru: beralih mode thinking, mengubah nilai effort, dan mengubah `budget_tokens` semuanya menginvalidasi breakpoint cache pesan, dan juga dapat menginvalidasi breakpoint alat dan prompt sistem, tergantung di mana model merender konfigurasi tersebut.
+Ini terjadi karena konfigurasi thinking dan level effort (atau defaultnya) merupakan bagian dari prefiks prompt yang di-cache, sehingga mengubah salah satunya memulai prefiks baru. Beralih mode thinking dan mengubah `budget_tokens` menginvalidasi breakpoint cache pesan, dan mengubah nilai effort dapat menginvalidasinya. Perubahan tersebut juga dapat menginvalidasi breakpoint alat dan prompt sistem, tergantung di mana model merender konfigurasi tersebut.
 
 Jaga agar konfigurasi thinking dan level effort tetap konstan di seluruh permintaan yang berbagi percakapan; menetapkan parameter secara eksplisit ke nilai defaultnya setara dengan menghilangkannya dan tidak menginvalidasi. Lihat [Thinking dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching).
 

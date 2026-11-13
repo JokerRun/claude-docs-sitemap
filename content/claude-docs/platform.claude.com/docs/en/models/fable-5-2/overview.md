@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/fable-5-2/overview
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: ac805ae139812cc9f6cea8ab48d60fead79afc02c60bcb47ae74bdfd570f7263
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: da0d5c0705d0cc7ea46f828fb6ba236fd92d0f9ee26c4d223743df6f6d65ac65
 ---
 
 ---
@@ -114,7 +114,7 @@ Claude Fable 5.2 is built for demanding reasoning and long-horizon agentic work.
   </Card>
 
   <Card title="Preserved thinking" icon="brain" href="https://platform.claude.com/docs/en/build-with-claude/preserved-thinking">
-    Editing earlier turns invalidates thinking blocks, for every account.
+    Editing earlier turns invalidates thinking blocks.
   </Card>
 
   <Card title="Adaptive thinking" icon="brain" href="https://platform.claude.com/docs/en/build-with-claude/thinking">

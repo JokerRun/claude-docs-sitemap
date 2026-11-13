@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 86ce8b7ca05d4397aca4a965c030659834c9624e54ca1886bb06722a2515cf13
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: d1fbdf13eb9342f7f509252d0b828c925782a01be9279eab04aea291738586c7
 ---
 
 ---
@@ -103,14 +103,14 @@ Anda juga dapat mengarahkan pemikiran per pesan dari giliran pengguna, terlepas 
 
 Pengarahan per pesan berguna ketika hanya beberapa permintaan dalam percakapan yang memerlukan penalaran yang diperpanjang. Sebuah harness agen, misalnya, dapat menambahkan frasa pendorong pada langkah perencanaan dan frasa pencegah pada konfirmasi rutin, tanpa menyentuh prompt sistem atau mengubah parameter permintaan apa pun di antara giliran.
 
-Pada Claude Haiku 5.5 dan Claude Fable 5.2, frasa yang tidak menganjurkan tersebut tidak secara andal mengurangi pemikiran. Dalam pengujian Anthropic, frasa tersebut tidak menghentikan Claude Fable 5.2 dari berpikir pada effort `medium` dan di atasnya. Jika platform Anda mendukungnya, jalankan giliran rutin pada model-model tersebut dengan pemikiran yang lebih sedikit menggunakan perubahan [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) sebagai gantinya. Fitur beta ini juga mempertahankan “prompt cache” (cache prompt).
+Pada Claude Haiku 5.5 dan Claude Fable 5.2, frasa pencegah tersebut tidak secara andal mengurangi pemikiran. Dalam pengujian Anthropic, frasa tersebut tidak menghentikan Claude Fable 5.2 dari berpikir pada effort `medium` dan di atasnya. Jika platform Anda mendukungnya, jalankan giliran rutin pada model-model tersebut dengan pemikiran yang lebih sedikit menggunakan perubahan [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) sebagai gantinya. Fitur beta ini juga mempertahankan cache prompt.
 
 ### Verifikasi pengarahan pada beban kerja Anda
 
 Pengarahan berbasis prompt mengubah perilaku model, jadi perlakukan seperti perubahan prompt lainnya: ukur sebelum Anda merilisnya. Jalankan sampel representatif dari lalu lintas Anda dengan dan tanpa panduan tersebut, lalu bandingkan seberapa sering pemikiran terpicu (keberadaan blok pemikiran dalam respons), penggunaan token output, latensi, dan kualitas jawaban pada kasus-kasus yang penting bagi Anda.
 
 <Warning>
-  Mengarahkan Claude untuk lebih jarang berpikir dapat menurunkan kualitas pada tugas yang mendapat manfaat dari penalaran. Menurunkan tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) biasanya merupakan pengungkit pertama yang lebih baik, karena ini adalah kontrol yang terkalibrasi, bukan instruksi yang sensitif terhadap susunan kata. Ukur dampaknya pada beban kerja spesifik Anda sebelum menerapkan penyetelan berbasis prompt ke produksi.
+  Mengarahkan Claude untuk lebih jarang berpikir mungkin menurunkan kualitas pada tugas yang mendapat manfaat dari penalaran. Menurunkan tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) biasanya merupakan pengungkit pertama yang lebih baik, karena ini adalah kontrol yang terkalibrasi, bukan instruksi yang sensitif terhadap susunan kata. Ukur dampaknya pada beban kerja spesifik Anda sebelum menerapkan penyetelan berbasis prompt ke produksi.
 </Warning>
 
 ## Mekanisme
@@ -127,17 +127,17 @@ Untuk aplikasi multi-giliran, ini berarti Anda dapat mengirimkan kembali riwayat
 * Anda dapat melanjutkan percakapan yang dimulai tanpa pemikiran, atau yang menggunakan konfigurasi pemikiran berbeda, tanpa menulis ulang riwayatnya.
 * Riwayat yang disusun dari sumber campuran tidak perlu blok pemikiran disisipkan kembali di awal setiap giliran asisten agar lolos validasi.
 
-Aturan ini berkaitan dengan validasi, bukan tentang apa yang harus Anda kirim. Ketika Anda memiliki blok pemikiran, kirimkan kembali tanpa dimodifikasi, terutama selama penggunaan alat, di mana blok tersebut membawa penalaran di balik pemanggilan alat Claude. Lihat ikhtisar [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking) untuk aturan lengkapnya.
+Ini hanya berarti sebuah giliran dapat dimulai tanpa blok pemikiran. Ketika Anda memiliki blok pemikiran, kirimkan kembali tanpa dimodifikasi, terutama selama penggunaan alat, di mana blok tersebut membawa penalaran di balik pemanggilan alat Claude. Lihat ikhtisar [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking) untuk aturan lengkapnya.
 
 ### Caching prompt
 
-Permintaan berturut-turut yang mempertahankan konfigurasi pemikiran dan tingkat effort yang sama akan mempertahankan “prompt caching” (caching prompt); lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching) untuk aturan lengkapnya. Nilai effort yang ditetapkan dirender ke dalam prompt, sehingga mengubahnya di antara permintaan akan membatalkan breakpoint cache, sama seperti mengubah parameter lama [`budget_tokens`](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#extended-thinking-with-prompt-caching) pada model yang menggunakannya. Menetapkan `effort` secara eksplisit ke nilai default model setara dengan menghilangkannya dan tidak merusak cache.
+Permintaan berturut-turut yang mempertahankan konfigurasi pemikiran dan tingkat effort yang sama akan mempertahankan “prompt caching” (caching prompt); lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching) untuk aturan lengkapnya. Nilai effort yang ditetapkan dirender ke dalam prompt, sehingga mengubahnya di antara permintaan dapat membatalkan breakpoint cache. Begitu pula mengubah parameter lama [`budget_tokens`](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#extended-thinking-with-prompt-caching), pada [model yang menggunakannya](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#supported-models). Menetapkan `effort` secara eksplisit ke nilai default model setara dengan menghilangkannya dan tidak merusak cache.
 
-Konsekuensi praktisnya: pilih konfigurasi pemikiran dan tingkat effort tingkat atas untuk setiap percakapan dan pertahankan. Jika beberapa giliran memerlukan pemikiran lebih banyak atau lebih sedikit, gunakan perubahan [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message), yang masih dalam tahap beta, pada model yang mendukungnya, atau arahkan dengan [prompting per pesan](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost#tuning-thinking-behavior). Keduanya membiarkan breakpoint cache sebelumnya tetap utuh, sedangkan perubahan pada konfigurasi pemikiran atau tingkat effort tingkat atas tidak.
+Konsekuensi praktisnya: pilih konfigurasi pemikiran dan tingkat effort tingkat atas untuk setiap percakapan dan pertahankan. Jika beberapa giliran memerlukan pemikiran lebih banyak atau lebih sedikit, gunakan perubahan [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message), yang masih dalam tahap beta, pada [model yang mendukungnya](https://platform.claude.com/docs/id/build-with-claude/effort-per-message#feature-availability). Atau arahkan dengan [prompting per pesan](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost#per-message-steering). Keduanya membiarkan breakpoint cache sebelumnya tetap utuh, sedangkan perubahan pada konfigurasi pemikiran atau tingkat effort tingkat atas mungkin tidak.
 
 Contoh berikut mendemonstrasikan pembatalan tersebut dengan skrip multi-giliran yang dapat Anda jalankan sendiri:
 
-<Accordion title="Perubahan effort membatalkan cache prompt">
+<Accordion title="Perubahan effort dapat membatalkan cache prompt">
   <CodeGroup exclude="shell:cURL, shell:CLI">
     <CodeGroupItem language="cURL">
       Alur kerja ini memerlukan logika lebih dari satu perintah shell. Gunakan Anthropic SDK untuk menjalankannya; permintaan HTTP per giliran mengikuti contoh di halaman [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).

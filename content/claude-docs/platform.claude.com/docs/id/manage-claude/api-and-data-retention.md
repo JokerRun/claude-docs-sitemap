@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/api-and-data-retention
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 9713771faa428dd023f9d80a34b5558d89dbfd733241d31f40b406df40188167
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 72058874deba8e41d6d69afadafa1bad2eed1e078846b6a373fe5e505554f20e
 ---
 
 ---
@@ -41,7 +41,7 @@ Organisasi dengan pengaturan ZDR tidak dapat memanggil Claude API secara langsun
 ### Apa yang tidak dicakup ZDR
 
 * **Claude Console:** Setiap penggunaan di Claude Console, termasuk playground.
-* **Claude Managed Agents:** Claude Managed Agents adalah sumber daya stateful; transkrip sesi tetap tersimpan hingga Anda menghapusnya.
+* **Claude Managed Agents:** Claude Managed Agents adalah sumber daya stateful; transkrip sesi tetap tersimpan hingga Anda menghapusnya. Pengecualiannya adalah Claude Managed Agents yang di-host sendiri, di mana Anda menyimpan transkrip sendiri, seperti yang dijelaskan dalam [Berapa lama data disimpan](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept).
 * **Produk konsumen Claude:** Paket Claude Free, Pro, Max, dan Ultra, termasuk ketika pelanggan pada paket tersebut menggunakan aplikasi web, desktop, atau seluler Claude atau Claude Code.
 * **Antarmuka produk Claude Teams dan Claude Enterprise:** Antarmuka ini tidak memenuhi syarat ZDR. Satu-satunya pengecualian adalah Claude Code di Claude Enterprise, yang memiliki penawaran ZDR tersendiri, terpisah dari pengaturan ZDR yang dijelaskan di halaman ini. Penawaran tersebut hanya tersedia untuk akun yang memenuhi syarat di Claude Enterprise dan memerlukan pengaktifan terpisah oleh Anthropic. Lihat [dokumentasi ZDR Claude Code](https://code.claude.com/docs/en/zero-data-retention), yang hanya berlaku untuk organisasi Claude Enterprise.
 * **Claude for Excel:** Saat ini tidak memenuhi syarat ZDR.
@@ -177,7 +177,7 @@ Setiap kolom kelayakan menggunakan tiga nilai:
 
 ### Fitur platform
 
-Bagian ini mencantumkan fitur yang terkait dengan [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) maupun [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview). Beberapa hanya tersedia di salah satunya. Tabel ini memberikan kelayakan setiap fitur di Messages API. Di Claude Managed Agents, tidak ada fitur yang memenuhi syarat untuk ZDR atau kesiapan HIPAA; lihat baris Claude Managed Agents di bawah [Fitur Managed Agents](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#managed-agents-features).
+Bagian ini mencantumkan fitur yang terkait dengan [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) maupun [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview). Beberapa hanya tersedia di salah satunya. Tabel ini memberikan kelayakan setiap fitur di Messages API. Di Claude Managed Agents, tidak ada fitur yang memenuhi syarat untuk ZDR atau kesiapan HIPAA, kecuali Managed Agents yang di-host sendiri di bawah ZDR; lihat baris Claude Managed Agents di bawah [Fitur Managed Agents](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#managed-agents-features).
 
 | Fitur                                                                                                                          | Endpoint                                           | Layak ZDR      | Layak HIPAA | Detail                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | :----------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------- | :------------- | :---------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -223,9 +223,9 @@ Bagian ini mencantumkan fitur yang terkait dengan [Messages API](https://platfor
 
 ### Fitur Managed Agents
 
-| Fitur                                                                                | Endpoint                                         | Layak ZDR | Layak HIPAA | Detail                                                                                                                                                                    |
-| :----------------------------------------------------------------------------------- | :----------------------------------------------- | :-------- | :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) | `/v1/agents`, `/v1/sessions`, `/v1/environments` | Tidak     | Tidak       | Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. |
+| Fitur                                                                                | Endpoint                                         | Layak ZDR | Layak HIPAA | Detail                                                                                                                                                                                                                                                                                                                                                                            |
+| :----------------------------------------------------------------------------------- | :----------------------------------------------- | :-------- | :---------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) | `/v1/agents`, `/v1/sessions`, `/v1/environments` | Tidak     | Tidak       | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 ### Fitur lainnya
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 0e50cdc789ce11b37310ba54af5236bea18ae4d2d37b15cb1383fa6d4691f4b8
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: ec102aa9b2468f8ecec1649a165b2ce3e88c058be5953f2bdcc308ff00ca7aef
 ---
 
 ---
@@ -125,7 +125,7 @@ A conversation that you switch from Claude Haiku 4.5 onto Claude Haiku 5.5 keeps
 | From Claude Haiku 5.5, to Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.2, or Claude Mythos 5.2             | Yes, on the Claude API and Claude Models on Google Cloud (Google managed) only |
 | From Claude Haiku 5.5, to any other model                                                                        | No                                                                             |
 
-See [Switching models mid-conversation](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking#switching-models). For switches that don’t involve Claude Haiku 5.5, see [Which model switches keep the reasoning on the Claude API](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking#which-model-switches-keep-reasoning).
+See [Switch models and back](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking#switching-models). For switches that don’t involve Claude Haiku 5.5, see [Which model switches keep the reasoning on the Claude API](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking#which-model-switches-keep-reasoning).
 
 ## Remove sampling parameters
 
@@ -152,11 +152,15 @@ Claude Haiku 5.5 supports the [browser use tool](https://platform.claude.com/doc
 
 ## Replay thinking blocks through the account that produced them
 
-Thinking blocks from Claude Haiku 5.5 work only in the account that produced them or in an account linked to it. When another account sends one of these blocks, the API drops the block before the model receives it, and the request succeeds without that reasoning. This affects code that stores conversations and replays them through a different account, for example a service that serves several customers from one conversation store. Replay each conversation through the account that produced it. See [Thinking blocks stay with the account that produced them](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking#account-bound-thinking).
+Thinking blocks from Claude Haiku 5.5 work only in the account that produced them or in an account linked to it. When another account sends one of these blocks, the API drops the block before the model receives it, and the request succeeds without that reasoning. This affects code that stores conversations and replays them through a different account, for example a service that serves several customers from one conversation store. Replay each conversation through the account that produced it. See [Accounts and cloud platforms](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking#account-bound-thinking).
 
 ## Keep earlier turns unchanged
 
-A Claude Haiku 5.5 thinking block stays valid only while everything sent before it is unchanged: the `system` prompt, the `tools`, and every earlier message. Claude Haiku 4.5 doesn’t run the prefix check. Keep conversations append-only. A request that sends a block back after such a change, with `thinking.block_binding.prefix_mismatch_behavior` unset, gets a 400 error. This applies to accounts created on or after August 31, 2026, 00:00 UTC. On accounts created before that date, the request might or might not get the error. For the changes that trigger the error and what to do instead, see [Who the prefix check affects](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking#who-is-affected).
+Keep conversations append-only. A Claude Haiku 5.5 thinking block stays valid only while everything sent before it is unchanged: the `system` prompt, the `tools`, and every earlier message.
+
+Failing the [prefix check](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking/prefix-checks#prefix-check) might or might not result in a [400 error](https://platform.claude.com/docs/en/api/errors#thinking-block-conversation-mismatch). To identify and handle both cases, see [Prefix checks on thinking blocks](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking/prefix-checks).
+
+For the changes that trigger the error and what to do instead, see [If your code changes the system prompt, tools, or history](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking/prefix-checks#what-to-check).
 
 ## Migrating to Claude Haiku 5.5 from Claude Haiku 3.5 and earlier Haiku models
 

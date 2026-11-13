@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 7993895e183bdb786ac239cf1b291f7c4046543680ca879893b7efb26802beee
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 7eeb7192ca6726e3b5862bb5ab15c34a180d02eda187e9508dd997db0f098b3b
 ---
 
 ---
@@ -38,7 +38,7 @@ featureMetadata:
 
 “Extended thinking” (pemikiran diperpanjang) dalam mode manual memberi Anda kendali langsung atas seberapa banyak Claude berpikir. Anda menetapkan anggaran token pemikiran pada setiap permintaan dengan `thinking: {type: "enabled", budget_tokens: N}`, dan Claude berpikir dalam batas anggaran tersebut sebelum mulai menyusun jawaban akhirnya. Mode manual tetap berguna ketika beban kerja Anda memerlukan “latency” (latensi) yang dapat diprediksi atau kendali yang presisi atas biaya pemikiran. Halaman ini membahas cara menetapkan dan menyetel anggaran, interaksi mode manual dengan “interleaved thinking” (pemikiran berselang-seling) dan “prompt caching” (caching prompt), serta cara bermigrasi ke “adaptive thinking” (pemikiran adaptif).
 
-Untuk mempelajari cara kerja pemikiran itu sendiri, termasuk blok pemikiran dan bentuk respons, parameter `display`, streaming, pemikiran dengan “tool use” (penggunaan alat), dan enkripsi, lihat [ikhtisar pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking).
+Untuk mempelajari cara kerja pemikiran itu sendiri, termasuk blok pemikiran dan bentuk respons, parameter `display`, streaming, pemikiran dengan “tool use” (penggunaan alat), dan enkripsi, lihat [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking).
 
 ## Model yang didukung
 
@@ -297,7 +297,7 @@ Pada Claude Opus 4.5, satu-satunya model yang hanya mendukung pemikiran diperpan
 
 Untuk menyetel anggaran:
 
-* Sesuaikan titik awal dengan tugas. Untuk tugas sederhana, mulailah mendekati minimum 1.024 token dan tingkatkan secara bertahap untuk menemukan rentang optimal bagi kasus penggunaan Anda. Untuk tugas kompleks, mulailah dengan anggaran yang lebih besar yaitu 16.000 token atau lebih dan sesuaikan dengan kebutuhan latensi dan kualitas Anda. Anggaran yang lebih tinggi memungkinkan penalaran yang lebih komprehensif, dengan hasil yang semakin berkurang tergantung pada tugas, dan dengan konsekuensi latensi yang meningkat. Untuk tugas penting, uji berbagai pengaturan untuk menemukan keseimbangan yang tepat.
+* Sesuaikan titik awal dengan tugas. Untuk tugas sederhana, mulailah mendekati minimum 1.024 token dan tingkatkan secara bertahap untuk menemukan rentang optimal bagi kasus penggunaan Anda. Untuk tugas kompleks, mulailah dengan anggaran yang lebih besar yaitu 16.000 token atau lebih dan sesuaikan dengan kebutuhan latensi dan kualitas Anda. Anggaran yang lebih tinggi memungkinkan penalaran yang lebih komprehensif, dengan hasil yang semakin berkurang tergantung pada tugas, dan dengan biaya berupa latensi yang meningkat. Untuk tugas penting, uji berbagai pengaturan untuk menemukan keseimbangan yang tepat.
 * Untuk anggaran pemikiran di atas 32k, gunakan [pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing) untuk menghindari masalah jaringan. Mendorong model berpikir melebihi 32k token menghasilkan permintaan yang berjalan lama, yang dapat terkena timeout sistem dan batas koneksi terbuka.
 
 Untuk melacak biaya sebenarnya dari suatu anggaran, pantau field `usage.output_tokens_details.thinking_tokens` dalam respons. Field ini melaporkan berapa banyak token output yang ditagih yang merupakan penalaran internal. Saat streaming, rincian ini hanya muncul pada event `message_delta` terakhir.
@@ -324,7 +324,7 @@ Dua pertimbangan lain untuk pemikiran berselang-seling dalam mode manual:
 
 Cara platform memperlakukan header beta berbeda-beda. Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) menerima `interleaved-thinking-2025-05-14` pada model apa pun dan mengabaikannya jika tidak didukung. Diterima tidak sama dengan berefek: pada model yang menolak `type: "enabled"` (4.7 dan yang lebih baru) atau tidak memiliki interleaving mode manual (Claude Opus 4.6), header tersebut tidak memiliki efek mode manual; pemikiran adaptif melakukan interleaving secara otomatis di sana.
 
-Platform yang dioperasikan mitra, [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) dan [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), juga menerima header tersebut pada model apa pun tanpa mengembalikan error, dan mengabaikannya pada model yang tidak mendukung pemikiran berselang-seling.
+Platform yang dioperasikan mitra, [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) dan [Amazon Bedrock (`bedrock-mantle`)](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), menerima header tersebut pada model apa pun tanpa mengembalikan error, dan mengabaikannya pada model yang tidak mendukung pemikiran berselang-seling.
 
 ## Struktur giliran dalam mode manual
 
@@ -353,7 +353,7 @@ Permintaan ketiga membuat ulang cache (`cache_creation_input_tokens=1370`, `cach
 
 ## Mekanisme bersama
 
-Sebagian besar perilaku pemikiran berlaku untuk semua mode dan didokumentasikan satu kali di halaman [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking). Semua yang ada di sana juga berlaku dalam mode manual:
+Sebagian besar perilaku pemikiran berlaku untuk semua mode dan didokumentasikan satu kali di halaman [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking). Bagian-bagian berikut juga berlaku dalam mode manual:
 
 * [Mengontrol tampilan pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking#controlling-thinking-display)
 * [Streaming pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking#streaming-thinking)
@@ -365,7 +365,7 @@ Sebagian besar perilaku pemikiran berlaku untuk semua mode dan didokumentasikan 
 
 ## Bermigrasi ke pemikiran adaptif
 
-Jika model Anda hanya mendukung pemikiran diperpanjang (Claude Sonnet 4.5 (deprecated), Claude Opus 4.5, Claude Haiku 4.5, dan model Claude 4 sebelumnya), tidak ada tindakan yang diperlukan saat ini: pemikiran adaptif tidak tersedia di sana, dan `type: "adaptive"` [mengembalikan error 400](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-adaptive). Pertahankan `budget_tokens` hingga Anda beralih ke model yang mendukung pemikiran adaptif, lalu terapkan pemetaan berikut.
+Jika model Anda hanya mendukung pemikiran diperpanjang, tidak ada tindakan yang diperlukan. Model-model ini adalah Claude Sonnet 4.5 (deprecated), Claude Opus 4.5, Claude Haiku 4.5, dan model Claude 4 sebelumnya. Pemikiran adaptif tidak tersedia pada model-model tersebut, dan `type: "adaptive"` [mengembalikan error 400](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-adaptive). Pertahankan `budget_tokens` hingga Anda beralih ke model yang mendukung pemikiran adaptif, lalu terapkan pemetaan berikut.
 
 Anda perlu bermigrasi dari `type: "enabled"` jika:
 
@@ -402,11 +402,11 @@ menjadi:
 
 `effort: "high"` adalah default pada Claude Sonnet 4.6, sehingga menghilangkannya di sini menghasilkan perilaku yang identik; ini hanya ditampilkan untuk menunjukkan di mana kontrol kedalaman berada dalam mode adaptif. Claude Opus 5.5 dan Claude Haiku 5.5 memiliki default `"medium"`, dan model lain yang mendukung effort memiliki default `"high"` (lihat [Tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort#effort-levels)).
 
-Harapkan perbedaan perilaku, bukan sekadar perubahan sintaks. Dengan anggaran tetap, Claude berpikir pada setiap permintaan. Dengan pemikiran adaptif, Claude menentukan apakah dan seberapa banyak berpikir pada setiap permintaan, dan pada pengaturan [effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang lebih rendah Claude mungkin melewatkan pemikiran sepenuhnya pada input yang mudah. Anda juga dapat menghapus header beta `interleaved-thinking-2025-05-14` setelah bermigrasi: pemikiran adaptif berselang-seling secara otomatis, dan Claude API mengabaikan header tersebut pada model-model ini. Pemeliharaan blok pemikiran juga berubah: Claude Opus 4.5 dan model bernomor 4.6 ke atas mempertahankan blok pemikiran giliran sebelumnya dalam konteks dan menagihnya sebagai input, sedangkan Claude Sonnet 4.5 (tidak digunakan lagi), Claude Haiku 4.5, dan model sebelumnya menghapusnya; lihat [pemeliharaan blok pemikiran per model](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-block-preservation-by-model).
+Harapkan perbedaan perilaku, bukan sekadar perubahan sintaks. Dengan anggaran tetap, Claude berpikir pada setiap permintaan. Dengan pemikiran adaptif, Claude menentukan apakah dan seberapa banyak berpikir pada setiap permintaan, dan pada pengaturan [effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang lebih rendah Claude mungkin melewatkan pemikiran sepenuhnya pada input yang mudah. Anda juga dapat menghapus header beta `interleaved-thinking-2025-05-14` setelah bermigrasi: pemikiran adaptif berselang-seling secara otomatis, dan Claude API mengabaikan header tersebut pada model-model ini. Pemeliharaan blok pemikiran juga berubah. Claude Opus 4.5 dan model bernomor 4.6 ke atas mempertahankan blok pemikiran giliran sebelumnya dalam konteks dan menagihnya sebagai input. Claude Sonnet 4.5 (deprecated), Claude Haiku 4.5, dan model sebelumnya menghapusnya. Lihat [pemeliharaan blok pemikiran per model](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-block-preservation-by-model).
 
 Beralih mode merupakan perubahan konfigurasi pemikiran, sehingga permintaan pertama setelah peralihan membatalkan breakpoint cache, seperti yang dijelaskan dalam [Caching prompt dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#extended-thinking-with-prompt-caching).
 
-Untuk panduan lengkap, lihat [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking), [effort](https://platform.claude.com/docs/id/build-with-claude/effort), dan [panduan migrasi model](https://platform.claude.com/docs/id/about-claude/models/migration-guide).
+Untuk panduan lengkap, lihat [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking), [Effort](https://platform.claude.com/docs/id/build-with-claude/effort), dan [Panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide).
 
 ## Langkah selanjutnya
 

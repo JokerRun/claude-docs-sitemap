@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 249470d427fb56113c0b335057862eb780ef6c0be85e7128e10f113d1cd2b807
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 899e42b14759d630a25c42184e50564fa2cef03de59bf68ec6a0bff3786e8a86
 ---
 
 ---
@@ -191,10 +191,10 @@ Skill ini bekerja melalui lima langkah:
 1. **Cakupan:** Memeriksa apakah integrasi Anda terpengaruh, lalu mengirim tiga permintaan uji untuk mengonfirmasi bahwa API melaporkan pengeditan yang disengaja.
 2. **Temukan:** Merekam beberapa sesi multi-giliran milik Anda sendiri, membandingkan (diff) permintaan yang berurutan, dan mencantumkan setiap tempat kode Anda mengedit prefiks.
 3. **Ukur:** Memutar ulang sesi dengan `"drop_block"` dan melaporkan percakapan mana yang kehilangan blok `thinking`, pada giliran mana, dan mengapa.
-4. **Perbaiki:** Mengganti satu pengeditan pada satu waktu dengan pola yang sesuai di [Melakukan perubahan tanpa mengedit prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#replace-prefix-edits), dan mengukur lagi setelah setiap perubahan.
+4. **Perbaiki:** Mengganti setiap pengeditan dengan pola yang sesuai di [Ubah alat atau instruksi tanpa gagal dalam pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/change-tools-or-instructions), dan mengukur lagi setelah setiap penggantian.
 5. **Laporkan:** Merangkum setiap penyebab, perubahan yang dilakukan untuknya, serta jumlah sebelum dan sesudahnya.
 
-Jika proyek Anda memiliki eval, skill ini juga membandingkan skor dan penggunaan token dengan dan tanpa blok `thinking` yang dibuang.
+Jika proyek Anda memiliki eval, skill ini juga membandingkan skor dan penggunaan token antara saat blok `thinking` disertakan dan saat tidak disertakan.
 
 Permintaan uji dan pemutaran ulang adalah permintaan Messages API sungguhan, yang ditagih sesuai tarif normal model. Setiap pemutaran ulang hanya meminta beberapa token output dan menetapkan `tool_choice` ke `none`, sehingga tidak ada alat yang dijalankan. Skill ini menyebutkan biayanya dan meminta persetujuan Anda sebelum mengirimkannya.
 

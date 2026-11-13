@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/code/artifacts/list
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 2d074774e40f0639c5c6f9ac100fd1e6730507f166aa2ccec635e0713c0372a8
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: ee97fa288354a1a0b877da8c344c092ec9451f94b0663baff5f904a1e7c7af66
 ---
 
 ---
@@ -79,11 +79,11 @@ returned.
 
 ## Headers
 
-- `"anthropic-version": optional string`
+- `"anthropic-version": string`
 
-  The version of the Claude API you want to use.
+  The version of the Claude API to use. Send an available version on every request. A request that sends any other value, including an empty one, returns a 400 error. This endpoint treats a request that omits this header as version `2023-06-01`; some other Compliance API endpoints return a 400 error instead.
 
-  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+  See [API versions](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http) for the available versions.
 
 - `"x-api-key": optional string`
 
@@ -97,9 +97,9 @@ returned.
 
     Artifact identifier (tagged ID)
 
-  - `artifact_type: "claude_dashboards" or "claude_design" or "claude_design_systems" or 5 more`
+  - `artifact_type: "claude_dashboards" or "claude_design" or "claude_design_systems" or 6 more`
 
-    Which kind of Artifact this is: `code` for a site published from Claude Code, or the built-in Artifact type it was made from — `claude_docs` (Claude Docs), `claude_slides` (Slides), `claude_design` (Design), `claude_design_systems` (a design system), `claude_motion` (Motion) or `claude_dashboards` (Dashboards). `other` is an Artifact made from a built-in type this list does not name yet.
+    Which kind of Artifact this is: `code` for a site published from Claude Code, or the built-in Artifact type it was made from — `claude_docs` (Claude Docs), `claude_slides` (Slides), `claude_design` (Design), `claude_design_systems` (a design system), `claude_motion` (Motion), `claude_dashboards` (Dashboards) or `claude_sheets` (Claude Sheets). `other` is an Artifact made from a built-in type this list does not name yet.
 
     - `"claude_dashboards"`
 
@@ -110,6 +110,8 @@ returned.
     - `"claude_docs"`
 
     - `"claude_motion"`
+
+    - `"claude_sheets"`
 
     - `"claude_slides"`
 
@@ -127,7 +129,7 @@ returned.
 
   - `published_version_id: string or null`
 
-    Identifier of the version a non-owner viewer would render when `read_mode` permits them — the version the owner has pinned for non-owner readers if one is pinned, otherwise the owner's latest. When `read_mode` is `owner` no non-owner renders any version; the field still reports which version would be served were read_mode widened. Null for a Claude Doc; see `versions`.
+    Identifier of the version a non-owner viewer would render when `read_mode` permits them — the version the owner has pinned for non-owner readers if one is pinned, otherwise the owner's latest. When `read_mode` is `owner` no non-owner renders any version; the field still reports which version would be served were read_mode widened. Null for a Claude Doc or a Claude Sheet; see `versions`.
 
   - `read_mode: "org" or "owner" or "public" or "users"`
 
@@ -161,7 +163,7 @@ returned.
 
   - `versions: array of object`
 
-    Up to roughly 20 most-recently-published versions of this Artifact (older versions are not retained). Metadata only — use `GET /v1/compliance/apps/code/artifacts/{artifact_id}/versions/{version_id}` to download a version's content. Empty for a Claude Doc, because a Doc's versions hold only the web page that displays it, not its text. Download a Doc's text with `GET /v1/compliance/apps/code/artifacts/{artifact_id}/content?multi_file_format=zip`.
+    Up to roughly 20 most-recently-published versions of this Artifact (older versions are not retained). Metadata only — use `GET /v1/compliance/apps/code/artifacts/{artifact_id}/versions/{version_id}` to download a version's content. Empty for a Claude Doc or a Claude Sheet, because their versions hold only the web page that displays them, not the Doc's text or the Sheet's data. Download a Doc's text or a Sheet's data with `GET /v1/compliance/apps/code/artifacts/{artifact_id}/content?multi_file_format=zip`.
 
     - `id: string`
 
@@ -189,7 +191,7 @@ returned.
 
 ```bash
 curl https://api.anthropic.com/v1/compliance/apps/code/artifacts \
-    -H 'anthropic-version: 2023-06-01' \
+    -H 'anthropic-version: 2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 

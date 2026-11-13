@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/effort
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: a63ae0352db531ccbdb209f3e537a8559d788b050a0b139cdbea3efa8f2b87db
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: bcaa821dde17751342b1d625e7ba31a2e59fc2dd243b593bded7fa09727befed
 ---
 
 ---
@@ -145,7 +145,13 @@ Atur `output_config.effort` pada permintaan. Contoh berikut menjalankan satu per
   };
 
   var message = await client.Messages.Create(parameters);
-  Console.WriteLine(message);
+  foreach (var block in message.Content)
+  {
+      if (block.TryPickText(out var textBlock))
+      {
+          Console.WriteLine(textBlock.Text);
+      }
+  }
   ```
 
   ```go Go
@@ -277,25 +283,41 @@ Rekomendasi per model berikut menggantikan tabel ini jika terdapat perbedaan.
 
 **[Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview) & [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview)** — *For demanding reasoning and long-horizon agentic work*
 
-Claude Fable 5.2 mendukung kelima tingkat effort. Default API adalah `high`. Pemikiran adaptif selalu aktif, sehingga effort adalah kontrol utama Anda untuk kedalaman pemikiran, latensi, dan biaya. Mulailah dengan `high`. Sebagian besar peningkatan kapabilitas sudah ada pada `high`, dan di atasnya, peningkatannya tidak merata dan bergantung pada tugas. Naikkan ke `xhigh` untuk pekerjaan coding dan agentik berjalan lama yang paling sulit, di mana Anda telah mengukur adanya peningkatan. Turunkan ke `medium` atau `low` jika eval Anda menunjukkan bahwa kualitas tetap terjaga. Khususkan `max` untuk mengukur batas atas model dan untuk tugas langka di mana waktu dan token tidak menjadi masalah. Pada `max`, model mengoptimalkan kapabilitas tanpa memperhatikan biaya token. Model berjalan lebih lambat dan lebih mahal dibandingkan pada `xhigh`, sering kali hanya untuk peningkatan kecil. Jalankan sweep effort pada eval Anda sendiri alih-alih membawa pengaturan dari Claude Fable 5.1. Pada `high` ke atas, atur `max_tokens` yang besar. Ini adalah batas keras pada total output (pemikiran ditambah teks respons). Effort hampir tidak mengubah panjang balasan model, jadi gunakan prompt Anda untuk mengubah panjang dan nada balasan. Rekomendasi yang sama berlaku untuk Claude Mythos 5.2.
+Claude Fable 5.2 mendukung kelima tingkat effort. Default API adalah `high`. Pemikiran adaptif selalu aktif, sehingga effort adalah kontrol utama Anda untuk kedalaman pemikiran, latensi, dan biaya.
 
-Jika platform Anda mendukungnya, Claude Fable 5.2 dan Claude Mythos 5.2 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) dengan `output_config` per pesan, yang mempertahankan cache prompt.
+Mulailah dengan `high`. Sebagian besar peningkatan kapabilitas sudah ada pada `high`, dan di atasnya, peningkatannya tidak merata dan bergantung pada tugas. Naikkan ke `xhigh` untuk pekerjaan coding dan agentik berjalan lama yang paling sulit, di mana Anda telah mengukur adanya peningkatan. Turunkan ke `medium` atau `low` jika eval Anda menunjukkan bahwa kualitas tetap terjaga. Khususkan `max` untuk mengukur batas atas model dan untuk tugas langka di mana waktu dan token tidak menjadi masalah. Pada `max`, model mengoptimalkan kapabilitas tanpa memperhatikan biaya token. Model berjalan lebih lambat dan lebih mahal dibandingkan pada `xhigh`, sering kali hanya untuk peningkatan kecil.
+
+Jalankan sweep effort pada eval Anda sendiri alih-alih membawa pengaturan dari Claude Fable 5.1. Pada `high` ke atas, atur `max_tokens` yang besar. Ini adalah batas keras pada total output (pemikiran ditambah teks respons). Effort hampir tidak mengubah panjang balasan model, jadi gunakan prompt Anda untuk mengubah panjang dan nada balasan.
+
+Rekomendasi yang sama berlaku untuk Claude Mythos 5.2.
+
+Pada [platform yang didukung](https://platform.claude.com/docs/id/build-with-claude/effort-per-message#feature-availability), Claude Fable 5.2 dan Claude Mythos 5.2 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) dengan `output_config` per pesan, yang mempertahankan cache prompt.
 
 See also: [Menulis prompt untuk Claude Fable 5.2](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-fable-5-2#calibrate-effort)
 
 **[Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview)** — *For long-running agentic coding and knowledge work*
 
-Claude Opus 5.5 mendukung kelima tingkat effort, dan `medium` adalah default-nya (Claude Opus 5 dan model Opus sebelumnya menggunakan default `high`, sehingga permintaan yang tidak menyertakan `effort` berjalan satu tingkat lebih rendah dibandingkan pada Claude Opus 5). Pemikiran adaptif selalu aktif dan tidak dapat dimatikan, sehingga effort adalah kontrol utama untuk seberapa banyak model bernalar dan berapa biaya suatu permintaan. Jalankan sweep effort pada eval Anda sendiri alih-alih membawa pengaturan dari model sebelumnya, dan atur `max_tokens` yang besar pada tingkat yang lebih tinggi: ini adalah batas keras pada total output (pemikiran ditambah teks respons). Permintaan yang mengatur `thinking: {"type": "disabled"}` mengembalikan error 400 di setiap tingkat effort. Claude Opus 5.5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) dengan `output_config` per pesan, yang mempertahankan cache prompt.
+Claude Opus 5.5 mendukung kelima tingkat effort, dan `medium` adalah default-nya. Claude Opus 5 dan model Opus sebelumnya menggunakan default `high`, sehingga permintaan yang tidak menyertakan `effort` berjalan satu tingkat lebih rendah pada Claude Opus 5.5.
+
+Pemikiran adaptif selalu aktif dan tidak dapat dimatikan, sehingga effort adalah kontrol utama untuk seberapa banyak model bernalar dan berapa biaya suatu permintaan. Permintaan yang mengatur `thinking: {"type": "disabled"}` mengembalikan error 400 di setiap tingkat effort.
+
+Jalankan sweep effort pada eval Anda sendiri alih-alih membawa pengaturan dari model sebelumnya. Pada `xhigh` atau `max`, atur `max_tokens` yang besar. Ini adalah batas keras pada total output (pemikiran ditambah teks respons).
+
+Claude Opus 5.5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) dengan `output_config` per pesan, yang mempertahankan cache prompt.
 
 See also: [Menulis prompt untuk Claude Opus 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5-5)
 
 **[Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview)** — *The best combination of speed and intelligence*
 
-Claude Sonnet 5.5 mendukung kelima tingkat effort, dan `high` adalah default pada Claude API. Tingkat-tingkatnya telah dikalibrasi ulang, sehingga suatu tingkat tidak menghasilkan jumlah thinking yang sama dengan tingkat yang sama pada Claude Sonnet 5. Jalankan sweep effort baru pada eval Anda alih-alih membawa pengaturan yang Anda gunakan pada Claude Sonnet 5. Mulailah dengan `high` kecuali beban kerja Anda bersifat agentik atau sensitif terhadap latensi. Untuk coding agentik dan penggunaan alat multilangkah, mulailah dengan `medium` untuk tugas yang terdefinisi dengan baik dan beralih ke `high` untuk tugas yang lebih sulit atau lebih panjang. Untuk chat dan pekerjaan lain yang sensitif terhadap latensi, mulailah dengan `medium` atau `low`. Gunakan `xhigh` atau `max` hanya jika eval Anda menunjukkan peningkatan kualitas. Atur `max_tokens` dengan ruang untuk thinking dan balasan. Thinking dihitung terhadap `max_tokens` bahkan ketika konten thinking tidak dikembalikan. Untuk coding agentik, atur `max_tokens` ke 128.000, yaitu maksimum model, dan lakukan [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) pada respons.
+Claude Sonnet 5.5 mendukung kelima tingkat effort, dan `high` adalah default pada Claude API. Tingkat-tingkatnya dikalibrasi secara berbeda, sehingga suatu tingkat tidak menghasilkan jumlah thinking yang sama seperti pada Claude Sonnet 5. Jalankan sweep effort baru pada eval Anda alih-alih membawa pengaturan yang Anda gunakan pada Claude Sonnet 5.
 
-Untuk mematikan thinking di awal, kirim `thinking: {"type": "between_tools"}` alih-alih `"disabled"`. Ini adalah pengaturan thinking terendah pada Claude Sonnet 5.5, dan berfungsi pada effort `low`, `medium`, dan `high`. Pada `xhigh` atau `max`, permintaan dengan pengaturan ini mengembalikan error 400, jadi gunakan pemikiran adaptif pada tingkat tersebut: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`. Lihat [Berjalan tanpa thinking di awal](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#running-without-up-front-thinking).
+Mulailah dengan `high` kecuali beban kerja Anda bersifat agentik atau sensitif terhadap latensi. Untuk coding agentik dan penggunaan alat multilangkah, mulailah dengan `medium` untuk tugas yang terdefinisi dengan baik dan beralih ke `high` untuk tugas yang lebih sulit atau lebih panjang. Untuk chat dan pekerjaan lain yang sensitif terhadap latensi, mulailah dengan `medium` atau `low`. Gunakan `xhigh` atau `max` hanya jika eval Anda menunjukkan peningkatan kualitas.
 
-Jika platform Anda mendukungnya, Claude Sonnet 5.5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) dengan `output_config` per pesan, yang mempertahankan cache prompt. Dengan `between_tools`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari tingkat yang sedang berlaku mengembalikan error 400. Untuk memvariasikan effort di setiap giliran, gunakan pemikiran adaptif.
+Atur `max_tokens` dengan ruang untuk thinking dan balasan. Thinking dihitung terhadap `max_tokens` bahkan ketika konten thinking tidak dikembalikan. Untuk coding agentik, atur `max_tokens` ke 128.000, yaitu maksimum model, dan lakukan streaming pada respons (lihat [Streaming pesan](https://platform.claude.com/docs/id/build-with-claude/streaming)).
+
+Agar model merespons tanpa berpikir terlebih dahulu, kirim `thinking: {"type": "between_tools"}`, bukan `"disabled"`. Ini berfungsi pada effort `low`, `medium`, dan `high`. Pada `xhigh` atau `max`, ini mengembalikan error 400, jadi gunakan pemikiran adaptif, yang merupakan default, pada tingkat tersebut. Lihat [Berjalan tanpa thinking di awal](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#running-without-up-front-thinking).
+
+Pada [platform yang didukung](https://platform.claude.com/docs/id/build-with-claude/effort-per-message#feature-availability), Claude Sonnet 5.5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) dengan `output_config` per pesan, yang mempertahankan cache prompt. Dengan `between_tools`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan pada tingkat yang berbeda mengembalikan error 400. Untuk memvariasikan effort di setiap giliran, gunakan pemikiran adaptif.
 
 See also: [Prompting untuk Claude Sonnet 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#calibrate-effort)
 
@@ -305,7 +327,7 @@ Claude Haiku 5.5 mendukung kelima tingkat effort, dan `medium` adalah default-ny
 
 Untuk mendapatkan lebih sedikit thinking, turunkan tingkat effort. Anda juga dapat mengirim `thinking: {"type": "disabled"}` pada effort `high` atau di bawahnya. Pada `xhigh` atau `max`, ini mengembalikan error 400, jadi gunakan pemikiran adaptif di sana: hilangkan field `thinking` atau kirim `thinking: {"type": "adaptive"}`.
 
-Jika platform Anda mendukungnya, Claude Haiku 5.5 juga memungkinkan Anda [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) dengan `output_config` per pesan, yang mempertahankan cache prompt. Dengan `thinking: {"type": "disabled"}`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan yang berbeda dari tingkat yang sedang berlaku mengembalikan error 400. Untuk memvariasikan effort di setiap giliran, gunakan pemikiran adaptif.
+Pada [platform yang didukung](https://platform.claude.com/docs/id/build-with-claude/effort-per-message#feature-availability), Claude Haiku 5.5 juga memungkinkan Anda [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) dengan `output_config` per pesan, yang mempertahankan cache prompt. Dengan `thinking: {"type": "disabled"}`, effort tidak dapat diubah di tengah percakapan: `output_config.effort` per pesan pada tingkat yang berbeda mengembalikan error 400. Untuk memvariasikan effort di setiap giliran, gunakan pemikiran adaptif.
 
 See also: [Menulis prompt untuk Claude Haiku 5.5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#use-effort-to-control-thinking)
 
@@ -337,7 +359,7 @@ Pada Claude Opus 5, thinking tidak dapat dinonaktifkan pada effort `xhigh` atau 
 
 Saat menjalankan Claude Opus 5 pada effort `xhigh` atau `max`, atur `max_tokens` yang besar agar model memiliki ruang untuk berpikir dan bertindak di seluruh subagen dan pemanggilan alat. Memulai dari 64k token dan menyesuaikan dari sana adalah default yang wajar.
 
-Jika platform Anda mendukungnya, Claude Opus 5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) dengan `output_config` per pesan, yang mempertahankan cache prompt.
+Pada [platform yang didukung](https://platform.claude.com/docs/id/build-with-claude/effort-per-message#feature-availability), Claude Opus 5 juga mendukung [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) dengan `output_config` per pesan, yang mempertahankan cache prompt.
 
 See also: [Menulis prompt untuk Claude Opus 5](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5)
 
@@ -383,9 +405,9 @@ See also: [Menulis prompt untuk Claude Sonnet 5](https://platform.claude.com/doc
 
 **[Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview)**
 
-Sonnet 4.6 menggunakan default effort `high`. Atur effort secara eksplisit saat menggunakan Sonnet 4.6 untuk menghindari latensi yang tidak terduga:
+Claude Sonnet 4.6 menggunakan default effort `high`. Atur effort secara eksplisit untuk menghindari latensi yang tidak terduga:
 
-* **Effort sedang (default yang direkomendasikan):** Keseimbangan terbaik antara kecepatan, biaya, dan kinerja untuk sebagian besar aplikasi. Cocok untuk coding agentik, alur kerja yang banyak menggunakan alat, dan pembuatan kode.
+* **Effort sedang (direkomendasikan):** Keseimbangan terbaik antara kecepatan, biaya, dan kinerja untuk sebagian besar aplikasi. Cocok untuk coding agentik, alur kerja yang banyak menggunakan alat, dan pembuatan kode.
 * **Effort rendah:** Untuk beban kerja bervolume tinggi atau yang sensitif terhadap latensi. Cocok untuk chat dan kasus penggunaan non-coding di mana penyelesaian yang lebih cepat diprioritaskan.
 * **Effort tinggi:** Untuk penalaran kompleks dan tugas di mana kualitas lebih penting daripada kecepatan atau biaya.
 * **Effort maks:** Untuk tugas yang membutuhkan kapabilitas tertinggi mutlak tanpa batasan pengeluaran token.
@@ -420,7 +442,7 @@ Untuk ketersediaan pemikiran per model, lihat [tabel konfigurasi per model](http
 
 ## Mengubah effort di tengah percakapan
 
-Anda dapat menjalankan giliran selanjutnya dari suatu percakapan pada tingkat effort yang berbeda dengan dua cara: perubahan effort per pesan, yang mempertahankan cache prompt, atau nilai tingkat atas yang baru pada permintaan berikutnya, yang memulai ulang cache.
+Anda dapat menjalankan giliran selanjutnya dari suatu percakapan pada tingkat effort yang berbeda dengan dua cara. Perubahan effort per pesan mempertahankan cache prompt. Nilai tingkat atas yang baru pada permintaan berikutnya dapat membuat seluruh atau sebagian cache prompt menjadi tidak valid.
 
 ### Effort per pesan
 
@@ -428,7 +450,7 @@ Anda dapat menjalankan giliran selanjutnya dari suatu percakapan pada tingkat ef
 
 ### Effort tingkat atas pada permintaan berikutnya
 
-`output_config.effort` tingkat atas berlaku untuk seluruh permintaan. Untuk menjalankan bagian selanjutnya dari suatu percakapan pada tingkat yang berbeda, atur nilai baru pada permintaan berikutnya. Karena effort tingkat atas membentuk prompt yang di-render, mengubahnya di antara permintaan tidak mempertahankan prefix yang di-cache dari giliran sebelumnya. Jika Anda mengandalkan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) di sepanjang sesi yang panjang dan model Anda tidak mendukung effort per pesan, pilih tingkat effort di awal dan pertahankan agar tetap konstan.
+`output_config.effort` tingkat atas berlaku untuk seluruh permintaan. Untuk menjalankan bagian selanjutnya dari suatu percakapan pada tingkat yang berbeda, atur nilai baru pada permintaan berikutnya. Karena effort tingkat atas membentuk prompt yang di-render, mengubahnya di antara permintaan dapat membuat prefix yang di-cache dari giliran sebelumnya menjadi tidak valid. Jika Anda mengandalkan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) di sepanjang sesi yang panjang dan model Anda tidak mendukung effort per pesan, pilih tingkat effort di awal dan pertahankan agar tetap konstan.
 
 ## Praktik terbaik
 
@@ -436,7 +458,7 @@ Anda dapat menjalankan giliran selanjutnya dari suatu percakapan pada tingkat ef
 2. **Gunakan low untuk tugas yang sensitif terhadap kecepatan atau sederhana:** Ketika latensi penting atau tugas bersifat langsung, effort rendah dapat secara signifikan mengurangi waktu respons dan biaya.
 3. **Uji kasus penggunaan Anda:** Dampak tingkat effort bervariasi menurut jenis tugas. Evaluasi performa pada kasus penggunaan spesifik Anda sebelum melakukan deployment.
 4. **Pertimbangkan effort dinamis:** Sesuaikan effort berdasarkan kompleksitas tugas. Kueri sederhana mungkin memerlukan effort rendah, sedangkan coding agentik dan penalaran kompleks mendapat manfaat dari effort tinggi. Lihat poin berikutnya sebelum memvariasikannya dalam satu percakapan.
-5. **Pertahankan effort tingkat atas tetap konstan dalam percakapan yang di-cache:** Mengubah nilai effort tingkat atas di antara permintaan membatalkan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching), jadi variasikan di seluruh beban kerja alih-alih dalam percakapan yang mengandalkan cache hit. Pada model yang mendukungnya, gunakan perubahan [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) sebagai gantinya, yang mempertahankan cache. Lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching).
+5. **Pertahankan effort tingkat atas tetap konstan dalam percakapan yang di-cache:** Mengubah nilai effort tingkat atas di antara permintaan dapat membuat seluruh atau sebagian [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) menjadi tidak valid, jadi variasikan di seluruh beban kerja alih-alih dalam percakapan yang mengandalkan cache hit. Pada model yang mendukungnya, gunakan perubahan [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) sebagai gantinya, yang mempertahankan cache. Lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching).
 
 ## Langkah selanjutnya
 

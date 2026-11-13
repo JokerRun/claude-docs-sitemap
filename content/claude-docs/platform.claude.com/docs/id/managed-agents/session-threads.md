@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-threads
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 0b62f871f79fc10b5a15098675be768656ae2b2e54a4b7e68dfa86cf24d699c2
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 30b57a7b956f3d2b1047799a96740c58f9e0823bf8ae0b842d265439c70724ba
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
+    note: Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya.
   supportedModels:
     - claude-fable-5-2
     - claude-mythos-5-2
@@ -57,7 +57,7 @@ Dalam [sesi multiagen](https://platform.claude.com/docs/id/managed-agents/multia
 Sebuah [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) adalah satu batas bersama untuk semua thread dalam sebuah sesi. Saat batas tercapai, thread berhenti sementara secara independen, dan biaya setiap thread dihitung berdasarkan model yang melayani thread itu sendiri.
 
 <Note>
-  Sebuah sesi dapat memiliki paling banyak 25 thread anak pada satu waktu. Thread yang idle tetap dihitung hingga Anda mengarsipkannya, dan thread utama tidak dihitung. Agen thread utama dapat memanggil beberapa salinan dari satu subagen, sehingga membuat beberapa thread yang terkait dengan satu `agent`. Thread konsultasi [advisor](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) dikecualikan dari batas ini. Demikian pula thread dari sebuah [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs).
+  Sebuah sesi dapat memiliki paling banyak 25 thread anak pada satu waktu. Thread yang idle tetap dihitung hingga Anda mengarsipkannya, dan thread utama tidak dihitung. Agen thread utama dapat memanggil beberapa salinan dari satu subagen, sehingga membuat beberapa thread yang terkait dengan satu `agent`. [Thread konsultasi advisor](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) dikecualikan dari batas ini. Demikian pula thread dari sebuah [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs).
 </Note>
 
 ## Mencantumkan thread
@@ -290,7 +290,7 @@ Secara opsional, arsipkan thread sesi ketika thread tersebut telah menyelesaikan
   ```
 </CodeGroup>
 
-Pengarsipan hanya berhasil jika thread berstatus `idle`. Thread yang tertahan pada `requires_action` dihitung sebagai idle, sehingga Anda dapat mengarsipkannya secara langsung. Untuk mengarsipkan thread yang sedang berjalan, interupsi terlebih dahulu:
+Pengarsipan hanya berhasil jika thread berstatus `idle`. Thread yang menunggu pada `requires_action` dihitung sebagai idle, sehingga Anda dapat mengarsipkannya secara langsung. Untuk mengarsipkan thread yang sedang berjalan, interupsi terlebih dahulu:
 
 <CodeGroup>
   ```bash cURL
@@ -408,25 +408,25 @@ Pengarsipan hanya berhasil jika thread berstatus `idle`. Thread yang tertahan pa
 
 ## Event thread utama
 
-Event-event ini menampilkan aktivitas multiagen pada thread utama di `/v1/sessions/{session_id}/events/stream`. Event arah pesan dinamai relatif terhadap thread yang aliran event-nya memuat event tersebut: `agent.thread_message_received` berarti sebuah pesan tiba di thread ini dari thread lain, dan `agent.thread_message_sent` berarti thread ini mengirimkan pesan. Tugas yang didelegasikan oleh agen thread utama, misalnya, tiba di aliran milik thread anak sebagai event `agent.thread_message_received`.
+Event-event ini menampilkan aktivitas multiagen pada thread utama di `/v1/sessions/{session_id}/events/stream`. Event arah pesan dinamai relatif terhadap thread yang aliran event-nya menampilkan event tersebut: `agent.thread_message_received` berarti sebuah pesan tiba di thread ini dari thread lain, dan `agent.thread_message_sent` berarti thread ini mengirimkan pesan. Tugas yang didelegasikan oleh agen thread utama, misalnya, tiba di aliran milik thread anak itu sendiri sebagai event `agent.thread_message_received`.
 
 | Tipe                               | Deskripsi                                                                                                                                                                                                                                                                                                                                           |
 | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `session.thread_created`           | Sebuah thread telah dibuat. Mencakup `session_thread_id` (java: `sessionThreadId`; php: `sessionThreadID`; csharp, go: `SessionThreadID`) dan `agent_name` (java, php: `agentName`; csharp, go: `AgentName`).                                                                                                                                       |
 | `session.thread_status_running`    | Sebuah thread memulai aktivitas.                                                                                                                                                                                                                                                                                                                    |
 | `session.thread_status_idle`       | Agen yang terkait dengan thread sedang menunggu input. Mencakup `stop_reason` (java, php: `stopReason`; csharp, go: `StopReason`) yang menunjukkan alasan agen berhenti.                                                                                                                                                                            |
-| `session.thread_status_terminated` | Sebuah thread dihentikan dan tidak menerima input lebih lanjut, misalnya karena diarsipkan atau mengalami error yang tidak dapat dipulihkan. Thread advisor juga dihentikan ketika konsultasinya berakhir.                                                                                                                                          |
+| `session.thread_status_terminated` | Sebuah thread dihentikan dan tidak menerima input lebih lanjut, misalnya, karena diarsipkan atau mengalami error yang tidak dapat dipulihkan. Thread advisor juga dihentikan ketika konsultasinya berakhir.                                                                                                                                         |
 | `agent.thread_message_received`    | Pada thread utama, sebuah subagen mengirimkan laporan atau pertanyaan kepada agen thread utama. Mencakup `from_session_thread_id` (java: `fromSessionThreadId`; php: `fromSessionThreadID`; csharp, go: `FromSessionThreadID`), `from_agent_name` (java, php: `fromAgentName`; csharp, go: `FromAgentName`), dan `content` (csharp, go: `Content`). |
 | `agent.thread_message_sent`        | Pada thread utama, agen thread utama mengirimkan tugas atau pesan tindak lanjut kepada sebuah subagen. Mencakup `to_session_thread_id` (java: `toSessionThreadId`; php: `toSessionThreadID`; csharp, go: `ToSessionThreadID`), `to_agent_name` (java, php: `toAgentName`; csharp, go: `ToAgentName`), dan `content` (csharp, go: `Content`).        |
 
-Konsultasi advisor memancarkan event thread yang sama ini dengan nama cadangan `anthropic.advisor` (sebagai `agent_name` (java, php: `agentName`; csharp, go: `AgentName`) pada event siklus hidup thread dan `from_agent_name` (java, php: `fromAgentName`; csharp, go: `FromAgentName`) pada penyampaian saran); lihat [Berikan advisor pada sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) untuk urutannya.
+Konsultasi advisor memancarkan event thread yang sama ini dengan nama cadangan `anthropic.advisor`. Nama tersebut muncul sebagai `agent_name` (java, php: `agentName`; csharp, go: `AgentName`) pada event siklus hidup thread dan sebagai `from_agent_name` (java, php: `fromAgentName`; csharp, go: `FromAgentName`) pada penyampaian saran. Lihat [Berikan advisor pada sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) untuk urutannya.
 
 Thread milik sebuah [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs) ditampilkan pada aliran utama sebagai berikut:
 
 * **Event siklus hidup:** Setiap thread eksekusi mengirimkan `session.thread_created`, dengan `workflow_run_id` (java: `workflowRunId`; php: `workflowRunID`; csharp, go: `WorkflowRunID`) milik eksekusi tersebut, serta event `session.thread_status_running`, `session.thread_status_idle`, dan `session.thread_status_terminated` miliknya.
 * **Event pesan:** Prompt thread eksekusi, yaitu event `agent.thread_message_received`, tetap berada di alirannya sendiri.
 * **Event eksekusi:** Event `workflow_run.*` juga tiba di aliran ini; lihat [Event eksekusi](https://platform.claude.com/docs/id/managed-agents/workflow-runs#run-events).
-* **Panggilan alat yang menunggu Anda:** Panggilan alat thread eksekusi yang memerlukan klien Anda diposting silang ke aliran ini, sama seperti untuk thread anak mana pun. Lihat [Izin alat dan alat kustom](https://platform.claude.com/docs/id/managed-agents/session-threads#tool-permissions-and-custom-tools).
+* **Panggilan alat yang menunggu Anda:** Server memposting silang panggilan alat thread eksekusi yang memerlukan klien Anda ke aliran ini, sama seperti untuk thread anak mana pun. Lihat [Izin alat dan alat kustom](https://platform.claude.com/docs/id/managed-agents/session-threads#tool-permissions-and-custom-tools).
 
 ## Event thread sesi
 
@@ -838,10 +838,10 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                          | HIPAA                                                                               |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                               | Tidak layak                                                                         |
-| Detail | Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. | Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. |
+| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:
 

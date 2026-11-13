@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: d382d7ad35df61421682302b7e59e4912eefec0ff6bd2d522cae5bd85febb487
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 75171a1b6e957c7165d1f5d34e21cc493e65e43c025b0cd9c1c74bde7d73b74e
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
+    note: Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya.
   supportedModels:
     - claude-fable-5-2
     - claude-mythos-5-2
@@ -732,7 +732,7 @@ Buat researcher, yang mendeklarasikan server MCP GitHub, dan agen yang mendelega
   ```ruby Ruby
   research_agent = client.beta.agents.create(
     name: "researcher",
-    model: "claude-haiku-5-5",
+    model: Anthropic::Beta::BetaManagedAgentsModel::CLAUDE_HAIKU_5_5,
     mcp_servers: [
       {type: "url", name: "github", url: "https://api.githubcopilot.com/mcp/"}
     ],
@@ -743,7 +743,7 @@ Buat researcher, yang mendeklarasikan server MCP GitHub, dan agen yang mendelega
 
   lead_agent = client.beta.agents.create(
     name: "lead",
-    model: "claude-opus-5-5",
+    model: Anthropic::Beta::BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
     tools: [
       {type: "agent_toolset_20260401"}
     ],
@@ -1324,7 +1324,7 @@ Setiap konsultasi berjalan sebagai thread yang dibuat oleh platform bernama `ant
 4. `session.thread_status_idle` (`stop_reason: end_turn`)
 5. `session.thread_status_terminated`
 
-Tidak ada event `agent.tool_use` yang dipancarkan untuk konsultasi, dan tidak ada event `agent.thread_message_sent` yang muncul di aliran event sesi, karena input konsultasi disusun oleh platform, bukan dikirim oleh agen. Jika Anda mencantumkan event milik thread advisor itu sendiri, saran juga muncul di sana sebagai event `agent.thread_message_sent`. Penyampaian saran (event 3) tidak dijamin tiba sebelum event idle dan dihentikan milik thread advisor, jadi jangan perlakukan event-event tersebut sebagai sinyal bahwa saran sudah disampaikan.
+Konsultasi tidak memancarkan event `agent.tool_use`, dan tidak ada event `agent.thread_message_sent` yang muncul di aliran event sesi. Platform yang menyusun input konsultasi, sehingga agen tidak mengirimkannya. Jika Anda mencantumkan event milik thread advisor itu sendiri, saran juga muncul di sana sebagai event `agent.thread_message_sent`. Penyampaian saran (event 3) tidak dijamin tiba sebelum event idle dan dihentikan milik thread advisor, jadi jangan perlakukan event-event tersebut sebagai sinyal bahwa saran sudah disampaikan.
 
 Apakah klien Anda dapat membaca saran tersebut ditentukan oleh kebijakan model advisor. Hal ini mencerminkan pembagian [varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants) pada alat advisor di Messages API. Model advisor yang mengembalikan hasil plaintext di sana akan menghasilkan teks yang dapat dibaca di sini. Model yang mengembalikan hasil yang disunting (redacted) akan menghasilkan placeholder `[{"type": "redacted"}]` di setiap antarmuka klien, sementara agen tetap membaca saran lengkap di sisi server. Contoh sebelumnya menggunakan model Opus terbaru yang tersedia bagi Anda sebagai advisor. Model tersebut mengembalikan hasil yang disunting, sehingga klien Anda hanya melihat placeholder. Untuk membaca saran pada aliran event, gunakan advisor yang mengembalikan plaintext, seperti Claude Opus 4.8. Kebijakan suatu model dapat berubah tanpa perubahan apa pun pada API, jadi tangani blok `text` maupun `redacted`. Beberapa model agen hanya dapat dipasangkan dengan advisor yang menghasilkan hasil yang disunting; lihat bagian [Kompatibilitas model](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#model-compatibility) pada alat advisor. Pemikiran advisor tidak pernah ditampilkan. Klien tidak dapat mengirim blok `redacted` sendiri; event yang berisi blok tersebut akan ditolak dengan error validasi 400.
 
@@ -1410,10 +1410,10 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                          | HIPAA                                                                               |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                               | Tidak layak                                                                         |
-| Detail | Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. | Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. |
+| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:
 

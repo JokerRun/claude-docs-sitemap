@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/overview
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 25e8cb4219f34bd3ae28e26bf3323c9616f9f874e11cb0c058093c610329eefa
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 930510677379b48408aeab2a6b12241365ca52d95d37aa88ada37671d133ca91
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
+    note: Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya.
   supportedModels:
     - claude-fable-5-2
     - claude-mythos-5-2
@@ -113,6 +113,7 @@ Claude Managed Agents paling cocok untuk beban kerja yang membutuhkan:
 * **Eksekusi yang berjalan lama:** Tugas yang berjalan selama beberapa menit atau jam dengan banyak pemanggilan alat
 * **Infrastruktur cloud:** Sandbox aman dengan paket yang sudah terinstal dan akses jaringan
 * **Eksekusi self-hosted:** Sandbox di infrastruktur yang Anda kendalikan untuk kebutuhan kepatuhan atau residensi data
+* **Layanan self-hosted:** Seluruh layanan Managed Agents di infrastruktur Anda sendiri, dengan [Claude Managed Agents self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted)
 * **Infrastruktur minimal:** Tidak perlu membangun loop agen, sandbox, atau lapisan eksekusi alat Anda sendiri
 * **Sesi stateful:** Filesystem dan riwayat percakapan yang persisten di berbagai interaksi
 * **Eksekusi terjadwal:** Menjalankan agen secara berulang dengan jadwal cron melalui [deployment terjadwal](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments)
@@ -142,7 +143,7 @@ Untuk memulai, Anda memerlukan:
 
 Dalam beta ini, [Tunnel MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview) dan [dreaming](https://platform.claude.com/docs/id/managed-agents/dreams) berada dalam pratinjau riset yang lebih terbatas. Untuk mengaktifkannya, [minta akses ke pratinjau riset](https://claude.com/form/claude-managed-agents).
 
-Claude Managed Agents dirancang bersifat stateful: sesi berjalan lama, dapat dilanjutkan dengan mulus setelah jeda, dan menyimpan riwayat percakapan, status sandbox, serta output di sisi server. Karena itu, Managed Agents saat ini tidak memenuhi syarat untuk [Zero Data Retention](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) atau cakupan HIPAA Business Associate Agreement (BAA). Anda tetap memegang kendali atas data ini: Anda dapat [menghapus sesi](https://platform.claude.com/docs/id/managed-agents/session-operations#deleting-a-session), dan secara terpisah menghapus [file](https://platform.claude.com/docs/id/build-with-claude/files#delete-a-file) apa pun yang Anda unggah, kapan saja melalui API. Untuk kelayakan di seluruh fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility).
+Claude Managed Agents dirancang bersifat stateful: sesi berjalan lama, dapat dilanjutkan dengan mulus setelah jeda, dan menyimpan riwayat percakapan, status sandbox, serta output di sisi server. Karena itu, Managed Agents saat ini tidak memenuhi syarat untuk [Zero Data Retention](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) atau cakupan HIPAA Business Associate Agreement (BAA). Pengecualian untuk Zero Data Retention adalah Claude Managed Agents self-hosted, tempat Anda menyimpan data tersebut sendiri, seperti yang dijelaskan dalam [Berapa lama data disimpan](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept). Anda tetap memegang kendali atas data ini: Anda dapat [menghapus sesi](https://platform.claude.com/docs/id/managed-agents/session-operations#deleting-a-session), dan secara terpisah menghapus [file](https://platform.claude.com/docs/id/build-with-claude/files#delete-a-file) apa pun yang Anda unggah, kapan saja melalui API. Untuk kelayakan di seluruh fitur, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility).
 
 Lihat [Batas laju](https://platform.claude.com/docs/id/managed-agents/reference#rate-limits) dan [Pedoman branding](https://platform.claude.com/docs/id/managed-agents/reference#branding-guidelines) di referensi.
 
@@ -168,10 +169,10 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                          | HIPAA                                                                               |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                               | Tidak layak                                                                         |
-| Detail | Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. | Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri. |
+| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:
 

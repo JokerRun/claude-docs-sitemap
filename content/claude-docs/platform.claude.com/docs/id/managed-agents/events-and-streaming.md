@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 33b143fb409cff8598ed06d8ccf62d7aa880b276f17740bc8079a2da9c0c24b2
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 1cd5fe491d7e863175afc80a422c295f5bd6ce17fad7b0fbf01b981cb9ca8104
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
+    note: Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya.
   supportedModels:
     - claude-fable-5-2
     - claude-mythos-5-2
@@ -690,15 +690,15 @@ Sesi dijeda saat agen memanggil [alat kustom](https://platform.claude.com/docs/i
 3. Untuk setiap ID event yang memblokir, kirim event [`user.custom_tool_result`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#return-a-custom-tool-result) atau [`user.tool_confirmation`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#confirm-a-tool-call). Hasil alat kustom tidak perlu menunggu langkah 2.
 4. Setelah semua event yang memblokir diselesaikan, sesi beralih kembali ke `running`.
 
-Dalam sesi multiagen, event yang memblokir dari subagen juga diposting ke thread utama. Lihat [Izin alat dan alat kustom](https://platform.claude.com/docs/id/managed-agents/session-threads#tool-permissions-and-custom-tools).
+Dalam sesi multiagen, server juga memposting event yang memblokir dari subagen ke thread utama. Lihat [Izin alat dan alat kustom](https://platform.claude.com/docs/id/managed-agents/session-threads#tool-permissions-and-custom-tools).
 
 ### Mengembalikan hasil alat kustom
 
 Event `agent.custom_tool_use` berisi nama alat dan input. Jalankan alat di sistem Anda. Kemudian kirim event `user.custom_tool_result`, dengan meneruskan ID event di parameter `custom_tool_use_id` (java: `customToolUseId`; php: `customToolUseID`; csharp, go: `CustomToolUseID`) beserta konten hasilnya.
 
-Anda dapat mengirim hasil segera setelah event `agent.custom_tool_use` tiba, tanpa menunggu `session.status_idle`. Sesi tetap memancarkan `session.status_idle` dengan alasan berhenti `requires_action` untuk panggilan tersebut, dan klien Anda dapat mengabaikannya. Hasil kedua untuk panggilan yang sama akan diterima dan tidak berpengaruh.
+Anda dapat mengirim hasil segera setelah event `agent.custom_tool_use` tiba, tanpa menunggu `session.status_idle`. Sesi tetap memancarkan `session.status_idle` dengan alasan berhenti `requires_action` untuk panggilan tersebut, dan klien Anda dapat mengabaikannya. Server menerima hasil kedua untuk panggilan yang sama, tetapi hasil tersebut tidak berpengaruh.
 
-Ketika Anda [menyambung ulang](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#reconnect-without-missing-events) ke sesi yang dijeda, `stop_reason.event_ids` pada event `session.status_idle` terbaru mencantumkan panggilan yang perlu dijawab.
+Ketika Anda [menyambung ulang ke sesi yang dijeda](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#reconnect-without-missing-events), `stop_reason.event_ids` pada event `session.status_idle` terbaru mencantumkan panggilan yang perlu dijawab.
 
 Contoh berikut menjawab setiap panggilan saat panggilan tersebut tiba:
 
@@ -1258,10 +1258,10 @@ Sesi tetap ada di antara interaksi. Untuk melanjutkan sesi, kirim event `user.me
   ```
 </CodeGroup>
 
-Riwayat percakapan dipertahankan kecuali sesi dihapus secara eksplisit. Ketika sesi menjadi idle, sandbox-nya di-checkpoint. Checkpoint mempertahankan seluruh status sandbox, termasuk sistem file, paket yang terinstal, dan file apa pun yang dibuat oleh agen.
+Sesi menyimpan riwayat percakapannya hingga Anda menghapus sesi tersebut. Ketika sesi menjadi idle, Claude Managed Agents melakukan checkpoint pada sandbox-nya. Checkpoint mempertahankan seluruh status sandbox, termasuk sistem file, paket yang terinstal, dan file apa pun yang dibuat oleh agen.
 
 <Note>
-  Status sandbox hanya dipertahankan selama 30 hari setelah sandbox dibuat, dan aktivitas tidak memperpanjang jangka waktu ini. Setelah 30 hari, status sandbox (file, alat yang terinstal, dan sebagainya) tidak dapat dipulihkan, dan sesi yang dilanjutkan dimulai dari sandbox baru. Jika alur kerja Anda bergantung pada isi sandbox, minta agen menulis artefak penting ke [output](https://platform.claude.com/docs/id/managed-agents/define-outcomes#retrieving-deliverables) sebelum jangka waktu tersebut berakhir.
+  Status sandbox hanya bertahan selama 30 hari setelah sandbox dibuat, dan aktivitas tidak memperpanjang jangka waktu ini. Setelah 30 hari, status sandbox (file, alat yang terinstal, dan sebagainya) tidak dapat dipulihkan, dan sesi yang dilanjutkan dimulai dari sandbox baru. Jika alur kerja Anda bergantung pada isi sandbox, minta agen menulis artefak penting ke [output](https://platform.claude.com/docs/id/managed-agents/define-outcomes#retrieving-deliverables) sebelum jangka waktu tersebut berakhir.
 </Note>
 
 ## Menginterupsi agen
@@ -1440,7 +1440,7 @@ Kirim event `user.interrupt` untuk menghentikan agen saat sedang berjalan, lalu 
 
 Panggilan kembali segera setelah event dimasukkan ke antrean. Interupsi kemudian berlaku dalam urutan berikut:
 
-1. Agen menerapkan interupsi. Hingga saat itu, `processed_at` (java, php: `processedAt`; csharp, go: `ProcessedAt`) milik interupsi tetap `null` (python: `None`; ruby: `nil`; java: `Optional.empty()`; go: `time.Time{}`) dan sesi tetap `running`. Respons model yang sedang berlangsung langsung berhenti, tetapi interupsi dapat memerlukan waktu lebih lama untuk diterapkan saat panggilan alat sedang berjalan.
+1. Agen menerapkan interupsi. Hingga saat itu, `processed_at` (java, php: `processedAt`; csharp, go: `ProcessedAt`) dari interupsi tetap bernilai `null` (python: `None`; ruby: `nil`; java: `Optional.empty()`; go: `time.Time{}`) dan sesi tetap `running`. Respons model yang sedang berlangsung langsung berhenti, tetapi interupsi dapat memerlukan waktu lebih lama untuk diterapkan saat panggilan alat sedang berjalan.
 2. Event `user.interrupt` muncul di aliran, dan giliran yang diinterupsi berakhir dengan event `session.status_idle`.
 3. Agen memulai giliran berikutnya dengan `user.message` yang Anda kirim setelah interupsi.
 
@@ -1614,7 +1614,7 @@ Teruskan filter `types` (curl: `types[]`; cli: `--type`; csharp, go: `Types`) un
 
 Pada [model yang didukung](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#supported-models), kirim event `system.message` untuk memberikan konteks tingkat sistem yang istimewa kepada agen. Konteks tersebut berlaku untuk giliran yang menyertainya dan semua giliran berikutnya. Gunakan ini ketika agen memerlukan panduan tingkat sistem yang diperbarui di tengah sesi, misalnya persona yang berbeda, batasan yang direvisi, atau konteks yang diambil saat runtime.
 
-`content` (csharp, go: `Content`) dari event menerima 1–1.000 item teks. Konten tersebut ditambahkan ke konteks sistem sesi sebagai giliran `role: "system"`. Konten ini tidak menggantikan “system prompt” (prompt sistem) tingkat atas, yang ditetapkan oleh field `system` (csharp, go: `System`; ruby: `system_`) pada definisi agen.
+`content` (csharp, go: `Content`) dari event menerima 1–1.000 item teks. Server menambahkan konten tersebut ke konteks sistem sesi sebagai giliran `role: "system"`. Konten ini tidak menggantikan “system prompt” (prompt sistem) tingkat atas, yang ditetapkan oleh field `system` (csharp, go: `System`; ruby: `system_`) pada definisi agen.
 
 <CodeGroup>
   ```bash cURL
@@ -1755,7 +1755,7 @@ Pada [model yang didukung](https://platform.claude.com/docs/id/managed-agents/ev
 
 ### Model yang didukung
 
-`system.message` didukung oleh model-model berikut:
+Model-model berikut mendukung `system.message`:
 
 * Claude Fable 5.2
 * Claude Mythos 5.2
@@ -1769,7 +1769,7 @@ Pada [model yang didukung](https://platform.claude.com/docs/id/managed-agents/ev
 * Claude Sonnet 5.5
 * Claude Haiku 5.5
 
-Jika model utama agen tidak mendukung injeksi sistem di tengah percakapan, event ditolak dengan error validasi `model_does_not_support_mid_conversation_system`. Model subagen tidak diperiksa, karena `system.message` hanya masuk ke thread utama.
+Jika model utama agen tidak mendukung injeksi sistem di tengah percakapan, API menolak event tersebut dengan error validasi `model_does_not_support_mid_conversation_system`. API tidak memeriksa model subagen, karena `system.message` hanya masuk ke thread utama.
 
 ### Pesan sistem saat panggilan alat tertunda
 

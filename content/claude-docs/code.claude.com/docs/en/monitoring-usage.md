@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: f4e05bb2e9411b62d9dc638d574556325532d81aa999d8f28e184c89aa0b95a4
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 4f6be4c06ae0a2678ccff6c631fc5db425750f2b88124b71e912346b3e05bc68
 ---
 
 > ## Documentation Index
@@ -438,7 +438,7 @@ Each custom key becomes a label on every metric series, so high-cardinality valu
 > * **No spaces allowed**: values can't contain spaces. For example, `user.organizationName=My Company` is invalid
 > * **Format**: must be comma-separated key=value pairs: `key1=value1,key2=value2`
 > * **Allowed characters**: only US-ASCII characters excluding control characters, whitespace, double quotes, commas, semicolons, and backslashes
-> * **Special characters**: characters outside the allowed range must be percent-encoded
+> * **Special characters**: characters outside the allowed range must be percent-encoded, and an `=` inside a value must be written as `%3D`
 >
 > For a value that would need a space, use underscores or camelCase instead. The following examples set `org.name` with each form:
 >

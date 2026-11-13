@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/commands
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 7092d83ff34ae9fea6680a8e4b313df6e61f8b5328d0e18df5720fadf6e87ff4
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 7f3405c7c477b2f53b7bd3507f9a94622ab4b551bc6f23e0664985120e0cfd7c
 ---
 
 > ## Documentation Index
@@ -42,9 +42,7 @@ Most commands are useful at a specific point in a session, from setting up a pro
 The table below lists all the commands included in Claude Code. Most are built-in commands whose behavior is coded into the CLI. Two kinds of entries are marked:
 
 * **[Skill](https://code.claude.com/docs/en/skills.md#bundled-skills)**: a bundled skill. It works like skills you write yourself: a prompt handed to Claude.
-  * `/verify` runs only when you invoke it.
 * **[Workflow](https://code.claude.com/docs/en/workflows.md#bundled-workflows)**: a bundled [dynamic workflow](https://code.claude.com/docs/en/workflows.md) that fans work out across many subagents and runs in the background.
-  * `/deep-research` runs only when you invoke it.
 
 To add your own commands, see [skills](https://code.claude.com/docs/en/skills.md).
 

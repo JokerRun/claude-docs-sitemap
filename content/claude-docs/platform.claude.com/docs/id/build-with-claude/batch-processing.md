@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: a4e93fbda3ab85998d8be5a57f111285df7a7599d6ad29f352c7e8549ae78eee
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 223bb692a8a1cc687f680d45562f60ba9e9d9d0765d936cae022f1f4059f82ea
 ---
 
 ---
@@ -47,7 +47,7 @@ featureMetadata:
 * Anda ingin mengoptimalkan efisiensi biaya
 * Anda menjalankan evaluasi atau analisis berskala besar
 
-Message Batches API adalah implementasi pertama Anthropic dari pola ini.
+Message Batches API mengimplementasikan pola ini.
 
 # Message Batches API
 
@@ -74,8 +74,8 @@ Ini sangat berguna untuk operasi massal yang tidak memerlukan hasil langsung, se
 
 * Sebuah Message Batch dibatasi hingga 100.000 permintaan Message atau berukuran 256 MB, mana yang tercapai lebih dahulu.
 * Sistem memproses setiap batch secepat mungkin, dengan sebagian besar batch selesai dalam 1 jam. Anda dapat mengakses hasil batch ketika semua pesan telah selesai atau setelah 24 jam, mana yang lebih dahulu. Batch akan kedaluwarsa jika pemrosesan tidak selesai dalam 24 jam.
-* Hasil batch tersedia selama 29 hari setelah pembuatan. Setelah itu, Anda masih dapat melihat Batch tersebut, tetapi hasilnya tidak lagi tersedia untuk diunduh.
-* Batch tercakup dalam sebuah [Workspace](https://platform.claude.com/settings/workspaces) di Claude Console. Anda dapat melihat semua batch (dan hasilnya) yang dibuat di dalam Workspace tempat permintaan Anda dijalankan.
+* Hasil batch tersedia selama 29 hari setelah pembuatan. Setelah itu, Anda masih dapat melihat batch tersebut, tetapi hasilnya tidak lagi tersedia untuk diunduh.
+* Batch tercakup dalam sebuah [Workspace di Claude Console](https://platform.claude.com/settings/workspaces). Anda dapat melihat semua batch (dan hasilnya) yang dibuat di dalam Workspace tempat permintaan Anda dijalankan.
 * “Rate limit” (batas laju) berlaku untuk permintaan HTTP Batches API maupun jumlah permintaan di dalam batch yang menunggu untuk diproses. Lihat [batas laju Message Batches API](https://platform.claude.com/docs/id/api/rate-limits#message-batches-api). Selain itu, pemrosesan dapat melambat berdasarkan permintaan saat ini dan volume permintaan Anda. Dalam hal ini, Anda mungkin melihat lebih banyak permintaan yang kedaluwarsa setelah 24 jam.
 * Karena throughput yang tinggi dan pemrosesan bersamaan, batch dapat sedikit melampaui [batas pengeluaran](https://platform.claude.com/docs/id/manage-claude/workspaces#setting-workspace-limits) yang dikonfigurasi di Claude Console untuk Workspace Anda.
 * Setiap permintaan dalam batch harus memiliki [`max_tokens`](https://platform.claude.com/docs/id/api/messages/create#create.max_tokens) setidaknya `1`. `max_tokens: 0` ([pre-warming cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pre-warming-the-cache)) tidak didukung di dalam batch, karena entri cache sementara yang ditulis selama pemrosesan batch kemungkinan besar akan kedaluwarsa sebelum permintaan lanjutan dijalankan.
@@ -449,7 +449,7 @@ Dalam contoh ini, dua permintaan terpisah digabungkan dalam batch untuk pemroses
 <Tip>
   **Uji permintaan batch Anda dengan Messages API**
 
-  Validasi objek `params` untuk setiap permintaan pesan dilakukan secara asinkron, dan error validasi dikembalikan ketika pemrosesan seluruh batch telah berakhir. Anda dapat memastikan bahwa Anda menyusun input dengan benar dengan memverifikasi bentuk permintaan Anda menggunakan [Messages API](https://platform.claude.com/docs/id/api/messages/create) terlebih dahulu.
+  API memvalidasi objek `params` dari setiap permintaan pesan secara asinkron, dan mengembalikan error validasi ketika pemrosesan seluruh batch telah berakhir. Untuk memeriksa bahwa Anda menyusun input dengan benar, verifikasi bentuk permintaan Anda menggunakan [Messages API](https://platform.claude.com/docs/id/api/messages/create) terlebih dahulu.
 </Tip>
 
 Ketika batch pertama kali dibuat, respons memiliki status pemrosesan `in_progress`.
@@ -629,7 +629,7 @@ Untuk melakukan polling pada Message Batch, Anda memerlukan `id`-nya, yang diber
 
 ### Menampilkan daftar semua Message Batch
 
-Anda dapat menampilkan daftar semua Message Batch di Workspace Anda menggunakan [endpoint list](https://platform.claude.com/docs/id/api/messages/batches/list). API ini mendukung paginasi, dan secara otomatis mengambil halaman tambahan sesuai kebutuhan:
+Anda dapat menampilkan daftar semua Message Batch di Workspace Anda menggunakan [endpoint list](https://platform.claude.com/docs/id/api/messages/batches/list). Hasilnya dipaginasi. SDK mengambil halaman tambahan sesuai kebutuhan:
 
 <CodeGroup>
   ```bash cURL
@@ -737,18 +737,18 @@ Anda dapat menampilkan daftar semua Message Batch di Workspace Anda menggunakan 
 
 Setelah pemrosesan batch berakhir, setiap permintaan Messages dalam batch memiliki hasil. Ada empat jenis hasil:
 
-| Jenis hasil | Deskripsi                                                                                                                                                                          |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `succeeded` | Permintaan berhasil. Menyertakan hasil pesan.                                                                                                                                      |
-| `errored`   | Permintaan mengalami error dan pesan tidak dibuat. Kemungkinan error meliputi permintaan yang tidak valid dan error server internal. Anda tidak akan ditagih untuk permintaan ini. |
-| `canceled`  | Pengguna membatalkan batch sebelum permintaan ini dapat dikirim ke model. Anda tidak akan ditagih untuk permintaan ini.                                                            |
-| `expired`   | Batch mencapai batas kedaluwarsa 24 jam sebelum permintaan ini dapat dikirim ke model. Anda tidak akan ditagih untuk permintaan ini.                                               |
+| Jenis hasil | Deskripsi                                                                                                                                                                     |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `succeeded` | Permintaan berhasil. Menyertakan hasil pesan.                                                                                                                                 |
+| `errored`   | Permintaan mengalami error dan pesan tidak dibuat. Kemungkinan error meliputi permintaan yang tidak valid dan error server internal. Anda tidak ditagih untuk permintaan ini. |
+| `canceled`  | Pengguna membatalkan batch sebelum permintaan ini dapat dikirim ke model. Anda tidak ditagih untuk permintaan ini.                                                            |
+| `expired`   | Batch mencapai batas kedaluwarsa 24 jam sebelum permintaan ini dapat dikirim ke model. Anda tidak ditagih untuk permintaan ini.                                               |
 
 Objek `request_counts` pada batch menghitung permintaan yang masih diproses dan permintaan untuk setiap jenis hasil.
 
 (See `message_batch.request_counts` on `messages/batches/retrieve` in [the API reference](https://platform.claude.com/docs/id/api/messages/batches/retrieve#message_batch.request_counts).)
 
-Hasil batch tersedia untuk diunduh di properti [`results_url`](https://platform.claude.com/docs/id/api/messages/batches/retrieve#message_batch.results_url) pada Message Batch, dan jika izin organisasi memungkinkan, di Console. Karena ukuran hasil yang berpotensi besar, disarankan untuk [melakukan streaming hasil](https://platform.claude.com/docs/id/api/messages/batches/results) daripada mengunduh semuanya sekaligus.
+Hasil batch tersedia untuk diunduh di properti [`results_url`](https://platform.claude.com/docs/id/api/messages/batches/retrieve#message_batch.results_url) pada Message Batch dan, jika izin organisasi Anda memungkinkan, di Console. Karena hasilnya bisa berukuran besar, [lakukan streaming hasil](https://platform.claude.com/docs/id/api/messages/batches/results) daripada mengunduh semuanya sekaligus.
 
 <CodeGroup>
   ```bash cURL
@@ -972,7 +972,7 @@ Hasil batch menggunakan versi API dari permintaan yang membuat batch tersebut.
 
 ### Membatalkan Message Batch
 
-Anda dapat membatalkan Message Batch yang sedang diproses menggunakan [endpoint pembatalan](https://platform.claude.com/docs/id/api/messages/batches/cancel). Segera setelah pembatalan, `processing_status` batch akan menjadi `canceling`. Anda dapat menggunakan teknik polling yang sama seperti yang dijelaskan sebelumnya untuk menunggu hingga pembatalan selesai. Batch yang dibatalkan akan berakhir dengan status `ended` dan mungkin berisi hasil parsial untuk permintaan yang telah diproses sebelum pembatalan.
+Anda dapat membatalkan Message Batch yang sedang diproses menggunakan [endpoint pembatalan](https://platform.claude.com/docs/id/api/messages/batches/cancel). Segera setelah pembatalan, `processing_status` batch adalah `canceling`. Anda dapat menggunakan teknik polling yang sama seperti yang dijelaskan sebelumnya untuk menunggu hingga pembatalan selesai. Batch yang dibatalkan akan berakhir dengan status `ended` dan mungkin berisi hasil parsial untuk permintaan yang telah diproses sebelum pembatalan.
 
 <CodeGroup>
   ```bash cURL
@@ -1589,7 +1589,7 @@ Worker batch juga membatasi `web_search` untuk setiap organisasi sehingga pemros
 Header beta `output-300k-2026-03-24` menaikkan batas `max_tokens` menjadi 300.000 untuk permintaan batch yang menggunakan Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, atau Claude Haiku 5.5. Sertakan header tersebut untuk menghasilkan output yang jauh lebih panjang daripada batas `max_tokens` standar sebesar 128k dalam satu giliran.
 
 <Note>
-  Output diperpanjang hanya tersedia di Message Batches API, bukan di Messages API sinkron. Fitur ini didukung di Claude API dan Claude Platform on AWS, dan saat ini tidak tersedia di Amazon Bedrock, Claude Models on Google Cloud (Google managed), atau Microsoft Foundry.
+  Output diperpanjang hanya tersedia di Message Batches API, bukan di Messages API sinkron. Fitur ini tersedia di Claude API dan Claude Platform on AWS.
 </Note>
 
 Gunakan output diperpanjang untuk pembuatan konten panjang seperti draf sepanjang buku dan dokumentasi teknis, ekstraksi data terstruktur yang menyeluruh, scaffold pembuatan kode berukuran besar, dan rantai penalaran yang panjang.
@@ -1838,7 +1838,7 @@ Jika mengalami perilaku yang tidak terduga:
 * Pastikan total ukuran permintaan batch tidak melebihi 256 MB. Jika ukuran permintaan terlalu besar, Anda mungkin mendapatkan error 413 `request_too_large`.
 * Periksa bahwa Anda menggunakan [model yang didukung](https://platform.claude.com/docs/id/build-with-claude/batch-processing#supported-models) untuk semua permintaan dalam batch.
 * Pastikan setiap permintaan dalam batch memiliki `custom_id` yang unik.
-* Pastikan bahwa belum lewat 29 hari sejak waktu `created_at` batch (bukan waktu `ended_at` pemrosesan). Jika sudah lewat dari 29 hari, hasil tidak lagi dapat dilihat.
+* Pastikan bahwa belum lewat 29 hari sejak waktu `created_at` batch (bukan waktu `ended_at` pemrosesan). Setelah 29 hari, hasil tidak lagi tersedia untuk diunduh.
 * Konfirmasikan bahwa batch belum dibatalkan.
 
 Perhatikan bahwa kegagalan satu permintaan dalam batch tidak memengaruhi pemrosesan permintaan lainnya.

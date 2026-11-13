@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-2/overview
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 0e0ce123e15f6007950fb4d75b6b9dd51352de056d8ea6fa22079a60503a6d3c
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 5b4cf3e0fa4bb483e24fdb4588b7ea060bba0ddfdaa0bdb8fa14211b734c7ecf
 ---
 
 ---
@@ -114,7 +114,7 @@ Claude Fable 5.2 dirancang untuk penalaran yang menuntut dan pekerjaan agentik j
   </Card>
 
   <Card title="Pemikiran yang dipertahankan" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/preserved-thinking">
-    Mengedit giliran sebelumnya membatalkan blok pemikiran, untuk setiap akun.
+    Mengedit giliran sebelumnya membatalkan blok pemikiran.
   </Card>
 
   <Card title="Pemikiran adaptif" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">

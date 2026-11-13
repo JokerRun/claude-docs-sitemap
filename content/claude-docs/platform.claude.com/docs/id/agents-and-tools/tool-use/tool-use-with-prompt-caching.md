@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 6985fa724b1deb4c69734705069ab36fc2b5edc5f88509253801e8ede560b5ff
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: a03fd119127f76af4650116fb4a2d91a72233b6707143e6a31f4869324ddc5cf
 ---
 
 ---
@@ -55,7 +55,7 @@ Entri toolset [penggunaan komputer](https://platform.claude.com/docs/id/agents-a
 
 Alat yang ditangguhkan (deferred) tidak disertakan dalam prefiks prompt sistem. Ketika model menemukan alat yang ditangguhkan melalui [pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool), definisinya ditambahkan secara inline sebagai blok `tool_reference` dalam riwayat percakapan. Prefiks tidak tersentuh, sehingga caching prompt tetap terjaga.
 
-Ini berarti menambahkan alat secara dinamis melalui pencarian alat tidak merusak cache Anda. Anda dapat memulai percakapan dengan sekumpulan kecil alat yang selalu dimuat (di-cache), membiarkan model menemukan alat tambahan sesuai kebutuhan, dan mempertahankan cache hit yang sama di setiap giliran.
+Anda dapat memulai percakapan dengan sekumpulan kecil alat yang selalu dimuat (di-cache), membiarkan model menemukan alat tambahan sesuai kebutuhan, dan mempertahankan cache hit yang sama di setiap giliran.
 
 `defer_loading` juga bekerja secara independen dari konstruksi grammar untuk [mode strict](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use). Grammar dibangun dari daftar lengkap alat terlepas dari alat mana yang ditangguhkan, sehingga caching prompt dan caching grammar keduanya tetap terjaga ketika alat dimuat secara dinamis.
 
@@ -63,15 +63,15 @@ Ini berarti menambahkan alat secara dinamis melalui pencarian alat tidak merusak
 
 Cache mengikuti hierarki prefiks (`tools` → `system` → `messages`), sehingga perubahan pada satu tingkat membatalkan tingkat tersebut dan semua yang ada setelahnya:
 
-| Perubahan                                             | Membatalkan                                                                                                                                                                                                                                         |
-| ----------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Memodifikasi definisi alat                            | Seluruh cache (alat, sistem, pesan)                                                                                                                                                                                                                 |
-| Mengaktifkan/menonaktifkan pencarian web atau kutipan | Cache system dan messages                                                                                                                                                                                                                           |
-| Mengubah `tool_choice`                                | Cache messages                                                                                                                                                                                                                                      |
-| Mengubah `disable_parallel_tool_use`                  | Cache messages                                                                                                                                                                                                                                      |
-| Mengubah ada/tidaknya gambar                          | Cache messages                                                                                                                                                                                                                                      |
-| Mengubah parameter thinking                           | Cache messages selalu; cache alat dan system juga pada model yang merender konfigurasi thinking sebelum keduanya (lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching)) |
-| Mengubah `output_config.effort`                       | Sama seperti parameter thinking; menetapkan nilai default model secara eksplisit setara dengan menghilangkannya                                                                                                                                     |
+| Perubahan                                             | Membatalkan                                                                                                                                                                                                                                                                                        |
+| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Memodifikasi definisi alat                            | Seluruh cache (alat, sistem, pesan)                                                                                                                                                                                                                                                                |
+| Mengaktifkan/menonaktifkan pencarian web atau kutipan | Cache system dan messages                                                                                                                                                                                                                                                                          |
+| Mengubah `tool_choice`                                | Cache messages                                                                                                                                                                                                                                                                                     |
+| Mengubah `disable_parallel_tool_use`                  | Cache messages                                                                                                                                                                                                                                                                                     |
+| Mengubah ada/tidaknya gambar                          | Cache messages                                                                                                                                                                                                                                                                                     |
+| Mengubah parameter thinking                           | Cache messages selalu; cache alat dan system juga pada model yang merender konfigurasi thinking sebelum keduanya (lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching))                                                |
+| Mengubah `output_config.effort`                       | Dapat membatalkan cache messages, dan pada beberapa model juga cache alat dan system (lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching)); mengirimkan nilai default secara eksplisit setara dengan menghilangkannya |
 
 <Note>
   Jika Anda perlu memvariasikan `tool_choice` di tengah percakapan, pertimbangkan untuk menempatkan breakpoint cache sebelum titik variasi tersebut.

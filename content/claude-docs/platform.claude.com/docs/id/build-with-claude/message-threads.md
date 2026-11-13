@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/message-threads
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 600e79380ef7f59dcea81251f4b9bb7232f1d5de9be54b0a43f92456a5821b92
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 5d0c2cdb2d9c9ef84828fff30233044dcb5852c199a827199f381b11d7a8bdff
 ---
 
 ---
@@ -290,7 +290,7 @@ Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran k
     }'
 
   # Giliran 2: kirim hanya pesan baru. Atur message_id ke id respons giliran 1.
-  # Hilangkan system dan tools: thread sudah menyimpannya.
+  # Jangan sertakan system dan tools: thread sudah menyimpannya.
   curl -sS --fail-with-body https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21" \
@@ -321,7 +321,7 @@ Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran k
   YAML
 
   # Giliran 2: kirim hanya pesan baru. Atur message_id ke id respons giliran 1.
-  # Hilangkan system dan tools: thread sudah menyimpannya.
+  # Jangan sertakan system dan tools: thread sudah menyimpannya.
   ant beta:messages create --beta message-threads-2026-08-12 <<YAML
   model: claude-opus-5-5
   max_tokens: 1024
@@ -351,7 +351,7 @@ Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran k
   )
 
   # Giliran 2: kirim hanya pesan baru dan id respons giliran 1.
-  # Hilangkan system dan tools: thread sudah menyimpannya.
+  # Jangan sertakan system dan tools: thread sudah menyimpannya.
   second = client.beta.messages.create(
       model="claude-opus-5-5",
       max_tokens=1024,
@@ -383,7 +383,7 @@ Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran k
   });
 
   // Giliran 2: kirim hanya pesan baru dan id respons giliran 1.
-  // Hilangkan system dan tools: thread menyimpannya.
+  // Jangan sertakan system dan tools: thread sudah menyimpannya.
   const second = await client.beta.messages.create({
     model: "claude-opus-5-5",
     max_tokens: 1024,
@@ -421,7 +421,7 @@ Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran k
   );
 
   // Giliran 2: kirim hanya pesan baru dan id respons giliran 1.
-  // Hilangkan System dan Tools: thread sudah menyimpannya.
+  // Jangan sertakan System dan Tools: thread sudah menyimpannya.
   var second = await client.Beta.Messages.Create(
       new()
       {
@@ -470,7 +470,7 @@ Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran k
   }
 
   // Giliran 2: kirim hanya pesan baru dan id respons giliran 1.
-  // Hilangkan System dan Tools: thread sudah menyimpannya.
+  // Jangan sertakan System dan Tools: thread sudah menyimpannya.
   second, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
   	Model:        anthropic.ModelClaudeOpus5_5,
   	MaxTokens:    1024,
@@ -509,7 +509,7 @@ Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran k
   );
 
   // Giliran 2: kirim hanya pesan baru dan id respons giliran 1.
-  // Hilangkan system dan tools: thread sudah menyimpannya.
+  // Jangan sertakan system dan tools: thread sudah menyimpannya.
   var second = client.beta().messages().create(
       MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
@@ -543,7 +543,7 @@ Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran k
   );
 
   // Giliran 2: kirim hanya pesan baru dan id respons giliran 1.
-  // Hilangkan system dan tools: thread sudah menyimpannya.
+  // Jangan sertakan system dan tools: thread sudah menyimpannya.
   $second = $client->beta->messages->create(
       model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 1024,
@@ -577,7 +577,7 @@ Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran k
   )
 
   # Giliran 2: kirim hanya pesan baru dan id respons giliran 1.
-  # Hilangkan system_ dan tools: thread sudah menyimpannya.
+  # Jangan sertakan system_ dan tools: thread sudah menyimpannya.
   second = client.beta.messages.create(
     model: :"claude-opus-5-5",
     max_tokens: 1024,
@@ -611,8 +611,8 @@ Untuk mengubah field khusus create atau field tetap, mulai thread baru: kirim pe
 
 **Jika Anda mengubah `system` atau `tools`:** Pada model-model berikut, keluarkan semua blok `thinking` dan `redacted_thinking` dari percakapan yang Anda kirim dalam permintaan create baru: Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5. Model kemudian menjawab tanpa penalaran sebelumnya tersebut.
 
-* **Alasannya:** Mengubah `system` atau `tools` membuat blok `thinking` dan `redacted_thinking` yang sudah ada dalam percakapan menjadi tidak valid. Lihat [Apa yang dihitung sebagai edit](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#what-counts-as-an-edit).
-* **Jika Anda tetap mengirim blok tersebut:** Permintaan create dapat mengembalikan error 400. Apakah hal itu terjadi bergantung pada model dan akun Anda. Lihat [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement) dan [Apa yang dilakukan API terhadap blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior).
+* **Alasannya:** Mengubah `system` atau `tools` membuat blok `thinking` dan `redacted_thinking` yang sudah ada dalam percakapan menjadi tidak valid. Lihat [Apa yang dihitung sebagai perubahan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#what-counts-as-an-edit).
+* **Jika Anda tetap mengirim blok tersebut:** Permintaan create dapat menerima error 400 (lihat [Blok pemikiran yang terikat ke percakapan lain](https://platform.claude.com/docs/id/api/errors#thinking-block-conversation-mismatch)). Lihat [Model mana yang menjalankan pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#enforcement).
 
 Kirim hanya pesan-pesan baru pada permintaan continue. API tidak memeriksanya terhadap pesan-pesan yang sudah dimilikinya. Pesan yang Anda kirim ulang dapat muncul dua kali dalam percakapan, atau permintaan dapat mengembalikan error. Misalnya, permintaan continue yang dimulai dengan respons sebelumnya akan mengembalikan error.
 
@@ -639,7 +639,7 @@ Thread berfungsi dengan [streaming](https://platform.claude.com/docs/id/build-wi
 
 Jika stream dari permintaan continue terputus sebelum `message_stop`, kirim ulang permintaan continue yang sama. Jika permintaan tersebut mengembalikan error `thread_already_continued` atau `thread_continue_in_flight`, putar ulang percakapan lengkap dalam permintaan create baru.
 
-Koneksi Anda mungkin terputus saat server masih menghasilkan respons, atau setelah server menyimpannya. Itulah sebabnya API dapat menolak percobaan ulang. Melakukan replay selalu aman.
+Koneksi Anda mungkin terputus saat server masih menghasilkan respons, atau setelah server menyimpannya. Itulah sebabnya API dapat menolak percobaan ulang. Memutar ulang salinan persis Anda aman.
 
 Helper thread SDK tidak mencoba ulang permintaan continue setelah stream terputus. Lihat [Cara kerja helper SDK](https://platform.claude.com/docs/id/build-with-claude/message-threads#sdk-helper-handles).
 
@@ -667,7 +667,7 @@ Ketika respons memiliki `stop_reason: "refusal"`, jangan lanjutkan thread. API m
 
 ### Menggunakan fallback dengan thread
 
-[Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) tersedia dengan thread di Claude API. Tentukan saat Anda membuat thread: kirim `fallbacks` pada setiap permintaan dalam thread, atau tidak sama sekali. Nilai `fallbacks` dapat berubah antar permintaan. Permintaan continue yang menambahkan atau menghapus `fallbacks` mengembalikan error 400 dengan kode `thread_fingerprint_mismatch`.
+[Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) tersedia dengan thread di Claude API. Tentukan saat Anda membuat thread: kirim `fallbacks` pada setiap permintaan dalam thread, atau tidak sama sekali. Nilai `fallbacks` dapat berubah antar permintaan. Permintaan continue yang menambahkan `fallbacks` atau tidak lagi menyertakannya mengembalikan error 400 dengan kode `thread_fingerprint_mismatch`.
 
 Thread mempertahankan satu model, sehingga API tidak menyimpan giliran yang ditulis oleh model fallback. Anda menerima respons seperti biasa, tetapi Anda tidak dapat melanjutkan dari `id`-nya. Setelah setiap respons, ikuti langkah-langkah berikut:
 
@@ -686,7 +686,7 @@ Thread mempertahankan satu model, sehingga API tidak menyimpan giliran yang ditu
 
 ## Memadatkan percakapan
 
-Thread bersifat append-only, sehingga Anda tidak dapat mengganti giliran-giliran sebelumnya dengan ringkasan. Untuk memadatkan percakapan, mulai thread baru dari ringkasan tersebut. Tulis ringkasan dalam kode Anda, lalu kirimkan sebagai pesan biasa dalam permintaan create baru, dengan `system` dan `tools`. [Compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand) tidak tersedia dengan thread (lihat [Fitur yang tidak didukung oleh thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#unsupported)).
+Thread bersifat append-only (hanya dapat ditambahkan), sehingga Anda tidak dapat mengganti giliran-giliran sebelumnya dengan ringkasan. Untuk memadatkan percakapan, mulai thread baru dari ringkasan tersebut. Tulis ringkasan dalam kode Anda, lalu kirimkan sebagai pesan biasa dalam permintaan create baru, dengan `system` dan `tools`. [Compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand) tidak tersedia dengan thread (lihat [Fitur yang tidak didukung oleh thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#unsupported)).
 
 ## Cara kerja helper SDK
 
@@ -740,7 +740,7 @@ Di C#, Go, Java, dan PHP, setelah penolakan `thread.LastMessage` (go: `thread.La
 
 **Melakukan fork.** Fork menyalin percakapan, field, dan opsi permintaan, serta tidak mengirimkan apa pun. Giliran pertamanya mengirimkan percakapan lengkap dalam permintaan create baru, dan kedua thread tersebut independen setelahnya. Fork selalu dimulai dari seluruh percakapan, bukan dari respons sebelumnya.
 
-**Params.** Params menyimpan field milik helper dan seluruh percakapan. Teruskan params tersebut ke metode yang membuat helper untuk memulai thread baru, misalnya dengan `system` yang berbeda (lihat [Apa yang dikirim pada setiap permintaan](https://platform.claude.com/docs/id/build-with-claude/message-threads#what-to-send)), atau dengan `messages` yang dipangkas untuk membuang giliran-giliran berikutnya. Thread yang Anda mulai dari params mengirim setiap pesan persis seperti yang Anda berikan, termasuk breakpoint `cache_control`, jadi tetaplah dalam batas 4 (lihat [Caching prompt pada thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#prompt-caching)). Kecuali di Ruby, params tidak menyertakan opsi permintaan, jadi teruskan opsi tersebut lagi.
+**Params.** Params menyimpan field milik helper dan seluruh percakapan. Teruskan params tersebut ke metode yang membuat helper untuk memulai thread baru, misalnya dengan `system` yang berbeda (lihat [Apa yang dikirim pada setiap permintaan](https://platform.claude.com/docs/id/build-with-claude/message-threads#what-to-send)), atau dengan `messages` yang dipangkas agar tidak menyertakan giliran-giliran berikutnya. Thread yang Anda mulai dari params mengirim setiap pesan persis seperti yang Anda berikan, termasuk breakpoint `cache_control`, jadi tetaplah dalam batas 4 (lihat [Caching prompt pada thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#prompt-caching)). Kecuali di Ruby, params tidak menyertakan opsi permintaan, jadi teruskan opsi tersebut lagi.
 
 **Output terstruktur.** Berikan format output saat Anda membuat helper. Giliran berikutnya tidak dapat mengubahnya. Cara Anda mendapatkan hasil yang telah di-parse bergantung pada SDK:
 

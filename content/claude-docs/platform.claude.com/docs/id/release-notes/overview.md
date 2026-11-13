@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 463d1197cc06676e88010a3abf0686977c71db2c8063c043851f9c11de131a86
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 144d169867d6644a31b45e2c315887edafec6c913dec42a49ac1300a3fc0f0a1
 ---
 
 ---
@@ -18,6 +18,10 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
   Untuk pembaruan Claude Code, lihat [CHANGELOG.md lengkap](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) di repositori `claude-code`.
 </Tip>
+
+### 12 November 2026
+
+* Kami telah meluncurkan [Claude Managed Agents yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted). Anda menjalankan seluruh layanan Managed Agents, bukan hanya [sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes), di infrastruktur Anda sendiri, dan Anda menyimpan agen, sesi, serta riwayat sesi di sana. Server mengirimkan permintaan model ke penyedia yang Anda pilih, yaitu Anthropic secara default. Untuk meminta akses, hubungi tim akun Anthropic Anda.
 
 ### 9 November 2026
 

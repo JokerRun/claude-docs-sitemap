@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 76049554ba98283fe75a82eebd0fe194a14bd7070b0948e8008751200fb8104a
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 2ce170ad534c03ed6bcbaaf99af5623a56d5d4f73735ef7b7a69586dd678b8b4
 ---
 
 ---
@@ -31,13 +31,13 @@ Kerjakan grup-grup ini secara berurutan dan berhenti setelah grup yang menyebutk
 
 1. Ganti ID model dengan ID Claude Haiku 5.5 untuk platform Anda. Lihat [Gunakan ID model Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#use-the-claude-haiku-5-5-model-id).
 2. Hitung ulang prompt Anda, dan tinjau kembali batas `max_tokens` serta estimasi biaya, karena teks yang sama dihitung sebagai lebih banyak token dan gambar berukuran besar dihitung sebagai lebih banyak token visual. Lihat [Hitung ulang token](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#recount-tokens).
-3. Jika permintaan Anda mengirimkan `thinking: {"type": "enabled", "budget_tokens": N}`, ubah `thinking` menjadi `{"type": "adaptive"}`. Lihat [Konfigurasikan thinking](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#configure-thinking).
-4. Jika kode Anda membaca blok konten pertama sebagai jawaban, pilih blok berdasarkan `type` sebagai gantinya. Lihat [Konfigurasikan thinking](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#configure-thinking).
+3. Jika permintaan Anda mengirimkan `thinking: {"type": "enabled", "budget_tokens": N}`, ubah `thinking` menjadi `{"type": "adaptive"}`. Lihat [Konfigurasikan pemikiran](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#configure-thinking).
+4. Jika kode Anda membaca blok konten pertama sebagai jawaban, pilih blok berdasarkan `type` sebagai gantinya. Lihat [Konfigurasikan pemikiran](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#configure-thinking).
 5. Hapus `temperature`, `top_p`, dan `top_k` dari permintaan Anda. Lihat [Hapus parameter sampling](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#remove-sampling-parameters).
-6. Jika permintaan Anda mengakhiri `messages` dengan giliran assistant agar dilanjutkan oleh model, akhiri dengan giliran user sebagai gantinya. Lihat [Ganti prefill assistant](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#replace-assistant-prefill).
+6. Jika permintaan Anda mengakhiri `messages` dengan giliran asisten agar dilanjutkan oleh model, akhiri dengan giliran pengguna sebagai gantinya. Lihat [Ganti prefill asisten](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#replace-assistant-prefill).
 7. Jika Anda menggunakan fitur penggunaan komputer, ganti `computer_20250124` dengan toolset `computer_toolset_20260801`. Di Amazon Bedrock, `computer_20251124` juga berfungsi. Lihat [Pindahkan penggunaan komputer ke toolset](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset).
-8. Jika Anda memutar ulang percakapan yang tersimpan melalui akun yang berbeda, putar ulang masing-masing melalui akun yang menghasilkannya. Lihat [Putar ulang blok thinking melalui akun yang menghasilkannya](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#replay-thinking-blocks-through-the-producing-account).
-9. Jika kode Anda mengubah `system`, `tools`, atau `messages` sebelumnya di antara permintaan dalam sebuah percakapan dan mengirimkan kembali blok thinking, pertahankan percakapan agar bersifat append-only (hanya ditambahkan). Lihat [Pertahankan giliran sebelumnya tanpa perubahan](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#keep-earlier-turns-unchanged).
+8. Jika Anda memutar ulang percakapan yang tersimpan melalui akun yang berbeda, putar ulang masing-masing melalui akun yang menghasilkannya. Lihat [Putar ulang blok pemikiran melalui akun yang menghasilkannya](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#replay-thinking-blocks-through-the-producing-account).
+9. Jika kode Anda mengubah `system`, `tools`, atau `messages` sebelumnya di antara permintaan dalam sebuah percakapan dan mengirimkan kembali blok pemikiran, pertahankan percakapan agar bersifat append-only (hanya ditambahkan). Lihat [Pertahankan giliran sebelumnya tidak berubah](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#keep-earlier-turns-unchanged).
 10. Tangani `stop_reason: "refusal"`. Claude Haiku 5.5 menjalankan pengklasifikasi keamanan yang dapat menolak permintaan, dan model ini tidak memiliki fallback di sisi server. Lihat [Penolakan safeguard](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#safeguard-refusals).
 
 Jika organisasi Anda memiliki komitmen [Priority Tier](https://platform.claude.com/docs/id/api/service-tiers#supported-models) pada Claude Haiku 4.5, rencanakan kapasitas secara terpisah: Priority Tier tidak didukung pada Claude Haiku 5.5.
@@ -110,7 +110,7 @@ Pemikiran adaptif aktif secara default, sehingga respons dapat dimulai dengan sa
 
 Token pemikiran dihitung terhadap `max_tokens`, sehingga permintaan dengan `max_tokens` kecil dapat berhenti dengan `stop_reason: "max_tokens"` setelah blok `thinking` dan sebelum ada teks apa pun. Jika Anda mengatur `max_tokens` kecil untuk Claude Haiku 4.5, naikkan untuk memberi ruang bagi pemikiran, atau pilih tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang lebih rendah.
 
-Blok pemikiran dari giliran asisten sebelumnya tetap berada dalam konteks dan dihitung sebagai token input, sedangkan Claude Haiku 4.5 hanya menyimpan blok dari giliran terakhir. Karena itu, percakapan multi-giliran membawa lebih banyak token input daripada yang dapat dijelaskan oleh perubahan tokenizer saja. Untuk menghapus blok yang lebih lama, gunakan [pembersihan blok pemikiran](https://platform.claude.com/docs/id/build-with-claude/context-editing#thinking-block-clearing). Lihat [Preservasi blok pemikiran berdasarkan model](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-block-preservation-by-model).
+Blok pemikiran dari giliran asisten sebelumnya tetap berada dalam konteks dan dihitung sebagai token input, sedangkan Claude Haiku 4.5 hanya mempertahankan blok dari giliran terakhir. Karena itu, percakapan multi-giliran membawa lebih banyak token input daripada yang dapat dijelaskan oleh perubahan tokenizer saja. Untuk menghapus blok yang lebih lama, gunakan [pembersihan blok pemikiran](https://platform.claude.com/docs/id/build-with-claude/context-editing#thinking-block-clearing). Lihat [Preservasi blok pemikiran berdasarkan model](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-block-preservation-by-model).
 
 Secara default, Claude Haiku 5.5 mengembalikan setiap blok `thinking` dengan field `thinking` kosong dan hanya `signature`, sedangkan Claude Haiku 4.5 mengembalikan pemikiran yang diringkas. Untuk menerima pemikiran yang diringkas, atur `thinking: {"type": "adaptive", "display": "summarized"}`.
 
@@ -121,11 +121,11 @@ Percakapan yang Anda alihkan dari Claude Haiku 4.5 ke Claude Haiku 5.5 tetap mem
 | Peralihan                                                                                                                         | Mempertahankan penalarannya                                                |
 | --------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | Ke Claude Haiku 5.5, dari Claude Haiku 4.5 atau sebelumnya, Claude Sonnet 5 atau sebelumnya, atau Claude Opus 4.8 atau sebelumnya | Ya                                                                         |
-| Ke Claude Haiku 5.5, dari model lain mana pun                                                                                     | Tidak. API membuang blok pemikiran model tersebut tanpa error.             |
+| Ke Claude Haiku 5.5, dari model lain mana pun                                                                                     | Tidak. API tidak menyertakan blok pemikiran model tersebut, tanpa error.   |
 | Dari Claude Haiku 5.5, ke Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.2, atau Claude Mythos 5.2                            | Ya, hanya di Claude API dan Claude Models on Google Cloud (Google managed) |
 | Dari Claude Haiku 5.5, ke model lain mana pun                                                                                     | Tidak                                                                      |
 
-Lihat [Beralih model di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models). Untuk peralihan yang tidak melibatkan Claude Haiku 5.5, lihat [Peralihan model mana yang mempertahankan penalaran di Claude API](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#which-model-switches-keep-reasoning).
+Lihat [Beralih model dan kembali lagi](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models). Untuk peralihan yang tidak melibatkan Claude Haiku 5.5, lihat [Peralihan model mana yang mempertahankan penalaran di Claude API](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#which-model-switches-keep-reasoning).
 
 ## Hapus parameter sampling
 
@@ -144,7 +144,7 @@ Prefill adalah giliran asisten terakhir dalam `messages` yang dilanjutkan oleh m
 
 Claude Haiku 4.5 mendukung [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) melalui alat `computer_20250124`, dengan header beta `computer-use-2025-01-24`. Claude Haiku 5.5 mendukung penggunaan komputer melalui toolset `computer_toolset_20260801`. Permintaan ke Claude Haiku 5.5 yang mendeklarasikan `computer_20250124` akan mengembalikan error 400.
 
-Untuk memindahkan integrasi ke toolset, hapus header beta `computer-use-2025-01-24` dan ganti entri `tools` dengan `{"type": "computer_toolset_20260801"}`. Kemudian lakukan perubahan permintaan dan agent loop lainnya di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Lakukan dispatch berdasarkan `name` dan `toolset_name` dari setiap blok `tool_use` anggota, bukan berdasarkan `input.action`. Tangani setiap blok tersebut dalam satu giliran dan sertakan kembali `toolset_name` pada hasil. Zoom aktif secara default di toolset; jika lingkungan Anda tidak mengimplementasikannya, tambahkan `"configs": {"zoom": {"enabled": false}}`. Jika Anda mengirimkan header beta `fine-grained-tool-streaming-2025-05-14`, hapus header tersebut. Bila digunakan bersama entri toolset, header itu akan mengembalikan error 400.
+Untuk memindahkan integrasi ke toolset, jangan sertakan lagi header beta `computer-use-2025-01-24` dan ganti entri `tools` dengan `{"type": "computer_toolset_20260801"}`. Kemudian lakukan perubahan permintaan dan agent loop lainnya di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Lakukan dispatch berdasarkan `name` dan `toolset_name` dari setiap blok `tool_use` anggota, bukan berdasarkan `input.action`. Tangani setiap blok tersebut dalam satu giliran dan sertakan kembali `toolset_name` pada hasil. Zoom aktif secara default di toolset; jika lingkungan Anda tidak mengimplementasikannya, tambahkan `"configs": {"zoom": {"enabled": false}}`. Jika Anda mengirimkan header beta `fine-grained-tool-streaming-2025-05-14`, hapus header tersebut. Bila digunakan bersama entri toolset, header itu akan mengembalikan error 400.
 
 Di Amazon Bedrock, Claude Haiku 5.5 juga menerima alat `computer_20251124` dengan header beta `computer-use-2025-11-24`.
 
@@ -152,11 +152,15 @@ Claude Haiku 5.5 mendukung [alat penggunaan browser](https://platform.claude.com
 
 ## Putar ulang blok pemikiran melalui akun yang menghasilkannya
 
-Blok pemikiran dari Claude Haiku 5.5 hanya berfungsi di akun yang menghasilkannya atau di akun yang terhubung dengannya. Ketika akun lain mengirimkan salah satu blok ini, API akan membuang blok tersebut sebelum model menerimanya, dan permintaan tetap berhasil tanpa penalaran tersebut. Hal ini memengaruhi kode yang menyimpan percakapan dan memutarnya ulang melalui akun yang berbeda, misalnya layanan yang melayani beberapa pelanggan dari satu penyimpanan percakapan. Putar ulang setiap percakapan melalui akun yang menghasilkannya. Lihat [Blok pemikiran tetap terikat dengan akun yang menghasilkannya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking).
+Blok pemikiran dari Claude Haiku 5.5 hanya berfungsi di akun yang menghasilkannya atau di akun yang terhubung dengannya. Ketika akun lain mengirimkan salah satu blok ini, API tidak menyertakan blok tersebut sebelum model menerimanya, dan permintaan tetap berhasil tanpa penalaran tersebut. Hal ini memengaruhi kode yang menyimpan percakapan dan memutarnya ulang melalui akun yang berbeda, misalnya layanan yang melayani beberapa pelanggan dari satu penyimpanan percakapan. Putar ulang setiap percakapan melalui akun yang menghasilkannya. Lihat [Akun dan platform cloud](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking).
 
 ## Pertahankan giliran sebelumnya tidak berubah
 
-Blok pemikiran Claude Haiku 5.5 hanya tetap valid selama semua yang dikirim sebelumnya tidak berubah: prompt `system`, `tools`, dan setiap pesan sebelumnya. Claude Haiku 4.5 tidak menjalankan pemeriksaan prefiks. Pertahankan percakapan dalam bentuk append-only (hanya ditambahkan). Permintaan yang mengirimkan kembali blok setelah perubahan semacam itu, dengan `thinking.block_binding.prefix_mismatch_behavior` tidak diatur, akan mendapatkan error 400. Hal ini berlaku untuk akun yang dibuat pada atau setelah 31 Agustus 2026, 00:00 UTC. Pada akun yang dibuat sebelum tanggal tersebut, permintaan mungkin mendapatkan error tersebut, mungkin juga tidak. Untuk perubahan yang memicu error dan apa yang harus dilakukan sebagai gantinya, lihat [Siapa yang terdampak oleh pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#who-is-affected).
+Pertahankan percakapan agar bersifat append-only (hanya ditambahkan). Blok pemikiran Claude Haiku 5.5 hanya tetap valid selama semua yang dikirim sebelumnya tidak berubah: prompt `system`, `tools`, dan setiap pesan sebelumnya.
+
+Gagal dalam [pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#prefix-check) mungkin menghasilkan atau mungkin tidak menghasilkan [error 400](https://platform.claude.com/docs/id/api/errors#thinking-block-conversation-mismatch). Untuk mengidentifikasi dan menangani kedua kasus tersebut, lihat [Pemeriksaan prefiks pada blok pemikiran](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks).
+
+Untuk perubahan yang memicu error dan apa yang harus dilakukan sebagai gantinya, lihat [Jika kode Anda mengubah prompt sistem, alat, atau riwayat](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#what-to-check).
 
 ## Migrasi ke Claude Haiku 5.5 dari Claude Haiku 3.5 dan model Haiku sebelumnya
 

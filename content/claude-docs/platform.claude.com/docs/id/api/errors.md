@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: a44d5c569773dcb1c0bf93cf4300abec300c6b2a0eb6933cbb660d98e5dbc39e
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: e1424a7b59225a52129fff982de5a3a92cca13552c6ad976f62a4de57a0819fe
 ---
 
 ---
@@ -15,7 +15,7 @@ description: Pahami kode status HTTP, bentuk respons error, dan ID permintaan ya
 
 API mengikuti format kode error HTTP yang dapat diprediksi:
 
-* 400 - `invalid_request_error`: Terdapat masalah pada format atau konten permintaan Anda. Tipe error ini juga dapat digunakan untuk kode status 4XX lain yang tidak tercantum di bagian ini. API juga mengembalikan 400 ketika penggunaan mencapai [batas pengeluaran yang Anda tetapkan](https://platform.claude.com/docs/id/api/rate-limits#setting-your-own-spend-limit) untuk organisasi atau workspace, kecuali batas pada [workspace Claude Code](https://platform.claude.com/docs/id/manage-claude/workspaces#claude-code-workspace), yang dapat mengembalikan 429 sebagai gantinya.
+* 400 - `invalid_request_error`: Terdapat masalah pada format atau konten permintaan Anda. API mungkin juga menggunakan tipe error ini untuk kode status 4XX lain yang tidak tercantum di bagian ini. API juga mengembalikan 400 ketika penggunaan mencapai [batas pengeluaran yang Anda tetapkan](https://platform.claude.com/docs/id/api/rate-limits#setting-your-own-spend-limit) untuk organisasi atau workspace. Batas pada [workspace Claude Code](https://platform.claude.com/docs/id/manage-claude/workspaces#claude-code-workspace) merupakan pengecualian: batas tersebut dapat mengembalikan 429 sebagai gantinya. Jika pesannya menyebutkan masalah pada permintaan Anda, cari masalah tersebut di [Error validasi umum](https://platform.claude.com/docs/id/api/errors#common-validation-errors).
 
 * 401 - `authentication_error`: Terdapat masalah pada [kunci API](https://platform.claude.com/docs/id/get-api-key) Anda (misalnya, formatnya salah, telah dicabut, atau kedaluwarsa; lihat [Kedaluwarsa kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration)). Di Claude Platform on AWS, ini juga dapat menunjukkan masalah pada kredensial AWS atau tanda tangan SigV4 Anda.
 
@@ -31,7 +31,7 @@ API mengikuti format kode error HTTP yang dapat diprediksi:
 
 * 413 - `request_too_large`: Permintaan melebihi jumlah byte maksimum yang diizinkan. Lihat [Batas ukuran permintaan](https://platform.claude.com/docs/id/api/errors#request-size-limits) untuk batas maksimum per endpoint.
 
-* 429 - `rate_limit_error`: Organisasi Anda telah mencapai [“rate limit” (batas laju)](https://platform.claude.com/docs/id/api/rate-limits), mencapai batas pengeluaran bulanan tingkat penggunaannya, atau mencapai batas pengeluaran pada workspace Claude Code. Error 429 akibat batas pengeluaran tingkat tidak memiliki header `retry-after` dan akan terus gagal hingga akses dipulihkan; lihat [Mencapai batas pengeluaran Anda](https://platform.claude.com/docs/id/api/rate-limits#reaching-your-spend-cap) untuk cara mengenalinya.
+* 429 - `rate_limit_error`: Organisasi Anda telah mencapai [“rate limit” (batas laju)](https://platform.claude.com/docs/id/api/rate-limits), mencapai batas pengeluaran bulanan tingkat penggunaannya, atau mencapai batas pengeluaran pada workspace Claude Code. Error 429 akibat batas pengeluaran tingkat tidak memiliki header `retry-after` dan akan terus gagal hingga akses dipulihkan; lihat [Mencapai batas pengeluaran Anda](https://platform.claude.com/docs/id/api/rate-limits#reaching-your-spend-cap) untuk cara mengenalinya. Peningkatan penggunaan yang tajam juga dapat menyebabkan error 429 meskipun Anda masih berada di bawah batas laju Anda; lihat [“Ramp limits” (batas ramp)](https://platform.claude.com/docs/id/api/rate-limits#ramp-limits).
 
 * 500 - `api_error`: Terjadi error tak terduga di dalam sistem Anthropic. Coba ulang permintaan dengan “exponential backoff” (penundaan eksponensial); jika error berlanjut, hubungi dukungan dengan menyertakan [ID permintaan](https://platform.claude.com/docs/id/api/errors#request-id). Jika tipe error-nya justru `timeout_error`, lihat entri 504.
 
@@ -41,8 +41,6 @@ API mengikuti format kode error HTTP yang dapat diprediksi:
 
   <Warning>
     Error 529 dapat terjadi ketika API mengalami lalu lintas tinggi di seluruh pengguna.
-
-    Dalam kasus yang jarang terjadi, jika organisasi Anda mengalami peningkatan penggunaan yang tajam, Anda mungkin melihat error 429 karena batas akselerasi pada API. Untuk menghindari batas akselerasi, tingkatkan lalu lintas Anda secara bertahap dan pertahankan pola penggunaan yang konsisten.
   </Warning>
 
 SDK resmi secara otomatis mencoba ulang kegagalan sementara (seperti error koneksi, batas laju, dan error server 5xx) dengan exponential backoff, dua kali secara default, dengan mematuhi header `retry-after` jika ada. Klien SDK menerima `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries()`; csharp: `MaxRetries`; go: `option.WithMaxRetries()`) untuk mengonfigurasi atau menonaktifkan perilaku ini.
@@ -77,7 +75,7 @@ API selalu mengembalikan error sebagai JSON, dengan objek `error` tingkat atas y
 }
 ```
 
-Sesuai dengan kebijakan [pembuatan versi](https://platform.claude.com/docs/id/api/versioning), nilai dalam objek-objek ini dapat bertambah, dan nilai `type` mungkin akan berkembang seiring waktu.
+Berdasarkan [kebijakan pembuatan versi API](https://platform.claude.com/docs/id/api/versioning), nilai dalam objek-objek ini dapat bertambah, dan nilai `type` baru dapat muncul.
 
 ## Tipe error SDK
 
@@ -453,13 +451,13 @@ Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-clau
 
 ### Blok thinking tidak dapat dimodifikasi
 
-Jika pesan asisten terbaru berisi blok `thinking` atau `redacted_thinking` yang diedit, diurutkan ulang, disaring, atau direkonstruksi sebelum dikirim kembali ke API, permintaan akan mengembalikan 400 `invalid_request_error`. Pesan error dimulai dengan posisi blok yang bermasalah (misalnya, `messages.1.content.0`) dan berisi:
+Jika blok thinking dalam permintaan tidak cocok dengan yang dikembalikan oleh API, permintaan dapat mendapatkan 400 `invalid_request_error`. Pesan error dimulai dengan posisi blok yang bermasalah (misalnya, `messages.1.content.0`) dan berisi:
 
 ```text wrap
 `thinking` or `redacted_thinking` blocks in the latest assistant message cannot be modified. These blocks must remain as they were in the original response.
 ```
 
-Dengan “tool use” (penggunaan alat), kirim kembali setiap blok `thinking` dan `redacted_thinking` dari giliran asisten persis seperti yang diterima, termasuk blok yang field `thinking`-nya kosong. Jika aplikasi Anda menyaring blok konten berdasarkan tipe sebelum mengirim ulang, sertakan `thinking` dan `redacted_thinking`. Lihat [perbaikan untuk blok thinking yang dimodifikasi](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-blocks-modified) di Pemecahan masalah thinking, serta [Mempertahankan blok thinking](https://platform.claude.com/docs/id/build-with-claude/thinking#preserving-thinking-blocks) dan [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking).
+Dengan “tool use” (penggunaan alat), kirim kembali setiap blok `thinking` dan `redacted_thinking` dari giliran asisten persis seperti yang diterima, termasuk blok yang field `thinking`-nya kosong. Jika aplikasi Anda menyaring blok konten berdasarkan tipe sebelum mengirim ulang, sertakan `thinking` dan `redacted_thinking`. Ini adalah kegagalan yang berbeda dari [pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#prefix-check), yang error-nya menyatakan bahwa sebuah blok terikat ke percakapan lain. Mengatur `prefix_mismatch_behavior` mungkin tidak mengatasinya. Lihat [perbaikan untuk blok thinking yang dimodifikasi](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-blocks-modified) di Pemecahan masalah thinking.
 
 ### Pemikiran diperpanjang tidak didukung
 
@@ -469,7 +467,7 @@ Model Claude 4.7 dan yang lebih baru tidak mendukung “extended thinking” (pe
 "thinking.type.enabled" is not supported for this model. Use "thinking.type.adaptive" and "output_config.effort" to control thinking behavior.
 ```
 
-Sebagai gantinya, gunakan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking). [Migrasi ke pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#migrating-to-adaptive-thinking) menunjukkan pemetaan parameternya, dan Pemecahan masalah thinking mencakup [perbaikan berbasis gejala untuk error pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-enabled).
+Sebagai gantinya, gunakan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking). Untuk pemetaan parameternya, lihat [Migrasi ke pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#migrating-to-adaptive-thinking). Untuk memperbaiki error berdasarkan gejalanya, lihat [Error 400 menyatakan `"thinking.type.enabled"` tidak didukung](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-type-enabled).
 
 ### Pemikiran adaptif tidak didukung
 
@@ -501,7 +499,7 @@ Pada Claude Sonnet 5.5, thinking tidak dapat diatur ke `disabled`. Gunakan `thin
 To turn thinking off on this model, send "thinking": {"type": "between_tools"} instead of {"type": "disabled"}. The model does not think before responding. The short updates it writes between tool calls come back as thinking blocks.
 ```
 
-Pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `xhigh` atau `max`, permintaan dengan `between_tools` juga mengembalikan 400 `invalid_request_error`. Pesannya menyatakan bahwa thinking dinonaktifkan karena `between_tools` tidak memiliki thinking di awal:
+Pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `xhigh` atau `max`, permintaan dengan `between_tools` juga mengembalikan 400 `invalid_request_error`. Pesan error menyatakan bahwa thinking dinonaktifkan karena `between_tools` tidak memiliki thinking di awal:
 
 ```text wrap
 output_config.effort 'xhigh' is not supported when thinking is disabled on this model. Use effort 'high' or below, or enable thinking.
@@ -547,17 +545,22 @@ Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, dan Cla
 
 Claude API mengembalikan pesan yang sama untuk jenis alat yang didefinisikan Anthropic apa pun yang tidak didukung oleh model yang diminta. Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 mendukung penggunaan komputer melalui toolset `computer_toolset_20260801`. Deklarasikan `{"type": "computer_toolset_20260801"}` tanpa header beta dan perbarui loop agen Anda seperti yang dijelaskan di [Migrasi dari `computer_20251124`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#migrate-from-computer-20251124). Untuk beralih dari `computer_20250124`, lihat [Pindahkan penggunaan komputer ke toolset](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#computer-use-toolset) di panduan migrasi Claude Haiku 5.5.
 
-Di Amazon Bedrock, Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 juga menerima alat `computer_20251124` dengan header beta `computer-use-2025-11-24`. Dengan InvokeModel API dari Amazon Bedrock, kirim `computer-use-2025-11-24` dalam array `anthropic_beta` pada body permintaan alih-alih di header. Untuk API tersebut, lihat [Claude di Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy). [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions) mencantumkan model yang digunakan dengan setiap versi sebelumnya.
+Di Amazon Bedrock, Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 juga menerima alat `computer_20251124` dengan header beta `computer-use-2025-11-24`. Dengan InvokeModel API dari Amazon Bedrock, kirim `computer-use-2025-11-24` dalam array `anthropic_beta` pada body permintaan alih-alih di header. Untuk API tersebut, lihat [Claude di Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy). Untuk model yang digunakan dengan setiap versi sebelumnya, lihat [Versi alat sebelumnya](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#earlier-tool-versions).
 
 ### Blok thinking yang terikat ke percakapan yang berbeda
 
-Error 400 `invalid_request_error` ini biasanya berarti blok thinking yang Anda kirim kembali gagal dalam pemeriksaan prefiks: sesuatu sebelum blok tersebut berubah setelah blok itu dihasilkan, seperti prompt `system`, `tools`, atau pesan sebelumnya. Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 menjalankan pemeriksaan ini. Untuk permintaan yang tidak mengatur `prefix_mismatch_behavior`, [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement) menunjukkan permintaan mana yang mendapatkan error ini. Pesan error diawali dengan posisi blok pertama yang gagal:
+Error 400 `invalid_request_error` ini berarti blok thinking yang Anda kirim kembali gagal dalam [pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#prefix-check). Bandingkan `system`, `tools`, dan pesan-pesan sebelum blok tersebut dengan yang Anda kirim ketika model menghasilkannya. Untuk mengetahui perubahan mana yang berpengaruh, lihat [Apa yang dihitung sebagai perubahan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#what-counts-as-an-edit). Pesan error diawali dengan posisi blok pertama yang gagal dalam pemeriksaan prefiks:
 
 ```text wrap
 messages.{i}.content.{j}: Invalid `signature` in `thinking` block. The block is bound to a different conversation. Remove the block, or set `thinking.block_binding.prefix_mismatch_behavior` to "drop_block".
 ```
 
-Tanpa header beta `thinking-binding-controls-2026-08-01`, pesan tersebut juga menyebutkan header itu. Mengirim ulang riwayat yang sama akan gagal dengan cara yang sama, bahkan setelah Anda memperbaiki kode yang melakukan pengeditan. Untuk melanjutkan percakapan, kirim header beta dengan `prefix_mismatch_behavior: "drop_block"` pada percobaan ulang dan pada setiap permintaan berikutnya. Alternatifnya, hapus blok yang disebutkan oleh error tersebut serta setiap blok `thinking` dan `redacted_thinking` setelahnya, lalu coba ulang sekali. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`, jadi dengan pengaturan thinking lainnya, hapus blok-blok tersebut. Untuk mencegah percakapan baru gagal, pertahankan riwayat agar hanya bersifat append-only (hanya ditambahkan). Blok dari model yang tidak dapat dibaca oleh model target akan dibuang alih-alih ditolak. Lihat [Menjaga prefiks tetap tidak berubah](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check) dan [perbaikan untuk tanda tangan blok thinking yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-block-signature) di Pemecahan masalah thinking.
+Mengirim ulang riwayat yang sama akan gagal dengan cara yang sama. Memperbaiki kode yang melakukan pengeditan tidak membantu percakapan ini jika pengeditan tersebut masih ada dalam riwayatnya. Untuk melanjutkan, lakukan salah satu dari berikut ini:
+
+* Kirim header beta `thinking-binding-controls-2026-08-01` dan atur `thinking.block_binding.prefix_mismatch_behavior` ke `"drop_block"`, pada percobaan ulang dan pada setiap permintaan berikutnya dalam percakapan tersebut. Pada Claude Sonnet 5.5 dan Claude Haiku 5.5, `block_binding` hanya berfungsi dengan `thinking: {"type": "adaptive"}`.
+* Hapus blok yang disebutkan oleh error tersebut serta setiap blok `thinking` dan `redacted_thinking` setelahnya, dalam pesan tersebut dan dalam setiap pesan berikutnya. Coba ulang, dan jangan sertakan blok yang dihapus dalam permintaan berikutnya.
+
+Untuk mencegah percakapan baru gagal, [pertahankan riwayat agar bersifat append-only (hanya ditambahkan)](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#what-to-check). Lihat [perbaikan untuk tanda tangan blok thinking yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#error-thinking-block-signature) di Pemecahan masalah thinking.
 
 Mengirim `thinking.block_binding` tanpa [header beta](https://platform.claude.com/docs/id/api/beta-headers) `thinking-binding-controls-2026-08-01` akan mengembalikan 400 `invalid_request_error` yang pesannya diakhiri dengan:
 
@@ -565,7 +568,7 @@ Mengirim `thinking.block_binding` tanpa [header beta](https://platform.claude.co
 block_binding: Extra inputs are not permitted
 ```
 
-Tambahkan header tersebut, atau hapus field-nya.
+Tambahkan header tersebut, aktifkan thinking, atau hapus field-nya.
 
 ### Outbound web identity federation dinonaktifkan (Claude Platform on AWS)
 

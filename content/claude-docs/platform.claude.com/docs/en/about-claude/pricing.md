@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/pricing
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: a94bce7294d5b8e8c5f2b15e7d33b47b4a0c25e3862c871dc0608f21f0a339ec
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 048ccb65c7aa39a16f8475d92bec1730bc9e42c63b79085e2f0f1e6e5f867cd1
 ---
 
 ---
@@ -450,6 +450,8 @@ Browser use follows the standard [tool use pricing in the tool use overview](htt
 ## Claude Managed Agents pricing
 
 [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview) is billed on two dimensions: tokens and session runtime.
+
+For pricing of [self-hosted Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/self-hosted), contact your Anthropic account team.
 
 ### Tokens
 

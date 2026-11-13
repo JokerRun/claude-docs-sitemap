@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 423440bfe36229a89f3e4666b77a936888c6271cf03fe6ead58fd63827e29602
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: cf77cdae6589ebcab089f6f4cb9c6cf706c57e2aca8927a9a841c5c9f7e8d5c0
 ---
 
 ---
@@ -313,7 +313,7 @@ Saat Anda menambahkan alat advisor ke array `tools` Anda, model executor menentu
 
 Semua ini terjadi di dalam satu permintaan `/v1/messages`, tanpa round trip tambahan di sisi Anda. Pengecualiannya adalah giliran yang dijeda di tengah panggilan, yang Anda lanjutkan dengan permintaan lanjutan (lihat [Melanjutkan giliran yang dijeda](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#resuming-a-paused-turn)).
 
-Advisor sendiri berjalan tanpa alat dan tanpa manajemen konteks. Blok thinking-nya dibuang sebelum hasil dikembalikan. Hanya teks saran yang mencapai executor.
+Advisor sendiri berjalan tanpa alat dan tanpa manajemen konteks. Blok pemikirannya tidak disertakan sebelum hasil dikembalikan. Hanya teks saran yang mencapai executor.
 
 ## Parameter alat
 
@@ -330,7 +330,7 @@ Batas `max_uses` berlaku untuk seluruh giliran, dan satu giliran dapat mencakup 
 
 Objek `caching` memiliki bentuk `{"type": "ephemeral", "ttl": "5m" | "1h"}`. Tidak seperti `cache_control` pada blok konten, ini bukan penanda breakpoint. Ini adalah sakelar hidup/mati. Server yang menentukan di mana batas cache ditempatkan.
 
-Alat advisor juga menerima properti generik yang tersedia pada definisi alat apa pun: `cache_control`, `allowed_callers`, `defer_loading`, dan `strict` (dibahas dalam [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)). Lihat [Properti definisi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#tool-definition-properties) dalam Referensi alat untuk semantiknya.
+Alat advisor juga menerima properti generik yang tersedia pada definisi alat apa pun: `cache_control`, `allowed_callers`, `defer_loading`, dan `strict` (dibahas dalam [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)). Lihat [Properti definisi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#tool-definition-properties) dalam Referensi alat untuk semantiknya.
 
 ## Struktur respons
 
@@ -415,7 +415,7 @@ Kedua varian hasil membawa field `stop_reason` ketika Anda menetapkan [`max_toke
 
 Dengan `advisor_result`, field `text` berisi saran yang dapat dibaca manusia. Dengan `advisor_redacted_result`, field `encrypted_content` berisi blob buram yang tidak dapat Anda baca. Pada permintaan berikutnya, server mendekripsinya dan merender plaintext ke dalam prompt executor.
 
-Dalam kedua kasus, kirimkan kembali konten apa adanya pada permintaan-permintaan berikutnya. Jika Anda mengganti model advisor di tengah percakapan, lakukan percabangan berdasarkan `content.type` untuk menangani kedua bentuk. Penggantian merupakan suntingan terhadap `tools`, jadi baca [Percakapan multi-giliran](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#multi-turn-conversations) sebelum Anda melakukannya dalam percakapan yang membawa blok thinking.
+Dalam kedua kasus, kirimkan kembali konten apa adanya pada permintaan-permintaan berikutnya. Jika Anda mengganti model advisor di tengah percakapan, lakukan percabangan berdasarkan `content.type` untuk menangani kedua bentuk. Penggantian merupakan suntingan terhadap `tools`, jadi baca [Percakapan multi-giliran](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#multi-turn-conversations) sebelum Anda melakukannya dalam percakapan yang membawa blok pemikiran.
 
 ### Hasil error
 
@@ -450,7 +450,15 @@ Batas laju advisor diambil dari bucket per model yang sama dengan panggilan lang
 
 Kirimkan kembali konten asisten lengkap, termasuk blok `advisor_tool_result`, ke API pada permintaan-permintaan berikutnya. Kirimkan kembali blok hasil apa adanya. Dengan model Opus terbaru sebagai advisor, seperti dalam contoh ini, `content` blok hasil adalah varian terenkripsi `advisor_redacted_result`. Pada permintaan berikutnya, server mendekripsinya dan merender saran ke dalam prompt executor (lihat [Varian hasil](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#result-variants)). Mekanismenya identik untuk model advisor apa pun.
 
-<CodeGroup exclude="shell">
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika yang lebih banyak daripada satu perintah shell. Gunakan Anthropic SDK untuk menjalankannya.
+  </CodeGroupItem>
+
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika yang lebih banyak daripada satu perintah shell. Gunakan Anthropic SDK untuk menjalankannya.
+  </CodeGroupItem>
+
   ```python Python
   client = anthropic.Anthropic()
 
@@ -754,16 +762,15 @@ Kirimkan kembali konten asisten lengkap, termasuk blok `advisor_tool_result`, ke
 Anda dapat menghapus alat advisor dari `tools` pada permintaan lanjutan sementara riwayat pesan masih berisi blok `advisor_tool_result`. API menerima permintaan dan mempertahankan blok historis, tetapi model tidak dapat memanggil advisor pada permintaan tersebut. Dua ketentuan berlaku:
 
 * **Tidak ada panggilan advisor yang masih tertunda.** Lihat [Melanjutkan giliran yang dijeda](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#resuming-a-paused-turn).
-* **Anda tetap mengirim header beta `advisor-tool-2026-03-01`.** API memerlukannya agar blok riwayat tersebut diterima. Header itu mencakup blok `advisor_tool_result`, bukan blok thinking.
+* **Anda tetap mengirim header beta `advisor-tool-2026-03-01`.** API memerlukannya agar blok riwayat tersebut diterima. Header itu mencakup blok `advisor_tool_result`, bukan blok pemikiran.
 
-**Pengecualian: riwayat yang juga berisi blok thinking.** Menghapus alat advisor merupakan [suntingan terhadap `tools`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#what-counts-as-an-edit). Demikian pula mengubah `model` atau `caching`-nya. Suntingan terhadap `tools` membatalkan validitas blok thinking yang sudah ada dalam riwayat.
+**Pengecualian: riwayat yang juga berisi blok pemikiran.** Menghapus alat advisor merupakan [suntingan terhadap `tools`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#what-counts-as-an-edit). Demikian pula mengubah `model`, `max_uses`, `max_tokens`, atau `caching`-nya. Suntingan terhadap `tools` membatalkan validitas blok pemikiran yang sudah ada dalam riwayat.
 
-* **Apa yang terjadi:** Di mana API menerapkan [pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check), permintaan tersebut mengembalikan error 400.
-* **Di mana API menerapkannya:** Pada setiap akun ketika executor adalah Claude Fable 5.2 atau Claude Mythos 5.2. Untuk executor lain, lihat tabel dalam [Ketika `prefix_mismatch_behavior` tidak diatur](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#enforcement).
-* **Cara melanjutkan:** Atur `thinking.block_binding.prefix_mismatch_behavior` ke `"drop_block"` pada permintaan tersebut dan pada setiap permintaan berikutnya dalam percakapan. API kemudian membuang blok thinking tersebut. Pengaturan ini masih dalam tahap beta dan memerlukan header beta `thinking-binding-controls-2026-08-01`.
+* **Apa yang terjadi:** Jika model executor [menjalankan pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#enforcement), permintaan tersebut dapat menerima [error 400](https://platform.claude.com/docs/id/api/errors#thinking-block-conversation-mismatch).
+* **Cara melanjutkan:** Atur `thinking.block_binding.prefix_mismatch_behavior` ke `"drop_block"` pada permintaan tersebut dan pada setiap permintaan berikutnya dalam percakapan. API kemudian tidak menyertakan blok pemikiran tersebut. Pengaturan ini masih dalam tahap beta dan memerlukan header beta `thinking-binding-controls-2026-08-01`.
 
 <Note>
-  Alat advisor tidak memiliki batas tingkat percakapan bawaan. Untuk membatasi panggilan advisor di seluruh percakapan, hitung panggilan tersebut di sisi klien. Saat Anda mencapai batas Anda, hapus alat advisor dari array `tools` Anda. Anda tidak perlu menghapus blok `advisor_tool_result` dari riwayat pesan Anda. Jika riwayat Anda juga berisi blok thinking, baca pengecualian sebelumnya terlebih dahulu. Dalam kasus tersebut, di mana pemeriksaan prefiks diterapkan, permintaan mengembalikan error 400 kecuali Anda mengatur `"drop_block"`.
+  Alat advisor tidak memiliki batas tingkat percakapan bawaan. Untuk membatasi panggilan advisor di seluruh percakapan, hitung panggilan tersebut di sisi klien. Saat Anda mencapai batas Anda, hapus alat advisor dari array `tools` Anda. Anda tidak perlu menghapus blok `advisor_tool_result` dari riwayat pesan Anda. Jika riwayat Anda juga berisi blok pemikiran, baca pengecualian sebelumnya terlebih dahulu. Dalam kasus tersebut, kecuali Anda mengatur `"drop_block"`, permintaan dapat menerima [error 400](https://platform.claude.com/docs/id/api/errors#thinking-block-conversation-mismatch).
 </Note>
 
 ### Melanjutkan giliran yang dijeda
@@ -776,7 +783,15 @@ Jika executor Haiku belum memanggil advisor pada giliran asisten pertamanya, tam
 
 Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model memahami tugas tetapi sebelum berkomitmen pada suatu pendekatan.
 
-<CodeGroup exclude="shell">
+<CodeGroup exclude="shell:cURL, shell:CLI">
+  <CodeGroupItem language="cURL">
+    Alur kerja ini memerlukan logika yang lebih banyak daripada satu perintah shell. Gunakan Anthropic SDK untuk menjalankannya.
+  </CodeGroupItem>
+
+  <CodeGroupItem language="CLI">
+    Alur kerja ini memerlukan logika yang lebih banyak daripada satu perintah shell. Gunakan Anthropic SDK untuk menjalankannya.
+  </CodeGroupItem>
+
   ```python Python
   client = anthropic.Anthropic()
 
@@ -900,7 +915,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
     if (results.length > 0) {
       messages.push({ role: "user", content: results });
     }
-    // Lewati ini jika prompt sistem Anda sudah meminta model untuk jarang memanggil alat.
+    // Lewati ini jika prompt sistem Anda sudah meminta model untuk memanggil alat seperlunya saja.
     if (turn === NUDGE_TURN - 1 && !advisorCalled) {
       messages.push({ role: "user", content: NUDGE_TEXT });
     }
@@ -1060,7 +1075,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
   		if len(results) > 0 {
   			messages = append(messages, anthropic.NewBetaUserMessage(results...))
   		}
-  		// Lewati ini jika prompt sistem Anda sudah meminta model untuk jarang memanggil alat.
+  		// Lewati ini jika prompt sistem Anda sudah meminta model untuk memanggil alat seperlunya.
   		if turn == nudgeTurn-1 && !advisorCalled {
   			messages = append(messages, anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(nudgeText)))
   		}
@@ -1145,7 +1160,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
           if (!results.isEmpty()) {
               messages.add(BetaMessageParam.ofUserOfContentBlockParams(results));
           }
-          // Lewati ini jika prompt sistem Anda sudah meminta model untuk jarang memanggil alat.
+          // Lewati ini jika prompt sistem Anda sudah meminta model untuk memanggil alat seperlunya.
           if (turn == NUDGE_TURN - 1 && !advisorCalled) {
               messages.add(BetaMessageParam.ofUser(NUDGE_TEXT));
           }
@@ -1213,7 +1228,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
       if ($results !== []) {
           $messages[] = ['role' => 'user', 'content' => $results];
       }
-      // Lewati ini jika prompt sistem Anda sudah meminta model untuk jarang memanggil alat.
+      // Lewati ini jika prompt sistem Anda sudah meminta model untuk memanggil alat seperlunya.
       if ($turn === NUDGE_TURN - 1 && !$advisorCalled) {
           $messages[] = ['role' => 'user', 'content' => NUDGE_TEXT];
       }
@@ -1271,7 +1286,7 @@ Dengan `NUDGE_TURN` default bernilai 2, pengingat biasanya tiba setelah model me
   ```
 </CodeGroup>
 
-Loop berakhir pada alasan berhenti apa pun selain `tool_use` atau `pause_turn`. Jika `max_tokens` memotong respons, hapus giliran asisten yang terpotong dari `messages` dan [coba lagi dengan `max_tokens` yang lebih tinggi](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#max-tokens). Jika giliran tersebut tidak berisi blok `tool_use`, Anda dapat mempertahankannya dan [melanjutkan respons](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#ensuring-complete-responses) dengan pesan pengguna baru. Mengirim ulang giliran asisten yang terpotong sebagai pesan terakhir merupakan [prefill](https://platform.claude.com/docs/id/api/errors#prefill-not-supported), yang ditolak oleh Claude 4.6 dan model yang lebih baru.
+Loop berakhir pada alasan berhenti apa pun selain `tool_use` atau `pause_turn`. Jika `max_tokens` memotong respons, jangan sertakan giliran asisten yang terpotong dalam `messages` dan [coba lagi dengan `max_tokens` yang lebih tinggi](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#max-tokens). Jika giliran tersebut tidak berisi blok `tool_use`, Anda dapat mempertahankannya dan [melanjutkan respons](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#ensuring-complete-responses) dengan pesan pengguna baru. Mengirim ulang giliran asisten yang terpotong sebagai pesan terakhir merupakan [prefill](https://platform.claude.com/docs/id/api/errors#prefill-not-supported), yang ditolak oleh Claude 4.6 dan model yang lebih baru.
 
 Tambahkan dorongan sebagai pesan pengguna tersendiri setelah hasil alat, bukan sebagai blok sejajar dalam pesan yang sama. Pesan pengguna berturut-turut adalah valid. Dalam pengujian Anthropic pada executor Claude Haiku 4.5 dan Sonnet, keduanya berperilaku setara dengan blok sejajar. Bentuk pesan terpisah juga menjaga pengingat tetap jelas berbeda dari output alat.
 
@@ -1443,7 +1458,7 @@ Prompt advisor pada panggilan ke-N adalah prompt panggilan ke-(N-1) dengan satu 
 **Jaga konsistensi:** Tetapkan `caching` sekali dan biarkan selama seluruh percakapan. Mematikan dan menyalakannya kembali di tengah percakapan menyebabkan cache miss. Setiap pengubahan juga merupakan suntingan terhadap `tools`. Suntingan tersebut dapat membuat permintaan berikutnya mengembalikan error 400. [Percakapan multi-giliran](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#multi-turn-conversations) menjelaskan kapan hal ini terjadi dan apa yang perlu diatur.
 
 <Warning>
-  [`clear_thinking`](https://platform.claude.com/docs/id/build-with-claude/context-editing) dengan nilai `keep` selain `"all"` menggeser transkrip yang dikutip advisor setiap giliran, menyebabkan cache miss di sisi advisor. Dampaknya hanya pada biaya (biaya naik). Kualitas saran tidak terpengaruh. Ketika pemikiran aktif tanpa konfigurasi `clear_thinking` eksplisit, API secara default menggunakan `keep: {type: "thinking_turns", value: 1}`, yang memicu perilaku ini (default pada model Opus dan Sonnet sebelumnya serta pada model Haiku hingga Claude Haiku 4.5, sedangkan pada Claude Opus 4.5 dan model Opus yang lebih baru, Claude Sonnet 4.6 dan model Sonnet yang lebih baru, serta Claude Haiku 5.5, defaultnya adalah mempertahankan semua giliran). Tetapkan `keep: "all"` untuk menjaga stabilitas cache advisor.
+  [`clear_thinking`](https://platform.claude.com/docs/id/build-with-claude/context-editing) dengan nilai `keep` selain `"all"` menggeser transkrip yang dikutip advisor setiap giliran, menyebabkan cache miss di sisi advisor. Dampaknya hanya pada biaya (biaya naik). Kualitas saran tidak terpengaruh. Ketika pemikiran aktif tanpa konfigurasi `clear_thinking` eksplisit, model Opus sebelum Claude Opus 4.5, model Sonnet sebelum Claude Sonnet 4.6, dan model Haiku hingga Claude Haiku 4.5 secara default menggunakan `keep: {type: "thinking_turns", value: 1}`, yang memicu perilaku ini. Claude Opus 4.5 dan model Opus yang lebih baru, Claude Sonnet 4.6 dan model Sonnet yang lebih baru, Claude Haiku 5.5, serta model Claude Fable dan Claude Mythos mempertahankan semua giliran secara default. Tetapkan `keep: "all"` untuk menjaga stabilitas cache advisor.
 </Warning>
 
 ## Menggabungkan dengan alat lain
@@ -1713,7 +1728,7 @@ Output advisor adalah pendorong biaya terbesar advisor, dan `max_tokens` tingkat
 (Advisor: please keep your guidance under 80 words. I need a focused starting point, not a comprehensive plan.)
 ```
 
-Baris ini dapat ditambahkan di awal secara terprogram oleh framework agen Anda sebelum mengirim permintaan. Batas ini merupakan batasan lunak. Advisor sesekali melampauinya, jadi mintalah sekitar 80 persen dari batas sebenarnya Anda.
+Framework agen Anda dapat menambahkan baris ini di awal satu kali dan mempertahankannya di sana. Batas ini merupakan batasan lunak. Advisor dapat melampauinya, jadi mintalah sekitar 80 persen dari batas sebenarnya Anda.
 
 <Note>
   Dalam pengujian Anthropic, baris ini juga meningkatkan seberapa sering executor berkonsultasi dengan advisor, tetapi efek bersihnya tetap berupa total biaya yang lebih rendah (lebih banyak konsultasi, masing-masing lebih pendek).
@@ -1840,11 +1855,11 @@ Dibandingkan dengan [pendekatan berbasis prompt](https://platform.claude.com/doc
 
 ### Memasangkan dengan pengaturan effort
 
-Untuk tugas pemrograman, memasangkan executor Sonnet pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) menengah dengan advisor Opus mencapai kecerdasan yang sebanding dengan Sonnet pada effort default, dengan biaya lebih rendah. Untuk kecerdasan maksimum, pertahankan executor pada effort default.
+Untuk tugas coding, memasangkan executor Sonnet pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) menengah dengan advisor Opus mencapai kecerdasan yang sebanding dengan Sonnet pada effort default, dengan biaya lebih rendah. Untuk kecerdasan maksimum, pertahankan executor pada effort default.
 
 ### Kontrol biaya
 
-* Untuk anggaran tingkat percakapan, hitung panggilan advisor di sisi klien. Ketika Anda mencapai batas Anda, hapus alat advisor dari `tools`; Anda tidak perlu menghapus blok `advisor_tool_result` dari riwayat pesan Anda (lihat catatan di [Percakapan multi-giliran](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#multi-turn-conversations)). Di mana API menerapkan pemeriksaan prefiks, permintaan yang menghapus alat tersebut mengembalikan error 400 kecuali Anda mengatur `prefix_mismatch_behavior` ke `"drop_block"`, seperti yang dijelaskan dalam bagian tersebut. API menerapkan pemeriksaan ini untuk setiap akun ketika executor adalah Claude Fable 5.2 atau Claude Mythos 5.2.
+* Untuk anggaran tingkat percakapan, hitung panggilan advisor di sisi klien. Ketika Anda mencapai batas Anda, hapus alat advisor dari `tools`. Anda tidak perlu menghapus blok `advisor_tool_result` dari riwayat pesan Anda. Jika Anda mengirim kembali blok thinking sebelumnya, menghapus alat tersebut dapat mengembalikan error 400. Untuk menghindarinya, atur `prefix_mismatch_behavior` ke `"drop_block"`, seperti yang dijelaskan dalam [Percakapan multi-giliran](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool#multi-turn-conversations).
 * Aktifkan `caching` hanya untuk percakapan di mana Anda mengharapkan tiga panggilan advisor atau lebih.
 
 ## Kompatibilitas model

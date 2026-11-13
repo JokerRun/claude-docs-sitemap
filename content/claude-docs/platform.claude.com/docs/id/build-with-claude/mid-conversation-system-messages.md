@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 02f722aadb186d637f4ac040f3dd8a76ed01998eff03078ca0c2ad1239bed8a9
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 4f1b0410adfe4dbff3e729f2aa8f1363464c4b1f3c81aa380325cdad58490fc5
 ---
 
 ---
@@ -21,7 +21,6 @@ featureMetadata:
     - claude-mythos-5-1
     - claude-fable-5
     - claude-mythos-5
-    - claude-mythos-preview
     - claude-opus-5-5
     - claude-opus-5
     - claude-sonnet-5-5
@@ -36,6 +35,7 @@ featureMetadata:
     Claude Platform on AWS: stable
     Claude Models on Google Cloud (Anthropic managed): stable
     Claude Models on Google Cloud (Google managed): stable
+    Microsoft Foundry: stable
 ---
 
 **Dukungan API**: Penggunaan berbeda menurut produk.
@@ -50,14 +50,17 @@ Pesan sistem di tengah percakapan menutup celah tersebut. Anda menambahkan pesan
 <Note>
   “Mid-conversation system messages” (pesan sistem di tengah percakapan) tersedia di Claude Fable 5.2, [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), Claude Fable 5.1, [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), Claude Fable 5, [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Sonnet 5.5, dan Claude Haiku 5.5. Fitur ini tidak tersedia di Claude Sonnet 5. Gunakan field `system` tingkat atas di sana sebagai gantinya.
 
-  [Perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes) berstatus beta pada model yang sama. Di Claude API, Claude Platform on AWS, dan Claude Models on Google Cloud (Anthropic managed), kirimkan “beta header” (header beta) `inline-tools-2026-09-15`, yang juga mencakup [mendefinisikan alat di dalam blok `tool_addition`](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta). [Menambahkan server MCP dengan cara tersebut](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#add-an-mcp-server-mid-conversation-beta) memerlukan header beta kedua, `mcp-client-2026-09-15`, yang tersedia di Claude API. Header `mid-conversation-tool-changes-2026-07-01` berfungsi untuk perubahan yang menyebut alat berdasarkan referensi, di Claude API, Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), dan Claude Models on Google Cloud (Google managed).
+  [Perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes) berstatus beta pada model yang sama. Dua “beta header” (header beta) mengaktifkan perubahan ini. Jika keduanya berfungsi di platform Anda, kirimkan `inline-tools-2026-09-15`:
 
-  [Pesan sistem dengan cakupan giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (`clear_at`) berstatus beta dan memerlukan header beta `mid-conversation-system-clear-at-2026-08-21`, pada model dan platform yang sama dengan pesan sistem di tengah percakapan.
+  * `inline-tools-2026-09-15` berfungsi di Claude API, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), dan Microsoft Foundry. Header ini juga mencakup [mendefinisikan alat di dalam blok `tool_addition`](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta). [Menambahkan server MCP dengan cara tersebut](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#add-an-mcp-server-mid-conversation-beta) juga memerlukan header beta `mcp-client-2026-09-15`, yang tersedia di Claude API.
+  * `mid-conversation-tool-changes-2026-07-01` berfungsi di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, serta di empat platform yang tercantum untuk `inline-tools-2026-09-15`. Header ini tidak mencakup pendefinisian alat di dalam blok `tool_addition`.
+
+  [Pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (`clear_at`) berstatus beta dan memerlukan header beta `mid-conversation-system-clear-at-2026-08-21`, pada [model dan platform yang sama](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#feature-availability) dengan pesan sistem di tengah percakapan.
 </Note>
 
 ## Perubahan alat di tengah percakapan
 
-Array `tools` berada bahkan lebih awal dalam prefiks permintaan yang di-hash dibandingkan field `system` tingkat atas, sehingga mengeditnya akan membatalkan [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk seluruh percakapan. Perubahan alat di tengah percakapan adalah padanan untuk alat dari pesan sistem di tengah percakapan. Alih-alih menetapkan daftar alat selama masa hidup percakapan, Anda mengubah alat mana yang ditawarkan kepada model di antara giliran: deklarasikan seluruh set alat di `tools` sejak awal, lalu gunakan blok `tool_addition` dan `tool_removal` untuk menawarkan alat kepada model, atau menariknya kembali, mulai dari titik tertentu dalam percakapan dan seterusnya. Array `tools` itu sendiri tidak pernah berubah, sehingga prefiks yang di-cache tetap utuh. Perubahan alat di tengah percakapan berstatus beta dan menggunakan header beta `inline-tools-2026-09-15` di Claude API, Claude Platform on AWS, dan Claude Models on Google Cloud (Anthropic managed).
+Array `tools` berada bahkan lebih awal dalam prefiks permintaan yang di-hash dibandingkan field `system` tingkat atas, sehingga mengeditnya akan membatalkan [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) untuk seluruh percakapan. Perubahan alat di tengah percakapan adalah padanan untuk alat dari pesan sistem di tengah percakapan. Alih-alih menetapkan daftar alat selama masa hidup percakapan, Anda mengubah alat mana yang ditawarkan kepada model di antara giliran. Deklarasikan seluruh set alat di `tools` sejak awal, lalu gunakan blok `tool_addition` dan `tool_removal` untuk menawarkan alat kepada model, atau menariknya kembali, mulai dari titik tertentu dalam percakapan dan seterusnya. Array `tools` itu sendiri tidak pernah berubah, sehingga prefiks yang di-cache tetap utuh. Perubahan alat di tengah percakapan berstatus beta dan menggunakan header beta yang disebutkan sebelumnya di halaman ini.
 
 `tool_addition` dan `tool_removal` adalah blok konten dalam array `content` dari pesan `role: "system"`, dan keduanya dapat dicampur dengan blok `text` dalam pesan yang sama. Pesan tersebut mengikuti aturan penempatan untuk pesan sistem di tengah percakapan mana pun, dengan satu batasan tambahan setelah giliran yang dijeda (lihat [Keterbatasan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations)), dan perubahan berlaku mulai dari titik tersebut dalam percakapan dan seterusnya. Field `tool` pada setiap blok mereferensikan alat alih-alih mendefinisikannya: `{"type": "tool_reference", "name": "..."}` menyebut alat yang dideklarasikan dalam array `tools` permintaan, dan alat [konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) dapat direferensikan secara individual dengan `mcp_tool_reference` (`server_name` dan `name`) atau sebagai satu toolset utuh dengan `mcp_toolset_reference` (`server_name`). Mereferensikan nama yang tidak dideklarasikan di `tools` mengembalikan error 400 (di Claude API, dengan `error.details.error_code` diatur ke `tool_reference_unresolved`). Sebagai alternatif, blok `tool_addition` dapat [membawa definisi lengkap alat](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta), yang tidak didukung oleh header `mid-conversation-tool-changes-2026-07-01`.
 
@@ -207,7 +210,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
     ],
     messages: [
       { role: "user", content: "Say OK." },
-      // Tarik get_weather mulai titik ini dan seterusnya. Blok ini merujuk
+      // Cabut get_weather mulai titik ini dan seterusnya. Blok ini merujuk
       // alat berdasarkan nama alih-alih mengedit `tools`, sehingga giliran sebelumnya tetap
       // identik per byte dan cache tetap hit.
       {
@@ -346,9 +349,11 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   import com.anthropic.models.beta.messages.BetaTool;
   import com.anthropic.models.beta.messages.MessageCreateParams;
   // ...
+
+  void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      // Seluruh set alat dideklarasikan di awal dan tidak pernah berubah, sehingga
+      // Set alat lengkap dideklarasikan di awal dan tidak pernah berubah, sehingga
       // prefiks yang di-cache tetap utuh.
       BetaTool weatherTool = BetaTool.builder()
           .name("get_weather")
@@ -369,7 +374,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
           .addBeta(AnthropicBeta.INLINE_TOOLS_2026_09_15)
           .addTool(weatherTool)
           .addUserMessage("Say OK.")
-          // Tarik get_weather mulai titik ini. Blok ini merujuk
+          // Tarik get_weather mulai titik ini dan seterusnya. Blok ini merujuk
           // alat berdasarkan nama alih-alih mengedit `tools`, sehingga giliran sebelumnya tetap
           // identik per byte dan cache tetap hit.
           .addSystemMessageOfBlocks(List.of(
@@ -382,6 +387,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
       response.content().stream()
           .flatMap(block -> block.text().stream())
           .forEach(textBlock -> IO.println(textBlock.text()));
+  }
   ```
 
   ```php PHP
@@ -414,8 +420,8 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
       ],
       messages: [
           ['role' => 'user', 'content' => 'Say OK.'],
-          // Tarik get_weather mulai titik ini. Blok ini merujuk
-          // alat berdasarkan namanya alih-alih mengedit `tools`, sehingga giliran sebelumnya tetap
+          // Tarik get_weather mulai dari titik ini. Blok ini merujuk
+          // alat berdasarkan nama alih-alih mengedit `tools`, sehingga giliran sebelumnya tetap
           // identik per byte dan cache tetap hit.
           [
               'role' => 'system',
@@ -430,7 +436,7 @@ Permintaan berikut mendeklarasikan `get_weather` di `tools`, lalu menariknya set
   );
 
   foreach ($response->content as $block) {
-      if ($block->type === 'text') {
+      if ($block instanceof \Anthropic\Beta\Messages\BetaTextBlock) {
           echo $block->text, PHP_EOL;
       }
   }
@@ -888,11 +894,11 @@ Permintaan berikut mempertahankan `get_weather` di `tools` dan mendefinisikan `d
           .maxTokens(1024)
           .addBeta(AnthropicBeta.INLINE_TOOLS_2026_09_15)
           // Pertahankan setidaknya satu alat non-deferred di `tools`, agar alat yang didefinisikan
-          // belakangan tidak mengubah bagian awal prompt yang dirender.
+          // kemudian tidak mengubah awal prompt yang dirender.
           .addTool(weatherTool)
           .addUserMessage("How many orders shipped yesterday?")
-          // Definisikan db_query secara langsung (by value) mulai titik ini. `tools` dan
-          // pesan-pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache tetap hit.
+          // Definisikan db_query berdasarkan nilai mulai titik ini. `tools` dan
+          // pesan sebelumnya tetap persis seperti yang dikirim, sehingga cache tetap hit.
           .addSystemMessageOfBlocks(List.of(
               SystemMessageContentBlock.ofToolAddition(BetaRequestToolAdditionBlock.builder()
                   .definitionTool(dbQueryTool)
@@ -1042,7 +1048,7 @@ Untuk mengubah skema alat, atau untuk memindahkan alat server ke versi yang lebi
 Beberapa aturan berlaku karena posisi tempat definisi dirender:
 
 * **Deklarasikan apa yang Anda ketahui sejak awal.** Alat yang sudah Anda ketahui pada permintaan pertama seharusnya berada di `tools`, dengan `defer_loading: true` dan referensi `tool_addition` di kemudian hari jika Anda belum ingin menawarkannya kepada model. Definisikan berdasarkan nilai hanya apa yang tidak diketahui pada permintaan pertama atau yang berubah kemudian.
-* **Pertahankan setidaknya satu alat yang tidak ditangguhkan di `tools`.** Percakapan yang array `tools`-nya tidak memiliki alat yang tidak ditangguhkan tetap diterima, tetapi alat pertama yang didefinisikannya berdasarkan nilai akan mengubah awal prompt yang dirender, sehingga permintaan tersebut mengalami satu cache miss penuh. [Alat pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool) dihitung sebagai alat yang tidak ditangguhkan.
+* **Pertahankan setidaknya satu alat yang tidak ditangguhkan di `tools`.** Jika setiap alat ditangguhkan, permintaan akan mendapatkan error 400, kecuali jika permintaan tersebut mengirim header `inline-tools-2026-09-15` dan `messages` memuat blok `tool_addition`. Dalam hal itu, alat pertama yang didefinisikan berdasarkan nilai menyebabkan satu cache miss penuh. [Alat pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool) dihitung sebagai alat yang tidak ditangguhkan.
 * **Tipe alat bertanggal tetap memerlukan header beta masing-masing.** Jika alat server yang Anda definisikan berdasarkan nilai memerlukan header beta sendiri, kirim header tersebut pada setiap permintaan berikutnya dalam percakapan.
 * **`cache_control` ditempatkan pada blok atau di dalam definisi, bukan keduanya,** dan dihitung terhadap batas breakpoint permintaan. Definisi yang ditangguhkan tidak dapat membawa `cache_control`.
 
@@ -1110,7 +1116,7 @@ Permintaan berikut mempertahankan `get_weather` di `tools`, mencantumkan server 
       "messages": [
         {
           "role": "user",
-          "content": "What'\''s on my calendar tomorrow?"
+          "content": "What is on my calendar tomorrow?"
         },
         {
           "role": "system",
@@ -1154,9 +1160,9 @@ Permintaan berikut mempertahankan `get_weather` di `tools`, mencantumkan server 
           - location
   messages:
     - role: user
-      content: What's on my calendar tomorrow?
+      content: What is on my calendar tomorrow?
     # Sediakan alat dari server kalender mulai titik ini dan seterusnya.
-    # Blok ini menyebutkan nama server; blok ini tidak pernah memuat URL atau token.
+    # Blok ini menyebutkan nama server; blok ini tidak pernah berisi URL atau token.
     - role: system
       content:
         - type: tool_addition
@@ -1197,9 +1203,9 @@ Permintaan berikut mempertahankan `get_weather` di `tools`, mencantumkan server 
           },
       ],
       messages=[
-          {"role": "user", "content": "What's on my calendar tomorrow?"},
+          {"role": "user", "content": "What is on my calendar tomorrow?"},
           # Sediakan alat dari server kalender mulai titik ini dan seterusnya.
-          # Blok ini menyebutkan nama server; blok ini tidak pernah memuat URL atau token.
+          # Blok ini menyebutkan nama server; blok ini tidak pernah menyimpan URL atau token.
           {
               "role": "system",
               "content": [
@@ -1257,9 +1263,9 @@ Permintaan berikut mempertahankan `get_weather` di `tools`, mencantumkan server 
       }
     ],
     messages: [
-      { role: "user", content: "What's on my calendar tomorrow?" },
-      // Sediakan alat dari server kalender mulai titik ini dan seterusnya.
-      // Blok ini menyebutkan nama server; blok ini tidak pernah memuat URL atau token.
+      { role: "user", content: "What is on my calendar tomorrow?" },
+      // Jadikan alat dari server kalender tersedia mulai titik ini dan seterusnya.
+      // Blok ini menyebutkan nama server; blok ini tidak pernah berisi URL atau token.
       {
         role: "system",
         content: [
@@ -1331,9 +1337,9 @@ Permintaan berikut mempertahankan `get_weather` di `tools`, mencantumkan server 
       ],
       Messages =
       [
-          new BetaUserMessageParam { Content = "What's on my calendar tomorrow?" },
-          // Sediakan alat dari server kalender mulai titik ini dan seterusnya.
-          // Blok ini menyebutkan nama server; blok ini tidak pernah memuat URL atau token.
+          new BetaUserMessageParam { Content = "What is on my calendar tomorrow?" },
+          // Sediakan alat-alat server kalender mulai dari titik ini dan seterusnya.
+          // Blok ini menyebutkan nama server; blok ini tidak pernah berisi URL atau token.
           new BetaSystemMessageParam
           {
               Content = new(
@@ -1398,7 +1404,7 @@ Permintaan berikut mempertahankan `get_weather` di `tools`, mencantumkan server 
   		}},
   	},
   	Messages: []anthropic.BetaMessageParam{
-  		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("What's on my calendar tomorrow?")),
+  		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("What is on my calendar tomorrow?")),
   		// Sediakan alat dari server kalender mulai titik ini dan seterusnya.
   		// Blok ini menyebutkan nama server; blok ini tidak pernah memuat URL atau token.
   		anthropic.NewBetaSystemMessage(anthropic.BetaSystemMessageOutputConfigParam{}, anthropic.BetaSystemMessageParamContentUnion{
@@ -1473,9 +1479,9 @@ Permintaan berikut mempertahankan `get_weather` di `tools`, mencantumkan server 
               .authorizationToken("YOUR_TOKEN")
               .build())
           .addTool(weatherTool)
-          .addUserMessage("What's on my calendar tomorrow?")
+          .addUserMessage("What is on my calendar tomorrow?")
           // Sediakan alat dari server kalender mulai titik ini dan seterusnya.
-          // Blok ini menyebutkan nama server; blok ini tidak pernah memuat URL atau token.
+          // Blok ini menyebutkan nama server; blok ini tidak pernah berisi URL atau token.
           .addSystemMessageOfBlocks(List.of(
               SystemMessageContentBlock.ofToolAddition(BetaRequestToolAdditionBlock.builder()
                   .definitionTool(BetaMcpToolset.builder()
@@ -1542,9 +1548,9 @@ Permintaan berikut mempertahankan `get_weather` di `tools`, mencantumkan server 
           ],
       ],
       messages: [
-          ['role' => 'user', 'content' => "What's on my calendar tomorrow?"],
+          ['role' => 'user', 'content' => 'What is on my calendar tomorrow?'],
           // Sediakan alat dari server kalender mulai titik ini dan seterusnya.
-          // Blok ini menyebutkan nama server; blok ini tidak pernah memuat URL atau token.
+          // Blok ini menyebutkan nama server; blok ini tidak pernah berisi URL atau token.
           [
               'role' => 'system',
               'content' => [
@@ -1610,7 +1616,7 @@ Permintaan berikut mempertahankan `get_weather` di `tools`, mencantumkan server 
       }
     ],
     messages: [
-      { role: "user", content: "What's on my calendar tomorrow?" },
+      { role: "user", content: "What is on my calendar tomorrow?" },
       # Sediakan alat dari server kalender mulai titik ini dan seterusnya.
       # Blok ini menyebutkan nama server; blok ini tidak pernah memuat URL atau token.
       {
@@ -1657,7 +1663,7 @@ Beberapa situasi ketika hal ini penting:
 
 * **Perubahan kebijakan atau persona di tengah sesi.** Sesi agentik yang panjang memerlukan batasan baru (“mulai sekarang, tulis semua SQL sebagai kueri berparameter”) setelah puluhan giliran yang di-cache. Menambahkannya ke field `system` tingkat atas akan memproses ulang seluruh riwayat.
 * **Konteks per giliran yang harus otoritatif.** Anda ingin menyisipkan catatan kebaruan, tenggat sesi, atau perubahan ketersediaan alat dengan bobot tingkat sistem, dan informasi tersebut berubah terlalu sering untuk ditempatkan di prefiks yang di-cache.
-* **Pengingat per giliran yang tidak boleh menumpuk.** Sebuah harness mendorong model setelah setiap batch hasil alat (“minta pembacaan yang independen secara bersamaan,” “pengguna sudah lama tidak mendengar kabar dari Anda”) dan memerlukan model hanya menerima salinan terbaru. [Pesan sistem bercakupan giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) dirender selama satu giliran lalu tidak memakan biaya apa pun, tanpa menghapus apa pun dari riwayat.
+* **Pengingat per giliran yang tidak boleh menumpuk.** Sebuah harness mendorong model setelah setiap batch hasil alat (“minta pembacaan yang independen secara bersamaan,” “pengguna sudah lama tidak mendengar kabar dari Anda”) dan memerlukan model hanya menerima salinan terbaru. [Pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) dirender selama satu giliran lalu tidak memakan biaya apa pun, tanpa menghapus apa pun dari riwayat.
 * **Perubahan status yang diamati aplikasi Anda.** Aplikasi Anda mendeteksi sesuatu yang harus diperlakukan Claude sebagai fakta tingkat operator: file berubah di disk, pengguna mengaktifkan atau menonaktifkan pengaturan persetujuan otomatis, alat yang tersedia berubah, atau anggaran token yang tersisa turun di bawah ambang batas.
 * **Input pengguna yang tidak boleh menginterupsi loop agentik.** Pengguna mengetik tindak lanjut saat Claude masih menjalankan alat untuk permintaan sebelumnya. Meneruskannya sebagai pesan sistem setelah hasil alat berikutnya memungkinkan Claude memasukkan input baru ke dalam pekerjaan yang sedang dilakukannya, alih-alih memperlakukannya sebagai permintaan baru untuk beralih. Di Claude Sonnet 5.5 dan Claude Haiku 5.5, tambahkan kata-kata pengguna sebagai blok `text` setelah `tool_result` terakhir dalam pesan `user` yang sama sebagai gantinya. Lihat [Penempatan setelah hasil alat](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#placement-after-tool-results).
 * **Peralihan mode yang memberikan izin tetap.** Mode tingkat sesi dapat menggunakan pesan sistem di tengah percakapan untuk memberikan persetujuan tetap atas kemampuan yang mahal, seperti meluncurkan alur kerja multiagen secara otomatis, disertai pengingat singkat setiap beberapa giliran dan pemberitahuan keluar saat mode dinonaktifkan. Untuk contoh lengkap, lihat [Membangun mode orkestrasi](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example).
@@ -1770,7 +1776,7 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
   const response = await client.messages.create({
     model: "claude-opus-5-5",
     max_tokens: 1024,
-    // "Prompt caching" (caching prompt) otomatis: setiap permintaan meng-cache percakapan sejauh ini,
+    // Caching prompt otomatis: setiap permintaan meng-cache percakapan sejauh ini,
     // dan permintaan berikutnya membaca prefiks yang tidak berubah dari cache.
     cache_control: { type: "ephemeral" },
     system: "You are a code review assistant. Be concise.",
@@ -1810,7 +1816,7 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
   {
       Model = Model.ClaudeOpus5_5,
       MaxTokens = 1024,
-      // "Prompt caching" (caching prompt) otomatis: setiap permintaan menyimpan percakapan sejauh ini ke cache,
+      // "Prompt caching" (caching prompt) otomatis: setiap permintaan meng-cache percakapan sejauh ini,
       // dan permintaan berikutnya membaca prefiks yang tidak berubah dari cache.
       CacheControl = new CacheControlEphemeral(),
       System = "You are a code review assistant. Be concise.",
@@ -1822,8 +1828,8 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
               Content = "The list comprehension is fine for small inputs. For large inputs, consider a generator to avoid materializing the full list."
           },
           new UserMessageParam { Content = "Now review the calling code that invokes process()." },
-          // Di tengah sesi, peninjau menyadari bahwa semua saran juga harus lolos
-          // kebijakan strict typing (penentuan tipe ketat) tim. Menambahkan instruksi di sini menjaga
+          // Peninjau menyadari di tengah sesi bahwa semua saran juga harus lolos
+          // kebijakan typing ketat tim. Menambahkan instruksi di sini menjaga
           // giliran sebelumnya tetap identik per byte, sehingga prefiks yang di-cache oleh
           // permintaan sebelumnya tetap dibaca dari cache.
           new SystemMessageParam
@@ -1834,7 +1840,13 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
   };
 
   var response = await client.Messages.Create(parameters);
-  Console.WriteLine(response);
+  foreach (var block in response.Content)
+  {
+      if (block.TryPickText(out var textBlock))
+      {
+          Console.WriteLine(textBlock.Text);
+      }
+  }
   ```
 
   ```go Go
@@ -1877,20 +1889,22 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
   ```java Java
   import com.anthropic.models.messages.CacheControlEphemeral;
   // ...
+
+  void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(1024)
-          // "Prompt caching" (caching prompt) otomatis: setiap permintaan meng-cache percakapan sejauh ini,
+          // Caching prompt otomatis: setiap request meng-cache percakapan sejauh ini,
           // dan permintaan berikutnya membaca prefiks yang tidak berubah dari cache.
           .cacheControl(CacheControlEphemeral.builder().build())
           .system("You are a code review assistant. Be concise.")
           .addUserMessage("Review process() in utils.py for performance issues.")
           .addAssistantMessage("The list comprehension is fine for small inputs. For large inputs, consider a generator to avoid materializing the full list.")
           .addUserMessage("Now review the calling code that invokes process().")
-          // Di tengah sesi, peninjau menyadari bahwa semua saran juga harus lolos
-          // kebijakan typing ketat tim. Menambahkan instruksi di sini menjaga
+          // Di tengah sesi, reviewer menyadari bahwa semua saran juga harus lolos
+          // kebijakan typing ketat milik tim. Menambahkan instruksi di sini menjaga
           // giliran sebelumnya tetap identik per byte, sehingga prefiks yang di-cache oleh
           // permintaan sebelumnya tetap dibaca dari cache.
           .addSystemMessage("From now on, every suggestion must include explicit type annotations.")
@@ -1900,6 +1914,7 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
       response.content().stream()
           .flatMap(block -> block.text().stream())
           .forEach(textBlock -> IO.println(textBlock.text()));
+  }
   ```
 
   ```php PHP
@@ -1914,12 +1929,12 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
           ['role' => 'assistant', 'content' => 'The list comprehension is fine for small inputs. For large inputs, consider a generator to avoid materializing the full list.'],
           ['role' => 'user', 'content' => 'Now review the calling code that invokes process().'],
           // Di tengah sesi, peninjau menyadari bahwa semua saran juga harus lolos
-          // kebijakan typing ketat tim. Menambahkan instruksi di sini menjaga
+          // kebijakan pengetikan ketat tim. Menambahkan instruksi di sini menjaga
           // giliran sebelumnya tetap identik per byte, sehingga prefiks yang di-cache oleh
           // permintaan sebelumnya tetap dibaca dari cache.
           ['role' => 'system', 'content' => 'From now on, every suggestion must include explicit type annotations.']
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       // Caching prompt otomatis: setiap permintaan meng-cache percakapan sejauh ini,
       // dan permintaan berikutnya membaca prefiks yang tidak berubah dari cache.
       cacheControl: CacheControlEphemeral::with(),
@@ -1927,7 +1942,7 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
   );
 
   foreach ($response->content as $block) {
-      if ($block->type === 'text') {
+      if ($block instanceof \Anthropic\Messages\TextBlock) {
           echo $block->text, PHP_EOL;
       }
   }
@@ -1963,7 +1978,9 @@ Pesan `role: "system"` juga dapat membawa `output_config.effort` untuk mengubah 
 
 Contoh ini mengaktifkan [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) dengan field `cache_control` tingkat atas. Caching prompt bersifat opt-in: jika permintaan tidak memiliki field `cache_control` (otomatis atau [breakpoint eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints)), tidak ada yang di-cache dan setiap permintaan membayar harga token input reguler untuk seluruh percakapan. Dengan caching diaktifkan, menambahkan pesan sistem membiarkan giliran yang sudah di-cache tidak berubah, sehingga permintaan yang membawa instruksi baru tetap membacanya dari cache alih-alih memprosesnya lagi. Caching juga mengharuskan percakapan memenuhi [panjang prompt minimum yang dapat di-cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations); contoh sependek ini berada di bawahnya, sehingga `cache_creation_input_tokens` dan `cache_read_input_tokens` tetap bernilai 0 hingga percakapan bertambah panjang.
 
-Pesan sistem di tengah percakapan yang membawa konten (blok `text`, `tool_addition`, atau `tool_removal`) harus langsung mengikuti giliran `user` (atau giliran `assistant` yang diakhiri dengan hasil alat server), dan harus menjadi entri terakhir di `messages` atau langsung diikuti oleh giliran `assistant`. Pesan `user` yang membawa blok `tool_result` juga dihitung: dalam loop agentik Anda dapat menempatkan pesan sistem tepat setelah hasil alat, sebelum giliran Claude berikutnya. Posisi lain apa pun untuk pesan yang membawa konten, termasuk di antara blok `tool_use` milik `assistant` dan `tool_result` yang menjawabnya, mengembalikan error 400. Pesan dengan `content` kosong yang hanya mengatur [`output_config.effort`](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) diterima di mana saja dalam `messages`. Pesan `system` yang berurutan dinilai bersama, sehingga pesan yang hanya berisi effort di sebelah pesan yang membawa konten mengikuti aturan untuk konten.
+Pesan sistem di tengah percakapan yang membawa konten (blok `text`, `tool_addition`, atau `tool_removal`) harus langsung mengikuti giliran `user` (atau giliran `assistant` yang diakhiri dengan hasil alat server). Setelah itu, pesan tersebut harus mengakhiri `messages` atau langsung diikuti oleh giliran `assistant`. Pesan `user` yang membawa blok `tool_result` juga dihitung: dalam loop agentik Anda dapat menempatkan pesan sistem tepat setelah hasil alat, sebelum giliran Claude berikutnya.
+
+Posisi lain apa pun untuk pesan yang membawa konten, termasuk di antara blok `tool_use` milik `assistant` dan `tool_result` yang menjawabnya, mengembalikan error 400. Pesan dengan `content` kosong yang hanya mengatur [`output_config.effort`](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) dapat mengikuti giliran mana pun, tetapi ditempatkan setelah semua yang sudah dikirim. Pesan `system` yang berurutan dinilai bersama, sehingga pesan yang hanya berisi effort di sebelah pesan yang membawa konten mengikuti aturan untuk konten.
 
 ### Penempatan setelah hasil alat
 
@@ -2018,7 +2035,7 @@ Untuk informasi lebih lanjut tentang perilaku ini, lihat [Prompting untuk Claude
 
 Untuk membatasi lingkup pesan `role: "system"` pada giliran saat ini, atur field `clear_at`-nya. Field ini menerima salah satu dari dua nilai:
 
-* `"never"` (default): pesan dirender pada posisinya di setiap permintaan yang menyertakannya. Menghilangkan field ini sama saja.
+* `"never"` (default): pesan dirender pada posisinya di setiap permintaan yang menyertakannya. Menghilangkan field ini memberikan efek yang sama.
 * `"next_user_message"`: pesan bersifat **berlingkup giliran**. Teksnya hanya dirender selama tidak ada pesan `role: "user"` yang muncul setelahnya di `messages`. Pesan pengguna yang hanya membawa blok `tool_result` dihitung sebagai pesan pengguna di sini. Begitu ada pesan pengguna yang lebih baru, pesan tersebut **dibersihkan**: pesan tetap berada di array tetapi tidak merender apa pun dan tidak memakan token input, pada permintaan tersebut dan setiap permintaan berikutnya.
 
 Pesan sistem berlingkup giliran berstatus beta. Sertakan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `mid-conversation-system-clear-at-2026-08-21`. Tanpanya, `clear_at` ditolak sebagai field yang tidak dikenal.
@@ -2033,11 +2050,15 @@ Pesan sistem berlingkup giliran berstatus beta. Sertakan [header beta](https://p
 
 Kegunaan utamanya adalah sebagai pengingat per giliran dalam loop alat. Setiap kali Anda ingin model melihat pengingat tersebut, tambahkan pengingat itu setelah pesan `tool_result`. Biarkan setiap salinan sebelumnya tetap di tempatnya. Model hanya melihat salinan yang muncul setelah pesan pengguna terakhir, sehingga pengingat tidak pernah menumpuk. Tidak ada yang berubah di bagian awal `messages`, sehingga [cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) tetap cocok. Pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, hal ini juga menjaga [blok pemikiran tetap valid](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation) di giliran berikutnya. Menghapus pengingat sebelumnya akan mengubah percakapan sebelum blok-blok tersebut, sehingga blok-blok itu akan gagal dalam pemeriksaan prefiks. Pesan yang telah dibersihkan tetap berada di dalam array dan membiarkan percakapan sebelum blok-blok tersebut tidak berubah.
 
-Permintaan berikut adalah langkah selanjutnya dari sebuah loop agen. `messages[3]` dirender pada permintaan sebelumnya, ketika ia merupakan pesan terakhir dalam array. Begitu `messages[5]` (pesan pengguna berikutnya) ada, `messages[3]` dibersihkan: pesan yang dibersihkan tetap berada di array, sehingga percakapan sebelum blok pemikiran di `messages[4]` tidak berubah, tetapi model tidak lagi menerima teksnya. `messages[6]` dan `messages[7]` keduanya dirender, secara berurutan.
+Permintaan berikut adalah langkah selanjutnya dari sebuah loop agen:
+
+* `messages[3]` dirender pada permintaan sebelumnya, sebagai pesan terakhir dalam array.
+* `messages[5]` adalah pesan pengguna berikutnya, sehingga `messages[3]` dibersihkan. Pesan yang dibersihkan tetap berada di array, sehingga percakapan sebelum blok pemikiran di `messages[4]` tidak berubah, tetapi model tidak lagi menerima teksnya.
+* `messages[6]` dan `messages[7]` keduanya dirender, secara berurutan.
 
 ```json
 {
-  "model": "claude-fable-5-1",
+  "model": "claude-opus-5-5",
   "max_tokens": 16000,
   "messages": [
     { "role": "user", "content": "Fix the failing test." },
@@ -2108,13 +2129,24 @@ Permintaan berikut adalah langkah selanjutnya dari sebuah loop agen. `messages[3
 
 Aturan untuk pesan berlingkup giliran:
 
-* **Kirim ulang pesan yang telah dibersihkan apa adanya.** Pesan yang telah dibersihkan tetap merupakan bagian dari riwayat percakapan. Membangunnya ulang dari status saat ini (jumlah token baru, stempel waktu), membuangnya karena dianggap berlebihan, atau mengubah nilai `clear_at`-nya merupakan pengeditan terhadap pesan sebelumnya. Pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, setiap blok pemikiran yang dihasilkan setelahnya akan gagal dalam [pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation).
+* **Kirim ulang pesan yang telah dibersihkan apa adanya.** Pesan yang telah dibersihkan tetap merupakan bagian dari riwayat percakapan. Membangunnya ulang dari status saat ini (jumlah token baru, stempel waktu), tidak menyertakannya karena dianggap berlebihan, atau mengubah nilai `clear_at`-nya merupakan pengeditan terhadap pesan sebelumnya. Pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5, setiap blok pemikiran yang dihasilkan setelahnya gagal dalam [pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-in-conversation).
+
 * **Hanya teks.** `content` berupa satu atau lebih blok `text` (atau string). Blok `tool_addition` dan `tool_removal` mengembalikan error 400 pada pesan berlingkup giliran, begitu pula `output_config`. Gunakan pesan `role: "system"` terpisah tanpa `clear_at` untuk hal-hal tersebut.
-* **Tidak ada `cache_control` pada bloknya.** Pesan yang dibersihkan tidak pernah menjadi bagian dari kunci cache, sehingga breakpoint padanya tidak akan pernah cocok. Tempatkan breakpoint pada blok terakhir dari giliran pengguna sebelumnya, seperti yang dilakukan contoh. Field [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) tingkat atas melewati pesan berlingkup giliran saat memilih breakpoint. Pada permintaan yang membersihkan sebuah pesan, prefiks cache yang dapat digunakan kembali berakhir pada giliran pengguna sebelumnya, sehingga hanya satu giliran asisten di antara pesan tersebut dan pesan pengguna baru yang diproses ulang.
-* **Aturan penempatan tetap berlaku**, baik dibersihkan maupun tidak. Pesan berlingkup giliran harus mengikuti giliran `user` (atau giliran `assistant` yang diakhiri dengan hasil alat server) dan mendahului giliran `assistant` atau mengakhiri array, seperti pesan sistem di tengah percakapan lainnya. Pesan yang mengakhiri array selalu dirender. Pesan yang langsung diikuti oleh pesan `user` lain merupakan error 400, bukan pesan yang dibersihkan: tempatkan semua hasil dari satu putaran alat dalam satu pesan pengguna dan pengingat setelahnya.
-* **Giliran asisten tidak membersihkannya.** Giliran asisten yang di-prefill atau [dijeda](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#pause-turn) setelah pesan, atau loop alat sisi server, tidak menambahkan pesan pengguna, sehingga pesan tetap dirender pada kelanjutan tersebut. Untuk menjaga pengingat tetap terlihat sepanjang loop alat sisi klien, tambahkan lagi setelah setiap pesan `tool_result`.
+
+* **Tidak ada `cache_control` pada bloknya.** Pesan yang dibersihkan tidak pernah menjadi bagian dari kunci cache, sehingga breakpoint padanya tidak akan pernah cocok. Tempatkan breakpoint pada blok terakhir dari giliran pengguna sebelumnya, seperti yang dilakukan contoh. Field [caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching) tingkat atas melewati pesan berlingkup giliran saat memilih breakpoint. Pada permintaan yang menambahkan pesan pengguna berikutnya, breakpoint cache pada giliran yang diikuti oleh pesan yang dibersihkan, atau di mana pun sebelumnya, tetap cocok. Dengan breakpoint pada giliran tersebut, hanya satu giliran asisten di antara pesan yang dibersihkan dan pesan pengguna baru yang diproses ulang.
+
+* **Aturan penempatan tetap berlaku**, baik dibersihkan maupun tidak. Seperti pesan sistem di tengah percakapan lainnya yang membawa konten, pesan berlingkup giliran:
+
+  * Harus mengikuti giliran `user`, atau giliran `assistant` yang diakhiri dengan hasil alat server.
+  * Harus mendahului giliran `assistant` atau mengakhiri array. Jika mengakhiri array, pesan tersebut selalu dirender.
+  * Tidak boleh langsung diikuti oleh pesan `user`: permintaan mengembalikan error 400. Pesan pengguna berikutnya hanya membersihkannya jika ada giliran `assistant` di antara keduanya. Dalam loop alat, tempatkan semua hasil alat dari satu putaran dalam satu pesan pengguna, dengan pengingat setelah pesan tersebut.
+  * Dinilai bersama dengan pesan `system` mana pun yang tepat sebelum atau sesudahnya. Aturan penempatan ini berlaku untuk kelompok tersebut secara keseluruhan.
+
+* **Giliran asisten tidak membersihkannya.** Giliran asisten yang [dijeda dengan `pause_turn`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#pause-turn) setelah pesan, atau loop alat sisi server, tidak menambahkan pesan pengguna, sehingga pesan tetap dirender pada kelanjutan tersebut. Untuk menjaga pengingat tetap terlihat sepanjang loop alat sisi klien, tambahkan lagi setelah setiap pesan `tool_result`.
+
 * **Penghitungan token mengikuti apa yang dirender.** Pesan yang dibersihkan tidak menambahkan apa pun ke `usage.input_tokens` atau ke [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting).
-* **Riwayat yang diimpor.** Dalam transkrip yang Anda bangun dalam satu langkah (contoh few-shot, percakapan yang dimigrasikan), pesan bercakupan giliran yang sudah memiliki giliran asisten dan pesan pengguna setelahnya akan dibersihkan sejak permintaan pertama dan tidak pernah dirender. Itu adalah status yang tepat untuk pengingat per giliran yang Anda bawa. Biarkan `clear_at` tidak diatur hanya pada pesan yang harus dirender di setiap permintaan.
+
+* **Riwayat yang Anda tulis sendiri.** Dalam contoh few-shot atau transkrip dari sistem lain, pesan berlingkup giliran yang memiliki giliran asisten dan pesan pengguna setelahnya tidak pernah dirender. Jika model harus melihat teks tersebut, jangan sertakan `clear_at`, dan pesan akan dirender di setiap permintaan. Jika tidak, jangan sertakan pesan tersebut. Hal ini hanya berlaku untuk riwayat yang Anda tulis sendiri: saat Anda mengirim ulang percakapan dengan blok pemikiran yang dikembalikan Claude, pertahankan setiap pesan persis seperti aslinya, termasuk `clear_at`. Lihat **Kirim ulang pesan yang telah dibersihkan apa adanya**.
 
 Error validasinya adalah:
 
@@ -2127,9 +2159,9 @@ messages.3: output_config is not permitted on a turn-scoped system message (clea
 messages.3.content.0: cache_control is not permitted on a turn-scoped system message (clear_at: 'next_user_message')
 ```
 
-Yang pertama adalah error yang dikembalikan tanpa header beta. Di [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), dan Claude Models on Google Cloud (Google managed), kirimkan nilai beta di header `anthropic-beta`, seperti di Claude API (lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers)). Dengan [InvokeModel API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) Amazon Bedrock, letakkan nilai tersebut di array `anthropic_beta` pada body permintaan sebagai gantinya.
+Yang pertama adalah error yang dikembalikan tanpa header beta. Kirimkan `mid-conversation-system-clear-at-2026-08-21` di header `anthropic-beta` (lihat [Header beta](https://platform.claude.com/docs/id/api/beta-headers)). Dengan InvokeModel API di [Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), letakkan nilai tersebut di array `anthropic_beta` pada body permintaan sebagai gantinya.
 
-Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `clearAt`) pada entri `role: "system"` di `messages` dan kirim header beta. Contoh berikut menambahkan pengingat berlingkup giliran setelah giliran pengguna; pada permintaan berikutnya, begitu ada pesan pengguna yang lebih baru, pengingat tetap berada di array tetapi tidak lagi dirender:
+Atur `clear_at` pada entri `role: "system"` di `messages` dan kirim header beta. Contoh berikut menambahkan pengingat berlingkup giliran setelah giliran pengguna. Pada permintaan berikutnya, begitu ada pesan pengguna yang lebih baru, pengingat tetap berada di array tetapi tidak lagi dirender:
 
 <CodeGroup>
   ```bash cURL
@@ -2139,7 +2171,7 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
     -H "anthropic-beta: mid-conversation-system-clear-at-2026-08-21" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-fable-5-1",
+      "model": "claude-opus-5-5",
       "max_tokens": 4096,
       "messages": [
         {"role": "user", "content": "Draft a short status update on the database migration for the team channel."},
@@ -2151,12 +2183,12 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
   ```bash CLI
   ant beta:messages create \
     --beta mid-conversation-system-clear-at-2026-08-21 <<'YAML'
-  model: claude-fable-5-1
+  model: claude-opus-5-5
   max_tokens: 4096
   messages:
     - role: user
       content: Draft a short status update on the database migration for the team channel.
-    # Pengingat lingkup giliran: dirender untuk giliran ini, lalu dihapus setelah ada pesan pengguna berikutnya.
+    # Pengingat lingkup giliran: dirender untuk giliran ini, lalu berhenti dirender setelah ada pesan pengguna berikutnya.
     - role: system
       clear_at: next_user_message
       content: "The reader is on call: keep this reply under 50 words."
@@ -2167,14 +2199,14 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
   client = anthropic.Anthropic()
 
   response = client.beta.messages.create(
-      model="claude-fable-5-1",
+      model="claude-opus-5-5",
       max_tokens=4096,
       messages=[
           {
               "role": "user",
               "content": "Draft a short status update on the database migration for the team channel.",
           },
-          # Pengingat lingkup giliran: dirender untuk giliran ini, lalu dihapus setelah ada pesan pengguna berikutnya.
+          # Pengingat lingkup giliran: dirender untuk giliran ini, lalu berhenti dirender setelah ada pesan pengguna berikutnya.
           {
               "role": "system",
               "clear_at": "next_user_message",
@@ -2193,14 +2225,14 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
   const client = new Anthropic();
 
   const response = await client.beta.messages.create({
-    model: "claude-fable-5-1",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     messages: [
       {
         role: "user",
         content: "Draft a short status update on the database migration for the team channel."
       },
-      // Pengingat lingkup giliran: dirender untuk giliran ini, lalu dihapus setelah ada pesan pengguna berikutnya.
+      // Pengingat lingkup giliran: dirender untuk giliran ini, lalu berhenti dirender setelah ada pesan pengguna berikutnya.
       {
         role: "system",
         clear_at: "next_user_message",
@@ -2226,12 +2258,12 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
 
   var response = await client.Beta.Messages.Create(new MessageCreateParams
   {
-      Model = Messages::Model.ClaudeFable5_1,
+      Model = Messages::Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       Messages =
       [
           new BetaUserMessageParam { Content = "Draft a short status update on the database migration for the team channel." },
-          // Pengingat lingkup giliran: dirender untuk giliran ini, lalu dihapus setelah ada pesan pengguna berikutnya.
+          // Pengingat lingkup giliran: dirender untuk giliran ini, lalu berhenti dirender setelah ada pesan pengguna berikutnya.
           new BetaSystemMessageParam
           {
               ClearAt = ClearAt.NextUserMessage,
@@ -2254,11 +2286,11 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.Background(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeFable5_1,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Draft a short status update on the database migration for the team channel.")),
-  		// Pengingat lingkup giliran: dirender untuk giliran ini, lalu dihapus setelah ada pesan pengguna berikutnya.
+  		// Pengingat lingkup giliran: dirender untuk giliran ini, lalu berhenti dirender setelah ada pesan pengguna berikutnya.
   		{OfSystem: &anthropic.BetaSystemMessageParam{
   			ClearAt: anthropic.BetaSystemMessageParamClearAtNextUserMessage,
   			Content: []anthropic.BetaSystemMessageParamContentUnion{{OfText: &anthropic.BetaTextBlockParam{Text: "The reader is on call: keep this reply under 50 words."}}},
@@ -2282,17 +2314,17 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
   import com.anthropic.models.beta.messages.BetaMessage;
   import com.anthropic.models.beta.messages.BetaSystemMessageParam;
   import com.anthropic.models.beta.messages.MessageCreateParams;
-  import com.anthropic.models.messages.Model;
+  // ...
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_FABLE_5_1)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .addBeta(AnthropicBeta.MID_CONVERSATION_SYSTEM_CLEAR_AT_2026_08_21)
           .addUserMessage("Draft a short status update on the database migration for the team channel.")
-          // Pengingat lingkup giliran: dirender untuk giliran ini, lalu dihapus setelah ada pesan pengguna berikutnya.
+          // Pengingat lingkup giliran: dirender untuk giliran ini, lalu berhenti dirender setelah ada pesan pengguna berikutnya.
           .addMessage(BetaSystemMessageParam.builder()
               .clearAt(BetaSystemMessageParam.ClearAt.NEXT_USER_MESSAGE)
               .content("The reader is on call: keep this reply under 50 words.")
@@ -2309,16 +2341,17 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
   ```php PHP
   use Anthropic\Beta\AnthropicBeta;
   use Anthropic\Beta\Messages\BetaMessageParam;
-  use Anthropic\Client;
+  use Anthropic\Beta\Messages\BetaTextBlock;
+  // ...
 
   $client = new Client();
 
   $response = $client->beta->messages->create(
-      model: 'claude-fable-5-1',
+      model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 4096,
       messages: [
           BetaMessageParam::with(role: 'user', content: 'Draft a short status update on the database migration for the team channel.'),
-          // Pengingat lingkup giliran: dirender untuk giliran ini, lalu dihapus setelah ada pesan pengguna berikutnya.
+          // Pengingat lingkup giliran: dirender untuk giliran ini, lalu berhenti dirender setelah ada pesan pengguna berikutnya.
           BetaMessageParam::with(
               role: 'system',
               clearAt: 'next_user_message',
@@ -2329,7 +2362,7 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
   );
 
   foreach ($response->content as $block) {
-      if ($block->type === 'text') {
+      if ($block instanceof BetaTextBlock) {
           echo $block->text, PHP_EOL;
       }
   }
@@ -2339,12 +2372,12 @@ Melalui SDK, atur `clear_at` (csharp, go: `ClearAt`; java: `.clearAt()`; php: `c
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: Anthropic::Model::CLAUDE_FABLE_5_1,
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
     messages: [
-      {role: "user", content: "Draft a short status update on the database migration for the team channel."},
-      # Pengingat lingkup giliran: dirender untuk giliran ini, lalu dihapus setelah ada pesan pengguna berikutnya.
-      {role: "system", clear_at: :next_user_message, content: "The reader is on call: keep this reply under 50 words."}
+      { role: "user", content: "Draft a short status update on the database migration for the team channel." },
+      # Pengingat lingkup giliran: dirender untuk giliran ini, lalu berhenti dirender setelah ada pesan pengguna berikutnya.
+      { role: "system", clear_at: :next_user_message, content: "The reader is on call: keep this reply under 50 words." }
     ],
     betas: [Anthropic::AnthropicBeta::MID_CONVERSATION_SYSTEM_CLEAR_AT_2026_08_21]
   )
@@ -2369,8 +2402,8 @@ Hindari mengedit atau menghapus pesan sistem di tengah percakapan yang sudah dik
 ## Keterbatasan
 
 * **Tidak untuk pesan pertama.** Pesan `system` yang membawa konten tidak dapat menjadi entri pertama di `messages`. Gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
-* **Penempatan dibatasi.** Pesan `system` yang membawa konten (blok `text`, `tool_addition`, atau `tool_removal`) harus langsung mengikuti giliran `user` (termasuk giliran `user` yang membawa blok `tool_result`) atau giliran `assistant` yang diakhiri dengan hasil alat server, dan harus mendahului giliran `assistant` atau mengakhiri array. Pesan tersebut tidak dapat berada di antara blok `tool_use` dan `tool_result`-nya. Menempatkannya di tempat lain menghasilkan error 400. Satu pengecualian: blok `tool_addition` dan `tool_removal` tidak diterima tepat setelah giliran `assistant` yang [dijeda](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#pause-turn) (yang diakhiri dengan hasil alat server), meskipun blok `text` diterima; lanjutkan giliran yang dijeda terlebih dahulu, lalu kirim perubahan alat dalam pesan `system` berikutnya. Pesan dengan `content` kosong yang hanya mengatur [`output_config.effort`](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) tidak merender apa pun pada posisinya dan diterima di mana saja di `messages`, termasuk sebagai entri pertama atau di antara giliran `assistant` dan giliran `user`. Pesan `system` yang berurutan dinilai bersama, sehingga menambahkan pesan yang membawa teks di samping pesan yang hanya berisi effort membuat seluruh kelompok tersebut mengikuti aturan konten.
-* **Pesan bercakupan giliran hanya berisi teks dan dikirim ulang apa adanya.** Pesan `clear_at: "next_user_message"` tidak membawa `tool_addition`, `tool_removal`, `output_config`, atau `cache_control`, dan setelah dibersihkan, pesan tersebut harus tetap berada di `messages` byte demi byte pada permintaan berikutnya. Lihat [Pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages).
+* **Penempatan dibatasi.** Pesan `system` yang membawa konten (blok `text`, `tool_addition`, atau `tool_removal`) harus langsung mengikuti giliran `user` atau giliran `assistant` yang diakhiri dengan hasil alat server. Giliran `user` yang membawa blok `tool_result` juga dihitung. Pesan tersebut harus mendahului giliran `assistant` atau mengakhiri array. Pesan tersebut tidak dapat berada di antara blok `tool_use` dan `tool_result`-nya. Menempatkannya di tempat lain menghasilkan error 400. Satu pengecualian: blok `tool_addition` dan `tool_removal` tidak diterima tepat setelah giliran `assistant` yang [dijeda](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#pause-turn) (yang diakhiri dengan hasil alat server), meskipun blok `text` diterima. Lanjutkan giliran yang dijeda terlebih dahulu, lalu kirim perubahan alat dalam pesan `system` berikutnya. Pesan dengan `content` kosong yang hanya mengatur [`output_config.effort`](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) tidak merender apa pun pada posisinya. Pesan tersebut dapat mengikuti giliran mana pun, atau menjadi entri pertama, tetapi ditempatkan setelah semua yang sudah dikirim. Pesan `system` yang berurutan dinilai bersama, sehingga menambahkan pesan yang membawa teks di samping pesan yang hanya berisi effort membuat seluruh kelompok tersebut mengikuti aturan konten.
+* **Pesan berlingkup giliran hanya berisi teks dan dikirim ulang apa adanya.** Pesan `clear_at: "next_user_message"` tidak membawa `tool_addition`, `tool_removal`, `output_config`, atau `cache_control`, dan setelah dibersihkan, pesan tersebut harus tetap berada di `messages` byte demi byte pada permintaan berikutnya. Lihat [Pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages).
 * **Bukan tempat untuk konten yang tidak tepercaya.** Claude memperlakukan konten sistem sebagai instruksi operator dan mengikutinya. Jangan tempatkan teks dari luar percakapan, seperti output alat mentah, dokumen yang diambil, atau konten web, langsung di pesan sistem; tindakan itu memberikan otoritas tingkat operator pada teks tersebut. Simpan data tersebut di blok `tool_result` dan terus ikuti panduan [Memitigasi jailbreak dan injeksi prompt](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks).
 
 ## Terkait
@@ -2381,7 +2414,7 @@ Hindari mengedit atau menghapus pesan sistem di tengah percakapan yang sudah dik
   </Card>
 
   <Card title="Diagnostik cache" icon="magnifying-glass" href="https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics">
-    Temukan secara tepat di mana dua permintaan berbeda ketika cache hit yang Anda harapkan tidak terjadi.
+    Temukan apa yang berubah di antara dua permintaan ketika cache hit yang Anda harapkan tidak terjadi.
   </Card>
 
   <Card title="Menggunakan Messages API" icon="message" href="https://platform.claude.com/docs/id/build-with-claude/working-with-messages">
@@ -2408,11 +2441,11 @@ Pesan sistem di tengah percakapan tersedia di model tertentu dan layak untuk ret
 * Ketersediaan: Tersedia
 * Penggunaan: Tambahkan pesan dengan `role` `"system"` ke `messages` pada titik di mana instruksi mulai berlaku.
 
-| Status               | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                       | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Tersedia             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
-| Tersedia<sup>1</sup> | [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)                                                                                                                                                                                                                                                                                                            | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview)                                                                                                                                                                                              |
-| Tersedia             | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)                                                                                                                                                                                                                                                                                                                                     | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview)                                                                                                                                                                                                |
+| Status               | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tersedia             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
+| Tersedia<sup>1</sup> | [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)                                                                                                                                                                                                                                                                                                                                                                                                                    | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview)                                                                                                                                                                       |
+| Tersedia             | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)                                                                                                                                                                                                                                                                                                                                                                                                                                             | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview)                                                                                                                                                                         |
 
 1. Hanya melalui InvokeModel (bukan Converse).
 
@@ -2421,9 +2454,9 @@ Pesan sistem di tengah percakapan tersedia di model tertentu dan layak untuk ret
 * Ketersediaan: Tersedia
 * Penggunaan: Kirim event `system.message`. Event ini berlaku untuk giliran tersebut dan semua giliran berikutnya; field `system` milik agen sendiri tidak dapat berubah selama sesi.
 
-| Status   | Platform cloud               | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| -------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Tersedia | Semua platform yang didukung | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
+| Status   | Platform cloud               | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| -------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tersedia | Semua platform yang didukung | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
 
 ### Penanganan data
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/skills
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: edecf0470518a63b22cf1fc640087c0bfd325735bf56137bed66597bfccb6b0a
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 589a9676e6ac260ec2dbc60c8693b619744b45c93dfeaebd6d0cb288182df61c
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. Berlaku untuk semua subfitur Managed Agents, termasuk Sandbox yang di-host sendiri.
+    note: Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya.
   supportedModels:
     - claude-fable-5-2
     - claude-mythos-5-2
@@ -57,7 +57,7 @@ Untuk mempelajari cara menulis skill kustom, lihat [Agent Skills](https://platfo
 
 Skill kustom adalah direktori yang berisi file `SKILL.md` beserta file pendukung apa pun, yang diunggah ke workspace Anda sebagai arsip zip atau sebagai file individual. Membuat skill akan mengembalikan ID `skill_*` yang Anda referensikan saat melampirkannya ke agen. Skill bawaan Anthropic sudah tersedia di setiap workspace dan tidak memerlukan langkah ini. Untuk hanya menggunakan skill bawaan, langsung ke [Melampirkan skill ke agen](https://platform.claude.com/docs/id/managed-agents/skills#attach-skills-to-an-agent).
 
-Contoh-contoh ini menghilangkan field opsional `display_name` (java, php: `displayName`; csharp, go: `DisplayName`), sehingga nama tampilan skill diturunkan dari field `name` di `SKILL.md`. `display_name` (java, php: `displayName`; csharp, go: `DisplayName`) yang eksplisit dapat berisi hingga 255 karakter dan tidak perlu unik di dalam workspace Anda.
+Contoh-contoh ini menghilangkan field opsional `display_name` (java, php: `displayName`; csharp, go: `DisplayName`), sehingga nama tampilan skill berasal dari field `name` di `SKILL.md`. `display_name` (java, php: `displayName`; csharp, go: `DisplayName`) yang eksplisit dapat berisi hingga 255 karakter dan tidak perlu unik di dalam workspace Anda.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -390,9 +390,11 @@ Setiap entri dalam array `skills` (csharp, go: `Skills`) menggunakan field berik
   ```
 
   ```php PHP
+  use Anthropic\Beta\Agents\BetaManagedAgentsModel;
+
   $agent = $client->beta->agents->create(
       name: 'Financial Analyst',
-      model: 'claude-opus-5-5',
+      model: BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
       system: 'You are a financial analysis agent.',
       skills: [
           ['type' => 'anthropic', 'skillID' => 'xlsx'],
@@ -404,7 +406,7 @@ Setiap entri dalam array `skills` (csharp, go: `Skills`) menggunakan field berik
   ```ruby Ruby
   agent = client.beta.agents.create(
     name: "Financial Analyst",
-    model: "claude-opus-5-5",
+    model: Anthropic::Beta::BetaManagedAgentsModel::CLAUDE_OPUS_5_5,
     system_: "You are a financial analysis agent.",
     skills: [
       {type: "anthropic", skill_id: "xlsx"},
@@ -416,7 +418,7 @@ Setiap entri dalam array `skills` (csharp, go: `Skills`) menggunakan field berik
 
 ## Memuat skill dari repositori GitHub
 
-Skill juga dapat berada di basis kode Anda. Ketika sebuah sesi me-mount repositori melalui [resource `github_repository`](https://platform.claude.com/docs/id/managed-agents/github), direktori root `.claude/skills` milik repositori dipindai saat sesi dimulai, dan setiap skill yang ditemukan di sana menjadi tersedia bagi agent. Tidak diperlukan unggahan maupun entri dalam array `skills` (csharp, go: `Skills`) milik agent. Agent menerima nama, deskripsi, dan path setiap skill yang ditemukan di sandbox, lalu membaca `SKILL.md` skill tersebut ketika suatu tugas cocok, termasuk skrip dan sumber daya apa pun yang disertakan skill. Penemuan bergantung pada alat `read` milik agent dari [toolset agent](https://platform.claude.com/docs/id/managed-agents/tools), yang diaktifkan secara default; agent dengan `read` yang dinonaktifkan tidak memuat skill repositori.
+Skill juga dapat berada di basis kode Anda. Ketika sebuah sesi me-mount repositori melalui [resource `github_repository`](https://platform.claude.com/docs/id/managed-agents/github), pemindaian direktori root `.claude/skills` milik repositori berjalan saat sesi dimulai. Setiap skill yang ditemukan di sana menjadi tersedia bagi agent. Anda tidak perlu mengunggah skill ini atau menambahkannya ke array `skills` (csharp, go: `Skills`) milik agent. Agent menerima nama, deskripsi, dan path setiap skill yang ditemukan di sandbox. Ketika suatu tugas cocok, agent membaca `SKILL.md` skill tersebut, termasuk skrip dan sumber daya apa pun yang disertakan skill. Penemuan bergantung pada alat `read` milik agent dari [toolset agent](https://platform.claude.com/docs/id/managed-agents/tools), yang diaktifkan secara default; agent dengan `read` yang dinonaktifkan tidak memuat skill repositori.
 
 <Warning>
   Skill repositori adalah instruksi agent, sehingga repositori yang di-mount merupakan bagian dari batas kepercayaan agent Anda. Siapa pun yang dapat melakukan commit ke repositori (pull request eksternal yang di-merge, dependensi yang disusupi, seorang kontributor) dapat menambahkan atau mengubah skill. Platform memuat skill tersebut saat sesi dimulai tanpa langkah peninjauan, dan alat sesi seperti `bash` dan `web_fetch` memberi instruksinya jangkauan yang nyata. Mount hanya repositori yang Anda percayai, dan tinjau `.claude/skills` sebelum me-mount repositori yang menerima kontribusi dari luar.
@@ -605,7 +607,7 @@ Untuk repositori privat, `authorization_token` (java, php: `authorizationToken`;
 
 Skill yang ditemukan mengikuti status checkout repositori: branch atau commit `checkout` (csharp, go: `Checkout`) jika resource menetapkannya, atau branch default repositori jika tidak. Pemindaian berjalan sekali, saat sesi dimulai. Commit yang di-push di tengah sesi tidak akan diambil; untuk memuat skill yang diperbarui, mulai sesi baru.
 
-Skill repositori bekerja berdampingan dengan skill yang dilampirkan melalui array `skills` (csharp, go: `Skills`) milik agen. Jika skill repositori memiliki nama yang sama dengan skill yang dilampirkan, atau dengan skill dari repositori lain yang di-mount, keduanya tersedia; masing-masing diumumkan dengan path-nya sendiri.
+Skill repositori bekerja berdampingan dengan skill yang dilampirkan melalui array `skills` (csharp, go: `Skills`) milik agen. Jika skill repositori memiliki nama yang sama dengan skill yang dilampirkan, atau dengan skill dari repositori lain yang di-mount, keduanya tersedia. Agen menerima masing-masing dengan path-nya sendiri.
 
 ## Langkah selanjutnya
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: e951aa0949a6e90d4576f21055a4bacd33c934b53d0f6ec806938deed29988a9
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 72f3ed25f31319c70750c5e217a869837793bdb5e485a9697ae38c77484aa842
 ---
 
 ---
@@ -111,7 +111,7 @@ Kirim percakapan apa adanya dengan `"compaction": {"type": "summarize"}`. API me
 
   response = client.beta.messages.create(
       model="claude-opus-5-5",
-      # max_tokens membatasi seluruh panggilan, termasuk proses thinking, jadi sediakan beberapa ribu token.
+      # max_tokens membatasi seluruh panggilan, termasuk thinking apa pun, jadi sediakan beberapa ribu token.
       max_tokens=4096,
       betas=["compact-2026-09-04"],
       messages=history,
@@ -170,7 +170,7 @@ Kirim percakapan apa adanya dengan `"compaction": {"type": "summarize"}`. API me
   var response = await client.Beta.Messages.Create(new MessageCreateParams
   {
       Model = Model.ClaudeOpus5_5,
-      // max_tokens membatasi seluruh panggilan, termasuk proses thinking, jadi sediakan beberapa ribu token.
+      // max_tokens membatasi seluruh panggilan, termasuk pemikiran apa pun, jadi sediakan beberapa ribu token.
       MaxTokens = 4096,
       Betas = [AnthropicBeta.Compact2026_09_04],
       Messages = history,
@@ -280,7 +280,7 @@ Kirim percakapan apa adanya dengan `"compaction": {"type": "summarize"}`. API me
 
   response = client.beta.messages.create(
     model: Anthropic::Model::CLAUDE_OPUS_5_5,
-    # max_tokens membatasi seluruh panggilan, termasuk proses thinking, jadi sediakan beberapa ribu token.
+    # max_tokens membatasi seluruh panggilan, termasuk proses thinking apa pun, jadi sediakan beberapa ribu token.
     max_tokens: 4096,
     betas: [Anthropic::AnthropicBeta::COMPACT_2026_09_04],
     messages: history,
@@ -351,21 +351,24 @@ Contoh ini melanjutkan sampel permintaan, yang berakhir pada giliran `user`. Dia
 API menempatkan ringkasan di posisi blok dan meneruskan setiap pesan berikutnya ke Claude tanpa perubahan. Ikuti aturan berikut:
 
 * Tempatkan blok di urutan pertama dalam `messages`, baik sebagai pesan `assistant` tersendiri maupun sebagai blok konten pertama dari pesan pertama, entah itu pesan `user` atau `assistant`.
-* Hapus pesan-pesan yang diringkas. Jika ada yang masih tersisa di depan blok, permintaan mengembalikan error 400 (`compaction_block_misplaced`).
-* Kirim tepat satu blok `compaction` di setiap permintaan, pada setiap permintaan berikutnya.
+* Hapus persis pesan-pesan yang diringkas. Jika ada yang masih tersisa di depan blok, permintaan mengembalikan error 400 (`compaction_block_misplaced`).
+* Kirim tepat satu blok `compaction` pada setiap permintaan berikutnya.
 
 <Warning>
   Dua kesalahan dalam penukaran ini dapat lolos tanpa error:
 
   * **Blok tidak disertakan dalam permintaan berikutnya:** Claude tidak mendapatkan ringkasan.
   * **Pesan yang diringkas masih tersisa setelah blok:** API mengirimkannya lagi ke Claude.
-
-  Pada model dengan [pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking), kedua kesalahan tersebut juga dapat membuat blok thinking dalam permintaan gagal dalam [“prefix check” (pemeriksaan prefiks)](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check).
 </Warning>
 
-Compaction ambang batas bekerja sebaliknya: bloknya mengikuti pesan-pesan yang diringkasnya, dan API menghapus pesan-pesan tersebut untuk Anda. Lihat [Mengirimkan kembali blok compaction](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold#passing-compaction-blocks-back).
+Pada [model dengan pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#outcomes), masing-masing kesalahan tersebut juga [membuat thinking tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#mismatch-behavior):
 
-Jika Anda mempertahankan giliran setelah blok dan mengirim kembali blok thinking-nya, syarat-syarat yang menjaga thinking tersebut tetap valid dijelaskan di [Compaction dan pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks).
+* **Blok tidak disertakan:** thinking sejak penukaran, dan thinking sebelumnya kecuali Anda mengirim ulang seluruh riwayat.
+* **Pesan yang diringkas masih tersisa:** thinking yang sudah ada di dalamnya dan setelahnya.
+
+Compaction ambang batas bekerja sebaliknya: bloknya mengikuti pesan-pesan yang diringkasnya, dan API tidak menyertakan pesan-pesan tersebut untuk Anda. Lihat [Mengirimkan kembali blok compaction](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold#passing-compaction-blocks-back).
+
+Untuk giliran yang dipertahankan, lihat [Syarat agar thinking yang dipertahankan tetap valid](https://platform.claude.com/docs/id/build-with-claude/compaction-thinking-blocks#conditions-for-kept-thinking-to-stay-valid).
 
 ### Melakukan compaction lagi
 
@@ -389,7 +392,7 @@ Setelah setiap giliran, loop menjumlahkan token input dan output dari respons te
 
   client = anthropic.Anthropic()
 
-  # Atur nilai ini mendekati anggaran input Anda yang sebenarnya. Di sini dibuat rendah agar percakapan pendek pun dipadatkan.
+  # Atur nilai ini mendekati anggaran input Anda yang sebenarnya. Di sini dibuat rendah agar percakapan pendek pun mengalami compaction.
   COMPACT_AT_TOKENS = 2500
   SYSTEM = "You help design a recipe app's data model. Keep answers short."
 
@@ -428,7 +431,7 @@ Setelah setiap giliran, loop menjumlahkan token input dan output dari respons te
               compaction={"type": "summarize"},
           )
           if summary.stop_reason == "compaction":
-              # Gunakan client.beta.messages. Jika Anda memanggil client.messages dan menserialisasi blok sendiri,
+              # Gunakan client.beta.messages. Jika Anda memanggil client.messages dan menyerialisasi blok sendiri,
               # gunakan to_dict() atau model_dump(exclude_none=True): model_dump() biasa menambahkan
               # citations: null dan text: null ke blok, dan API akan menolaknya.
               history = [{"role": "assistant", "content": summary.content}]
@@ -438,7 +441,7 @@ Setelah setiap giliran, loop menjumlahkan token input dan output dari respons te
   ```typescript TypeScript
   const client = new Anthropic();
 
-  // Atur nilai ini mendekati anggaran input Anda yang sebenarnya. Di sini nilainya rendah agar percakapan singkat pun dipadatkan.
+  // Atur nilai ini mendekati anggaran input Anda yang sebenarnya. Di sini nilainya rendah agar percakapan singkat pun mengalami compaction.
   const compactAtTokens = 2500;
   const systemPrompt = "You help design a recipe app's data model. Keep answers short.";
 
@@ -466,7 +469,7 @@ Setelah setiap giliran, loop menjumlahkan token input dan output dari respons te
     });
     history.push({ role: "assistant", content: response.content });
 
-    // Permintaan berikutnya juga mengirim balasan ini, jadi ikut hitung.
+    // Permintaan berikutnya juga mengirim balasan ini, jadi ikut hitung balasan ini.
     const conversationTokens = response.usage.input_tokens + response.usage.output_tokens;
     if (conversationTokens > compactAtTokens && turn < questions.length) {
       const summary = await client.beta.messages.create({
@@ -492,7 +495,7 @@ Setelah setiap giliran, loop menjumlahkan token input dan output dari respons te
 
   AnthropicClient client = new();
 
-  // Atur nilai ini mendekati anggaran input Anda yang sebenarnya. Di sini nilainya rendah agar percakapan singkat pun dipadatkan.
+  // Atur nilai ini mendekati anggaran input Anda yang sebenarnya. Di sini nilainya rendah agar percakapan singkat pun mengalami compaction.
   const int CompactAtTokens = 2500;
   const string SystemPrompt = "You help design a recipe app's data model. Keep answers short.";
 
@@ -558,7 +561,7 @@ Setelah setiap giliran, loop menjumlahkan token input dan output dari respons te
   ctx := context.Background()
   client := anthropic.NewClient()
 
-  // Atur nilai ini mendekati anggaran input Anda yang sebenarnya. Di sini dibuat rendah agar percakapan singkat pun dipadatkan.
+  // Atur nilai ini mendekati anggaran input Anda yang sebenarnya. Di sini dibuat rendah agar percakapan singkat pun mengalami compaction.
   const compactAtTokens = 2500
   system := []anthropic.BetaTextBlockParam{{Text: "You help design a recipe app's data model. Keep answers short."}}
 
@@ -620,7 +623,7 @@ Setelah setiap giliran, loop menjumlahkan token input dan output dari respons te
   import com.anthropic.models.beta.messages.BetaStopReason;
   import com.anthropic.models.beta.messages.MessageCreateParams;
 
-  // Atur nilai ini mendekati anggaran input Anda yang sebenarnya. Di sini nilainya rendah agar percakapan singkat pun dipadatkan.
+  // Atur nilai ini mendekati anggaran input Anda yang sebenarnya. Di sini nilainya rendah agar percakapan singkat pun mengalami compaction.
   static final long COMPACT_AT_TOKENS = 2500;
   static final String SYSTEM = "You help design a recipe app's data model. Keep answers short.";
 
@@ -682,7 +685,7 @@ Setelah setiap giliran, loop menjumlahkan token input dan output dari respons te
 
   $client = new Client();
 
-  // Atur nilai ini mendekati anggaran input Anda yang sebenarnya. Di sini dibuat rendah agar percakapan singkat pun dipadatkan.
+  // Atur nilai ini mendekati anggaran input Anda yang sebenarnya. Di sini dibuat rendah agar compaction terjadi bahkan pada percakapan singkat.
   const COMPACT_AT_TOKENS = 2500;
   const SYSTEM = "You help design a recipe app's data model. Keep answers short.";
 
@@ -732,7 +735,7 @@ Setelah setiap giliran, loop menjumlahkan token input dan output dari respons te
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  # Atur nilai ini mendekati anggaran input Anda yang sebenarnya. Di sini sengaja rendah agar percakapan singkat pun dipadatkan.
+  # Atur nilai ini mendekati anggaran input Anda yang sebenarnya. Di sini sengaja rendah agar percakapan singkat pun mengalami compaction.
   COMPACT_AT_TOKENS = 2500
   SYSTEM = "You help design a recipe app's data model. Keep answers short."
 
@@ -783,7 +786,7 @@ Pemeriksaan `stop_reason` dilakukan sebelum kode mencari blok; [Menangani ringka
 
 [Tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner) SDK dapat mengirim permintaan compaction untuk Anda. Saat Anda memutuskan untuk melakukan compaction, panggil `compact_before_next_turn()` (ruby: `compact_before_next_turn`; typescript, java, php: `compactBeforeNextTurn()`; csharp, go: `CompactBeforeNextTurn()`) pada runner. Setelah giliran saat ini dan panggilan alatnya selesai, runner mengirim permintaan compaction dan mengganti riwayatnya dengan pesan yang dikembalikan. Buat runner dengan beta `compact-2026-09-04`, karena runner tidak menambahkannya.
 
-Runner menyusun permintaan compaction dari parameternya sendiri dan tidak menyertakan `context_management`. Runner juga tidak menyertakan `stop_sequences`, `tool_choice` bertipe `any` atau `tool`, dan `output_config.format` untuk structured output, yang ditolak API pada permintaan compaction. [Meminta ringkasan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#request-a-summary) menjelaskan alasannya. Runner mengirimkannya lagi pada permintaan-permintaan berikutnya. Versi SDK sebelum Python 1.8.0, TypeScript 0.128.0, C# 12.50.0, Go 1.75.0, dan Java 2.65.0 juga mengirimkannya pada permintaan compaction. Pada versi-versi tersebut, runner yang menetapkan salah satu parameter ini akan mendapatkan error 400. Runner mengirim [task budget](https://platform.claude.com/docs/id/build-with-claude/task-budgets) (anggaran tugas) tanpa perubahan. Jika `output_config.task_budget` menetapkan `remaining`, permintaan compaction mengembalikan error 400, jadi biarkan `remaining` tidak ditetapkan, seperti yang dijelaskan di [Batasan dan interaksi dengan fitur lain](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#how-it-fits-with-the-rest-of-the-api). Runner menolak melakukan compaction selama `context_management`-nya memiliki edit compaction, jadi gunakan satu jenis compaction saja pada sebuah runner.
+Runner menyusun permintaan compaction dari parameternya sendiri dan tidak menyertakan `context_management`. Runner juga tidak menyertakan `stop_sequences`, `tool_choice` bertipe `any` atau `tool`, dan `output_config.format` untuk structured output, yang ditolak API pada permintaan compaction. [Meminta ringkasan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#request-a-summary) menjelaskan alasannya. Runner mengirimkannya lagi pada permintaan-permintaan berikutnya. Versi SDK sebelum Python 1.8.0, TypeScript 0.128.0, C# 12.50.0, Go 1.75.0, dan Java 2.65.0 juga mengirimkannya pada permintaan compaction. Pada versi-versi tersebut, runner yang menetapkan salah satu parameter ini akan mendapatkan error 400. Runner mengirim [task budget](https://platform.claude.com/docs/id/build-with-claude/task-budgets) (anggaran tugas) tanpa perubahan. Jika `output_config.task_budget` menetapkan `remaining`, permintaan compaction mengembalikan error 400, jadi biarkan `remaining` tidak ditetapkan (lihat [Batasan dan interaksi dengan fitur lain](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#how-it-fits-with-the-rest-of-the-api)). Runner tidak dapat melakukan compaction selama `context_management`-nya memiliki edit compaction, jadi gunakan satu jenis compaction saja pada sebuah runner.
 
 ### Kapan melakukan compaction
 
@@ -826,18 +829,18 @@ Panggilan peringkasan tunduk pada perlindungan yang sama seperti permintaan Anda
 
 Permintaan compaction, atau permintaan yang membawa blok, juga dapat gagal sepenuhnya. Sebagian besar error 400 memiliki pesan yang menyebutkan apa yang harus dihapus atau dikirim ulang. Beberapa juga membawa `error.details.error_code` yang diawali dengan `compaction_`. Error parameter, seperti field yang tidak dapat digabungkan dengan `compaction`, hanya membawa pesan.
 
-| Error                                                                                                                                                                                             | Penyebab                                                                                                                                                                                                                   | Yang harus dilakukan                                                                                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 529 `overloaded_error`, `error.details.error_code` `compaction_unavailable`                                                                                                                       | Masalah server sementara saat menghasilkan blok, atau saat membaca blok yang Anda kirim kembali.                                                                                                                           | Coba ulang permintaan.                                                                                                                                                                 |
-| 400 `compaction_block_misplaced`                                                                                                                                                                  | Pesan yang diringkas masih tersisa di depan blok.                                                                                                                                                                          | Hapus pesan-pesan tersebut, sehingga blok berada di urutan pertama dalam `messages`.                                                                                                   |
-| 400 `compaction_signature_invalid` atau `compaction_content_mismatch`                                                                                                                             | `signature` atau `content` blok diubah setelah API mengembalikannya.                                                                                                                                                       | Kirim blok persis seperti yang dikembalikan, termasuk `signature`-nya.                                                                                                                 |
-| 400                                                                                                                                                                                               | Permintaan membawa lebih dari satu blok `compaction`.                                                                                                                                                                      | Kirim tepat satu, yaitu yang terbaru.                                                                                                                                                  |
-| 400                                                                                                                                                                                               | Giliran `assistant` terakhir diakhiri dengan panggilan alat yang belum memiliki hasil.                                                                                                                                     | Kirim hasil alat dari giliran tersebut, lalu lakukan compaction.                                                                                                                       |
-| 400 `compaction_nothing_to_summarize`                                                                                                                                                             | `messages` tidak memiliki konten `user` atau `assistant`, misalnya daftar kosong.                                                                                                                                          | Kirim setidaknya satu pesan `user` atau `assistant`.                                                                                                                                   |
-| 400 dengan pesan bahwa sebuah blok thinking `bound to a different conversation`                                                                                                                   | Pada model dengan pemikiran yang dipertahankan, sebuah blok thinking dalam permintaan compaction gagal dalam [pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#prefix-check). | [Tangani error tersebut](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#handle-the-error-in-code), lalu lakukan compaction.                                  |
-| 400 pada permintaan compaction, dengan pesan yang menyatakan bahwa parameter `compaction` `requires anthropic-beta: compact-2026-09-04`                                                           | Permintaan compaction tidak menyertakan header beta.                                                                                                                                                                       | Tambahkan header beta; lihat [Meminta ringkasan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#request-a-summary).                                        |
-| 400 pada permintaan selanjutnya yang membawa blok: error validasi yang menyebutkan bahwa `compaction` bukan salah satu tipe blok konten yang diharapkan. Pesan tersebut tidak menyebutkan header. | Permintaan tersebut tidak menyertakan header beta.                                                                                                                                                                         | Tambahkan header beta ke setiap permintaan yang membawa blok; lihat [Meminta ringkasan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#request-a-summary). |
-| Error validasi 400, seperti `messages.0.content.0.compaction.citations: Extra inputs are not permitted`                                                                                           | Blok dikirim kembali dengan field yang tidak dikembalikan API, seperti `citations: null`.                                                                                                                                  | Kirim blok persis seperti yang dikembalikan; lihat [Melanjutkan dari ringkasan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#continue-from-the-summary). |
+| Error                                                                                                                                                                                             | Penyebab                                                                                                                                                                                                                                                                                                                                    | Yang harus dilakukan                                                                                                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 529 `overloaded_error`, `error.details.error_code` `compaction_unavailable`                                                                                                                       | Masalah server sementara saat menghasilkan blok, atau saat membaca blok yang Anda kirim kembali.                                                                                                                                                                                                                                            | Coba ulang permintaan.                                                                                                                                                                        |
+| 400 `compaction_block_misplaced`                                                                                                                                                                  | Pesan yang diringkas masih tersisa di depan blok.                                                                                                                                                                                                                                                                                           | Hapus pesan-pesan tersebut, sehingga blok berada di urutan pertama dalam `messages`.                                                                                                          |
+| 400 `compaction_signature_invalid` atau `compaction_content_mismatch`                                                                                                                             | `signature` atau `content` blok diubah setelah API mengembalikannya.                                                                                                                                                                                                                                                                        | Kirim blok persis seperti yang dikembalikan, termasuk `signature`-nya.                                                                                                                        |
+| 400                                                                                                                                                                                               | Permintaan membawa lebih dari satu blok `compaction`.                                                                                                                                                                                                                                                                                       | Kirim tepat satu, yaitu yang terbaru.                                                                                                                                                         |
+| 400                                                                                                                                                                                               | Giliran `assistant` terakhir diakhiri dengan panggilan alat yang belum memiliki hasil.                                                                                                                                                                                                                                                      | Kirim hasil alat dari giliran tersebut, lalu lakukan compaction.                                                                                                                              |
+| 400 `compaction_nothing_to_summarize`                                                                                                                                                             | `messages` tidak memiliki konten `user` atau `assistant`, misalnya daftar kosong.                                                                                                                                                                                                                                                           | Kirim setidaknya satu pesan `user` atau `assistant`.                                                                                                                                          |
+| 400 dengan pesan bahwa sebuah blok thinking `bound to a different conversation`                                                                                                                   | Pada [model dengan pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#outcomes), sebuah blok thinking dalam permintaan compaction gagal dalam [pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#prefix-check). | [Tangani error dalam kode](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/fix-bound-to-a-different-conversation#handle-the-error-in-code), lalu lakukan compaction. |
+| 400 pada permintaan compaction, dengan pesan yang menyatakan bahwa parameter `compaction` `requires anthropic-beta: compact-2026-09-04`                                                           | Permintaan compaction tidak menyertakan header beta.                                                                                                                                                                                                                                                                                        | Tambahkan header beta; lihat [Meminta ringkasan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#request-a-summary).                                               |
+| 400 pada permintaan selanjutnya yang membawa blok: error validasi yang menyebutkan bahwa `compaction` bukan salah satu tipe blok konten yang diharapkan. Pesan tersebut tidak menyebutkan header. | Permintaan tersebut tidak menyertakan header beta.                                                                                                                                                                                                                                                                                          | Tambahkan header beta ke setiap permintaan yang membawa blok; lihat [Meminta ringkasan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#request-a-summary).        |
+| Error validasi 400, seperti `messages.0.content.0.compaction.citations: Extra inputs are not permitted`                                                                                           | Blok dikirim kembali dengan field yang tidak dikembalikan API, seperti `citations: null`.                                                                                                                                                                                                                                                   | Kirim blok persis seperti yang dikembalikan; lihat [Melanjutkan dari ringkasan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#continue-from-the-summary).        |
 
 ## Menghitung penggunaan compaction
 

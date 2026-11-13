@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: e446761f481da5f6ff7550415264e8c85edf6509e793c5fcde4d0832022d6adc
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 84d459677f362012374b95599645188bb8eb8fd5b54dd41f6495ee92a09aece2
 ---
 
 > ## Documentation Index
@@ -588,7 +588,7 @@ This also works for chord bindings. Unbinding every chord that shares a prefix f
 
 Claude Code binds these default chords on the `ctrl+x` prefix, by context:
 
-* `Chat`: `ctrl+x ctrl+k`, `ctrl+x ctrl+e`, `ctrl+x enter`, `ctrl+x ctrl+a`, `ctrl+x ctrl+s`, and `ctrl+x tab`
+* `Chat`: `ctrl+x ctrl+k`, `ctrl+x ctrl+e`, `ctrl+x enter`, `ctrl+x ctrl+a`, `ctrl+x ctrl+s`, `ctrl+x tab`, `ctrl+x ctrl+=`, `ctrl+x ctrl+-`, `ctrl+x ctrl+_`, `ctrl+x =`, and `ctrl+x -`
 * `Task`: `ctrl+x ctrl+b`
 * `DiffPanel`: `ctrl+x b`
 * `Pane`: `ctrl+x left`, `ctrl+x right`, `ctrl+x up`, `ctrl+x down`, and `ctrl+x x`
@@ -638,6 +638,11 @@ To reclaim `ctrl+x` itself as a single-key binding, unbind all of them:
         "ctrl+x ctrl+a": null,
         "ctrl+x ctrl+s": null,
         "ctrl+x tab": null,
+        "ctrl+x ctrl+=": null,
+        "ctrl+x ctrl+-": null,
+        "ctrl+x ctrl+_": null,
+        "ctrl+x =": null,
+        "ctrl+x -": null,
         "ctrl+x": "chat:newline"
       }
     }

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/overview
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 7a915c580687d49c22ec592e9dc0aebe9a7d45ad1df2c7aa6986e2734fcde124
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: b0d638ce137d331ffb22e995784e5fab7a078f5bf3fc2f42f035a2dac603a4da
 ---
 
 ---
@@ -125,6 +125,7 @@ Features of the Claude Platform that work across its APIs. Each feature’s page
 | [Outcomes](https://platform.claude.com/docs/en/managed-agents/define-outcomes)                            | A target result for a session, with a rubric that a separate grader uses to check the agent’s work until the target is met.                                  |
 | [Permission policies](https://platform.claude.com/docs/en/managed-agents/permission-policies)             | Settings that control whether the agent’s built-in tools and MCP tools run automatically, wait for your approval, or are checked by the server on each call. |
 | [Scheduled deployments](https://platform.claude.com/docs/en/managed-agents/scheduled-deployments)         | Runs an agent on a cron schedule, so that the agent starts sessions by itself.                                                                               |
+| [Self-hosted Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/self-hosted)       | The whole Managed Agents service on your own infrastructure: you host the API, the agent loop, the storage, and the sandboxes.                               |
 | [Self-hosted sandboxes](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes)         | Sandboxes on your own infrastructure that run the agent’s tool calls, while Claude still runs on Anthropic’s side.                                           |
 | ↳ [Self-hosted workers](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-workers) | A process that you run on your own infrastructure to claim sessions from a self-hosted environment’s queue and run their tool calls.                         |
 | [Session viewer](https://platform.claude.com/docs/en/managed-agents/session-observability)                | A session viewer in the Claude Console and per-session usage totals, to see what an agent did and what it used.                                              |

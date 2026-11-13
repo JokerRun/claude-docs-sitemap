@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-projects
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: cac466b5c34b02fbaa2c87ff3b23a7f8d627b585812a6a06eb5e4bd24606cb91
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: c854d415536dd91725e5a2ddaad110b8482863e8b4404b852d8c39d9d23f591a
 ---
 
 > ## Documentation Index
@@ -280,6 +280,8 @@ In the project conversation, choose **Work locally** from the **+** menu beside 
 Claude answers with an **Allow Claude to work in a folder on your device** card. Pick the folder if you connected several. Two threads working in one folder at the same time can overwrite each other's changes, so if the folder is a git repository, you can turn on **Worktree** in the folder's options to give this thread its own worktree instead. Then click **Allow once**.
 
 The thread runs in [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode), so Claude runs commands and edits files in that folder without asking you each time. If auto mode is unavailable or turned off in that computer's Claude Code, the thread runs without it, and any permission prompt it raises waits for your answer in the thread, as [Unblock a thread waiting on approval](#unblock-a-thread-waiting-on-approval) describes.
+
+To run the thread in another mode, start `claude remote-control` with [`--settings`](https://code.claude.com/docs/en/remote-control#start-a-remote-control-session). Then [`permissions.defaultMode`](https://code.claude.com/docs/en/permission-modes#start-in-a-different-mode), in that file or in that computer's settings, can pick another mode.
 
 While the thread runs, a laptop icon in its header shows whether your computer is connected. Click it to see which folder the thread is using or to turn the connection off. The thread pauses while that computer is asleep, and stops if the desktop app or `claude remote-control` quits.
 

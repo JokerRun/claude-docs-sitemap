@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/overview
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 6dfee9a80ec9d18fe79d07672cc7f3648efb548bc9e4723ae3b3d682da9b501b
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 1f42e6434ccbe8175df3073ba07e5528f4e1761921667aea81955a64210b2049
 ---
 
 ---
@@ -19,7 +19,7 @@ Halaman **Security posture** di **Pengaturan organisasi** claude.ai membandingka
 
 ## Pilih jalur Anda
 
-Untuk memasukkan perubahan di halaman ke sistem security information and event management (SIEM) Anda, mulailah dengan [Mengirim peristiwa Security posture ke SIEM Anda](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/send-events). Jika Anda sudah menyerap seluruh Activity Feed, Anda sudah memilikinya; [periksa dua hal](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/send-events#if-you-already-ingest-the-full-feed).
+Untuk memasukkan perubahan di halaman ke sistem security information and event management (SIEM) Anda, mulailah dengan [Mengirim peristiwa Security posture ke SIEM Anda](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/send-events). Jika Anda sudah menyerap seluruh Activity Feed, Anda sudah memilikinya; periksa dua hal di bagian [Jika Anda sudah menyerap seluruh feed](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/send-events#if-you-already-ingest-the-full-feed).
 
 * Untuk memberikan peringatan atas perubahan berisiko, lihat [Mendeteksi perubahan pada Security posture](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/detect-changes).
 * Untuk menormalkan ke Open Cybersecurity Schema Framework (OCSF), lihat [Memetakan peristiwa Security posture ke OCSF](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/ocsf-mapping).
@@ -124,4 +124,8 @@ Anthropic tetap menyimpan atestasi setelah tanggal berakhirnya tiba atau setelah
 
 [Kunci enkripsi yang dikelola pelanggan (CMEK)](https://platform.claude.com/docs/id/manage-claude/cmek), [zero data retention (ZDR) untuk Claude Code](https://code.claude.com/docs/en/zero-data-retention), dan [paket Enterprise siap HIPAA](https://support.claude.com/en/articles/13296973-hipaa-ready-enterprise-plans) tidak mengubah apa yang disimpan Anthropic dari kontrol, nilai, tanggal, dan akun suatu atestasi. Tidak satu pun dari ketiganya memperpendek berapa lama Anthropic menyimpan keempatnya. CMEK tidak mengenkripsi keempat bagian tersebut.
 
-Anthropic menyimpan komentar suatu atestasi sampai seseorang mencabut atestasi tersebut atau Anthropic menghapus komentar tersebut saat menghapus organisasi. Melakukan atestasi lagi dapat menggantikan atau menghapus komentar tersebut. Selama Security posture tidak tersedia untuk suatu organisasi, Anthropic tetap menyimpan atestasi dan komentar organisasi tersebut, dan tidak seorang pun dapat melihat atau mencabutnya di halaman Security posture. Periode retensi percakapan kustom tidak memperpendek berapa lama Anthropic menyimpan atestasi atau komentar tersebut. Aktivitas di Activity Feed tidak pernah menyertakan komentar tersebut (lihat [Apa yang tidak dicatat oleh feed](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/events-reference#what-the-feed-does-not-record)).
+Komentar suatu atestasi adalah jawaban atas pertanyaan yang dapat diajukan halaman Security posture ketika seseorang melakukan atestasi. Anthropic menyimpan komentar suatu atestasi sampai seseorang mencabut atestasi tersebut atau Anthropic menghapus komentar tersebut saat menghapus organisasi. Melakukan atestasi lagi dapat menggantikan atau menghapus komentar tersebut. Periode retensi percakapan kustom tidak memperpendek berapa lama Anthropic menyimpan atestasi atau komentar tersebut. Aktivitas di Activity Feed tidak pernah menyertakan komentar tersebut (lihat [Apa yang tidak dicatat oleh feed](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/events-reference#what-the-feed-does-not-record)).
+
+Beberapa organisasi tidak dapat menyimpan komentar bersama atestasi karena pengaturan penanganan datanya, seperti CMEK atau ZDR. Untuk organisasi tersebut, halaman Security posture tidak menampilkan kotak komentar dan tidak meminta jawaban ketika seseorang melakukan atestasi. Jika suatu organisasi telah menyimpan komentar sebelum pengaturan tersebut berlaku untuknya, komentar tersebut tetap tersimpan bersama atestasinya. Halaman Security posture tidak menampilkan komentar tersebut. Mencabut atestasi akan menghapus komentar tersebut.
+
+Selama Security posture tidak tersedia untuk suatu organisasi, Anthropic tetap menyimpan atestasi dan komentar organisasi tersebut. Selama waktu itu, tidak seorang pun dapat melihat atau mencabutnya di halaman Security posture.

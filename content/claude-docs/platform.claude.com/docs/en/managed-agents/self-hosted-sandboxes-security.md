@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-security
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: bce8bec276700ef041b2bee17762d1816db71af5c0c6c8b65a82e2186290d5f5
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: d4fc0531be48c645b879e89d2a312287606028c278a9d96eb7d07a88c5ae2e26
 ---
 
 ---
@@ -17,7 +17,7 @@ featureMetadata:
   betaHeader: managed-agents-2026-04-01
   zdr:
     eligibility: not-eligible
-    note: Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including Self-hosted sandboxes.
+    note: Not eligible for ZDR, except for self-hosted Managed Agents. Sessions are stateful resources; transcripts persist until you delete them.
   supportedModels:
     - claude-fable-5-2
     - claude-mythos-5-2

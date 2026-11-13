@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/effort-per-message
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: b98e5ad5e3bc45a656350cf0eccb9c936ed106b3836f401595ec344133062af1
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: fe4934e7cb4970e3595322d161b2ee56c0ee31e62ba9c18e15784ff943fbfa51
 ---
 
 ---
@@ -54,7 +54,7 @@ Contoh berikut mempertahankan nilai tingkat atas pada `high` dan beralih ke `low
     -H "anthropic-beta: mid-conversation-output-config-2026-07-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-fable-5-1",
+      "model": "claude-opus-5-5",
       "max_tokens": 4096,
       "output_config": {"effort": "high"},
       "messages": [
@@ -69,7 +69,7 @@ Contoh berikut mempertahankan nilai tingkat atas pada `high` dan beralih ke `low
   ```bash CLI
   ant beta:messages create \
     --beta mid-conversation-output-config-2026-07-01 <<'YAML'
-  model: claude-fable-5-1
+  model: claude-opus-5-5
   max_tokens: 4096
   output_config:
     effort: high
@@ -92,7 +92,7 @@ Contoh berikut mempertahankan nilai tingkat atas pada `high` dan beralih ke `low
   client = anthropic.Anthropic()
 
   response = client.beta.messages.create(
-      model="claude-fable-5-1",
+      model="claude-opus-5-5",
       max_tokens=4096,
       output_config={"effort": "high"},
       messages=[
@@ -120,7 +120,7 @@ Contoh berikut mempertahankan nilai tingkat atas pada `high` dan beralih ke `low
   const client = new Anthropic();
 
   const response = await client.beta.messages.create({
-    model: "claude-fable-5-1",
+    model: "claude-opus-5-5",
     max_tokens: 4096,
     output_config: { effort: "high" },
     messages: [
@@ -150,13 +150,13 @@ Contoh berikut mempertahankan nilai tingkat atas pada `high` dan beralih ke `low
   ```csharp C#
   using Anthropic.Models.Beta;
   using Anthropic.Models.Beta.Messages;
-  using Model = Anthropic.Models.Messages.Model;
+  // ...
 
   AnthropicClient client = new();
 
   var response = await client.Beta.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeFable5_1,
+      Model = Model.ClaudeOpus5_5,
       MaxTokens = 4096,
       OutputConfig = new() { Effort = Effort.High },
       Messages =
@@ -187,7 +187,7 @@ Contoh berikut mempertahankan nilai tingkat atas pada `high` dan beralih ke `low
   client := anthropic.NewClient()
 
   response, err := client.Beta.Messages.New(context.Background(), anthropic.BetaMessageNewParams{
-  	Model:     anthropic.ModelClaudeFable5_1,
+  	Model:     anthropic.ModelClaudeOpus5_5,
   	MaxTokens: 4096,
   	OutputConfig: anthropic.BetaOutputConfigParam{
   		Effort: anthropic.BetaOutputConfigEffortHigh,
@@ -223,13 +223,13 @@ Contoh berikut mempertahankan nilai tingkat atas pada `high` dan beralih ke `low
   import com.anthropic.models.beta.messages.BetaSystemMessageOutputConfig;
   import com.anthropic.models.beta.messages.BetaSystemMessageParam;
   import com.anthropic.models.beta.messages.MessageCreateParams;
-  import com.anthropic.models.messages.Model;
+  // ...
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_FABLE_5_1)
+          .model(Model.CLAUDE_OPUS_5_5)
           .maxTokens(4096L)
           .addBeta(AnthropicBeta.MID_CONVERSATION_OUTPUT_CONFIG_2026_07_01)
           .outputConfig(BetaOutputConfig.builder()
@@ -260,13 +260,12 @@ Contoh berikut mempertahankan nilai tingkat atas pada `high` dan beralih ke `low
   use Anthropic\Beta\Messages\BetaOutputConfig;
   use Anthropic\Beta\Messages\BetaSystemMessageOutputConfig;
   use Anthropic\Beta\Messages\BetaTextBlock;
-  use Anthropic\Client;
-  use Anthropic\Messages\Model;
+  // ...
 
   $client = new Client();
 
   $response = $client->beta->messages->create(
-      model: Model::CLAUDE_FABLE_5_1,
+      model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 4096,
       outputConfig: BetaOutputConfig::with(effort: 'high'),
       messages: [
@@ -294,15 +293,15 @@ Contoh berikut mempertahankan nilai tingkat atas pada `high` dan beralih ke `low
   client = Anthropic::Client.new
 
   response = client.beta.messages.create(
-    model: Anthropic::Model::CLAUDE_FABLE_5_1,
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 4096,
-    output_config: {effort: :high},
+    output_config: { effort: :high },
     messages: [
-      {role: "user", content: "Plan a migration from SQLite to PostgreSQL in three short steps."},
-      {role: "assistant", content: "1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts."},
+      { role: "user", content: "Plan a migration from SQLite to PostgreSQL in three short steps." },
+      { role: "assistant", content: "1. Export the SQLite data. 2. Create the PostgreSQL schema. 3. Import the data and verify row counts." },
       # Pesan sistem khusus effort: level baru berlaku mulai giliran pengguna berikutnya.
-      {role: "system", content: [], output_config: {effort: :low}},
-      {role: "user", content: "Summarize the plan in one sentence."}
+      { role: "system", content: [], output_config: { effort: :low } },
+      { role: "user", content: "Summarize the plan in one sentence." }
     ],
     betas: [Anthropic::AnthropicBeta::MID_CONVERSATION_OUTPUT_CONFIG_2026_07_01]
   )
@@ -325,7 +324,7 @@ Giliran `user` yang hanya berisi blok `tool_result` tidak dianggap sebagai input
 
 Tingkat yang baru tetap berlaku sampai pesan selanjutnya mengubahnya.
 
-Letakkan pesan tersebut setelah semua yang telah Anda kirim, dan pertahankan di tempatnya pada permintaan-permintaan berikutnya. Jangan menyisipkannya sebelum giliran yang telah Anda kirim, dan jangan memindahkan atau menghapusnya di kemudian hari. Pada model dengan [pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking), perubahan apa pun tersebut membuat blok thinking di giliran `assistant` setelah pesan tersebut menjadi tidak valid. [Apa yang dilakukan API terhadap blok yang tidak valid](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#mismatch-behavior) menjelaskan apa yang terjadi selanjutnya.
+Letakkan pesan tersebut setelah semua yang telah Anda kirim, dan pertahankan di tempatnya pada permintaan-permintaan berikutnya. Jangan menyisipkannya sebelum giliran yang telah Anda kirim, dan jangan memindahkan atau menghapusnya di kemudian hari. Pada model dengan [pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking), perubahan apa pun tersebut membuat blok thinking di giliran `assistant` setelah pesan tersebut menjadi tidak valid. Untuk mengetahui apa yang terjadi selanjutnya, lihat [Atur `prefix_mismatch_behavior`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#mismatch-behavior).
 
 Jika pesan ini berada di samping pesan `system` yang memiliki konten, kedua pesan harus mengikuti [aturan penempatan untuk pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations).
 
@@ -339,7 +338,7 @@ Dengan InvokeModel API Amazon Bedrock, kirim nilai beta di array `anthropic_beta
 
 ## Effort per pesan atau tingkat atas
 
-Utamakan effort per pesan daripada [mengubah nilai tingkat atas](https://platform.claude.com/docs/id/build-with-claude/effort#top-level-effort-on-the-next-request) di antara permintaan. Perubahan per pesan membiarkan semua yang ada sebelumnya tidak berubah, sehingga prefiks yang di-cache tetap cocok. Perubahan tingkat atas memulai ulang cache. Pada Claude Fable 5.1, perubahan tingkat atas juga mengarahkan model dengan kurang andal. Balasan-balasan model sebelumnya ditulis pada tingkat sebelumnya, dan model cenderung tetap konsisten dengan balasan tersebut.
+Utamakan effort per pesan daripada [mengubah nilai tingkat atas](https://platform.claude.com/docs/id/build-with-claude/effort#top-level-effort-on-the-next-request) di antara permintaan. Perubahan per pesan membiarkan semua yang ada sebelumnya tidak berubah, sehingga prefiks yang di-cache tetap cocok. Perubahan tingkat atas dapat membuat seluruh atau sebagian cache menjadi tidak valid. Pada Claude Fable 5.1, perubahan tingkat atas juga mengarahkan model dengan kurang andal. Balasan-balasan model sebelumnya ditulis pada tingkat sebelumnya, dan model cenderung tetap konsisten dengan balasan tersebut.
 
 ## Ketersediaan
 

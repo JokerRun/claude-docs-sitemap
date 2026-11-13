@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/events-reference
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: c382ff6e30d970a32f5042a0ad9549ca1c2bb13fc48e689a808c33f9dfc00ccf
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 9a667e97b758ecc33f7bae9dda823b67a166fa4407bd67dda854349abd8b5d4f
 ---
 
 ---
@@ -64,7 +64,7 @@ Aktivitas `lapsed` berarti hasil pemeriksaan atau nilai saat ini dari kontrol be
   "organization_uuid": "91012d09-e48b-438e-a489-1bebfd8fa6f9",
   "actor": {
     "type": "user_actor",
-    "email_address": "jane.doe@example.com",
+    "email_address": "priya@example.com",
     "user_id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
     "ip_address": "192.0.2.34",
     "user_agent": "Mozilla/5.0..."
@@ -79,7 +79,7 @@ Aktivitas `lapsed` berarti hasil pemeriksaan atau nilai saat ini dari kontrol be
 
 Jangan menganggap tidak adanya aktivitas sebagai tanda bahwa tidak ada yang berubah. Untuk hasil saat ini, lihat [Referensi hasil Security posture](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/results-reference); endpoint-nya dapat menghilangkan kontrol yang disebut oleh suatu aktivitas.
 
-* Perubahan dari sebelum [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) mulai mencatat aktivitas ini untuk organisasi, atau selama Compliance API nonaktif; perubahan ini tidak pernah ditambahkan kemudian.
+* Perubahan dari sebelum [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) mulai mencatat aktivitas ini untuk organisasi, atau selama Compliance API nonaktif. Feed tidak pernah menambahkan aktivitas untuk perubahan tersebut di kemudian hari.
 * Jarang terjadi, perubahan jenis apa pun.
 * Setiap tanggal berakhir yang tiba: tidak semuanya mendapatkan aktivitas, jadi jangan menunggu aktivitas.
 * Setiap kali halaman Security posture dinonaktifkan atau diaktifkan: jangan mengandalkan [aturan deteksi](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/detect-changes) untuk mendeteksinya.

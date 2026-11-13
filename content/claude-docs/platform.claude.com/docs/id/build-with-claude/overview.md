@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/overview
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 1b623c78a124b07d9d1861a731bf871e95d6c2b733096406ded2b960fe3d9218
+fetched_at: 2026-11-13T02:11:44.788783Z
+sha256: 0efddbc383efce76078cf703620c596828d168e1ef59df2e586433661a3e7338
 ---
 
 ---
@@ -125,6 +125,7 @@ Fitur-fitur Claude Platform yang berfungsi di seluruh API-nya. Halaman setiap fi
 | [Outcome](https://platform.claude.com/docs/id/managed-agents/define-outcomes)                                     | Hasil target untuk sesi, dengan rubrik yang digunakan oleh penilai terpisah untuk memeriksa pekerjaan agen hingga target tercapai.                              |
 | [Kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies)                          | Pengaturan yang mengontrol apakah alat bawaan agen dan alat MCP berjalan otomatis, menunggu persetujuan Anda, atau diperiksa oleh server pada setiap panggilan. |
 | [Deployment terjadwal](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments)                  | Menjalankan agen berdasarkan jadwal cron, sehingga agen memulai sesi dengan sendirinya.                                                                         |
+| [Claude Managed Agents yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted)      | Seluruh layanan Managed Agents pada infrastruktur Anda sendiri: Anda yang meng-host API, loop agen, penyimpanan, dan sandbox.                                   |
 | [Sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes)          | Sandbox pada infrastruktur Anda sendiri yang menjalankan panggilan alat agen, sementara Claude tetap berjalan di sisi Anthropic.                                |
 | ↳ [Worker yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers) | Proses yang Anda jalankan pada infrastruktur Anda sendiri untuk mengambil sesi dari antrean environment yang di-host sendiri dan menjalankan panggilan alatnya. |
 | [Penampil sesi](https://platform.claude.com/docs/id/managed-agents/session-observability)                         | Penampil sesi di Claude Console dan total penggunaan per sesi, untuk melihat apa yang dilakukan agen dan apa yang digunakannya.                                 |
