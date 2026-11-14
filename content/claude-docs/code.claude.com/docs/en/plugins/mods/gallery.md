@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/gallery
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 1ae11cba5379f15bc10a1429618147ca051ed3b9fb33084cbe0007b39edabbd6
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 44a9f8dc72c7ea0abb7e12f93f65b8be0d37fa7d852ee18eeb6fedc07e20dc2b
 ---
 
 > ## Documentation Index
@@ -370,7 +370,7 @@ In the terminal, a pane that returns only an `Svg` opens empty. To draw somethin
 
 ### `Image` and `Client`
 
-Two more elements have no sample here. `Image` draws a PNG or raw pixels in the terminal. `Client` is a region that a second file of yours draws, for animation and pointer input. The [elements reference](https://code.claude.com/docs/en/plugins/mods/reference.md#elements) lists their props.
+`Image` and `Client` have no sample here. `Image` draws a PNG or raw pixels in the terminal. `Client` is a region that a second file of yours draws, for animation and pointer input. The [elements reference](https://code.claude.com/docs/en/plugins/mods/reference.md#elements) lists their props.
 
 An `Image` draws as a picture in these terminals:
 

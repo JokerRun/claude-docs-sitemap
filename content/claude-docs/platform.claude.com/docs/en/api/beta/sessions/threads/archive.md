@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/archive
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 67e15fb8f903fea18ca6a7cb7b501da5d1774420a1a9869ea616ba57fb48ff23
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 85f9056de1675934444736518cdcda92465ce6a3ef319e5f0a55d942fd6cec2b
 ---
 
 ---
@@ -1041,13 +1041,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/archiv
     "execution_identity": {
       "type": "service_account"
     },
-    "mcp_servers": [
-      {
-        "name": "example-mcp",
-        "type": "url",
-        "url": "https://example-server.modelcontextprotocol.io/sse"
-      }
-    ],
+    "mcp_servers": [],
     "model": {
       "id": "claude-opus-5-5",
       "effort": {
@@ -1057,26 +1051,11 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/threads/$THREAD_ID/archiv
       "speed": "standard"
     },
     "name": "Researcher",
-    "skills": [
-      {
-        "skill_id": "xlsx",
-        "type": "anthropic",
-        "version": "1"
-      }
-    ],
+    "skills": [],
     "system": "You are a research subagent that gathers and summarises sources for the coordinating agent.",
     "tools": [
       {
-        "configs": [
-          {
-            "enabled": true,
-            "name": "bash",
-            "permission_policy": {
-              "type": "always_allow"
-            },
-            "type": "bash"
-          }
-        ],
+        "configs": [],
         "default_config": {
           "enabled": true,
           "permission_policy": {

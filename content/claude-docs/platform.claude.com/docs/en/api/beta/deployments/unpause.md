@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/unpause
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 3d5a5ad7be5d10168e823ab6657f2552e5fd49aa2053439c24801af9400eab5c
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 2a26c9a06f545236042c2a4a0da0d4cfe6b00740c8e1e5fb4bbd689bafb378df
 ---
 
 ---
@@ -733,20 +733,8 @@ curl https://api.anthropic.com/v1/deployments/$DEPLOYMENT_ID/unpause \
   ],
   "metadata": {},
   "name": "Daily order report",
-  "paused_reason": {
-    "type": "manual"
-  },
-  "resources": [
-    {
-      "type": "github_repository",
-      "url": "url",
-      "checkout": {
-        "name": "main",
-        "type": "branch"
-      },
-      "mount_path": "mount_path"
-    }
-  ],
+  "paused_reason": null,
+  "resources": [],
   "schedule": {
     "expression": "0 9 * * 1-5",
     "timezone": "America/Los_Angeles",

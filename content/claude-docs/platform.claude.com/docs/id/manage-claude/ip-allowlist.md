@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/ip-allowlist
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: b87fe1fd27c007b21d5314ac2d5e8f1a4c66cd2dfef79710ab1108d735fa8234
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: e5a213ecac2665eafbbf17053d44a97b9a5a1822a49100889f1becee7a8e9456
 ---
 
 ---
@@ -76,7 +76,7 @@ Di web dan di aplikasi desktop, pengguna yang diblokir melihat halaman berjudul 
   <Step title="Aktifkan toggle">
     Buka halaman pengaturan organisasi Anda:
 
-    * **Claude Platform:** Halaman [Identitas dan akses](https://platform.claude.com/settings/identity) di Claude Console
+    * **Claude Platform:** Halaman [Keamanan](https://platform.claude.com/settings/identity) di Claude Console
     * **Claude Enterprise:** [claude.ai > Pengaturan organisasi > Organisasi dan Akses](https://claude.ai/admin-settings/organization#ip-allowlist)
 
     Aktifkan toggle **IP allowlist**. Tidak ada yang berubah sampai Anda menyimpan.
@@ -109,5 +109,5 @@ Di organisasi Claude Enterprise, admin tidak dapat mengubah daftar, sehingga “
 
 1. **Hubungkan kembali dari jaringan yang tercantum:** Hubungkan ke jaringan kantor atau VPN Anda, lalu klik **Try again**. Jika tidak ada tombol **Try again**, muat ulang halaman.
 2. **Minta bantuan admin atau pemilik lain:** Admin atau pemilik yang berada di jaringan yang tercantum dapat menambahkan alamat Anda.
-3. **Perbaiki daftar dari lokasi Anda:** Jika Anda adalah admin atau pemilik dan kotak centang di bawah [Sisakan jalan untuk masuk kembali](https://platform.claude.com/docs/id/manage-claude/ip-allowlist#avoid-locking-yourself-out) dipilih, buka Claude Console atau Claude di browser dan klik **Buka daftar IP yang diizinkan**, atau buka halaman [Identitas dan akses](https://platform.claude.com/settings/identity) ([Organisasi dan Akses](https://claude.ai/admin-settings/organization#ip-allowlist) di claude.ai). Klik **Tambahkan** untuk menambahkan alamat Anda saat ini, atau nonaktifkan allowlist, lalu klik **Simpan** dan konfirmasi. Akses dapat memerlukan waktu hingga 15 menit untuk pulih.
+3. **Perbaiki daftar dari lokasi Anda:** Jika Anda adalah admin atau pemilik dan kotak centang di bawah [Sisakan jalan untuk masuk kembali](https://platform.claude.com/docs/id/manage-claude/ip-allowlist#avoid-locking-yourself-out) dipilih, Anda tetap dapat mengakses halaman pengaturan. Buka Claude Console atau Claude di browser dan klik **Buka daftar IP yang diizinkan**, atau buka halaman [Keamanan](https://platform.claude.com/settings/identity) ([Organisasi dan Akses](https://claude.ai/admin-settings/organization#ip-allowlist) di claude.ai). Klik **Tambahkan** untuk menambahkan alamat Anda saat ini, atau nonaktifkan allowlist, lalu klik **Simpan** dan konfirmasi. Akses dapat memerlukan waktu hingga 15 menit untuk pulih.
 4. **Hubungi Anthropic:** Jika tidak ada admin atau pemilik yang dapat mengakses halaman tersebut, minta [dukungan Anthropic](https://support.claude.com) untuk menonaktifkan allowlist.

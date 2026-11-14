@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/third-party-integrations
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: 89c448905df6e70ef085ec34ad86c76488a5d0d8089943ca33867a3c36bb90a2
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 69d05e8de3a4159721d7d1a2db6337db887f473902980bb95a32458008e3f271
 ---
 
 > ## Documentation Index
@@ -179,6 +179,10 @@ If you deploy through [Amazon Bedrock](https://code.claude.com/docs/en/amazon-be
 Security teams can configure managed permissions for what Claude Code is and is not allowed to do, which cannot be overwritten by local configuration. [Learn more](https://code.claude.com/docs/en/security.md).
 
 To limit which of these deployment options a managed machine may use, set [`allowedProviders`](https://code.claude.com/docs/en/settings-reference#allowedproviders) in managed settings. For example, `["bedrock"]` allows Amazon Bedrock and nothing else; a Bedrock fleet that also enables the Mantle endpoint lists `"mantle"` too. The entry says which endpoint variables also need a managed `env` pin. Requires Claude Code v2.1.285 or later.
+
+> [!NOTE]
+>
+> With Desktop signed in to claude.ai, a Cowork session on the user's machine counts as [`"anthropic"`](https://code.claude.com/docs/en/settings-reference#allowedproviders). If you leave it out of this list in an MDM policy or managed settings file, that session is refused. With it in, sessions sent to Anthropic directly also pass this list.
 
 ### Use MCP for integrations
 

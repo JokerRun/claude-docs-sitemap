@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/create
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 4ab9f9c377951b4e80f4964762d7f874692734aaefa2b6582ef02661ebc0f80b
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 9852ddc2ed3183766ac984c4bc3c01b44851be7ad3852e77bd7cce181e61dd65
 ---
 
 ---
@@ -8580,17 +8580,7 @@ curl https://api.anthropic.com/v1/messages \
   },
   "content": [
     {
-      "citations": [
-        {
-          "cited_text": "The grass is green. The sky is blue.",
-          "document_index": 0,
-          "document_title": "My Document",
-          "end_char_index": 0,
-          "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
-          "start_char_index": 0,
-          "type": "char_location"
-        }
-      ],
+      "citations": null,
       "text": "Hi! My name is Claude.",
       "type": "text"
     }
@@ -8604,22 +8594,10 @@ curl https://api.anthropic.com/v1/messages \
       }
     ]
   },
-  "diagnostics": {
-    "cache_miss_reason": {
-      "cache_missed_input_tokens": 0,
-      "type": "model_changed"
-    }
-  },
+  "diagnostics": null,
   "model": "claude-opus-5-5",
   "role": "assistant",
-  "stop_details": {
-    "category": "cyber",
-    "explanation": "This request was declined because it conflicts with Anthropic's Usage Policy.",
-    "fallback_credit_token": "QW50aHJvcGljL0NsYXVkZQ==",
-    "fallback_has_prefill_claim": true,
-    "recommended_model": "claude-opus-4-8",
-    "type": "refusal"
-  },
+  "stop_details": null,
   "stop_reason": "end_turn",
   "stop_sequence": null,
   "type": "message",

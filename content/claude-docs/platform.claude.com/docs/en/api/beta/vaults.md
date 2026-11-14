@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 7c50de86afdca2f8a82be6381e279d57c1ddf1358b8386ec2bc029172810e586
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 7e22362cbf67db647039be00848716591517d86b4759b29eff1c8a646637b8b5
 ---
 
 ---
@@ -4058,24 +4058,8 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID/mc
 {
   "credential_id": "vcrd_011CZkZEMt8gZan2iYPQfSkw",
   "has_refresh_token": true,
-  "mcp_probe": {
-    "http_response": {
-      "body": "body",
-      "body_truncated": true,
-      "content_type": "content_type",
-      "status_code": 0
-    },
-    "method": "method"
-  },
-  "refresh": {
-    "http_response": {
-      "body": "body",
-      "body_truncated": true,
-      "content_type": "content_type",
-      "status_code": 0
-    },
-    "status": "succeeded"
-  },
+  "mcp_probe": null,
+  "refresh": null,
   "status": "valid",
   "type": "vault_credential_validation",
   "validated_at": "2026-03-15T10:00:00Z",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/list
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 4c1d690597c3b9afbbd9873f870ec00c9ca21823d83babb12e68903269c83e0c
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: b21e76c55ab5e4d697820a4e63322c1b51328fdc78f9ecd71cdcc767d48a12fb
 ---
 
 ---
@@ -1451,65 +1451,7 @@ curl https://api.anthropic.com/v1/sessions \
           "inference_geo": "inference_geo",
           "speed": "standard"
         },
-        "multiagent": {
-          "agents": [
-            {
-              "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
-              "description": "A focused research subagent.",
-              "execution_identity": {
-                "type": "service_account"
-              },
-              "mcp_servers": [
-                {
-                  "name": "example-mcp",
-                  "type": "url",
-                  "url": "https://example-server.modelcontextprotocol.io/sse"
-                }
-              ],
-              "model": {
-                "id": "claude-opus-5-5",
-                "effort": {
-                  "type": "low"
-                },
-                "inference_geo": "inference_geo",
-                "speed": "standard"
-              },
-              "name": "Researcher",
-              "skills": [
-                {
-                  "skill_id": "xlsx",
-                  "type": "anthropic",
-                  "version": "1"
-                }
-              ],
-              "system": "You are a research subagent that gathers and summarises sources for the coordinating agent.",
-              "tools": [
-                {
-                  "configs": [
-                    {
-                      "enabled": true,
-                      "name": "bash",
-                      "permission_policy": {
-                        "type": "always_allow"
-                      },
-                      "type": "bash"
-                    }
-                  ],
-                  "default_config": {
-                    "enabled": true,
-                    "permission_policy": {
-                      "type": "always_ask"
-                    }
-                  },
-                  "type": "agent_toolset_20260401"
-                }
-              ],
-              "type": "agent",
-              "version": 1
-            }
-          ],
-          "type": "coordinator"
-        },
+        "multiagent": null,
         "name": "My First Agent",
         "skills": [
           {
@@ -1526,16 +1468,7 @@ curl https://api.anthropic.com/v1/sessions \
         "system": "You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user's task end to end.",
         "tools": [
           {
-            "configs": [
-              {
-                "enabled": true,
-                "name": "bash",
-                "permission_policy": {
-                  "type": "always_allow"
-                },
-                "type": "bash"
-              }
-            ],
+            "configs": [],
             "default_config": {
               "enabled": true,
               "permission_policy": {
@@ -1549,13 +1482,7 @@ curl https://api.anthropic.com/v1/sessions \
         "version": 1
       },
       "archived_at": null,
-      "budget": {
-        "max_list_cost": {
-          "amount": "2500",
-          "currency": "USD"
-        },
-        "type": "limit"
-      },
+      "budget": null,
       "created_at": "2026-03-15T10:00:00Z",
       "environment_id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
       "metadata": {},

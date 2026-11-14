@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandbox-environments
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 7b8c4af4ccc5e55f32db3b0c5adb9c64e236a534e99715bc6f04406045e4235e
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 2d3013555c899cbcc80ed1fea2fb3f6978f36356fc4ae419cd8ef24bb03722a6
 ---
 
 > ## Documentation Index
@@ -48,7 +48,7 @@ Match your goal to a row below, then read the detail section that follows.
 
 | You want to | Start with |
 | :- | :- |
-| Reduce permission prompts during everyday work on your own machine | The [sandboxed Bash tool](https://code.claude.com/docs/en/sandboxing.md), configured with `/sandbox` |
+| Reduce permission prompts during everyday work on your own machine | The [sandboxed Bash tool](https://code.claude.com/docs/en/sandboxing.md) in auto-allow mode, configured with `/sandbox` |
 | Let Claude work unattended with `--dangerously-skip-permissions` or auto mode | The preconfigured [dev container](https://code.claude.com/docs/en/devcontainer.md), any container or VM, or the [sandbox runtime](#sandbox-runtime) |
 | Isolate MCP servers and hooks as well as Bash, without Docker | The sandbox runtime |
 | Standardize a sandboxed environment across a team | The preconfigured [dev container](https://code.claude.com/docs/en/devcontainer.md), copied into your repository |

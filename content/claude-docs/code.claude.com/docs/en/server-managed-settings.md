@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 54f741e00b88a1e6c51b0876c7b64252078975839468d6e31983129c94712e82
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 6a01132c64bbb9d475b0dddf4047d4bd0fc5dd2dabb78b3e2d1104a09bd740ae
 ---
 
 > ## Documentation Index
@@ -259,7 +259,13 @@ Claude Code reads the Workload Identity Federation variables and the `ANTHROPIC_
 
 Every other key in the cached `env` block applies at startup. Once the server confirms the payload, and you approve it if it needs [security approval](#security-approval-dialogs), the withheld variables apply for the rest of the session.
 
-If your organization needs a proxy to reach `api.anthropic.com`, the withholding only affects the server-delivered `env` block itself: a proxy set in an [endpoint-managed](https://code.claude.com/docs/en/managed-settings.md#delivery-mechanisms) `env` block through MDM or `managed-settings.json`, in the shell environment, or in [user settings](https://code.claude.com/docs/en/settings.md#where-settings-live) reaches the settings fetch. The endpoint-managed source requires Claude Code v2.1.223 or later: the cached server-managed proxy value is withheld until the fetch confirms it, so the endpoint-managed value fills in per key and reaches the fetch itself. Before v2.1.223, use the shell environment or user settings so the proxy applies alongside a cached server payload. The first launch has no cache, so an endpoint-managed source, the shell environment, or user settings is still required for the initial fetch.
+If the fetch needs a proxy, set `HTTPS_PROXY` in one of:
+
+* An [endpoint-managed](https://code.claude.com/docs/en/managed-settings.md#delivery-mechanisms) `env` block through MDM or `managed-settings.json`. This source requires Claude Code v2.1.223 or later. Before v2.1.223, use the shell environment or user settings so the proxy [applies alongside a cached server payload](#per-key-exceptions-across-managed-sources).
+* The shell environment
+* [User settings](https://code.claude.com/docs/en/settings.md#where-settings-live)
+
+Set `HTTPS_PROXY` even if `ALL_PROXY` already names the proxy.
 
 Claude Code applies most settings updates to running sessions without a restart. Some updates apply only at the next launch, including OpenTelemetry exporter configuration, the `model` key, and the removal of a variable from the `env` block.
 

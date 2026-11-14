@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/message-threads
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 5d0c2cdb2d9c9ef84828fff30233044dcb5852c199a827199f381b11d7a8bdff
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 06c4407fa96d16034221ac6cb697119c21fe954e050a5de412d6287683a6e629
 ---
 
 ---
@@ -44,7 +44,7 @@ featureMetadata:
 
 Dengan “message thread” (thread pesan), permintaan menjadi lebih kecil, dan “time to first token” (waktu hingga token pertama) tetap lebih rendah dan lebih stabil seiring bertambahnya percakapan. Thread paling membantu dalam loop agen yang panjang. Tanpa thread, setiap giliran mengunggah ulang seluruh percakapan, dan API memvalidasi serta melakukan tokenisasi ulang terhadap semuanya. Dengan thread, sebagian besar pekerjaan tersebut hanya mencakup giliran baru.
 
-“Message thread” (thread pesan) menyimpan percakapan di server untuk waktu yang singkat. Anda mengirimkan percakapan lengkap satu kali, beserta prompt sistem dan alat Anda. Pada setiap giliran berikutnya, Anda hanya mengirimkan pesan-pesan baru dan `id` dari respons sebelumnya. API membangun ulang percakapan sebelum memanggil model. Anda menambahkan satu parameter, `thread`, ke permintaan [Messages API](https://platform.claude.com/docs/id/api/messages). Responsnya adalah pesan seperti biasa.
+Thread pesan menyimpan percakapan di server untuk waktu yang singkat. Anda mengirimkan seluruh percakapan, prompt sistem Anda, dan alat Anda satu kali. Pada setiap giliran berikutnya, Anda mengirimkan pesan-pesan baru beserta `id` dari respons sebelumnya, bukan seluruh percakapan. API membangun ulang percakapan sebelum memanggil model. Anda menambahkan parameter [`thread`](https://platform.claude.com/docs/id/api/beta/messages/create#create.thread) dan header beta ke permintaan Messages API. Responsnya adalah pesan seperti biasa.
 
 <Note>
   Thread pesan berbeda dari [thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads) di Claude Managed Agents.
@@ -52,15 +52,15 @@ Dengan “message thread” (thread pesan), permintaan menjadi lebih kecil, dan 
 
 ## Cara kerja thread pesan
 
-* **Buat.** Kirim permintaan pertama Anda seperti yang Anda lakukan saat ini, dengan percakapan lengkap, `system`, dan `tools`, lalu tambahkan `"thread": {"type": "create"}`. API menyimpan percakapan, termasuk balasan Claude, di bawah `id` respons.
+* **Buat.** Kirim permintaan pertama Anda seperti yang Anda lakukan saat ini, dengan seluruh percakapan, `system`, dan `tools`. Tambahkan `"thread": {"type": "create"}` ke permintaan. API menyimpan percakapan, termasuk balasan Claude, di bawah `id` respons.
 * **Lanjutkan.** Kirim hanya pesan-pesan sejak respons sebelumnya, lalu tambahkan `"thread": {"type": "continue", "previous_message_id": "<previous id>"}`. Jangan sertakan `system` dan `tools` dalam permintaan. Thread mempertahankan nilai-nilai dari permintaan create. Gunakan setiap `id` respons baru untuk giliran berikutnya.
-* **Putar ulang.** Thread bersifat best-effort. Thread kedaluwarsa 5 menit setelah permintaan terakhirnya, dan API menghapusnya paling lambat 1 jam setelah penggunaan terakhirnya. Setiap respons yang disimpan API memulai ulang waktu 5 menit tersebut. Jika API tidak lagi dapat melanjutkan thread, permintaan continue akan mengembalikan error 404. Kirim kembali percakapan lengkap dalam permintaan create baru, dan lanjutkan dari `id` respons tersebut. Helper thread SDK melakukan pemutaran ulang ini untuk Anda (lihat [Cara kerja helper SDK](https://platform.claude.com/docs/id/build-with-claude/message-threads#sdk-helper-handles)). Setelah respons dari model fallback, lihat [Menggunakan fallback dengan thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#fallbacks).
+* **Putar ulang.** Thread bersifat best-effort. Thread kedaluwarsa 5 menit setelah permintaan terakhirnya, dan API menghapusnya paling lambat 1 jam setelah penggunaan terakhirnya. Setiap respons yang disimpan API memulai ulang waktu 5 menit tersebut. Jika API tidak lagi dapat melanjutkan thread, permintaan continue akan mengembalikan error 404. Kirim kembali seluruh percakapan dalam permintaan create baru, dan lanjutkan dari `id` respons yang baru. Helper thread SDK melakukan pemutaran ulang ini untuk Anda (lihat [Cara kerja helper SDK](https://platform.claude.com/docs/id/build-with-claude/message-threads#sdk-helper-handles)). Setelah respons dari model fallback, lihat [Menggunakan fallback dengan thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#fallbacks).
 
-Aplikasi Anda tetap menjadi sumber kebenaran untuk percakapan. Simpan salinan Anda sendiri dari setiap pesan, dan bangun [jalur pemutaran ulang](https://platform.claude.com/docs/id/build-with-claude/message-threads#recover) sejak awal. Tidak ada respons, baik untuk permintaan create maupun continue, yang menyatakan apakah API menyimpan giliran tersebut. Anda baru mengetahuinya pada permintaan continue berikutnya. Helper thread SDK menyimpan salinan ini di memori selama objek helper tersebut ada, dan tidak menyimpannya di tempat lain. Jika percakapan harus bertahan lebih lama dari proses Anda, simpan salinan Anda sendiri.
+Aplikasi Anda tetap menjadi sumber kebenaran untuk percakapan. Simpan salinan Anda sendiri dari setiap pesan, dan bangun [jalur pemutaran ulang](https://platform.claude.com/docs/id/build-with-claude/message-threads#recover) sejak awal. Tidak ada respons, baik untuk permintaan create maupun continue, yang menyatakan apakah API menyimpan giliran tersebut. Anda baru mengetahuinya pada permintaan continue berikutnya. Helper thread SDK menyimpan salinan ini di memori selama objek helper tersebut ada, dan tidak menyimpan salinan tersebut di tempat lain. Jika percakapan harus bertahan lebih lama dari proses Anda, simpan salinan Anda sendiri.
 
 ## Menggunakan thread dengan SDK
 
-SDK memiliki helper thread yang membangun permintaan thread untuk Anda. Buat helper tersebut dengan field yang sama seperti permintaan Messages, lalu kirimkan satu giliran pada satu waktu. Helper menyimpan percakapan lengkap di memori.
+SDK memiliki helper thread yang membangun setiap permintaan untuk Anda. Buat helper tersebut dengan field yang sama seperti permintaan Messages. Kemudian kirimkan satu giliran pada satu waktu. Helper menyimpan seluruh percakapan di memori.
 
 Contoh ini memiliki dua giliran. Helper membuat thread pada giliran pertama dan melanjutkannya pada giliran kedua, serta menambahkan header beta untuk Anda. `cache_control` tingkat atas bersifat opsional. Field ini meminta caching prompt pada setiap giliran (lihat [Caching prompt pada thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#prompt-caching)). Tanpanya, setiap giliran berikutnya tetap hanya mengirimkan pesan-pesan baru, tetapi tidak ada yang di-cache kecuali Anda menambahkan breakpoint cache sendiri.
 
@@ -224,7 +224,7 @@ Contoh ini memiliki dua giliran. Helper membuat thread pada giliran pertama dan 
   $thread = $client->beta->messages->thread(
       maxTokens: 1024,
       model: Model::CLAUDE_OPUS_5_5,
-      cacheControl: new BetaCacheControlEphemeral,
+      cacheControl: new BetaCacheControlEphemeral(),
       system: 'You are a support agent for Acme. Keep replies short.',
   );
 
@@ -246,7 +246,7 @@ Contoh ini memiliki dua giliran. Helper membuat thread pada giliran pertama dan 
 
   # Buat helper. Panggilan ini tidak mengirim permintaan apa pun.
   thread = client.beta.messages.thread(
-    model: :"claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     cache_control: {type: "ephemeral"},
     system_: "You are a support agent for Acme. Keep replies short."
@@ -266,11 +266,11 @@ Contoh ini memiliki dua giliran. Helper membuat thread pada giliran pertama dan 
 
 ## Mengirim field `thread` sendiri
 
-Untuk membangun permintaan thread sendiri, misalnya dengan cURL, CLI, atau metode `create` biasa dari SDK, tambahkan field `thread` ke setiap permintaan.
+Tambahkan sendiri field `thread` ke setiap permintaan. Anda dapat melakukannya dengan cURL, dengan CLI, atau dengan permintaan SDK biasa.
 
 Kirim header beta `message-threads-2026-08-12` pada setiap permintaan dalam sebuah thread.
 
-Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran kedua. `cache_control` tingkat atas meminta caching prompt pada setiap giliran. Field ini berlaku setelah percakapan lebih panjang dari [panjang minimum yang dapat di-cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching).
+Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran kedua. `cache_control` tingkat atas meminta caching prompt pada setiap giliran. Tidak ada yang di-cache hingga seluruh percakapan, bersama dengan `system` dan `tools`, mencapai [panjang minimum yang dapat di-cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations).
 
 <CodeGroup>
   ```bash cURL
@@ -533,7 +533,7 @@ Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran k
   $first = $client->beta->messages->create(
       model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 1024,
-      cacheControl: new BetaCacheControlEphemeral,
+      cacheControl: new BetaCacheControlEphemeral(),
       system: 'You are a support agent for Acme. Keep replies short.',
       messages: [
           ['role' => 'user', 'content' => 'Hi! I have a question about an order.'],
@@ -547,7 +547,7 @@ Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran k
   $second = $client->beta->messages->create(
       model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 1024,
-      cacheControl: new BetaCacheControlEphemeral,
+      cacheControl: new BetaCacheControlEphemeral(),
       messages: [
           ['role' => 'user', 'content' => 'How long does standard shipping usually take?'],
       ],
@@ -567,7 +567,7 @@ Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran k
 
   # Giliran 1: kirim seluruh percakapan dan buat thread
   first = client.beta.messages.create(
-    model: :"claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     cache_control: {type: "ephemeral"},
     system_: "You are a support agent for Acme. Keep replies short.",
@@ -579,7 +579,7 @@ Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran k
   # Giliran 2: kirim hanya pesan baru dan id respons giliran 1.
   # Jangan sertakan system_ dan tools: thread sudah menyimpannya.
   second = client.beta.messages.create(
-    model: :"claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     cache_control: {type: "ephemeral"},
     messages: [{role: "user", content: "How long does standard shipping usually take?"}],
@@ -607,7 +607,7 @@ Helper thread SDK tidak menyertakan `system` dan `tools` dalam permintaan contin
 
 Jika Anda menggunakan [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback), kirim field `fallbacks` pada setiap permintaan dalam thread atau tidak sama sekali. Lihat [Menggunakan fallback dengan thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#fallbacks).
 
-Untuk mengubah field khusus create atau field tetap, mulai thread baru: kirim percakapan lengkap dalam permintaan create dengan nilai-nilai baru.
+Untuk mengubah field khusus create atau field tetap, mulai thread baru: kirim seluruh percakapan dalam permintaan create dengan nilai-nilai baru.
 
 **Jika Anda mengubah `system` atau `tools`:** Pada model-model berikut, keluarkan semua blok `thinking` dan `redacted_thinking` dari percakapan yang Anda kirim dalam permintaan create baru: Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5. Model kemudian menjawab tanpa penalaran sebelumnya tersebut.
 
@@ -616,7 +616,7 @@ Untuk mengubah field khusus create atau field tetap, mulai thread baru: kirim pe
 
 Kirim hanya pesan-pesan baru pada permintaan continue. API tidak memeriksanya terhadap pesan-pesan yang sudah dimilikinya. Pesan yang Anda kirim ulang dapat muncul dua kali dalam percakapan, atau permintaan dapat mengembalikan error. Misalnya, permintaan continue yang dimulai dengan respons sebelumnya akan mengembalikan error.
 
-Pesan-pesan baru biasanya dimulai dengan pesan `user`: giliran pengguna Anda berikutnya, atau blok `tool_result` yang menjawab `tool_use` dalam respons sebelumnya. Jika respons berhenti dengan [`stop_reason: "pause_turn"`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#pause-turn), lanjutkan dengan permintaan continue dari `id` respons tersebut dan daftar `messages` kosong (`"messages": []`). Jika permintaan tersebut mengembalikan error 404, putar ulang percakapan lengkap, termasuk respons yang dijeda, dalam permintaan create baru. Jangan mengirim pesan `user` baru saat giliran sedang dijeda: API akan menolaknya. Dengan helper thread SDK, panggil `send()` (go, csharp: `Send()`; ruby: `send_message()`) tanpa pesan: helper mengirim permintaan ini dan melakukan pemutaran ulang jika terjadi error 404.
+Pesan-pesan baru biasanya dimulai dengan pesan `user`: giliran pengguna Anda berikutnya, atau blok `tool_result` yang menjawab `tool_use` dalam respons sebelumnya. Jika respons berhenti dengan [`stop_reason: "pause_turn"`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#pause-turn), lanjutkan dengan permintaan continue dari `id` respons tersebut dan daftar `messages` kosong (`"messages": []`). Jika permintaan tersebut mengembalikan error 404, putar ulang seluruh percakapan, termasuk respons yang dijeda, dalam permintaan create baru. Jangan mengirim pesan `user` baru saat giliran sedang dijeda: API akan menolaknya. Dengan helper thread SDK, panggil `send()` (go, csharp: `Send()`; ruby: `send_message()`) tanpa pesan: helper mengirim permintaan ini dan melakukan pemutaran ulang jika terjadi error 404.
 
 Thread bersifat “append-only” (hanya dapat ditambahkan), dan setiap `id` respons hanya dapat dilanjutkan satu kali. Selalu lanjutkan dari `id` respons terbaru dalam thread. Untuk mengedit atau membuat cabang dari pesan sebelumnya, mulai thread baru dengan permintaan create. Untuk mengganti giliran-giliran sebelumnya dengan ringkasan, lihat [Memadatkan percakapan](https://platform.claude.com/docs/id/build-with-claude/message-threads#compaction).
 
@@ -631,13 +631,13 @@ Anda juga dapat menempatkan breakpoint `cache_control` pada blok sendiri:
 * Breakpoint yang Anda kirim pada permintaan create tetap berfungsi pada setiap giliran berikutnya jika berada di `tools`, di `system`, atau di blok pesan sebelum blok terakhir. Breakpoint pada blok terakhir dari `messages` sebuah permintaan menulis cache pada permintaan tersebut. Untuk melakukan cache pada setiap giliran baru, kirim breakpoint pada setiap permintaan. Permintaan tanpa breakpoint mungkin masih membaca sebagian percakapan dari cache.
 * Anda tidak dapat memindahkan atau menghapus breakpoint setelah Anda mengirimnya, karena permintaan continue tidak dapat mengirim ulang pesan sebelumnya.
 * Permintaan dengan `thread` dapat membawa paling banyak 4 breakpoint `cache_control`. `cache_control` tingkat atas dihitung sebagai satu. Breakpoint pada `system` dan `tools` dari permintaan create dihitung lagi pada setiap permintaan continue. Breakpoint pada pesan tersimpan sebelumnya tidak dihitung. Kelebihan satu breakpoint saja akan mengembalikan error 400 dengan kode `thread_unsupported_request`.
-* Jika Anda menempatkan breakpoint pada blok pesan sendiri, hapus breakpoint tersebut dari pesan-pesan sebelumnya saat Anda memutar ulang percakapan dalam permintaan create baru, dan pertahankan satu pada blok terakhir, sehingga permintaan tetap berada dalam batas 4.
+* Jika Anda menempatkan breakpoint pada blok pesan sendiri, hapus breakpoint tersebut dari pesan-pesan sebelumnya dan pertahankan satu pada blok terakhir saat Anda memutar ulang percakapan dalam permintaan create baru. Dengan begitu, permintaan tetap berada dalam batas 4.
 
 ## Streaming
 
 Thread berfungsi dengan [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming). `id` respons tiba dalam event `message_start`, tetapi lanjutkan darinya hanya setelah Anda menerima event `message_stop`. Permintaan continue yang dikirim lebih awal dapat mengembalikan error 404.
 
-Jika stream dari permintaan continue terputus sebelum `message_stop`, kirim ulang permintaan continue yang sama. Jika permintaan tersebut mengembalikan error `thread_already_continued` atau `thread_continue_in_flight`, putar ulang percakapan lengkap dalam permintaan create baru.
+Jika stream dari permintaan continue terputus sebelum `message_stop`, kirim ulang permintaan continue yang sama. Jika permintaan tersebut mengembalikan error `thread_already_continued` atau `thread_continue_in_flight`, putar ulang seluruh percakapan dalam permintaan create baru.
 
 Koneksi Anda mungkin terputus saat server masih menghasilkan respons, atau setelah server menyimpannya. Itulah sebabnya API dapat menolak percobaan ulang. Memutar ulang salinan persis Anda aman.
 
@@ -655,11 +655,11 @@ Permintaan continue mengembalikan error 404 dengan `error.details.error_code` di
 * Permintaan berasal dari pengguna atau akun layanan yang berbeda dari yang membuat thread. Thread yang dibuat dengan [kunci workspace (lama)](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) tetap terikat pada kunci tersebut, jadi gunakan kunci yang sama untuk seluruh thread.
 * Pesan-pesan baru menambahkan sesuatu yang tidak dapat diterima oleh percakapan yang tersimpan. Misalnya, gambar pertama dalam percakapan yang sebelumnya tidak memiliki gambar dapat mengembalikan error ini.
 
-Untuk memulihkan, kirim seluruh percakapan dari salinan Anda sendiri dalam permintaan create baru, dengan `system` dan `tools`. Helper thread SDK mengirimkan permintaan create ini satu kali dengan sendirinya, dan tidak menyertakan breakpoint `cache_control` dari giliran sebelumnya saat melakukannya. Jika pesan-pesan sebelumnya dalam salinan Anda membawa breakpoint `cache_control`, hapus terlebih dahulu (lihat [Caching prompt pada thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#prompt-caching)). Kemudian lanjutkan dari `id` respons yang baru. Jika model fallback yang menulis respons sebelumnya, lihat [Menggunakan fallback dengan thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#fallbacks). Untuk menyingkirkan penyebab terkait kepemilikan, gunakan kunci API dan workspace yang sama untuk setiap permintaan dalam sebuah thread. Di Claude Platform on AWS, tandatangani setiap permintaan dalam sebuah thread dengan kredensial untuk peran IAM atau pengguna IAM yang membuatnya.
+Untuk memulihkan, kirim seluruh percakapan dari salinan Anda sendiri dalam permintaan create baru, dengan `system` dan `tools`. Helper thread SDK mengirimkan permintaan create ini satu kali dengan sendirinya, dan tidak menyertakan breakpoint `cache_control` dari giliran sebelumnya saat melakukannya. Jika pesan-pesan sebelumnya dalam salinan Anda membawa breakpoint `cache_control`, hapus terlebih dahulu (lihat [Caching prompt pada thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#prompt-caching)). Kemudian lanjutkan dari `id` respons yang baru. Jika model fallback yang menulis respons sebelumnya, lihat [Menggunakan fallback dengan thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#fallbacks). Untuk menyingkirkan penyebab terkait kepemilikan, gunakan kunci API dan workspace yang sama untuk setiap permintaan dalam sebuah thread. Di Claude Platform on AWS, tandatangani setiap permintaan dalam sebuah thread dengan kredensial untuk peran IAM atau pengguna IAM yang membuat thread tersebut.
 
 Permintaan untuk model yang tidak ada juga mengembalikan error 404, jadi periksa `error.details.error_code` sebelum Anda memutar ulang.
 
-Jika permintaan continue masih mengembalikan error 404 tepat setelah Anda memutar ulang, API mungkin tidak dapat menyimpan percakapan tersebut, misalnya percakapan yang sangat besar. Kirim tanpa `thread`. Helper thread SDK melakukan ini ketika Anda membuatnya dengan `unsupported_request_behavior` (typescript, java, php: `unsupportedRequestBehavior`; go, csharp: `UnsupportedRequestBehavior`) diatur ke `continue_unthreaded` (ruby: `:continue_unthreaded`; java: `CONTINUE_UNTHREADED`; csharp: `ContinueUnthreaded`; go: `BetaMessageThreadUnsupportedRequestBehaviorContinueUnthreaded`). Jika tidak, helper memutar ulang pada setiap giliran.
+Jika permintaan continue masih mengembalikan error 404 tepat setelah Anda memutar ulang, API mungkin tidak dapat menyimpan percakapan tersebut (misalnya, percakapan yang sangat besar). Kirim tanpa `thread`. Helper thread SDK melakukan ini ketika Anda membuatnya dengan `unsupported_request_behavior` (typescript, java, php: `unsupportedRequestBehavior`; go, csharp: `UnsupportedRequestBehavior`) diatur ke `continue_unthreaded` (ruby: `:continue_unthreaded`; java: `CONTINUE_UNTHREADED`; csharp: `ContinueUnthreaded`; go: `BetaMessageThreadUnsupportedRequestBehaviorContinueUnthreaded`). Jika tidak, helper memutar ulang pada setiap giliran.
 
 ### Setelah penolakan
 
@@ -696,17 +696,17 @@ Yang dilakukan helper untuk Anda:
 * Membuat thread pada giliran pertama dan melanjutkannya setelah itu, dengan hanya mengirim pesan baru dan tidak menyertakan `system` dan `tools`.
 * Memutar ulang seluruh percakapan satu kali dalam permintaan create baru ketika permintaan continue mengembalikan `thread_not_found`, `thread_already_continued`, atau `thread_continue_in_flight`.
 * Melanjutkan respons `pause_turn` ketika Anda memanggil `send()` (go, csharp: `Send()`; ruby: `send_message()`) tanpa pesan.
-* Memulai thread baru setelah penolakan. Anda mendapatkan respons `stop_reason: "refusal"` seperti biasa, tetapi helper tidak menyimpan giliran tersebut: helper menarik kembali pesan yang Anda berikan pada panggilan itu. Pesan yang Anda tambahkan dengan `thread.append(...)` (csharp, go: `thread.Append(...)`; php: `$thread->append(...)`), atau yang Anda berikan saat membuat helper, tetap berada dalam antrean. Giliran Anda berikutnya mengirimkannya bersama percakapan dari sebelum giliran yang ditolak, dalam permintaan create baru. Kirim pesan yang dirumuskan ulang, atau, jika pesan dalam antrean yang menyebabkan penolakan, mulai thread baru dari params tanpa pesan tersebut.
+* Memulai thread baru setelah penolakan. Anda mendapatkan respons `stop_reason: "refusal"` seperti biasa, tetapi helper tidak menyimpan giliran tersebut: helper menarik kembali pesan yang Anda berikan pada panggilan itu. Pesan yang Anda tambahkan dengan `thread.append(...)` (csharp, go: `thread.Append(...)`; php: `$thread->append(...)`), atau yang Anda berikan saat membuat helper, tetap berada dalam antrean. Giliran Anda berikutnya mengirimkannya dalam permintaan create baru bersama percakapan dari sebelum giliran yang ditolak. Kirim pesan yang dirumuskan ulang, atau, jika pesan dalam antrean yang menyebabkan penolakan, mulai thread baru dari params tanpa pesan tersebut.
 * Mengirim permintaan create baru setelah respons dari model fallback. Ketika respons memiliki entri `fallback_message` di `usage.iterations`, helper menyimpan respons tersebut dan mengirimkan seluruh percakapan dalam permintaan create baru pada giliran berikutnya. Helper tidak menunggu error 404. Permintaan tersebut mempertahankan `model` dan `fallbacks` yang Anda tetapkan.
-* Tidak menyertakan breakpoint `cache_control` dari giliran sebelumnya setiap kali helper mengirimkannya lagi, misalnya dalam pemutaran ulang atau pada giliran pertama dari sebuah fork. Pesan terbaru Anda, `system`, `tools`, dan `cache_control` tingkat atas dikirim sebagaimana Anda memberikannya.
+* Tidak menyertakan breakpoint `cache_control` dari giliran sebelumnya setiap kali helper mengirimkan giliran tersebut lagi (misalnya, dalam pemutaran ulang atau pada giliran pertama dari sebuah fork). Pesan terbaru Anda, `system`, `tools`, dan `cache_control` tingkat atas dikirim sebagaimana Anda memberikannya.
 
 Yang Anda tangani sendiri:
 
-* **Fallback.** Selama API terus menjawab dari model fallback, helper mengirimkan seluruh percakapan dalam permintaan create baru pada setiap giliran, karena API tidak menyimpan satu pun dari giliran tersebut. Helper kembali ke permintaan continue setelah respons dari model yang Anda minta. Untuk memindahkan percakapan ke model fallback, mulai thread baru dari params dengan `model` tersebut dan tanpa `fallbacks`, seperti dalam [Menggunakan fallback dengan thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#fallbacks).
+* **Fallback.** Selama API terus menjawab dari model fallback, helper mengirimkan seluruh percakapan dalam permintaan create baru pada setiap giliran karena API tidak menyimpan satu pun dari giliran tersebut. Helper kembali ke permintaan continue setelah respons dari model yang Anda minta. Untuk memindahkan percakapan ke model fallback, mulai thread baru dari params dengan `model` tersebut dan tanpa `fallbacks`, seperti dalam [Menggunakan fallback dengan thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#fallbacks).
 * **Stream yang terputus.** Jika stream berakhir di tengah respons, helper menyimpan blok yang sudah selesai dan teks apa pun yang sudah diterima, dan giliran berikutnya mengirim seluruh percakapan dalam permintaan create baru. Helper tidak mencoba ulang dengan sendirinya: untuk mengirim ulang giliran yang terputus, panggil `send()` (go, csharp: `Send()`; ruby: `send_message()`) tanpa pesan. Jika bagian yang disimpan berakhir dengan pemanggilan alat, jawab pemanggilan tersebut dalam pesan Anda berikutnya. Jika Anda berhenti membaca stream setelah stream menampilkan `stop_reason: "refusal"`, helper memperlakukan giliran tersebut sebagai penolakan.
 * **Error lainnya.** Error `thread_fingerprint_mismatch` dan `thread_unsupported_request` diteruskan ke kode Anda. Untuk melanjutkan tanpa `thread` setelah error `thread_unsupported_request`, buat helper dengan `unsupported_request_behavior` (typescript, java, php: `unsupportedRequestBehavior`; go, csharp: `UnsupportedRequestBehavior`) diatur ke `continue_unthreaded` (ruby: `:continue_unthreaded`; java: `CONTINUE_UNTHREADED`; csharp: `ContinueUnthreaded`; go: `BetaMessageThreadUnsupportedRequestBehaviorContinueUnthreaded`). Dengan pengaturan tersebut, helper juga berhenti menggunakan `thread` ketika permintaan continue pertama setelah pemutaran ulang kembali mengembalikan `thread_not_found`. API mungkin tidak dapat menyimpan percakapan tersebut. Tanpa pengaturan tersebut, helper memutar ulang pada setiap giliran. Tool runner yang membuat thread-nya sendiri menggunakan pengaturan tersebut secara default.
 
-Tool runner beta pada SDK juga menggunakan thread secara default, yang dapat Anda nonaktifkan saat membuat runner.
+Tool runner beta pada SDK juga menggunakan thread secara default. Anda dapat menonaktifkan default ini saat membuat runner.
 
 ### Metode helper lainnya
 
@@ -714,12 +714,12 @@ Tool runner beta pada SDK juga menggunakan thread secara default, yang dapat And
 | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Melakukan streaming satu giliran                            | `thread.stream(...)` (csharp: `thread.SendStreaming(...)`; go: `thread.SendStreaming(ctx, params)`; java: `thread.sendStreaming(...)`; php: `$thread->sendStream(...)`)                                                                                                                                                              |
 | Respons akhir dari giliran yang di-streaming                | `stream.get_final_message()` (typescript: `stream.finalMessage()`; csharp: `thread.LastMessage`; go: `thread.LastMessage()`; java: `thread.lastMessage()`; php: `$thread->lastMessage()`; ruby: `stream.accumulated_message`)                                                                                                        |
-| Percakapan lengkap                                          | `thread.messages` (csharp: `thread.Messages`; go: `thread.Messages()`; java: `thread.messages()`; php: `$thread->messages()`)                                                                                                                                                                                                        |
+| Seluruh percakapan                                          | `thread.messages` (csharp: `thread.Messages`; go: `thread.Messages()`; java: `thread.messages()`; php: `$thread->messages()`)                                                                                                                                                                                                        |
 | `id` respons yang menjadi titik lanjutan giliran berikutnya | `thread.previous_message_id` (typescript: `thread.previousMessageId`; csharp: `thread.PreviousMessageID`; go: `thread.PreviousMessageID()`; java: `thread.previousMessageId()`; php: `$thread->previousMessageId()`)                                                                                                                 |
 | Menambahkan pesan tanpa mengirim                            | `thread.append(...)` (csharp, go: `thread.Append(...)`; php: `$thread->append(...)`)                                                                                                                                                                                                                                                 |
 | Mengubah field untuk giliran berikutnya                     | `thread.update(...)` (csharp: `thread.Update(p => p with { ... })`; go: `thread.Params.MaxTokens = ...`; java: `thread.update(b -> ...)`; php: `$thread->update([...])`)                                                                                                                                                             |
 | Menyalin thread                                             | `thread.fork()` (csharp, go: `thread.Fork()`; php: `$thread->fork()`; ruby: `thread.fork`)                                                                                                                                                                                                                                           |
-| Field dan percakapan, untuk memulai thread baru             | `thread.params` (csharp, go: `thread.Params`; java: `thread.params()`; php: `$thread->params()`)                                                                                                                                                                                                                                     |
+| Field dan percakapan untuk memulai thread baru              | `thread.params` (csharp, go: `thread.Params`; java: `thread.params()`; php: `$thread->params()`)                                                                                                                                                                                                                                     |
 | Tool runner pada thread ini                                 | `thread.tool_runner()` (typescript, java: `thread.toolRunner()`; csharp: `thread.ToolRunner(tools)`; go: `thread.NewToolRunner(tools)`; php: `$thread->toolRunner()`; ruby: `thread.tool_runner`)                                                                                                                                    |
 | Tool runner tanpa thread                                    | `tool_runner(..., thread=False)` (typescript: `toolRunner({ ..., thread: false })`; csharp: `ToolRunner(parameters, tools, thread: false)`; go: `BetaToolRunnerParams{DisableThread: true}`; java: `ToolRunnerCreateParams.builder().thread(false)`; php: `toolRunner(..., thread: false)`; ruby: `tool_runner(..., thread: false)`) |
 
@@ -734,13 +734,13 @@ Tool runner beta pada SDK juga menggunakan thread secara default, yang dapat And
 
 Di C#, permintaan dikirim ketika Anda mulai membaca stream.
 
-Di C#, Go, Java, dan PHP, setelah penolakan `thread.LastMessage` (go: `thread.LastMessage()`; java: `thread.lastMessage()`; php: `$thread->lastMessage()`) tetap mengembalikan respons giliran sebelumnya, atau tidak mengembalikan apa pun pada giliran pertama. Baca penolakan dari event stream.
+Di C#, Go, Java, dan PHP, setelah penolakan, `thread.LastMessage` (go: `thread.LastMessage()`; java: `thread.lastMessage()`; php: `$thread->lastMessage()`) tetap mengembalikan respons giliran sebelumnya, atau tidak mengembalikan apa pun pada giliran pertama. Baca penolakan dari event stream.
 
 **Mengubah field.** Pembaruan tidak mengirimkan apa pun dan berlaku untuk setiap giliran berikutnya. Setelah thread memiliki respons, helper menolak giliran yang mengubah `system` atau `tools`, dan API menolak perubahan pada field tetap lainnya (lihat [Apa yang dikirim pada setiap permintaan](https://platform.claude.com/docs/id/build-with-claude/message-threads#what-to-send)). Untuk mengubah salah satu field ini, mulai thread baru dari params, atau lakukan fork pada thread dan perbarui fork tersebut sebelum giliran pertamanya.
 
-**Melakukan fork.** Fork menyalin percakapan, field, dan opsi permintaan, serta tidak mengirimkan apa pun. Giliran pertamanya mengirimkan percakapan lengkap dalam permintaan create baru, dan kedua thread tersebut independen setelahnya. Fork selalu dimulai dari seluruh percakapan, bukan dari respons sebelumnya.
+**Melakukan fork.** Fork menyalin percakapan, field, dan opsi permintaan, dan fork tidak mengirimkan apa pun. Giliran pertamanya mengirimkan seluruh percakapan dalam permintaan create baru, dan kedua thread tersebut independen setelahnya. Fork selalu dimulai dari seluruh percakapan, bukan dari respons sebelumnya.
 
-**Params.** Params menyimpan field milik helper dan seluruh percakapan. Teruskan params tersebut ke metode yang membuat helper untuk memulai thread baru, misalnya dengan `system` yang berbeda (lihat [Apa yang dikirim pada setiap permintaan](https://platform.claude.com/docs/id/build-with-claude/message-threads#what-to-send)), atau dengan `messages` yang dipangkas agar tidak menyertakan giliran-giliran berikutnya. Thread yang Anda mulai dari params mengirim setiap pesan persis seperti yang Anda berikan, termasuk breakpoint `cache_control`, jadi tetaplah dalam batas 4 (lihat [Caching prompt pada thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#prompt-caching)). Kecuali di Ruby, params tidak menyertakan opsi permintaan, jadi teruskan opsi tersebut lagi.
+**Params.** Params menyimpan field milik helper dan seluruh percakapan. Teruskan params tersebut ke metode yang membuat helper untuk memulai thread baru. Misalnya, mulai thread dengan `system` yang berbeda (lihat [Apa yang dikirim pada setiap permintaan](https://platform.claude.com/docs/id/build-with-claude/message-threads#what-to-send)) atau dengan `messages` yang dipangkas agar tidak menyertakan giliran-giliran berikutnya. Thread yang Anda mulai dari params mengirim setiap pesan persis seperti yang Anda berikan, termasuk breakpoint `cache_control`, jadi tetaplah dalam batas 4 (lihat [Caching prompt pada thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#prompt-caching)). Kecuali di Ruby, params tidak menyertakan opsi permintaan, jadi teruskan opsi tersebut lagi.
 
 **Output terstruktur.** Berikan format output saat Anda membuat helper. Giliran berikutnya tidak dapat mengubahnya. Cara Anda mendapatkan hasil yang telah di-parse bergantung pada SDK:
 
@@ -757,13 +757,13 @@ API mengembalikan error dalam tabel ini sebelum model berjalan. Permintaan tidak
 
 | Status | `error_code`                  | Arti                                                                                                                                          | Yang harus dilakukan                                                                                                   |
 | ------ | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| 404    | `thread_not_found`            | API tidak dapat melanjutkan thread.                                                                                                           | Kirim percakapan lengkap dalam permintaan create baru.                                                                 |
-| 400    | `thread_fingerprint_mismatch` | Field tetap berbeda dari nilai yang disimpan bersama thread. Pesan error menyebutkan field-field tersebut.                                    | Pertahankan field tetap tetap sama, atau mulai thread baru untuk mengubahnya.                                          |
+| 404    | `thread_not_found`            | API tidak dapat melanjutkan thread.                                                                                                           | Kirim seluruh percakapan dalam permintaan create baru.                                                                 |
+| 400    | `thread_fingerprint_mismatch` | Field tetap berbeda dari nilai yang disimpan bersama thread. Pesan error menyebutkan field-field tersebut.                                    | Pertahankan field tetap tetap sama atau mulai thread baru untuk mengubahnya.                                           |
 | 400    | `thread_already_continued`    | Setiap `id` respons hanya dapat dilanjutkan satu kali.                                                                                        | Lanjutkan dari `id` respons terbaru dalam thread. Jika klien Anda tidak pernah menerima respons tersebut, putar ulang. |
 | 400    | `thread_continue_in_flight`   | Permintaan continue lain dari `id` respons ini masih berjalan. Biasanya ini adalah percobaan Anda sendiri sebelumnya.                         | Biarkan selesai dan lanjutkan dari `id` responsnya, atau putar ulang.                                                  |
-| 400    | `thread_unsupported_request`  | Permintaan menggunakan fitur atau pengaturan organisasi yang tidak didukung oleh thread. `error.details.unsupported` menyebutkannya jika ada. | Hapus fitur tersebut dari permintaan, atau kirim percakapan lengkap tanpa `thread`.                                    |
+| 400    | `thread_unsupported_request`  | Permintaan menggunakan fitur atau pengaturan organisasi yang tidak didukung oleh thread. `error.details.unsupported` menyebutkannya jika ada. | Hapus fitur tersebut dari permintaan atau kirim seluruh percakapan tanpa `thread`.                                     |
 
-Beberapa error 400 untuk permintaan thread tidak membawa `error_code`, misalnya permintaan continue tanpa `previous_message_id`, atau permintaan yang menyertakan `system` atau `tools`.
+Beberapa permintaan dengan `thread` mengembalikan error 400 tanpa `error_code`. Misalnya, permintaan continue mengembalikan error ini jika tidak memiliki `previous_message_id` atau jika menyertakan `system` atau `tools`.
 
 Contoh berikut menunjukkan body error:
 
@@ -787,9 +787,9 @@ Contoh berikut menunjukkan body error:
 Thread tidak mendukung fitur-fitur berikut:
 
 * [Message Batches](https://platform.claude.com/docs/id/build-with-claude/batch-processing). Item permintaan yang menyertakan `thread` berakhir dengan `invalid_request_error` dalam hasil batch.
-* [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting). Permintaan penghitungan token yang menyertakan `thread` mengembalikan error 400. Sebagai gantinya, hitung percakapan lengkap, dengan `system` dan `tools`.
-* [Compaction](https://platform.claude.com/docs/id/build-with-claude/compaction). [Compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand) tidak tersedia dengan thread. Permintaan yang menyertakan `thread` mengembalikan error 400 jika permintaan tersebut mengatur parameter `compaction`, atau jika mengirimkan blok `compaction` dengan header beta `compact-2026-09-04`. Lihat [Memadatkan percakapan](https://platform.claude.com/docs/id/build-with-claude/message-threads#compaction).
-* [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing), kecuali `clear_thinking_20251015` dengan `keep: "all"`.
+* [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting). Permintaan penghitungan token yang menyertakan `thread` mengembalikan error 400. Sebagai gantinya, hitung seluruh percakapan, dengan `system` dan `tools`.
+* [Compaction](https://platform.claude.com/docs/id/build-with-claude/compaction). [Compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand) tidak tersedia dengan thread. Permintaan yang menyertakan `thread` mengembalikan error 400 jika permintaan tersebut mengatur parameter `compaction` atau jika mengirimkan blok `compaction` dengan header beta `compact-2026-09-04`. Lihat [Memadatkan percakapan](https://platform.claude.com/docs/id/build-with-claude/message-threads#compaction).
+* [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) kecuali `clear_thinking_20251015` dengan `keep: "all"`.
 * Organisasi yang mengaktifkan [kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#hipaa-readiness).
 * Organisasi yang mengaktifkan [Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks).
 
@@ -803,7 +803,7 @@ API menolak sebagian besar permintaan yang tidak didukung oleh thread dengan err
 | `hipaa`              | Organisasi Anda mengaktifkan kesiapan HIPAA.                                                                                                                                           |
 | `inference_hooks`    | Organisasi Anda mengaktifkan Inference hooks.                                                                                                                                          |
 
-API dapat menambahkan nilai ke daftar ini. Jika Anda mendapatkan nilai yang tidak Anda kenali, kirim percakapan lengkap tanpa `thread`. Permintaan yang memenuhi beberapa kondisi ini mendapatkan error yang hanya menyebutkan salah satunya.
+API dapat menambahkan nilai ke daftar ini. Jika Anda mendapatkan nilai yang tidak Anda kenali, kirim seluruh percakapan tanpa `thread`. Permintaan yang memenuhi beberapa kondisi ini mendapatkan error yang hanya menyebutkan salah satunya.
 
 ## Keterbatasan
 

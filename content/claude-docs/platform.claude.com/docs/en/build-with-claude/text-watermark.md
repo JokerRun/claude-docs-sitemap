@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/text-watermark
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: 07400d0c2bdd6f37c34a20521d0a28a3e9f8b9d46a839b6e3a4ef9a9f0b0bb9c
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 34c9311c6bbdc23113d6a2771ed1969a94b972347d3d83c65f40c849c5a253ab
 ---
 
 ---
@@ -17,4 +17,8 @@ The watermark doesn’t change the meaning, quality, or readability of the outpu
 
 ## Sampling settings
 
-On Claude Sonnet 4.6, text generated for a request that sets `temperature`, `top_p`, or `top_k` to a non-default value might not carry the watermark. If you rely on the watermark, omit all three parameters from your requests, including any that a framework or client library sets for you.
+**This section applies to:** Claude Sonnet 4.6
+
+If you need your output to carry the watermark, omit `temperature`, `top_p`, and `top_k` from your requests. If a request sets any of them to a non-default value, the output might not carry the watermark.
+
+Your framework or client library might set these parameters for you. If you need the watermark, check its settings and the request body it sends, and remove any of the three that it sets.

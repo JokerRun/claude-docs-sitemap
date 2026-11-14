@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/versions/list
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 36f7bfcd3b534adfd8a637961b54993127e3a8cc1c863371432cb3b601b715d8
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 7ad6bfa107f89da9e002b313f1cf73eb9bdbdeb4018820b8d49565fefc9a368d
 ---
 
 ---
@@ -1024,38 +1024,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/versions \
         "inference_geo": "inference_geo",
         "speed": "standard"
       },
-      "multiagent": {
-        "advisor": {
-          "type": "disabled"
-        },
-        "subagents": {
-          "inline_agents": {
-            "type": "enabled"
-          },
-          "predefined_agents": [
-            {
-              "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
-              "type": "agent",
-              "version": 1
-            }
-          ],
-          "type": "enabled"
-        },
-        "type": "multiagent_20261001",
-        "workflows": {
-          "inline_agents": {
-            "type": "enabled"
-          },
-          "predefined_agents": [
-            {
-              "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
-              "type": "agent",
-              "version": 1
-            }
-          ],
-          "type": "enabled"
-        }
-      },
+      "multiagent": null,
       "name": "My First Agent",
       "skills": [
         {
@@ -1072,16 +1041,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/versions \
       "system": "You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user's task end to end.",
       "tools": [
         {
-          "configs": [
-            {
-              "enabled": true,
-              "name": "bash",
-              "permission_policy": {
-                "type": "always_allow"
-              },
-              "type": "bash"
-            }
-          ],
+          "configs": [],
           "default_config": {
             "enabled": true,
             "permission_policy": {

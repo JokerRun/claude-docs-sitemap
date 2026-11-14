@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/analytics-api
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 2c136cf831cb00d6e9500afaedf4de8d5edf1a8db30b815fbd62370b5391d3ae
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 973da6512641e61fd0d684ba4c961a56f18105c98fa633a9f1bde31dfe1c884b
 ---
 
 ---
@@ -20,10 +20,10 @@ Kedua API tersebut menggunakan jenis kunci yang berbeda, yang dibuat di tempat b
 
 ## API mana yang Anda butuhkan?
 
-| API                                 | Jenis kunci                            | Dibuat di                                                                                                                            | Siapa yang dapat membuatnya | Cakupan                                                                                                                                                                     |
-| ----------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Claude Code Analytics API**       | Kunci Admin API (`sk-ant-admin01-...`) | Halaman [Kunci admin](https://platform.claude.com/settings/admin-keys) (`platform.claude.com/settings/admin-keys`) di Claude Console | Admin organisasi            | Metrik Claude Code harian per pengguna: sesi, baris kode, commit, pull request, penerimaan alat, dan estimasi biaya per model                                               |
-| **Claude Enterprise Analytics API** | Kunci Analytics API                    | [claude.ai > Pengaturan organisasi > API](https://claude.ai/admin-settings/api-access)                                               | Pemilik utama               | Keterlibatan dan adopsi di seluruh organisasi (aktivitas pengguna, ringkasan pengguna aktif, penggunaan proyek, skill, dan konektor), ditambah laporan biaya dan penggunaan |
+| API                                 | Jenis kunci         | Dibuat di                                                                                | Siapa yang dapat membuatnya | Cakupan                                                                                                                                                                     |
+| ----------------------------------- | ------------------- | ---------------------------------------------------------------------------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Claude Code Analytics API**       | Kunci Admin API     | Halaman [Kunci admin](https://platform.claude.com/settings/admin-keys) di Claude Console | Admin organisasi            | Metrik Claude Code harian untuk setiap pengguna: sesi, baris kode, commit, pull request, penerimaan alat, dan estimasi biaya per model                                      |
+| **Claude Enterprise Analytics API** | Kunci Analytics API | [claude.ai > Pengaturan organisasi > API](https://claude.ai/admin-settings/api-access)   | Pemilik utama               | Keterlibatan dan adopsi di seluruh organisasi (aktivitas pengguna, ringkasan pengguna aktif, penggunaan proyek, skill, dan konektor), ditambah laporan biaya dan penggunaan |
 
 Jenis kunci ini tidak dapat dipertukarkan: kunci Admin API tidak dapat memanggil Claude Enterprise Analytics API, dan kunci Analytics API tidak dapat memanggil Admin API. Satu-satunya pengecualian adalah [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api), yang dipanggil oleh organisasi Claude Enterprise dengan kunci Analytics API mereka. Kedua API analitik produk muncul di bawah [referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization), tetapi keduanya adalah API terpisah dengan jenis kunci terpisah. Jika organisasi Anda menggunakan Claude Platform dan Claude Enterprise sekaligus, Anda dapat menyediakan kedua kunci dan menggunakan masing-masing API untuk datanya sendiri.
 
@@ -32,7 +32,7 @@ Jenis kunci ini tidak dapat dipertukarkan: kunci Admin API tidak dapat memanggil
 </Note>
 
 <Note>
-  Jika Anda ingin melihat data keterlibatan dan adopsi di dalam produk alih-alih secara terprogram, gunakan [dasbor Analytics](https://claude.ai/analytics/activity) di claude.ai. Untuk kasus penggunaan tata kelola dan audit (tindakan pengguna individual, peristiwa aktivitas mentah, konten percakapan), lihat [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access).
+  Jika Anda ingin melihat data keterlibatan dan adopsi di dalam produk alih-alih secara terprogram, gunakan [dasbor Analytics](https://claude.ai/analytics/activity) di claude.ai. Untuk kasus penggunaan tata kelola dan audit (tindakan pengguna individual, peristiwa aktivitas mentah, konten percakapan), lihat [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api).
 </Note>
 
 ## Mendapatkan akses ke Claude Code Analytics API

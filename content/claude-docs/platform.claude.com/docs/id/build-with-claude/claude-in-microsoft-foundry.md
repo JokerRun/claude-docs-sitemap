@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 4a827e0b24e9f704e9c9d607e975393f0e1ef2c2451bf41689a469743bcdf79c
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 79ab57f77667f76cbe03317c6a05a603bb8b1fe63a3d9daf8f718fa2492dbf30
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-f
 description: Akses model Claude melalui Microsoft Foundry dengan endpoint dan autentikasi native Azure.
 ---
 
-Panduan ini menunjukkan cara menyiapkan Claude di Microsoft Foundry dan melakukan panggilan API ke Claude. Anda dapat menggunakan salah satu SDK klien Anthropic atau permintaan HTTP langsung. Saat Anda mengakses Claude di Microsoft Foundry, Anda ditagih untuk penggunaan Claude di Azure Marketplace. Model yang tersedia termasuk Claude Fable 5.2, Claude Fable 5.1, Claude Opus 5.5, Claude Opus 5, dan Claude Opus 4.8. Model tersebut juga mencakup Claude Sonnet 5.5, Claude Sonnet 5, dan Claude Haiku 5.5. Fitur seperti [“context window” (jendela konteks) 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) juga tersedia. Anda mengelola biaya melalui langganan Azure Anda.
+Panduan ini menunjukkan cara menyiapkan Claude di Microsoft Foundry dan melakukan panggilan API ke Claude. Anda dapat menggunakan salah satu SDK klien Anthropic atau permintaan HTTP langsung. Saat Anda mengakses Claude di Microsoft Foundry, Anda membayar penggunaan Claude melalui Azure Marketplace. [ID model API dan deployment](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#api-model-ids-and-deployments) mencantumkan model yang tersedia. Fitur seperti [“context window” (jendela konteks) 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) juga tersedia. Anda mengelola biaya melalui langganan Azure Anda.
 
 Claude tersedia dalam jenis deployment Global Standard dan US Data Zone Standard di resource Foundry, ditagih dalam Claude Consumption Units melalui Azure Marketplace. Kunjungi [harga Claude di Microsoft Foundry](https://platform.claude.com/docs/id/about-claude/pricing#claude-in-microsoft-foundry-pricing) untuk detailnya.
 
@@ -19,15 +19,17 @@ Claude tersedia dalam jenis deployment Global Standard dan US Data Zone Standard
 
 Model Claude di Microsoft Foundry tersedia dalam dua opsi hosting. Anda memilih opsi hosting saat mengonfigurasi deployment.
 
-|                           | Hosted on Azure                                                          | Hosted on Anthropic                                                                                                                                                                                  |
-| ------------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tempat inferensi berjalan | Layanan yang dioperasikan Anthropic yang berjalan di infrastruktur Azure | Layanan yang dioperasikan Anthropic yang berjalan di infrastruktur Anthropic                                                                                                                         |
-| Ketersediaan model        | Model terbaru dalam keluarga Opus, Sonnet, dan Haiku                     | Semua model Claude yang tersedia di Microsoft Foundry                                                                                                                                                |
-| Jenis deployment          | Global Standard, US Data Zone Standard                                   | Global Standard                                                                                                                                                                                      |
-| Direkomendasikan untuk    | Sebagian besar beban kerja                                               | [Akses ke fitur atau model yang belum di-hosting di Azure](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure) |
+|                           | Hosted on Azure                                                                                                                                           | Hosted on Anthropic                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tempat inferensi berjalan | Layanan yang dioperasikan Anthropic yang berjalan di infrastruktur Azure                                                                                  | Layanan yang dioperasikan Anthropic yang berjalan di infrastruktur Anthropic                                                                                                                                                                                                                                                                                                                    |
+| Ketersediaan model        | [Beberapa model Opus, Sonnet, dan Haiku](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#api-model-ids-and-deployments) | [Semua model Claude yang tersedia di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#api-model-ids-and-deployments)                                                                                                                                                                                                                        |
+| Jenis deployment          | Global Standard, US Data Zone Standard                                                                                                                    | Global Standard                                                                                                                                                                                                                                                                                                                                                                                 |
+| Direkomendasikan untuk    | Sebagian besar beban kerja                                                                                                                                | Beban kerja yang memerlukan [model yang hanya di-hosting di Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#api-model-ids-and-deployments) atau [fitur yang hanya tersedia saat di-hosting di Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure) |
+
+Untuk deployment yang di-hosting di Azure, prompt dan completion tetap berada di dalam Azure. Hanya metadata penggunaan dan konten yang ditandai oleh sistem keamanan Anthropic yang keluar ke Anthropic.
 
 <Note>
-  Anthropic bertindak sebagai pemroses independen untuk Microsoft. Pelanggan yang menggunakan Claude melalui Microsoft Foundry tunduk pada ketentuan penggunaan data Anthropic. Untuk deployment yang di-hosting di Azure, prompt dan completion tetap berada di dalam Azure. Hanya metadata penggunaan dan konten yang ditandai oleh sistem keamanan Anthropic yang keluar ke Anthropic. Anthropic tetap memberikan komitmen keamanan dan datanya.
+  Anthropic bertindak sebagai pemroses independen untuk Microsoft. Pelanggan yang menggunakan Claude melalui Microsoft Foundry tunduk pada [ketentuan penggunaan data](https://www.anthropic.com/legal) Anthropic. Anthropic tetap memberikan komitmennya terkait keamanan dan data.
 </Note>
 
 ## Prasyarat
@@ -36,8 +38,8 @@ Sebelum memulai, pastikan Anda memiliki:
 
 * Langganan Azure yang aktif
 * Akses ke [portal Foundry](https://ai.azure.com/)
-* [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) yang sudah terinstal (diperlukan untuk contoh Entra ID dalam cURL, CLI, dan Ruby, opsional untuk lainnya)
-* Peran Azure RBAC yang memungkinkan Anda menggunakan resource, seperti **Foundry User** (sebelumnya Azure AI User) atau **Cognitive Services User**
+* Peran “Azure role-based access control” (kontrol akses berbasis peran Azure), atau RBAC, seperti **Foundry User** atau **Cognitive Services User**, untuk resource Foundry yang Anda buat di [Penyediaan](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#provisioning)
+* Opsional: [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) untuk mendapatkan token [Microsoft Entra ID](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#microsoft-entra-authentication) dengan `az account get-access-token`
 
 ## Instal SDK
 
@@ -125,33 +127,31 @@ Foundry menggunakan hierarki dua tingkat: **resource** berisi konfigurasi keaman
 
 ### Provisioning resource Foundry
 
-Buat resource Foundry, yang diperlukan untuk menggunakan dan mengelola layanan di Azure. Anda dapat mengikuti petunjuk ini untuk membuat [resource Foundry](https://learn.microsoft.com/en-us/azure/ai-services/multi-service-resource?pivots=azportal#create-a-new-azure-ai-foundry-resource). Sebagai alternatif, Anda dapat memulai dengan membuat [proyek Foundry](https://learn.microsoft.com/en-us/azure/foundry/how-to/create-projects), yang mencakup pembuatan resource Foundry.
-
 Untuk melakukan provisioning resource Anda:
 
 1. Buka [portal Foundry](https://ai.azure.com/).
-2. Buat resource Foundry baru atau pilih yang sudah ada.
-3. Konfigurasikan manajemen akses menggunakan kunci API yang diterbitkan Azure atau Entra ID (sebelumnya Azure Active Directory) untuk kontrol akses berbasis peran.
-4. Secara opsional, konfigurasikan resource agar menjadi bagian dari jaringan privat (Azure Virtual Network) untuk membatasi akses jaringan ke resource Anda.
-5. Catat nama resource Anda. Anda akan menggunakannya sebagai `{resource}` di endpoint API (misalnya, `https://{resource}.services.ai.azure.com/anthropic/v1/*`).
+2. Buat atau pilih resource Foundry di [region Azure tempat model Anda tersedia](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-claude). Anda dapat mengikuti [petunjuk Microsoft untuk membuat resource Foundry](https://learn.microsoft.com/en-us/azure/ai-services/multi-service-resource?pivots=azportal) atau [membuat proyek Foundry](https://learn.microsoft.com/en-us/azure/foundry/how-to/create-projects), yang akan membuat resource untuk Anda.
+3. Catat nama resource Anda, yang merupakan `{resource}` dalam endpoint API seperti `https://{resource}.services.ai.azure.com/anthropic/v1/*`.
+
+Untuk membatasi akses jaringan, Anda dapat [menambahkan resource Anda ke jaringan privat](https://learn.microsoft.com/en-us/azure/foundry/how-to/configure-private-link) (Azure Virtual Network).
 
 ### Membuat deployment Foundry
 
-Setelah membuat sumber daya, deploy model Claude agar tersedia untuk panggilan API. Langkah-langkah ini menjelaskan portal Foundry baru (toggle **New Foundry** aktif):
+Setelah membuat resource Anda, deploy model Claude agar tersedia untuk panggilan API. Langkah-langkah ini menjelaskan portal Foundry baru (toggle **New Foundry** aktif):
 
 1. Masuk ke portal Foundry. Dari beranda portal, pilih **Discover** di navigasi kanan atas, lalu **Models** di panel kiri untuk membuka katalog model.
 
 2. Cari dan pilih model Claude (misalnya, claude-opus-5-5). Setiap model muncul satu kali di katalog, terlepas dari berapa banyak opsi hosting yang didukungnya.
 
-3. Di kartu model, pilih **Deploy**, lalu **Custom settings** untuk membuka panel pengaturan deployment. Jika Anda memilih **Default settings**, deployment secara otomatis dikonfigurasi sebagai Hosted on Azure untuk model yang tersedia di kedua opsi hosting.
+3. Di kartu model, pilih **Deploy**, lalu **Custom settings** untuk membuka panel pengaturan deployment. Jika Anda memilih **Default settings** sebagai gantinya, deployment secara otomatis dikonfigurasi sebagai Hosted on Azure untuk model yang tersedia di kedua opsi hosting.
 
 4. Pada deployment Claude pertama Anda, tinjau ketentuan Azure Marketplace, pilih industri, dan pilih **Agree and Proceed** untuk menerima ketentuan dan berlangganan penawaran Azure Marketplace.
 
 5. Konfigurasikan deployment:
 
    * **Deployment name:** Default-nya adalah ID model, tetapi Anda dapat menyesuaikannya (misalnya, `my-claude-deployment`). Nama deployment tidak dapat diubah setelah dibuat.
-   * **Region scope:** Pilih **Global**, atau untuk model yang di-hosting di Azure, **Data Zone**. Memilih **Data Zone** akan membuat deployment US Data Zone Standard, yang menjaga inferensi tetap di dalam Amerika Serikat dan setara dengan menetapkan [`inference_geo: "us"`](https://platform.claude.com/docs/id/manage-claude/data-residency#inference-geo) pada Claude API.
-   * **Model version:** Perluas **Model version settings** dan pilih versi dari menu dropdown **Model version**. Setiap [opsi hosting](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#hosting-options) dicantumkan sebagai versi model terpisah, diberi label dengan opsi hostingnya (misalnya, versi 1 untuk Hosted on Anthropic, versi 2 untuk Hosted on Azure).
+   * **Model version:** Pengaturan ini menentukan [opsi hosting](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#hosting-options). Perluas **Model version settings**, buka menu dropdown **Model version**, dan pilih versi yang diberi label dengan opsi hosting yang Anda inginkan.
+   * **Region scope:** Pilih **Global**, atau **Data Zone** jika deployment di-hosting di Azure. **Data Zone** membuat deployment US Data Zone Standard, yang menjaga inferensi tetap berada di Amerika Serikat. Untuk harga, lihat [Geografi inferensi](https://platform.claude.com/docs/id/about-claude/pricing#foundry-inference-geography).
 
 6. Pilih **Deploy** dan tunggu hingga provisioning selesai.
 
@@ -165,7 +165,7 @@ Jika toggle **New Foundry** nonaktif, Anda berada di tata letak portal klasik. D
 
 ## Autentikasi
 
-Claude di Microsoft Foundry mendukung dua metode autentikasi: kunci API dan token Entra ID. Kedua metode menggunakan endpoint yang di-hosting Azure dengan format `https://{resource}.services.ai.azure.com/anthropic/v1/*`.
+Claude di Microsoft Foundry mendukung dua metode autentikasi: kunci API dan token Entra ID. Kedua metode menggunakan endpoint dengan format `https://{resource}.services.ai.azure.com/anthropic/v1/*`. Untuk [model Claude Mythos](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#api-model-ids-and-deployments), gunakan [token Entra ID](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#microsoft-entra-authentication).
 
 ### Autentikasi kunci API
 
@@ -180,7 +180,7 @@ Klien Foundry pada SDK memerlukan kunci API dan salah satu dari nama resource at
 
 * `ANTHROPIC_FOUNDRY_API_KEY` - Kunci API Anda
 * `ANTHROPIC_FOUNDRY_RESOURCE` - Nama resource Anda (misalnya, `example-resource`)
-* `ANTHROPIC_FOUNDRY_BASE_URL` - Alternatif untuk nama resource: base URL lengkap (misalnya, `https://example-resource.services.ai.azure.com/anthropic/`). SDK C# tidak membaca variabel ini: SDK tersebut selalu membangun base URL dari nama resource.
+* `ANTHROPIC_FOUNDRY_BASE_URL` - Alternatif untuk nama resource di setiap SDK kecuali C#: base URL lengkap (misalnya, `https://example-resource.services.ai.azure.com/anthropic/`)
 
 <Note>
   Parameter `resource` dan `base_url` saling eksklusif. Berikan nama resource (yang digunakan SDK untuk membangun URL sebagai `https://{resource}.services.ai.azure.com/anthropic/`) atau base URL lengkap secara langsung.
@@ -620,11 +620,11 @@ Foundry menyertakan pengidentifikasi permintaan dalam header respons HTTP untuk 
 
 ## Dukungan fitur
 
-Claude di Microsoft Foundry mendukung sebagian besar fitur Claude. Anda dapat menemukan semua fitur yang saat ini didukung di [Ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview).
+Claude di Microsoft Foundry mendukung sebagian besar fitur Claude. [Ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview) mencantumkan fitur-fitur Claude, dan bagian **Ketersediaan** di halaman suatu fitur menunjukkan apakah Foundry mendukungnya dan dengan opsi hosting mana.
 
 ### Jendela konteks
 
-Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, dan Claude Haiku 5.5 memiliki [jendela konteks 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) di Microsoft Foundry. Model Claude lainnya, termasuk Claude Sonnet 4.5 (deprecated), memiliki jendela konteks 200k token.
+Semua [model yang tersedia](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#api-model-ids-and-deployments) memiliki [jendela konteks 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) di Microsoft Foundry kecuali Claude Opus 4.5, Claude Sonnet 4.5 (deprecated), dan Claude Haiku 4.5. Ketiga model ini memiliki jendela konteks 200k token.
 
 ### Fitur Claude yang tidak didukung untuk Claude di Microsoft Foundry
 
@@ -651,7 +651,7 @@ Permintaan yang menggunakan fitur-fitur ini terhadap deployment yang di-hosting 
 
 ## Respons API
 
-Respons API dari Claude di Microsoft Foundry mengikuti [format respons Claude API](https://platform.claude.com/docs/id/api/messages/create) standar. Ini termasuk objek `usage` dalam body respons, yang memberikan informasi konsumsi token terperinci untuk permintaan Anda. Objek `usage` konsisten di semua platform, termasuk Claude API, Amazon Bedrock, Claude Platform on AWS, Foundry, dan Claude Models on Google Cloud (Google managed).
+Respons API dari Claude di Microsoft Foundry mengikuti [format respons Claude API](https://platform.claude.com/docs/id/api/messages/create) standar, termasuk objek `usage`.
 
 Untuk detail tentang header respons khusus Foundry, lihat [ID permintaan korelasi](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#correlation-request-ids).
 
@@ -735,7 +735,9 @@ Anthropic merekomendasikan untuk mencatat aktivitas Anda setidaknya dalam basis 
 
 **Error:** `403 Forbidden`
 
-* **Solusi:** Akun Azure Anda mungkin tidak memiliki izin yang diperlukan. Pastikan Anda memiliki peran Azure RBAC yang sesuai (misalnya, **Foundry User** (sebelumnya Azure AI User) atau **Cognitive Services User**).
+**Penyebab:** Akun Azure Anda mungkin tidak memiliki izin yang diperlukan.
+
+* **Solusi:** Pastikan Anda memiliki peran Azure RBAC yang sesuai (misalnya, **Foundry User** atau **Cognitive Services User**).
 
 ### Pembatasan laju
 
@@ -782,8 +784,8 @@ Foundry tidak menyertakan header batas laju standar Anthropic (`anthropic-rateli
     Telusuri model Anthropic di katalog Foundry.
   </Card>
 
-  <Card title="Harga Azure AI Foundry" icon="calculator" href="https://azure.microsoft.com/en-us/pricing/details/ai-foundry/#pricing">
-    Lihat detail harga Microsoft untuk Azure AI Foundry.
+  <Card title="Harga Microsoft Foundry" icon="calculator" href="https://azure.microsoft.com/en-us/pricing/details/ai-foundry/#pricing">
+    Lihat detail harga Microsoft untuk Microsoft Foundry.
   </Card>
 
   <Card title="Harga model" icon="table" href="https://platform.claude.com/docs/id/about-claude/pricing#model-pricing">

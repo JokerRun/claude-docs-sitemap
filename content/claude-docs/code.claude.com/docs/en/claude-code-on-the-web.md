@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: d8b49efe413a089e5988f6edb681b4070a2223ab526e10a832b10337bfefc365
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 6fc0212c5c97dcc54ede2ee54a2099621e2ff8b8dc6204c59e323ce68dfec532
 ---
 
 > ## Documentation Index
@@ -196,8 +196,8 @@ On success, the command prints the session ID and a link to view the session:
 
 ```
 Sent to cloud session.
-Session ID: session_01DiUkqY2kzbUbDmW1w96rfi
-View: https://claude.ai/code/session_01DiUkqY2kzbUbDmW1w96rfi?from=cli&m=0
+Session ID: session_01HJKLMNOPQRSTUVWXYZ
+View: https://claude.ai/code/session_01HJKLMNOPQRSTUVWXYZ?from=cli&m=0
 ```
 
 Pass `--output-format json` for a machine-readable result: `{ok, session_id, url}` on success, or `{ok: false, session_id, error}` when the send fails, for example when the session is missing or archived. Configuration errors, such as an unsupported provider or a disabled organization policy, print to stderr without JSON. `--output-format stream-json` isn't supported with `--cloud <session-id>`.

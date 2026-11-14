@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: f54fd1c0ce5879299ff160a6d988c75407484eab71988491c3d326110340cfa2
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: a38d2b157c5c1a1b7693523b77667bf5798f295f3a6bfd8c51a801deb9fe2207
 ---
 
 ---
@@ -468,21 +468,11 @@ curl https://api.anthropic.com/v1/environments \
       "type": "limited"
     },
     "packages": {
-      "apt": [
-        "string"
-      ],
-      "cargo": [
-        "string"
-      ],
-      "gem": [
-        "string"
-      ],
-      "go": [
-        "string"
-      ],
-      "npm": [
-        "string"
-      ],
+      "apt": [],
+      "cargo": [],
+      "gem": [],
+      "go": [],
+      "npm": [],
       "pip": [
         "pandas",
         "numpy"
@@ -842,21 +832,11 @@ curl https://api.anthropic.com/v1/environments \
           "type": "limited"
         },
         "packages": {
-          "apt": [
-            "string"
-          ],
-          "cargo": [
-            "string"
-          ],
-          "gem": [
-            "string"
-          ],
-          "go": [
-            "string"
-          ],
-          "npm": [
-            "string"
-          ],
+          "apt": [],
+          "cargo": [],
+          "gem": [],
+          "go": [],
+          "npm": [],
           "pip": [
             "pandas",
             "numpy"
@@ -1199,21 +1179,11 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID \
       "type": "limited"
     },
     "packages": {
-      "apt": [
-        "string"
-      ],
-      "cargo": [
-        "string"
-      ],
-      "gem": [
-        "string"
-      ],
-      "go": [
-        "string"
-      ],
-      "npm": [
-        "string"
-      ],
+      "apt": [],
+      "cargo": [],
+      "gem": [],
+      "go": [],
+      "npm": [],
       "pip": [
         "pandas",
         "numpy"
@@ -1675,21 +1645,11 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID \
       "type": "limited"
     },
     "packages": {
-      "apt": [
-        "string"
-      ],
-      "cargo": [
-        "string"
-      ],
-      "gem": [
-        "string"
-      ],
-      "go": [
-        "string"
-      ],
-      "npm": [
-        "string"
-      ],
+      "apt": [],
+      "cargo": [],
+      "gem": [],
+      "go": [],
+      "npm": [],
       "pip": [
         "pandas",
         "numpy"
@@ -2227,21 +2187,11 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/archive \
       "type": "limited"
     },
     "packages": {
-      "apt": [
-        "string"
-      ],
-      "cargo": [
-        "string"
-      ],
-      "gem": [
-        "string"
-      ],
-      "go": [
-        "string"
-      ],
-      "npm": [
-        "string"
-      ],
+      "apt": [],
+      "cargo": [],
+      "gem": [],
+      "go": [],
+      "npm": [],
       "pip": [
         "pandas",
         "numpy"

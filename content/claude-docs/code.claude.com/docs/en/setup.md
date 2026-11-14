@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: ead92d4891fa3354fbb377439cee8fa7db2e4488b971ab4208510d2c438a75a6
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 87badee7612cc5b6b7c11086d3203362bfd5290deda2f0e13d785aad25bf2edc
 ---
 
 > ## Documentation Index
@@ -47,7 +47,7 @@ To install Claude Code, open a terminal and run the command for your system. If 
 >
 > **macOS, Linux, WSL:**
 >
-> ```bash theme={null}
+> ```bash theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
 > curl -fsSL https://claude.ai/install.sh | bash
 > ```
 >
@@ -55,13 +55,13 @@ To install Claude Code, open a terminal and run the command for your system. If 
 >
 > **Windows PowerShell:**
 >
-> ```powershell theme={null}
+> ```powershell theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
 > irm https://claude.ai/install.ps1 | iex
 > ```
 >
 > **Windows CMD:**
 >
-> ```batch theme={null}
+> ```batch theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
 > curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
 > ```
 >
@@ -79,7 +79,7 @@ To install Claude Code, open a terminal and run the command for your system. If 
 
 > [tab] Homebrew
 >
-> ```bash theme={null}
+> ```bash theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
 > brew install --cask claude-code
 > ```
 >
@@ -91,7 +91,7 @@ To install Claude Code, open a terminal and run the command for your system. If 
 
 > [tab] WinGet
 >
-> ```powershell theme={null}
+> ```powershell theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
 > winget install Anthropic.ClaudeCode
 > ```
 >
@@ -227,6 +227,8 @@ Configure this via `/config` → **Auto-update channel**, or add it to your [set
 }
 ```
 
+With this setting, a native installation updates to the stable version even when that version is older than yours. To avoid the downgrade, also [pin a minimum version](#pin-a-minimum-version).
+
 A newly launched model can require a Claude Code version newer than the stable channel serves. To run the model now, move to the latest channel.
 
 For enterprise deployments, you can enforce a consistent release channel across your organization using [managed settings](https://code.claude.com/docs/en/managed-settings.md).
@@ -237,20 +239,27 @@ Installations from the apt, dnf, and apk repositories choose a channel by reposi
 
 ### Pin a minimum version
 
-The `minimumVersion` setting establishes a floor. Background auto-updates and `claude update` refuse to install any version below this value, so moving to the `"stable"` channel does not downgrade you if you are already on a newer `"latest"` build.
+To move a native installation to the `"stable"` [release channel](#configure-release-channel) without a downgrade, set [`minimumVersion`](https://code.claude.com/docs/en/settings-reference#minimumversion) to the version you're running. Background auto-updates and `claude update` refuse to install any version below the minimum.
 
-Switching from `"latest"` to `"stable"` via `/config` prompts you to either stay on the current version or allow the downgrade. Choosing to stay sets `minimumVersion` to that version. Switching back to `"latest"` clears it.
+Set the minimum in `/config` to have Claude Code fill in your current version, or in your settings file to type the number yourself:
 
-Add it to your [settings.json file](https://code.claude.com/docs/en/settings.md) to pin a floor explicitly:
+* **In `/config`**: switch **Auto-update channel** to stable, then select **Stay on current version**. If you switch back to latest in `/config`, Claude Code clears the minimum.
+* **In your [settings file](https://code.claude.com/docs/en/settings.md)**: run `claude --version` in your shell, and set `minimumVersion` to the number at the start of the output. In the same edit, set `autoUpdatesChannel` to `"stable"`.
+
+This `~/.claude/settings.json` switches an installation on version 2.1.323 to stable:
 
 ```json theme={null}
 {
   "autoUpdatesChannel": "stable",
-  "minimumVersion": "2.1.100"
+  "minimumVersion": "2.1.323"
 }
 ```
 
-In [managed settings](https://code.claude.com/docs/en/managed-settings.md), this enforces an organization-wide minimum that user and project settings cannot override.
+The installation stays on 2.1.323 until the stable channel serves a newer version.
+
+#### Set version limits for your organization
+
+In [managed settings](https://code.claude.com/docs/en/managed-settings.md), `minimumVersion` enforces an organization-wide minimum that user and project settings can't override.
 
 The `minimumVersion` pin only constrains updates. To make Claude Code refuse to start outside a version range, use the managed settings `requiredMinimumVersion` and `requiredMaximumVersion` instead. Updates also respect the `requiredMaximumVersion` ceiling. See [`requiredMinimumVersion`](https://code.claude.com/docs/en/settings-reference#requiredminimumversion) and [`requiredMaximumVersion`](https://code.claude.com/docs/en/settings-reference#requiredmaximumversion).
 
@@ -452,10 +461,10 @@ All repositories are signed with the [Claude Code release signing key](#binary-i
 >
 > If `npm --version` prints a version starting with `12` in your shell, follow [Fix an npm 12 install](https://code.claude.com/docs/en/troubleshoot-install.md#fix-an-npm-12-install) instead. Don't install with `sudo`. Claude Code runs npm without `sudo` when it updates itself, so an install that needs `sudo` can't update automatically.
 
-You can also install Claude Code as a global npm package. The npm package requires [Node.js 22 or later](https://nodejs.org/en/download). On an older Node.js version, npm prints an `EBADENGINE` warning during install rather than failing; the install completes and `claude` still runs, since the package downloads a native binary that doesn't use your Node.js at runtime.
+You can also install Claude Code as a global npm package. The npm package requires [Node.js 22 or later](https://nodejs.org/en/download). On an older Node.js version, npm by default prints an `EBADENGINE` warning and completes the install rather than failing. The installed `claude` still runs, since the package downloads a native binary that doesn't use your Node.js at runtime.
 
 ```bash theme={null}
-npm install -g @anthropic-ai/claude-code
+npm install -g @anthropic-ai/claude-code@latest
 ```
 
 The npm package installs the same native binary as the standalone installer. npm pulls the binary in through a per-platform optional dependency such as `@anthropic-ai/claude-code-darwin-arm64`, and a postinstall step links it into place. The installed `claude` binary does not itself invoke Node.

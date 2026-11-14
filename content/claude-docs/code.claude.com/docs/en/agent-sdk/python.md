@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 3b0864a09edad8c5f7d04b4e9ce2ad866dd20d29abe3f38eb8a6afa52e3c3c1f
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 3ef194c3c4ae2fe11df18213d46096102290f43aa9ed0d3174bb77cc2b131449
 ---
 
 > ## Documentation Index
@@ -882,7 +882,7 @@ class ClaudeAgentOptions:
 | `allowed_tools` | `list[str]` | `[]` | Tools to auto-approve without prompting, apart from reads from [network paths](https://code.claude.com/docs/en/permissions.md#network-paths). This does not restrict Claude to only these tools. If you name one of the [task-tracking tools](https://code.claude.com/docs/en/agent-sdk/todo-tracking.md#model-availability) here, Claude Code also opts the session in. Other unlisted tools fall through to `permission_mode` and `can_use_tool`. Use `disallowed_tools` to block tools. See [Permissions](https://code.claude.com/docs/en/agent-sdk/permissions.md#allow-and-deny-rules) |
 | `system_prompt` | `str \| SystemPromptPreset \| SystemPromptCustom \| SystemPromptFile \| None` | `None` | System prompt configuration. Pass a string for a custom prompt, `{"type": "preset", "preset": "claude_code"}` for Claude Code's system prompt with optional `"append"`, `{"type": "custom", "prompt": "..."}` for a custom prompt that can also set `"snapshot"`, or `{"type": "file", "path": "..."}` to load a large prompt from disk. See [`SystemPromptPreset`](#systempromptpreset), [`SystemPromptCustom`](#systempromptcustom), and [`SystemPromptFile`](#systempromptfile) |
 | `mcp_servers` | `dict[str, McpServerConfig] \| str \| Path` | `{}` | MCP server configurations or path to config file |
-| `strict_mcp_config` | `bool` | `False` | When `True`, use only the servers passed in `mcp_servers` and ignore project `.mcp.json`, user settings, plugin-provided MCP servers, and [claude.ai connectors](https://code.claude.com/docs/en/mcp.md#use-mcp-servers-from-claude-ai). Maps to the CLI `--strict-mcp-config` flag |
+| `strict_mcp_config` | `bool` | `False` | When `True`, use the servers passed in `mcp_servers` and ignore project `.mcp.json`, user settings, plugin-provided MCP servers, and [claude.ai connectors](https://code.claude.com/docs/en/mcp.md#use-mcp-servers-from-claude-ai). Maps to the CLI `--strict-mcp-config` flag |
 | `permission_mode` | `PermissionMode \| None` | `None` | Permission mode for tool usage |
 | `continue_conversation` | `bool` | `False` | Continue the most recent conversation |
 | `resume` | `str \| None` | `None` | Session ID to resume |

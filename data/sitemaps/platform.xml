@@ -58,6 +58,9 @@
 <loc>https://platform.claude.com/settings/data-privacy</loc>
 </url>
 <url>
+<loc>https://platform.claude.com/settings/data-residency</loc>
+</url>
+<url>
 <loc>https://platform.claude.com/settings/general</loc>
 </url>
 <url>

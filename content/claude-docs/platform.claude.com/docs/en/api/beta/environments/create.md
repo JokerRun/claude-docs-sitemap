@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/create
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 26385ca2a995f1bbb6f5ef90bcb294c1282c6ad900a28be4855759e25e2930a3
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 716d5dbb7e0d0a515e2306281c4a6c55326c781fca152cbd6e330a49425271b3
 ---
 
 ---
@@ -466,21 +466,11 @@ curl https://api.anthropic.com/v1/environments \
       "type": "limited"
     },
     "packages": {
-      "apt": [
-        "string"
-      ],
-      "cargo": [
-        "string"
-      ],
-      "gem": [
-        "string"
-      ],
-      "go": [
-        "string"
-      ],
-      "npm": [
-        "string"
-      ],
+      "apt": [],
+      "cargo": [],
+      "gem": [],
+      "go": [],
+      "npm": [],
       "pip": [
         "pandas",
         "numpy"

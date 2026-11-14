@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/list
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: c2c51be3e65f1b38323084e7cc7306ab694dc02d1d038072aa07e3a7b2cb3548
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 39832ca168a8f463c41cc5eb6eeeb8e535a2b57bbaf275ff98908ff425f0cf55
 ---
 
 ---
@@ -1034,38 +1034,7 @@ curl https://api.anthropic.com/v1/agents \
         "inference_geo": "inference_geo",
         "speed": "standard"
       },
-      "multiagent": {
-        "advisor": {
-          "type": "disabled"
-        },
-        "subagents": {
-          "inline_agents": {
-            "type": "enabled"
-          },
-          "predefined_agents": [
-            {
-              "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
-              "type": "agent",
-              "version": 1
-            }
-          ],
-          "type": "enabled"
-        },
-        "type": "multiagent_20261001",
-        "workflows": {
-          "inline_agents": {
-            "type": "enabled"
-          },
-          "predefined_agents": [
-            {
-              "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
-              "type": "agent",
-              "version": 1
-            }
-          ],
-          "type": "enabled"
-        }
-      },
+      "multiagent": null,
       "name": "My First Agent",
       "skills": [
         {
@@ -1082,16 +1051,7 @@ curl https://api.anthropic.com/v1/agents \
       "system": "You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user's task end to end.",
       "tools": [
         {
-          "configs": [
-            {
-              "enabled": true,
-              "name": "bash",
-              "permission_policy": {
-                "type": "always_allow"
-              },
-              "type": "bash"
-            }
-          ],
+          "configs": [],
           "default_config": {
             "enabled": true,
             "permission_policy": {

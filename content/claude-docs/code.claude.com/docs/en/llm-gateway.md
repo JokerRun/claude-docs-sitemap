@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 0e859ef81b786b71bfa8c31cdadae66cf5ae9d006e1519058b05ff127f81426f
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 18085351a5aa7a2e4327a11d0d95bb0aaea53e3feee9a6fe019c694c50619ce7
 ---
 
 > ## Documentation Index
@@ -49,6 +49,10 @@ When you're ready to roll out an LLM gateway to your organization, the sequence 
 [Roll out an LLM gateway for your organization](https://code.claude.com/docs/en/llm-gateway-rollout.md) walks each step and shows the configuration files to distribute at each one. The gateway is one part of organization setup; for policy enforcement, usage visibility, and data handling decisions, see [Set up Claude Code for your organization](https://code.claude.com/docs/en/admin-setup.md).
 
 To make a gateway reached through `ANTHROPIC_BASE_URL` the only destination a managed machine may use, set [`allowedProviders`](https://code.claude.com/docs/en/settings-reference#allowedproviders) to `["customEndpoint"]` in the same managed settings file and put the gateway's `ANTHROPIC_BASE_URL` in that file's `env` block. Claude Code then refuses a session pointed anywhere else, including at Anthropic directly or at a developer's own proxy, and accepts `ANTHROPIC_BASE_URL` only with the value you set there. For a gateway reached through a provider-specific endpoint variable such as `ANTHROPIC_BEDROCK_BASE_URL`, the `allowedProviders` entry says which variable to pin. Requires Claude Code v2.1.285 or later.
+
+> [!NOTE]
+>
+> With Desktop signed in to claude.ai, a Cowork session on the user's machine counts as [`"anthropic"`](https://code.claude.com/docs/en/settings-reference#allowedproviders). If you leave it out of this list in an MDM policy or managed settings file, that session is refused. With it in, sessions sent to Anthropic directly also pass this list.
 
 ## Subscriptions and gateways
 

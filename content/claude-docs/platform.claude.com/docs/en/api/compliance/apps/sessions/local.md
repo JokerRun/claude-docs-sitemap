@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/local
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: a6bfa2262459b37597e06abba0f922dab151164bbf48d6573abb354bcab511c0
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 1e3e03403668ab8dcbd6a36992ed2e9e8414c1d6cf289f78b4f4e379e2bd930b
 ---
 
 ---
@@ -703,10 +703,7 @@ curl https://api.anthropic.com/v1/compliance/apps/sessions/local/$LOCAL_SESSION_
       ],
       "created_at": "2025-03-12T18:22:41.123456Z",
       "model": "claude-opus-5",
-      "provenance": {
-        "reason": "not_captured",
-        "type": "content_unavailable"
-      },
+      "provenance": null,
       "role": "assistant",
       "type": "compliance_local_session_message"
     }

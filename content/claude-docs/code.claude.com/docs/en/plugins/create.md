@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/create
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 6e8585ad16b07151d7255c772da3996b31c3aa04af2a38c702c97dae6aa25069
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: ea4010a5dfdb8af005665f4b9d72b053d8ff4c962d9e4611c0868dcc2e426f2b
 ---
 
 > ## Documentation Index
@@ -79,7 +79,7 @@ The four fields do this:
 * **`version`**: optional. Setting it keeps users on that version until you change it; [Release a new version](https://code.claude.com/docs/en/plugins/host-marketplace.md#release-a-new-version) says when to set or omit it.
 * **`author`**: who to credit. `name` is required inside it; `email` and `url` are optional.
 
-Every other field is on the [manifest reference](https://code.claude.com/docs/en/plugins/manifest-reference.md#fields).
+Other fields are on the [manifest reference](https://code.claude.com/docs/en/plugins/manifest-reference.md#fields).
 
 Only `plugin.json` goes inside `.claude-plugin/`. The skill you add next goes directly under `my-first-plugin/`, next to that folder.
 

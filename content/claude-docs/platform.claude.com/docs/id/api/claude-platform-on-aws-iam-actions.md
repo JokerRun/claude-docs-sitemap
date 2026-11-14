@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 565cbaa3bc46ed01218948ae082d54779bc3b8e926ce72726cc87cc6c78a4fdb
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: d1cf821af5a363c3553ece95dbbd303542d57caf0137d9767e4a79aac1052015
 ---
 
 ---
@@ -70,7 +70,7 @@ Tindakan mengikuti konvensi AWS `VerbNoun` dan menggunakan disiplin kata kerja s
 | `DeleteFile` | `DELETE /v1/files/{id}`                                |
 
 <Note>
-  `GetFile` mengotorisasi pengunduhan metadata maupun konten. Principal dengan akses hanya-baca dapat mengunduh byte file, bukan hanya mencantumkan file.
+  `GetFile` mengotorisasi pengunduhan metadata maupun konten. Principal dengan akses hanya-baca dapat mengunduh byte file, tidak hanya mencantumkan file.
 </Note>
 
 ### Skill
@@ -84,7 +84,7 @@ Tindakan mengikuti konvensi AWS `VerbNoun` dan menggunakan disiplin kata kerja s
 | `DeleteSkill` | `DELETE /v1/skills/{id}`                                                                                                                                      |
 
 <Note>
-  `GetSkill` mengotorisasi pengunduhan metadata skill maupun konten skill. Principal dengan akses hanya-baca dapat mengunduh byte skill, bukan hanya mencantumkan skill.
+  `GetSkill` mengotorisasi pengunduhan metadata skill maupun konten skill. Principal dengan akses hanya-baca dapat mengunduh byte skill, tidak hanya mencantumkan skill.
 </Note>
 
 <Note>
@@ -305,7 +305,9 @@ Tindakan mengikuti konvensi AWS `VerbNoun` dan menggunakan disiplin kata kerja s
 | --------------- | --------------------- |
 | `AssumeConsole` | (tidak ada)           |
 
-`AssumeConsole` mengotorisasi principal untuk membuka Claude Console untuk workspace Claude Platform on AWS melalui alur federasi AWS Console. Tindakan ini tidak dipetakan ke rute. Berikan kepada principal yang seharusnya dapat mengklik **Open Claude Console** pada halaman layanan Claude Platform on AWS di AWS Console. Peran Claude Console (Admin atau Developer) ditetapkan secara terpisah oleh perwakilan akun Anthropic Anda; peran tersebut tidak diturunkan dari izin IAM principal. Lihat [Menggunakan Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#using-the-claude-console) untuk alur masuk dan deskripsi peran.
+`AssumeConsole` mengotorisasi principal untuk membuka Claude Console untuk organisasi Claude Platform on AWS miliknya melalui alur federasi AWS Console. Tindakan ini tidak dipetakan ke rute atau terikat ke ARN workspace, sehingga pernyataan yang memberikannya memerlukan `Resource: "*"`. Berikan kepada principal yang seharusnya dapat mengklik **Open Claude Console** pada halaman layanan Claude Platform on AWS di AWS Console. Lihat [Menggunakan Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#using-the-claude-console) untuk alur masuk dan apa yang dapat dilakukan oleh setiap peran Claude Console (Admin atau Developer).
+
+Sesi Claude Console mencakup seluruh organisasi, bukan satu workspace, dan beberapa halaman Claude Console melewati pemeriksaan tindakan IAM. Pada halaman-halaman tersebut, principal dengan peran Claude Console mana pun dapat melihat penggunaan, biaya, dan batas laju seluruh organisasi, apa pun yang diizinkan oleh kebijakan IAM-nya. Dengan peran Admin, principal juga dapat melihat metadata permintaan di halaman **Logs**. Sesi Admin juga dapat mengubah pengaturan di luar IAM, seperti batas pengeluaran untuk organisasi dan setiap workspace. Berikan `AssumeConsole` hanya kepada principal yang boleh melihat dan bertindak atas seluruh organisasi. [Halaman Claude Console yang tersedia di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#available-pages) menunjukkan halaman mana yang memeriksa tindakan IAM dan mana yang melewatinya.
 
 ## Pemetaan rute ke tindakan
 
@@ -468,7 +470,7 @@ AWS menyediakan lima kebijakan terkelola untuk Claude Platform on AWS. Semua keb
 
 `AnthropicSelfHostedEnvironmentAccess` adalah kebijakan terkelola paling sempit yang cukup untuk menjalankan worker [sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes). Lampirkan ke principal yang digunakan worker environment Anda untuk autentikasi.
 
-`AssumeConsole` tidak termasuk dalam `AnthropicReadOnlyAccess`, `AnthropicInferenceAccess`, `AnthropicLimitedAccess`, atau `AnthropicSelfHostedEnvironmentAccess`. Principal yang memerlukan akses Claude Console membutuhkan `AnthropicFullAccess` atau kebijakan kustom yang memberikan `aws-external-anthropic:AssumeConsole`. Lihat [Akses konsol](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#console-access).
+Untuk membuka Claude Console, principal memerlukan `AssumeConsole` (lihat [Akses konsol](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#console-access)). `AnthropicFullAccess` mengizinkannya melalui `aws-external-anthropic:*`. `AnthropicLimitedAccess` mengizinkannya hanya dengan suatu kondisi (lihat [AnthropicLimitedAccess di AWS Managed Policy Reference](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AnthropicLimitedAccess.html)). Kebijakan kustom juga dapat memberikan `aws-external-anthropic:AssumeConsole`.
 
 <Note>
   `CreateInference` dan `CreateBatchInference` adalah tindakan terpisah. Menolak salah satunya tidak memblokir yang lain. Jika Anda bermaksud mencegah semua pemanggilan model, tolak keduanya.
@@ -520,25 +522,24 @@ Membatasi sebuah peran ke satu workspace:
     },
     {
       "Effect": "Allow",
-      "Action": [
-        "aws-external-anthropic:CallWithBearerToken",
-        "aws-external-anthropic:AssumeConsole"
-      ],
+      "Action": "aws-external-anthropic:CallWithBearerToken",
       "Resource": "*"
     }
   ]
 }
 ```
 
-<Note>
-  Wildcard `aws-external-anthropic:*` dalam pernyataan pertama mencakup tindakan bercakupan akun (`CreateWorkspace`, `ListWorkspaces`, `ListComplianceActivities`, tindakan kunci eksternal, tindakan tujuan telemetri bercakupan akun, tindakan profil pengguna, dan tindakan penggunaan dan biaya) yang secara diam-diam disaring oleh batasan ARN workspace. Hal ini konsisten dengan maksud “isolasi” (peran tidak dapat membuat workspace, mengenumerasi workspace, mengelola registrasi kunci enkripsi, membaca Activity Feed kepatuhan, membaca laporan penggunaan atau biaya, atau membaca maupun mengelola profil pengguna, dan peran tidak dapat membuat, membaca, atau mengubah tujuan telemetri; peran masih dapat melampirkan kunci yang sudah terdaftar ke workspace-nya sendiri melalui `UpdateWorkspace`, serta menambahkan workspace-nya sendiri ke suatu tujuan, atau menghapusnya dari tujuan, jika diberikan ID tujuan tersebut), tetapi kebijakan tersebut berisi izin yang tidak berpengaruh. Jika peran memerlukan profil pengguna atau laporan penggunaan dan biaya, tambahkan pernyataan `Allow` terpisah untuk tindakan tersebut dengan `Resource: "*"`. Lihat [Otomatisasi provisioning](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#provisioning-automation) untuk pola bercakupan akun.
+Pernyataan kedua memberikan `CallWithBearerToken` pada `Resource: "*"` sehingga peran dapat melakukan autentikasi dengan kunci API. Tindakan tersebut tidak terikat ke ARN workspace, sehingga pernyataan pertama tidak memberikannya. Hilangkan pernyataan kedua jika peran hanya menggunakan SigV4.
 
-  `CallWithBearerToken` dan `AssumeConsole` adalah tindakan tanpa rute yang tidak terikat ke ARN workspace. Pernyataan kedua memberikannya pada `Resource: "*"` sehingga peran dapat melakukan autentikasi dengan kunci API dan membuka Claude Console. Hilangkan pernyataan ini jika peran hanya menggunakan SigV4 dan tidak memerlukan akses Claude Console.
-</Note>
+Wildcard `aws-external-anthropic:*` dalam pernyataan pertama mencakup tindakan bercakupan akun, seperti `CreateWorkspace` dan `ListWorkspaces`. Batasan ARN workspace secara diam-diam menyaring tindakan tersebut.
+
+[Tindakan kunci enkripsi](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#encryption-keys) dan [tindakan tujuan telemetri](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#telemetry-destinations) bercakupan akun termasuk di antara yang disaring. Peran masih dapat melampirkan kunci enkripsi yang sudah terdaftar ke workspace-nya sendiri melalui `UpdateWorkspace`. Jika diberikan ID suatu tujuan telemetri, peran juga dapat menambahkan workspace-nya sendiri ke tujuan tersebut atau menghapus workspace tersebut dari tujuan itu.
+
+Seperti `CallWithBearerToken`, `AssumeConsole` tidak terikat ke ARN workspace, sehingga pernyataan pertama tidak memberikannya. Tidak ada pernyataan yang memberikan `AssumeConsole`; lihat [Akses konsol](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#console-access) untuk alasan mengapa peran yang dibatasi ke satu workspace tidak boleh memilikinya.
 
 ### Penguncian fitur untuk workspace yang sensitif terhadap ZDR
 
-Memblokir pemrosesan batch dan unggahan file pada workspace tertentu sambil tetap menyediakan inferensi sinkron. Berguna ketika workspace menangani data [Zero Data Retention (ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention) yang tidak boleh tersimpan di sisi server. Lampirkan kebijakan ini bersama kebijakan Allow seperti `AnthropicInferenceAccess` atau [contoh satu workspace](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#synchronous-inference-on-a-single-workspace); jika berdiri sendiri, kebijakan yang hanya berisi Deny tidak memberikan izin apa pun:
+Memblokir pemrosesan batch dan unggahan file pada workspace tertentu sambil tetap menyediakan inferensi sinkron. Berguna ketika sebuah workspace menangani data [Zero Data Retention (ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention) yang tidak boleh disimpan di sisi server. Lampirkan kebijakan ini bersama kebijakan Allow seperti `AnthropicInferenceAccess` atau [contoh satu workspace](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#synchronous-inference-on-a-single-workspace); jika berdiri sendiri, kebijakan yang hanya berisi Deny tidak memberikan izin apa pun:
 
 ```json
 {

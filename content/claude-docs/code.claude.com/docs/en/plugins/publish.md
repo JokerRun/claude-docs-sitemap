@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/publish
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f98d37d7355d95ddd027676974b26886522feab56667b42cd0772f5d8f19bab5
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: f7b6defb5c8fc1881be2df2f9a4b7a067e52727fa92817feca74c7cefbfcac8f
 ---
 
 > ## Documentation Index
@@ -66,7 +66,7 @@ In your shell, add a local marketplace that lists the plugin with `claude plugin
 
 **5. Fill in the metadata users see**
 
-Set `description`, `author`, `homepage`, and `repository` in `plugin.json`, and add a `README.md` at the plugin root. `homepage` must parse as a URL. The [manifest reference](https://code.claude.com/docs/en/plugins/manifest-reference.md#fields) lists every field.
+Set `description`, `author`, `homepage`, and `repository` in `plugin.json`, and add a `README.md` at the plugin root. `homepage` must parse as a URL. For what each field accepts, see the [manifest reference](https://code.claude.com/docs/en/plugins/manifest-reference.md#fields).
 
 **6. Run your eval suite**
 

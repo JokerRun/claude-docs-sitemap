@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 86be6c5404b154e7dec0dc5aca2d145eb53e01c75d1cb9843fdce3da2f4a37f8
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: ef1516cee8fa1dc471ae7e8fb532e2c1e6bd86d753db80582b78e8570240e4a0
 ---
 
 > ## Documentation Index
@@ -750,7 +750,7 @@ Permissions and [sandboxing](https://code.claude.com/docs/en/sandboxing.md) are 
 
 Use both for defense-in-depth, since sandbox restrictions still apply even if a prompt injection bypasses Claude's decision-making. Paths and domains from both sandbox settings and permission rules are [merged into the final sandbox configuration](https://code.claude.com/docs/en/sandboxing.md#permission-rules).
 
-When you enable sandboxing and leave `autoAllowBashIfSandboxed` at its default of `true`, sandboxed Bash commands run without prompting even if your permissions include a bare `Bash` ask rule, or the [equivalent `Bash(*)` form](#match-all-uses-of-a-tool): the sandbox boundary substitutes for that whole-tool prompt.
+When you enable sandboxing and set [`sandbox.autoAllowBashIfSandboxed`](https://code.claude.com/docs/en/settings-reference#sandbox-autoallowbashifsandboxed) to `true`, sandboxed Bash commands run without prompting. That holds even with a bare `Bash` ask rule or the [equivalent `Bash(*)` form](#match-all-uses-of-a-tool): the sandbox boundary substitutes for that whole-tool prompt.
 
 In [plan mode](https://code.claude.com/docs/en/permission-modes.md#analyze-before-you-edit-with-plan-mode), Claude Code skips this substitution. Without an ask rule, the [built-in read-only commands](#read-only-commands) still run without prompting, and any other shell command goes through the regular permission flow while you are still planning; see [plan mode](https://code.claude.com/docs/en/permission-modes.md#analyze-before-you-edit-with-plan-mode) for how Claude Code gates commands there. With a bare `Bash` ask rule, every Bash command prompts, including sandboxed read-only commands, the same as outside sandboxing.
 
@@ -791,7 +791,7 @@ Claude Code keys and stores the trust you accept according to where you start it
 * Outside a repository, Claude Code keys the trust on the directory you started it from, and the trust covers any subdirectory of that directory apart from a git repository nested inside it, such as a clone. Each covered subdirectory then counts as a folder whose parent you trusted.
 * When you start in your home directory, Claude Code holds the trust for the current session only and doesn't write it to disk; see the [additional safeguards](https://code.claude.com/docs/en/security.md#additional-safeguards) note.
 
-Claude Code shows the trust dialog in interactive sessions only. A `claude -p` run or an SDK session never shows it, and trusting a parent folder doesn't count for these rules, so [What runs before you trust a folder](#what-runs-before-you-trust-a-folder) says which repository content Claude Code still uses in each of those two situations.
+The VS Code extension asks for the same trust, in a dialog titled `Trust this folder in Claude Code?`, before it starts a session. Claude Code shows the trust dialog in interactive terminal sessions, but not in `claude -p` or SDK sessions. Trusting a parent folder doesn't count for these rules. [What runs before you trust a folder](#what-runs-before-you-trust-a-folder) says which repository content Claude Code still uses in each case.
 
 Before it starts or restarts a [background session](https://code.claude.com/docs/en/agent-view.md), Claude Code also checks workspace trust for the directory the session runs in. If you run `claude --bg` from a terminal in a directory you haven't trusted, the trust dialog appears first and the session starts once you accept it. Where no dialog can appear, such as in a script, the command exits with a [`Workspace not trusted`](https://code.claude.com/docs/en/errors#workspace-not-trusted-when-dispatching-a-background-session) error instead.
 

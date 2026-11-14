@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/user_profiles/create
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 649cdcdb9e0650b90e56bcaaa98c7a02050856f21e6afb9e2907ce1c6f19cc4e
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 6ca24b24cba0cc718fffb828d6e884d1ee9fd1a2308cfaaaafb7cb6fda8ef2cc
 ---
 
 ---
@@ -401,16 +401,7 @@ curl https://api.anthropic.com/v1/user_profiles \
   "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
   "access_type": "application",
   "created_at": "2026-03-15T10:00:00Z",
-  "enforcement_actions": [
-    {
-      "id": "enac_011CZkZCu8hGbp5mYRQgUmz9",
-      "action": "verify",
-      "expires_at": null,
-      "opened_at": "2026-10-02T19:30:00Z",
-      "reason": "fraud_or_abuse",
-      "type": "restriction"
-    }
-  ],
+  "enforcement_actions": [],
   "enforcement_status": "unrestricted",
   "external_user_details": {
     "account_status": "active",
@@ -425,10 +416,7 @@ curl https://api.anthropic.com/v1/user_profiles \
   "name": "Example User",
   "programs": {
     "cyber": {
-      "requirements": {
-        "data_retention": true,
-        "human_review": true
-      },
+      "requirements": null,
       "status": "active",
       "tiers": {
         "a": {
@@ -442,20 +430,7 @@ curl https://api.anthropic.com/v1/user_profiles \
         }
       }
     },
-    "efs": {
-      "features": {
-        "data_retention_exemption": {
-          "status": "inactive"
-        },
-        "cmek": {
-          "status": "active"
-        },
-        "storage": {
-          "status": "inactive"
-        }
-      },
-      "status": "active"
-    }
+    "efs": null
   },
   "type": "user_profile",
   "updated_at": "2026-03-15T10:00:00Z"

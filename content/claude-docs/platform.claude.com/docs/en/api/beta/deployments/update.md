@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/update
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 38b979b7bef6850388e5b40b35e21e14e802ac52c65d8c2ab16a66b5f939f000
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 0ac0e52db4a41238375187d06dac5af0ba327e151d35b091344939962d0af78f
 ---
 
 ---
@@ -1146,20 +1146,8 @@ curl https://api.anthropic.com/v1/deployments/$DEPLOYMENT_ID \
   ],
   "metadata": {},
   "name": "Daily order report",
-  "paused_reason": {
-    "type": "manual"
-  },
-  "resources": [
-    {
-      "type": "github_repository",
-      "url": "url",
-      "checkout": {
-        "name": "main",
-        "type": "branch"
-      },
-      "mount_path": "mount_path"
-    }
-  ],
+  "paused_reason": null,
+  "resources": [],
   "schedule": {
     "expression": "0 9 * * 1-5",
     "timezone": "America/Los_Angeles",

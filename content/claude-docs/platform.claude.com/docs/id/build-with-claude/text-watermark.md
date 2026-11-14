@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/text-watermark
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 61f2c0ccdc0b2f1f0833b287caa8a542561bb64f6e8596fec96bae886bab7cf9
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 0cf386fab4d9a2379ce4d2a99df552f26c76a19696b2f3c395d658eca922c970
 ---
 
 ---
@@ -17,4 +17,8 @@ Watermark tidak mengubah makna, kualitas, atau keterbacaan output. Watermark tid
 
 ## Pengaturan sampling
 
-Pada Claude Sonnet 4.6, teks yang dihasilkan untuk permintaan yang menetapkan `temperature`, `top_p`, atau `top_k` ke nilai non-default mungkin tidak membawa watermark. Jika Anda mengandalkan watermark, hilangkan ketiga parameter tersebut dari permintaan Anda, termasuk parameter yang ditetapkan untuk Anda oleh framework atau pustaka klien.
+**Bagian ini berlaku untuk:** Claude Sonnet 4.6
+
+Jika output Anda perlu membawa watermark, hilangkan `temperature`, `top_p`, dan `top_k` dari permintaan Anda. Jika sebuah permintaan menetapkan salah satu dari parameter tersebut ke nilai non-default, output mungkin tidak membawa watermark.
+
+Framework atau pustaka klien Anda mungkin menetapkan parameter ini untuk Anda. Jika Anda memerlukan watermark, periksa pengaturannya dan body permintaan yang dikirimkannya, lalu hapus parameter mana pun dari ketiganya yang ditetapkannya.

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-actions
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 8172d38514e1bd1e7f95cf58676c7073738bd8ec8600d21d98819f07fd6991d8
+fetched_at: 2026-11-14T02:12:32.675862Z
+sha256: 5c793c4ef08da88eb59e5e9ea6eedad0a2b97b31fd8e504ed7ac7995c738c471
 ---
 
 > ## Documentation Index
@@ -136,6 +136,7 @@ When you install the app, you grant the following permissions:
 | Administration | Read |
 | Checks | Read and write |
 | Contents | Read and write |
+| Dependabot alerts | Read |
 | Discussions | Read and write |
 | Issues | Read and write |
 | Members | Read |
